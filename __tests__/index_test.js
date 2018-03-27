@@ -1,16 +1,22 @@
 /* eslint-env jest */
 
-import { shallow } from 'enzyme'
+import { mount } from 'enzyme'
 import React from 'react'
 import renderer from 'react-test-renderer'
 
 import App from '../pages/index.js'
 
 
-describe('With Enzyme', () => {
-    it('App shows "Hello world!"', () => {
-        const app = shallow(<App />)
+jest.mock('react-i18next', () => ({
+    // this mock makes sure any components using the translate HoC receive the t function as a prop
+    translate: () => Component => props => <Component t={(key) => key} {...props} />,
+}));
 
-        expect(app.find('p').text()).toEqual('Hello World!')
+
+describe('With Enzyme', () => {
+    it('index page', () => {
+        const app = mount(<App />)
+
+        expect(app.find('p').text()).toEqual('welcome')
     })
 })
