@@ -1,11 +1,12 @@
+import React from 'react'
 import Link from 'next/link'
-import Head from '../components/head'
-import Nav from '../components/nav'
 
-export default () => (
-  <div>
-    <Head title="Home" />
-      <p>Hello World!</p>
-  </div>
-)
+import { withI18next } from '../lib/withI18next'
 
+
+
+export default withI18next(['home'])(({ t, initialI18nStore }) => (
+    <div>
+        <p>{t('welcome')}</p>
+    </div>
+))
