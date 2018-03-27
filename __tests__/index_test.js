@@ -17,6 +17,6 @@ describe('With Enzyme', () => {
     it('index page', () => {
         const app = mount(<App />)
 
-        expect(app.find('p').text()).toEqual('welcome')
+        expect(app.find('p').text()).toEqual('weddlcome')
     })
 })
