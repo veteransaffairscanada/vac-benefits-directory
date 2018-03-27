@@ -5,7 +5,7 @@ import Nav from '../components/nav'
 export default () => (
   <div>
     <Head title="Home" />
-Hi There!
+      <p>Hello World!</p>
   </div>
 )
 
