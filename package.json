@@ -1,10 +1,13 @@
 {
   "name": "vac-poc",
+  "license": "MIT",
+  "description": "Proof of concept for VAC benefits navigator",
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production mode server.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "node_modules/eslint/bin/eslint.js pages components __tests__"
   },
   "dependencies": {
     "express": "4.16.2",
