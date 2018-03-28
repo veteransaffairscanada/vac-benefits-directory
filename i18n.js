@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 const i18next = require('i18next')
 const XHR = require('i18next-xhr-backend')
 const LanguageDetector = require('i18next-browser-languagedetector')
@@ -10,7 +12,7 @@ const options = {
     ns: ['common'],
     defaultNS: 'common',
 
-    debug: process.env.NODE_ENV !== 'production',
+    debug: false, //process.env.NODE_ENV !== 'production',
     saveMissing: true,
 
     interpolation: {
