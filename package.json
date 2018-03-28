@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=production mode server.js",
+    "start": "NODE_ENV=production node server.js",
     "test": "jest",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__"
   },
