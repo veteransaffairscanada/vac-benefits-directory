@@ -62,4 +62,4 @@ workflows:
         filters:
           branches:
             only:
-              - add_deploy
+              - master
