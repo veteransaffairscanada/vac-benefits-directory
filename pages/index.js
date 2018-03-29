@@ -1,10 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import { withI18next } from '../lib/withI18next'
+import { withI18next } from "../lib/withI18next";
+import { GoCSignature } from "@cdssnc/gcui";
 
-
-export default withI18next(['home'])(({ t, initialI18nStore }) => ( // eslint-disable-line no-unused-vars
-    <div>
-        <p>{t('welcome')}</p>
-    </div>
-))
+export default withI18next(["home"])((
+  { t, initialI18nStore } // eslint-disable-line no-unused-vars
+) => (
+  <div>
+    <GoCSignature width="20em" />
+    <p>{t("poc-description")}</p>
+    <p>lang LL{I18n}LL</p>
+  </div>
+));
