@@ -37,4 +37,29 @@ jobs:
       - run: yarn test
       - run: node node_modules/eslint/bin/eslint.js pages components __tests__
 
+  deploy:
+    docker:
+      - image: docker
+    steps:
+      - checkout:
+          path: ~/repo
+      - setup_remote_docker
+      - run:
+          command: |
+              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+              docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest" .
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
+          name: "Build and Deploy API Docker Image"
+    working_directory: ~/repo
 
+workflows:
+  version: 2
+  build_and_deploy:
+   jobs:
+     - build
+     - deploy:
+        filters:
+          branches:
+            only:
+              - add_deploy
