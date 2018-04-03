@@ -1,5 +1,7 @@
 // @flow
 
+import "core-js/es6/map";
+import "core-js/es6/set";
 import React, { Component } from "react";
 
 import { withI18next } from "../lib/withI18next";
