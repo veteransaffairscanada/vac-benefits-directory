@@ -14,13 +14,9 @@ class App extends Component {
         <p className={styles.example}>{t("poc-description")}</p>
         <Button
           className={styles.button}
-          onClick={() =>
-            i18n.changeLanguage(
-              i18n.language.substring(0, 2) === "en" ? "fr" : "en"
-            )
-          }
+          onClick={() => i18n.changeLanguage(t("other-language-code"))}
         >
-          {i18n.language.substring(0, 2) === "en" ? "Français" : "English"}
+          {t("other-language")}
         </Button>
       </div>
     );

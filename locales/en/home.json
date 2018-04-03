@@ -1,6 +1,8 @@
 {
   "poc-description": "This is a Proof of Concept for the VAC project",
+  "other-language": "Français",
+  "other-language-code": "fr",
   "link": {
-    "gotoPage2": "Aller à la page 2"
+    "gotoPage2": "Go to page 2"
   }
 }

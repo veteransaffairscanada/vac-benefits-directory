@@ -1,6 +1,8 @@
 {
   "poc-description": "Ceci est une preuve de concept pour le projet ACC",
+  "other-language": "English",
+  "other-language-code": "en",
   "link": {
-    "gotoPage2": "Go to page 2"
+    "gotoPage2": "Aller à la page 2"
   }
 }
