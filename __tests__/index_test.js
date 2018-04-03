@@ -12,8 +12,8 @@ jest.mock("react-i18next", () => ({
 
 describe("With Enzyme", () => {
   it("index page", () => {
-    const app = mount(<App />);
-
+    const app = mount(<App i18n={{ language: "en-US" }} />);
     expect(app.find("p").text()).toEqual("poc-description");
+    expect(app.find("Button").text()).toEqual("other-language");
   });
 });

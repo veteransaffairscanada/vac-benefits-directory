@@ -1,14 +1,35 @@
-import React from "react";
+// @flow
+
+import React, { Component } from "react";
 
 import { withI18next } from "../lib/withI18next";
-import { GoCSignature } from "@cdssnc/gcui";
+import { GoCSignature, Button } from "@cdssnc/gcui";
 import styles from "../styles/styles.scss";
 
-export default withI18next(["home"])((
-  { t, initialI18nStore } // eslint-disable-line no-unused-vars
-) => (
-  <div>
-    <GoCSignature width="20em" />
-    <p className={styles.example}>{t("poc-description")}</p>
-  </div>
-));
+type Props = {
+  i18n: mixed,
+  t: mixed
+};
+
+class App extends Component<Props> {
+  props: Props;
+
+  render() {
+    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+
+    return (
+      <div>
+        <GoCSignature width="20em" />
+        <p className={styles.example}>{t("poc-description")}</p>
+        <Button
+          className={styles.button}
+          onClick={() => i18n.changeLanguage(t("other-language-code"))}
+        >
+          {t("other-language")}
+        </Button>
+      </div>
+    );
+  }
+}
+
+export default withI18next(["home"])(App);
