@@ -9,6 +9,5 @@ export default withI18next(["home"])((
   <div>
     <GoCSignature width="20em" />
     <p>{t("poc-description")}</p>
-    <p>lang LL{I18n}LL</p>
   </div>
 ));
