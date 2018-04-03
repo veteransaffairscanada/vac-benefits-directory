@@ -1,10 +1,19 @@
+// @flow
+
 import React, { Component } from "react";
 
 import { withI18next } from "../lib/withI18next";
 import { GoCSignature, Button } from "@cdssnc/gcui";
 import styles from "../styles/styles.scss";
 
-class App extends Component {
+type Props = {
+  i18n: mixed,
+  t: mixed
+};
+
+class App extends Component<Props> {
+  props: Props;
+
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
