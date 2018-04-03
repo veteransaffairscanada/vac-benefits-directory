@@ -1,7 +1,7 @@
 {
   "env": {
     "development": {
-      "presets": ["next/babel"]
+      "presets": ["flow", "next/babel"]
     },
     "production": {
       "presets": ["next/babel"]
