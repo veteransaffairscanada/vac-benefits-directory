@@ -3,7 +3,7 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import Foo from "../pages/index.js";
+import App from "../pages/index.js";
 
 jest.mock("react-i18next", () => ({
   // this mock makes sure any components using the translate HoC receive the t function as a prop
@@ -12,7 +12,7 @@ jest.mock("react-i18next", () => ({
 
 describe("With Enzyme", () => {
   it("index page", () => {
-    const app = mount(<Foo i18n={{ language: "en-US" }} />);
+    const app = mount(<App i18n={{ language: "en-US" }} />);
     expect(app.find("p").text()).toEqual("poc-description");
     expect(app.find("Button").text()).toEqual("other-language");
   });
