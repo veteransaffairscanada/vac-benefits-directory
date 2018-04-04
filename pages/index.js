@@ -17,6 +17,7 @@ import {
 } from "reactstrap";
 
 import { withI18next } from "../lib/withI18next";
+import withSentry from "../lib/withSentry";
 import { GoCSignature, Button } from "@cdssnc/gcui";
 import Head from "../components/head";
 import styles from "../styles/styles.scss";
@@ -62,4 +63,4 @@ class App extends Component<Props> {
   }
 }
 
-export default withI18next(["home"])(App);
+export default withSentry(withI18next(["home"])(App));
