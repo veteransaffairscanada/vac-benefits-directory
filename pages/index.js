@@ -1,7 +1,11 @@
 // @flow
 
-import React, { Component } from "react";
+// for IE 9 and 10 compatibility
+import "core-js/es6/map";
+import "core-js/es6/set";
+import "raf/polyfill";
 
+import React, { Component } from "react";
 import { withI18next } from "../lib/withI18next";
 import { GoCSignature, Button } from "@cdssnc/gcui";
 import styles from "../styles/styles.scss";
