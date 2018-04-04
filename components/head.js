@@ -43,10 +43,6 @@ const Head = (props: Props) => (
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     />
-    <script
-      src="https://cdn.ravenjs.com/3.24.0/raven.min.js"
-      crossOrigin="anonymous"
-    />
   </NextHead>
 );
 
