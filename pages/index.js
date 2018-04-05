@@ -42,6 +42,7 @@ class App extends Component<Props> {
           <Nav>
             <NavItem>
               <Button
+                name="BtnLanguage"
                 className={styles.button}
                 onClick={() => i18n.changeLanguage(t("other-language-code"))}
               >
@@ -53,7 +54,9 @@ class App extends Component<Props> {
         <Container>
           <Row>
             <Col xs="12">
-              <p className={styles.example}>{t("poc-description")}</p>
+              <p name="TextDescription" className={styles.example}>
+                {t("poc-description")}
+              </p>
             </Col>
           </Row>
         </Container>
