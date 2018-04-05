@@ -56,6 +56,7 @@ class App extends Component<Props> {
             </Col>
           </Row>
         </Container>
+        <div className={styles.footer}>Footer</div>
       </div>
     );
   }
