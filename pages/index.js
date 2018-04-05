@@ -27,7 +27,10 @@ class App extends Component<Props> {
   props: Props;
 
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t } = this.props, // eslint-disable-line no-unused-vars
+      envDetails = process.env.CIRCLE_SHA1
+        ? process.env.CIRCLE_SHA1
+        : process.env.NODE_ENV;
 
     return (
       <div>
@@ -60,7 +63,7 @@ class App extends Component<Props> {
             </Col>
           </Row>
         </Container>
-        <div className={styles.footer}>Footer</div>
+        <div className={styles.footer}>{envDetails}</div>
       </div>
     );
   }
