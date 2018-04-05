@@ -16,6 +16,7 @@ import withSentry from "../lib/withSentry";
 import { GoCSignature, Button } from "@cdssnc/gcui";
 import Head from "../components/head";
 import styles from "../styles/styles.scss";
+import { logEvent } from "../utils/analytics";
 
 type Props = {
   i18n: mixed,
@@ -40,7 +41,10 @@ class App extends Component<Props> {
               <Button
                 name="BtnLanguage"
                 className={styles.button}
-                onClick={() => i18n.changeLanguage(t("other-language-code"))}
+                onClick={() => {
+                  i18n.changeLanguage(t("other-language-code"));
+                  logEvent("Language change", t("other-language"));
+                }}
               >
                 {t("other-language")}
               </Button>

@@ -13,6 +13,7 @@
   "dependencies": {
     "@cdssnc/gcui": "^0.0.16",
     "@zeit/next-sass": "^0.1.2",
+    "babel-plugin-transform-inline-environment-variables": "^0.3.0",
     "express": "4.16.2",
     "i18next": "10.4.1",
     "i18next-browser-languagedetector": "2.1.0",
@@ -24,6 +25,7 @@
     "raven-js": "^3.24.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-ga": "^2.4.1",
     "react-i18next": "^7.3.6",
     "reactstrap": "^5.0.0-beta.3"
   },
