@@ -12,7 +12,9 @@ https://vacpoc.azurewebsites.net/
 
 ## Configuration
 
-Currently the application uses Sentry.io for error logging. If you would also like to use sentry, make sure your public client key is the `SENTRY_DSN` enviroment variable.
+The application uses Sentry.io for error logging. If you would also like to use sentry, make sure your public client key is the `SENTRY_DSN` enviroment variable.
+
+Google Analytics is used for behaviour tracking, ex: How many people switch between languages. If you would like to include your own GA key set the `GA_UA` environment variable.
 
 ## Reference
 

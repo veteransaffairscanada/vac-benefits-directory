@@ -4,6 +4,7 @@
       "presets": ["flow", "next/babel"]
     },
     "production": {
+      "plugins": ["transform-inline-environment-variables"],
       "presets": ["next/babel"]
     },
     "test": {
