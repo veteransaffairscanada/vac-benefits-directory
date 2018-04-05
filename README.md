@@ -10,6 +10,10 @@ https://vacpoc.azurewebsites.net/
 * `yarn install`
 * `yarn dev`
 
+## Configuration
+
+Currently the application uses Sentry.io for error logging. If you would also like to use sentry, make sure your public client key is the `SENTRY_DSN` enviroment variable.
+
 ## Reference
 
 This application uses the following resources:
