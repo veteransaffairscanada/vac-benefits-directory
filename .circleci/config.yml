@@ -65,7 +65,8 @@ workflows:
               - master
          requires:
            - build
-          name: "Build and Deploy VAC PoC Docker Image"
+         name: "Build and Deploy VAC PoC Docker Image"
+
     working_directory: ~/repo
 workflows:
   version: 2
