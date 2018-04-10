@@ -141,7 +141,7 @@ workflows:
   build_and_deploy:
    jobs:
      - build
-     -integration
+     - integration
      - deploy:
         filters:
           branches:
