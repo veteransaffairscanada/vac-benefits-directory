@@ -36,6 +36,14 @@ jobs:
       # run tests!
       - run: yarn test
       - run: node node_modules/eslint/bin/eslint.js pages components __tests__
+      - run:
+          command: |
+              yarn build
+              yarn start &
+              yarn cypress:wait
+              yarn cypress:run
+
+          name: "Build and Deploy API Docker Image"
 
 #  integration:
 #      docker:
