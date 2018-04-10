@@ -5,6 +5,12 @@ LABEL Description="Government of Canada VAC Proof of Concept" Vendor="Canadian D
 WORKDIR /app
 ADD . .
 
+ARG SENTRY_DSN
+ENV SENTRY_DSN ${SENTRY_DSN}
+
+ARG GA_UA
+ENV GA_UA ${GA_UA}
+
 RUN yarn install && yarn build
 USER node
 
