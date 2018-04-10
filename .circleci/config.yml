@@ -94,7 +94,12 @@ jobs:
             - node_modules
       - run:
           name: Running E2E tests
-          command: yarn cypress:run
+          command: |
+              yarn build
+              yarn start &
+              yarn cypress:wait
+              yarn cypress:run
+
       - store_test_results:
           path: cypress-results
       - store_artifacts:
