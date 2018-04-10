@@ -63,6 +63,7 @@ jobs:
                 yarn start &
                 yarn cypress:wait
                 yarn cypress:run
+            name: "Cypress tests"
 
   deploy:
     docker:
@@ -79,13 +80,11 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy API Docker Image"
     working_directory: ~/repo
-
 workflows:
   version 2:
   build_and_deploy:
     jobs: 
       - build
-      - integration
       - deploy:
          filters:
            branches:
@@ -93,5 +92,4 @@ workflows:
               - master
          requires:
            - build
-           - integration
          name: "Build and Deploy VAC PoC Docker Image"
