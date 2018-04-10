@@ -9,7 +9,9 @@
     "test": "jest",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged",
-    "cypress:open": "cypress open"
+    "cypress:wait": "wait-on http://localhost:3000",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@cdssnc/gcui": "^0.0.16",
@@ -28,7 +30,8 @@
     "react-dom": "^16.2.0",
     "react-ga": "^2.4.1",
     "react-i18next": "^7.3.6",
-    "reactstrap": "^5.0.0-beta.3"
+    "reactstrap": "^5.0.0-beta.3",
+    "wait-on": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
