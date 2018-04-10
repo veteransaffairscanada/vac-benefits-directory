@@ -5,6 +5,9 @@ LABEL Description="Government of Canada VAC Proof of Concept" Vendor="Canadian D
 WORKDIR /app
 ADD . .
 
+ARG CIRCLE_SHA1
+ENV CIRCLE_SHA1 ${CIRCLE_SHA1}
+
 ARG SENTRY_DSN
 ENV SENTRY_DSN ${SENTRY_DSN}
 
