@@ -79,6 +79,7 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy API Docker Image"
     working_directory: ~/repo
+
 workflows:
   version 2:
   build_and_deploy:
@@ -94,15 +95,3 @@ workflows:
            - build
            - integration
          name: "Build and Deploy VAC PoC Docker Image"
-
-    working_directory: ~/repo
-workflows:
-  version: 2
-  build_and_deploy:
-   jobs:
-     - build
-     - deploy:
-        filters:
-          branches:
-            only:
-              - master
