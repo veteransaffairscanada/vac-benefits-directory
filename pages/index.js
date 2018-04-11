@@ -23,6 +23,10 @@ class App extends Component<Props> {
     logEvent("Language change", this.props.t("other-language"));
   };
 
+  throwError = () => {
+    throw new Error("test");
+  };
+
   render() {
     const { i18n, t } = this.props, // eslint-disable-line no-unused-vars
       envDetails = process.env.CIRCLE_SHA1
