@@ -60,7 +60,7 @@ class Head extends Component<Props> {
         <meta property="og:image:height" content="630" />
         <link
           rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
         />
       </NextHead>
     );
