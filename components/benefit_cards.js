@@ -3,7 +3,8 @@ import Card, { CardContent, CardHeader, CardActions } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
 
 type CardProps = {
-  benefit: mixed
+  benefit: mixed,
+  t: mixed
 };
 
 export class BenefitCard extends Component<CardProps> {
@@ -18,17 +19,17 @@ export class BenefitCard extends Component<CardProps> {
     return (
       <Grid item xs={12}>
         <Card>
-          <CardHeader title={benefit.type} />
+          <CardHeader title={this.props.t(benefit.type).toUpperCase()} />
           <CardContent>
             <Typography id="title" variant="title" gutterBottom>
-              {benefit.title}
+              {this.props.t(benefit.title)}
             </Typography>
             <Typography id="description" variant="body1" gutterBottom>
-              {benefit.description}
+              {this.props.t(benefit.description)}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button>View Details</Button>
+            <Button>{this.props.t("View Details")}</Button>
           </CardActions>
         </Card>
       </Grid>
@@ -37,19 +38,20 @@ export class BenefitCard extends Component<CardProps> {
 }
 
 type CardListProps = {
-  benefitList: mixed
+  benefitList: mixed,
+  t: mixed
 };
 
 class BenefitCardList extends Component<CardListProps> {
   props: CardListProps;
 
   state = {
-    info: this.props.benefitList
+    benefits: this.props.benefitList
   };
 
   render() {
-    return this.state.info.map((benefit, i) => (
-      <BenefitCard id={"bc" + i} benefit={benefit} key={i} />
+    return this.state.benefits.map((benefit, i) => (
+      <BenefitCard id={"bc" + i} benefit={benefit} t={this.props.t} key={i} />
     ));
   }
 }

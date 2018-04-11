@@ -26,25 +26,23 @@ class App extends Component<Props> {
   };
 
   render() {
-    const benefitList = [
-      {
-        type: "SUPPORT FOR FAMILIES",
-        title: "Survivor's Pension",
-        description:
-          "Spouses receive the full amount of the pension following first year of death."
-      },
-      {
-        type: "FINANCIAL",
-        title: "Disability Award",
-        description:
-          "Financial payments provided to individuals who have a service-related disability."
-      }
-    ];
-
     const { i18n, t } = this.props, // eslint-disable-line no-unused-vars
       envDetails = process.env.CIRCLE_SHA1
         ? process.env.CIRCLE_SHA1
         : process.env.NODE_ENV;
+
+    const benefitList = [
+      {
+        type: "Support for Families",
+        title: "Survivor's Pension",
+        description: "Survivor's Pension Description"
+      },
+      {
+        type: "Financial",
+        title: "Disability Award",
+        description: "Disability Award Description"
+      }
+    ];
 
     return (
       <div>
@@ -68,7 +66,7 @@ class App extends Component<Props> {
               {t("poc-description")}
             </p>
           </Grid>
-          <BenefitCardList benefitList={benefitList} />
+          <BenefitCardList benefitList={benefitList} t={t} />
         </Grid>
         <div className={styles.footer}>{envDetails}</div>
       </div>
