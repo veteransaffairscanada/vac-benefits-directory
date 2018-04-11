@@ -8,7 +8,7 @@ import { withI18next } from "../lib/withI18next";
 import withSentry from "../lib/withSentry";
 import { GoCSignature } from "@cdssnc/gcui";
 import Head from "../components/head";
-import BenefitCardList from "../components/summary";
+import BenefitCardList from "../components/benefit_cards";
 import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
 

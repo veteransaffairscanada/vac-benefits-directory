@@ -6,7 +6,7 @@ type CardProps = {
   benefit: mixed
 };
 
-class BenefitCard extends Component<CardProps> {
+export class BenefitCard extends Component<CardProps> {
   props: CardProps;
 
   state = {
@@ -20,10 +20,10 @@ class BenefitCard extends Component<CardProps> {
         <Card>
           <CardHeader title={benefit.type} />
           <CardContent>
-            <Typography variant="title" gutterBottom>
+            <Typography id="title" variant="title" gutterBottom>
               {benefit.title}
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography id="description" variant="body1" gutterBottom>
               {benefit.description}
             </Typography>
           </CardContent>
@@ -49,7 +49,7 @@ class BenefitCardList extends Component<CardListProps> {
 
   render() {
     return this.state.info.map((benefit, i) => (
-      <BenefitCard benefit={benefit} key={i} />
+      <BenefitCard id={"bc" + i} benefit={benefit} key={i} />
     ));
   }
 }
