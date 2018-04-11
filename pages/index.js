@@ -1,19 +1,12 @@
 // @flow
 
 import React, { Component } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem
-} from "reactstrap";
+
+import { AppBar, Button, Grid, Toolbar, Typography } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
 import withSentry from "../lib/withSentry";
-import { GoCSignature, Button } from "@cdssnc/gcui";
+import { GoCSignature } from "@cdssnc/gcui";
 import Head from "../components/head";
 import BenefitList from "../components/summary";
 import styles from "../styles/styles.scss";
@@ -26,6 +19,11 @@ type Props = {
 
 class App extends Component<Props> {
   props: Props;
+
+  changeLanguage = () => {
+    this.props.i18n.changeLanguage(this.props.t("other-language-code"));
+    logEvent("Language change", this.props.t("other-language"));
+  };
 
   render() {
     const benefitInfo = [
@@ -51,36 +49,27 @@ class App extends Component<Props> {
     return (
       <div>
         <Head />
-        <Navbar color="light" light>
-          <NavbarBrand href="/">
-            <GoCSignature width="20em" />
-          </NavbarBrand>
-          <Nav>
-            <NavItem>
-              <Button
-                name="BtnLanguage"
-                className={styles.button}
-                onClick={() => {
-                  i18n.changeLanguage(t("other-language-code"));
-                  logEvent("Language change", t("other-language"));
-                }}
-              >
-                {t("other-language")}
-              </Button>
-            </NavItem>
-          </Nav>
-        </Navbar>
-
-        <Container>
-          <Row>
-            <Col xs="12">
-              <p name="TextDescription" className={styles.example}>
-                {t("poc-description")}
-              </p>
-            </Col>
-          </Row>
-          <BenefitList info={benefitInfo} />
-        </Container>
+        <AppBar style={{ backgroundColor: "#000" }} position="static">
+          <Toolbar>
+            <GoCSignature width="20em" text="#fff" flag="#fff" />
+            <Typography style={{ flex: 1 }} />
+            <Button style={{ color: "#fff" }} onClick={this.changeLanguage}>
+              {t("other-language")}
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <p
+              id="TextDescription"
+              name="TextDescription"
+              className={styles.example}
+            >
+              {t("poc-description")}
+            </p>
+          </Grid>
+          {/*<BenefitList info={benefitInfo} />*/}
+        </Grid>
         <div className={styles.footer}>{envDetails}</div>
       </div>
     );

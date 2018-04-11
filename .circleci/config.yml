@@ -35,8 +35,43 @@ jobs:
         
       # run tests!
       - run: yarn test
-      - run: node node_modules/eslint/bin/eslint.js pages components __tests__
+      - run:
+          command: node node_modules/eslint/bin/eslint.js pages components __tests__
+          name: lint
 
+  integration:
+    docker:
+      # the Docker image with Cypress dependencies
+      - image: cypress/base:6
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    working_directory: ~/app
+    parallelism: 1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package.json" }}
+            - v1-npm-deps
+      - run: npm install
+      - save_cache:
+          key: v1-npm-deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Running E2E tests
+          command: |
+              yarn build
+              yarn start &
+              yarn cypress:wait
+              yarn cypress:run
+      - store_test_results:
+          path: cypress-results
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
 
   deploy:
     docker:
@@ -53,27 +88,17 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy API Docker Image"
     working_directory: ~/repo
-workflows:
-  version 2:
-  build_and_deploy:
-    jobs: 
-      - build
-      - deploy:
-         filters:
-           branches:
-             only:
-              - master
-         requires:
-           - build
-         name: "Build and Deploy VAC PoC Docker Image"
 
-    working_directory: ~/repo
 workflows:
   version: 2
   build_and_deploy:
    jobs:
      - build
+     - integration
      - deploy:
+        requires:
+         - build
+         - integration
         filters:
           branches:
             only:

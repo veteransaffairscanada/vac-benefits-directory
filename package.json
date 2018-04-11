@@ -8,10 +8,14 @@
     "start": "NODE_ENV=production node server.js",
     "test": "jest",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged",
+    "cypress:wait": "wait-on http://localhost:3000",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@cdssnc/gcui": "^0.0.16",
+    "@material-ui/icons": "^1.0.0-beta.42",
     "@zeit/next-sass": "^0.1.2",
     "babel-plugin-transform-inline-environment-variables": "^0.3.0",
     "express": "4.16.2",
@@ -20,6 +24,7 @@
     "i18next-express-middleware": "1.0.10",
     "i18next-node-fs-backend": "1.0.0",
     "i18next-xhr-backend": "1.5.1",
+    "material-ui": "next",
     "next": "^5.1.0",
     "node-sass": "^4.8.3",
     "raven-js": "^3.24.0",
@@ -27,7 +32,8 @@
     "react-dom": "^16.2.0",
     "react-ga": "^2.4.1",
     "react-i18next": "^7.3.6",
-    "reactstrap": "^5.0.0-beta.3"
+    "reactstrap": "^5.0.0-beta.3",
+    "wait-on": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -36,6 +42,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "cypress": "^2.1.0",
     "enzyme": "3.2.0",
     "enzyme-adapter-react-16": "1.1.1",
     "eslint": "^4.19.1",
