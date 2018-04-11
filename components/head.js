@@ -8,7 +8,8 @@ type Props = {
   title?: string,
   description?: string,
   url?: string,
-  ogImage?: string
+  ogImage?: string,
+  t: mixed
 };
 
 const defaultDescription = "";
@@ -30,7 +31,7 @@ class Head extends Component<Props> {
     return (
       <NextHead>
         <meta charSet="UTF-8" />
-        <title>{this.props.title || ""}</title>
+        <title>{this.props.title || this.props.t("common:title")}</title>
         <meta
           name="description"
           content={this.props.description || defaultDescription}
