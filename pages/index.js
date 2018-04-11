@@ -3,8 +3,6 @@
 import React, { Component } from "react";
 
 import { AppBar, Button, Grid, Toolbar, Typography } from "material-ui";
-import theme from "../lib/theme";
-import { MuiThemeProvider } from "material-ui/styles";
 
 import { withI18next } from "../lib/withI18next";
 import withSentry from "../lib/withSentry";
@@ -35,29 +33,27 @@ class App extends Component<Props> {
     return (
       <div>
         <Head />
-        <MuiThemeProvider theme={theme}>
-          <AppBar position="static">
-            <Toolbar>
-              <GoCSignature width="20em" text="#fff" flag="#fff" />
-              <Typography style={{ flex: 1 }} />
-              <Button color="secondary" onClick={this.changeLanguage}>
-                {t("other-language")}
-              </Button>
-            </Toolbar>
-          </AppBar>
-          <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <p
-                id="TextDescription"
-                name="TextDescription"
-                className={styles.example}
-              >
-                {t("poc-description")}
-              </p>
-            </Grid>
+        <AppBar style={{ backgroundColor: "#000" }} position="static">
+          <Toolbar>
+            <GoCSignature width="20em" text="#fff" flag="#fff" />
+            <Typography style={{ flex: 1 }} />
+            <Button style={{ color: "#fff" }} onClick={this.changeLanguage}>
+              {t("other-language")}
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <p
+              id="TextDescription"
+              name="TextDescription"
+              className={styles.example}
+            >
+              {t("poc-description")}
+            </p>
           </Grid>
-          <div className={styles.footer}>{envDetails}</div>
-        </MuiThemeProvider>
+        </Grid>
+        <div className={styles.footer}>{envDetails}</div>
       </div>
     );
   }
