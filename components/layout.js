@@ -6,7 +6,8 @@ import ErrorBoundary from "../components/errorBoundary";
 import Head from "../components/head";
 
 type Props = {
-  children?: mixed
+  children?: mixed,
+  t?: mixed
 };
 
 class Layout extends Component<Props> {
@@ -15,7 +16,7 @@ class Layout extends Component<Props> {
   render() {
     return (
       <div>
-        <Head />
+        <Head t={this.props.t} />
         <ErrorBoundary>{this.props.children}</ErrorBoundary>
       </div>
     );

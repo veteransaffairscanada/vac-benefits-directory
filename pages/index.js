@@ -34,7 +34,7 @@ class App extends Component<Props> {
         : process.env.NODE_ENV;
 
     return (
-      <Layout>
+      <Layout t={t}>
         <AppBar style={{ backgroundColor: "#000" }} position="static">
           <Toolbar>
             <GoCSignature width="20em" text="#fff" flag="#fff" />

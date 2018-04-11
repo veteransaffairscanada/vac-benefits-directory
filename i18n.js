@@ -13,7 +13,7 @@ const options = {
   defaultNS: "common",
 
   debug: false, //process.env.NODE_ENV !== 'production',
-  saveMissing: true,
+  saveMissing: false,
 
   interpolation: {
     escapeValue: false, // not needed for react!!
