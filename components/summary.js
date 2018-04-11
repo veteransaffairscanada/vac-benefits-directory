@@ -1,35 +1,57 @@
 import React, { Component } from "react";
-import { Row, Col } from "reactstrap";
+import Card, { CardContent, CardHeader, CardActions } from "material-ui/Card";
+import { Grid, Typography, Button } from "material-ui";
 
-type Props = {
-  info: mixed
+type CardProps = {
+  benefit: mixed
 };
 
-class BenefitList extends Component<Props> {
-  props: Props;
+class BenefitCard extends Component<CardProps> {
+  props: CardProps;
 
   state = {
-    info: this.props.info
+    benefit: this.props.benefit
+  };
+
+  render() {
+    const benefit = this.state.benefit;
+    return (
+      <Grid item xs={12}>
+        <Card>
+          <CardHeader title={benefit.type} />
+          <CardContent>
+            <Typography variant="title" gutterBottom>
+              {benefit.title}
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              {benefit.description}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button>View Details</Button>
+          </CardActions>
+        </Card>
+      </Grid>
+    );
+  }
+}
+
+type CardListProps = {
+  benefitList: mixed
+};
+
+class BenefitCardList extends Component<CardListProps> {
+  props: CardListProps;
+
+  state = {
+    info: this.props.benefitList
   };
 
   render() {
     return this.state.info.map((benefit, i) => (
-      <Row key={i}>
-        <Col>
-          <div className="card" style={{ width: "18rem" }}>
-            <h7 className="card-header">{benefit.type}</h7>
-            <div className="card-body">
-              <h5 className="card-title">{benefit.title}</h5>
-              <p className="card-text">{benefit.description}</p>
-            </div>
-            <div className="card-footer text-muted">
-              <a href="#">View Details</a>
-            </div>
-          </div>
-        </Col>
-      </Row>
+      <BenefitCard benefit={benefit} key={i} />
     ));
   }
 }
 
-export default BenefitList;
+export default BenefitCardList;

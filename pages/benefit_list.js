@@ -8,6 +8,7 @@ import { withI18next } from "../lib/withI18next";
 import withSentry from "../lib/withSentry";
 import { GoCSignature } from "@cdssnc/gcui";
 import Head from "../components/head";
+import BenefitCardList from "../components/summary";
 import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
 
@@ -25,6 +26,21 @@ class App extends Component<Props> {
   };
 
   render() {
+    const benefitList = [
+      {
+        type: "SUPPORT FOR FAMILIES",
+        title: "Survivor's Pension",
+        description:
+          "Spouses receive the full amount of the pension following first year of death."
+      },
+      {
+        type: "FINANCIAL",
+        title: "Disability Award",
+        description:
+          "Financial payments provided to individuals who have a service-related disability."
+      }
+    ];
+
     const { i18n, t } = this.props, // eslint-disable-line no-unused-vars
       envDetails = process.env.CIRCLE_SHA1
         ? process.env.CIRCLE_SHA1
@@ -52,6 +68,7 @@ class App extends Component<Props> {
               {t("poc-description")}
             </p>
           </Grid>
+          <BenefitCardList benefitList={benefitList} />
         </Grid>
         <div className={styles.footer}>{envDetails}</div>
       </div>
