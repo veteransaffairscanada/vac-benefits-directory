@@ -23,6 +23,7 @@ class Layout extends Component<Props> {
         <ErrorBoundary>
           <MenuBar i18n={this.props.i18n} t={this.props.t} />
           {this.props.children}
+          <Footer t={this.props.t} />
         </ErrorBoundary>
       </div>
     );

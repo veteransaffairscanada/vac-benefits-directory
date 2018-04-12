@@ -30,17 +30,19 @@ class App extends Component<Props> {
 
     return (
       <Layout i18n={i18n} t={t}>
-        <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <p
-              id="TextDescription"
-              name="TextDescription"
-              className={styles.example}
-            >
-              {t("home.poc-description")}
-            </p>
+        <div style={{ padding: 12 }}>
+          <Grid container spacing={24}>
+            <Grid item xs={12}>
+              <p
+                id="TextDescription"
+                name="TextDescription"
+                className={styles.example}
+              >
+                {t("home.poc-description")}
+              </p>
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
       </Layout>
     );
   }

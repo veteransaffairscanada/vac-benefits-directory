@@ -3,13 +3,7 @@ import styles from "../styles/styles.scss";
 import { WordMark } from "@cdssnc/gcui";
 import { AppBar, Button, Grid, Toolbar, Typography } from "material-ui";
 
-type CardProps = {
-  benefit: mixed,
-  t: mixed
-};
-
 type Props = {
-  benefitList: mixed,
   t: mixed
 };
 
@@ -25,10 +19,9 @@ class Footer extends Component<Props> {
       <div className={styles.footer}>
         <AppBar style={{ backgroundColor: "#DDD" }} position="static">
           <Toolbar>
-            {/*<Button>{this.props.t("Privacy")}</Button>*/}
-            <Button>Privacy</Button>
-            version {envDetails}
-            {/*<GoCSignature width="20em" text="#fff" flag="#fff" />*/}
+            <Button>{this.props.t("Privacy")}</Button>
+            <Typography style={{ flex: 1 }} />
+            version: {envDetails}
             <Typography style={{ flex: 1 }} />
             <WordMark />
           </Toolbar>

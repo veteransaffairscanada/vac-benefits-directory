@@ -44,11 +44,12 @@ class App extends Component<Props> {
 
     return (
       <Layout i18n={i18n} t={t}>
-        <Grid container spacing={24}>
-          <Grid item xs={12} />
-          <BenefitCardList benefitList={benefitList} t={t} />
-        </Grid>
-        <div className={styles.footer}>{envDetails}</div>
+        <div style={{ padding: 12 }}>
+          <Grid container spacing={24}>
+            <Grid item xs={12} />
+            <BenefitCardList benefitList={benefitList} t={t} />
+          </Grid>
+        </div>
       </Layout>
     );
   }
