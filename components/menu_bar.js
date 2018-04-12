@@ -27,7 +27,11 @@ class MenuBar extends Component<Props> {
         <Toolbar>
           <GoCSignature width="20em" text="#fff" flag="#fff" />
           <Typography style={{ flex: 1 }} />
-          <Button style={{ color: "#fff" }} onClick={this.changeLanguage}>
+          <Button
+            id="changeLanguage"
+            style={{ color: "#fff" }}
+            onClick={this.changeLanguage}
+          >
             {t("other-language")}
           </Button>
         </Toolbar>

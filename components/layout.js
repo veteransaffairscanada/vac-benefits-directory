@@ -4,6 +4,7 @@ import React, { Component } from "react";
 
 import ErrorBoundary from "../components/errorBoundary";
 import Head from "../components/head";
+import Footer from "../components/footer";
 import MenuBar from "../components/menu_bar";
 
 type Props = {
@@ -22,6 +23,7 @@ class Layout extends Component<Props> {
         <ErrorBoundary>
           <MenuBar i18n={this.props.i18n} t={this.props.t} />
           {this.props.children}
+          <Footer t={this.props.t} />
         </ErrorBoundary>
       </div>
     );

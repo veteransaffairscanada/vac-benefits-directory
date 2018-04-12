@@ -8,7 +8,6 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
-
 type Props = {
   i18n: mixed,
   t: mixed
@@ -27,25 +26,23 @@ class App extends Component<Props> {
   };
 
   render() {
-    const { i18n, t } = this.props, // eslint-disable-line no-unused-vars
-      envDetails = process.env.CIRCLE_SHA1
-        ? process.env.CIRCLE_SHA1
-        : process.env.NODE_ENV;
+    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
     return (
       <Layout i18n={i18n} t={t}>
-        <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <p
-              id="TextDescription"
-              name="TextDescription"
-              className={styles.example}
-            >
-              {t("home.poc-description")}
-            </p>
+        <div style={{ padding: 12 }}>
+          <Grid container spacing={24}>
+            <Grid item xs={12}>
+              <p
+                id="TextDescription"
+                name="TextDescription"
+                className={styles.example}
+              >
+                {t("home.poc-description")}
+              </p>
+            </Grid>
           </Grid>
-        </Grid>
-        <div className={styles.footer}>{envDetails}</div>
+        </div>
       </Layout>
     );
   }
