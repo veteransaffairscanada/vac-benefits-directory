@@ -1,3 +1,8 @@
 {
+  "home": {
+    "poc-description": "This is a Proof of Concept for the VAC project"
+  },
+  "other-language": "Français",
+  "other-language-code": "fr",
   "title": "VAC Proof of Concept"
 }

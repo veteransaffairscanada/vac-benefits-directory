@@ -1,3 +1,8 @@
 {
+  "home": {
+    "poc-description": "Ceci est une preuve de concept pour le projet ACC"
+  },
+  "other-language": "English",
+  "other-language-code": "en",
   "title": "Preuve de concept pour le projet ACC"
 }
