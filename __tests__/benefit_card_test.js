@@ -9,8 +9,10 @@ describe("Test Benefit Cards", () => {
       title: "test title",
       description: "test description"
     };
-    const card = mount(<BenefitCard benefit={test_props} />);
-    expect(card.find("CardHeader").text()).toEqual(test_props.type);
+    const card = mount(<BenefitCard t={key => key} benefit={test_props} />);
+    expect(card.find("CardHeader").text()).toEqual(
+      test_props.type.toUpperCase()
+    );
     expect(card.find("Typography#title").text()).toEqual(test_props.title);
     expect(card.find("Typography#description").text()).toEqual(
       test_props.description
@@ -32,10 +34,12 @@ describe("Test Benefit Cards", () => {
       }
     ];
 
-    const cardList = mount(<BenefitCardList benefitList={test_props} />);
+    const cardList = mount(
+      <BenefitCardList t={key => key} benefitList={test_props} />
+    );
     for (let i = 0; i < 2; i++) {
       const expected =
-        test_props[i].type +
+        test_props[i].type.toUpperCase() +
         test_props[i].title +
         test_props[i].description +
         "View Details";
