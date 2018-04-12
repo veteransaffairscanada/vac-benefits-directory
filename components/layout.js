@@ -8,6 +8,7 @@ import MenuBar from "../components/menu_bar";
 
 type Props = {
   children?: mixed,
+  i18n?: mixed,
   t?: mixed
 };
 

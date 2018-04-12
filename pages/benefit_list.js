@@ -2,10 +2,9 @@
 
 import React, { Component } from "react";
 
-import { AppBar, Button, Grid, Toolbar, Typography } from "material-ui";
+import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
-import { GoCSignature } from "@cdssnc/gcui";
 import Layout from "../components/layout";
 import BenefitCardList from "../components/benefit_cards";
 import styles from "../styles/styles.scss";
