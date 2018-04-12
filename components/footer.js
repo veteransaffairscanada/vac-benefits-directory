@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "../styles/styles.scss";
 import { WordMark } from "@cdssnc/gcui";
-import { AppBar, Button, Grid, Toolbar, Typography } from "material-ui";
+import { AppBar, Button, Toolbar, Typography } from "material-ui";
 
 type Props = {
   t: mixed
@@ -19,7 +19,7 @@ class Footer extends Component<Props> {
       <div className={styles.footer}>
         <AppBar style={{ backgroundColor: "#DDD" }} position="static">
           <Toolbar>
-            <Button>{this.props.t("Privacy")}</Button>
+            <Button id="privacy">{this.props.t("Privacy")}</Button>
             <Typography style={{ flex: 1 }} />
             version: {envDetails}
             <Typography style={{ flex: 1 }} />

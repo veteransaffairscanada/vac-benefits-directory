@@ -7,7 +7,6 @@ import { Grid } from "material-ui";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import BenefitCardList from "../components/benefit_cards";
-import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
 
 type Props = {
@@ -24,11 +23,7 @@ class App extends Component<Props> {
   };
 
   render() {
-    const { i18n, t } = this.props, // eslint-disable-line no-unused-vars
-      envDetails = process.env.CIRCLE_SHA1
-        ? process.env.CIRCLE_SHA1
-        : process.env.NODE_ENV;
-
+    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     const benefitList = [
       {
         type: "Support for Families",

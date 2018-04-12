@@ -17,6 +17,6 @@ describe("With Enzyme", () => {
     expect(app.find("p#TextDescription").text()).toEqual(
       "home.poc-description"
     );
-    expect(app.find("Button").text()).toEqual("other-language");
+    expect(app.find("Button#changeLanguage").text()).toEqual("other-language");
   });
 });
