@@ -2,10 +2,9 @@
 
 import React, { Component } from "react";
 
-import { AppBar, Button, Grid, Toolbar, Typography } from "material-ui";
+import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
-import { GoCSignature } from "@cdssnc/gcui";
 import Layout from "../components/layout";
 import BenefitCardList from "../components/benefit_cards";
 import styles from "../styles/styles.scss";
@@ -44,26 +43,9 @@ class App extends Component<Props> {
     ];
 
     return (
-      <Layout t={t}>
-        <AppBar style={{ backgroundColor: "#000" }} position="static">
-          <Toolbar>
-            <GoCSignature width="20em" text="#fff" flag="#fff" />
-            <Typography style={{ flex: 1 }} />
-            <Button style={{ color: "#fff" }} onClick={this.changeLanguage}>
-              {t("other-language")}
-            </Button>
-          </Toolbar>
-        </AppBar>
+      <Layout i18n={i18n} t={t}>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <p
-              id="TextDescription"
-              name="TextDescription"
-              className={styles.example}
-            >
-              {t("poc-description")}
-            </p>
-          </Grid>
+          <Grid item xs={12} />
           <BenefitCardList benefitList={benefitList} t={t} />
         </Grid>
         <div className={styles.footer}>{envDetails}</div>
@@ -72,4 +54,4 @@ class App extends Component<Props> {
   }
 }
 
-export default withI18next(["home"])(App);
+export default withI18next()(App);
