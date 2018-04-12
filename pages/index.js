@@ -2,10 +2,9 @@
 
 import React, { Component } from "react";
 
-import { AppBar, Button, Grid, Toolbar, Typography } from "material-ui";
+import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
-import { GoCSignature } from "@cdssnc/gcui";
 import Layout from "../components/layout";
 import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
@@ -34,16 +33,7 @@ class App extends Component<Props> {
         : process.env.NODE_ENV;
 
     return (
-      <Layout t={t}>
-        <AppBar style={{ backgroundColor: "#000" }} position="static">
-          <Toolbar>
-            <GoCSignature width="20em" text="#fff" flag="#fff" />
-            <Typography style={{ flex: 1 }} />
-            <Button style={{ color: "#fff" }} onClick={this.changeLanguage}>
-              {t("other-language")}
-            </Button>
-          </Toolbar>
-        </AppBar>
+      <Layout i18n={i18n} t={t}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <p
