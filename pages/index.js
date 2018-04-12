@@ -9,7 +9,6 @@ import { GoCSignature } from "@cdssnc/gcui";
 import Layout from "../components/layout";
 import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
-
 type Props = {
   i18n: mixed,
   t: mixed
@@ -28,10 +27,7 @@ class App extends Component<Props> {
   };
 
   render() {
-    const { i18n, t } = this.props, // eslint-disable-line no-unused-vars
-      envDetails = process.env.CIRCLE_SHA1
-        ? process.env.CIRCLE_SHA1
-        : process.env.NODE_ENV;
+    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
     return (
       <Layout t={t}>
@@ -55,7 +51,6 @@ class App extends Component<Props> {
             </p>
           </Grid>
         </Grid>
-        <div className={styles.footer}>{envDetails}</div>
       </Layout>
     );
   }
