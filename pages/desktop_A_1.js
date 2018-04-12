@@ -45,17 +45,17 @@ class App extends Component<Props> {
           <Grid container spacing={24}>
             <Grid item xs={12}>
               <p style={{ textAlign: "center", fontSize: "2em" }}>
-                What services are you interested in?
+                {t("A1.What services are you interested in?")}
               </p>
               <p style={{ textAlign: "center", fontSize: "1.5em" }}>
-                Select all that apply
+                {t("A1.Select all that apply")}
               </p>
             </Grid>
 
             {serviceTypes.map((service, i) => (
               <Grid item sm={4} xs={12}>
                 <Card>
-                  <Button fullWidth={true}>{service}</Button>
+                  <Button fullWidth={true}>{t("A1." + service)}</Button>
                 </Card>
               </Grid>
             ))}
@@ -65,11 +65,11 @@ class App extends Component<Props> {
             container
             justify="center"
             spacing={24}
-            style={{ "margin-top": "3em" }}
+            style={{ marginTop: "3em" }}
           >
             <Grid item sm={4} xs={12}>
               <Card>
-                <Button fullWidth={true}>Next</Button>
+                <Button fullWidth={true}>{t("A1.Next")}</Button>
               </Card>
             </Grid>
           </Grid>

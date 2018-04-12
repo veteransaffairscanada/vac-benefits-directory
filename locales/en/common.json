@@ -2,6 +2,20 @@
   "home": {
     "poc-description": "This is a Proof of Concept for the VAC project"
   },
+
+  "A1": {
+    "What services are you interested in?":
+      "What services are you interested in?",
+    "Select all that apply": "Select all that apply",
+    "Financial Support": "Financial Support",
+    "Rehabilitation": "Rehabilitation",
+    "Mental Health Services": "Mental Health Services",
+    "Health Care": "Health Care",
+    "Career Transition": "Career Transition",
+    "Support for Families": "Support for Families",
+    "Next": "Next"
+  },
+
   "other-language": "Français",
   "other-language-code": "fr",
   "Privacy": "Privacy",
