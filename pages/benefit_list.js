@@ -5,9 +5,8 @@ import React, { Component } from "react";
 import { AppBar, Button, Grid, Toolbar, Typography } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
-import withSentry from "../lib/withSentry";
 import { GoCSignature } from "@cdssnc/gcui";
-import Head from "../components/head";
+import Layout from "../components/layout";
 import BenefitCardList from "../components/benefit_cards";
 import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
@@ -45,8 +44,7 @@ class App extends Component<Props> {
     ];
 
     return (
-      <div>
-        <Head />
+      <Layout t={t}>
         <AppBar style={{ backgroundColor: "#000" }} position="static">
           <Toolbar>
             <GoCSignature width="20em" text="#fff" flag="#fff" />
@@ -69,9 +67,9 @@ class App extends Component<Props> {
           <BenefitCardList benefitList={benefitList} t={t} />
         </Grid>
         <div className={styles.footer}>{envDetails}</div>
-      </div>
+      </Layout>
     );
   }
 }
 
-export default withSentry(withI18next(["home"])(App));
+export default withI18next(["home"])(App);

@@ -17,7 +17,7 @@ export class BenefitCard extends Component<CardProps> {
   render() {
     const benefit = this.state.benefit;
     return (
-      <Grid item xs={12}>
+      <Grid item xs={12} lg={6}>
         <Card>
           <CardHeader title={this.props.t(benefit.type).toUpperCase()} />
           <CardContent>
