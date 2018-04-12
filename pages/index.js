@@ -34,16 +34,7 @@ class App extends Component<Props> {
         : process.env.NODE_ENV;
 
     return (
-      <Layout t={t}>
-        <AppBar style={{ backgroundColor: "#000" }} position="static">
-          <Toolbar>
-            <GoCSignature width="20em" text="#fff" flag="#fff" />
-            <Typography style={{ flex: 1 }} />
-            <Button style={{ color: "#fff" }} onClick={this.changeLanguage}>
-              {t("other-language")}
-            </Button>
-          </Toolbar>
-        </AppBar>
+      <Layout i18n={i18n} t={t}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <p
