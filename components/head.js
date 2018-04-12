@@ -31,7 +31,7 @@ class Head extends Component<Props> {
     return (
       <NextHead>
         <meta charSet="UTF-8" />
-        <title>{this.props.title || this.props.t("common:title")}</title>
+        <title>{this.props.title || this.props.t("title")}</title>
         <meta
           name="description"
           content={this.props.description || defaultDescription}
