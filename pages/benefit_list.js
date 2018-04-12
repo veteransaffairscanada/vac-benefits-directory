@@ -55,15 +55,7 @@ class App extends Component<Props> {
           </Toolbar>
         </AppBar>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <p
-              id="TextDescription"
-              name="TextDescription"
-              className={styles.example}
-            >
-              {t("poc-description")}
-            </p>
-          </Grid>
+          <Grid item xs={12} />
           <BenefitCardList benefitList={benefitList} t={t} />
         </Grid>
         <div className={styles.footer}>{envDetails}</div>
@@ -72,4 +64,4 @@ class App extends Component<Props> {
   }
 }
 
-export default withI18next(["home"])(App);
+export default withI18next()(App);

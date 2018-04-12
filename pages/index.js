@@ -51,7 +51,7 @@ class App extends Component<Props> {
               name="TextDescription"
               className={styles.example}
             >
-              {t("poc-description")}
+              {t("home.poc-description")}
             </p>
           </Grid>
         </Grid>
@@ -61,4 +61,4 @@ class App extends Component<Props> {
   }
 }
 
-export default withI18next(["home"])(App);
+export default withI18next(["common"])(App);
