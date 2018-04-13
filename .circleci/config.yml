@@ -75,7 +75,7 @@ jobs:
 
   deploy:
     docker:
-      - image: docker:18.03-ce
+      - image: docker:17.12.1-ce-git
     steps:
       - checkout:
           path: ~/repo

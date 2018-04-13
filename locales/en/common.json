@@ -13,8 +13,14 @@
     "Health Care": "Health Care",
     "Career Transition": "Career Transition",
     "Support for Families": "Support for Families",
-    "Next": "Next",
-    "Show All Benefits": "Show All Benefits"
+    "Next": "Next"
+  },
+  "A2": {
+    "What best describes your status?": "What best describes your status?",
+    "Veteran": "Veteran",
+    "Family": "Family",
+    "Not Sure": "Not Sure",
+    "See Results": "See Results"
   },
 
   "other-language": "Français",
@@ -22,6 +28,7 @@
   "other-language-code": "fr",
   "Privacy": "Privacy",
 
+  "Show All Benefits": "Show All Benefits",
   "title": "VAC Proof of Concept",
   "Support for Families": "Support for Families",
   "Financial": "Financial",
