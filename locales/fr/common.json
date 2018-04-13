@@ -2,7 +2,22 @@
   "home": {
     "poc-description": "Ceci est une preuve de concept pour le projet ACC"
   },
+
+  "A1": {
+    "What services are you interested in?": "Quels services vous intéressent?",
+    "Select all that apply": "Sélectionnez tout ce qui s'y rapporte",
+    "Financial Support": "Aide financière",
+    "Rehabilitation": "Réhabilitation",
+    "Mental Health Services": "Services de santé mentale",
+    "Health Care": "Soins de santé",
+    "Career Transition": "Transition de carrière",
+    "Support for Families": "Soutien aux familles",
+    "Next": "Prochain",
+    "Show All Benefits": "Afficher tous les avantages"
+  },
+
   "other-language": "English",
+  "current-language-code": "fr",
   "other-language-code": "en",
   "Privacy": "Intimité",
 

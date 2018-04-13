@@ -23,7 +23,7 @@ class Footer extends Component<Props> {
             <Typography style={{ flex: 1 }} />
             version: {envDetails}
             <Typography style={{ flex: 1 }} />
-            <WordMark />
+            <WordMark flag="#000" />
           </Toolbar>
         </AppBar>
       </div>

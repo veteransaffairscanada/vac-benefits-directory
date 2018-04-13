@@ -25,7 +25,12 @@ class MenuBar extends Component<Props> {
     return (
       <AppBar style={{ backgroundColor: "#000" }} position="static">
         <Toolbar>
-          <GoCSignature width="20em" text="#fff" flag="#fff" />
+          <GoCSignature
+            lang={t("current-language-code")}
+            width="20em"
+            text="#fff"
+            flag="#fff"
+          />
           <Typography style={{ flex: 1 }} />
           <Button
             id="changeLanguage"
