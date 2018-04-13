@@ -12,10 +12,12 @@
     "Health Care": "Soins de santé",
     "Career Transition": "Transition de carrière",
     "Support for Families": "Soutien aux familles",
-    "Next": "Prochain"
+    "Next": "Prochain",
+    "Show All Benefits": "Afficher tous les avantages"
   },
 
   "other-language": "English",
+  "current-language-code": "fr",
   "other-language-code": "en",
   "Privacy": "Intimité",
 

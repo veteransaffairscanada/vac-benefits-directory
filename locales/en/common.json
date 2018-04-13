@@ -13,10 +13,12 @@
     "Health Care": "Health Care",
     "Career Transition": "Career Transition",
     "Support for Families": "Support for Families",
-    "Next": "Next"
+    "Next": "Next",
+    "Show All Benefits": "Show All Benefits"
   },
 
   "other-language": "Français",
+  "current-language-code": "en",
   "other-language-code": "fr",
   "Privacy": "Privacy",
 

@@ -3,13 +3,12 @@
 import React, { Component } from "react";
 
 import { Grid } from "material-ui";
-import { Card, AppBar, Button, Toolbar, Typography } from "material-ui";
-import Paper from "material-ui/Paper";
+import { Card, Button } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
+import Link from "next/link";
 
 type Props = {
   i18n: mixed,
@@ -53,7 +52,7 @@ class App extends Component<Props> {
             </Grid>
 
             {serviceTypes.map((service, i) => (
-              <Grid item sm={4} xs={12}>
+              <Grid key={i} item sm={4} xs={12}>
                 <Card>
                   <Button fullWidth={true}>{t("A1." + service)}</Button>
                 </Card>
@@ -71,6 +70,21 @@ class App extends Component<Props> {
               <Card>
                 <Button fullWidth={true}>{t("A1.Next")}</Button>
               </Card>
+            </Grid>
+          </Grid>
+
+          <Grid
+            container
+            justify="center"
+            spacing={24}
+            style={{ marginTop: "1em" }}
+          >
+            <Grid item sm={4} xs={12}>
+              <p style={{ textAlign: "center", fontSize: "1em" }}>
+                <Link href="all-benefits">
+                  <a>{t("A1.Show All Benefits")}</a>
+                </Link>
+              </p>
             </Grid>
           </Grid>
         </div>
