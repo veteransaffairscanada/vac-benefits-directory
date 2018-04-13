@@ -40,15 +40,23 @@ class App extends Component<Props> {
                 {t("A2.What best describes your status?")}
               </p>
             </Grid>
+          </Grid>
 
-            {serviceTypes.map((service, i) => (
-              <Grid key={i} item sm={4} xs={12}>
+          {serviceTypes.map((service, i) => (
+            <Grid
+              container
+              key={i}
+              justify="center"
+              spacing={24}
+              style={{ marginTop: "1em" }}
+            >
+              <Grid item sm={4} xs={12}>
                 <Card>
                   <Button fullWidth={true}>{t("A2." + service)}</Button>
                 </Card>
               </Grid>
-            ))}
-          </Grid>
+            </Grid>
+          ))}
 
           <Grid
             container
