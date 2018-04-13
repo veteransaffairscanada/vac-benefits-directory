@@ -12,8 +12,14 @@
     "Health Care": "Soins de santé",
     "Career Transition": "Transition de carrière",
     "Support for Families": "Soutien aux familles",
-    "Next": "Prochain",
-    "Show All Benefits": "Afficher tous les avantages"
+    "Next": "Prochain"
+  },
+  "A2": {
+    "What best describes your status?": "What best describes your status?",
+    "Veteran": "Vétéran",
+    "Family": "Famille",
+    "Not Sure": "Pas certain",
+    "See Results": "Voir les résultats"
   },
 
   "other-language": "English",
@@ -21,6 +27,7 @@
   "other-language-code": "en",
   "Privacy": "Intimité",
 
+  "Show All Benefits": "Afficher tous les avantages",
   "title": "Preuve de concept pour le projet ACC",
   "Support for Families": "Soutien aux familles",
   "Financial": "Financier",

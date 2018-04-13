@@ -54,7 +54,13 @@ class App extends Component<Props> {
             {serviceTypes.map((service, i) => (
               <Grid key={i} item sm={4} xs={12}>
                 <Card>
-                  <Button fullWidth={true}>{t("A1." + service)}</Button>
+                  <Button
+                    fullWidth={true}
+                    linkButton={true}
+                    href={"A2?" + service}
+                  >
+                    {t("A1." + service)}
+                  </Button>
                 </Card>
               </Grid>
             ))}
@@ -82,7 +88,7 @@ class App extends Component<Props> {
             <Grid item sm={4} xs={12}>
               <p style={{ textAlign: "center", fontSize: "1em" }}>
                 <Link href="all-benefits">
-                  <a>{t("A1.Show All Benefits")}</a>
+                  <a>{t("Show All Benefits")}</a>
                 </Link>
               </p>
             </Grid>
