@@ -3,12 +3,12 @@
 import React, { Component } from "react";
 
 import { Grid } from "material-ui";
-import { Card, Button } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { logEvent } from "../utils/analytics";
 import Link from "next/link";
+import SelectButton from "../components/select_button";
 
 type Props = {
   i18n: mixed,
@@ -18,6 +18,13 @@ type Props = {
 class App extends Component<Props> {
   props: Props;
 
+  constructor() {
+    super();
+    this.state = {
+      selectedOptions: []
+    };
+  }
+
   changeLanguage = () => {
     this.props.i18n.changeLanguage(this.props.t("other-language-code"));
     logEvent("Language change", this.props.t("other-language"));
@@ -25,6 +32,19 @@ class App extends Component<Props> {
 
   throwError = () => {
     throw new Error("test");
+  };
+
+  toggleButton = id => {
+    let selected = this.state.selectedOptions;
+    const index = selected.indexOf(id);
+    if (index >= 0) {
+      selected.splice(index, 1);
+    } else {
+      selected.push(id);
+    }
+    this.setState({
+      selectedOptions: selected
+    });
   };
 
   render() {
@@ -53,11 +73,13 @@ class App extends Component<Props> {
 
             {serviceTypes.map((service, i) => (
               <Grid key={i} item sm={4} xs={12}>
-                <Card>
-                  <Button fullWidth={true} href={"A2?" + service}>
-                    {t("A1." + service)}
-                  </Button>
-                </Card>
+                <SelectButton
+                  t={t}
+                  id={service}
+                  text={"A1." + service}
+                  onClick={this.toggleButton}
+                  isDown={this.state.selectedOptions.indexOf(service) >= 0}
+                />
               </Grid>
             ))}
           </Grid>
@@ -69,9 +91,17 @@ class App extends Component<Props> {
             style={{ marginTop: "3em" }}
           >
             <Grid item sm={4} xs={12}>
-              <Card>
-                <Button fullWidth={true}>{t("A1.Next")}</Button>
-              </Card>
+              <SelectButton
+                t={t}
+                text={"A1.Next"}
+                href={
+                  "A2?lng=" +
+                  t("current-language-code") +
+                  "&selected=" +
+                  this.state.selectedOptions.join()
+                }
+                isDown={false}
+              />
             </Grid>
           </Grid>
 
