@@ -1,8 +1,41 @@
 import React from "react";
-import BenefitCardList, { BenefitCard } from "../components/benefit_cards";
+import BenefitCardList, {
+  BenefitTitleCard,
+  BenefitTitleCardList,
+  BenefitCard
+} from "../components/benefit_cards";
 import { mount } from "enzyme";
 
 describe("Test Benefit Cards", () => {
+  it("BenefitTitleCard", () => {
+    const test_props = {
+      title: "test title"
+    };
+    const card = mount(
+      <BenefitTitleCard t={key => key} benefit={test_props} />
+    );
+    expect(card.find("Typography#title").text()).toEqual(test_props.title);
+  });
+
+  it("BenefitTitleCardList", () => {
+    const test_props = [
+      {
+        title: "test title1"
+      },
+      {
+        title: "test title2"
+      }
+    ];
+
+    const cardList = mount(
+      <BenefitTitleCardList t={key => key} benefitList={test_props} />
+    );
+    for (let i = 0; i < 2; i++) {
+      const expected = test_props[i].title;
+      expect(cardList.find("#bc" + i).text()).toEqual(expected);
+    }
+  });
+
   it("BenefitCard", () => {
     const test_props = {
       type: "test type",

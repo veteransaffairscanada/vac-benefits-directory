@@ -6,7 +6,9 @@ import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import BenefitCardList from "../components/benefit_cards";
+import BenefitCardList, {
+  BenefitTitleCardList
+} from "../components/benefit_cards";
 import { logEvent } from "../utils/analytics";
 
 type Props = {
@@ -41,7 +43,12 @@ class App extends Component<Props> {
       <Layout i18n={i18n} t={t}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
-            <Grid item xs={12} />
+            <BenefitTitleCardList benefitList={benefitList} t={t} />
+          </Grid>
+        </div>
+
+        <div style={{ padding: 12 }}>
+          <Grid container spacing={24}>
             <BenefitCardList benefitList={benefitList} t={t} />
           </Grid>
         </div>

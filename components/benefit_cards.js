@@ -7,6 +7,53 @@ type CardProps = {
   t: mixed
 };
 
+export class BenefitTitleCard extends Component<CardProps> {
+  props: CardProps;
+
+  render() {
+    const benefit = this.props.benefit;
+    return (
+      <Grid item xs={12} sm={4}>
+        <Card style={{ backgroundColor: "#ddd" }}>
+          <CardContent>
+            <Typography
+              id="title"
+              variant="title"
+              style={{ textAlign: "center" }}
+            >
+              {this.props.t(benefit.title)}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Grid>
+    );
+  }
+}
+
+type Props = {
+  benefitList: mixed,
+  t: mixed
+};
+
+export class BenefitTitleCardList extends Component<CardListProps> {
+  props: Props;
+
+  state = {
+    benefits: this.props.benefitList
+  };
+
+  render() {
+    return this.state.benefits.map((benefit, i) => (
+      <BenefitTitleCard
+        id={"bc" + i}
+        benefit={benefit}
+        t={this.props.t}
+        key={i}
+      />
+    ));
+  }
+}
+
 export class BenefitCard extends Component<CardProps> {
   props: CardProps;
 
