@@ -6,7 +6,6 @@ import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import styles from "../styles/styles.scss";
 import { logEvent } from "../utils/analytics";
 type Props = {
   i18n: mixed,
@@ -33,11 +32,7 @@ class App extends Component<Props> {
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <p
-                id="TextDescription"
-                name="TextDescription"
-                className={styles.example}
-              >
+              <p id="TextDescription" name="TextDescription">
                 {t("home.poc-description")}
               </p>
             </Grid>

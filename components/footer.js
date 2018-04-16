@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styles from "../styles/styles.scss";
 import { WordMark } from "@cdssnc/gcui";
 import { AppBar, Button, Toolbar, Typography } from "material-ui";
 
@@ -16,7 +15,7 @@ class Footer extends Component<Props> {
       : process.env.NODE_ENV;
 
     return (
-      <div className={styles.footer}>
+      <div>
         <AppBar style={{ backgroundColor: "#DDD" }} position="static">
           <Toolbar>
             <Button id="privacy">{this.props.t("Privacy")}</Button>
