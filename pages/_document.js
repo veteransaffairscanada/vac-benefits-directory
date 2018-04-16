@@ -1,6 +1,5 @@
 import React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
-import styled, { css } from "react-emotion";
 
 const bodyStyling = {
   "font-family": '"Roboto", "Helvetica", "Arial", sans-serif',

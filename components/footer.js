@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { WordMark } from "@cdssnc/gcui";
 import { AppBar, Button, Toolbar, Typography } from "material-ui";
-import styled, { css } from "react-emotion";
+import styled from "react-emotion";
 
 type Props = {
   t: mixed
