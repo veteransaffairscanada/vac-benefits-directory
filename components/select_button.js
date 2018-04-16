@@ -6,16 +6,19 @@ type Props = {
   text: string,
   href: string,
   isDown: boolean,
+  onClick: mixed,
+  id: string,
   t: mixed
 };
 
-export class MenuButton extends Component<Props> {
+export class SelectButton extends Component<Props> {
   props: Props;
 
   render() {
     return (
       <Card>
         <Button
+          onClick={() => this.props.onClick(this.props.id)}
           fullWidth={true}
           href={this.props.href}
           style={{ backgroundColor: this.props.isDown ? "#aaa" : "#fff" }}
@@ -27,4 +30,4 @@ export class MenuButton extends Component<Props> {
   }
 }
 
-export default MenuButton;
+export default SelectButton;
