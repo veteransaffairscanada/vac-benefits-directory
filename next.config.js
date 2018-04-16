@@ -1,5 +1,4 @@
-const withSass = require("@zeit/next-sass");
-module.exports = withSass({
+module.exports = {
   webpack: (config, { dev }) => {
     if (dev) {
       config.module.rules.push({
@@ -18,6 +17,5 @@ module.exports = withSass({
       fs: "empty"
     };
     return config;
-  },
-  cssModules: true
-});
+  }
+};

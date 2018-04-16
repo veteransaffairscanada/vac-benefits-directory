@@ -1,11 +1,20 @@
 import React, { Component } from "react";
-import styles from "../styles/styles.scss";
 import { WordMark } from "@cdssnc/gcui";
 import { AppBar, Button, Toolbar, Typography } from "material-ui";
+import styled from "react-emotion";
 
 type Props = {
   t: mixed
 };
+
+const Div = styled("div")`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #222;
+  color: #000;
+  text-align: center;
+`;
 
 class Footer extends Component<Props> {
   props: Props;
@@ -16,17 +25,17 @@ class Footer extends Component<Props> {
       : process.env.NODE_ENV;
 
     return (
-      <div className={styles.footer}>
+      <Div>
         <AppBar style={{ backgroundColor: "#DDD" }} position="static">
           <Toolbar>
             <Button id="privacy">{this.props.t("Privacy")}</Button>
             <Typography style={{ flex: 1 }} />
-            version: {envDetails}
+            Build: {envDetails}
             <Typography style={{ flex: 1 }} />
             <WordMark width="6em" flag="#000" />
           </Toolbar>
         </AppBar>
-      </div>
+      </Div>
     );
   }
 }
