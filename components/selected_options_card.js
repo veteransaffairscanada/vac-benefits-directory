@@ -15,18 +15,16 @@ class SelectedOptionsCard extends Component<Props> {
     return (
       <Card style={{ backgroundColor: "#ddd" }}>
         <CardContent>
-          <Typography
-            id="options"
-            variant="body1"
-            style={{ textAlign: "center" }}
-          >
-            {this.props.options.map(option => (
-              <p key={option}>
-                {" "}
-                {this.props.t(this.props.page + "." + option)}{" "}
-              </p>
-            ))}
-          </Typography>
+          {this.props.options.map(option => (
+            <Typography
+              key={option}
+              id={option}
+              variant="body1"
+              style={{ textAlign: "left" }}
+            >
+              {this.props.t(this.props.page + "." + option)}
+            </Typography>
+          ))}
         </CardContent>
       </Card>
     );
