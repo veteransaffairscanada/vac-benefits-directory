@@ -9,6 +9,7 @@ import Layout from "../components/layout";
 import BenefitCardList, {
   BenefitTitleCardList
 } from "../components/benefit_cards";
+import SelectedOptions from "../components/selected_options_card";
 import { logEvent } from "../utils/analytics";
 
 type Props = {
@@ -38,9 +39,27 @@ class App extends Component<Props> {
         description: "Disability Award Description"
       }
     ];
-
+    const selected_options = [
+      "Financial Support",
+      "Mental Health Services",
+      "Career Transition"
+    ];
     return (
       <Layout i18n={i18n} t={t}>
+        <div style={{ padding: 12 }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <p style={{ textAlign: "left", fontSize: "1em" }}>
+                {t("A3.Your Selection") + ":"}
+              </p>
+            </Grid>
+
+            <Grid item>
+              <SelectedOptions page="A1" options={selected_options} t={t} />
+            </Grid>
+          </Grid>
+        </div>
+
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <BenefitTitleCardList benefitList={benefitList} t={t} />
