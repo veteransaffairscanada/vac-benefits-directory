@@ -19,6 +19,7 @@
     "babel-plugin-emotion": "^9.1.0",
     "babel-plugin-transform-inline-environment-variables": "^0.3.0",
     "emotion": "^9.1.1",
+    "emotion-server": "^9.1.2",
     "express": "4.16.2",
     "i18next": "10.4.1",
     "i18next-browser-languagedetector": "2.1.0",
@@ -33,6 +34,7 @@
     "react-emotion": "^9.1.1",
     "react-ga": "^2.4.1",
     "react-i18next": "^7.3.6",
+    "react-jss": "^8.4.0",
     "reactstrap": "^5.0.0-beta.3",
     "wait-on": "^2.1.0"
   },
