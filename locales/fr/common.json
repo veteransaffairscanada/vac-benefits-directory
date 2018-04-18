@@ -24,7 +24,8 @@
   "A3": {
     "Your Selection": "Votre sélection"
   },
-
+  "noscript":
+    "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",
   "other-language": "English",
   "current-language-code": "fr",
   "other-language-code": "en",
