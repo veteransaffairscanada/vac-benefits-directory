@@ -4,6 +4,10 @@ import React, { Component } from "react";
 
 import { Grid } from "material-ui";
 
+import { bindActionCreators } from "redux";
+import withRedux from "next-redux-wrapper";
+import { initStore, addCount } from "../store";
+
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { logEvent } from "../utils/analytics";
@@ -12,10 +16,11 @@ import SelectButton from "../components/select_button";
 
 type Props = {
   i18n: mixed,
-  t: mixed
+  t: mixed,
+  vacServices: mixed
 };
 
-class App extends Component<Props> {
+export class App extends Component<Props> {
   props: Props;
 
   constructor() {
@@ -49,15 +54,6 @@ class App extends Component<Props> {
 
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
-    const serviceTypes = [
-      "Financial Support",
-      "Rehabilitation",
-      "Mental Health Services",
-      "Health Care",
-      "Career Transition",
-      "Support for Families"
-    ];
-
     return (
       <Layout i18n={i18n} t={t}>
         <div style={{ padding: 12 }}>
@@ -71,7 +67,7 @@ class App extends Component<Props> {
               </p>
             </Grid>
 
-            {serviceTypes.map((service, i) => (
+            {this.props.vacServices.map((service, i) => (
               <Grid key={i} item sm={4} xs={12}>
                 <SelectButton
                   t={t}
@@ -125,4 +121,18 @@ class App extends Component<Props> {
   }
 }
 
-export default withI18next(["common"])(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    addCount: bindActionCreators(addCount, dispatch)
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    vacServices: state.vacServices
+  };
+};
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+  withI18next(["common"])(App)
+);

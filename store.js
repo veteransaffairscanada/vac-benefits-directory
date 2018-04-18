@@ -15,7 +15,16 @@ const exampleInitialState = {
       title: "Disability Award",
       description: "Disability Award Description"
     }
-  ]
+  ],
+  vacServices: [
+    "Financial Support",
+    "Rehabilitation",
+    "Mental Health Services",
+    "Health Care",
+    "Career Transition",
+    "Support for Families"
+  ],
+  userStatuses: ["Veteran", "Family", "Not Sure"]
 };
 
 export const actionTypes = {

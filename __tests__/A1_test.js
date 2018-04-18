@@ -3,23 +3,35 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import App from "../pages/A1";
+import { App } from "../pages/A1";
 
 jest.mock("react-ga");
-jest.mock("react-i18next", () => ({
-  // this mock makes sure any components using the translate HoC receive the t function as a prop
-  translate: () => Component => props => <Component t={key => key} {...props} /> // eslint-disable-line react/display-name
-}));
 
 describe("Page A1", () => {
   it("Instructions", () => {
-    const app = mount(<App i18n={{ language: "en-US" }} />);
+    const app = mount(
+      <App i18n={{ language: "en-US" }} t={key => key} vacServices={[]} />
+    );
     expect(app.text()).toMatch(/A1.What services are you interested in?/);
     expect(app.text()).toMatch(/A1.Select all that apply/);
   });
 
   it("Buttons", () => {
-    const app = mount(<App i18n={{ language: "en-US" }} />);
+    const testVacServices = [
+      "Financial Support",
+      "Rehabilitation",
+      "Mental Health Services",
+      "Health Care",
+      "Career Transition",
+      "Support for Families"
+    ];
+    const app = mount(
+      <App
+        i18n={{ language: "en-US" }}
+        t={key => key}
+        vacServices={testVacServices}
+      />
+    );
     const buttons = app.find("Button");
     const expectedText = [
       "other-language",
@@ -39,7 +51,9 @@ describe("Page A1", () => {
   });
 
   it("Show All Benefits Link", () => {
-    const app = mount(<App i18n={{ language: "en-US" }} />);
+    const app = mount(
+      <App i18n={{ language: "en-US" }} t={key => key} vacServices={[]} />
+    );
     expect(app.find("Link").text()).toEqual("Show All Benefits");
   });
 });
