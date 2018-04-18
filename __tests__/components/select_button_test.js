@@ -1,5 +1,5 @@
 import React from "react";
-import SelectButton from "../components/select_button";
+import SelectButton from "../../components/select_button";
 import { mount } from "enzyme";
 
 describe("Test SelectButton", () => {

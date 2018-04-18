@@ -3,7 +3,7 @@ import BenefitCardList, {
   BenefitTitleCard,
   BenefitTitleCardList,
   BenefitCard
-} from "../components/benefit_cards";
+} from "../../components/benefit_cards";
 import { mount } from "enzyme";
 
 describe("Test Benefit Cards", () => {

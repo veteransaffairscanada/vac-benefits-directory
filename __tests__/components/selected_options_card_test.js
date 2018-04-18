@@ -1,5 +1,5 @@
 import React from "react";
-import SelectedOptionsCard from "../components/selected_options_card";
+import SelectedOptionsCard from "../../components/selected_options_card";
 import { mount } from "enzyme";
 
 describe("Test Selected Options Card", () => {
