@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const next = require("next");
 
+const { parseUserAgent } = require("detect-browser");
+
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -46,7 +48,19 @@ i18nInstance
         );
 
         // use next.js
-        server.get("*", (req, res) => handle(req, res));
+        server.get("*", (req, res) => {
+          // Check if browse is less than IE 11
+          const ua = req.headers["user-agent"];
+          const browser = parseUserAgent(ua);
+
+          if (browser.name === "ie" && parseInt(browser.version) < 11) {
+            res.sendFile("fallback-pages/browser-incompatible.html", {
+              root: __dirname
+            });
+          } else {
+            handle(req, res);
+          }
+        });
 
         server.listen(3000, err => {
           if (err) throw err;

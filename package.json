@@ -10,6 +10,8 @@
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged",
     "cypress:wait": "wait-on http://localhost:3000",
+    "cypress:fallback":
+      "cypress run -s cypress/integration/fallback_spec.js --config 'userAgent=Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)'",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
   },
@@ -18,6 +20,7 @@
     "@material-ui/icons": "^1.0.0-beta.42",
     "babel-plugin-emotion": "^9.1.0",
     "babel-plugin-transform-inline-environment-variables": "^0.3.0",
+    "detect-browser": "^2.3.0",
     "emotion": "^9.1.1",
     "emotion-server": "^9.1.2",
     "express": "4.16.2",
