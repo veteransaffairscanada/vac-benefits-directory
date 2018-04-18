@@ -53,7 +53,11 @@ i18nInstance
           const ua = req.headers["user-agent"];
           const browser = parseUserAgent(ua);
 
-          if (browser.name === "ie" && parseInt(browser.version) < 11) {
+          if (
+            browser &&
+            browser.name === "ie" &&
+            parseInt(browser.version) < 11
+          ) {
             res.sendFile("fallback-pages/browser-incompatible.html", {
               root: __dirname
             });
