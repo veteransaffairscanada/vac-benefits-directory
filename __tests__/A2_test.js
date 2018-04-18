@@ -3,7 +3,7 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import App from "../pages/A2";
+import { App } from "../pages/A2";
 
 jest.mock("react-ga");
 jest.mock("react-i18next", () => ({
@@ -13,12 +13,21 @@ jest.mock("react-i18next", () => ({
 
 describe("Page A2", () => {
   it("Instructions", () => {
-    const app = mount(<App i18n={{ language: "en-US" }} />);
+    const app = mount(
+      <App i18n={{ language: "en-US" }} t={key => key} userStatuses={[]} />
+    );
     expect(app.text()).toMatch(/A2.What best describes your status?/);
   });
 
   it("Buttons", () => {
-    const app = mount(<App i18n={{ language: "en-US" }} />);
+    const userStatuses = ["Veteran", "Family", "Not Sure"];
+    const app = mount(
+      <App
+        i18n={{ language: "en-US" }}
+        t={key => key}
+        userStatuses={userStatuses}
+      />
+    );
     const buttons = app.find("Button");
     const expectedText = [
       "other-language",
@@ -35,7 +44,9 @@ describe("Page A2", () => {
   });
 
   it("Show All Benefits Link", () => {
-    const app = mount(<App i18n={{ language: "en-US" }} />);
+    const app = mount(
+      <App i18n={{ language: "en-US" }} t={key => key} userStatuses={[]} />
+    );
     expect(app.find("Link").text()).toEqual("Show All Benefits");
   });
 });
