@@ -1,5 +1,5 @@
 import React from "react";
-import Noscript from "../components/noscript";
+import Noscript from "../../components/noscript";
 import { mount } from "enzyme";
 
 describe("Test Noscript component", () => {
