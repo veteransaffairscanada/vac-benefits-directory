@@ -8,11 +8,17 @@ import Footer from "../components/footer";
 import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
 
+import styled from "react-emotion";
+
 type Props = {
   children?: mixed,
   i18n?: mixed,
   t?: mixed
 };
+
+const Content = styled("div")`
+  min-height: calc(100vh - 70px);
+`;
 
 class Layout extends Component<Props> {
   props: Props;
@@ -34,8 +40,10 @@ class Layout extends Component<Props> {
         <Head t={this.props.t} />
         <Noscript t={this.props.t} />
         <ErrorBoundary>
-          <MenuBar i18n={this.props.i18n} t={this.props.t} />
-          {this.props.children}
+          <Content>
+            <MenuBar i18n={this.props.i18n} t={this.props.t} />
+            {this.props.children}
+          </Content>
           <Footer t={this.props.t} />
         </ErrorBoundary>
       </div>
