@@ -6,6 +6,7 @@ import ErrorBoundary from "../components/errorBoundary";
 import Head from "../components/head";
 import Footer from "../components/footer";
 import MenuBar from "../components/menu_bar";
+import Noscript from "../components/noscript";
 
 type Props = {
   children?: mixed,
@@ -31,6 +32,7 @@ class Layout extends Component<Props> {
     return (
       <div>
         <Head t={this.props.t} />
+        <Noscript t={this.props.t} />
         <ErrorBoundary>
           <MenuBar i18n={this.props.i18n} t={this.props.t} />
           {this.props.children}
