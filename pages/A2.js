@@ -5,9 +5,8 @@ import React, { Component } from "react";
 import { Grid } from "material-ui";
 import { Card, Button } from "material-ui";
 
-import { bindActionCreators } from "redux";
 import withRedux from "next-redux-wrapper";
-import { initStore, addCount } from "../store";
+import { initStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
@@ -120,18 +119,10 @@ export class App extends Component<Props> {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addCount: bindActionCreators(addCount, dispatch)
-  };
-};
-
 const mapStateToProps = state => {
   return {
     userStatuses: state.userStatuses
   };
 };
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
-  withI18next(["common"])(App)
-);
+export default withRedux(initStore, mapStateToProps, null)(withI18next()(App));
