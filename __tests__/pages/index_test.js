@@ -3,7 +3,7 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import App from "../pages/index.js";
+import App from "../../pages/index.js";
 
 jest.mock("react-ga");
 jest.mock("react-i18next", () => ({
