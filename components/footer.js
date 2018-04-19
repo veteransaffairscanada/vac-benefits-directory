@@ -8,7 +8,6 @@ type Props = {
 };
 
 const Div = styled("div")`
-  bottom: 0;
   width: 100%;
   background-color: #222;
   color: #000;
