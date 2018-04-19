@@ -24,13 +24,18 @@ class Footer extends Component<Props> {
 
     return (
       <Div>
-        <AppBar style={{ backgroundColor: "#DDD" }} position="static">
+        <AppBar
+          style={{ backgroundColor: "#DDD", color: "#000" }}
+          position="static"
+        >
           <Toolbar>
             <Button id="privacy">{this.props.t("Privacy")}</Button>
             <Typography style={{ flex: 1 }} />
             Build: {envDetails}
             <Typography style={{ flex: 1 }} />
-            <WordMark width="6em" flag="#000" />
+            <div>
+              <WordMark width="6em" flag="#000" />
+            </div>
           </Toolbar>
         </AppBar>
       </Div>
