@@ -117,7 +117,7 @@ export class App extends Component<Props> {
               </Grid>
             </Grid>
 
-            <Grid item>
+            <Grid item sm={9} xs={12}>
               <Grid container spacing={24}>
                 <BenefitTitleCardList benefitList={benefitList} t={t} />
               </Grid>
