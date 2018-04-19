@@ -68,8 +68,8 @@ export class App extends Component<Props> {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
-    const vacServicesSelected = ["Financial Support", "Rehabilitation"];
-    const userStatusesSelected = ["Veteran"];
+    const vacServicesSelected = this.props.url.query.selected.split(",");
+    const userStatusesSelected = this.props.url.query.user.split(",");
     const benefitList = this.props.benefitList;
 
     return (

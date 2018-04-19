@@ -95,7 +95,14 @@ export class App extends Component<Props> {
               <SelectButton
                 t={t}
                 text={"A2.See Results"}
-                href={"A3?lng=" + t("current-language-code")}
+                href={
+                  "A3?lng=" +
+                  t("current-language-code") +
+                  "&selected=" +
+                  this.props.url.query.selected +
+                  "&user=" +
+                  this.state.selectedOptions.join()
+                }
                 isDown={false}
               />
             </Grid>
