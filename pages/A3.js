@@ -17,7 +17,8 @@ import { BenefitTitleCardList } from "../components/benefit_cards";
 type Props = {
   i18n: mixed,
   t: mixed,
-  benefitList: mixed
+  benefitList: mixed,
+  url: mixed
 };
 
 export class App extends Component<Props> {

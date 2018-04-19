@@ -5,6 +5,8 @@ import React from "react";
 
 import { App } from "../../pages/A2";
 
+const urlFixture = { query: { selected: "" } };
+
 jest.mock("react-ga");
 jest.mock("react-i18next", () => ({
   // this mock makes sure any components using the translate HoC receive the t function as a prop
@@ -14,7 +16,12 @@ jest.mock("react-i18next", () => ({
 describe("Page A2", () => {
   it("Instructions", () => {
     const app = mount(
-      <App i18n={{ language: "en-US" }} t={key => key} userStatuses={[]} />
+      <App
+        i18n={{ language: "en-US" }}
+        t={key => key}
+        userStatuses={[]}
+        url={urlFixture}
+      />
     );
     expect(app.text()).toMatch(/A2.What best describes your status?/);
   });
@@ -26,6 +33,7 @@ describe("Page A2", () => {
         i18n={{ language: "en-US" }}
         t={key => key}
         userStatuses={userStatuses}
+        url={{ query: { selected: "" } }}
       />
     );
     const buttons = app.find("Button");
@@ -45,7 +53,12 @@ describe("Page A2", () => {
 
   it("Show All Benefits Link", () => {
     const app = mount(
-      <App i18n={{ language: "en-US" }} t={key => key} userStatuses={[]} />
+      <App
+        i18n={{ language: "en-US" }}
+        t={key => key}
+        userStatuses={[]}
+        url={urlFixture}
+      />
     );
     expect(app.find("Link").text()).toEqual("Show All Benefits");
   });

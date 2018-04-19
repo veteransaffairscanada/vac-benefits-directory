@@ -16,7 +16,8 @@ import SelectButton from "../components/select_button";
 type Props = {
   i18n: mixed,
   t: mixed,
-  userStatuses: mixed
+  userStatuses: mixed,
+  url: mixed
 };
 
 export class App extends Component<Props> {
