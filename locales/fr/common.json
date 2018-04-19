@@ -30,6 +30,7 @@
     "Here is a benefit that may apply to you":
       "Voici un avantage qui peut s'appliquer à vous"
   },
+  "alpha": "C'est un nouveau service que nous améliorons constamment.",
   "noscript":
     "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",
   "other-language": "English",

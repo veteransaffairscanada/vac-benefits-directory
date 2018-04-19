@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import ErrorBoundary from "../components/errorBoundary";
 import Head from "../components/head";
 import Footer from "../components/footer";
+import AlphaBanner from "../components/alpha_banner";
 import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
 
@@ -41,6 +42,7 @@ class Layout extends Component<Props> {
         <Noscript t={this.props.t} />
         <ErrorBoundary>
           <Content>
+            <AlphaBanner t={this.props.t} />
             <MenuBar i18n={this.props.i18n} t={this.props.t} />
             {this.props.children}
           </Content>
