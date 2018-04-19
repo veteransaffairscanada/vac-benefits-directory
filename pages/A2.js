@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 
 import { Grid } from "material-ui";
-import { Card, Button } from "material-ui";
 
 import withRedux from "next-redux-wrapper";
 import { initStore } from "../store";
@@ -17,7 +16,8 @@ import SelectButton from "../components/select_button";
 type Props = {
   i18n: mixed,
   t: mixed,
-  userStatuses: mixed
+  userStatuses: mixed,
+  url: mixed
 };
 
 export class App extends Component<Props> {
@@ -93,9 +93,19 @@ export class App extends Component<Props> {
             style={{ marginTop: "3em" }}
           >
             <Grid item sm={4} xs={12}>
-              <Card>
-                <Button fullWidth={true}>{t("A2.See Results")}</Button>
-              </Card>
+              <SelectButton
+                t={t}
+                text={"A2.See Results"}
+                href={
+                  "A3?lng=" +
+                  t("current-language-code") +
+                  "&selected=" +
+                  this.props.url.query.selected +
+                  "&user=" +
+                  this.state.selectedOptions.join()
+                }
+                isDown={false}
+              />
             </Grid>
           </Grid>
 

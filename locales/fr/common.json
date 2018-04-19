@@ -22,7 +22,13 @@
     "See Results": "Voir les résultats"
   },
   "A3": {
-    "Your Selection": "Votre sélection"
+    "Your Selection": "Votre sélection",
+    "Here are NNN benefits that may apply to you":
+      "Voici {{value}} avantages qui peuvent s'appliquer à vous",
+    "Based on your selections you do not qualify for any benefits at this time":
+      "En fonction de vos sélections, vous n'êtes pas admissible à des avantages en ce moment",
+    "Here is a benefit that may apply to you":
+      "Voici un avantage qui peut s'appliquer à vous"
   },
   "noscript":
     "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",

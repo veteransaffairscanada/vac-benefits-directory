@@ -23,7 +23,13 @@
     "See Results": "See Results"
   },
   "A3": {
-    "Your Selection": "Your Selection"
+    "Your Selection": "Your Selection",
+    "Here are NNN benefits that may apply to you":
+      "Here are {{value}} benefits that may apply to you",
+    "Based on your selections you do not qualify for any benefits at this time":
+      "Based on your selections you do not qualify for any benefits at this time",
+    "Here is a benefit that may apply to you":
+      "Here is a benefit that may apply to you"
   },
   "noscript":
     "Javascript is disabled and you may experience reduced functionality. To see a full list of benefits, click <a href='/all-benefits'>here</a>.",
