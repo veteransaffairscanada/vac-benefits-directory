@@ -17,7 +17,7 @@ type Props = {
 };
 
 const Content = styled("div")`
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 65px);
 `;
 
 class Layout extends Component<Props> {
