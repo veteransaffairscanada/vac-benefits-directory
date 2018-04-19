@@ -48,6 +48,23 @@ export class App extends Component<Props> {
     logEvent("Language change", this.props.t("other-language"));
   };
 
+  countBenefitsString = (benefitList, t) => {
+    switch (benefitList.length) {
+      case 0:
+        return t(
+          "A3.Based on your selections you do not qualify for any benefits at this time"
+        );
+      case 1:
+        return t("A3.Here is a benefit that may apply to you") + ":";
+      default:
+        return (
+          t("A3.Here are NNN benefits that may apply to you", {
+            value: benefitList.length
+          }) + ":"
+        );
+    }
+  };
+
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
@@ -61,7 +78,7 @@ export class App extends Component<Props> {
           <Grid container spacing={24}>
             <Grid item xs={12}>
               <p style={{ textAlign: "left", fontSize: "1.5em" }}>
-                {"Here are 11 benefits that may apply to you:"}
+                {this.countBenefitsString(benefitList, t)}
               </p>
             </Grid>
           </Grid>
