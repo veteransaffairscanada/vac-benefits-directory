@@ -78,7 +78,10 @@ export class App extends Component<Props> {
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <p style={{ textAlign: "left", fontSize: "1.5em" }}>
+              <p
+                id="benefitCountString"
+                style={{ textAlign: "left", fontSize: "1.5em" }}
+              >
                 {this.countBenefitsString(benefitList, t)}
               </p>
             </Grid>
@@ -96,6 +99,7 @@ export class App extends Component<Props> {
                 </Grid>
                 <Grid item xs={12}>
                   <SelectedOptionsCard
+                    id="vacServicesCard"
                     page="A1"
                     options={vacServicesSelected}
                     t={t}
@@ -103,6 +107,7 @@ export class App extends Component<Props> {
                 </Grid>
                 <Grid item xs={12}>
                   <SelectedOptionsCard
+                    id="userStatusesCard"
                     page="A2"
                     options={userStatusesSelected}
                     t={t}
