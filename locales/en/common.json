@@ -31,6 +31,7 @@
     "Here is a benefit that may apply to you":
       "Here is a benefit that may apply to you"
   },
+  "alpha": "This is a new service we are constantly improving.",
   "noscript":
     "Javascript is disabled and you may experience reduced functionality. To see a full list of benefits, click <a href='/all-benefits'>here</a>.",
   "other-language": "Français",
