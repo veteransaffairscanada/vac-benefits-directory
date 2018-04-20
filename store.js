@@ -4,6 +4,31 @@ import thunkMiddleware from "redux-thunk";
 
 const exampleInitialState = {
   count: 10,
+  benefit_types: [
+    {
+      id: "rec3PfnqeqyxSbx1x",
+      name_en: "Compensation For Harm",
+      name_fr: "Compensation Pour Préjudice"
+    },
+    {
+      id: "recQO4AHswOl75poF",
+      name_en: "Healthcare Cost Coverage",
+      name_fr: "Couverture des Coûts de Soins de Santé"
+    }
+  ],
+  patron_types: [
+    {
+      name: "rec726lY5vUBEh2Sv",
+      name_en: "Military Service-Person",
+      name_fr: "Service militaire-Personne"
+    },
+    {
+      name: "recDAuNt8DXhD88Mr",
+      name_en: "RCMP Service-Person",
+      name_fr: "Personne-Service de la GRC"
+    }
+  ],
+
   benefitList: [
     {
       type: "Support for Families",

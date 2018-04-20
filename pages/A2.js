@@ -66,7 +66,7 @@ export class App extends Component<Props> {
             </Grid>
           </Grid>
 
-          {this.props.userStatuses.map((service, i) => (
+          {this.props.patron_types.map((type, i) => (
             <Grid
               container
               key={i}
@@ -77,10 +77,14 @@ export class App extends Component<Props> {
               <Grid item sm={4} xs={12}>
                 <SelectButton
                   t={t}
-                  id={service}
-                  text={"A2." + service}
+                  id={type.name}
+                  text={
+                    t("current-language-code") === "en"
+                      ? type.name_en
+                      : type.name_fr
+                  }
                   onClick={this.toggleButton}
-                  isDown={this.state.selectedOptions.indexOf(service) >= 0}
+                  isDown={this.state.selectedOptions.indexOf(type.name) >= 0}
                 />
               </Grid>
             </Grid>
@@ -131,7 +135,7 @@ export class App extends Component<Props> {
 
 const mapStateToProps = state => {
   return {
-    userStatuses: state.userStatuses
+    patron_types: state.patron_types
   };
 };
 
