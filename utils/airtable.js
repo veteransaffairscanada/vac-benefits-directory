@@ -47,5 +47,5 @@ export const fetchFromAirtable = async loadDataStore => {
   };
   loadDataStore(newStore);
 
-  console.log(newStore);
+  // console.log(newStore);
 };

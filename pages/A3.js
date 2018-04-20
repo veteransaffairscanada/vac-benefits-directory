@@ -74,12 +74,28 @@ export class App extends Component<Props> {
     }
   };
 
+  filterBenefits = (benefits, benefitTypes, patronTypes) => {
+    return benefits.filter(benefit => {
+      const matchingBenefitTypes = benefit.benefit_types.filter(
+        bt => benefitTypes.indexOf(bt) > -1
+      );
+      const matchingPatronTypes = benefit.patron_types.filter(
+        pt => patronTypes.indexOf(pt) > -1
+      );
+      return matchingBenefitTypes.length > 0 && matchingPatronTypes.length > 0;
+    });
+  };
+
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
     const vacServicesSelected = this.props.url.query.selected.split(",");
     const userStatusesSelected = this.props.url.query.user.split(",");
-    const benefitsSelected = this.props.benefits;
+    const benefitsSelected = this.filterBenefits(
+      this.props.benefits,
+      vacServicesSelected,
+      userStatusesSelected
+    );
 
     return (
       <Layout i18n={i18n} t={t}>

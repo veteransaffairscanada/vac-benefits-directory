@@ -31,18 +31,8 @@ const exampleInitialState = {
     }
   ],
 
-  benefits: [
-    {
-      type: "Support for Families",
-      title: "Survivor's Pension",
-      description: "Survivor's Pension Description"
-    },
-    {
-      type: "Financial",
-      title: "Disability Award",
-      description: "Disability Award Description"
-    }
-  ],
+  benefits: [],
+
   vacServices: [
     "Financial Support",
     "Rehabilitation",
