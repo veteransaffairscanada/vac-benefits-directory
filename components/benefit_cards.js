@@ -25,8 +25,6 @@ export class BenefitTitleCard extends Component<CardProps> {
                 ? benefit.vac_name_en
                 : benefit.vac_name_fr}
             </Typography>
-            <p>B: {benefit.benefit_types.join(" ")}</p>
-            <p>P: {benefit.patron_types.join(" ")}</p>
           </CardContent>
         </Card>
       </Grid>

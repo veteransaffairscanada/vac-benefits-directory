@@ -89,12 +89,19 @@ export class App extends Component<Props> {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
-    const vacServicesSelected = this.props.url.query.selected.split(",");
-    const userStatusesSelected = this.props.url.query.user.split(",");
-    const benefitsSelected = this.filterBenefits(
+    const benefitTypesSelected = this.props.url.query.selected.split(",");
+    const patronTypesSelected = this.props.url.query.user.split(",");
+    const benefitTypes = this.props.benefitTypes.filter(bt =>
+      benefitTypesSelected.includes(bt.id)
+    );
+    const patronTypes = this.props.patronTypes.filter(pt =>
+      patronTypesSelected.includes(pt.id)
+    );
+
+    const benefits = this.filterBenefits(
       this.props.benefits,
-      vacServicesSelected,
-      userStatusesSelected
+      benefitTypesSelected,
+      patronTypesSelected
     );
 
     return (
@@ -106,7 +113,7 @@ export class App extends Component<Props> {
                 id="benefitCountString"
                 style={{ textAlign: "left", fontSize: "1.5em" }}
               >
-                {this.countBenefitsString(benefitsSelected, t)}
+                {this.countBenefitsString(benefits, t)}
               </p>
             </Grid>
           </Grid>
@@ -125,7 +132,12 @@ export class App extends Component<Props> {
                   <SelectedOptionsCard
                     id="vacServicesCard"
                     page="A1"
-                    options={vacServicesSelected}
+                    options={benefitTypes.map(
+                      bt =>
+                        t("current-language-code") === "en"
+                          ? bt.name_en
+                          : bt.name_fr
+                    )}
                     t={t}
                   />
                 </Grid>
@@ -133,7 +145,12 @@ export class App extends Component<Props> {
                   <SelectedOptionsCard
                     id="userStatusesCard"
                     page="A2"
-                    options={userStatusesSelected}
+                    options={patronTypes.map(
+                      pt =>
+                        t("current-language-code") === "en"
+                          ? pt.name_en
+                          : pt.name_fr
+                    )}
                     t={t}
                   />
                 </Grid>
@@ -149,7 +166,7 @@ export class App extends Component<Props> {
 
             <Grid item sm={9} xs={12}>
               <Grid container spacing={24}>
-                <BenefitTitleCardList benefits={benefitsSelected} t={t} />
+                <BenefitTitleCardList benefits={benefits} t={t} />
               </Grid>
             </Grid>
           </Grid>
@@ -167,7 +184,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    benefits: state.benefits
+    benefits: state.benefits,
+    benefitTypes: state.benefitTypes,
+    patronTypes: state.patronTypes
   };
 };
 
