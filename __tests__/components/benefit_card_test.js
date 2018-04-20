@@ -6,32 +6,31 @@ import BenefitCardList, {
 } from "../../components/benefit_cards";
 import { mount } from "enzyme";
 
+const benefitsFixture = [
+  {
+    vac_name_en: "Disability Award",
+    vac_name_fr: "Prix ​​d'invalidité"
+  },
+  {
+    vac_name_en: "Disability Pension",
+    vac_name_fr: "Pension d'invalidité"
+  }
+];
+
 describe("Test Benefit Cards", () => {
   it("BenefitTitleCard", () => {
-    const test_props = {
-      title: "test title"
-    };
     const card = mount(
-      <BenefitTitleCard t={key => key} benefit={test_props} />
+      <BenefitTitleCard t={key => key} benefit={benefitsFixture[0]} />
     );
-    expect(card.find("Typography#title").text()).toEqual(test_props.title);
+    expect(card.find("Typography#title").text()).toEqual("Prix ​​d'invalidité");
   });
 
   it("BenefitTitleCardList", () => {
-    const test_props = [
-      {
-        title: "test title1"
-      },
-      {
-        title: "test title2"
-      }
-    ];
-
     const cardList = mount(
-      <BenefitTitleCardList t={key => key} benefitList={test_props} />
+      <BenefitTitleCardList t={key => key} benefits={benefitsFixture} />
     );
     for (let i = 0; i < 2; i++) {
-      const expected = test_props[i].title;
+      const expected = benefitsFixture[i].vac_name_fr;
       expect(cardList.find("#bc" + i).text()).toEqual(expected);
     }
   });

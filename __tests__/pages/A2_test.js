@@ -40,7 +40,6 @@ describe("Page A2", () => {
   });
 
   it("Buttons", () => {
-    const userStatuses = ["Veteran", "Family", "Not Sure"];
     const app = mount(
       <App
         i18n={{ language: "en-US" }}

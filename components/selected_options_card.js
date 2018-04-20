@@ -3,9 +3,7 @@ import Card, { CardContent } from "material-ui/Card";
 import { Typography } from "material-ui";
 
 type Props = {
-  options: mixed,
-  page: string,
-  t: mixed
+  options: mixed
 };
 
 class SelectedOptionsCard extends Component<Props> {

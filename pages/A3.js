@@ -142,7 +142,6 @@ export class App extends Component<Props> {
                           ? bt.name_en
                           : bt.name_fr
                     )}
-                    t={t}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -155,7 +154,6 @@ export class App extends Component<Props> {
                           ? pt.name_en
                           : pt.name_fr
                     )}
-                    t={t}
                   />
                 </Grid>
                 <Grid item>
