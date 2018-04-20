@@ -1,23 +1,38 @@
 import fetch from "isomorphic-unfetch";
 
-export const fetchFromAirtable = async updateBenefitTypes => {
-  const key = "keySzaXvONeLwsBm4";
-  const url =
-    "https://api.airtable.com/v0/appIjjOxIa2utbHGH/benefit_types?maxRecords=100&view=Grid%20view";
+export const fetchFromAirtable = async loadDataStore => {
+  const key = "keySzaXvONeLwsBm4"; // Read access only API key
 
-  const resp = await fetch(url, {
+  let url =
+    "https://api.airtable.com/v0/appIjjOxIa2utbHGH/benefit_types?maxRecords=100&view=Grid%20view";
+  let resp = await fetch(url, {
     headers: {
       Authorization: `Bearer ${key}`
     }
   });
-
-  const json = await resp.json();
-
-  const munged = json.records.map(item => {
+  let json = await resp.json();
+  const benefitTypes = json.records.map(item => {
     return item.fields;
   });
 
-  updateBenefitTypes(munged);
+  url =
+    "https://api.airtable.com/v0/appIjjOxIa2utbHGH/patron_types?maxRecords=100&view=Grid%20view";
+  resp = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${key}`
+    }
+  });
+  json = await resp.json();
+  const patronTypes = json.records.map(item => {
+    return item.fields;
+  });
 
-  console.log(munged);
+  const newStore = {
+    storeHydrated: true,
+    benefitTypes: benefitTypes,
+    patronTypes: patronTypes
+  };
+  loadDataStore(newStore);
+
+  console.log(newStore);
 };

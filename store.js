@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
+import { fetchFromAirtable } from "./utils/airtable";
 
 const exampleInitialState = {
   count: 10,
-  benefit_types: [
+  storeHydrated: false,
+  benefitTypes: [
     {
       id: "rec3PfnqeqyxSbx1x",
       name_en: "Compensation For Harm",
@@ -16,7 +18,7 @@ const exampleInitialState = {
       name_fr: "Couverture des Coûts de Soins de Santé"
     }
   ],
-  patron_types: [
+  patronTypes: [
     {
       name: "rec726lY5vUBEh2Sv",
       name_en: "Military Service-Person",
@@ -65,9 +67,7 @@ export const reducer = (state = exampleInitialState, action) => {
         count: state.count + 1
       });
     case actionTypes.LOAD_DATA:
-      return Object.assign({}, state, {
-        benefit_types: action.data
-      });
+      return Object.assign({}, state, action.data);
     default:
       return state;
   }
@@ -79,7 +79,7 @@ export const addCount = () => dispatch => {
   return dispatch({ type: actionTypes.ADD });
 };
 
-export const updateBenefitTypes = data => dispatch => {
+export const loadDataStore = data => dispatch => {
   return dispatch({ type: actionTypes.LOAD_DATA, data: data });
 };
 

@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { Grid } from "material-ui";
 
 import withRedux from "next-redux-wrapper";
-import { initStore, updateBenefitTypes } from "../store";
+import { initStore, loadDataStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
@@ -54,7 +54,9 @@ export class App extends Component<Props> {
   };
 
   async componentWillMount() {
-    fetchFromAirtable(this.props.updateBenefitTypes);
+    if (!this.props.storeHydrated) {
+      fetchFromAirtable(this.props.loadDataStore);
+    }
   }
 
   render() {
@@ -72,7 +74,7 @@ export class App extends Component<Props> {
               </p>
             </Grid>
 
-            {this.props.benefit_types.map((type, i) => (
+            {this.props.benefitTypes.map((type, i) => (
               <Grid key={i} item sm={4} xs={12}>
                 <SelectButton
                   t={t}
@@ -132,13 +134,14 @@ export class App extends Component<Props> {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateBenefitTypes: bindActionCreators(updateBenefitTypes, dispatch)
+    loadDataStore: bindActionCreators(loadDataStore, dispatch)
   };
 };
 
 const mapStateToProps = state => {
   return {
-    benefit_types: state.benefit_types
+    storeHydrated: state.storeHydrated,
+    benefitTypes: state.benefitTypes
   };
 };
 
