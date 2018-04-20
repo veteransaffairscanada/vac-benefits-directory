@@ -27,7 +27,7 @@ describe("Page A1", () => {
         i18n={{ language: "en-US" }}
         t={key => key}
         storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
+        benefitTypes={[]}
       />
     );
     expect(app.text()).toMatch(/A1.What services are you interested in?/);
@@ -63,7 +63,7 @@ describe("Page A1", () => {
         i18n={{ language: "en-US" }}
         t={key => key}
         storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
+        benefitTypes={[]}
       />
     );
     expect(app.find("Link").text()).toEqual("Show All Benefits");
