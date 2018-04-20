@@ -21,7 +21,9 @@ export class BenefitTitleCard extends Component<CardProps> {
               variant="title"
               style={{ textAlign: "center" }}
             >
-              {this.props.t(benefit.title)}
+              {this.props.t("current-language-code") === "en"
+                ? benefit.vac_name_en
+                : benefit.vac_name_fr}
             </Typography>
           </CardContent>
         </Card>
@@ -31,19 +33,15 @@ export class BenefitTitleCard extends Component<CardProps> {
 }
 
 type Props = {
-  benefitList: mixed,
+  benefits: mixed,
   t: mixed
 };
 
 export class BenefitTitleCardList extends Component<CardListProps> {
   props: Props;
 
-  state = {
-    benefits: this.props.benefitList
-  };
-
   render() {
-    return this.state.benefits.map((benefit, i) => (
+    return this.props.benefits.map((benefit, i) => (
       <BenefitTitleCard
         id={"bc" + i}
         benefit={benefit}

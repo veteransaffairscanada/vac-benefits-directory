@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { Grid } from "material-ui";
 
 import withRedux from "next-redux-wrapper";
-import { initStore } from "../store";
+import { initStore, loadDataStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
@@ -13,11 +13,17 @@ import { logEvent } from "../utils/analytics";
 import Link from "next/link";
 import SelectedOptionsCard from "../components/selected_options_card";
 import { BenefitTitleCardList } from "../components/benefit_cards";
+import { bindActionCreators } from "redux";
+import { fetchFromAirtable } from "../utils/airtable";
 
 type Props = {
   i18n: mixed,
   t: mixed,
-  benefitList: mixed,
+  storeHydrated: boolean,
+  loadDataStore: mixed,
+  benefitTypes: mixed,
+  patronTypes: mixed,
+  benefits: mixed,
   url: mixed
 };
 
@@ -29,6 +35,12 @@ export class App extends Component<Props> {
     this.state = {
       selectedOptions: []
     };
+  }
+
+  async componentWillMount() {
+    if (!this.props.storeHydrated) {
+      fetchFromAirtable(this.props.loadDataStore);
+    }
   }
 
   toggleButton = id => {
@@ -49,8 +61,8 @@ export class App extends Component<Props> {
     logEvent("Language change", this.props.t("other-language"));
   };
 
-  countBenefitsString = (benefitList, t) => {
-    switch (benefitList.length) {
+  countBenefitsString = (benefits, t) => {
+    switch (benefits.length) {
       case 0:
         return t(
           "A3.Based on your selections you do not qualify for any benefits at this time"
@@ -60,18 +72,41 @@ export class App extends Component<Props> {
       default:
         return (
           t("A3.Here are NNN benefits that may apply to you", {
-            value: benefitList.length
+            value: benefits.length
           }) + ":"
         );
     }
   };
 
+  filterBenefits = (benefits, benefitTypes, patronTypes) => {
+    return benefits.filter(benefit => {
+      const matchingBenefitTypes = benefit.benefit_types.filter(
+        bt => benefitTypes.indexOf(bt) > -1
+      );
+      const matchingPatronTypes = benefit.patron_types.filter(
+        pt => patronTypes.indexOf(pt) > -1
+      );
+      return matchingBenefitTypes.length > 0 && matchingPatronTypes.length > 0;
+    });
+  };
+
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
-    const vacServicesSelected = this.props.url.query.selected.split(",");
-    const userStatusesSelected = this.props.url.query.user.split(",");
-    const benefitList = this.props.benefitList;
+    const benefitTypesSelected = this.props.url.query.benefitTypes.split(",");
+    const patronTypesSelected = this.props.url.query.patronTypes.split(",");
+    const benefitTypes = this.props.benefitTypes.filter(bt =>
+      benefitTypesSelected.includes(bt.id)
+    );
+    const patronTypes = this.props.patronTypes.filter(pt =>
+      patronTypesSelected.includes(pt.id)
+    );
+
+    const benefits = this.filterBenefits(
+      this.props.benefits,
+      benefitTypesSelected,
+      patronTypesSelected
+    );
 
     return (
       <Layout i18n={i18n} t={t}>
@@ -82,7 +117,7 @@ export class App extends Component<Props> {
                 id="benefitCountString"
                 style={{ textAlign: "left", fontSize: "1.5em" }}
               >
-                {this.countBenefitsString(benefitList, t)}
+                {this.countBenefitsString(benefits, t)}
               </p>
             </Grid>
           </Grid>
@@ -101,16 +136,24 @@ export class App extends Component<Props> {
                   <SelectedOptionsCard
                     id="vacServicesCard"
                     page="A1"
-                    options={vacServicesSelected}
-                    t={t}
+                    options={benefitTypes.map(
+                      bt =>
+                        t("current-language-code") === "en"
+                          ? bt.name_en
+                          : bt.name_fr
+                    )}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <SelectedOptionsCard
                     id="userStatusesCard"
                     page="A2"
-                    options={userStatusesSelected}
-                    t={t}
+                    options={patronTypes.map(
+                      pt =>
+                        t("current-language-code") === "en"
+                          ? pt.name_en
+                          : pt.name_fr
+                    )}
                   />
                 </Grid>
                 <Grid item>
@@ -125,7 +168,7 @@ export class App extends Component<Props> {
 
             <Grid item sm={9} xs={12}>
               <Grid container spacing={24}>
-                <BenefitTitleCardList benefitList={benefitList} t={t} />
+                <BenefitTitleCardList benefits={benefits} t={t} />
               </Grid>
             </Grid>
           </Grid>
@@ -135,10 +178,20 @@ export class App extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    benefitList: state.benefitList
+    loadDataStore: bindActionCreators(loadDataStore, dispatch)
   };
 };
 
-export default withRedux(initStore, mapStateToProps, null)(withI18next()(App));
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits,
+    benefitTypes: state.benefitTypes,
+    patronTypes: state.patronTypes
+  };
+};
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+  withI18next()(App)
+);

@@ -5,18 +5,22 @@ import React, { Component } from "react";
 import { Grid } from "material-ui";
 
 import withRedux from "next-redux-wrapper";
-import { initStore } from "../store";
+import { initStore, loadDataStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { logEvent } from "../utils/analytics";
 import Link from "next/link";
 import SelectButton from "../components/select_button";
+import { bindActionCreators } from "redux";
+import { fetchFromAirtable } from "../utils/airtable";
 
 type Props = {
   i18n: mixed,
   t: mixed,
-  userStatuses: mixed,
+  storeHydrated: boolean,
+  loadDataStore: mixed,
+  patronTypes: mixed,
   url: mixed
 };
 
@@ -26,6 +30,7 @@ export class App extends Component<Props> {
   constructor() {
     super();
     this.state = {
+      patronTypes: [],
       selectedOptions: []
     };
   }
@@ -48,9 +53,11 @@ export class App extends Component<Props> {
     logEvent("Language change", this.props.t("other-language"));
   };
 
-  throwError = () => {
-    throw new Error("test");
-  };
+  async componentWillMount() {
+    if (!this.props.storeHydrated) {
+      fetchFromAirtable(this.props.loadDataStore);
+    }
+  }
 
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
@@ -66,7 +73,7 @@ export class App extends Component<Props> {
             </Grid>
           </Grid>
 
-          {this.props.userStatuses.map((service, i) => (
+          {this.props.patronTypes.map((type, i) => (
             <Grid
               container
               key={i}
@@ -77,10 +84,14 @@ export class App extends Component<Props> {
               <Grid item sm={4} xs={12}>
                 <SelectButton
                   t={t}
-                  id={service}
-                  text={"A2." + service}
+                  id={type.id}
+                  text={
+                    t("current-language-code") === "en"
+                      ? type.name_en
+                      : type.name_fr
+                  }
                   onClick={this.toggleButton}
-                  isDown={this.state.selectedOptions.indexOf(service) >= 0}
+                  isDown={this.state.selectedOptions.indexOf(type.id) >= 0}
                 />
               </Grid>
             </Grid>
@@ -99,9 +110,9 @@ export class App extends Component<Props> {
                 href={
                   "A3?lng=" +
                   t("current-language-code") +
-                  "&selected=" +
-                  this.props.url.query.selected +
-                  "&user=" +
+                  "&benefitTypes=" +
+                  this.props.url.query.benefitTypes +
+                  "&patronTypes=" +
                   this.state.selectedOptions.join()
                 }
                 isDown={false}
@@ -129,10 +140,19 @@ export class App extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    userStatuses: state.userStatuses
+    loadDataStore: bindActionCreators(loadDataStore, dispatch)
   };
 };
 
-export default withRedux(initStore, mapStateToProps, null)(withI18next()(App));
+const mapStateToProps = state => {
+  return {
+    storeHydrated: state.storeHydrated,
+    patronTypes: state.patronTypes
+  };
+};
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+  withI18next()(App)
+);

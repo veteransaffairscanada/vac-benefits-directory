@@ -4,18 +4,34 @@ import thunkMiddleware from "redux-thunk";
 
 const exampleInitialState = {
   count: 10,
-  benefitList: [
+  storeHydrated: false,
+  benefitTypes: [
     {
-      type: "Support for Families",
-      title: "Survivor's Pension",
-      description: "Survivor's Pension Description"
+      id: "rec3PfnqeqyxSbx1x",
+      name_en: "Compensation For Harm",
+      name_fr: "Compensation Pour Préjudice"
     },
     {
-      type: "Financial",
-      title: "Disability Award",
-      description: "Disability Award Description"
+      id: "recQO4AHswOl75poF",
+      name_en: "Healthcare Cost Coverage",
+      name_fr: "Couverture des Coûts de Soins de Santé"
     }
   ],
+  patronTypes: [
+    {
+      id: "rec726lY5vUBEh2Sv",
+      name_en: "Military Service-Person",
+      name_fr: "Service militaire-Personne"
+    },
+    {
+      id: "recDAuNt8DXhD88Mr",
+      name_en: "RCMP Service-Person",
+      name_fr: "Personne-Service de la GRC"
+    }
+  ],
+
+  benefits: [],
+
   vacServices: [
     "Financial Support",
     "Rehabilitation",
@@ -28,7 +44,8 @@ const exampleInitialState = {
 };
 
 export const actionTypes = {
-  ADD: "ADD"
+  ADD: "ADD",
+  LOAD_DATA: "LOAD_DATA"
 };
 
 // REDUCERS
@@ -38,6 +55,8 @@ export const reducer = (state = exampleInitialState, action) => {
       return Object.assign({}, state, {
         count: state.count + 1
       });
+    case actionTypes.LOAD_DATA:
+      return Object.assign({}, state, action.data);
     default:
       return state;
   }
@@ -47,6 +66,10 @@ export const reducer = (state = exampleInitialState, action) => {
 
 export const addCount = () => dispatch => {
   return dispatch({ type: actionTypes.ADD });
+};
+
+export const loadDataStore = data => dispatch => {
+  return dispatch({ type: actionTypes.LOAD_DATA, data: data });
 };
 
 export const initStore = (initialState = exampleInitialState) => {

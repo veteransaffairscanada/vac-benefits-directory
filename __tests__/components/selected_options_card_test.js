@@ -5,21 +5,8 @@ import { mount } from "enzyme";
 describe("Test Selected Options Card", () => {
   it("SelectedOptionsCard", () => {
     const testOptions = ["test_option_1", "test_option_2"];
-    const testPage = "test_page";
 
-    const expectedText = testOptions
-      .map(option => {
-        return testPage + "." + option;
-      })
-      .join();
-
-    const card = mount(
-      <SelectedOptionsCard
-        t={key => key}
-        page={testPage}
-        options={testOptions}
-      />
-    );
+    const card = mount(<SelectedOptionsCard options={testOptions} />);
     const cardText = card
       .find("Typography")
       .map(option => {
@@ -27,6 +14,6 @@ describe("Test Selected Options Card", () => {
       })
       .join();
 
-    expect(cardText).toEqual(expectedText);
+    expect(cardText).toEqual(testOptions.join());
   });
 });
