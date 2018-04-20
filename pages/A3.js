@@ -19,7 +19,11 @@ import { fetchFromAirtable } from "../utils/airtable";
 type Props = {
   i18n: mixed,
   t: mixed,
-  benefitList: mixed,
+  storeHydrated: boolean,
+  loadDataStore: mixed,
+  benefitTypes: mixed,
+  patronTypes: mixed,
+  benefits: mixed,
   url: mixed
 };
 

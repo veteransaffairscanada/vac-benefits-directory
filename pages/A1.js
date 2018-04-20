@@ -18,7 +18,9 @@ import { bindActionCreators } from "redux";
 type Props = {
   i18n: mixed,
   t: mixed,
-  benefit_types: mixed
+  storeHydrated: boolean,
+  loadDataStore: mixed,
+  benefitTypes: mixed
 };
 
 export class App extends Component<Props> {

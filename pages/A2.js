@@ -18,7 +18,9 @@ import { fetchFromAirtable } from "../utils/airtable";
 type Props = {
   i18n: mixed,
   t: mixed,
-  userStatuses: mixed,
+  storeHydrated: boolean,
+  loadDataStore: mixed,
+  patronTypes: mixed,
   url: mixed
 };
 
