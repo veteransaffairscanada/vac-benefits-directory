@@ -11,8 +11,8 @@ const selectedFixture = ["rec3PfnqeqyxSbx1x", "recQO4AHswOl75poF"];
 const userFixture = ["rec726lY5vUBEh2Sv", "recDAuNt8DXhD88Mr"];
 const urlFixture = {
   query: {
-    selected: selectedFixture.join(),
-    user: userFixture.join()
+    benefitTypes: selectedFixture.join(),
+    patronTypes: userFixture.join()
   }
 };
 

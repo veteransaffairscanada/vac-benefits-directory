@@ -110,9 +110,9 @@ export class App extends Component<Props> {
                 href={
                   "A3?lng=" +
                   t("current-language-code") +
-                  "&selected=" +
-                  this.props.url.query.selected +
-                  "&user=" +
+                  "&benefitTypes=" +
+                  this.props.url.query.benefitTypes +
+                  "&patronTypes=" +
                   this.state.selectedOptions.join()
                 }
                 isDown={false}

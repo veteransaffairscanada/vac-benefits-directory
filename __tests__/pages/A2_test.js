@@ -5,7 +5,7 @@ import React from "react";
 
 import { App } from "../../pages/A2";
 
-const urlFixture = { query: { selected: "" } };
+const urlFixture = { query: { benefitTypes: "" } };
 const patronTypesFixture = [
   {
     id: "rec726lY5vUBEh2Sv",

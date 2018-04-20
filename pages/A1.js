@@ -106,7 +106,7 @@ export class App extends Component<Props> {
                 href={
                   "A2?lng=" +
                   t("current-language-code") +
-                  "&selected=" +
+                  "&benefitTypes=" +
                   this.state.selectedOptions.join()
                 }
                 isDown={false}

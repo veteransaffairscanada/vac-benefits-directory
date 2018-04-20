@@ -93,8 +93,8 @@ export class App extends Component<Props> {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
-    const benefitTypesSelected = this.props.url.query.selected.split(",");
-    const patronTypesSelected = this.props.url.query.user.split(",");
+    const benefitTypesSelected = this.props.url.query.benefitTypes.split(",");
+    const patronTypesSelected = this.props.url.query.patronTypes.split(",");
     const benefitTypes = this.props.benefitTypes.filter(bt =>
       benefitTypesSelected.includes(bt.id)
     );
