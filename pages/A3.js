@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import { Grid } from "material-ui";
 
 import withRedux from "next-redux-wrapper";
-import { initStore } from "../store";
+import { initStore, loadDataStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
@@ -13,6 +13,8 @@ import { logEvent } from "../utils/analytics";
 import Link from "next/link";
 import SelectedOptionsCard from "../components/selected_options_card";
 import { BenefitTitleCardList } from "../components/benefit_cards";
+import { bindActionCreators } from "redux";
+import { fetchFromAirtable } from "../utils/airtable";
 
 type Props = {
   i18n: mixed,
@@ -29,6 +31,12 @@ export class App extends Component<Props> {
     this.state = {
       selectedOptions: []
     };
+  }
+
+  async componentWillMount() {
+    if (!this.props.storeHydrated) {
+      fetchFromAirtable(this.props.loadDataStore);
+    }
   }
 
   toggleButton = id => {
@@ -49,8 +57,8 @@ export class App extends Component<Props> {
     logEvent("Language change", this.props.t("other-language"));
   };
 
-  countBenefitsString = (benefitList, t) => {
-    switch (benefitList.length) {
+  countBenefitsString = (benefits, t) => {
+    switch (benefits.length) {
       case 0:
         return t(
           "A3.Based on your selections you do not qualify for any benefits at this time"
@@ -60,7 +68,7 @@ export class App extends Component<Props> {
       default:
         return (
           t("A3.Here are NNN benefits that may apply to you", {
-            value: benefitList.length
+            value: benefits.length
           }) + ":"
         );
     }
@@ -71,7 +79,7 @@ export class App extends Component<Props> {
 
     const vacServicesSelected = this.props.url.query.selected.split(",");
     const userStatusesSelected = this.props.url.query.user.split(",");
-    const benefitList = this.props.benefitList;
+    const benefitsSelected = this.props.benefits;
 
     return (
       <Layout i18n={i18n} t={t}>
@@ -82,7 +90,7 @@ export class App extends Component<Props> {
                 id="benefitCountString"
                 style={{ textAlign: "left", fontSize: "1.5em" }}
               >
-                {this.countBenefitsString(benefitList, t)}
+                {this.countBenefitsString(benefitsSelected, t)}
               </p>
             </Grid>
           </Grid>
@@ -125,7 +133,7 @@ export class App extends Component<Props> {
 
             <Grid item sm={9} xs={12}>
               <Grid container spacing={24}>
-                <BenefitTitleCardList benefitList={benefitList} t={t} />
+                <BenefitTitleCardList benefits={benefitsSelected} t={t} />
               </Grid>
             </Grid>
           </Grid>
@@ -135,10 +143,18 @@ export class App extends Component<Props> {
   }
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    benefitList: state.benefitList
+    loadDataStore: bindActionCreators(loadDataStore, dispatch)
   };
 };
 
-export default withRedux(initStore, mapStateToProps, null)(withI18next()(App));
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits
+  };
+};
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+  withI18next()(App)
+);

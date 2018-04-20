@@ -82,14 +82,14 @@ export class App extends Component<Props> {
               <Grid item sm={4} xs={12}>
                 <SelectButton
                   t={t}
-                  id={type.name}
+                  id={type.id}
                   text={
                     t("current-language-code") === "en"
                       ? type.name_en
                       : type.name_fr
                   }
                   onClick={this.toggleButton}
-                  isDown={this.state.selectedOptions.indexOf(type.name) >= 0}
+                  isDown={this.state.selectedOptions.indexOf(type.id) >= 0}
                 />
               </Grid>
             </Grid>

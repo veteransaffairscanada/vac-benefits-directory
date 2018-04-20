@@ -22,7 +22,7 @@ class SelectedOptionsCard extends Component<Props> {
               variant="body1"
               style={{ textAlign: "left" }}
             >
-              {this.props.t(this.props.page + "." + option)}
+              {option}
             </Typography>
           ))}
         </CardContent>

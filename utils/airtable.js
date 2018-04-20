@@ -27,10 +27,23 @@ export const fetchFromAirtable = async loadDataStore => {
     return item.fields;
   });
 
+  url =
+    "https://api.airtable.com/v0/appIjjOxIa2utbHGH/benefits?maxRecords=100&view=Grid%20view";
+  resp = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${key}`
+    }
+  });
+  json = await resp.json();
+  const benefits = json.records.map(item => {
+    return item.fields;
+  });
+
   const newStore = {
     storeHydrated: true,
     benefitTypes: benefitTypes,
-    patronTypes: patronTypes
+    patronTypes: patronTypes,
+    benefits: benefits
   };
   loadDataStore(newStore);
 

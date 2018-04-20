@@ -20,18 +20,18 @@ const exampleInitialState = {
   ],
   patronTypes: [
     {
-      name: "rec726lY5vUBEh2Sv",
+      id: "rec726lY5vUBEh2Sv",
       name_en: "Military Service-Person",
       name_fr: "Service militaire-Personne"
     },
     {
-      name: "recDAuNt8DXhD88Mr",
+      id: "recDAuNt8DXhD88Mr",
       name_en: "RCMP Service-Person",
       name_fr: "Personne-Service de la GRC"
     }
   ],
 
-  benefitList: [
+  benefits: [
     {
       type: "Support for Families",
       title: "Survivor's Pension",
