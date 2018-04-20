@@ -26,7 +26,7 @@ export class App extends Component<Props> {
   constructor() {
     super();
     this.state = {
-      selectedOptions: []
+      patron_types: []
     };
   }
 

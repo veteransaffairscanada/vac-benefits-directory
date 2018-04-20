@@ -5,18 +5,20 @@ import React, { Component } from "react";
 import { Grid } from "material-ui";
 
 import withRedux from "next-redux-wrapper";
-import { initStore } from "../store";
+import { initStore, updateBenefitTypes } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { logEvent } from "../utils/analytics";
 import Link from "next/link";
 import SelectButton from "../components/select_button";
+import { fetchFromAirtable } from "../utils/airtable";
+import { bindActionCreators } from "redux";
 
 type Props = {
   i18n: mixed,
   t: mixed,
-  vacServices: mixed
+  benefit_types: mixed
 };
 
 export class App extends Component<Props> {
@@ -50,6 +52,10 @@ export class App extends Component<Props> {
       selectedOptions: selected
     });
   };
+
+  async componentWillMount() {
+    fetchFromAirtable(this.props.updateBenefitTypes);
+  }
 
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
@@ -124,10 +130,18 @@ export class App extends Component<Props> {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    updateBenefitTypes: bindActionCreators(updateBenefitTypes, dispatch)
+  };
+};
+
 const mapStateToProps = state => {
   return {
     benefit_types: state.benefit_types
   };
 };
 
-export default withRedux(initStore, mapStateToProps, null)(withI18next()(App));
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+  withI18next()(App)
+);

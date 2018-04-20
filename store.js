@@ -53,7 +53,8 @@ const exampleInitialState = {
 };
 
 export const actionTypes = {
-  ADD: "ADD"
+  ADD: "ADD",
+  LOAD_DATA: "LOAD_DATA"
 };
 
 // REDUCERS
@@ -62,6 +63,10 @@ export const reducer = (state = exampleInitialState, action) => {
     case actionTypes.ADD:
       return Object.assign({}, state, {
         count: state.count + 1
+      });
+    case actionTypes.LOAD_DATA:
+      return Object.assign({}, state, {
+        benefit_types: action.data
       });
     default:
       return state;
@@ -72,6 +77,10 @@ export const reducer = (state = exampleInitialState, action) => {
 
 export const addCount = () => dispatch => {
   return dispatch({ type: actionTypes.ADD });
+};
+
+export const updateBenefitTypes = data => dispatch => {
+  return dispatch({ type: actionTypes.LOAD_DATA, data: data });
 };
 
 export const initStore = (initialState = exampleInitialState) => {
