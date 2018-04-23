@@ -17,7 +17,7 @@ describe("SelectButton", () => {
   beforeEach(() => {
     props = {
       text: "test string",
-      id: undefined,
+      id: "test id",
       href: "test href",
       isDown: false,
       onClick: jest.fn()
@@ -35,17 +35,28 @@ describe("SelectButton", () => {
     expect(card.children().length).toEqual(selectButton().children().length);
   });
 
-  it("Contains a single button with correct fixed props", () => {
+  it("Contains a single button", () => {
     const buttons = selectButton().find("Button");
     expect(buttons.length).toEqual(1);
-    const button = buttons.first();
-    expect(button.props().fullWidth).toEqual(true);
-    expect(button.props().href).toEqual(props.href);
-
-    // TODO: not sure how to test button.props().onClick :(
   });
 
-  it("button contains correct children", () => {
+  it("Button has correct fullWidth and href", () => {
+    const button = selectButton()
+      .find("Button")
+      .first();
+    expect(button.props().fullWidth).toEqual(true);
+    expect(button.props().href).toEqual(props.href);
+  });
+
+  it("Button has correct onClick", () => {
+    const button = selectButton()
+      .find("Button")
+      .first();
+    button.simulate("click");
+    expect(props.onClick).toBeCalledWith(props.id);
+  });
+
+  it("Button contains correct children", () => {
     const button = selectButton()
       .find("Button")
       .first();
