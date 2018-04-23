@@ -26,8 +26,8 @@
     "Your Selection": "Your Selection",
     "Here are NNN benefits that may apply to you":
       "Here are {{value}} benefits that may apply to you",
-    "Based on your selections you do not qualify for any benefits at this time":
-      "Based on your selections you do not qualify for any benefits at this time",
+    "At this time there are no benefits that match your selections":
+      "At this time there are no benefits that match your selections.",
     "Here is a benefit that may apply to you":
       "Here is a benefit that may apply to you"
   },
