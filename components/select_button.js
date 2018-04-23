@@ -23,7 +23,7 @@ export class SelectButton extends Component<Props> {
           href={this.props.href}
           style={{ backgroundColor: this.props.isDown ? "#aaa" : "#fff" }}
         >
-          {this.props.t(this.props.text)}
+          {this.props.text}
         </Button>
       </Card>
     );

@@ -65,7 +65,7 @@ export class App extends Component<Props> {
     switch (benefits.length) {
       case 0:
         return t(
-          "A3.Based on your selections you do not qualify for any benefits at this time"
+          "A3.At this time there are no benefits that match your selections"
         );
       case 1:
         return t("A3.Here is a benefit that may apply to you") + ":";

@@ -106,7 +106,7 @@ export class App extends Component<Props> {
             <Grid item sm={4} xs={12}>
               <SelectButton
                 t={t}
-                text={"A2.See Results"}
+                text={t("A2.See Results")}
                 href={
                   "A3?lng=" +
                   t("current-language-code") +

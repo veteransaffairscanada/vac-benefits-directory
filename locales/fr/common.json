@@ -25,8 +25,8 @@
     "Your Selection": "Votre sélection",
     "Here are NNN benefits that may apply to you":
       "Voici {{value}} avantages qui peuvent s'appliquer à vous",
-    "Based on your selections you do not qualify for any benefits at this time":
-      "En fonction de vos sélections, vous n'êtes pas admissible à des avantages en ce moment",
+    "At this time there are no benefits that match your selections":
+      "Pour le moment, aucun avantage ne correspond à vos sélections.",
     "Here is a benefit that may apply to you":
       "Voici un avantage qui peut s'appliquer à vous"
   },
