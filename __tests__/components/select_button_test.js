@@ -40,26 +40,25 @@ describe("SelectButton", () => {
     expect(buttons.length).toEqual(1);
   });
 
-  it("Button has correct fullWidth and href", () => {
-    const button = selectButton()
+  const buttonChild = () =>
+    selectButton()
       .find("Button")
       .first();
+
+  it("Button has correct fullWidth and href", () => {
+    const button = buttonChild();
     expect(button.props().fullWidth).toEqual(true);
     expect(button.props().href).toEqual(props.href);
   });
 
   it("Button has correct onClick", () => {
-    const button = selectButton()
-      .find("Button")
-      .first();
+    const button = buttonChild();
     button.simulate("click");
     expect(props.onClick).toBeCalledWith(props.id);
   });
 
   it("Button contains correct children", () => {
-    const button = selectButton()
-      .find("Button")
-      .first();
+    const button = buttonChild();
     expect(button.children().length).toEqual(1);
     expect(
       button
@@ -75,9 +74,7 @@ describe("SelectButton", () => {
     });
 
     it("Button's backgroundColor is #aaa", () => {
-      const button = selectButton()
-        .find("Button")
-        .first();
+      const button = buttonChild();
       expect(button.props().style.backgroundColor).toEqual("#aaa");
     });
   });
@@ -88,9 +85,7 @@ describe("SelectButton", () => {
     });
 
     it("Button's backgroundColor is #fff", () => {
-      const button = selectButton()
-        .find("Button")
-        .first();
+      const button = buttonChild();
       expect(button.props().style.backgroundColor).toEqual("#fff");
     });
   });
