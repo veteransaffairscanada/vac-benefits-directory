@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Card from "material-ui/Card";
 import { Button } from "material-ui";
 
@@ -6,9 +7,8 @@ type Props = {
   text: string,
   href: string,
   isDown: boolean,
-  onClick: mixed,
-  id: string,
-  t: mixed
+  onClick: PropTypes.func,
+  id: string
 };
 
 export class SelectButton extends Component<Props> {

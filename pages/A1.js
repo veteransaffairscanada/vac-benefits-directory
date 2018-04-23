@@ -79,7 +79,6 @@ export class App extends Component<Props> {
             {this.props.benefitTypes.map((type, i) => (
               <Grid key={i} item sm={4} xs={12}>
                 <SelectButton
-                  t={t}
                   id={type.id}
                   text={
                     t("current-language-code") === "en"
@@ -101,7 +100,6 @@ export class App extends Component<Props> {
           >
             <Grid item sm={4} xs={12}>
               <SelectButton
-                t={t}
                 text={t("A1.Next")}
                 href={
                   "A2?lng=" +
