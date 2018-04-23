@@ -19,7 +19,7 @@ class Footer extends Component<Props> {
 
   render() {
     const envDetails = process.env.CIRCLE_SHA1
-      ? process.env.CIRCLE_SHA1
+      ? process.env.CIRCLE_SHA1.substring(0, 7)
       : process.env.NODE_ENV;
 
     return (
