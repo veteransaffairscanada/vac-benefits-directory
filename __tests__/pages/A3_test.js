@@ -75,7 +75,7 @@ describe("Page A3", () => {
       />
     );
     expect(app.find("p#benefitCountString").text()).toEqual(
-      "A3.Based on your selections you do not qualify for any benefits at this time"
+      "A3.At this time there are no benefits that match your selections"
     );
   });
 
