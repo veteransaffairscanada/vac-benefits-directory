@@ -6,10 +6,9 @@ services:
     image: docker.io/cdssnc/vac-poc:latest
     ports:
       - "3000:3000"
-      - "3002:3002"
     logging:
       driver: awslogs
       options:
         awslogs-group: ecs-logs
         awslogs-region: us-east-1
-        awslogs-stream-prefix: nrcan-poc
+        awslogs-stream-prefix: vac-poc
