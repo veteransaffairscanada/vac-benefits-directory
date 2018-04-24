@@ -38,7 +38,7 @@ describe("All benefits page", () => {
         benefits={benefitsFixture}
       />
     );
-    expect(app.find("BenefitTitleCardList").length).toEqual(1);
+    expect(app.find(BenefitTitleCardList).length).toEqual(1);
     expect(app.find(".BenefitCard h2").length).toEqual(2);
   });
 });
