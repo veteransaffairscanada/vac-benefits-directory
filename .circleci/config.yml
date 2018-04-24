@@ -88,6 +88,23 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy API Docker Image"
     working_directory: ~/repo
+  update_ecs: 
+    docker: 
+      - 
+        image: "cdssnc/ecs-cli:latest"
+    steps: 
+      - 
+        name: "Update ECS Task"
+      - 
+        checkout: 
+          path: ~/repo
+      - setup_remote_docker
+      - 
+        run: 
+         command: |
+              cd deploy
+              command: "ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE\n"
+    working_directory: ~/repo
 
 workflows:
   version: 2
