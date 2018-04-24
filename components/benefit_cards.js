@@ -14,7 +14,7 @@ export class BenefitTitleCard extends Component<CardProps> {
     const benefit = this.props.benefit;
     return (
       <Grid item xs={12} sm={4}>
-        <Card style={{ backgroundColor: "#ddd" }}>
+        <Card className="BenefitCard" style={{ backgroundColor: "#ddd" }}>
           <CardContent>
             <Typography
               id="title"
