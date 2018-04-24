@@ -16,6 +16,7 @@ export class BenefitTitleCard extends Component<CardProps> {
     return (
       <Grid item xs={12} sm={4}>
         <SelectButton
+          target="_blank"
           text={
             this.props.t("current-language-code") === "en"
               ? benefit.vac_name_en

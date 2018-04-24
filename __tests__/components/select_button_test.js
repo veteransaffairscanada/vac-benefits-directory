@@ -16,6 +16,7 @@ describe("SelectButton", () => {
 
   beforeEach(() => {
     props = {
+      target: "test target",
       text: "test string",
       id: "test id",
       href: "test href",
@@ -47,10 +48,11 @@ describe("SelectButton", () => {
       .find("Button")
       .first();
 
-  it("Button has correct fullWidth and href", () => {
+  it("Button has correct fullWidth, target and href", () => {
     const button = buttonChild();
     expect(button.props().fullWidth).toEqual(true);
     expect(button.props().href).toEqual(props.href);
+    expect(button.props().target).toEqual(props.target);
   });
 
   it("Button has correct onClick", () => {
