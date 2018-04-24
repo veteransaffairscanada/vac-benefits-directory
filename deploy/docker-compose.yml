@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+
+   vac:
+    image: docker.io/cdssnc/vac-poc:latest
+    ports:
+      - "3000:3000"
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: ecs-logs
+        awslogs-region: us-east-1
+        awslogs-stream-prefix: vac-poc
