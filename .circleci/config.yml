@@ -112,10 +112,6 @@ workflows:
      - build
      - integration
      - update_ecs:
-        filters:
-          branches:
-            only:
-              - deploy   
         requires:
          - deploy
      - deploy:
@@ -125,4 +121,4 @@ workflows:
         filters:
           branches:
             only:
-              - deploy
+              - master
