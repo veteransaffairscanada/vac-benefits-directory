@@ -6,12 +6,14 @@ import flush from "styled-jsx/server";
 import getPageContext from "../lib/pageContext";
 import { MuiThemeProvider } from "material-ui/styles";
 
+import { withI18next } from "../lib/withI18next";
+
 const bodyStyling = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
   margin: 0
 };
 
-export default class MyDocument extends Document {
+class MyDocument extends Document {
   static getInitialProps(ctx) {
     const pageContext = getPageContext();
     //eslint-disable-next-line react/display-name
@@ -61,7 +63,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
+      <html lang={this.props.t("current-language-code")}>
         <Head>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
@@ -73,3 +75,5 @@ export default class MyDocument extends Document {
     );
   }
 }
+
+export default withI18next()(MyDocument);

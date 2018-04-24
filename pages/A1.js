@@ -9,7 +9,6 @@ import { initStore, loadDataStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { logEvent } from "../utils/analytics";
 import Link from "next/link";
 import SelectButton from "../components/select_button";
 import { fetchFromAirtable } from "../utils/airtable";
@@ -32,11 +31,6 @@ export class App extends Component<Props> {
       selectedOptions: []
     };
   }
-
-  changeLanguage = () => {
-    this.props.i18n.changeLanguage(this.props.t("other-language-code"));
-    logEvent("Language change", this.props.t("other-language"));
-  };
 
   throwError = () => {
     throw new Error("test");
