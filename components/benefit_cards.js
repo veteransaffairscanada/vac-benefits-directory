@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card, { CardContent, CardHeader, CardActions } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
+import SelectButton from "./select_button";
 
 type CardProps = {
   benefit: mixed,
@@ -14,19 +15,20 @@ export class BenefitTitleCard extends Component<CardProps> {
     const benefit = this.props.benefit;
     return (
       <Grid item xs={12} sm={4}>
-        <Card style={{ backgroundColor: "#ddd" }}>
-          <CardContent>
-            <Typography
-              id="title"
-              variant="title"
-              style={{ textAlign: "center" }}
-            >
-              {this.props.t("current-language-code") === "en"
-                ? benefit.vac_name_en
-                : benefit.vac_name_fr}
-            </Typography>
-          </CardContent>
-        </Card>
+        <SelectButton
+          text={
+            this.props.t("current-language-code") === "en"
+              ? benefit.vac_name_en
+              : benefit.vac_name_fr
+          }
+          href={
+            this.props.t("current-language-code") === "en"
+              ? benefit.link_en
+              : benefit.link_fr
+          }
+          isDown={false}
+          id="title"
+        />
       </Grid>
     );
   }
