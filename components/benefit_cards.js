@@ -23,8 +23,8 @@ export class BenefitTitleCard extends Component<CardProps> {
           }
           href={
             this.props.t("current-language-code") === "en"
-              ? benefit.link_en
-              : benefit.link_fr
+              ? benefit.linkEn
+              : benefit.linkFr
           }
           isDown={false}
           id="title"

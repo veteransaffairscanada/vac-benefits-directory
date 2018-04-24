@@ -59,6 +59,28 @@ const benefitsFixture = [
   }
 ];
 
+const corporaEnFixture = [
+  {
+    benefits: "recQtMLSsyS90o4rV",
+    full_description_link: "English link1"
+  },
+  {
+    benefits: "recvzRaT9ormprNkb",
+    full_description_link: "English link2"
+  }
+];
+
+const corporaFrFixture = [
+  {
+    benefits: "recQtMLSsyS90o4rV",
+    full_description_link: "French link1"
+  },
+  {
+    benefits: "recvzRaT9ormprNkb",
+    full_description_link: "French link2"
+  }
+];
+
 jest.mock("react-ga");
 
 describe("Page A3", () => {
@@ -71,6 +93,8 @@ describe("Page A3", () => {
         benefitTypes={[]}
         patronTypes={[]}
         benefits={[]}
+        corporaEn={[]}
+        corporaFr={[]}
         url={urlFixture}
       />
     );
@@ -88,6 +112,8 @@ describe("Page A3", () => {
         benefitTypes={benefitTypesFixture}
         patronTypes={patronTypesFixture}
         benefits={[benefitsFixture[0]]}
+        corporaEn={[corporaEnFixture[0]]}
+        corporaFr={[corporaFrFixture[0]]}
         url={urlFixture}
       />
     );
@@ -105,6 +131,8 @@ describe("Page A3", () => {
         benefitTypes={benefitTypesFixture}
         patronTypes={patronTypesFixture}
         benefits={benefitsFixture}
+        corporaEn={corporaEnFixture}
+        corporaFr={corporaFrFixture}
         url={urlFixture}
       />
     );
@@ -122,6 +150,8 @@ describe("Page A3", () => {
         benefitTypes={benefitTypesFixture}
         patronTypes={patronTypesFixture}
         benefits={[]}
+        corporaEn={[]}
+        corporaFr={[]}
         url={urlFixture}
       />
     );
@@ -144,6 +174,8 @@ describe("Page A3", () => {
         benefitTypes={benefitTypesFixture}
         patronTypes={patronTypesFixture}
         benefits={[]}
+        corporaEn={[]}
+        corporaFr={[]}
         url={urlFixture}
       />
     );

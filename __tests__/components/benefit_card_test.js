@@ -9,11 +9,15 @@ import { mount } from "enzyme";
 const benefitsFixture = [
   {
     vac_name_en: "Disability Award",
-    vac_name_fr: "Prix ​​d'invalidité"
+    vac_name_fr: "Prix ​​d'invalidité",
+    linkEn: "English link",
+    linkFr: "French link"
   },
   {
     vac_name_en: "Disability Pension",
-    vac_name_fr: "Pension d'invalidité"
+    vac_name_fr: "Pension d'invalidité",
+    linkEn: "English link",
+    linkFr: "French link"
   }
 ];
 
@@ -22,7 +26,7 @@ describe("Test Benefit Cards", () => {
     const card = mount(
       <BenefitTitleCard t={key => key} benefit={benefitsFixture[0]} />
     );
-    expect(card.find("Typography#title").text()).toEqual("Prix ​​d'invalidité");
+    expect(card.text()).toEqual(benefitsFixture[0].vac_name_fr);
   });
 
   it("BenefitTitleCardList", () => {

@@ -115,12 +115,12 @@ export class App extends Component<Props> {
       let links = this.props.corporaEn.filter(corp =>
         corp.benefits.includes(benefit.id)
       );
-      benefit.link_en =
+      benefit.linkEn =
         links.length > 0 ? links[0].full_description_link : undefined;
       links = this.props.corporaFr.filter(corp =>
         corp.benefits.includes(benefit.id)
       );
-      benefit.link_fr =
+      benefit.linkFr =
         links.length > 0 ? links[0].full_description_link : undefined;
       return benefit;
     });
