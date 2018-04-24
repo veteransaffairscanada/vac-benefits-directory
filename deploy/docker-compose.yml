@@ -6,6 +6,7 @@ services:
     image: docker.io/cdssnc/vac-poc:latest
     ports:
       - "3000:3000"
+      - "3002:3002"
     logging:
       driver: awslogs
       options:
