@@ -94,8 +94,6 @@ jobs:
         image: "cdssnc/ecs-cli:latest"
     steps: 
       - 
-        name: "Update ECS Task"
-      - 
         checkout: 
           path: ~/repo
       - setup_remote_docker
@@ -104,8 +102,8 @@ jobs:
          command: |
               cd deploy
               command: "ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE"
+         name: "Update ECS Task"
     working_directory: ~/repo
-
 
 workflows:
   version: 2
