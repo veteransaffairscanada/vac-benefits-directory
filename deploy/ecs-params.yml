@@ -1,7 +1,7 @@
 version: 1
 task_definition:
   task_execution_role: ecs_task_execution_role-vac-poc
-  task_role_arn: arn:aws:iam::241785157803:role/ecs_task_execution_role-ircc-rescheduler
+  task_role_arn: arn:aws:iam::241785157803:role/ecs_task_execution_role-vac-poc
   ecs_network_mode: awsvpc
   task_size:
     mem_limit: 0.5GB
