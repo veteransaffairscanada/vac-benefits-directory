@@ -90,15 +90,12 @@ jobs:
     working_directory: ~/repo
   update_ecs: 
     docker: 
-      - 
-        image: "cdssnc/ecs-cli:latest"
+      - image: "cdssnc/ecs-cli:latest"
     steps: 
-      - 
-        checkout: 
+      - checkout: 
           path: ~/repo
       - setup_remote_docker
-      - 
-        run: 
+      - run: 
          command: |
               cd deploy
               ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE
