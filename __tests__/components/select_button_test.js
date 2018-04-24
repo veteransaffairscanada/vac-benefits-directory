@@ -28,11 +28,13 @@ describe("SelectButton", () => {
   // Tests
 
   it("Top level is a Card", () => {
-    const cards = selectButton().find("Card");
-    expect(cards.length).toEqual(1);
-    const card = cards.first();
-    // Enzyme omits the outermost node when using .children() on selectButton
-    expect(card.children().length).toEqual(selectButton().children().length);
+    expect(selectButton().children().length).toEqual(1);
+    expect(
+      selectButton()
+        .children()
+        .first()
+        .name()
+    ).toEqual("Card");
   });
 
   it("Contains a single button", () => {
@@ -57,7 +59,7 @@ describe("SelectButton", () => {
     expect(props.onClick).toBeCalledWith(props.id);
   });
 
-  it("Button contains correct children", () => {
+  it("Button contains correct child", () => {
     const button = buttonChild();
     expect(button.children().length).toEqual(1);
     expect(
