@@ -103,8 +103,9 @@ jobs:
         run: 
          command: |
               cd deploy
-              command: "ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE\n"
+              command: "ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE"
     working_directory: ~/repo
+
 
 workflows:
   version: 2
@@ -112,6 +113,11 @@ workflows:
    jobs:
      - build
      - integration
+     - update_ecs:
+        filters:
+          branches:
+            only:
+              - deploy   
      - deploy:
         requires:
          - build
