@@ -1,10 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
-
 import { Grid } from "material-ui";
-
-import { logEvent } from "../utils/analytics";
 import Link from "next/link";
 import SelectButton from "../components/select_button";
 
@@ -14,7 +11,8 @@ type Props = {
   storeHydrated: boolean,
   patronTypes: mixed,
   url: mixed,
-  selectedBenefitTypes: mixed
+  selectedBenefitTypes: mixed,
+  switchSection: mixed
 };
 
 export class App extends Component<Props> {
@@ -24,12 +22,12 @@ export class App extends Component<Props> {
     super();
     this.state = {
       patronTypes: [],
-      selectedOptions: []
+      selectedPatronTypes: []
     };
   }
 
   toggleButton = id => {
-    let selected = this.state.selectedOptions;
+    let selected = this.state.selectedPatronTypes;
     const index = selected.indexOf(id);
     if (index >= 0) {
       selected.splice(index, 1);
@@ -37,7 +35,7 @@ export class App extends Component<Props> {
       selected.push(id);
     }
     this.setState({
-      selectedOptions: selected
+      selectedPatronTypes: selected
     });
   };
 
@@ -71,7 +69,7 @@ export class App extends Component<Props> {
                     : type.name_fr
                 }
                 onClick={this.toggleButton}
-                isDown={this.state.selectedOptions.indexOf(type.id) >= 0}
+                isDown={this.state.selectedPatronTypes.indexOf(type.id) >= 0}
               />
             </Grid>
           </Grid>
@@ -86,14 +84,7 @@ export class App extends Component<Props> {
           <Grid item sm={4} xs={12}>
             <SelectButton
               text={t("A2.See Results")}
-              href={
-                "A3?lng=" +
-                t("current-language-code") +
-                "&benefitTypes=" +
-                this.props.selectedBenefitTypes +
-                "&patronTypes=" +
-                this.state.selectedOptions.join()
-              }
+              onClick={() => this.props.switchSection("A3", this.state)}
               isDown={false}
             />
           </Grid>

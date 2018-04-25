@@ -1,9 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
-
 import { Grid } from "material-ui";
-
 import Link from "next/link";
 import SelectButton from "../components/select_button";
 
@@ -27,15 +25,12 @@ export class App extends Component<Props> {
   }
 
   toggleButton = id => {
-    console.log("Pressed " + id)
     let selected = this.state.selectedBenefitTypes;
     const index = selected.indexOf(id);
     if (index >= 0) {
       selected.splice(index, 1);
-      console.log("unselected!")
     } else {
       selected.push(id);
-      console.log("selected!")
     }
     this.setState({
       selectedBenefitTypes: selected

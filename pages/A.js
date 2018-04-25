@@ -13,8 +13,7 @@ import { fetchFromAirtable } from "../utils/airtable";
 
 import A1 from "../components/A1";
 import A2 from "../components/A2";
-import A3 from "./A3";
-import AllBenefits from "./all-benefits";
+import A3 from "../components/A3";
 
 type Props = {
   i18n: mixed,
@@ -87,14 +86,28 @@ export class App extends Component<Props> {
             selectedBenefitTypes={this.state.selectedBenefitTypes}
           />
         );
+      case "A3":
+        return (
+          <A3
+            i18n={this.props.i18n}
+            t={this.props.t}
+            storeHydrated={this.props.storeHydrated}
+            benefitTypes={this.props.benefitTypes}
+            patronTypes={this.props.patronTypes}
+            benefits={this.props.benefits}
+            corporaEn={this.props.corporaEn}
+            corporaFr={this.props.corporaFr}
+            switchSection={this.switchSection}
+            selectedPatronTypes={this.state.selectedPatronTypes}
+            selectedBenefitTypes={this.state.selectedBenefitTypes}
+          />
+        );
     }
   };
 
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
-
     return (
-      <Layout i18n={i18n} t={t}>
+      <Layout i18n={this.props.i18n} t={this.props.t}>
         {this.sectionToDisplay(this.state.section)}
       </Layout>
     );
