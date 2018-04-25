@@ -24,6 +24,8 @@ type Props = {
   benefitTypes: mixed,
   patronTypes: mixed,
   benefits: mixed,
+  corporaEn: mixed,
+  corporaFr: mixed,
   url: mixed
 };
 
@@ -102,11 +104,26 @@ export class App extends Component<Props> {
       patronTypesSelected.includes(pt.id)
     );
 
-    const benefits = this.filterBenefits(
+    let benefits = this.filterBenefits(
       this.props.benefits,
       benefitTypesSelected,
       patronTypesSelected
     );
+
+    // add links to benefits
+    benefits = benefits.map(benefit => {
+      let links = this.props.corporaEn.filter(corp =>
+        corp.benefits.includes(benefit.id)
+      );
+      benefit.linkEn =
+        links.length > 0 ? links[0].full_description_link : undefined;
+      links = this.props.corporaFr.filter(corp =>
+        corp.benefits.includes(benefit.id)
+      );
+      benefit.linkFr =
+        links.length > 0 ? links[0].full_description_link : undefined;
+      return benefit;
+    });
 
     return (
       <Layout i18n={i18n} t={t}>
@@ -188,7 +205,9 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     benefitTypes: state.benefitTypes,
-    patronTypes: state.patronTypes
+    patronTypes: state.patronTypes,
+    corporaEn: state.corporaEn,
+    corporaFr: state.corporaFr
   };
 };
 

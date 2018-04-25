@@ -25,6 +25,8 @@ const benefitsFixture = [
     vac_name_fr: "Pension d'invalidité"
   }
 ];
+const corporaEnFixture = [];
+const corporaFrFixture = [];
 
 jest.mock("react-ga");
 
@@ -36,9 +38,11 @@ describe("All benefits page", () => {
         t={tMocked}
         storeHydrated={true}
         benefits={benefitsFixture}
+        corporaEn={corporaEnFixture}
+        corporaFr={corporaFrFixture}
       />
     );
     expect(app.find(BenefitTitleCardList).length).toEqual(1);
-    expect(app.find(".BenefitCard h2").length).toEqual(2);
+    expect(app.find(".BenefitCard").length).toEqual(2);
   });
 });

@@ -31,16 +31,8 @@ const exampleInitialState = {
   ],
 
   benefits: [],
-
-  vacServices: [
-    "Financial Support",
-    "Rehabilitation",
-    "Mental Health Services",
-    "Health Care",
-    "Career Transition",
-    "Support for Families"
-  ],
-  userStatuses: ["Veteran", "Family", "Not Sure"]
+  corporaEn: [],
+  corporaFr: []
 };
 
 export const actionTypes = {
@@ -56,7 +48,14 @@ export const reducer = (state = exampleInitialState, action) => {
         count: state.count + 1
       });
     case actionTypes.LOAD_DATA:
-      return Object.assign({}, state, action.data);
+      return Object.assign({}, state, {
+        storeHydrated: action.data.storeHydrated || state.storeHydrated,
+        benefitTypes: action.data.benefitTypes || state.benefitTypes,
+        patronTypes: action.data.patronTypes || state.patronTypes,
+        benefits: action.data.benefits || state.benefits,
+        corporaEn: action.data.corporaEn || state.corporaEn,
+        corporaFr: action.data.corporaFr || state.corporaFr
+      });
     default:
       return state;
   }

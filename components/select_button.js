@@ -8,7 +8,8 @@ type Props = {
   href: string,
   isDown: boolean,
   onClick: PropTypes.func,
-  id: string
+  id: string,
+  target: string
 };
 
 export class SelectButton extends Component<Props> {
@@ -18,6 +19,7 @@ export class SelectButton extends Component<Props> {
     return (
       <Card>
         <Button
+          target={this.props.target}
           onClick={() => this.props.onClick(this.props.id)}
           fullWidth={true}
           href={this.props.href}

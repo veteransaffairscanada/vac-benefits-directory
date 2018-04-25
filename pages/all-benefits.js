@@ -19,7 +19,9 @@ type Props = {
   loadDataStore: mixed,
   storeHydrated: boolean,
   t: mixed,
-  url: mixed
+  url: mixed,
+  corporaEn: mixed,
+  corporaFr: mixed
 };
 
 export class AllBenefits extends Component<Props> {
@@ -34,7 +36,22 @@ export class AllBenefits extends Component<Props> {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
-    const benefits = this.props.benefits;
+    let benefits = this.props.benefits;
+
+    // add links to benefits
+    benefits = benefits.map(benefit => {
+      let links = this.props.corporaEn.filter(corp =>
+        corp.benefits.includes(benefit.id)
+      );
+      benefit.linkEn =
+        links.length > 0 ? links[0].full_description_link : undefined;
+      links = this.props.corporaFr.filter(corp =>
+        corp.benefits.includes(benefit.id)
+      );
+      benefit.linkFr =
+        links.length > 0 ? links[0].full_description_link : undefined;
+      return benefit;
+    });
 
     return (
       <Layout i18n={i18n} t={t}>
@@ -60,7 +77,9 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    benefits: state.benefits
+    benefits: state.benefits,
+    corporaEn: state.corporaEn,
+    corporaFr: state.corporaFr
   };
 };
 
