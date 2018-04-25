@@ -22,26 +22,6 @@ type Props = {
 export class App extends Component<Props> {
   props: Props;
 
-  constructor() {
-    super();
-    this.state = {
-      selectedOptions: []
-    };
-  }
-
-  toggleButton = id => {
-    let selected = this.state.selectedOptions;
-    const index = selected.indexOf(id);
-    if (index >= 0) {
-      selected.splice(index, 1);
-    } else {
-      selected.push(id);
-    }
-    this.setState({
-      selectedOptions: selected
-    });
-  };
-
   countBenefitsString = (benefits, t) => {
     switch (benefits.length) {
       case 0:
@@ -74,19 +54,17 @@ export class App extends Component<Props> {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
-    const benefitTypesSelected = this.props.selectedBenefitTypes;
-    const patronTypesSelected = this.props.selectedPatronTypes;
     const benefitTypes = this.props.benefitTypes.filter(bt =>
-      benefitTypesSelected.includes(bt.id)
+      this.props.selectedBenefitTypes.includes(bt.id)
     );
     const patronTypes = this.props.patronTypes.filter(pt =>
-      patronTypesSelected.includes(pt.id)
+      this.props.selectedPatronTypes.includes(pt.id)
     );
 
     let benefits = this.filterBenefits(
       this.props.benefits,
-      benefitTypesSelected,
-      patronTypesSelected
+      this.props.selectedBenefitTypes,
+      this.props.selectedPatronTypes
     );
 
     // add links to benefits
