@@ -26,6 +26,12 @@ export class App extends Component<Props> {
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      selectedPatronTypes: this.props.selectedPatronTypes
+    });
+  }
+
   toggleButton = id => {
     let selected = this.state.selectedPatronTypes;
     const index = selected.indexOf(id);

@@ -24,6 +24,12 @@ export class App extends Component<Props> {
     };
   }
 
+  componentWillMount() {
+    this.setState({
+      selectedBenefitTypes: this.props.selectedBenefitTypes
+    });
+  }
+
   toggleButton = id => {
     let selected = this.state.selectedBenefitTypes;
     const index = selected.indexOf(id);

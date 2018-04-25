@@ -35,7 +35,7 @@ export class App extends Component<Props> {
     super();
     this.state = {
       section: "A1",
-      selectedBenefitTypes: [],
+      selectedBenefitTypes: ["rec3PfnqeqyxSbx1x"],
       selectedPatronTypes: []
     };
   }
