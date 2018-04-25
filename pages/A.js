@@ -7,7 +7,6 @@ import { initStore, loadDataStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { logEvent } from "../utils/analytics";
 import { bindActionCreators } from "redux";
 import { fetchFromAirtable } from "../utils/airtable";
 
@@ -35,7 +34,7 @@ export class App extends Component<Props> {
     super();
     this.state = {
       section: "A1",
-      selectedBenefitTypes: ["rec3PfnqeqyxSbx1x"],
+      selectedBenefitTypes: [],
       selectedPatronTypes: []
     };
   }
@@ -56,17 +55,11 @@ export class App extends Component<Props> {
     });
   };
 
-  changeLanguage = () => {
-    this.props.i18n.changeLanguage(this.props.t("other-language-code"));
-    logEvent("Language change", this.props.t("other-language"));
-  };
-
   sectionToDisplay = section => {
     switch (section) {
       case "A1":
         return (
           <A1
-            i18n={this.props.i18n}
             t={this.props.t}
             storeHydrated={this.props.storeHydrated}
             benefitTypes={this.props.benefitTypes}
@@ -77,7 +70,6 @@ export class App extends Component<Props> {
       case "A2":
         return (
           <A2
-            i18n={this.props.i18n}
             t={this.props.t}
             storeHydrated={this.props.storeHydrated}
             patronTypes={this.props.patronTypes}
@@ -88,7 +80,6 @@ export class App extends Component<Props> {
       case "A3":
         return (
           <A3
-            i18n={this.props.i18n}
             t={this.props.t}
             storeHydrated={this.props.storeHydrated}
             benefitTypes={this.props.benefitTypes}

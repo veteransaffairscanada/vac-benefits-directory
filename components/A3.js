@@ -7,7 +7,6 @@ import SelectedOptionsCard from "../components/selected_options_card";
 import { BenefitTitleCardList } from "../components/benefit_cards";
 
 type Props = {
-  i18n: mixed,
   t: mixed,
   storeHydrated: boolean,
   benefitTypes: mixed,
@@ -53,7 +52,7 @@ export class App extends Component<Props> {
   };
 
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    const { t } = this.props; // eslint-disable-line no-unused-vars
 
     const benefitTypes = this.props.benefitTypes.filter(bt =>
       this.props.selectedBenefitTypes.includes(bt.id)
@@ -88,12 +87,9 @@ export class App extends Component<Props> {
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <p
-                id="benefitCountString"
-                style={{ textAlign: "left", fontSize: "1.5em" }}
-              >
+              <h1 id="benefitCountString" style={{ textAlign: "left" }}>
                 {this.countBenefitsString(benefits, t)}
-              </p>
+              </h1>
             </Grid>
           </Grid>
         </div>

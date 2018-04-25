@@ -6,7 +6,6 @@ import Link from "next/link";
 import SelectButton from "../components/select_button";
 
 type Props = {
-  i18n: mixed,
   t: mixed,
   storeHydrated: boolean,
   benefitTypes: mixed,
@@ -44,14 +43,14 @@ export class App extends Component<Props> {
   };
 
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    const { t } = this.props; // eslint-disable-line no-unused-vars
     return (
       <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <p style={{ textAlign: "center", fontSize: "2em" }}>
+            <h1 style={{ textAlign: "center" }}>
               {t("A1.What services are you interested in?")}
-            </p>
+            </h1>
             <p style={{ textAlign: "center", fontSize: "1.5em" }}>
               {t("A1.Select all that apply")}
             </p>
