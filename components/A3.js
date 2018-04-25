@@ -1,67 +1,26 @@
 // @flow
 
 import React, { Component } from "react";
-
 import { Grid } from "material-ui";
-
-import withRedux from "next-redux-wrapper";
-import { initStore, loadDataStore } from "../store";
-
-import { withI18next } from "../lib/withI18next";
-import Layout from "../components/layout";
-import { logEvent } from "../utils/analytics";
 import Link from "next/link";
 import SelectedOptionsCard from "../components/selected_options_card";
 import { BenefitTitleCardList } from "../components/benefit_cards";
-import { bindActionCreators } from "redux";
-import { fetchFromAirtable } from "../utils/airtable";
 
 type Props = {
-  i18n: mixed,
   t: mixed,
   storeHydrated: boolean,
-  loadDataStore: mixed,
   benefitTypes: mixed,
   patronTypes: mixed,
   benefits: mixed,
   corporaEn: mixed,
   corporaFr: mixed,
-  url: mixed
+  selectedBenefitTypes: mixed,
+  selectedPatronTypes: mixed,
+  switchSection: mixed
 };
 
 export class App extends Component<Props> {
   props: Props;
-
-  constructor() {
-    super();
-    this.state = {
-      selectedOptions: []
-    };
-  }
-
-  async componentWillMount() {
-    if (!this.props.storeHydrated) {
-      fetchFromAirtable(this.props.loadDataStore);
-    }
-  }
-
-  toggleButton = id => {
-    let selected = this.state.selectedOptions;
-    const index = selected.indexOf(id);
-    if (index >= 0) {
-      selected.splice(index, 1);
-    } else {
-      selected.push(id);
-    }
-    this.setState({
-      selectedOptions: selected
-    });
-  };
-
-  changeLanguage = () => {
-    this.props.i18n.changeLanguage(this.props.t("other-language-code"));
-    logEvent("Language change", this.props.t("other-language"));
-  };
 
   countBenefitsString = (benefits, t) => {
     switch (benefits.length) {
@@ -93,21 +52,19 @@ export class App extends Component<Props> {
   };
 
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    const { t } = this.props; // eslint-disable-line no-unused-vars
 
-    const benefitTypesSelected = this.props.url.query.benefitTypes.split(",");
-    const patronTypesSelected = this.props.url.query.patronTypes.split(",");
     const benefitTypes = this.props.benefitTypes.filter(bt =>
-      benefitTypesSelected.includes(bt.id)
+      this.props.selectedBenefitTypes.includes(bt.id)
     );
     const patronTypes = this.props.patronTypes.filter(pt =>
-      patronTypesSelected.includes(pt.id)
+      this.props.selectedPatronTypes.includes(pt.id)
     );
 
     let benefits = this.filterBenefits(
       this.props.benefits,
-      benefitTypesSelected,
-      patronTypesSelected
+      this.props.selectedBenefitTypes,
+      this.props.selectedPatronTypes
     );
 
     // add links to benefits
@@ -126,16 +83,13 @@ export class App extends Component<Props> {
     });
 
     return (
-      <Layout i18n={i18n} t={t}>
+      <div>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <p
-                id="benefitCountString"
-                style={{ textAlign: "left", fontSize: "1.5em" }}
-              >
+              <h1 id="benefitCountString" style={{ textAlign: "left" }}>
                 {this.countBenefitsString(benefits, t)}
-              </p>
+              </h1>
             </Grid>
           </Grid>
         </div>
@@ -151,6 +105,7 @@ export class App extends Component<Props> {
                 </Grid>
                 <Grid item xs={12}>
                   <SelectedOptionsCard
+                    t={t}
                     id="vacServicesCard"
                     page="A1"
                     options={benefitTypes.map(
@@ -159,10 +114,12 @@ export class App extends Component<Props> {
                           ? bt.name_en
                           : bt.name_fr
                     )}
+                    action={() => this.props.switchSection("A1", {})}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <SelectedOptionsCard
+                    t={t}
                     id="userStatusesCard"
                     page="A2"
                     options={patronTypes.map(
@@ -171,6 +128,7 @@ export class App extends Component<Props> {
                           ? pt.name_en
                           : pt.name_fr
                     )}
+                    action={() => this.props.switchSection("A2", {})}
                   />
                 </Grid>
                 <Grid item>
@@ -190,27 +148,9 @@ export class App extends Component<Props> {
             </Grid>
           </Grid>
         </div>
-      </Layout>
+      </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadDataStore: bindActionCreators(loadDataStore, dispatch)
-  };
-};
-
-const mapStateToProps = state => {
-  return {
-    benefits: state.benefits,
-    benefitTypes: state.benefitTypes,
-    patronTypes: state.patronTypes,
-    corporaEn: state.corporaEn,
-    corporaFr: state.corporaFr
-  };
-};
-
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
-  withI18next()(App)
-);
+export default App;

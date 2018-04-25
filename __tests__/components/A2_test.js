@@ -3,9 +3,8 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import { App } from "../../pages/A2";
+import { App } from "../../components/A2";
 
-const urlFixture = { query: { benefitTypes: "" } };
 const patronTypesFixture = [
   {
     id: "rec726lY5vUBEh2Sv",
@@ -33,7 +32,6 @@ describe("Page A2", () => {
         t={key => key}
         storeHydrated={true}
         patronTypes={[]}
-        url={urlFixture}
       />
     );
     expect(app.text()).toMatch(/A2.What best describes your status?/);
@@ -46,18 +44,17 @@ describe("Page A2", () => {
         t={key => key}
         storeHydrated={true}
         patronTypes={patronTypesFixture}
-        url={{ query: { selected: "" } }}
+        selectedPatronTypes={[]}
+        switchSection={jest.fn()}
       />
     );
     const buttons = app.find("Button");
     const expectedText = [
-      "other-language",
       "Service militaire-Personne",
       "Personne-Service de la GRC",
-      "A2.See Results",
-      "Privacy"
+      "A2.See Results"
     ];
-    expect(buttons.length).toEqual(5);
+    expect(buttons.length).toEqual(3);
     buttons.map(function(button, index) {
       expect(button.text()).toEqual(expectedText[index]);
     });
@@ -70,7 +67,6 @@ describe("Page A2", () => {
         t={key => key}
         storeHydrated={true}
         patronTypes={[]}
-        url={urlFixture}
       />
     );
     expect(app.find("Link").text()).toEqual("Show All Benefits");

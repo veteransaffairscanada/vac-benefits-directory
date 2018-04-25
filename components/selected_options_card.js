@@ -1,9 +1,13 @@
 import React, { Component } from "react";
-import Card, { CardContent } from "material-ui/Card";
+import Card, { CardContent, CardActions } from "material-ui/Card";
+import Button from "material-ui/Button";
+
 import { Typography } from "material-ui";
 
 type Props = {
-  options: mixed
+  options: mixed,
+  action: mixed,
+  t: mixed
 };
 
 class SelectedOptionsCard extends Component<Props> {
@@ -24,6 +28,9 @@ class SelectedOptionsCard extends Component<Props> {
             </Typography>
           ))}
         </CardContent>
+        <CardActions>
+          <Button onClick={this.props.action}>{this.props.t("Change")}</Button>
+        </CardActions>
       </Card>
     );
   }
