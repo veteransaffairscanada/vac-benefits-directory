@@ -39,15 +39,15 @@ class Layout extends Component<Props> {
     return (
       <div>
         <Head t={this.props.t} />
-        <Noscript t={this.props.t} />
         <ErrorBoundary>
           <Content>
             <AlphaBanner t={this.props.t} />
             <MenuBar i18n={this.props.i18n} t={this.props.t} />
-            {this.props.children}
+            <div role="main">{this.props.children}</div>
           </Content>
           <Footer t={this.props.t} />
         </ErrorBoundary>
+        <Noscript t={this.props.t} />
       </div>
     );
   }

@@ -9,7 +9,8 @@ type Props = {
 
 const Div = styled("div")`
   width: 100%;
-  background-color: #222;
+  height: 66px;
+  background-color: #ddd;
   color: #000;
   text-align: center;
 `;
@@ -23,21 +24,16 @@ class Footer extends Component<Props> {
       : process.env.NODE_ENV;
 
     return (
-      <Div>
-        <AppBar
-          style={{ backgroundColor: "#DDD", color: "#000" }}
-          position="static"
-        >
-          <Toolbar>
-            <Button id="privacy">{this.props.t("Privacy")}</Button>
-            <Typography style={{ flex: 1 }} />
-            Build: {envDetails}
-            <Typography style={{ flex: 1 }} />
-            <div>
-              <WordMark width="6em" flag="#000" />
-            </div>
-          </Toolbar>
-        </AppBar>
+      <Div role="navigation">
+        <Toolbar>
+          <Button id="privacy">{this.props.t("Privacy")}</Button>
+          <Typography style={{ flex: 1 }} />
+          Build: {envDetails}
+          <Typography style={{ flex: 1 }} />
+          <div>
+            <WordMark width="6em" flag="#000" />
+          </div>
+        </Toolbar>
       </Div>
     );
   }

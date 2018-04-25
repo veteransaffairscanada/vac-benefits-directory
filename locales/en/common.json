@@ -2,7 +2,9 @@
   "home": {
     "poc-description": "This is a Proof of Concept for the VAC project"
   },
-
+  "all-benefits": {
+    "List of all benefits": "List of all benefits"
+  },
   "A1": {
     "What services are you interested in?":
       "What services are you interested in?",
