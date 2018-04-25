@@ -3,7 +3,7 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import { App } from "../../pages/A1";
+import { App } from "../../components/A1";
 
 jest.mock("react-ga");
 
@@ -41,17 +41,17 @@ describe("Page A1", () => {
         t={key => key}
         storeHydrated={true}
         benefitTypes={benefitTypesFixture}
+        selectedBenefitTypes={[]}
+        switchSection={jest.fn()}
       />
     );
     const buttons = app.find("Button");
     const expectedText = [
-      "other-language",
       "Compensation Pour Préjudice",
       "Couverture des Coûts de Soins de Santé",
-      "A1.Next",
-      "Privacy"
+      "A1.Next"
     ];
-    expect(buttons.length).toEqual(5);
+    expect(buttons.length).toEqual(3);
     buttons.map(function(button, index) {
       expect(button.text()).toEqual(expectedText[index]);
     });
