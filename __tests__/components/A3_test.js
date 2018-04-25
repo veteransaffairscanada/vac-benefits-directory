@@ -3,18 +3,12 @@
 import { mount } from "enzyme";
 import React from "react";
 
-import { App } from "../../pages/A3";
+import { App } from "../../components/A3";
 
 const tMocked = key => key;
 const i18nFixture = { language: "en-US" };
-const selectedFixture = ["rec3PfnqeqyxSbx1x", "recQO4AHswOl75poF"];
-const userFixture = ["rec726lY5vUBEh2Sv", "recDAuNt8DXhD88Mr"];
-const urlFixture = {
-  query: {
-    benefitTypes: selectedFixture.join(),
-    patronTypes: userFixture.join()
-  }
-};
+const selectedBenefitTypesFixture = ["rec3PfnqeqyxSbx1x", "recQO4AHswOl75poF"];
+const selectedPatronTypesFixture = ["rec726lY5vUBEh2Sv", "recDAuNt8DXhD88Mr"];
 
 const benefitTypesFixture = [
   {
@@ -95,7 +89,8 @@ describe("Page A3", () => {
         benefits={[]}
         corporaEn={[]}
         corporaFr={[]}
-        url={urlFixture}
+        selectedBenefitTypes={selectedBenefitTypesFixture}
+        selectedPatronTypes={selectedPatronTypesFixture}
       />
     );
     expect(app.find("p#benefitCountString").text()).toEqual(
@@ -114,7 +109,8 @@ describe("Page A3", () => {
         benefits={[benefitsFixture[0]]}
         corporaEn={[corporaEnFixture[0]]}
         corporaFr={[corporaFrFixture[0]]}
-        url={urlFixture}
+        selectedBenefitTypes={selectedBenefitTypesFixture}
+        selectedPatronTypes={selectedPatronTypesFixture}
       />
     );
     expect(app.find("p#benefitCountString").text()).toEqual(
@@ -133,7 +129,8 @@ describe("Page A3", () => {
         benefits={benefitsFixture}
         corporaEn={corporaEnFixture}
         corporaFr={corporaFrFixture}
-        url={urlFixture}
+        selectedBenefitTypes={selectedBenefitTypesFixture}
+        selectedPatronTypes={selectedPatronTypesFixture}
       />
     );
     expect(app.find("p#benefitCountString").text()).toEqual(
@@ -152,14 +149,16 @@ describe("Page A3", () => {
         benefits={[]}
         corporaEn={[]}
         corporaFr={[]}
-        url={urlFixture}
+        selectedBenefitTypes={selectedBenefitTypesFixture}
+        selectedPatronTypes={selectedPatronTypesFixture}
       />
     );
-    const expectedText = benefitTypesFixture
-      .map(bt => {
-        return bt.name_fr;
-      })
-      .join("");
+    const expectedText =
+      benefitTypesFixture
+        .map(bt => {
+          return bt.name_fr;
+        })
+        .join("") + "Back";
     expect(app.find("SelectedOptionsCard#vacServicesCard").text()).toEqual(
       expectedText
     );
@@ -176,14 +175,16 @@ describe("Page A3", () => {
         benefits={[]}
         corporaEn={[]}
         corporaFr={[]}
-        url={urlFixture}
+        selectedBenefitTypes={selectedBenefitTypesFixture}
+        selectedPatronTypes={selectedPatronTypesFixture}
       />
     );
-    const expectedText = patronTypesFixture
-      .map(pt => {
-        return pt.name_fr;
-      })
-      .join("");
+    const expectedText =
+      patronTypesFixture
+        .map(pt => {
+          return pt.name_fr;
+        })
+        .join("") + "Back";
     expect(app.find("SelectedOptionsCard#userStatusesCard").text()).toEqual(
       expectedText
     );
