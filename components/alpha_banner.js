@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { AppBar } from "material-ui";
 import styled from "react-emotion";
 
 const Alpha = styled("div")`

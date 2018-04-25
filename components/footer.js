@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { WordMark } from "@cdssnc/gcui";
-import { AppBar, Button, Toolbar, Typography } from "material-ui";
+import { Button, Toolbar, Typography } from "material-ui";
 import styled from "react-emotion";
 
 type Props = {
