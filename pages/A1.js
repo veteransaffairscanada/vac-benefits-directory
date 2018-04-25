@@ -4,21 +4,13 @@ import React, { Component } from "react";
 
 import { Grid } from "material-ui";
 
-import withRedux from "next-redux-wrapper";
-import { initStore, loadDataStore } from "../store";
-
-import { withI18next } from "../lib/withI18next";
-import Layout from "../components/layout";
 import Link from "next/link";
 import SelectButton from "../components/select_button";
-import { fetchFromAirtable } from "../utils/airtable";
-import { bindActionCreators } from "redux";
 
 type Props = {
   i18n: mixed,
   t: mixed,
   storeHydrated: boolean,
-  loadDataStore: mixed,
   benefitTypes: mixed
 };
 
@@ -31,10 +23,6 @@ export class App extends Component<Props> {
       selectedOptions: []
     };
   }
-
-  throwError = () => {
-    throw new Error("test");
-  };
 
   toggleButton = id => {
     let selected = this.state.selectedOptions;
@@ -49,96 +37,73 @@ export class App extends Component<Props> {
     });
   };
 
-  async componentWillMount() {
-    if (!this.props.storeHydrated) {
-      fetchFromAirtable(this.props.loadDataStore);
-    }
-  }
-
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <Layout i18n={i18n} t={t}>
-        <div style={{ padding: 12 }}>
-          <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <p style={{ textAlign: "center", fontSize: "2em" }}>
-                {t("A1.What services are you interested in?")}
-              </p>
-              <p style={{ textAlign: "center", fontSize: "1.5em" }}>
-                {t("A1.Select all that apply")}
-              </p>
-            </Grid>
-
-            {this.props.benefitTypes.map((type, i) => (
-              <Grid key={i} item sm={4} xs={12}>
-                <SelectButton
-                  id={type.id}
-                  text={
-                    t("current-language-code") === "en"
-                      ? type.name_en
-                      : type.name_fr
-                  }
-                  onClick={this.toggleButton}
-                  isDown={this.state.selectedOptions.indexOf(type.id) >= 0}
-                />
-              </Grid>
-            ))}
+      <div style={{ padding: 12 }}>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <p style={{ textAlign: "center", fontSize: "2em" }}>
+              {t("A1.What services are you interested in?")}
+            </p>
+            <p style={{ textAlign: "center", fontSize: "1.5em" }}>
+              {t("A1.Select all that apply")}
+            </p>
           </Grid>
 
-          <Grid
-            container
-            justify="center"
-            spacing={24}
-            style={{ marginTop: "3em" }}
-          >
-            <Grid item sm={4} xs={12}>
+          {this.props.benefitTypes.map((type, i) => (
+            <Grid key={i} item sm={4} xs={12}>
               <SelectButton
-                text={t("A1.Next")}
-                href={
-                  "A2?lng=" +
-                  t("current-language-code") +
-                  "&benefitTypes=" +
-                  this.state.selectedOptions.join()
+                id={type.id}
+                text={
+                  t("current-language-code") === "en"
+                    ? type.name_en
+                    : type.name_fr
                 }
-                isDown={false}
+                onClick={this.toggleButton}
+                isDown={this.state.selectedOptions.indexOf(type.id) >= 0}
               />
             </Grid>
-          </Grid>
+          ))}
+        </Grid>
 
-          <Grid
-            container
-            justify="center"
-            spacing={24}
-            style={{ marginTop: "1em" }}
-          >
-            <Grid item sm={4} xs={12}>
-              <p style={{ textAlign: "center", fontSize: "1em" }}>
-                <Link href="all-benefits">
-                  <a>{t("Show All Benefits")}</a>
-                </Link>
-              </p>
-            </Grid>
+        <Grid
+          container
+          justify="center"
+          spacing={24}
+          style={{ marginTop: "3em" }}
+        >
+          <Grid item sm={4} xs={12}>
+            <SelectButton
+              text={t("A1.Next")}
+              href={
+                "A2?lng=" +
+                t("current-language-code") +
+                "&benefitTypes=" +
+                this.state.selectedOptions.join()
+              }
+              isDown={false}
+            />
           </Grid>
-        </div>
-      </Layout>
+        </Grid>
+
+        <Grid
+          container
+          justify="center"
+          spacing={24}
+          style={{ marginTop: "1em" }}
+        >
+          <Grid item sm={4} xs={12}>
+            <p style={{ textAlign: "center", fontSize: "1em" }}>
+              <Link href="all-benefits">
+                <a>{t("Show All Benefits")}</a>
+              </Link>
+            </p>
+          </Grid>
+        </Grid>
+      </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadDataStore: bindActionCreators(loadDataStore, dispatch)
-  };
-};
-
-const mapStateToProps = state => {
-  return {
-    storeHydrated: state.storeHydrated,
-    benefitTypes: state.benefitTypes
-  };
-};
-
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
-  withI18next()(App)
-);
+export default App;
