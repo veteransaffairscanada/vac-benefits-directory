@@ -98,7 +98,7 @@ jobs:
       - run: 
          command: |
               cd deploy
-              ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE
+              ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE --timeout 15
          name: "Update ECS Task"
     working_directory: ~/repo
 
