@@ -23,8 +23,7 @@ type Props = {
   patronTypes: mixed,
   benefits: mixed,
   corporaEn: mixed,
-  corporaFr: mixed,
-  url: mixed
+  corporaFr: mixed
 };
 
 export class App extends Component<Props> {
