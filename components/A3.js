@@ -105,6 +105,7 @@ export class App extends Component<Props> {
                 </Grid>
                 <Grid item xs={12}>
                   <SelectedOptionsCard
+                    t={t}
                     id="vacServicesCard"
                     page="A1"
                     options={benefitTypes.map(
@@ -118,6 +119,7 @@ export class App extends Component<Props> {
                 </Grid>
                 <Grid item xs={12}>
                   <SelectedOptionsCard
+                    t={t}
                     id="userStatusesCard"
                     page="A2"
                     options={patronTypes.map(

@@ -158,7 +158,7 @@ describe("Page A3", () => {
         .map(bt => {
           return bt.name_fr;
         })
-        .join("") + "Back";
+        .join("") + "Change";
     expect(app.find("SelectedOptionsCard#vacServicesCard").text()).toEqual(
       expectedText
     );
@@ -184,7 +184,7 @@ describe("Page A3", () => {
         .map(pt => {
           return pt.name_fr;
         })
-        .join("") + "Back";
+        .join("") + "Change";
     expect(app.find("SelectedOptionsCard#userStatusesCard").text()).toEqual(
       expectedText
     );

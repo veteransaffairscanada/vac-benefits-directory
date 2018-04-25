@@ -6,7 +6,8 @@ import { Typography } from "material-ui";
 
 type Props = {
   options: mixed,
-  action: mixed
+  action: mixed,
+  t: mixed
 };
 
 class SelectedOptionsCard extends Component<Props> {
@@ -28,9 +29,7 @@ class SelectedOptionsCard extends Component<Props> {
           ))}
         </CardContent>
         <CardActions>
-          <Button label="Back" onClick={this.props.action}>
-            Back
-          </Button>
+          <Button onClick={this.props.action}>{this.props.t("Change")}</Button>
         </CardActions>
       </Card>
     );
