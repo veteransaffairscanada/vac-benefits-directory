@@ -83,7 +83,6 @@ export class App extends Component<Props> {
             patronTypes={this.props.patronTypes}
             switchSection={this.switchSection}
             selectedPatronTypes={this.state.selectedPatronTypes}
-            selectedBenefitTypes={this.state.selectedBenefitTypes}
           />
         );
       case "A3":

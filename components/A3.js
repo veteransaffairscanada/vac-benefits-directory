@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import { Grid } from "material-ui";
 import Link from "next/link";
+import { Button } from "material-ui";
 import SelectedOptionsCard from "../components/selected_options_card";
 import { BenefitTitleCardList } from "../components/benefit_cards";
 
@@ -116,6 +117,7 @@ export class App extends Component<Props> {
                           ? bt.name_en
                           : bt.name_fr
                     )}
+                    action={() => this.props.switchSection("A1", {})}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -128,6 +130,7 @@ export class App extends Component<Props> {
                           ? pt.name_en
                           : pt.name_fr
                     )}
+                    action={() => this.props.switchSection("A2", {})}
                   />
                 </Grid>
                 <Grid item>
