@@ -54,7 +54,7 @@ export class AllBenefits extends Component<Props> {
     });
 
     return (
-      <Layout i18n={i18n} t={t}>
+      <Layout i18n={i18n} t={t} hideNoscript={true}>
         <div style={{ padding: 12 }}>
           <h1>{t("all-benefits.List of all benefits")}</h1>
           <Grid container spacing={24}>

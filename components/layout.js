@@ -13,6 +13,7 @@ import styled from "react-emotion";
 
 type Props = {
   children?: mixed,
+  hideNoscript?: boolean,
   i18n?: mixed,
   t?: mixed
 };
@@ -36,6 +37,9 @@ class Layout extends Component<Props> {
   }
 
   render() {
+    const noScriptTag = this.props.hideNoscript ? null : (
+      <Noscript t={this.props.t} />
+    );
     return (
       <div>
         <Head t={this.props.t} />
@@ -47,7 +51,7 @@ class Layout extends Component<Props> {
           </Content>
           <Footer t={this.props.t} />
         </ErrorBoundary>
-        <Noscript t={this.props.t} />
+        {noScriptTag}
       </div>
     );
   }
