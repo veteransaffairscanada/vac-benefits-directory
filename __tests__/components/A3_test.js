@@ -93,7 +93,7 @@ describe("Page A3", () => {
         selectedPatronTypes={selectedPatronTypesFixture}
       />
     );
-    expect(app.find("p#benefitCountString").text()).toEqual(
+    expect(app.find("h1#benefitCountString").text()).toEqual(
       "A3.At this time there are no benefits that match your selections"
     );
   });
@@ -113,7 +113,7 @@ describe("Page A3", () => {
         selectedPatronTypes={selectedPatronTypesFixture}
       />
     );
-    expect(app.find("p#benefitCountString").text()).toEqual(
+    expect(app.find("h1#benefitCountString").text()).toEqual(
       "A3.Here is a benefit that may apply to you:"
     );
   });
@@ -133,7 +133,7 @@ describe("Page A3", () => {
         selectedPatronTypes={selectedPatronTypesFixture}
       />
     );
-    expect(app.find("p#benefitCountString").text()).toEqual(
+    expect(app.find("h1#benefitCountString").text()).toEqual(
       "A3.Here are NNN benefits that may apply to you:"
     );
   });
