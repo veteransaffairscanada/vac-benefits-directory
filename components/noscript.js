@@ -50,7 +50,7 @@ class Noscript extends Component<Props> {
     const { t } = this.props;
 
     return (
-      <noscript>
+      <noscript role="complementary">
         <Modal>
           <ModalContent>
             <div className="copy">

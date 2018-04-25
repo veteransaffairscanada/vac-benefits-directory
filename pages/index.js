@@ -32,9 +32,9 @@ class App extends Component<Props> {
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <p id="TextDescription" name="TextDescription">
+              <h1 id="TextDescription" name="TextDescription">
                 {t("home.poc-description")}
-              </p>
+              </h1>
             </Grid>
           </Grid>
         </div>

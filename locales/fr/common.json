@@ -2,6 +2,9 @@
   "home": {
     "poc-description": "Ceci est une preuve de concept pour le projet ACC"
   },
+  "all-benefits": {
+    "List of all benefits": "La liste complète des avantages"
+  },
 
   "A1": {
     "What services are you interested in?": "Quels services vous intéressent?",

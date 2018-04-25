@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { AppBar } from "material-ui";
 import styled from "react-emotion";
 
 const Alpha = styled("div")`
   color: #ffffff;
-  background-color: #f90277;
+  background-color: #e8026e;
   margin: 10px;
   padding: 5px;
   width: 60px;
@@ -19,8 +18,15 @@ const AlphaText = styled("div")`
   font-size: 14px;
   width: 500px;
   color: #fff;
-  margin: 15px;
+  padding-top: 15px;
 `;
+
+const AlphaWrap = styled("div")`
+  background-color: #181818;
+  color: #000;
+  height: 50px;
+`;
+
 type Props = {
   t: mixed
 };
@@ -30,15 +36,12 @@ class AlphaBanner extends Component<Props> {
 
   render() {
     return (
-      <AppBar
-        style={{ backgroundColor: "#181818", color: "#000", height: "50px" }}
-        position="static"
-      >
+      <AlphaWrap role="complementary">
         <div style={{ height: "50px", verticalAlign: "center" }}>
           <Alpha>Alpha</Alpha>
           <AlphaText id="AlphaTextContainer">{this.props.t("alpha")}</AlphaText>
         </div>
-      </AppBar>
+      </AlphaWrap>
     );
   }
 }
