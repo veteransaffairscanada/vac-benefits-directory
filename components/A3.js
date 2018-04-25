@@ -3,7 +3,6 @@
 import React, { Component } from "react";
 import { Grid } from "material-ui";
 import Link from "next/link";
-import { Button } from "material-ui";
 import SelectedOptionsCard from "../components/selected_options_card";
 import { BenefitTitleCardList } from "../components/benefit_cards";
 
@@ -17,7 +16,8 @@ type Props = {
   corporaEn: mixed,
   corporaFr: mixed,
   selectedBenefitTypes: mixed,
-  selectedPatronTypes: mixed
+  selectedPatronTypes: mixed,
+  switchSection: mixed
 };
 
 export class App extends Component<Props> {

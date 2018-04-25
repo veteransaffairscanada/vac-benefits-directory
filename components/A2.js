@@ -11,7 +11,7 @@ type Props = {
   storeHydrated: boolean,
   patronTypes: mixed,
   url: mixed,
-  selectedBenefitTypes: mixed,
+  selectedPatronTypes: mixed,
   switchSection: mixed
 };
 
