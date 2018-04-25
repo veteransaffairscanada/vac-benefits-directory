@@ -4,6 +4,7 @@ import React, { Component } from "react";
 
 import { Grid } from "material-ui";
 
+import { logEvent } from "../utils/analytics";
 import Link from "next/link";
 import SelectButton from "../components/select_button";
 
@@ -11,7 +12,9 @@ type Props = {
   i18n: mixed,
   t: mixed,
   storeHydrated: boolean,
-  benefitTypes: mixed
+  patronTypes: mixed,
+  url: mixed,
+  selectedBenefitTypes: mixed
 };
 
 export class App extends Component<Props> {
@@ -20,6 +23,7 @@ export class App extends Component<Props> {
   constructor() {
     super();
     this.state = {
+      patronTypes: [],
       selectedOptions: []
     };
   }
@@ -39,20 +43,26 @@ export class App extends Component<Props> {
 
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+
     return (
       <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <p style={{ textAlign: "center", fontSize: "2em" }}>
-              {t("A1.What services are you interested in?")}
-            </p>
             <p style={{ textAlign: "center", fontSize: "1.5em" }}>
-              {t("A1.Select all that apply")}
+              {t("A2.What best describes your status?")}
             </p>
           </Grid>
+        </Grid>
 
-          {this.props.benefitTypes.map((type, i) => (
-            <Grid key={i} item sm={4} xs={12}>
+        {this.props.patronTypes.map((type, i) => (
+          <Grid
+            container
+            key={i}
+            justify="center"
+            spacing={24}
+            style={{ marginTop: "1em" }}
+          >
+            <Grid item sm={4} xs={12}>
               <SelectButton
                 id={type.id}
                 text={
@@ -64,8 +74,8 @@ export class App extends Component<Props> {
                 isDown={this.state.selectedOptions.indexOf(type.id) >= 0}
               />
             </Grid>
-          ))}
-        </Grid>
+          </Grid>
+        ))}
 
         <Grid
           container
@@ -75,11 +85,13 @@ export class App extends Component<Props> {
         >
           <Grid item sm={4} xs={12}>
             <SelectButton
-              text={t("A1.Next")}
+              text={t("A2.See Results")}
               href={
-                "A2?lng=" +
+                "A3?lng=" +
                 t("current-language-code") +
                 "&benefitTypes=" +
+                this.props.selectedBenefitTypes +
+                "&patronTypes=" +
                 this.state.selectedOptions.join()
               }
               isDown={false}

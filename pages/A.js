@@ -11,8 +11,8 @@ import { logEvent } from "../utils/analytics";
 import { bindActionCreators } from "redux";
 import { fetchFromAirtable } from "../utils/airtable";
 
-import A1 from "./A1";
-import A2 from "./A2";
+import A1 from "../components/A1";
+import A2 from "../components/A2";
 import A3 from "./A3";
 import AllBenefits from "./all-benefits";
 
@@ -35,7 +35,9 @@ export class App extends Component<Props> {
   constructor() {
     super();
     this.state = {
-      section: "A1"
+      section: "A1",
+      selectedBenefitTypes: [],
+      selectedPatronTypes: []
     };
   }
 
@@ -45,9 +47,13 @@ export class App extends Component<Props> {
     }
   }
 
-  switchSection = newSection => {
+  switchSection = (newSection, data) => {
     this.setState({
-      section: window[newSection]
+      section: newSection,
+      selectedBenefitTypes:
+        data.selectedBenefitTypes || this.state.selectedBenefitTypes,
+      selectedPatronTypes:
+        data.selectedPatronTypes || this.state.selectedPatronTypes
     });
   };
 
@@ -56,7 +62,7 @@ export class App extends Component<Props> {
     logEvent("Language change", this.props.t("other-language"));
   };
 
-  pageToDisplay = section => {
+  sectionToDisplay = section => {
     switch (section) {
       case "A1":
         return (
@@ -65,6 +71,20 @@ export class App extends Component<Props> {
             t={this.props.t}
             storeHydrated={this.props.storeHydrated}
             benefitTypes={this.props.benefitTypes}
+            selectedBenefitTypes={this.state.selectedBenefitTypes}
+            switchSection={this.switchSection}
+          />
+        );
+      case "A2":
+        return (
+          <A2
+            i18n={this.props.i18n}
+            t={this.props.t}
+            storeHydrated={this.props.storeHydrated}
+            patronTypes={this.props.patronTypes}
+            switchSection={this.switchSection}
+            selectedPatronTypes={this.state.selectedPatronTypes}
+            selectedBenefitTypes={this.state.selectedBenefitTypes}
           />
         );
     }
@@ -75,7 +95,7 @@ export class App extends Component<Props> {
 
     return (
       <Layout i18n={i18n} t={t}>
-        {this.pageToDisplay(this.state.section)}
+        {this.sectionToDisplay(this.state.section)}
       </Layout>
     );
   }
