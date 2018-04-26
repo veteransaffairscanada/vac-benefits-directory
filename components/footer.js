@@ -9,7 +9,7 @@ type Props = {
 
 const Div = styled("div")`
   width: 100%;
-  height: 66px;
+  height: 65px;
   background-color: #ddd;
   color: #000;
   text-align: center;

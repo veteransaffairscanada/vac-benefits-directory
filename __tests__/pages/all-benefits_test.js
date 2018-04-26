@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import React from "react";
 
 import { AllBenefits } from "../../pages/all-benefits";
-import { BenefitTitleCardList } from "../../components/benefit_cards";
+import { BenefitCardList } from "../../components/benefit_cards";
 
 const tMocked = key => key;
 const i18nFixture = { language: "en-US" };
@@ -27,6 +27,7 @@ const benefitsFixture = [
 ];
 const corporaEnFixture = [];
 const corporaFrFixture = [];
+const benefitTypesFixture = [];
 
 jest.mock("react-ga");
 
@@ -40,9 +41,10 @@ describe("All benefits page", () => {
         benefits={benefitsFixture}
         corporaEn={corporaEnFixture}
         corporaFr={corporaFrFixture}
+        benefitTypes={benefitTypesFixture}
       />
     );
-    expect(app.find(BenefitTitleCardList).length).toEqual(1);
-    expect(app.find(".BenefitCard").length).toEqual(2);
+    expect(app.find(BenefitCardList).length).toEqual(1);
+    expect(app.find("Card").length).toEqual(2);
   });
 });
