@@ -16,7 +16,6 @@ export class BenefitTitleCard extends Component<CardProps> {
     return (
       <Grid item xs={12} sm={4}>
         <SelectButton
-          className="BenefitCard"
           target="_blank"
           text={
             this.props.t("current-language-code") === "en"
@@ -68,17 +67,35 @@ export class BenefitCard extends Component<CardProps> {
     return (
       <Grid item xs={12} lg={6}>
         <Card>
-          <CardHeader title={this.props.t(benefit.type).toUpperCase()} />
+          <CardHeader
+            title={(this.props.t("current-language-code") === "en"
+              ? benefit.benefitTypeEn
+              : benefit.benefitTypeFr
+            ).toUpperCase()}
+          />
           <CardContent>
             <Typography id="title" variant="title" gutterBottom>
-              {this.props.t(benefit.title)}
+              {this.props.t("current-language-code") === "en"
+                ? benefit.vac_name_en
+                : benefit.vac_name_fr}
             </Typography>
             <Typography id="description" variant="body1" gutterBottom>
-              {this.props.t(benefit.description)}
+              {this.props.t("current-language-code") === "en"
+                ? benefit.descriptionEn
+                : benefit.descriptionFr}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button>{this.props.t("View Details")}</Button>
+            <Button
+              target="_blank"
+              href={
+                this.props.t("current-language-code") === "en"
+                  ? benefit.linkEn
+                  : benefit.linkFr
+              }
+            >
+              {this.props.t("View Details")}
+            </Button>
           </CardActions>
         </Card>
       </Grid>
@@ -87,19 +104,15 @@ export class BenefitCard extends Component<CardProps> {
 }
 
 type CardListProps = {
-  benefitList: mixed,
+  benefits: mixed,
   t: mixed
 };
 
-class BenefitCardList extends Component<CardListProps> {
+export class BenefitCardList extends Component<CardListProps> {
   props: CardListProps;
 
-  state = {
-    benefits: this.props.benefitList
-  };
-
   render() {
-    return this.state.benefits.map((benefit, i) => (
+    return this.props.benefits.map((benefit, i) => (
       <BenefitCard id={"bc" + i} benefit={benefit} t={this.props.t} key={i} />
     ));
   }

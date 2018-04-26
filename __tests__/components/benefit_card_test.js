@@ -10,12 +10,20 @@ const benefitsFixture = [
   {
     vac_name_en: "Disability Award",
     vac_name_fr: "Prix ​​d'invalidité",
+    benefitTypeEn: "BT EN 1",
+    benefitTypeFr: "BT FR 1",
+    descriptionEn: "Money compensation for a service related injury",
+    descriptionFr: "Compensation monétaire pour une blessure liée au service",
     linkEn: "English link",
     linkFr: "French link"
   },
   {
     vac_name_en: "Disability Pension",
     vac_name_fr: "Pension d'invalidité",
+    benefitTypeEn: "BT EN 2",
+    benefitTypeFr: "BT FR 2",
+    descriptionEn: "A pension compensating service related injuries",
+    descriptionFr: "Une blessure compensant les blessures liées au service",
     linkEn: "English link",
     linkFr: "French link"
   }
@@ -40,44 +48,31 @@ describe("Test Benefit Cards", () => {
   });
 
   it("BenefitCard", () => {
-    const test_props = {
-      type: "test type",
-      title: "test title",
-      description: "test description"
-    };
+    const test_props = benefitsFixture[0];
     const card = mount(<BenefitCard t={key => key} benefit={test_props} />);
     expect(card.find("CardHeader").text()).toEqual(
-      test_props.type.toUpperCase()
+      test_props.benefitTypeFr.toUpperCase()
     );
-    expect(card.find("Typography#title").text()).toEqual(test_props.title);
+    expect(card.find("Typography#title").text()).toEqual(
+      test_props.vac_name_fr
+    );
     expect(card.find("Typography#description").text()).toEqual(
-      test_props.description
+      test_props.descriptionFr
     );
     expect(card.find("Button").text()).toEqual("View Details");
   });
 
   it("BenefitCardList", () => {
-    const test_props = [
-      {
-        type: "test type1",
-        title: "test title1",
-        description: "test description1"
-      },
-      {
-        type: "test type2",
-        title: "test title2",
-        description: "test description2"
-      }
-    ];
+    const test_props = benefitsFixture;
 
     const cardList = mount(
-      <BenefitCardList t={key => key} benefitList={test_props} />
+      <BenefitCardList t={key => key} benefits={test_props} />
     );
     for (let i = 0; i < 2; i++) {
       const expected =
-        test_props[i].type.toUpperCase() +
-        test_props[i].title +
-        test_props[i].description +
+        test_props[i].benefitTypeFr.toUpperCase() +
+        test_props[i].vac_name_fr +
+        test_props[i].descriptionFr +
         "View Details";
       expect(cardList.find("#bc" + i).text()).toEqual(expected);
     }

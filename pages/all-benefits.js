@@ -9,7 +9,7 @@ import { initStore, loadDataStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { BenefitTitleCardList } from "../components/benefit_cards";
+import { BenefitCardList } from "../components/benefit_cards";
 import { bindActionCreators } from "redux";
 import { fetchFromAirtable } from "../utils/airtable";
 
@@ -21,7 +21,8 @@ type Props = {
   t: mixed,
   url: mixed,
   corporaEn: mixed,
-  corporaFr: mixed
+  corporaFr: mixed,
+  benefitTypes: mixed
 };
 
 export class AllBenefits extends Component<Props> {
@@ -38,18 +39,33 @@ export class AllBenefits extends Component<Props> {
 
     let benefits = this.props.benefits;
 
-    // add links to benefits
+    // add links and descriptions to benefits
     benefits = benefits.map(benefit => {
-      let links = this.props.corporaEn.filter(corp =>
+      let corporas = this.props.corporaEn.filter(corp =>
         corp.benefits.includes(benefit.id)
       );
       benefit.linkEn =
-        links.length > 0 ? links[0].full_description_link : undefined;
-      links = this.props.corporaFr.filter(corp =>
+        corporas.length > 0 ? corporas[0].full_description_link : undefined;
+      benefit.descriptionEn =
+        corporas.length > 0 ? corporas[0].one_line_description : undefined;
+
+      corporas = this.props.corporaFr.filter(corp =>
         corp.benefits.includes(benefit.id)
       );
       benefit.linkFr =
-        links.length > 0 ? links[0].full_description_link : undefined;
+        corporas.length > 0 ? corporas[0].full_description_link : undefined;
+      benefit.descriptionFr =
+        corporas.length > 0 ? corporas[0].one_line_description : undefined;
+      return benefit;
+    });
+
+    // add benefit types
+    benefits = benefits.map(benefit => {
+      let bts = this.props.benefitTypes.filter(bt =>
+        bt.benefits.includes(benefit.id)
+      );
+      benefit.benefitTypeEn = bts.length > 0 ? bts[0].name_en : "";
+      benefit.benefitTypeFr = bts.length > 0 ? bts[0].name_fr : "";
       return benefit;
     });
 
@@ -60,7 +76,7 @@ export class AllBenefits extends Component<Props> {
           <Grid container spacing={24}>
             <Grid item xs={12}>
               <Grid container spacing={24}>
-                <BenefitTitleCardList benefits={benefits} t={t} />
+                <BenefitCardList benefits={benefits} t={t} />
               </Grid>
             </Grid>
           </Grid>
@@ -80,7 +96,8 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     corporaEn: state.corporaEn,
-    corporaFr: state.corporaFr
+    corporaFr: state.corporaFr,
+    benefitTypes: state.benefitTypes
   };
 };
 
