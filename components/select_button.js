@@ -20,9 +20,11 @@ export class SelectButton extends Component<Props> {
       <Card>
         <Button
           target={this.props.target}
-          onClick={() => {
-            this.props.onClick ? this.props.onClick(this.props.id) : undefined;
-          }}
+          onClick={
+            this.props.onClick
+              ? () => this.props.onClick(this.props.id)
+              : undefined
+          }
           fullWidth={true}
           href={this.props.href}
           style={{ backgroundColor: this.props.isDown ? "#aaa" : "#fff" }}
