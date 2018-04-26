@@ -16,7 +16,6 @@ const Alpha = styled("div")`
 
 const AlphaText = styled("div")`
   font-size: 14px;
-  width: 500px;
   color: #fff;
   padding-top: 15px;
 `;
