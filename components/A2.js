@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import { Grid } from "material-ui";
-import Link from "next/link";
 import SelectButton from "../components/select_button";
 
 type Props = {
@@ -103,9 +102,9 @@ export class App extends Component<Props> {
         >
           <Grid item sm={4} xs={12}>
             <p style={{ textAlign: "center", fontSize: "1em" }}>
-              <Link href="all-benefits">
-                <a>{t("Show All Benefits")}</a>
-              </Link>
+              <a className="AllBenefits" href="all-benefits" target="_blank">
+                {t("Show All Benefits")}
+              </a>
             </p>
           </Grid>
         </Grid>
