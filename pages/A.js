@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
+import Router from "next/router";
 
 import withRedux from "next-redux-wrapper";
 import { initStore, loadDataStore } from "../store";
@@ -15,6 +16,7 @@ import A2 from "../components/A2";
 import A3 from "../components/A3";
 
 type Props = {
+  url: mixed,
   i18n: mixed,
   t: mixed,
   storeHydrated: boolean,
@@ -42,16 +44,36 @@ export class App extends Component<Props> {
     if (!this.props.storeHydrated) {
       fetchFromAirtable(this.props.loadDataStore);
     }
+    const newState = {
+      section: this.props.url.query.section || "A1",
+      selectedBenefitTypes: this.props.url.query.selectedBenefitTypes
+        ? this.props.url.query.selectedBenefitTypes.split(",")
+        : [],
+      selectedPatronTypes: this.props.url.query.selectedPatronTypes
+        ? this.props.url.query.selectedPatronTypes.split(",")
+        : []
+    };
+    this.setState(newState);
   }
 
   switchSection = (newSection, data) => {
-    this.setState({
+    const newState = {
       section: newSection,
       selectedBenefitTypes:
         data.selectedBenefitTypes || this.state.selectedBenefitTypes,
       selectedPatronTypes:
         data.selectedPatronTypes || this.state.selectedPatronTypes
-    });
+    };
+    this.setState(newState);
+
+    const href =
+      "/A?section=" +
+      newState.section +
+      "&selectedBenefitTypes=" +
+      newState.selectedBenefitTypes.join() +
+      "&selectedPatronTypes=" +
+      newState.selectedPatronTypes.join();
+    Router.replace(href, href, { shallow: true });
   };
 
   sectionToDisplay = section => {

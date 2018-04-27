@@ -13,6 +13,7 @@ describe("Page A", () => {
   it("Layout", () => {
     const app = mount(
       <App
+        url={{ query: {} }}
         i18n={{ language: "en-US" }}
         t={key => key}
         storeHydrated={true}
@@ -29,6 +30,7 @@ describe("Page A", () => {
   it("Initially contains A1", () => {
     const app = mount(
       <App
+        url={{ query: {} }}
         i18n={{ language: "en-US" }}
         t={key => key}
         storeHydrated={true}
@@ -45,6 +47,7 @@ describe("Page A", () => {
   it("Switch A1 -> A2", () => {
     const app = mount(
       <App
+        url={{ query: {} }}
         i18n={{ language: "en-US" }}
         t={key => key}
         storeHydrated={true}
