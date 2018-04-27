@@ -66,6 +66,6 @@ describe("Page A1", () => {
         benefitTypes={[]}
       />
     );
-    expect(app.find("Link").text()).toEqual("Show All Benefits");
+    expect(app.find(".AllBenefits").text()).toEqual("Show All Benefits");
   });
 });

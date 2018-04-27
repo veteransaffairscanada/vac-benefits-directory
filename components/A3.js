@@ -2,7 +2,6 @@
 
 import React, { Component } from "react";
 import { Grid } from "material-ui";
-import Link from "next/link";
 import SelectedOptionsCard from "../components/selected_options_card";
 import { BenefitTitleCardList } from "../components/benefit_cards";
 
@@ -133,9 +132,13 @@ export class App extends Component<Props> {
                 </Grid>
                 <Grid item>
                   <p style={{ textAlign: "center", fontSize: "1em" }}>
-                    <Link href="all-benefits">
-                      <a>{t("Show All Benefits")}</a>
-                    </Link>
+                    <a
+                      className="AllBenefits"
+                      href={"all-benefits?lng=" + t("current-language-code")}
+                      target="_blank"
+                    >
+                      {t("Show All Benefits")}
+                    </a>
                   </p>
                 </Grid>
               </Grid>

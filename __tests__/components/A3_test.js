@@ -189,4 +189,22 @@ describe("Page A3", () => {
       expectedText
     );
   });
+
+  it("Show All Benefits Link", () => {
+    const app = mount(
+      <App
+        i18n={i18nFixture}
+        t={tMocked}
+        storeHydrated={true}
+        benefitTypes={benefitTypesFixture}
+        patronTypes={patronTypesFixture}
+        benefits={[]}
+        corporaEn={[]}
+        corporaFr={[]}
+        selectedBenefitTypes={selectedBenefitTypesFixture}
+        selectedPatronTypes={selectedPatronTypesFixture}
+      />
+    );
+    expect(app.find(".AllBenefits").text()).toEqual("Show All Benefits");
+  });
 });
