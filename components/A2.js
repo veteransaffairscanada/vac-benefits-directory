@@ -102,7 +102,11 @@ export class App extends Component<Props> {
         >
           <Grid item sm={4} xs={12}>
             <p style={{ textAlign: "center", fontSize: "1em" }}>
-              <a className="AllBenefits" href="all-benefits" target="_blank">
+              <a
+                className="AllBenefits"
+                href={"all-benefits?lng=" + t("current-language-code")}
+                target="_blank"
+              >
                 {t("Show All Benefits")}
               </a>
             </p>

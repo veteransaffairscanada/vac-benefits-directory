@@ -134,7 +134,7 @@ export class App extends Component<Props> {
                   <p style={{ textAlign: "center", fontSize: "1em" }}>
                     <a
                       className="AllBenefits"
-                      href="all-benefits"
+                      href={"all-benefits?lng=" + t("current-language-code")}
                       target="_blank"
                     >
                       {t("Show All Benefits")}
