@@ -1,11 +1,11 @@
 const baseURL = "http://localhost:3000/A";
 
-describe("Section A1", function() {
+describe("Section A1", () => {
   beforeEach(() => {
     cy.visit(baseURL + "?section=A1");
   });
 
-  it("Has an All Benefits link", function() {
+  it("Has an All Benefits link", () => {
     cy
       .get(".AllBenefits")
       .should("have.attr", "href")
@@ -17,7 +17,7 @@ describe("Section A1", function() {
     cy.get(".allBenefitsList");
   });
 
-  it("Next button goes to A2", function() {
+  it("Next button goes to A2", () => {
     cy.contains("Next").click();
     cy
       .url()
