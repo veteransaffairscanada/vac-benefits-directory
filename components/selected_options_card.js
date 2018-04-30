@@ -5,6 +5,7 @@ import Button from "material-ui/Button";
 import { Typography } from "material-ui";
 
 type Props = {
+  id: string,
   options: mixed,
   action: mixed,
   t: mixed
@@ -15,7 +16,7 @@ class SelectedOptionsCard extends Component<Props> {
 
   render() {
     return (
-      <Card style={{ backgroundColor: "#ddd" }}>
+      <Card id={this.props.id} style={{ backgroundColor: "#ddd" }}>
         <CardContent>
           {this.props.options.map(option => (
             <Typography
@@ -29,7 +30,9 @@ class SelectedOptionsCard extends Component<Props> {
           ))}
         </CardContent>
         <CardActions>
-          <Button onClick={this.props.action}>{this.props.t("Change")}</Button>
+          <Button id="ChangeButton" onClick={this.props.action}>
+            {this.props.t("Change")}
+          </Button>
         </CardActions>
       </Card>
     );
