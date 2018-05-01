@@ -1,6 +1,6 @@
 import React from "react";
 import AlphaBanner from "../../components/alpha_banner";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 
 describe("Test Alpha Banner", () => {
   let mountedAlphaBanner;
