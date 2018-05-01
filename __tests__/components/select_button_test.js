@@ -7,6 +7,8 @@ describe("SelectButton", () => {
 
   let props;
   let mountedSelectButton;
+  let buttonChild;
+
   const selectButton = () => {
     if (!mountedSelectButton) {
       mountedSelectButton = mount(<SelectButton {...props} />);
@@ -24,44 +26,29 @@ describe("SelectButton", () => {
       onClick: jest.fn()
     };
     mountedSelectButton = undefined;
+
+    buttonChild = () =>
+      selectButton()
+        .find("Button")
+        .first();
   });
 
   // Tests
 
-  it("Top level is a Card", () => {
-    expect(selectButton().children().length).toEqual(1);
-    expect(
-      selectButton()
-        .children()
-        .first()
-        .name()
-    ).toEqual("Card");
-  });
-
-  it("Contains a single button", () => {
-    const buttons = selectButton().find("Button");
-    expect(buttons.length).toEqual(1);
-  });
-
-  const buttonChild = () =>
-    selectButton()
-      .find("Button")
-      .first();
-
-  it("Button has correct fullWidth, target and href", () => {
+  it("contains a Button with correct fullWidth, target and href", () => {
     const button = buttonChild();
     expect(button.props().fullWidth).toEqual(true);
     expect(button.props().href).toEqual(props.href);
     expect(button.props().target).toEqual(props.target);
   });
 
-  it("Button has correct onClick", () => {
+  it("contains a Button with correct onClick", () => {
     const button = buttonChild();
     button.simulate("click");
     expect(props.onClick).toBeCalledWith(props.id);
   });
 
-  it("Button contains correct child", () => {
+  it("contains a Button with correct text", () => {
     const button = buttonChild();
     expect(button.children().length).toEqual(1);
     expect(
