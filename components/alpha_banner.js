@@ -37,7 +37,7 @@ class AlphaBanner extends Component<Props> {
     return (
       <AlphaWrap role="complementary">
         <div style={{ height: "50px", verticalAlign: "center" }}>
-          <Alpha>Alpha</Alpha>
+          <Alpha id="AlphaButton">Alpha</Alpha>
           <AlphaText id="AlphaTextContainer">{this.props.t("alpha")}</AlphaText>
         </div>
       </AlphaWrap>
