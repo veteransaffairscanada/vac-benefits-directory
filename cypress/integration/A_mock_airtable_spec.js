@@ -1,3 +1,5 @@
+import { fetchFromAirtable } from "../utils/airtable";
+
 const baseURL = "http://localhost:3000/A";
 
 const benefitTypesURL =
@@ -16,6 +18,14 @@ const benefitTypesFixture = {
     }
   ]
 };
+
+describe("Stub fetchFromAirtable", () => {
+  it("Gets called", () => {
+    airtable.fetchFromAirtable = cy.stub();
+    cy.visit(baseURL);
+    expect(airtable.fetchFromAirtable).to.be.called;
+  });
+});
 
 describe("Spy on Airtable fetch", () => {
   beforeEach(() => {
