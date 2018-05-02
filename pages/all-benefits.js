@@ -9,7 +9,7 @@ import { initStore, loadDataStore } from "../store";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { BenefitCardList } from "../components/benefit_cards";
+import { BenefitCard } from "../components/benefit_cards";
 import { bindActionCreators } from "redux";
 import { fetchFromAirtable } from "../utils/airtable";
 
@@ -76,7 +76,14 @@ export class AllBenefits extends Component<Props> {
           <Grid container spacing={24}>
             <Grid item xs={12}>
               <Grid container spacing={24}>
-                <BenefitCardList benefits={benefits} t={t} />
+                {benefits.map((benefit, i) => (
+                  <BenefitCard
+                    id={"bc" + i}
+                    benefit={benefit}
+                    t={this.props.t}
+                    key={i}
+                  />
+                ))}
               </Grid>
             </Grid>
           </Grid>

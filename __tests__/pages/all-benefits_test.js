@@ -4,7 +4,6 @@ import { mount } from "enzyme";
 import React from "react";
 
 import { AllBenefits } from "../../pages/all-benefits";
-import { BenefitCardList } from "../../components/benefit_cards";
 
 const tMocked = key => key;
 const i18nFixture = { language: "en-US" };
@@ -44,7 +43,6 @@ describe("All benefits page", () => {
         benefitTypes={benefitTypesFixture}
       />
     );
-    expect(app.find(BenefitCardList).length).toEqual(1);
     expect(app.find("Card").length).toEqual(2);
   });
 });

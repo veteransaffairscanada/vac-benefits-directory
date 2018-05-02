@@ -1,9 +1,5 @@
 import React from "react";
-import BenefitCardList, {
-  BenefitTitleCard,
-  BenefitTitleCardList,
-  BenefitCard
-} from "../../components/benefit_cards";
+import { BenefitTitleCard, BenefitCard } from "../../components/benefit_cards";
 import { mount } from "enzyme";
 
 const benefitsFixture = [
@@ -37,16 +33,6 @@ describe("Test Benefit Cards", () => {
     expect(card.text()).toEqual(benefitsFixture[0].vac_name_fr);
   });
 
-  it("BenefitTitleCardList", () => {
-    const cardList = mount(
-      <BenefitTitleCardList t={key => key} benefits={benefitsFixture} />
-    );
-    for (let i = 0; i < 2; i++) {
-      const expected = benefitsFixture[i].vac_name_fr;
-      expect(cardList.find("#bc" + i).text()).toEqual(expected);
-    }
-  });
-
   it("BenefitCard", () => {
     const test_props = benefitsFixture[0];
     const card = mount(<BenefitCard t={key => key} benefit={test_props} />);
@@ -60,21 +46,5 @@ describe("Test Benefit Cards", () => {
       test_props.descriptionFr
     );
     expect(card.find("Button").text()).toEqual("View Details");
-  });
-
-  it("BenefitCardList", () => {
-    const test_props = benefitsFixture;
-
-    const cardList = mount(
-      <BenefitCardList t={key => key} benefits={test_props} />
-    );
-    for (let i = 0; i < 2; i++) {
-      const expected =
-        test_props[i].benefitTypeFr.toUpperCase() +
-        test_props[i].vac_name_fr +
-        test_props[i].descriptionFr +
-        "View Details";
-      expect(cardList.find("#bc" + i).text()).toEqual(expected);
-    }
   });
 });
