@@ -50,6 +50,20 @@ export class App extends Component<Props> {
     });
   };
 
+  enrichBenefit = (benefit, corporaEn, corporaFr, linkEn, linkFr) => {
+    let links = this.props.corporaEn.filter(corp =>
+      corp.benefits.includes(benefit.id)
+    );
+    benefit.linkEn =
+      links.length > 0 ? links[0].full_description_link : undefined;
+    links = this.props.corporaFr.filter(corp =>
+      corp.benefits.includes(benefit.id)
+    );
+    benefit.linkFr =
+      links.length > 0 ? links[0].full_description_link : undefined;
+    return benefit;
+  };
+
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
 
@@ -67,19 +81,15 @@ export class App extends Component<Props> {
     );
 
     // add links to benefits
-    benefits = benefits.map(benefit => {
-      let links = this.props.corporaEn.filter(corp =>
-        corp.benefits.includes(benefit.id)
-      );
-      benefit.linkEn =
-        links.length > 0 ? links[0].full_description_link : undefined;
-      links = this.props.corporaFr.filter(corp =>
-        corp.benefits.includes(benefit.id)
-      );
-      benefit.linkFr =
-        links.length > 0 ? links[0].full_description_link : undefined;
-      return benefit;
-    });
+    benefits = benefits.map(benefit =>
+      this.enrichBenefit(
+        benefit,
+        this.props.corporaEn,
+        this.props.corporaFr,
+        this.props.linkEn,
+        this.props.linkFr
+      )
+    );
 
     return (
       <div>
