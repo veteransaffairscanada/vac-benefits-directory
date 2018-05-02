@@ -3,13 +3,13 @@ import Card, { CardContent, CardHeader, CardActions } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
 import SelectButton from "./select_button";
 
-type CardProps = {
+type Props = {
   benefit: mixed,
   t: mixed
 };
 
-export class BenefitTitleCard extends Component<CardProps> {
-  props: CardProps;
+export class BenefitTitleCard extends Component<Props> {
+  props: Props;
 
   render() {
     const benefit = this.props.benefit;
@@ -35,35 +35,11 @@ export class BenefitTitleCard extends Component<CardProps> {
   }
 }
 
-type Props = {
-  benefits: mixed,
-  t: mixed
-};
-
-export class BenefitTitleCardList extends Component<CardListProps> {
+export class BenefitCard extends Component<Props> {
   props: Props;
 
   render() {
-    return this.props.benefits.map((benefit, i) => (
-      <BenefitTitleCard
-        id={"bc" + i}
-        benefit={benefit}
-        t={this.props.t}
-        key={i}
-      />
-    ));
-  }
-}
-
-export class BenefitCard extends Component<CardProps> {
-  props: CardProps;
-
-  state = {
-    benefit: this.props.benefit
-  };
-
-  render() {
-    const benefit = this.state.benefit;
+    const benefit = this.props.benefit;
     return (
       <Grid item xs={12} lg={6}>
         <Card>
@@ -74,12 +50,16 @@ export class BenefitCard extends Component<CardProps> {
             ).toUpperCase()}
           />
           <CardContent>
-            <Typography id="title" variant="title" gutterBottom>
+            <Typography className="cardTitle" variant="title" gutterBottom>
               {this.props.t("current-language-code") === "en"
                 ? benefit.vac_name_en
                 : benefit.vac_name_fr}
             </Typography>
-            <Typography id="description" variant="body1" gutterBottom>
+            <Typography
+              className="cardDescription"
+              variant="body1"
+              gutterBottom
+            >
               {this.props.t("current-language-code") === "en"
                 ? benefit.descriptionEn
                 : benefit.descriptionFr}
@@ -102,20 +82,3 @@ export class BenefitCard extends Component<CardProps> {
     );
   }
 }
-
-type CardListProps = {
-  benefits: mixed,
-  t: mixed
-};
-
-export class BenefitCardList extends Component<CardListProps> {
-  props: CardListProps;
-
-  render() {
-    return this.props.benefits.map((benefit, i) => (
-      <BenefitCard id={"bc" + i} benefit={benefit} t={this.props.t} key={i} />
-    ));
-  }
-}
-
-export default BenefitCardList;

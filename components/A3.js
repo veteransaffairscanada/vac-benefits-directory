@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 import { Grid } from "material-ui";
 import SelectedOptionsCard from "../components/selected_options_card";
-import { BenefitTitleCardList } from "../components/benefit_cards";
+import { BenefitTitleCard } from "../components/benefit_cards";
 
 type Props = {
   t: mixed,
@@ -143,10 +143,16 @@ export class App extends Component<Props> {
                 </Grid>
               </Grid>
             </Grid>
-
             <Grid item sm={9} xs={12}>
               <Grid container spacing={24}>
-                <BenefitTitleCardList benefits={benefits} t={t} />
+                {benefits.map((benefit, i) => (
+                  <BenefitTitleCard
+                    id={"bc" + i}
+                    benefit={benefit}
+                    t={this.props.t}
+                    key={i}
+                  />
+                ))}
               </Grid>
             </Grid>
           </Grid>

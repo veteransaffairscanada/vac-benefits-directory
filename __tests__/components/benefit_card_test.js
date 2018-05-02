@@ -1,80 +1,174 @@
 import React from "react";
-import BenefitCardList, {
-  BenefitTitleCard,
-  BenefitTitleCardList,
-  BenefitCard
-} from "../../components/benefit_cards";
 import { mount } from "enzyme";
+import { BenefitTitleCard, BenefitCard } from "../../components/benefit_cards";
+import { joinedBenefitsFixture } from "../fixtures/benefits";
 
-const benefitsFixture = [
-  {
-    vac_name_en: "Disability Award",
-    vac_name_fr: "Prix ​​d'invalidité",
-    benefitTypeEn: "BT EN 1",
-    benefitTypeFr: "BT FR 1",
-    descriptionEn: "Money compensation for a service related injury",
-    descriptionFr: "Compensation monétaire pour une blessure liée au service",
-    linkEn: "English link",
-    linkFr: "French link"
-  },
-  {
-    vac_name_en: "Disability Pension",
-    vac_name_fr: "Pension d'invalidité",
-    benefitTypeEn: "BT EN 2",
-    benefitTypeFr: "BT FR 2",
-    descriptionEn: "A pension compensating service related injuries",
-    descriptionFr: "Une blessure compensant les blessures liées au service",
-    linkEn: "English link",
-    linkFr: "French link"
-  }
-];
-
-describe("Test Benefit Cards", () => {
-  it("BenefitTitleCard", () => {
-    const card = mount(
-      <BenefitTitleCard t={key => key} benefit={benefitsFixture[0]} />
-    );
-    expect(card.text()).toEqual(benefitsFixture[0].vac_name_fr);
-  });
-
-  it("BenefitTitleCardList", () => {
-    const cardList = mount(
-      <BenefitTitleCardList t={key => key} benefits={benefitsFixture} />
-    );
-    for (let i = 0; i < 2; i++) {
-      const expected = benefitsFixture[i].vac_name_fr;
-      expect(cardList.find("#bc" + i).text()).toEqual(expected);
+describe("BenefitTitleCard", () => {
+  let props;
+  let _mountedBenefitTitleCard;
+  const mountedBenefitTitleCard = () => {
+    if (!_mountedBenefitTitleCard) {
+      _mountedBenefitTitleCard = mount(<BenefitTitleCard {...props} />);
     }
+    return _mountedBenefitTitleCard;
+  };
+
+  beforeEach(() => {
+    props = {
+      t: () => "en",
+      benefit: joinedBenefitsFixture[0]
+    };
+    _mountedBenefitTitleCard = undefined;
   });
 
-  it("BenefitCard", () => {
-    const test_props = benefitsFixture[0];
-    const card = mount(<BenefitCard t={key => key} benefit={test_props} />);
-    expect(card.find("CardHeader").text()).toEqual(
-      test_props.benefitTypeFr.toUpperCase()
-    );
-    expect(card.find("Typography#title").text()).toEqual(
-      test_props.vac_name_fr
-    );
-    expect(card.find("Typography#description").text()).toEqual(
-      test_props.descriptionFr
-    );
-    expect(card.find("Button").text()).toEqual("View Details");
+  it("contains a SelectButton", () => {
+    expect(mountedBenefitTitleCard().find("SelectButton").length).toEqual(1);
   });
 
-  it("BenefitCardList", () => {
-    const test_props = benefitsFixture;
+  it("has a blank target", () => {
+    expect(
+      mountedBenefitTitleCard()
+        .find("SelectButton")
+        .prop("target")
+    ).toEqual("_blank");
+  });
 
-    const cardList = mount(
-      <BenefitCardList t={key => key} benefits={test_props} />
-    );
-    for (let i = 0; i < 2; i++) {
-      const expected =
-        test_props[i].benefitTypeFr.toUpperCase() +
-        test_props[i].vac_name_fr +
-        test_props[i].descriptionFr +
-        "View Details";
-      expect(cardList.find("#bc" + i).text()).toEqual(expected);
+  it("has expected English text and href", () => {
+    expect(
+      mountedBenefitTitleCard()
+        .find("SelectButton")
+        .text()
+    ).toEqual(joinedBenefitsFixture[0].vac_name_en);
+    expect(
+      mountedBenefitTitleCard()
+        .find("SelectButton")
+        .prop("href")
+    ).toEqual(joinedBenefitsFixture[0].linkEn);
+  });
+
+  describe("when language is French", () => {
+    beforeEach(() => {
+      props.t = () => "fr";
+    });
+
+    it("has expected French text and href", () => {
+      expect(
+        mountedBenefitTitleCard()
+          .find("SelectButton")
+          .text()
+      ).toEqual(joinedBenefitsFixture[0].vac_name_fr);
+      expect(
+        mountedBenefitTitleCard()
+          .find("SelectButton")
+          .prop("href")
+      ).toEqual(joinedBenefitsFixture[0].linkFr);
+    });
+  });
+});
+
+describe("BenefitCard", () => {
+  let props;
+  let _mountedBenefitCard;
+  const mountedBenefitCard = () => {
+    if (!_mountedBenefitCard) {
+      _mountedBenefitCard = mount(<BenefitCard {...props} />);
     }
+    return _mountedBenefitCard;
+  };
+
+  beforeEach(() => {
+    props = {
+      t: () => "en",
+      benefit: joinedBenefitsFixture[0]
+    };
+    _mountedBenefitCard = undefined;
+  });
+
+  it("contains the benefit type", () => {
+    expect(
+      mountedBenefitCard()
+        .find("CardHeader")
+        .prop("title")
+    ).toEqual(joinedBenefitsFixture[0].benefitTypeEn);
+  });
+
+  it("contains the name", () => {
+    expect(
+      mountedBenefitCard()
+        .find(".cardTitle")
+        .first()
+        .text()
+    ).toEqual(joinedBenefitsFixture[0].vac_name_en);
+  });
+
+  it("contains the description", () => {
+    expect(
+      mountedBenefitCard()
+        .find(".cardDescription")
+        .first()
+        .text()
+    ).toEqual(joinedBenefitsFixture[0].descriptionEn);
+  });
+
+  it("has a correctly configured button", () => {
+    expect(
+      mountedBenefitCard()
+        .find("Button")
+        .prop("target")
+    ).toEqual("_blank");
+    expect(
+      mountedBenefitCard()
+        .find("Button")
+        .prop("href")
+    ).toEqual(joinedBenefitsFixture[0].linkEn);
+    expect(
+      mountedBenefitCard()
+        .find("Button")
+        .text()
+    ).toEqual("en");
+  });
+
+  describe("when language is French", () => {
+    beforeEach(() => {
+      props.t = () => "fr";
+    });
+    it("contains the French benefit type", () => {
+      expect(
+        mountedBenefitCard()
+          .find("CardHeader")
+          .prop("title")
+      ).toEqual(joinedBenefitsFixture[0].benefitTypeFr);
+    });
+
+    it("contains the French name", () => {
+      expect(
+        mountedBenefitCard()
+          .find(".cardTitle")
+          .first()
+          .text()
+      ).toEqual(joinedBenefitsFixture[0].vac_name_fr);
+    });
+
+    it("contains the French description", () => {
+      expect(
+        mountedBenefitCard()
+          .find(".cardDescription")
+          .first()
+          .text()
+      ).toEqual(joinedBenefitsFixture[0].descriptionFr);
+    });
+
+    it("has a button with the French link", () => {
+      expect(
+        mountedBenefitCard()
+          .find("Button")
+          .prop("href")
+      ).toEqual(joinedBenefitsFixture[0].linkFr);
+      expect(
+        mountedBenefitCard()
+          .find("Button")
+          .text()
+      ).toEqual("fr");
+    });
   });
 });
