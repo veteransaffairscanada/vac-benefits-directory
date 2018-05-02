@@ -25,18 +25,21 @@ export class App extends Component<Props> {
   }
 
   componentWillMount() {
+    let newSelectedPatronTypes = {};
+    this.props.selectedPatronTypes.map(patronType => {
+      newSelectedPatronTypes[patronType] = true;
+    });
     this.setState({
-      selectedPatronTypes: this.props.selectedPatronTypes
+      selectedPatronTypes: newSelectedPatronTypes
     });
   }
 
   toggleButton = id => {
     let selected = this.state.selectedPatronTypes;
-    const index = selected.indexOf(id);
-    if (index >= 0) {
-      selected.splice(index, 1);
+    if (selected.hasOwnProperty(id)) {
+      delete selected[id];
     } else {
-      selected.push(id);
+      selected[id] = true;
     }
     this.setState({
       selectedPatronTypes: selected
@@ -73,7 +76,7 @@ export class App extends Component<Props> {
                     : type.name_fr
                 }
                 onClick={this.toggleButton}
-                isDown={this.state.selectedPatronTypes.indexOf(type.id) >= 0}
+                isDown={this.state.selectedPatronTypes.hasOwnProperty(type.id)}
               />
             </Grid>
           </Grid>
@@ -88,7 +91,13 @@ export class App extends Component<Props> {
           <Grid item sm={4} xs={12}>
             <SelectButton
               text={t("A2.See Results")}
-              onClick={() => this.props.switchSection("A3", this.state)}
+              onClick={() =>
+                this.props.switchSection("A3", {
+                  selectedPatronTypes: Object.keys(
+                    this.state.selectedPatronTypes
+                  )
+                })
+              }
               isDown={false}
             />
           </Grid>
