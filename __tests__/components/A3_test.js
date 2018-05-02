@@ -1,81 +1,192 @@
 /* eslint-env jest */
 
+/*
+
+- shows right count of benefits
+
+- shows correctly selected benefits
+
+- correct SelectedOptionsCards for benefitTypes and patronTypes
+
+- has all benefits link
+
+
+ */
+
 import { mount } from "enzyme";
 import React from "react";
 
-import { App } from "../../components/A3";
-
-const tMocked = key => key;
-const i18nFixture = { language: "en-US" };
-const selectedBenefitTypesFixture = ["rec3PfnqeqyxSbx1x", "recQO4AHswOl75poF"];
-const selectedPatronTypesFixture = ["rec726lY5vUBEh2Sv", "recDAuNt8DXhD88Mr"];
-
-const benefitTypesFixture = [
-  {
-    id: "rec3PfnqeqyxSbx1x",
-    name_en: "Compensation For Harm",
-    name_fr: "Compensation Pour Préjudice"
-  },
-  {
-    id: "recQO4AHswOl75poF",
-    name_en: "Healthcare Cost Coverage",
-    name_fr: "Couverture des Coûts de Soins de Santé"
-  }
-];
-
-const patronTypesFixture = [
-  {
-    id: "rec726lY5vUBEh2Sv",
-    name_en: "Military Service-Person",
-    name_fr: "Service militaire-Personne"
-  },
-  {
-    id: "recDAuNt8DXhD88Mr",
-    name_en: "RCMP Service-Person",
-    name_fr: "Personne-Service de la GRC"
-  }
-];
-
-const benefitsFixture = [
-  {
-    patron_types: ["rec726lY5vUBEh2Sv"],
-    benefit_types: ["rec3PfnqeqyxSbx1x"],
-    id: "recQtMLSsyS90o4rV",
-    vac_name_en: "Disability Award",
-    vac_name_fr: "Prix ​​d'invalidité"
-  },
-  {
-    patron_types: ["rec726lY5vUBEh2Sv"],
-    benefit_types: ["rec3PfnqeqyxSbx1x"],
-    id: "recvzRaT9ormprNkb",
-    vac_name_en: "Disability Pension",
-    vac_name_fr: "Pension d'invalidité"
-  }
-];
-
-const corporaEnFixture = [
-  {
-    benefits: "recQtMLSsyS90o4rV",
-    full_description_link: "English link1"
-  },
-  {
-    benefits: "recvzRaT9ormprNkb",
-    full_description_link: "English link2"
-  }
-];
-
-const corporaFrFixture = [
-  {
-    benefits: "recQtMLSsyS90o4rV",
-    full_description_link: "French link1"
-  },
-  {
-    benefits: "recvzRaT9ormprNkb",
-    full_description_link: "French link2"
-  }
-];
+import A3 from "../../components/A3";
+import { benefitsFixture } from "../fixtures/benefits";
+import benefitTypesFixture from "../fixtures/benefit_types";
+import patronTypesFixture from "../fixtures/patron_types";
+import { corporaEnFixture, corporaFrFixture } from "../fixtures/corpora";
 
 jest.mock("react-ga");
+
+describe("A3", () => {
+  let props;
+  let _mountedA3;
+
+  const mountedA3 = () => {
+    if (!_mountedA3) {
+      _mountedA3 = mount(<A3 {...props} />);
+    }
+    return _mountedA3;
+  };
+
+  beforeEach(() => {
+    props = {
+      t: key => key,
+      benefitTypes: benefitTypesFixture,
+      patronTypes: patronTypesFixture,
+      benefits: benefitsFixture,
+      corporaEn: corporaEnFixture,
+      corporaFr: corporaFrFixture,
+      selectedBenefitTypes: [],
+      selectedPatronTypes: [],
+      switchSection: jest.fn()
+    };
+    _mountedA3 = undefined;
+  });
+
+  it("has a correct countBenefitsString function", () => {
+    let A3Instance = mountedA3().instance();
+    expect(A3Instance.countBenefitsString([], props.t)).toEqual(
+      "A3.At this time there are no benefits that match your selections"
+    );
+    expect(
+      A3Instance.countBenefitsString([benefitsFixture[0]], props.t)
+    ).toEqual("A3.Here is a benefit that may apply to you:");
+    expect(A3Instance.countBenefitsString(benefitsFixture, props.t)).toEqual(
+      "A3.Here are NNN benefits that may apply to you:"
+    );
+  });
+
+  it("has a correct filterBenefits function", () => {
+    const benefitTypeIDs = benefitTypesFixture.map(bt => bt.id);
+    const patronTypeIDs = patronTypesFixture.map(pt => pt.id);
+    let A3Instance = mountedA3().instance();
+    expect(
+      A3Instance.filterBenefits(benefitsFixture, benefitTypeIDs, patronTypeIDs)
+    ).toEqual(benefitsFixture);
+    expect(
+      A3Instance.filterBenefits(benefitsFixture, [], patronTypeIDs)
+    ).toEqual([]);
+    expect(
+      A3Instance.filterBenefits(benefitsFixture, benefitTypeIDs, [])
+    ).toEqual([]);
+    expect(
+      A3Instance.filterBenefits(
+        benefitsFixture,
+        benefitTypeIDs.slice(0, 1),
+        patronTypeIDs
+      )
+    ).toEqual(benefitsFixture.slice(0, 1));
+    expect(
+      A3Instance.filterBenefits(
+        benefitsFixture,
+        benefitTypeIDs,
+        patronTypeIDs.slice(1, 2)
+      )
+    ).toEqual(benefitsFixture.slice(1, 2));
+  });
+
+  it("has a correct enrichBenefit function", () => {
+    let expectedBenefit = Object.assign({}, benefitsFixture[0]);
+    expectedBenefit.linkEn = corporaEnFixture[0].full_description_link;
+    expectedBenefit.linkFr = corporaFrFixture[0].full_description_link;
+    const A3Instance = mountedA3().instance();
+    expect(
+      A3Instance.enrichBenefit(
+        benefitsFixture[0],
+        corporaEnFixture,
+        corporaFrFixture
+      )
+    ).toEqual(expectedBenefit);
+  });
+
+  it("sets state correctly on mount if preselected benefit types", () => {
+    props.selectedBenefitTypes = [benefitTypesFixture[0].id];
+    let expectedSelectedBenefitTypes = {};
+    expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+    expect(mountedA3().state().selectedBenefitTypes).toEqual(
+      expectedSelectedBenefitTypes
+    );
+  });
+
+  it("toggleButton adds id to state if not already there", () => {
+    mountedA3()
+      .instance()
+      .toggleButton(benefitTypesFixture[0].id);
+    let expectedSelectedBenefitTypes = {};
+    expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+    expect(mountedA3().state().selectedBenefitTypes).toEqual(
+      expectedSelectedBenefitTypes
+    );
+  });
+
+  it("toggleButton removes id from state if already there", () => {
+    let initialSelectedBenefitTypes = {};
+    initialSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+    let A3Instance = mountedA3().instance();
+    A3Instance.setState({
+      selectedBenefitTypes: initialSelectedBenefitTypes
+    });
+    A3Instance.toggleButton(benefitTypesFixture[0].id);
+    expect(A3Instance.state.selectedBenefitTypes).toEqual({});
+  });
+
+  it("has benefit type buttons", () => {
+    const expectedButtonText = benefitTypesFixture
+      .map(b => b.name_fr)
+      .concat(["A3.Next"]);
+    expect(
+      mountedA3()
+        .find("SelectButton")
+        .map(b => b.text())
+    ).toEqual(expectedButtonText);
+    expect(
+      mountedA3()
+        .find("SelectButton")
+        .first()
+        .prop("onClick")
+    ).toEqual(mountedA3().instance().toggleButton);
+  });
+
+  it("has benefit type with isDown all false if no benefit types are preselected", () => {
+    expect(
+      mountedA3()
+        .find("SelectButton")
+        .map(b => b.prop("isDown"))
+    ).toEqual([false, false, false]);
+  });
+
+  it("has benefit type with isDown true if a benefit types is preselected", () => {
+    props.selectedBenefitTypes = [benefitTypesFixture[1].id];
+    expect(
+      mountedA3()
+        .find("SelectButton")
+        .map(b => b.prop("isDown"))
+    ).toEqual([false, true, false]);
+  });
+
+  it("has a Next button", () => {
+    expect(
+      mountedA3()
+        .find("SelectButton")
+        .get(2).props.text
+    ).toEqual("A3.Next");
+  });
+
+  it("has an All Benefits Link", () => {
+    expect(
+      mountedA3()
+        .find(".AllBenefits")
+        .text()
+    ).toEqual("Show All Benefits");
+  });
+});
 
 describe("Page A3", () => {
   it("Benefit count string no benefits", () => {

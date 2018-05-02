@@ -7,7 +7,6 @@ import { BenefitTitleCard } from "../components/benefit_cards";
 
 type Props = {
   t: mixed,
-  storeHydrated: boolean,
   benefitTypes: mixed,
   patronTypes: mixed,
   benefits: mixed,
@@ -50,7 +49,7 @@ export class App extends Component<Props> {
     });
   };
 
-  enrichBenefit = (benefit, corporaEn, corporaFr, linkEn, linkFr) => {
+  enrichBenefit = (benefit, corporaEn, corporaFr) => {
     let links = this.props.corporaEn.filter(corp =>
       corp.benefits.includes(benefit.id)
     );
@@ -82,13 +81,7 @@ export class App extends Component<Props> {
 
     // add links to benefits
     benefits = benefits.map(benefit =>
-      this.enrichBenefit(
-        benefit,
-        this.props.corporaEn,
-        this.props.corporaFr,
-        this.props.linkEn,
-        this.props.linkFr
-      )
+      this.enrichBenefit(benefit, this.props.corporaEn, this.props.corporaFr)
     );
 
     return (

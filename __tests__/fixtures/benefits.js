@@ -7,8 +7,8 @@ export const benefitsFixture = [
     vac_name_fr: "Prix ​​d'invalidité"
   },
   {
-    patron_types: ["rec726lY5vUBEh2Sv"],
-    benefit_types: ["rec3PfnqeqyxSbx1x"],
+    patron_types: ["recDAuNt8DXhD88Mr"],
+    benefit_types: ["recQO4AHswOl75poF"],
     id: "recvzRaT9ormprNkb",
     vac_name_en: "Disability Pension",
     vac_name_fr: "Pension d'invalidité"
