@@ -3,13 +3,6 @@ import ErrorBoundary from "../../components/error_boundary";
 import { mount } from "enzyme";
 import Raven from "raven-js";
 
-/*
-
-- test that state is set error: null  and Raven.config().install is run
-- throw an error and test that state is updated and Raven.captureException is called
-
- */
-
 describe("ErrorBoundary", () => {
   // Setup
 
@@ -39,7 +32,7 @@ describe("ErrorBoundary", () => {
 
   it("initializes Raven", () => {
     const installMock = jest.fn();
-    Raven.config = jest.fn(n => {
+    Raven.config = jest.fn(() => {
       return {
         install: installMock
       };
@@ -55,12 +48,17 @@ describe("ErrorBoundary", () => {
   }
 
   it("should catch errors with componentDidCatch", () => {
-    const spy = jest.spyOn(ErrorBoundary.prototype, "componentDidCatch");
-    mount(
-      <ErrorBoundary>
-        <ProblemChild />
-      </ErrorBoundary>
-    );
+    jest.spyOn(ErrorBoundary.prototype, "componentDidCatch");
+    console.error = jest.fn(); // eslint-disable-line no-console
+    Raven.captureException = jest.fn();
+    expect(() => {
+      mount(
+        <ErrorBoundary>
+          <ProblemChild />
+        </ErrorBoundary>
+      );
+    }).toThrow(new Error("Error thrown from problem child"));
     expect(ErrorBoundary.prototype.componentDidCatch).toHaveBeenCalled();
+    expect(Raven.captureException).toHaveBeenCalled();
   });
 });
