@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 
-import ErrorBoundary from "../components/errorBoundary";
+import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import Footer from "../components/footer";
 import AlphaBanner from "../components/alpha_banner";

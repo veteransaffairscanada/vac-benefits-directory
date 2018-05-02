@@ -2,20 +2,46 @@ import React from "react";
 import SelectedOptionsCard from "../../components/selected_options_card";
 import { mount } from "enzyme";
 
-describe("Test Selected Options Card", () => {
-  it("SelectedOptionsCard", () => {
-    const testOptions = ["test_option_1", "test_option_2"];
+describe("SelectedOptionsCard", () => {
+  // Setup
 
-    const card = mount(
-      <SelectedOptionsCard options={testOptions} t={key => key} />
-    );
-    const cardText = card
-      .find("Typography")
-      .map(option => {
-        return option.text();
-      })
-      .join();
+  let props;
+  let _mountedSelectedOptionsCard;
+  const mountedSelectedOptionsCard = () => {
+    if (!_mountedSelectedOptionsCard) {
+      _mountedSelectedOptionsCard = mount(<SelectedOptionsCard {...props} />);
+    }
+    return _mountedSelectedOptionsCard;
+  };
 
-    expect(cardText).toEqual(testOptions.join());
+  beforeEach(() => {
+    props = {
+      t: key => key,
+      id: "test id",
+      options: [],
+      action: jest.fn()
+    };
+    _mountedSelectedOptionsCard = undefined;
+  });
+
+  // Tests
+
+  it("has a button with the correct onClick", () => {
+    mountedSelectedOptionsCard()
+      .find("#ChangeButton")
+      .first()
+      .simulate("click");
+    expect(props.action).toBeCalled();
+  });
+
+  it("contains the list of options", () => {
+    props.options = ["option_1", "option_2"];
+
+    expect(
+      mountedSelectedOptionsCard()
+        .find("Typography")
+        .map(comp => comp.text())
+        .join()
+    ).toEqual("option_1,option_2");
   });
 });

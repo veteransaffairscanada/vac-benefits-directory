@@ -3,14 +3,29 @@ import AlphaBanner from "../../components/alpha_banner";
 import { mount } from "enzyme";
 
 describe("Test Alpha Banner", () => {
-  it("AlphaBanner should show the alpha message", () => {
-    const alphaBanner = mount(<AlphaBanner t={key => key} />);
+  let mountedAlphaBanner;
+  beforeEach(() => {
+    const props = {
+      t: key => key
+    };
+    mountedAlphaBanner = mount(<AlphaBanner {...props} />);
+  });
 
+  it("AlphaBanner should show the alpha message", () => {
     expect(
-      alphaBanner
+      mountedAlphaBanner
         .find("#AlphaTextContainer")
-        .at(1)
+        .at(0)
         .text()
     ).toEqual("alpha");
+  });
+
+  it("AlphaBanner should show the alpha message", () => {
+    expect(
+      mountedAlphaBanner
+        .find("#AlphaButton")
+        .at(0)
+        .text()
+    ).toEqual("Alpha");
   });
 });
