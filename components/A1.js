@@ -6,7 +6,6 @@ import SelectButton from "../components/select_button";
 
 type Props = {
   t: mixed,
-  storeHydrated: boolean,
   benefitTypes: mixed,
   selectedBenefitTypes: mixed,
   switchSection: mixed

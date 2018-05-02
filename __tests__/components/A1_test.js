@@ -2,31 +2,12 @@
 
 import { mount } from "enzyme";
 import React from "react";
-
-import { App } from "../../components/A1";
+import A1 from "../../components/A1";
+import benefitTypesFixture from "../fixtures/benefit_types";
 
 jest.mock("react-ga");
 
-import benefitTypesFixture from "../fixtures/benefit_types";
-/*
-
-- mounts with preselected components
-- toggleButton
-  - given id in state.selectedBenefitTypes, remove it from state
-  - given id not in state, add it to state
-
-
-
-
-
-
-import React from "react";
-import A1 from "../../components/A1";
-import { mount } from "enzyme";
-
 describe("A1", () => {
-  // Setup
-
   let props;
   let _mountedA1;
   const mountedA1 = () => {
@@ -38,106 +19,96 @@ describe("A1", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key
+      t: key => key,
+      benefitTypes: benefitTypesFixture,
+      selectedBenefitTypes: [],
+      switchSection: jest.fn()
     };
     _mountedA1 = undefined;
   });
 
-  // Tests
+  it("sets state correctly on mount if no preselected benefit types", () => {
+    expect(mountedA1().state().selectedBenefitTypes).toEqual({});
+  });
 
-  it("shows the privacy button", () => {
+  it("sets state correctly on mount if preselected benefit types", () => {
+    props.selectedBenefitTypes = [benefitTypesFixture[0].id];
+    let expectedSelectedBenefitTypes = {};
+    expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+    expect(mountedA1().state().selectedBenefitTypes).toEqual(
+      expectedSelectedBenefitTypes
+    );
+  });
+
+  it("toggleButton adds id to state if not already there", () => {
+    mountedA1()
+      .instance()
+      .toggleButton(benefitTypesFixture[0].id);
+    let expectedSelectedBenefitTypes = {};
+    expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+    expect(mountedA1().state().selectedBenefitTypes).toEqual(
+      expectedSelectedBenefitTypes
+    );
+  });
+
+  it("toggleButton removes id from state if already there", () => {
+    let initialSelectedBenefitTypes = {};
+    initialSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+    let A1Instance = mountedA1().instance();
+    A1Instance.setState({
+      selectedBenefitTypes: initialSelectedBenefitTypes
+    });
+    A1Instance.toggleButton(benefitTypesFixture[0].id);
+    expect(A1Instance.state.selectedBenefitTypes).toEqual({});
+  });
+
+  it("has benefit type buttons", () => {
+    const expectedButtonText = benefitTypesFixture
+      .map(b => b.name_fr)
+      .concat(["A1.Next"]);
     expect(
       mountedA1()
-        .find("#privacy")
-        .at(0)
+        .find("SelectButton")
+        .map(b => b.text())
+    ).toEqual(expectedButtonText);
+    expect(
+      mountedA1()
+        .find("SelectButton")
+        .first()
+        .prop("onClick")
+    ).toEqual(mountedA1().instance().toggleButton);
+  });
+
+  it("has benefit type with isDown all false if no benefit types are preselected", () => {
+    expect(
+      mountedA1()
+        .find("SelectButton")
+        .map(b => b.prop("isDown"))
+    ).toEqual([false, false, false]);
+  });
+
+  it("has benefit type with isDown true if a benefit types is preselected", () => {
+    props.selectedBenefitTypes = [benefitTypesFixture[1].id];
+    expect(
+      mountedA1()
+        .find("SelectButton")
+        .map(b => b.prop("isDown"))
+    ).toEqual([false, true, false]);
+  });
+
+  it("has a Next button", () => {
+    expect(
+      mountedA1()
+        .find("SelectButton")
+        .get(2).props.text
+    ).toEqual("A1.Next");
+  });
+
+  it("has an All Benefits Link", () => {
+    expect(
+      mountedA1()
+        .find(".AllBenefits")
         .text()
-    ).toEqual("Privacy");
-  });
-
-  describe("in production environment", () => {
-    let _CIRCLE_SHA1;
-
-    beforeEach(() => {
-      _CIRCLE_SHA1 = process.env.CIRCLE_SHA1;
-      process.env.CIRCLE_SHA1 = "1234567890";
-    });
-
-    afterEach(() => {
-      if (typeof _CIRCLE_SHA1 === "undefined") {
-        delete process.env.CIRCLE_SHA1;
-      } else {
-        process.env.CIRCLE_SHA1 = _CIRCLE_SHA1;
-      }
-    });
-
-    it("shows abbreviated hash", () => {
-      expect(mountedA1().text()).toContain("1234567");
-    });
-  });
-
-  describe("defaults to node environment", () => {
-    beforeEach(() => {
-      delete process.env.CIRCLE_SHA1;
-    });
-
-    it("shows 'test' in test environment", () => {
-      expect(mountedA1().text()).toContain("test");
-    });
-  });
-});
-
-
-
-*/
-
-describe("Page A1", () => {
-  it("Instructions", () => {
-    const app = mount(
-      <App
-        i18n={{ language: "en-US" }}
-        t={key => key}
-        storeHydrated={true}
-        benefitTypes={[]}
-        selectedBenefitTypes={[]}
-      />
-    );
-    expect(app.text()).toMatch(/A1.What services are you interested in?/);
-    expect(app.text()).toMatch(/A1.Select all that apply/);
-  });
-
-  it("Buttons", () => {
-    const app = mount(
-      <App
-        i18n={{ language: "en-US" }}
-        t={key => key}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        selectedBenefitTypes={[]}
-        switchSection={jest.fn()}
-      />
-    );
-    const buttons = app.find("Button");
-    const expectedText = [
-      "Compensation Pour Préjudice",
-      "Couverture des Coûts de Soins de Santé",
-      "A1.Next"
-    ];
-    expect(buttons.length).toEqual(3);
-    buttons.map(function(button, index) {
-      expect(button.text()).toEqual(expectedText[index]);
-    });
-  });
-
-  it("Show All Benefits Link", () => {
-    const app = mount(
-      <App
-        i18n={{ language: "en-US" }}
-        t={key => key}
-        storeHydrated={true}
-        benefitTypes={[]}
-        selectedBenefitTypes={[]}
-      />
-    );
-    expect(app.find(".AllBenefits").text()).toEqual("Show All Benefits");
+    ).toEqual("Show All Benefits");
   });
 });
