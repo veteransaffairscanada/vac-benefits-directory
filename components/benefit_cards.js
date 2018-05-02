@@ -50,12 +50,16 @@ export class BenefitCard extends Component<Props> {
             ).toUpperCase()}
           />
           <CardContent>
-            <Typography id="title" variant="title" gutterBottom>
+            <Typography className="cardTitle" variant="title" gutterBottom>
               {this.props.t("current-language-code") === "en"
                 ? benefit.vac_name_en
                 : benefit.vac_name_fr}
             </Typography>
-            <Typography id="description" variant="body1" gutterBottom>
+            <Typography
+              className="cardDescription"
+              variant="body1"
+              gutterBottom
+            >
               {this.props.t("current-language-code") === "en"
                 ? benefit.descriptionEn
                 : benefit.descriptionFr}
