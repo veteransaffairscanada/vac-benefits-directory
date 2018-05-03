@@ -6,7 +6,7 @@
     "dev": "node server.js",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
-    "test": "jest --coverage --collectCoverageFrom=pages/*.js components/*.js",
+    "test": "jest --coverage",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged",
     "cypress:wait": "wait-on http://localhost:3000",
