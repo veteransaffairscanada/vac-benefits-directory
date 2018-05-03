@@ -19,7 +19,6 @@ type Props = {
   loadDataStore: mixed,
   storeHydrated: boolean,
   t: mixed,
-  url: mixed,
   corporaEn: mixed,
   corporaFr: mixed,
   benefitTypes: mixed
@@ -28,46 +27,42 @@ type Props = {
 export class AllBenefits extends Component<Props> {
   props: Props;
 
-  async componentWillMount() {
+  componentWillMount() {
     if (!this.props.storeHydrated) {
       fetchFromAirtable(this.props.loadDataStore);
     }
   }
 
+  enrichBenefit = (benefit, benefitTypes, corporaEn, corporaFr) => {
+    let corporas = corporaEn.filter(corp => corp.benefits.includes(benefit.id));
+    benefit.linkEn =
+      corporas.length > 0 ? corporas[0].full_description_link : undefined;
+    benefit.descriptionEn =
+      corporas.length > 0 ? corporas[0].one_line_description : undefined;
+
+    corporas = corporaFr.filter(corp => corp.benefits.includes(benefit.id));
+    benefit.linkFr =
+      corporas.length > 0 ? corporas[0].full_description_link : undefined;
+    benefit.descriptionFr =
+      corporas.length > 0 ? corporas[0].one_line_description : undefined;
+
+    let bts = benefitTypes.filter(bt => bt.benefits.includes(benefit.id));
+    benefit.benefitTypeEn = bts.length > 0 ? bts[0].name_en : "";
+    benefit.benefitTypeFr = bts.length > 0 ? bts[0].name_fr : "";
+    return benefit;
+  };
+
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
-    let benefits = this.props.benefits;
-
-    // add links and descriptions to benefits
-    benefits = benefits.map(benefit => {
-      let corporas = this.props.corporaEn.filter(corp =>
-        corp.benefits.includes(benefit.id)
-      );
-      benefit.linkEn =
-        corporas.length > 0 ? corporas[0].full_description_link : undefined;
-      benefit.descriptionEn =
-        corporas.length > 0 ? corporas[0].one_line_description : undefined;
-
-      corporas = this.props.corporaFr.filter(corp =>
-        corp.benefits.includes(benefit.id)
-      );
-      benefit.linkFr =
-        corporas.length > 0 ? corporas[0].full_description_link : undefined;
-      benefit.descriptionFr =
-        corporas.length > 0 ? corporas[0].one_line_description : undefined;
-      return benefit;
-    });
-
-    // add benefit types
-    benefits = benefits.map(benefit => {
-      let bts = this.props.benefitTypes.filter(bt =>
-        bt.benefits.includes(benefit.id)
-      );
-      benefit.benefitTypeEn = bts.length > 0 ? bts[0].name_en : "";
-      benefit.benefitTypeFr = bts.length > 0 ? bts[0].name_fr : "";
-      return benefit;
-    });
+    let benefits = this.props.benefits.map(benefit =>
+      this.enrichBenefit(
+        benefit,
+        this.props.benefitTypes,
+        this.props.corporaEn,
+        this.props.corporaFr
+      )
+    );
 
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true}>
