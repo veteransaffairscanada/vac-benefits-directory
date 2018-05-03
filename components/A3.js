@@ -7,7 +7,6 @@ import { BenefitTitleCard } from "../components/benefit_cards";
 
 type Props = {
   t: mixed,
-  storeHydrated: boolean,
   benefitTypes: mixed,
   patronTypes: mixed,
   benefits: mixed,
@@ -50,6 +49,16 @@ export class App extends Component<Props> {
     });
   };
 
+  enrichBenefit = (benefit, corporaEn, corporaFr) => {
+    let links = corporaEn.filter(corp => corp.benefits.includes(benefit.id));
+    benefit.linkEn =
+      links.length > 0 ? links[0].full_description_link : undefined;
+    links = corporaFr.filter(corp => corp.benefits.includes(benefit.id));
+    benefit.linkFr =
+      links.length > 0 ? links[0].full_description_link : undefined;
+    return benefit;
+  };
+
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
 
@@ -67,19 +76,9 @@ export class App extends Component<Props> {
     );
 
     // add links to benefits
-    benefits = benefits.map(benefit => {
-      let links = this.props.corporaEn.filter(corp =>
-        corp.benefits.includes(benefit.id)
-      );
-      benefit.linkEn =
-        links.length > 0 ? links[0].full_description_link : undefined;
-      links = this.props.corporaFr.filter(corp =>
-        corp.benefits.includes(benefit.id)
-      );
-      benefit.linkFr =
-        links.length > 0 ? links[0].full_description_link : undefined;
-      return benefit;
-    });
+    benefits = benefits.map(benefit =>
+      this.enrichBenefit(benefit, this.props.corporaEn, this.props.corporaFr)
+    );
 
     return (
       <div>
@@ -148,6 +147,7 @@ export class App extends Component<Props> {
                 {benefits.map((benefit, i) => (
                   <BenefitTitleCard
                     id={"bc" + i}
+                    className="BenefitCards"
                     benefit={benefit}
                     t={this.props.t}
                     key={i}

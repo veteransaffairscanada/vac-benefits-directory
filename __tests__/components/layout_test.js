@@ -2,6 +2,8 @@ import React from "react";
 import Layout from "../../components/layout";
 import { mount } from "enzyme";
 
+jest.mock("react-ga");
+
 describe("Layout", () => {
   // Setup
 

@@ -2,6 +2,8 @@ import React from "react";
 import MenuBar from "../../components/menu_bar";
 import { mount } from "enzyme";
 
+jest.mock("react-ga");
+
 describe("MenuBar", () => {
   // Setup
 

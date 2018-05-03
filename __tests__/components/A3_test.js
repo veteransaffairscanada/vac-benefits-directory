@@ -1,210 +1,143 @@
 /* eslint-env jest */
 
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import React from "react";
 
-import { App } from "../../components/A3";
-
-const tMocked = key => key;
-const i18nFixture = { language: "en-US" };
-const selectedBenefitTypesFixture = ["rec3PfnqeqyxSbx1x", "recQO4AHswOl75poF"];
-const selectedPatronTypesFixture = ["rec726lY5vUBEh2Sv", "recDAuNt8DXhD88Mr"];
-
-const benefitTypesFixture = [
-  {
-    id: "rec3PfnqeqyxSbx1x",
-    name_en: "Compensation For Harm",
-    name_fr: "Compensation Pour Préjudice"
-  },
-  {
-    id: "recQO4AHswOl75poF",
-    name_en: "Healthcare Cost Coverage",
-    name_fr: "Couverture des Coûts de Soins de Santé"
-  }
-];
-
-const patronTypesFixture = [
-  {
-    id: "rec726lY5vUBEh2Sv",
-    name_en: "Military Service-Person",
-    name_fr: "Service militaire-Personne"
-  },
-  {
-    id: "recDAuNt8DXhD88Mr",
-    name_en: "RCMP Service-Person",
-    name_fr: "Personne-Service de la GRC"
-  }
-];
-
-const benefitsFixture = [
-  {
-    patron_types: ["rec726lY5vUBEh2Sv"],
-    benefit_types: ["rec3PfnqeqyxSbx1x"],
-    id: "recQtMLSsyS90o4rV",
-    vac_name_en: "Disability Award",
-    vac_name_fr: "Prix ​​d'invalidité"
-  },
-  {
-    patron_types: ["rec726lY5vUBEh2Sv"],
-    benefit_types: ["rec3PfnqeqyxSbx1x"],
-    id: "recvzRaT9ormprNkb",
-    vac_name_en: "Disability Pension",
-    vac_name_fr: "Pension d'invalidité"
-  }
-];
-
-const corporaEnFixture = [
-  {
-    benefits: "recQtMLSsyS90o4rV",
-    full_description_link: "English link1"
-  },
-  {
-    benefits: "recvzRaT9ormprNkb",
-    full_description_link: "English link2"
-  }
-];
-
-const corporaFrFixture = [
-  {
-    benefits: "recQtMLSsyS90o4rV",
-    full_description_link: "French link1"
-  },
-  {
-    benefits: "recvzRaT9ormprNkb",
-    full_description_link: "French link2"
-  }
-];
+import A3 from "../../components/A3";
+import { benefitsFixture } from "../fixtures/benefits";
+import benefitTypesFixture from "../fixtures/benefit_types";
+import patronTypesFixture from "../fixtures/patron_types";
+import { corporaEnFixture, corporaFrFixture } from "../fixtures/corpora";
 
 jest.mock("react-ga");
 
-describe("Page A3", () => {
-  it("Benefit count string no benefits", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={[]}
-        patronTypes={[]}
-        benefits={[]}
-        corporaEn={[]}
-        corporaFr={[]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    expect(app.find("h1#benefitCountString").text()).toEqual(
+describe("A3", () => {
+  let props;
+  let _mountedA3;
+
+  const mountedA3 = () => {
+    if (!_mountedA3) {
+      _mountedA3 = shallow(<A3 {...props} />);
+    }
+    return _mountedA3;
+  };
+
+  beforeEach(() => {
+    props = {
+      t: key => key,
+      benefitTypes: benefitTypesFixture,
+      patronTypes: patronTypesFixture,
+      benefits: benefitsFixture,
+      corporaEn: corporaEnFixture,
+      corporaFr: corporaFrFixture,
+      selectedBenefitTypes: [],
+      selectedPatronTypes: [],
+      switchSection: jest.fn()
+    };
+    _mountedA3 = undefined;
+  });
+
+  it("has a correct countBenefitsString function", () => {
+    let A3Instance = mountedA3().instance();
+    expect(A3Instance.countBenefitsString([], props.t)).toEqual(
       "A3.At this time there are no benefits that match your selections"
     );
-  });
-
-  it("Benefit count string 1 benefit", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={[benefitsFixture[0]]}
-        corporaEn={[corporaEnFixture[0]]}
-        corporaFr={[corporaFrFixture[0]]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    expect(app.find("h1#benefitCountString").text()).toEqual(
-      "A3.Here is a benefit that may apply to you:"
-    );
-  });
-
-  it("Benefit count string 2 benefits", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={benefitsFixture}
-        corporaEn={corporaEnFixture}
-        corporaFr={corporaFrFixture}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    expect(app.find("h1#benefitCountString").text()).toEqual(
+    expect(
+      A3Instance.countBenefitsString([benefitsFixture[0]], props.t)
+    ).toEqual("A3.Here is a benefit that may apply to you:");
+    expect(A3Instance.countBenefitsString(benefitsFixture, props.t)).toEqual(
       "A3.Here are NNN benefits that may apply to you:"
     );
   });
 
-  it("Selected Options", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={[]}
-        corporaEn={[]}
-        corporaFr={[]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    const expectedText =
-      benefitTypesFixture
-        .map(bt => {
-          return bt.name_fr;
-        })
-        .join("") + "Change";
-    expect(app.find("SelectedOptionsCard#vacServicesCard").text()).toEqual(
-      expectedText
+  it("has a correct filterBenefits function", () => {
+    const benefitTypeIDs = benefitTypesFixture.map(bt => bt.id);
+    const patronTypeIDs = patronTypesFixture.map(pt => pt.id);
+    let A3Instance = mountedA3().instance();
+    expect(
+      A3Instance.filterBenefits(benefitsFixture, benefitTypeIDs, patronTypeIDs)
+    ).toEqual(benefitsFixture);
+    expect(
+      A3Instance.filterBenefits(benefitsFixture, [], patronTypeIDs)
+    ).toEqual([]);
+    expect(
+      A3Instance.filterBenefits(benefitsFixture, benefitTypeIDs, [])
+    ).toEqual([]);
+    expect(
+      A3Instance.filterBenefits(
+        benefitsFixture,
+        benefitTypeIDs.slice(0, 1),
+        patronTypeIDs
+      )
+    ).toEqual(benefitsFixture.slice(0, 1));
+    expect(
+      A3Instance.filterBenefits(
+        benefitsFixture,
+        benefitTypeIDs,
+        patronTypeIDs.slice(1, 2)
+      )
+    ).toEqual(benefitsFixture.slice(1, 2));
+  });
+
+  it("has a correct enrichBenefit function", () => {
+    let expectedBenefit = Object.assign({}, benefitsFixture[0]);
+    expectedBenefit.linkEn = corporaEnFixture[0].full_description_link;
+    expectedBenefit.linkFr = corporaFrFixture[0].full_description_link;
+    const A3Instance = mountedA3().instance();
+    expect(
+      A3Instance.enrichBenefit(
+        benefitsFixture[0],
+        corporaEnFixture,
+        corporaFrFixture
+      )
+    ).toEqual(expectedBenefit);
+  });
+
+  it("shows the countBenefitsString", () => {
+    expect(
+      mountedA3()
+        .find("#benefitCountString")
+        .text()
+    ).toEqual(
+      "A3.At this time there are no benefits that match your selections"
     );
   });
 
-  it("Selected user types", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={[]}
-        corporaEn={[]}
-        corporaFr={[]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    const expectedText =
-      patronTypesFixture
-        .map(pt => {
-          return pt.name_fr;
-        })
-        .join("") + "Change";
-    expect(app.find("SelectedOptionsCard#userStatusesCard").text()).toEqual(
-      expectedText
+  it("has a selectedBenefitTypes", () => {
+    props.selectedBenefitTypes = benefitTypesFixture.map(bt => bt.id);
+    const card = mountedA3().find("#vacServicesCard");
+    expect(card.prop("page")).toEqual("A1");
+    expect(card.prop("options")).toEqual(
+      benefitTypesFixture.map(bt => bt.name_fr)
     );
   });
 
-  it("Show All Benefits Link", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={[]}
-        corporaEn={[]}
-        corporaFr={[]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
+  it("has a selectedPatronTypes", () => {
+    props.selectedPatronTypes = patronTypesFixture.map(bt => bt.id);
+    const card = mountedA3().find("#userStatusesCard");
+    expect(card.prop("page")).toEqual("A2");
+    expect(card.prop("options")).toEqual(
+      patronTypesFixture.map(pt => pt.name_fr)
     );
-    expect(app.find(".AllBenefits").text()).toEqual("Show All Benefits");
+  });
+
+  it("has the selected benefit cards", () => {
+    props.selectedBenefitTypes = benefitTypesFixture.map(bt => bt.id);
+    props.selectedPatronTypes = patronTypesFixture.map(bt => bt.id);
+    const benefitCards = mountedA3().find(".BenefitCards");
+    expect(benefitCards.length).toEqual(2);
+    benefitCards.map((bt, i) => {
+      expect(bt.prop("benefit").vac_name_fr).toEqual(
+        benefitsFixture[i].vac_name_fr
+      );
+    });
+  });
+
+  it("has an All Benefits Link", () => {
+    expect(
+      mountedA3()
+        .find(".AllBenefits")
+        .text()
+    ).toEqual("Show All Benefits");
   });
 });
