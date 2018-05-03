@@ -6,6 +6,7 @@ import SelectedOptionsCard from "../components/selected_options_card";
 import { BenefitTitleCard } from "../components/benefit_cards";
 
 type Props = {
+  id: string,
   t: mixed,
   benefitTypes: mixed,
   patronTypes: mixed,
@@ -81,7 +82,7 @@ export class App extends Component<Props> {
     );
 
     return (
-      <div>
+      <div id={this.props.id}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12}>

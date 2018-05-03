@@ -5,6 +5,7 @@ import { Grid } from "material-ui";
 import SelectButton from "../components/select_button";
 
 type Props = {
+  id: string,
   t: mixed,
   benefitTypes: mixed,
   selectedBenefitTypes: mixed,
@@ -46,7 +47,7 @@ export class App extends Component<Props> {
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <div style={{ padding: 12 }}>
+      <div id={this.props.id} style={{ padding: 12 }}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <h1 style={{ textAlign: "center" }}>
