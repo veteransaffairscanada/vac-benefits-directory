@@ -1,22 +1,26 @@
 /* eslint-env jest */
 
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import React from "react";
-
-import App from "../../pages/index.js";
+import { App } from "../../pages/index";
 
 jest.mock("react-ga");
-jest.mock("react-i18next", () => ({
-  // this mock makes sure any components using the translate HoC receive the t function as a prop
-  translate: () => Component => props => <Component t={key => key} {...props} /> // eslint-disable-line react/display-name
-}));
 
-describe("With Enzyme", () => {
-  it("index page", () => {
-    const app = mount(<App i18n={{ language: "en-US" }} />);
-    expect(app.find("h1#TextDescription").text()).toEqual(
+describe("Index page", () => {
+  let props = {
+    t: key => key,
+    i18n: {}
+  };
+
+  it("has a description", () => {
+    const appMounted = shallow(<App {...props} />);
+    expect(appMounted.find("h1#TextDescription").text()).toEqual(
       "home.poc-description"
     );
-    expect(app.find("Button#changeLanguage").text()).toEqual("other-language");
+  });
+
+  it("has a button for wireframe A", () => {
+    const appMounted = shallow(<App {...props} />);
+    expect(appMounted.find("SelectButton").props().text).toEqual("A");
   });
 });
