@@ -28,7 +28,7 @@ type Props = {
   corporaFr: mixed
 };
 
-export class App extends Component<Props> {
+export class A extends Component<Props> {
   props: Props;
 
   constructor() {
@@ -40,7 +40,7 @@ export class App extends Component<Props> {
     };
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     if (!this.props.storeHydrated) {
       fetchFromAirtable(this.props.loadDataStore);
     }
@@ -81,6 +81,7 @@ export class App extends Component<Props> {
       case "A1":
         return (
           <A1
+            id="A1"
             t={this.props.t}
             storeHydrated={this.props.storeHydrated}
             benefitTypes={this.props.benefitTypes}
@@ -91,6 +92,7 @@ export class App extends Component<Props> {
       case "A2":
         return (
           <A2
+            id="A2"
             t={this.props.t}
             storeHydrated={this.props.storeHydrated}
             patronTypes={this.props.patronTypes}
@@ -101,6 +103,7 @@ export class App extends Component<Props> {
       case "A3":
         return (
           <A3
+            id="A3"
             t={this.props.t}
             storeHydrated={this.props.storeHydrated}
             benefitTypes={this.props.benefitTypes}
@@ -142,5 +145,5 @@ const mapStateToProps = state => {
 };
 
 export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
-  withI18next()(App)
+  withI18next()(A)
 );
