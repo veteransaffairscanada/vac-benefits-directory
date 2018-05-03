@@ -1,28 +1,20 @@
 // @flow
 
 import React, { Component } from "react";
+import { SelectButton } from "../components/select_button";
 
 import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { logEvent } from "../utils/analytics";
+
 type Props = {
   i18n: mixed,
   t: mixed
 };
 
-class App extends Component<Props> {
+export class App extends Component<Props> {
   props: Props;
-
-  changeLanguage = () => {
-    this.props.i18n.changeLanguage(this.props.t("other-language-code"));
-    logEvent("Language change", this.props.t("other-language"));
-  };
-
-  throwError = () => {
-    throw new Error("test");
-  };
 
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
@@ -35,6 +27,13 @@ class App extends Component<Props> {
               <h1 id="TextDescription" name="TextDescription">
                 {t("home.poc-description")}
               </h1>
+            </Grid>
+            <Grid item xs={3}>
+              <SelectButton
+                fullWidth={true}
+                href={"A?lng=" + t("current-language-code")}
+                text="A"
+              />
             </Grid>
           </Grid>
         </div>
