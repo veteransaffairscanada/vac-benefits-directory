@@ -50,14 +50,10 @@ export class App extends Component<Props> {
   };
 
   enrichBenefit = (benefit, corporaEn, corporaFr) => {
-    let links = this.props.corporaEn.filter(corp =>
-      corp.benefits.includes(benefit.id)
-    );
+    let links = corporaEn.filter(corp => corp.benefits.includes(benefit.id));
     benefit.linkEn =
       links.length > 0 ? links[0].full_description_link : undefined;
-    links = this.props.corporaFr.filter(corp =>
-      corp.benefits.includes(benefit.id)
-    );
+    links = corporaFr.filter(corp => corp.benefits.includes(benefit.id));
     benefit.linkFr =
       links.length > 0 ? links[0].full_description_link : undefined;
     return benefit;
@@ -151,6 +147,7 @@ export class App extends Component<Props> {
                 {benefits.map((benefit, i) => (
                   <BenefitTitleCard
                     id={"bc" + i}
+                    className="BenefitCards"
                     benefit={benefit}
                     t={this.props.t}
                     key={i}

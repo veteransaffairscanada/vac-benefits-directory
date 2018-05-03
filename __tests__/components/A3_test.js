@@ -1,19 +1,6 @@
 /* eslint-env jest */
 
-/*
-
-- shows right count of benefits
-
-- shows correctly selected benefits
-
-- correct SelectedOptionsCards for benefitTypes and patronTypes
-
-- has all benefits link
-
-
- */
-
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 import React from "react";
 
 import A3 from "../../components/A3";
@@ -30,7 +17,7 @@ describe("A3", () => {
 
   const mountedA3 = () => {
     if (!_mountedA3) {
-      _mountedA3 = mount(<A3 {...props} />);
+      _mountedA3 = shallow(<A3 {...props} />);
     }
     return _mountedA3;
   };
@@ -116,9 +103,35 @@ describe("A3", () => {
     );
   });
 
-  it("has a selectedBenefitTypes", () => {});
+  it("has a selectedBenefitTypes", () => {
+    props.selectedBenefitTypes = benefitTypesFixture.map(bt => bt.id);
+    const card = mountedA3().find("#vacServicesCard");
+    expect(card.prop("page")).toEqual("A1");
+    expect(card.prop("options")).toEqual(
+      benefitTypesFixture.map(bt => bt.name_fr)
+    );
+  });
 
-  it("has a selectedPatronTypes", () => {});
+  it("has a selectedPatronTypes", () => {
+    props.selectedPatronTypes = patronTypesFixture.map(bt => bt.id);
+    const card = mountedA3().find("#userStatusesCard");
+    expect(card.prop("page")).toEqual("A2");
+    expect(card.prop("options")).toEqual(
+      patronTypesFixture.map(pt => pt.name_fr)
+    );
+  });
+
+  it("has the selected benefit cards", () => {
+    props.selectedBenefitTypes = benefitTypesFixture.map(bt => bt.id);
+    props.selectedPatronTypes = patronTypesFixture.map(bt => bt.id);
+    const benefitCards = mountedA3().find(".BenefitCards");
+    expect(benefitCards.length).toEqual(2);
+    benefitCards.map((bt, i) => {
+      expect(bt.prop("benefit").vac_name_fr).toEqual(
+        benefitsFixture[i].vac_name_fr
+      );
+    });
+  });
 
   it("has an All Benefits Link", () => {
     expect(
@@ -126,213 +139,5 @@ describe("A3", () => {
         .find(".AllBenefits")
         .text()
     ).toEqual("Show All Benefits");
-  });
-});
-
-/**************************************/
-/**************************************/
-
-it("sets state correctly on mount if preselected benefit types", () => {
-  props.selectedBenefitTypes = [benefitTypesFixture[0].id];
-  let expectedSelectedBenefitTypes = {};
-  expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
-  expect(mountedA3().state().selectedBenefitTypes).toEqual(
-    expectedSelectedBenefitTypes
-  );
-});
-
-it("toggleButton adds id to state if not already there", () => {
-  mountedA3()
-    .instance()
-    .toggleButton(benefitTypesFixture[0].id);
-  let expectedSelectedBenefitTypes = {};
-  expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
-  expect(mountedA3().state().selectedBenefitTypes).toEqual(
-    expectedSelectedBenefitTypes
-  );
-});
-
-it("toggleButton removes id from state if already there", () => {
-  let initialSelectedBenefitTypes = {};
-  initialSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
-  let A3Instance = mountedA3().instance();
-  A3Instance.setState({
-    selectedBenefitTypes: initialSelectedBenefitTypes
-  });
-  A3Instance.toggleButton(benefitTypesFixture[0].id);
-  expect(A3Instance.state.selectedBenefitTypes).toEqual({});
-});
-
-it("has benefit type buttons", () => {
-  const expectedButtonText = benefitTypesFixture
-    .map(b => b.name_fr)
-    .concat(["A3.Next"]);
-  expect(
-    mountedA3()
-      .find("SelectButton")
-      .map(b => b.text())
-  ).toEqual(expectedButtonText);
-  expect(
-    mountedA3()
-      .find("SelectButton")
-      .first()
-      .prop("onClick")
-  ).toEqual(mountedA3().instance().toggleButton);
-});
-
-it("has benefit type with isDown all false if no benefit types are preselected", () => {
-  expect(
-    mountedA3()
-      .find("SelectButton")
-      .map(b => b.prop("isDown"))
-  ).toEqual([false, false, false]);
-});
-
-it("has benefit type with isDown true if a benefit types is preselected", () => {
-  props.selectedBenefitTypes = [benefitTypesFixture[1].id];
-  expect(
-    mountedA3()
-      .find("SelectButton")
-      .map(b => b.prop("isDown"))
-  ).toEqual([false, true, false]);
-});
-
-it("has a Next button", () => {
-  expect(
-    mountedA3()
-      .find("SelectButton")
-      .get(2).props.text
-  ).toEqual("A3.Next");
-});
-
-describe("Page A3", () => {
-  it("Benefit count string no benefits", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={[]}
-        patronTypes={[]}
-        benefits={[]}
-        corporaEn={[]}
-        corporaFr={[]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    expect(app.find("h1#benefitCountString").text()).toEqual(
-      "A3.At this time there are no benefits that match your selections"
-    );
-  });
-
-  it("Benefit count string 1 benefit", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={[benefitsFixture[0]]}
-        corporaEn={[corporaEnFixture[0]]}
-        corporaFr={[corporaFrFixture[0]]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    expect(app.find("h1#benefitCountString").text()).toEqual(
-      "A3.Here is a benefit that may apply to you:"
-    );
-  });
-
-  it("Benefit count string 2 benefits", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={benefitsFixture}
-        corporaEn={corporaEnFixture}
-        corporaFr={corporaFrFixture}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    expect(app.find("h1#benefitCountString").text()).toEqual(
-      "A3.Here are NNN benefits that may apply to you:"
-    );
-  });
-
-  it("Selected Options", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={[]}
-        corporaEn={[]}
-        corporaFr={[]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    const expectedText =
-      benefitTypesFixture
-        .map(bt => {
-          return bt.name_fr;
-        })
-        .join("") + "Change";
-    expect(app.find("SelectedOptionsCard#vacServicesCard").text()).toEqual(
-      expectedText
-    );
-  });
-
-  it("Selected user types", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={[]}
-        corporaEn={[]}
-        corporaFr={[]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    const expectedText =
-      patronTypesFixture
-        .map(pt => {
-          return pt.name_fr;
-        })
-        .join("") + "Change";
-    expect(app.find("SelectedOptionsCard#userStatusesCard").text()).toEqual(
-      expectedText
-    );
-  });
-
-  it("Show All Benefits Link", () => {
-    const app = mount(
-      <App
-        i18n={i18nFixture}
-        t={tMocked}
-        storeHydrated={true}
-        benefitTypes={benefitTypesFixture}
-        patronTypes={patronTypesFixture}
-        benefits={[]}
-        corporaEn={[]}
-        corporaFr={[]}
-        selectedBenefitTypes={selectedBenefitTypesFixture}
-        selectedPatronTypes={selectedPatronTypesFixture}
-      />
-    );
-    expect(app.find(".AllBenefits").text()).toEqual("Show All Benefits");
   });
 });
