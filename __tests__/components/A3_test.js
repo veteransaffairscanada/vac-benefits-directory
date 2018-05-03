@@ -106,78 +106,19 @@ describe("A3", () => {
     ).toEqual(expectedBenefit);
   });
 
-  it("sets state correctly on mount if preselected benefit types", () => {
-    props.selectedBenefitTypes = [benefitTypesFixture[0].id];
-    let expectedSelectedBenefitTypes = {};
-    expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
-    expect(mountedA3().state().selectedBenefitTypes).toEqual(
-      expectedSelectedBenefitTypes
+  it("shows the countBenefitsString", () => {
+    expect(
+      mountedA3()
+        .find("#benefitCountString")
+        .text()
+    ).toEqual(
+      "A3.At this time there are no benefits that match your selections"
     );
   });
 
-  it("toggleButton adds id to state if not already there", () => {
-    mountedA3()
-      .instance()
-      .toggleButton(benefitTypesFixture[0].id);
-    let expectedSelectedBenefitTypes = {};
-    expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
-    expect(mountedA3().state().selectedBenefitTypes).toEqual(
-      expectedSelectedBenefitTypes
-    );
-  });
+  it("has a selectedBenefitTypes", () => {});
 
-  it("toggleButton removes id from state if already there", () => {
-    let initialSelectedBenefitTypes = {};
-    initialSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
-    let A3Instance = mountedA3().instance();
-    A3Instance.setState({
-      selectedBenefitTypes: initialSelectedBenefitTypes
-    });
-    A3Instance.toggleButton(benefitTypesFixture[0].id);
-    expect(A3Instance.state.selectedBenefitTypes).toEqual({});
-  });
-
-  it("has benefit type buttons", () => {
-    const expectedButtonText = benefitTypesFixture
-      .map(b => b.name_fr)
-      .concat(["A3.Next"]);
-    expect(
-      mountedA3()
-        .find("SelectButton")
-        .map(b => b.text())
-    ).toEqual(expectedButtonText);
-    expect(
-      mountedA3()
-        .find("SelectButton")
-        .first()
-        .prop("onClick")
-    ).toEqual(mountedA3().instance().toggleButton);
-  });
-
-  it("has benefit type with isDown all false if no benefit types are preselected", () => {
-    expect(
-      mountedA3()
-        .find("SelectButton")
-        .map(b => b.prop("isDown"))
-    ).toEqual([false, false, false]);
-  });
-
-  it("has benefit type with isDown true if a benefit types is preselected", () => {
-    props.selectedBenefitTypes = [benefitTypesFixture[1].id];
-    expect(
-      mountedA3()
-        .find("SelectButton")
-        .map(b => b.prop("isDown"))
-    ).toEqual([false, true, false]);
-  });
-
-  it("has a Next button", () => {
-    expect(
-      mountedA3()
-        .find("SelectButton")
-        .get(2).props.text
-    ).toEqual("A3.Next");
-  });
+  it("has a selectedPatronTypes", () => {});
 
   it("has an All Benefits Link", () => {
     expect(
@@ -186,6 +127,82 @@ describe("A3", () => {
         .text()
     ).toEqual("Show All Benefits");
   });
+});
+
+/**************************************/
+/**************************************/
+
+it("sets state correctly on mount if preselected benefit types", () => {
+  props.selectedBenefitTypes = [benefitTypesFixture[0].id];
+  let expectedSelectedBenefitTypes = {};
+  expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+  expect(mountedA3().state().selectedBenefitTypes).toEqual(
+    expectedSelectedBenefitTypes
+  );
+});
+
+it("toggleButton adds id to state if not already there", () => {
+  mountedA3()
+    .instance()
+    .toggleButton(benefitTypesFixture[0].id);
+  let expectedSelectedBenefitTypes = {};
+  expectedSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+  expect(mountedA3().state().selectedBenefitTypes).toEqual(
+    expectedSelectedBenefitTypes
+  );
+});
+
+it("toggleButton removes id from state if already there", () => {
+  let initialSelectedBenefitTypes = {};
+  initialSelectedBenefitTypes[benefitTypesFixture[0].id] = true;
+  let A3Instance = mountedA3().instance();
+  A3Instance.setState({
+    selectedBenefitTypes: initialSelectedBenefitTypes
+  });
+  A3Instance.toggleButton(benefitTypesFixture[0].id);
+  expect(A3Instance.state.selectedBenefitTypes).toEqual({});
+});
+
+it("has benefit type buttons", () => {
+  const expectedButtonText = benefitTypesFixture
+    .map(b => b.name_fr)
+    .concat(["A3.Next"]);
+  expect(
+    mountedA3()
+      .find("SelectButton")
+      .map(b => b.text())
+  ).toEqual(expectedButtonText);
+  expect(
+    mountedA3()
+      .find("SelectButton")
+      .first()
+      .prop("onClick")
+  ).toEqual(mountedA3().instance().toggleButton);
+});
+
+it("has benefit type with isDown all false if no benefit types are preselected", () => {
+  expect(
+    mountedA3()
+      .find("SelectButton")
+      .map(b => b.prop("isDown"))
+  ).toEqual([false, false, false]);
+});
+
+it("has benefit type with isDown true if a benefit types is preselected", () => {
+  props.selectedBenefitTypes = [benefitTypesFixture[1].id];
+  expect(
+    mountedA3()
+      .find("SelectButton")
+      .map(b => b.prop("isDown"))
+  ).toEqual([false, true, false]);
+});
+
+it("has a Next button", () => {
+  expect(
+    mountedA3()
+      .find("SelectButton")
+      .get(2).props.text
+  ).toEqual("A3.Next");
 });
 
 describe("Page A3", () => {
