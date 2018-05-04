@@ -107,6 +107,7 @@ export class B3 extends Component<Props> {
               <Grid container spacing={8}>
                 <Grid item>
                   <FilterSelector
+                    id="patronTypesFilter"
                     t={t}
                     legend={"B3.Status"}
                     filters={this.props.patronTypes}
@@ -116,6 +117,7 @@ export class B3 extends Component<Props> {
                 </Grid>
                 <Grid item>
                   <FilterSelector
+                    id="benefitTypesFilter"
                     t={t}
                     legend={"B3.Need"}
                     filters={this.props.benefitTypes}
