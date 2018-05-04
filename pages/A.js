@@ -14,6 +14,7 @@ import { fetchFromAirtable } from "../utils/airtable";
 import A1 from "../components/A1";
 import A2 from "../components/A2";
 import A3 from "../components/A3";
+import B3 from "../components/B3";
 
 type Props = {
   url: mixed,
@@ -76,6 +77,18 @@ export class A extends Component<Props> {
     Router.replace(href, href, { shallow: true });
   };
 
+  toggleSelectedPatronType = id => event => {
+    console.log("toggleSelectedPatronType:", id);
+    console.log(this.state);
+    let selected = this.state.selectedPatronTypes;
+    if (selected.hasOwnProperty(id)) {
+      delete selected[id];
+    } else {
+      selected[id] = true;
+    }
+    this.setState({ selectedPatronTypes: selected });
+  };
+
   sectionToDisplay = section => {
     switch (section) {
       case "A1":
@@ -114,6 +127,23 @@ export class A extends Component<Props> {
             switchSection={this.switchSection}
             selectedPatronTypes={this.state.selectedPatronTypes}
             selectedBenefitTypes={this.state.selectedBenefitTypes}
+          />
+        );
+      case "B3":
+        return (
+          <B3
+            id="B3"
+            t={this.props.t}
+            storeHydrated={this.props.storeHydrated}
+            benefitTypes={this.props.benefitTypes}
+            patronTypes={this.props.patronTypes}
+            benefits={this.props.benefits}
+            corporaEn={this.props.corporaEn}
+            corporaFr={this.props.corporaFr}
+            switchSection={this.switchSection}
+            selectedPatronTypes={this.state.selectedPatronTypes}
+            selectedBenefitTypes={this.state.selectedBenefitTypes}
+            toggleSelectedPatronType={this.toggleSelectedPatronType}
           />
         );
     }
