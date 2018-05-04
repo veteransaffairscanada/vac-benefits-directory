@@ -18,7 +18,7 @@ const fetchTableFromAirtable = async table => {
   });
 };
 
-export const fetchFromAirtable = async loadDataStore => {
+export const hydrateFromAirtable = async loadDataStore => {
   loadDataStore({
     benefitTypes: await fetchTableFromAirtable("benefit_types")
   });
