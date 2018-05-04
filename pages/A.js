@@ -78,15 +78,23 @@ export class A extends Component<Props> {
   };
 
   toggleSelectedPatronType = id => event => {
-    console.log("toggleSelectedPatronType:", id);
-    console.log(this.state);
     let selected = this.state.selectedPatronTypes;
-    if (selected.hasOwnProperty(id)) {
-      delete selected[id];
+    if (selected.indexOf(id) > -1) {
+      selected.splice(selected.indexOf(id), 1);
     } else {
-      selected[id] = true;
+      selected = selected.concat([id]);
     }
     this.setState({ selectedPatronTypes: selected });
+  };
+
+  toggleSelectedBenefitType = id => event => {
+    let selected = this.state.selectedBenefitTypes;
+    if (selected.indexOf(id) > -1) {
+      selected.splice(selected.indexOf(id), 1);
+    } else {
+      selected = selected.concat([id]);
+    }
+    this.setState({ selectedBenefitTypes: selected });
   };
 
   sectionToDisplay = section => {
@@ -144,6 +152,7 @@ export class A extends Component<Props> {
             selectedPatronTypes={this.state.selectedPatronTypes}
             selectedBenefitTypes={this.state.selectedBenefitTypes}
             toggleSelectedPatronType={this.toggleSelectedPatronType}
+            toggleSelectedBenefitType={this.toggleSelectedBenefitType}
           />
         );
     }

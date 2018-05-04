@@ -15,7 +15,8 @@ type Props = {
   corporaFr: mixed,
   selectedBenefitTypes: mixed,
   selectedPatronTypes: mixed,
-  toggleSelectedPatronType: mixed
+  toggleSelectedPatronType: mixed,
+  toggleSelectedBenefitType: mixed
 };
 
 export class App extends Component<Props> {
@@ -40,13 +41,13 @@ export class App extends Component<Props> {
 
   filterBenefits = (benefits, benefitTypes, patronTypes) => {
     return benefits.filter(benefit => {
-      // const matchingBenefitTypes = benefit.benefit_types.filter(
-      //   bt => benefitTypes.indexOf(bt) > -1
-      // );
+      const matchingBenefitTypes = benefit.benefit_types.filter(
+        bt => benefitTypes.indexOf(bt) > -1
+      );
       const matchingPatronTypes = benefit.patron_types.filter(
         pt => patronTypes.indexOf(pt) > -1
       );
-      // return matchingBenefitTypes.length > 0 && matchingPatronTypes.length > 0;
+      return matchingBenefitTypes.length > 0 && matchingPatronTypes.length > 0;
       return matchingPatronTypes.length > 0;
     });
   };
@@ -63,13 +64,13 @@ export class App extends Component<Props> {
 
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
-    //
-    // const benefitTypes = this.props.benefitTypes.filter(bt =>
-    //   this.props.selectedBenefitTypes.includes(bt.id)
-    // );
-    // const patronTypes = this.props.patronTypes.filter(pt =>
-    //   this.props.selectedPatronTypes.includes(pt.id)
-    // );
+
+    const benefitTypes = this.props.benefitTypes.filter(bt =>
+      this.props.selectedBenefitTypes.includes(bt.id)
+    );
+    const patronTypes = this.props.patronTypes.filter(pt =>
+      this.props.selectedPatronTypes.includes(pt.id)
+    );
 
     let benefits = this.filterBenefits(
       this.props.benefits,
@@ -107,7 +108,16 @@ export class App extends Component<Props> {
                     handleChange={this.props.toggleSelectedPatronType}
                   />
                 </Grid>
-
+                <Grid item>
+                  <FilterSelector
+                    t={t}
+                    legend={"Need"}
+                    filters={this.props.benefitTypes}
+                    selectedFilters={this.props.selectedBenefitTypes}
+                    handleChange={this.props.toggleSelectedBenefitType}
+                  />
+                </Grid>
+                `
                 <Grid item>
                   <p style={{ textAlign: "center", fontSize: "1em" }}>
                     <a

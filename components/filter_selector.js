@@ -26,7 +26,7 @@ class FilterSelector extends Component<Props> {
               key={pt.id}
               control={
                 <Checkbox
-                  checked={this.props.selectedFilters.hasOwnProperty(pt.id)}
+                  checked={this.props.selectedFilters.indexOf(pt.id) > -1}
                   onChange={this.props.handleChange(pt.id)}
                   value={pt.id}
                 />
