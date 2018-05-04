@@ -24,6 +24,7 @@ class FilterSelector extends Component<Props> {
         <FormGroup>
           {this.props.filters.map(pt => (
             <FormControlLabel
+              id={pt.id}
               key={pt.id}
               control={
                 <Checkbox
