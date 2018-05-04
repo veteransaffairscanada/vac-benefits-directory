@@ -35,7 +35,8 @@
   },
   "B3": {
     "Status": "Statut",
-    "Need": "Le besoin"
+    "Needs": "Exigences",
+    "Filter Benefits": "Filtrer les avantages"
   },
   "alpha": "Pour les tests seulement",
   "noscript":

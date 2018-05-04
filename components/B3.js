@@ -106,6 +106,9 @@ export class B3 extends Component<Props> {
             <Grid item sm={3} xs={12}>
               <Grid container spacing={8}>
                 <Grid item>
+                  <h2>{t("B3.Filter Benefits")}</h2>
+                </Grid>
+                <Grid item>
                   <FilterSelector
                     id="patronTypesFilter"
                     t={t}
@@ -119,13 +122,12 @@ export class B3 extends Component<Props> {
                   <FilterSelector
                     id="benefitTypesFilter"
                     t={t}
-                    legend={"B3.Need"}
+                    legend={"B3.Needs"}
                     filters={this.props.benefitTypes}
                     selectedFilters={this.props.selectedBenefitTypes}
                     handleChange={this.props.toggleSelectedBenefitType}
                   />
                 </Grid>
-                `
                 <Grid item>
                   <p style={{ textAlign: "center", fontSize: "1em" }}>
                     <a

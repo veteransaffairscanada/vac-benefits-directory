@@ -19,8 +19,11 @@ describe("Index page", () => {
     );
   });
 
-  it("has a button for wireframe A", () => {
+  it("has buttons for wireframes A and B", () => {
     const appMounted = shallow(<App {...props} />);
-    expect(appMounted.find("SelectButton").props().text).toEqual("A");
+    expect(appMounted.find("SelectButton").map(b => b.props().text)).toEqual([
+      "A",
+      "B"
+    ]);
   });
 });
