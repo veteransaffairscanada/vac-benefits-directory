@@ -48,6 +48,19 @@ describe("FilterSelector", () => {
     ).toEqual(patronTypesFixture.map(pt => pt.name_fr));
   });
 
+  it("displays English label if appropriate", () => {
+    props.t = () => "en";
+    expect(
+      patronTypesFixture.map(
+        pt =>
+          mountedFilterSelector()
+            .find("#" + pt.id)
+            .first()
+            .props().label
+      )
+    ).toEqual(patronTypesFixture.map(pt => pt.name_en));
+  });
+
   it("has the correct checked properties", () => {
     props.selectedFilters = [patronTypesFixture[0].id];
     expect(

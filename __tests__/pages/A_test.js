@@ -135,10 +135,29 @@ describe("A", () => {
     expect(Router.replace).toBeCalledWith(href, href, { shallow: true });
   });
 
+  it("toggleSelectedPatronType adds and removes id", () => {
+    let AInstance = mountedA().instance();
+    expect(AInstance.state.selectedPatronTypes.indexOf("x")).toEqual(-1);
+    AInstance.toggleSelectedPatronType("x")();
+    expect(AInstance.state.selectedPatronTypes.indexOf("x")).toEqual(0);
+    AInstance.toggleSelectedPatronType("x")();
+    expect(AInstance.state.selectedPatronTypes.indexOf("x")).toEqual(-1);
+  });
+
+  it("toggleSelectedBenefitType adds and removes id", () => {
+    let AInstance = mountedA().instance();
+    expect(AInstance.state.selectedBenefitTypes.indexOf("x")).toEqual(-1);
+    AInstance.toggleSelectedBenefitType("x")();
+    expect(AInstance.state.selectedBenefitTypes.indexOf("x")).toEqual(0);
+    AInstance.toggleSelectedBenefitType("x")();
+    expect(AInstance.state.selectedBenefitTypes.indexOf("x")).toEqual(-1);
+  });
+
   it("sectionToDisplay returns appropriate component", () => {
     let AInstance = mountedA().instance();
     expect(AInstance.sectionToDisplay("A1").props.id).toEqual("A1");
     expect(AInstance.sectionToDisplay("A2").props.id).toEqual("A2");
     expect(AInstance.sectionToDisplay("A3").props.id).toEqual("A3");
+    expect(AInstance.sectionToDisplay("B3").props.id).toEqual("B3");
   });
 });
