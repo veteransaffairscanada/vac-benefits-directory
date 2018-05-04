@@ -77,7 +77,7 @@ export class A extends Component<Props> {
     Router.replace(href, href, { shallow: true });
   };
 
-  toggleSelectedPatronType = id => event => {
+  toggleSelectedPatronType = id => () => {
     let selected = this.state.selectedPatronTypes;
     if (selected.indexOf(id) > -1) {
       selected.splice(selected.indexOf(id), 1);
@@ -87,7 +87,7 @@ export class A extends Component<Props> {
     this.setState({ selectedPatronTypes: selected });
   };
 
-  toggleSelectedBenefitType = id => event => {
+  toggleSelectedBenefitType = id => () => {
     let selected = this.state.selectedBenefitTypes;
     if (selected.indexOf(id) > -1) {
       selected.splice(selected.indexOf(id), 1);

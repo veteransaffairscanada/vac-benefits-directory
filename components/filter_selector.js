@@ -17,9 +17,10 @@ type Props = {
 
 class FilterSelector extends Component<Props> {
   render() {
+    const { t } = this.props;
     return (
       <FormControl component="fieldset">
-        <FormLabel component="legend">{this.props.legend}</FormLabel>
+        <FormLabel component="legend">{t(this.props.legend)}</FormLabel>
         <FormGroup>
           {this.props.filters.map(pt => (
             <FormControlLabel
@@ -31,7 +32,9 @@ class FilterSelector extends Component<Props> {
                   value={pt.id}
                 />
               }
-              label={pt.name_en}
+              label={
+                t("current-language-code") === "en" ? pt.name_en : pt.name_fr
+              }
             />
           ))}
         </FormGroup>

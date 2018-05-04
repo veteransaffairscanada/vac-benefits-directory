@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Grid } from "material-ui";
-import { BenefitTitleCard } from "../components/benefit_cards";
+import { BenefitCard } from "../components/benefit_cards";
 import FilterSelector from "../components/filter_selector";
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
   toggleSelectedBenefitType: mixed
 };
 
-export class App extends Component<Props> {
+export class B3 extends Component<Props> {
   props: Props;
 
   countBenefitsString = (benefits, t) => {
@@ -48,29 +48,30 @@ export class App extends Component<Props> {
         pt => patronTypes.indexOf(pt) > -1
       );
       return matchingBenefitTypes.length > 0 && matchingPatronTypes.length > 0;
-      return matchingPatronTypes.length > 0;
     });
   };
 
-  enrichBenefit = (benefit, corporaEn, corporaFr) => {
-    let links = corporaEn.filter(corp => corp.benefits.includes(benefit.id));
+  enrichBenefit = (benefit, benefitTypes, corporaEn, corporaFr) => {
+    let corporas = corporaEn.filter(corp => corp.benefits.includes(benefit.id));
     benefit.linkEn =
-      links.length > 0 ? links[0].full_description_link : undefined;
-    links = corporaFr.filter(corp => corp.benefits.includes(benefit.id));
+      corporas.length > 0 ? corporas[0].full_description_link : undefined;
+    benefit.descriptionEn =
+      corporas.length > 0 ? corporas[0].one_line_description : undefined;
+
+    corporas = corporaFr.filter(corp => corp.benefits.includes(benefit.id));
     benefit.linkFr =
-      links.length > 0 ? links[0].full_description_link : undefined;
+      corporas.length > 0 ? corporas[0].full_description_link : undefined;
+    benefit.descriptionFr =
+      corporas.length > 0 ? corporas[0].one_line_description : undefined;
+
+    let bts = benefitTypes.filter(bt => bt.benefits.includes(benefit.id));
+    benefit.benefitTypeEn = bts.length > 0 ? bts[0].name_en : "";
+    benefit.benefitTypeFr = bts.length > 0 ? bts[0].name_fr : "";
     return benefit;
   };
 
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
-
-    const benefitTypes = this.props.benefitTypes.filter(bt =>
-      this.props.selectedBenefitTypes.includes(bt.id)
-    );
-    const patronTypes = this.props.patronTypes.filter(pt =>
-      this.props.selectedPatronTypes.includes(pt.id)
-    );
 
     let benefits = this.filterBenefits(
       this.props.benefits,
@@ -80,7 +81,12 @@ export class App extends Component<Props> {
 
     // add links to benefits
     benefits = benefits.map(benefit =>
-      this.enrichBenefit(benefit, this.props.corporaEn, this.props.corporaFr)
+      this.enrichBenefit(
+        benefit,
+        this.props.benefitTypes,
+        this.props.corporaEn,
+        this.props.corporaFr
+      )
     );
 
     return (
@@ -102,7 +108,7 @@ export class App extends Component<Props> {
                 <Grid item>
                   <FilterSelector
                     t={t}
-                    legend={"Status"}
+                    legend={"B3.Status"}
                     filters={this.props.patronTypes}
                     selectedFilters={this.props.selectedPatronTypes}
                     handleChange={this.props.toggleSelectedPatronType}
@@ -111,7 +117,7 @@ export class App extends Component<Props> {
                 <Grid item>
                   <FilterSelector
                     t={t}
-                    legend={"Need"}
+                    legend={"B3.Need"}
                     filters={this.props.benefitTypes}
                     selectedFilters={this.props.selectedBenefitTypes}
                     handleChange={this.props.toggleSelectedBenefitType}
@@ -134,7 +140,7 @@ export class App extends Component<Props> {
             <Grid item sm={9} xs={12}>
               <Grid container spacing={24}>
                 {benefits.map((benefit, i) => (
-                  <BenefitTitleCard
+                  <BenefitCard
                     id={"bc" + i}
                     className="BenefitCards"
                     benefit={benefit}
@@ -151,4 +157,4 @@ export class App extends Component<Props> {
   }
 }
 
-export default App;
+export default B3;

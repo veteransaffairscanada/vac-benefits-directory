@@ -33,6 +33,10 @@
     "Here is a benefit that may apply to you":
       "Voici un avantage qui peut s'appliquer à vous"
   },
+  "B3": {
+    "Status": "Statut",
+    "Need": "Le besoin"
+  },
   "alpha": "Pour les tests seulement",
   "noscript":
     "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",

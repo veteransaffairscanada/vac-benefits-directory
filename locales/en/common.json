@@ -33,6 +33,10 @@
     "Here is a benefit that may apply to you":
       "Here is a benefit that may apply to you"
   },
+  "B3": {
+    "Status": "Status",
+    "Need": "Need"
+  },
   "alpha": "For testing only.",
   "noscript":
     "Javascript is disabled and you may experience reduced functionality. To see a full list of benefits, click <a href='/all-benefits'>here</a>.",
