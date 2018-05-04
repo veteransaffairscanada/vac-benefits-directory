@@ -1,6 +1,6 @@
 const baseURL = "http://localhost:3000/A";
 
-describe("Wireframe A", () => {
+describe("Wireframe A Navigation", () => {
   it("starts on A1", () => {
     cy.visit(baseURL);
     cy.get("#A1");

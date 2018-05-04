@@ -5,11 +5,11 @@ import Router from "next/router";
 
 import withRedux from "next-redux-wrapper";
 import { initStore, loadDataStore } from "../store";
-
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { bindActionCreators } from "redux";
-import { fetchFromAirtable } from "../utils/airtable";
+import { hydrateFromAirtable } from "../utils/airtable";
+import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
 
 import A1 from "../components/A1";
 import A2 from "../components/A2";
@@ -41,8 +41,10 @@ export class A extends Component<Props> {
   }
 
   componentWillMount() {
-    if (!this.props.storeHydrated) {
-      fetchFromAirtable(this.props.loadDataStore);
+    if (this.props.url.query.use_testdata) {
+      hydrateFromFixtures(this.props.loadDataStore);
+    } else if (!this.props.storeHydrated) {
+      hydrateFromAirtable(this.props.loadDataStore);
     }
     const newState = {
       section: this.props.url.query.section || "A1",

@@ -11,7 +11,7 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { BenefitCard } from "../components/benefit_cards";
 import { bindActionCreators } from "redux";
-import { fetchFromAirtable } from "../utils/airtable";
+import { hydrateFromAirtable } from "../utils/airtable";
 
 type Props = {
   benefits: mixed,
@@ -29,7 +29,7 @@ export class AllBenefits extends Component<Props> {
 
   componentWillMount() {
     if (!this.props.storeHydrated) {
-      fetchFromAirtable(this.props.loadDataStore);
+      hydrateFromAirtable(this.props.loadDataStore);
     }
   }
 
