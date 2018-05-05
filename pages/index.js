@@ -35,6 +35,13 @@ export class App extends Component<Props> {
                 text="A"
               />
             </Grid>
+            <Grid item xs={3}>
+              <SelectButton
+                fullWidth={true}
+                href={"A?section=B3&lng=" + t("current-language-code")}
+                text="B"
+              />
+            </Grid>
           </Grid>
         </div>
       </Layout>
