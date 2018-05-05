@@ -105,10 +105,10 @@ export class B3 extends Component<Props> {
           <Grid container spacing={24}>
             <Grid item sm={3} xs={12}>
               <Grid container spacing={8}>
-                <Grid item>
+                <Grid item sm={12}>
                   <h2>{t("B3.Filter Benefits")}</h2>
                 </Grid>
-                <Grid item>
+                <Grid item sm={12}>
                   <FilterSelector
                     id="patronTypesFilter"
                     t={t}
@@ -118,7 +118,7 @@ export class B3 extends Component<Props> {
                     handleChange={this.props.toggleSelectedPatronType}
                   />
                 </Grid>
-                <Grid item>
+                <Grid item sm={12}>
                   <FilterSelector
                     id="benefitTypesFilter"
                     t={t}
@@ -128,8 +128,8 @@ export class B3 extends Component<Props> {
                     handleChange={this.props.toggleSelectedBenefitType}
                   />
                 </Grid>
-                <Grid item>
-                  <p style={{ textAlign: "center", fontSize: "1em" }}>
+                <Grid item sm={12}>
+                  <p style={{ textAlign: "left", fontSize: "1em" }}>
                     <a
                       className="AllBenefits"
                       href={"all-benefits?lng=" + t("current-language-code")}
