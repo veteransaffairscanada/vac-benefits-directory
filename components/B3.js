@@ -2,6 +2,13 @@
 
 import React, { Component } from "react";
 import { Grid } from "material-ui";
+import Collapse from "material-ui/transitions/Collapse";
+import IconButton from "material-ui/IconButton";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import classnames from "classnames";
+import { withStyles } from "material-ui/styles";
+import red from "material-ui/colors/red";
+
 import { BenefitCard } from "../components/benefit_cards";
 import FilterSelector from "../components/filter_selector";
 
@@ -19,8 +26,38 @@ type Props = {
   toggleSelectedBenefitType: mixed
 };
 
+const styles = theme => ({
+  card: {
+    maxWidth: 400
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%" // 16:9
+  },
+  actions: {
+    display: "flex"
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest
+    }),
+    marginLeft: "auto"
+  },
+  expandOpen: {
+    transform: "rotate(180deg)"
+  },
+  avatar: {
+    backgroundColor: red[500]
+  }
+});
+
 export class B3 extends Component<Props> {
   props: Props;
+
+  state = {
+    expanded: true
+  };
 
   countBenefitsString = (benefits, t) => {
     switch (benefits.length) {
@@ -70,8 +107,12 @@ export class B3 extends Component<Props> {
     return benefit;
   };
 
+  handleExpandClick = () => {
+    this.setState({ expanded: !this.state.expanded });
+  };
+
   render() {
-    const { t } = this.props; // eslint-disable-line no-unused-vars
+    const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
     let benefits = this.filterBenefits(
       this.props.benefits,
@@ -105,30 +146,46 @@ export class B3 extends Component<Props> {
           <Grid container spacing={24}>
             <Grid item sm={3} xs={12}>
               <Grid container spacing={8}>
-                <Grid item sm={12}>
-                  <h2>{t("B3.Filter Benefits")}</h2>
+                <Grid item xs={12}>
+                  <h2>
+                    {t("B3.Filter Benefits")}
+                    <IconButton
+                      className={classnames(classes.expand, {
+                        [classes.expandOpen]: this.state.expanded
+                      })}
+                      onClick={this.handleExpandClick}
+                      aria-expanded={this.state.expanded}
+                      aria-label="Show more"
+                    >
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  </h2>
                 </Grid>
-                <Grid item sm={12}>
-                  <FilterSelector
-                    id="patronTypesFilter"
-                    t={t}
-                    legend={"B3.Status"}
-                    filters={this.props.patronTypes}
-                    selectedFilters={this.props.selectedPatronTypes}
-                    handleChange={this.props.toggleSelectedPatronType}
-                  />
-                </Grid>
-                <Grid item sm={12}>
-                  <FilterSelector
-                    id="benefitTypesFilter"
-                    t={t}
-                    legend={"B3.Needs"}
-                    filters={this.props.benefitTypes}
-                    selectedFilters={this.props.selectedBenefitTypes}
-                    handleChange={this.props.toggleSelectedBenefitType}
-                  />
-                </Grid>
-                <Grid item sm={12}>
+
+                <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                  <Grid item xs={12}>
+                    <FilterSelector
+                      id="patronTypesFilter"
+                      t={t}
+                      legend={"B3.Status"}
+                      filters={this.props.patronTypes}
+                      selectedFilters={this.props.selectedPatronTypes}
+                      handleChange={this.props.toggleSelectedPatronType}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <FilterSelector
+                      id="benefitTypesFilter"
+                      t={t}
+                      legend={"B3.Needs"}
+                      filters={this.props.benefitTypes}
+                      selectedFilters={this.props.selectedBenefitTypes}
+                      handleChange={this.props.toggleSelectedBenefitType}
+                    />
+                  </Grid>
+                </Collapse>
+
+                <Grid item xs={12}>
                   <p style={{ textAlign: "left", fontSize: "1em" }}>
                     <a
                       className="AllBenefits"
@@ -161,4 +218,4 @@ export class B3 extends Component<Props> {
   }
 }
 
-export default B3;
+export default withStyles(styles)(B3);
