@@ -19,6 +19,7 @@ export class SelectButton extends Component<Props> {
     return (
       <Card>
         <Button
+          id={this.props.id}
           target={this.props.target}
           onClick={
             this.props.onClick
