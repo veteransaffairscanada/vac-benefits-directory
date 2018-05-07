@@ -8,6 +8,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
 import red from "material-ui/colors/red";
+import Typography from "material-ui/Typography";
 
 import { BenefitCard } from "../components/benefit_cards";
 import FilterSelector from "../components/filter_selector";
@@ -60,12 +61,23 @@ export class B3 extends Component<Props> {
     expanded: true
   };
 
-  countBenefitsString = (benefits, t) => {
+  countBenefitsString = (
+    selectedPatronTypes,
+    selectedBenefitTypes,
+    benefits,
+    t
+  ) => {
     switch (benefits.length) {
       case 0:
-        return t(
-          "A3.At this time there are no benefits that match your selections"
-        );
+        if (selectedPatronTypes.length === 0) {
+          return t("A3.Please select a status");
+        } else if (selectedBenefitTypes.length === 0) {
+          return t("A3.Please select a need");
+        } else {
+          return t(
+            "A3.At this time there are no benefits that match your selections"
+          );
+        }
       case 1:
         return t("A3.Here is a benefit that may apply to you") + ":";
       default:
@@ -135,20 +147,10 @@ export class B3 extends Component<Props> {
       <div id={this.props.id}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <h1 id="benefitCountString" style={{ textAlign: "left" }}>
-                {this.countBenefitsString(benefits, t)}
-              </h1>
-            </Grid>
-          </Grid>
-        </div>
-
-        <div style={{ padding: 12 }}>
-          <Grid container spacing={24}>
             <Grid item md={3} sm={5} xs={12}>
               <Grid container spacing={8}>
                 <Grid item xs={12}>
-                  <h2>
+                  <Typography variant="title">
                     {t("B3.Filter Benefits")}
                     <IconButton
                       id="expandButton"
@@ -161,7 +163,7 @@ export class B3 extends Component<Props> {
                     >
                       <ExpandMoreIcon />
                     </IconButton>
-                  </h2>
+                  </Typography>
                 </Grid>
 
                 <Collapse
@@ -207,6 +209,16 @@ export class B3 extends Component<Props> {
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
               <Grid container spacing={24}>
+                <Grid item xs={12}>
+                  <h1 id="benefitCountString" style={{ textAlign: "left" }}>
+                    {this.countBenefitsString(
+                      this.props.selectedPatronTypes,
+                      this.props.selectedBenefitTypes,
+                      benefits,
+                      t
+                    )}
+                  </h1>
+                </Grid>
                 {benefits.map((benefit, i) => (
                   <BenefitCard
                     id={"bc" + i}

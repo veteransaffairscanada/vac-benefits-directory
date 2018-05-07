@@ -49,15 +49,22 @@ describe("B3", () => {
 
   it("has a correct countBenefitsString function", () => {
     let B3Instance = mountedB3().instance();
-    expect(B3Instance.countBenefitsString([], props.t)).toEqual(
+
+    expect(B3Instance.countBenefitsString([], ["a"], [], props.t)).toEqual(
+      "A3.Please select a status"
+    );
+    expect(B3Instance.countBenefitsString(["a"], [], [], props.t)).toEqual(
+      "A3.Please select a need"
+    );
+    expect(B3Instance.countBenefitsString(["a"], ["a"], [], props.t)).toEqual(
       "A3.At this time there are no benefits that match your selections"
     );
     expect(
-      B3Instance.countBenefitsString([benefitsFixture[0]], props.t)
+      B3Instance.countBenefitsString([], [], [benefitsFixture[0]], props.t)
     ).toEqual("A3.Here is a benefit that may apply to you:");
-    expect(B3Instance.countBenefitsString(benefitsFixture, props.t)).toEqual(
-      "A3.Here are NNN benefits that may apply to you:"
-    );
+    expect(
+      B3Instance.countBenefitsString([], [], benefitsFixture, props.t)
+    ).toEqual("A3.Here are NNN benefits that may apply to you:");
   });
 
   it("has a correct filterBenefits function", () => {
@@ -114,9 +121,7 @@ describe("B3", () => {
       mountedB3()
         .find("#benefitCountString")
         .text()
-    ).toEqual(
-      "A3.At this time there are no benefits that match your selections"
-    );
+    ).toEqual("A3.Please select a status");
   });
 
   it("has a selectedBenefitTypes filter", () => {

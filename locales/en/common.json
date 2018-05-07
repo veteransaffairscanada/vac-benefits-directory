@@ -31,7 +31,9 @@
     "At this time there are no benefits that match your selections":
       "At this time there are no benefits that match your selections.",
     "Here is a benefit that may apply to you":
-      "Here is a benefit that may apply to you"
+      "Here is a benefit that may apply to you",
+    "Please select a status": "Please select a status.",
+    "Please select a need": "Please select a need."
   },
   "B3": {
     "Status": "Status",
