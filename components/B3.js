@@ -145,7 +145,7 @@ export class B3 extends Component<Props> {
 
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
-            <Grid item sm={3} xs={12}>
+            <Grid item md={3} sm={5} xs={12}>
               <Grid container spacing={8}>
                 <Grid item xs={12}>
                   <h2>
@@ -205,7 +205,7 @@ export class B3 extends Component<Props> {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item sm={9} xs={12}>
+            <Grid item md={9} sm={7} xs={12}>
               <Grid container spacing={24}>
                 {benefits.map((benefit, i) => (
                   <BenefitCard
