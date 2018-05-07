@@ -31,11 +31,13 @@
     "At this time there are no benefits that match your selections":
       "Pour le moment, aucun avantage ne correspond à vos sélections.",
     "Here is a benefit that may apply to you":
-      "Voici un avantage qui peut s'appliquer à vous"
+      "Voici un avantage qui peut s'appliquer à vous",
+    "Please select a status": "Veuillez sélectionner un statut.",
+    "Please select a need": "Veuillez sélectionner un besoin."
   },
   "B3": {
     "Status": "Statut",
-    "Needs": "Exigences",
+    "Needs": "Besoins",
     "Filter Benefits": "Filtrer les avantages"
   },
   "alpha": "Pour les tests seulement",

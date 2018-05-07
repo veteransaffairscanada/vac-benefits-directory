@@ -3,7 +3,7 @@
 import { shallow } from "enzyme";
 import React from "react";
 
-import B3 from "../../components/B3";
+import { B3 } from "../../components/B3";
 import { benefitsFixture } from "../fixtures/benefits";
 import benefitTypesFixture from "../fixtures/benefit_types";
 import patronTypesFixture from "../fixtures/patron_types";
@@ -32,22 +32,39 @@ describe("B3", () => {
       corporaFr: corporaFrFixture,
       selectedBenefitTypes: [],
       selectedPatronTypes: [],
-      switchSection: jest.fn()
+      switchSection: jest.fn(),
+      toggleSelectedPatronType: jest.fn(),
+      toggleSelectedBenefitType: jest.fn(),
+      classes: {
+        card: "B3-card-87",
+        media: "B3-media-88",
+        actions: "B3-actions-89",
+        expand: "B3-expand-90",
+        expandOpen: "B3-expandOpen-91",
+        avatar: "B3-avatar-92"
+      }
     };
     _mountedB3 = undefined;
   });
 
   it("has a correct countBenefitsString function", () => {
     let B3Instance = mountedB3().instance();
-    expect(B3Instance.countBenefitsString([], props.t)).toEqual(
+
+    expect(B3Instance.countBenefitsString([], ["a"], [], props.t)).toEqual(
+      "A3.Please select a status"
+    );
+    expect(B3Instance.countBenefitsString(["a"], [], [], props.t)).toEqual(
+      "A3.Please select a need"
+    );
+    expect(B3Instance.countBenefitsString(["a"], ["a"], [], props.t)).toEqual(
       "A3.At this time there are no benefits that match your selections"
     );
     expect(
-      B3Instance.countBenefitsString([benefitsFixture[0]], props.t)
+      B3Instance.countBenefitsString([], [], [benefitsFixture[0]], props.t)
     ).toEqual("A3.Here is a benefit that may apply to you:");
-    expect(B3Instance.countBenefitsString(benefitsFixture, props.t)).toEqual(
-      "A3.Here are NNN benefits that may apply to you:"
-    );
+    expect(
+      B3Instance.countBenefitsString([], [], benefitsFixture, props.t)
+    ).toEqual("A3.Here are NNN benefits that may apply to you:");
   });
 
   it("has a correct filterBenefits function", () => {
@@ -104,9 +121,7 @@ describe("B3", () => {
       mountedB3()
         .find("#benefitCountString")
         .text()
-    ).toEqual(
-      "A3.At this time there are no benefits that match your selections"
-    );
+    ).toEqual("A3.Please select a status");
   });
 
   it("has a selectedBenefitTypes filter", () => {
@@ -116,6 +131,34 @@ describe("B3", () => {
   it("has a selectedPatronTypes filter", () => {
     props.selectedBenefitTypes = ["1", "2"];
     expect(mountedB3().find("#patronTypesFilter").length).toEqual(1);
+  });
+
+  it("has the filters contained in a collapse component", () => {
+    expect(
+      mountedB3()
+        .find("#collapseBlock")
+        .find("#benefitTypesFilter").length
+    ).toEqual(1);
+    expect(
+      mountedB3()
+        .find("#collapseBlock")
+        .find("#patronTypesFilter").length
+    ).toEqual(1);
+  });
+
+  it("has the filter initially expanded", () => {
+    expect(mountedB3().state().expanded).toEqual(true);
+  });
+
+  it("has a button to collapse / expand the filter", () => {
+    mountedB3()
+      .find("#expandButton")
+      .simulate("click");
+    expect(mountedB3().state().expanded).toEqual(false);
+    mountedB3()
+      .find("#expandButton")
+      .simulate("click");
+    expect(mountedB3().state().expanded).toEqual(true);
   });
 
   it("has the selected benefit cards", () => {
