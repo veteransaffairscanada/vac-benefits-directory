@@ -3,7 +3,7 @@
 import { shallow } from "enzyme";
 import React from "react";
 
-import B3 from "../../components/B3";
+import { B3 } from "../../components/B3";
 import { benefitsFixture } from "../fixtures/benefits";
 import benefitTypesFixture from "../fixtures/benefit_types";
 import patronTypesFixture from "../fixtures/patron_types";
@@ -32,7 +32,17 @@ describe("B3", () => {
       corporaFr: corporaFrFixture,
       selectedBenefitTypes: [],
       selectedPatronTypes: [],
-      switchSection: jest.fn()
+      switchSection: jest.fn(),
+      toggleSelectedPatronType: jest.fn(),
+      toggleSelectedBenefitType: jest.fn(),
+      classes: {
+        card: "B3-card-87",
+        media: "B3-media-88",
+        actions: "B3-actions-89",
+        expand: "B3-expand-90",
+        expandOpen: "B3-expandOpen-91",
+        avatar: "B3-avatar-92"
+      }
     };
     _mountedB3 = undefined;
   });
@@ -116,6 +126,34 @@ describe("B3", () => {
   it("has a selectedPatronTypes filter", () => {
     props.selectedBenefitTypes = ["1", "2"];
     expect(mountedB3().find("#patronTypesFilter").length).toEqual(1);
+  });
+
+  it("has the filters contained in a collapse component", () => {
+    expect(
+      mountedB3()
+        .find("#collapseBlock")
+        .find("#benefitTypesFilter").length
+    ).toEqual(1);
+    expect(
+      mountedB3()
+        .find("#collapseBlock")
+        .find("#patronTypesFilter").length
+    ).toEqual(1);
+  });
+
+  it("has the filter initially expanded", () => {
+    expect(mountedB3().state().expanded).toEqual(true);
+  });
+
+  it("has a button to collapse / expand the filter", () => {
+    mountedB3()
+      .find("#expandButton")
+      .simulate("click");
+    expect(mountedB3().state().expanded).toEqual(false);
+    mountedB3()
+      .find("#expandButton")
+      .simulate("click");
+    expect(mountedB3().state().expanded).toEqual(true);
   });
 
   it("has the selected benefit cards", () => {

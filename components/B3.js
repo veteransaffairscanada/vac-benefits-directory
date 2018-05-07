@@ -23,7 +23,8 @@ type Props = {
   selectedBenefitTypes: mixed,
   selectedPatronTypes: mixed,
   toggleSelectedPatronType: mixed,
-  toggleSelectedBenefitType: mixed
+  toggleSelectedBenefitType: mixed,
+  classes: mixed
 };
 
 const styles = theme => ({
@@ -150,6 +151,7 @@ export class B3 extends Component<Props> {
                   <h2>
                     {t("B3.Filter Benefits")}
                     <IconButton
+                      id="expandButton"
                       className={classnames(classes.expand, {
                         [classes.expandOpen]: this.state.expanded
                       })}
@@ -162,7 +164,12 @@ export class B3 extends Component<Props> {
                   </h2>
                 </Grid>
 
-                <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                <Collapse
+                  id="collapseBlock"
+                  in={this.state.expanded}
+                  timeout="auto"
+                  unmountOnExit
+                >
                   <Grid item xs={12}>
                     <FilterSelector
                       id="patronTypesFilter"
