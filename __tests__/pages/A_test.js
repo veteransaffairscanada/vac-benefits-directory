@@ -14,9 +14,9 @@ jest.mock("react-ga");
 
 describe("A", () => {
   Router.router = {
-    replace: jest.fn()
+    push: jest.fn()
   };
-  Router.replace = jest.fn();
+  Router.push = jest.fn();
 
   let props;
   let _mountedA;
@@ -117,7 +117,7 @@ describe("A", () => {
     });
   });
 
-  it("switchSection calls Router.replace with correct href", () => {
+  it("switchSection calls Router.push with correct href", () => {
     const originalSection = {
       section: "A1",
       selectedBenefitTypes: ["bt"],
@@ -132,7 +132,7 @@ describe("A", () => {
     AInstance.switchSection("A2", newData);
     const href =
       "/A?section=A2&selectedBenefitTypes=bt1,bt2&selectedPatronTypes=pt1,pt2";
-    expect(Router.replace).toBeCalledWith(href, href, { shallow: true });
+    expect(Router.push).toBeCalledWith(href);
   });
 
   it("toggleSelectedPatronType adds and removes id", () => {
