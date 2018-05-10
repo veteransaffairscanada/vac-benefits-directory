@@ -14,9 +14,9 @@ jest.mock("react-ga");
 
 describe("A", () => {
   Router.router = {
-    replace: jest.fn()
+    push: jest.fn()
   };
-  Router.replace = jest.fn();
+  Router.push = jest.fn();
 
   let props;
   let _mountedA;
@@ -85,6 +85,16 @@ describe("A", () => {
     expect(mountedA().state()).toEqual(expectedState);
   });
 
+  it("Router.onRouteChangeStart sets state correctly from url", () => {
+    let AInstance = mountedA().instance();
+    const url =
+      "/A?section=test_section&selectedBenefitTypes=1,2,3&selectedPatronTypes=11,22,33";
+    Router.onRouteChangeStart(url);
+    expect(AInstance.state.section).toEqual("test_section");
+    expect(AInstance.state.selectedBenefitTypes).toEqual(["1", "2", "3"]);
+    expect(AInstance.state.selectedPatronTypes).toEqual(["11", "22", "33"]);
+  });
+
   it("switchSection sets state correctly if no data", () => {
     const originalSection = {
       section: "A1",
@@ -117,7 +127,7 @@ describe("A", () => {
     });
   });
 
-  it("switchSection calls Router.replace with correct href", () => {
+  it("switchSection calls Router.push with correct href", () => {
     const originalSection = {
       section: "A1",
       selectedBenefitTypes: ["bt"],
@@ -132,7 +142,7 @@ describe("A", () => {
     AInstance.switchSection("A2", newData);
     const href =
       "/A?section=A2&selectedBenefitTypes=bt1,bt2&selectedPatronTypes=pt1,pt2";
-    expect(Router.replace).toBeCalledWith(href, href, { shallow: true });
+    expect(Router.push).toBeCalledWith(href);
   });
 
   it("toggleSelectedPatronType adds and removes id", () => {

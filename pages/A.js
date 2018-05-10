@@ -42,6 +42,25 @@ export class A extends Component<Props> {
   }
 
   componentWillMount() {
+    Router.onRouteChangeStart = newUrl => {
+      const myURL = new URL(newUrl, "http://hostname");
+      const section = myURL.searchParams.get("section");
+      const selectedBenefitTypes = myURL.searchParams.get(
+        "selectedBenefitTypes"
+      );
+      const selectedPatronTypes = myURL.searchParams.get("selectedPatronTypes");
+      const newState = {
+        section: section || "A1",
+        selectedBenefitTypes: selectedBenefitTypes
+          ? selectedBenefitTypes.split(",")
+          : [],
+        selectedPatronTypes: selectedPatronTypes
+          ? selectedPatronTypes.split(",")
+          : []
+      };
+      this.setState(newState);
+    };
+
     if (this.props.url.query.use_testdata) {
       hydrateFromFixtures(this.props.loadDataStore);
     } else if (!this.props.storeHydrated) {
@@ -76,7 +95,7 @@ export class A extends Component<Props> {
       newState.selectedBenefitTypes.join() +
       "&selectedPatronTypes=" +
       newState.selectedPatronTypes.join();
-    Router.replace(href, href, { shallow: true });
+    Router.push(href);
   };
 
   toggleSelectedPatronType = id => () => {
