@@ -85,6 +85,16 @@ describe("A", () => {
     expect(mountedA().state()).toEqual(expectedState);
   });
 
+  it("Router.onRouteChangeStart sets state correctly from url", () => {
+    let AInstance = mountedA().instance();
+    const url =
+      "/A?section=test_section&selectedBenefitTypes=1,2,3&selectedPatronTypes=11,22,33";
+    Router.onRouteChangeStart(url);
+    expect(AInstance.state.section).toEqual("test_section");
+    expect(AInstance.state.selectedBenefitTypes).toEqual(["1", "2", "3"]);
+    expect(AInstance.state.selectedPatronTypes).toEqual(["11", "22", "33"]);
+  });
+
   it("switchSection sets state correctly if no data", () => {
     const originalSection = {
       section: "A1",

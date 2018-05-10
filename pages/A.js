@@ -43,7 +43,7 @@ export class A extends Component<Props> {
 
   componentWillMount() {
     Router.onRouteChangeStart = newUrl => {
-      const myURL = new URL(newUrl, "https://localhost:3000");
+      const myURL = new URL(newUrl, "http://hostname");
       const section = myURL.searchParams.get("section");
       const selectedBenefitTypes = myURL.searchParams.get(
         "selectedBenefitTypes"
