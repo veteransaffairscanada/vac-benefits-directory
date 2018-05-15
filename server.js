@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const next = require("next");
+const LRUCache = require("lru-cache");
 
 const { parseUserAgent } = require("detect-browser");
 
@@ -11,6 +12,11 @@ const handle = app.getRequestHandler();
 const i18nextMiddleware = require("i18next-express-middleware");
 const Backend = require("i18next-node-fs-backend");
 const { i18nInstance } = require("./i18n");
+
+const ssCache = new LRUCache({
+  max: 100,
+  maxAge: 1000 * 60 * 60
+});
 
 // init i18next with serverside settings
 // using i18next-express-middleware
@@ -52,6 +58,8 @@ i18nInstance
           // Check if browse is less than IE 11
           const ua = req.headers["user-agent"];
           const browser = parseUserAgent(ua);
+
+          req.ssCache = ssCache;
 
           if (
             browser &&

@@ -27,9 +27,13 @@ type Props = {
 export class AllBenefits extends Component<Props> {
   props: Props;
 
+  static getInitialProps(ctx) {
+    return { cache: ctx.req.ssCache };
+  }
+
   componentWillMount() {
     if (!this.props.storeHydrated) {
-      hydrateFromAirtable(this.props.loadDataStore);
+      hydrateFromAirtable(this.props.loadDataStore, this.props.cache);
     }
   }
 

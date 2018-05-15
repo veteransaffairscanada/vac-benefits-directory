@@ -2,14 +2,18 @@ import fetch from "isomorphic-unfetch";
 
 const key = "keySzaXvONeLwsBm4"; // Read access only API key
 
-const fetchTableFromAirtable = async table => {
+const fetchTableFromAirtable = async (table, cache) => {
+  let result = cache.get(table);
+  if (typeof result !== "undefined") {
+    return result;
+  }
   let url =
-    "https://api.airtable.com/v0/appIjjOxIa2utbHGH/" +
+    "https://api.airtable.com/v0/appijjoxia2utbhgh/" +
     table +
-    "?maxRecords=100&view=Grid%20view";
+    "?maxrecords=100&view=grid%20view";
   let resp = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${key}`
+      authorization: `bearer ${key}`
     }
   });
   let json = await resp.json();
@@ -18,12 +22,18 @@ const fetchTableFromAirtable = async table => {
   });
 };
 
-export const hydrateFromAirtable = async loadDataStore => {
+export const hydrateFromAirtable = async (loadDataStore, cache) => {
   loadDataStore({
-    benefitTypes: await fetchTableFromAirtable("benefit_types")
+    benefitTypes: await fetchTableFromAirtable("benefit_types", cache)
   });
-  loadDataStore({ patronTypes: await fetchTableFromAirtable("patron_types") });
-  loadDataStore({ benefits: await fetchTableFromAirtable("benefits") });
-  loadDataStore({ corporaEn: await fetchTableFromAirtable("corpora_en") });
-  loadDataStore({ corporaFr: await fetchTableFromAirtable("corpora_fr") });
+  loadDataStore({
+    patronTypes: await fetchTableFromAirtable("patron_types", cache)
+  });
+  loadDataStore({ benefits: await fetchTableFromAirtable("benefits", cache) });
+  loadDataStore({
+    corporaEn: await fetchTableFromAirtable("corpora_en", cache)
+  });
+  loadDataStore({
+    corporaFr: await fetchTableFromAirtable("corpora_fr", cache)
+  });
 };
