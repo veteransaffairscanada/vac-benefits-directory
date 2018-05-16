@@ -61,9 +61,6 @@ export class A extends Component<Props> {
       this.setState(newState);
     };
 
-    if (this.props.url.query.use_testdata) {
-      hydrateFromFixtures(this.props.loadDataStore);
-    }
     const newState = {
       section: this.props.url.query.section || "A1",
       selectedBenefitTypes: this.props.url.query.selectedBenefitTypes
@@ -77,7 +74,9 @@ export class A extends Component<Props> {
   }
 
   componentDidMount() {
-    if (typeof this.props.data !== "undefined") {
+    if (this.props.url.query.use_testdata) {
+      hydrateFromFixtures(this.props.loadDataStore);
+    } else if (typeof this.props.data !== "undefined") {
       this.props.loadDataStore({
         benefitTypes: this.props.data.benefitTypes,
         patronTypes: this.props.data.patronTypes,
@@ -192,11 +191,13 @@ export class A extends Component<Props> {
   };
 
   render() {
-    return (
-      <Layout i18n={this.props.i18n} t={this.props.t}>
-        {this.sectionToDisplay(this.state.section)}
-      </Layout>
-    );
+    if (this.props.benefitTypes !== []) {
+      return (
+        <Layout i18n={this.props.i18n} t={this.props.t}>
+          {this.sectionToDisplay(this.state.section)}
+        </Layout>
+      );
+    }
   }
 }
 

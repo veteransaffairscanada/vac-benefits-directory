@@ -7,7 +7,7 @@ describe("Wireframe A example story", () => {
     cy.contains("Military Service-Person").click();
     cy.contains("See Results").click();
     cy.contains("Disability Award");
-    cy.contains("Disability Pension").should("not.exist");
+    cy.get("Disability Pension").should("not.exist");
     cy.get("#userStatusesCard").within(() => {
       cy.get("#ChangeButton").click();
     });
