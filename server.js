@@ -62,11 +62,11 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
             }, 1000 * 60 * 60);
 
             req.data = data;
-
             if (
               browser &&
               browser.name === "ie" &&
-              parseInt(browser.version) < 11
+              parseInt(browser.version) < 11 &&
+              !req.url.includes("all-benefits")
             ) {
               res.sendFile("fallback-pages/browser-incompatible.html", {
                 root: __dirname
