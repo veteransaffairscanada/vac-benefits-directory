@@ -155,4 +155,35 @@ describe("A", () => {
     expect(AInstance.sectionToDisplay("A3").props.id).toEqual("A3");
     expect(AInstance.sectionToDisplay("B3").props.id).toEqual("B3");
   });
+
+  it("componantDidMount hydrates Redux with fixtures if use_testdata set", () => {
+    props.url = {
+      query: {
+        use_testdata: "true"
+      }
+    };
+    const expectedArgs = {
+      benefitTypes: benefitTypesFixture,
+      patronTypes: patronTypesFixture,
+      benefits: benefitsFixture,
+      corporaEn: corporaEnFixture,
+      corporaFr: corporaFrFixture
+    };
+    expect(mountedA().instance().props.loadDataStore).toBeCalledWith(
+      expectedArgs
+    );
+  });
+
+  it("componantDidMount hydrates Redux with cached data if passed", () => {
+    props.data = {
+      benefitTypes: 1,
+      patronTypes: 2,
+      benefits: 3,
+      corporaEn: 4,
+      corporaFr: 5
+    };
+    expect(mountedA().instance().props.loadDataStore).toBeCalledWith(
+      props.data
+    );
+  });
 });
