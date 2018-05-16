@@ -45,21 +45,6 @@ describe("A", () => {
     _mountedA = undefined;
   });
 
-  it("componentWillMount does not run hydrateFromAirtable if storeHydrated = true", () => {
-    let airtable = require("../../utils/airtable");
-    airtable.hydrateFromAirtable = jest.fn();
-    mountedA();
-    expect(airtable.hydrateFromAirtable).not.toBeCalled();
-  });
-
-  it("componentWillMount does run hydrateFromAirtable if storeHydrated = false", () => {
-    props.storeHydrated = false;
-    let airtable = require("../../utils/airtable");
-    airtable.hydrateFromAirtable = jest.fn();
-    mountedA();
-    expect(airtable.hydrateFromAirtable).toBeCalled();
-  });
-
   it("componentWillMount sets state correctly from empty url", () => {
     const expectedState = {
       section: "A1",

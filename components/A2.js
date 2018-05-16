@@ -7,7 +7,6 @@ import SelectButton from "../components/select_button";
 type Props = {
   id: string,
   t: mixed,
-  storeHydrated: boolean,
   patronTypes: mixed,
   url: mixed,
   selectedPatronTypes: mixed,

@@ -8,7 +8,6 @@ import { initStore, loadDataStore } from "../store";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { bindActionCreators } from "redux";
-import { hydrateFromAirtable } from "../utils/airtable";
 import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
 
 import A1 from "../components/A1";
@@ -26,7 +25,8 @@ type Props = {
   patronTypes: mixed,
   benefits: mixed,
   corporaEn: mixed,
-  corporaFr: mixed
+  corporaFr: mixed,
+  data: mixed
 };
 
 export class A extends Component<Props> {
@@ -63,8 +63,6 @@ export class A extends Component<Props> {
 
     if (this.props.url.query.use_testdata) {
       hydrateFromFixtures(this.props.loadDataStore);
-    } else if (!this.props.storeHydrated) {
-      hydrateFromAirtable(this.props.loadDataStore);
     }
     const newState = {
       section: this.props.url.query.section || "A1",
@@ -76,6 +74,24 @@ export class A extends Component<Props> {
         : []
     };
     this.setState(newState);
+  }
+
+  componentDidMount() {
+    if (typeof this.props.data !== "undefined") {
+      this.props.loadDataStore({
+        benefitTypes: this.props.data.benefitTypes,
+        patronTypes: this.props.data.patronTypes,
+        benefits: this.props.data.benefits,
+        corporaEn: this.props.data.corporaEn,
+        corporaFr: this.props.data.corporaFr
+      });
+    }
+  }
+
+  static getInitialProps(ctx) {
+    if (typeof ctx.req !== "undefined") {
+      return { data: ctx.req.data };
+    }
   }
 
   switchSection = (newSection, data) => {
@@ -125,7 +141,6 @@ export class A extends Component<Props> {
           <A1
             id="A1"
             t={this.props.t}
-            storeHydrated={this.props.storeHydrated}
             benefitTypes={this.props.benefitTypes}
             selectedBenefitTypes={this.state.selectedBenefitTypes}
             switchSection={this.switchSection}
@@ -136,7 +151,6 @@ export class A extends Component<Props> {
           <A2
             id="A2"
             t={this.props.t}
-            storeHydrated={this.props.storeHydrated}
             patronTypes={this.props.patronTypes}
             switchSection={this.switchSection}
             selectedPatronTypes={this.state.selectedPatronTypes}
@@ -147,7 +161,6 @@ export class A extends Component<Props> {
           <A3
             id="A3"
             t={this.props.t}
-            storeHydrated={this.props.storeHydrated}
             benefitTypes={this.props.benefitTypes}
             patronTypes={this.props.patronTypes}
             benefits={this.props.benefits}
@@ -163,7 +176,6 @@ export class A extends Component<Props> {
           <B3
             id="B3"
             t={this.props.t}
-            storeHydrated={this.props.storeHydrated}
             benefitTypes={this.props.benefitTypes}
             patronTypes={this.props.patronTypes}
             benefits={this.props.benefits}
