@@ -35,21 +35,6 @@ describe("AllBenefits", () => {
     _mountedAllBenefits = undefined;
   });
 
-  it("componentWillMount does not run hydrateFromAirtable if storeHydrated = true", () => {
-    let airtable = require("../../utils/airtable");
-    airtable.hydrateFromAirtable = jest.fn();
-    mountedAllBenefits();
-    expect(airtable.hydrateFromAirtable).not.toBeCalled();
-  });
-
-  it("componentWillMount does run hydrateFromAirtable if storeHydrated = false", () => {
-    props.storeHydrated = false;
-    let airtable = require("../../utils/airtable");
-    airtable.hydrateFromAirtable = jest.fn();
-    mountedAllBenefits();
-    expect(airtable.hydrateFromAirtable).toBeCalled();
-  });
-
   it("has a correct enrichBenefit function", () => {
     let expectedBenefit = Object.assign({}, benefitsFixture[0]);
     expectedBenefit.linkEn = corporaEnFixture[0].full_description_link;

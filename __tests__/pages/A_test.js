@@ -45,21 +45,6 @@ describe("A", () => {
     _mountedA = undefined;
   });
 
-  it("componentWillMount does not run hydrateFromAirtable if storeHydrated = true", () => {
-    let airtable = require("../../utils/airtable");
-    airtable.hydrateFromAirtable = jest.fn();
-    mountedA();
-    expect(airtable.hydrateFromAirtable).not.toBeCalled();
-  });
-
-  it("componentWillMount does run hydrateFromAirtable if storeHydrated = false", () => {
-    props.storeHydrated = false;
-    let airtable = require("../../utils/airtable");
-    airtable.hydrateFromAirtable = jest.fn();
-    mountedA();
-    expect(airtable.hydrateFromAirtable).toBeCalled();
-  });
-
   it("componentWillMount sets state correctly from empty url", () => {
     const expectedState = {
       section: "A1",
@@ -169,5 +154,36 @@ describe("A", () => {
     expect(AInstance.sectionToDisplay("A2").props.id).toEqual("A2");
     expect(AInstance.sectionToDisplay("A3").props.id).toEqual("A3");
     expect(AInstance.sectionToDisplay("B3").props.id).toEqual("B3");
+  });
+
+  it("componantDidMount hydrates Redux with fixtures if use_testdata set", () => {
+    props.url = {
+      query: {
+        use_testdata: "true"
+      }
+    };
+    const expectedArgs = {
+      benefitTypes: benefitTypesFixture,
+      patronTypes: patronTypesFixture,
+      benefits: benefitsFixture,
+      corporaEn: corporaEnFixture,
+      corporaFr: corporaFrFixture
+    };
+    expect(mountedA().instance().props.loadDataStore).toBeCalledWith(
+      expectedArgs
+    );
+  });
+
+  it("componantDidMount hydrates Redux with cached data if passed", () => {
+    props.data = {
+      benefitTypes: 1,
+      patronTypes: 2,
+      benefits: 3,
+      corporaEn: 4,
+      corporaFr: 5
+    };
+    expect(mountedA().instance().props.loadDataStore).toBeCalledWith(
+      props.data
+    );
   });
 });

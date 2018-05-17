@@ -22,7 +22,9 @@ export const hydrateFromAirtable = async loadDataStore => {
   loadDataStore({
     benefitTypes: await fetchTableFromAirtable("benefit_types")
   });
-  loadDataStore({ patronTypes: await fetchTableFromAirtable("patron_types") });
+  loadDataStore({
+    patronTypes: await fetchTableFromAirtable("patron_types")
+  });
   loadDataStore({ benefits: await fetchTableFromAirtable("benefits") });
   loadDataStore({ corporaEn: await fetchTableFromAirtable("corpora_en") });
   loadDataStore({ corporaFr: await fetchTableFromAirtable("corpora_fr") });

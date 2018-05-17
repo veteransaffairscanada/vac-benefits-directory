@@ -4,14 +4,9 @@ import React, { Component } from "react";
 
 import { Grid } from "material-ui";
 
-import withRedux from "next-redux-wrapper";
-import { initStore, loadDataStore } from "../store";
-
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { BenefitCard } from "../components/benefit_cards";
-import { bindActionCreators } from "redux";
-import { hydrateFromAirtable } from "../utils/airtable";
 
 type Props = {
   benefits: mixed,
@@ -27,10 +22,15 @@ type Props = {
 export class AllBenefits extends Component<Props> {
   props: Props;
 
-  componentWillMount() {
-    if (!this.props.storeHydrated) {
-      hydrateFromAirtable(this.props.loadDataStore);
-    }
+  static getInitialProps(ctx) {
+    let data = ctx.req.data;
+    return {
+      benefitTypes: data.benefitTypes,
+      patronTypes: data.patronTypes,
+      benefits: data.benefits,
+      corporaEn: data.corporaEn,
+      corporaFr: data.corporaFr
+    };
   }
 
   enrichBenefit = (benefit, benefitTypes, corporaEn, corporaFr) => {
@@ -88,21 +88,4 @@ export class AllBenefits extends Component<Props> {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadDataStore: bindActionCreators(loadDataStore, dispatch)
-  };
-};
-
-const mapStateToProps = state => {
-  return {
-    benefits: state.benefits,
-    corporaEn: state.corporaEn,
-    corporaFr: state.corporaFr,
-    benefitTypes: state.benefitTypes
-  };
-};
-
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
-  withI18next()(AllBenefits)
-);
+export default withI18next()(AllBenefits);
