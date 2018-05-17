@@ -16,7 +16,7 @@
     "cypress:run": "cypress run"
   },
   "dependencies": {
-    "@cdssnc/gcui": "^0.0.16",
+    "@cdssnc/gcui": "^0.0.18",
     "@material-ui/icons": "^1.0.0-beta.42",
     "babel-plugin-emotion": "^9.1.0",
     "babel-plugin-transform-inline-environment-variables": "^0.3.0",

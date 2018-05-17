@@ -93,15 +93,15 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@cdssnc/gcui@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@cdssnc/gcui/-/gcui-0.0.16.tgz#b3f5f072dc7c25314a184623e8d6525d4aacb340"
+"@cdssnc/gcui@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@cdssnc/gcui/-/gcui-0.0.18.tgz#806d2bd49ae8b8522cb8b4f37535084ce654d2a1"
   dependencies:
-    emotion "^9.0.2"
+    emotion "^9.1.3"
     enzyme-adapter-react-16 "^1.1.1"
-    react "^16.2.0"
-    react-dom "^16.2.0"
-    react-emotion "^9.0.2"
+    react "^16.3.2"
+    react-dom "^16.3.2"
+    react-emotion "^9.1.3"
 
 "@cypress/listr-verbose-renderer@0.4.1":
   version "0.4.1"
@@ -118,9 +118,31 @@
   dependencies:
     lodash.once "^4.1.1"
 
+"@emotion/hash@^0.6.2":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.6.3.tgz#0e7a5604626fc6c6d4ac4061a2f5ac80d50262a4"
+
 "@emotion/is-prop-valid@^0.5.2":
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.5.2.tgz#4f47717c2bcce8759e11997520e6bcb14326f54a"
+
+"@emotion/is-prop-valid@^0.6.1":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.6.2.tgz#a76a16b174ff03f8e3a27faf6259bacd21a02adc"
+  dependencies:
+    "@emotion/memoize" "^0.6.2"
+
+"@emotion/memoize@^0.6.1", "@emotion/memoize@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.6.2.tgz#138e00b332d519b4e307bded6159e5ba48aba3ae"
+
+"@emotion/stylis@^0.6.5":
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@emotion/stylis/-/stylis-0.6.7.tgz#730a6aa2198257124940014d7fffac7cf3e6614c"
+
+"@emotion/unitless@^0.6.2":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.6.3.tgz#65682e68a82701c70eefb38d7f941a2c0bfa90de"
 
 "@material-ui/icons@^1.0.0-beta.42":
   version "1.0.0-beta.42"
@@ -758,6 +780,22 @@ babel-plugin-emotion@^9.1.0:
     babel-plugin-syntax-jsx "^6.18.0"
     convert-source-map "^1.5.0"
     emotion-utils "^9.1.0"
+    find-root "^1.1.0"
+    mkdirp "^0.5.1"
+    source-map "^0.5.7"
+    touch "^1.0.0"
+
+babel-plugin-emotion@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/babel-plugin-emotion/-/babel-plugin-emotion-9.1.2.tgz#e26b313fa0fecd0f2cc07b1e4ef05da167e4f740"
+  dependencies:
+    "@babel/helper-module-imports" "7.0.0-beta.32"
+    "@emotion/hash" "^0.6.2"
+    "@emotion/memoize" "^0.6.1"
+    "@emotion/stylis" "^0.6.5"
+    babel-plugin-macros "^2.0.0"
+    babel-plugin-syntax-jsx "^6.18.0"
+    convert-source-map "^1.5.0"
     find-root "^1.1.0"
     mkdirp "^0.5.1"
     source-map "^0.5.7"
@@ -1953,11 +1991,28 @@ create-emotion-styled@^9.1.1:
     "@emotion/is-prop-valid" "^0.5.2"
     emotion-utils "^9.1.0"
 
+create-emotion-styled@^9.1.2:
+  version "9.1.2"
+  resolved "https://registry.yarnpkg.com/create-emotion-styled/-/create-emotion-styled-9.1.2.tgz#1528d9ff5ecc7e3abdf9986510a85ad2a9d73648"
+  dependencies:
+    "@emotion/is-prop-valid" "^0.6.1"
+
 create-emotion@^9.1.1:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-9.1.1.tgz#530bd14ea0a8ac4a4d79b6d8b82b88a48b0270a6"
   dependencies:
     emotion-utils "^9.1.0"
+    stylis "^3.5.0"
+    stylis-rule-sheet "^0.0.10"
+
+create-emotion@^9.1.3:
+  version "9.1.3"
+  resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-9.1.3.tgz#a2e570415eb3e1ec7c42489ba55b2361baf0ed3f"
+  dependencies:
+    "@emotion/hash" "^0.6.2"
+    "@emotion/memoize" "^0.6.1"
+    "@emotion/stylis" "^0.6.5"
+    "@emotion/unitless" "^0.6.2"
     stylis "^3.5.0"
     stylis-rule-sheet "^0.0.10"
 
@@ -2413,12 +2468,19 @@ emotion-utils@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/emotion-utils/-/emotion-utils-9.1.0.tgz#7484dbf18f3b1dc1de68559d1ff35a74caa998dc"
 
-emotion@^9.0.2, emotion@^9.1.1:
+emotion@^9.1.1:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/emotion/-/emotion-9.1.1.tgz#ee9dd8d5553954ceea9cd0e62402e0afd6802890"
   dependencies:
     babel-plugin-emotion "^9.1.0"
     create-emotion "^9.1.1"
+
+emotion@^9.1.3:
+  version "9.1.3"
+  resolved "https://registry.yarnpkg.com/emotion/-/emotion-9.1.3.tgz#e9b3e897ba3d5c0aff5628b0008a8993fa9c0937"
+  dependencies:
+    babel-plugin-emotion "^9.1.2"
+    create-emotion "^9.1.3"
 
 encodeurl@~1.0.1:
   version "1.0.2"
@@ -4925,13 +4987,6 @@ lru-cache@^4.0.1, lru-cache@^4.1.1:
     pseudomap "^1.0.2"
     yallist "^2.1.2"
 
-lru-cache@^4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.3.tgz#a1175cf3496dfc8436c156c334b4955992bce69c"
-  dependencies:
-    pseudomap "^1.0.2"
-    yallist "^2.1.2"
-
 make-dir@^1.0.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.2.0.tgz#6d6a49eead4aae296c53bbf3a1a008bd6c89469b"
@@ -6089,12 +6144,28 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-emotion@^9.0.2, react-emotion@^9.1.1:
+react-dom@^16.3.2:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
+react-emotion@^9.1.1:
   version "9.1.1"
   resolved "https://registry.yarnpkg.com/react-emotion/-/react-emotion-9.1.1.tgz#0b92fc9f5e5984cf35c3abf3f4ef2430bb57f3d9"
   dependencies:
     babel-plugin-emotion "^9.1.0"
     create-emotion-styled "^9.1.1"
+
+react-emotion@^9.1.3:
+  version "9.1.3"
+  resolved "https://registry.yarnpkg.com/react-emotion/-/react-emotion-9.1.3.tgz#299c29731d12d6236e33277845f5692ec8ba92d6"
+  dependencies:
+    babel-plugin-emotion "^9.1.2"
+    create-emotion-styled "^9.1.2"
 
 react-event-listener@^0.5.1:
   version "0.5.3"
@@ -6201,6 +6272,15 @@ react-transition-group@^2.2.1:
 "react@^15.6.2 || ^16.0", react@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
+react@^16.3.2:
+  version "16.3.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
