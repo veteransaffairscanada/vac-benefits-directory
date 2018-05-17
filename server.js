@@ -12,6 +12,8 @@ const i18nextMiddleware = require("i18next-express-middleware");
 const Backend = require("i18next-node-fs-backend");
 const { i18nInstance } = require("./i18n");
 
+const deploy = require("./utils/deploy_notification");
+
 const airTable = require("./utils/airtable_es2015");
 Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
   // init i18next with serverside settings
@@ -79,6 +81,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
           server.listen(port, err => {
             if (err) throw err;
             console.log("> Ready on http://localhost:" + port);
+            deploy.notify();
           });
         });
       }
