@@ -24,8 +24,8 @@ export class BenefitTitleCard extends Component<Props> {
           }
           href={
             this.props.t("current-language-code") === "en"
-              ? benefit.linkEn
-              : benefit.linkFr
+              ? benefit.benefit_page_en
+              : benefit.benefit_page_fr
           }
           isDown={false}
           id="title"
@@ -43,12 +43,6 @@ export class BenefitCard extends Component<Props> {
     return (
       <Grid item xs={12} lg={6}>
         <Card>
-          <CardHeader
-            title={(this.props.t("current-language-code") === "en"
-              ? benefit.benefitTypeEn
-              : benefit.benefitTypeFr
-            ).toUpperCase()}
-          />
           <CardContent>
             <Typography className="cardTitle" variant="title" gutterBottom>
               {this.props.t("current-language-code") === "en"
@@ -60,9 +54,7 @@ export class BenefitCard extends Component<Props> {
               variant="body1"
               gutterBottom
             >
-              {this.props.t("current-language-code") === "en"
-                ? benefit.descriptionEn
-                : benefit.descriptionFr}
+              {"Benefit Description"}
             </Typography>
           </CardContent>
           <CardActions>
@@ -70,8 +62,8 @@ export class BenefitCard extends Component<Props> {
               target="_blank"
               href={
                 this.props.t("current-language-code") === "en"
-                  ? benefit.linkEn
-                  : benefit.linkFr
+                  ? benefit.benefit_page_en
+                  : benefit.benefit_page_fr
               }
             >
               {this.props.t("View Details")}
