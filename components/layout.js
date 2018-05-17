@@ -1,15 +1,15 @@
 // @flow
 
 import React, { Component } from "react";
+import styled from "react-emotion";
+
+import { PhaseBanner } from "@cdssnc/gcui";
 
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import Footer from "../components/footer";
-import AlphaBanner from "../components/alpha_banner";
 import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
-
-import styled from "react-emotion";
 
 type Props = {
   children?: mixed,
@@ -45,7 +45,7 @@ class Layout extends Component<Props> {
         <Head t={this.props.t} />
         <ErrorBoundary>
           <Content>
-            <AlphaBanner t={this.props.t} />
+            <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
             <MenuBar i18n={this.props.i18n} t={this.props.t} />
             <div role="main">{this.props.children}</div>
           </Content>
