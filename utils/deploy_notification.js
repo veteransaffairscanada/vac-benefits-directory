@@ -11,6 +11,10 @@ var SOURCE_URL = process.env.CIRCLE_REPOSITORY_URL;
 var COMMIT_URL = SOURCE_URL + "/commit/" + COMMIT;
 var COLOR = "#dccdc";
 
+if (process.env.CIRCLECI == true) {
+  ENV = "test";
+}
+
 switch (ENV.toLowerCase()) {
   case "production":
     COLOR = "#2eb886";
