@@ -9,9 +9,9 @@ var COMMIT = process.env.CIRCLE_SHA1
   : "unkown commit";
 var SOURCE_URL = process.env.CIRCLE_REPOSITORY_URL;
 var COMMIT_URL = SOURCE_URL + "/commit/" + COMMIT;
-var COLOR = "#dccdc";
+var COLOR;
 
-if (process.env.CIRCLECI == true) {
+if (process.env.CI == true) {
   ENV = "test";
 }
 
