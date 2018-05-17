@@ -11,7 +11,7 @@ var SOURCE_URL = process.env.CIRCLE_REPOSITORY_URL;
 var COMMIT_URL = SOURCE_URL + "/commit/" + COMMIT;
 var COLOR;
 
-if (process.env.CI == true) {
+if (process.env.CIRCLECI == true) {
   ENV = "test";
 }
 
@@ -55,7 +55,7 @@ var notify = (exports.notify = function notify() {
             {
               fallback: fallback,
               color: COLOR,
-              author_name: NAME,
+              author_name: process.env.CIRCLECI,
               title: "Deployed to " + ENV,
               title_link: COMMIT_URL,
               fields: [
