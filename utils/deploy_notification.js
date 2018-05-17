@@ -8,7 +8,12 @@ var COMMIT = process.env.CIRCLE_SHA1
   ? process.env.CIRCLE_SHA1.substring(0, 7)
   : "unkown commit";
 var SOURCE_URL = process.env.CIRCLE_REPOSITORY_URL;
-var COMMIT_URL = SOURCE_URL + "/commit/" + COMMIT;
+var URL =
+  "https://" +
+  SOURCE_URL.split("@")[1]
+    .replace(":", "/")
+    .replace(".git", "");
+var COMMIT_URL = URL + "/commit/" + COMMIT;
 var COLOR;
 
 if (process.env.CIRCLECI == "true") {
