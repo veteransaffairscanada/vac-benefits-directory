@@ -22,8 +22,8 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
     .init(
       {
         fallbackLng: "en",
-        preload: ["en", "de"], // preload all langages
-        ns: ["common", "home", "page2"], // need to preload all the namespaces
+        preload: ["en", "fr"],
+        ns: ["common"],
         backend: {
           loadPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.json"),
           addPath: path.join(__dirname, "/locales/{{lng}}/{{ns}}.missing.json")

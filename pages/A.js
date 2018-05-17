@@ -191,13 +191,11 @@ export class A extends Component<Props> {
   };
 
   render() {
-    if (this.props.benefitTypes !== []) {
-      return (
-        <Layout i18n={this.props.i18n} t={this.props.t}>
-          {this.sectionToDisplay(this.state.section)}
-        </Layout>
-      );
-    }
+    return (
+      <Layout i18n={this.props.i18n} t={this.props.t}>
+        {this.sectionToDisplay(this.state.section)}
+      </Layout>
+    );
   }
 }
 
