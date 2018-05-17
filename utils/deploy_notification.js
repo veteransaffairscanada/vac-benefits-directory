@@ -60,7 +60,7 @@ var notify = (exports.notify = function notify() {
             {
               fallback: fallback,
               color: COLOR,
-              author_name: SOURCE_URL,
+              author_name: NAME,
               title: "Deployed to " + ENV,
               title_link: COMMIT_URL,
               fields: [
