@@ -14,18 +14,14 @@ import A1 from "../components/A1";
 import A2 from "../components/A2";
 import A3 from "../components/A3";
 import B3 from "../components/B3";
+import BB from "../components/BB";
 
 type Props = {
   url: mixed,
   i18n: mixed,
   t: mixed,
-  storeHydrated: boolean,
-  loadDataStore: mixed,
-  benefitTypes: mixed,
-  patronTypes: mixed,
   benefits: mixed,
-  corporaEn: mixed,
-  corporaFr: mixed,
+  eligibilityPaths: mixed,
   data: mixed
 };
 
@@ -78,11 +74,8 @@ export class A extends Component<Props> {
       hydrateFromFixtures(this.props.loadDataStore);
     } else if (typeof this.props.data !== "undefined") {
       this.props.loadDataStore({
-        benefitTypes: this.props.data.benefitTypes,
-        patronTypes: this.props.data.patronTypes,
         benefits: this.props.data.benefits,
-        corporaEn: this.props.data.corporaEn,
-        corporaFr: this.props.data.corporaFr
+        eligibilityPaths: this.props.data.eligibilityPaths
       });
     }
   }
@@ -187,6 +180,15 @@ export class A extends Component<Props> {
             toggleSelectedBenefitType={this.toggleSelectedBenefitType}
           />
         );
+      case "BB":
+        return (
+          <BB
+            id="BB"
+            t={this.props.t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+          />
+        );
     }
   };
 
@@ -208,10 +210,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     benefits: state.benefits,
-    benefitTypes: state.benefitTypes,
-    patronTypes: state.patronTypes,
-    corporaEn: state.corporaEn,
-    corporaFr: state.corporaFr
+    eligibilityPaths: state.eligibilityPaths
   };
 };
 
