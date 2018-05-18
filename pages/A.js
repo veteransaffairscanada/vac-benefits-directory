@@ -14,14 +14,14 @@ import A1 from "../components/A1";
 import A2 from "../components/A2";
 import A3 from "../components/A3";
 import B3 from "../components/B3";
+import BB from "../components/BB";
 
 type Props = {
   url: mixed,
   i18n: mixed,
   t: mixed,
-  storeHydrated: boolean,
   benefits: mixed,
-  eligibility_paths: mixed,
+  eligibilityPaths: mixed,
   data: mixed
 };
 
@@ -80,7 +80,7 @@ export class A extends Component<Props> {
 
       this.props.loadDataStore({
         benefits: this.props.data.benefits,
-        eligibility_paths: this.props.data.eligibility_paths
+        eligibilityPaths: this.props.data.eligibilityPaths
       });
     }
   }
@@ -204,6 +204,15 @@ export class A extends Component<Props> {
             toggleSelectedNeeds={this.toggleSelectedNeeds}
           />
         );
+      case "BB":
+        return (
+          <BB
+            id="BB"
+            t={this.props.t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+          />
+        );
     }
   };
 
@@ -225,7 +234,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     benefits: state.benefits,
-    eligibility_paths: state.eligibility_paths
+    eligibilityPaths: state.eligibilityPaths
   };
 };
 
