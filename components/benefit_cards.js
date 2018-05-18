@@ -19,13 +19,13 @@ export class BenefitTitleCard extends Component<Props> {
           target="_blank"
           text={
             this.props.t("current-language-code") === "en"
-              ? benefit.vac_name_en
-              : benefit.vac_name_fr
+              ? benefit.vacNameEn
+              : benefit.vacNameFr
           }
           href={
             this.props.t("current-language-code") === "en"
-              ? benefit.benefit_page_en
-              : benefit.benefit_page_fr
+              ? benefit.benefitPageEn
+              : benefit.benefitPageFr
           }
           isDown={false}
           id="title"
@@ -46,8 +46,8 @@ export class BenefitCard extends Component<Props> {
           <CardContent>
             <Typography className="cardTitle" variant="title" gutterBottom>
               {this.props.t("current-language-code") === "en"
-                ? benefit.vac_name_en
-                : benefit.vac_name_fr}
+                ? benefit.vacNameEn
+                : benefit.vacNameFr}
             </Typography>
             <Typography
               className="cardDescription"
@@ -62,8 +62,8 @@ export class BenefitCard extends Component<Props> {
               target="_blank"
               href={
                 this.props.t("current-language-code") === "en"
-                  ? benefit.benefit_page_en
-                  : benefit.benefit_page_fr
+                  ? benefit.benefitPageEn
+                  : benefit.benefitPageFr
               }
             >
               {this.props.t("View Details")}

@@ -59,6 +59,31 @@ export class BB extends Component<Props> {
     this.setState({ expanded: !this.state.expanded });
   };
 
+  eligibilityMatch = (path, selected) => {
+    let matches = true;
+    ["serviceType", "patronType"].forEach(criteria => {
+      console.log(criteria, path[criteria], selected[criteria]);
+      if (
+        path[criteria] !== "na" &&
+        !selected[criteria].hasOwnProperty(path[criteria])
+      ) {
+        matches = false;
+      }
+    });
+    return matches;
+  };
+
+  filteredBenefits = (benefits, eligibilityPaths, selectedEligibility) => {
+    let benefitIDs = [];
+    eligibilityPaths.forEach(ep => {
+      if (this.eligibilityMatch(ep, selectedEligibility)) {
+        benefitIDs = benefitIDs.concat(ep.benefits);
+      }
+    });
+    const benefitIDSet = new Set(benefitIDs);
+    return benefits.filter(benefit => benefitIDSet.has(benefit.id));
+  };
+
   render() {
     let serviceTypes = Array.from(
       new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
@@ -74,7 +99,13 @@ export class BB extends Component<Props> {
       return { id: st, name_en: st, name_fr: "FF " + st };
     });
 
-    const { t, classes, benefits } = this.props; // eslint-disable-line no-unused-vars
+    const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+
+    const benefits = this.filteredBenefits(
+      this.props.benefits,
+      this.props.eligibilityPaths,
+      this.props.selectedEligibility
+    );
 
     return (
       <div id={this.props.id}>
