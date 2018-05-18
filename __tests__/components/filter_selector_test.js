@@ -62,7 +62,7 @@ describe("FilterSelector", () => {
   });
 
   it("has the correct checked properties", () => {
-    props.selectedFilters = [patronTypesFixture[0].id];
+    props.selectedFilters = { [patronTypesFixture[0].id]: 1 };
     expect(
       mountedFilterSelector()
         .find("Checkbox")

@@ -35,26 +35,6 @@ describe("AllBenefits", () => {
     _mountedAllBenefits = undefined;
   });
 
-  it("has a correct enrichBenefit function", () => {
-    let expectedBenefit = Object.assign({}, benefitsFixture[0]);
-    expectedBenefit.linkEn = corporaEnFixture[0].full_description_link;
-    expectedBenefit.linkFr = corporaFrFixture[0].full_description_link;
-    expectedBenefit.descriptionEn = corporaEnFixture[0].one_line_description;
-    expectedBenefit.descriptionFr = corporaFrFixture[0].one_line_description;
-    expectedBenefit.benefitTypeEn = benefitTypesFixture[0].name_en;
-    expectedBenefit.benefitTypeFr = benefitTypesFixture[0].name_fr;
-
-    const AllBenefitsInstance = mountedAllBenefits().instance();
-    expect(
-      AllBenefitsInstance.enrichBenefit(
-        benefitsFixture[0],
-        benefitTypesFixture,
-        corporaEnFixture,
-        corporaFrFixture
-      )
-    ).toEqual(expectedBenefit);
-  });
-
   it("shows the list of all benefits available", () => {
     expect(mountedAllBenefits().find("BenefitCard").length).toEqual(2);
     mountedAllBenefits()
