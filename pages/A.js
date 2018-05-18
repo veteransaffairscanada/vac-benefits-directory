@@ -31,10 +31,10 @@ export class A extends Component<Props> {
   constructor() {
     super();
     this.state = {
-      section: "A1",
+      section: "BB",
       selectedNeeds: [],
       selectedEligibility: {
-        serviceType: {},
+        serviceType: { CAF: "CAF" },
         serviceStatus: {},
         patronType: {},
         servicePersonVitalStatus: {}
@@ -43,31 +43,32 @@ export class A extends Component<Props> {
   }
 
   componentWillMount() {
-    Router.onRouteChangeStart = newUrl => {
-      const myURL = new URL(newUrl, "http://hostname");
-      const section = myURL.searchParams.get("section");
-      const selectedNeeds = myURL.searchParams.get("selectedNeeds");
-      const selectedEligibility = myURL.searchParams.get("selectedEligibility");
-      const newState = {
-        section: section || "A1",
-        selectedNeeds: selectedNeeds ? selectedNeeds.split(",") : [],
-        selectedEligibility: selectedEligibility
-          ? selectedEligibility.split(",")
-          : []
-      };
-      this.setState(newState);
-    };
-
-    const newState = {
-      section: this.props.url.query.section || "A1",
-      selectedNeeds: this.props.url.query.selectedNeeds
-        ? this.props.url.query.selectedNeeds.split(",")
-        : [],
-      selectedEligibility: this.props.url.query.selectedEligibility
-        ? this.props.url.query.selectedEligibility.split(",")
-        : []
-    };
-    this.setState(newState);
+    // TODO get state from URL working
+    // Router.onRouteChangeStart = newUrl => {
+    //   const myURL = new URL(newUrl, "http://hostname");
+    //   const section = myURL.searchParams.get("section");
+    //   const selectedNeeds = myURL.searchParams.get("selectedNeeds");
+    //   const selectedEligibility = myURL.searchParams.get("selectedEligibility");
+    //   const newState = {
+    //     section: section || "A1",
+    //     selectedNeeds: selectedNeeds ? selectedNeeds.split(",") : [],
+    //     selectedEligibility: selectedEligibility
+    //       ? selectedEligibility.split(",")
+    //       : []
+    //   };
+    //   this.setState(newState);
+    // };
+    //
+    // const newState = {
+    //   section: this.props.url.query.section || "A1",
+    //   selectedNeeds: this.props.url.query.selectedNeeds
+    //     ? this.props.url.query.selectedNeeds.split(",")
+    //     : [],
+    //   selectedEligibility: this.props.url.query.selectedEligibility
+    //     ? this.props.url.query.selectedEligibility.split(",")
+    //     : []
+    // };
+    // this.setState(newState);
   }
 
   componentDidMount() {
@@ -198,7 +199,7 @@ export class A extends Component<Props> {
             eligibility_paths={this.props.eligibility_paths}
             eligibilityOptions={eligibilityOptions}
             switchSection={this.switchSection}
-            selectedEligibility={this.state.selectedPatronTypes}
+            selectedEligibility={this.state.selectedEligibility}
             selectedNeeds={this.state.selectedBenefitTypes}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             toggleSelectedNeeds={this.toggleSelectedNeeds}
@@ -211,12 +212,15 @@ export class A extends Component<Props> {
             t={this.props.t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
+            selectedEligibility={this.state.selectedEligibility}
+            toggleSelectedEligibility={this.toggleSelectedEligibility}
           />
         );
     }
   };
 
   render() {
+    console.log("state", this.state);
     return (
       <Layout i18n={this.props.i18n} t={this.props.t}>
         {this.sectionToDisplay(this.state.section)}

@@ -18,6 +18,7 @@ type Props = {
   t: mixed,
   benefits: mixed,
   eligibilityPaths: mixed,
+  selectedEligibility: mixed,
   classes: mixed
 };
 
@@ -47,7 +48,7 @@ const styles = theme => ({
   }
 });
 
-export class B3 extends Component<Props> {
+export class BB extends Component<Props> {
   props: Props;
 
   state = {
@@ -105,24 +106,38 @@ export class B3 extends Component<Props> {
                   unmountOnExit
                 >
                   <Grid item xs={12}>
+                    {JSON.stringify(this.props.selectedEligibility.serviceType)}
+                  </Grid>
+                  <Grid item xs={12}>
                     <FilterSelector
                       id="serviceTypeFilter"
                       t={t}
                       legend={"B3.Service Type"}
                       filters={serviceTypes}
-                      selectedFilters={[]}
-                      handleChange={() => {}}
+                      selectedFilters={
+                        this.props.selectedEligibility.serviceType
+                      }
+                      handleChange={id =>
+                        this.props.toggleSelectedEligibility("serviceType", id)
+                      }
                     />
                   </Grid>
 
+                  <Grid item xs={12}>
+                    {JSON.stringify(this.props.selectedEligibility.patronType)}
+                  </Grid>
                   <Grid item xs={12}>
                     <FilterSelector
                       id="patronTypeFilter"
                       t={t}
                       legend={"B3.Patron Type"}
                       filters={patronTypes}
-                      selectedFilters={[]}
-                      handleChange={() => {}}
+                      selectedFilters={
+                        this.props.selectedEligibility.patronType
+                      }
+                      handleChange={id =>
+                        this.props.toggleSelectedEligibility("patronType", id)
+                      }
                     />
                   </Grid>
                 </Collapse>
@@ -160,4 +175,4 @@ export class B3 extends Component<Props> {
   }
 }
 
-export default withStyles(styles)(B3);
+export default withStyles(styles)(BB);
