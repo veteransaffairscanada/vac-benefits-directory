@@ -61,7 +61,12 @@ export class BB extends Component<Props> {
 
   eligibilityMatch = (path, selected) => {
     let matches = true;
-    ["serviceType", "patronType"].forEach(criteria => {
+    [
+      "serviceType",
+      "patronType",
+      "serviceStatus",
+      "servicePersonVitalStatus"
+    ].forEach(criteria => {
       console.log(criteria, path[criteria], selected[criteria]);
       if (
         path[criteria] !== "na" &&
@@ -98,6 +103,24 @@ export class BB extends Component<Props> {
     ).map(st => {
       return { id: st, name_en: st, name_fr: "FF " + st };
     });
+
+    let serviceStatuses = Array.from(
+      new Set(this.props.eligibilityPaths.map(ep => ep.serviceStatus))
+    )
+      .filter(st => st !== "na")
+      .map(st => {
+        return { id: st, name_en: st, name_fr: "FF " + st };
+      });
+
+    let servicePersonVitalStatuses = Array.from(
+      new Set(
+        this.props.eligibilityPaths.map(ep => ep.servicePersonVitalStatus)
+      )
+    )
+      .filter(st => st !== "na")
+      .map(st => {
+        return { id: st, name_en: st, name_fr: "FF " + st };
+      });
 
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
@@ -137,13 +160,10 @@ export class BB extends Component<Props> {
                   unmountOnExit
                 >
                   <Grid item xs={12}>
-                    {JSON.stringify(this.props.selectedEligibility.serviceType)}
-                  </Grid>
-                  <Grid item xs={12}>
                     <FilterSelector
                       id="serviceTypeFilter"
                       t={t}
-                      legend={"B3.Service Type"}
+                      legend={"B3.ServiceType"}
                       filters={serviceTypes}
                       selectedFilters={
                         this.props.selectedEligibility.serviceType
@@ -155,19 +175,52 @@ export class BB extends Component<Props> {
                   </Grid>
 
                   <Grid item xs={12}>
-                    {JSON.stringify(this.props.selectedEligibility.patronType)}
-                  </Grid>
-                  <Grid item xs={12}>
                     <FilterSelector
                       id="patronTypeFilter"
                       t={t}
-                      legend={"B3.Patron Type"}
+                      legend={"B3.PatronType"}
                       filters={patronTypes}
                       selectedFilters={
                         this.props.selectedEligibility.patronType
                       }
                       handleChange={id =>
                         this.props.toggleSelectedEligibility("patronType", id)
+                      }
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <FilterSelector
+                      id="serviceStatusFilter"
+                      t={t}
+                      legend={"B3.serviceStatus"}
+                      filters={serviceStatuses}
+                      selectedFilters={
+                        this.props.selectedEligibility.serviceStatus
+                      }
+                      handleChange={id =>
+                        this.props.toggleSelectedEligibility(
+                          "serviceStatus",
+                          id
+                        )
+                      }
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <FilterSelector
+                      id="servicePersonVitalStatusFilter"
+                      t={t}
+                      legend={"B3.servicePersonVitalStatus"}
+                      filters={servicePersonVitalStatuses}
+                      selectedFilters={
+                        this.props.selectedEligibility.servicePersonVitalStatus
+                      }
+                      handleChange={id =>
+                        this.props.toggleSelectedEligibility(
+                          "servicePersonVitalStatus",
+                          id
+                        )
                       }
                     />
                   </Grid>
