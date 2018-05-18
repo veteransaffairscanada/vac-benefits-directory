@@ -59,9 +59,19 @@ export class B3 extends Component<Props> {
   };
 
   render() {
-    const serviceTypes = Array.from(
+    let serviceTypes = Array.from(
       new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
-    );
+    )
+      .filter(st => st !== "na")
+      .map(st => {
+        return { id: st, name_en: st, name_fr: "FF " + st };
+      });
+
+    const patronTypes = Array.from(
+      new Set(this.props.eligibilityPaths.map(ep => ep.patronType))
+    ).map(st => {
+      return { id: st, name_en: st, name_fr: "FF " + st };
+    });
 
     const { t, classes, benefits } = this.props; // eslint-disable-line no-unused-vars
 
@@ -95,15 +105,25 @@ export class B3 extends Component<Props> {
                   unmountOnExit
                 >
                   <Grid item xs={12}>
-                    {serviceTypes}
-                    {/*<FilterSelector*/}
-                    {/*id="patronTypesFilter"*/}
-                    {/*t={t}*/}
-                    {/*legend={"B3.Status"}*/}
-                    {/*filters={this.props.patronTypes}*/}
-                    {/*selectedFilters={this.props.selectedPatronTypes}*/}
-                    {/*handleChange={this.props.toggleSelectedPatronType}*/}
-                    {/*/>*/}
+                    <FilterSelector
+                      id="serviceTypeFilter"
+                      t={t}
+                      legend={"B3.Service Type"}
+                      filters={serviceTypes}
+                      selectedFilters={[]}
+                      handleChange={() => {}}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <FilterSelector
+                      id="patronTypeFilter"
+                      t={t}
+                      legend={"B3.Patron Type"}
+                      filters={patronTypes}
+                      selectedFilters={[]}
+                      handleChange={() => {}}
+                    />
                   </Grid>
                 </Collapse>
 
