@@ -10,10 +10,6 @@ import Layout from "../components/layout";
 import { bindActionCreators } from "redux";
 import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
 
-import A1 from "../components/A1";
-import A2 from "../components/A2";
-import A3 from "../components/A3";
-import B3 from "../components/B3";
 import BB from "../components/BB";
 
 type Props = {
@@ -22,7 +18,8 @@ type Props = {
   t: mixed,
   benefits: mixed,
   eligibilityPaths: mixed,
-  data: mixed
+  data: mixed,
+  loadDataStore: mixed
 };
 
 export class A extends Component<Props> {
@@ -34,16 +31,16 @@ export class A extends Component<Props> {
       section: "BB",
       selectedNeeds: [],
       selectedEligibility: {
-        serviceType: { CAF: "CAF" },
-        serviceStatus: {},
-        patronType: {},
-        servicePersonVitalStatus: {}
+        serviceType: { CAF: 1 },
+        serviceStatus: { released: 1 },
+        patronType: { ["service-person"]: 1 },
+        servicePersonVitalStatus: { alive: 1 }
       }
     };
   }
 
   componentWillMount() {
-    // TODO get state from URL working
+    // TODO get state from URL working?
     // Router.onRouteChangeStart = newUrl => {
     //   const myURL = new URL(newUrl, "http://hostname");
     //   const section = myURL.searchParams.get("section");
@@ -72,13 +69,9 @@ export class A extends Component<Props> {
   }
 
   componentDidMount() {
-    console.log("componentDidMount", this.props.data);
-
     if (this.props.url.query.use_testdata) {
       hydrateFromFixtures(this.props.loadDataStore);
     } else if (typeof this.props.data !== "undefined") {
-      console.log("componentDidMount", this.props.data);
-
       this.props.loadDataStore({
         benefits: this.props.data.benefits,
         eligibilityPaths: this.props.data.eligibilityPaths
@@ -88,7 +81,6 @@ export class A extends Component<Props> {
 
   static getInitialProps(ctx) {
     if (typeof ctx.req !== "undefined") {
-      console.log("getInitialProps", ctx.req.data);
       return { data: ctx.req.data };
     }
   }
@@ -135,76 +127,7 @@ export class A extends Component<Props> {
   };
 
   sectionToDisplay = section => {
-    const eligibilityOptions = {
-      patronType: [
-        { id: 0, name_en: "Service Person", name_fr: "FF Service Person" },
-        { id: 1, name_en: "Family", name_fr: "FF Family" }
-      ],
-      servicePersonVitalStatus: [
-        { id: 0, name_en: "Alive", name_fr: "FF Alive" },
-        { id: 1, name_en: "Deceased", name_fr: "FF Deceased" }
-      ],
-      serviceType: [
-        { id: 0, name_en: "CAF", name_fr: "FF CAF" },
-        { id: 1, name_en: "RCMP", name_fr: "FF RCMP" },
-        { id: 2, name_en: "WSV", name_fr: "FF RCMP" }
-      ],
-      serviceStatus: [
-        { id: 0, name_en: "Released", name_fr: "FF Released" },
-        { id: 1, name_en: "Still Serving", name_fr: "FF Still Serving" }
-      ]
-    };
     switch (section) {
-      case "A1":
-        return (
-          <A1
-            id="A1"
-            t={this.props.t}
-            benefitTypes={this.props.benefitTypes}
-            selectedBenefitTypes={this.state.selectedBenefitTypes}
-            switchSection={this.switchSection}
-          />
-        );
-      case "A2":
-        return (
-          <A2
-            id="A2"
-            t={this.props.t}
-            patronTypes={this.props.patronTypes}
-            switchSection={this.switchSection}
-            selectedPatronTypes={this.state.selectedPatronTypes}
-          />
-        );
-      case "A3":
-        return (
-          <A3
-            id="A3"
-            t={this.props.t}
-            benefitTypes={this.props.benefitTypes}
-            patronTypes={this.props.patronTypes}
-            benefits={this.props.benefits}
-            corporaEn={this.props.corporaEn}
-            corporaFr={this.props.corporaFr}
-            switchSection={this.switchSection}
-            selectedPatronTypes={this.state.selectedPatronTypes}
-            selectedBenefitTypes={this.state.selectedBenefitTypes}
-          />
-        );
-      case "B3":
-        return (
-          <B3
-            id="B3"
-            t={this.props.t}
-            benefits={this.props.benefits}
-            eligibility_paths={this.props.eligibility_paths}
-            eligibilityOptions={eligibilityOptions}
-            switchSection={this.switchSection}
-            selectedEligibility={this.state.selectedEligibility}
-            selectedNeeds={this.state.selectedBenefitTypes}
-            toggleSelectedEligibility={this.toggleSelectedEligibility}
-            toggleSelectedNeeds={this.toggleSelectedNeeds}
-          />
-        );
       case "BB":
         return (
           <BB
@@ -220,7 +143,6 @@ export class A extends Component<Props> {
   };
 
   render() {
-    console.log("state", this.state);
     return (
       <Layout i18n={this.props.i18n} t={this.props.t}>
         {this.sectionToDisplay(this.state.section)}

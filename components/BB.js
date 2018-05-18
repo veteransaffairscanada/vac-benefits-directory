@@ -19,6 +19,7 @@ type Props = {
   benefits: mixed,
   eligibilityPaths: mixed,
   selectedEligibility: mixed,
+  toggleSelectedEligibility: mixed,
   classes: mixed
 };
 
@@ -67,7 +68,6 @@ export class BB extends Component<Props> {
       "serviceStatus",
       "servicePersonVitalStatus"
     ].forEach(criteria => {
-      console.log(criteria, path[criteria], selected[criteria]);
       if (
         path[criteria] !== "na" &&
         !selected[criteria].hasOwnProperty(path[criteria])
@@ -108,6 +108,7 @@ export class BB extends Component<Props> {
       new Set(this.props.eligibilityPaths.map(ep => ep.serviceStatus))
     )
       .filter(st => st !== "na")
+      .concat(["still serving"])
       .map(st => {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
@@ -121,6 +122,20 @@ export class BB extends Component<Props> {
       .map(st => {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
+
+    // check all boxes
+    serviceTypes.forEach(x => {
+      this.props.toggleSelectedEligibility("serviceType", x.id);
+    });
+    patronTypes.forEach(x => {
+      this.props.toggleSelectedEligibility("patronType", x.id);
+    });
+    serviceStatuses.forEach(x => {
+      this.props.toggleSelectedEligibility("serviceStatus", x.id);
+    });
+    servicePersonVitalStatuses.forEach(x => {
+      this.props.toggleSelectedEligibility("servicePersonVitalStatus", x.id);
+    });
 
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 

@@ -38,7 +38,11 @@
   "B3": {
     "Status": "Status",
     "Needs": "Needs",
-    "Filter Benefits": "Filter Benefits"
+    "Filter Benefits": "Filter Benefits",
+    "ServiceType": "Which service type?",
+    "PatronType": "Who are you looking for?",
+    "serviceStatus": "What is the status?",
+    "servicePersonVitalStatus": "Has the service member passed away?"
   },
   "alpha": "For testing only.",
   "noscript":
