@@ -16,15 +16,13 @@ import FilterSelector from "../components/filter_selector";
 type Props = {
   id: string,
   t: mixed,
-  benefitTypes: mixed,
-  patronTypes: mixed,
+  eligibilityOptions: mixed,
   benefits: mixed,
-  corporaEn: mixed,
-  corporaFr: mixed,
-  selectedBenefitTypes: mixed,
-  selectedPatronTypes: mixed,
-  toggleSelectedPatronType: mixed,
-  toggleSelectedBenefitType: mixed,
+  eligibility_paths: mixed,
+  selectedEligibility: mixed,
+  selectedNeeds: mixed,
+  toggleSelectedEligibility: mixed,
+  toggleSelectedNeeds: mixed,
   classes: mixed
 };
 
@@ -61,64 +59,19 @@ export class B3 extends Component<Props> {
     expanded: true
   };
 
-  countBenefitsString = (
-    selectedPatronTypes,
-    selectedBenefitTypes,
-    benefits,
-    t
-  ) => {
-    switch (benefits.length) {
-      case 0:
-        if (selectedPatronTypes.length === 0) {
-          return t("A3.Please select a status");
-        } else if (selectedBenefitTypes.length === 0) {
-          return t("A3.Please select a need");
-        } else {
-          return t(
-            "A3.At this time there are no benefits that match your selections"
-          );
-        }
-      case 1:
-        return t("A3.Here is a benefit that may apply to you") + ":";
-      default:
-        return (
-          t("A3.Here are NNN benefits that may apply to you", {
-            value: benefits.length
-          }) + ":"
-        );
-    }
-  };
+  componentDidMount() {}
 
-  filterBenefits = (benefits, benefitTypes, patronTypes) => {
-    return benefits.filter(benefit => {
-      const matchingBenefitTypes = benefit.benefit_types.filter(
-        bt => benefitTypes.indexOf(bt) > -1
-      );
-      const matchingPatronTypes = benefit.patron_types.filter(
-        pt => patronTypes.indexOf(pt) > -1
-      );
-      return matchingBenefitTypes.length > 0 && matchingPatronTypes.length > 0;
-    });
-  };
-
-  enrichBenefit = (benefit, benefitTypes, corporaEn, corporaFr) => {
-    let corporas = corporaEn.filter(corp => corp.benefits.includes(benefit.id));
-    benefit.linkEn =
-      corporas.length > 0 ? corporas[0].full_description_link : undefined;
-    benefit.descriptionEn =
-      corporas.length > 0 ? corporas[0].one_line_description : undefined;
-
-    corporas = corporaFr.filter(corp => corp.benefits.includes(benefit.id));
-    benefit.linkFr =
-      corporas.length > 0 ? corporas[0].full_description_link : undefined;
-    benefit.descriptionFr =
-      corporas.length > 0 ? corporas[0].one_line_description : undefined;
-
-    let bts = benefitTypes.filter(bt => bt.benefits.includes(benefit.id));
-    benefit.benefitTypeEn = bts.length > 0 ? bts[0].name_en : "";
-    benefit.benefitTypeFr = bts.length > 0 ? bts[0].name_fr : "";
-    return benefit;
-  };
+  // filterBenefits = (benefits, benefitTypes, patronTypes) => {
+  //   return benefits.filter(benefit => {
+  //     const matchingBenefitTypes = benefit.benefit_types.filter(
+  //       bt => benefitTypes.indexOf(bt) > -1
+  //     );
+  //     const matchingPatronTypes = benefit.patron_types.filter(
+  //       pt => patronTypes.indexOf(pt) > -1
+  //     );
+  //     return matchingBenefitTypes.length > 0 && matchingPatronTypes.length > 0;
+  //   });
+  // };
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
@@ -127,21 +80,14 @@ export class B3 extends Component<Props> {
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
-    let benefits = this.filterBenefits(
-      this.props.benefits,
-      this.props.selectedBenefitTypes,
-      this.props.selectedPatronTypes
-    );
+    // let benefits = this.filterBenefits(
+    //   this.props.benefits,
+    //   this.props.selectedBenefitTypes,
+    //   this.props.selectedPatronTypes
+    // );
+    let benefits = this.props.benefits;
 
     // add links to benefits
-    benefits = benefits.map(benefit =>
-      this.enrichBenefit(
-        benefit,
-        this.props.benefitTypes,
-        this.props.corporaEn,
-        this.props.corporaFr
-      )
-    );
 
     return (
       <div id={this.props.id}>
@@ -174,22 +120,23 @@ export class B3 extends Component<Props> {
                 >
                   <Grid item xs={12}>
                     <FilterSelector
-                      id="patronTypesFilter"
+                      id="serviceTypesFilter"
                       t={t}
-                      legend={"B3.Status"}
-                      filters={this.props.patronTypes}
-                      selectedFilters={this.props.selectedPatronTypes}
-                      handleChange={this.props.toggleSelectedPatronType}
+                      legend={"B3.Service Type"}
+                      filters={this.props.eligibilityOptions.serviceType}
+                      selectedFilters={[]}
+                      handleChange={this.props.toggleSelectedEligibility}
                     />
                   </Grid>
+
                   <Grid item xs={12}>
                     <FilterSelector
-                      id="benefitTypesFilter"
+                      id="serviceTypesFilter"
                       t={t}
-                      legend={"B3.Needs"}
-                      filters={this.props.benefitTypes}
-                      selectedFilters={this.props.selectedBenefitTypes}
-                      handleChange={this.props.toggleSelectedBenefitType}
+                      legend={"B3.Service Type"}
+                      filters={this.props.eligibilityOptions.serviceType}
+                      selectedFilters={[]}
+                      handleChange={this.props.toggleSelectedEligibility}
                     />
                   </Grid>
                 </Collapse>
@@ -211,12 +158,13 @@ export class B3 extends Component<Props> {
               <Grid container spacing={24}>
                 <Grid item xs={12}>
                   <h1 id="benefitCountString" style={{ textAlign: "left" }}>
-                    {this.countBenefitsString(
-                      this.props.selectedPatronTypes,
-                      this.props.selectedBenefitTypes,
-                      benefits,
-                      t
-                    )}
+                    Some benefits selected
+                    {/*{this.countBenefitsString(*/}
+                    {/*this.props.selectedPatronTypes,*/}
+                    {/*this.props.selectedBenefitTypes,*/}
+                    {/*benefits,*/}
+                    {/*t*/}
+                    {/*)}*/}
                   </h1>
                 </Grid>
                 {benefits.map((benefit, i) => (

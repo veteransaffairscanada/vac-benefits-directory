@@ -9,6 +9,7 @@ import Checkbox from "material-ui/Checkbox";
 
 type Props = {
   t: mixed,
+  id: string,
   legend: string,
   filters: mixed,
   selectedFilters: mixed,
@@ -28,8 +29,8 @@ class FilterSelector extends Component<Props> {
               key={pt.id}
               control={
                 <Checkbox
-                  checked={this.props.selectedFilters.indexOf(pt.id) > -1}
-                  onChange={this.props.handleChange(pt.id)}
+                  checked={this.props.selectedFilters.hasOwnProperty(pt.id)}
+                  onChange={this.props.handleChange(this.props.id, pt.id)}
                   value={pt.id}
                 />
               }

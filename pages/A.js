@@ -20,12 +20,8 @@ type Props = {
   i18n: mixed,
   t: mixed,
   storeHydrated: boolean,
-  loadDataStore: mixed,
-  benefitTypes: mixed,
-  patronTypes: mixed,
   benefits: mixed,
-  corporaEn: mixed,
-  corporaFr: mixed,
+  eligibility_paths: mixed,
   data: mixed
 };
 
@@ -36,8 +32,13 @@ export class A extends Component<Props> {
     super();
     this.state = {
       section: "A1",
-      selectedBenefitTypes: [],
-      selectedPatronTypes: []
+      selectedNeeds: [],
+      selectedEligibility: {
+        serviceType: {},
+        serviceStatus: {},
+        patronType: {},
+        servicePersonVitalStatus: {}
+      }
     };
   }
 
@@ -45,17 +46,13 @@ export class A extends Component<Props> {
     Router.onRouteChangeStart = newUrl => {
       const myURL = new URL(newUrl, "http://hostname");
       const section = myURL.searchParams.get("section");
-      const selectedBenefitTypes = myURL.searchParams.get(
-        "selectedBenefitTypes"
-      );
-      const selectedPatronTypes = myURL.searchParams.get("selectedPatronTypes");
+      const selectedNeeds = myURL.searchParams.get("selectedNeeds");
+      const selectedEligibility = myURL.searchParams.get("selectedEligibility");
       const newState = {
         section: section || "A1",
-        selectedBenefitTypes: selectedBenefitTypes
-          ? selectedBenefitTypes.split(",")
-          : [],
-        selectedPatronTypes: selectedPatronTypes
-          ? selectedPatronTypes.split(",")
+        selectedNeeds: selectedNeeds ? selectedNeeds.split(",") : [],
+        selectedEligibility: selectedEligibility
+          ? selectedEligibility.split(",")
           : []
       };
       this.setState(newState);
@@ -63,32 +60,34 @@ export class A extends Component<Props> {
 
     const newState = {
       section: this.props.url.query.section || "A1",
-      selectedBenefitTypes: this.props.url.query.selectedBenefitTypes
-        ? this.props.url.query.selectedBenefitTypes.split(",")
+      selectedNeeds: this.props.url.query.selectedNeeds
+        ? this.props.url.query.selectedNeeds.split(",")
         : [],
-      selectedPatronTypes: this.props.url.query.selectedPatronTypes
-        ? this.props.url.query.selectedPatronTypes.split(",")
+      selectedEligibility: this.props.url.query.selectedEligibility
+        ? this.props.url.query.selectedEligibility.split(",")
         : []
     };
     this.setState(newState);
   }
 
   componentDidMount() {
+    console.log("componentDidMount", this.props.data);
+
     if (this.props.url.query.use_testdata) {
       hydrateFromFixtures(this.props.loadDataStore);
     } else if (typeof this.props.data !== "undefined") {
+      console.log("componentDidMount", this.props.data);
+
       this.props.loadDataStore({
-        benefitTypes: this.props.data.benefitTypes,
-        patronTypes: this.props.data.patronTypes,
         benefits: this.props.data.benefits,
-        corporaEn: this.props.data.corporaEn,
-        corporaFr: this.props.data.corporaFr
+        eligibility_paths: this.props.data.eligibility_paths
       });
     }
   }
 
   static getInitialProps(ctx) {
     if (typeof ctx.req !== "undefined") {
+      console.log("getInitialProps", ctx.req.data);
       return { data: ctx.req.data };
     }
   }
@@ -96,44 +95,64 @@ export class A extends Component<Props> {
   switchSection = (newSection, data) => {
     const newState = {
       section: newSection,
-      selectedBenefitTypes:
-        data.selectedBenefitTypes || this.state.selectedBenefitTypes,
-      selectedPatronTypes:
-        data.selectedPatronTypes || this.state.selectedPatronTypes
+      selectedNeeds: data.selectedNeeds || this.state.selectedNeeds,
+      selectedEligibility:
+        data.selectedEligibility || this.state.selectedEligibility
     };
     this.setState(newState);
 
     const href =
       "/A?section=" +
       newState.section +
-      "&selectedBenefitTypes=" +
-      newState.selectedBenefitTypes.join() +
-      "&selectedPatronTypes=" +
-      newState.selectedPatronTypes.join();
+      "&selectedNeeds=" +
+      newState.selectedNeeds.join() +
+      "&selectedEligibility=" +
+      newState.selectedEligibility.join();
     Router.push(href);
   };
 
-  toggleSelectedPatronType = id => () => {
-    let selected = this.state.selectedPatronTypes;
-    if (selected.indexOf(id) > -1) {
-      selected.splice(selected.indexOf(id), 1);
+  toggleSelectedNeeds = (_, id) => () => {
+    let selected = this.state.selectedNeeds;
+    if (selected.hasOwnProperty(id)) {
+      delete selected[id];
     } else {
-      selected = selected.concat([id]);
+      selected[id] = id;
     }
-    this.setState({ selectedPatronTypes: selected });
+    this.setState({ selectedNeeds: selected });
   };
 
-  toggleSelectedBenefitType = id => () => {
-    let selected = this.state.selectedBenefitTypes;
-    if (selected.indexOf(id) > -1) {
-      selected.splice(selected.indexOf(id), 1);
+  toggleSelectedEligibility = (criteria, id) => () => {
+    let selected = this.state.selectedEligibility[criteria];
+    if (selected.hasOwnProperty(id)) {
+      delete selected[id];
     } else {
-      selected = selected.concat([id]);
+      selected[id] = id;
     }
-    this.setState({ selectedBenefitTypes: selected });
+    let newSelectedEligibility = this.state.selectedEligibility;
+    newSelectedEligibility[criteria] = selected;
+    this.setState({ selectedEligibility: newSelectedEligibility });
   };
 
   sectionToDisplay = section => {
+    const eligibilityOptions = {
+      patronType: [
+        { id: 0, name_en: "Service Person", name_fr: "FF Service Person" },
+        { id: 1, name_en: "Family", name_fr: "FF Family" }
+      ],
+      servicePersonVitalStatus: [
+        { id: 0, name_en: "Alive", name_fr: "FF Alive" },
+        { id: 1, name_en: "Deceased", name_fr: "FF Deceased" }
+      ],
+      serviceType: [
+        { id: 0, name_en: "CAF", name_fr: "FF CAF" },
+        { id: 1, name_en: "RCMP", name_fr: "FF RCMP" },
+        { id: 2, name_en: "WSV", name_fr: "FF RCMP" }
+      ],
+      serviceStatus: [
+        { id: 0, name_en: "Released", name_fr: "FF Released" },
+        { id: 1, name_en: "Still Serving", name_fr: "FF Still Serving" }
+      ]
+    };
     switch (section) {
       case "A1":
         return (
@@ -175,16 +194,14 @@ export class A extends Component<Props> {
           <B3
             id="B3"
             t={this.props.t}
-            benefitTypes={this.props.benefitTypes}
-            patronTypes={this.props.patronTypes}
             benefits={this.props.benefits}
-            corporaEn={this.props.corporaEn}
-            corporaFr={this.props.corporaFr}
+            eligibility_paths={this.props.eligibility_paths}
+            eligibilityOptions={eligibilityOptions}
             switchSection={this.switchSection}
-            selectedPatronTypes={this.state.selectedPatronTypes}
-            selectedBenefitTypes={this.state.selectedBenefitTypes}
-            toggleSelectedPatronType={this.toggleSelectedPatronType}
-            toggleSelectedBenefitType={this.toggleSelectedBenefitType}
+            selectedEligibility={this.state.selectedPatronTypes}
+            selectedNeeds={this.state.selectedBenefitTypes}
+            toggleSelectedEligibility={this.toggleSelectedEligibility}
+            toggleSelectedNeeds={this.toggleSelectedNeeds}
           />
         );
     }
@@ -208,10 +225,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     benefits: state.benefits,
-    benefitTypes: state.benefitTypes,
-    patronTypes: state.patronTypes,
-    corporaEn: state.corporaEn,
-    corporaFr: state.corporaFr
+    eligibility_paths: state.eligibility_paths
   };
 };
 

@@ -17,7 +17,6 @@ var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
   var json = await resp.json();
 
   return json.records.map(function(item) {
-    console.log(item.fields);
     return item.fields;
   });
 };
