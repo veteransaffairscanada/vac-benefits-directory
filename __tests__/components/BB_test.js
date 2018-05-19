@@ -3,169 +3,96 @@
 import { shallow } from "enzyme";
 import React from "react";
 
-import { B3 } from "../../components/B3";
-import { benefitsFixture } from "../fixtures/benefits";
-import benefitTypesFixture from "../fixtures/benefit_types";
-import patronTypesFixture from "../fixtures/patron_types";
-import { corporaEnFixture, corporaFrFixture } from "../fixtures/corpora";
+import { BB } from "../../components/BB";
+import benefitsFixture from "../fixtures/benefits";
+import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 
 jest.mock("react-ga");
 
-describe("B3", () => {
+describe("BB", () => {
   let props;
-  let _mountedB3;
+  let _mountedBB;
 
-  const mountedB3 = () => {
-    if (!_mountedB3) {
-      _mountedB3 = shallow(<B3 {...props} />);
+  const mounted_BB = () => {
+    if (!_mountedBB) {
+      _mountedBB = shallow(<BB {...props} />);
     }
-    return _mountedB3;
+    return _mountedBB;
   };
 
   beforeEach(() => {
     props = {
       t: key => key,
-      benefitTypes: benefitTypesFixture,
-      patronTypes: patronTypesFixture,
       benefits: benefitsFixture,
-      corporaEn: corporaEnFixture,
-      corporaFr: corporaFrFixture,
-      selectedBenefitTypes: [],
-      selectedPatronTypes: [],
-      switchSection: jest.fn(),
-      toggleSelectedPatronType: jest.fn(),
-      toggleSelectedBenefitType: jest.fn(),
+      eligibilityPaths: elegibilityPathsFixture,
+      selectedEligibility: {
+        serviceType: { CAF: 1 },
+        serviceStatus: { released: 1 },
+        patronType: { ["service-person"]: 1 },
+        servicePersonVitalStatus: { alive: 1 }
+      },
+      toggleSelectedEligibility: jest.fn(),
       classes: {
-        card: "B3-card-87",
-        media: "B3-media-88",
-        actions: "B3-actions-89",
-        expand: "B3-expand-90",
-        expandOpen: "B3-expandOpen-91",
-        avatar: "B3-avatar-92"
+        card: "BB-card-87",
+        media: "BB-media-88",
+        actions: "BB-actions-89",
+        expand: "BB-expand-90",
+        expandOpen: "BB-expandOpen-91",
+        avatar: "BB-avatar-92"
       }
     };
-    _mountedB3 = undefined;
+    _mountedBB = undefined;
   });
 
-  it("has a correct countBenefitsString function", () => {
-    let B3Instance = mountedB3().instance();
-
-    expect(B3Instance.countBenefitsString([], ["a"], [], props.t)).toEqual(
-      "A3.Please select a status"
-    );
-    expect(B3Instance.countBenefitsString(["a"], [], [], props.t)).toEqual(
-      "A3.Please select a need"
-    );
-    expect(B3Instance.countBenefitsString(["a"], ["a"], [], props.t)).toEqual(
-      "A3.At this time there are no benefits that match your selections"
-    );
+  it("has a correct filteredBenefits function", () => {
+    let BBInstance = mounted_BB().instance();
     expect(
-      B3Instance.countBenefitsString([], [], [benefitsFixture[0]], props.t)
-    ).toEqual("A3.Here is a benefit that may apply to you:");
-    expect(
-      B3Instance.countBenefitsString([], [], benefitsFixture, props.t)
-    ).toEqual("A3.Here are NNN benefits that may apply to you:");
-  });
-
-  it("has a correct filterBenefits function", () => {
-    const benefitTypeIDs = benefitTypesFixture.map(bt => bt.id);
-    const patronTypeIDs = patronTypesFixture.map(pt => pt.id);
-    let B3Instance = mountedB3().instance();
-    expect(
-      B3Instance.filterBenefits(benefitsFixture, benefitTypeIDs, patronTypeIDs)
-    ).toEqual(benefitsFixture);
-    expect(
-      B3Instance.filterBenefits(benefitsFixture, [], patronTypeIDs)
-    ).toEqual([]);
-    expect(
-      B3Instance.filterBenefits(benefitsFixture, benefitTypeIDs, [])
-    ).toEqual([]);
-    expect(
-      B3Instance.filterBenefits(
+      BBInstance.filteredBenefits(
         benefitsFixture,
-        benefitTypeIDs.slice(0, 1),
-        patronTypeIDs
+        elegibilityPathsFixture,
+        props.selectedEligibility
       )
-    ).toEqual(benefitsFixture.slice(0, 1));
-    expect(
-      B3Instance.filterBenefits(
-        benefitsFixture,
-        benefitTypeIDs,
-        patronTypeIDs.slice(1, 2)
-      )
-    ).toEqual(benefitsFixture.slice(1, 2));
+    ).toEqual([benefitsFixture[0]]);
   });
 
-  it("has a correct enrichBenefit function", () => {
-    let expectedBenefit = Object.assign({}, benefitsFixture[0]);
-    expectedBenefit.linkEn = corporaEnFixture[0].full_description_link;
-    expectedBenefit.linkFr = corporaFrFixture[0].full_description_link;
-    expectedBenefit.descriptionEn = corporaEnFixture[0].one_line_description;
-    expectedBenefit.descriptionFr = corporaFrFixture[0].one_line_description;
-    expectedBenefit.benefitTypeEn = benefitTypesFixture[0].name_en;
-    expectedBenefit.benefitTypeFr = benefitTypesFixture[0].name_fr;
-
-    const B3Instance = mountedB3().instance();
-    expect(
-      B3Instance.enrichBenefit(
-        benefitsFixture[0],
-        benefitTypesFixture,
-        corporaEnFixture,
-        corporaFrFixture
-      )
-    ).toEqual(expectedBenefit);
+  it("has a serviceTypes filter", () => {
+    expect(mounted_BB().find("#serviceTypeFilter").length).toEqual(1);
   });
-
-  it("shows the countBenefitsString", () => {
-    expect(
-      mountedB3()
-        .find("#benefitCountString")
-        .text()
-    ).toEqual("A3.Please select a status");
-  });
-
-  it("has a selectedBenefitTypes filter", () => {
-    props.selectedBenefitTypes = ["1", "2"];
-    expect(mountedB3().find("#benefitTypesFilter").length).toEqual(1);
-  });
-  it("has a selectedPatronTypes filter", () => {
-    props.selectedBenefitTypes = ["1", "2"];
-    expect(mountedB3().find("#patronTypesFilter").length).toEqual(1);
+  it("has a patronType filter", () => {
+    expect(mounted_BB().find("#patronTypeFilter").length).toEqual(1);
   });
 
   it("has the filters contained in a collapse component", () => {
     expect(
-      mountedB3()
+      mounted_BB()
         .find("#collapseBlock")
-        .find("#benefitTypesFilter").length
+        .find("#serviceTypeFilter").length
     ).toEqual(1);
     expect(
-      mountedB3()
+      mounted_BB()
         .find("#collapseBlock")
-        .find("#patronTypesFilter").length
+        .find("#patronTypeFilter").length
     ).toEqual(1);
   });
 
   it("has the filter initially expanded", () => {
-    expect(mountedB3().state().expanded).toEqual(true);
+    expect(mounted_BB().state().expanded).toEqual(true);
   });
 
   it("has a button to collapse / expand the filter", () => {
-    mountedB3()
+    mounted_BB()
       .find("#expandButton")
       .simulate("click");
-    expect(mountedB3().state().expanded).toEqual(false);
-    mountedB3()
+    expect(mounted_BB().state().expanded).toEqual(false);
+    mounted_BB()
       .find("#expandButton")
       .simulate("click");
-    expect(mountedB3().state().expanded).toEqual(true);
+    expect(mounted_BB().state().expanded).toEqual(true);
   });
 
   it("has the selected benefit cards", () => {
-    props.selectedBenefitTypes = benefitTypesFixture.map(bt => bt.id);
-    props.selectedPatronTypes = patronTypesFixture.map(bt => bt.id);
-    const benefitCards = mountedB3().find(".BenefitCards");
-    expect(benefitCards.length).toEqual(2);
+    const benefitCards = mounted_BB().find(".BenefitCards");
+    expect(benefitCards.length).toEqual(1);
     benefitCards.map((bt, i) => {
       expect(bt.prop("benefit").vac_name_fr).toEqual(
         benefitsFixture[i].vac_name_fr
@@ -175,7 +102,7 @@ describe("B3", () => {
 
   it("has an All Benefits Link", () => {
     expect(
-      mountedB3()
+      mounted_BB()
         .find(".AllBenefits")
         .text()
     ).toEqual("Show All Benefits");
