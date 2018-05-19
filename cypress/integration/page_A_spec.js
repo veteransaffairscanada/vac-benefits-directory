@@ -6,13 +6,13 @@ describe("Page A", () => {
   });
 
   it("Loads A1", () => {
-    cy.contains("What services are you interested in?");
+    cy.contains("Filter Benefits");
   });
 
   it("Has a language button", () => {
-    cy.contains("What services are you interested in?");
-    cy.contains("Quels services vous intéressent?").should("not.exist");
+    cy.contains("Filter Benefits");
+    cy.contains("Filtrer les avantages").should("not.exist");
     cy.contains("Français").click();
-    cy.contains("Quels services vous intéressent?");
+    cy.contains("Filtrer les avantages");
   });
 });

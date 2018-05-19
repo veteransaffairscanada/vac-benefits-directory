@@ -1,4 +1,4 @@
-describe("Wireframe A example story", () => {
+describe("BB example story", () => {
   it("works", () => {
     cy.visit("A?use_testdata=true");
     cy.contains("Compensation For Harm").click();
