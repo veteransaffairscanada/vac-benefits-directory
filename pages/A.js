@@ -85,25 +85,6 @@ export class A extends Component<Props> {
     }
   }
 
-  switchSection = (newSection, data) => {
-    const newState = {
-      section: newSection,
-      selectedNeeds: data.selectedNeeds || this.state.selectedNeeds,
-      selectedEligibility:
-        data.selectedEligibility || this.state.selectedEligibility
-    };
-    this.setState(newState);
-
-    const href =
-      "/A?section=" +
-      newState.section +
-      "&selectedNeeds=" +
-      newState.selectedNeeds.join() +
-      "&selectedEligibility=" +
-      newState.selectedEligibility.join();
-    Router.push(href);
-  };
-
   // toggleSelectedNeeds = (_, id) => () => {
   //   let selected = this.state.selectedNeeds;
   //   if (selected.hasOwnProperty(id)) {
