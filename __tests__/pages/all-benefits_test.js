@@ -4,9 +4,7 @@ import { shallow } from "enzyme";
 import React from "react";
 
 import { AllBenefits } from "../../pages/all-benefits";
-import { benefitsFixture } from "../fixtures/benefits";
-import benefitTypesFixture from "../fixtures/benefit_types";
-import { corporaEnFixture, corporaFrFixture } from "../fixtures/corpora";
+import benefitsFixture from "../fixtures/benefits";
 
 jest.mock("react-ga");
 
@@ -27,10 +25,7 @@ describe("AllBenefits", () => {
       i18n: {},
       storeHydrated: true,
       loadDataStore: jest.fn(),
-      benefitTypes: benefitTypesFixture,
-      benefits: benefitsFixture,
-      corporaEn: corporaEnFixture,
-      corporaFr: corporaFrFixture
+      benefits: benefitsFixture
     };
     _mountedAllBenefits = undefined;
   });
