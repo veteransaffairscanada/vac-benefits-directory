@@ -104,15 +104,15 @@ export class A extends Component<Props> {
     Router.push(href);
   };
 
-  toggleSelectedNeeds = (_, id) => () => {
-    let selected = this.state.selectedNeeds;
-    if (selected.hasOwnProperty(id)) {
-      delete selected[id];
-    } else {
-      selected[id] = id;
-    }
-    this.setState({ selectedNeeds: selected });
-  };
+  // toggleSelectedNeeds = (_, id) => () => {
+  //   let selected = this.state.selectedNeeds;
+  //   if (selected.hasOwnProperty(id)) {
+  //     delete selected[id];
+  //   } else {
+  //     selected[id] = id;
+  //   }
+  //   this.setState({ selectedNeeds: selected });
+  // };
 
   toggleSelectedEligibility = (criteria, id) => () => {
     let selected = this.state.selectedEligibility[criteria];
