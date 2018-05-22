@@ -147,6 +147,16 @@ export class BB extends Component<Props> {
       this.props.selectedEligibility
     );
 
+    const needs = [
+      { id: 0, name_en: "Health", name_fr: "FF Health" },
+      {
+        id: 1,
+        name_en: "Assistance around the home",
+        name_fr: "FF Assistance around the home"
+      },
+      { id: 2, name_en: "Finding a Job", name_fr: "FF Finding a Job" }
+    ];
+
     return (
       <div id={this.props.id}>
         <div style={{ padding: 12 }}>
@@ -259,7 +269,13 @@ export class BB extends Component<Props> {
             <Grid item md={9} sm={7} xs={12}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
-                  <NeedsSelector />
+                  <NeedsSelector
+                    t={t}
+                    ref={needSelector => {
+                      this.needSelector = needSelector;
+                    }}
+                    needs={needs}
+                  />
                 </Grid>
 
                 {benefits.map((benefit, i) => (

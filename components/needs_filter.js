@@ -4,9 +4,7 @@ import { withStyles } from "material-ui/styles";
 import Input, { InputLabel } from "material-ui/Input";
 import { MenuItem } from "material-ui/Menu";
 import { FormControl } from "material-ui/Form";
-import { ListItemText } from "material-ui/List";
 import Select from "material-ui/Select";
-import Checkbox from "material-ui/Checkbox";
 import Chip from "material-ui/Chip";
 
 const styles = theme => ({
@@ -38,23 +36,10 @@ const MenuProps = {
   }
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder"
-];
-
 type Props = {
   id: string,
-  name: string,
-  filters: mixed,
+  t: mixed,
+  needs: mixed,
   selectedNeeds: mixed,
   handleChange: mixed
 };
@@ -69,7 +54,7 @@ class MultipleSelect extends Component<Props> {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, t } = this.props;
 
     return (
       <div className={classes.root}>
@@ -84,25 +69,35 @@ class MultipleSelect extends Component<Props> {
             input={<Input id="select-multiple-chip" />}
             renderValue={selected => (
               <div className={classes.chips}>
-                {selected.map(value => (
-                  <Chip key={value} label={value} className={classes.chip} />
+                {selected.map(needId => (
+                  <Chip
+                    key={needId}
+                    label={
+                      t("current-language-code") === "en"
+                        ? this.props.needs[needId].name_en
+                        : this.props.needs[needId].name_fr
+                    }
+                    className={classes.chip}
+                  />
                 ))}
               </div>
             )}
             MenuProps={MenuProps}
           >
-            {names.map(name => (
+            {this.props.needs.map(need => (
               <MenuItem
-                key={name}
-                value={name}
+                key={need.id}
+                value={need.id}
                 style={{
                   fontWeight:
-                    this.state.name.indexOf(name) === -1
+                    this.state.name.indexOf(need.id) === -1
                       ? theme.typography.fontWeightRegular
                       : theme.typography.fontWeightMedium
                 }}
               >
-                {name}
+                {t("current-language-code") === "en"
+                  ? need.name_en
+                  : need.name_fr}
               </MenuItem>
             ))}
           </Select>

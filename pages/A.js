@@ -29,7 +29,7 @@ export class A extends Component<Props> {
     super();
     this.state = {
       section: "BB",
-      selectedNeeds: [],
+      selectedNeeds: {},
       selectedEligibility: {
         serviceType: {},
         serviceStatus: {},
