@@ -69,6 +69,7 @@ export class BB extends Component<Props> {
       "servicePersonVitalStatus"
     ].forEach(criteria => {
       if (
+        Object.keys(selected[criteria]).length &&
         path[criteria] !== "na" &&
         !selected[criteria].hasOwnProperty(path[criteria])
       ) {

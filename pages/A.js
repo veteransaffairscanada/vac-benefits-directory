@@ -31,10 +31,10 @@ export class A extends Component<Props> {
       section: "BB",
       selectedNeeds: [],
       selectedEligibility: {
-        serviceType: { CAF: 1 },
-        serviceStatus: { released: 1 },
-        patronType: { ["service-person"]: 1 },
-        servicePersonVitalStatus: { alive: 1 }
+        serviceType: {},
+        serviceStatus: {},
+        patronType: {},
+        servicePersonVitalStatus: {}
       }
     };
   }
