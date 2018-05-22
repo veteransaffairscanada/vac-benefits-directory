@@ -37,20 +37,19 @@ const MenuProps = {
 };
 
 type Props = {
-  id: string,
   t: mixed,
   needs: mixed,
-  selectedNeeds: mixed,
-  handleChange: mixed
+  toggle: mixed
 };
 
-class MultipleSelect extends Component<Props> {
+class NeedsSelector extends Component<Props> {
   state = {
     name: []
   };
 
   handleChange = event => {
     this.setState({ name: event.target.value });
+    this.props.toggle(event.target.value);
   };
 
   render() {
@@ -74,8 +73,12 @@ class MultipleSelect extends Component<Props> {
                     key={needId}
                     label={
                       t("current-language-code") === "en"
-                        ? this.props.needs[needId].name_en
-                        : this.props.needs[needId].name_fr
+                        ? this.props.needs.find(need => {
+                            return need.id === needId;
+                          }).name_en
+                        : this.props.needs.find(need => {
+                            return need.id === needId;
+                          }).name_fr
                     }
                     className={classes.chip}
                   />
@@ -107,9 +110,9 @@ class MultipleSelect extends Component<Props> {
   }
 }
 
-MultipleSelect.propTypes = {
+NeedsSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(MultipleSelect);
+export default withStyles(styles, { withTheme: true })(NeedsSelector);
