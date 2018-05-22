@@ -36,6 +36,22 @@ switch (ENV.toLowerCase()) {
     COLOR = "#dccdc";
 }
 
+var fallback =
+  "[" +
+  Date().toString() +
+  "] Deployed " +
+  NAME +
+  " (" +
+  BRANCH +
+  "/" +
+  COMMIT +
+  ") in " +
+  ENV +
+  " | " +
+  COMMIT_URL;
+
+console.log(fallback);
+
 var notify = (exports.notify = function notify() {
   if (typeof WEBHOOK_URL != "undefined") {
     fetch("https://api.ipify.org/?format=json")
@@ -43,23 +59,6 @@ var notify = (exports.notify = function notify() {
         return resp.json();
       })
       .then(function(json) {
-        var fallback =
-          "[" +
-          Date().toString() +
-          "] Deployed " +
-          NAME +
-          " (" +
-          BRANCH +
-          "/" +
-          COMMIT +
-          ") in " +
-          ENV +
-          " to " +
-          json.ip +
-          "\n <" +
-          COMMIT_URL +
-          "|View source>";
-
         var data = {
           attachments: [
             {
