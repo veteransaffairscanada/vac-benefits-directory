@@ -5,11 +5,8 @@ import thunkMiddleware from "redux-thunk";
 const exampleInitialState = {
   count: 10,
   storeHydrated: false,
-  benefitTypes: [],
-  patronTypes: [],
   benefits: [],
-  corporaEn: [],
-  corporaFr: []
+  eligibilityPaths: []
 };
 
 export const actionTypes = {
@@ -27,11 +24,8 @@ export const reducer = (state = exampleInitialState, action) => {
     case actionTypes.LOAD_DATA:
       return Object.assign({}, state, {
         storeHydrated: action.data.storeHydrated || state.storeHydrated,
-        benefitTypes: action.data.benefitTypes || state.benefitTypes,
-        patronTypes: action.data.patronTypes || state.patronTypes,
         benefits: action.data.benefits || state.benefits,
-        corporaEn: action.data.corporaEn || state.corporaEn,
-        corporaFr: action.data.corporaFr || state.corporaFr
+        eligibilityPaths: action.data.eligibilityPaths || state.eligibilityPaths
       });
     default:
       return state;

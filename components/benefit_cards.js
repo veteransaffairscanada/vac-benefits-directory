@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card, { CardContent, CardHeader, CardActions } from "material-ui/Card";
+import Card, { CardContent, CardActions } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
 import SelectButton from "./select_button";
 
@@ -19,13 +19,13 @@ export class BenefitTitleCard extends Component<Props> {
           target="_blank"
           text={
             this.props.t("current-language-code") === "en"
-              ? benefit.vac_name_en
-              : benefit.vac_name_fr
+              ? benefit.vacNameEn
+              : benefit.vacNameFr
           }
           href={
             this.props.t("current-language-code") === "en"
-              ? benefit.linkEn
-              : benefit.linkFr
+              ? benefit.benefitPageEn
+              : benefit.benefitPageFr
           }
           isDown={false}
           id="title"
@@ -43,26 +43,18 @@ export class BenefitCard extends Component<Props> {
     return (
       <Grid item xs={12} lg={6}>
         <Card>
-          <CardHeader
-            title={(this.props.t("current-language-code") === "en"
-              ? benefit.benefitTypeEn
-              : benefit.benefitTypeFr
-            ).toUpperCase()}
-          />
           <CardContent>
             <Typography className="cardTitle" variant="title" gutterBottom>
               {this.props.t("current-language-code") === "en"
-                ? benefit.vac_name_en
-                : benefit.vac_name_fr}
+                ? benefit.vacNameEn
+                : benefit.vacNameFr}
             </Typography>
             <Typography
               className="cardDescription"
               variant="body1"
               gutterBottom
             >
-              {this.props.t("current-language-code") === "en"
-                ? benefit.descriptionEn
-                : benefit.descriptionFr}
+              {"Benefit Description"}
             </Typography>
           </CardContent>
           <CardActions>
@@ -70,8 +62,8 @@ export class BenefitCard extends Component<Props> {
               target="_blank"
               href={
                 this.props.t("current-language-code") === "en"
-                  ? benefit.linkEn
-                  : benefit.linkFr
+                  ? benefit.benefitPageEn
+                  : benefit.benefitPageFr
               }
             >
               {this.props.t("View Details")}

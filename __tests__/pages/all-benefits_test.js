@@ -4,9 +4,7 @@ import { shallow } from "enzyme";
 import React from "react";
 
 import { AllBenefits } from "../../pages/all-benefits";
-import { benefitsFixture } from "../fixtures/benefits";
-import benefitTypesFixture from "../fixtures/benefit_types";
-import { corporaEnFixture, corporaFrFixture } from "../fixtures/corpora";
+import benefitsFixture from "../fixtures/benefits";
 
 jest.mock("react-ga");
 
@@ -27,32 +25,9 @@ describe("AllBenefits", () => {
       i18n: {},
       storeHydrated: true,
       loadDataStore: jest.fn(),
-      benefitTypes: benefitTypesFixture,
-      benefits: benefitsFixture,
-      corporaEn: corporaEnFixture,
-      corporaFr: corporaFrFixture
+      benefits: benefitsFixture
     };
     _mountedAllBenefits = undefined;
-  });
-
-  it("has a correct enrichBenefit function", () => {
-    let expectedBenefit = Object.assign({}, benefitsFixture[0]);
-    expectedBenefit.linkEn = corporaEnFixture[0].full_description_link;
-    expectedBenefit.linkFr = corporaFrFixture[0].full_description_link;
-    expectedBenefit.descriptionEn = corporaEnFixture[0].one_line_description;
-    expectedBenefit.descriptionFr = corporaFrFixture[0].one_line_description;
-    expectedBenefit.benefitTypeEn = benefitTypesFixture[0].name_en;
-    expectedBenefit.benefitTypeFr = benefitTypesFixture[0].name_fr;
-
-    const AllBenefitsInstance = mountedAllBenefits().instance();
-    expect(
-      AllBenefitsInstance.enrichBenefit(
-        benefitsFixture[0],
-        benefitTypesFixture,
-        corporaEnFixture,
-        corporaFrFixture
-      )
-    ).toEqual(expectedBenefit);
   });
 
   it("shows the list of all benefits available", () => {
