@@ -39,7 +39,7 @@ const MenuProps = {
 type Props = {
   t: mixed,
   needs: mixed,
-  toggle: mixed
+  handleChange: mixed
 };
 
 class NeedsSelector extends Component<Props> {
@@ -49,7 +49,7 @@ class NeedsSelector extends Component<Props> {
 
   handleChange = event => {
     this.setState({ name: event.target.value });
-    this.props.toggle(event.target.value);
+    this.props.handleChange(event.target.value);
   };
 
   render() {
@@ -59,7 +59,7 @@ class NeedsSelector extends Component<Props> {
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="select-multiple-chip">
-            What do you need help with?
+            {t("B3.What do you need help with?")}
           </InputLabel>
           <Select
             multiple
@@ -89,6 +89,7 @@ class NeedsSelector extends Component<Props> {
           >
             {this.props.needs.map(need => (
               <MenuItem
+                className="needOption"
                 key={need.id}
                 value={need.id}
                 style={{

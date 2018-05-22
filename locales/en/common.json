@@ -42,7 +42,8 @@
     "ServiceType": "Which service type?",
     "PatronType": "Who are you looking for?",
     "serviceStatus": "What is the status?",
-    "servicePersonVitalStatus": "Has the service member passed away?"
+    "servicePersonVitalStatus": "Has the service member passed away?",
+    "What do you need help with?": "What do you need help with?"
   },
   "alpha": "For testing only.",
   "noscript":

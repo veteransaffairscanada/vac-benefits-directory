@@ -1,85 +1,34 @@
 import React from "react";
 import { mount } from "enzyme";
-import FilterSelector from "../../components/filter_selector";
-import patronTypesFixture from "../fixtures/patron_types";
+import NeedsSelector from "../../components/needs_selector";
+import needsFixture from "../fixtures/needs";
 
-describe("FilterSelector", () => {
+describe("NeedsSelector", () => {
   let props;
-  let _mountedFilterSelector;
+  let _mountedNeedsSelector;
 
-  const mountedFilterSelector = () => {
-    if (!_mountedFilterSelector) {
-      _mountedFilterSelector = mount(<FilterSelector {...props} />);
+  const mountedNeedsSelector = () => {
+    if (!_mountedNeedsSelector) {
+      _mountedNeedsSelector = mount(<NeedsSelector {...props} />);
     }
-    return _mountedFilterSelector;
+    return _mountedNeedsSelector;
   };
 
   beforeEach(() => {
     props = {
       t: key => key,
-      legend: "test legend",
-      filters: patronTypesFixture,
-      selectedFilters: [],
+      needs: needsFixture,
+      selectedNeeds: {},
       handleChange: jest.fn()
     };
-    _mountedFilterSelector = undefined;
+    _mountedNeedsSelector = undefined;
   });
 
-  it("contains the legend", () => {
+  it("contains the prompt", () => {
     expect(
-      mountedFilterSelector()
-        .find("legend")
+      mountedNeedsSelector()
+        .find("InputLabel")
         .text()
-    ).toContain(props.legend);
-  });
-
-  it("contains checkboxes for the filters", () => {
-    expect(mountedFilterSelector().find("Checkbox").length).toEqual(
-      props.filters.length
-    );
-    expect(
-      patronTypesFixture.map(
-        pt =>
-          mountedFilterSelector()
-            .find("#" + pt.id)
-            .first()
-            .props().label
-      )
-    ).toEqual(patronTypesFixture.map(pt => pt.name_fr));
-  });
-
-  it("displays English label if appropriate", () => {
-    props.t = () => "en";
-    expect(
-      patronTypesFixture.map(
-        pt =>
-          mountedFilterSelector()
-            .find("#" + pt.id)
-            .first()
-            .props().label
-      )
-    ).toEqual(patronTypesFixture.map(pt => pt.name_en));
-  });
-
-  it("has the correct checked properties", () => {
-    props.selectedFilters = { [patronTypesFixture[0].id]: 1 };
-    expect(
-      mountedFilterSelector()
-        .find("Checkbox")
-        .get(0).props.checked
-    ).toEqual(true);
-    expect(
-      mountedFilterSelector()
-        .find("Checkbox")
-        .get(1).props.checked
-    ).toEqual(false);
-  });
-
-  it("has the correct onChange properties", () => {
-    mountedFilterSelector()
-      .find("Checkbox")
-      .first()
-      .simulate("change");
-    expect(props.handleChange).toBeCalledWith(patronTypesFixture[0].id);
+    ).toContain("What do you need help with");
   });
 });
