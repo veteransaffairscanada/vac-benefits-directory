@@ -12,6 +12,7 @@ import Typography from "material-ui/Typography";
 
 import { BenefitCard } from "../components/benefit_cards";
 import FilterSelector from "../components/filter_selector";
+import NeedsSelector from "../components/needs_filter";
 
 type Props = {
   id: string,
@@ -257,6 +258,10 @@ export class BB extends Component<Props> {
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
               <Grid container spacing={24}>
+                <Grid item xs={12}>
+                  <NeedsSelector />
+                </Grid>
+
                 {benefits.map((benefit, i) => (
                   <BenefitCard
                     id={"bc" + i}
