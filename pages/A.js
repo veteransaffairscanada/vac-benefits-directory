@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
-import Router from "next/router";
+// import Router from "next/router";
 
 import withRedux from "next-redux-wrapper";
 import { initStore, loadDataStore } from "../store";
