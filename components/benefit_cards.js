@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card, { CardContent, CardActions } from "material-ui/Card";
+import Card, { CardContent } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
 import SelectButton from "./select_button";
 
