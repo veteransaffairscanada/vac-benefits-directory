@@ -11,7 +11,8 @@ const benefitsFixture = [
     vacNameEn: "Disability Pension",
     vacNameFr: "Pension d'invalidité",
     benefitPageEn: "English link",
-    benefitPageFr: "French link"
+    benefitPageFr: "French link",
+    childBenefits: ["0"]
   }
 ];
 
