@@ -45,6 +45,8 @@
     "servicePersonVitalStatus": "Has the service member passed away?",
     "What do you need help with?": "What do you need help with?"
   },
+  "child benefits":
+    "With this benefit, you may also have access to these benefits",
   "alpha": "For testing only.",
   "noscript":
     "Javascript is disabled and you may experience reduced functionality. To see a full list of benefits, click <a href='/all-benefits'>here</a>.",
