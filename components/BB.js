@@ -114,6 +114,8 @@ export class BB extends Component<Props> {
   };
 
   render() {
+    console.log(this.props.eligibilityPaths);
+
     let serviceTypes = Array.from(
       new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
     )

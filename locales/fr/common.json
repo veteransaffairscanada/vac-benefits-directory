@@ -66,5 +66,15 @@
     "Les conjoints reçoivent le plein montant de la pension après la première année du décès.",
   "Disability Award": "Prix ​​d'invalidité",
   "Disability Award Description":
-    "Les paiements financiers versés aux personnes ayant une déficience liée au service."
+    "Les paiements financiers versés aux personnes ayant une déficience liée au service.",
+
+  "CAF": "FAC",
+  "RCMP": "GRC",
+  "WSV (WWII or Korea)": "WSV (WWII or Korea)",
+  "service-person": "Service Person",
+  "family": "Family",
+  "released": "Released",
+  "still serving": "Still Serving",
+  "alive": "Alive",
+  "deceased": "Deceased"
 }
