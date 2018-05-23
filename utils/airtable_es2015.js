@@ -25,6 +25,7 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
   let dataStore = {};
   dataStore.benefits = await fetchTableFromAirtable("benefits");
   dataStore.eligibilityPaths = await fetchTableFromAirtable("eligibilityPaths");
+  dataStore.needs = await fetchTableFromAirtable("needs");
   dataStore.timestamp = await Date.now();
   return dataStore;
 });

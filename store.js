@@ -6,7 +6,8 @@ const exampleInitialState = {
   count: 10,
   storeHydrated: false,
   benefits: [],
-  eligibilityPaths: []
+  eligibilityPaths: [],
+  needs: []
 };
 
 export const actionTypes = {
@@ -25,7 +26,9 @@ export const reducer = (state = exampleInitialState, action) => {
       return Object.assign({}, state, {
         storeHydrated: action.data.storeHydrated || state.storeHydrated,
         benefits: action.data.benefits || state.benefits,
-        eligibilityPaths: action.data.eligibilityPaths || state.eligibilityPaths
+        eligibilityPaths:
+          action.data.eligibilityPaths || state.eligibilityPaths,
+        needs: action.data.needs || state.needs
       });
     default:
       return state;
