@@ -38,7 +38,7 @@ export class BenefitCard extends Component<Props> {
               {"Benefit Description"}
             </Typography>
 
-            <Grid container spacing={24} padding-top="20em">
+            <Grid container spacing={24}>
               {childBenefits.map((cb, i) => (
                 <EmbeddedBenefitCard
                   id={"cb" + i}
