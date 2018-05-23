@@ -1,40 +1,13 @@
 import React, { Component } from "react";
 import Card, { CardContent, CardActions } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
-import SelectButton from "./select_button";
+import EmbeddedBenefitCard from "./embedded_benefit_card";
 
 type Props = {
   benefit: mixed,
   allBenefits: mixed,
   t: mixed
 };
-
-export class EmbeddedBenefitCard extends Component<Props> {
-  props: Props;
-
-  render() {
-    const benefit = this.props.benefit;
-    return (
-      <Grid item xs={12}>
-        <SelectButton
-          target="_blank"
-          text={
-            this.props.t("current-language-code") === "en"
-              ? benefit.vacNameEn
-              : benefit.vacNameFr
-          }
-          href={
-            this.props.t("current-language-code") === "en"
-              ? benefit.benefitPageEn
-              : benefit.benefitPageFr
-          }
-          isDown={false}
-          id="title"
-        />
-      </Grid>
-    );
-  }
-}
 
 export class BenefitCard extends Component<Props> {
   props: Props;
@@ -65,7 +38,7 @@ export class BenefitCard extends Component<Props> {
               {"Benefit Description"}
             </Typography>
 
-            <Grid container spacing={24}>
+            <Grid container spacing={24} padding-top="20em">
               {childBenefits.map((cb, i) => (
                 <EmbeddedBenefitCard
                   id={"cb" + i}
