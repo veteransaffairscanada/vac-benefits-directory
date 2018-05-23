@@ -105,12 +105,9 @@ export class BB extends Component<Props> {
           need.benefits
         );
       });
-      console.log("benefits for selected needs", benefitIdsForSelectedNeeds);
-      console.log("IDs Before", new Array(new Set(benefitIDs)));
       benefitIDs = benefitIDs.filter(
         id => benefitIdsForSelectedNeeds.indexOf(id) > -1
       );
-      console.log("IDs After ", new Array(new Set(benefitIDs)));
     }
     const benefitIDSet = new Set(benefitIDs);
     return benefits.filter(benefit => benefitIDSet.has(benefit.id));
