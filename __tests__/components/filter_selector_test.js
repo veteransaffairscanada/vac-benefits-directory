@@ -45,7 +45,7 @@ describe("FilterSelector", () => {
             .first()
             .props().label
       )
-    ).toEqual(patronTypesFixture.map(pt => pt.name_fr));
+    ).toEqual(patronTypesFixture.map(pt => pt.id));
   });
 
   it("displays English label if appropriate", () => {
@@ -58,7 +58,7 @@ describe("FilterSelector", () => {
             .first()
             .props().label
       )
-    ).toEqual(patronTypesFixture.map(pt => pt.name_en));
+    ).toEqual(patronTypesFixture.map(pt => "en")); // TODO:  get translations in Airtable, change this
   });
 
   it("has the correct checked properties", () => {
