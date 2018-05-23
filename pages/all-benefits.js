@@ -37,6 +37,7 @@ export class AllBenefits extends Component<Props> {
                   <BenefitCard
                     id={"bc" + i}
                     benefit={benefit}
+                    allBenefits={this.props.benefits}
                     t={this.props.t}
                     key={i}
                   />
