@@ -114,8 +114,6 @@ export class BB extends Component<Props> {
   };
 
   render() {
-    console.log(this.props.eligibilityPaths);
-
     let serviceTypes = Array.from(
       new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
     )
@@ -126,9 +124,11 @@ export class BB extends Component<Props> {
 
     const patronTypes = Array.from(
       new Set(this.props.eligibilityPaths.map(ep => ep.patronType))
-    ).map(st => {
-      return { id: st, name_en: st, name_fr: "FF " + st };
-    });
+    )
+      .filter(st => st !== "na")
+      .map(st => {
+        return { id: st, name_en: st, name_fr: "FF " + st };
+      });
 
     let serviceStatuses = Array.from(
       new Set(this.props.eligibilityPaths.map(ep => ep.serviceStatus))

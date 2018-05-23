@@ -70,11 +70,11 @@
 
   "CAF": "FAC",
   "RCMP": "GRC",
-  "WSV (WWII or Korea)": "WSV (WWII or Korea)",
-  "service-person": "Service Person",
-  "family": "Family",
-  "released": "Released",
-  "still serving": "Still Serving",
-  "alive": "Alive",
-  "deceased": "Deceased"
+  "WSV (WWII or Korea)": "VSG (la Seconde Guerre mondiale ou Corée)",
+  "service-person": "Personne de service",
+  "family": "Famille",
+  "released": "Libéré",
+  "still serving": "Toujours en train de servir",
+  "alive": "Vivant",
+  "deceased": "Décédé"
 }
