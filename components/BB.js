@@ -83,13 +83,35 @@ export class BB extends Component<Props> {
     return matches;
   };
 
-  filteredBenefits = (benefits, eligibilityPaths, selectedEligibility) => {
+  filteredBenefits = (
+    benefits,
+    eligibilityPaths,
+    selectedEligibility,
+    needs,
+    selectedNeeds
+  ) => {
     let benefitIDs = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
         benefitIDs = benefitIDs.concat(ep.benefits);
       }
     });
+
+    if (Object.keys(selectedNeeds).length > 0) {
+      let benefitIdsForSelectedNeeds = [];
+      Object.keys(selectedNeeds).forEach(id => {
+        const need = needs.filter(n => n.id === id)[0];
+        benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
+          need.benefits
+        );
+      });
+      console.log("benefits for selected needs", benefitIdsForSelectedNeeds);
+      console.log("IDs Before", new Array(new Set(benefitIDs)));
+      benefitIDs = benefitIDs.filter(
+        id => benefitIdsForSelectedNeeds.indexOf(id) > -1
+      );
+      console.log("IDs After ", new Array(new Set(benefitIDs)));
+    }
     const benefitIDSet = new Set(benefitIDs);
     return benefits.filter(benefit => benefitIDSet.has(benefit.id));
   };
@@ -147,7 +169,9 @@ export class BB extends Component<Props> {
     const benefits = this.filteredBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
-      this.props.selectedEligibility
+      this.props.selectedEligibility,
+      this.props.needs,
+      this.props.selectedNeeds
     );
 
     return (
