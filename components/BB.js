@@ -262,6 +262,7 @@ export class BB extends Component<Props> {
                     id={"bc" + i}
                     className="BenefitCards"
                     benefit={benefit}
+                    allBenefits={benefits}
                     t={this.props.t}
                     key={i}
                   />

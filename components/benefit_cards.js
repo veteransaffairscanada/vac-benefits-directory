@@ -5,6 +5,7 @@ import SelectButton from "./select_button";
 
 type Props = {
   benefit: mixed,
+  allBenefits: mixed,
   t: mixed
 };
 
@@ -14,7 +15,7 @@ export class BenefitTitleCard extends Component<Props> {
   render() {
     const benefit = this.props.benefit;
     return (
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12}>
         <SelectButton
           target="_blank"
           text={
@@ -40,6 +41,13 @@ export class BenefitCard extends Component<Props> {
 
   render() {
     const benefit = this.props.benefit;
+
+    const childBenefits = benefit.childBenefits
+      ? this.props.allBenefits.filter(
+          ab => benefit.childBenefits.indexOf(ab.id) > -1
+        )
+      : [];
+
     return (
       <Grid item xs={12} lg={6}>
         <Card>
@@ -56,6 +64,19 @@ export class BenefitCard extends Component<Props> {
             >
               {"Benefit Description"}
             </Typography>
+
+            <Grid container spacing={24}>
+              {childBenefits.map((cb, i) => (
+                <BenefitTitleCard
+                  id={"cb" + i}
+                  className="BenefitCards"
+                  benefit={cb}
+                  allBenefits={this.props.allBenefits}
+                  t={this.props.t}
+                  key={i}
+                />
+              ))}
+            </Grid>
           </CardContent>
           <CardActions>
             <Button
