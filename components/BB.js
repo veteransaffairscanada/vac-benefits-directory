@@ -262,9 +262,6 @@ export class BB extends Component<Props> {
             <Grid item md={9} sm={7} xs={12}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
-                  Needs: {JSON.stringify(this.props.selectedNeeds)}
-                </Grid>
-                <Grid item xs={12}>
                   <NeedsSelector
                     t={t}
                     needs={this.props.needs}

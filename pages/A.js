@@ -18,6 +18,7 @@ type Props = {
   t: mixed,
   benefits: mixed,
   eligibilityPaths: mixed,
+  needs: mixed,
   data: mixed,
   loadDataStore: mixed
 };
@@ -74,7 +75,8 @@ export class A extends Component<Props> {
     } else if (typeof this.props.data !== "undefined") {
       this.props.loadDataStore({
         benefits: this.props.data.benefits,
-        eligibilityPaths: this.props.data.eligibilityPaths
+        eligibilityPaths: this.props.data.eligibilityPaths,
+        needs: this.props.data.needs
       });
     }
   }
@@ -106,15 +108,15 @@ export class A extends Component<Props> {
   };
 
   sectionToDisplay = section => {
-    const needs = [
-      { id: "43534534", name_en: "Health", name_fr: "FF Health" },
-      {
-        id: "43534ewr534",
-        name_en: "Assistance around the home",
-        name_fr: "FF Assistance around the home"
-      },
-      { id: "dsfasdfa", name_en: "Finding a Job", name_fr: "FF Finding a Job" }
-    ];
+    // const needs = [
+    //   { id: "43534534", name_en: "Health", name_fr: "FF Health" },
+    //   {
+    //     id: "43534ewr534",
+    //     name_en: "Assistance around the home",
+    //     name_fr: "FF Assistance around the home"
+    //   },
+    //   { id: "dsfasdfa", name_en: "Finding a Job", name_fr: "FF Finding a Job" }
+    // ];
 
     switch (section) {
       case "BB":
@@ -124,7 +126,7 @@ export class A extends Component<Props> {
             t={this.props.t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
-            needs={needs}
+            needs={this.props.needs}
             selectedEligibility={this.state.selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
@@ -152,7 +154,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
   return {
     benefits: state.benefits,
-    eligibilityPaths: state.eligibilityPaths
+    eligibilityPaths: state.eligibilityPaths,
+    needs: state.needs
   };
 };
 

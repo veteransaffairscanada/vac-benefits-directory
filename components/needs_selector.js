@@ -75,10 +75,10 @@ class NeedsSelector extends Component<Props> {
                       t("current-language-code") === "en"
                         ? this.props.needs.find(need => {
                             return need.id === needId;
-                          }).name_en
+                          }).nameEn
                         : this.props.needs.find(need => {
                             return need.id === needId;
-                          }).name_fr
+                          }).nameFr
                     }
                     className={classes.chip}
                   />
@@ -100,8 +100,8 @@ class NeedsSelector extends Component<Props> {
                 }}
               >
                 {t("current-language-code") === "en"
-                  ? need.name_en
-                  : need.name_fr}
+                  ? need.nameEn
+                  : need.nameFr}
               </MenuItem>
             ))}
           </Select>
