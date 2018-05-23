@@ -58,7 +58,7 @@ describe("FilterSelector", () => {
             .first()
             .props().label
       )
-    ).toEqual(patronTypesFixture.map(pt => "en")); // TODO:  get translations in Airtable, change this
+    ).toEqual(patronTypesFixture.map(() => "en")); // TODO:  get translations in Airtable, change this
   });
 
   it("has the correct checked properties", () => {
