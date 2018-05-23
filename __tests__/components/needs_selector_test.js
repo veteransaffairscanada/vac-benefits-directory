@@ -31,4 +31,19 @@ describe("NeedsSelector", () => {
         .text()
     ).toContain("What do you need help with");
   });
+
+  it("has the exact number of children as passed", () => {
+    const select = mountedNeedsSelector()
+      .find("Select")
+      .at(0);
+    expect(select.props().children.length).toEqual(needsFixture.length);
+  });
+
+  it("fires the the handleChange function when a option is selected", () => {
+    const select = mountedNeedsSelector()
+      .find("Select")
+      .at(0);
+    select.props().onChange({ target: { value: [needsFixture[0].id] } });
+    expect(props.handleChange).toHaveBeenCalled();
+  });
 });

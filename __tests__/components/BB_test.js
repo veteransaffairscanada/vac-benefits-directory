@@ -25,6 +25,8 @@ describe("BB", () => {
       t: key => key,
       benefits: benefitsFixture,
       eligibilityPaths: elegibilityPathsFixture,
+      selectedNeeds: {},
+      needs: [],
       selectedEligibility: {
         serviceType: { CAF: 1 },
         serviceStatus: { released: 1 },
@@ -50,7 +52,9 @@ describe("BB", () => {
       BBInstance.filteredBenefits(
         benefitsFixture,
         elegibilityPathsFixture,
-        props.selectedEligibility
+        props.selectedEligibility,
+        props.needs,
+        props.selectedNeeds
       )
     ).toEqual([benefitsFixture[0]]);
   });
