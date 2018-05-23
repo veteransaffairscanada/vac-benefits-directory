@@ -12,14 +12,18 @@ import Typography from "material-ui/Typography";
 
 import { BenefitCard } from "../components/benefit_cards";
 import FilterSelector from "../components/filter_selector";
+import NeedsSelector from "./needs_selector";
 
 type Props = {
   id: string,
   t: mixed,
   benefits: mixed,
   eligibilityPaths: mixed,
+  needs: mixed,
   selectedEligibility: mixed,
+  selectedNeeds: mixed,
   toggleSelectedEligibility: mixed,
+  setSelectedNeeds: mixed,
   classes: mixed
 };
 
@@ -79,13 +83,32 @@ export class BB extends Component<Props> {
     return matches;
   };
 
-  filteredBenefits = (benefits, eligibilityPaths, selectedEligibility) => {
+  filteredBenefits = (
+    benefits,
+    eligibilityPaths,
+    selectedEligibility,
+    needs,
+    selectedNeeds
+  ) => {
     let benefitIDs = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
         benefitIDs = benefitIDs.concat(ep.benefits);
       }
     });
+
+    if (Object.keys(selectedNeeds).length > 0) {
+      let benefitIdsForSelectedNeeds = [];
+      Object.keys(selectedNeeds).forEach(id => {
+        const need = needs.filter(n => n.id === id)[0];
+        benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
+          need.benefits
+        );
+      });
+      benefitIDs = benefitIDs.filter(
+        id => benefitIdsForSelectedNeeds.indexOf(id) > -1
+      );
+    }
     const benefitIDSet = new Set(benefitIDs);
     return benefits.filter(benefit => benefitIDSet.has(benefit.id));
   };
@@ -143,7 +166,9 @@ export class BB extends Component<Props> {
     const benefits = this.filteredBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
-      this.props.selectedEligibility
+      this.props.selectedEligibility,
+      this.props.needs,
+      this.props.selectedNeeds
     );
 
     return (
@@ -257,6 +282,14 @@ export class BB extends Component<Props> {
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
               <Grid container spacing={24}>
+                <Grid item xs={12}>
+                  <NeedsSelector
+                    t={t}
+                    needs={this.props.needs}
+                    handleChange={this.props.setSelectedNeeds}
+                  />
+                </Grid>
+
                 {benefits.map((benefit, i) => (
                   <BenefitCard
                     id={"bc" + i}
