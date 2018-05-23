@@ -9,7 +9,7 @@ type Props = {
   t: mixed
 };
 
-export class BenefitTitleCard extends Component<Props> {
+export class EmbeddedBenefitCard extends Component<Props> {
   props: Props;
 
   render() {
@@ -67,7 +67,7 @@ export class BenefitCard extends Component<Props> {
 
             <Grid container spacing={24}>
               {childBenefits.map((cb, i) => (
-                <BenefitTitleCard
+                <EmbeddedBenefitCard
                   id={"cb" + i}
                   className="BenefitCards"
                   benefit={cb}
