@@ -73,6 +73,14 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
               res.sendFile("fallback-pages/browser-incompatible.html", {
                 root: __dirname
               });
+            } else if (req.url.includes("refresh")) {
+              console.log("Refreshing Cache ...");
+              let referrer = req.header("Referer") || "/";
+              Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
+                data = newData;
+                res.redirect(referrer);
+                console.log("Cache refreshed @ " + data.timestamp);
+              });
             } else {
               handle(req, res);
             }
