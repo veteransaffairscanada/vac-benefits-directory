@@ -14,6 +14,9 @@ export class BenefitCard extends Component<Props> {
 
   render() {
     const benefit = this.props.benefit;
+    const style = {
+      padding: "30px 0px"
+    };
 
     const childBenefits = benefit.childBenefits
       ? this.props.allBenefits.filter(
@@ -37,20 +40,23 @@ export class BenefitCard extends Component<Props> {
             >
               {"Benefit Description"}
             </Typography>
-
             <Grid container spacing={24}>
-              <div width="100%">
-                {childBenefits.map((cb, i) => (
-                  <EmbeddedBenefitCard
-                    id={"cb" + i}
-                    className="BenefitCards"
-                    benefit={cb}
-                    allBenefits={this.props.allBenefits}
-                    t={this.props.t}
-                    key={i}
-                  />
-                ))}
-              </div>
+              {childBenefits.length > 0 ? (
+                <div width="100%" style={style}>
+                  {childBenefits.map((cb, i) => (
+                    <EmbeddedBenefitCard
+                      id={"cb" + i}
+                      className="BenefitCards"
+                      benefit={cb}
+                      allBenefits={this.props.allBenefits}
+                      t={this.props.t}
+                      key={i}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div />
+              )}
             </Grid>
           </CardContent>
           <CardActions>
