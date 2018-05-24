@@ -83,7 +83,15 @@ describe("BenefitCard", () => {
     props = {
       t: () => "en",
       benefit: benefitsFixture[0],
-      allBenefits: benefitsFixture
+      allBenefits: benefitsFixture,
+      classes: {
+        card: "BB-card-87",
+        media: "BB-media-88",
+        actions: "BB-actions-89",
+        expand: "BB-expand-90",
+        expandOpen: "BB-expandOpen-91",
+        avatar: "BB-avatar-92"
+      }
     };
     _mountedBenefitCard = undefined;
   });
