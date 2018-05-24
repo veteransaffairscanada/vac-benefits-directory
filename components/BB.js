@@ -24,6 +24,7 @@ type Props = {
   selectedNeeds: mixed,
   toggleSelectedEligibility: mixed,
   setSelectedNeeds: mixed,
+  setUserProfile: mixed,
   classes: mixed
 };
 
@@ -211,8 +212,8 @@ export class BB extends Component<Props> {
                       selectedFilters={
                         this.props.selectedEligibility.serviceType
                       }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility("serviceType", id)
+                      setUserProfile={id =>
+                        this.props.setUserProfile("serviceType", id)
                       }
                     />
                   </Grid>
@@ -226,8 +227,8 @@ export class BB extends Component<Props> {
                       selectedFilters={
                         this.props.selectedEligibility.patronType
                       }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility("patronType", id)
+                      setUserProfile={id =>
+                        this.props.setUserProfile("patronType", id)
                       }
                     />
                   </Grid>
@@ -241,11 +242,8 @@ export class BB extends Component<Props> {
                       selectedFilters={
                         this.props.selectedEligibility.serviceStatus
                       }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility(
-                          "serviceStatus",
-                          id
-                        )
+                      setUserProfile={id =>
+                        this.props.setUserProfile("serviceStatus", id)
                       }
                     />
                   </Grid>
@@ -259,8 +257,8 @@ export class BB extends Component<Props> {
                       selectedFilters={
                         this.props.selectedEligibility.servicePersonVitalStatus
                       }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility(
+                      setUserProfile={id =>
+                        this.props.setUserProfile(
                           "servicePersonVitalStatus",
                           id
                         )
