@@ -45,8 +45,7 @@
     "servicePersonVitalStatus": "Has the service member passed away?",
     "What do you need help with?": "What do you need help with?"
   },
-  "child benefits":
-    "With this benefit, you may also have access to these benefits",
+  "child benefits": "With this benefit, you may also have access to",
   "alpha": "For testing only.",
   "noscript":
     "Javascript is disabled and you may experience reduced functionality. To see a full list of benefits, click <a href='/all-benefits'>here</a>.",
@@ -81,5 +80,6 @@
   "yes": "Yes",
   "no": "No",
   "feedback-prompt": "Did you find the information you're looking for?",
-  "feedback-response": "Thank you for your feedback."
+  "feedback-response": "Thank you for your feedback.",
+  "Benefit Description": "Benefit Description"
 }
