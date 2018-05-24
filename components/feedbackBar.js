@@ -35,7 +35,7 @@ class FeedbackBar extends Component<Props> {
 
   sendFeedback = answer => {
     this.setState({ feedbackSubmitted: true });
-    logEvent("Page Feedback (Helpful)", answer);
+    logEvent("Page Feedback (" + this.props.t("feedback-prompt") + ")", answer);
   };
 
   render() {

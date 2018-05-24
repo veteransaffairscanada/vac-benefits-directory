@@ -56,6 +56,9 @@ describe("Feedback bar", () => {
       .find("#feedbackYes")
       .at(0)
       .simulate("click");
-    expect(analytics.logEvent).toBeCalledWith("Page Feedback (Helpful)", "Yes");
+    expect(analytics.logEvent).toBeCalledWith(
+      "Page Feedback (feedback-prompt)",
+      "Yes"
+    );
   });
 });
