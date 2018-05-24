@@ -7,10 +7,20 @@ import { FormControl } from "material-ui/Form";
 import Select from "material-ui/Select";
 import Chip from "material-ui/Chip";
 
+const chipStyle = {
+  borderRadius: "8px",
+  fontSize: "16px"
+};
+
+const layoutStyle = {
+  fontSize: "16px"
+};
+
 const styles = theme => ({
   root: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    marginBottom: "10px"
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -58,7 +68,7 @@ class NeedsSelector extends Component<Props> {
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="select-multiple-chip">
+          <InputLabel style={layoutStyle} htmlFor="select-multiple-chip">
             {t("B3.What do you need help with?")}
           </InputLabel>
           <Select
@@ -81,6 +91,7 @@ class NeedsSelector extends Component<Props> {
                           }).nameFr
                     }
                     className={classes.chip}
+                    style={chipStyle}
                   />
                 ))}
               </div>

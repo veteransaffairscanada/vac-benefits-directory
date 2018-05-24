@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card, { CardContent, CardActions } from "material-ui/Card";
+import Card, { CardContent } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
 
@@ -7,6 +7,11 @@ type Props = {
   benefit: mixed,
   allBenefits: mixed,
   t: mixed
+};
+
+const buttonStyles = {
+  float: "right",
+  marginTop: "10px"
 };
 
 export class BenefitCard extends Component<Props> {
@@ -17,7 +22,6 @@ export class BenefitCard extends Component<Props> {
     const style = {
       padding: "30px 0px"
     };
-
     const childBenefits = benefit.childBenefits
       ? this.props.allBenefits.filter(
           ab => benefit.childBenefits.indexOf(ab.id) > -1
@@ -27,12 +31,25 @@ export class BenefitCard extends Component<Props> {
     return (
       <Grid item xs={12} lg={6}>
         <Card>
+          <Button
+            style={buttonStyles}
+            target="_blank"
+            href={
+              this.props.t("current-language-code") === "en"
+                ? benefit.benefitPageEn
+                : benefit.benefitPageFr
+            }
+          >
+            {this.props.t("View Details")}
+          </Button>
+
           <CardContent>
             <Typography className="cardTitle" variant="title" gutterBottom>
               {this.props.t("current-language-code") === "en"
                 ? benefit.vacNameEn
                 : benefit.vacNameFr}
             </Typography>
+
             <Typography
               className="cardDescription"
               variant="body1"
@@ -59,18 +76,6 @@ export class BenefitCard extends Component<Props> {
               )}
             </Grid>
           </CardContent>
-          <CardActions>
-            <Button
-              target="_blank"
-              href={
-                this.props.t("current-language-code") === "en"
-                  ? benefit.benefitPageEn
-                  : benefit.benefitPageFr
-              }
-            >
-              {this.props.t("View Details")}
-            </Button>
-          </CardActions>
         </Card>
       </Grid>
     );
