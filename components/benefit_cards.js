@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card, { CardContent } from "material-ui/Card";
+import Card, { CardActions, CardContent } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
 import { withStyles } from "material-ui/styles";
 import red from "material-ui/colors/red";
@@ -18,7 +18,17 @@ type Props = {
 
 const buttonStyles = {
   float: "right",
-  marginTop: "10px"
+  marginTop: "10px",
+  marginRight: "25px"
+};
+
+const chevronStyle = {
+  float: "right"
+};
+
+const collapseStyle = {
+  backgroundColor: "#eee",
+  padding: "25px"
 };
 
 const styles = theme => ({
@@ -68,11 +78,12 @@ export class BenefitCard extends Component<Props> {
       : [];
 
     return (
-      <Grid item xs={12} lg={6}>
+      <Grid item xs={12}>
         <Card>
           <Button
             style={buttonStyles}
             target="_blank"
+            variant="raised"
             href={
               this.props.t("current-language-code") === "en"
                 ? benefit.benefitPageEn
@@ -81,7 +92,6 @@ export class BenefitCard extends Component<Props> {
           >
             {this.props.t("View Details")}
           </Button>
-
           <CardContent>
             <Typography className="cardTitle" variant="title" gutterBottom>
               {this.props.t("current-language-code") === "en"
@@ -93,12 +103,15 @@ export class BenefitCard extends Component<Props> {
               className="cardDescription"
               variant="body1"
               gutterBottom
+              style={{ marginTop: "10px" }}
             >
-              {"Benefit Description"}
+              {t("Benefit Description")}
             </Typography>
+          </CardContent>
+          <CardActions>
             <Grid container spacing={24}>
               {childBenefits.length ? (
-                <Grid item>
+                <Grid item xs={12} style={{ marginLeft: "13px" }}>
                   {t("child benefits")}:
                   <IconButton
                     id="expandButton"
@@ -108,6 +121,7 @@ export class BenefitCard extends Component<Props> {
                     onClick={this.handleExpandClick}
                     aria-expanded={this.state.expanded}
                     aria-label="Show more"
+                    style={chevronStyle}
                   >
                     <ExpandMoreIcon />
                   </IconButton>
@@ -116,27 +130,27 @@ export class BenefitCard extends Component<Props> {
                 <div />
               )}
             </Grid>
-
-            <Collapse
-              id="collapseBlock"
-              in={this.state.expanded}
-              timeout="auto"
-              unmountOnExit
-            >
-              <Grid container spacing={24}>
-                {childBenefits.map((cb, i) => (
-                  <EmbeddedBenefitCard
-                    id={"cb" + i}
-                    className="BenefitCards"
-                    benefit={cb}
-                    allBenefits={this.props.allBenefits}
-                    t={this.props.t}
-                    key={i}
-                  />
-                ))}
-              </Grid>
-            </Collapse>
-          </CardContent>
+          </CardActions>
+          <Collapse
+            id="collapseBlock"
+            in={this.state.expanded}
+            timeout="auto"
+            unmountOnExit
+            style={collapseStyle}
+          >
+            <Grid container spacing={24}>
+              {childBenefits.map((cb, i) => (
+                <EmbeddedBenefitCard
+                  id={"cb" + i}
+                  className="BenefitCards"
+                  benefit={cb}
+                  allBenefits={this.props.allBenefits}
+                  t={this.props.t}
+                  key={i}
+                />
+              ))}
+            </Grid>
+          </Collapse>
         </Card>
       </Grid>
     );
