@@ -66,5 +66,9 @@
     "Les conjoints reçoivent le plein montant de la pension après la première année du décès.",
   "Disability Award": "Prix ​​d'invalidité",
   "Disability Award Description":
-    "Les paiements financiers versés aux personnes ayant une déficience liée au service."
+    "Les paiements financiers versés aux personnes ayant une déficience liée au service.",
+  "yes": "Oui",
+  "no": "Non",
+  "feedback-prompt": "Avez-vous trouvé cette page utile?",
+  "feedback-response": "Merci pour votre avis."
 }

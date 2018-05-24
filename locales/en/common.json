@@ -66,5 +66,9 @@
     "Spouses receive the full amount of the pension following first year of death.",
   "Disability Award": "Disability Award",
   "Disability Award Description":
-    "Financial payments provided to individuals who have a service-related disability."
+    "Financial payments provided to individuals who have a service-related disability.",
+  "yes": "Yes",
+  "no": "No",
+  "feedback-prompt": "Did you find this page helpful?",
+  "feedback-response": "Thank you for your feedback."
 }
