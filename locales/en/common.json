@@ -69,7 +69,6 @@
   "Disability Award": "Disability Award",
   "Disability Award Description":
     "Financial payments provided to individuals who have a service-related disability.",
-
   "CAF": "CAF",
   "RCMP": "RCMP",
   "WSV (WWII or Korea)": "WSV (WWII or Korea)",
@@ -78,5 +77,9 @@
   "released": "Released",
   "still serving": "Still Serving",
   "alive": "Alive",
-  "deceased": "Deceased"
+  "deceased": "Deceased",
+  "yes": "Yes",
+  "no": "No",
+  "feedback-prompt": "Did you find the information you're looking for?",
+  "feedback-response": "Thank you for your feedback."
 }

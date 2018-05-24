@@ -7,6 +7,7 @@ import { PhaseBanner } from "@cdssnc/gcui";
 
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
+import FeedbackBar from "../components/feedbackBar";
 import Footer from "../components/footer";
 import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
@@ -49,6 +50,7 @@ class Layout extends Component<Props> {
             <MenuBar i18n={this.props.i18n} t={this.props.t} />
             <div role="main">{this.props.children}</div>
           </Content>
+          <FeedbackBar t={this.props.t} />
           <Footer t={this.props.t} />
         </ErrorBoundary>
         {noScriptTag}
