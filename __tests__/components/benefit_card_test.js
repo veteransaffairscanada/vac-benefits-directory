@@ -1,16 +1,19 @@
 import React from "react";
 import { mount } from "enzyme";
-import { BenefitTitleCard, BenefitCard } from "../../components/benefit_cards";
+import {
+  EmbeddedBenefitCard,
+  BenefitCard
+} from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 
-describe("BenefitTitleCard", () => {
+describe("EmbeddedBenefitCard", () => {
   let props;
-  let _mountedBenefitTitleCard;
-  const mountedBenefitTitleCard = () => {
-    if (!_mountedBenefitTitleCard) {
-      _mountedBenefitTitleCard = mount(<BenefitTitleCard {...props} />);
+  let _mountedEmbeddedBenefitCard;
+  const mountedEmbeddedBenefitCard = () => {
+    if (!_mountedEmbeddedBenefitCard) {
+      _mountedEmbeddedBenefitCard = mount(<EmbeddedBenefitCard {...props} />);
     }
-    return _mountedBenefitTitleCard;
+    return _mountedEmbeddedBenefitCard;
   };
 
   beforeEach(() => {
@@ -18,16 +21,16 @@ describe("BenefitTitleCard", () => {
       t: () => "en",
       benefit: benefitsFixture[0]
     };
-    _mountedBenefitTitleCard = undefined;
+    _mountedEmbeddedBenefitCard = undefined;
   });
 
   it("contains a SelectButton", () => {
-    expect(mountedBenefitTitleCard().find("SelectButton").length).toEqual(1);
+    expect(mountedEmbeddedBenefitCard().find("SelectButton").length).toEqual(1);
   });
 
   it("has a blank target", () => {
     expect(
-      mountedBenefitTitleCard()
+      mountedEmbeddedBenefitCard()
         .find("SelectButton")
         .prop("target")
     ).toEqual("_blank");
@@ -35,12 +38,12 @@ describe("BenefitTitleCard", () => {
 
   it("has expected English text and href", () => {
     expect(
-      mountedBenefitTitleCard()
+      mountedEmbeddedBenefitCard()
         .find("SelectButton")
         .text()
     ).toEqual(benefitsFixture[0].vacNameEn);
     expect(
-      mountedBenefitTitleCard()
+      mountedEmbeddedBenefitCard()
         .find("SelectButton")
         .prop("href")
     ).toEqual(benefitsFixture[0].benefitPageEn);
@@ -53,12 +56,12 @@ describe("BenefitTitleCard", () => {
 
     it("has expected French text and href", () => {
       expect(
-        mountedBenefitTitleCard()
+        mountedEmbeddedBenefitCard()
           .find("SelectButton")
           .text()
       ).toEqual(benefitsFixture[0].vacNameFr);
       expect(
-        mountedBenefitTitleCard()
+        mountedEmbeddedBenefitCard()
           .find("SelectButton")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
@@ -79,7 +82,8 @@ describe("BenefitCard", () => {
   beforeEach(() => {
     props = {
       t: () => "en",
-      benefit: benefitsFixture[0]
+      benefit: benefitsFixture[0],
+      allBenefits: benefitsFixture
     };
     _mountedBenefitCard = undefined;
   });
@@ -126,6 +130,11 @@ describe("BenefitCard", () => {
         .find("Button")
         .text()
     ).toEqual("en");
+  });
+
+  it("has embedded child benefit cards", () => {
+    props.benefit = benefitsFixture[1];
+    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameEn);
   });
 
   describe("when language is French", () => {

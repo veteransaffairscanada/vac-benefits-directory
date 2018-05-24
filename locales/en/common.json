@@ -45,6 +45,8 @@
     "servicePersonVitalStatus": "Has the service member passed away?",
     "What do you need help with?": "What do you need help with?"
   },
+  "child benefits":
+    "With this benefit, you may also have access to these benefits",
   "alpha": "For testing only.",
   "noscript":
     "Javascript is disabled and you may experience reduced functionality. To see a full list of benefits, click <a href='/all-benefits'>here</a>.",
@@ -67,6 +69,15 @@
   "Disability Award": "Disability Award",
   "Disability Award Description":
     "Financial payments provided to individuals who have a service-related disability.",
+  "CAF": "CAF",
+  "RCMP": "RCMP",
+  "WSV (WWII or Korea)": "WSV (WWII or Korea)",
+  "service-person": "Service Person",
+  "family": "Family",
+  "released": "Released",
+  "still serving": "Still Serving",
+  "alive": "Alive",
+  "deceased": "Deceased",
   "yes": "Yes",
   "no": "No",
   "feedback-prompt": "Did you find this page helpful?",

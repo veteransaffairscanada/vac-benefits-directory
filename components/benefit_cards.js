@@ -1,20 +1,26 @@
 import React, { Component } from "react";
-import Card, { CardContent, CardActions } from "material-ui/Card";
+import Card, { CardContent } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
 import SelectButton from "./select_button";
 
 type Props = {
   benefit: mixed,
+  allBenefits: mixed,
   t: mixed
 };
 
-export class BenefitTitleCard extends Component<Props> {
+const buttonStyles = {
+  float: "right",
+  marginTop: "10px"
+};
+
+export class EmbeddedBenefitCard extends Component<Props> {
   props: Props;
 
   render() {
     const benefit = this.props.benefit;
     return (
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12}>
         <SelectButton
           target="_blank"
           text={
@@ -40,15 +46,36 @@ export class BenefitCard extends Component<Props> {
 
   render() {
     const benefit = this.props.benefit;
+    const { t } = this.props;
+
+    const childBenefits = benefit.childBenefits
+      ? this.props.allBenefits.filter(
+          ab => benefit.childBenefits.indexOf(ab.id) > -1
+        )
+      : [];
+
     return (
       <Grid item xs={12} lg={6}>
         <Card>
+          <Button
+            style={buttonStyles}
+            target="_blank"
+            href={
+              this.props.t("current-language-code") === "en"
+                ? benefit.benefitPageEn
+                : benefit.benefitPageFr
+            }
+          >
+            {this.props.t("View Details")}
+          </Button>
+
           <CardContent>
             <Typography className="cardTitle" variant="title" gutterBottom>
               {this.props.t("current-language-code") === "en"
                 ? benefit.vacNameEn
                 : benefit.vacNameFr}
             </Typography>
+
             <Typography
               className="cardDescription"
               variant="body1"
@@ -56,19 +83,26 @@ export class BenefitCard extends Component<Props> {
             >
               {"Benefit Description"}
             </Typography>
+
+            <Grid container spacing={24}>
+              {childBenefits.length ? (
+                <Grid item>{t("child benefits")}:</Grid>
+              ) : (
+                ""
+              )}
+
+              {childBenefits.map((cb, i) => (
+                <EmbeddedBenefitCard
+                  id={"cb" + i}
+                  className="BenefitCards"
+                  benefit={cb}
+                  allBenefits={this.props.allBenefits}
+                  t={this.props.t}
+                  key={i}
+                />
+              ))}
+            </Grid>
           </CardContent>
-          <CardActions>
-            <Button
-              target="_blank"
-              href={
-                this.props.t("current-language-code") === "en"
-                  ? benefit.benefitPageEn
-                  : benefit.benefitPageFr
-              }
-            >
-              {this.props.t("View Details")}
-            </Button>
-          </CardActions>
         </Card>
       </Grid>
     );

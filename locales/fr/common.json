@@ -45,6 +45,8 @@
     "servicePersonVitalStatus": "Le membre du service est-il décédé?",
     "What do you need help with?": "Avec quoi as tu besoin d'aide?"
   },
+  "child benefits":
+    "Avec cet avantage, vous pouvez également avoir accès à ces avantages",
   "alpha": "Pour les tests seulement",
   "noscript":
     "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",
@@ -67,6 +69,15 @@
   "Disability Award": "Prix ​​d'invalidité",
   "Disability Award Description":
     "Les paiements financiers versés aux personnes ayant une déficience liée au service.",
+  "CAF": "FAC",
+  "RCMP": "GRC",
+  "WSV (WWII or Korea)": "VSG (la Seconde Guerre mondiale ou Corée)",
+  "service-person": "Personne de service",
+  "family": "Famille",
+  "released": "Libéré",
+  "still serving": "Toujours en train de servir",
+  "alive": "Vivant",
+  "deceased": "Décédé",
   "yes": "Oui",
   "no": "Non",
   "feedback-prompt": "Avez-vous trouvé cette page utile?",
