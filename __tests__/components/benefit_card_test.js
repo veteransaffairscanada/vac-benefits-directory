@@ -124,7 +124,7 @@ describe("BenefitCard", () => {
         .find(".cardDescription")
         .first()
         .text()
-    ).toEqual("Benefit Description");
+    ).toEqual("en");
   });
 
   it("has a correctly configured button", () => {

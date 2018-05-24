@@ -45,8 +45,7 @@
     "servicePersonVitalStatus": "Le membre du service est-il décédé?",
     "What do you need help with?": "Avec quoi as tu besoin d'aide?"
   },
-  "child benefits":
-    "Avec cet avantage, vous pouvez également avoir accès à ces avantages",
+  "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
   "alpha": "Pour les tests seulement",
   "noscript":
     "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",
@@ -83,5 +82,6 @@
   "yes": "Oui",
   "no": "Non",
   "feedback-prompt": "Avez-vous trouvé l'information que vous cherchez?",
-  "feedback-response": "Merci pour votre avis."
+  "feedback-response": "Merci pour votre avis.",
+  "Benefit Description": "Description de l'avantage"
 }
