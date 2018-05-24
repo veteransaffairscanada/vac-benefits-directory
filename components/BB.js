@@ -204,21 +204,6 @@ export class BB extends Component<Props> {
                 >
                   <Grid item xs={12}>
                     <FilterSelector
-                      id="serviceTypeFilter"
-                      t={t}
-                      legend={"B3.ServiceType"}
-                      filters={serviceTypes}
-                      selectedFilters={
-                        this.props.selectedEligibility.serviceType
-                      }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility("serviceType", id)
-                      }
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <FilterSelector
                       id="patronTypeFilter"
                       t={t}
                       legend={"B3.PatronType"}
@@ -228,6 +213,21 @@ export class BB extends Component<Props> {
                       }
                       handleChange={id =>
                         this.props.toggleSelectedEligibility("patronType", id)
+                      }
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <FilterSelector
+                      id="serviceTypeFilter"
+                      t={t}
+                      legend={"B3.ServiceType"}
+                      filters={serviceTypes}
+                      selectedFilters={
+                        this.props.selectedEligibility.serviceType
+                      }
+                      handleChange={id =>
+                        this.props.toggleSelectedEligibility("serviceType", id)
                       }
                     />
                   </Grid>
