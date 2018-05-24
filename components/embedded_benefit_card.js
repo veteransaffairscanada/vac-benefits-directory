@@ -50,6 +50,7 @@ export class EmbeddedBenefitCard extends Component<Props> {
           <Button
             size="small"
             target="_blank"
+            variant="raised"
             href={
               this.props.t("current-language-code") === "en"
                 ? benefit.benefitPageEn
