@@ -39,16 +39,18 @@ export class BenefitCard extends Component<Props> {
             </Typography>
 
             <Grid container spacing={24}>
-              {childBenefits.map((cb, i) => (
-                <EmbeddedBenefitCard
-                  id={"cb" + i}
-                  className="BenefitCards"
-                  benefit={cb}
-                  allBenefits={this.props.allBenefits}
-                  t={this.props.t}
-                  key={i}
-                />
-              ))}
+              <div width="100%">
+                {childBenefits.map((cb, i) => (
+                  <EmbeddedBenefitCard
+                    id={"cb" + i}
+                    className="BenefitCards"
+                    benefit={cb}
+                    allBenefits={this.props.allBenefits}
+                    t={this.props.t}
+                    key={i}
+                  />
+                ))}
+              </div>
             </Grid>
           </CardContent>
           <CardActions>
