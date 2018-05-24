@@ -32,7 +32,6 @@ export class EmbeddedBenefitCard extends Component<Props> {
   render() {
     const { t, classes, benefit } = this.props;
     return (
-      //   <div className={classes.root}>
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography className={classnames(classes.heading)}>
@@ -57,11 +56,10 @@ export class EmbeddedBenefitCard extends Component<Props> {
                 : benefit.benefitPageFr
             }
           >
-            View Details
+            {t("View Details")}
           </Button>
         </ExpansionPanelActions>
       </ExpansionPanel>
-      //   </div>
     );
   }
 }
