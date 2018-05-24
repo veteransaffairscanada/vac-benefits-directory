@@ -292,16 +292,21 @@ export class BB extends Component<Props> {
                   />
                 </Grid>
 
-                {benefits.map((benefit, i) => (
-                  <BenefitCard
-                    id={"bc" + i}
-                    className="BenefitCards"
-                    benefit={benefit}
-                    allBenefits={benefits}
-                    t={this.props.t}
-                    key={i}
-                  />
-                ))}
+                {benefits.map(
+                  (benefit, i) =>
+                    benefit.availableIndependently === "Independant" ? (
+                      <BenefitCard
+                        id={"bc" + i}
+                        className="BenefitCards"
+                        benefit={benefit}
+                        allBenefits={benefits}
+                        t={this.props.t}
+                        key={i}
+                      />
+                    ) : (
+                      ""
+                    )
+                )}
               </Grid>
             </Grid>
           </Grid>

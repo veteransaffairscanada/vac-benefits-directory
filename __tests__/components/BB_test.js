@@ -37,10 +37,10 @@ describe("BB", () => {
       selectedNeeds: {},
       needs: [],
       selectedEligibility: {
-        serviceType: { CAF: 1 },
-        serviceStatus: { released: 1 },
-        patronType: { ["service-person"]: 1 },
-        servicePersonVitalStatus: { alive: 1 }
+        serviceType: {},
+        serviceStatus: {},
+        patronType: {},
+        servicePersonVitalStatus: {}
       },
       toggleSelectedEligibility: jest.fn(),
       classes: {
@@ -56,6 +56,12 @@ describe("BB", () => {
   });
 
   it("has a correct filteredBenefits function", () => {
+    props.selectedEligibility = {
+      serviceType: { CAF: 1 },
+      serviceStatus: { released: 1 },
+      patronType: { ["service-person"]: 1 },
+      servicePersonVitalStatus: { alive: 1 }
+    };
     let BBInstance = shallow_BB().instance();
     expect(
       BBInstance.filteredBenefits(
@@ -65,7 +71,7 @@ describe("BB", () => {
         needsFixture,
         props.selectedNeeds
       )
-    ).toEqual([benefitsFixture[0]]);
+    ).toEqual([benefitsFixture[1]]);
   });
 
   it("has a serviceTypes filter", () => {
@@ -103,7 +109,18 @@ describe("BB", () => {
     expect(shallow_BB().state().expanded).toEqual(true);
   });
 
+  it("doesn't show child only cards", () => {
+    const benefitCards = shallow_BB().find(".BenefitCards");
+    expect(benefitCards.length).toEqual(1);
+  });
+
   it("has the selected benefit cards", () => {
+    props.selectedEligibility = {
+      serviceType: { CAF: 1 },
+      serviceStatus: { released: 1 },
+      patronType: { ["service-person"]: 1 },
+      servicePersonVitalStatus: { alive: 1 }
+    };
     const benefitCards = shallow_BB().find(".BenefitCards");
     expect(benefitCards.length).toEqual(1);
     benefitCards.map((bt, i) => {

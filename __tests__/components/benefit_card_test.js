@@ -1,9 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
-import {
-  EmbeddedBenefitCard,
-  BenefitCard
-} from "../../components/benefit_cards";
+import EmbeddedBenefitCard from "../../components/embedded_benefit_card";
+import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 
 describe("EmbeddedBenefitCard", () => {
@@ -24,14 +22,17 @@ describe("EmbeddedBenefitCard", () => {
     _mountedEmbeddedBenefitCard = undefined;
   });
 
-  it("contains a SelectButton", () => {
-    expect(mountedEmbeddedBenefitCard().find("SelectButton").length).toEqual(1);
+  it("contains a ExpansionPanel", () => {
+    expect(mountedEmbeddedBenefitCard().find("ExpansionPanel").length).toEqual(
+      1
+    );
   });
 
   it("has a blank target", () => {
     expect(
       mountedEmbeddedBenefitCard()
-        .find("SelectButton")
+        .find("ExpansionPanelActions")
+        .find("Button")
         .prop("target")
     ).toEqual("_blank");
   });
@@ -39,12 +40,14 @@ describe("EmbeddedBenefitCard", () => {
   it("has expected English text and href", () => {
     expect(
       mountedEmbeddedBenefitCard()
-        .find("SelectButton")
+        .find("ExpansionPanelSummary")
+        .find("Typography")
         .text()
     ).toEqual(benefitsFixture[0].vacNameEn);
     expect(
       mountedEmbeddedBenefitCard()
-        .find("SelectButton")
+        .find("ExpansionPanelActions")
+        .find("Button")
         .prop("href")
     ).toEqual(benefitsFixture[0].benefitPageEn);
   });
@@ -57,12 +60,14 @@ describe("EmbeddedBenefitCard", () => {
     it("has expected French text and href", () => {
       expect(
         mountedEmbeddedBenefitCard()
-          .find("SelectButton")
+          .find("ExpansionPanelSummary")
+          .find("Typography")
           .text()
       ).toEqual(benefitsFixture[0].vacNameFr);
       expect(
         mountedEmbeddedBenefitCard()
-          .find("SelectButton")
+          .find("ExpansionPanelActions")
+          .find("Button")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
     });

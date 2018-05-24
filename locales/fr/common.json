@@ -69,7 +69,6 @@
   "Disability Award": "Prix ​​d'invalidité",
   "Disability Award Description":
     "Les paiements financiers versés aux personnes ayant une déficience liée au service.",
-
   "CAF": "FAC",
   "RCMP": "GRC",
   "WSV (WWII or Korea)": "VSG (la Seconde Guerre mondiale ou Corée)",
@@ -78,5 +77,9 @@
   "released": "Libéré",
   "still serving": "Toujours en train de servir",
   "alive": "Vivant",
-  "deceased": "Décédé"
+  "deceased": "Décédé",
+  "yes": "Oui",
+  "no": "Non",
+  "feedback-prompt": "Avez-vous trouvé l'information que vous cherchez?",
+  "feedback-response": "Merci pour votre avis."
 }

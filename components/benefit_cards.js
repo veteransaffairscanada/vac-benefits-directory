@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Card, { CardContent } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
-import SelectButton from "./select_button";
 import { withStyles } from "material-ui/styles";
 import red from "material-ui/colors/red";
 import Collapse from "material-ui/transitions/Collapse";
 import IconButton from "material-ui/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import classnames from "classnames";
+import EmbeddedBenefitCard from "./embedded_benefit_card";
 
 type Props = {
   benefit: mixed,
@@ -20,33 +20,6 @@ const buttonStyles = {
   float: "right",
   marginTop: "10px"
 };
-
-export class EmbeddedBenefitCard extends Component<Props> {
-  props: Props;
-
-  render() {
-    const benefit = this.props.benefit;
-    return (
-      <Grid item xs={12}>
-        <SelectButton
-          target="_blank"
-          text={
-            this.props.t("current-language-code") === "en"
-              ? benefit.vacNameEn
-              : benefit.vacNameFr
-          }
-          href={
-            this.props.t("current-language-code") === "en"
-              ? benefit.benefitPageEn
-              : benefit.benefitPageFr
-          }
-          isDown={false}
-          id="title"
-        />
-      </Grid>
-    );
-  }
-}
 
 const styles = theme => ({
   card: {
@@ -88,7 +61,6 @@ export class BenefitCard extends Component<Props> {
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
-
     const childBenefits = benefit.childBenefits
       ? this.props.allBenefits.filter(
           ab => benefit.childBenefits.indexOf(ab.id) > -1
@@ -124,7 +96,6 @@ export class BenefitCard extends Component<Props> {
             >
               {"Benefit Description"}
             </Typography>
-
             <Grid container spacing={24}>
               {childBenefits.length ? (
                 <Grid item>
@@ -142,7 +113,7 @@ export class BenefitCard extends Component<Props> {
                   </IconButton>
                 </Grid>
               ) : (
-                ""
+                <div />
               )}
             </Grid>
 
