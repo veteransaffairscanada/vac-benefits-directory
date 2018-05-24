@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Card, { CardContent } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
-import SelectButton from "./select_button";
+import EmbeddedBenefitCard from "./embedded_benefit_card";
 
 type Props = {
   benefit: mixed,
@@ -14,40 +14,14 @@ const buttonStyles = {
   marginTop: "10px"
 };
 
-export class EmbeddedBenefitCard extends Component<Props> {
-  props: Props;
-
-  render() {
-    const benefit = this.props.benefit;
-    return (
-      <Grid item xs={12}>
-        <SelectButton
-          target="_blank"
-          text={
-            this.props.t("current-language-code") === "en"
-              ? benefit.vacNameEn
-              : benefit.vacNameFr
-          }
-          href={
-            this.props.t("current-language-code") === "en"
-              ? benefit.benefitPageEn
-              : benefit.benefitPageFr
-          }
-          isDown={false}
-          id="title"
-        />
-      </Grid>
-    );
-  }
-}
-
 export class BenefitCard extends Component<Props> {
   props: Props;
 
   render() {
     const benefit = this.props.benefit;
-    const { t } = this.props;
-
+    const style = {
+      padding: "30px 0px"
+    };
     const childBenefits = benefit.childBenefits
       ? this.props.allBenefits.filter(
           ab => benefit.childBenefits.indexOf(ab.id) > -1
@@ -83,24 +57,23 @@ export class BenefitCard extends Component<Props> {
             >
               {"Benefit Description"}
             </Typography>
-
             <Grid container spacing={24}>
-              {childBenefits.length ? (
-                <Grid item>{t("child benefits")}:</Grid>
+              {childBenefits.length > 0 ? (
+                <div width="100%" style={style}>
+                  {childBenefits.map((cb, i) => (
+                    <EmbeddedBenefitCard
+                      id={"cb" + i}
+                      className="BenefitCards"
+                      benefit={cb}
+                      allBenefits={this.props.allBenefits}
+                      t={this.props.t}
+                      key={i}
+                    />
+                  ))}
+                </div>
               ) : (
-                ""
+                <div />
               )}
-
-              {childBenefits.map((cb, i) => (
-                <EmbeddedBenefitCard
-                  id={"cb" + i}
-                  className="BenefitCards"
-                  benefit={cb}
-                  allBenefits={this.props.allBenefits}
-                  t={this.props.t}
-                  key={i}
-                />
-              ))}
             </Grid>
           </CardContent>
         </Card>
