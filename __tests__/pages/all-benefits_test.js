@@ -31,7 +31,7 @@ describe("AllBenefits", () => {
   });
 
   it("shows the list of all benefits available", () => {
-    expect(mountedAllBenefits().find("BenefitCard").length).toEqual(2);
+    expect(mountedAllBenefits().find(".benefitCard").length).toEqual(2);
     mountedAllBenefits()
       .find("BenefitCard")
       .map((bc, i) => {
