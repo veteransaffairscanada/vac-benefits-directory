@@ -5,6 +5,7 @@ import Input, { InputLabel } from "material-ui/Input";
 import { MenuItem } from "material-ui/Menu";
 import { FormControl } from "material-ui/Form";
 import Select from "material-ui/Select";
+import Checkbox from "material-ui/Checkbox";
 import Chip from "material-ui/Chip";
 
 const chipStyle = {
@@ -110,6 +111,7 @@ class NeedsSelector extends Component<Props> {
                       : theme.typography.fontWeightMedium
                 }}
               >
+                <Checkbox checked={this.state.name.indexOf(need.id) > -1} />
                 {t("current-language-code") === "en"
                   ? need.nameEn
                   : need.nameFr}
