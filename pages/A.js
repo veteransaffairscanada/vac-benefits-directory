@@ -96,6 +96,8 @@ export class A extends Component<Props> {
   };
 
   toggleSelectedEligibility = (criteria, id) => () => {
+    console.log("AAAAA", criteria, id);
+
     let selected = this.state.selectedEligibility[criteria];
     if (selected.hasOwnProperty(id)) {
       delete selected[id];

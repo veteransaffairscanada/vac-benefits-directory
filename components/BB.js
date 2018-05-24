@@ -11,7 +11,7 @@ import red from "material-ui/colors/red";
 import Typography from "material-ui/Typography";
 
 import BenefitCard from "../components/benefit_cards";
-import FilterSelector from "../components/filter_selector";
+import FilterSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
 
 type Props = {
