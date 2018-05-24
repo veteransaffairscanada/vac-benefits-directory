@@ -50,7 +50,8 @@ class FilterSelector extends Component<Props> {
                 />
               }
               label={
-                t("current-language-code") === "en" ? pt.name_en : pt.name_fr
+                t(pt.id)
+                // t("current-language-code") === "en" ? pt.name_en : pt.name_fr
               }
             />
           ))}
