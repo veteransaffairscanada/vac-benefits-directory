@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from "material-ui/styles";
 import { InputLabel } from "material-ui/Input";
 import { MenuItem } from "material-ui/Menu";
-import { FormControl } from "material-ui/Form";
+import { FormControl, FormHelperText } from "material-ui/Form";
 import Select from "material-ui/Select";
 
 const styles = theme => ({
@@ -26,6 +26,8 @@ type Props = {
   filters: mixed,
   selectedFilters: mixed,
   setUserProfile: mixed,
+  isDisabled: boolean,
+  disabledString: string,
   classes: mixed
 };
 
@@ -42,9 +44,9 @@ class DropDownSelector extends React.Component<Props> {
 
   render() {
     const { classes, t } = this.props;
-
+    let disabledStatus = { disabled: this.props.isDisabled };
     return (
-      <FormControl className={classes.formControl}>
+      <FormControl className={classes.formControl} {...disabledStatus}>
         <InputLabel htmlFor="age-simple">{t(this.props.legend)}</InputLabel>
         <Select
           value={this.state.age}
@@ -63,6 +65,9 @@ class DropDownSelector extends React.Component<Props> {
             </MenuItem>
           ))}
         </Select>
+        <FormHelperText>
+          {disabledStatus.disabled ? this.props.disabledString : ""}{" "}
+        </FormHelperText>
       </FormControl>
     );
   }

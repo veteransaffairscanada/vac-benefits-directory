@@ -215,6 +215,7 @@ export class BB extends Component<Props> {
                       setUserProfile={id =>
                         this.props.setUserProfile("serviceType", id)
                       }
+                      isDisabled={false}
                     />
                   </Grid>
 
@@ -230,6 +231,7 @@ export class BB extends Component<Props> {
                       setUserProfile={id =>
                         this.props.setUserProfile("patronType", id)
                       }
+                      isDisabled={false}
                     />
                   </Grid>
 
@@ -245,6 +247,12 @@ export class BB extends Component<Props> {
                       setUserProfile={id =>
                         this.props.setUserProfile("serviceStatus", id)
                       }
+                      isDisabled={
+                        !this.props.selectedEligibility.serviceType.hasOwnProperty(
+                          "CAF"
+                        )
+                      }
+                      disabledString={t("disabled-serviceStatusFilter")}
                     />
                   </Grid>
 
@@ -263,6 +271,14 @@ export class BB extends Component<Props> {
                           id
                         )
                       }
+                      isDisabled={
+                        !this.props.selectedEligibility.patronType.hasOwnProperty(
+                          "family"
+                        )
+                      }
+                      disabledString={t(
+                        "disabled-servicePersonVitalStatusFilter"
+                      )}
                     />
                   </Grid>
                 </Collapse>
