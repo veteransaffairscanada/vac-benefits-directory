@@ -35,6 +35,7 @@ export class AllBenefits extends Component<Props> {
               <Grid container spacing={24}>
                 {this.props.benefits.map((benefit, i) => (
                   <BenefitCard
+                    className="benefitCard"
                     id={"bc" + i}
                     benefit={benefit}
                     allBenefits={this.props.benefits}
