@@ -57,6 +57,7 @@ const styles = theme => ({
 
 export class BB extends Component<Props> {
   props: Props;
+
   state = {
     expanded: true
   };
@@ -306,7 +307,7 @@ export class BB extends Component<Props> {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Typography>
+                  <Typography className="BenefitsCounter">
                     {i18next.t("Showing x of y benefits", {
                       x: filteredBenefits.length,
                       y: this.props.benefits.length
