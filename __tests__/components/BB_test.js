@@ -146,4 +146,8 @@ describe("BB", () => {
         .text()
     ).toEqual("Show All Benefits");
   });
+
+  it("has a benefits counter", () => {
+    expect(mounted_BB().find(".BenefitsCounter"));
+  });
 });

@@ -13,6 +13,7 @@ import Typography from "material-ui/Typography";
 import BenefitCard from "../components/benefit_cards";
 import FilterSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
+import i18next from "i18next";
 
 type Props = {
   id: string,
@@ -305,7 +306,14 @@ export class BB extends Component<Props> {
                     handleChange={this.props.setSelectedNeeds}
                   />
                 </Grid>
-
+                <Grid item xs={12}>
+                  <Typography className="BenefitsCounter">
+                    {i18next.t("Showing x of y benefits", {
+                      x: filteredBenefits.length,
+                      y: this.props.benefits.length
+                    })}
+                  </Typography>
+                </Grid>
                 {filteredBenefits.map(
                   (benefit, i) =>
                     true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition

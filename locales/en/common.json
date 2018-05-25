@@ -83,5 +83,6 @@
   "no": "No",
   "feedback-prompt": "Did you find the information you're looking for?",
   "feedback-response": "Thank you for your feedback.",
-  "Benefit Description": "Benefit Description"
+  "Benefit Description": "Benefit Description",
+  "Showing x of y benefits": "Showing {{x}} of {{y}} benefits."
 }
