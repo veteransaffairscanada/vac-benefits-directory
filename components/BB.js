@@ -165,7 +165,7 @@ export class BB extends Component<Props> {
 
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
-    const benefits = this.filteredBenefits(
+    const filteredBenefits = this.filteredBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
       this.props.selectedEligibility,
@@ -292,14 +292,14 @@ export class BB extends Component<Props> {
                   />
                 </Grid>
 
-                {benefits.map(
+                {filteredBenefits.map(
                   (benefit, i) =>
-                    benefit.availableIndependently === "Independant" ? (
+                    true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition
                       <BenefitCard
                         id={"bc" + i}
                         className="BenefitCards"
                         benefit={benefit}
-                        allBenefits={benefits}
+                        allBenefits={this.props.benefits}
                         t={this.props.t}
                         key={i}
                       />
