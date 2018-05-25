@@ -289,7 +289,7 @@ export class BB extends Component<Props> {
                     <a
                       className="AllBenefits"
                       href={"all-benefits?lng=" + t("current-language-code")}
-                      target="_blank"
+                      target="dan"
                     >
                       {t("Show All Benefits")}
                     </a>
