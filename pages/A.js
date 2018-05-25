@@ -95,6 +95,16 @@ export class A extends Component<Props> {
     this.setState({ selectedNeeds: selectedNeeds });
   };
 
+  setUserProfile = (criteria, id) => {
+    let selected = {};
+    if (id !== "") {
+      selected[id] = id;
+    }
+    let newSelectedEligibility = this.state.selectedEligibility;
+    newSelectedEligibility[criteria] = selected;
+    this.setState({ selectedEligibility: newSelectedEligibility });
+  };
+
   toggleSelectedEligibility = (criteria, id) => () => {
     let selected = this.state.selectedEligibility[criteria];
     if (selected.hasOwnProperty(id)) {
@@ -131,6 +141,7 @@ export class A extends Component<Props> {
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             setSelectedNeeds={this.setSelectedNeeds}
+            setUserProfile={this.setUserProfile}
           />
         );
     }

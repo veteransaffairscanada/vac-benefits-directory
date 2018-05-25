@@ -132,9 +132,9 @@ describe("BB", () => {
 
   it("allows a person to click on filters", () => {
     let filter = mounted_BB()
-      .find("FilterSelector")
+      .find("DropDownSelector")
       .first();
-    let checkbox = filter.find("Checkbox").first();
+    let checkbox = filter.find("Select").first();
     checkbox.simulate("change");
     expect(props.toggleSelectedEligibility).toBeCalled();
   });

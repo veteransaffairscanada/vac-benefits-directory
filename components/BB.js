@@ -11,7 +11,7 @@ import red from "material-ui/colors/red";
 import Typography from "material-ui/Typography";
 
 import BenefitCard from "../components/benefit_cards";
-import FilterSelector from "../components/filter_selector";
+import FilterSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
 
 type Props = {
@@ -24,6 +24,7 @@ type Props = {
   selectedNeeds: mixed,
   toggleSelectedEligibility: mixed,
   setSelectedNeeds: mixed,
+  setUserProfile: mixed,
   classes: mixed
 };
 
@@ -211,9 +212,10 @@ export class BB extends Component<Props> {
                       selectedFilters={
                         this.props.selectedEligibility.patronType
                       }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility("patronType", id)
+                      setUserProfile={id =>
+                        this.props.setUserProfile("patronType", id)
                       }
+                      isDisabled={false}
                     />
                   </Grid>
 
@@ -226,9 +228,10 @@ export class BB extends Component<Props> {
                       selectedFilters={
                         this.props.selectedEligibility.serviceType
                       }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility("serviceType", id)
+                      setUserProfile={id =>
+                        this.props.setUserProfile("serviceType", id)
                       }
+                      isDisabled={false}
                     />
                   </Grid>
 
@@ -241,12 +244,15 @@ export class BB extends Component<Props> {
                       selectedFilters={
                         this.props.selectedEligibility.serviceStatus
                       }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility(
-                          "serviceStatus",
-                          id
+                      setUserProfile={id =>
+                        this.props.setUserProfile("serviceStatus", id)
+                      }
+                      isDisabled={
+                        !this.props.selectedEligibility.serviceType.hasOwnProperty(
+                          "CAF"
                         )
                       }
+                      disabledString={t("disabled-serviceStatusFilter")}
                     />
                   </Grid>
 
@@ -259,12 +265,20 @@ export class BB extends Component<Props> {
                       selectedFilters={
                         this.props.selectedEligibility.servicePersonVitalStatus
                       }
-                      handleChange={id =>
-                        this.props.toggleSelectedEligibility(
+                      setUserProfile={id =>
+                        this.props.setUserProfile(
                           "servicePersonVitalStatus",
                           id
                         )
                       }
+                      isDisabled={
+                        !this.props.selectedEligibility.patronType.hasOwnProperty(
+                          "family"
+                        )
+                      }
+                      disabledString={t(
+                        "disabled-servicePersonVitalStatusFilter"
+                      )}
                     />
                   </Grid>
                 </Collapse>

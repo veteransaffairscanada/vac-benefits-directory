@@ -77,6 +77,8 @@
   "still serving": "Still Serving",
   "alive": "Alive",
   "deceased": "Deceased",
+  "disabled-serviceStatusFilter": "Only required for CAF Vaterans",
+  "disabled-servicePersonVitalStatusFilter": "Only required for family",
   "yes": "Yes",
   "no": "No",
   "feedback-prompt": "Did you find the information you're looking for?",
