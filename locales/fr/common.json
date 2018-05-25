@@ -42,7 +42,7 @@
     "ServiceType": "Quel type de service?",
     "PatronType": "Qui cherches-tu?",
     "serviceStatus": "Quel est le statut?",
-    "servicePersonVitalStatus": "Le membre du service est-il décédé?",
+    "servicePersonVitalStatus": "Est-ce que le Vétéran est en vie?",
     "What do you need help with?": "Avec quoi as tu besoin d'aide?"
   },
   "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
