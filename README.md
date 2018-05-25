@@ -2,6 +2,8 @@
 
 CircleCI Status: [![CircleCI](https://circleci.com/gh/cds-snc/vac-poc.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-poc)
 
+Branch to deploy for the VAC Working Group. Do not change!
+
 This is a proof of concept for the VAC project, currently hosted at
 https://cdsvacpoc.azurewebsites.net/
 
