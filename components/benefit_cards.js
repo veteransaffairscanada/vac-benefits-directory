@@ -22,10 +22,6 @@ const buttonStyles = {
   marginRight: "25px"
 };
 
-const chevronStyle = {
-  float: "right"
-};
-
 const collapseStyle = {
   backgroundColor: "#eee",
   padding: "25px"
@@ -121,7 +117,6 @@ export class BenefitCard extends Component<Props> {
                     onClick={this.handleExpandClick}
                     aria-expanded={this.state.expanded}
                     aria-label="Show more"
-                    style={chevronStyle}
                   >
                     <ExpandMoreIcon />
                   </IconButton>
