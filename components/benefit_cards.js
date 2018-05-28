@@ -59,7 +59,7 @@ export class BenefitCard extends Component<Props> {
               expandIcon={<ExpandMoreIcon />}
             >
               <div>
-                <Typography component="p">
+                <Typography component="p" className="benefitName">
                   {this.props.t("current-language-code") === "en"
                     ? benefit.vacNameEn
                     : benefit.vacNameFr}
@@ -75,11 +75,7 @@ export class BenefitCard extends Component<Props> {
               </div>
             </ExpansionPanelSummary>
 
-            <ExpansionPanelDetails
-              timeout="auto"
-              unmountOnExit
-              className={classes.collapse}
-            >
+            <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
               <div>
                 {childBenefits.length > 0 ? (
                   <Typography className={classes.ChildBenefitDesc}>
