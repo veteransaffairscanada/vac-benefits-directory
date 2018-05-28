@@ -39,6 +39,17 @@ describe("NeedsSelector", () => {
     expect(select.props().children.length).toEqual(needsFixture.length);
   });
 
+  it("works if needs haven't loaded yet", () => {
+    props.needs = [];
+    props.selectedNeeds = { 43534534: "43534534" };
+    expect(mountedNeedsSelector());
+  });
+
+  it("works if language is en", () => {
+    props.t = () => "en";
+    expect(mountedNeedsSelector());
+  });
+
   it("fires the the handleChange function when a option is selected", () => {
     const select = mountedNeedsSelector()
       .find("Select")
