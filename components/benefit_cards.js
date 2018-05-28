@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Typography, Button } from "material-ui";
 import { withStyles } from "material-ui/styles";
-import red from "material-ui/colors/red";
-import Collapse from "material-ui/transitions/Collapse";
-import IconButton from "material-ui/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import classnames from "classnames";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
@@ -18,7 +14,7 @@ type Props = {
   classes: mixed
 };
 
-const styles = theme => ({
+const styles = () => ({
   button: {
     marginTop: "30px"
   },
