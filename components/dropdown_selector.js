@@ -32,24 +32,23 @@ type Props = {
 };
 
 class DropDownSelector extends React.Component<Props> {
-  state = {
-    age: "",
-    name: "hai"
-  };
-
   handleSelect = event => {
-    this.setState({ [event.target.name]: event.target.value });
     this.props.setUserProfile(event.target.value);
   };
 
   render() {
     const { classes, t } = this.props;
     let disabledStatus = { disabled: this.props.isDisabled };
+    let selectedFilter =
+      Object.keys(this.props.selectedFilters).length === 0
+        ? "None"
+        : Object.keys(this.props.selectedFilters)[0];
+
     return (
       <FormControl className={classes.formControl} {...disabledStatus}>
         <InputLabel htmlFor="age-simple">{t(this.props.legend)}</InputLabel>
         <Select
-          value={this.state.age}
+          value={selectedFilter}
           onChange={this.handleSelect}
           inputProps={{
             name: "age",
