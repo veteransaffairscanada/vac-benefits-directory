@@ -66,12 +66,28 @@ export class A extends Component<Props> {
     // };
     //
     //
-    const selectedNeeds = this.props.url.query.selectedNeeds
-      ? this.stringToMap(this.props.url.query.selectedNeeds)
-      : {};
+    let filters = {};
+    [
+      "selectedNeeds",
+      "patronType",
+      "serviceType",
+      "serviceStatus",
+      "servicePersonVitalStatus"
+    ].forEach(filter => {
+      filters[filter] = this.props.url.query[filter]
+        ? this.stringToMap(this.props.url.query[filter])
+        : {};
+    });
+
     const newState = {
       section: this.props.url.query.section || "BB",
-      selectedNeeds: selectedNeeds
+      selectedNeeds: filters.selectedNeeds,
+      selectedEligibility: {
+        patronType: filters.patronType,
+        serviceType: filters.serviceType,
+        serviceStatus: filters.serviceStatus,
+        servicePersonVitalStatus: filters.servicePersonVitalStatus
+      }
     };
 
     this.setState(newState);
