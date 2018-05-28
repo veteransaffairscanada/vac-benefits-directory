@@ -37,8 +37,46 @@ describe("A", () => {
     _mountedA = undefined;
   });
 
+  it("has a correct stringToMap function", () => {
+    let AInstance = mountedA().instance();
+    expect(AInstance.stringToMap("a,cc")).toEqual({ a: "a", cc: "cc" });
+  });
+
   it("componentWillMount sets state correctly from empty url", () => {
     expect(mountedA().state().section).toEqual("BB");
+  });
+
+  it("componentWillMount sets state correctly from populated url", () => {
+    props.url = {
+      query: {
+        section: "test section",
+        selectedNeeds: "health,financial",
+        patronType: "family",
+        serviceType: "CAF"
+      }
+    };
+    const expectedState = {
+      section: "test section",
+      selectedNeeds: { health: "health", financial: "financial" },
+      selectedEligibility: {
+        patronType: { family: "family" },
+        serviceType: { CAF: "CAF" },
+        serviceStatus: {},
+        servicePersonVitalStatus: {}
+      }
+    };
+    expect(mountedA().state()).toEqual(expectedState);
+  });
+
+  it("Router.onRouteChangeStart sets state correctly from url", () => {
+    let AInstance = mountedA().instance();
+    const url = "/A?section=test_section&selectedNeeds=a,b&patronType=cc";
+    Router.onRouteChangeStart(url);
+    expect(AInstance.state.section).toEqual("test_section");
+    expect(AInstance.state.selectedNeeds).toEqual({ a: "a", b: "b" });
+    expect(AInstance.state.selectedEligibility.patronType).toEqual({
+      cc: "cc"
+    });
   });
 
   it("toggleSelectedEligibility adds and removes id", () => {
