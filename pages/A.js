@@ -49,23 +49,34 @@ export class A extends Component<Props> {
   };
 
   componentWillMount() {
-    // TODO get state from URL working?
-    // Router.onRouteChangeStart = newUrl => {
-    //   const myURL = new URL(newUrl, "http://hostname");
-    //   const section = myURL.searchParams.get("section");
-    //   const selectedNeeds = myURL.searchParams.get("selectedNeeds");
-    //   const selectedEligibility = myURL.searchParams.get("selectedEligibility");
-    //   const newState = {
-    //     section: section || "A1",
-    //     selectedNeeds: selectedNeeds ? selectedNeeds.split(",") : [],
-    //     selectedEligibility: selectedEligibility
-    //       ? selectedEligibility.split(",")
-    //       : []
-    //   };
-    //   this.setState(newState);
-    // };
-    //
-    //
+    Router.onRouteChangeStart = newUrl => {
+      const myURL = new URL(newUrl, "http://hostname");
+      const section = myURL.searchParams.get("section");
+      let filters = {};
+      [
+        "selectedNeeds",
+        "patronType",
+        "serviceType",
+        "serviceStatus",
+        "servicePersonVitalStatus"
+      ].forEach(filter => {
+        filters[filter] = myURL.searchParams.get(filter)
+          ? this.stringToMap(myURL.searchParams.get(filter))
+          : {};
+      });
+      const newState = {
+        section: section || "BB",
+        selectedNeeds: filters.selectedNeeds,
+        selectedEligibility: {
+          patronType: filters.patronType,
+          serviceType: filters.serviceType,
+          serviceStatus: filters.serviceStatus,
+          servicePersonVitalStatus: filters.servicePersonVitalStatus
+        }
+      };
+      this.setState(newState);
+    };
+
     let filters = {};
     [
       "selectedNeeds",
@@ -78,7 +89,6 @@ export class A extends Component<Props> {
         ? this.stringToMap(this.props.url.query[filter])
         : {};
     });
-
     const newState = {
       section: this.props.url.query.section || "BB",
       selectedNeeds: filters.selectedNeeds,
@@ -89,7 +99,6 @@ export class A extends Component<Props> {
         servicePersonVitalStatus: filters.servicePersonVitalStatus
       }
     };
-
     this.setState(newState);
   }
 
