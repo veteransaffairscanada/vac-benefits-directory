@@ -1,13 +1,12 @@
 // @flow
 
 import React, { Component } from "react";
-// import Router from "next/router";
-
+import Router from "next/router";
 import withRedux from "next-redux-wrapper";
+import { bindActionCreators } from "redux";
 import { initStore, loadDataStore } from "../store";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { bindActionCreators } from "redux";
 import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
 
 import BB from "../components/BB";
@@ -32,13 +31,22 @@ export class A extends Component<Props> {
       section: "BB",
       selectedNeeds: {},
       selectedEligibility: {
+        patronType: {},
         serviceType: {},
         serviceStatus: {},
-        patronType: {},
         servicePersonVitalStatus: {}
       }
     };
   }
+
+  stringToMap = s => {
+    // convert a comma separated list into a map
+    let map = {};
+    s.split(",").forEach(x => {
+      map[x] = x;
+    });
+    return map;
+  };
 
   componentWillMount() {
     // TODO get state from URL working?
@@ -57,15 +65,14 @@ export class A extends Component<Props> {
     //   this.setState(newState);
     // };
     //
+    //
+    // const selectedNeeds = this.props.url.query.selectedNeeds ? this.stringToMap(this.props.url.query.selectedNeeds) : {}
+    // console.log("selectedNeeds", selectedNeeds)
     // const newState = {
-    //   section: this.props.url.query.section || "A1",
-    //   selectedNeeds: this.props.url.query.selectedNeeds
-    //     ? this.props.url.query.selectedNeeds.split(",")
-    //     : [],
-    //   selectedEligibility: this.props.url.query.selectedEligibility
-    //     ? this.props.url.query.selectedEligibility.split(",")
-    //     : []
-    // };
+    //   section: this.props.url.query.section || "BB",
+    //   selectedNeeds: selectedNeeds
+    // }
+    //
     // this.setState(newState);
   }
 
@@ -87,12 +94,36 @@ export class A extends Component<Props> {
     }
   }
 
+  setURL = state => {
+    const href =
+      "/A?section=" +
+      state.section +
+      "&patronType=" +
+      Object.getOwnPropertyNames(state.selectedEligibility.patronType).join() +
+      "&serviceType=" +
+      Object.getOwnPropertyNames(state.selectedEligibility.serviceType).join() +
+      "&serviceStatus=" +
+      Object.getOwnPropertyNames(
+        state.selectedEligibility.serviceStatus
+      ).join() +
+      "&servicePersonVitalStatus=" +
+      Object.getOwnPropertyNames(
+        state.selectedEligibility.servicePersonVitalStatus
+      ).join() +
+      "&selectedNeeds=" +
+      Object.getOwnPropertyNames(state.selectedNeeds).join();
+    Router.push(href);
+  };
+
   setSelectedNeeds = ids => {
     let selectedNeeds = {};
     ids.forEach(id => {
       selectedNeeds[id] = id;
     });
-    this.setState({ selectedNeeds: selectedNeeds });
+    let newState = this.state;
+    newState.selectedNeeds = selectedNeeds;
+    this.setState(newState);
+    this.setURL(newState);
   };
 
   setUserProfile = (criteria, id) => {
@@ -102,7 +133,10 @@ export class A extends Component<Props> {
     }
     let newSelectedEligibility = this.state.selectedEligibility;
     newSelectedEligibility[criteria] = selected;
-    this.setState({ selectedEligibility: newSelectedEligibility });
+    let newState = this.state;
+    newState.selectedEligibility = newSelectedEligibility;
+    this.setState(newState);
+    this.setURL(newState);
   };
 
   toggleSelectedEligibility = (criteria, id) => () => {
