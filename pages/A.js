@@ -66,14 +66,15 @@ export class A extends Component<Props> {
     // };
     //
     //
-    // const selectedNeeds = this.props.url.query.selectedNeeds ? this.stringToMap(this.props.url.query.selectedNeeds) : {}
-    // console.log("selectedNeeds", selectedNeeds)
-    // const newState = {
-    //   section: this.props.url.query.section || "BB",
-    //   selectedNeeds: selectedNeeds
-    // }
-    //
-    // this.setState(newState);
+    const selectedNeeds = this.props.url.query.selectedNeeds
+      ? this.stringToMap(this.props.url.query.selectedNeeds)
+      : {};
+    const newState = {
+      section: this.props.url.query.section || "BB",
+      selectedNeeds: selectedNeeds
+    };
+
+    this.setState(newState);
   }
 
   componentDidMount() {
@@ -99,19 +100,15 @@ export class A extends Component<Props> {
       "/A?section=" +
       state.section +
       "&patronType=" +
-      Object.getOwnPropertyNames(state.selectedEligibility.patronType).join() +
+      Object.keys(state.selectedEligibility.patronType).join() +
       "&serviceType=" +
-      Object.getOwnPropertyNames(state.selectedEligibility.serviceType).join() +
+      Object.keys(state.selectedEligibility.serviceType).join() +
       "&serviceStatus=" +
-      Object.getOwnPropertyNames(
-        state.selectedEligibility.serviceStatus
-      ).join() +
+      Object.keys(state.selectedEligibility.serviceStatus).join() +
       "&servicePersonVitalStatus=" +
-      Object.getOwnPropertyNames(
-        state.selectedEligibility.servicePersonVitalStatus
-      ).join() +
+      Object.keys(state.selectedEligibility.servicePersonVitalStatus).join() +
       "&selectedNeeds=" +
-      Object.getOwnPropertyNames(state.selectedNeeds).join();
+      Object.keys(state.selectedNeeds).join();
     Router.push(href);
   };
 
