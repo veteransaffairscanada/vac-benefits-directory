@@ -307,6 +307,7 @@ export class BB extends Component<Props> {
                   <NeedsSelector
                     t={t}
                     needs={this.props.needs}
+                    selectedNeeds={this.props.selectedNeeds}
                     handleChange={this.props.setSelectedNeeds}
                   />
                 </Grid>

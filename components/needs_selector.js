@@ -50,22 +50,18 @@ const MenuProps = {
 type Props = {
   t: mixed,
   needs: mixed,
+  selectedNeeds: mixed,
   handleChange: mixed
 };
 
 class NeedsSelector extends Component<Props> {
-  state = {
-    name: []
-  };
-
   handleChange = event => {
-    this.setState({ name: event.target.value });
     this.props.handleChange(event.target.value);
   };
 
   render() {
     const { classes, theme, t } = this.props;
-
+    const selectedNeeds = Object.keys(this.props.selectedNeeds);
     return (
       <div className={classes.root}>
         <FormControl className={classes.formControl}>
@@ -74,27 +70,32 @@ class NeedsSelector extends Component<Props> {
           </InputLabel>
           <Select
             multiple
-            value={this.state.name}
+            value={selectedNeeds}
             onChange={this.handleChange}
             input={<Input id="select-multiple-chip" />}
             renderValue={selected => (
               <div className={classes.chips}>
-                {selected.map(needId => (
-                  <Chip
-                    key={needId}
-                    label={
-                      t("current-language-code") === "en"
-                        ? this.props.needs.find(need => {
-                            return need.id === needId;
-                          }).nameEn
-                        : this.props.needs.find(need => {
-                            return need.id === needId;
-                          }).nameFr
-                    }
-                    className={classes.chip}
-                    style={chipStyle}
-                  />
-                ))}
+                {selected.map(
+                  needId =>
+                    this.props.needs.length > 0 ? (
+                      <Chip
+                        key={needId}
+                        label={
+                          t("current-language-code") === "en"
+                            ? this.props.needs.find(need => {
+                                return need.id === needId;
+                              }).nameEn
+                            : this.props.needs.find(need => {
+                                return need.id === needId;
+                              }).nameFr
+                        }
+                        className={classes.chip}
+                        style={chipStyle}
+                      />
+                    ) : (
+                      ""
+                    )
+                )}
               </div>
             )}
             MenuProps={MenuProps}
@@ -106,12 +107,12 @@ class NeedsSelector extends Component<Props> {
                 value={need.id}
                 style={{
                   fontWeight:
-                    this.state.name.indexOf(need.id) === -1
+                    selectedNeeds.indexOf(need.id) === -1
                       ? theme.typography.fontWeightRegular
                       : theme.typography.fontWeightMedium
                 }}
               >
-                <Checkbox checked={this.state.name.indexOf(need.id) > -1} />
+                <Checkbox checked={selectedNeeds.indexOf(need.id) > -1} />
                 {t("current-language-code") === "en"
                   ? need.nameEn
                   : need.nameFr}
