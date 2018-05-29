@@ -31,6 +31,9 @@ const styles = () => ({
   },
   ChildBenefitDesc: {
     paddingBottom: "30px"
+  },
+  children: {
+    width: "100%"
   }
 });
 
@@ -72,7 +75,7 @@ export class BenefitCard extends Component<Props> {
             </ExpansionPanelSummary>
 
             <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
-              <div>
+              <div className={classes.children}>
                 {childBenefits.length > 0 ? (
                   <Typography className={classes.ChildBenefitDesc}>
                     {t("child benefits")}:
@@ -80,7 +83,7 @@ export class BenefitCard extends Component<Props> {
                 ) : (
                   ""
                 )}
-                <Grid container spacing={24}>
+                <div>
                   {childBenefits.map((cb, i) => (
                     <EmbeddedBenefitCard
                       id={"cb" + i}
@@ -91,7 +94,7 @@ export class BenefitCard extends Component<Props> {
                       key={i}
                     />
                   ))}
-                </Grid>
+                </div>
                 <Button
                   className={classes.button}
                   target="_blank"
