@@ -92,6 +92,10 @@ export class BB extends Component<Props> {
     needs,
     selectedNeeds
   ) => {
+    if (benefits.length === 0) {
+      return benefits;
+    }
+
     let benefitIDs = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
@@ -303,6 +307,7 @@ export class BB extends Component<Props> {
                   <NeedsSelector
                     t={t}
                     needs={this.props.needs}
+                    selectedNeeds={this.props.selectedNeeds}
                     handleChange={this.props.setSelectedNeeds}
                   />
                 </Grid>

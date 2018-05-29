@@ -1,13 +1,12 @@
 // @flow
 
 import React, { Component } from "react";
-// import Router from "next/router";
-
+import Router from "next/router";
 import withRedux from "next-redux-wrapper";
+import { bindActionCreators } from "redux";
 import { initStore, loadDataStore } from "../store";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { bindActionCreators } from "redux";
 import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
 
 import BB from "../components/BB";
@@ -32,41 +31,75 @@ export class A extends Component<Props> {
       section: "BB",
       selectedNeeds: {},
       selectedEligibility: {
+        patronType: {},
         serviceType: {},
         serviceStatus: {},
-        patronType: {},
         servicePersonVitalStatus: {}
       }
     };
   }
 
+  stringToMap = s => {
+    // convert a comma separated list into a map
+    let map = {};
+    s.split(",").forEach(x => {
+      map[x] = x;
+    });
+    return map;
+  };
+
   componentWillMount() {
-    // TODO get state from URL working?
-    // Router.onRouteChangeStart = newUrl => {
-    //   const myURL = new URL(newUrl, "http://hostname");
-    //   const section = myURL.searchParams.get("section");
-    //   const selectedNeeds = myURL.searchParams.get("selectedNeeds");
-    //   const selectedEligibility = myURL.searchParams.get("selectedEligibility");
-    //   const newState = {
-    //     section: section || "A1",
-    //     selectedNeeds: selectedNeeds ? selectedNeeds.split(",") : [],
-    //     selectedEligibility: selectedEligibility
-    //       ? selectedEligibility.split(",")
-    //       : []
-    //   };
-    //   this.setState(newState);
-    // };
-    //
-    // const newState = {
-    //   section: this.props.url.query.section || "A1",
-    //   selectedNeeds: this.props.url.query.selectedNeeds
-    //     ? this.props.url.query.selectedNeeds.split(",")
-    //     : [],
-    //   selectedEligibility: this.props.url.query.selectedEligibility
-    //     ? this.props.url.query.selectedEligibility.split(",")
-    //     : []
-    // };
-    // this.setState(newState);
+    Router.onRouteChangeStart = newUrl => {
+      const myURL = new URL(newUrl, "http://hostname");
+      const section = myURL.searchParams.get("section");
+      let filters = {};
+      [
+        "selectedNeeds",
+        "patronType",
+        "serviceType",
+        "serviceStatus",
+        "servicePersonVitalStatus"
+      ].forEach(filter => {
+        filters[filter] = myURL.searchParams.get(filter)
+          ? this.stringToMap(myURL.searchParams.get(filter))
+          : {};
+      });
+      const newState = {
+        section: section || "BB",
+        selectedNeeds: filters.selectedNeeds,
+        selectedEligibility: {
+          patronType: filters.patronType,
+          serviceType: filters.serviceType,
+          serviceStatus: filters.serviceStatus,
+          servicePersonVitalStatus: filters.servicePersonVitalStatus
+        }
+      };
+      this.setState(newState);
+    };
+
+    let filters = {};
+    [
+      "selectedNeeds",
+      "patronType",
+      "serviceType",
+      "serviceStatus",
+      "servicePersonVitalStatus"
+    ].forEach(filter => {
+      filters[filter] = this.props.url.query[filter]
+        ? this.stringToMap(this.props.url.query[filter])
+        : {};
+    });
+    const newState = {
+      section: this.props.url.query.section || "BB",
+      selectedNeeds: filters.selectedNeeds,
+      selectedEligibility: {
+        patronType: filters.patronType,
+        serviceType: filters.serviceType,
+        serviceStatus: filters.serviceStatus,
+        servicePersonVitalStatus: filters.servicePersonVitalStatus
+      }
+    };
+    this.setState(newState);
   }
 
   componentDidMount() {
@@ -87,12 +120,35 @@ export class A extends Component<Props> {
     }
   }
 
+  setURL = state => {
+    let href = "/A?section=" + state.section;
+    if (state.selectedNeeds) {
+      href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
+    }
+    [
+      "patronType",
+      "serviceType",
+      "serviceStatus",
+      "servicePersonVitalStatus"
+    ].forEach(criteria => {
+      if (Object.keys(state.selectedEligibility[criteria]).length > 0) {
+        href += `&${criteria}=${Object.keys(
+          state.selectedEligibility[criteria]
+        ).join()}`;
+      }
+    });
+    Router.push(href);
+  };
+
   setSelectedNeeds = ids => {
     let selectedNeeds = {};
     ids.forEach(id => {
       selectedNeeds[id] = id;
     });
-    this.setState({ selectedNeeds: selectedNeeds });
+    let newState = this.state;
+    newState.selectedNeeds = selectedNeeds;
+    this.setState(newState);
+    this.setURL(newState);
   };
 
   setUserProfile = (criteria, id) => {
@@ -102,7 +158,10 @@ export class A extends Component<Props> {
     }
     let newSelectedEligibility = this.state.selectedEligibility;
     newSelectedEligibility[criteria] = selected;
-    this.setState({ selectedEligibility: newSelectedEligibility });
+    let newState = this.state;
+    newState.selectedEligibility = newSelectedEligibility;
+    this.setState(newState);
+    this.setURL(newState);
   };
 
   toggleSelectedEligibility = (criteria, id) => () => {
