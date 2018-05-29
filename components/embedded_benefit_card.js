@@ -72,7 +72,7 @@ export class EmbeddedBenefitCard extends Component<Props> {
                     : benefit.benefitPageFr
                 }
               >
-                {t("View Details")}
+                {t("Find out more")}
               </Button>
             </Grid>
           </Grid>
