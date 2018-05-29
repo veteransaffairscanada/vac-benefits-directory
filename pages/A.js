@@ -49,10 +49,19 @@ export class A extends Component<Props> {
     return map;
   };
 
+  getUrlParams = search => {
+    let hashes = search.slice(search.indexOf("?") + 1).split("&");
+    return hashes.reduce((params, hash) => {
+      let [key, val] = hash.split("=");
+      return Object.assign(params, { [key]: decodeURIComponent(val) });
+    }, {});
+  };
+
   componentWillMount() {
     Router.onRouteChangeStart = newUrl => {
-      const myURL = new URL(newUrl, "http://hostname");
-      const section = myURL.searchParams.get("section");
+      let myURL = {};
+      myURL.searchParams = this.getUrlParams(newUrl);
+      const section = myURL.searchParams.section;
       let filters = {};
       [
         "selectedNeeds",
@@ -61,8 +70,8 @@ export class A extends Component<Props> {
         "serviceStatus",
         "servicePersonVitalStatus"
       ].forEach(filter => {
-        filters[filter] = myURL.searchParams.get(filter)
-          ? this.stringToMap(myURL.searchParams.get(filter))
+        filters[filter] = myURL.searchParams[filter]
+          ? this.stringToMap(myURL.searchParams[filter])
           : {};
       });
       const newState = {
