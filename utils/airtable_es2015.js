@@ -6,7 +6,7 @@ var key = "keySzaXvONeLwsBm4"; // Read access only API key
 
 var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
   var url =
-    "https://api.airtable.com/v0/appMwHSvcwyBhF5cN/" +
+    "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/" +
     table +
     "?maxRecords=100&view=Grid%20view";
   var resp = await fetch(url, {
