@@ -121,19 +121,22 @@ export class A extends Component<Props> {
   }
 
   setURL = state => {
-    const href =
-      "/A?section=" +
-      state.section +
-      "&patronType=" +
-      Object.keys(state.selectedEligibility.patronType).join() +
-      "&serviceType=" +
-      Object.keys(state.selectedEligibility.serviceType).join() +
-      "&serviceStatus=" +
-      Object.keys(state.selectedEligibility.serviceStatus).join() +
-      "&servicePersonVitalStatus=" +
-      Object.keys(state.selectedEligibility.servicePersonVitalStatus).join() +
-      "&selectedNeeds=" +
-      Object.keys(state.selectedNeeds).join();
+    let href = "/A?section=" + state.section;
+    if (state.selectedNeeds) {
+      href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
+    }
+    [
+      "patronType",
+      "serviceType",
+      "serviceStatus",
+      "servicePersonVitalStatus"
+    ].forEach(criteria => {
+      if (Object.keys(state.selectedEligibility[criteria]).length > 0) {
+        href += `&${criteria}=${Object.keys(
+          state.selectedEligibility[criteria]
+        ).join()}`;
+      }
+    });
     Router.push(href);
   };
 

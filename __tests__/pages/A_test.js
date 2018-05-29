@@ -42,6 +42,24 @@ describe("A", () => {
     expect(AInstance.stringToMap("a,cc")).toEqual({ a: "a", cc: "cc" });
   });
 
+  it("has a correct setURL function", () => {
+    let AInstance = mountedA().instance();
+    const state = {
+      section: "S",
+      selectedNeeds: { health: "health", financial: "financial" },
+      selectedEligibility: {
+        patronType: { family: "family" },
+        serviceType: { CAF: "CAF" },
+        serviceStatus: {},
+        servicePersonVitalStatus: {}
+      }
+    };
+    const expectedURL =
+      "/A?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF";
+    AInstance.setURL(state);
+    expect(Router.push).toBeCalledWith(expectedURL);
+  });
+
   it("componentWillMount sets state correctly from empty url", () => {
     expect(mountedA().state().section).toEqual("BB");
   });
