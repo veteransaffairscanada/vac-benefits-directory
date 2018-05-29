@@ -289,7 +289,6 @@ export class BB extends Component<Props> {
                   </Grid>
                   <br />
                 </Collapse>
-
                 <Grid item xs={12}>
                   <Button
                     id="ClearFilters"
@@ -300,16 +299,6 @@ export class BB extends Component<Props> {
                   >
                     {t("Show All Benefits")}
                   </Button>
-
-                  {/*<p style={{ textAlign: "left", fontSize: "1em" }}>*/}
-                  {/*<a*/}
-                  {/*className="AllBenefits"*/}
-                  {/*href={"all-benefits?lng=" + t("current-language-code")}*/}
-                  {/*target="dan"*/}
-                  {/*>*/}
-                  {/*{t("Show All Benefits")}*/}
-                  {/*</a>*/}
-                  {/*</p>*/}
                 </Grid>
               </Grid>
             </Grid>
