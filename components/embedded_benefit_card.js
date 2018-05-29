@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Typography, Button, Grid } from "material-ui";
+import {
+  Typography,
+  Button,
+  Grid,
+  List,
+  ListItem,
+  ListItemText
+} from "material-ui";
 import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
@@ -27,6 +34,9 @@ const styles = theme => ({
     "&[aria-expanded*=true]": {
       backgroundColor: "#eee"
     }
+  },
+  bullet: {
+    paddingBottom: "1em"
   }
 });
 
@@ -55,11 +65,20 @@ export class EmbeddedBenefitCard extends Component<Props> {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                eget.
-              </Typography>
+              <Typography variant="title">{t("Available to")}:</Typography>
+
+              <ul>
+                <li className={classnames(classes.bullet)}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </li>
+                <li className={classnames(classes.bullet)}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
+                  eget.
+                </li>
+              </ul>
             </Grid>
             <Grid item xs={12}>
               <Button
