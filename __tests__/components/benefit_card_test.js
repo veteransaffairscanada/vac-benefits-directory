@@ -32,7 +32,7 @@ describe("EmbeddedBenefitCard", () => {
   it("has a blank target", () => {
     expect(
       mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelActions")
+        .find("ExpansionPanelDetails")
         .find("Button")
         .prop("target")
     ).toEqual("_blank");
@@ -47,10 +47,17 @@ describe("EmbeddedBenefitCard", () => {
     ).toEqual(benefitsFixture[0].vacNameEn);
     expect(
       mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelActions")
+        .find("ExpansionPanelDetails")
         .find("Button")
         .prop("href")
     ).toEqual(benefitsFixture[0].benefitPageEn);
+    expect(
+      mountedEmbeddedBenefitCard()
+        .find("ExpansionPanelDetails")
+        .find("Typography")
+        .first()
+        .text()
+    ).toEqual("en");
   });
 
   describe("when language is French", () => {
@@ -67,7 +74,7 @@ describe("EmbeddedBenefitCard", () => {
       ).toEqual(benefitsFixture[0].vacNameFr);
       expect(
         mountedEmbeddedBenefitCard()
-          .find("ExpansionPanelActions")
+          .find("ExpansionPanelDetails")
           .find("Button")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
