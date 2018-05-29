@@ -23,6 +23,11 @@ const styles = theme => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular
+  },
+  ExpansionPanelSummary: {
+    "&[aria-expanded*=true]": {
+      backgroundColor: "#eee"
+    }
   }
 });
 
@@ -33,7 +38,10 @@ export class EmbeddedBenefitCard extends Component<Props> {
     const { t, classes, benefit } = this.props;
     return (
       <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          className={classes.ExpansionPanelSummary}
+        >
           <Typography className={classnames(classes.heading)}>
             {t("current-language-code") === "en"
               ? benefit.vacNameEn
