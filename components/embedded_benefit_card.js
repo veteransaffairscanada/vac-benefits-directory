@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  Typography,
-  Button,
-  Grid,
-  List,
-  ListItem,
-  ListItemText
-} from "material-ui";
+import { Typography, Button, Grid } from "material-ui";
 import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
