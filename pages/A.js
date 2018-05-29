@@ -122,7 +122,7 @@ export class A extends Component<Props> {
 
   setURL = state => {
     let href = "/A?section=" + state.section;
-    if (state.selectedNeeds) {
+    if (Object.keys(state.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
     }
     [
@@ -176,6 +176,21 @@ export class A extends Component<Props> {
     this.setState({ selectedEligibility: newSelectedEligibility });
   };
 
+  clearFilters = () => {
+    const newState = {
+      section: this.state.section,
+      selectedNeeds: {},
+      selectedEligibility: {
+        patronType: {},
+        serviceType: {},
+        serviceStatus: {},
+        servicePersonVitalStatus: {}
+      }
+    };
+    this.setState(newState);
+    this.setURL(newState);
+  };
+
   sectionToDisplay = section => {
     // const needs = [
     //   { id: "43534534", name_en: "Health", name_fr: "FF Health" },
@@ -201,6 +216,7 @@ export class A extends Component<Props> {
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             setSelectedNeeds={this.setSelectedNeeds}
             setUserProfile={this.setUserProfile}
+            clearFilters={this.clearFilters}
           />
         );
     }
