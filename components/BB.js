@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from "react";
-import { Grid, Button } from "material-ui";
+import { Grid } from "material-ui";
 import Collapse from "material-ui/transitions/Collapse";
 import IconButton from "material-ui/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -26,7 +26,6 @@ type Props = {
   toggleSelectedEligibility: mixed,
   setSelectedNeeds: mixed,
   setUserProfile: mixed,
-  clearFilters: mixed,
   classes: mixed
 };
 
@@ -287,29 +286,18 @@ export class BB extends Component<Props> {
                       )}
                     />
                   </Grid>
-                  <br />
                 </Collapse>
 
                 <Grid item xs={12}>
-                  <Button
-                    id="ClearFilters"
-                    variant="raised"
-                    onClick={() => {
-                      this.props.clearFilters();
-                    }}
-                  >
-                    {t("Show All Benefits")}
-                  </Button>
-
-                  {/*<p style={{ textAlign: "left", fontSize: "1em" }}>*/}
-                  {/*<a*/}
-                  {/*className="AllBenefits"*/}
-                  {/*href={"all-benefits?lng=" + t("current-language-code")}*/}
-                  {/*target="dan"*/}
-                  {/*>*/}
-                  {/*{t("Show All Benefits")}*/}
-                  {/*</a>*/}
-                  {/*</p>*/}
+                  <p style={{ textAlign: "left", fontSize: "1em" }}>
+                    <a
+                      className="AllBenefits"
+                      href={"all-benefits?lng=" + t("current-language-code")}
+                      target="dan"
+                    >
+                      {t("Show All Benefits")}
+                    </a>
+                  </p>
                 </Grid>
               </Grid>
             </Grid>

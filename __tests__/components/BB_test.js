@@ -139,8 +139,12 @@ describe("BB", () => {
     expect(props.toggleSelectedEligibility).toBeCalled();
   });
 
-  it("has a Clear Filters button", () => {
-    expect(shallow_BB().find("#ClearFilters"));
+  it("has an All Benefits Link", () => {
+    expect(
+      shallow_BB()
+        .find(".AllBenefits")
+        .text()
+    ).toEqual("Show All Benefits");
   });
 
   it("has a benefits counter", () => {

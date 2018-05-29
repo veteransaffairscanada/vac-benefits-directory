@@ -60,35 +60,6 @@ describe("A", () => {
     expect(Router.push).toBeCalledWith(expectedURL);
   });
 
-  it("has a correct clearFilters function", () => {
-    let AInstance = mountedA().instance();
-    AInstance.setState({
-      section: "S",
-      selectedNeeds: { health: "health", financial: "financial" },
-      selectedEligibility: {
-        patronType: { family: "family" },
-        serviceType: { CAF: "CAF" },
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
-      }
-    });
-    expect(AInstance.state.selectedEligibility.serviceType).toEqual({
-      CAF: "CAF"
-    });
-    AInstance.clearFilters();
-    expect(AInstance.state).toEqual({
-      section: "S",
-      selectedNeeds: {},
-      selectedEligibility: {
-        patronType: {},
-        serviceType: {},
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
-      }
-    });
-    expect(Router.push).toBeCalledWith("/A?section=S");
-  });
-
   it("componentWillMount sets state correctly from empty url", () => {
     expect(mountedA().state().section).toEqual("BB");
   });
