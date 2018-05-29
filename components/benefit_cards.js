@@ -70,11 +70,11 @@ export class BenefitCard extends Component<Props> {
                 ? classes.ExpansionPanelOpen
                 : classes.ExpansionPanelClosed
             }
-            onClick={() => this.toggleOpenState()}
           >
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
               expandIcon={<ExpandMoreIcon />}
+              onClick={() => this.toggleOpenState()}
             >
               <div>
                 <Typography component="p" className="benefitName">

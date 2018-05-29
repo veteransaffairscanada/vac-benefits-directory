@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import EmbeddedBenefitCard from "../../components/embedded_benefit_card";
+import { EmbeddedBenefitCard } from "../../components/embedded_benefit_card";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 
@@ -17,7 +17,8 @@ describe("EmbeddedBenefitCard", () => {
   beforeEach(() => {
     props = {
       t: () => "en",
-      benefit: benefitsFixture[0]
+      benefit: benefitsFixture[0],
+      classes: {}
     };
     _mountedEmbeddedBenefitCard = undefined;
   });
@@ -72,6 +73,14 @@ describe("EmbeddedBenefitCard", () => {
       ).toEqual(benefitsFixture[0].benefitPageFr);
     });
   });
+  it("changes open state when somebody clicks on it", () => {
+    expect(mountedEmbeddedBenefitCard().state().open).toEqual(false);
+    mountedEmbeddedBenefitCard()
+      .find("div > div")
+      .at(0)
+      .simulate("click");
+    expect(mountedEmbeddedBenefitCard().state().open).toEqual(true);
+  });
 });
 
 describe("BenefitCard", () => {
@@ -89,14 +98,7 @@ describe("BenefitCard", () => {
       t: () => "en",
       benefit: benefitsFixture[0],
       allBenefits: benefitsFixture,
-      classes: {
-        card: "BB-card-87",
-        media: "BB-media-88",
-        actions: "BB-actions-89",
-        expand: "BB-expand-90",
-        expandOpen: "BB-expandOpen-91",
-        avatar: "BB-avatar-92"
-      }
+      classes: {}
     };
     _mountedBenefitCard = undefined;
   });
@@ -197,10 +199,6 @@ describe("BenefitCard", () => {
     expect(mountedBenefitCard().state().open).toEqual(false);
     mountedBenefitCard()
       .find("div > div > div")
-      .at(0)
-      .find("div")
-      .at(0)
-      .find("div")
       .at(0)
       .simulate("click");
     expect(mountedBenefitCard().state().open).toEqual(true);

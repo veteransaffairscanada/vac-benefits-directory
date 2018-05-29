@@ -23,17 +23,41 @@ const styles = theme => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular
+  },
+  ExpansionPanelClosed: {
+    borderLeft: "5px solid"
+  },
+  ExpansionPanelOpen: {
+    borderLeft: "5px solid #eeeeee"
   }
 });
 
 export class EmbeddedBenefitCard extends Component<Props> {
   props: Props;
 
+  state = {
+    open: false
+  };
+
+  toggleState = () => {
+    let newState = !this.state.open;
+    this.setState({ open: newState });
+  };
+
   render() {
     const { t, classes, benefit } = this.props;
     return (
-      <ExpansionPanel>
-        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+      <ExpansionPanel
+        className={
+          this.state.open
+            ? classes.ExpansionPanelOpen
+            : classes.ExpansionPanelClosed
+        }
+      >
+        <ExpansionPanelSummary
+          expandIcon={<ExpandMoreIcon />}
+          onClick={() => this.toggleState()}
+        >
           <Typography className={classnames(classes.heading)}>
             {t("current-language-code") === "en"
               ? benefit.vacNameEn
@@ -64,7 +88,4 @@ export class EmbeddedBenefitCard extends Component<Props> {
     );
   }
 }
-EmbeddedBenefitCard.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 export default withStyles(styles)(EmbeddedBenefitCard);
