@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
+import "babel-polyfill/dist/polyfill";
 
 const exampleInitialState = {
   count: 10,
