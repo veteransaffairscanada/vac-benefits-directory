@@ -193,4 +193,16 @@ describe("BenefitCard", () => {
       ).toEqual("fr");
     });
   });
+  it("changes open state when somebody clicks on it", () => {
+    expect(mountedBenefitCard().state().open).toEqual(false);
+    mountedBenefitCard()
+      .find("div > div > div")
+      .at(0)
+      .find("div")
+      .at(0)
+      .find("div")
+      .at(0)
+      .simulate("click");
+    expect(mountedBenefitCard().state().open).toEqual(true);
+  });
 });

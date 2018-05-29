@@ -24,6 +24,12 @@ const styles = () => ({
   root: {
     width: "100%"
   },
+  ExpansionPanelClosed: {
+    borderLeft: "5px solid"
+  },
+  ExpansionPanelOpen: {
+    borderLeft: "5px solid #eeeeee"
+  },
   ExpansionPanelSummary: {
     "&[aria-expanded*=true]": {
       backgroundColor: "#eee"
@@ -37,6 +43,15 @@ const styles = () => ({
 export class BenefitCard extends Component<Props> {
   props: Props;
 
+  state = {
+    open: false
+  };
+
+  toggleOpenState = () => {
+    let newState = !this.state.open;
+    this.setState({ open: newState });
+  };
+
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
@@ -49,7 +64,14 @@ export class BenefitCard extends Component<Props> {
     return (
       <Grid item xs={12}>
         <div className={classes.root}>
-          <ExpansionPanel>
+          <ExpansionPanel
+            className={
+              this.state.open
+                ? classes.ExpansionPanelOpen
+                : classes.ExpansionPanelClosed
+            }
+            onClick={() => this.toggleOpenState()}
+          >
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
               expandIcon={<ExpandMoreIcon />}
