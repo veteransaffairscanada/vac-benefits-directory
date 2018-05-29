@@ -112,7 +112,7 @@ describe("BenefitCard", () => {
   it("contains the name", () => {
     expect(
       mountedBenefitCard()
-        .find(".cardTitle")
+        .find(".benefitName")
         .first()
         .text()
     ).toEqual(benefitsFixture[0].vacNameEn);
@@ -165,7 +165,7 @@ describe("BenefitCard", () => {
     it("contains the French name", () => {
       expect(
         mountedBenefitCard()
-          .find(".cardTitle")
+          .find(".benefitName")
           .first()
           .text()
       ).toEqual(benefitsFixture[0].vacNameFr);

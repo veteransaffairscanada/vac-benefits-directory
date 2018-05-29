@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import Card, { CardActions, CardContent } from "material-ui/Card";
 import { Grid, Typography, Button } from "material-ui";
 import { withStyles } from "material-ui/styles";
-import red from "material-ui/colors/red";
-import Collapse from "material-ui/transitions/Collapse";
-import IconButton from "material-ui/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import classnames from "classnames";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
+import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
+import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
+import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 
 type Props = {
   benefit: mixed,
@@ -16,53 +14,28 @@ type Props = {
   classes: mixed
 };
 
-const buttonStyles = {
-  float: "right",
-  marginTop: "10px",
-  marginRight: "25px"
-};
-
-const collapseStyle = {
-  backgroundColor: "#eee",
-  padding: "25px"
-};
-
-const styles = theme => ({
-  card: {
-    maxWidth: 400
+const styles = () => ({
+  button: {
+    marginTop: "30px"
   },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
+  collapse: {
+    paddingTop: "25px"
   },
-  actions: {
-    display: "flex"
+  root: {
+    width: "100%"
   },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
-    marginLeft: "auto"
+  ExpansionPanelSummary: {
+    "&[aria-expanded*=true]": {
+      backgroundColor: "#eee"
+    }
   },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
-  avatar: {
-    backgroundColor: red[500]
+  ChildBenefitDesc: {
+    paddingBottom: "30px"
   }
 });
 
 export class BenefitCard extends Component<Props> {
   props: Props;
-
-  state = {
-    expanded: false
-  };
-
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
-  };
 
   render() {
     const benefit = this.props.benefit;
@@ -75,78 +48,66 @@ export class BenefitCard extends Component<Props> {
 
     return (
       <Grid item xs={12}>
-        <Card>
-          <Button
-            style={buttonStyles}
-            target="_blank"
-            variant="raised"
-            href={
-              this.props.t("current-language-code") === "en"
-                ? benefit.benefitPageEn
-                : benefit.benefitPageFr
-            }
-          >
-            {this.props.t("View Details")}
-          </Button>
-          <CardContent>
-            <Typography className="cardTitle" variant="title" gutterBottom>
-              {this.props.t("current-language-code") === "en"
-                ? benefit.vacNameEn
-                : benefit.vacNameFr}
-            </Typography>
-
-            <Typography
-              className="cardDescription"
-              variant="body1"
-              gutterBottom
-              style={{ marginTop: "10px" }}
+        <div className={classes.root}>
+          <ExpansionPanel>
+            <ExpansionPanelSummary
+              className={classes.ExpansionPanelSummary}
+              expandIcon={<ExpandMoreIcon />}
             >
-              {t("Benefit Description")}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Grid container spacing={24}>
-              {childBenefits.length ? (
-                <Grid item xs={12} style={{ marginLeft: "13px" }}>
-                  {t("child benefits")}:
-                  <IconButton
-                    id="expandButton"
-                    className={classnames(classes.expand, {
-                      [classes.expandOpen]: this.state.expanded
-                    })}
-                    onClick={this.handleExpandClick}
-                    aria-expanded={this.state.expanded}
-                    aria-label="Show more"
-                  >
-                    <ExpandMoreIcon />
-                  </IconButton>
+              <div>
+                <Typography component="p" className="benefitName">
+                  {this.props.t("current-language-code") === "en"
+                    ? benefit.vacNameEn
+                    : benefit.vacNameFr}
+                </Typography>
+
+                <Typography
+                  className="cardDescription"
+                  variant="headline"
+                  component="h3"
+                >
+                  {t("Benefit Description")}
+                </Typography>
+              </div>
+            </ExpansionPanelSummary>
+
+            <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
+              <div>
+                {childBenefits.length > 0 ? (
+                  <Typography className={classes.ChildBenefitDesc}>
+                    {t("child benefits")}:
+                  </Typography>
+                ) : (
+                  ""
+                )}
+                <Grid container spacing={24}>
+                  {childBenefits.map((cb, i) => (
+                    <EmbeddedBenefitCard
+                      id={"cb" + i}
+                      className="BenefitCards"
+                      benefit={cb}
+                      allBenefits={this.props.allBenefits}
+                      t={this.props.t}
+                      key={i}
+                    />
+                  ))}
                 </Grid>
-              ) : (
-                <div />
-              )}
-            </Grid>
-          </CardActions>
-          <Collapse
-            id="collapseBlock"
-            in={this.state.expanded}
-            timeout="auto"
-            unmountOnExit
-            style={collapseStyle}
-          >
-            <Grid container spacing={24}>
-              {childBenefits.map((cb, i) => (
-                <EmbeddedBenefitCard
-                  id={"cb" + i}
-                  className="BenefitCards"
-                  benefit={cb}
-                  allBenefits={this.props.allBenefits}
-                  t={this.props.t}
-                  key={i}
-                />
-              ))}
-            </Grid>
-          </Collapse>
-        </Card>
+                <Button
+                  className={classes.button}
+                  target="_blank"
+                  variant="raised"
+                  href={
+                    this.props.t("current-language-code") === "en"
+                      ? benefit.benefitPageEn
+                      : benefit.benefitPageFr
+                  }
+                >
+                  {this.props.t("View Details")}
+                </Button>
+              </div>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        </div>
       </Grid>
     );
   }
