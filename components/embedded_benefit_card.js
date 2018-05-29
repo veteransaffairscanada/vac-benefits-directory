@@ -30,6 +30,9 @@ const styles = theme => ({
   },
   bullet: {
     paddingBottom: "1em"
+  },
+  description: {
+    paddingTop: "1em"
   }
 });
 
@@ -53,7 +56,10 @@ export class EmbeddedBenefitCard extends Component<Props> {
         <ExpansionPanelDetails>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <Typography variant="title">
+              <Typography
+                variant="title"
+                className={classnames(classes.description)}
+              >
                 {t("Benefit Description")}
               </Typography>
             </Grid>
