@@ -120,36 +120,36 @@ export class BB extends Component<Props> {
   };
 
   render() {
-    let serviceTypes = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
-    )
+    let serviceTypes = [
+      ...new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
+    ]
       .filter(st => st !== "na")
       .map(st => {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
 
-    const patronTypes = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.patronType))
-    )
+    const patronTypes = [
+      ...new Set(this.props.eligibilityPaths.map(ep => ep.patronType))
+    ]
       .filter(st => st !== "na")
       .map(st => {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
 
-    let serviceStatuses = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.serviceStatus))
-    )
+    let serviceStatuses = [
+      ...new Set(this.props.eligibilityPaths.map(ep => ep.serviceStatus))
+    ]
       .filter(st => st !== "na")
       .concat(["still serving"])
       .map(st => {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
 
-    let servicePersonVitalStatuses = Array.from(
-      new Set(
+    let servicePersonVitalStatuses = [
+      ...new Set(
         this.props.eligibilityPaths.map(ep => ep.servicePersonVitalStatus)
       )
-    )
+    ]
       .filter(st => st !== "na")
       .map(st => {
         return { id: st, name_en: st, name_fr: "FF " + st };
