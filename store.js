@@ -3,7 +3,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMiddleware from "redux-thunk";
 
 const exampleInitialState = {
-  count: 10,
   storeHydrated: false,
   benefits: [],
   eligibilityPaths: [],
@@ -11,35 +10,26 @@ const exampleInitialState = {
 };
 
 export const actionTypes = {
-  ADD: "ADD",
   LOAD_DATA: "LOAD_DATA"
 };
 
 // REDUCERS
 export const reducer = (state = exampleInitialState, action) => {
   switch (action.type) {
-    case actionTypes.ADD:
-      return Object.assign({}, state, {
-        count: state.count + 1
-      });
     case actionTypes.LOAD_DATA:
-      return Object.assign({}, state, {
+      return {
         storeHydrated: action.data.storeHydrated || state.storeHydrated,
         benefits: action.data.benefits || state.benefits,
         eligibilityPaths:
           action.data.eligibilityPaths || state.eligibilityPaths,
         needs: action.data.needs || state.needs
-      });
+      };
     default:
       return state;
   }
 };
 
 // ACTIONS
-
-export const addCount = () => dispatch => {
-  return dispatch({ type: actionTypes.ADD });
-};
 
 export const loadDataStore = data => dispatch => {
   return dispatch({ type: actionTypes.LOAD_DATA, data: data });
