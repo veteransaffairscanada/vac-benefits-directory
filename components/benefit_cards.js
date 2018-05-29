@@ -28,11 +28,11 @@ const styles = () => ({
     borderLeft: "5px solid"
   },
   ExpansionPanelOpen: {
-    borderLeft: "5px solid #eeeeee"
+    borderLeft: "5px solid #808080"
   },
   ExpansionPanelSummary: {
     "&[aria-expanded*=true]": {
-      backgroundColor: "#eee"
+      backgroundColor: "#f8f8f8"
     }
   },
   ChildBenefitDesc: {
