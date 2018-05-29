@@ -8,8 +8,6 @@ import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDeta
 import ExpansionPanelActions from "material-ui/ExpansionPanel/ExpansionPanelActions";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import PropTypes from "prop-types";
-
 type Props = {
   benefit: mixed,
   t: mixed,
