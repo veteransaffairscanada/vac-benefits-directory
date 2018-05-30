@@ -21,6 +21,7 @@ type Props = {
   benefits: mixed,
   eligibilityPaths: mixed,
   needs: mixed,
+  examples: mixed,
   selectedEligibility: mixed,
   selectedNeeds: mixed,
   toggleSelectedEligibility: mixed,
@@ -327,6 +328,7 @@ export class BB extends Component<Props> {
                         id={"bc" + i}
                         className="BenefitCards"
                         benefit={benefit}
+                        examples={this.props.examples}
                         allBenefits={this.props.benefits}
                         t={this.props.t}
                         key={i}

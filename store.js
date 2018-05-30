@@ -7,7 +7,8 @@ const exampleInitialState = {
   storeHydrated: false,
   benefits: [],
   eligibilityPaths: [],
-  needs: []
+  needs: [],
+  examples: []
 };
 
 export const actionTypes = {
@@ -28,7 +29,8 @@ export const reducer = (state = exampleInitialState, action) => {
         benefits: action.data.benefits || state.benefits,
         eligibilityPaths:
           action.data.eligibilityPaths || state.eligibilityPaths,
-        needs: action.data.needs || state.needs
+        needs: action.data.needs || state.needs,
+        examples: action.data.examples || state.examples
       });
     default:
       return state;

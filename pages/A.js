@@ -18,6 +18,7 @@ type Props = {
   benefits: mixed,
   eligibilityPaths: mixed,
   needs: mixed,
+  examples: mixed,
   data: mixed,
   loadDataStore: mixed
 };
@@ -109,7 +110,8 @@ export class A extends Component<Props> {
       this.props.loadDataStore({
         benefits: this.props.data.benefits,
         eligibilityPaths: this.props.data.eligibilityPaths,
-        needs: this.props.data.needs
+        needs: this.props.data.needs,
+        examples: this.props.data.examples
       });
     }
   }
@@ -211,6 +213,7 @@ export class A extends Component<Props> {
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             needs={this.props.needs}
+            examples={this.props.examples}
             selectedEligibility={this.state.selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
@@ -241,7 +244,8 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
-    needs: state.needs
+    needs: state.needs,
+    examples: state.examples
   };
 };
 
