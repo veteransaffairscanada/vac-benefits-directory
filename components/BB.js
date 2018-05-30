@@ -202,16 +202,16 @@ export class BB extends Component<Props> {
     });
 
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+    this.sortBenefits(
+      this.props.benefits,
+      this.props.t("current-language-code")
+    );
     const filteredBenefits = this.filteredBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
       this.props.selectedEligibility,
       this.props.needs,
       this.props.selectedNeeds
-    );
-    const sortedFilteredBenefits = this.sortBenefits(
-      filteredBenefits,
-      this.props.t("current-language-code")
     );
 
     return (
@@ -349,12 +349,12 @@ export class BB extends Component<Props> {
                 <Grid item xs={12}>
                   <Typography className="BenefitsCounter">
                     {i18next.t("Showing x of y benefits", {
-                      x: sortedFilteredBenefits.length,
+                      x: filteredBenefits.length,
                       y: this.props.benefits.length
                     })}
                   </Typography>
                 </Grid>
-                {sortedFilteredBenefits.map(
+                {filteredBenefits.map(
                   (benefit, i) =>
                     true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition
                       <BenefitCard
