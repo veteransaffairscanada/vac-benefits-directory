@@ -3,8 +3,6 @@
 import React, { Component } from "react";
 import Router from "next/router";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { initStore, loadDataStore } from "../store";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
@@ -105,18 +103,6 @@ export class A extends Component<Props> {
   componentDidMount() {
     if (this.props.url.query.use_testdata) {
       hydrateFromFixtures(this.props.loadDataStore);
-    } else if (typeof this.props.data !== "undefined") {
-      this.props.loadDataStore({
-        benefits: this.props.data.benefits,
-        eligibilityPaths: this.props.data.eligibilityPaths,
-        needs: this.props.data.needs
-      });
-    }
-  }
-
-  static getInitialProps(ctx) {
-    if (typeof ctx.req !== "undefined") {
-      return { data: ctx.req.data };
     }
   }
 
@@ -231,12 +217,6 @@ export class A extends Component<Props> {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadDataStore: bindActionCreators(loadDataStore, dispatch)
-  };
-};
-
 const mapStateToProps = state => {
   return {
     benefits: state.benefits,
@@ -244,5 +224,4 @@ const mapStateToProps = state => {
     needs: state.needs
   };
 };
-
-export default connect()(withI18next()(A));
+export default connect(mapStateToProps)(withI18next()(A));

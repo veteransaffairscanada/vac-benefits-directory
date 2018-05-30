@@ -8,14 +8,13 @@ import { initStore } from "../store";
 export default withRedux(initStore)(
   class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
-      return {
-        pageProps: {
-          // Call page-level getInitialProps
-          ...(Component.getInitialProps
-            ? await Component.getInitialProps(ctx)
-            : {})
-        }
-      };
+      ctx.store.dispatch({ type: "LOAD_DATA", data: ctx.req.data });
+
+      const pageProps = Component.getInitialProps
+        ? await Component.getInitialProps(ctx)
+        : {};
+
+      return { pageProps };
     }
 
     render() {
