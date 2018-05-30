@@ -1,15 +1,45 @@
 {
   "env": {
     "development": {
-      "plugins": [["emotion", { "sourceMap": true, "autoLabel": true}]],
-      "presets": ["flow", "next/babel"]
+      "plugins": [
+        [
+          "emotion",
+          {
+            "sourceMap": true,
+            "autoLabel": true
+          }
+        ]
+      ],
+      "presets": [
+        "@babel/preset-flow",
+        "next/babel"
+      ]
     },
     "production": {
-      "plugins": [["emotion", { "hoist": true}], "transform-inline-environment-variables"],
-      "presets": ["next/babel"]
+      "plugins": [
+        [
+          "emotion",
+          {
+            "hoist": true
+          }
+        ],
+        "transform-inline-environment-variables"
+      ],
+      "presets": [
+        "next/babel"
+      ]
     },
     "test": {
-      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]]
+      "presets": [
+        [
+          "next/babel",
+          {
+            "preset-env": {
+              "modules": "commonjs"
+            }
+          }
+        ]
+      ]
     }
   }
 }

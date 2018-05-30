@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import Router from "next/router";
-import withRedux from "next-redux-wrapper";
+import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { initStore, loadDataStore } from "../store";
 import { withI18next } from "../lib/withI18next";
@@ -245,6 +245,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
+export default connect(initStore, mapStateToProps, mapDispatchToProps)(
   withI18next()(A)
 );
