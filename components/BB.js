@@ -91,8 +91,7 @@ export class BB extends Component<Props> {
     eligibilityPaths,
     selectedEligibility,
     needs,
-    selectedNeeds,
-    t
+    selectedNeeds
   ) => {
     if (benefits.length === 0) {
       return benefits;
@@ -120,7 +119,12 @@ export class BB extends Component<Props> {
     const benefitIDSet = new Set(benefitIDs);
 
     // map sortingPriority to sortingNumber
-    benefits.forEach(b => {
+
+    return benefits.filter(benefit => benefitIDSet.has(benefit.id));
+  };
+
+  sortBenefits = (filteredBenefits, language) => {
+    filteredBenefits.forEach(b => {
       if (b.sortingPriority == undefined) {
         b.sortingPriority = "low";
       }
@@ -130,8 +134,7 @@ export class BB extends Component<Props> {
     let sorting_fn = (a, b) => {
       if (a.sortingNumber == b.sortingNumber) {
         // sort alphabetically
-        let vacName =
-          t("current-language-code") === "en" ? "vacNameEn" : "vacNameFr";
+        let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
         let nameA = a[vacName].toUpperCase();
         let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
@@ -145,10 +148,7 @@ export class BB extends Component<Props> {
       // ascending numeric sort
       return a.sortingNumber - b.sortingNumber;
     };
-
-    return benefits
-      .filter(benefit => benefitIDSet.has(benefit.id))
-      .sort(sorting_fn);
+    return filteredBenefits.sort(sorting_fn);
   };
 
   render() {
@@ -207,8 +207,11 @@ export class BB extends Component<Props> {
       this.props.eligibilityPaths,
       this.props.selectedEligibility,
       this.props.needs,
-      this.props.selectedNeeds,
-      this.props.t
+      this.props.selectedNeeds
+    );
+    const sortedFilteredBenefits = this.sortBenefits(
+      filteredBenefits,
+      this.props.t("current-language-code")
     );
 
     return (
@@ -346,12 +349,12 @@ export class BB extends Component<Props> {
                 <Grid item xs={12}>
                   <Typography className="BenefitsCounter">
                     {i18next.t("Showing x of y benefits", {
-                      x: filteredBenefits.length,
+                      x: sortedFilteredBenefits.length,
                       y: this.props.benefits.length
                     })}
                   </Typography>
                 </Grid>
-                {filteredBenefits.map(
+                {sortedFilteredBenefits.map(
                   (benefit, i) =>
                     true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition
                       <BenefitCard

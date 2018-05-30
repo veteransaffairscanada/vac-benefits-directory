@@ -14,7 +14,8 @@ const benefitsFixture = [
     benefitPageEn: "English link",
     benefitPageFr: "French link",
     childBenefits: ["1"],
-    availableIndependently: "Independant"
+    availableIndependently: "Independant",
+    sortingPriority: "high"
   }
 ];
 

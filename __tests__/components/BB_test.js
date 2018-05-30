@@ -74,6 +74,13 @@ describe("BB", () => {
     ).toEqual([benefitsFixture[1]]);
   });
 
+  it("has a correct sortBenefits function", () => {
+    let BBInstance = shallow_BB().instance();
+    expect(BBInstance.sortBenefits(benefitsFixture, "en")[0]).toEqual(
+      benefitsFixture[0]
+    );
+  });
+
   it("has a serviceTypes filter", () => {
     expect(shallow_BB().find("#serviceTypeFilter").length).toEqual(1);
   });
