@@ -118,17 +118,16 @@ export class BB extends Component<Props> {
     }
     const benefitIDSet = new Set(benefitIDs);
 
-    // add missing sortingPriority values
+    // map sortingPriority to sortingNumber
     benefits.forEach(b => {
       if (b.sortingPriority == undefined) {
-        b.sortingPriority = Number.POSITIVE_INFINITY;
-      } else {
-        b.sortingPriority = +b.sortingPriority;
+        b.sortingPriority = "low";
       }
+      b.sortingNumber = { high: 1, medium: 2, low: 3 }[b.sortingPriority];
     });
 
     let sorting_fn = (a, b) => {
-      if (a.sortingPriority == b.sortingPriority) {
+      if (a.sortingNumber == b.sortingNumber) {
         // sort alphabetically
         let nameA = a.vacNameEn.toUpperCase();
         let nameB = b.vacNameEn.toUpperCase(); // ignore upper and lowercase
@@ -141,7 +140,7 @@ export class BB extends Component<Props> {
         return 0;
       }
       // ascending numeric sort
-      return a.sortingPriority - b.sortingPriority;
+      return a.sortingNumber - b.sortingNumber;
     };
 
     return benefits
