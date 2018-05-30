@@ -15,6 +15,15 @@ const benefitsFixture = [
     benefitPageFr: "French link",
     childBenefits: ["1"],
     availableIndependently: "Independant"
+  },
+  {
+    id: "3",
+    vacNameEn: "Veterans Independence Program",
+    vacNameFr: "Programme pour l'autonomie des anciens combattants (PAAC)",
+    benefitPageEn: "English link",
+    benefitPageFr: "French link",
+    availableIndependently: "Independant",
+    sortingPriority: "high"
   }
 ];
 

@@ -71,13 +71,20 @@ describe("BB", () => {
         needsFixture,
         props.selectedNeeds
       )
-    ).toEqual([benefitsFixture[1]]);
+    ).toEqual([
+      benefitsFixture.filter(o => {
+        return o.id === "0";
+      })[0]
+    ]);
   });
 
   it("has a correct sortBenefits function", () => {
     let BBInstance = shallow_BB().instance();
+    // console.log(BBInstance.sortBenefits(benefitsFixture, "en"))
     expect(BBInstance.sortBenefits(benefitsFixture, "en")[0]).toEqual(
-      benefitsFixture[0]
+      benefitsFixture.filter(o => {
+        return o.id === "3";
+      })[0]
     );
   });
 
