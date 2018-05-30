@@ -91,7 +91,8 @@ export class BB extends Component<Props> {
     eligibilityPaths,
     selectedEligibility,
     needs,
-    selectedNeeds
+    selectedNeeds,
+    t
   ) => {
     if (benefits.length === 0) {
       return benefits;
@@ -129,8 +130,10 @@ export class BB extends Component<Props> {
     let sorting_fn = (a, b) => {
       if (a.sortingNumber == b.sortingNumber) {
         // sort alphabetically
-        let nameA = a.vacNameEn.toUpperCase();
-        let nameB = b.vacNameEn.toUpperCase(); // ignore upper and lowercase
+        let vacName =
+          t("current-language-code") === "en" ? "vacNameEn" : "vacNameFr";
+        let nameA = a[vacName].toUpperCase();
+        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
           return -1;
         }
@@ -204,7 +207,8 @@ export class BB extends Component<Props> {
       this.props.eligibilityPaths,
       this.props.selectedEligibility,
       this.props.needs,
-      this.props.selectedNeeds
+      this.props.selectedNeeds,
+      this.props.t
     );
 
     return (
