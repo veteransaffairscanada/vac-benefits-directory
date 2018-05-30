@@ -99,7 +99,38 @@ export class BB extends Component {
       );
     }
     const benefitIDSet = new Set(benefitIDs);
+
+    // map sortingPriority to sortingNumber
+
     return benefits.filter(benefit => benefitIDSet.has(benefit.id));
+  };
+
+  sortBenefits = (filteredBenefits, language) => {
+    filteredBenefits.forEach(b => {
+      if (b.sortingPriority == undefined) {
+        b.sortingPriority = "low";
+      }
+      b.sortingNumber = { high: 1, medium: 2, low: 3 }[b.sortingPriority];
+    });
+
+    let sorting_fn = (a, b) => {
+      if (a.sortingNumber == b.sortingNumber) {
+        // sort alphabetically
+        let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
+        let nameA = a[vacName].toUpperCase();
+        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      }
+      // ascending numeric sort
+      return a.sortingNumber - b.sortingNumber;
+    };
+    return filteredBenefits.sort(sorting_fn);
   };
 
   render() {
@@ -153,7 +184,10 @@ export class BB extends Component {
     });
 
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
-
+    this.sortBenefits(
+      this.props.benefits,
+      this.props.t("current-language-code")
+    );
     const filteredBenefits = this.filteredBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
