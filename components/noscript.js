@@ -1,12 +1,5 @@
-// @flow
-
 import React, { Component } from "react";
-
 import styled from "react-emotion";
-
-type Props = {
-  t: mixed
-};
 
 const Modal = styled("div")`
   left: 50%;
@@ -43,9 +36,7 @@ const Overlay = styled("div")`
   z-index: 10;
 `;
 
-class Noscript extends Component<Props> {
-  props: Props;
-
+class Noscript extends Component {
   render() {
     const { t } = this.props;
 

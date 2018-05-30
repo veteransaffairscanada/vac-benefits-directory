@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from "react";
 import styled from "react-emotion";
 
@@ -12,20 +10,11 @@ import Footer from "../components/footer";
 import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
 
-type Props = {
-  children?: mixed,
-  hideNoscript?: boolean,
-  i18n?: mixed,
-  t?: mixed
-};
-
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
 
-class Layout extends Component<Props> {
-  props: Props;
-
+class Layout extends Component {
   componentDidMount() {
     const emotionStyles = document.getElementById("emotion-server-side");
     if (emotionStyles && emotionStyles.parentNode) {

@@ -3,10 +3,6 @@ import { Button, Typography } from "material-ui";
 import styled from "react-emotion";
 import { logEvent } from "../utils/analytics";
 
-type Props = {
-  t: mixed
-};
-
 const Div = styled("div")`
   width: 100%;
   height: 40px;
@@ -26,9 +22,7 @@ const Inner = styled("div")`
   padding-top: 10px;
 `;
 
-class FeedbackBar extends Component<Props> {
-  props: Props;
-
+class FeedbackBar extends Component {
   state = {
     feedbackSubmitted: false
   };

@@ -1,29 +1,13 @@
-// @flow
-
 import React, { Component } from "react";
 
 import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
+import { connect } from "react-redux";
 import BenefitCard from "../components/benefit_cards";
 
-type Props = {
-  benefits: mixed,
-  i18n: mixed,
-  t: mixed
-};
-
-export class AllBenefits extends Component<Props> {
-  props: Props;
-
-  static getInitialProps(ctx) {
-    let data = ctx.req.data;
-    return {
-      benefits: data.benefits
-    };
-  }
-
+export class AllBenefits extends Component {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
@@ -52,4 +36,10 @@ export class AllBenefits extends Component<Props> {
   }
 }
 
-export default withI18next()(AllBenefits);
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits
+  };
+};
+
+export default connect(mapStateToProps)(withI18next()(AllBenefits));

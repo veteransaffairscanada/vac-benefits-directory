@@ -1,30 +1,13 @@
-// @flow
-
 import React, { Component } from "react";
 import Router from "next/router";
-import withRedux from "next-redux-wrapper";
-import { bindActionCreators } from "redux";
-import { initStore, loadDataStore } from "../store";
+import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
+import benefitsFixture from "../__tests__/fixtures/benefits";
 
 import BB from "../components/BB";
 
-type Props = {
-  url: mixed,
-  i18n: mixed,
-  t: mixed,
-  benefits: mixed,
-  eligibilityPaths: mixed,
-  needs: mixed,
-  data: mixed,
-  loadDataStore: mixed
-};
-
-export class A extends Component<Props> {
-  props: Props;
-
+export class A extends Component {
   constructor() {
     super();
     this.state = {
@@ -104,19 +87,10 @@ export class A extends Component<Props> {
 
   componentDidMount() {
     if (this.props.url.query.use_testdata) {
-      hydrateFromFixtures(this.props.loadDataStore);
-    } else if (typeof this.props.data !== "undefined") {
-      this.props.loadDataStore({
-        benefits: this.props.data.benefits,
-        eligibilityPaths: this.props.data.eligibilityPaths,
-        needs: this.props.data.needs
+      this.props.dispatch({
+        type: "LOAD_DATA",
+        data: { benefits: benefitsFixture }
       });
-    }
-  }
-
-  static getInitialProps(ctx) {
-    if (typeof ctx.req !== "undefined") {
-      return { data: ctx.req.data };
     }
   }
 
@@ -231,12 +205,6 @@ export class A extends Component<Props> {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loadDataStore: bindActionCreators(loadDataStore, dispatch)
-  };
-};
-
 const mapStateToProps = state => {
   return {
     benefits: state.benefits,
@@ -244,7 +212,4 @@ const mapStateToProps = state => {
     needs: state.needs
   };
 };
-
-export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(
-  withI18next()(A)
-);
+export default connect(mapStateToProps)(withI18next()(A));

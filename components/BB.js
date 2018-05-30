@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from "react";
 import { Grid, Button } from "material-ui";
 import Collapse from "material-ui/transitions/Collapse";
@@ -14,21 +12,6 @@ import BenefitCard from "../components/benefit_cards";
 import FilterSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
 import i18next from "i18next";
-
-type Props = {
-  id: string,
-  t: mixed,
-  benefits: mixed,
-  eligibilityPaths: mixed,
-  needs: mixed,
-  selectedEligibility: mixed,
-  selectedNeeds: mixed,
-  toggleSelectedEligibility: mixed,
-  setSelectedNeeds: mixed,
-  setUserProfile: mixed,
-  clearFilters: mixed,
-  classes: mixed
-};
 
 const styles = theme => ({
   card: {
@@ -56,9 +39,7 @@ const styles = theme => ({
   }
 });
 
-export class BB extends Component<Props> {
-  props: Props;
-
+export class BB extends Component {
   state = {
     expanded: true
   };

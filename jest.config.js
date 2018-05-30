@@ -6,7 +6,7 @@ module.exports = {
     "<rootDir>/__tests__/fixtures/"
   ],
   collectCoverageFrom: ["pages/*.js", "components/*.js"],
-  coveragePathIgnorePatterns: ["pages/_document.js"],
+  coveragePathIgnorePatterns: ["pages/_app.js", "pages/_document.js"],
   coverageThreshold: {
     global: {
       branches: 75,

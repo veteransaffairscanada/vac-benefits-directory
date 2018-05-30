@@ -7,13 +7,6 @@ import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 
-type Props = {
-  benefit: mixed,
-  allBenefits: mixed,
-  t: mixed,
-  classes: mixed
-};
-
 const styles = () => ({
   button: {
     marginTop: "30px"
@@ -43,9 +36,7 @@ const styles = () => ({
   }
 });
 
-export class BenefitCard extends Component<Props> {
-  props: Props;
-
+export class BenefitCard extends Component {
   state = {
     open: false
   };
