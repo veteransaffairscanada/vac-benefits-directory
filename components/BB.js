@@ -117,7 +117,36 @@ export class BB extends Component<Props> {
       );
     }
     const benefitIDSet = new Set(benefitIDs);
-    return benefits.filter(benefit => benefitIDSet.has(benefit.id));
+
+    // add missing sortingPriority values
+    benefits.forEach(b => {
+      if (b.sortingPriority == undefined) {
+        b.sortingPriority = Number.POSITIVE_INFINITY;
+      } else {
+        b.sortingPriority = +b.sortingPriority;
+      }
+    });
+
+    let sorting_fn = (a, b) => {
+      if (a.sortingPriority == b.sortingPriority) {
+        // sort alphabetically
+        let nameA = a.vacNameEn.toUpperCase();
+        let nameB = b.vacNameEn.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      }
+      // ascending numeric sort
+      return a.sortingPriority - b.sortingPriority;
+    };
+
+    return benefits
+      .filter(benefit => benefitIDSet.has(benefit.id))
+      .sort(sorting_fn);
   };
 
   render() {
@@ -171,7 +200,6 @@ export class BB extends Component<Props> {
     });
 
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
-
     const filteredBenefits = this.filteredBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
