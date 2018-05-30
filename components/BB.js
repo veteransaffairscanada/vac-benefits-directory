@@ -346,7 +346,7 @@ export class BB extends Component {
                         examples={this.props.examples}
                         allBenefits={this.props.benefits}
                         t={this.props.t}
-                        key={i}
+                        key={benefit.id}
                       />
                     ) : (
                       ""
