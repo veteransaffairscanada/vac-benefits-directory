@@ -185,6 +185,7 @@ export class A extends Component {
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             needs={this.props.needs}
+            examples={this.props.examples}
             selectedEligibility={this.state.selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
@@ -209,7 +210,8 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
-    needs: state.needs
+    needs: state.needs,
+    examples: state.examples
   };
 };
 export default connect(mapStateToProps)(withI18next()(A));

@@ -22,6 +22,7 @@ export class AllBenefits extends Component {
                     className="benefitCard"
                     id={"bc" + i}
                     benefit={benefit}
+                    examples={this.props.examples}
                     allBenefits={this.props.benefits}
                     t={this.props.t}
                     key={i}
@@ -38,7 +39,8 @@ export class AllBenefits extends Component {
 
 const mapStateToProps = state => {
   return {
-    benefits: state.benefits
+    benefits: state.benefits,
+    examples: state.examples
   };
 };
 
