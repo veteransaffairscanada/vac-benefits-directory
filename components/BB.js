@@ -7,6 +7,7 @@ import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
 import red from "material-ui/colors/red";
 import Typography from "material-ui/Typography";
+import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
 import FilterSelector from "../components/dropdown_selector";
