@@ -104,7 +104,7 @@ export class BenefitCard extends Component {
                       benefit={cb}
                       allBenefits={this.props.allBenefits}
                       t={this.props.t}
-                      key={i}
+                      key={cb.id}
                     />
                   ))}
                 </div>
