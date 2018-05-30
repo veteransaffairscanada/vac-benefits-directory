@@ -5,7 +5,8 @@ const benefitsFixture = [
     vacNameFr: "Prix ​​d'invalidité",
     benefitPageEn: "English link",
     benefitPageFr: "French link",
-    availableIndependently: "Requires Gateway Benefit"
+    availableIndependently: "Requires Gateway Benefit",
+    examples: ["0", "1"]
   },
   {
     id: "0",
@@ -14,7 +15,18 @@ const benefitsFixture = [
     benefitPageEn: "English link",
     benefitPageFr: "French link",
     childBenefits: ["1"],
-    availableIndependently: "Independant"
+    availableIndependently: "Independant",
+    examples: undefined
+  },
+  {
+    id: "3",
+    vacNameEn: "Veterans Independence Program",
+    vacNameFr: "Programme pour l'autonomie des anciens combattants (PAAC)",
+    benefitPageEn: "English link",
+    benefitPageFr: "French link",
+    sortingPriority: "high",
+    availableIndependently: "Independant",
+    examples: undefined
   }
 ];
 

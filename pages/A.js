@@ -3,6 +3,7 @@ import Router from "next/router";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
+import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 
 import BB from "../components/BB";
@@ -31,10 +32,19 @@ export class A extends Component {
     return map;
   };
 
+  getUrlParams = search => {
+    let hashes = search.slice(search.indexOf("?") + 1).split("&");
+    return hashes.reduce((params, hash) => {
+      let [key, val] = hash.split("=");
+      return Object.assign(params, { [key]: decodeURIComponent(val) });
+    }, {});
+  };
+
   componentWillMount() {
     Router.onRouteChangeStart = newUrl => {
-      const myURL = new URL(newUrl, "http://hostname");
-      const section = myURL.searchParams.get("section");
+      let myURL = {};
+      myURL.searchParams = this.getUrlParams(newUrl);
+      const section = myURL.searchParams.section;
       let filters = {};
       [
         "selectedNeeds",
@@ -43,8 +53,8 @@ export class A extends Component {
         "serviceStatus",
         "servicePersonVitalStatus"
       ].forEach(filter => {
-        filters[filter] = myURL.searchParams.get(filter)
-          ? this.stringToMap(myURL.searchParams.get(filter))
+        filters[filter] = myURL.searchParams[filter]
+          ? this.stringToMap(myURL.searchParams[filter])
           : {};
       });
       const newState = {
@@ -185,6 +195,7 @@ export class A extends Component {
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             needs={this.props.needs}
+            examples={this.props.examples}
             selectedEligibility={this.state.selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
@@ -209,7 +220,8 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
-    needs: state.needs
+    needs: state.needs,
+    examples: state.examples
   };
 };
 export default connect(mapStateToProps)(withI18next()(A));

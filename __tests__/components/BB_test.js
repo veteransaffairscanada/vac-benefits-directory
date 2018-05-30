@@ -36,6 +36,7 @@ describe("BB", () => {
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
       needs: [],
+      examples: [],
       selectedEligibility: {
         serviceType: {},
         serviceStatus: {},
@@ -71,7 +72,21 @@ describe("BB", () => {
         needsFixture,
         props.selectedNeeds
       )
-    ).toEqual([benefitsFixture[1]]);
+    ).toEqual([
+      benefitsFixture.filter(o => {
+        return o.id === "0";
+      })[0]
+    ]);
+  });
+
+  it("has a correct sortBenefits function", () => {
+    let BBInstance = shallow_BB().instance();
+    // console.log(BBInstance.sortBenefits(benefitsFixture, "en"))
+    expect(BBInstance.sortBenefits(benefitsFixture, "en")[0]).toEqual(
+      benefitsFixture.filter(o => {
+        return o.id === "3";
+      })[0]
+    );
   });
 
   it("has a serviceTypes filter", () => {
