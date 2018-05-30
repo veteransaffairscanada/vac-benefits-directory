@@ -38,6 +38,10 @@ jobs:
       - run:
           command: node node_modules/eslint/bin/eslint.js pages components __tests__
           name: lint
+      - run:
+          command: ~/repo/.circleci/notify_failure.sh
+          name: "Report failing Master"
+          when: on_fail
 
   integration:
     docker:
@@ -66,6 +70,11 @@ jobs:
               yarn start &
               yarn cypress:wait
               yarn cypress:run
+      - run:
+          command: ~/repo/.circleci/notify_failure.sh
+          name: "Report failing Master"
+          when: on_fail
+
       - store_test_results:
           path: cypress-results
       - store_artifacts:
@@ -87,6 +96,11 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy API Docker Image"
+      - run:
+          command: ~/repo/.circleci/notify_failure.sh
+          name: "Report failing Master"
+          when: on_fail
+
     working_directory: ~/repo
   update_ecs: 
     docker: 
@@ -100,6 +114,11 @@ jobs:
               cd deploy
               ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE --timeout 15
          name: "Update ECS Task"
+      - run:
+          command: ~/repo/.circleci/notify_failure.sh
+          name: "Report failing Master"
+          when: on_fail
+
     working_directory: ~/repo
 
 workflows:

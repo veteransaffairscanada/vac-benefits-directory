@@ -7,15 +7,6 @@ import {
 } from "material-ui/Form";
 import Checkbox from "material-ui/Checkbox";
 
-type Props = {
-  t: mixed,
-  id: string,
-  legend: string,
-  filters: mixed,
-  selectedFilters: mixed,
-  handleChange: mixed
-};
-
 const checkboxStyle = {
   margin: "-5px 0"
 };
@@ -28,7 +19,7 @@ const labelStyle = {
   margin: "5px 0 10px 0"
 };
 
-class FilterSelector extends Component<Props> {
+class FilterSelector extends Component {
   render() {
     const { t } = this.props;
     return (

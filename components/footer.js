@@ -3,10 +3,6 @@ import { WordMark } from "@cdssnc/gcui";
 import { Button, Toolbar, Typography } from "material-ui";
 import styled from "react-emotion";
 
-type Props = {
-  t: mixed
-};
-
 const Div = styled("div")`
   width: 100%;
   height: 65px;
@@ -15,9 +11,7 @@ const Div = styled("div")`
   text-align: center;
 `;
 
-class Footer extends Component<Props> {
-  props: Props;
-
+class Footer extends Component {
   render() {
     const envDetails = process.env.CIRCLE_SHA1
       ? process.env.CIRCLE_SHA1.substring(0, 7)

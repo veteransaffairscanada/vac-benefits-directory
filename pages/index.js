@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from "react";
 import { SelectButton } from "../components/select_button";
 
@@ -8,14 +6,7 @@ import { Grid } from "material-ui";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 
-type Props = {
-  i18n: mixed,
-  t: mixed
-};
-
-export class App extends Component<Props> {
-  props: Props;
-
+export class App extends Component {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 

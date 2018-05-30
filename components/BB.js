@@ -1,7 +1,5 @@
-// @flow
-
 import React, { Component } from "react";
-import { Grid } from "material-ui";
+import { Grid, Button } from "material-ui";
 import Collapse from "material-ui/transitions/Collapse";
 import IconButton from "material-ui/IconButton";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -15,20 +13,6 @@ import BenefitCard from "../components/benefit_cards";
 import FilterSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
 import i18next from "i18next";
-
-type Props = {
-  id: string,
-  t: mixed,
-  benefits: mixed,
-  eligibilityPaths: mixed,
-  needs: mixed,
-  selectedEligibility: mixed,
-  selectedNeeds: mixed,
-  toggleSelectedEligibility: mixed,
-  setSelectedNeeds: mixed,
-  setUserProfile: mixed,
-  classes: mixed
-};
 
 const styles = theme => ({
   card: {
@@ -56,9 +40,7 @@ const styles = theme => ({
   }
 });
 
-export class BB extends Component<Props> {
-  props: Props;
-
+export class BB extends Component {
   state = {
     expanded: true
   };
@@ -287,18 +269,18 @@ export class BB extends Component<Props> {
                       )}
                     />
                   </Grid>
+                  <br />
                 </Collapse>
-
                 <Grid item xs={12}>
-                  <p style={{ textAlign: "left", fontSize: "1em" }}>
-                    <a
-                      className="AllBenefits"
-                      href={"all-benefits?lng=" + t("current-language-code")}
-                      target="dan"
-                    >
-                      {t("Show All Benefits")}
-                    </a>
-                  </p>
+                  <Button
+                    id="ClearFilters"
+                    variant="raised"
+                    onClick={() => {
+                      this.props.clearFilters();
+                    }}
+                  >
+                    {t("Show All Benefits")}
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
@@ -327,6 +309,7 @@ export class BB extends Component<Props> {
                         id={"bc" + i}
                         className="BenefitCards"
                         benefit={benefit}
+                        examples={this.props.examples}
                         allBenefits={this.props.benefits}
                         t={this.props.t}
                         key={i}

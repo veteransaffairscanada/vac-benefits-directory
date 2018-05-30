@@ -32,7 +32,7 @@ describe("A", () => {
       i18n: undefined,
       t: key => key,
       storeHydrated: true,
-      loadDataStore: jest.fn()
+      dispatch: jest.fn()
     };
     _mountedA = undefined;
   });
@@ -58,6 +58,35 @@ describe("A", () => {
       "/A?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF";
     AInstance.setURL(state);
     expect(Router.push).toBeCalledWith(expectedURL);
+  });
+
+  it("has a correct clearFilters function", () => {
+    let AInstance = mountedA().instance();
+    AInstance.setState({
+      section: "S",
+      selectedNeeds: { health: "health", financial: "financial" },
+      selectedEligibility: {
+        patronType: { family: "family" },
+        serviceType: { CAF: "CAF" },
+        serviceStatus: {},
+        servicePersonVitalStatus: {}
+      }
+    });
+    expect(AInstance.state.selectedEligibility.serviceType).toEqual({
+      CAF: "CAF"
+    });
+    AInstance.clearFilters();
+    expect(AInstance.state).toEqual({
+      section: "S",
+      selectedNeeds: {},
+      selectedEligibility: {
+        patronType: {},
+        serviceType: {},
+        serviceStatus: {},
+        servicePersonVitalStatus: {}
+      }
+    });
+    expect(Router.push).toBeCalledWith("/A?section=S");
   });
 
   it("componentWillMount sets state correctly from empty url", () => {
@@ -126,17 +155,9 @@ describe("A", () => {
     const expectedArgs = {
       benefits: benefitsFixture
     };
-    expect(mountedA().instance().props.loadDataStore).toBeCalledWith(
-      expectedArgs
-    );
-  });
-
-  it("componantDidMount hydrates Redux with cached data if passed", () => {
-    props.data = {
-      benefits: 3
-    };
-    expect(mountedA().instance().props.loadDataStore).toBeCalledWith(
-      props.data
-    );
+    expect(mountedA().instance().props.dispatch).toBeCalledWith({
+      type: "LOAD_DATA",
+      data: expectedArgs
+    });
   });
 });

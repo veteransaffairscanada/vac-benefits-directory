@@ -36,6 +36,7 @@ describe("BB", () => {
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
       needs: [],
+      examples: [],
       selectedEligibility: {
         serviceType: {},
         serviceStatus: {},
@@ -139,12 +140,8 @@ describe("BB", () => {
     expect(props.toggleSelectedEligibility).toBeCalled();
   });
 
-  it("has an All Benefits Link", () => {
-    expect(
-      shallow_BB()
-        .find(".AllBenefits")
-        .text()
-    ).toEqual("Show All Benefits");
+  it("has a Clear Filters button", () => {
+    expect(shallow_BB().find("#ClearFilters"));
   });
 
   it("has a benefits counter", () => {

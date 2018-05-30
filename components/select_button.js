@@ -1,20 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Card from "material-ui/Card";
 import { Button } from "material-ui";
 
-type Props = {
-  text: string,
-  href: string,
-  isDown: boolean,
-  onClick: PropTypes.func,
-  id: string,
-  target: string
-};
-
-export class SelectButton extends Component<Props> {
-  props: Props;
-
+export class SelectButton extends Component {
   render() {
     return (
       <Card>
