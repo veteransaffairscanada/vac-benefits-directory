@@ -16,7 +16,6 @@ const bodyStyling = {
 class MyDocument extends Document {
   static getInitialProps(ctx) {
     const pageContext = getPageContext();
-    console.log(ctx);
     //eslint-disable-next-line react/display-name
     const page = ctx.renderPage(Component => props => (
       <JssProvider

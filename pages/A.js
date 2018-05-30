@@ -245,6 +245,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(initStore, mapStateToProps, mapDispatchToProps)(
-  withI18next()(A)
-);
+export default connect()(withI18next()(A));
