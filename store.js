@@ -1,14 +1,13 @@
 import { createStore } from "redux";
-import { Provider } from "react-redux";
 
-const exampleInitialState = {
+const initialState = {
   benefits: [],
   eligibilityPaths: [],
   needs: []
 };
 
 // REDUCERS
-export const reducer = (state = exampleInitialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOAD_DATA":
       return Object.assign({}, state, {
@@ -23,6 +22,6 @@ export const reducer = (state = exampleInitialState, action) => {
   }
 };
 
-export const initStore = (initialState = exampleInitialState) => {
-  return createStore(reducer, initialState);
+export const initStore = (state = initialState) => {
+  return createStore(reducer, state);
 };

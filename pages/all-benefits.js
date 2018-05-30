@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from "react";
 
 import { Grid } from "material-ui";
@@ -9,15 +7,7 @@ import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BenefitCard from "../components/benefit_cards";
 
-type Props = {
-  benefits: mixed,
-  i18n: mixed,
-  t: mixed
-};
-
-export class AllBenefits extends Component<Props> {
-  props: Props;
-
+export class AllBenefits extends Component {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (

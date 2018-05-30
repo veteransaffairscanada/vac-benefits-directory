@@ -19,19 +19,7 @@ const styles = theme => ({
   }
 });
 
-type Props = {
-  t: mixed,
-  id: string,
-  legend: string,
-  filters: mixed,
-  selectedFilters: mixed,
-  setUserProfile: mixed,
-  isDisabled: boolean,
-  disabledString: string,
-  classes: mixed
-};
-
-class DropDownSelector extends React.Component<Props> {
+class DropDownSelector extends React.Component {
   handleSelect = event => {
     this.props.setUserProfile(event.target.value);
   };

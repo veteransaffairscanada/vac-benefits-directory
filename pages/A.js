@@ -1,28 +1,13 @@
-// @flow
-
 import React, { Component } from "react";
 import Router from "next/router";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
+import benefitsFixture from "../__tests__/fixtures/benefits";
 
 import BB from "../components/BB";
 
-type Props = {
-  url: mixed,
-  i18n: mixed,
-  t: mixed,
-  benefits: mixed,
-  eligibilityPaths: mixed,
-  needs: mixed,
-  data: mixed,
-  loadDataStore: mixed
-};
-
-export class A extends Component<Props> {
-  props: Props;
-
+export class A extends Component {
   constructor() {
     super();
     this.state = {
@@ -102,7 +87,10 @@ export class A extends Component<Props> {
 
   componentDidMount() {
     if (this.props.url.query.use_testdata) {
-      hydrateFromFixtures(this.props.loadDataStore);
+      this.props.dispatch({
+        type: "LOAD_DATA",
+        data: { benefits: benefitsFixture }
+      });
     }
   }
 

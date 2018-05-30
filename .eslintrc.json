@@ -16,5 +16,7 @@
     "jest": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "rules": {}
+  "rules": {
+    "react/prop-types": 1
+  }
 }

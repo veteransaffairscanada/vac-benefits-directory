@@ -47,14 +47,7 @@ const MenuProps = {
   }
 };
 
-type Props = {
-  t: mixed,
-  needs: mixed,
-  selectedNeeds: mixed,
-  handleChange: mixed
-};
-
-class NeedsSelector extends Component<Props> {
+class NeedsSelector extends Component {
   handleChange = event => {
     this.props.handleChange(event.target.value);
   };
