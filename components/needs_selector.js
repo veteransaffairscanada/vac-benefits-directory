@@ -82,12 +82,12 @@ class NeedsSelector extends Component<Props> {
                         key={needId}
                         label={
                           t("current-language-code") === "en"
-                            ? this.props.needs.find(need => {
+                            ? this.props.needs.filter(need => {
                                 return need.id === needId;
-                              }).nameEn
-                            : this.props.needs.find(need => {
+                              })[0].nameEn
+                            : this.props.needs.filter(need => {
                                 return need.id === needId;
-                              }).nameFr
+                              })[0].nameFr
                         }
                         className={classes.chip}
                         style={chipStyle}

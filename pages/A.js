@@ -8,6 +8,7 @@ import { initStore, loadDataStore } from "../store";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
+import "../utils/arrayFromPolyfill";
 
 import BB from "../components/BB";
 
