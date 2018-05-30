@@ -7,6 +7,7 @@ import withRedux from "next-redux-wrapper";
 import { initStore, loadDataStore } from "../store";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
+import "babel-polyfill/dist/polyfill";
 import { bindActionCreators } from "redux";
 import { hydrateFromFixtures } from "../utils/hydrate_from_fixtures";
 

@@ -7,6 +7,7 @@ import { FormControl } from "material-ui/Form";
 import Select from "material-ui/Select";
 import Checkbox from "material-ui/Checkbox";
 import Chip from "material-ui/Chip";
+import "babel-polyfill/dist/polyfill";
 
 const chipStyle = {
   borderRadius: "8px",
