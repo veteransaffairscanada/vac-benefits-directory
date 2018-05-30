@@ -127,7 +127,7 @@ export class BenefitCard extends Component<Props> {
                       : benefit.benefitPageFr
                   }
                 >
-                  {this.props.t("View Details")}
+                  {this.props.t("Find out more")}
                 </Button>
               </div>
             </ExpansionPanelDetails>
