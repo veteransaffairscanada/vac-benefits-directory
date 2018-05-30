@@ -24,7 +24,6 @@ const benefitsFixture = [
     vacNameFr: "Programme pour l'autonomie des anciens combattants (PAAC)",
     benefitPageEn: "English link",
     benefitPageFr: "French link",
-    availableIndependently: "Independant",
     sortingPriority: "high",
     availableIndependently: "Independant",
     examples: undefined
