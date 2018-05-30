@@ -7,12 +7,6 @@ import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSumm
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-type Props = {
-  benefit: mixed,
-  t: mixed,
-  classes: mixed
-};
-
 const styles = theme => ({
   root: {
     width: "100%"
@@ -40,9 +34,7 @@ const styles = theme => ({
   }
 });
 
-export class EmbeddedBenefitCard extends Component<Props> {
-  props: Props;
-
+export class EmbeddedBenefitCard extends Component {
   state = {
     open: false
   };

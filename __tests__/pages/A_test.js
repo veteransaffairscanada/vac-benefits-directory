@@ -32,7 +32,7 @@ describe("A", () => {
       i18n: undefined,
       t: key => key,
       storeHydrated: true,
-      loadDataStore: jest.fn()
+      dispatch: jest.fn()
     };
     _mountedA = undefined;
   });
@@ -155,17 +155,9 @@ describe("A", () => {
     const expectedArgs = {
       benefits: benefitsFixture
     };
-    expect(mountedA().instance().props.loadDataStore).toBeCalledWith(
-      expectedArgs
-    );
-  });
-
-  it("componantDidMount hydrates Redux with cached data if passed", () => {
-    props.data = {
-      benefits: 3
-    };
-    expect(mountedA().instance().props.loadDataStore).toBeCalledWith(
-      props.data
-    );
+    expect(mountedA().instance().props.dispatch).toBeCalledWith({
+      type: "LOAD_DATA",
+      data: expectedArgs
+    });
   });
 });
