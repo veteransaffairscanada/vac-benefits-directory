@@ -46,7 +46,8 @@ const styles = () => ({
     paddingBottom: "10px"
   },
   examples: {
-    width: "100%"
+    width: "100%",
+    marginLeft: "20px"
   }
 });
 
@@ -110,22 +111,24 @@ export class BenefitCard extends Component<Props> {
             <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
-                  <div className={classes.examples}>
-                    {examples.length > 0 ? (
-                      <Typography className={classes.ExampleDesc}>
-                        {t("examples") + ":"}
-                      </Typography>
-                    ) : (
-                      ""
-                    )}
-                    <div>
-                      <Typography className={classes.examples}>
-                        {examples.map(ex => {
-                          return <li key={ex.id}>{ex.nameEn}</li>;
-                        })}
-                      </Typography>
-                    </div>
-                  </div>
+                  {examples.length > 0 ? (
+                    <Typography className={classes.ExampleDesc}>
+                      {t("examples") + ":"}
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                  <Typography className={classes.examples}>
+                    {examples.map(ex => {
+                      return (
+                        <li key={ex.id}>
+                          {this.props.t("current-language-code") === "en"
+                            ? ex.nameEn
+                            : ex.nameFr}{" "}
+                        </li>
+                      );
+                    })}
+                  </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <div className={classes.children}>

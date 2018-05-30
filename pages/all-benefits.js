@@ -10,6 +10,7 @@ import BenefitCard from "../components/benefit_cards";
 
 type Props = {
   benefits: mixed,
+  examples: mixed,
   i18n: mixed,
   t: mixed
 };
@@ -20,7 +21,8 @@ export class AllBenefits extends Component<Props> {
   static getInitialProps(ctx) {
     let data = ctx.req.data;
     return {
-      benefits: data.benefits
+      benefits: data.benefits,
+      examples: data.examples
     };
   }
 
@@ -38,6 +40,7 @@ export class AllBenefits extends Component<Props> {
                     className="benefitCard"
                     id={"bc" + i}
                     benefit={benefit}
+                    examples={this.props.examples}
                     allBenefits={this.props.benefits}
                     t={this.props.t}
                     key={i}
