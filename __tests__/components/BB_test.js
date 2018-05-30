@@ -36,6 +36,7 @@ describe("BB", () => {
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
       needs: [],
+      examples: [],
       selectedEligibility: {
         serviceType: {},
         serviceStatus: {},

@@ -1,18 +1,8 @@
-// @flow
-
 import React, { Component } from "react";
 import NextHead from "next/head";
 import { initGA, logPageView } from "../utils/analytics";
 
-type Props = {
-  title?: string,
-  description?: string,
-  t: mixed
-};
-
-class Head extends Component<Props> {
-  props: Props;
-
+class Head extends Component {
   componentDidMount() {
     if (!window.GA_INITIALIZED) {
       initGA();

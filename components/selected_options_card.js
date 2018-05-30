@@ -4,16 +4,7 @@ import Button from "material-ui/Button";
 
 import { Typography } from "material-ui";
 
-type Props = {
-  id: string,
-  options: mixed,
-  action: mixed,
-  t: mixed
-};
-
-class SelectedOptionsCard extends Component<Props> {
-  props: Props;
-
+class SelectedOptionsCard extends Component {
   render() {
     return (
       <Card id={this.props.id} style={{ backgroundColor: "#ddd" }}>

@@ -3,6 +3,7 @@ import { mount } from "enzyme";
 import { EmbeddedBenefitCard } from "../../components/embedded_benefit_card";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
+import examplesFixture from "../fixtures/examples";
 
 describe("EmbeddedBenefitCard", () => {
   let props;
@@ -105,6 +106,7 @@ describe("BenefitCard", () => {
       t: () => "en",
       benefit: benefitsFixture[0],
       allBenefits: benefitsFixture,
+      examples: examplesFixture,
       classes: {}
     };
     _mountedBenefitCard = undefined;
@@ -134,6 +136,18 @@ describe("BenefitCard", () => {
         .first()
         .text()
     ).toEqual("en");
+  });
+
+  it("renders if there are examples", () => {
+    props.t = key => key;
+    props.benefit = benefitsFixture[0];
+    expect(mountedBenefitCard().html()).toContain("examples:");
+  });
+
+  it("renders if there are no examples", () => {
+    props.t = key => key;
+    props.benefit = benefitsFixture[1];
+    expect(mountedBenefitCard().html()).not.toContain("examples:");
   });
 
   it("has a correctly configured button", () => {

@@ -7,13 +7,6 @@ import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 
-type Props = {
-  benefit: mixed,
-  allBenefits: mixed,
-  t: mixed,
-  classes: mixed
-};
-
 const styles = () => ({
   button: {
     marginTop: "30px"
@@ -40,12 +33,17 @@ const styles = () => ({
   },
   children: {
     width: "100%"
+  },
+  ExampleDesc: {
+    paddingBottom: "10px"
+  },
+  examples: {
+    width: "100%",
+    marginLeft: "20px"
   }
 });
 
-export class BenefitCard extends Component<Props> {
-  props: Props;
-
+export class BenefitCard extends Component {
   state = {
     open: false
   };
@@ -62,6 +60,10 @@ export class BenefitCard extends Component<Props> {
       ? this.props.allBenefits.filter(
           ab => benefit.childBenefits.indexOf(ab.id) > -1
         )
+      : [];
+
+    const examples = benefit.examples
+      ? this.props.examples.filter(ex => benefit.examples.indexOf(ex.id) > -1)
       : [];
 
     return (
@@ -97,39 +99,63 @@ export class BenefitCard extends Component<Props> {
             </ExpansionPanelSummary>
 
             <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
-              <div className={classes.children}>
-                {childBenefits.length > 0 ? (
-                  <Typography className={classes.ChildBenefitDesc}>
-                    {t("child benefits")}:
+              <Grid container spacing={24}>
+                <Grid item xs={12}>
+                  {examples.length > 0 ? (
+                    <Typography className={classes.ExampleDesc}>
+                      {t("examples") + ":"}
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                  <Typography className={classes.examples}>
+                    {examples.map(ex => {
+                      return (
+                        <li key={ex.id}>
+                          {this.props.t("current-language-code") === "en"
+                            ? ex.nameEn
+                            : ex.nameFr}{" "}
+                        </li>
+                      );
+                    })}
                   </Typography>
-                ) : (
-                  ""
-                )}
-                <div>
-                  {childBenefits.map((cb, i) => (
-                    <EmbeddedBenefitCard
-                      id={"cb" + i}
-                      className="BenefitCards"
-                      benefit={cb}
-                      allBenefits={this.props.allBenefits}
-                      t={this.props.t}
-                      key={i}
-                    />
-                  ))}
-                </div>
-                <Button
-                  className={classes.button}
-                  target="_blank"
-                  variant="raised"
-                  href={
-                    this.props.t("current-language-code") === "en"
-                      ? benefit.benefitPageEn
-                      : benefit.benefitPageFr
-                  }
-                >
-                  {this.props.t("Find out more")}
-                </Button>
-              </div>
+                </Grid>
+                <Grid item xs={12}>
+                  <div className={classes.children}>
+                    {childBenefits.length > 0 ? (
+                      <Typography className={classes.ChildBenefitDesc}>
+                        {t("child benefits")}:
+                      </Typography>
+                    ) : (
+                      ""
+                    )}
+                    <div>
+                      {childBenefits.map((cb, i) => (
+                        <EmbeddedBenefitCard
+                          id={"cb" + i}
+                          className="BenefitCards"
+                          benefit={cb}
+                          allBenefits={this.props.allBenefits}
+                          t={this.props.t}
+                          key={i}
+                        />
+                      ))}
+                    </div>
+                    <Button
+                      className={classes.button}
+                      target="_blank"
+                      variant="raised"
+                      href={
+                        this.props.t("current-language-code") === "en"
+                          ? benefit.benefitPageEn
+                          : benefit.benefitPageFr
+                      }
+                    >
+                      {this.props.t("Find out more")}
+                    </Button>
+                  </div>
+                </Grid>
+              </Grid>
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </div>
