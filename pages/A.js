@@ -230,6 +230,7 @@ A.propTypes = {
   benefits: PropTypes.array,
   dispatch: PropTypes.func,
   eligibilityPaths: PropTypes.array,
+  examples: PropTypes.array,
   i18n: PropTypes.object,
   needs: PropTypes.array,
   t: PropTypes.func,
