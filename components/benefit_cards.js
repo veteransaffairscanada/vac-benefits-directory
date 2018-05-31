@@ -60,6 +60,13 @@ export class BenefitCard extends Component {
     this.setState({ open: newState });
   };
 
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
+
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
@@ -82,6 +89,7 @@ export class BenefitCard extends Component {
                 ? classes.ExpansionPanelOpen
                 : classes.ExpansionPanelClosed
             }
+            expanded={this.state.open}
           >
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
@@ -183,7 +191,8 @@ BenefitCard.propTypes = {
   benefit: PropTypes.object,
   classes: PropTypes.object,
   examples: PropTypes.array,
-  t: PropTypes.func
+  t: PropTypes.func,
+  onRef: PropTypes.func
 };
 
 export default withStyles(styles)(BenefitCard);

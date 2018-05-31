@@ -45,9 +45,16 @@ export class BB extends Component {
   state = {
     expanded: true
   };
+  children = [];
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
+  };
+
+  collapseAllBenefits = () => {
+    this.children.forEach(c => {
+      c.setState({ open: false });
+    });
   };
 
   eligibilityMatch = (path, selected) => {
@@ -317,6 +324,16 @@ export class BB extends Component {
                     {t("Show All Benefits")}
                   </Button>
                 </Grid>
+                <Grid item xs={12}>
+                  <Button
+                    id="CollapseBenefits"
+                    variant="raised"
+                    // onClick={this.setCollapseAllBenefitsTrue}
+                    onClick={this.collapseAllBenefits}
+                  >
+                    {t("Collapse")}
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
@@ -348,6 +365,7 @@ export class BB extends Component {
                         allBenefits={this.props.benefits}
                         t={this.props.t}
                         key={benefit.id}
+                        onRef={ref => this.children.push(ref)}
                       />
                     ) : (
                       ""
