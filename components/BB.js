@@ -197,20 +197,6 @@ export class BB extends Component {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
 
-    // // check all boxes
-    // serviceTypes.forEach(x => {
-    //   this.props.toggleSelectedEligibility("serviceType", x.id);
-    // });
-    // patronTypes.forEach(x => {
-    //   this.props.toggleSelectedEligibility("patronType", x.id);
-    // });
-    // serviceStatuses.forEach(x => {
-    //   this.props.toggleSelectedEligibility("serviceStatus", x.id);
-    // });
-    // servicePersonVitalStatuses.forEach(x => {
-    //   this.props.toggleSelectedEligibility("servicePersonVitalStatus", x.id);
-    // });
-
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
     this.sortBenefits(
       this.props.benefits,
