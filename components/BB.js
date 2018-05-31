@@ -68,7 +68,6 @@ export class BB extends Component {
     return matches;
   };
 
-  // find benefits that match
   filteredBenefits = (
     benefits,
     eligibilityPaths,
@@ -80,6 +79,7 @@ export class BB extends Component {
       return benefits;
     }
 
+    // find benefits that match
     let benefitIdsForProfile = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
@@ -111,11 +111,25 @@ export class BB extends Component {
       )
       .map(b => b.id);
 
-    // const benefitIDSet = new Set(benefitIDs);
-
-    return benefits.filter(
-      benefit => matchingBenefitIds.indexOf(benefit.id) > -1
+    const benefitIDsToShow = matchingBenefitIds.concat(
+      benefitIdsWithMatchingChildren
     );
+    let benefitsToShow = benefits.filter(
+      b => benefitIDsToShow.indexOf(b.id) > -1
+    );
+
+    // if a benefit is already shown as a child, only show it (as a parent card) if it's available independently
+    let childrenIDsShown = [];
+    benefitsToShow.forEach(b => {
+      childrenIDsShown = childrenIDsShown.concat(b.childBenefits);
+    });
+    benefitsToShow = benefitsToShow.filter(
+      b =>
+        b.availableIndependently === "Independent" ||
+        childrenIDsShown.indexOf(b.id) < 0
+    );
+
+    return benefitsToShow;
   };
 
   sortBenefits = (filteredBenefits, language) => {
