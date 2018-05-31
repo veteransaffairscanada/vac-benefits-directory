@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Typography, Button, Grid } from "material-ui";
 import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
@@ -111,4 +112,11 @@ export class EmbeddedBenefitCard extends Component {
     );
   }
 }
+
+EmbeddedBenefitCard.propTypes = {
+  benefit: PropTypes.object,
+  classes: PropTypes.object,
+  t: PropTypes.func
+};
+
 export default withStyles(styles)(EmbeddedBenefitCard);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Button } from "material-ui";
 import Collapse from "material-ui/transitions/Collapse";
 import IconButton from "material-ui/IconButton";
@@ -360,5 +361,20 @@ export class BB extends Component {
     );
   }
 }
+
+BB.propTypes = {
+  benefits: PropTypes.array,
+  classes: PropTypes.object,
+  clearFilters: PropTypes.func,
+  eligibilityPaths: PropTypes.array,
+  id: PropTypes.string,
+  needs: PropTypes.array,
+  selectedEligibility: PropTypes.object,
+  selectedNeeds: PropTypes.object,
+  setSelectedNeeds: PropTypes.func,
+  setUserProfile: PropTypes.func,
+  t: PropTypes.func,
+  toggleSelectedEligibility: PropTypes.func
+};
 
 export default withStyles(styles)(BB);
