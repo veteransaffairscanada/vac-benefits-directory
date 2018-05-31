@@ -46,6 +46,7 @@ const mapStateToProps = state => {
 
 AllBenefits.propTypes = {
   benefits: PropTypes.array,
+  examples: PropTypes.array,
   i18n: PropTypes.object,
   t: PropTypes.func
 };

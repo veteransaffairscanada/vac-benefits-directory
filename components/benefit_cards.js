@@ -8,6 +8,8 @@ import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 
+import { logEvent } from "../utils/analytics";
+
 const styles = () => ({
   button: {
     marginTop: "30px"
@@ -47,6 +49,10 @@ const styles = () => ({
 export class BenefitCard extends Component {
   state = {
     open: false
+  };
+
+  logExit = url => {
+    logEvent("Exit", url);
   };
 
   toggleOpenState = () => {
@@ -146,6 +152,13 @@ export class BenefitCard extends Component {
                       className={classes.button}
                       target="_blank"
                       variant="raised"
+                      onClick={() =>
+                        this.logExit(
+                          this.props.t("current-language-code") === "en"
+                            ? benefit.benefitPageEn
+                            : benefit.benefitPageFr
+                        )
+                      }
                       href={
                         this.props.t("current-language-code") === "en"
                           ? benefit.benefitPageEn
@@ -169,6 +182,7 @@ BenefitCard.propTypes = {
   allBenefits: PropTypes.array,
   benefit: PropTypes.object,
   classes: PropTypes.object,
+  examples: PropTypes.array,
   t: PropTypes.func
 };
 

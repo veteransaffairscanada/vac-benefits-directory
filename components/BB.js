@@ -367,6 +367,7 @@ BB.propTypes = {
   classes: PropTypes.object,
   clearFilters: PropTypes.func,
   eligibilityPaths: PropTypes.array,
+  examples: PropTypes.array,
   id: PropTypes.string,
   needs: PropTypes.array,
   selectedEligibility: PropTypes.object,
