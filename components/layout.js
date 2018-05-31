@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "react-emotion";
 
 import { PhaseBanner } from "@cdssnc/gcui";
@@ -47,5 +48,12 @@ class Layout extends Component {
     );
   }
 }
+
+Layout.propTypes = {
+  children: PropTypes.object,
+  hideNoscript: PropTypes.bool,
+  i18n: PropTypes.object,
+  t: PropTypes.func
+};
 
 export default Layout;

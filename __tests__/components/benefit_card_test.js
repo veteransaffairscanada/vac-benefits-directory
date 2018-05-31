@@ -89,6 +89,18 @@ describe("EmbeddedBenefitCard", () => {
       .simulate("click");
     expect(mountedEmbeddedBenefitCard().state().open).toEqual(true);
   });
+  it("Clicking the link logs an exit event", () => {
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    mountedEmbeddedBenefitCard()
+      .find("ExpansionPanelDetails")
+      .find("Button")
+      .simulate("click");
+    expect(analytics.logEvent).toBeCalledWith(
+      "Exit",
+      benefitsFixture[0].benefitPageEn
+    );
+  });
 });
 
 describe("BenefitCard", () => {
@@ -223,5 +235,16 @@ describe("BenefitCard", () => {
       .at(0)
       .simulate("click");
     expect(mountedBenefitCard().state().open).toEqual(true);
+  });
+  it("Clicking the link logs an exit event", () => {
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    mountedBenefitCard()
+      .find("Button")
+      .simulate("click");
+    expect(analytics.logEvent).toBeCalledWith(
+      "Exit",
+      benefitsFixture[0].benefitPageEn
+    );
   });
 });

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   FormLabel,
   FormControl,
@@ -51,5 +52,13 @@ class FilterSelector extends Component {
     );
   }
 }
+
+FilterSelector.propTypes = {
+  filters: PropTypes.array,
+  handleChange: PropTypes.func,
+  legend: PropTypes.string,
+  selectedFilters: PropTypes.object,
+  t: PropTypes.func
+};
 
 export default FilterSelector;
