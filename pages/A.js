@@ -216,11 +216,11 @@ const mapStateToProps = state => {
 
 A.propTypes = {
   benefits: PropTypes.array,
-  dispatch: PropTypes.function,
+  dispatch: PropTypes.func,
   eligibilityPaths: PropTypes.array,
-  i18n: PropTypes.function,
+  i18n: PropTypes.object,
   needs: PropTypes.array,
-  t: PropTypes.function,
+  t: PropTypes.func,
   url: PropTypes.object
 };
 

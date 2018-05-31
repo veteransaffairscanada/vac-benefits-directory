@@ -54,11 +54,11 @@ class FilterSelector extends Component {
 }
 
 FilterSelector.propTypes = {
-  filters: PropTypes.object,
-  handleChange: PropTypes.function,
+  filters: PropTypes.array,
+  handleChange: PropTypes.func,
   legend: PropTypes.string,
   selectedFilters: PropTypes.object,
-  t: PropTypes.function
+  t: PropTypes.func
 };
 
 export default FilterSelector;

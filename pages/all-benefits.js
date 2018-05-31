@@ -44,8 +44,8 @@ const mapStateToProps = state => {
 
 AllBenefits.propTypes = {
   benefits: PropTypes.array,
-  i18n: PropTypes.function,
-  t: PropTypes.function
+  i18n: PropTypes.object,
+  t: PropTypes.func
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

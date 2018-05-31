@@ -26,12 +26,12 @@ export class SelectButton extends Component {
 }
 
 SelectButton.propTypes = {
-  action: PropTypes.function,
+  action: PropTypes.func,
   href: PropTypes.string,
   id: PropTypes.string,
-  isDown: PropTypes.boolean,
-  onClick: PropTypes.function,
-  t: PropTypes.function,
+  isDown: PropTypes.bool,
+  onClick: PropTypes.func,
+  t: PropTypes.func,
   target: PropTypes.string,
   text: PropTypes.string
 };

@@ -62,15 +62,14 @@ class DropDownSelector extends React.Component {
 }
 
 DropDownSelector.propTypes = {
-  action: PropTypes.function,
   classes: PropTypes.object,
   disabledString: PropTypes.string,
-  isDisabled: PropTypes.boolean,
+  isDisabled: PropTypes.bool,
   legend: PropTypes.string,
-  filters: PropTypes.object,
-  selectedFilters: PropTypes.array,
-  setUserProfile: PropTypes.function,
-  t: PropTypes.function
+  filters: PropTypes.array,
+  selectedFilters: PropTypes.object,
+  setUserProfile: PropTypes.func,
+  t: PropTypes.func
 };
 
 export default withStyles(styles)(DropDownSelector);

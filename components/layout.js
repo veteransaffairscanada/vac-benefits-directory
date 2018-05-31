@@ -50,10 +50,10 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
-  children: PropTypes.element,
-  hideNoscript: PropTypes.boolean,
-  i18n: PropTypes.function,
-  t: PropTypes.function
+  children: PropTypes.object,
+  hideNoscript: PropTypes.bool,
+  i18n: PropTypes.object,
+  t: PropTypes.func
 };
 
 export default Layout;

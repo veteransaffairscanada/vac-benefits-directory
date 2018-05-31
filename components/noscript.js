@@ -57,7 +57,7 @@ class Noscript extends Component {
 }
 
 Noscript.propTypes = {
-  t: PropTypes.function
+  t: PropTypes.func
 };
 
 export default Noscript;

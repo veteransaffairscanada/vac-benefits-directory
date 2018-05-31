@@ -329,16 +329,16 @@ export class BB extends Component {
 BB.propTypes = {
   benefits: PropTypes.array,
   classes: PropTypes.object,
-  clearFilters: PropTypes.function,
+  clearFilters: PropTypes.func,
   eligibilityPaths: PropTypes.array,
   id: PropTypes.string,
   needs: PropTypes.array,
   selectedEligibility: PropTypes.object,
   selectedNeeds: PropTypes.object,
-  setSelectedNeeds: PropTypes.function,
-  setUserProfile: PropTypes.function,
-  t: PropTypes.function,
-  toggleSelectedEligibility: PropTypes.function
+  setSelectedNeeds: PropTypes.func,
+  setUserProfile: PropTypes.func,
+  t: PropTypes.func,
+  toggleSelectedEligibility: PropTypes.func
 };
 
 export default withStyles(styles)(BB);

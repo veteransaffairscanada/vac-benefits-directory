@@ -42,8 +42,8 @@ class MenuBar extends Component {
 }
 
 MenuBar.propTypes = {
-  i18n: PropTypes.function,
-  t: PropTypes.function
+  i18n: PropTypes.object,
+  t: PropTypes.func
 };
 
 export default MenuBar;

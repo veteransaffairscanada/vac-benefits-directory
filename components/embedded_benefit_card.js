@@ -116,7 +116,7 @@ export class EmbeddedBenefitCard extends Component {
 EmbeddedBenefitCard.propTypes = {
   benefit: PropTypes.object,
   classes: PropTypes.object,
-  t: PropTypes.function
+  t: PropTypes.func
 };
 
 export default withStyles(styles)(EmbeddedBenefitCard);

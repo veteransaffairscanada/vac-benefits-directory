@@ -134,7 +134,7 @@ BenefitCard.propTypes = {
   allBenefits: PropTypes.array,
   benefit: PropTypes.object,
   classes: PropTypes.object,
-  t: PropTypes.function
+  t: PropTypes.func
 };
 
 export default withStyles(styles)(BenefitCard);

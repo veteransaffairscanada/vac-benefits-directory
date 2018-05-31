@@ -63,7 +63,7 @@ class FeedbackBar extends Component {
 }
 
 FeedbackBar.propTypes = {
-  t: PropTypes.function
+  t: PropTypes.func
 };
 
 export default FeedbackBar;

@@ -120,10 +120,10 @@ class NeedsSelector extends Component {
 
 NeedsSelector.propTypes = {
   classes: PropTypes.object,
-  handleChange: PropTypes.function,
+  handleChange: PropTypes.func,
   needs: PropTypes.array,
-  selectedNeeds: PropTypes.array,
-  t: PropTypes.function,
+  selectedNeeds: PropTypes.object,
+  t: PropTypes.func,
   theme: PropTypes.object
 };
 
