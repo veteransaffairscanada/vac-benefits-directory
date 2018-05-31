@@ -8,6 +8,8 @@ import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSumm
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
+import { logEvent } from "../utils/analytics";
+
 const styles = theme => ({
   root: {
     width: "100%"
@@ -38,6 +40,10 @@ const styles = theme => ({
 export class EmbeddedBenefitCard extends Component {
   state = {
     open: false
+  };
+
+  logExit = url => {
+    logEvent("Exit", url);
   };
 
   toggleState = () => {
@@ -97,6 +103,13 @@ export class EmbeddedBenefitCard extends Component {
                 size="small"
                 target="_blank"
                 variant="raised"
+                onClick={() =>
+                  this.logExit(
+                    this.props.t("current-language-code") === "en"
+                      ? benefit.benefitPageEn
+                      : benefit.benefitPageFr
+                  )
+                }
                 href={
                   this.props.t("current-language-code") === "en"
                     ? benefit.benefitPageEn
