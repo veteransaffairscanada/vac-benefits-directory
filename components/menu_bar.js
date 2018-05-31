@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import { AppBar, Button, Toolbar, Typography } from "material-ui";
 import { GoCSignature } from "@cdssnc/gcui";
 import { logEvent } from "../utils/analytics";
@@ -40,5 +40,10 @@ class MenuBar extends Component {
     );
   }
 }
+
+MenuBar.propTypes = {
+  i18n: PropTypes.function,
+  t: PropTypes.function
+};
 
 export default MenuBar;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "material-ui";
 import { withStyles } from "material-ui/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -128,5 +129,12 @@ export class BenefitCard extends Component {
     );
   }
 }
+
+BenefitCard.propTypes = {
+  allBenefits: PropTypes.array,
+  benefit: PropTypes.object,
+  classes: PropTypes.object,
+  t: PropTypes.function
+};
 
 export default withStyles(styles)(BenefitCard);

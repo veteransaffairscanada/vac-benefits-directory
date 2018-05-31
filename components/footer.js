@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { WordMark } from "@cdssnc/gcui";
 import { Button, Toolbar, Typography } from "material-ui";
 import styled from "react-emotion";
@@ -32,5 +33,9 @@ class Footer extends Component {
     );
   }
 }
+
+Footer.propTypes = {
+  t: PropTypes.function
+};
 
 export default Footer;

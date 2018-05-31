@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Card, { CardContent, CardActions } from "material-ui/Card";
 import Button from "material-ui/Button";
 
@@ -29,5 +30,12 @@ class SelectedOptionsCard extends Component {
     );
   }
 }
+
+SelectedOptionsCard.propTypes = {
+  action: PropTypes.function,
+  id: PropTypes.string,
+  options: PropTypes.array,
+  t: PropTypes.function
+};
 
 export default SelectedOptionsCard;

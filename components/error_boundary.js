@@ -1,4 +1,5 @@
 import { Component } from "react";
+import PropTypes from "prop-types";
 import Raven from "raven-js";
 
 const SENTRY_DSN = process.env.SENTRY_DSN;
@@ -19,5 +20,9 @@ class ErrorBoundary extends Component {
     return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.element
+};
 
 export default ErrorBoundary;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "react-emotion";
 
 const Modal = styled("div")`
@@ -54,5 +55,9 @@ class Noscript extends Component {
     );
   }
 }
+
+Noscript.propTypes = {
+  t: PropTypes.function
+};
 
 export default Noscript;

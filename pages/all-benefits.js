@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
@@ -40,6 +40,12 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits
   };
+};
+
+AllBenefits.propTypes = {
+  benefits: PropTypes.array,
+  i18n: PropTypes.function,
+  t: PropTypes.function
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

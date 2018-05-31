@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { SelectButton } from "../components/select_button";
 
 import { Grid } from "material-ui";
@@ -39,5 +40,10 @@ export class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  i18n: PropTypes.function,
+  t: PropTypes.function
+};
 
 export default withI18next(["common"])(App);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Router from "next/router";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
@@ -212,4 +213,15 @@ const mapStateToProps = state => {
     needs: state.needs
   };
 };
+
+A.propTypes = {
+  benefits: PropTypes.array,
+  dispatch: PropTypes.function,
+  eligibilityPaths: PropTypes.array,
+  i18n: PropTypes.function,
+  needs: PropTypes.array,
+  t: PropTypes.function,
+  url: PropTypes.object
+};
+
 export default connect(mapStateToProps)(withI18next()(A));

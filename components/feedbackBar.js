@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Button, Typography } from "material-ui";
 import styled from "react-emotion";
 import { logEvent } from "../utils/analytics";
@@ -60,5 +61,9 @@ class FeedbackBar extends Component {
     }
   }
 }
+
+FeedbackBar.propTypes = {
+  t: PropTypes.function
+};
 
 export default FeedbackBar;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import { InputLabel } from "material-ui/Input";
 import { MenuItem } from "material-ui/Menu";
@@ -59,5 +60,17 @@ class DropDownSelector extends React.Component {
     );
   }
 }
+
+DropDownSelector.propTypes = {
+  action: PropTypes.function,
+  classes: PropTypes.object,
+  disabledString: PropTypes.string,
+  isDisabled: PropTypes.boolean,
+  legend: PropTypes.string,
+  filters: PropTypes.object,
+  selectedFilters: PropTypes.array,
+  setUserProfile: PropTypes.function,
+  t: PropTypes.function
+};
 
 export default withStyles(styles)(DropDownSelector);

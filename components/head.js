@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import NextHead from "next/head";
 import { initGA, logPageView } from "../utils/analytics";
 
@@ -30,5 +31,11 @@ class Head extends Component {
     );
   }
 }
+
+Head.propTypes = {
+  description: PropTypes.string,
+  t: PropTypes.function,
+  title: PropTypes.string
+};
 
 export default Head;

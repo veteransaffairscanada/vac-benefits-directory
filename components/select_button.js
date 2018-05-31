@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Card from "material-ui/Card";
 import { Button } from "material-ui";
 
@@ -23,5 +24,16 @@ export class SelectButton extends Component {
     );
   }
 }
+
+SelectButton.propTypes = {
+  action: PropTypes.function,
+  href: PropTypes.string,
+  id: PropTypes.string,
+  isDown: PropTypes.boolean,
+  onClick: PropTypes.function,
+  t: PropTypes.function,
+  target: PropTypes.string,
+  text: PropTypes.string
+};
 
 export default SelectButton;
