@@ -68,6 +68,7 @@ export class BB extends Component {
     return matches;
   };
 
+  // find benefits that match
   filteredBenefits = (
     benefits,
     eligibilityPaths,
@@ -79,42 +80,54 @@ export class BB extends Component {
       return benefits;
     }
 
-    let benefitIDs = [];
+    let benefitIdsForProfile = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
-        benefitIDs = benefitIDs.concat(ep.benefits);
+        benefitIdsForProfile = benefitIdsForProfile.concat(ep.benefits);
       }
     });
-
+    let benefitIdsForSelectedNeeds = [];
     if (Object.keys(selectedNeeds).length > 0) {
-      let benefitIdsForSelectedNeeds = [];
       Object.keys(selectedNeeds).forEach(id => {
         const need = needs.filter(n => n.id === id)[0];
         benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
           need.benefits
         );
       });
-      benefitIDs = benefitIDs.filter(
-        id => benefitIdsForSelectedNeeds.indexOf(id) > -1
-      );
+    } else {
+      benefitIdsForSelectedNeeds = benefits.map(b => b.id);
     }
-    const benefitIDSet = new Set(benefitIDs);
+    let matchingBenefitIds = benefitIdsForProfile.filter(
+      id => benefitIdsForSelectedNeeds.indexOf(id) > -1
+    );
 
-    // map sortingPriority to sortingNumber
+    // find benefits with matching children
+    const benefitIdsWithMatchingChildren = benefits
+      .filter(
+        b =>
+          b.childBenefits &&
+          b.childBenefits.filter(cbID => matchingBenefitIds.indexOf(cbID) > -1)
+            .length > 0
+      )
+      .map(b => b.id);
 
-    return benefits.filter(benefit => benefitIDSet.has(benefit.id));
+    // const benefitIDSet = new Set(benefitIDs);
+
+    return benefits.filter(
+      benefit => matchingBenefitIds.indexOf(benefit.id) > -1
+    );
   };
 
   sortBenefits = (filteredBenefits, language) => {
     filteredBenefits.forEach(b => {
-      if (b.sortingPriority == undefined) {
+      if (b.sortingPriority === undefined) {
         b.sortingPriority = "low";
       }
       b.sortingNumber = { high: 1, medium: 2, low: 3 }[b.sortingPriority];
     });
 
     let sorting_fn = (a, b) => {
-      if (a.sortingNumber == b.sortingNumber) {
+      if (a.sortingNumber === b.sortingNumber) {
         // sort alphabetically
         let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
         let nameA = a[vacName].toUpperCase();
