@@ -58,6 +58,18 @@ describe("BB", () => {
 
   describe("filteredBenefits", () => {
     let benefits, eligibilityPaths, selectedEligibility;
+
+    let filteredBenefits = () =>
+      mounted_BB()
+        .instance()
+        .filteredBenefits(
+          benefits,
+          eligibilityPaths,
+          selectedEligibility,
+          [],
+          {}
+        );
+
     beforeEach(() => {
       benefits = [
         {
@@ -74,12 +86,17 @@ describe("BB", () => {
           id: "2",
           childBenefits: ["0", "1"],
           availableIndependently: "Independent"
+        },
+        {
+          id: "3",
+          childBenefits: [],
+          availableIndependently: "Independent"
         }
       ];
       eligibilityPaths = [
         {
           patronType: "p1",
-          serviceType: "s1",
+          serviceType: "na",
           servicePersonVitalStatus: "na",
           serviceStatus: "na",
           benefits: ["0"]
@@ -96,60 +113,28 @@ describe("BB", () => {
           serviceType: "na",
           servicePersonVitalStatus: "na",
           serviceStatus: "na",
-          benefits: ["1"]
+          benefits: ["1", "3"]
         }
       ];
+      selectedEligibility = {
+        patronType: {},
+        serviceType: {},
+        serviceStatus: {},
+        servicePersonVitalStatus: {}
+      };
     });
-    selectedEligibility = {
-      patronType: {},
-      serviceType: {},
-      serviceStatus: {},
-      servicePersonVitalStatus: {}
-    };
 
     // don't show benefit 0 because it's not independent
-    it("displays benefits 1 and 2 if nothing selected", () => {
-      let BBInstance = shallow_BB().instance();
-      const filteredBenefits = BBInstance.filteredBenefits(
-        benefits,
-        eligibilityPaths,
-        selectedEligibility,
-        [],
-        {}
-      );
-      expect(filteredBenefits.map(b => b.id)).toEqual(["1", "2"]);
+    it("displays benefits 1, 2 and 3 if nothing selected", () => {
+      expect(filteredBenefits().map(b => b.id)).toEqual(["1", "2", "3"]);
     });
 
-    // only 0 matches, but it's a child of 2
+    // only 0 matches, but it's a child of 2, so we show 2
     it("display benefits 2 if patronType p1", () => {
       selectedEligibility.patronType = { p1: "p1" };
-      let BBInstance = shallow_BB().instance();
-      expect(filteredBenefits.map(b => b.id)).toEqual(["2"]);
+      expect(filteredBenefits().map(b => b.id)).toEqual(["2"]);
     });
   });
-
-  // it("has a correct filteredBenefits function", () => {
-  //   props.selectedEligibility = {
-  //     serviceType: { CAF: 1 },
-  //     serviceStatus: { released: 1 },
-  //     patronType: { ["service-person"]: 1 },
-  //     servicePersonVitalStatus: { alive: 1 }
-  //   };
-  //   let BBInstance = shallow_BB().instance();
-  //   expect(
-  //     BBInstance.filteredBenefits(
-  //       benefitsFixture,
-  //       elegibilityPathsFixture,
-  //       props.selectedEligibility,
-  //       needsFixture,
-  //       props.selectedNeeds
-  //     )
-  //   ).toEqual([
-  //     benefitsFixture.filter(o => {
-  //       return o.id === "0";
-  //     })[0]
-  //   ]);
-  // });
 
   it("has a correct sortBenefits function", () => {
     let BBInstance = shallow_BB().instance();
@@ -196,11 +181,6 @@ describe("BB", () => {
     expect(shallow_BB().state().expanded).toEqual(true);
   });
 
-  // it("doesn't show child only cards", () => {
-  //   const benefitCards = shallow_BB().find(".BenefitCards");
-  //   expect(benefitCards.length).toEqual(1);
-  // });
-
   it("has the selected benefit cards", () => {
     props.selectedEligibility = {
       serviceType: { CAF: 1 },
@@ -221,8 +201,14 @@ describe("BB", () => {
     let filter = mounted_BB()
       .find("DropDownSelector")
       .first();
+
+    console.log(filter.html());
     let checkbox = filter.find("Select").first();
-    checkbox.simulate("change");
+
+    console.log(checkbox.html());
+
+    checkbox.simulate("click");
+
     expect(props.toggleSelectedEligibility).toBeCalled();
   });
 

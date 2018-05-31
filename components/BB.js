@@ -10,7 +10,7 @@ import Typography from "material-ui/Typography";
 import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
-import FilterSelector from "../components/dropdown_selector";
+import DropDownSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
 import i18next from "i18next";
 
@@ -196,19 +196,19 @@ export class BB extends Component {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
 
-    // check all boxes
-    serviceTypes.forEach(x => {
-      this.props.toggleSelectedEligibility("serviceType", x.id);
-    });
-    patronTypes.forEach(x => {
-      this.props.toggleSelectedEligibility("patronType", x.id);
-    });
-    serviceStatuses.forEach(x => {
-      this.props.toggleSelectedEligibility("serviceStatus", x.id);
-    });
-    servicePersonVitalStatuses.forEach(x => {
-      this.props.toggleSelectedEligibility("servicePersonVitalStatus", x.id);
-    });
+    // // check all boxes
+    // serviceTypes.forEach(x => {
+    //   this.props.toggleSelectedEligibility("serviceType", x.id);
+    // });
+    // patronTypes.forEach(x => {
+    //   this.props.toggleSelectedEligibility("patronType", x.id);
+    // });
+    // serviceStatuses.forEach(x => {
+    //   this.props.toggleSelectedEligibility("serviceStatus", x.id);
+    // });
+    // servicePersonVitalStatuses.forEach(x => {
+    //   this.props.toggleSelectedEligibility("servicePersonVitalStatus", x.id);
+    // });
 
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
     this.sortBenefits(
@@ -253,7 +253,7 @@ export class BB extends Component {
                   unmountOnExit
                 >
                   <Grid item xs={12}>
-                    <FilterSelector
+                    <DropDownSelector
                       id="patronTypeFilter"
                       t={t}
                       legend={"B3.PatronType"}
@@ -269,7 +269,7 @@ export class BB extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <FilterSelector
+                    <DropDownSelector
                       id="serviceTypeFilter"
                       t={t}
                       legend={"B3.ServiceType"}
@@ -285,7 +285,7 @@ export class BB extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <FilterSelector
+                    <DropDownSelector
                       id="serviceStatusFilter"
                       t={t}
                       legend={"B3.serviceStatus"}
@@ -306,7 +306,7 @@ export class BB extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <FilterSelector
+                    <DropDownSelector
                       id="servicePersonVitalStatusFilter"
                       t={t}
                       legend={"B3.servicePersonVitalStatus"}
