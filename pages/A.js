@@ -18,8 +18,8 @@ export class A extends Component {
       selectedEligibility: {
         patronType: {},
         serviceType: {},
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
+        // servicePersonVitalStatus: {}
       }
     };
   }
@@ -51,8 +51,8 @@ export class A extends Component {
         "selectedNeeds",
         "patronType",
         "serviceType",
-        "serviceStatus",
-        "servicePersonVitalStatus"
+        "statusAndVitals"
+        // "servicePersonVitalStatus"
       ].forEach(filter => {
         filters[filter] = myURL.searchParams[filter]
           ? this.stringToMap(myURL.searchParams[filter])
@@ -64,8 +64,8 @@ export class A extends Component {
         selectedEligibility: {
           patronType: filters.patronType,
           serviceType: filters.serviceType,
-          serviceStatus: filters.serviceStatus,
-          servicePersonVitalStatus: filters.servicePersonVitalStatus
+          statusAndVitals: filters.statusAndVitals
+          // servicePersonVitalStatus: filters.servicePersonVitalStatus
         }
       };
       this.setState(newState);
@@ -76,8 +76,9 @@ export class A extends Component {
       "selectedNeeds",
       "patronType",
       "serviceType",
-      "serviceStatus",
-      "servicePersonVitalStatus"
+      "statusAndVitals"
+      // "serviceStatus"
+      // "servicePersonVitalStatus"
     ].forEach(filter => {
       filters[filter] = this.props.url.query[filter]
         ? this.stringToMap(this.props.url.query[filter])
@@ -89,8 +90,9 @@ export class A extends Component {
       selectedEligibility: {
         patronType: filters.patronType,
         serviceType: filters.serviceType,
-        serviceStatus: filters.serviceStatus,
-        servicePersonVitalStatus: filters.servicePersonVitalStatus
+        statusAndVitals: filters.statusAndVitals
+        // serviceStatus: filters.serviceStatus,
+        // servicePersonVitalStatus: filters.servicePersonVitalStatus
       }
     };
     this.setState(newState);
@@ -113,8 +115,9 @@ export class A extends Component {
     [
       "patronType",
       "serviceType",
-      "serviceStatus",
-      "servicePersonVitalStatus"
+      "statusAndVitals"
+      // "serviceStatus"
+      // "servicePersonVitalStatus"
     ].forEach(criteria => {
       if (Object.keys(state.selectedEligibility[criteria]).length > 0) {
         href += `&${criteria}=${Object.keys(
@@ -168,8 +171,9 @@ export class A extends Component {
       selectedEligibility: {
         patronType: {},
         serviceType: {},
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
+        //   serviceStatus: {},
+        //   servicePersonVitalStatus: {}
       }
     };
     this.setState(newState);

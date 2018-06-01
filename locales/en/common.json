@@ -39,11 +39,12 @@
     "Status": "Status",
     "Needs": "Needs",
     "Filter Benefits": "Filter Benefits",
-    "ServiceType": "Which service type?",
+    "ServiceType": "Service type",
     "PatronType": "Who are you looking for?",
-    "serviceStatus": "What is the status?",
+    "serviceStatus": "Service status",
     "servicePersonVitalStatus": "Is the service member alive?",
-    "What do you need help with?": "What do you need help with?"
+    "What do you need help with?": "What do you need help with?",
+    "Benefits for": "Benefits for"
   },
   "child benefits": "With this benefit, you may also have access to",
   "alpha": "For testing only.",
@@ -88,5 +89,7 @@
   "Find out more": "Find out more",
   "Available to": "Available to",
   "examples": "Depending on your needs this program can provide",
-  "Close all": "Close all"
+  "Close all": "Close all",
+  "stillServing": "Still-serving",
+  "releasedAlive": "Released"
 }

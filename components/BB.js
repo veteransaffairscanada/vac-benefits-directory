@@ -69,8 +69,9 @@ export class BB extends Component {
     [
       "serviceType",
       "patronType",
-      "serviceStatus",
-      "servicePersonVitalStatus"
+      "statusAndVitals"
+      // "serviceStatus",
+      // "servicePersonVitalStatus"
     ].forEach(criteria => {
       if (
         Object.keys(selected[criteria]).length &&
@@ -192,21 +193,11 @@ export class BB extends Component {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
 
-    let serviceStatuses = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.serviceStatus))
+    let statusAndVitals = Array.from(
+      new Set(this.props.eligibilityPaths.map(ep => ep.statusAndVitals))
     )
       .filter(st => st !== "na")
-      .concat(["still serving"])
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
-    let servicePersonVitalStatuses = Array.from(
-      new Set(
-        this.props.eligibilityPaths.map(ep => ep.servicePersonVitalStatus)
-      )
-    )
-      .filter(st => st !== "na")
+      // .concat(["still serving"])
       .map(st => {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
@@ -257,7 +248,7 @@ export class BB extends Component {
                     <DropDownSelector
                       id="patronTypeFilter"
                       t={t}
-                      legend={"B3.PatronType"}
+                      legend={t("B3.Benefits for")}
                       filters={patronTypes}
                       selectedFilters={
                         this.props.selectedEligibility.patronType
@@ -273,7 +264,7 @@ export class BB extends Component {
                     <DropDownSelector
                       id="serviceTypeFilter"
                       t={t}
-                      legend={"B3.ServiceType"}
+                      legend={t("B3.ServiceType")}
                       filters={serviceTypes}
                       selectedFilters={
                         this.props.selectedEligibility.serviceType
@@ -289,48 +280,23 @@ export class BB extends Component {
                     <DropDownSelector
                       id="serviceStatusFilter"
                       t={t}
-                      legend={"B3.serviceStatus"}
-                      filters={serviceStatuses}
+                      legend={t("B3.serviceStatus")}
+                      filters={statusAndVitals}
                       selectedFilters={
-                        this.props.selectedEligibility.serviceStatus
+                        this.props.selectedEligibility.statusAndVitals
                       }
                       setUserProfile={id =>
                         this.props.setUserProfile("serviceStatus", id)
                       }
-                      isDisabled={
-                        !this.props.selectedEligibility.serviceType.hasOwnProperty(
-                          "CAF"
-                        )
-                      }
-                      disabledString={t("disabled-serviceStatusFilter")}
+                      // isDisabled={
+                      //   !this.props.selectedEligibility.serviceType.hasOwnProperty(
+                      //     "CAF"
+                      //   )
+                      // }
+                      // disabledString={t("disabled-serviceStatusFilter")}
                     />
                   </Grid>
 
-                  <Grid item xs={12}>
-                    <DropDownSelector
-                      id="servicePersonVitalStatusFilter"
-                      t={t}
-                      legend={"B3.servicePersonVitalStatus"}
-                      filters={servicePersonVitalStatuses}
-                      selectedFilters={
-                        this.props.selectedEligibility.servicePersonVitalStatus
-                      }
-                      setUserProfile={id =>
-                        this.props.setUserProfile(
-                          "servicePersonVitalStatus",
-                          id
-                        )
-                      }
-                      isDisabled={
-                        !this.props.selectedEligibility.patronType.hasOwnProperty(
-                          "family"
-                        )
-                      }
-                      disabledString={t(
-                        "disabled-servicePersonVitalStatusFilter"
-                      )}
-                    />
-                  </Grid>
                   <br />
                 </Collapse>
                 <Grid item xs={12}>
