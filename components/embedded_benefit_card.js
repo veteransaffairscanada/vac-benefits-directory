@@ -51,6 +51,14 @@ export class EmbeddedBenefitCard extends Component {
     this.setState({ open: newState });
   };
 
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
+
   render() {
     const { t, classes, benefit } = this.props;
     return (
@@ -60,6 +68,7 @@ export class EmbeddedBenefitCard extends Component {
             ? classes.ExpansionPanelOpen
             : classes.ExpansionPanelClosed
         }
+        expanded={this.state.open}
       >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
@@ -129,7 +138,8 @@ export class EmbeddedBenefitCard extends Component {
 EmbeddedBenefitCard.propTypes = {
   benefit: PropTypes.object,
   classes: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  onRef: PropTypes.func
 };
 
 export default withStyles(styles)(EmbeddedBenefitCard);

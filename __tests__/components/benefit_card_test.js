@@ -19,7 +19,8 @@ describe("EmbeddedBenefitCard", () => {
     props = {
       t: () => "en",
       benefit: benefitsFixture[0],
-      classes: {}
+      classes: {},
+      onRef: foo => foo
     };
     _mountedEmbeddedBenefitCard = undefined;
   });

@@ -58,6 +58,9 @@ export class BB extends Component {
   collapseAllBenefits = () => {
     this.children.forEach(c => {
       c.setState({ open: false });
+      c.children.forEach(cc => {
+        cc.setState({ open: false });
+      });
     });
   };
 

@@ -50,7 +50,7 @@ export class BenefitCard extends Component {
   state = {
     open: false
   };
-
+  children = [];
   logExit = url => {
     logEvent("Exit", url);
   };
@@ -153,6 +153,7 @@ export class BenefitCard extends Component {
                           allBenefits={this.props.allBenefits}
                           t={this.props.t}
                           key={cb.id}
+                          onRef={ref => this.children.push(ref)}
                         />
                       ))}
                     </div>
