@@ -6,7 +6,9 @@ import { withStyles } from "material-ui/styles";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 import { logEvent } from "../utils/analytics";
 
@@ -71,7 +73,7 @@ export class EmbeddedBenefitCard extends Component {
         expanded={this.state.open}
       >
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
           onClick={() => this.toggleState()}
           className={classes.ExpansionPanelSummary}
         >
