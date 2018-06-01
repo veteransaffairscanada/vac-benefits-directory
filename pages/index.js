@@ -19,18 +19,18 @@ export class App extends Component {
                 {t("home.poc-description")}
               </h1>
             </Grid>
-            {/*<Grid item xs={3}>*/}
-            {/*<SelectButton*/}
-            {/*fullWidth={true}*/}
-            {/*href={"A?lng=" + t("current-language-code")}*/}
-            {/*text="A"*/}
-            {/*/>*/}
-            {/*</Grid>*/}
             <Grid item xs={3}>
               <SelectButton
                 fullWidth={true}
                 href={"A?section=BB&lng=" + t("current-language-code")}
                 text="B"
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <SelectButton
+                fullWidth={true}
+                href={"data-validation"}
+                text={t("index.data validation")}
               />
             </Grid>
           </Grid>

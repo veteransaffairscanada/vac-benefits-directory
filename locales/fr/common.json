@@ -88,5 +88,8 @@
   "Showing x of y benefits": "Montrant {{x}} des {{y}} avantages.",
   "Find out more": "En savoir plus",
   "Available to": "Disponible pour",
-  "examples": "Selon vos besoins, ce programme peut fournir"
+  "examples": "Selon vos besoins, ce programme peut fournir",
+  "index": {
+    "data validation": "La validation des données"
+  }
 }
