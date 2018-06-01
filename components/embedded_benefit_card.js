@@ -6,7 +6,9 @@ import { withStyles } from "material-ui/styles";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 import { logEvent } from "../utils/analytics";
 
@@ -51,6 +53,14 @@ export class EmbeddedBenefitCard extends Component {
     this.setState({ open: newState });
   };
 
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
+
   render() {
     const { t, classes, benefit } = this.props;
     return (
@@ -60,9 +70,10 @@ export class EmbeddedBenefitCard extends Component {
             ? classes.ExpansionPanelOpen
             : classes.ExpansionPanelClosed
         }
+        expanded={this.state.open}
       >
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
           onClick={() => this.toggleState()}
           className={classes.ExpansionPanelSummary}
         >
@@ -129,7 +140,8 @@ export class EmbeddedBenefitCard extends Component {
 EmbeddedBenefitCard.propTypes = {
   benefit: PropTypes.object,
   classes: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  onRef: PropTypes.func
 };
 
 export default withStyles(styles)(EmbeddedBenefitCard);

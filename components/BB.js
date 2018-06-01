@@ -38,6 +38,10 @@ const styles = theme => ({
   },
   avatar: {
     backgroundColor: red[500]
+  },
+  collapse: {
+    textAlign: "right",
+    textDecoration: "underline"
   }
 });
 
@@ -45,9 +49,19 @@ export class BB extends Component {
   state = {
     expanded: true
   };
+  children = [];
 
   handleExpandClick = () => {
     this.setState({ expanded: !this.state.expanded });
+  };
+
+  collapseAllBenefits = () => {
+    this.children.forEach(c => {
+      c.setState({ open: false });
+      c.children.forEach(cc => {
+        cc.setState({ open: false });
+      });
+    });
   };
 
   eligibilityMatch = (path, selected) => {
@@ -342,6 +356,16 @@ export class BB extends Component {
                     handleChange={this.props.setSelectedNeeds}
                   />
                 </Grid>
+                <Grid item xs={12} className={classnames(classes.collapse)}>
+                  <Button
+                    id="CollapseBenefits"
+                    variant="flat"
+                    size="small"
+                    onClick={this.collapseAllBenefits}
+                  >
+                    {t("Close all")}
+                  </Button>
+                </Grid>
                 <Grid item xs={12}>
                   <Typography className="BenefitsCounter">
                     {i18next.t("Showing x of y benefits", {
@@ -361,6 +385,7 @@ export class BB extends Component {
                         allBenefits={this.props.benefits}
                         t={this.props.t}
                         key={benefit.id}
+                        onRef={ref => this.children.push(ref)}
                       />
                     ) : (
                       ""
