@@ -286,7 +286,7 @@ export class BB extends Component {
                         this.props.selectedEligibility.statusAndVitals
                       }
                       setUserProfile={id =>
-                        this.props.setUserProfile("serviceStatus", id)
+                        this.props.setUserProfile("statusAndVitals", id)
                       }
                       // isDisabled={
                       //   !this.props.selectedEligibility.serviceType.hasOwnProperty(
