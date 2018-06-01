@@ -50,7 +50,7 @@ export class BenefitCard extends Component {
   state = {
     open: false
   };
-
+  children = [];
   logExit = url => {
     logEvent("Exit", url);
   };
@@ -59,6 +59,13 @@ export class BenefitCard extends Component {
     let newState = !this.state.open;
     this.setState({ open: newState });
   };
+
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
 
   render() {
     const benefit = this.props.benefit;
@@ -82,6 +89,7 @@ export class BenefitCard extends Component {
                 ? classes.ExpansionPanelOpen
                 : classes.ExpansionPanelClosed
             }
+            expanded={this.state.open}
           >
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
@@ -145,6 +153,7 @@ export class BenefitCard extends Component {
                           allBenefits={this.props.allBenefits}
                           t={this.props.t}
                           key={cb.id}
+                          onRef={ref => this.children.push(ref)}
                         />
                       ))}
                     </div>
@@ -183,7 +192,8 @@ BenefitCard.propTypes = {
   benefit: PropTypes.object,
   classes: PropTypes.object,
   examples: PropTypes.array,
-  t: PropTypes.func
+  t: PropTypes.func,
+  onRef: PropTypes.func
 };
 
 export default withStyles(styles)(BenefitCard);
