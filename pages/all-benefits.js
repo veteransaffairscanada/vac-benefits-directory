@@ -26,6 +26,7 @@ export class AllBenefits extends Component {
                     allBenefits={this.props.benefits}
                     t={this.props.t}
                     key={i}
+                    onRef={foo => foo}
                   />
                 ))}
               </Grid>
