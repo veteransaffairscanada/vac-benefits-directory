@@ -1,6 +1,6 @@
 import React, { Component } from "react";
+import fetch from "isomorphic-unfetch";
 
-import { Grid } from "material-ui";
 import Table, {
   TableBody,
   TableCell,
@@ -31,25 +31,21 @@ function createData(name, status) {
   return { id, name, status };
 }
 
-const failingLinks = links => {
+let failingLinks = async links => {
+  const url = "https://cors.io/?" + links[0];
+  const resp = await fetch(url);
+  var response = await resp;
+  console.log("-- Response --", response);
   return 0;
 };
 
 export class DataValidation extends Component {
-  state = {
-    error: null,
-    isLoaded: false,
-    items: []
-  };
-
   render() {
     const { i18n, t, classes, benefits } = this.props; // eslint-disable-line no-unused-vars
-    const { error, isLoaded, items } = this.state;
 
     const data = [createData("Number of Benefits", benefits.length)];
 
-    const failingLinksEn = failingLinks(benefits.map(b => b.benefitPageEn));
-    const failingLinksFr = failingLinks(benefits.map(b => b.benefitPageFr));
+    Promise.resolve(failingLinks(benefits.map(b => b.benefitPageEn))).then();
 
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true}>
