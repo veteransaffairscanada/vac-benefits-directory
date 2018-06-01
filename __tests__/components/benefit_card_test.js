@@ -119,7 +119,8 @@ describe("BenefitCard", () => {
       benefit: benefitsFixture[0],
       allBenefits: benefitsFixture,
       examples: examplesFixture,
-      classes: {}
+      classes: {},
+      onRef: foo => foo
     };
     _mountedBenefitCard = undefined;
   });
