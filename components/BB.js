@@ -38,6 +38,10 @@ const styles = theme => ({
   },
   avatar: {
     backgroundColor: red[500]
+  },
+  collapse: {
+    textAlign: "right",
+    textDecoration: "underline"
   }
 });
 
@@ -324,16 +328,6 @@ export class BB extends Component {
                     {t("Show All Benefits")}
                   </Button>
                 </Grid>
-                <Grid item xs={12}>
-                  <Button
-                    id="CollapseBenefits"
-                    variant="raised"
-                    // onClick={this.setCollapseAllBenefitsTrue}
-                    onClick={this.collapseAllBenefits}
-                  >
-                    {t("Collapse")}
-                  </Button>
-                </Grid>
               </Grid>
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
@@ -345,6 +339,16 @@ export class BB extends Component {
                     selectedNeeds={this.props.selectedNeeds}
                     handleChange={this.props.setSelectedNeeds}
                   />
+                </Grid>
+                <Grid item xs={12} className={classnames(classes.collapse)}>
+                  <Button
+                    id="CollapseBenefits"
+                    variant="flat"
+                    size="small"
+                    onClick={this.collapseAllBenefits}
+                  >
+                    {t("Close all")}
+                  </Button>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography className="BenefitsCounter">
