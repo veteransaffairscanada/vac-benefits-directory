@@ -11,7 +11,7 @@ import Typography from "material-ui/Typography";
 import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
-import FilterSelector from "../components/dropdown_selector";
+import DropDownSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
 import i18next from "i18next";
 
@@ -80,42 +80,69 @@ export class BB extends Component {
       return benefits;
     }
 
-    let benefitIDs = [];
+    // find benefits that match
+    let benefitIdsForProfile = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
-        benefitIDs = benefitIDs.concat(ep.benefits);
+        benefitIdsForProfile = benefitIdsForProfile.concat(ep.benefits);
       }
     });
-
+    let benefitIdsForSelectedNeeds = [];
     if (Object.keys(selectedNeeds).length > 0) {
-      let benefitIdsForSelectedNeeds = [];
       Object.keys(selectedNeeds).forEach(id => {
         const need = needs.filter(n => n.id === id)[0];
         benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
           need.benefits
         );
       });
-      benefitIDs = benefitIDs.filter(
-        id => benefitIdsForSelectedNeeds.indexOf(id) > -1
-      );
+    } else {
+      benefitIdsForSelectedNeeds = benefits.map(b => b.id);
     }
-    const benefitIDSet = new Set(benefitIDs);
+    let matchingBenefitIds = benefitIdsForProfile.filter(
+      id => benefitIdsForSelectedNeeds.indexOf(id) > -1
+    );
 
-    // map sortingPriority to sortingNumber
+    // find benefits with matching children
+    const benefitIdsWithMatchingChildren = benefits
+      .filter(
+        b =>
+          b.childBenefits &&
+          b.childBenefits.filter(cbID => matchingBenefitIds.indexOf(cbID) > -1)
+            .length > 0
+      )
+      .map(b => b.id);
 
-    return benefits.filter(benefit => benefitIDSet.has(benefit.id));
+    const benefitIDsToShow = matchingBenefitIds.concat(
+      benefitIdsWithMatchingChildren
+    );
+    let benefitsToShow = benefits.filter(
+      b => benefitIDsToShow.indexOf(b.id) > -1
+    );
+
+    // if a benefit is already shown as a child, only show it (as a parent card) if it's available independently
+    let childrenIDsShown = [];
+    benefitsToShow.forEach(b => {
+      childrenIDsShown = childrenIDsShown.concat(b.childBenefits);
+    });
+    benefitsToShow = benefitsToShow.filter(
+      b =>
+        b.availableIndependently === "Independent" ||
+        childrenIDsShown.indexOf(b.id) < 0
+    );
+
+    return benefitsToShow;
   };
 
   sortBenefits = (filteredBenefits, language) => {
     filteredBenefits.forEach(b => {
-      if (b.sortingPriority == undefined) {
+      if (b.sortingPriority === undefined) {
         b.sortingPriority = "low";
       }
       b.sortingNumber = { high: 1, medium: 2, low: 3 }[b.sortingPriority];
     });
 
     let sorting_fn = (a, b) => {
-      if (a.sortingNumber == b.sortingNumber) {
+      if (a.sortingNumber === b.sortingNumber) {
         // sort alphabetically
         let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
         let nameA = a[vacName].toUpperCase();
@@ -170,20 +197,6 @@ export class BB extends Component {
         return { id: st, name_en: st, name_fr: "FF " + st };
       });
 
-    // check all boxes
-    serviceTypes.forEach(x => {
-      this.props.toggleSelectedEligibility("serviceType", x.id);
-    });
-    patronTypes.forEach(x => {
-      this.props.toggleSelectedEligibility("patronType", x.id);
-    });
-    serviceStatuses.forEach(x => {
-      this.props.toggleSelectedEligibility("serviceStatus", x.id);
-    });
-    servicePersonVitalStatuses.forEach(x => {
-      this.props.toggleSelectedEligibility("servicePersonVitalStatus", x.id);
-    });
-
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
     this.sortBenefits(
       this.props.benefits,
@@ -227,7 +240,7 @@ export class BB extends Component {
                   unmountOnExit
                 >
                   <Grid item xs={12}>
-                    <FilterSelector
+                    <DropDownSelector
                       id="patronTypeFilter"
                       t={t}
                       legend={"B3.PatronType"}
@@ -243,7 +256,7 @@ export class BB extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <FilterSelector
+                    <DropDownSelector
                       id="serviceTypeFilter"
                       t={t}
                       legend={"B3.ServiceType"}
@@ -259,7 +272,7 @@ export class BB extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <FilterSelector
+                    <DropDownSelector
                       id="serviceStatusFilter"
                       t={t}
                       legend={"B3.serviceStatus"}
@@ -280,7 +293,7 @@ export class BB extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <FilterSelector
+                    <DropDownSelector
                       id="servicePersonVitalStatusFilter"
                       t={t}
                       legend={"B3.servicePersonVitalStatus"}
