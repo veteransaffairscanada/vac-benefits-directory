@@ -24,7 +24,7 @@ export class App extends Component {
               <SelectButton
                 fullWidth={true}
                 href={"A?section=BB&lng=" + t("current-language-code")}
-                text="B"
+                text={t("index.benefits directory")}
               />
             </Grid>
             <Grid item xs={3}>
@@ -32,6 +32,13 @@ export class App extends Component {
                 fullWidth={true}
                 href={"data-validation"}
                 text={t("index.data validation")}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <SelectButton
+                fullWidth={true}
+                href={"all-benefits"}
+                text={t("index.all benefits")}
               />
             </Grid>
           </Grid>
