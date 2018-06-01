@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import fetch from "isomorphic-unfetch";
+import PropTypes from "prop-types";
 
 import Table, {
   TableBody,
@@ -31,23 +31,11 @@ function createData(name, status) {
   return { id, name, status };
 }
 
-let failingLinks = async links => {
-  // const url = "https://cors.io/?" + links[0];
-  const url = links[0];
-
-  const resp = await fetch(url);
-  var response = await resp;
-  console.log("-- Response --", response);
-  return 0;
-};
-
 export class DataValidation extends Component {
   render() {
     const { i18n, t, classes, benefits } = this.props; // eslint-disable-line no-unused-vars
 
     const data = [createData("Number of Benefits", benefits.length)];
-
-    // Promise.resolve(failingLinks(benefits.map(b => b.benefitPageEn))).then();
 
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true}>
@@ -80,6 +68,13 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits
   };
+};
+
+DataValidation.propTypes = {
+  benefits: PropTypes.array,
+  i18n: PropTypes.object,
+  t: PropTypes.func,
+  classes: PropTypes.object
 };
 
 export default withStyles(styles)(
