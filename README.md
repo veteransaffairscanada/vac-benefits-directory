@@ -1,6 +1,6 @@
-# VAC-POC
+# VAC Benefits Directory
 
-CircleCI Status: [![CircleCI](https://circleci.com/gh/cds-snc/vac-poc.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-poc)
+CircleCI Status: [![CircleCI](https://circleci.com/gh/cds-snc/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-benefits-directory)
 
 This is a proof of concept for the VAC project, currently hosted at
 https://cdsvacpoc.azurewebsites.net/
