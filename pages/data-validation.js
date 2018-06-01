@@ -32,7 +32,9 @@ function createData(name, status) {
 }
 
 let failingLinks = async links => {
-  const url = "https://cors.io/?" + links[0];
+  // const url = "https://cors.io/?" + links[0];
+  const url = links[0];
+
   const resp = await fetch(url);
   var response = await resp;
   console.log("-- Response --", response);
@@ -45,7 +47,7 @@ export class DataValidation extends Component {
 
     const data = [createData("Number of Benefits", benefits.length)];
 
-    Promise.resolve(failingLinks(benefits.map(b => b.benefitPageEn))).then();
+    // Promise.resolve(failingLinks(benefits.map(b => b.benefitPageEn))).then();
 
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true}>
