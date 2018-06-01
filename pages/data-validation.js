@@ -26,16 +26,46 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(name, status) {
-  id += 1;
-  return { id, name, status };
-}
 
 export class DataValidation extends Component {
-  render() {
-    const { i18n, t, classes, benefits } = this.props; // eslint-disable-line no-unused-vars
+  createData = (name, value, status) => {
+    id += 1;
+    return { id, name, value, status };
+  };
 
-    const data = [createData("Number of Benefits", benefits.length)];
+  render() {
+    const {
+      i18n,
+      t,
+      classes,
+      benefits,
+      eligibilityPaths,
+      needs,
+      examples
+    } = this.props; // eslint-disable-line no-unused-vars
+
+    const data = [
+      this.createData(
+        "Size of Benefits Table",
+        benefits.length,
+        benefits.length > 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "Size of Eligibility Paths Table",
+        eligibilityPaths.length,
+        eligibilityPaths.length > 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "Size of Needs Table",
+        needs.length,
+        needs.length > 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "Size of Examples Table",
+        examples.length,
+        examples.length > 0 ? "Pass" : "Fail"
+      )
+    ];
 
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true}>
@@ -43,8 +73,9 @@ export class DataValidation extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell>Item</TableCell>
-                <TableCell numeric>Status</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Value</TableCell>
+                <TableCell>Status</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -52,7 +83,8 @@ export class DataValidation extends Component {
                 return (
                   <TableRow key={n.id}>
                     <TableCell>{n.name}</TableCell>
-                    <TableCell numeric>{n.status}</TableCell>
+                    <TableCell>{n.value}</TableCell>
+                    <TableCell>{n.status}</TableCell>
                   </TableRow>
                 );
               })}
@@ -66,12 +98,18 @@ export class DataValidation extends Component {
 
 const mapStateToProps = state => {
   return {
-    benefits: state.benefits
+    benefits: state.benefits,
+    eligibilityPaths: state.eligibilityPaths,
+    needs: state.needs,
+    examples: state.examples
   };
 };
 
 DataValidation.propTypes = {
   benefits: PropTypes.array,
+  eligibilityPaths: PropTypes.array,
+  needs: PropTypes.array,
+  examples: PropTypes.array,
   i18n: PropTypes.object,
   t: PropTypes.func,
   classes: PropTypes.object
