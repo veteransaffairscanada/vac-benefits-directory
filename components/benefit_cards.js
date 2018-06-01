@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "material-ui";
 import { withStyles } from "material-ui/styles";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import AddIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
+// import RemoveIcon from "@material-ui/icons/Remove";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
@@ -95,7 +95,7 @@ export class BenefitCard extends Component {
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
               expandIcon={<AddIcon />}
-              // expandIcon={<ExpandMoreIcon />}
+              // expandIcon={<RemoveIcon />}
               onClick={() => this.toggleOpenState()}
             >
               <div>
