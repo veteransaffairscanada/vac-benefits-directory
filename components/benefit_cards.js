@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "material-ui";
 import { withStyles } from "material-ui/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -6,6 +7,8 @@ import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+
+import { logEvent } from "../utils/analytics";
 
 const styles = () => ({
   button: {
@@ -46,6 +49,10 @@ const styles = () => ({
 export class BenefitCard extends Component {
   state = {
     open: false
+  };
+
+  logExit = url => {
+    logEvent("Exit", url);
   };
 
   toggleOpenState = () => {
@@ -145,6 +152,13 @@ export class BenefitCard extends Component {
                       className={classes.button}
                       target="_blank"
                       variant="raised"
+                      onClick={() =>
+                        this.logExit(
+                          this.props.t("current-language-code") === "en"
+                            ? benefit.benefitPageEn
+                            : benefit.benefitPageFr
+                        )
+                      }
                       href={
                         this.props.t("current-language-code") === "en"
                           ? benefit.benefitPageEn
@@ -163,5 +177,13 @@ export class BenefitCard extends Component {
     );
   }
 }
+
+BenefitCard.propTypes = {
+  allBenefits: PropTypes.array,
+  benefit: PropTypes.object,
+  classes: PropTypes.object,
+  examples: PropTypes.array,
+  t: PropTypes.func
+};
 
 export default withStyles(styles)(BenefitCard);
