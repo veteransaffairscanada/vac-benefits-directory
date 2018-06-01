@@ -41,7 +41,7 @@ const styles = theme => ({
   }
 });
 
-export class BB extends SJAComponent {
+export class BB extends Component {
   state = {
     expanded: true
   };
