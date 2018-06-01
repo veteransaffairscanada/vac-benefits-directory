@@ -73,18 +73,18 @@ export class DataValidation extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell>Name</TableCell>
-                <TableCell>Value</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell>{t("dv.name")}</TableCell>
+                <TableCell>{t("dv.value")}</TableCell>
+                <TableCell>{t("dv.status")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {data.map(n => {
                 return (
                   <TableRow key={n.id}>
-                    <TableCell>{n.name}</TableCell>
+                    <TableCell>{t("dv." + n.name)}</TableCell>
                     <TableCell>{n.value}</TableCell>
-                    <TableCell>{n.status}</TableCell>
+                    <TableCell>{t("dv." + n.status)}</TableCell>
                   </TableRow>
                 );
               })}

@@ -93,5 +93,16 @@
     "all benefits": "all benefits",
     "benefits directory": "benefits directory"
   },
+  "dv": {
+    "name": "Name",
+    "value": "Value",
+    "status": "Status",
+    "Size of Benefits Table": "Size of benefits table",
+    "Pass": "Pass",
+    "Fail": "Fail",
+    "Size of Eligibility Paths Table": "Size of eligibility paths table",
+    "Size of Needs Table": "Size of needs table",
+    "Size of Examples Table": "Size of examples table"
+  },
   "Close all": "Close all"
 }

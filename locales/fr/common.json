@@ -94,5 +94,17 @@
     "all benefits": "tous les avantages",
     "benefits directory": "annuaire des avantages"
   },
+  "dv": {
+    "name": "Nom",
+    "value": "Valeur",
+    "status": "Statut",
+    "Size of Benefits Table": "Taille de la table des avantages",
+    "Pass": "Passer",
+    "Fail": "Échouer",
+    "Size of Eligibility Paths Table":
+      "Taille du tableau des chemins d'admissibilité",
+    "Size of Needs Table": "Tableau de la taille des besoins",
+    "Size of Examples Table": "Taille de la table des exemples"
+  },
   "Close all": "Ferme tout"
 }
