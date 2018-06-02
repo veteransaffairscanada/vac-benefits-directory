@@ -43,7 +43,10 @@
     "PatronType": "Qui cherches-tu?",
     "serviceStatus": "Quel est le statut?",
     "servicePersonVitalStatus": "Est-ce que le Vétéran est en vie?",
-    "What do you need help with?": "Avec quoi as tu besoin d'aide?"
+    "What do you need help with?": "Avec quoi as tu besoin d'aide?",
+    "Sort By": "Trier par",
+    "Relevance": "Pertinence",
+    "Alphabetical": "Alphabétique"
   },
   "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
   "alpha": "Pour les tests seulement",

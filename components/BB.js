@@ -394,13 +394,17 @@ export class BB extends Component {
                     id="sortBySelector"
                     className={classes.formControl}
                   >
-                    <InputLabel>Sort By</InputLabel>
+                    <InputLabel>{t("B3.Sort By")}</InputLabel>
                     <Select
                       value={this.state.sortByValue}
                       onChange={this.handleSortByChange}
                     >
-                      <MenuItem value={"relevance"}>Relevance</MenuItem>
-                      <MenuItem value={"alphabetical"}>Alphabetical</MenuItem>
+                      <MenuItem value={"relevance"}>
+                        {t("B3.Relevance")}
+                      </MenuItem>
+                      <MenuItem value={"alphabetical"}>
+                        {t("B3.Alphabetical")}
+                      </MenuItem>
                     </Select>
                   </FormControl>
                 </Grid>
