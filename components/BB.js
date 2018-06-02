@@ -356,6 +356,18 @@ export class BB extends Component {
                     handleChange={this.props.setSelectedNeeds}
                   />
                 </Grid>
+
+                <Grid item xs={12} className={classnames(classes.sortBy)}>
+                  <Button
+                    id="SortBy"
+                    variant="flat"
+                    size="small"
+                    onClick={this.collapseAllBenefits}
+                  >
+                    {t("Close all")}
+                  </Button>
+                </Grid>
+
                 <Grid item xs={12} className={classnames(classes.collapse)}>
                   <Button
                     id="CollapseBenefits"
