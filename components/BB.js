@@ -161,21 +161,6 @@ export class BB extends Component {
   };
 
   sortBenefits = (filteredBenefits, language) => {
-    if (this.state.sortByValue === "alphabetical") {
-      let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
-      return filteredBenefits.sort((a, b) => {
-        let nameA = a[vacName].toUpperCase();
-        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-        return 0;
-      });
-    }
-
     filteredBenefits.forEach(b => {
       if (b.sortingPriority === undefined) {
         b.sortingPriority = "low";
@@ -184,7 +169,10 @@ export class BB extends Component {
     });
 
     let sorting_fn = (a, b) => {
-      if (a.sortingNumber === b.sortingNumber) {
+      if (
+        this.state.sortByValue === "alphabetical" ||
+        a.sortingNumber === b.sortingNumber
+      ) {
         // sort alphabetically
         let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
         let nameA = a[vacName].toUpperCase();
