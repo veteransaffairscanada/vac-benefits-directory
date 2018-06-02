@@ -8,6 +8,11 @@ import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
 import red from "material-ui/colors/red";
 import Typography from "material-ui/Typography";
+import { InputLabel } from "material-ui/Input";
+import { MenuItem } from "material-ui/Menu";
+import { FormControl } from "material-ui/Form";
+import Select from "material-ui/Select";
+
 import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
@@ -42,12 +47,20 @@ const styles = theme => ({
   collapse: {
     textAlign: "right",
     textDecoration: "underline"
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120
+  },
+  sortBy: {
+    textAlign: "right"
   }
 });
 
 export class BB extends Component {
   state = {
-    expanded: true
+    expanded: true,
+    sortByValue: "relevance"
   };
   children = [];
 
@@ -148,6 +161,21 @@ export class BB extends Component {
   };
 
   sortBenefits = (filteredBenefits, language) => {
+    if (this.state.sortByValue === "alphabetical") {
+      let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
+      return filteredBenefits.sort((a, b) => {
+        let nameA = a[vacName].toUpperCase();
+        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+    }
+
     filteredBenefits.forEach(b => {
       if (b.sortingPriority === undefined) {
         b.sortingPriority = "low";
@@ -173,6 +201,10 @@ export class BB extends Component {
       return a.sortingNumber - b.sortingNumber;
     };
     return filteredBenefits.sort(sorting_fn);
+  };
+
+  handleSortByChange = event => {
+    this.setState({ sortByValue: event.target.value });
   };
 
   render() {
@@ -356,6 +388,23 @@ export class BB extends Component {
                     handleChange={this.props.setSelectedNeeds}
                   />
                 </Grid>
+
+                <Grid item xs={12} className={classnames(classes.sortBy)}>
+                  <FormControl
+                    id="sortBySelector"
+                    className={classes.formControl}
+                  >
+                    <InputLabel>Sort By</InputLabel>
+                    <Select
+                      value={this.state.sortByValue}
+                      onChange={this.handleSortByChange}
+                    >
+                      <MenuItem value={"relevance"}>Relevance</MenuItem>
+                      <MenuItem value={"alphabetical"}>Alphabetical</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+
                 <Grid item xs={12} className={classnames(classes.collapse)}>
                   <Button
                     id="CollapseBenefits"
