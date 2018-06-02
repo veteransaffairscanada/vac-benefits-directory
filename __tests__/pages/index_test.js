@@ -19,10 +19,12 @@ describe("Index page", () => {
     );
   });
 
-  it("has buttons for wireframe  B", () => {
+  it("has buttons for wireframe  B and Data Validation", () => {
     const appMounted = shallow(<App {...props} />);
     expect(appMounted.find("SelectButton").map(b => b.props().text)).toEqual([
-      "B"
+      "index.benefits directory",
+      "index.data validation",
+      "index.all benefits"
     ]);
   });
 });
