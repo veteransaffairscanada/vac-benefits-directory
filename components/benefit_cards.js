@@ -89,11 +89,13 @@ export class BenefitCard extends Component {
                 </Typography>
 
                 <Typography
+                  component="h3"
                   className="cardDescription"
                   variant="headline"
-                  component="h3"
                 >
-                  {t("Benefit Description")}
+                  {this.props.t("current-language-code") === "en"
+                    ? benefit.oneLineDescriptionEn
+                    : benefit.oneLineDescriptionFr}
                 </Typography>
               </div>
             </ExpansionPanelSummary>

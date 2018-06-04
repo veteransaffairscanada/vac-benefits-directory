@@ -130,12 +130,13 @@ describe("BenefitCard", () => {
   });
 
   it("contains the description", () => {
+    console.log(benefitsFixture[0]);
     expect(
       mountedBenefitCard()
         .find(".cardDescription")
         .first()
         .text()
-    ).toEqual("en");
+    ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
   });
 
   it("renders if there are examples", () => {
