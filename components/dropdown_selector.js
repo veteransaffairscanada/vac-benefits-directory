@@ -28,16 +28,12 @@ class DropDownSelector extends React.Component {
   render() {
     const { classes, t } = this.props;
     let disabledStatus = { disabled: this.props.isDisabled };
-    let selectedFilter =
-      Object.keys(this.props.selectedFilters).length === 0
-        ? "None"
-        : Object.keys(this.props.selectedFilters)[0];
-
+    // console.log(this.props.selectedFilters)
     return (
       <FormControl className={classes.formControl} {...disabledStatus}>
         <InputLabel htmlFor="age-simple">{t(this.props.legend)}</InputLabel>
         <Select
-          value={selectedFilter}
+          value={this.props.selectedFilters}
           onChange={this.handleSelect}
           inputProps={{
             name: "age",
@@ -67,7 +63,7 @@ DropDownSelector.propTypes = {
   isDisabled: PropTypes.bool,
   legend: PropTypes.string,
   filters: PropTypes.array,
-  selectedFilters: PropTypes.object,
+  selectedFilters: PropTypes.string,
   setUserProfile: PropTypes.func,
   t: PropTypes.func
 };
