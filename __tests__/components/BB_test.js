@@ -39,9 +39,8 @@ describe("BB", () => {
       examples: [],
       selectedEligibility: {
         serviceType: {},
-        serviceStatus: {},
         patronType: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
       },
       toggleSelectedEligibility: jest.fn(),
       classes: {
@@ -98,30 +97,26 @@ describe("BB", () => {
         {
           patronType: "p1",
           serviceType: "na",
-          servicePersonVitalStatus: "na",
-          serviceStatus: "na",
+          statusAndVitals: "na",
           benefits: ["0"]
         },
         {
           patronType: "p2",
           serviceType: "na",
-          servicePersonVitalStatus: "na",
-          serviceStatus: "na",
+          statusAndVitals: "na",
           benefits: ["2"]
         },
         {
           patronType: "p3",
           serviceType: "na",
-          servicePersonVitalStatus: "na",
-          serviceStatus: "na",
+          statusAndVitals: "na",
           benefits: ["1", "3"]
         }
       ];
       selectedEligibility = {
         patronType: {},
         serviceType: {},
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
       };
     });
 
@@ -194,9 +189,8 @@ describe("BB", () => {
   it("has the selected benefit cards", () => {
     props.selectedEligibility = {
       serviceType: { CAF: 1 },
-      serviceStatus: { released: 1 },
       patronType: { ["service-person"]: 1 },
-      servicePersonVitalStatus: { alive: 1 }
+      statusAndVitals: { released: 1 }
     };
     const benefitCards = shallow_BB().find(".BenefitCards");
     expect(benefitCards.length).toEqual(1);

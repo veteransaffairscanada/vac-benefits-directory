@@ -39,14 +39,31 @@
     "Status": "Status",
     "Needs": "Needs",
     "Filter Benefits": "Filter Benefits",
-    "ServiceType": "Which service type?",
+    "ServiceType": "Service type",
     "PatronType": "Who are you looking for?",
-    "serviceStatus": "What is the status?",
+    "serviceStatus": "Service status",
     "servicePersonVitalStatus": "Is the service member alive?",
     "What do you need help with?": "What do you need help with?",
+    "Benefits for": "Benefits for",
     "Sort By": "Sort By",
     "Relevance": "Relevance",
     "Alphabetical": "Alphabetical"
+  },
+  "index": {
+    "data validation": "data validation",
+    "all benefits": "all benefits",
+    "benefits directory": "benefits directory"
+  },
+  "dv": {
+    "name": "Name",
+    "value": "Value",
+    "status": "Status",
+    "Size of Benefits Table": "Size of benefits table",
+    "Pass": "Pass",
+    "Fail": "Fail",
+    "Size of Eligibility Paths Table": "Size of eligibility paths table",
+    "Size of Needs Table": "Size of needs table",
+    "Size of Examples Table": "Size of examples table"
   },
   "child benefits": "With this benefit, you may also have access to",
   "alpha": "For testing only.",
@@ -91,23 +108,9 @@
   "Find out more": "Find out more",
   "Available to": "Available to",
   "examples": "Depending on your needs this program can provide",
-  "index": {
-    "data validation": "data validation",
-    "all benefits": "all benefits",
-    "benefits directory": "benefits directory"
-  },
-  "dv": {
-    "name": "Name",
-    "value": "Value",
-    "status": "Status",
-    "Size of Benefits Table": "Size of benefits table",
-    "Pass": "Pass",
-    "Fail": "Fail",
-    "Size of Eligibility Paths Table": "Size of eligibility paths table",
-    "Size of Needs Table": "Size of needs table",
-    "Size of Examples Table": "Size of examples table"
-  },
-  "Close all": "Close all",
   "Filter by need": "Filter by need",
-  "Select all that apply": "Select all that apply"
+  "Select all that apply": "Select all that apply",
+  "Close all": "Close all",
+  "stillServing": "Still-serving",
+  "releasedAlive": "Released"
 }
