@@ -132,14 +132,23 @@ describe("BB", () => {
     });
   });
 
-  it("has a correct sortBenefits function", () => {
+  it("has a correct sortBenefits function when sorting by relevance", () => {
     let BBInstance = shallow_BB().instance();
-    // console.log(BBInstance.sortBenefits(benefitsFixture, "en"))
-    expect(BBInstance.sortBenefits(benefitsFixture, "en")[0]).toEqual(
-      benefitsFixture.filter(o => {
-        return o.id === "3";
-      })[0]
-    );
+    expect(
+      BBInstance.sortBenefits(benefitsFixture, "en").map(b => b.id)
+    ).toEqual(["3", "1", "0"]);
+  });
+
+  it("has a correct sortBenefits function when sorting alphabetically", () => {
+    let BBInstance = shallow_BB().instance();
+    BBInstance.setState({ sortByValue: "alphabetical" });
+    expect(
+      BBInstance.sortBenefits(benefitsFixture, "en").map(b => b.id)
+    ).toEqual(["1", "0", "3"]);
+  });
+
+  it("has a sortBy selector", () => {
+    expect(shallow_BB().find("#sortBySelector").length).toEqual(1);
   });
 
   it("has a serviceTypes filter", () => {

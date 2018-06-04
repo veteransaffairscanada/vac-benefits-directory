@@ -95,3 +95,26 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
       }
     );
 });
+
+// this code should run when the data-validation page is loaded and send that page the results
+// note that we can't check the urls in the browser because of CO
+//
+// var checkLinks = async function checklinks(benefits) {
+//   var brokenLinks = [];
+//   var responseEn, responseFr;
+//   for (let benefit of benefits) {
+//     responseEn = await fetch(benefit.benefitPageEn);
+//     responseFr = await fetch(benefit.benefitPageFr);
+//     if (responseEn.status !== 200) {
+//       brokenLinks.push(benefit.benefitPageEn);
+//     }
+//     if (responseFr.status !== 200) {
+//       brokenLinks.push(benefit.benefitPageFr);
+//     }
+//     console.log("type", typeof responseEn.body);
+//     if (responseEn.body.indexOf(benefit.benefitPageEn) === -1) {
+//       console.log(benefit.benefitPageEn, responseEn, "BAD URL");
+//     }
+//   }
+//   return brokenLinks;
+// };

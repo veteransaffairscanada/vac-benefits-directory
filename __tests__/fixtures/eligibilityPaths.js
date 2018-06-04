@@ -1,4 +1,4 @@
-const elegibilityPathsFixture = [
+const eligibilityPathsFixture = [
   {
     patronType: "service-person",
     serviceType: "CAF",
@@ -13,4 +13,4 @@ const elegibilityPathsFixture = [
   }
 ];
 
-export default elegibilityPathsFixture;
+export default eligibilityPathsFixture;
