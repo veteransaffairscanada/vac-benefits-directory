@@ -18,8 +18,7 @@ export class A extends Component {
       selectedEligibility: {
         patronType: {},
         serviceType: {},
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
       }
     };
   }
@@ -47,50 +46,40 @@ export class A extends Component {
       myURL.searchParams = this.getUrlParams(newUrl);
       const section = myURL.searchParams.section;
       let filters = {};
-      [
-        "selectedNeeds",
-        "patronType",
-        "serviceType",
-        "serviceStatus",
-        "servicePersonVitalStatus"
-      ].forEach(filter => {
-        filters[filter] = myURL.searchParams[filter]
-          ? this.stringToMap(myURL.searchParams[filter])
-          : {};
-      });
+      ["selectedNeeds", "patronType", "serviceType", "statusAndVitals"].forEach(
+        filter => {
+          filters[filter] = myURL.searchParams[filter]
+            ? this.stringToMap(myURL.searchParams[filter])
+            : {};
+        }
+      );
       const newState = {
         section: section || "BB",
         selectedNeeds: filters.selectedNeeds,
         selectedEligibility: {
           patronType: filters.patronType,
           serviceType: filters.serviceType,
-          serviceStatus: filters.serviceStatus,
-          servicePersonVitalStatus: filters.servicePersonVitalStatus
+          statusAndVitals: filters.statusAndVitals
         }
       };
       this.setState(newState);
     };
 
     let filters = {};
-    [
-      "selectedNeeds",
-      "patronType",
-      "serviceType",
-      "serviceStatus",
-      "servicePersonVitalStatus"
-    ].forEach(filter => {
-      filters[filter] = this.props.url.query[filter]
-        ? this.stringToMap(this.props.url.query[filter])
-        : {};
-    });
+    ["selectedNeeds", "patronType", "serviceType", "statusAndVitals"].forEach(
+      filter => {
+        filters[filter] = this.props.url.query[filter]
+          ? this.stringToMap(this.props.url.query[filter])
+          : {};
+      }
+    );
     const newState = {
       section: this.props.url.query.section || "BB",
       selectedNeeds: filters.selectedNeeds,
       selectedEligibility: {
         patronType: filters.patronType,
         serviceType: filters.serviceType,
-        serviceStatus: filters.serviceStatus,
-        servicePersonVitalStatus: filters.servicePersonVitalStatus
+        statusAndVitals: filters.statusAndVitals
       }
     };
     this.setState(newState);
@@ -110,12 +99,7 @@ export class A extends Component {
     if (Object.keys(state.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
     }
-    [
-      "patronType",
-      "serviceType",
-      "serviceStatus",
-      "servicePersonVitalStatus"
-    ].forEach(criteria => {
+    ["patronType", "serviceType", "statusAndVitals"].forEach(criteria => {
       if (Object.keys(state.selectedEligibility[criteria]).length > 0) {
         href += `&${criteria}=${Object.keys(
           state.selectedEligibility[criteria]
@@ -168,8 +152,7 @@ export class A extends Component {
       selectedEligibility: {
         patronType: {},
         serviceType: {},
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
       }
     };
     this.setState(newState);

@@ -39,14 +39,32 @@
     "Status": "Statut",
     "Needs": "Besoins",
     "Filter Benefits": "Filtrer les avantages",
-    "ServiceType": "Quel type de service?",
+    "ServiceType": "Type de service",
     "PatronType": "Qui cherches-tu?",
-    "serviceStatus": "Quel est le statut?",
+    "serviceStatus": "État du service",
     "servicePersonVitalStatus": "Est-ce que le Vétéran est en vie?",
     "What do you need help with?": "Avec quoi as tu besoin d'aide?",
+    "Benefits for": "Avantages pour",
     "Sort By": "Trier par",
     "Relevance": "Pertinence",
     "Alphabetical": "Alphabétique"
+  },
+  "index": {
+    "data validation": "La validation des données",
+    "all benefits": "tous les avantages",
+    "benefits directory": "annuaire des avantages"
+  },
+  "dv": {
+    "name": "Nom",
+    "value": "Valeur",
+    "status": "Statut",
+    "Size of Benefits Table": "Taille de la table des avantages",
+    "Pass": "Passer",
+    "Fail": "Échouer",
+    "Size of Eligibility Paths Table":
+      "Taille du tableau des chemins d'admissibilité",
+    "Size of Needs Table": "Tableau de la taille des besoins",
+    "Size of Examples Table": "Taille de la table des exemples"
   },
   "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
   "alpha": "Pour les tests seulement",
@@ -56,7 +74,6 @@
   "current-language-code": "fr",
   "other-language-code": "en",
   "Privacy": "Intimité",
-
   "Show All Benefits": "Afficher tous les avantages",
   "title": "Preuve de concept pour le projet ACC",
   "description": "Preuve de concept pour le projet ACC",
@@ -92,22 +109,7 @@
   "Find out more": "En savoir plus",
   "Available to": "Disponible pour",
   "examples": "Selon vos besoins, ce programme peut fournir",
-  "index": {
-    "data validation": "La validation des données",
-    "all benefits": "tous les avantages",
-    "benefits directory": "annuaire des avantages"
-  },
-  "dv": {
-    "name": "Nom",
-    "value": "Valeur",
-    "status": "Statut",
-    "Size of Benefits Table": "Taille de la table des avantages",
-    "Pass": "Passer",
-    "Fail": "Échouer",
-    "Size of Eligibility Paths Table":
-      "Taille du tableau des chemins d'admissibilité",
-    "Size of Needs Table": "Tableau de la taille des besoins",
-    "Size of Examples Table": "Taille de la table des exemples"
-  },
+  "stillServing": "Toujours en train de servir",
+  "releasedAlive": "Libéré",
   "Close all": "Ferme tout"
 }
