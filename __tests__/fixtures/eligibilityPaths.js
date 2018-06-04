@@ -1,16 +1,14 @@
 const elegibilityPathsFixture = [
   {
     patronType: "service-person",
-    servicePersonVitalStatus: "na",
     serviceType: "CAF",
-    serviceStatus: "released",
+    statusAndVitals: "na",
     benefits: ["0"]
   },
   {
     patronType: "service-person",
-    servicePersonVitalStatus: "na",
+    statusAndVitals: "na",
     serviceType: "RCMP",
-    serviceStatus: "released",
     benefits: ["1"]
   }
 ];
