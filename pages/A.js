@@ -126,7 +126,6 @@ export class A extends Component {
   };
 
   setSelectedNeeds = ids => {
-    console.log("A setSelectedNeeds", ids);
     let selectedNeeds = {};
     ids.forEach(id => {
       selectedNeeds[id] = id;

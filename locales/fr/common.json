@@ -109,5 +109,7 @@
     "Size of Needs Table": "Tableau de la taille des besoins",
     "Size of Examples Table": "Taille de la table des exemples"
   },
-  "Close all": "Ferme tout"
+  "Close all": "Ferme tout",
+  "Filter by need": "Filtrer par besoin",
+  "Select all that apply": "Sélectionnez tout ce qui s'y rapporte"
 }

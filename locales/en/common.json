@@ -107,5 +107,7 @@
     "Size of Needs Table": "Size of needs table",
     "Size of Examples Table": "Size of examples table"
   },
-  "Close all": "Close all"
+  "Close all": "Close all",
+  "Filter by need": "Filter by need",
+  "Select all that apply": "Select all that apply"
 }

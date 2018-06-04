@@ -363,6 +363,7 @@ export class BB extends Component {
                   </Grid>
                 </Collapse>
                 <Grid item xs={12}>
+                  <br /> <br />
                   <Button
                     id="ClearFilters"
                     variant="raised"

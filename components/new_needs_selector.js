@@ -1,19 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
+import Typography from "material-ui/Typography";
 
-import Chip from "material-ui/Chip";
 import "babel-polyfill/dist/polyfill";
 import { Button } from "material-ui";
-
-const chipStyle = {
-  borderRadius: "8px",
-  fontSize: "16px"
-};
-
-const layoutStyle = {
-  fontSize: "16px"
-};
 
 const styles = theme => ({
   root: {
@@ -21,30 +12,15 @@ const styles = theme => ({
     justifyContent: "center",
     flexWrap: "wrap"
   },
-  chip: {
-    margin: theme.spacing.unit
+  need: {
+    margin: theme.spacing.unit,
+    backgroundColor: "#F5F5F5"
   },
-  chipSelected: {
+  needSelected: {
     margin: theme.spacing.unit,
     backgroundColor: "#364150",
     color: "white"
   }
-  // root: {
-  //   display: "flex",
-  //   flexWrap: "wrap",
-  //   marginBottom: "10px"
-  // },
-  // formControl: {
-  //   margin: theme.spacing.unit,
-  //   width: "100%"
-  // },
-  // chips: {
-  //   display: "flex",
-  //   flexWrap: "wrap"
-  // },
-  // chip: {
-  //   margin: theme.spacing.unit / 4
-  // }
 });
 
 // const ITEM_HEIGHT = 48;
@@ -60,7 +36,6 @@ const styles = theme => ({
 
 class NeedsSelector extends Component {
   handleClick = id => {
-    console.log("NeedsSelector clicked", id);
     let newSelectedNeeds = this.props.selectedNeeds;
     if (newSelectedNeeds.hasOwnProperty(id)) {
       delete newSelectedNeeds[id];
@@ -75,22 +50,31 @@ class NeedsSelector extends Component {
     const selectedNeeds = Object.keys(this.props.selectedNeeds);
     return (
       <div>
-        <div>{t("B3.What do you need help with?")}</div>
+        <Typography variant="title">
+          {t("Filter by need")}
+          <br />
+        </Typography>
+        <Typography variant="subheading">
+          {t("Select all that apply")}
+          <br />
+          <br />
+        </Typography>
         <div className={classes.root}>
           {needs.map(need => (
-            <Chip
+            <Button
+              disableRipple={true}
               key={need.id}
-              label={
-                t("current-language-code") === "en" ? need.nameEn : need.nameFr
-              }
+              variant="raised"
               onClick={() => this.handleClick(need.id)}
               value={need.id}
               className={
                 selectedNeeds.indexOf(need.id) === -1
-                  ? classes.chip
-                  : classes.chipSelected
+                  ? classes.need
+                  : classes.needSelected
               }
-            />
+            >
+              {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
+            </Button>
           ))}
         </div>
       </div>
