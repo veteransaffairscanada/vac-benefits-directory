@@ -8,6 +8,11 @@ import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
 import red from "material-ui/colors/red";
 import Typography from "material-ui/Typography";
+import { InputLabel } from "material-ui/Input";
+import { MenuItem } from "material-ui/Menu";
+import { FormControl } from "material-ui/Form";
+import Select from "material-ui/Select";
+
 import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
@@ -42,12 +47,20 @@ const styles = theme => ({
   collapse: {
     textAlign: "right",
     textDecoration: "underline"
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120
+  },
+  sortBy: {
+    textAlign: "right"
   }
 });
 
 export class BB extends Component {
   state = {
-    expanded: true
+    expanded: true,
+    sortByValue: "relevance"
   };
   children = [];
 
@@ -156,7 +169,10 @@ export class BB extends Component {
     });
 
     let sorting_fn = (a, b) => {
-      if (a.sortingNumber === b.sortingNumber) {
+      if (
+        this.state.sortByValue === "alphabetical" ||
+        a.sortingNumber === b.sortingNumber
+      ) {
         // sort alphabetically
         let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
         let nameA = a[vacName].toUpperCase();
@@ -173,6 +189,10 @@ export class BB extends Component {
       return a.sortingNumber - b.sortingNumber;
     };
     return filteredBenefits.sort(sorting_fn);
+  };
+
+  handleSortByChange = event => {
+    this.setState({ sortByValue: event.target.value });
   };
 
   render() {
@@ -358,14 +378,23 @@ export class BB extends Component {
                 </Grid>
 
                 <Grid item xs={12} className={classnames(classes.sortBy)}>
-                  <Button
-                    id="SortBy"
-                    variant="flat"
-                    size="small"
-                    onClick={this.collapseAllBenefits}
+                  <FormControl
+                    id="sortBySelector"
+                    className={classes.formControl}
                   >
-                    {t("Close all")}
-                  </Button>
+                    <InputLabel>{t("B3.Sort By")}</InputLabel>
+                    <Select
+                      value={this.state.sortByValue}
+                      onChange={this.handleSortByChange}
+                    >
+                      <MenuItem value={"relevance"}>
+                        {t("B3.Relevance")}
+                      </MenuItem>
+                      <MenuItem value={"alphabetical"}>
+                        {t("B3.Alphabetical")}
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
 
                 <Grid item xs={12} className={classnames(classes.collapse)}>
