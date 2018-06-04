@@ -16,7 +16,6 @@ import Select from "material-ui/Select";
 import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
-// import DropDownSelector from "../components/dropdown_selector";
 import RadioSelector from "../components/radio_selector";
 import NeedsSelector from "./needs_selector";
 import i18next from "i18next";

@@ -17,7 +17,6 @@ class RadioSelector extends React.Component {
 
   render() {
     const { classes, t } = this.props;
-    // let disabledStatus = { disabled: this.props.isDisabled };
 
     return (
       <FormControl required className={classes.formControl}>
