@@ -50,8 +50,7 @@ describe("A", () => {
       selectedEligibility: {
         patronType: { family: "family" },
         serviceType: { CAF: "CAF" },
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
       }
     };
     const expectedURL =
@@ -68,8 +67,7 @@ describe("A", () => {
       selectedEligibility: {
         patronType: { family: "family" },
         serviceType: { CAF: "CAF" },
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
       }
     });
     expect(AInstance.state.selectedEligibility.serviceType).toEqual({
@@ -82,8 +80,7 @@ describe("A", () => {
       selectedEligibility: {
         patronType: {},
         serviceType: {},
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
       }
     });
     expect(Router.push).toBeCalledWith("/A?section=S");
@@ -108,8 +105,7 @@ describe("A", () => {
       selectedEligibility: {
         patronType: { family: "family" },
         serviceType: { CAF: "CAF" },
-        serviceStatus: {},
-        servicePersonVitalStatus: {}
+        statusAndVitals: {}
       }
     };
     expect(mountedA().state()).toEqual(expectedState);

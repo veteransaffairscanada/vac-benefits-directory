@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Typography, Button, Grid } from "material-ui";
 import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
+
+import { logEvent } from "../utils/analytics";
 
 const styles = theme => ({
   root: {
@@ -39,10 +44,22 @@ export class EmbeddedBenefitCard extends Component {
     open: false
   };
 
+  logExit = url => {
+    logEvent("Exit", url);
+  };
+
   toggleState = () => {
     let newState = !this.state.open;
     this.setState({ open: newState });
   };
+
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
 
   render() {
     const { t, classes, benefit } = this.props;
@@ -53,9 +70,10 @@ export class EmbeddedBenefitCard extends Component {
             ? classes.ExpansionPanelOpen
             : classes.ExpansionPanelClosed
         }
+        expanded={this.state.open}
       >
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
           onClick={() => this.toggleState()}
           className={classes.ExpansionPanelSummary}
         >
@@ -96,6 +114,13 @@ export class EmbeddedBenefitCard extends Component {
                 size="small"
                 target="_blank"
                 variant="raised"
+                onClick={() =>
+                  this.logExit(
+                    this.props.t("current-language-code") === "en"
+                      ? benefit.benefitPageEn
+                      : benefit.benefitPageFr
+                  )
+                }
                 href={
                   this.props.t("current-language-code") === "en"
                     ? benefit.benefitPageEn
@@ -111,4 +136,12 @@ export class EmbeddedBenefitCard extends Component {
     );
   }
 }
+
+EmbeddedBenefitCard.propTypes = {
+  benefit: PropTypes.object,
+  classes: PropTypes.object,
+  t: PropTypes.func,
+  onRef: PropTypes.func
+};
+
 export default withStyles(styles)(EmbeddedBenefitCard);

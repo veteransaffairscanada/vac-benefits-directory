@@ -1,11 +1,15 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "material-ui";
 import { withStyles } from "material-ui/styles";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+
+import { logEvent } from "../utils/analytics";
 
 const styles = () => ({
   button: {
@@ -47,11 +51,22 @@ export class BenefitCard extends Component {
   state = {
     open: false
   };
+  children = [];
+  logExit = url => {
+    logEvent("Exit", url);
+  };
 
   toggleOpenState = () => {
     let newState = !this.state.open;
     this.setState({ open: newState });
   };
+
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
 
   render() {
     const benefit = this.props.benefit;
@@ -75,10 +90,11 @@ export class BenefitCard extends Component {
                 ? classes.ExpansionPanelOpen
                 : classes.ExpansionPanelClosed
             }
+            expanded={this.state.open}
           >
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
-              expandIcon={<ExpandMoreIcon />}
+              expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
               onClick={() => this.toggleOpenState()}
             >
               <div>
@@ -140,6 +156,7 @@ export class BenefitCard extends Component {
                           allBenefits={this.props.allBenefits}
                           t={this.props.t}
                           key={cb.id}
+                          onRef={ref => this.children.push(ref)}
                         />
                       ))}
                     </div>
@@ -147,6 +164,13 @@ export class BenefitCard extends Component {
                       className={classes.button}
                       target="_blank"
                       variant="raised"
+                      onClick={() =>
+                        this.logExit(
+                          this.props.t("current-language-code") === "en"
+                            ? benefit.benefitPageEn
+                            : benefit.benefitPageFr
+                        )
+                      }
                       href={
                         this.props.t("current-language-code") === "en"
                           ? benefit.benefitPageEn
@@ -165,5 +189,14 @@ export class BenefitCard extends Component {
     );
   }
 }
+
+BenefitCard.propTypes = {
+  allBenefits: PropTypes.array,
+  benefit: PropTypes.object,
+  classes: PropTypes.object,
+  examples: PropTypes.array,
+  t: PropTypes.func,
+  onRef: PropTypes.func
+};
 
 export default withStyles(styles)(BenefitCard);

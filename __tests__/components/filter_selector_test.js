@@ -19,7 +19,7 @@ describe("FilterSelector", () => {
       t: key => key,
       legend: "test legend",
       filters: patronTypesFixture,
-      selectedFilters: [],
+      selectedFilters: {},
       handleChange: jest.fn()
     };
     _mountedFilterSelector = undefined;
