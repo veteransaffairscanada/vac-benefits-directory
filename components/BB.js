@@ -17,7 +17,7 @@ import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
 import DropDownSelector from "../components/dropdown_selector";
-import NeedsSelector from "./chip_needs_selector";
+import NeedsSelector from "./new_needs_selector";
 import i18next from "i18next";
 
 const styles = theme => ({
