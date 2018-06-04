@@ -144,7 +144,6 @@ describe("BenefitCard", () => {
   });
 
   it("contains the description", () => {
-    console.log(benefitsFixture[0]);
     expect(
       mountedBenefitCard()
         .find(".cardDescription")
