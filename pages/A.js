@@ -146,12 +146,20 @@ export class A extends Component {
   clearFilters = () => {
     const newState = {
       section: this.state.section,
-      selectedNeeds: {},
       selectedEligibility: {
         patronType: "",
         serviceType: "",
         statusAndVitals: ""
       }
+    };
+    this.setState(newState);
+    this.setURL(newState);
+  };
+
+  clearNeeds = () => {
+    const newState = {
+      section: this.state.section,
+      selectedNeeds: {}
     };
     this.setState(newState);
     this.setURL(newState);
@@ -184,6 +192,7 @@ export class A extends Component {
             setSelectedNeeds={this.setSelectedNeeds}
             setUserProfile={this.setUserProfile}
             clearFilters={this.clearFilters}
+            clearNeeds={this.clearNeeds}
           />
         );
     }
