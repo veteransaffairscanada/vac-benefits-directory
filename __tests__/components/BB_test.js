@@ -158,34 +158,6 @@ describe("BB", () => {
     expect(shallow_BB().find("#patronTypeFilter").length).toEqual(1);
   });
 
-  it("has the filters contained in a collapse component", () => {
-    expect(
-      shallow_BB()
-        .find("#collapseBlock")
-        .find("#serviceTypeFilter").length
-    ).toEqual(1);
-    expect(
-      shallow_BB()
-        .find("#collapseBlock")
-        .find("#patronTypeFilter").length
-    ).toEqual(1);
-  });
-
-  it("has the filter initially expanded", () => {
-    expect(shallow_BB().state().expanded).toEqual(true);
-  });
-
-  it("has a button to collapse / expand the filter", () => {
-    shallow_BB()
-      .find("#expandButton")
-      .simulate("click");
-    expect(shallow_BB().state().expanded).toEqual(false);
-    shallow_BB()
-      .find("#expandButton")
-      .simulate("click");
-    expect(shallow_BB().state().expanded).toEqual(true);
-  });
-
   it("has the selected benefit cards", () => {
     props.selectedEligibility = {
       serviceType: "CAF",
