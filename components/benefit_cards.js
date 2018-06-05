@@ -83,9 +83,11 @@ export class BenefitCard extends Component {
         )
       : [];
 
-    const examples = benefit.examples
-      ? this.props.examples.filter(ex => benefit.examples.indexOf(ex.id) > -1)
-      : [];
+    const examples =
+      typeof benefit.examples !== "undefined" &&
+      typeof this.props.examples !== "undefined"
+        ? this.props.examples.filter(ex => benefit.examples.indexOf(ex.id) > -1)
+        : [];
 
     return (
       <Grid item xs={12}>

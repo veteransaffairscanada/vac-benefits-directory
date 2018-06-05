@@ -3,6 +3,9 @@ import { mount } from "enzyme";
 import FilterSelector from "../../components/filter_selector";
 import patronTypesFixture from "../fixtures/patron_types";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 describe("FilterSelector", () => {
   let props;
   let _mountedFilterSelector;
@@ -23,6 +26,11 @@ describe("FilterSelector", () => {
       handleChange: jest.fn()
     };
     _mountedFilterSelector = undefined;
+  });
+
+  it("passes axe tests", async () => {
+    let html = mountedFilterSelector().html();
+    expect(await axe(html)).toHaveNoViolations();
   });
 
   it("contains the legend", () => {

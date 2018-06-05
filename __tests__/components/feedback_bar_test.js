@@ -2,6 +2,9 @@ import React from "react";
 import FeedbackBar from "../../components/feedbackBar";
 import { mount } from "enzyme";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 jest.mock("react-ga");
 
 describe("Feedback bar", () => {
@@ -24,6 +27,10 @@ describe("Feedback bar", () => {
   });
 
   // Tests
+  it("passes axe tests", async () => {
+    let html = mountedFeedbackBar().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("shows the feedback prompt", () => {
     expect(mountedFeedbackBar().text()).toContain("feedback-prompt");

@@ -3,6 +3,9 @@ import { mount } from "enzyme";
 import NeedsSelector from "../../components/needs_selector";
 import needsFixture from "../fixtures/needs";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 describe("NeedsSelector", () => {
   let props;
   let _mountedNeedsSelector;
@@ -22,6 +25,11 @@ describe("NeedsSelector", () => {
       handleChange: jest.fn()
     };
     _mountedNeedsSelector = undefined;
+  });
+
+  it("passes axe tests", async () => {
+    let html = mountedNeedsSelector().html();
+    expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has the exact number of children as passed", () => {

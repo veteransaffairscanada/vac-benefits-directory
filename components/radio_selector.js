@@ -18,27 +18,31 @@ class RadioSelector extends React.Component {
 
   render() {
     const { classes, t } = this.props;
-    return (
-      <FormControl className={classes.formControl}>
-        <FormLabel>{this.props.legend}</FormLabel>
-        <RadioGroup
-          aria-label={this.props.legend}
-          value={this.props.selectedFilters}
-          onChange={this.handleSelect}
-        >
-          {this.props.filters.map(x => {
-            return (
-              <FormControlLabel
-                key={x.id}
-                value={x.id}
-                control={<Radio />}
-                label={t(x.name_en)}
-              />
-            );
-          })}
-        </RadioGroup>
-      </FormControl>
-    );
+    if (Object.values(this.props.filters).length != 0) {
+      return (
+        <FormControl className={classes.formControl}>
+          <FormLabel>{this.props.legend}</FormLabel>
+          <RadioGroup
+            aria-label={this.props.legend}
+            value={this.props.selectedFilters}
+            onChange={this.handleSelect}
+          >
+            {this.props.filters.map(x => {
+              return (
+                <FormControlLabel
+                  key={x.id}
+                  value={x.id}
+                  control={<Radio />}
+                  label={t(x.name_en)}
+                />
+              );
+            })}
+          </RadioGroup>
+        </FormControl>
+      );
+    } else {
+      return null;
+    }
   }
 }
 RadioSelector.propTypes = {

@@ -2,6 +2,9 @@ import React from "react";
 import SelectedOptionsCard from "../../components/selected_options_card";
 import { mount } from "enzyme";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 describe("SelectedOptionsCard", () => {
   // Setup
 
@@ -25,6 +28,10 @@ describe("SelectedOptionsCard", () => {
   });
 
   // Tests
+  it("passes axe tests", async () => {
+    let html = mountedSelectedOptionsCard().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("has a button with the correct onClick", () => {
     mountedSelectedOptionsCard()

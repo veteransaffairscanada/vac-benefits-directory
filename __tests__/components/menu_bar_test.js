@@ -2,6 +2,9 @@ import React from "react";
 import MenuBar from "../../components/menu_bar";
 import { mount } from "enzyme";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 jest.mock("react-ga");
 
 describe("MenuBar", () => {
@@ -27,6 +30,10 @@ describe("MenuBar", () => {
   });
 
   // Tests
+  it("passes axe tests", async () => {
+    let html = mountedMenuBar().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("shows the change language button", () => {
     expect(

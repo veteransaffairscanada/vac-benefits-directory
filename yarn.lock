@@ -1693,6 +1693,10 @@ aws4@^1.2.1, aws4@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
+axe-core@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-3.0.2.tgz#552e5ad753c19540aef94d3f29626539216bfcf5"
+
 axobject-query@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-0.1.0.tgz#62f59dbc59c9f9242759ca349960e7a2fe3c36c0"
@@ -4850,6 +4854,14 @@ items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
 
+jest-axe@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/jest-axe/-/jest-axe-3.0.0.tgz#c5704fafb0a7253d261f6cc3e85121d30102733d"
+  dependencies:
+    axe-core "3.0.2"
+    jest-matcher-utils "23.0.1"
+    lodash.merge "4.6.1"
+
 jest-changed-files@^23.0.1:
   version "23.0.1"
   resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-23.0.1.tgz#f79572d0720844ea5df84c2a448e862c2254f60c"
@@ -4989,7 +5001,7 @@ jest-leak-detector@^23.0.1:
   dependencies:
     pretty-format "^23.0.1"
 
-jest-matcher-utils@^23.0.1:
+jest-matcher-utils@23.0.1, jest-matcher-utils@^23.0.1:
   version "23.0.1"
   resolved "https://registry.yarnpkg.com/jest-matcher-utils/-/jest-matcher-utils-23.0.1.tgz#0c6c0daedf9833c2a7f36236069efecb4c3f6e5f"
   dependencies:
@@ -5521,6 +5533,10 @@ lodash.isfunction@^3.0.9:
 lodash.isobject@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
+
+lodash.merge@4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
 
 lodash.once@^4.1.1:
   version "4.1.1"
