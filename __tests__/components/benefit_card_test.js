@@ -4,6 +4,9 @@ import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 describe("BenefitCard", () => {
   let props;
   let _mountedBenefitCard;
@@ -33,6 +36,11 @@ describe("BenefitCard", () => {
   //       .prop("title")
   //   ).toEqual(benefitsFixture[0].benefitTypeEn);
   // });
+
+  it("passes axe tests", async () => {
+    let html = mountedBenefitCard().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("contains the name", () => {
     expect(

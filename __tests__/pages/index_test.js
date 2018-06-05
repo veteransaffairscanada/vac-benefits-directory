@@ -4,6 +4,9 @@ import { shallow } from "enzyme";
 import React from "react";
 import { App } from "../../pages/index";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 jest.mock("react-ga");
 
 describe("Index page", () => {
@@ -11,6 +14,11 @@ describe("Index page", () => {
     t: key => key,
     i18n: {}
   };
+
+  it("passes axe tests", async () => {
+    let html = shallow(<App {...props} />).html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("has a description", () => {
     const appMounted = shallow(<App {...props} />);

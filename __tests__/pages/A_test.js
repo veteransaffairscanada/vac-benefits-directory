@@ -6,6 +6,11 @@ import Router from "next/router";
 import React from "react";
 import { A } from "../../pages/A";
 import benefitsFixture from "../fixtures/benefits";
+import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
+import needsFixture from "../fixtures/needs";
+
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
@@ -32,9 +37,24 @@ describe("A", () => {
       i18n: undefined,
       t: key => key,
       storeHydrated: true,
-      dispatch: jest.fn()
+      dispatch: jest.fn(),
+      benefits: benefitsFixture,
+      eligibilityPaths: elegibilityPathsFixture,
+      selectedNeeds: {},
+      needs: needsFixture,
+      examples: [],
+      selectedEligibility: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      }
     };
     _mountedA = undefined;
+  });
+
+  it("passes axe tests", async () => {
+    let html = mountedA().html();
+    expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has a correct stringToMap function", () => {

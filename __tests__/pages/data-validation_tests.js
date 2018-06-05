@@ -9,6 +9,9 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import examplesFixture from "../fixtures/examples";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 jest.mock("react-ga");
 
 describe("DataValidation", () => {
@@ -47,6 +50,11 @@ describe("DataValidation", () => {
       status: "s1"
     });
     expect(returnValuel2.id).toEqual(benefitsFixture.length + 3);
+  });
+
+  it("passes axe tests", async () => {
+    let html = mountedDataValidation().html();
+    expect(await axe(html)).toHaveNoViolations();
   });
 
   it("passes all tests using the default fixtures", () => {

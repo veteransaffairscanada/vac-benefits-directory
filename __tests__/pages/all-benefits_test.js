@@ -6,6 +6,9 @@ import React from "react";
 import { AllBenefits } from "../../pages/all-benefits";
 import benefitsFixture from "../fixtures/benefits";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 jest.mock("react-ga");
 
 describe("AllBenefits", () => {
@@ -28,6 +31,11 @@ describe("AllBenefits", () => {
       benefits: benefitsFixture
     };
     _mountedAllBenefits = undefined;
+  });
+
+  it("passes axe tests", async () => {
+    let html = mountedAllBenefits().html();
+    expect(await axe(html)).toHaveNoViolations();
   });
 
   it("shows the list of all benefits available", () => {

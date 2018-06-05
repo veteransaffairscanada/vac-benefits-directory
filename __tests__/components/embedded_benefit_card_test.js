@@ -3,6 +3,9 @@ import { mount } from "enzyme";
 import { EmbeddedBenefitCard } from "../../components/embedded_benefit_card";
 import benefitsFixture from "../fixtures/benefits";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 describe("EmbeddedBenefitCard", () => {
   let props;
   let _mountedEmbeddedBenefitCard;
@@ -21,6 +24,11 @@ describe("EmbeddedBenefitCard", () => {
       onRef: foo => foo
     };
     _mountedEmbeddedBenefitCard = undefined;
+  });
+
+  it("passes axe tests", async () => {
+    let html = mountedEmbeddedBenefitCard().html();
+    expect(await axe(html)).toHaveNoViolations();
   });
 
   it("contains a ExpansionPanel", () => {
