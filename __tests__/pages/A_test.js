@@ -133,6 +133,26 @@ describe("A", () => {
     );
   });
 
+  it("setSelectedNeeds logs an analytics event", () => {
+    let AInstance = mountedA().instance();
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    AInstance.setSelectedNeeds(["foo"]);
+    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
+  });
+
+  it("setUserProfile logs an analytics event", () => {
+    let AInstance = mountedA().instance();
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    AInstance.setUserProfile("serviceType", "x");
+    expect(analytics.logEvent).toBeCalledWith(
+      "FilterClick",
+      "serviceType",
+      "x"
+    );
+  });
+
   it("sectionToDisplay returns appropriate component", () => {
     let AInstance = mountedA().instance();
     expect(AInstance.sectionToDisplay("BB").props.id).toEqual("BB");
