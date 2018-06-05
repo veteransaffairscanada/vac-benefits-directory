@@ -47,7 +47,16 @@
     "Benefits for": "Avantages pour",
     "Sort By": "Trier par",
     "Relevance": "Pertinence",
-    "Alphabetical": "Alphabétique"
+    "Alphabetical": "Alphabétique",
+    "title": "Trouvez les avantages qui vous concernent",
+    "subtitle":
+      "ACC offre plus de 30 programmes pour vous aider, vous et votre famille. Utilisez les filtres ci-dessous pour trouver les avantages correspondant à vos besoins.",
+    "x benefits to consider": "{{x}} avantages à considérer",
+    "No benefits":
+      "Pour le moment, aucun avantage ne correspond à vos sélections.",
+    "One benefits": "Un avantage à considérer",
+    "check eligibility":
+      "N'oubliez pas de lire les critères d'admissibilité pour chaque avantage avant de présenter une demande."
   },
   "index": {
     "data validation": "La validation des données",
@@ -109,6 +118,8 @@
   "Find out more": "En savoir plus",
   "Available to": "Disponible pour",
   "examples": "Selon vos besoins, ce programme peut fournir",
+  "Filter by need": "Filtrer par besoin",
+  "Select all that apply": "Sélectionnez tout ce qui s'y rapporte",
   "stillServing": "Toujours en train de servir",
   "releasedAlive": "Libéré",
   "Close all": "Ferme tout"

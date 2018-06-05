@@ -20,3 +20,8 @@ yarn-debug.log*
 yarn-error.log*
 .idea
 *.swp
+locales/en/common.missing.json
+
+#Eclipse specific 
+.project
+.settings/*
