@@ -6,6 +6,7 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
+import { logEvent } from "../utils/analytics";
 
 import BB from "../components/BB";
 
@@ -118,6 +119,7 @@ export class A extends Component {
     let selectedNeeds = {};
     ids.forEach(id => {
       selectedNeeds[id] = id;
+      logEvent("FilterClick", "need", id);
     });
     let newState = this.state;
     newState.selectedNeeds = selectedNeeds;
@@ -126,6 +128,7 @@ export class A extends Component {
   };
 
   setUserProfile = (criteria, id) => {
+    logEvent("FilterClick", criteria, id);
     let newSelectedEligibility = this.state.selectedEligibility;
     newSelectedEligibility[criteria] = id;
     let newState = this.state;
