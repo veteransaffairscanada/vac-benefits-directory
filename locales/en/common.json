@@ -47,7 +47,16 @@
     "Benefits for": "Benefits for",
     "Sort By": "Sort By",
     "Relevance": "Relevance",
-    "Alphabetical": "Alphabetical"
+    "Alphabetical": "Alphabetical",
+    "title": "Find benefits relevant to you",
+    "subtitle":
+      "VAC offers over 30 programs to help you and your family. Use the filters below to find  benefits that are relevant to your needs.",
+    "x benefits to consider": "{{x}} benefits to consider",
+    "No benefits":
+      "At this time there are no benefits that match your selections",
+    "One benefits": "One benefit to consider",
+    "check eligibility":
+      "Remember to read the eligibility criteria for each benefit before applying."
   },
   "index": {
     "data validation": "data validation",
@@ -104,7 +113,6 @@
   "feedback-prompt": "Did you find the information you're looking for?",
   "feedback-response": "Thank you for your feedback.",
   "Benefit Description": "Benefit Description",
-  "Showing x of y benefits": "Showing {{x}} of {{y}} benefits.",
   "Find out more": "Find out more",
   "Available to": "Available to",
   "examples": "Depending on your needs this program can provide",

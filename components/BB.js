@@ -18,7 +18,6 @@ import "babel-polyfill/dist/polyfill";
 import BenefitCard from "../components/benefit_cards";
 import DropDownSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
-import i18next from "i18next";
 
 const styles = theme => ({
   card: {
@@ -196,6 +195,17 @@ export class BB extends Component {
     this.setState({ sortByValue: event.target.value });
   };
 
+  countString = (x, t) => {
+    switch (x) {
+      case 0:
+        return t("B3.No benefits");
+      case 1:
+        return t("B3.One Benefit");
+      default:
+        return t("B3.x benefits to consider", { x: x });
+    }
+  };
+
   render() {
     let serviceTypes = Array.from(
       new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
@@ -239,6 +249,11 @@ export class BB extends Component {
       <div id={this.props.id}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
+            <Grid item xs={12}>
+              <Typography variant="display2">{t("B3.title")}</Typography>
+              <br />
+              <Typography variant="headline">{t("B3.subtitle")}</Typography>
+            </Grid>
             <Grid item md={3} sm={5} xs={12}>
               <Grid container spacing={8}>
                 <Grid item xs={12}>
@@ -343,6 +358,26 @@ export class BB extends Component {
               </Grid>
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
+              <Grid item xs={12}>
+                <Typography
+                  variant="headline"
+                  style={{ textAlign: "center" }}
+                  className="BenefitsCounter"
+                >
+                  {this.countString(filteredBenefits.length, t)}
+                </Typography>
+                {filteredBenefits.length > 0 ? (
+                  <Typography
+                    variant="subheading"
+                    style={{ textAlign: "center" }}
+                  >
+                    {t("B3.check eligibility")}
+                  </Typography>
+                ) : (
+                  ""
+                )}
+              </Grid>
+
               <Grid container spacing={24}>
                 <Grid item xs={12} className={classnames(classes.sortBy)}>
                   <FormControl
@@ -373,14 +408,6 @@ export class BB extends Component {
                   >
                     {t("Close all")}
                   </Button>
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography className="BenefitsCounter">
-                    {i18next.t("Showing x of y benefits", {
-                      x: filteredBenefits.length,
-                      y: this.props.benefits.length
-                    })}
-                  </Typography>
                 </Grid>
                 {filteredBenefits.map(
                   (benefit, i) =>
