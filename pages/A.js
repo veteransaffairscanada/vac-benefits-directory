@@ -16,9 +16,9 @@ export class A extends Component {
       section: "BB",
       selectedNeeds: {},
       selectedEligibility: {
-        patronType: {},
-        serviceType: {},
-        statusAndVitals: {}
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
       }
     };
   }
@@ -46,13 +46,16 @@ export class A extends Component {
       myURL.searchParams = this.getUrlParams(newUrl);
       const section = myURL.searchParams.section;
       let filters = {};
-      ["selectedNeeds", "patronType", "serviceType", "statusAndVitals"].forEach(
-        filter => {
-          filters[filter] = myURL.searchParams[filter]
-            ? this.stringToMap(myURL.searchParams[filter])
-            : {};
-        }
-      );
+      ["selectedNeeds"].forEach(filter => {
+        filters[filter] = myURL.searchParams[filter]
+          ? this.stringToMap(myURL.searchParams[filter])
+          : {};
+      });
+      ["patronType", "serviceType", "statusAndVitals"].forEach(filter => {
+        filters[filter] = myURL.searchParams[filter]
+          ? myURL.searchParams[filter]
+          : "";
+      });
       const newState = {
         section: section || "BB",
         selectedNeeds: filters.selectedNeeds,
@@ -66,13 +69,17 @@ export class A extends Component {
     };
 
     let filters = {};
-    ["selectedNeeds", "patronType", "serviceType", "statusAndVitals"].forEach(
-      filter => {
-        filters[filter] = this.props.url.query[filter]
-          ? this.stringToMap(this.props.url.query[filter])
-          : {};
-      }
-    );
+    ["selectedNeeds"].forEach(filter => {
+      filters[filter] = this.props.url.query[filter]
+        ? this.stringToMap(this.props.url.query[filter])
+        : {};
+    });
+
+    ["patronType", "serviceType", "statusAndVitals"].forEach(filter => {
+      filters[filter] = this.props.url.query[filter]
+        ? this.props.url.query[filter]
+        : "";
+    });
     const newState = {
       section: this.props.url.query.section || "BB",
       selectedNeeds: filters.selectedNeeds,
@@ -99,11 +106,9 @@ export class A extends Component {
     if (Object.keys(state.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
     }
-    ["patronType", "serviceType", "statusAndVitals"].forEach(criteria => {
-      if (Object.keys(state.selectedEligibility[criteria]).length > 0) {
-        href += `&${criteria}=${Object.keys(
-          state.selectedEligibility[criteria]
-        ).join()}`;
+    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+      if (state.selectedEligibility[selection] != "") {
+        href += `&${selection}=${state.selectedEligibility[selection]}`;
       }
     });
     Router.push(href);
@@ -121,12 +126,8 @@ export class A extends Component {
   };
 
   setUserProfile = (criteria, id) => {
-    let selected = {};
-    if (id !== "") {
-      selected[id] = id;
-    }
     let newSelectedEligibility = this.state.selectedEligibility;
-    newSelectedEligibility[criteria] = selected;
+    newSelectedEligibility[criteria] = id;
     let newState = this.state;
     newState.selectedEligibility = newSelectedEligibility;
     this.setState(newState);
@@ -134,14 +135,8 @@ export class A extends Component {
   };
 
   toggleSelectedEligibility = (criteria, id) => () => {
-    let selected = this.state.selectedEligibility[criteria];
-    if (selected.hasOwnProperty(id)) {
-      delete selected[id];
-    } else {
-      selected[id] = id;
-    }
     let newSelectedEligibility = this.state.selectedEligibility;
-    newSelectedEligibility[criteria] = selected;
+    newSelectedEligibility[criteria] = id;
     this.setState({ selectedEligibility: newSelectedEligibility });
   };
 
@@ -150,9 +145,9 @@ export class A extends Component {
       section: this.state.section,
       selectedNeeds: {},
       selectedEligibility: {
-        patronType: {},
-        serviceType: {},
-        statusAndVitals: {}
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
       }
     };
     this.setState(newState);

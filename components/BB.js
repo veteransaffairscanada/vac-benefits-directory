@@ -16,7 +16,7 @@ import Select from "material-ui/Select";
 import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
-import DropDownSelector from "../components/dropdown_selector";
+import RadioSelector from "../components/radio_selector";
 import NeedsSelector from "./needs_selector";
 
 const styles = theme => ({
@@ -78,17 +78,11 @@ export class BB extends Component {
 
   eligibilityMatch = (path, selected) => {
     let matches = true;
-    [
-      "serviceType",
-      "patronType",
-      "statusAndVitals"
-      // "serviceStatus",
-      // "servicePersonVitalStatus"
-    ].forEach(criteria => {
+    ["serviceType", "patronType", "statusAndVitals"].forEach(criteria => {
       if (
-        Object.keys(selected[criteria]).length &&
+        selected[criteria] != "" &&
         path[criteria] !== "na" &&
-        !selected[criteria].hasOwnProperty(path[criteria])
+        selected[criteria] != path[criteria]
       ) {
         matches = false;
       }
@@ -280,7 +274,7 @@ export class BB extends Component {
                   unmountOnExit
                 >
                   <Grid item xs={12}>
-                    <DropDownSelector
+                    <RadioSelector
                       id="patronTypeFilter"
                       t={t}
                       legend={t("B3.Benefits for")}
@@ -296,7 +290,7 @@ export class BB extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <DropDownSelector
+                    <RadioSelector
                       id="serviceTypeFilter"
                       t={t}
                       legend={t("B3.ServiceType")}
@@ -312,8 +306,8 @@ export class BB extends Component {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <DropDownSelector
-                      id="serviceStatusFilter"
+                    <RadioSelector
+                      id="statusAndVitalsFilter"
                       t={t}
                       legend={t("B3.serviceStatus")}
                       filters={statusAndVitals}
@@ -323,15 +317,9 @@ export class BB extends Component {
                       setUserProfile={id =>
                         this.props.setUserProfile("statusAndVitals", id)
                       }
-                      // isDisabled={
-                      //   !this.props.selectedEligibility.serviceType.hasOwnProperty(
-                      //     "CAF"
-                      //   )
-                      // }
-                      // disabledString={t("disabled-serviceStatusFilter")}
+                      isDisabled={false}
                     />
                   </Grid>
-
                   <br />
 
                   <Grid item xs={12}>

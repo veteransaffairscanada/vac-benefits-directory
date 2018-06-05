@@ -48,9 +48,9 @@ describe("A", () => {
       section: "S",
       selectedNeeds: { health: "health", financial: "financial" },
       selectedEligibility: {
-        patronType: { family: "family" },
-        serviceType: { CAF: "CAF" },
-        statusAndVitals: {}
+        patronType: "family",
+        serviceType: "CAF",
+        statusAndVitals: ""
       }
     };
     const expectedURL =
@@ -65,22 +65,20 @@ describe("A", () => {
       section: "S",
       selectedNeeds: { health: "health", financial: "financial" },
       selectedEligibility: {
-        patronType: { family: "family" },
-        serviceType: { CAF: "CAF" },
-        statusAndVitals: {}
+        patronType: "family",
+        serviceType: "CAF",
+        statusAndVitals: ""
       }
     });
-    expect(AInstance.state.selectedEligibility.serviceType).toEqual({
-      CAF: "CAF"
-    });
+    expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
     AInstance.clearFilters();
     expect(AInstance.state).toEqual({
       section: "S",
       selectedNeeds: {},
       selectedEligibility: {
-        patronType: {},
-        serviceType: {},
-        statusAndVitals: {}
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
       }
     });
     expect(Router.push).toBeCalledWith("/A?section=S");
@@ -103,9 +101,9 @@ describe("A", () => {
       section: "test section",
       selectedNeeds: { health: "health", financial: "financial" },
       selectedEligibility: {
-        patronType: { family: "family" },
-        serviceType: { CAF: "CAF" },
-        statusAndVitals: {}
+        patronType: "family",
+        serviceType: "CAF",
+        statusAndVitals: ""
       }
     };
     expect(mountedA().state()).toEqual(expectedState);
@@ -117,9 +115,7 @@ describe("A", () => {
     Router.onRouteChangeStart(url);
     expect(AInstance.state.section).toEqual("test_section");
     expect(AInstance.state.selectedNeeds).toEqual({ a: "a", b: "b" });
-    expect(AInstance.state.selectedEligibility.patronType).toEqual({
-      cc: "cc"
-    });
+    expect(AInstance.state.selectedEligibility.patronType).toEqual("cc");
   });
 
   it("toggleSelectedEligibility adds and removes id", () => {

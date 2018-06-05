@@ -38,9 +38,9 @@ describe("BB", () => {
       needs: needsFixture,
       examples: [],
       selectedEligibility: {
-        serviceType: {},
-        patronType: {},
-        statusAndVitals: {}
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
       },
       toggleSelectedEligibility: jest.fn(),
       classes: {
@@ -114,9 +114,9 @@ describe("BB", () => {
         }
       ];
       selectedEligibility = {
-        patronType: {},
-        serviceType: {},
-        statusAndVitals: {}
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
       };
     });
 
@@ -127,7 +127,7 @@ describe("BB", () => {
 
     // only 0 matches, but it's a child of 2, so we show 2
     it("display benefits 2 if patronType p1", () => {
-      selectedEligibility.patronType = { p1: "p1" };
+      selectedEligibility.patronType = "p1";
       expect(filteredBenefits().map(b => b.id)).toEqual(["2"]);
     });
   });
@@ -188,9 +188,9 @@ describe("BB", () => {
 
   it("has the selected benefit cards", () => {
     props.selectedEligibility = {
-      serviceType: { CAF: 1 },
-      patronType: { ["service-person"]: 1 },
-      statusAndVitals: { released: 1 }
+      serviceType: "CAF",
+      patronType: "service-person",
+      statusAndVitals: "releasedAlive"
     };
     const benefitCards = shallow_BB().find(".BenefitCards");
     expect(benefitCards.length).toEqual(1);
