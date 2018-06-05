@@ -5,6 +5,8 @@ const benefitsFixture = [
     vacNameFr: "Prix ​​d'invalidité",
     benefitPageEn: "English link",
     benefitPageFr: "French link",
+    oneLineDescriptionEn: "English benefit Description",
+    oneLineDescriptionFr: "Description de l'avantage français",
     availableIndependently: "Requires Gateway Benefit",
     examples: ["0", "1"]
   },
