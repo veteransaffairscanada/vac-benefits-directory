@@ -20,15 +20,23 @@ import RadioSelector from "../components/radio_selector";
 import NeedsSelector from "./needs_selector";
 
 const styles = theme => ({
+  actions: {
+    display: "flex"
+  },
+  avatar: {
+    backgroundColor: red[500]
+  },
+  benefitsCount: {
+    fontSize: "24px",
+    marginTop: "-10px",
+    textAlign: "center"
+  },
   card: {
     maxWidth: 400
   },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
-  },
-  actions: {
-    display: "flex"
+  collapse: {
+    textAlign: "right",
+    textDecoration: "underline"
   },
   expand: {
     transform: "rotate(0deg)",
@@ -40,19 +48,29 @@ const styles = theme => ({
   expandOpen: {
     transform: "rotate(180deg)"
   },
-  avatar: {
-    backgroundColor: red[500]
-  },
-  collapse: {
-    textAlign: "right",
-    textDecoration: "underline"
+  filterBox: {
+    border: "1px solid #eee",
+    padding: "20px !important"
   },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120
   },
+  media: {
+    height: 0,
+    paddingTop: "56.25%" // 16:9
+  },
   sortBy: {
     textAlign: "right"
+  },
+  subTitle: {
+    fontSize: "20px",
+    fontWeight: "100",
+    paddingBottom: "25px"
+  },
+  title: {
+    fontSize: "36px",
+    padding: "15px 0"
   }
 });
 
@@ -244,11 +262,12 @@ export class BB extends Component {
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <Typography variant="display2">{t("B3.title")}</Typography>
-              <br />
-              <Typography variant="headline">{t("B3.subtitle")}</Typography>
+              <Typography className={classes.title}>{t("B3.title")}</Typography>
+              <Typography className={classes.subTitle}>
+                {t("B3.subtitle")}
+              </Typography>
             </Grid>
-            <Grid item md={3} sm={5} xs={12}>
+            <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
               <Grid container spacing={8}>
                 <Grid item xs={12}>
                   <Typography variant="title">
@@ -348,19 +367,20 @@ export class BB extends Component {
             <Grid item md={9} sm={7} xs={12}>
               <Grid item xs={12}>
                 <Typography
-                  variant="headline"
-                  style={{ textAlign: "center" }}
-                  className="BenefitsCounter"
+                  className={"BenefitsCounter " + classes.benefitsCount}
                 >
                   {this.countString(filteredBenefits.length, t)}
                 </Typography>
                 {filteredBenefits.length > 0 ? (
-                  <Typography
-                    variant="subheading"
-                    style={{ textAlign: "center" }}
+                  <p
+                    style={{
+                      fontWeight: "100",
+                      margin: "5px",
+                      textAlign: "center"
+                    }}
                   >
                     {t("B3.check eligibility")}
-                  </Typography>
+                  </p>
                 ) : (
                   ""
                 )}
