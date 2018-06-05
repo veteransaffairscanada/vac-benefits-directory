@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "material-ui";
-import Collapse from "material-ui/transitions/Collapse";
-import IconButton from "material-ui/IconButton";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
-import red from "material-ui/colors/red";
 import Typography from "material-ui/Typography";
 import { InputLabel } from "material-ui/Input";
 import { MenuItem } from "material-ui/Menu";
@@ -20,33 +16,14 @@ import RadioSelector from "../components/radio_selector";
 import NeedsSelector from "./needs_selector";
 
 const styles = theme => ({
-  actions: {
-    display: "flex"
-  },
-  avatar: {
-    backgroundColor: red[500]
-  },
   benefitsCount: {
     fontSize: "24px",
     marginTop: "-10px",
     textAlign: "center"
   },
-  card: {
-    maxWidth: 400
-  },
   collapse: {
     textAlign: "right",
     textDecoration: "underline"
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
-    marginLeft: "auto"
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
   },
   filterBox: {
     border: "1px solid #eee",
@@ -55,10 +32,6 @@ const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
   },
   sortBy: {
     textAlign: "right"
@@ -76,14 +49,9 @@ const styles = theme => ({
 
 export class BB extends Component {
   state = {
-    expanded: true,
     sortByValue: "relevance"
   };
   children = [];
-
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
-  };
 
   collapseAllBenefits = () => {
     this.children.forEach(c => {
@@ -272,84 +240,63 @@ export class BB extends Component {
                 <Grid item xs={12}>
                   <Typography variant="title">
                     {t("B3.Filter Benefits")}
-                    <IconButton
-                      id="expandButton"
-                      className={classnames(classes.expand, {
-                        [classes.expandOpen]: this.state.expanded
-                      })}
-                      onClick={this.handleExpandClick}
-                      aria-expanded={this.state.expanded}
-                      aria-label="Show more"
-                    >
-                      <ExpandMoreIcon />
-                    </IconButton>
                   </Typography>
                 </Grid>
 
-                <Collapse
-                  id="collapseBlock"
-                  in={this.state.expanded}
-                  timeout="auto"
-                  unmountOnExit
-                >
-                  <Grid item xs={12}>
-                    <RadioSelector
-                      id="patronTypeFilter"
-                      t={t}
-                      legend={t("B3.Benefits for")}
-                      filters={patronTypes}
-                      selectedFilters={
-                        this.props.selectedEligibility.patronType
-                      }
-                      setUserProfile={id =>
-                        this.props.setUserProfile("patronType", id)
-                      }
-                      isDisabled={false}
-                    />
-                  </Grid>
+                <Grid item xs={12}>
+                  <RadioSelector
+                    id="patronTypeFilter"
+                    t={t}
+                    legend={t("B3.Benefits for")}
+                    filters={patronTypes}
+                    selectedFilters={this.props.selectedEligibility.patronType}
+                    setUserProfile={id =>
+                      this.props.setUserProfile("patronType", id)
+                    }
+                    isDisabled={false}
+                  />
+                </Grid>
 
-                  <Grid item xs={12}>
-                    <RadioSelector
-                      id="serviceTypeFilter"
-                      t={t}
-                      legend={t("B3.ServiceType")}
-                      filters={serviceTypes}
-                      selectedFilters={
-                        this.props.selectedEligibility.serviceType
-                      }
-                      setUserProfile={id =>
-                        this.props.setUserProfile("serviceType", id)
-                      }
-                      isDisabled={false}
-                    />
-                  </Grid>
+                <Grid item xs={12}>
+                  <RadioSelector
+                    id="serviceTypeFilter"
+                    t={t}
+                    legend={t("B3.ServiceType")}
+                    filters={serviceTypes}
+                    selectedFilters={this.props.selectedEligibility.serviceType}
+                    setUserProfile={id =>
+                      this.props.setUserProfile("serviceType", id)
+                    }
+                    isDisabled={false}
+                  />
+                </Grid>
 
-                  <Grid item xs={12}>
-                    <RadioSelector
-                      id="statusAndVitalsFilter"
-                      t={t}
-                      legend={t("B3.serviceStatus")}
-                      filters={statusAndVitals}
-                      selectedFilters={
-                        this.props.selectedEligibility.statusAndVitals
-                      }
-                      setUserProfile={id =>
-                        this.props.setUserProfile("statusAndVitals", id)
-                      }
-                      isDisabled={false}
-                    />
-                  </Grid>
-                  <br />
+                <Grid item xs={12}>
+                  <RadioSelector
+                    id="statusAndVitalsFilter"
+                    t={t}
+                    legend={t("B3.serviceStatus")}
+                    filters={statusAndVitals}
+                    selectedFilters={
+                      this.props.selectedEligibility.statusAndVitals
+                    }
+                    setUserProfile={id =>
+                      this.props.setUserProfile("statusAndVitals", id)
+                    }
+                    isDisabled={false}
+                  />
+                </Grid>
+                <br />
 
-                  <Grid item xs={12}>
-                    <NeedsSelector
-                      t={t}
-                      needs={this.props.needs}
-                      selectedNeeds={this.props.selectedNeeds}
-                      handleChange={this.props.setSelectedNeeds}
-                    />
-                  </Grid>
-                </Collapse>
+                <Grid item xs={12}>
+                  <NeedsSelector
+                    t={t}
+                    needs={this.props.needs}
+                    selectedNeeds={this.props.selectedNeeds}
+                    handleChange={this.props.setSelectedNeeds}
+                  />
+                </Grid>
+
                 <Grid item xs={12}>
                   <br /> <br />
                   <Button
