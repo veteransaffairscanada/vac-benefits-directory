@@ -63,7 +63,7 @@ class NeedsSelector extends Component {
             {t("Clear")}
           </Button>
         </Grid>
-        <Grid item xs={12} className={classes.root}>
+        <Grid id="needs_buttons" item xs={12} className={classes.root}>
           {needs.map(need => (
             <Button
               disableRipple={true}

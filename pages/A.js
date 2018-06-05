@@ -146,6 +146,7 @@ export class A extends Component {
   clearFilters = () => {
     const newState = {
       section: this.state.section,
+      selectedNeeds: this.state.selectedNeeds,
       selectedEligibility: {
         patronType: "",
         serviceType: "",
@@ -159,7 +160,8 @@ export class A extends Component {
   clearNeeds = () => {
     const newState = {
       section: this.state.section,
-      selectedNeeds: {}
+      selectedNeeds: {},
+      selectedEligibility: this.state.selectedEligibility
     };
     this.setState(newState);
     this.setURL(newState);

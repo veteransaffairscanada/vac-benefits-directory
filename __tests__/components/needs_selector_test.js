@@ -25,7 +25,9 @@ describe("NeedsSelector", () => {
   });
 
   it("has the exact number of children as passed", () => {
-    const select = mountedNeedsSelector().find("Button");
+    const select = mountedNeedsSelector()
+      .find("#needs_buttons")
+      .find("Button");
     expect(select.length).toEqual(needsFixture.length);
   });
 
@@ -42,6 +44,7 @@ describe("NeedsSelector", () => {
 
   it("fires the the handleChange function when a need is selected", () => {
     mountedNeedsSelector()
+      .find("#needs_buttons")
       .find("Button")
       .at(0)
       .simulate("click");
