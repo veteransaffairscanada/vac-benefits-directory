@@ -10,9 +10,9 @@ describe("Page A", () => {
   });
 
   it("Has a language button", () => {
-    cy.contains("Filter Benefits");
-    cy.contains("Filtrer les avantages").should("not.exist");
+    cy.contains("Filter by eligibility");
+    cy.contains("Filtrer par admissibilité").should("not.exist");
     cy.contains("Français").click();
-    cy.contains("Filtrer les avantages");
+    cy.contains("Filtrer par admissibilité");
   });
 });
