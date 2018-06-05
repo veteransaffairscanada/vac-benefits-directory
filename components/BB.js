@@ -194,7 +194,7 @@ export class BB extends Component {
       case 0:
         return t("B3.No benefits");
       case 1:
-        return t("B3.One Benefit");
+        return t("B3.One benefit");
       default:
         return t("B3.x benefits to consider", { x: x });
     }
