@@ -10,6 +10,7 @@ const styles = theme => ({
     margin: theme.spacing.unit
   }
 });
+
 class RadioSelector extends React.Component {
   handleSelect = event => {
     this.props.setUserProfile(event.target.value);
@@ -17,9 +18,8 @@ class RadioSelector extends React.Component {
 
   render() {
     const { classes, t } = this.props;
-
     return (
-      <FormControl required className={classes.formControl}>
+      <FormControl className={classes.formControl}>
         <FormLabel>{this.props.legend}</FormLabel>
         <RadioGroup
           aria-label={this.props.legend}
