@@ -318,8 +318,18 @@ export class BB extends Component {
                   </Grid>
 
                   <br />
+
+                  <Grid item xs={12}>
+                    <NeedsSelector
+                      t={t}
+                      needs={this.props.needs}
+                      selectedNeeds={this.props.selectedNeeds}
+                      handleChange={this.props.setSelectedNeeds}
+                    />
+                  </Grid>
                 </Collapse>
                 <Grid item xs={12}>
+                  <br /> <br />
                   <Button
                     id="ClearFilters"
                     variant="raised"
@@ -334,15 +344,6 @@ export class BB extends Component {
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
               <Grid container spacing={24}>
-                <Grid item xs={12}>
-                  <NeedsSelector
-                    t={t}
-                    needs={this.props.needs}
-                    selectedNeeds={this.props.selectedNeeds}
-                    handleChange={this.props.setSelectedNeeds}
-                  />
-                </Grid>
-
                 <Grid item xs={12} className={classnames(classes.sortBy)}>
                   <FormControl
                     id="sortBySelector"

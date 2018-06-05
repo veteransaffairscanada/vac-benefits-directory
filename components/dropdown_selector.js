@@ -35,7 +35,7 @@ class DropDownSelector extends React.Component {
 
     return (
       <FormControl className={classes.formControl} {...disabledStatus}>
-        <InputLabel htmlFor="age-simple">{t(this.props.legend)}</InputLabel>
+        <InputLabel htmlFor="age-simple">{this.props.legend}</InputLabel>
         <Select
           value={selectedFilter}
           onChange={this.handleSelect}

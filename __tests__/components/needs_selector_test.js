@@ -24,19 +24,9 @@ describe("NeedsSelector", () => {
     _mountedNeedsSelector = undefined;
   });
 
-  it("contains the prompt", () => {
-    expect(
-      mountedNeedsSelector()
-        .find("InputLabel")
-        .text()
-    ).toContain("What do you need help with");
-  });
-
   it("has the exact number of children as passed", () => {
-    const select = mountedNeedsSelector()
-      .find("Select")
-      .at(0);
-    expect(select.props().children.length).toEqual(needsFixture.length);
+    const select = mountedNeedsSelector().find("Button");
+    expect(select.length).toEqual(needsFixture.length);
   });
 
   it("works if needs haven't loaded yet", () => {
@@ -50,11 +40,11 @@ describe("NeedsSelector", () => {
     expect(mountedNeedsSelector());
   });
 
-  it("fires the the handleChange function when a option is selected", () => {
-    const select = mountedNeedsSelector()
-      .find("Select")
-      .at(0);
-    select.props().onChange({ target: { value: [needsFixture[0].id] } });
+  it("fires the the handleChange function when a need is selected", () => {
+    mountedNeedsSelector()
+      .find("Button")
+      .at(0)
+      .simulate("click");
     expect(props.handleChange).toHaveBeenCalled();
   });
 });
