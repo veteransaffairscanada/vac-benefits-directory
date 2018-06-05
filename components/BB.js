@@ -249,7 +249,7 @@ export class BB extends Component {
                 <Grid item xs={3}>
                   <Button
                     className={classnames(classes.clearButton)}
-                    id="ClearFilters"
+                    id="ClearEligibilityFilters"
                     variant="flat"
                     size="small"
                     onClick={() => {

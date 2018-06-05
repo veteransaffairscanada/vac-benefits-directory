@@ -93,7 +93,7 @@ NeedsSelector.propTypes = {
   selectedNeeds: PropTypes.object,
   t: PropTypes.func,
   theme: PropTypes.object,
-  clearNeeds: PropTypes.object
+  clearNeeds: PropTypes.func
 };
 
 export default withStyles(styles, { withTheme: true })(NeedsSelector);
