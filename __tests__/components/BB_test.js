@@ -8,6 +8,9 @@ import benefitsFixture from "../fixtures/benefits";
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 jest.mock("react-ga");
 
 describe("BB", () => {
@@ -54,6 +57,11 @@ describe("BB", () => {
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
+  });
+
+  it("passes axe tests", async () => {
+    let html = mounted_BB().html();
+    expect(await axe(html)).toHaveNoViolations();
   });
 
   describe("filteredBenefits", () => {

@@ -2,6 +2,9 @@ import React from "react";
 import Footer from "../../components/footer";
 import { mount } from "enzyme";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 describe("Footer", () => {
   // Setup
 
@@ -22,6 +25,10 @@ describe("Footer", () => {
   });
 
   // Tests
+  it("passes axe tests", async () => {
+    let html = mountedFooter().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("shows the privacy button", () => {
     expect(

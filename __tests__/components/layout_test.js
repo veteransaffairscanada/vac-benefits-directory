@@ -2,6 +2,9 @@ import React from "react";
 import Layout from "../../components/layout";
 import { mount } from "enzyme";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 jest.mock("react-ga");
 
 describe("Layout", () => {
@@ -25,6 +28,10 @@ describe("Layout", () => {
   });
 
   // Tests
+  it("passes axe tests", async () => {
+    let html = mountedLayout().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("shows Noscript if hideNoscript is false", () => {
     props.hideNoscript = false;

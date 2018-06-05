@@ -2,6 +2,9 @@ import React from "react";
 import SelectButton from "../../components/select_button";
 import { mount } from "enzyme";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 describe("SelectButton", () => {
   // Setup
 
@@ -34,6 +37,10 @@ describe("SelectButton", () => {
   });
 
   // Tests
+  it("passes axe tests", async () => {
+    let html = buttonChild().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("contains a Button with correct fullWidth, target and href", () => {
     const button = buttonChild();
