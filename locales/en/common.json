@@ -56,7 +56,8 @@
       "At this time there are no benefits that match your selections",
     "One benefit": "One benefit to consider",
     "check eligibility":
-      "Remember to read the eligibility criteria for each benefit before applying."
+      "Remember to read the eligibility criteria for each benefit before applying.",
+    "Filter by eligibility": "Filter by eligibility"
   },
   "index": {
     "data validation": "data validation",
@@ -120,5 +121,6 @@
   "Select all that apply": "Select all that apply",
   "Close all": "Close all",
   "stillServing": "Still-serving",
-  "releasedAlive": "Released"
+  "releasedAlive": "Released",
+  "Clear": "Clear"
 }

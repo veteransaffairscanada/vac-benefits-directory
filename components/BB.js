@@ -25,6 +25,10 @@ const styles = theme => ({
     textAlign: "right",
     textDecoration: "underline"
   },
+  clearButton: {
+    textAlign: "right",
+    textDecoration: "underline"
+  },
   filterBox: {
     border: "1px solid #eee",
     padding: "20px !important"
@@ -237,10 +241,23 @@ export class BB extends Component {
             </Grid>
             <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
               <Grid container spacing={8}>
-                <Grid item xs={12}>
+                <Grid item xs={9}>
                   <Typography variant="title">
-                    {t("B3.Filter Benefits")}
+                    {t("B3.Filter by eligibility")}
                   </Typography>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button
+                    className={classnames(classes.clearButton)}
+                    id="ClearFilters"
+                    variant="flat"
+                    size="small"
+                    onClick={() => {
+                      this.props.clearFilters();
+                    }}
+                  >
+                    {t("Clear")}
+                  </Button>
                 </Grid>
 
                 <Grid item xs={12}>
@@ -286,7 +303,6 @@ export class BB extends Component {
                     isDisabled={false}
                   />
                 </Grid>
-                <br />
 
                 <Grid item xs={12}>
                   <NeedsSelector
@@ -294,20 +310,8 @@ export class BB extends Component {
                     needs={this.props.needs}
                     selectedNeeds={this.props.selectedNeeds}
                     handleChange={this.props.setSelectedNeeds}
+                    clearNeeds={this.props.clearNeeds}
                   />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <br /> <br />
-                  <Button
-                    id="ClearFilters"
-                    variant="raised"
-                    onClick={() => {
-                      this.props.clearFilters();
-                    }}
-                  >
-                    {t("Show All Benefits")}
-                  </Button>
                 </Grid>
               </Grid>
             </Grid>
@@ -394,6 +398,7 @@ BB.propTypes = {
   benefits: PropTypes.array,
   classes: PropTypes.object,
   clearFilters: PropTypes.func,
+  clearNeeds: PropTypes.func,
   eligibilityPaths: PropTypes.array,
   examples: PropTypes.array,
   id: PropTypes.string,

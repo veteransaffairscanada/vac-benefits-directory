@@ -74,14 +74,43 @@ describe("A", () => {
     AInstance.clearFilters();
     expect(AInstance.state).toEqual({
       section: "S",
-      selectedNeeds: {},
+      selectedNeeds: { health: "health", financial: "financial" },
       selectedEligibility: {
         patronType: "",
         serviceType: "",
         statusAndVitals: ""
       }
     });
-    expect(Router.push).toBeCalledWith("/A?section=S");
+    expect(Router.push).toBeCalledWith(
+      "/A?section=S&selectedNeeds=health,financial"
+    );
+  });
+
+  it("has a correct clearNeeds function", () => {
+    let AInstance = mountedA().instance();
+    AInstance.setState({
+      section: "S",
+      selectedNeeds: { health: "health", financial: "financial" },
+      selectedEligibility: {
+        patronType: "family",
+        serviceType: "CAF",
+        statusAndVitals: ""
+      }
+    });
+    expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
+    AInstance.clearNeeds();
+    expect(AInstance.state).toEqual({
+      section: "S",
+      selectedNeeds: {},
+      selectedEligibility: {
+        patronType: "family",
+        serviceType: "CAF",
+        statusAndVitals: ""
+      }
+    });
+    expect(Router.push).toBeCalledWith(
+      "/A?section=S&patronType=family&serviceType=CAF"
+    );
   });
 
   it("componentWillMount sets state correctly from empty url", () => {

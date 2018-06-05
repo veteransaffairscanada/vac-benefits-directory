@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Typography from "material-ui/Typography";
+import classnames from "classnames";
 
 import "babel-polyfill/dist/polyfill";
-import { Button } from "material-ui";
+import { Grid, Button } from "material-ui";
 
 const styles = theme => ({
   root: {
@@ -20,6 +21,10 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     backgroundColor: "#364150",
     color: "white"
+  },
+  clearButton: {
+    textAlign: "right",
+    textDecoration: "underline"
   }
 });
 
@@ -38,17 +43,27 @@ class NeedsSelector extends Component {
     const { needs, classes, t } = this.props;
     const selectedNeeds = Object.keys(this.props.selectedNeeds);
     return (
-      <div>
-        <Typography variant="title">
-          {t("Filter by need")}
-          <br />
-        </Typography>
-        <Typography variant="subheading">
-          {t("Select all that apply")}
-          <br />
-          <br />
-        </Typography>
-        <div className={classes.root}>
+      <Grid container spacing={8}>
+        <Grid item xs={9}>
+          <Typography variant="title">{t("Filter by need")}</Typography>
+          <Typography variant="subheading">
+            {t("Select all that apply")}
+          </Typography>
+        </Grid>
+        <Grid item xs={3}>
+          <Button
+            className={classnames(classes.clearButton)}
+            id="ClearFilters"
+            variant="flat"
+            size="small"
+            onClick={() => {
+              this.props.clearNeeds();
+            }}
+          >
+            {t("Clear")}
+          </Button>
+        </Grid>
+        <Grid id="needs_buttons" item xs={12} className={classes.root}>
           {needs.map(need => (
             <Button
               disableRipple={true}
@@ -65,8 +80,8 @@ class NeedsSelector extends Component {
               {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
             </Button>
           ))}
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     );
   }
 }
@@ -77,7 +92,8 @@ NeedsSelector.propTypes = {
   needs: PropTypes.array,
   selectedNeeds: PropTypes.object,
   t: PropTypes.func,
-  theme: PropTypes.object
+  theme: PropTypes.object,
+  clearNeeds: PropTypes.object
 };
 
 export default withStyles(styles, { withTheme: true })(NeedsSelector);

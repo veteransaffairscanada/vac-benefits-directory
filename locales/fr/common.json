@@ -56,7 +56,8 @@
       "Pour le moment, aucun avantage ne correspond à vos sélections.",
     "One benefit": "Un avantage à considérer",
     "check eligibility":
-      "N'oubliez pas de lire les critères d'admissibilité pour chaque avantage avant de présenter une demande."
+      "N'oubliez pas de lire les critères d'admissibilité pour chaque avantage avant de présenter une demande.",
+    "Filter by eligibility": "Filtrer par admissibilité"
   },
   "index": {
     "data validation": "La validation des données",
@@ -122,5 +123,6 @@
   "Select all that apply": "Sélectionnez tout ce qui s'y rapporte",
   "stillServing": "Toujours en train de servir",
   "releasedAlive": "Libéré",
-  "Close all": "Ferme tout"
+  "Close all": "Ferme tout",
+  "Clear": "Clair"
 }
