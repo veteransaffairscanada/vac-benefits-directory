@@ -15,10 +15,16 @@ const styles = () => ({
   button: {
     marginTop: "30px"
   },
+  cardDescriptionText: {
+    fontSize: "20px",
+    fontWeight: 400,
+    padding: "15px 0px"
+  },
   collapse: {
     paddingTop: "25px"
   },
   root: {
+    marginLeft: "15px",
     width: "100%"
   },
   ExpansionPanelClosed: {
@@ -105,9 +111,7 @@ export class BenefitCard extends Component {
                 </Typography>
 
                 <Typography
-                  component="h3"
-                  className="cardDescription"
-                  variant="headline"
+                  className={"cardDescription " + classes.cardDescriptionText}
                 >
                   {this.props.t("current-language-code") === "en"
                     ? benefit.oneLineDescriptionEn

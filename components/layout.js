@@ -11,6 +11,11 @@ import Footer from "../components/footer";
 import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
 
+const Container = styled("div")`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
@@ -38,7 +43,7 @@ class Layout extends Component {
           <Content>
             <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
             <MenuBar i18n={this.props.i18n} t={this.props.t} />
-            <div role="main">{this.props.children}</div>
+            <Container role="main">{this.props.children}</Container>
           </Content>
           <FeedbackBar t={this.props.t} />
           <Footer t={this.props.t} />
