@@ -8,8 +8,9 @@ import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
 
+import GuidedExperienceProfile from "../components/guided_experience_profile";
+
 import BB from "../components/BB";
-import A1 from "../components/A1";
 import A2 from "../components/A2";
 import A3 from "../components/A3";
 import A4 from "../components/A4";
@@ -204,10 +205,24 @@ export class A extends Component {
       clearFilters: this.clearFilters,
       clearNeeds: this.clearNeeds
     };
-
+    let question;
     switch (section) {
       case "A1":
-        return <A1 id="A1" {...commonProps} />;
+        question = "patronType";
+        return (
+          <GuidedExperienceProfile
+            options={Array.from(
+              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+            ).filter(st => st !== "na")}
+            onClick={option => this.setUserProfile(question, option)}
+            isDown={option =>
+              this.state.selectedEligibility[question] === option
+            }
+            nextSection="A2"
+            setSection={this.setSection}
+            t={this.props.t}
+          />
+        );
       case "A2":
         return <A2 id="A2" {...commonProps} />;
       case "A3":
