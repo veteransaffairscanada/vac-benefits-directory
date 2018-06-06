@@ -11,6 +11,7 @@ import { logEvent } from "../utils/analytics";
 import BB from "../components/BB";
 import A1 from "../components/A1";
 import A2 from "../components/A2";
+import A3 from "../components/A3";
 
 export class A extends Component {
   constructor() {
@@ -208,7 +209,8 @@ export class A extends Component {
         return <A1 id="A1" {...commonProps} />;
       case "A2":
         return <A2 id="A2" {...commonProps} />;
-
+      case "A3":
+        return <A3 id="A3" {...commonProps} />;
       case "BB":
         return <BB id="BB" {...commonProps} />;
     }
