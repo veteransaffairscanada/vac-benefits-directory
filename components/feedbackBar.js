@@ -1,31 +1,76 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Typography } from "material-ui";
+import { Button } from "material-ui";
 import styled from "react-emotion";
 import { logEvent } from "../utils/analytics";
+import TextField from "material-ui/TextField";
+
+const CommentBox = styled("div")`
+  width: 100%;
+  height: 300px;
+  background-color: #eee;
+  color: #000;
+  text-align: left;
+  font-size: 14px;
+  padding: 5px 0 0 15px;
+  border-bottom: 1px solid #ddd;
+`;
 
 const Div = styled("div")`
   width: 100%;
   height: 40px;
   background-color: #eee;
   color: #000;
-  text-align: center;
+  text-align: left;
   font-size: 14px;
-  padding-top: 5px;
+  padding: 5px 0 0 15px;
 `;
 
 const Inner = styled("div")`
-  width: 100%;
   background-color: #eee;
   color: #000;
-  text-align: center;
+  text-align: left;
   font-size: 14px;
   padding-top: 10px;
 `;
 
-class FeedbackBar extends Component {
+const InnerRight = styled("div")`
+  background-color: #eee;
+  color: #000;
+  text-align: right;
+  font-size: 14px;
+  padding: 10px 40px 0 0;
+  float: right;
+`;
+
+const TextHold = styled("div")`
+  width: 400px;
+`;
+
+export class FeedbackBar extends Component {
   state = {
+    action: "",
+    commentFormToggled: false,
+    commentSubmitted: false,
+    failure: "",
     feedbackSubmitted: false
+  };
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    });
+  };
+
+  sendComment = () => {
+    this.setState({ commentFormToggled: false });
+    this.setState({ commentSubmitted: true });
+    let payload = {
+      action: this.state.action,
+      failure: this.state.failure,
+      url: window.location.href
+    };
+    return payload;
   };
 
   sendFeedback = answer => {
@@ -33,32 +78,79 @@ class FeedbackBar extends Component {
     logEvent("Page Feedback (" + this.props.t("feedback-prompt") + ")", answer);
   };
 
+  toggleCommentForm = () => {
+    this.setState({ commentFormToggled: !this.state.commentFormToggled });
+  };
+
   render() {
     const { t } = this.props;
 
-    if (this.state.feedbackSubmitted) {
-      return (
-        <Div role="navigation">
-          <Typography style={{ flex: 1 }} />
-          <Inner>{t("feedback-response")}</Inner>
-          <Typography style={{ flex: 1 }} />
+    return (
+      <div role="navigation">
+        {this.state.commentFormToggled ? (
+          <CommentBox>
+            <h2>{t("comment-help-us-improve")}</h2>
+            <p>{t("comment-privacy-disclaimer")}</p>
+            <TextHold>
+              <TextField
+                id="commentWhatWereYouDoing"
+                label={t("comment-what-were-you-doing")}
+                margin="normal"
+                fullWidth={true}
+                onChange={this.handleChange("action")}
+                value={this.state.action}
+              />
+            </TextHold>
+            <TextHold>
+              <TextField
+                id="commentWhatWentWrong"
+                label={t("comment-what-went-wrong")}
+                margin="normal"
+                fullWidth={true}
+                onChange={this.handleChange("failure")}
+                value={this.state.failure}
+              />
+            </TextHold>
+            <br />
+            <Button
+              id="sendComment"
+              variant="raised"
+              onClick={() => this.sendComment()}
+            >
+              {t("send")}
+            </Button>
+          </CommentBox>
+        ) : null}
+        <Div>
+          {this.state.feedbackSubmitted ? (
+            <Inner>{t("feedback-response")}</Inner>
+          ) : (
+            <span>
+              {t("feedback-prompt")} &nbsp;
+              <Button id="feedbackYes" onClick={() => this.sendFeedback("Yes")}>
+                {t("yes")}
+              </Button>
+              <Button id="feedbackNo" onClick={() => this.sendFeedback("No")}>
+                {t("no")}
+              </Button>
+            </span>
+          )}
+          {this.state.commentSubmitted ? (
+            <InnerRight>{t("comment-response")}</InnerRight>
+          ) : (
+            <InnerRight>
+              <span
+                id="commentToggle"
+                style={{ cursor: "pointer" }}
+                onClick={() => this.toggleCommentForm()}
+              >
+                {t("comment-prompt")}
+              </span>
+            </InnerRight>
+          )}
         </Div>
-      );
-    } else {
-      return (
-        <Div role="navigation">
-          <Typography style={{ flex: 1 }} />
-          {t("feedback-prompt")} &nbsp;
-          <Button id="feedbackYes" onClick={() => this.sendFeedback("Yes")}>
-            {t("yes")}
-          </Button>
-          <Button id="feedbackNo" onClick={() => this.sendFeedback("No")}>
-            {t("no")}
-          </Button>
-          <Typography style={{ flex: 1 }} />
-        </Div>
-      );
-    }
+      </div>
+    );
   }
 }
 
