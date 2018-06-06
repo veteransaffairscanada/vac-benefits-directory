@@ -95,22 +95,6 @@ export class EmbeddedBenefitCard extends Component {
               </Typography>
             </Grid>
             <Grid item xs={12}>
-              <Typography variant="title">{t("Available to")}:</Typography>
-
-              <ul>
-                <li className={classnames(classes.bullet)}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </li>
-                <li className={classnames(classes.bullet)}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                  eget.
-                </li>
-              </ul>
-            </Grid>
-            <Grid item xs={12}>
               <Button
                 size="small"
                 target="_blank"
