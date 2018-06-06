@@ -70,6 +70,7 @@ export class BenefitCard extends Component {
   componentDidMount() {
     this.props.onRef(this);
   }
+
   componentWillUnmount() {
     this.props.onRef(undefined);
   }
@@ -77,11 +78,19 @@ export class BenefitCard extends Component {
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
+
     const childBenefits = benefit.childBenefits
       ? this.props.allBenefits.filter(
           ab => benefit.childBenefits.indexOf(ab.id) > -1
         )
       : [];
+
+    const veteranBenefits = childBenefits.filter(
+      ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
+    );
+    const familyBenefits = childBenefits.filter(
+      ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
+    );
 
     const examples =
       typeof benefit.examples !== "undefined" &&
@@ -144,48 +153,75 @@ export class BenefitCard extends Component {
                     })}
                   </Typography>
                 </Grid>
+
                 <Grid item xs={12}>
-                  <div className={classes.children}>
-                    {childBenefits.length > 0 ? (
+                  {veteranBenefits.length > 0 ? (
+                    <div className={classes.children}>
                       <Typography className={classes.ChildBenefitDesc}>
-                        {t("child benefits")}:
+                        {t("Veteran child benefits")}:
                       </Typography>
-                    ) : (
-                      ""
-                    )}
-                    <div>
-                      {childBenefits.map((cb, i) => (
-                        <EmbeddedBenefitCard
-                          id={"cb" + i}
-                          className="BenefitCards"
-                          benefit={cb}
-                          allBenefits={this.props.allBenefits}
-                          t={this.props.t}
-                          key={cb.id}
-                          onRef={ref => this.children.push(ref)}
-                        />
-                      ))}
+                      <div>
+                        {veteranBenefits.map((cb, i) => (
+                          <EmbeddedBenefitCard
+                            id={"cb" + i}
+                            className="BenefitCards"
+                            benefit={cb}
+                            allBenefits={this.props.allBenefits}
+                            t={this.props.t}
+                            key={cb.id}
+                            onRef={ref => this.children.push(ref)}
+                          />
+                        ))}
+                        <br />
+                        <br />
+                      </div>
                     </div>
-                    <Button
-                      className={classes.button}
-                      target="_blank"
-                      variant="raised"
-                      onClick={() =>
-                        this.logExit(
-                          this.props.t("current-language-code") === "en"
-                            ? benefit.benefitPageEn
-                            : benefit.benefitPageFr
-                        )
-                      }
-                      href={
+                  ) : (
+                    ""
+                  )}
+
+                  {familyBenefits.length > 0 ? (
+                    <div className={classes.children}>
+                      <Typography className={classes.ChildBenefitDesc}>
+                        {t("Family child benefits")}:
+                      </Typography>
+                      <div>
+                        {familyBenefits.map((cb, i) => (
+                          <EmbeddedBenefitCard
+                            id={"cb" + i}
+                            className="BenefitCards"
+                            benefit={cb}
+                            allBenefits={this.props.allBenefits}
+                            t={this.props.t}
+                            key={cb.id}
+                            onRef={ref => this.children.push(ref)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  <Button
+                    className={classes.button}
+                    target="_blank"
+                    variant="raised"
+                    onClick={() =>
+                      this.logExit(
                         this.props.t("current-language-code") === "en"
                           ? benefit.benefitPageEn
                           : benefit.benefitPageFr
-                      }
-                    >
-                      {this.props.t("Find out more")}
-                    </Button>
-                  </div>
+                      )
+                    }
+                    href={
+                      this.props.t("current-language-code") === "en"
+                        ? benefit.benefitPageEn
+                        : benefit.benefitPageFr
+                    }
+                  >
+                    {this.props.t("Find out more")}
+                  </Button>
                 </Grid>
               </Grid>
             </ExpansionPanelDetails>
@@ -198,6 +234,8 @@ export class BenefitCard extends Component {
 
 BenefitCard.propTypes = {
   allBenefits: PropTypes.array,
+  veteranBenefitIds: PropTypes.array,
+  familyBenefitIds: PropTypes.array,
   benefit: PropTypes.object,
   classes: PropTypes.object,
   examples: PropTypes.array,
