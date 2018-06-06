@@ -25,10 +25,6 @@ const styles = theme => ({
     textAlign: "right",
     textDecoration: "underline"
   },
-  clearButton: {
-    textAlign: "right",
-    textDecoration: "underline"
-  },
   filterBox: {
     border: "1px solid #eee",
     padding: "20px !important"

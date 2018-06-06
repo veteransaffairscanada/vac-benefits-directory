@@ -13,6 +13,10 @@ const styles = () => ({
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap"
+  },
+  clearButton: {
+    textAlign: "right",
+    textDecoration: "underline"
   }
 });
 
@@ -64,9 +68,8 @@ class ProfileSelector extends Component {
           </Button>
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} id="patronTypeFilter">
           <RadioSelector
-            id="patronTypeFilter"
             t={t}
             legend={t("B3.Benefits for")}
             filters={patronTypes}
@@ -76,9 +79,8 @@ class ProfileSelector extends Component {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} id="serviceTypeFilter">
           <RadioSelector
-            id="serviceTypeFilter"
             t={t}
             legend={t("B3.ServiceType")}
             filters={serviceTypes}
@@ -88,9 +90,8 @@ class ProfileSelector extends Component {
           />
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} id="statusAndVitalsFilter">
           <RadioSelector
-            id="statusAndVitalsFilter"
             t={t}
             legend={t("B3.serviceStatus")}
             filters={statusAndVitals}
