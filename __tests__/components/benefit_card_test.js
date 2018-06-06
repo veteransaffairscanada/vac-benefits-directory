@@ -22,6 +22,8 @@ describe("BenefitCard", () => {
       t: () => "en",
       benefit: benefitsFixture[0],
       allBenefits: benefitsFixture,
+      veteranBenefitIds: [],
+      familyBenefitIds: [],
       examples: examplesFixture,
       classes: {},
       onRef: foo => foo
