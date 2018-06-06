@@ -174,6 +174,14 @@ describe("BB", () => {
     });
   });
 
+  it("has the ProfileSelector component", () => {
+    expect(mounted_BB().find("ProfileSelector").length).toEqual(1);
+  });
+
+  it("has the NeedsSelector component", () => {
+    expect(mounted_BB().find("NeedsSelector").length).toEqual(1);
+  });
+
   // Broken test
   // used to worked before because of other wrong code
   // ;(
