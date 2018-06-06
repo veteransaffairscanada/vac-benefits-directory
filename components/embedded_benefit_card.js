@@ -63,6 +63,7 @@ export class EmbeddedBenefitCard extends Component {
 
   render() {
     const { t, classes, benefit } = this.props;
+    const language = t("current-language-code");
     return (
       <ExpansionPanel
         className={
@@ -78,9 +79,7 @@ export class EmbeddedBenefitCard extends Component {
           className={classes.ExpansionPanelSummary}
         >
           <Typography className={classnames(classes.heading)}>
-            {t("current-language-code") === "en"
-              ? benefit.vacNameEn
-              : benefit.vacNameFr}
+            {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -90,7 +89,9 @@ export class EmbeddedBenefitCard extends Component {
                 variant="title"
                 className={classnames(classes.description)}
               >
-                {t("Benefit Description")}
+                {language === "en"
+                  ? benefit.oneLineDescriptionEn
+                  : benefit.oneLineDescriptionFr}
               </Typography>
             </Grid>
             <Grid item xs={12}>
@@ -116,13 +117,13 @@ export class EmbeddedBenefitCard extends Component {
                 variant="raised"
                 onClick={() =>
                   this.logExit(
-                    this.props.t("current-language-code") === "en"
+                    language === "en"
                       ? benefit.benefitPageEn
                       : benefit.benefitPageFr
                   )
                 }
                 href={
-                  this.props.t("current-language-code") === "en"
+                  language === "en"
                     ? benefit.benefitPageEn
                     : benefit.benefitPageFr
                 }

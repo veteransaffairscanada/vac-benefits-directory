@@ -65,7 +65,7 @@ describe("EmbeddedBenefitCard", () => {
         .find("Typography")
         .first()
         .text()
-    ).toEqual("en");
+    ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
   });
 
   describe("when language is French", () => {
@@ -86,6 +86,13 @@ describe("EmbeddedBenefitCard", () => {
           .find("Button")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
+      expect(
+        mountedEmbeddedBenefitCard()
+          .find("ExpansionPanelDetails")
+          .find("Typography")
+          .first()
+          .text()
+      ).toEqual(benefitsFixture[0].oneLineDescriptionFr);
     });
   });
   it("changes open state when somebody clicks on it", () => {
