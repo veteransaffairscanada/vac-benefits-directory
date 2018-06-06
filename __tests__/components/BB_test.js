@@ -196,7 +196,7 @@ describe("BB", () => {
   // });
 
   it("has a Clear Filters button", () => {
-    expect(shallow_BB().find("#ClearFilters"));
+    expect(shallow_BB().find("#ClearEligibilityFilters"));
   });
 
   it("has a benefits counter", () => {
