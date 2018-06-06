@@ -159,13 +159,6 @@ describe("BB", () => {
     expect(shallow_BB().find("#sortBySelector").length).toEqual(1);
   });
 
-  it("has a serviceTypes filter", () => {
-    expect(shallow_BB().find("#serviceTypeFilter").length).toEqual(1);
-  });
-  it("has a patronType filter", () => {
-    expect(shallow_BB().find("#patronTypeFilter").length).toEqual(1);
-  });
-
   it("has the selected benefit cards", () => {
     props.selectedEligibility = {
       serviceType: "CAF",
@@ -179,6 +172,14 @@ describe("BB", () => {
         benefitsFixture[i].vac_name_fr
       );
     });
+  });
+
+  it("has the ProfileSelector component", () => {
+    expect(mounted_BB().find("ProfileSelector").length).toEqual(1);
+  });
+
+  it("has the NeedsSelector component", () => {
+    expect(mounted_BB().find("NeedsSelector").length).toEqual(1);
   });
 
   // Broken test

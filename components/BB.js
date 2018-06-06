@@ -12,8 +12,8 @@ import Select from "material-ui/Select";
 import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
-import RadioSelector from "../components/radio_selector";
 import NeedsSelector from "./needs_selector";
+import ProfileSelector from "./profile_selector";
 
 const styles = theme => ({
   benefitsCount: {
@@ -22,10 +22,6 @@ const styles = theme => ({
     textAlign: "center"
   },
   collapse: {
-    textAlign: "right",
-    textDecoration: "underline"
-  },
-  clearButton: {
     textAlign: "right",
     textDecoration: "underline"
   },
@@ -191,31 +187,6 @@ export class BB extends Component {
   };
 
   render() {
-    let serviceTypes = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
-    )
-      .filter(st => st !== "na")
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
-    const patronTypes = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.patronType))
-    )
-      .filter(st => st !== "na")
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
-    let statusAndVitals = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.statusAndVitals))
-    )
-      .filter(st => st !== "na")
-      // .concat(["still serving"])
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
     this.sortBenefits(
       this.props.benefits,
@@ -240,79 +211,24 @@ export class BB extends Component {
               </Typography>
             </Grid>
             <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
-              <Grid container spacing={8}>
-                <Grid item xs={9}>
-                  <Typography variant="title">
-                    {t("B3.Filter by eligibility")}
-                  </Typography>
-                </Grid>
-                <Grid item xs={3}>
-                  <Button
-                    className={classnames(classes.clearButton)}
-                    id="ClearEligibilityFilters"
-                    variant="flat"
-                    size="small"
-                    onClick={() => {
-                      this.props.clearFilters();
-                    }}
-                  >
-                    {t("Clear")}
-                  </Button>
-                </Grid>
-
-                <Grid item xs={12}>
-                  <RadioSelector
-                    id="patronTypeFilter"
-                    t={t}
-                    legend={t("B3.Benefits for")}
-                    filters={patronTypes}
-                    selectedFilters={this.props.selectedEligibility.patronType}
-                    setUserProfile={id =>
-                      this.props.setUserProfile("patronType", id)
-                    }
-                    isDisabled={false}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <RadioSelector
-                    id="serviceTypeFilter"
-                    t={t}
-                    legend={t("B3.ServiceType")}
-                    filters={serviceTypes}
-                    selectedFilters={this.props.selectedEligibility.serviceType}
-                    setUserProfile={id =>
-                      this.props.setUserProfile("serviceType", id)
-                    }
-                    isDisabled={false}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <RadioSelector
-                    id="statusAndVitalsFilter"
-                    t={t}
-                    legend={t("B3.serviceStatus")}
-                    filters={statusAndVitals}
-                    selectedFilters={
-                      this.props.selectedEligibility.statusAndVitals
-                    }
-                    setUserProfile={id =>
-                      this.props.setUserProfile("statusAndVitals", id)
-                    }
-                    isDisabled={false}
-                  />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <NeedsSelector
-                    t={t}
-                    needs={this.props.needs}
-                    selectedNeeds={this.props.selectedNeeds}
-                    handleChange={this.props.setSelectedNeeds}
-                    clearNeeds={this.props.clearNeeds}
-                  />
-                </Grid>
+              <Grid item xs={12}>
+                <ProfileSelector
+                  t={t}
+                  handleChange={this.props.setSelectedNeeds}
+                  clearFilters={this.props.clearFilters}
+                  selectedEligibility={this.props.selectedEligibility}
+                  setUserProfile={this.props.setUserProfile}
+                  eligibilityPaths={this.props.eligibilityPaths}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <NeedsSelector
+                  t={t}
+                  needs={this.props.needs}
+                  selectedNeeds={this.props.selectedNeeds}
+                  handleChange={this.props.setSelectedNeeds}
+                  clearNeeds={this.props.clearNeeds}
+                />
               </Grid>
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
