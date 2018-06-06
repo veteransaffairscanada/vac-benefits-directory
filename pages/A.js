@@ -10,6 +10,7 @@ import { logEvent } from "../utils/analytics";
 
 import BB from "../components/BB";
 import A1 from "../components/A1";
+import A2 from "../components/A2";
 
 export class A extends Component {
   constructor() {
@@ -186,44 +187,30 @@ export class A extends Component {
     //   { id: "dsfasdfa", name_en: "Finding a Job", name_fr: "FF Finding a Job" }
     // ];
 
+    const commonProps = {
+      t: this.props.t,
+      benefits: this.props.benefits,
+      eligibilityPaths: this.props.eligibilityPaths,
+      needs: this.props.needs,
+      examples: this.props.examples,
+      selectedEligibility: this.state.selectedEligibility,
+      selectedNeeds: this.state.selectedNeeds,
+      toggleSelectedEligibility: this.toggleSelectedEligibility,
+      setSelectedNeeds: this.setSelectedNeeds,
+      setUserProfile: this.setUserProfile,
+      setSection: this.setSection,
+      clearFilters: this.clearFilters,
+      clearNeeds: this.clearNeeds
+    };
+
     switch (section) {
       case "A1":
-        return (
-          <A1
-            id="A1"
-            t={this.props.t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
-            examples={this.props.examples}
-            selectedEligibility={this.state.selectedEligibility}
-            selectedNeeds={this.state.selectedNeeds}
-            toggleSelectedEligibility={this.toggleSelectedEligibility}
-            setSelectedNeeds={this.setSelectedNeeds}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
-            clearFilters={this.clearFilters}
-            clearNeeds={this.clearNeeds}
-          />
-        );
+        return <A1 id="A1" {...commonProps} />;
+      case "A2":
+        return <A2 id="A2" {...commonProps} />;
+
       case "BB":
-        return (
-          <BB
-            id="BB"
-            t={this.props.t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
-            examples={this.props.examples}
-            selectedEligibility={this.state.selectedEligibility}
-            selectedNeeds={this.state.selectedNeeds}
-            toggleSelectedEligibility={this.toggleSelectedEligibility}
-            setSelectedNeeds={this.setSelectedNeeds}
-            setUserProfile={this.setUserProfile}
-            clearFilters={this.clearFilters}
-            clearNeeds={this.clearNeeds}
-          />
-        );
+        return <BB id="BB" {...commonProps} />;
     }
   };
 

@@ -17,11 +17,11 @@ const styles = () => ({
   }
 });
 
-export class A1 extends Component {
+export class A2 extends Component {
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
-    const optionType = "patronType";
+    const optionType = "serviceType";
     const options = Array.from(
       new Set(this.props.eligibilityPaths.map(ep => ep[optionType]))
     ).filter(st => st !== "na");
@@ -31,7 +31,7 @@ export class A1 extends Component {
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Typography className={classes.title}>
-              {t("A1.Find Benefits for")}
+              {t("B3.ServiceType")}
             </Typography>
           </Grid>
 
@@ -46,6 +46,7 @@ export class A1 extends Component {
             </Grid>
           ))}
         </Grid>
+
         <Grid
           container
           justify="center"
@@ -55,7 +56,7 @@ export class A1 extends Component {
           <Grid item sm={4} xs={12}>
             <SelectButton
               text={t("next")}
-              onClick={() => this.props.setSection("A2")}
+              onClick={() => this.props.setSection("BB")}
               isDown={false}
             />
           </Grid>
@@ -84,7 +85,7 @@ export class A1 extends Component {
   }
 }
 
-A1.propTypes = {
+A2.propTypes = {
   benefits: PropTypes.array,
   classes: PropTypes.object,
   clearFilters: PropTypes.func,
@@ -102,4 +103,4 @@ A1.propTypes = {
   toggleSelectedEligibility: PropTypes.func
 };
 
-export default withStyles(styles)(A1);
+export default withStyles(styles)(A2);
