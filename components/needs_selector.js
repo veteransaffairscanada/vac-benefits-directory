@@ -6,12 +6,23 @@ import classnames from "classnames";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "material-ui";
 
 const styles = theme => ({
   root: {
+    backgroundColor: "white"
+  },
+  summary: {
+    opacity: "1 !important"
+  },
+  title: {
+    color: "black !important"
+  },
+  needsButtons: {
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap"
@@ -26,12 +37,23 @@ const styles = theme => ({
     color: "white"
   },
   clearButton: {
-    textAlign: "right",
     textDecoration: "underline"
+  },
+  gridItemButton: {
+    textAlign: "center"
   }
 });
 
 class NeedsSelector extends Component {
+  state = {
+    open: true
+  };
+
+  toggleOpenState = () => {
+    let newState = !this.state.open;
+    this.setState({ open: newState });
+  };
+
   handleClick = id => {
     let newSelectedNeeds = this.props.selectedNeeds;
     if (newSelectedNeeds.hasOwnProperty(id)) {
@@ -43,12 +65,30 @@ class NeedsSelector extends Component {
   };
 
   render() {
-    const { needs, classes, t } = this.props;
+    const { needs, classes, t, pageWidth } = this.props;
     const selectedNeeds = Object.keys(this.props.selectedNeeds);
     return (
-      <ExpansionPanel>
-        <ExpansionPanelSummary>
-          <Typography variant="title">{t("Filter by need")}</Typography>
+      <ExpansionPanel
+        className={classnames(classes.root)}
+        defaultExpanded
+        disabled={pageWidth >= 600 ? true : false}
+      >
+        <ExpansionPanelSummary
+          className={classnames(classes.summary)}
+          expandIcon={
+            pageWidth >= 600 ? (
+              ""
+            ) : this.state.open ? (
+              <RemoveIcon />
+            ) : (
+              <AddIcon />
+            )
+          }
+          onClick={() => this.toggleOpenState()}
+        >
+          <Typography variant="title" className={classnames(classes.title)}>
+            {t("Filter by need")}
+          </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container spacing={8}>
@@ -57,20 +97,12 @@ class NeedsSelector extends Component {
                 {t("Select all that apply")}
               </Typography>
             </Grid>
-            <Grid item xs={3}>
-              <Button
-                className={classnames(classes.clearButton)}
-                id="ClearFilters"
-                variant="flat"
-                size="small"
-                onClick={() => {
-                  this.props.clearNeeds();
-                }}
-              >
-                {t("Clear")}
-              </Button>
-            </Grid>
-            <Grid id="needs_buttons" item xs={12} className={classes.root}>
+            <Grid
+              id="needs_buttons"
+              item
+              xs={12}
+              className={classes.needsButtons}
+            >
               {needs.map(need => (
                 <Button
                   disableRipple={true}
@@ -90,6 +122,19 @@ class NeedsSelector extends Component {
                 </Button>
               ))}
             </Grid>
+            <Grid item xs={12} className={classnames(classes.gridItemButton)}>
+              <Button
+                className={classnames(classes.clearButton)}
+                id="ClearFilters"
+                variant="flat"
+                size="small"
+                onClick={() => {
+                  this.props.clearNeeds();
+                }}
+              >
+                {t("Clear")}
+              </Button>
+            </Grid>
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -104,7 +149,8 @@ NeedsSelector.propTypes = {
   selectedNeeds: PropTypes.object,
   t: PropTypes.func,
   theme: PropTypes.object,
-  clearNeeds: PropTypes.func
+  clearNeeds: PropTypes.func,
+  pageWidth: PropTypes.number
 };
 
 export default withStyles(styles, { withTheme: true })(NeedsSelector);

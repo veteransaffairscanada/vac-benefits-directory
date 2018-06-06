@@ -7,21 +7,48 @@ import RadioSelector from "./radio_selector";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "material-ui";
 
 const styles = () => ({
-  root: {},
+  root: {
+    backgroundColor: "white"
+  },
+  summary: {
+    opacity: "1 !important"
+  },
+  title: {
+    color: "black !important"
+  },
   clearButton: {
-    textAlign: "right",
     textDecoration: "underline"
+  },
+  gridItemButton: {
+    textAlign: "center"
   }
 });
 
 class ProfileSelector extends Component {
+  state = {
+    open: true
+  };
+
+  toggleOpenState = () => {
+    let newState = !this.state.open;
+    this.setState({ open: newState });
+  };
+
   render() {
-    const { selectedEligibility, classes, t, eligibilityPaths } = this.props;
+    const {
+      selectedEligibility,
+      classes,
+      t,
+      eligibilityPaths,
+      pageWidth
+    } = this.props;
     let serviceTypes = Array.from(
       new Set(eligibilityPaths.map(ep => ep.serviceType))
     )
@@ -47,29 +74,31 @@ class ProfileSelector extends Component {
       });
 
     return (
-      <ExpansionPanel className={classnames(classes.root)}>
-        <ExpansionPanelSummary>
-          <Typography variant="title">
+      <ExpansionPanel
+        className={classnames(classes.root)}
+        defaultExpanded
+        disabled={pageWidth >= 600 ? true : false}
+      >
+        <ExpansionPanelSummary
+          className={classnames(classes.summary)}
+          expandIcon={
+            pageWidth >= 600 ? (
+              ""
+            ) : this.state.open ? (
+              <RemoveIcon />
+            ) : (
+              <AddIcon />
+            )
+          }
+          onClick={() => this.toggleOpenState()}
+        >
+          <Typography variant="title" className={classnames(classes.title)}>
             {t("B3.Filter by eligibility")}
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container spacing={8}>
             <Grid item xs={9} />
-            <Grid item xs={3}>
-              <Button
-                className={classnames(classes.clearButton)}
-                id="ClearEligibilityFilters"
-                variant="flat"
-                size="small"
-                onClick={() => {
-                  this.props.clearFilters();
-                }}
-              >
-                {t("Clear")}
-              </Button>
-            </Grid>
-
             <Grid item xs={12} id="patronTypeFilter">
               <RadioSelector
                 t={t}
@@ -108,6 +137,19 @@ class ProfileSelector extends Component {
                 isDisabled={false}
               />
             </Grid>
+            <Grid item xs={12} className={classnames(classes.gridItemButton)}>
+              <Button
+                className={classnames(classes.clearButton)}
+                id="ClearEligibilityFilters"
+                variant="flat"
+                size="small"
+                onClick={() => {
+                  this.props.clearFilters();
+                }}
+              >
+                {t("Clear")}
+              </Button>
+            </Grid>
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -122,7 +164,8 @@ ProfileSelector.propTypes = {
   clearFilters: PropTypes.func,
   setUserProfile: PropTypes.func,
   eligibilityPaths: PropTypes.array,
-  selectedEligibility: PropTypes.object
+  selectedEligibility: PropTypes.object,
+  pageWidth: PropTypes.number
 };
 
 export default withStyles(styles, { withTheme: true })(ProfileSelector);
