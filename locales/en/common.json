@@ -6,16 +6,7 @@
     "List of all benefits": "List of all benefits"
   },
   "A1": {
-    "What services are you interested in?":
-      "What services are you interested in?",
-    "Select all that apply": "Select all that apply",
-    "Financial Support": "Financial Support",
-    "Rehabilitation": "Rehabilitation",
-    "Mental Health Services": "Mental Health Services",
-    "Health Care": "Health Care",
-    "Career Transition": "Career Transition",
-    "Support for Families": "Support for Families",
-    "Next": "Next"
+    "Find Benefits for": "Find Benefits for"
   },
   "A2": {
     "What best describes your status?": "What best describes your status?",
@@ -62,7 +53,8 @@
   "index": {
     "data validation": "data validation",
     "all benefits": "all benefits",
-    "benefits directory": "benefits directory"
+    "benefits directory": "benefits directory",
+    "guided experience": "guided experience"
   },
   "dv": {
     "name": "Name",
@@ -75,6 +67,7 @@
     "Size of Needs Table": "Size of needs table",
     "Size of Examples Table": "Size of examples table"
   },
+  "next": "next",
   "child benefits": "With this benefit, you may also have access to",
   "alpha": "For testing only.",
   "noscript":

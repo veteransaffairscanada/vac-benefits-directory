@@ -9,6 +9,7 @@ import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
 
 import BB from "../components/BB";
+import A1 from "../components/A1";
 
 export class A extends Component {
   constructor() {
@@ -108,11 +109,18 @@ export class A extends Component {
       href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
     }
     ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
-      if (state.selectedEligibility[selection] != "") {
+      if (state.selectedEligibility[selection] !== "") {
         href += `&${selection}=${state.selectedEligibility[selection]}`;
       }
     });
     Router.push(href);
+  };
+
+  setSection = section => {
+    let newState = this.state;
+    newState.section = section;
+    this.setState(newState);
+    this.setURL(newState);
   };
 
   setSelectedNeeds = ids => {
@@ -179,6 +187,25 @@ export class A extends Component {
     // ];
 
     switch (section) {
+      case "A1":
+        return (
+          <A1
+            id="A1"
+            t={this.props.t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+            needs={this.props.needs}
+            examples={this.props.examples}
+            selectedEligibility={this.state.selectedEligibility}
+            selectedNeeds={this.state.selectedNeeds}
+            toggleSelectedEligibility={this.toggleSelectedEligibility}
+            setSelectedNeeds={this.setSelectedNeeds}
+            setUserProfile={this.setUserProfile}
+            setSection={this.setSection}
+            clearFilters={this.clearFilters}
+            clearNeeds={this.clearNeeds}
+          />
+        );
       case "BB":
         return (
           <BB

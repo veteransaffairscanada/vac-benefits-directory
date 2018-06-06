@@ -7,15 +7,7 @@
   },
 
   "A1": {
-    "What services are you interested in?": "Quels services vous intéressent?",
-    "Select all that apply": "Sélectionnez tout ce qui s'y rapporte",
-    "Financial Support": "Aide financière",
-    "Rehabilitation": "Réhabilitation",
-    "Mental Health Services": "Services de santé mentale",
-    "Health Care": "Soins de santé",
-    "Career Transition": "Transition de carrière",
-    "Support for Families": "Soutien aux familles",
-    "Next": "Prochain"
+    "Find Benefits for": "Trouver des avantages pour"
   },
   "A2": {
     "What best describes your status?": "Ce qui décrit le mieux votre statut?",
@@ -62,7 +54,8 @@
   "index": {
     "data validation": "La validation des données",
     "all benefits": "tous les avantages",
-    "benefits directory": "annuaire des avantages"
+    "benefits directory": "annuaire des avantages",
+    "guided experience": "expérience guidée"
   },
   "dv": {
     "name": "Nom",
@@ -76,6 +69,7 @@
     "Size of Needs Table": "Tableau de la taille des besoins",
     "Size of Examples Table": "Taille de la table des exemples"
   },
+  "next": "prochain",
   "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
   "alpha": "Pour les tests seulement",
   "noscript":

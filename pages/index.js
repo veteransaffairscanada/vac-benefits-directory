@@ -23,6 +23,13 @@ export class App extends Component {
             <Grid item xs={3}>
               <SelectButton
                 fullWidth={true}
+                href={"A?section=A1&lng=" + t("current-language-code")}
+                text={t("index.guided experience")}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <SelectButton
+                fullWidth={true}
                 href={"A?section=BB&lng=" + t("current-language-code")}
                 text={t("index.benefits directory")}
               />
