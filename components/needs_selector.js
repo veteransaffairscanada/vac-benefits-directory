@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Typography from "material-ui/Typography";
 import classnames from "classnames";
+import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
+import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
+import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "material-ui";
@@ -43,45 +46,53 @@ class NeedsSelector extends Component {
     const { needs, classes, t } = this.props;
     const selectedNeeds = Object.keys(this.props.selectedNeeds);
     return (
-      <Grid container spacing={8}>
-        <Grid item xs={9}>
+      <ExpansionPanel>
+        <ExpansionPanelSummary>
           <Typography variant="title">{t("Filter by need")}</Typography>
-          <Typography variant="subheading">
-            {t("Select all that apply")}
-          </Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <Button
-            className={classnames(classes.clearButton)}
-            id="ClearFilters"
-            variant="flat"
-            size="small"
-            onClick={() => {
-              this.props.clearNeeds();
-            }}
-          >
-            {t("Clear")}
-          </Button>
-        </Grid>
-        <Grid id="needs_buttons" item xs={12} className={classes.root}>
-          {needs.map(need => (
-            <Button
-              disableRipple={true}
-              key={need.id}
-              variant="raised"
-              onClick={() => this.handleClick(need.id)}
-              value={need.id}
-              className={
-                selectedNeeds.indexOf(need.id) === -1
-                  ? classes.need
-                  : classes.needSelected
-              }
-            >
-              {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
-            </Button>
-          ))}
-        </Grid>
-      </Grid>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Grid container spacing={8}>
+            <Grid item xs={9}>
+              <Typography variant="subheading">
+                {t("Select all that apply")}
+              </Typography>
+            </Grid>
+            <Grid item xs={3}>
+              <Button
+                className={classnames(classes.clearButton)}
+                id="ClearFilters"
+                variant="flat"
+                size="small"
+                onClick={() => {
+                  this.props.clearNeeds();
+                }}
+              >
+                {t("Clear")}
+              </Button>
+            </Grid>
+            <Grid id="needs_buttons" item xs={12} className={classes.root}>
+              {needs.map(need => (
+                <Button
+                  disableRipple={true}
+                  key={need.id}
+                  variant="raised"
+                  onClick={() => this.handleClick(need.id)}
+                  value={need.id}
+                  className={
+                    selectedNeeds.indexOf(need.id) === -1
+                      ? classes.need
+                      : classes.needSelected
+                  }
+                >
+                  {t("current-language-code") === "en"
+                    ? need.nameEn
+                    : need.nameFr}
+                </Button>
+              ))}
+            </Grid>
+          </Grid>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     );
   }
 }

@@ -4,16 +4,15 @@ import { withStyles } from "material-ui/styles";
 import Typography from "material-ui/Typography";
 import classnames from "classnames";
 import RadioSelector from "./radio_selector";
+import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
+import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
+import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "material-ui";
 
 const styles = () => ({
-  root: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap"
-  },
+  root: {},
   clearButton: {
     textAlign: "right",
     textDecoration: "underline"
@@ -48,61 +47,70 @@ class ProfileSelector extends Component {
       });
 
     return (
-      <Grid container spacing={8}>
-        <Grid item xs={9}>
+      <ExpansionPanel className={classnames(classes.root)}>
+        <ExpansionPanelSummary>
           <Typography variant="title">
             {t("B3.Filter by eligibility")}
           </Typography>
-        </Grid>
-        <Grid item xs={3}>
-          <Button
-            className={classnames(classes.clearButton)}
-            id="ClearEligibilityFilters"
-            variant="flat"
-            size="small"
-            onClick={() => {
-              this.props.clearFilters();
-            }}
-          >
-            {t("Clear")}
-          </Button>
-        </Grid>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Grid container spacing={8}>
+            <Grid item xs={9} />
+            <Grid item xs={3}>
+              <Button
+                className={classnames(classes.clearButton)}
+                id="ClearEligibilityFilters"
+                variant="flat"
+                size="small"
+                onClick={() => {
+                  this.props.clearFilters();
+                }}
+              >
+                {t("Clear")}
+              </Button>
+            </Grid>
 
-        <Grid item xs={12} id="patronTypeFilter">
-          <RadioSelector
-            t={t}
-            legend={t("B3.Benefits for")}
-            filters={patronTypes}
-            selectedFilters={selectedEligibility.patronType}
-            setUserProfile={id => this.props.setUserProfile("patronType", id)}
-            isDisabled={false}
-          />
-        </Grid>
+            <Grid item xs={12} id="patronTypeFilter">
+              <RadioSelector
+                t={t}
+                legend={t("B3.Benefits for")}
+                filters={patronTypes}
+                selectedFilters={selectedEligibility.patronType}
+                setUserProfile={id =>
+                  this.props.setUserProfile("patronType", id)
+                }
+                isDisabled={false}
+              />
+            </Grid>
 
-        <Grid item xs={12} id="serviceTypeFilter">
-          <RadioSelector
-            t={t}
-            legend={t("B3.ServiceType")}
-            filters={serviceTypes}
-            selectedFilters={selectedEligibility.serviceType}
-            setUserProfile={id => this.props.setUserProfile("serviceType", id)}
-            isDisabled={false}
-          />
-        </Grid>
+            <Grid item xs={12} id="serviceTypeFilter">
+              <RadioSelector
+                t={t}
+                legend={t("B3.ServiceType")}
+                filters={serviceTypes}
+                selectedFilters={selectedEligibility.serviceType}
+                setUserProfile={id =>
+                  this.props.setUserProfile("serviceType", id)
+                }
+                isDisabled={false}
+              />
+            </Grid>
 
-        <Grid item xs={12} id="statusAndVitalsFilter">
-          <RadioSelector
-            t={t}
-            legend={t("B3.serviceStatus")}
-            filters={statusAndVitals}
-            selectedFilters={selectedEligibility.statusAndVitals}
-            setUserProfile={id =>
-              this.props.setUserProfile("statusAndVitals", id)
-            }
-            isDisabled={false}
-          />
-        </Grid>
-      </Grid>
+            <Grid item xs={12} id="statusAndVitalsFilter">
+              <RadioSelector
+                t={t}
+                legend={t("B3.serviceStatus")}
+                filters={statusAndVitals}
+                selectedFilters={selectedEligibility.statusAndVitals}
+                setUserProfile={id =>
+                  this.props.setUserProfile("statusAndVitals", id)
+                }
+                isDisabled={false}
+              />
+            </Grid>
+          </Grid>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     );
   }
 }

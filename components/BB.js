@@ -26,8 +26,9 @@ const styles = theme => ({
     textDecoration: "underline"
   },
   filterBox: {
-    border: "1px solid #eee",
-    padding: "20px !important"
+    // border: "1px solid #eee",
+    padding: "0px !important"
+    // padding: "20px !important"
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -211,16 +212,14 @@ export class BB extends Component {
               </Typography>
             </Grid>
             <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
-              <Grid item xs={12}>
-                <ProfileSelector
-                  t={t}
-                  handleChange={this.props.setSelectedNeeds}
-                  clearFilters={this.props.clearFilters}
-                  selectedEligibility={this.props.selectedEligibility}
-                  setUserProfile={this.props.setUserProfile}
-                  eligibilityPaths={this.props.eligibilityPaths}
-                />
-              </Grid>
+              <ProfileSelector
+                t={t}
+                handleChange={this.props.setSelectedNeeds}
+                clearFilters={this.props.clearFilters}
+                selectedEligibility={this.props.selectedEligibility}
+                setUserProfile={this.props.setUserProfile}
+                eligibilityPaths={this.props.eligibilityPaths}
+              />
               <Grid item xs={12}>
                 <NeedsSelector
                   t={t}
