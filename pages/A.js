@@ -183,6 +183,7 @@ export class A extends Component {
         question = "patronType";
         return (
           <GuidedExperienceProfile
+            id="A1"
             title={this.props.t("A1.Find Benefits for")}
             options={Array.from(
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -200,6 +201,7 @@ export class A extends Component {
         question = "serviceType";
         return (
           <GuidedExperienceProfile
+            id="A2"
             title={this.props.t("B3.ServiceType")}
             options={Array.from(
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -217,6 +219,7 @@ export class A extends Component {
         question = "statusAndVitals";
         return (
           <GuidedExperienceProfile
+            id="A3"
             title={this.props.t("B3.serviceStatus")}
             options={Array.from(
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -233,6 +236,7 @@ export class A extends Component {
       case "A4":
         return (
           <GuidedExperienceNeeds
+            id="A4"
             t={this.props.t}
             needs={this.props.needs}
             selectedNeeds={this.state.selectedNeeds}
@@ -243,6 +247,7 @@ export class A extends Component {
       case "BB":
         return (
           <BB
+            id="BB"
             t={this.props.t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
