@@ -22,6 +22,7 @@
     "babel-plugin-emotion": "^9.1.0",
     "babel-plugin-transform-inline-environment-variables": "^0.3.0",
     "babel-polyfill": "^6.26.0",
+    "body-parser": "^1.18.3",
     "detect-browser": "^2.3.0",
     "emotion": "^9.1.1",
     "emotion-server": "^9.1.2",
