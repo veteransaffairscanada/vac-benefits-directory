@@ -9,7 +9,7 @@ import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
 
 import GuidedExperienceProfile from "../components/guided_experience_profile";
-import A4 from "../components/A4";
+import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
 
 export class A extends Component {
@@ -177,21 +177,6 @@ export class A extends Component {
   };
 
   sectionToDisplay = section => {
-    const commonProps = {
-      t: this.props.t,
-      benefits: this.props.benefits,
-      eligibilityPaths: this.props.eligibilityPaths,
-      needs: this.props.needs,
-      examples: this.props.examples,
-      selectedEligibility: this.state.selectedEligibility,
-      selectedNeeds: this.state.selectedNeeds,
-      toggleSelectedEligibility: this.toggleSelectedEligibility,
-      setSelectedNeeds: this.setSelectedNeeds,
-      setUserProfile: this.setUserProfile,
-      setSection: this.setSection,
-      clearFilters: this.clearFilters,
-      clearNeeds: this.clearNeeds
-    };
     let question;
     switch (section) {
       case "A1":
@@ -246,9 +231,33 @@ export class A extends Component {
           />
         );
       case "A4":
-        return <A4 id="A4" {...commonProps} />;
+        return (
+          <GuidedExperienceNeeds
+            t={this.props.t}
+            needs={this.props.needs}
+            selectedNeeds={this.state.selectedNeeds}
+            setSelectedNeeds={this.setSelectedNeeds}
+            setSection={this.setSection}
+          />
+        );
       case "BB":
-        return <BB id="BB" {...commonProps} />;
+        return (
+          <BB
+            t={this.props.t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+            needs={this.props.needs}
+            examples={this.props.examples}
+            selectedEligibility={this.state.selectedEligibility}
+            selectedNeeds={this.state.selectedNeeds}
+            toggleSelectedEligibility={this.toggleSelectedEligibility}
+            setSelectedNeeds={this.setSelectedNeeds}
+            setUserProfile={this.setUserProfile}
+            setSection={this.setSection}
+            clearFilters={this.clearFilters}
+            clearNeeds={this.clearNeed}
+          />
+        );
     }
   };
 

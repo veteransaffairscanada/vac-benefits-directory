@@ -17,7 +17,7 @@ const styles = () => ({
   }
 });
 
-export class A4 extends Component {
+export class GuidedExperienceNeeds extends Component {
   handleClick = id => {
     let newSelectedNeeds = this.props.selectedNeeds;
     if (newSelectedNeeds.hasOwnProperty(id)) {
@@ -32,7 +32,7 @@ export class A4 extends Component {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <div id={this.props.id} style={{ padding: 12 }}>
+      <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Typography className={classes.title}>
@@ -94,22 +94,13 @@ export class A4 extends Component {
   }
 }
 
-A4.propTypes = {
-  benefits: PropTypes.array,
+GuidedExperienceNeeds.propTypes = {
   classes: PropTypes.object,
-  clearFilters: PropTypes.func,
-  clearNeeds: PropTypes.func,
-  eligibilityPaths: PropTypes.array,
-  examples: PropTypes.array,
-  id: PropTypes.string,
   needs: PropTypes.array,
-  selectedEligibility: PropTypes.object,
   selectedNeeds: PropTypes.object,
   setSelectedNeeds: PropTypes.func,
-  setUserProfile: PropTypes.func,
   setSection: PropTypes.func,
-  t: PropTypes.func,
-  toggleSelectedEligibility: PropTypes.func
+  t: PropTypes.func
 };
 
-export default withStyles(styles)(A4);
+export default withStyles(styles)(GuidedExperienceNeeds);
