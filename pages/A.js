@@ -260,7 +260,7 @@ export class A extends Component {
             setUserProfile={this.setUserProfile}
             setSection={this.setSection}
             clearFilters={this.clearFilters}
-            clearNeeds={this.clearNeed}
+            clearNeeds={this.clearNeeds}
           />
         );
     }
