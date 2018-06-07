@@ -9,11 +9,8 @@ import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
 
 import GuidedExperienceProfile from "../components/guided_experience_profile";
-
-import BB from "../components/BB";
-import A2 from "../components/A2";
-import A3 from "../components/A3";
 import A4 from "../components/A4";
+import BB from "../components/BB";
 
 export class A extends Component {
   constructor() {
@@ -180,16 +177,6 @@ export class A extends Component {
   };
 
   sectionToDisplay = section => {
-    // const needs = [
-    //   { id: "43534534", name_en: "Health", name_fr: "FF Health" },
-    //   {
-    //     id: "43534ewr534",
-    //     name_en: "Assistance around the home",
-    //     name_fr: "FF Assistance around the home"
-    //   },
-    //   { id: "dsfasdfa", name_en: "Finding a Job", name_fr: "FF Finding a Job" }
-    // ];
-
     const commonProps = {
       t: this.props.t,
       benefits: this.props.benefits,
@@ -211,6 +198,7 @@ export class A extends Component {
         question = "patronType";
         return (
           <GuidedExperienceProfile
+            title={this.props.t("A1.Find Benefits for")}
             options={Array.from(
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
             ).filter(st => st !== "na")}
@@ -224,9 +212,39 @@ export class A extends Component {
           />
         );
       case "A2":
-        return <A2 id="A2" {...commonProps} />;
+        question = "serviceType";
+        return (
+          <GuidedExperienceProfile
+            title={this.props.t("B3.ServiceType")}
+            options={Array.from(
+              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+            ).filter(st => st !== "na")}
+            onClick={option => this.setUserProfile(question, option)}
+            isDown={option =>
+              this.state.selectedEligibility[question] === option
+            }
+            nextSection="A3"
+            setSection={this.setSection}
+            t={this.props.t}
+          />
+        );
       case "A3":
-        return <A3 id="A3" {...commonProps} />;
+        question = "statusAndVitals";
+        return (
+          <GuidedExperienceProfile
+            title={this.props.t("B3.serviceStatus")}
+            options={Array.from(
+              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+            ).filter(st => st !== "na")}
+            onClick={option => this.setUserProfile(question, option)}
+            isDown={option =>
+              this.state.selectedEligibility[question] === option
+            }
+            nextSection="A4"
+            setSection={this.setSection}
+            t={this.props.t}
+          />
+        );
       case "A4":
         return <A4 id="A4" {...commonProps} />;
       case "BB":
