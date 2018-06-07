@@ -50,6 +50,7 @@ export class A extends Component {
       let myURL = {};
       myURL.searchParams = this.getUrlParams(newUrl);
       const section = myURL.searchParams.section;
+      const lang = myURL.searchParams.lang;
       let filters = {};
       ["selectedNeeds"].forEach(filter => {
         filters[filter] = myURL.searchParams[filter]
@@ -68,7 +69,8 @@ export class A extends Component {
           patronType: filters.patronType,
           serviceType: filters.serviceType,
           statusAndVitals: filters.statusAndVitals
-        }
+        },
+        lang: lang
       };
       this.setState(newState);
     };
@@ -126,6 +128,8 @@ export class A extends Component {
         href += `&${selection}=${state.selectedEligibility[selection]}`;
       }
     });
+    // href += "&lang=" + this.props.t("current-language-code")
+    console.log(this.props.t("current-language-code"));
     Router.push(href);
   };
 
