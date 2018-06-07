@@ -30,6 +30,7 @@ describe("Index page", () => {
   it("has buttons for wireframe  B and Data Validation", () => {
     const appMounted = shallow(<App {...props} />);
     expect(appMounted.find("SelectButton").map(b => b.props().text)).toEqual([
+      "index.guided experience",
       "index.benefits directory",
       "index.data validation",
       "index.all benefits"
