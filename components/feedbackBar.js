@@ -19,12 +19,13 @@ const CommentBox = styled("div")`
 
 const Div = styled("div")`
   width: 100%;
-  height: 40px;
+  height: 50px;
   background-color: #eee;
   color: #000;
   text-align: left;
   font-size: 14px;
-  padding: 5px 0 0 15px;
+  padding-top: 5px;
+  display: table;
 `;
 
 const Inner = styled("div")`
@@ -32,7 +33,8 @@ const Inner = styled("div")`
   color: #000;
   text-align: left;
   font-size: 14px;
-  padding-top: 10px;
+  float: left;
+  padding-left: 15px;
 `;
 
 const InnerRight = styled("div")`
@@ -69,7 +71,8 @@ export class FeedbackBar extends Component {
     let payload = {
       whatWereYouDoing: this.state.action,
       whatWentWrong: this.state.failure,
-      url: window.location.href
+      url: window.location.href,
+      time: new Date().toUTCString()
     };
 
     fetch("/submitComment", {
@@ -132,9 +135,11 @@ export class FeedbackBar extends Component {
         ) : null}
         <Div>
           {this.state.feedbackSubmitted ? (
-            <Inner>{t("feedback-response")}</Inner>
+            <Inner>
+              <p>{t("feedback-response")}</p>
+            </Inner>
           ) : (
-            <span>
+            <Inner>
               {t("feedback-prompt")} &nbsp;
               <Button id="feedbackYes" onClick={() => this.sendFeedback("Yes")}>
                 {t("yes")}
@@ -142,7 +147,7 @@ export class FeedbackBar extends Component {
               <Button id="feedbackNo" onClick={() => this.sendFeedback("No")}>
                 {t("no")}
               </Button>
-            </span>
+            </Inner>
           )}
           {this.state.commentSubmitted ? (
             <InnerRight>{t("comment-response")}</InnerRight>
