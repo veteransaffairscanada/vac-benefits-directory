@@ -21,7 +21,7 @@ export class A extends Component {
         serviceType: "",
         statusAndVitals: ""
       },
-      width: 0
+      width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
   }

@@ -7,8 +7,7 @@ import RadioSelector from "./radio_selector";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "material-ui";
@@ -33,7 +32,7 @@ const styles = () => ({
 
 class ProfileSelector extends Component {
   state = {
-    open: true
+    open: false
   };
 
   toggleOpenState = () => {
@@ -78,19 +77,12 @@ class ProfileSelector extends Component {
         className={classnames(classes.root)}
         defaultExpanded
         disabled={pageWidth >= 600 ? true : false}
+        expanded={pageWidth >= 600 ? true : this.state.open}
       >
         <ExpansionPanelSummary
           className={classnames(classes.summary)}
-          expandIcon={
-            pageWidth >= 600 ? (
-              ""
-            ) : this.state.open ? (
-              <RemoveIcon />
-            ) : (
-              <AddIcon />
-            )
-          }
-          onClick={() => this.toggleOpenState()}
+          expandIcon={pageWidth >= 600 ? "" : <ExpandMoreIcon />}
+          onClick={pageWidth >= 600 ? foo => foo : () => this.toggleOpenState()}
         >
           <Typography variant="title" className={classnames(classes.title)}>
             {t("B3.Filter by eligibility")}
