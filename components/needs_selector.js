@@ -23,17 +23,20 @@ const styles = theme => ({
   },
   needsButtons: {
     display: "flex",
-    justifyContent: "center",
     flexWrap: "wrap"
   },
   need: {
     margin: theme.spacing.unit,
-    backgroundColor: "#F5F5F5"
+    backgroundColor: "#F5F5F5",
+    textTransform: "none",
+    textAlign: "left"
   },
   needSelected: {
     margin: theme.spacing.unit,
     backgroundColor: "#364150",
-    color: "white"
+    color: "white",
+    textTransform: "none",
+    textAlign: "left"
   },
   clearButton: {
     textDecoration: "underline"
