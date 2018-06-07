@@ -187,6 +187,18 @@ export class BB extends Component {
   };
 
   render() {
+    let veteranBenefitIds = [];
+    let familyBenefitIds = [];
+
+    this.props.eligibilityPaths.forEach(ep => {
+      if (ep.patronType === "service-person") {
+        veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
+      }
+      if (ep.patronType === "family") {
+        familyBenefitIds = familyBenefitIds.concat(ep.benefits);
+      }
+    });
+
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
     this.sortBenefits(
       this.props.benefits,
@@ -293,6 +305,8 @@ export class BB extends Component {
                         benefit={benefit}
                         examples={this.props.examples}
                         allBenefits={this.props.benefits}
+                        veteranBenefitIds={veteranBenefitIds}
+                        familyBenefitIds={familyBenefitIds}
                         t={this.props.t}
                         key={benefit.id}
                         onRef={ref => this.children.push(ref)}

@@ -112,7 +112,7 @@ describe("EmbeddedBenefitCard", () => {
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
-      benefitsFixture[0].benefitPageEn
+      benefitsFixture[1].benefitPageEn
     );
   });
 });

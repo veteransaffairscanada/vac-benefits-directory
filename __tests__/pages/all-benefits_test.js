@@ -5,6 +5,7 @@ import React from "react";
 
 import { AllBenefits } from "../../pages/all-benefits";
 import benefitsFixture from "../fixtures/benefits";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -28,7 +29,8 @@ describe("AllBenefits", () => {
       i18n: {},
       storeHydrated: true,
       loadDataStore: jest.fn(),
-      benefits: benefitsFixture
+      benefits: benefitsFixture,
+      eligibilityPaths: eligibilityPathsFixture
     };
     _mountedAllBenefits = undefined;
   });
