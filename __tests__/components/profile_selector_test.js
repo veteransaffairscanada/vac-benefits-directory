@@ -23,7 +23,8 @@ describe("ProfileSelector", () => {
       clearFilters: key => key,
       setUserProfile: key => key,
       eligibilityPaths: eligibilityPathsFixture,
-      selectedEligibility: {}
+      selectedEligibility: {},
+      pageWidth: 1000
     };
     _mountedProfileSelector = undefined;
   });
@@ -64,5 +65,22 @@ describe("ProfileSelector", () => {
       .first()
       .text();
     expect(text).toEqual("service-person");
+  });
+
+  it("is expanded if pageWidth > 600px", () => {
+    expect(
+      mountedProfileSelector()
+        .find("ExpansionPanel")
+        .prop("expanded")
+    ).toEqual(true);
+  });
+
+  it("is not expanded if pageWidth < 600px", () => {
+    props.pageWidth = 100;
+    expect(
+      mountedProfileSelector()
+        .find("ExpansionPanel")
+        .prop("expanded")
+    ).toEqual(false);
   });
 });
