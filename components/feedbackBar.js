@@ -4,6 +4,7 @@ import { Button } from "material-ui";
 import styled from "react-emotion";
 import { logEvent } from "../utils/analytics";
 import TextField from "material-ui/TextField";
+require("isomorphic-fetch");
 
 const CommentBox = styled("div")`
   width: 100%;
@@ -66,11 +67,19 @@ export class FeedbackBar extends Component {
     this.setState({ commentFormToggled: false });
     this.setState({ commentSubmitted: true });
     let payload = {
-      action: this.state.action,
-      failure: this.state.failure,
+      whatWereYouDoing: this.state.action,
+      whatWentWrong: this.state.failure,
       url: window.location.href
     };
-    return payload;
+
+    fetch("/submitComment", {
+      body: JSON.stringify(payload),
+      cache: "no-cache",
+      headers: {
+        "content-type": "application/json"
+      },
+      method: "POST"
+    });
   };
 
   sendFeedback = answer => {

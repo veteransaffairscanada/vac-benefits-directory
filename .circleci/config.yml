@@ -91,7 +91,7 @@ jobs:
       - run:
           command: |
               docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-              docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" .
+              docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg AIRTABLE_WRITE_KEY="${AIRTABLE_WRITE_KEY}" .
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy API Docker Image"
