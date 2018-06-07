@@ -33,23 +33,23 @@
     "Filter Benefits": "Filtrer les avantages",
     "ServiceType": "Type de service",
     "PatronType": "Qui cherches-tu?",
-    "serviceStatus": "État du service",
+    "serviceStatus": "Statut du membre",
     "servicePersonVitalStatus": "Est-ce que le Vétéran est en vie?",
     "What do you need help with?": "Avec quoi as tu besoin d'aide?",
-    "Benefits for": "Avantages pour",
+    "Benefits for": "Bénéficiaire",
     "Sort By": "Trier par",
     "Relevance": "Pertinence",
     "Alphabetical": "Alphabétique",
-    "title": "Trouvez les avantages qui vous concernent",
+    "title": "Trouver des avantages qui vous conviennent",
     "subtitle":
-      "ACC offre de nombreux programmes pour vous aider, vous et votre famille. Utilisez les filtres ci-dessous pour trouver les avantages correspondant à vos besoins.",
+      "Anciens Combattants Canada offre plus de 20 avantages pour vous et votre famille. Utilisez les filtres plus bas pour trouver les avantages qui répondent à vos besoins.",
     "x benefits to consider": "{{x}} avantages à considérer",
     "No benefits":
       "Pour le moment, aucun avantage ne correspond à vos sélections.",
     "One benefit": "Un avantage à considérer",
     "check eligibility":
-      "N'oubliez pas de lire les critères d'admissibilité pour chaque avantage avant de présenter une demande.",
-    "Filter by eligibility": "Filtrer par admissibilité"
+      "Vérifiez les critéres d’admissibilité de chaque avantage avant de faire une demande.",
+    "Filter by eligibility": "Montrez-moi des avantages par..."
   },
   "index": {
     "data validation": "La validation des données",
@@ -95,13 +95,12 @@
   "CAF": "Forces Armées Canadiennes",
   "RCMP": "Gendarmerie royale du Canada",
   "WSV (WWII or Korea)":
-    "Ancien combattant (la Seconde Guerre mondiale ou Corée)",
-  "service-person": "Vétérans ou membres actifs",
+    "Vétérans de la Seconde Guerre mondiale ou la guerre de Corée",
+  "service-person": "Vétéran ou membre actif",
   "family": "Membres de la famille",
   "organization": "Organisations",
-  "released": "Libéré",
-  "still serving": "Toujours en train de servir",
-  "alive": "Vivant",
+  "released": "Vétéran",
+  "still serving": "Membre actif",
   "deceased": "Décédé",
   "disabled-serviceStatusFilter": "Seulement requis pour FAC Vétérans",
   "disabled-servicePersonVitalStatusFilter": "Seulement requis pour la famille",
@@ -122,12 +121,12 @@
   "Find out more": "En savoir plus",
   "Available to": "Disponible pour",
   "examples": "Selon vos besoins, ce programme peut fournir",
-  "Filter by need": "Filtrer par besoin",
-  "Select all that apply": "Sélectionnez tout ce qui s'y rapporte",
+  "Filter by need": "J’ai besoin d’aide avec...",
+  "Select all that apply": "Sélectionnez tout ce qui s'applique.",
   "stillServing": "Toujours en train de servir",
   "releasedAlive": "Libéré",
   "Close all": "Ferme tout",
-  "Clear": "Clair",
+  "Clear": "Déselectionner",
   "Veteran child benefits": "Avec cet avantage, le Vétéran peut avoir accès à",
   "Family child benefits":
     "Avec cet avantage, la famille du Vétéran peut avoir accès à"
