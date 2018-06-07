@@ -26,7 +26,7 @@ export class GuidedExperienceProfile extends Component {
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Typography className={this.props.classes.title}>
-              {t("A1.Find Benefits for")}
+              {this.props.title}
             </Typography>
           </Grid>
 
@@ -50,7 +50,7 @@ export class GuidedExperienceProfile extends Component {
           <Grid item sm={4} xs={12}>
             <SelectButton
               text={t("next")}
-              onClick={() => this.props.setSection("A2")}
+              onClick={() => this.props.setSection(this.props.nextSection)}
               isDown={false}
             />
           </Grid>
@@ -80,13 +80,13 @@ export class GuidedExperienceProfile extends Component {
 }
 
 GuidedExperienceProfile.propTypes = {
+  title: PropTypes.string,
   options: PropTypes.array,
   onClick: PropTypes.func,
   isDown: PropTypes.func,
   classes: PropTypes.object,
   nextSection: PropTypes.string,
   t: PropTypes.func,
-
   setSection: PropTypes.func
 };
 

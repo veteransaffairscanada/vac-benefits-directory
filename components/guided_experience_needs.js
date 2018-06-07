@@ -17,31 +17,40 @@ const styles = () => ({
   }
 });
 
-export class A3 extends Component {
+export class GuidedExperienceNeeds extends Component {
+  handleClick = id => {
+    let newSelectedNeeds = this.props.selectedNeeds;
+    if (newSelectedNeeds.hasOwnProperty(id)) {
+      delete newSelectedNeeds[id];
+    } else {
+      newSelectedNeeds[id] = id;
+    }
+    this.props.setSelectedNeeds(Object.keys(newSelectedNeeds));
+  };
+
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
-    const optionType = "statusAndVitals";
-    const options = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep[optionType]))
-    ).filter(st => st !== "na");
-
     return (
-      <div id={this.props.id} style={{ padding: 12 }}>
+      <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Typography className={classes.title}>
-              {t("B3.serviceStatus")}
+              {t("B3.What do you need help with?")}
             </Typography>
           </Grid>
 
-          {options.map(option => (
-            <Grid key={"pt" + option} item sm={4} xs={12}>
+          {this.props.needs.map(need => (
+            <Grid key={need.id} item sm={4} xs={12}>
               <SelectButton
-                id={option}
-                text={t(option)}
-                onClick={() => this.props.setUserProfile(optionType, option)}
-                isDown={this.props.selectedEligibility[optionType] === option}
+                id={need.id}
+                text={
+                  t("current-language-code") === "en"
+                    ? need.nameEn
+                    : need.nameFr
+                }
+                onClick={() => this.handleClick(need.id)}
+                isDown={this.props.selectedNeeds.hasOwnProperty(need.id)}
               />
             </Grid>
           ))}
@@ -56,7 +65,7 @@ export class A3 extends Component {
           <Grid item sm={4} xs={12}>
             <SelectButton
               text={t("next")}
-              onClick={() => this.props.setSection("A4")}
+              onClick={() => this.props.setSection("BB")}
               isDown={false}
             />
           </Grid>
@@ -85,22 +94,13 @@ export class A3 extends Component {
   }
 }
 
-A3.propTypes = {
-  benefits: PropTypes.array,
+GuidedExperienceNeeds.propTypes = {
   classes: PropTypes.object,
-  clearFilters: PropTypes.func,
-  clearNeeds: PropTypes.func,
-  eligibilityPaths: PropTypes.array,
-  examples: PropTypes.array,
-  id: PropTypes.string,
   needs: PropTypes.array,
-  selectedEligibility: PropTypes.object,
   selectedNeeds: PropTypes.object,
   setSelectedNeeds: PropTypes.func,
-  setUserProfile: PropTypes.func,
   setSection: PropTypes.func,
-  t: PropTypes.func,
-  toggleSelectedEligibility: PropTypes.func
+  t: PropTypes.func
 };
 
-export default withStyles(styles)(A3);
+export default withStyles(styles)(GuidedExperienceNeeds);
