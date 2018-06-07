@@ -22,7 +22,8 @@ describe("NeedsSelector", () => {
       t: key => key,
       needs: needsFixture,
       selectedNeeds: {},
-      handleChange: jest.fn()
+      handleChange: jest.fn(),
+      pageWidth: 1000
     };
     _mountedNeedsSelector = undefined;
   });
@@ -57,5 +58,28 @@ describe("NeedsSelector", () => {
       .at(0)
       .simulate("click");
     expect(props.handleChange).toHaveBeenCalled();
+  });
+
+  it("works if needs haven't loaded yet", () => {
+    props.needs = [];
+    props.selectedNeeds = { 43534534: "43534534" };
+    expect(mountedNeedsSelector());
+  });
+
+  it("is expanded if pageWidth > 600px", () => {
+    expect(
+      mountedNeedsSelector()
+        .find("ExpansionPanel")
+        .prop("expanded")
+    ).toEqual(true);
+  });
+
+  it("is not expanded if pageWidth < 600px", () => {
+    props.pageWidth = 100;
+    expect(
+      mountedNeedsSelector()
+        .find("ExpansionPanel")
+        .prop("expanded")
+    ).toEqual(false);
   });
 });

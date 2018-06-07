@@ -22,8 +22,10 @@ export class A extends Component {
         patronType: "",
         serviceType: "",
         statusAndVitals: ""
-      }
+      },
+      width: 1000
     };
+    this.updateWindowWidth = this.updateWindowWidth.bind(this);
   }
 
   stringToMap = s => {
@@ -96,12 +98,22 @@ export class A extends Component {
   }
 
   componentDidMount() {
+    this.updateWindowWidth();
+    window.addEventListener("resize", this.updateWindowWidth);
     if (this.props.url.query.use_testdata) {
       this.props.dispatch({
         type: "LOAD_DATA",
         data: { benefits: benefitsFixture }
       });
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowWidth);
+  }
+
+  updateWindowWidth() {
+    this.setState({ width: window.innerWidth });
   }
 
   setURL = state => {
@@ -261,6 +273,7 @@ export class A extends Component {
             setSection={this.setSection}
             clearFilters={this.clearFilters}
             clearNeeds={this.clearNeeds}
+            pageWidth={this.state.width}
           />
         );
     }

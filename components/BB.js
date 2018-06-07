@@ -26,8 +26,7 @@ const styles = theme => ({
     textDecoration: "underline"
   },
   filterBox: {
-    border: "1px solid #eee",
-    padding: "20px !important"
+    padding: "0px 0px 50px 0px !important"
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -223,16 +222,15 @@ export class BB extends Component {
               </Typography>
             </Grid>
             <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
-              <Grid item xs={12}>
-                <ProfileSelector
-                  t={t}
-                  handleChange={this.props.setSelectedNeeds}
-                  clearFilters={this.props.clearFilters}
-                  selectedEligibility={this.props.selectedEligibility}
-                  setUserProfile={this.props.setUserProfile}
-                  eligibilityPaths={this.props.eligibilityPaths}
-                />
-              </Grid>
+              <ProfileSelector
+                t={t}
+                handleChange={this.props.setSelectedNeeds}
+                clearFilters={this.props.clearFilters}
+                selectedEligibility={this.props.selectedEligibility}
+                setUserProfile={this.props.setUserProfile}
+                eligibilityPaths={this.props.eligibilityPaths}
+                pageWidth={this.props.pageWidth}
+              />
               <Grid item xs={12}>
                 <NeedsSelector
                   t={t}
@@ -240,6 +238,7 @@ export class BB extends Component {
                   selectedNeeds={this.props.selectedNeeds}
                   handleChange={this.props.setSelectedNeeds}
                   clearNeeds={this.props.clearNeeds}
+                  pageWidth={this.props.pageWidth}
                 />
               </Grid>
             </Grid>
@@ -338,7 +337,8 @@ BB.propTypes = {
   setSelectedNeeds: PropTypes.func,
   setUserProfile: PropTypes.func,
   t: PropTypes.func,
-  toggleSelectedEligibility: PropTypes.func
+  toggleSelectedEligibility: PropTypes.func,
+  pageWidth: PropTypes.number
 };
 
 export default withStyles(styles)(BB);

@@ -88,7 +88,8 @@ describe("A", () => {
         patronType: "family",
         serviceType: "CAF",
         statusAndVitals: ""
-      }
+      },
+      width: 1024
     });
     expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
     AInstance.clearFilters();
@@ -99,7 +100,8 @@ describe("A", () => {
         patronType: "",
         serviceType: "",
         statusAndVitals: ""
-      }
+      },
+      width: 1024
     });
     expect(Router.push).toBeCalledWith(
       "/A?section=S&selectedNeeds=health,financial"
@@ -115,7 +117,8 @@ describe("A", () => {
         patronType: "family",
         serviceType: "CAF",
         statusAndVitals: ""
-      }
+      },
+      width: 1024
     });
     expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
     AInstance.clearNeeds();
@@ -126,7 +129,8 @@ describe("A", () => {
         patronType: "family",
         serviceType: "CAF",
         statusAndVitals: ""
-      }
+      },
+      width: 1024
     });
     expect(Router.push).toBeCalledWith(
       "/A?section=S&patronType=family&serviceType=CAF"
@@ -146,16 +150,15 @@ describe("A", () => {
         serviceType: "CAF"
       }
     };
-    const expectedState = {
-      section: "test section",
-      selectedNeeds: { health: "health", financial: "financial" },
-      selectedEligibility: {
-        patronType: "family",
-        serviceType: "CAF",
-        statusAndVitals: ""
-      }
-    };
-    expect(mountedA().state()).toEqual(expectedState);
+    let AInstance = mountedA().instance();
+    expect(AInstance.state.section).toEqual("test section");
+    expect(AInstance.state.selectedNeeds).toEqual({
+      health: "health",
+      financial: "financial"
+    });
+    expect(AInstance.state.selectedEligibility.patronType).toEqual("family");
+    expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
+    expect(AInstance.state.selectedEligibility.statusAndVitals).toEqual("");
   });
 
   it("Router.onRouteChangeStart sets state correctly from url", () => {
