@@ -19,7 +19,6 @@ const CommentBox = styled("div")`
 const Div = styled("div")`
   width: 100%;
   height: 50px;
-  background-color: #eee;
   color: #000;
   text-align: left;
   font-size: 14px;
@@ -28,7 +27,6 @@ const Div = styled("div")`
 `;
 
 const Inner = styled("div")`
-  background-color: #eee;
   color: #000;
   text-align: left;
   font-size: 14px;
@@ -37,7 +35,6 @@ const Inner = styled("div")`
 `;
 
 const InnerRight = styled("div")`
-  background-color: #eee;
   color: #000;
   text-align: right;
   font-size: 14px;

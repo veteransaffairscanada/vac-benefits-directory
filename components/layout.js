@@ -42,12 +42,24 @@ class Layout extends Component {
         <Head t={this.props.t} />
         <ErrorBoundary>
           <Content>
-            <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
-            <MenuBar i18n={this.props.i18n} t={this.props.t} />
+            <div style={{ backgroundColor: "#000" }}>
+              <Container>
+                <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
+                <MenuBar i18n={this.props.i18n} t={this.props.t} />
+              </Container>
+            </div>
             <Container role="main">{this.props.children}</Container>
           </Content>
-          <FeedbackBar t={this.props.t} />
-          <Footer t={this.props.t} />
+          <div style={{ backgroundColor: "#eee" }}>
+            <Container>
+              <FeedbackBar t={this.props.t} />
+            </Container>
+          </div>
+          <div style={{ backgroundColor: "#ddd" }}>
+            <Container>
+              <Footer t={this.props.t} />
+            </Container>
+          </div>
         </ErrorBoundary>
         {noScriptTag}
       </div>
