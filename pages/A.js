@@ -116,14 +116,14 @@ export class A extends Component {
     this.setState({ width: window.innerWidth });
   }
 
-  setURL = () => {
-    let href = "/A?section=" + this.state.section;
-    if (Object.keys(this.state.selectedNeeds).length > 0) {
-      href += "&selectedNeeds=" + Object.keys(this.state.selectedNeeds).join();
+  setURL = state => {
+    let href = "/A?section=" + state.section;
+    if (Object.keys(state.selectedNeeds).length > 0) {
+      href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
     }
     ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
-      if (this.state.selectedEligibility[selection] !== "") {
-        href += `&${selection}=${this.state.selectedEligibility[selection]}`;
+      if (state.selectedEligibility[selection] !== "") {
+        href += `&${selection}=${state.selectedEligibility[selection]}`;
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
@@ -134,7 +134,7 @@ export class A extends Component {
     let newState = this.state;
     newState.section = section;
     this.setState(newState);
-    this.setURL();
+    this.setURL(newState);
   };
 
   setSelectedNeeds = ids => {
@@ -146,7 +146,7 @@ export class A extends Component {
     let newState = this.state;
     newState.selectedNeeds = selectedNeeds;
     this.setState(newState);
-    this.setURL();
+    this.setURL(newState);
   };
 
   setUserProfile = (criteria, id) => {
@@ -156,7 +156,7 @@ export class A extends Component {
     let newState = this.state;
     newState.selectedEligibility = newSelectedEligibility;
     this.setState(newState);
-    this.setURL();
+    this.setURL(newState);
   };
 
   toggleSelectedEligibility = (criteria, id) => () => {
@@ -176,7 +176,7 @@ export class A extends Component {
       }
     };
     this.setState(newState);
-    this.setURL();
+    this.setURL(newState);
   };
 
   clearNeeds = () => {
@@ -186,7 +186,7 @@ export class A extends Component {
       selectedEligibility: this.state.selectedEligibility
     };
     this.setState(newState);
-    this.setURL();
+    this.setURL(newState);
   };
 
   sectionToDisplay = section => {

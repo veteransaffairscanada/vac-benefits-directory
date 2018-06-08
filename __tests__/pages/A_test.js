@@ -78,7 +78,7 @@ describe("A", () => {
     const expectedURL =
       "/A?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF&lng=en";
     AInstance.setState(state);
-    AInstance.setURL();
+    AInstance.setURL(state);
     expect(Router.push).toBeCalledWith(expectedURL);
   });
 
