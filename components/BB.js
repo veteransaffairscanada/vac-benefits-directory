@@ -23,7 +23,8 @@ const styles = theme => ({
   },
   collapse: {
     textAlign: "right",
-    textDecoration: "underline"
+    textDecoration: "underline",
+    marginTop: "20px"
   },
   filterBox: {
     padding: "0px 0px 50px 0px !important"
@@ -33,7 +34,7 @@ const styles = theme => ({
     minWidth: 120
   },
   sortBy: {
-    textAlign: "right"
+    textAlign: "left"
   },
   subTitle: {
     fontSize: "20px",
@@ -265,7 +266,7 @@ export class BB extends Component {
               </Grid>
 
               <Grid container spacing={24}>
-                <Grid item xs={12} className={classnames(classes.sortBy)}>
+                <Grid item xs={3} className={classnames(classes.sortBy)}>
                   <FormControl
                     id="sortBySelector"
                     className={classes.formControl}
@@ -276,7 +277,7 @@ export class BB extends Component {
                       onChange={this.handleSortByChange}
                     >
                       <MenuItem value={"relevance"}>
-                        {t("B3.Relevance")}
+                        {t("B3.Popularity")}
                       </MenuItem>
                       <MenuItem value={"alphabetical"}>
                         {t("B3.Alphabetical")}
@@ -285,7 +286,7 @@ export class BB extends Component {
                   </FormControl>
                 </Grid>
 
-                <Grid item xs={12} className={classnames(classes.collapse)}>
+                <Grid item xs={9} className={classnames(classes.collapse)}>
                   <Button
                     id="CollapseBenefits"
                     variant="flat"
