@@ -24,7 +24,10 @@ describe("MenuBar", () => {
       i18n: {
         changeLanguage: () => {}
       },
-      t: key => key
+      t: key => {
+        return key == "current-language-code" ? "en" : key;
+      },
+      setURL: key => key
     };
     _mountedMenuBar = undefined;
   });

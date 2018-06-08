@@ -22,7 +22,10 @@ describe("Layout", () => {
   beforeEach(() => {
     window.GA_INITIALIZED = true;
     props = {
-      t: key => key
+      t: key => {
+        return key === "current-language-code" ? "en" : key;
+      },
+      setURL: key => key
     };
     _mountedLayout = undefined;
   });

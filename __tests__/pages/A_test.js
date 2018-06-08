@@ -35,7 +35,10 @@ describe("A", () => {
         query: {}
       },
       i18n: undefined,
-      t: key => key,
+      // t: key => key,
+      t: key => {
+        return key == "current-language-code" ? "en" : key;
+      },
       storeHydrated: true,
       dispatch: jest.fn(),
       benefits: benefitsFixture,
@@ -74,8 +77,9 @@ describe("A", () => {
       }
     };
     const expectedURL =
-      "/A?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF";
-    AInstance.setURL(state);
+      "/A?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF&lng=en";
+    AInstance.setState(state);
+    AInstance.setURL();
     expect(Router.push).toBeCalledWith(expectedURL);
   });
 
@@ -104,7 +108,7 @@ describe("A", () => {
       width: 1024
     });
     expect(Router.push).toBeCalledWith(
-      "/A?section=S&selectedNeeds=health,financial"
+      "/A?section=S&selectedNeeds=health,financial&lng=en"
     );
   });
 
@@ -133,7 +137,7 @@ describe("A", () => {
       width: 1024
     });
     expect(Router.push).toBeCalledWith(
-      "/A?section=S&patronType=family&serviceType=CAF"
+      "/A?section=S&patronType=family&serviceType=CAF&lng=en"
     );
   });
 
