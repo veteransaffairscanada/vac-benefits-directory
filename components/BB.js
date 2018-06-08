@@ -276,7 +276,7 @@ export class BB extends Component {
                       onChange={this.handleSortByChange}
                     >
                       <MenuItem value={"relevance"}>
-                        {t("B3.Relevance")}
+                        {t("B3.Popularity")}
                       </MenuItem>
                       <MenuItem value={"alphabetical"}>
                         {t("B3.Alphabetical")}
