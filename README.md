@@ -10,6 +10,25 @@ https://cdsvacpoc.azurewebsites.net/
 * `yarn install`
 * `yarn dev`
 
+## How to get VAC Benefits Directory to work on VAC machines(May 31, 2018)
+
+* download Node.JS of version 9 or newer(as .zip since .msi is blocked)
+
+* following steps required tp set up the newly installed Node cmd line commands such as npm globally
+
+  > Start menu > Control Panel > User accounts > user accounts > change my environment variables >
+  > select path > Edit > Now enter the location of where you have Node installed with a ; to seperate
+  > between any other entries here.
+  > EX: C:\dev ; C:\Node
+
+* `npm install -g yarn`
+* `yarn install` (While in project main directory, takes a while, especially on building packages)
+
+* `yarn dev` (run while CD'd in project folder used to start the local server)
+
+* If you run into syntax errors chances are there are missing packages/dependencies and you may want to try
+  running a clean yarn install. Delete Node_modules folder and then re run `yarn install` in the main folder.
+
 ## Configuration
 
 The application uses Sentry.io for error logging. If you would also like to use sentry, make sure your public client key is the `SENTRY_DSN` enviroment variable.
