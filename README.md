@@ -14,7 +14,7 @@ https://cdsvacpoc.azurewebsites.net/
 
 * download Node.JS of version 9 or newer(as .zip since .msi is blocked)
 
-* (following steps required tp set up the newly installed Node cmd line commands such as npm globally)
+* following steps required tp set up the newly installed Node cmd line commands such as npm globally
 
   > Start menu > Control Panel > User accounts > user accounts > change my environment variables >
   > select path > Edit > Now enter the location of where you have Node installed with a ; to seperate
