@@ -16,8 +16,7 @@ https://cdsvacpoc.azurewebsites.net/
 
 * (following steps required tp set up the newly installed Node cmd line commands such as npm globally)
 
-  Start menu > Control Panel > User accounts > user accounts > change my environment variables
-
+  > Start menu > Control Panel > User accounts > user accounts > change my environment variables >
   > select path > Edit > Now enter the location of where you have Node installed with a ; to seperate
   > between any other entries here.
   > EX: C:\dev ; C:\Node
