@@ -35,7 +35,6 @@ describe("A", () => {
         query: {}
       },
       i18n: undefined,
-      // t: key => key,
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
