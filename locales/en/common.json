@@ -40,8 +40,10 @@
     "Popularity": "Popularity",
     "Alphabetical": "Alphabetical",
     "title": "Find benefits relevant to you",
-    "subtitle":
-      "Veteran Affairs Canada offers over 20 benefits to help you and your family. Use the filters below to find benefits that are relevant to your needs.",
+    "subtitle1":
+      "Veteran Affairs Canada offers over 20 benefits to help you and your family.",
+    "subtitle2":
+      "Use the filters below to find benefits that are relevant to your needs.",
     "x benefits to consider": "Showing {{x}} benefits for you to consider",
     "No benefits":
       "At this time there are no benefits that match your selections",

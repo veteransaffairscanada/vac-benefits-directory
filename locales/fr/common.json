@@ -41,8 +41,10 @@
     "Popularity": "Popularité",
     "Alphabetical": "Alphabétique",
     "title": "Trouver des avantages qui vous conviennent",
-    "subtitle":
-      "Anciens Combattants Canada offre plus de 20 avantages pour vous et votre famille. Utilisez les filtres plus bas pour trouver les avantages qui répondent à vos besoins.",
+    "subtitle1":
+      "Anciens Combattants Canada offre plus de 20 avantages pour vous et votre famille.",
+    "subtitle2":
+      "Utilisez les filtres plus bas pour trouver les avantages qui répondent à vos besoins.",
     "x benefits to consider": "{{x}} avantages à considérer",
     "No benefits":
       "Pour le moment, aucun avantage ne correspond à vos sélections.",
