@@ -7,6 +7,7 @@ import { logEvent } from "../utils/analytics";
 class MenuBar extends Component {
   changeLanguage = () => {
     this.props.i18n.changeLanguage(this.props.t("other-language-code"));
+    this.props.setURL();
     logEvent("Language change", this.props.t("other-language"));
   };
 
@@ -43,7 +44,8 @@ class MenuBar extends Component {
 
 MenuBar.propTypes = {
   i18n: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  setURL: PropTypes.func
 };
 
 export default MenuBar;

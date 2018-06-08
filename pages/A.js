@@ -50,7 +50,6 @@ export class A extends Component {
       let myURL = {};
       myURL.searchParams = this.getUrlParams(newUrl);
       const section = myURL.searchParams.section;
-      const lang = myURL.searchParams.lang;
       let filters = {};
       ["selectedNeeds"].forEach(filter => {
         filters[filter] = myURL.searchParams[filter]
@@ -69,8 +68,7 @@ export class A extends Component {
           patronType: filters.patronType,
           serviceType: filters.serviceType,
           statusAndVitals: filters.statusAndVitals
-        },
-        lang: lang
+        }
       };
       this.setState(newState);
     };
@@ -118,18 +116,17 @@ export class A extends Component {
     this.setState({ width: window.innerWidth });
   }
 
-  setURL = state => {
-    let href = "/A?section=" + state.section;
-    if (Object.keys(state.selectedNeeds).length > 0) {
-      href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
+  setURL = () => {
+    let href = "/A?section=" + this.state.section;
+    if (Object.keys(this.state.selectedNeeds).length > 0) {
+      href += "&selectedNeeds=" + Object.keys(this.state.selectedNeeds).join();
     }
     ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
-      if (state.selectedEligibility[selection] !== "") {
-        href += `&${selection}=${state.selectedEligibility[selection]}`;
+      if (this.state.selectedEligibility[selection] !== "") {
+        href += `&${selection}=${this.state.selectedEligibility[selection]}`;
       }
     });
-    // href += "&lang=" + this.props.t("current-language-code")
-    console.log(this.props.t("current-language-code"));
+    href += "&lng=" + this.props.t("current-language-code");
     Router.push(href);
   };
 
@@ -137,7 +134,7 @@ export class A extends Component {
     let newState = this.state;
     newState.section = section;
     this.setState(newState);
-    this.setURL(newState);
+    this.setURL();
   };
 
   setSelectedNeeds = ids => {
@@ -149,7 +146,7 @@ export class A extends Component {
     let newState = this.state;
     newState.selectedNeeds = selectedNeeds;
     this.setState(newState);
-    this.setURL(newState);
+    this.setURL();
   };
 
   setUserProfile = (criteria, id) => {
@@ -159,7 +156,7 @@ export class A extends Component {
     let newState = this.state;
     newState.selectedEligibility = newSelectedEligibility;
     this.setState(newState);
-    this.setURL(newState);
+    this.setURL();
   };
 
   toggleSelectedEligibility = (criteria, id) => () => {
@@ -179,7 +176,7 @@ export class A extends Component {
       }
     };
     this.setState(newState);
-    this.setURL(newState);
+    this.setURL();
   };
 
   clearNeeds = () => {
@@ -189,7 +186,7 @@ export class A extends Component {
       selectedEligibility: this.state.selectedEligibility
     };
     this.setState(newState);
-    this.setURL(newState);
+    this.setURL();
   };
 
   sectionToDisplay = section => {
@@ -285,7 +282,7 @@ export class A extends Component {
 
   render() {
     return (
-      <Layout i18n={this.props.i18n} t={this.props.t}>
+      <Layout i18n={this.props.i18n} t={this.props.t} setURL={this.setURL}>
         {this.sectionToDisplay(this.state.section)}
       </Layout>
     );
