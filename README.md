@@ -21,13 +21,13 @@ https://cdsvacpoc.azurewebsites.net/
   > between any other entries here.
   > EX: C:\dev ; C:\Node
 
-* 'npm install -g yarn'
-* 'yarn install' (While in project main directory, takes a while, especially on building packages)
+* `npm install -g yarn`
+* `yarn install` (While in project main directory, takes a while, especially on building packages)
 
-* 'yarn dev' (run while CD'd in project folder used to start the local server)
+* `yarn dev` (run while CD'd in project folder used to start the local server)
 
 * If you run into syntax errors chances are there are missing packages/dependencies and you may want to try
-  running a clean yarn install. Delete Node_modules folder and then re run 'yarn install' in the main folder.
+  running a clean yarn install. Delete Node_modules folder and then re run `yarn install` in the main folder.
 
 ## Configuration
 
