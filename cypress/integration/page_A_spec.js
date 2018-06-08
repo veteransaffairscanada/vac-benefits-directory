@@ -5,14 +5,10 @@ describe("Page A", () => {
     cy.visit(baseURL);
   });
 
-  it("Loads A1", () => {
-    cy.contains("Filter Benefits");
-  });
-
-  it("Has a language button", () => {
-    cy.contains("Filter by eligibility");
-    cy.contains("Filtrer par admissibilité").should("not.exist");
+  it("Has a language button that works", () => {
+    cy.contains("Veteran Affairs Canada");
+    cy.contains("Anciens Combattants Canada").should("not.exist");
     cy.contains("Français").click();
-    cy.contains("Filtrer par admissibilité");
+    cy.contains("Anciens Combattants Canada");
   });
 });
