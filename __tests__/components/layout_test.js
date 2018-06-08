@@ -24,8 +24,7 @@ describe("Layout", () => {
     props = {
       t: key => {
         return key === "current-language-code" ? "en" : key;
-      },
-      setURL: key => key
+      }
     };
     _mountedLayout = undefined;
   });

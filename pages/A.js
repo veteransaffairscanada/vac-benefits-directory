@@ -282,7 +282,7 @@ export class A extends Component {
 
   render() {
     return (
-      <Layout i18n={this.props.i18n} t={this.props.t} setURL={this.setURL}>
+      <Layout i18n={this.props.i18n} t={this.props.t}>
         {this.sectionToDisplay(this.state.section)}
       </Layout>
     );

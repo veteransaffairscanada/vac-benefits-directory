@@ -43,11 +43,7 @@ class Layout extends Component {
         <ErrorBoundary>
           <Content>
             <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
-            <MenuBar
-              i18n={this.props.i18n}
-              t={this.props.t}
-              setURL={this.props.setURL}
-            />
+            <MenuBar i18n={this.props.i18n} t={this.props.t} />
             <Container role="main">{this.props.children}</Container>
           </Content>
           <FeedbackBar t={this.props.t} />
@@ -63,8 +59,7 @@ Layout.propTypes = {
   children: PropTypes.object,
   hideNoscript: PropTypes.bool,
   i18n: PropTypes.object,
-  t: PropTypes.func,
-  setURL: PropTypes.func
+  t: PropTypes.func
 };
 
 export default Layout;
