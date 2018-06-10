@@ -23,7 +23,8 @@ const styles = () => ({
     color: "black !important"
   },
   clearButton: {
-    textDecoration: "underline"
+    textDecoration: "underline",
+    textTransform: "unset"
   },
   gridItemButton: {
     textAlign: "center"
