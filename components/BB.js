@@ -175,11 +175,22 @@ export class BB extends Component {
     this.setState({ sortByValue: event.target.value });
   };
 
+  countSelection = () => {
+    const reducer = (acc, obj) => acc + (Object.values(obj)[0] == null ? 0 : 1);
+    let count = Object.values(this.props.selectedEligibility).reduce(
+      reducer,
+      0
+    );
+    return count + Object.values(this.props.selectedNeeds).length;
+  };
+
   countString = (x, t) => {
-    switch (x) {
-      case 0:
+    switch (true) {
+      case this.countSelection() === 0:
+        return t("B3.All benefits to consider");
+      case x == 0:
         return t("B3.No benefits");
-      case 1:
+      case x == 1:
         return t("B3.One benefit");
       default:
         return t("B3.x benefits to consider", { x: x });
