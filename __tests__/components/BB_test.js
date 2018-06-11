@@ -203,4 +203,71 @@ describe("BB", () => {
   it("has a benefits counter", () => {
     expect(mounted_BB().find(".BenefitsCounter"));
   });
+
+  it("shows B3.All benefits to consider when no filters are selected", () => {
+    mounted_BB().setProps({
+      selectedEligibility: {
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
+      }
+    });
+    mounted_BB().setProps({ selectedNeeds: {} });
+    expect(
+      mounted_BB()
+        .find(".BenefitsCounter")
+        .last()
+        .text()
+    ).toEqual("B3.All benefits to consider");
+  });
+
+  describe("countSelection", () => {
+    it("returns 0 if nothing is selected", () => {
+      expect(
+        mounted_BB()
+          .instance()
+          .countSelection()
+      ).toEqual(0);
+    });
+
+    it("returns 1 if one selectedEligibilty is selected", () => {
+      mounted_BB().setProps({
+        selectedEligibility: {
+          patronType: elegibilityPathsFixture[0].patronType
+        }
+      });
+      expect(
+        mounted_BB()
+          .instance()
+          .countSelection()
+      ).toEqual(1);
+    });
+
+    it("returns 1 if one selectedNeeds is selected", () => {
+      let needsSelection = {};
+      needsSelection[needsFixture[0].id] = needsFixture[0].id;
+      mounted_BB().setProps({ selectedNeeds: needsSelection });
+      expect(
+        mounted_BB()
+          .instance()
+          .countSelection()
+      ).toEqual(1);
+    });
+
+    it("returns 1 if one selectedNeeds is selected", () => {
+      let needsSelection = {};
+      needsSelection[needsFixture[0].id] = needsFixture[0].id;
+      mounted_BB().setProps({ selectedNeeds: needsSelection });
+      mounted_BB().setProps({
+        selectedEligibility: {
+          patronType: elegibilityPathsFixture[0].patronType
+        }
+      });
+      expect(
+        mounted_BB()
+          .instance()
+          .countSelection()
+      ).toEqual(2);
+    });
+  });
 });
