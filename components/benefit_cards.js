@@ -24,7 +24,6 @@ const styles = () => ({
     paddingTop: "25px"
   },
   root: {
-    marginLeft: "15px",
     width: "100%"
   },
   ExpansionPanelClosed: {

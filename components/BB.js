@@ -17,24 +17,26 @@ import ProfileSelector from "./profile_selector";
 
 const styles = theme => ({
   benefitsCount: {
-    fontSize: "24px",
-    marginTop: "-10px",
-    textAlign: "center"
+    fontSize: "24px"
+  },
+  checkEligibility: {
+    fontWeight: "100"
   },
   collapse: {
     textAlign: "right",
     textDecoration: "underline",
-    marginTop: "20px"
-  },
-  filterBox: {
-    padding: "0px 0px 50px 0px !important"
+    marginTop: "34px"
   },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120
   },
   sortBy: {
-    textAlign: "left"
+    textAlign: "left",
+    marginLeft: "-7px"
+  },
+  sortByBox: {
+    backgroundColor: "white"
   },
   subTitle: {
     fontSize: "20px",
@@ -44,6 +46,10 @@ const styles = theme => ({
   title: {
     fontSize: "36px",
     padding: "15px 0"
+  },
+  topMatter: {
+    borderBottom: "solid 1px lightgrey",
+    marginBottom: "30px"
   }
 });
 
@@ -231,14 +237,14 @@ export class BB extends Component {
       <div id={this.props.id}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
-            <Grid item xs={12}>
+            <Grid item xs={12} className={classes.topMatter}>
               <Typography className={classes.title}>{t("B3.title")}</Typography>
               <Typography className={classes.subTitle}>
                 {t("B3.subtitle1")} <br />
                 {t("B3.subtitle2")}
               </Typography>
             </Grid>
-            <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
+            <Grid item lg={3} md={4} sm={5} xs={12}>
               <ProfileSelector
                 t={t}
                 handleChange={this.props.setSelectedNeeds}
@@ -259,7 +265,7 @@ export class BB extends Component {
                 />
               </Grid>
             </Grid>
-            <Grid item md={9} sm={7} xs={12}>
+            <Grid item lg={9} md={8} sm={7} xs={12}>
               <Grid item xs={12}>
                 <Typography
                   className={"BenefitsCounter " + classes.benefitsCount}
@@ -267,15 +273,9 @@ export class BB extends Component {
                   {this.countString(filteredBenefits.length, t)}
                 </Typography>
                 {filteredBenefits.length > 0 ? (
-                  <p
-                    style={{
-                      fontWeight: "100",
-                      margin: "5px",
-                      textAlign: "center"
-                    }}
-                  >
+                  <Typography className={classes.checkEligibility}>
                     {t("B3.check eligibility")}
-                  </p>
+                  </Typography>
                 ) : (
                   ""
                 )}
@@ -291,6 +291,7 @@ export class BB extends Component {
                     <Select
                       value={this.state.sortByValue}
                       onChange={this.handleSortByChange}
+                      className={classnames(classes.sortByBox)}
                     >
                       <MenuItem value={"relevance"}>
                         {t("B3.Popularity")}
