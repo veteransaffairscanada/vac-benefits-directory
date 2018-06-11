@@ -22,7 +22,7 @@ class MenuBar extends Component {
 
     return (
       <AppBar style={{ backgroundColor: "#000" }} position="static">
-        <Toolbar>
+        <Toolbar style={{ paddingLeft: "15px", paddingRight: "0px" }}>
           <GoCSignature
             lang={t("current-language-code")}
             width="20em"

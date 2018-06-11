@@ -11,16 +11,27 @@ import Footer from "../components/footer";
 import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
 
+import classnames from "classnames";
+import { withStyles } from "material-ui/styles";
+
 const Container = styled("div")`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
-  background-color: #f5f5f5;
 `;
 
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
+
+const styles = () => ({
+  root: {
+    backgroundColor: "#f5f5f5"
+  },
+  header: {
+    backgroundColor: "#000",
+    padding: "0px"
+  }
+});
 
 class Layout extends Component {
   componentDidMount() {
@@ -39,11 +50,11 @@ class Layout extends Component {
       <Noscript t={this.props.t} />
     );
     return (
-      <div>
+      <div className={classnames(this.props.classes.root)}>
         <Head t={this.props.t} />
         <ErrorBoundary>
           <Content>
-            <div style={{ backgroundColor: "#000" }}>
+            <div className={classnames(this.props.classes.header)}>
               <Container>
                 <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
                 <MenuBar i18n={this.props.i18n} t={this.props.t} />
@@ -70,9 +81,10 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.object,
+  classes: PropTypes.object,
   hideNoscript: PropTypes.bool,
   i18n: PropTypes.object,
   t: PropTypes.func
 };
 
-export default Layout;
+export default withStyles(styles)(Layout);

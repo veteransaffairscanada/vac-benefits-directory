@@ -35,6 +35,9 @@ const styles = theme => ({
     textAlign: "left",
     marginLeft: "-7px"
   },
+  sortByBox: {
+    backgroundColor: "white"
+  },
   subTitle: {
     fontSize: "20px",
     fontWeight: "100",
@@ -276,6 +279,7 @@ export class BB extends Component {
                     <Select
                       value={this.state.sortByValue}
                       onChange={this.handleSortByChange}
+                      className={classnames(classes.sortByBox)}
                     >
                       <MenuItem value={"relevance"}>
                         {t("B3.Popularity")}
