@@ -46,6 +46,10 @@ const styles = theme => ({
   title: {
     fontSize: "36px",
     padding: "15px 0"
+  },
+  topMatter: {
+    borderBottom: "solid 1px lightgrey",
+    marginBottom: "30px"
   }
 });
 
@@ -222,7 +226,7 @@ export class BB extends Component {
       <div id={this.props.id}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
-            <Grid item xs={12}>
+            <Grid item xs={12} className={classes.topMatter}>
               <Typography className={classes.title}>{t("B3.title")}</Typography>
               <Typography className={classes.subTitle}>
                 {t("B3.subtitle")}
