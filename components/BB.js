@@ -254,7 +254,7 @@ export class BB extends Component {
               </Grid>
             </Grid>
             <Grid item lg={9} md={8} sm={7} xs={12}>
-              <Grid item xs={12} className={classnames(classes.thing)}>
+              <Grid item xs={12}>
                 <Typography
                   className={"BenefitsCounter " + classes.benefitsCount}
                 >
@@ -269,11 +269,7 @@ export class BB extends Component {
                 )}
               </Grid>
 
-              <Grid
-                container
-                spacing={24}
-                className={classnames(classes.thing)}
-              >
+              <Grid container spacing={24}>
                 <Grid item xs={3} className={classnames(classes.sortBy)}>
                   <FormControl
                     id="sortBySelector"
