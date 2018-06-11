@@ -21,7 +21,7 @@ class MenuBar extends Component {
     const { t } = this.props;
 
     return (
-      <AppBar style={{ backgroundColor: "#000" }} position="static">
+      <AppBar style={{ backgroundColor: "#000", boxShadow: "none" }} position="static">
         <Toolbar style={{ paddingLeft: "15px", paddingRight: "0px" }}>
           <GoCSignature
             lang={t("current-language-code")}
