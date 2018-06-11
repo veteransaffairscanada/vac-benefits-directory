@@ -30,11 +30,11 @@ class MenuBar extends Component {
             flag="#fff"
           />
           <Typography style={{ flex: 1 }} />
-          <Button id="refreshCache">
-            <a href="/refresh" style={{ color: "#fff" }}>
+          <a href="/refresh">
+            <Button id="refreshCache" style={{ color: "#fff" }}>
               {t("refresh-cache")}
-            </a>
-          </Button>
+            </Button>
+          </a>
           <Button
             id="changeLanguage"
             style={{ color: "#fff" }}
