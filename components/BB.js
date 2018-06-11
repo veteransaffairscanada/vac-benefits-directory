@@ -1,84 +1,77 @@
-// @flow
-
 import React, { Component } from "react";
-import { Grid } from "material-ui";
-import Collapse from "material-ui/transitions/Collapse";
-import IconButton from "material-ui/IconButton";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PropTypes from "prop-types";
+import { Grid, Button } from "material-ui";
 import classnames from "classnames";
 import { withStyles } from "material-ui/styles";
-import red from "material-ui/colors/red";
 import Typography from "material-ui/Typography";
+import { InputLabel } from "material-ui/Input";
+import { MenuItem } from "material-ui/Menu";
+import { FormControl } from "material-ui/Form";
+import Select from "material-ui/Select";
 import "babel-polyfill/dist/polyfill";
 
 import BenefitCard from "../components/benefit_cards";
-import FilterSelector from "../components/dropdown_selector";
 import NeedsSelector from "./needs_selector";
-import i18next from "i18next";
-
-type Props = {
-  id: string,
-  t: mixed,
-  benefits: mixed,
-  eligibilityPaths: mixed,
-  needs: mixed,
-  selectedEligibility: mixed,
-  selectedNeeds: mixed,
-  toggleSelectedEligibility: mixed,
-  setSelectedNeeds: mixed,
-  setUserProfile: mixed,
-  classes: mixed
-};
+import ProfileSelector from "./profile_selector";
 
 const styles = theme => ({
-  card: {
-    maxWidth: 400
+  benefitsCount: {
+    fontSize: "24px",
+    marginTop: "-10px",
+    textAlign: "center"
   },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
+  collapse: {
+    textAlign: "right",
+    textDecoration: "underline",
+    marginTop: "20px"
   },
-  actions: {
-    display: "flex"
+  filterBox: {
+    padding: "0px 0px 50px 0px !important"
   },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
-    marginLeft: "auto"
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120
   },
-  expandOpen: {
-    transform: "rotate(180deg)"
+  sortBy: {
+    textAlign: "left"
   },
-  avatar: {
-    backgroundColor: red[500]
+  subTitle: {
+    fontSize: "20px",
+    fontWeight: "100",
+    paddingBottom: "25px"
+  },
+  title: {
+    fontSize: "36px",
+    padding: "15px 0"
   }
 });
 
-export class BB extends Component<Props> {
-  props: Props;
-
+export class BB extends Component {
   state = {
-    expanded: true
+    sortByValue: "relevance"
   };
+  children = [];
 
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
+  collapseAllBenefits = () => {
+    this.children.forEach(c => {
+      if (c) {
+        c.setState({ open: false });
+        c.children.forEach(cc => {
+          if (cc) {
+            cc.setState({ open: false });
+          }
+        });
+      }
+    });
   };
 
   eligibilityMatch = (path, selected) => {
     let matches = true;
-    [
-      "serviceType",
-      "patronType",
-      "serviceStatus",
-      "servicePersonVitalStatus"
-    ].forEach(criteria => {
+    ["serviceType", "patronType", "statusAndVitals"].forEach(criteria => {
       if (
-        Object.keys(selected[criteria]).length &&
+        selected[criteria] != "" &&
         path[criteria] !== "na" &&
-        !selected[criteria].hasOwnProperty(path[criteria])
+        selected[criteria] != path[criteria]
       ) {
         matches = false;
       }
@@ -93,81 +86,127 @@ export class BB extends Component<Props> {
     needs,
     selectedNeeds
   ) => {
-    let benefitIDs = [];
+    if (benefits.length === 0) {
+      return benefits;
+    }
+
+    // find benefits that match
+    let benefitIdsForProfile = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
-        benefitIDs = benefitIDs.concat(ep.benefits);
+        benefitIdsForProfile = benefitIdsForProfile.concat(ep.benefits);
       }
     });
-
+    let benefitIdsForSelectedNeeds = [];
     if (Object.keys(selectedNeeds).length > 0) {
-      let benefitIdsForSelectedNeeds = [];
       Object.keys(selectedNeeds).forEach(id => {
         const need = needs.filter(n => n.id === id)[0];
         benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
           need.benefits
         );
       });
-      benefitIDs = benefitIDs.filter(
-        id => benefitIdsForSelectedNeeds.indexOf(id) > -1
-      );
+    } else {
+      benefitIdsForSelectedNeeds = benefits.map(b => b.id);
     }
-    const benefitIDSet = new Set(benefitIDs);
-    return benefits.filter(benefit => benefitIDSet.has(benefit.id));
+    let matchingBenefitIds = benefitIdsForProfile.filter(
+      id => benefitIdsForSelectedNeeds.indexOf(id) > -1
+    );
+
+    // find benefits with matching children
+    const benefitIdsWithMatchingChildren = benefits
+      .filter(
+        b =>
+          b.childBenefits &&
+          b.childBenefits.filter(cbID => matchingBenefitIds.indexOf(cbID) > -1)
+            .length > 0
+      )
+      .map(b => b.id);
+
+    const benefitIDsToShow = matchingBenefitIds.concat(
+      benefitIdsWithMatchingChildren
+    );
+    let benefitsToShow = benefits.filter(
+      b => benefitIDsToShow.indexOf(b.id) > -1
+    );
+
+    // if a benefit is already shown as a child, only show it (as a parent card) if it's available independently
+    let childrenIDsShown = [];
+    benefitsToShow.forEach(b => {
+      childrenIDsShown = childrenIDsShown.concat(b.childBenefits);
+    });
+    benefitsToShow = benefitsToShow.filter(
+      b =>
+        b.availableIndependently === "Independent" ||
+        childrenIDsShown.indexOf(b.id) < 0
+    );
+
+    return benefitsToShow;
+  };
+
+  sortBenefits = (filteredBenefits, language) => {
+    filteredBenefits.forEach(b => {
+      if (b.sortingPriority === undefined) {
+        b.sortingPriority = "low";
+      }
+      b.sortingNumber = { high: 1, medium: 2, low: 3 }[b.sortingPriority];
+    });
+
+    let sorting_fn = (a, b) => {
+      if (
+        this.state.sortByValue === "alphabetical" ||
+        a.sortingNumber === b.sortingNumber
+      ) {
+        // sort alphabetically
+        let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
+        let nameA = a[vacName].toUpperCase();
+        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      }
+      // ascending numeric sort
+      return a.sortingNumber - b.sortingNumber;
+    };
+    return filteredBenefits.sort(sorting_fn);
+  };
+
+  handleSortByChange = event => {
+    this.setState({ sortByValue: event.target.value });
+  };
+
+  countString = (x, t) => {
+    switch (x) {
+      case 0:
+        return t("B3.No benefits");
+      case 1:
+        return t("B3.One benefit");
+      default:
+        return t("B3.x benefits to consider", { x: x });
+    }
   };
 
   render() {
-    let serviceTypes = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.serviceType))
-    )
-      .filter(st => st !== "na")
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
+    let veteranBenefitIds = [];
+    let familyBenefitIds = [];
 
-    const patronTypes = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.patronType))
-    )
-      .filter(st => st !== "na")
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
-    let serviceStatuses = Array.from(
-      new Set(this.props.eligibilityPaths.map(ep => ep.serviceStatus))
-    )
-      .filter(st => st !== "na")
-      .concat(["still serving"])
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
-    let servicePersonVitalStatuses = Array.from(
-      new Set(
-        this.props.eligibilityPaths.map(ep => ep.servicePersonVitalStatus)
-      )
-    )
-      .filter(st => st !== "na")
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
-    // check all boxes
-    serviceTypes.forEach(x => {
-      this.props.toggleSelectedEligibility("serviceType", x.id);
-    });
-    patronTypes.forEach(x => {
-      this.props.toggleSelectedEligibility("patronType", x.id);
-    });
-    serviceStatuses.forEach(x => {
-      this.props.toggleSelectedEligibility("serviceStatus", x.id);
-    });
-    servicePersonVitalStatuses.forEach(x => {
-      this.props.toggleSelectedEligibility("servicePersonVitalStatus", x.id);
+    this.props.eligibilityPaths.forEach(ep => {
+      if (ep.patronType === "service-person") {
+        veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
+      }
+      if (ep.patronType === "family") {
+        familyBenefitIds = familyBenefitIds.concat(ep.benefits);
+      }
     });
 
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
-
+    this.sortBenefits(
+      this.props.benefits,
+      this.props.t("current-language-code")
+    );
     const filteredBenefits = this.filteredBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
@@ -180,140 +219,85 @@ export class BB extends Component<Props> {
       <div id={this.props.id}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
-            <Grid item md={3} sm={5} xs={12}>
-              <Grid container spacing={8}>
-                <Grid item xs={12}>
-                  <Typography variant="title">
-                    {t("B3.Filter Benefits")}
-                    <IconButton
-                      id="expandButton"
-                      className={classnames(classes.expand, {
-                        [classes.expandOpen]: this.state.expanded
-                      })}
-                      onClick={this.handleExpandClick}
-                      aria-expanded={this.state.expanded}
-                      aria-label="Show more"
-                    >
-                      <ExpandMoreIcon />
-                    </IconButton>
-                  </Typography>
-                </Grid>
-
-                <Collapse
-                  id="collapseBlock"
-                  in={this.state.expanded}
-                  timeout="auto"
-                  unmountOnExit
-                >
-                  <Grid item xs={12}>
-                    <FilterSelector
-                      id="patronTypeFilter"
-                      t={t}
-                      legend={"B3.PatronType"}
-                      filters={patronTypes}
-                      selectedFilters={
-                        this.props.selectedEligibility.patronType
-                      }
-                      setUserProfile={id =>
-                        this.props.setUserProfile("patronType", id)
-                      }
-                      isDisabled={false}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <FilterSelector
-                      id="serviceTypeFilter"
-                      t={t}
-                      legend={"B3.ServiceType"}
-                      filters={serviceTypes}
-                      selectedFilters={
-                        this.props.selectedEligibility.serviceType
-                      }
-                      setUserProfile={id =>
-                        this.props.setUserProfile("serviceType", id)
-                      }
-                      isDisabled={false}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <FilterSelector
-                      id="serviceStatusFilter"
-                      t={t}
-                      legend={"B3.serviceStatus"}
-                      filters={serviceStatuses}
-                      selectedFilters={
-                        this.props.selectedEligibility.serviceStatus
-                      }
-                      setUserProfile={id =>
-                        this.props.setUserProfile("serviceStatus", id)
-                      }
-                      isDisabled={
-                        !this.props.selectedEligibility.serviceType.hasOwnProperty(
-                          "CAF"
-                        )
-                      }
-                      disabledString={t("disabled-serviceStatusFilter")}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <FilterSelector
-                      id="servicePersonVitalStatusFilter"
-                      t={t}
-                      legend={"B3.servicePersonVitalStatus"}
-                      filters={servicePersonVitalStatuses}
-                      selectedFilters={
-                        this.props.selectedEligibility.servicePersonVitalStatus
-                      }
-                      setUserProfile={id =>
-                        this.props.setUserProfile(
-                          "servicePersonVitalStatus",
-                          id
-                        )
-                      }
-                      isDisabled={
-                        !this.props.selectedEligibility.patronType.hasOwnProperty(
-                          "family"
-                        )
-                      }
-                      disabledString={t(
-                        "disabled-servicePersonVitalStatusFilter"
-                      )}
-                    />
-                  </Grid>
-                </Collapse>
-
-                <Grid item xs={12}>
-                  <p style={{ textAlign: "left", fontSize: "1em" }}>
-                    <a
-                      className="AllBenefits"
-                      href={"all-benefits?lng=" + t("current-language-code")}
-                      target="dan"
-                    >
-                      {t("Show All Benefits")}
-                    </a>
-                  </p>
-                </Grid>
+            <Grid item xs={12}>
+              <Typography className={classes.title}>{t("B3.title")}</Typography>
+              <Typography className={classes.subTitle}>
+                {t("B3.subtitle")}
+              </Typography>
+            </Grid>
+            <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
+              <ProfileSelector
+                t={t}
+                handleChange={this.props.setSelectedNeeds}
+                clearFilters={this.props.clearFilters}
+                selectedEligibility={this.props.selectedEligibility}
+                setUserProfile={this.props.setUserProfile}
+                eligibilityPaths={this.props.eligibilityPaths}
+                pageWidth={this.props.pageWidth}
+              />
+              <Grid item xs={12}>
+                <NeedsSelector
+                  t={t}
+                  needs={this.props.needs}
+                  selectedNeeds={this.props.selectedNeeds}
+                  handleChange={this.props.setSelectedNeeds}
+                  clearNeeds={this.props.clearNeeds}
+                  pageWidth={this.props.pageWidth}
+                />
               </Grid>
             </Grid>
             <Grid item md={9} sm={7} xs={12}>
+              <Grid item xs={12}>
+                <Typography
+                  className={"BenefitsCounter " + classes.benefitsCount}
+                >
+                  {this.countString(filteredBenefits.length, t)}
+                </Typography>
+                {filteredBenefits.length > 0 ? (
+                  <p
+                    style={{
+                      fontWeight: "100",
+                      margin: "5px",
+                      textAlign: "center"
+                    }}
+                  >
+                    {t("B3.check eligibility")}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </Grid>
+
               <Grid container spacing={24}>
-                <Grid item xs={12}>
-                  <NeedsSelector
-                    t={t}
-                    needs={this.props.needs}
-                    handleChange={this.props.setSelectedNeeds}
-                  />
+                <Grid item xs={3} className={classnames(classes.sortBy)}>
+                  <FormControl
+                    id="sortBySelector"
+                    className={classes.formControl}
+                  >
+                    <InputLabel>{t("B3.Sort By")}</InputLabel>
+                    <Select
+                      value={this.state.sortByValue}
+                      onChange={this.handleSortByChange}
+                    >
+                      <MenuItem value={"relevance"}>
+                        {t("B3.Popularity")}
+                      </MenuItem>
+                      <MenuItem value={"alphabetical"}>
+                        {t("B3.Alphabetical")}
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
                 </Grid>
-                <Grid item xs={12}>
-                  <Typography className="BenefitsCounter">
-                    {i18next.t("Showing x of y benefits", {
-                      x: filteredBenefits.length,
-                      y: this.props.benefits.length
-                    })}
-                  </Typography>
+
+                <Grid item xs={9} className={classnames(classes.collapse)}>
+                  <Button
+                    id="CollapseBenefits"
+                    variant="flat"
+                    size="small"
+                    onClick={this.collapseAllBenefits}
+                  >
+                    {t("Close all")}
+                  </Button>
                 </Grid>
                 {filteredBenefits.map(
                   (benefit, i) =>
@@ -322,9 +306,13 @@ export class BB extends Component<Props> {
                         id={"bc" + i}
                         className="BenefitCards"
                         benefit={benefit}
+                        examples={this.props.examples}
                         allBenefits={this.props.benefits}
+                        veteranBenefitIds={veteranBenefitIds}
+                        familyBenefitIds={familyBenefitIds}
                         t={this.props.t}
-                        key={i}
+                        key={benefit.id}
+                        onRef={ref => this.children.push(ref)}
                       />
                     ) : (
                       ""
@@ -338,5 +326,23 @@ export class BB extends Component<Props> {
     );
   }
 }
+
+BB.propTypes = {
+  benefits: PropTypes.array,
+  classes: PropTypes.object,
+  clearFilters: PropTypes.func,
+  clearNeeds: PropTypes.func,
+  eligibilityPaths: PropTypes.array,
+  examples: PropTypes.array,
+  id: PropTypes.string,
+  needs: PropTypes.array,
+  selectedEligibility: PropTypes.object,
+  selectedNeeds: PropTypes.object,
+  setSelectedNeeds: PropTypes.func,
+  setUserProfile: PropTypes.func,
+  t: PropTypes.func,
+  toggleSelectedEligibility: PropTypes.func,
+  pageWidth: PropTypes.number
+};
 
 export default withStyles(styles)(BB);

@@ -1,133 +1,153 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import Input, { InputLabel } from "material-ui/Input";
-import { MenuItem } from "material-ui/Menu";
-import { FormControl } from "material-ui/Form";
-import Select from "material-ui/Select";
-import Checkbox from "material-ui/Checkbox";
-import Chip from "material-ui/Chip";
 import "babel-polyfill/dist/polyfill";
+import Typography from "material-ui/Typography";
+import classnames from "classnames";
+import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
+import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
+import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-const chipStyle = {
-  borderRadius: "8px",
-  fontSize: "16px"
-};
-
-const layoutStyle = {
-  fontSize: "16px"
-};
+import "babel-polyfill/dist/polyfill";
+import { Grid, Button } from "material-ui";
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    marginBottom: "10px"
+    backgroundColor: "white"
   },
-  formControl: {
-    margin: theme.spacing.unit,
-    width: "100%"
+  summary: {
+    opacity: "1 !important"
   },
-  chips: {
+  title: {
+    color: "black !important"
+  },
+  needsButtons: {
     display: "flex",
     flexWrap: "wrap"
   },
-  chip: {
-    margin: theme.spacing.unit / 4
+  need: {
+    margin: theme.spacing.unit,
+    backgroundColor: "#F5F5F5",
+    textTransform: "none",
+    textAlign: "left"
+  },
+  needSelected: {
+    margin: theme.spacing.unit,
+    backgroundColor: "#364150",
+    color: "white",
+    textTransform: "none",
+    textAlign: "left"
+  },
+  clearButton: {
+    textDecoration: "underline",
+    textTransform: "unset"
+  },
+  gridItemButton: {
+    textAlign: "center"
   }
 });
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
-    }
-  }
-};
-
-type Props = {
-  t: mixed,
-  needs: mixed,
-  handleChange: mixed
-};
-
-class NeedsSelector extends Component<Props> {
+class NeedsSelector extends Component {
   state = {
-    name: []
+    open: false
   };
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-    this.props.handleChange(event.target.value);
+  toggleOpenState = () => {
+    let newState = !this.state.open;
+    this.setState({ open: newState });
+  };
+
+  handleClick = id => {
+    let newSelectedNeeds = this.props.selectedNeeds;
+    if (newSelectedNeeds.hasOwnProperty(id)) {
+      delete newSelectedNeeds[id];
+    } else {
+      newSelectedNeeds[id] = id;
+    }
+    this.props.handleChange(Object.keys(newSelectedNeeds));
   };
 
   render() {
-    const { classes, theme, t } = this.props;
-
+    const { needs, classes, t, pageWidth } = this.props;
+    const selectedNeeds = Object.keys(this.props.selectedNeeds);
     return (
-      <div className={classes.root}>
-        <FormControl className={classes.formControl}>
-          <InputLabel style={layoutStyle} htmlFor="select-multiple-chip">
-            {t("B3.What do you need help with?")}
-          </InputLabel>
-          <Select
-            multiple
-            value={this.state.name}
-            onChange={this.handleChange}
-            input={<Input id="select-multiple-chip" />}
-            renderValue={selected => (
-              <div className={classes.chips}>
-                {selected.map(needId => (
-                  <Chip
-                    key={needId}
-                    label={
-                      t("current-language-code") === "en"
-                        ? this.props.needs.find(need => {
-                            return need.id === needId;
-                          }).nameEn
-                        : this.props.needs.find(need => {
-                            return need.id === needId;
-                          }).nameFr
-                    }
-                    className={classes.chip}
-                    style={chipStyle}
-                  />
-                ))}
-              </div>
-            )}
-            MenuProps={MenuProps}
-          >
-            {this.props.needs.map(need => (
-              <MenuItem
-                className="needOption"
-                key={need.id}
-                value={need.id}
-                style={{
-                  fontWeight:
-                    this.state.name.indexOf(need.id) === -1
-                      ? theme.typography.fontWeightRegular
-                      : theme.typography.fontWeightMedium
+      <ExpansionPanel
+        className={classnames(classes.root)}
+        defaultExpanded
+        disabled={pageWidth >= 600 ? true : false}
+        expanded={pageWidth >= 600 ? true : this.state.open}
+      >
+        <ExpansionPanelSummary
+          className={classnames(classes.summary)}
+          expandIcon={pageWidth >= 600 ? "" : <ExpandMoreIcon />}
+          onClick={pageWidth >= 600 ? foo => foo : () => this.toggleOpenState()}
+        >
+          <Typography variant="title" className={classnames(classes.title)}>
+            {t("Filter by need")}
+          </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <Grid container spacing={8}>
+            <Grid item xs={9}>
+              <Typography variant="subheading">
+                {t("Select all that apply")}
+              </Typography>
+            </Grid>
+            <Grid
+              id="needs_buttons"
+              item
+              xs={12}
+              className={classes.needsButtons}
+            >
+              {needs.map(need => (
+                <Button
+                  disableRipple={true}
+                  key={need.id}
+                  variant="raised"
+                  onClick={() => this.handleClick(need.id)}
+                  value={need.id}
+                  className={
+                    selectedNeeds.indexOf(need.id) === -1
+                      ? classes.need
+                      : classes.needSelected
+                  }
+                >
+                  {t("current-language-code") === "en"
+                    ? need.nameEn
+                    : need.nameFr}
+                </Button>
+              ))}
+            </Grid>
+            <Grid item xs={12} className={classnames(classes.gridItemButton)}>
+              <Button
+                className={classnames(classes.clearButton)}
+                id="ClearFilters"
+                variant="flat"
+                size="small"
+                onClick={() => {
+                  this.props.clearNeeds();
                 }}
               >
-                <Checkbox checked={this.state.name.indexOf(need.id) > -1} />
-                {t("current-language-code") === "en"
-                  ? need.nameEn
-                  : need.nameFr}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
+                {t("Clear")}
+              </Button>
+            </Grid>
+          </Grid>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     );
   }
 }
 
 NeedsSelector.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  classes: PropTypes.object,
+  handleChange: PropTypes.func,
+  needs: PropTypes.array,
+  selectedNeeds: PropTypes.object,
+  t: PropTypes.func,
+  theme: PropTypes.object,
+  clearNeeds: PropTypes.func,
+  pageWidth: PropTypes.number
 };
 
 export default withStyles(styles, { withTheme: true })(NeedsSelector);

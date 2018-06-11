@@ -3,6 +3,9 @@ import { mount } from "enzyme";
 import NeedsSelector from "../../components/needs_selector";
 import needsFixture from "../fixtures/needs";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 describe("NeedsSelector", () => {
   let props;
   let _mountedNeedsSelector;
@@ -19,31 +22,64 @@ describe("NeedsSelector", () => {
       t: key => key,
       needs: needsFixture,
       selectedNeeds: {},
-      handleChange: jest.fn()
+      handleChange: jest.fn(),
+      pageWidth: 1000
     };
     _mountedNeedsSelector = undefined;
   });
 
-  it("contains the prompt", () => {
-    expect(
-      mountedNeedsSelector()
-        .find("InputLabel")
-        .text()
-    ).toContain("What do you need help with");
+  it("passes axe tests", async () => {
+    let html = mountedNeedsSelector().html();
+    expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has the exact number of children as passed", () => {
     const select = mountedNeedsSelector()
-      .find("Select")
-      .at(0);
-    expect(select.props().children.length).toEqual(needsFixture.length);
+      .find("#needs_buttons")
+      .find("Button");
+    expect(select.length).toEqual(needsFixture.length);
   });
 
-  it("fires the the handleChange function when a option is selected", () => {
-    const select = mountedNeedsSelector()
-      .find("Select")
-      .at(0);
-    select.props().onChange({ target: { value: [needsFixture[0].id] } });
+  it("works if needs haven't loaded yet", () => {
+    props.needs = [];
+    props.selectedNeeds = { 43534534: "43534534" };
+    expect(mountedNeedsSelector());
+  });
+
+  it("works if language is en", () => {
+    props.t = () => "en";
+    expect(mountedNeedsSelector());
+  });
+
+  it("fires the the handleChange function when a need is selected", () => {
+    mountedNeedsSelector()
+      .find("#needs_buttons")
+      .find("Button")
+      .at(0)
+      .simulate("click");
     expect(props.handleChange).toHaveBeenCalled();
+  });
+
+  it("works if needs haven't loaded yet", () => {
+    props.needs = [];
+    props.selectedNeeds = { 43534534: "43534534" };
+    expect(mountedNeedsSelector());
+  });
+
+  it("is expanded if pageWidth > 600px", () => {
+    expect(
+      mountedNeedsSelector()
+        .find("ExpansionPanel")
+        .prop("expanded")
+    ).toEqual(true);
+  });
+
+  it("is not expanded if pageWidth < 600px", () => {
+    props.pageWidth = 100;
+    expect(
+      mountedNeedsSelector()
+        .find("ExpansionPanel")
+        .prop("expanded")
+    ).toEqual(false);
   });
 });

@@ -1,18 +1,9 @@
-// @flow
-
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import NextHead from "next/head";
 import { initGA, logPageView } from "../utils/analytics";
 
-type Props = {
-  title?: string,
-  description?: string,
-  t: mixed
-};
-
-class Head extends Component<Props> {
-  props: Props;
-
+class Head extends Component {
   componentDidMount() {
     if (!window.GA_INITIALIZED) {
       initGA();
@@ -40,5 +31,11 @@ class Head extends Component<Props> {
     );
   }
 }
+
+Head.propTypes = {
+  description: PropTypes.string,
+  t: PropTypes.func,
+  title: PropTypes.string
+};
 
 export default Head;

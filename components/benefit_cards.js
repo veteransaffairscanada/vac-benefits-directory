@@ -1,155 +1,246 @@
 import React, { Component } from "react";
-import Card, { CardActions, CardContent } from "material-ui/Card";
+import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "material-ui";
 import { withStyles } from "material-ui/styles";
-import red from "material-ui/colors/red";
-import Collapse from "material-ui/transitions/Collapse";
-import IconButton from "material-ui/IconButton";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import classnames from "classnames";
+import AddIcon from "@material-ui/icons/Add";
+import RemoveIcon from "@material-ui/icons/Remove";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
+import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
+import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
+import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 
-type Props = {
-  benefit: mixed,
-  allBenefits: mixed,
-  t: mixed,
-  classes: mixed
-};
+import { logEvent } from "../utils/analytics";
 
-const buttonStyles = {
-  float: "right",
-  marginTop: "10px",
-  marginRight: "25px"
-};
-
-const collapseStyle = {
-  backgroundColor: "#eee",
-  padding: "25px"
-};
-
-const styles = theme => ({
-  card: {
-    maxWidth: 400
+const styles = () => ({
+  button: {
+    marginTop: "30px"
   },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
+  cardDescriptionText: {
+    fontSize: "20px",
+    fontWeight: 400,
+    padding: "15px 0px"
   },
-  actions: {
-    display: "flex"
+  collapse: {
+    paddingTop: "25px"
   },
-  expand: {
-    transform: "rotate(0deg)",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    }),
-    marginLeft: "auto"
+  root: {
+    marginLeft: "15px",
+    width: "100%"
   },
-  expandOpen: {
-    transform: "rotate(180deg)"
+  ExpansionPanelClosed: {
+    borderLeft: "5px solid"
   },
-  avatar: {
-    backgroundColor: red[500]
+  ExpansionPanelOpen: {
+    borderLeft: "5px solid #808080"
+  },
+  ExpansionPanelSummary: {
+    "&[aria-expanded*=true]": {
+      backgroundColor: "#f8f8f8"
+    }
+  },
+  ChildBenefitDesc: {
+    paddingBottom: "30px"
+  },
+  children: {
+    width: "100%"
+  },
+  ExampleDesc: {
+    paddingBottom: "10px"
+  },
+  examples: {
+    width: "100%",
+    marginLeft: "20px"
   }
 });
 
-export class BenefitCard extends Component<Props> {
-  props: Props;
-
+export class BenefitCard extends Component {
   state = {
-    expanded: false
+    open: false
+  };
+  children = [];
+  logExit = url => {
+    logEvent("Exit", url);
   };
 
-  handleExpandClick = () => {
-    this.setState({ expanded: !this.state.expanded });
+  toggleOpenState = () => {
+    let newState = !this.state.open;
+    this.setState({ open: newState });
   };
+
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
 
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
+
     const childBenefits = benefit.childBenefits
       ? this.props.allBenefits.filter(
           ab => benefit.childBenefits.indexOf(ab.id) > -1
         )
       : [];
 
+    const veteranBenefits = childBenefits.filter(
+      ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
+    );
+    const familyBenefits = childBenefits.filter(
+      ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
+    );
+
+    const examples =
+      typeof benefit.examples !== "undefined" &&
+      typeof this.props.examples !== "undefined"
+        ? this.props.examples.filter(ex => benefit.examples.indexOf(ex.id) > -1)
+        : [];
+
     return (
       <Grid item xs={12}>
-        <Card>
-          <Button
-            style={buttonStyles}
-            target="_blank"
-            variant="raised"
-            href={
-              this.props.t("current-language-code") === "en"
-                ? benefit.benefitPageEn
-                : benefit.benefitPageFr
+        <div className={classes.root}>
+          <ExpansionPanel
+            className={
+              this.state.open
+                ? classes.ExpansionPanelOpen
+                : classes.ExpansionPanelClosed
             }
+            expanded={this.state.open}
           >
-            {this.props.t("View Details")}
-          </Button>
-          <CardContent>
-            <Typography className="cardTitle" variant="title" gutterBottom>
-              {this.props.t("current-language-code") === "en"
-                ? benefit.vacNameEn
-                : benefit.vacNameFr}
-            </Typography>
-
-            <Typography
-              className="cardDescription"
-              variant="body1"
-              gutterBottom
-              style={{ marginTop: "10px" }}
+            <ExpansionPanelSummary
+              className={classes.ExpansionPanelSummary}
+              expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
+              onClick={() => this.toggleOpenState()}
             >
-              {t("Benefit Description")}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Grid container spacing={24}>
-              {childBenefits.length ? (
-                <Grid item xs={12} style={{ marginLeft: "13px" }}>
-                  {t("child benefits")}:
-                  <IconButton
-                    id="expandButton"
-                    className={classnames(classes.expand, {
-                      [classes.expandOpen]: this.state.expanded
+              <div>
+                <Typography component="p" className="benefitName">
+                  {this.props.t("current-language-code") === "en"
+                    ? benefit.vacNameEn
+                    : benefit.vacNameFr}
+                </Typography>
+
+                <Typography
+                  className={"cardDescription " + classes.cardDescriptionText}
+                >
+                  {this.props.t("current-language-code") === "en"
+                    ? benefit.oneLineDescriptionEn
+                    : benefit.oneLineDescriptionFr}
+                </Typography>
+              </div>
+            </ExpansionPanelSummary>
+
+            <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
+              <Grid container spacing={24}>
+                <Grid item xs={12}>
+                  {examples.length > 0 ? (
+                    <Typography className={classes.ExampleDesc}>
+                      {t("examples") + ":"}
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                  <Typography className={classes.examples}>
+                    {examples.map(ex => {
+                      return (
+                        <li key={ex.id}>
+                          {this.props.t("current-language-code") === "en"
+                            ? ex.nameEn
+                            : ex.nameFr}{" "}
+                        </li>
+                      );
                     })}
-                    onClick={this.handleExpandClick}
-                    aria-expanded={this.state.expanded}
-                    aria-label="Show more"
-                  >
-                    <ExpandMoreIcon />
-                  </IconButton>
+                  </Typography>
                 </Grid>
-              ) : (
-                <div />
-              )}
-            </Grid>
-          </CardActions>
-          <Collapse
-            id="collapseBlock"
-            in={this.state.expanded}
-            timeout="auto"
-            unmountOnExit
-            style={collapseStyle}
-          >
-            <Grid container spacing={24}>
-              {childBenefits.map((cb, i) => (
-                <EmbeddedBenefitCard
-                  id={"cb" + i}
-                  className="BenefitCards"
-                  benefit={cb}
-                  allBenefits={this.props.allBenefits}
-                  t={this.props.t}
-                  key={i}
-                />
-              ))}
-            </Grid>
-          </Collapse>
-        </Card>
+
+                <Grid item xs={12}>
+                  {veteranBenefits.length > 0 ? (
+                    <div className={classes.children}>
+                      <Typography className={classes.ChildBenefitDesc}>
+                        {t("Veteran child benefits")}:
+                      </Typography>
+                      <div>
+                        {veteranBenefits.map((cb, i) => (
+                          <EmbeddedBenefitCard
+                            id={"cb" + i}
+                            className="BenefitCards"
+                            benefit={cb}
+                            allBenefits={this.props.allBenefits}
+                            t={this.props.t}
+                            key={cb.id}
+                            onRef={ref => this.children.push(ref)}
+                          />
+                        ))}
+                        <br />
+                        <br />
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  {familyBenefits.length > 0 ? (
+                    <div className={classes.children}>
+                      <Typography className={classes.ChildBenefitDesc}>
+                        {t("Family child benefits")}:
+                      </Typography>
+                      <div>
+                        {familyBenefits.map((cb, i) => (
+                          <EmbeddedBenefitCard
+                            id={"cb" + i}
+                            className="BenefitCards"
+                            benefit={cb}
+                            allBenefits={this.props.allBenefits}
+                            t={this.props.t}
+                            key={cb.id}
+                            onRef={ref => this.children.push(ref)}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  <Button
+                    className={classes.button}
+                    target="_blank"
+                    variant="raised"
+                    onClick={() =>
+                      this.logExit(
+                        this.props.t("current-language-code") === "en"
+                          ? benefit.benefitPageEn
+                          : benefit.benefitPageFr
+                      )
+                    }
+                    href={
+                      this.props.t("current-language-code") === "en"
+                        ? benefit.benefitPageEn
+                        : benefit.benefitPageFr
+                    }
+                  >
+                    {this.props.t("Find out more")}
+                  </Button>
+                </Grid>
+              </Grid>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        </div>
       </Grid>
     );
   }
 }
+
+BenefitCard.propTypes = {
+  allBenefits: PropTypes.array,
+  veteranBenefitIds: PropTypes.array,
+  familyBenefitIds: PropTypes.array,
+  benefit: PropTypes.object,
+  classes: PropTypes.object,
+  examples: PropTypes.array,
+  t: PropTypes.func,
+  onRef: PropTypes.func
+};
 
 export default withStyles(styles)(BenefitCard);

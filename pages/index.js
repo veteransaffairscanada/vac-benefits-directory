@@ -1,6 +1,5 @@
-// @flow
-
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { SelectButton } from "../components/select_button";
 
 import { Grid } from "material-ui";
@@ -8,14 +7,7 @@ import { Grid } from "material-ui";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 
-type Props = {
-  i18n: mixed,
-  t: mixed
-};
-
-export class App extends Component<Props> {
-  props: Props;
-
+export class App extends Component {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
@@ -28,18 +20,32 @@ export class App extends Component<Props> {
                 {t("home.poc-description")}
               </h1>
             </Grid>
-            {/*<Grid item xs={3}>*/}
-            {/*<SelectButton*/}
-            {/*fullWidth={true}*/}
-            {/*href={"A?lng=" + t("current-language-code")}*/}
-            {/*text="A"*/}
-            {/*/>*/}
-            {/*</Grid>*/}
+            <Grid item xs={3}>
+              <SelectButton
+                fullWidth={true}
+                href={"A?section=A1&lng=" + t("current-language-code")}
+                text={t("index.guided experience")}
+              />
+            </Grid>
             <Grid item xs={3}>
               <SelectButton
                 fullWidth={true}
                 href={"A?section=BB&lng=" + t("current-language-code")}
-                text="B"
+                text={t("index.benefits directory")}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <SelectButton
+                fullWidth={true}
+                href={"data-validation"}
+                text={t("index.data validation")}
+              />
+            </Grid>
+            <Grid item xs={3}>
+              <SelectButton
+                fullWidth={true}
+                href={"all-benefits"}
+                text={t("index.all benefits")}
               />
             </Grid>
           </Grid>
@@ -48,5 +54,10 @@ export class App extends Component<Props> {
     );
   }
 }
+
+App.propTypes = {
+  i18n: PropTypes.object,
+  t: PropTypes.func
+};
 
 export default withI18next(["common"])(App);

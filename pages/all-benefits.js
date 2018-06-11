@@ -1,30 +1,26 @@
-// @flow
-
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import { Grid } from "material-ui";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
+import { connect } from "react-redux";
 import BenefitCard from "../components/benefit_cards";
 
-type Props = {
-  benefits: mixed,
-  i18n: mixed,
-  t: mixed
-};
-
-export class AllBenefits extends Component<Props> {
-  props: Props;
-
-  static getInitialProps(ctx) {
-    let data = ctx.req.data;
-    return {
-      benefits: data.benefits
-    };
-  }
-
+export class AllBenefits extends Component {
   render() {
+    let veteranBenefitIds = [];
+    let familyBenefitIds = [];
+
+    this.props.eligibilityPaths.forEach(ep => {
+      if (ep.patronType === "service-person") {
+        veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
+      }
+      if (ep.patronType === "family") {
+        familyBenefitIds = familyBenefitIds.concat(ep.benefits);
+      }
+    });
+
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true}>
@@ -38,9 +34,13 @@ export class AllBenefits extends Component<Props> {
                     className="benefitCard"
                     id={"bc" + i}
                     benefit={benefit}
+                    examples={this.props.examples}
                     allBenefits={this.props.benefits}
+                    veteranBenefitIds={veteranBenefitIds}
+                    familyBenefitIds={familyBenefitIds}
                     t={this.props.t}
                     key={i}
+                    onRef={foo => foo}
                   />
                 ))}
               </Grid>
@@ -52,4 +52,20 @@ export class AllBenefits extends Component<Props> {
   }
 }
 
-export default withI18next()(AllBenefits);
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits,
+    examples: state.examples,
+    eligibilityPaths: state.eligibilityPaths
+  };
+};
+
+AllBenefits.propTypes = {
+  benefits: PropTypes.array,
+  examples: PropTypes.array,
+  eligibilityPaths: PropTypes.array,
+  i18n: PropTypes.object,
+  t: PropTypes.func
+};
+
+export default connect(mapStateToProps)(withI18next()(AllBenefits));

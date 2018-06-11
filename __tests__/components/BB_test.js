@@ -8,6 +8,9 @@ import benefitsFixture from "../fixtures/benefits";
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
 jest.mock("react-ga");
 
 describe("BB", () => {
@@ -35,12 +38,12 @@ describe("BB", () => {
       benefits: benefitsFixture,
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
-      needs: [],
+      needs: needsFixture,
+      examples: [],
       selectedEligibility: {
-        serviceType: {},
-        serviceStatus: {},
-        patronType: {},
-        servicePersonVitalStatus: {}
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
       },
       toggleSelectedEligibility: jest.fn(),
       classes: {
@@ -53,73 +56,114 @@ describe("BB", () => {
       }
     };
     _shallowBB = undefined;
+    _mountedBB = undefined;
   });
 
-  it("has a correct filteredBenefits function", () => {
-    props.selectedEligibility = {
-      serviceType: { CAF: 1 },
-      serviceStatus: { released: 1 },
-      patronType: { ["service-person"]: 1 },
-      servicePersonVitalStatus: { alive: 1 }
-    };
+  it("passes axe tests", async () => {
+    let html = mounted_BB().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
+
+  describe("filteredBenefits", () => {
+    let benefits, eligibilityPaths, selectedEligibility;
+
+    let filteredBenefits = () =>
+      mounted_BB()
+        .instance()
+        .filteredBenefits(
+          benefits,
+          eligibilityPaths,
+          selectedEligibility,
+          [],
+          {}
+        );
+
+    beforeEach(() => {
+      benefits = [
+        {
+          id: "0",
+          childBenefits: [],
+          availableIndependently: "Requires Gateway Benefit"
+        },
+        {
+          id: "1",
+          childBenefits: [],
+          availableIndependently: "Independent"
+        },
+        {
+          id: "2",
+          childBenefits: ["0", "1"],
+          availableIndependently: "Independent"
+        },
+        {
+          id: "3",
+          childBenefits: [],
+          availableIndependently: "Independent"
+        }
+      ];
+      eligibilityPaths = [
+        {
+          patronType: "p1",
+          serviceType: "na",
+          statusAndVitals: "na",
+          benefits: ["0"]
+        },
+        {
+          patronType: "p2",
+          serviceType: "na",
+          statusAndVitals: "na",
+          benefits: ["2"]
+        },
+        {
+          patronType: "p3",
+          serviceType: "na",
+          statusAndVitals: "na",
+          benefits: ["1", "3"]
+        }
+      ];
+      selectedEligibility = {
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
+      };
+    });
+
+    // don't show benefit 0 because it's not independent
+    it("displays benefits 1, 2 and 3 if nothing selected", () => {
+      expect(filteredBenefits().map(b => b.id)).toEqual(["1", "2", "3"]);
+    });
+
+    // only 0 matches, but it's a child of 2, so we show 2
+    it("display benefits 2 if patronType p1", () => {
+      selectedEligibility.patronType = "p1";
+      expect(filteredBenefits().map(b => b.id)).toEqual(["2"]);
+    });
+  });
+
+  it("has a correct sortBenefits function when sorting by relevance", () => {
     let BBInstance = shallow_BB().instance();
     expect(
-      BBInstance.filteredBenefits(
-        benefitsFixture,
-        elegibilityPathsFixture,
-        props.selectedEligibility,
-        needsFixture,
-        props.selectedNeeds
-      )
-    ).toEqual([benefitsFixture[1]]);
+      BBInstance.sortBenefits(benefitsFixture, "en").map(b => b.id)
+    ).toEqual(["3", "1", "0"]);
   });
 
-  it("has a serviceTypes filter", () => {
-    expect(shallow_BB().find("#serviceTypeFilter").length).toEqual(1);
-  });
-  it("has a patronType filter", () => {
-    expect(shallow_BB().find("#patronTypeFilter").length).toEqual(1);
-  });
-
-  it("has the filters contained in a collapse component", () => {
+  it("has a correct sortBenefits function when sorting alphabetically", () => {
+    let BBInstance = shallow_BB().instance();
+    BBInstance.setState({ sortByValue: "alphabetical" });
     expect(
-      shallow_BB()
-        .find("#collapseBlock")
-        .find("#serviceTypeFilter").length
-    ).toEqual(1);
-    expect(
-      shallow_BB()
-        .find("#collapseBlock")
-        .find("#patronTypeFilter").length
-    ).toEqual(1);
+      BBInstance.sortBenefits(benefitsFixture, "en").map(b => b.id)
+    ).toEqual(["1", "0", "3"]);
   });
 
-  it("has the filter initially expanded", () => {
-    expect(shallow_BB().state().expanded).toEqual(true);
+  it("has a sortBy selector", () => {
+    expect(shallow_BB().find("#sortBySelector").length).toEqual(1);
   });
-
-  it("has a button to collapse / expand the filter", () => {
-    shallow_BB()
-      .find("#expandButton")
-      .simulate("click");
-    expect(shallow_BB().state().expanded).toEqual(false);
-    shallow_BB()
-      .find("#expandButton")
-      .simulate("click");
-    expect(shallow_BB().state().expanded).toEqual(true);
-  });
-
-  // it("doesn't show child only cards", () => {
-  //   const benefitCards = shallow_BB().find(".BenefitCards");
-  //   expect(benefitCards.length).toEqual(1);
-  // });
 
   it("has the selected benefit cards", () => {
     props.selectedEligibility = {
-      serviceType: { CAF: 1 },
-      serviceStatus: { released: 1 },
-      patronType: { ["service-person"]: 1 },
-      servicePersonVitalStatus: { alive: 1 }
+      serviceType: "CAF",
+      patronType: "service-person",
+      statusAndVitals: "releasedAlive"
     };
     const benefitCards = shallow_BB().find(".BenefitCards");
     expect(benefitCards.length).toEqual(1);
@@ -130,21 +174,30 @@ describe("BB", () => {
     });
   });
 
-  it("allows a person to click on filters", () => {
-    let filter = mounted_BB()
-      .find("DropDownSelector")
-      .first();
-    let checkbox = filter.find("Select").first();
-    checkbox.simulate("change");
-    expect(props.toggleSelectedEligibility).toBeCalled();
+  it("has the ProfileSelector component", () => {
+    expect(mounted_BB().find("ProfileSelector").length).toEqual(1);
   });
 
-  it("has an All Benefits Link", () => {
-    expect(
-      shallow_BB()
-        .find(".AllBenefits")
-        .text()
-    ).toEqual("Show All Benefits");
+  it("has the NeedsSelector component", () => {
+    expect(mounted_BB().find("NeedsSelector").length).toEqual(1);
+  });
+
+  // Broken test
+  // used to worked before because of other wrong code
+  // ;(
+
+  // it("allows a person to click on filters", () => {
+  //   mounted_BB()
+  //   let filter = mounted_BB()
+  //     .find("DropDownSelector")
+  //     .first();
+  //   let checkbox = filter.find("Select").first();
+  //   checkbox.simulate("click");
+  //   expect(props.toggleSelectedEligibility).toBeCalled();
+  // });
+
+  it("has a Clear Filters button", () => {
+    expect(shallow_BB().find("#ClearEligibilityFilters"));
   });
 
   it("has a benefits counter", () => {

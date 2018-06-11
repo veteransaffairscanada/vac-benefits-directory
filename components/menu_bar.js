@@ -1,19 +1,10 @@
-// @flow
-
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import { AppBar, Button, Toolbar, Typography } from "material-ui";
 import { GoCSignature } from "@cdssnc/gcui";
 import { logEvent } from "../utils/analytics";
 
-type Props = {
-  i18n: mixed,
-  t: mixed
-};
-
-class MenuBar extends Component<Props> {
-  props: Props;
-
+class MenuBar extends Component {
   changeLanguage = () => {
     this.props.i18n.changeLanguage(this.props.t("other-language-code"));
     logEvent("Language change", this.props.t("other-language"));
@@ -49,5 +40,10 @@ class MenuBar extends Component<Props> {
     );
   }
 }
+
+MenuBar.propTypes = {
+  i18n: PropTypes.object,
+  t: PropTypes.func
+};
 
 export default MenuBar;

@@ -1,19 +1,11 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Card, { CardContent, CardActions } from "material-ui/Card";
 import Button from "material-ui/Button";
 
 import { Typography } from "material-ui";
 
-type Props = {
-  id: string,
-  options: mixed,
-  action: mixed,
-  t: mixed
-};
-
-class SelectedOptionsCard extends Component<Props> {
-  props: Props;
-
+class SelectedOptionsCard extends Component {
   render() {
     return (
       <Card id={this.props.id} style={{ backgroundColor: "#ddd" }}>
@@ -38,5 +30,12 @@ class SelectedOptionsCard extends Component<Props> {
     );
   }
 }
+
+SelectedOptionsCard.propTypes = {
+  action: PropTypes.func,
+  id: PropTypes.string,
+  options: PropTypes.array,
+  t: PropTypes.func
+};
 
 export default SelectedOptionsCard;

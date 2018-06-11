@@ -1,78 +1,11 @@
 import React from "react";
 import { mount } from "enzyme";
-import EmbeddedBenefitCard from "../../components/embedded_benefit_card";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
+import examplesFixture from "../fixtures/examples";
 
-describe("EmbeddedBenefitCard", () => {
-  let props;
-  let _mountedEmbeddedBenefitCard;
-  const mountedEmbeddedBenefitCard = () => {
-    if (!_mountedEmbeddedBenefitCard) {
-      _mountedEmbeddedBenefitCard = mount(<EmbeddedBenefitCard {...props} />);
-    }
-    return _mountedEmbeddedBenefitCard;
-  };
-
-  beforeEach(() => {
-    props = {
-      t: () => "en",
-      benefit: benefitsFixture[0]
-    };
-    _mountedEmbeddedBenefitCard = undefined;
-  });
-
-  it("contains a ExpansionPanel", () => {
-    expect(mountedEmbeddedBenefitCard().find("ExpansionPanel").length).toEqual(
-      1
-    );
-  });
-
-  it("has a blank target", () => {
-    expect(
-      mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelActions")
-        .find("Button")
-        .prop("target")
-    ).toEqual("_blank");
-  });
-
-  it("has expected English text and href", () => {
-    expect(
-      mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelSummary")
-        .find("Typography")
-        .text()
-    ).toEqual(benefitsFixture[0].vacNameEn);
-    expect(
-      mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelActions")
-        .find("Button")
-        .prop("href")
-    ).toEqual(benefitsFixture[0].benefitPageEn);
-  });
-
-  describe("when language is French", () => {
-    beforeEach(() => {
-      props.t = () => "fr";
-    });
-
-    it("has expected French text and href", () => {
-      expect(
-        mountedEmbeddedBenefitCard()
-          .find("ExpansionPanelSummary")
-          .find("Typography")
-          .text()
-      ).toEqual(benefitsFixture[0].vacNameFr);
-      expect(
-        mountedEmbeddedBenefitCard()
-          .find("ExpansionPanelActions")
-          .find("Button")
-          .prop("href")
-      ).toEqual(benefitsFixture[0].benefitPageFr);
-    });
-  });
-});
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
 
 describe("BenefitCard", () => {
   let props;
@@ -89,14 +22,11 @@ describe("BenefitCard", () => {
       t: () => "en",
       benefit: benefitsFixture[0],
       allBenefits: benefitsFixture,
-      classes: {
-        card: "BB-card-87",
-        media: "BB-media-88",
-        actions: "BB-actions-89",
-        expand: "BB-expand-90",
-        expandOpen: "BB-expandOpen-91",
-        avatar: "BB-avatar-92"
-      }
+      veteranBenefitIds: [],
+      familyBenefitIds: [],
+      examples: examplesFixture,
+      classes: {},
+      onRef: foo => foo
     };
     _mountedBenefitCard = undefined;
   });
@@ -109,10 +39,15 @@ describe("BenefitCard", () => {
   //   ).toEqual(benefitsFixture[0].benefitTypeEn);
   // });
 
+  it("passes axe tests", async () => {
+    let html = mountedBenefitCard().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
+
   it("contains the name", () => {
     expect(
       mountedBenefitCard()
-        .find(".cardTitle")
+        .find(".benefitName")
         .first()
         .text()
     ).toEqual(benefitsFixture[0].vacNameEn);
@@ -124,7 +59,19 @@ describe("BenefitCard", () => {
         .find(".cardDescription")
         .first()
         .text()
-    ).toEqual("en");
+    ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
+  });
+
+  it("renders if there are examples", () => {
+    props.t = key => key;
+    props.benefit = benefitsFixture[1];
+    expect(mountedBenefitCard().html()).toContain("examples:");
+  });
+
+  it("renders if there are no examples", () => {
+    props.t = key => key;
+    props.benefit = benefitsFixture[0];
+    expect(mountedBenefitCard().html()).not.toContain("examples:");
   });
 
   it("has a correctly configured button", () => {
@@ -137,7 +84,7 @@ describe("BenefitCard", () => {
       mountedBenefitCard()
         .find("Button")
         .prop("href")
-    ).toEqual(benefitsFixture[0].benefitPageEn);
+    ).toEqual(benefitsFixture[1].benefitPageEn);
     expect(
       mountedBenefitCard()
         .find("Button")
@@ -145,52 +92,66 @@ describe("BenefitCard", () => {
     ).toEqual("en");
   });
 
-  it("has embedded child benefit cards", () => {
-    props.benefit = benefitsFixture[1];
-    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameEn);
+  it("has embedded Veteran child benefit card", () => {
+    props.t = key => key;
+    props.veteranBenefitIds = ["1"];
+    expect(mountedBenefitCard().text()).not.toContain("Family child benefits");
+    expect(mountedBenefitCard().text()).toContain("Veteran child benefits");
+    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameFr);
+  });
+
+  it("has embedded family child benefit card", () => {
+    props.t = key => key;
+    props.familyBenefitIds = ["1"];
+    expect(mountedBenefitCard().text()).not.toContain("Veteran child benefits");
+    expect(mountedBenefitCard().text()).toContain("Family child benefits");
+    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameFr);
   });
 
   describe("when language is French", () => {
     beforeEach(() => {
       props.t = () => "fr";
     });
-    // it("contains the French benefit type", () => {
-    //   expect(
-    //     mountedBenefitCard()
-    //       .find("CardHeader")
-    //       .prop("title")
-    //   ).toEqual(benefitsFixture[0].benefitTypeFr);
-    // });
 
     it("contains the French name", () => {
       expect(
         mountedBenefitCard()
-          .find(".cardTitle")
+          .find(".benefitName")
           .first()
           .text()
       ).toEqual(benefitsFixture[0].vacNameFr);
     });
-
-    // it("contains the French description", () => {
-    //   expect(
-    //     mountedBenefitCard()
-    //       .find(".cardDescription")
-    //       .first()
-    //       .text()
-    //   ).toEqual(benefitsFixture[0].descriptionFr);
-    // });
 
     it("has a button with the French link", () => {
       expect(
         mountedBenefitCard()
           .find("Button")
           .prop("href")
-      ).toEqual(benefitsFixture[0].benefitPageFr);
+      ).toEqual(benefitsFixture[1].benefitPageFr);
       expect(
         mountedBenefitCard()
           .find("Button")
           .text()
       ).toEqual("fr");
     });
+  });
+  it("changes open state when somebody clicks on it", () => {
+    expect(mountedBenefitCard().state().open).toEqual(false);
+    mountedBenefitCard()
+      .find("div > div > div")
+      .at(0)
+      .simulate("click");
+    expect(mountedBenefitCard().state().open).toEqual(true);
+  });
+  it("Clicking the link logs an exit event", () => {
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    mountedBenefitCard()
+      .find("Button")
+      .simulate("click");
+    expect(analytics.logEvent).toBeCalledWith(
+      "Exit",
+      benefitsFixture[0].benefitPageEn
+    );
   });
 });

@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const path = require("path");
 const next = require("next");
 
@@ -15,6 +16,7 @@ const { i18nInstance } = require("./i18n");
 const deploy = require("./utils/deploy_notification");
 
 const airTable = require("./utils/airtable_es2015");
+
 Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
   // init i18next with serverside settings
   // using i18next-express-middleware
@@ -35,7 +37,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
         // loaded translations we can bootstrap our routes
         app.prepare().then(() => {
           const server = express();
-
+          server.use(bodyParser.json());
           // enable middleware for i18next
           server.use(i18nextMiddleware.handle(i18nInstance));
 
@@ -50,6 +52,13 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
             "/locales/add/:lng/:ns",
             i18nextMiddleware.missingKeyHandler(i18nInstance)
           );
+
+          // submitting Feedback
+          server.post("/submitComment", (req, res) => {
+            console.log("Submitting comments");
+            airTable.writeFeedback(req.body);
+            res.sendStatus(200);
+          });
 
           // use next.js
           server.get("*", (req, res) => {
@@ -85,6 +94,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
               handle(req, res);
             }
           });
+
           const port = process.env.PORT || 3000;
           server.listen(port, err => {
             if (err) throw err;
@@ -95,3 +105,26 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
       }
     );
 });
+
+// this code should run when the data-validation page is loaded and send that page the results
+// note that we can't check the urls in the browser because of CO
+//
+// var checkLinks = async function checklinks(benefits) {
+//   var brokenLinks = [];
+//   var responseEn, responseFr;
+//   for (let benefit of benefits) {
+//     responseEn = await fetch(benefit.benefitPageEn);
+//     responseFr = await fetch(benefit.benefitPageFr);
+//     if (responseEn.status !== 200) {
+//       brokenLinks.push(benefit.benefitPageEn);
+//     }
+//     if (responseFr.status !== 200) {
+//       brokenLinks.push(benefit.benefitPageFr);
+//     }
+//     console.log("type", typeof responseEn.body);
+//     if (responseEn.body.indexOf(benefit.benefitPageEn) === -1) {
+//       console.log(benefit.benefitPageEn, responseEn, "BAD URL");
+//     }
+//   }
+//   return brokenLinks;
+// };

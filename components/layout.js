@@ -1,6 +1,5 @@
-// @flow
-
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import styled from "react-emotion";
 
 import { PhaseBanner } from "@cdssnc/gcui";
@@ -12,20 +11,17 @@ import Footer from "../components/footer";
 import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
 
-type Props = {
-  children?: mixed,
-  hideNoscript?: boolean,
-  i18n?: mixed,
-  t?: mixed
-};
+const Container = styled("div")`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+`;
 
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
 
-class Layout extends Component<Props> {
-  props: Props;
-
+class Layout extends Component {
   componentDidMount() {
     const emotionStyles = document.getElementById("emotion-server-side");
     if (emotionStyles && emotionStyles.parentNode) {
@@ -46,17 +42,36 @@ class Layout extends Component<Props> {
         <Head t={this.props.t} />
         <ErrorBoundary>
           <Content>
-            <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
-            <MenuBar i18n={this.props.i18n} t={this.props.t} />
-            <div role="main">{this.props.children}</div>
+            <div style={{ backgroundColor: "#000" }}>
+              <Container>
+                <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
+                <MenuBar i18n={this.props.i18n} t={this.props.t} />
+              </Container>
+            </div>
+            <Container role="main">{this.props.children}</Container>
           </Content>
-          <FeedbackBar t={this.props.t} />
-          <Footer t={this.props.t} />
+          <div style={{ backgroundColor: "#eee" }}>
+            <Container>
+              <FeedbackBar t={this.props.t} />
+            </Container>
+          </div>
+          <div style={{ backgroundColor: "#ddd" }}>
+            <Container>
+              <Footer t={this.props.t} />
+            </Container>
+          </div>
         </ErrorBoundary>
         {noScriptTag}
       </div>
     );
   }
 }
+
+Layout.propTypes = {
+  children: PropTypes.object,
+  hideNoscript: PropTypes.bool,
+  i18n: PropTypes.object,
+  t: PropTypes.func
+};
 
 export default Layout;

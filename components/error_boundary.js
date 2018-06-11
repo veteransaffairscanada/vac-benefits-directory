@@ -1,15 +1,10 @@
-// @flow
-
 import { Component } from "react";
+import PropTypes from "prop-types";
 import Raven from "raven-js";
 
 const SENTRY_DSN = process.env.SENTRY_DSN;
 
-type Props = {
-  children?: mixed
-};
-
-class ErrorBoundary extends Component<Props> {
+class ErrorBoundary extends Component {
   constructor() {
     super();
     this.state = { error: null };
@@ -25,5 +20,9 @@ class ErrorBoundary extends Component<Props> {
     return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.array
+};
 
 export default ErrorBoundary;

@@ -1,12 +1,6 @@
-// @flow
-
 import React, { Component } from "react";
-
+import PropTypes from "prop-types";
 import styled from "react-emotion";
-
-type Props = {
-  t: mixed
-};
 
 const Modal = styled("div")`
   left: 50%;
@@ -43,9 +37,7 @@ const Overlay = styled("div")`
   z-index: 10;
 `;
 
-class Noscript extends Component<Props> {
-  props: Props;
-
+class Noscript extends Component {
   render() {
     const { t } = this.props;
 
@@ -63,5 +55,9 @@ class Noscript extends Component<Props> {
     );
   }
 }
+
+Noscript.propTypes = {
+  t: PropTypes.func
+};
 
 export default Noscript;

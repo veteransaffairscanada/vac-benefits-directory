@@ -3,18 +3,7 @@ import PropTypes from "prop-types";
 import Card from "material-ui/Card";
 import { Button } from "material-ui";
 
-type Props = {
-  text: string,
-  href: string,
-  isDown: boolean,
-  onClick: PropTypes.func,
-  id: string,
-  target: string
-};
-
-export class SelectButton extends Component<Props> {
-  props: Props;
-
+export class SelectButton extends Component {
   render() {
     return (
       <Card>
@@ -35,5 +24,16 @@ export class SelectButton extends Component<Props> {
     );
   }
 }
+
+SelectButton.propTypes = {
+  action: PropTypes.func,
+  href: PropTypes.string,
+  id: PropTypes.string,
+  isDown: PropTypes.bool,
+  onClick: PropTypes.func,
+  t: PropTypes.func,
+  target: PropTypes.string,
+  text: PropTypes.string
+};
 
 export default SelectButton;
