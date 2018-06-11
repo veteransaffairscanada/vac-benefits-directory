@@ -17,24 +17,23 @@ import ProfileSelector from "./profile_selector";
 
 const styles = theme => ({
   benefitsCount: {
-    fontSize: "24px",
-    marginTop: "-10px",
-    textAlign: "center"
+    fontSize: "24px"
+  },
+  checkEligibility: {
+    fontWeight: "100"
   },
   collapse: {
     textAlign: "right",
     textDecoration: "underline",
-    marginTop: "20px"
-  },
-  filterBox: {
-    padding: "0px 0px 50px 0px !important"
+    marginTop: "34px"
   },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120
   },
   sortBy: {
-    textAlign: "left"
+    textAlign: "left",
+    marginLeft: "-7px"
   },
   subTitle: {
     fontSize: "20px",
@@ -222,7 +221,7 @@ export class BB extends Component {
                 {t("B3.subtitle")}
               </Typography>
             </Grid>
-            <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
+            <Grid item lg={3} md={4} sm={5} xs={12}>
               <ProfileSelector
                 t={t}
                 handleChange={this.props.setSelectedNeeds}
@@ -243,29 +242,27 @@ export class BB extends Component {
                 />
               </Grid>
             </Grid>
-            <Grid item md={9} sm={7} xs={12}>
-              <Grid item xs={12}>
+            <Grid item lg={9} md={8} sm={7} xs={12}>
+              <Grid item xs={12} className={classnames(classes.thing)}>
                 <Typography
                   className={"BenefitsCounter " + classes.benefitsCount}
                 >
                   {this.countString(filteredBenefits.length, t)}
                 </Typography>
                 {filteredBenefits.length > 0 ? (
-                  <p
-                    style={{
-                      fontWeight: "100",
-                      margin: "5px",
-                      textAlign: "center"
-                    }}
-                  >
+                  <Typography className={classes.checkEligibility}>
                     {t("B3.check eligibility")}
-                  </p>
+                  </Typography>
                 ) : (
                   ""
                 )}
               </Grid>
 
-              <Grid container spacing={24}>
+              <Grid
+                container
+                spacing={24}
+                className={classnames(classes.thing)}
+              >
                 <Grid item xs={3} className={classnames(classes.sortBy)}>
                   <FormControl
                     id="sortBySelector"

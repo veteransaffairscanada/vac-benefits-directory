@@ -15,6 +15,7 @@ const Container = styled("div")`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
+  background-color: #f5f5f5;
 `;
 
 const Content = styled("div")`
