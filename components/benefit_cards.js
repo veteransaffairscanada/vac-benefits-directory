@@ -152,6 +152,26 @@ export class BenefitCard extends Component {
                       );
                     })}
                   </Typography>
+
+                  <Button
+                    className={classes.button}
+                    target="_blank"
+                    variant="raised"
+                    onClick={() =>
+                      this.logExit(
+                        this.props.t("current-language-code") === "en"
+                          ? benefit.benefitPageEn
+                          : benefit.benefitPageFr
+                      )
+                    }
+                    href={
+                      this.props.t("current-language-code") === "en"
+                        ? benefit.benefitPageEn
+                        : benefit.benefitPageFr
+                    }
+                  >
+                    {this.props.t("Find out more")}
+                  </Button>
                 </Grid>
 
                 <Grid item xs={12}>
@@ -202,26 +222,6 @@ export class BenefitCard extends Component {
                   ) : (
                     ""
                   )}
-
-                  <Button
-                    className={classes.button}
-                    target="_blank"
-                    variant="raised"
-                    onClick={() =>
-                      this.logExit(
-                        this.props.t("current-language-code") === "en"
-                          ? benefit.benefitPageEn
-                          : benefit.benefitPageFr
-                      )
-                    }
-                    href={
-                      this.props.t("current-language-code") === "en"
-                        ? benefit.benefitPageEn
-                        : benefit.benefitPageFr
-                    }
-                  >
-                    {this.props.t("Find out more")}
-                  </Button>
                 </Grid>
               </Grid>
             </ExpansionPanelDetails>
