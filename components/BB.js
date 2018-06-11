@@ -234,7 +234,8 @@ export class BB extends Component {
             <Grid item xs={12}>
               <Typography className={classes.title}>{t("B3.title")}</Typography>
               <Typography className={classes.subTitle}>
-                {t("B3.subtitle")}
+                {t("B3.subtitle1")} <br />
+                {t("B3.subtitle2")}
               </Typography>
             </Grid>
             <Grid item md={3} sm={5} xs={12} className={classes.filterBox}>
