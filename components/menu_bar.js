@@ -21,11 +21,8 @@ class MenuBar extends Component {
     const { t } = this.props;
 
     return (
-      <AppBar
-        style={{ backgroundColor: "#000", boxShadow: "none" }}
-        position="static"
-      >
-        <Toolbar>
+      <AppBar style={{ backgroundColor: "#000", boxShadow: "none" }} position="static">
+        <Toolbar style={{ paddingLeft: "15px", paddingRight: "0px" }}>
           <GoCSignature
             lang={t("current-language-code")}
             width="20em"
@@ -33,11 +30,11 @@ class MenuBar extends Component {
             flag="#fff"
           />
           <Typography style={{ flex: 1 }} />
-          <Button id="refreshCache">
-            <a href="/refresh" style={{ color: "#fff" }}>
+          <a href="/refresh">
+            <Button id="refreshCache" style={{ color: "#fff" }}>
               {t("refresh-cache")}
-            </a>
-          </Button>
+            </Button>
+          </a>
           <Button
             id="changeLanguage"
             style={{ color: "#fff" }}
