@@ -39,7 +39,8 @@ const styles = theme => ({
     textAlign: "left"
   },
   clearButton: {
-    textDecoration: "underline"
+    textDecoration: "underline",
+    textTransform: "unset"
   },
   gridItemButton: {
     textAlign: "center"

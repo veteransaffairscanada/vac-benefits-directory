@@ -1,6 +1,7 @@
 import React from "react";
 import MenuBar from "../../components/menu_bar";
 import { mount } from "enzyme";
+import Router from "next/router";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -8,7 +9,11 @@ expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
 describe("MenuBar", () => {
-  // Setup
+  Router.router = {
+    push: jest.fn(),
+    query: jest.fn(),
+    pathname: ""
+  };
 
   let props;
   let _mountedMenuBar;
@@ -24,7 +29,9 @@ describe("MenuBar", () => {
       i18n: {
         changeLanguage: () => {}
       },
-      t: key => key
+      t: key => {
+        return key == "current-language-code" ? "en" : key;
+      }
     };
     _mountedMenuBar = undefined;
   });
