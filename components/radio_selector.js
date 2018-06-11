@@ -16,6 +16,25 @@ class RadioSelector extends React.Component {
     this.props.setUserProfile(event.target.value);
   };
 
+  isDisabled = (id, selectedEligibility) => {
+    if (
+      selectedEligibility.serviceType == "WSV (WWII or Korea)" &&
+      id == "stillServing"
+    ) {
+      return true;
+    }
+    if (
+      selectedEligibility.patronType == "service-person" &&
+      id == "deceased"
+    ) {
+      return true;
+    }
+    if (selectedEligibility.patronType == "organization" && id == "deceased") {
+      return true;
+    }
+    return false;
+  };
+
   render() {
     const { classes, t } = this.props;
     if (Object.values(this.props.filters).length != 0) {
@@ -24,7 +43,7 @@ class RadioSelector extends React.Component {
           <FormLabel>{this.props.legend}</FormLabel>
           <RadioGroup
             aria-label={this.props.legend}
-            value={this.props.selectedFilters}
+            value={this.props.selectedFilter}
             onChange={this.handleSelect}
           >
             {this.props.filters.map(x => {
@@ -34,6 +53,10 @@ class RadioSelector extends React.Component {
                   value={x.id}
                   control={<Radio />}
                   label={t(x.name_en)}
+                  disabled={this.isDisabled(
+                    x.id,
+                    this.props.selectedEligibility
+                  )}
                 />
               );
             })}
@@ -51,7 +74,8 @@ RadioSelector.propTypes = {
   isDisabled: PropTypes.bool,
   legend: PropTypes.string,
   filters: PropTypes.array,
-  selectedFilters: PropTypes.string,
+  selectedEligibility: PropTypes.object,
+  selectedFilter: PropTypes.string,
   setUserProfile: PropTypes.func,
   t: PropTypes.func
 };

@@ -97,7 +97,8 @@ class ProfileSelector extends Component {
                 t={t}
                 legend={t("B3.Benefits for")}
                 filters={patronTypes}
-                selectedFilters={selectedEligibility.patronType}
+                selectedEligibility={selectedEligibility}
+                selectedFilter={selectedEligibility.patronType}
                 setUserProfile={id =>
                   this.props.setUserProfile("patronType", id)
                 }
@@ -110,7 +111,8 @@ class ProfileSelector extends Component {
                 t={t}
                 legend={t("B3.ServiceType")}
                 filters={serviceTypes}
-                selectedFilters={selectedEligibility.serviceType}
+                selectedEligibility={selectedEligibility}
+                selectedFilter={selectedEligibility.serviceType}
                 setUserProfile={id =>
                   this.props.setUserProfile("serviceType", id)
                 }
@@ -123,7 +125,8 @@ class ProfileSelector extends Component {
                 t={t}
                 legend={t("B3.serviceStatus")}
                 filters={statusAndVitals}
-                selectedFilters={selectedEligibility.statusAndVitals}
+                selectedEligibility={selectedEligibility}
+                selectedFilter={selectedEligibility.statusAndVitals}
                 setUserProfile={id =>
                   this.props.setUserProfile("statusAndVitals", id)
                 }
