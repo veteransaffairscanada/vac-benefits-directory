@@ -3,9 +3,16 @@ import PropTypes from "prop-types";
 import { AppBar, Button, Toolbar, Typography } from "material-ui";
 import { GoCSignature } from "@cdssnc/gcui";
 import { logEvent } from "../utils/analytics";
+import Router from "next/router";
 
 class MenuBar extends Component {
   changeLanguage = () => {
+    const newQuery = Router.query;
+    newQuery.lng = this.props.t("other-language-code");
+    Router.push({
+      pathname: Router.pathname,
+      query: newQuery
+    });
     this.props.i18n.changeLanguage(this.props.t("other-language-code"));
     logEvent("Language change", this.props.t("other-language"));
   };
