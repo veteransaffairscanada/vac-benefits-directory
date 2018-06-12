@@ -23,7 +23,11 @@ describe("ProfileSelector", () => {
       clearFilters: key => key,
       setUserProfile: key => key,
       eligibilityPaths: eligibilityPathsFixture,
-      selectedEligibility: {},
+      selectedEligibility: {
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
+      },
       pageWidth: 1000
     };
     _mountedProfileSelector = undefined;
@@ -34,13 +38,6 @@ describe("ProfileSelector", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has a serviceTypes filter", () => {
-    expect(
-      mountedProfileSelector()
-        .find("#serviceTypeFilter")
-        .first().length
-    ).toEqual(1);
-  });
   it("has a patronType filter", () => {
     expect(
       mountedProfileSelector()
@@ -49,7 +46,60 @@ describe("ProfileSelector", () => {
     ).toEqual(1);
   });
 
-  it("has a statusAndVitals filter", () => {
+  it("does not have a serviceTypes filter by default", () => {
+    expect(
+      mountedProfileSelector()
+        .find("#serviceTypeFilter")
+        .first().length
+    ).toEqual(0);
+  });
+
+  it("has a serviceTypes filter if a patronType is selected other than organization", () => {
+    mountedProfileSelector().setProps({
+      selectedEligibility: {
+        patronType: "foo",
+        serviceType: "",
+        statusAndVitals: ""
+      }
+    });
+    expect(
+      mountedProfileSelector()
+        .find("#serviceTypeFilter")
+        .first().length
+    ).toEqual(1);
+  });
+
+  it("has no serviceTypes filter if patronType is organization", () => {
+    mountedProfileSelector().setProps({
+      selectedEligibility: {
+        patronType: "organization",
+        serviceType: "",
+        statusAndVitals: ""
+      }
+    });
+    expect(
+      mountedProfileSelector()
+        .find("#serviceTypeFilter")
+        .first().length
+    ).toEqual(0);
+  });
+
+  it("does not have a statusAndVitals filter by default", () => {
+    expect(
+      mountedProfileSelector()
+        .find("#statusAndVitalsFilter")
+        .first().length
+    ).toEqual(0);
+  });
+
+  it("has a statusAndVitalsFilter filter if a serviceType is selected other than organization", () => {
+    mountedProfileSelector().setProps({
+      selectedEligibility: {
+        patronType: "foo",
+        serviceType: "bar",
+        statusAndVitals: ""
+      }
+    });
     expect(
       mountedProfileSelector()
         .find("#statusAndVitalsFilter")
