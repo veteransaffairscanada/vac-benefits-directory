@@ -107,6 +107,21 @@ describe("ProfileSelector", () => {
     ).toEqual(1);
   });
 
+  it("has no statusAndVitalsFilter filter if patronType is organization", () => {
+    mountedProfileSelector().setProps({
+      selectedEligibility: {
+        patronType: "organization",
+        serviceType: "",
+        statusAndVitals: ""
+      }
+    });
+    expect(
+      mountedProfileSelector()
+        .find("#statusAndVitalsFilter")
+        .first().length
+    ).toEqual(0);
+  });
+
   it("has the correct radio button text", () => {
     const text = mountedProfileSelector()
       .find("#patronTypeFilter")
