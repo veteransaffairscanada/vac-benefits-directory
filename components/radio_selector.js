@@ -11,7 +11,7 @@ const styles = theme => ({
   }
 });
 
-class RadioSelector extends React.Component {
+export class RadioSelector extends React.Component {
   handleSelect = event => {
     this.props.setUserProfile(event.target.value);
   };
@@ -29,13 +29,10 @@ class RadioSelector extends React.Component {
     ) {
       return true;
     }
-    if (selectedEligibility.patronType == "organization" && id == "deceased") {
-      return true;
-    }
     return false;
   };
-
   render() {
+    // const abc = 'abc';
     const { classes, t } = this.props;
     if (Object.values(this.props.filters).length != 0) {
       return (
@@ -71,7 +68,6 @@ class RadioSelector extends React.Component {
 RadioSelector.propTypes = {
   classes: PropTypes.object,
   disabledString: PropTypes.string,
-  isDisabled: PropTypes.bool,
   legend: PropTypes.string,
   filters: PropTypes.array,
   selectedEligibility: PropTypes.object,

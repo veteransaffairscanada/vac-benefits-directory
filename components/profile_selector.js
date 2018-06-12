@@ -102,7 +102,6 @@ class ProfileSelector extends Component {
                 setUserProfile={id =>
                   this.props.setUserProfile("patronType", id)
                 }
-                isDisabled={false}
               />
             </Grid>
 
@@ -116,7 +115,6 @@ class ProfileSelector extends Component {
                 setUserProfile={id =>
                   this.props.setUserProfile("serviceType", id)
                 }
-                isDisabled={false}
               />
             </Grid>
 
@@ -130,7 +128,6 @@ class ProfileSelector extends Component {
                 setUserProfile={id =>
                   this.props.setUserProfile("statusAndVitals", id)
                 }
-                isDisabled={false}
               />
             </Grid>
             <Grid item xs={12} className={classnames(classes.gridItemButton)}>
