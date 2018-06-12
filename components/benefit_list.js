@@ -88,10 +88,6 @@ BenefitList.propTypes = {
   filteredBenefits: PropTypes.array,
   eligibilityPaths: PropTypes.array,
   benefits: PropTypes.array,
-  selectedEligibility: PropTypes.object,
-  needs: PropTypes.array,
-  selectedNeeds: PropTypes.object,
-  children: PropTypes.array,
   examples: PropTypes.array,
   onRef: PropTypes.func,
   sortByValue: PropTypes.string

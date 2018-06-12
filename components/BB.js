@@ -271,9 +271,6 @@ export class BB extends Component {
                   filteredBenefits={filteredBenefits}
                   eligibilityPaths={this.props.eligibilityPaths}
                   benefits={this.props.benefits}
-                  selectedEligibility={this.props.selectedEligibility}
-                  needs={this.props.needs}
-                  selectedNeeds={this.props.selectedNeeds}
                   onRef={ref => this.children.push(ref)}
                   examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
