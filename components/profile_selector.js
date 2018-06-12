@@ -49,6 +49,7 @@ class ProfileSelector extends Component {
       eligibilityPaths,
       pageWidth
     } = this.props;
+
     let serviceTypes = Array.from(
       new Set(eligibilityPaths.map(ep => ep.serviceType))
     )
@@ -105,31 +106,42 @@ class ProfileSelector extends Component {
               />
             </Grid>
 
-            <Grid item xs={12} id="serviceTypeFilter">
-              <RadioSelector
-                t={t}
-                legend={t("B3.ServiceType")}
-                filters={serviceTypes}
-                selectedFilters={selectedEligibility.serviceType}
-                setUserProfile={id =>
-                  this.props.setUserProfile("serviceType", id)
-                }
-                isDisabled={false}
-              />
-            </Grid>
+            {selectedEligibility.patronType != "" &&
+            selectedEligibility.patronType != "organization" ? (
+              <Grid item xs={12} id="serviceTypeFilter">
+                <RadioSelector
+                  t={t}
+                  legend={t("B3.ServiceType")}
+                  filters={serviceTypes}
+                  selectedFilters={selectedEligibility.serviceType}
+                  setUserProfile={id =>
+                    this.props.setUserProfile("serviceType", id)
+                  }
+                  isDisabled={false}
+                />
+              </Grid>
+            ) : (
+              ""
+            )}
 
-            <Grid item xs={12} id="statusAndVitalsFilter">
-              <RadioSelector
-                t={t}
-                legend={t("B3.serviceStatus")}
-                filters={statusAndVitals}
-                selectedFilters={selectedEligibility.statusAndVitals}
-                setUserProfile={id =>
-                  this.props.setUserProfile("statusAndVitals", id)
-                }
-                isDisabled={false}
-              />
-            </Grid>
+            {selectedEligibility.serviceType != "" &&
+            selectedEligibility.patronType != "organization" ? (
+              <Grid item xs={12} id="statusAndVitalsFilter">
+                <RadioSelector
+                  t={t}
+                  legend={t("B3.serviceStatus")}
+                  filters={statusAndVitals}
+                  selectedFilters={selectedEligibility.statusAndVitals}
+                  setUserProfile={id =>
+                    this.props.setUserProfile("statusAndVitals", id)
+                  }
+                  isDisabled={false}
+                />
+              </Grid>
+            ) : (
+              ""
+            )}
+
             <Grid item xs={12} className={classnames(classes.gridItemButton)}>
               <Button
                 className={classnames(classes.clearButton)}
