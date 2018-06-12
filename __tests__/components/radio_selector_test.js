@@ -1,8 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import { RadioSelector } from "../../components/radio_selector";
-// import profileFixture from "../fixtures/needs";
-// import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 

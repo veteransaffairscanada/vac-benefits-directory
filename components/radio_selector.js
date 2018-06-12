@@ -32,7 +32,6 @@ export class RadioSelector extends React.Component {
     return false;
   };
   render() {
-    // const abc = 'abc';
     const { classes, t } = this.props;
     if (Object.values(this.props.filters).length != 0) {
       return (
