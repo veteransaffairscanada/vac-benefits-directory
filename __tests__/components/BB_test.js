@@ -67,10 +67,10 @@ describe("BB", () => {
   describe("filteredBenefits", () => {
     let benefits, eligibilityPaths, selectedEligibility;
 
-    let filteredBenefits = () =>
+    let filterBenefits = () =>
       mounted_BB()
         .instance()
-        .filteredBenefits(
+        .filterBenefits(
           benefits,
           eligibilityPaths,
           selectedEligibility,
@@ -130,29 +130,14 @@ describe("BB", () => {
 
     // don't show benefit 0 because it's not independent
     it("displays benefits 1, 2 and 3 if nothing selected", () => {
-      expect(filteredBenefits().map(b => b.id)).toEqual(["1", "2", "3"]);
+      expect(filterBenefits().map(b => b.id)).toEqual(["1", "2", "3"]);
     });
 
     // only 0 matches, but it's a child of 2, so we show 2
     it("display benefits 2 if patronType p1", () => {
       selectedEligibility.patronType = "p1";
-      expect(filteredBenefits().map(b => b.id)).toEqual(["2"]);
+      expect(filterBenefits().map(b => b.id)).toEqual(["2"]);
     });
-  });
-
-  it("has a correct sortBenefits function when sorting by relevance", () => {
-    let BBInstance = shallow_BB().instance();
-    expect(
-      BBInstance.sortBenefits(benefitsFixture, "en").map(b => b.id)
-    ).toEqual(["3", "1", "0"]);
-  });
-
-  it("has a correct sortBenefits function when sorting alphabetically", () => {
-    let BBInstance = shallow_BB().instance();
-    BBInstance.setState({ sortByValue: "alphabetical" });
-    expect(
-      BBInstance.sortBenefits(benefitsFixture, "en").map(b => b.id)
-    ).toEqual(["1", "0", "3"]);
   });
 
   it("has a sortBy selector", () => {
@@ -165,7 +150,7 @@ describe("BB", () => {
       patronType: "service-person",
       statusAndVitals: "releasedAlive"
     };
-    const benefitCards = shallow_BB().find(".BenefitCards");
+    const benefitCards = mounted_BB().find("BenefitCard");
     expect(benefitCards.length).toEqual(1);
     benefitCards.map((bt, i) => {
       expect(bt.prop("benefit").vac_name_fr).toEqual(
