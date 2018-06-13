@@ -30,19 +30,41 @@ describe("BenefitList", () => {
     props = {
       classes: {},
       t: key => key,
-      filteredBenefits: [],
+      filteredBenefits: benefitsFixture,
       eligibilityPaths: [],
       benefits: benefitsFixture,
       examples: examplesFixture,
       onRef: k => k,
-      sortByValue: "Alphabetical"
+      sortByValue: ""
     };
     _mountedBenefitList = undefined;
     _shallowBenefitList = undefined;
   });
 
   it("passes axe tests", async () => {
-    let html = shallowBenefitList().html();
+    let html = mountedBenefitList().html();
     expect(await axe(html)).toHaveNoViolations();
+  });
+
+  it("has a correct sortBenefits function when sorting by popularity", () => {
+    let BLInstance = shallowBenefitList().instance();
+    expect(
+      BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
+        b => b.id
+      )
+    ).toEqual(["3", "1", "0"]);
+  });
+
+  it("has a correct sortBenefits function when sorting alphabetically", () => {
+    let BLInstance = shallowBenefitList().instance();
+    expect(
+      BLInstance.sortBenefits(benefitsFixture, "en", "alphabetical").map(
+        b => b.id
+      )
+    ).toEqual(["1", "0", "3"]);
+  });
+
+  it("displays the correct number of benefits cards", () => {
+    expect(mountedBenefitList().find("BenefitCard").length).toEqual(3);
   });
 });

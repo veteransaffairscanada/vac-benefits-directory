@@ -1,13 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
 import BenefitCard from "../components/benefit_cards";
-
-const styles = theme => ({
-  formControl: {
-    margin: theme.spacing.unit
-  }
-});
 
 export class BenefitList extends React.Component {
   sortBenefits = (filteredBenefits, language, sortByValue) => {
@@ -65,7 +58,6 @@ export class BenefitList extends React.Component {
         true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition
           <BenefitCard
             id={"bc" + i}
-            className="BenefitCards"
             benefit={benefit}
             examples={this.props.examples}
             allBenefits={this.props.benefits}
@@ -93,4 +85,4 @@ BenefitList.propTypes = {
   sortByValue: PropTypes.string
 };
 
-export default withStyles(styles)(BenefitList);
+export default BenefitList;

@@ -183,7 +183,6 @@ export class BenefitCard extends Component {
                         {veteranBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
                             id={"cb" + i}
-                            className="BenefitCards"
                             benefit={cb}
                             allBenefits={this.props.allBenefits}
                             t={this.props.t}
