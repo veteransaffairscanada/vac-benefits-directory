@@ -67,6 +67,8 @@ export class BB extends Component {
     const { benefits } = this.props;
 
     const enIdx = lunr(function() {
+      this.pipeline.remove(lunr.stemmer);
+      this.pipeline.remove(lunr.stopWordFilter);
       this.ref("id");
       this.field("vacNameEn");
       this.field("oneLineDescriptionEn");
@@ -76,6 +78,8 @@ export class BB extends Component {
     });
 
     const frIdx = lunr(function() {
+      this.pipeline.remove(lunr.stemmer);
+      this.pipeline.remove(lunr.stopWordFilter);
       this.ref("id");
       this.field("vacNameFr");
       this.field("oneLineDescriptionFr");
@@ -181,9 +185,9 @@ export class BB extends Component {
     if (this.state.searchString.trim() !== "") {
       let results = [];
       if (this.props.t("current-language-code") == "en") {
-        results = this.state.enIdx.search(this.state.searchString);
+        results = this.state.enIdx.search(this.state.searchString + "*");
       } else {
-        results = this.state.frIdx.search(this.state.searchString);
+        results = this.state.frIdx.search(this.state.searchString + "*");
       }
       let resultIds = results.map(r => r.ref);
       benefitsToShow = benefitsToShow.filter(benefit =>
