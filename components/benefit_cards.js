@@ -183,9 +183,7 @@ export class BenefitCard extends Component {
                         {veteranBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
                             id={"cb" + i}
-                            className="BenefitCards"
                             benefit={cb}
-                            allBenefits={this.props.allBenefits}
                             t={this.props.t}
                             key={cb.id}
                             onRef={ref => this.children.push(ref)}
@@ -210,7 +208,6 @@ export class BenefitCard extends Component {
                             id={"cb" + i}
                             className="BenefitCards"
                             benefit={cb}
-                            allBenefits={this.props.allBenefits}
                             t={this.props.t}
                             key={cb.id}
                             onRef={ref => this.children.push(ref)}

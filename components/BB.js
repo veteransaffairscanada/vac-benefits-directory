@@ -11,7 +11,7 @@ import Select from "material-ui/Select";
 
 import "babel-polyfill/dist/polyfill";
 
-import BenefitCard from "../components/benefit_cards";
+import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 
@@ -86,7 +86,7 @@ export class BB extends Component {
     return matches;
   };
 
-  filteredBenefits = (
+  filterBenefits = (
     benefits,
     eligibilityPaths,
     selectedEligibility,
@@ -163,37 +163,6 @@ export class BB extends Component {
     return benefitsToShow;
   };
 
-  sortBenefits = (filteredBenefits, language) => {
-    filteredBenefits.forEach(b => {
-      if (b.sortingPriority === undefined) {
-        b.sortingPriority = "low";
-      }
-      b.sortingNumber = { high: 1, medium: 2, low: 3 }[b.sortingPriority];
-    });
-
-    let sorting_fn = (a, b) => {
-      if (
-        this.state.sortByValue === "alphabetical" ||
-        a.sortingNumber === b.sortingNumber
-      ) {
-        // sort alphabetically
-        let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
-        let nameA = a[vacName].toUpperCase();
-        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-        return 0;
-      }
-      // ascending numeric sort
-      return a.sortingNumber - b.sortingNumber;
-    };
-    return filteredBenefits.sort(sorting_fn);
-  };
-
   handleSortByChange = event => {
     this.setState({ sortByValue: event.target.value });
   };
@@ -221,24 +190,8 @@ export class BB extends Component {
   };
 
   render() {
-    let veteranBenefitIds = [];
-    let familyBenefitIds = [];
-
-    this.props.eligibilityPaths.forEach(ep => {
-      if (ep.patronType === "service-person") {
-        veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
-      }
-      if (ep.patronType === "family") {
-        familyBenefitIds = familyBenefitIds.concat(ep.benefits);
-      }
-    });
-
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
-    this.sortBenefits(
-      this.props.benefits,
-      this.props.t("current-language-code")
-    );
-    const filteredBenefits = this.filteredBenefits(
+    const filteredBenefits = this.filterBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
       this.props.selectedEligibility,
@@ -326,25 +279,15 @@ export class BB extends Component {
                     {t("Close all")}
                   </Button>
                 </Grid>
-                {filteredBenefits.map(
-                  (benefit, i) =>
-                    true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition
-                      <BenefitCard
-                        id={"bc" + i}
-                        className="BenefitCards"
-                        benefit={benefit}
-                        examples={this.props.examples}
-                        allBenefits={this.props.benefits}
-                        veteranBenefitIds={veteranBenefitIds}
-                        familyBenefitIds={familyBenefitIds}
-                        t={this.props.t}
-                        key={benefit.id}
-                        onRef={ref => this.children.push(ref)}
-                      />
-                    ) : (
-                      ""
-                    )
-                )}
+                <BenefitList
+                  t={t}
+                  filteredBenefits={filteredBenefits}
+                  eligibilityPaths={this.props.eligibilityPaths}
+                  benefits={this.props.benefits}
+                  onRef={ref => this.children.push(ref)}
+                  examples={this.props.examples}
+                  sortByValue={this.state.sortByValue}
+                />
               </Grid>
             </Grid>
           </Grid>
