@@ -7,7 +7,9 @@ import Typography from "material-ui/Typography";
 import { InputLabel } from "material-ui/Input";
 import { MenuItem } from "material-ui/Menu";
 import { FormControl } from "material-ui/Form";
+import TextField from "material-ui/TextField";
 import Select from "material-ui/Select";
+import lunr from "lunr";
 
 import "babel-polyfill/dist/polyfill";
 
@@ -55,8 +57,40 @@ const styles = theme => ({
 
 export class BB extends Component {
   state = {
+    enIdx: null,
+    frIdx: null,
+    searchString: "",
     sortByValue: "relevance"
   };
+
+  componentWillMount() {
+    const { benefits } = this.props;
+
+    const enIdx = lunr(function() {
+      this.pipeline.remove(lunr.stemmer);
+      this.pipeline.remove(lunr.stopWordFilter);
+      this.ref("id");
+      this.field("vacNameEn");
+      this.field("oneLineDescriptionEn");
+      benefits.forEach(function(doc) {
+        this.add(doc);
+      }, this);
+    });
+
+    const frIdx = lunr(function() {
+      this.pipeline.remove(lunr.stemmer);
+      this.pipeline.remove(lunr.stopWordFilter);
+      this.ref("id");
+      this.field("vacNameFr");
+      this.field("oneLineDescriptionFr");
+      benefits.forEach(function(doc) {
+        this.add(doc);
+      }, this);
+    });
+
+    this.setState({ enIdx: enIdx, frIdx: frIdx });
+  }
+
   children = [];
 
   collapseAllBenefits = () => {
@@ -147,6 +181,20 @@ export class BB extends Component {
         childrenIDsShown.indexOf(b.id) < 0
     );
 
+    // If there is a searchString the run another filter
+    if (this.state.searchString.trim() !== "") {
+      let results = [];
+      if (this.props.t("current-language-code") == "en") {
+        results = this.state.enIdx.search(this.state.searchString + "*");
+      } else {
+        results = this.state.frIdx.search(this.state.searchString + "*");
+      }
+      let resultIds = results.map(r => r.ref);
+      benefitsToShow = benefitsToShow.filter(benefit =>
+        resultIds.includes(benefit.id)
+      );
+    }
+
     return benefitsToShow;
   };
 
@@ -196,7 +244,7 @@ export class BB extends Component {
 
   countString = (x, t) => {
     switch (true) {
-      case this.countSelection() === 0:
+      case this.state.searchString.trim() == "" && this.countSelection() === 0:
         return t("B3.All benefits to consider");
       case x == 0:
         return t("B3.No benefits");
@@ -205,6 +253,12 @@ export class BB extends Component {
       default:
         return t("B3.x benefits to consider", { x: x });
     }
+  };
+
+  handleSearchChange = event => {
+    this.setState({
+      searchString: event.target.value
+    });
   };
 
   render() {
@@ -300,6 +354,13 @@ export class BB extends Component {
                         {t("B3.Alphabetical")}
                       </MenuItem>
                     </Select>
+                    <TextField
+                      label={t("search")}
+                      placeholder=""
+                      value={this.state.searchString}
+                      onChange={this.handleSearchChange}
+                      margin="normal"
+                    />
                   </FormControl>
                 </Grid>
 
@@ -327,6 +388,7 @@ export class BB extends Component {
                         t={this.props.t}
                         key={benefit.id}
                         onRef={ref => this.children.push(ref)}
+                        searchString={this.state.searchString}
                       />
                     ) : (
                       ""
