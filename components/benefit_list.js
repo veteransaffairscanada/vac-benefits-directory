@@ -35,8 +35,8 @@ export class BenefitList extends React.Component {
   };
 
   render() {
-    this.sortBenefits(
-      this.props.benefits,
+    const sortedBenefits = this.sortBenefits(
+      this.props.filteredBenefits,
       this.props.t("current-language-code"),
       this.props.sortByValue
     );
@@ -53,7 +53,7 @@ export class BenefitList extends React.Component {
       }
     });
 
-    return this.props.filteredBenefits.map(
+    return sortedBenefits.map(
       (benefit, i) =>
         true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition
           <BenefitCard
