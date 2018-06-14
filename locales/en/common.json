@@ -68,7 +68,8 @@
     "Fail": "Fail",
     "Size of Eligibility Paths Table": "Size of eligibility paths table",
     "Size of Needs Table": "Size of needs table",
-    "Size of Examples Table": "Size of examples table"
+    "Size of Examples Table": "Size of examples table",
+    "Benefits missing text": "Benefits missing text"
   },
   "next": "next",
   "child benefits": "With this benefit, you may also have access to",
