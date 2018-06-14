@@ -49,8 +49,6 @@ export class DataValidation extends Component {
       needs,
       examples
     } = this.props; // eslint-disable-line no-unused-vars
-    // console.log(benefits)
-    // console.log(benefits.filter(b => !(b.vacNameEn && b.vacNameEn != "")))
 
     const data = [
       this.createData(
