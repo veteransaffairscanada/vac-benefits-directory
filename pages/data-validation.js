@@ -25,12 +25,9 @@ const styles = theme => ({
   }
 });
 
-let id = 0;
-
 export class DataValidation extends Component {
   createData = (name, value, status) => {
-    id += 1;
-    return { id, name, value, status };
+    return { name, value, status };
   };
 
   checkIfMissingText(b) {
@@ -95,9 +92,9 @@ export class DataValidation extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map(n => {
+              {data.map((n, i) => {
                 return (
-                  <TableRow key={n.id}>
+                  <TableRow key={i}>
                     <TableCell>{t("dv." + n.name)}</TableCell>
                     <TableCell>{n.value}</TableCell>
                     <TableCell>{t("dv." + n.status)}</TableCell>

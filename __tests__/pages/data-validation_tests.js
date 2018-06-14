@@ -40,16 +40,12 @@ describe("DataValidation", () => {
 
   it("has a correct createData function", () => {
     const dataValidationInstance = mountedDataValidation().instance();
-
     const returnValuel1 = dataValidationInstance.createData("n1", 10, "s1");
-    const returnValuel2 = dataValidationInstance.createData("n2", 20, "s2");
     expect(returnValuel1).toEqual({
-      id: benefitsFixture.length + 2,
       name: "n1",
       value: 10,
       status: "s1"
     });
-    expect(returnValuel2.id).toEqual(benefitsFixture.length + 3);
   });
 
   it("passes axe tests", async () => {
@@ -79,6 +75,11 @@ describe("DataValidation", () => {
 
   it("fails if there are no examples", () => {
     props.examples = [];
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
+
+  it("fails if a benefit is missing english or french text", () => {
+    props.benefits[0].vacNameEn = "";
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 });
