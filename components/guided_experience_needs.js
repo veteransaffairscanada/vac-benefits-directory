@@ -55,40 +55,6 @@ export class GuidedExperienceNeeds extends Component {
             </Grid>
           ))}
         </Grid>
-
-        <Grid
-          container
-          justify="center"
-          spacing={24}
-          style={{ marginTop: "3em" }}
-        >
-          <Grid item sm={4} xs={12}>
-            <SelectButton
-              text={t("next")}
-              onClick={() => this.props.setSection("BB")}
-              isDown={false}
-            />
-          </Grid>
-        </Grid>
-
-        <Grid
-          container
-          justify="center"
-          spacing={24}
-          style={{ marginTop: "1em" }}
-        >
-          <Grid item sm={4} xs={12}>
-            <p style={{ textAlign: "center", fontSize: "1em" }}>
-              <a
-                className="AllBenefits"
-                href={"all-benefits?lng=" + t("current-language-code")}
-                target="_blank"
-              >
-                {t("Show All Benefits")}
-              </a>
-            </p>
-          </Grid>
-        </Grid>
       </div>
     );
   }

@@ -8,8 +8,7 @@ import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
 
-import GuidedExperienceProfile from "../components/guided_experience_profile";
-import GuidedExperienceNeeds from "../components/guided_experience_needs";
+import GuidedExperience from "../components/guided_experience";
 import BB from "../components/BB";
 
 export class A extends Component {
@@ -195,8 +194,9 @@ export class A extends Component {
       case "A1":
         question = "patronType";
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A1"
+            stepNumber={0}
             title={this.props.t("A1.Find Benefits for")}
             options={Array.from(
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -208,13 +208,15 @@ export class A extends Component {
             nextSection="A2"
             setSection={this.setSection}
             t={this.props.t}
+            type="profile"
           />
         );
       case "A2":
         question = "serviceType";
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A2"
+            stepNumber={1}
             title={this.props.t("B3.ServiceType")}
             options={Array.from(
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -224,15 +226,18 @@ export class A extends Component {
               this.state.selectedEligibility[question] === option
             }
             nextSection="A3"
+            prevSection="A1"
             setSection={this.setSection}
             t={this.props.t}
+            type="profile"
           />
         );
       case "A3":
         question = "statusAndVitals";
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A3"
+            stepNumber={2}
             title={this.props.t("B3.serviceStatus")}
             options={Array.from(
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -242,19 +247,25 @@ export class A extends Component {
               this.state.selectedEligibility[question] === option
             }
             nextSection="A4"
+            prevSection="A2"
             setSection={this.setSection}
             t={this.props.t}
+            type="profile"
           />
         );
       case "A4":
         return (
-          <GuidedExperienceNeeds
+          <GuidedExperience
             id="A4"
+            stepNumber={3}
             t={this.props.t}
             needs={this.props.needs}
             selectedNeeds={this.state.selectedNeeds}
             setSelectedNeeds={this.setSelectedNeeds}
+            nextSection="BB"
+            prevSection="A3"
             setSection={this.setSection}
+            type="needs"
           />
         );
       case "BB":
