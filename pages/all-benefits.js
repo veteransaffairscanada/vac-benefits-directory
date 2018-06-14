@@ -41,6 +41,7 @@ export class AllBenefits extends Component {
                     t={this.props.t}
                     key={i}
                     onRef={foo => foo}
+                    searchString=""
                   />
                 ))}
               </Grid>

@@ -8,6 +8,7 @@ import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+import Highlighter from "react-highlight-words";
 
 import { logEvent } from "../utils/analytics";
 
@@ -115,17 +116,29 @@ export class BenefitCard extends Component {
             >
               <div>
                 <Typography component="p" className="benefitName">
-                  {this.props.t("current-language-code") === "en"
-                    ? benefit.vacNameEn
-                    : benefit.vacNameFr}
+                  <Highlighter
+                    searchWords={this.props.searchString.split(",")}
+                    autoEscape={true}
+                    textToHighlight={
+                      this.props.t("current-language-code") === "en"
+                        ? benefit.vacNameEn
+                        : benefit.vacNameFr
+                    }
+                  />
                 </Typography>
 
                 <Typography
                   className={"cardDescription " + classes.cardDescriptionText}
                 >
-                  {this.props.t("current-language-code") === "en"
-                    ? benefit.oneLineDescriptionEn
-                    : benefit.oneLineDescriptionFr}
+                  <Highlighter
+                    searchWords={this.props.searchString.split(",")}
+                    autoEscape={true}
+                    textToHighlight={
+                      this.props.t("current-language-code") === "en"
+                        ? benefit.oneLineDescriptionEn
+                        : benefit.oneLineDescriptionFr
+                    }
+                  />
                 </Typography>
               </div>
             </ExpansionPanelSummary>
@@ -236,7 +249,8 @@ BenefitCard.propTypes = {
   classes: PropTypes.object,
   examples: PropTypes.array,
   t: PropTypes.func,
-  onRef: PropTypes.func
+  onRef: PropTypes.func,
+  searchString: PropTypes.string
 };
 
 export default withStyles(styles)(BenefitCard);

@@ -66,6 +66,7 @@ export class BenefitList extends React.Component {
             t={this.props.t}
             key={benefit.id}
             onRef={this.props.onRef}
+            searchString={this.props.searchString}
           />
         ) : (
           ""
@@ -82,7 +83,8 @@ BenefitList.propTypes = {
   benefits: PropTypes.array,
   examples: PropTypes.array,
   onRef: PropTypes.func,
-  sortByValue: PropTypes.string
+  sortByValue: PropTypes.string,
+  searchString: PropTypes.string
 };
 
 export default BenefitList;
