@@ -274,6 +274,8 @@ export class BB extends Component {
                   onRef={ref => this.children.push(ref)}
                   examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
+                  toggleBookmark={this.props.toggleBookmark}
+                  bookmarkedBenefits={this.props.bookmarkedBenefits}
                 />
               </Grid>
             </Grid>
@@ -299,7 +301,9 @@ BB.propTypes = {
   setUserProfile: PropTypes.func,
   t: PropTypes.func,
   toggleSelectedEligibility: PropTypes.func,
-  pageWidth: PropTypes.number
+  pageWidth: PropTypes.number,
+  bookmarkedBenefits: PropTypes.array,
+  toggleBookmark: PropTypes.func
 };
 
 export default withStyles(styles)(BB);

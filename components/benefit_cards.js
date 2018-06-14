@@ -153,6 +153,16 @@ export class BenefitCard extends Component {
                   </Typography>
 
                   <Button
+                    variant="raised"
+                    size="small"
+                    onClick={() => this.props.toggleBookmark(benefit.id)}
+                  >
+                    {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1
+                      ? "Remove bookmark"
+                      : "Bookmark"}
+                  </Button>
+
+                  <Button
                     className={classes.button}
                     target="_blank"
                     variant="raised"
@@ -236,7 +246,9 @@ BenefitCard.propTypes = {
   classes: PropTypes.object,
   examples: PropTypes.array,
   t: PropTypes.func,
-  onRef: PropTypes.func
+  onRef: PropTypes.func,
+  bookmarkedBenefits: PropTypes.array,
+  toggleBookmark: PropTypes.func
 };
 
 export default withStyles(styles)(BenefitCard);

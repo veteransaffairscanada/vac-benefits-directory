@@ -13,12 +13,11 @@ import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
 
-const cookies = new Cookies();
-
 export class A extends Component {
   constructor() {
     super();
     this.state = {
+      bookmarkedBenefits: [],
       section: "BB",
       selectedNeeds: {},
       selectedEligibility: {
@@ -29,6 +28,8 @@ export class A extends Component {
       width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
+    this.cookies = new Cookies();
+    // this.cookies.set("bookmarkedBenefits", [], { path: "/" });
   }
 
   stringToMap = s => {
@@ -153,10 +154,6 @@ export class A extends Component {
   };
 
   setUserProfile = (criteria, id) => {
-    console.log("old cookie", cookies.get("criteria"));
-    cookies.set("criteria", criteria, { path: "/" });
-    console.log("new cookie", cookies.get("criteria"));
-
     logEvent("FilterClick", criteria, id);
     let newSelectedEligibility = this.state.selectedEligibility;
     newSelectedEligibility[criteria] = id;
@@ -170,6 +167,22 @@ export class A extends Component {
     let newSelectedEligibility = this.state.selectedEligibility;
     newSelectedEligibility[criteria] = id;
     this.setState({ selectedEligibility: newSelectedEligibility });
+  };
+
+  toggleBookmark = id => {
+    let bookmarkedBenefits = this.cookies.get("bookmarkedBenefits")
+      ? this.cookies.get("bookmarkedBenefits")
+      : [];
+    console.log("bookmarking ", id);
+    console.log("old bookmarks", bookmarkedBenefits);
+    if (bookmarkedBenefits.indexOf(id) > -1) {
+      bookmarkedBenefits.splice(bookmarkedBenefits.indexOf(id), 1);
+    } else {
+      bookmarkedBenefits.push(id);
+    }
+    this.cookies.set("bookmarkedBenefits", bookmarkedBenefits, { path: "/" });
+    this.setState({ bookmarkedBenefits: bookmarkedBenefits });
+    console.log("new bookmarks", this.cookies.get("bookmarkedBenefits"));
   };
 
   clearFilters = () => {
@@ -282,6 +295,8 @@ export class A extends Component {
             clearFilters={this.clearFilters}
             clearNeeds={this.clearNeeds}
             pageWidth={this.state.width}
+            bookmarkedBenefits={this.state.bookmarkedBenefits}
+            toggleBookmark={this.toggleBookmark}
           />
         );
     }
