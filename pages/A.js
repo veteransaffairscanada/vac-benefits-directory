@@ -7,10 +7,13 @@ import Layout from "../components/layout";
 import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
+import Cookies from "universal-cookie";
 
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
+
+const cookies = new Cookies();
 
 export class A extends Component {
   constructor() {
@@ -150,6 +153,10 @@ export class A extends Component {
   };
 
   setUserProfile = (criteria, id) => {
+    console.log("old cookie", cookies.get("criteria"));
+    cookies.set("criteria", criteria, { path: "/" });
+    console.log("new cookie", cookies.get("criteria"));
+
     logEvent("FilterClick", criteria, id);
     let newSelectedEligibility = this.state.selectedEligibility;
     newSelectedEligibility[criteria] = id;
