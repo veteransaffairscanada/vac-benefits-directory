@@ -3,11 +3,14 @@ require("isomorphic-fetch");
 exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 
 var readKey = "keySzaXvONeLwsBm4"; // Read access only API key
+var database = "app4PYK3wT3dVSfsm";
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
 
 var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
   var url =
-    "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/" +
+    "https://api.airtable.com/v0/" +
+    database +
+    "/" +
     table +
     "?maxRecords=100&view=Grid%20view";
   var resp = await fetch(url, {

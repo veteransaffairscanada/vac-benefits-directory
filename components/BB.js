@@ -8,7 +8,6 @@ import { InputLabel } from "material-ui/Input";
 import { MenuItem } from "material-ui/Menu";
 import { FormControl } from "material-ui/Form";
 import Select from "material-ui/Select";
-
 import "babel-polyfill/dist/polyfill";
 
 import BenefitList from "../components/benefit_list";
