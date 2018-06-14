@@ -33,6 +33,15 @@ export class DataValidation extends Component {
     return { id, name, value, status };
   };
 
+  checkIfMissingText(b) {
+    return (
+      !(b.vacNameEn && b.vacNameEn != "") ||
+      !(b.vacNameFr && b.vacNameFr != "") ||
+      !(b.oneLineDescriptionEn && b.oneLineDescriptionEn != "") ||
+      !(b.oneLineDescriptionFr && b.oneLineDescriptionFr != "")
+    );
+  }
+
   render() {
     const {
       i18n,
@@ -43,6 +52,8 @@ export class DataValidation extends Component {
       needs,
       examples
     } = this.props; // eslint-disable-line no-unused-vars
+    // console.log(benefits)
+    // console.log(benefits.filter(b => !(b.vacNameEn && b.vacNameEn != "")))
 
     const data = [
       this.createData(
@@ -64,6 +75,11 @@ export class DataValidation extends Component {
         "Size of Examples Table",
         examples.length,
         examples.length > 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "Benefits missing text",
+        benefits.filter(this.checkIfMissingText).length,
+        benefits.filter(this.checkIfMissingText).length == 0 ? "Pass" : "Fail"
       )
     ];
 
