@@ -26,7 +26,8 @@ describe("BenefitCard", () => {
       familyBenefitIds: [],
       examples: examplesFixture,
       classes: {},
-      onRef: foo => foo
+      onRef: foo => foo,
+      searchString: ""
     };
     _mountedBenefitCard = undefined;
   });
