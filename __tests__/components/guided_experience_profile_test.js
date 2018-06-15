@@ -39,7 +39,8 @@ describe("GuidedExperienceProfile", () => {
       options: ["op0", "op1"],
       onClick: jest.fn(),
       isDown: option => option === "op0",
-      classes: {}
+      classes: {},
+      value: "op0"
     };
     _shallowGuidedExperienceProfile = undefined;
     _mountedGuidedExperienceProfile = undefined;
@@ -52,23 +53,17 @@ describe("GuidedExperienceProfile", () => {
 
   it("contains all the options", () => {
     expect(
-      shallow_GuidedExperienceProfile().find("SelectButton").length
+      mounted_GuidedExperienceProfile()
+        .find("#RadioSelector")
+        .find("Radio").length
     ).toEqual(2);
   });
 
   it("has the correct button down", () => {
     expect(
       shallow_GuidedExperienceProfile()
-        .find("SelectButton")
-        .map(b => b.props().isDown)
-    ).toEqual([true, false]);
-  });
-
-  it("calls onClick when option pressed", () => {
-    shallow_GuidedExperienceProfile()
-      .find("SelectButton")
-      .first()
-      .simulate("click");
-    expect(props.onClick).toBeCalledWith(props.options[0]);
+        .find("#RadioSelector")
+        .props().selectedFilter
+    ).toEqual("op0");
   });
 });
