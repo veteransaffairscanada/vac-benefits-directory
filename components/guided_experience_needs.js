@@ -2,20 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "material-ui";
 import SelectButton from "../components/select_button";
-import { withStyles } from "material-ui/styles/index";
-import Typography from "material-ui/Typography";
-
-const styles = () => ({
-  subTitle: {
-    fontSize: "20px",
-    fontWeight: "100",
-    paddingBottom: "25px"
-  },
-  title: {
-    fontSize: "36px",
-    padding: "15px 0"
-  }
-});
 
 export class GuidedExperienceNeeds extends Component {
   handleClick = id => {
@@ -62,4 +48,4 @@ GuidedExperienceNeeds.propTypes = {
   t: PropTypes.func
 };
 
-export default withStyles(styles)(GuidedExperienceNeeds);
+export default GuidedExperienceNeeds;

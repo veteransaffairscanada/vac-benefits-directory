@@ -33,7 +33,9 @@ const styles = () => ({
   },
   jumpButton: {
     margin: "5px",
-    textTransform: "none"
+    textTransform: "none",
+    paddingLeft: "20px",
+    paddingRight: "15px"
   },
   edit: {
     marginLeft: "10px"
@@ -52,12 +54,12 @@ export class GuidedExperience extends Component {
     return (
       <div className={classnames(classes.root)}>
         <Grid container spacing={24} className={classnames(classes.box)}>
-          <Grid item xs={6}>
+          <Grid item xs={6} md={4}>
             <Typography className={classnames(classes.title)}>
-              {this.props.title}
+              {t("B3.Filter by eligibility")}
             </Typography>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} md={8}>
             {eligibilityKeys.map((k, i) => {
               if (selectedEligibility[k] == "") {
                 return "";
@@ -78,6 +80,16 @@ export class GuidedExperience extends Component {
               }
             })}
           </Grid>
+
+          {this.props.id == "A4" ? (
+            <Grid item xs={6} md={4}>
+              <Typography className={classnames(classes.title)}>
+                {t("Filter by need")}
+              </Typography>
+            </Grid>
+          ) : (
+            ""
+          )}
 
           <Grid item xs={12}>
             <Typography className={classnames(classes.subTitle)}>
