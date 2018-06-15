@@ -307,14 +307,18 @@ export class BB extends Component {
                         {t("B3.Alphabetical")}
                       </MenuItem>
                     </Select>
-                    <TextField
-                      id="bbSearchField"
-                      label={t("search")}
-                      placeholder=""
-                      value={this.state.searchString}
-                      onChange={this.handleSearchChange}
-                      margin="normal"
-                    />
+                    {this.props.url.query.show_search ? (
+                      <TextField
+                        id="bbSearchField"
+                        label={t("search")}
+                        placeholder=""
+                        value={this.state.searchString}
+                        onChange={this.handleSearchChange}
+                        margin="normal"
+                      />
+                    ) : (
+                      ""
+                    )}
                   </FormControl>
                 </Grid>
 
@@ -362,7 +366,8 @@ BB.propTypes = {
   setUserProfile: PropTypes.func,
   t: PropTypes.func,
   toggleSelectedEligibility: PropTypes.func,
-  pageWidth: PropTypes.number
+  pageWidth: PropTypes.number,
+  url: PropTypes.object
 };
 
 export default withStyles(styles)(BB);

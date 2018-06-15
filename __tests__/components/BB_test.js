@@ -53,7 +53,8 @@ describe("BB", () => {
         expand: "BB-expand-90",
         expandOpen: "BB-expandOpen-91",
         avatar: "BB-avatar-92"
-      }
+      },
+      url: { query: {} }
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
@@ -253,6 +254,85 @@ describe("BB", () => {
           .instance()
           .countSelection()
       ).toEqual(2);
+    });
+  });
+
+  describe("search feature", () => {
+    it("creates a lunr index for english benefits", () => {
+      expect(mounted_BB().state().enIdx).not.toEqual(null);
+    });
+
+    it("creates a lunr index for french benefits", () => {
+      expect(mounted_BB().state().frIdx).not.toEqual(null);
+    });
+
+    it("shows a text serach box is show_search url param is set", () => {
+      mounted_BB().setProps({ url: { query: { show_search: true } } });
+      expect(
+        mounted_BB()
+          .find("#bbSearchField")
+          .first().length
+      ).toEqual(1);
+    });
+
+    it("hides a text serach box is show_search url param is not set", () => {
+      mounted_BB().setProps({ url: { query: {} } });
+      expect(
+        mounted_BB()
+          .find("#bbSearchField")
+          .first().length
+      ).toEqual(0);
+    });
+
+    it("handleSearchChange sets the state of searchString", () => {
+      mounted_BB()
+        .instance()
+        .handleSearchChange({ target: { value: "foo" } });
+      expect(mounted_BB().state().searchString).toEqual("foo");
+    });
+
+    it("if the search string is empty the results are not filtered", () => {
+      let filterBenefits = () =>
+        mounted_BB()
+          .instance()
+          .filterBenefits(
+            benefitsFixture,
+            elegibilityPathsFixture,
+            {
+              serviceType: "",
+              patronType: "",
+              statusAndVitals: ""
+            },
+            [],
+            {}
+          );
+
+      mounted_BB()
+        .instance()
+        .handleSearchChange({ target: { value: " " } });
+      expect(filterBenefits().map(b => b.id)).toEqual(["0"]);
+    });
+
+    it("the search string filters results", () => {
+      let filterBenefits = () =>
+        mounted_BB()
+          .instance()
+          .filterBenefits(
+            benefitsFixture,
+            elegibilityPathsFixture,
+            {
+              serviceType: "",
+              patronType: "",
+              statusAndVitals: ""
+            },
+            [],
+            {}
+          );
+
+      mounted_BB()
+        .instance()
+        .handleSearchChange({ target: { value: "foo" } });
+      expect(filterBenefits().map(b => b.id)).toEqual([]);
     });
   });
 });

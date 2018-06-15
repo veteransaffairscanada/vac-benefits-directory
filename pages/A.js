@@ -275,6 +275,7 @@ export class A extends Component {
             clearFilters={this.clearFilters}
             clearNeeds={this.clearNeeds}
             pageWidth={this.state.width}
+            url={this.props.url}
           />
         );
     }

@@ -52,10 +52,9 @@ export class BenefitList extends React.Component {
         familyBenefitIds = familyBenefitIds.concat(ep.benefits);
       }
     });
-
     return sortedBenefits.map(
       (benefit, i) =>
-        true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition
+        true || benefit.availableIndependently === "Independent" ? ( // eslint-disable-line no-constant-condition
           <BenefitCard
             id={"bc" + i}
             benefit={benefit}
