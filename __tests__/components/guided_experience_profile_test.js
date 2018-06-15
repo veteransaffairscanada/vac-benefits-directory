@@ -39,8 +39,6 @@ describe("GuidedExperienceProfile", () => {
       options: ["op0", "op1"],
       onClick: jest.fn(),
       isDown: option => option === "op0",
-      nextSection: "nextSection",
-      setSection: jest.fn(),
       classes: {},
       value: "op0"
     };
@@ -53,12 +51,12 @@ describe("GuidedExperienceProfile", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("contains the next buttons", () => {
+  it("contains all the options", () => {
     expect(
-      shallow_GuidedExperienceProfile()
-        .find("SelectButton")
-        .map(b => b.props().text)
-    ).toEqual(["next"]);
+      mounted_GuidedExperienceProfile()
+        .find("#RadioSelector")
+        .find("Radio").length
+    ).toEqual(2);
   });
 
   it("has the correct button down", () => {
@@ -67,12 +65,5 @@ describe("GuidedExperienceProfile", () => {
         .find("#RadioSelector")
         .props().selectedFilter
     ).toEqual("op0");
-  });
-
-  it("calls setSection if the Next button is pressed", () => {
-    shallow_GuidedExperienceProfile()
-      .find("SelectButton")
-      .simulate("click");
-    expect(props.setSection).toBeCalledWith(props.nextSection);
   });
 });
