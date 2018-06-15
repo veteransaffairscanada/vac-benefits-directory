@@ -16,8 +16,11 @@ import BB from "../components/BB";
 export class A extends Component {
   constructor() {
     super();
+    this.cookies = new Cookies();
     this.state = {
-      bookmarkedBenefits: [],
+      bookmarkedBenefits: this.cookies.get("bookmarkedBenefits")
+        ? this.cookies.get("bookmarkedBenefits")
+        : [],
       section: "BB",
       selectedNeeds: {},
       selectedEligibility: {
@@ -28,7 +31,6 @@ export class A extends Component {
       width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
-    this.cookies = new Cookies();
     // this.cookies.set("bookmarkedBenefits", [], { path: "/" });
   }
 
@@ -173,8 +175,6 @@ export class A extends Component {
     let bookmarkedBenefits = this.cookies.get("bookmarkedBenefits")
       ? this.cookies.get("bookmarkedBenefits")
       : [];
-    console.log("bookmarking ", id);
-    console.log("old bookmarks", bookmarkedBenefits);
     if (bookmarkedBenefits.indexOf(id) > -1) {
       bookmarkedBenefits.splice(bookmarkedBenefits.indexOf(id), 1);
     } else {
@@ -182,7 +182,6 @@ export class A extends Component {
     }
     this.cookies.set("bookmarkedBenefits", bookmarkedBenefits, { path: "/" });
     this.setState({ bookmarkedBenefits: bookmarkedBenefits });
-    console.log("new bookmarks", this.cookies.get("bookmarkedBenefits"));
   };
 
   clearFilters = () => {

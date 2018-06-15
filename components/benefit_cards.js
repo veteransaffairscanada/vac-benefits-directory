@@ -61,9 +61,17 @@ export class BenefitCard extends Component {
     logEvent("Exit", url);
   };
 
+  toggleBookmark = id => {
+    this.setState((previousState, _) => {
+      return { ...previousState, open: !previousState.open };
+    });
+    this.props.toggleBookmark(id);
+  };
+
   toggleOpenState = () => {
-    let newState = !this.state.open;
-    this.setState({ open: newState });
+    this.setState((previousState, _) => {
+      return { ...previousState, open: !previousState.open };
+    });
   };
 
   componentDidMount() {
@@ -120,6 +128,16 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr}
                 </Typography>
 
+                <Button
+                  variant="raised"
+                  size="small"
+                  onClick={() => this.toggleBookmark(benefit.id)}
+                >
+                  {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1
+                    ? "Remove bookmark"
+                    : "Bookmark"}
+                </Button>
+
                 <Typography
                   className={"cardDescription " + classes.cardDescriptionText}
                 >
@@ -151,16 +169,6 @@ export class BenefitCard extends Component {
                       );
                     })}
                   </Typography>
-
-                  <Button
-                    variant="raised"
-                    size="small"
-                    onClick={() => this.props.toggleBookmark(benefit.id)}
-                  >
-                    {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1
-                      ? "Remove bookmark"
-                      : "Bookmark"}
-                  </Button>
 
                   <Button
                     className={classes.button}
