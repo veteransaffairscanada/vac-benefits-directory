@@ -120,6 +120,14 @@ describe("Feedback bar", () => {
         .simulate("click");
       expect(mountedFeedbackBar().text()).toContain("feedback-response");
     });
+
+    it("shows the commentBox", () => {
+      mountedFeedbackBar()
+        .find("#feedbackNo")
+        .at(0)
+        .simulate("click");
+      expect(mountedFeedbackBar().text()).toContain("comment-help-us-improve");
+    });
   });
 
   it("Feedback logged with Google Analytics", () => {
