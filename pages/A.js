@@ -192,8 +192,8 @@ export class A extends Component {
 
   sectionToDisplay = section => {
     let question;
-    switch (section) {
-      case "A1":
+    switch (true) {
+      case section === "A1":
         question = "patronType";
         return (
           <GuidedExperience
@@ -217,7 +217,8 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case "A2":
+      case this.state.selectedEligibility["patronType"] !== "organization" &&
+        section === "A2":
         question = "serviceType";
         return (
           <GuidedExperience
@@ -242,8 +243,15 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case "A3":
+      case this.state.selectedEligibility["patronType"] !== "organization" &&
+        section === "A3":
         question = "statusAndVitals";
+        let options = Array.from(
+          new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+        ).filter(st => st !== "na");
+        if (this.state.selectedEligibility["patronType"] === "service-person") {
+          options.splice(options.indexOf("deceased"), 1);
+        }
         return (
           <GuidedExperience
             id="A3"
@@ -258,16 +266,15 @@ export class A extends Component {
               t={this.props.t}
               title={this.props.t("GE." + question)}
               onClick={option => this.setUserProfile(question, option)}
-              options={Array.from(
-                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-              ).filter(st => st !== "na")}
+              options={options}
               isDown={option =>
                 this.state.selectedEligibility[question] === option
               }
             />
           </GuidedExperience>
         );
-      case "A4":
+      case this.state.selectedEligibility["patronType"] !== "organization" &&
+        section === "A4":
         return (
           <GuidedExperience
             id="A4"
@@ -285,7 +292,8 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case "BB":
+      case this.state.selectedEligibility["patronType"] === "organization" ||
+        section === "BB":
         return (
           <BB
             id="BB"
