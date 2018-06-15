@@ -191,7 +191,7 @@ export class A extends Component {
   };
 
   sectionToDisplay = section => {
-    let question;
+    let question, options;
     switch (true) {
       case section === "A1":
         question = "patronType";
@@ -246,7 +246,7 @@ export class A extends Component {
       case this.state.selectedEligibility["patronType"] !== "organization" &&
         section === "A3":
         question = "statusAndVitals";
-        let options = Array.from(
+        options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
         ).filter(st => st !== "na");
         if (this.state.selectedEligibility["patronType"] === "service-person") {
