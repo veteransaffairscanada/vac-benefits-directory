@@ -35,7 +35,6 @@ describe("GuidedExperienceProfile", () => {
   beforeEach(() => {
     props = {
       t: key => key,
-      title: "title",
       options: ["op0", "op1"],
       onClick: jest.fn(),
       isDown: option => option === "op0",

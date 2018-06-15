@@ -202,7 +202,6 @@ export class A extends Component {
             stepNumber={0}
             nextSection="A2"
             setSection={this.setSection}
-            title={t("B3.Filter by eligibility")}
             subtitle={t("GE." + question)}
             t={t}
             selectedEligibility={this.state.selectedEligibility}
@@ -229,7 +228,6 @@ export class A extends Component {
             nextSection="A3"
             prevSection="A1"
             setSection={this.setSection}
-            title={t("B3.Filter by eligibility")}
             subtitle={t("GE." + question)}
             t={t}
             selectedEligibility={this.state.selectedEligibility}
@@ -256,7 +254,6 @@ export class A extends Component {
             nextSection="A4"
             prevSection="A2"
             setSection={this.setSection}
-            title={t("B3.Filter by eligibility")}
             subtitle={t("GE." + question)}
             t={t}
             selectedEligibility={this.state.selectedEligibility}
@@ -282,7 +279,6 @@ export class A extends Component {
             t={t}
             nextSection="BB"
             prevSection="A3"
-            title={t("Filter by need")}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
             selectedEligibility={this.state.selectedEligibility}

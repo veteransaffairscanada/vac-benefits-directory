@@ -140,7 +140,6 @@ GuidedExperience.propTypes = {
   prevSection: PropTypes.string,
   t: PropTypes.func,
   setSection: PropTypes.func,
-  title: PropTypes.string,
   subtitle: PropTypes.string,
   stepNumber: PropTypes.number,
   children: PropTypes.object,
