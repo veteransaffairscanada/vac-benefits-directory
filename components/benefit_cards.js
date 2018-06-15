@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, Button } from "material-ui";
+import { Grid, Typography, Button, IconButton } from "material-ui";
 import { withStyles } from "material-ui/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -8,6 +8,8 @@ import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
 import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
 import { logEvent } from "../utils/analytics";
 
@@ -128,14 +130,27 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr}
                 </Typography>
 
+                {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1 ? (
+                  <IconButton className={classes.button} aria-label="Favorite">
+                    <Favorite />
+                  </IconButton>
+                ) : (
+                  <IconButton
+                    className={classes.button}
+                    aria-label="Not Favorite"
+                  >
+                    <AddIcon />
+                  </IconButton>
+                )}
+
                 <Button
                   variant="raised"
                   size="small"
                   onClick={() => this.toggleBookmark(benefit.id)}
                 >
                   {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1
-                    ? "Remove bookmark"
-                    : "Bookmark"}
+                    ? "remove fav"
+                    : "fav"}
                 </Button>
 
                 <Typography
