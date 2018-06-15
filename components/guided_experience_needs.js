@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "material-ui";
-import SelectButton from "../components/select_button";
 import { withStyles } from "material-ui/styles/index";
 import Typography from "material-ui/Typography";
 
@@ -63,6 +62,9 @@ export class GuidedExperienceNeeds extends Component {
               variant="raised"
               onClick={() => this.handleClick(need.id)}
               value={need.id}
+              isdownstatus={
+                this.props.selectedNeeds.hasOwnProperty(need.id) ? "down" : "up"
+              }
               className={
                 this.props.selectedNeeds.hasOwnProperty(need.id)
                   ? classes.needSelected
