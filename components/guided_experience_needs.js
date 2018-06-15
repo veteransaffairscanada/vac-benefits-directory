@@ -36,12 +36,15 @@ export class GuidedExperienceNeeds extends Component {
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Typography className={classes.title}>
-              {t("B3.What do you need help with?")}
+              {t("GE.needs title")}
+            </Typography>
+            <Typography className={classes.subTitle}>
+              {t("GE.needs subtitle")}
             </Typography>
           </Grid>
 
           {this.props.needs.map(need => (
-            <Grid key={need.id} item sm={4} xs={12}>
+            <div key={need.id} style={{ margin: 10 }}>
               <SelectButton
                 id={need.id}
                 text={
@@ -52,7 +55,7 @@ export class GuidedExperienceNeeds extends Component {
                 onClick={() => this.handleClick(need.id)}
                 isDown={this.props.selectedNeeds.hasOwnProperty(need.id)}
               />
-            </Grid>
+            </div>
           ))}
         </Grid>
       </div>
