@@ -1,7 +1,23 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid } from "material-ui";
-import SelectButton from "../components/select_button";
+import { Grid, Button } from "material-ui";
+import { withStyles } from "material-ui/styles/index";
+
+const styles = theme => ({
+  need: {
+    margin: theme.spacing.unit,
+    backgroundColor: "#F5F5F5",
+    textTransform: "none",
+    textAlign: "left"
+  },
+  needSelected: {
+    margin: theme.spacing.unit,
+    backgroundColor: "#364150",
+    color: "white",
+    textTransform: "none",
+    textAlign: "left"
+  }
+});
 
 export class GuidedExperienceNeeds extends Component {
   handleClick = id => {
@@ -21,18 +37,23 @@ export class GuidedExperienceNeeds extends Component {
       <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
           {this.props.needs.map(need => (
-            <Grid key={need.id} item sm={4} xs={12}>
-              <SelectButton
-                id={need.id}
-                text={
-                  t("current-language-code") === "en"
-                    ? need.nameEn
-                    : need.nameFr
-                }
-                onClick={() => this.handleClick(need.id)}
-                isDown={this.props.selectedNeeds.hasOwnProperty(need.id)}
-              />
-            </Grid>
+            <Button
+              disableRipple={true}
+              key={need.id}
+              variant="raised"
+              onClick={() => this.handleClick(need.id)}
+              value={need.id}
+              isdownstatus={
+                this.props.selectedNeeds.hasOwnProperty(need.id) ? "down" : "up"
+              }
+              className={
+                this.props.selectedNeeds.hasOwnProperty(need.id)
+                  ? classes.needSelected
+                  : classes.need
+              }
+            >
+              {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
+            </Button>
           ))}
         </Grid>
       </div>
@@ -48,4 +69,4 @@ GuidedExperienceNeeds.propTypes = {
   t: PropTypes.func
 };
 
-export default GuidedExperienceNeeds;
+export default withStyles(styles)(GuidedExperienceNeeds);

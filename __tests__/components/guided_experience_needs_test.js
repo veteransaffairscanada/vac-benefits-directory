@@ -2,6 +2,7 @@
 
 import { mount, shallow } from "enzyme";
 import React from "react";
+import { Button } from "material-ui";
 import { GuidedExperienceNeeds } from "../../components/guided_experience_needs";
 import needsFixture from "../fixtures/needs";
 
@@ -51,23 +52,23 @@ describe("GuidedExperienceNeeds", () => {
   });
 
   it("contains the needs buttons", () => {
-    expect(shallow_GuidedExperienceNeeds().find("SelectButton").length).toEqual(
+    expect(shallow_GuidedExperienceNeeds().find(Button).length).toEqual(
       needsFixture.length
     );
   });
 
   it("has the correct button down", () => {
-    props.selectedNeeds[needsFixture[0].id] = "selected";
+    props.selectedNeeds[needsFixture[1].id] = "selected";
     expect(
       shallow_GuidedExperienceNeeds()
-        .find("SelectButton")
-        .map(b => b.props().isDown)
-    ).toEqual([true, false, false]);
+        .find(Button)
+        .map(b => b.props().isdownstatus)
+    ).toEqual(["up", "down", "up"]);
   });
 
   it("calls setSelectedNeeds when option pressed", () => {
     shallow_GuidedExperienceNeeds()
-      .find("SelectButton")
+      .find(Button)
       .first()
       .simulate("click");
     expect(props.setSelectedNeeds).toBeCalled();
