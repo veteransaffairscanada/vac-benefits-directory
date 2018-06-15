@@ -2,18 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "material-ui";
 import { withStyles } from "material-ui/styles/index";
-import Typography from "material-ui/Typography";
 
 const styles = theme => ({
-  subTitle: {
-    fontSize: "20px",
-    fontWeight: "100",
-    paddingBottom: "25px"
-  },
-  title: {
-    fontSize: "36px",
-    padding: "15px 0"
-  },
   need: {
     margin: theme.spacing.unit,
     backgroundColor: "#F5F5F5",
@@ -46,15 +36,6 @@ export class GuidedExperienceNeeds extends Component {
     return (
       <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <Typography className={classes.title}>
-              {t("GE.needs title")}
-            </Typography>
-            <Typography className={classes.subTitle}>
-              {t("GE.needs subtitle")}
-            </Typography>
-          </Grid>
-
           {this.props.needs.map(need => (
             <Button
               disableRipple={true}

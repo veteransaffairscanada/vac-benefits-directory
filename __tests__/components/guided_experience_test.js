@@ -35,7 +35,13 @@ describe("GuidedExperience", () => {
       nextSection: "ZZ",
       prevSection: "XX",
       stepNumber: 1,
-      children: <div className="thing" />
+      children: <div className="thing" />,
+      subtitle: "",
+      selectedEligibility: {
+        patronType: "family",
+        serviceType: "rcmp",
+        statusAndVitals: "still-serving"
+      }
     };
     _shallowGuidedExperience = undefined;
     _mountedGuidedExperience = undefined;
@@ -48,6 +54,7 @@ describe("GuidedExperience", () => {
 
   it("calls setSection if the Next button is pressed", () => {
     mounted_GuidedExperience()
+      .find("MobileStepper")
       .find("Button")
       .last()
       .simulate("click");
@@ -56,6 +63,7 @@ describe("GuidedExperience", () => {
 
   it("calls setSection if the Back button is pressed", () => {
     mounted_GuidedExperience()
+      .find("MobileStepper")
       .find("Button")
       .first()
       .simulate("click");
@@ -64,5 +72,22 @@ describe("GuidedExperience", () => {
 
   it("renders children", () => {
     expect(shallow_GuidedExperience().find(".thing").length).toEqual(1);
+  });
+
+  it("has edit answer buttons with correct text", () => {
+    expect(
+      mounted_GuidedExperience()
+        .find("Button")
+        .at(2)
+        .text()
+    ).toEqual("still-serving");
+  });
+
+  it("sets the correct section if the edit answer button is pressed", () => {
+    mounted_GuidedExperience()
+      .find("Button")
+      .first()
+      .simulate("click");
+    expect(props.setSection).toBeCalledWith("A1");
   });
 });

@@ -192,6 +192,7 @@ export class A extends Component {
 
   sectionToDisplay = section => {
     let question, options;
+    const { t } = this.props;
     switch (true) {
       case section === "A1":
         question = "patronType";
@@ -201,16 +202,17 @@ export class A extends Component {
             stepNumber={0}
             nextSection="A2"
             setSection={this.setSection}
-            t={this.props.t}
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={this.state.selectedEligibility}
           >
             <GuidedExperienceProfile
               value={this.state.selectedEligibility[question]}
-              t={this.props.t}
+              t={t}
               onClick={option => this.setUserProfile(question, option)}
               isDown={option =>
                 this.state.selectedEligibility[question] === option
               }
-              title={this.props.t("GE." + question)}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
@@ -227,16 +229,17 @@ export class A extends Component {
             nextSection="A3"
             prevSection="A1"
             setSection={this.setSection}
-            t={this.props.t}
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={this.state.selectedEligibility}
           >
             <GuidedExperienceProfile
               value={this.state.selectedEligibility[question]}
-              t={this.props.t}
+              t={t}
               onClick={option => this.setUserProfile(question, option)}
               isDown={option =>
                 this.state.selectedEligibility[question] === option
               }
-              title={this.props.t("GE." + question)}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
@@ -259,12 +262,13 @@ export class A extends Component {
             nextSection="A4"
             prevSection="A2"
             setSection={this.setSection}
-            t={this.props.t}
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={this.state.selectedEligibility}
           >
             <GuidedExperienceProfile
               value={this.state.selectedEligibility[question]}
-              t={this.props.t}
-              title={this.props.t("GE." + question)}
+              t={t}
               onClick={option => this.setUserProfile(question, option)}
               options={options}
               isDown={option =>
@@ -279,13 +283,15 @@ export class A extends Component {
           <GuidedExperience
             id="A4"
             stepNumber={3}
-            t={this.props.t}
+            t={t}
             nextSection="BB"
             prevSection="A3"
+            subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
+            selectedEligibility={this.state.selectedEligibility}
           >
             <GuidedExperienceNeeds
-              t={this.props.t}
+              t={t}
               needs={this.props.needs}
               selectedNeeds={this.state.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
@@ -297,7 +303,7 @@ export class A extends Component {
         return (
           <BB
             id="BB"
-            t={this.props.t}
+            t={t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             needs={this.props.needs}
