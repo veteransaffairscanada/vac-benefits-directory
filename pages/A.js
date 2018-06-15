@@ -210,7 +210,7 @@ export class A extends Component {
               isDown={option =>
                 this.state.selectedEligibility[question] === option
               }
-              title={this.props.t("A1.Find Benefits for")}
+              title={this.props.t("GE." + question)}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
@@ -235,7 +235,7 @@ export class A extends Component {
               isDown={option =>
                 this.state.selectedEligibility[question] === option
               }
-              title={this.props.t("B3.ServiceType")}
+              title={this.props.t("GE." + question)}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
@@ -256,7 +256,7 @@ export class A extends Component {
             <GuidedExperienceProfile
               value={this.state.selectedEligibility[question]}
               t={this.props.t}
-              title={this.props.t("B3.serviceStatus")}
+              title={this.props.t("GE." + question)}
               onClick={option => this.setUserProfile(question, option)}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))

@@ -5,6 +5,13 @@
   "all-benefits": {
     "List of all benefits": "List of all benefits"
   },
+
+  "GE": {
+    "patronType":
+      "Select the one that best describes who will be receiving the benefit.",
+    "serviceType": "Select the one that best describes the service type.",
+    "statusAndVitals": "Select the one that best describes the status."
+  },
   "A1": {
     "Find Benefits for": "Find Benefits for"
   },
