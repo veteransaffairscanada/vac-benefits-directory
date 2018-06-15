@@ -55,9 +55,12 @@
   },
   "index": {
     "data validation": "data validation",
-    "all benefits": "all benefits",
+    "all benefits": "View all benefits",
     "benefits directory": "benefits directory",
-    "guided experience": "guided experience"
+    "guided experience": "Find benefits relevant to you",
+    "or": "or",
+    "title":
+      "We are here to provide support for Veterans in all phases of their life during or after the military"
   },
   "dv": {
     "name": "Name",
