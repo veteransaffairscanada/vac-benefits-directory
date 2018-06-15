@@ -9,6 +9,8 @@ import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
 
 import GuidedExperience from "../components/guided_experience";
+import GuidedExperienceProfile from "../components/guided_experience_profile";
+import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
 
 export class A extends Component {
@@ -197,19 +199,22 @@ export class A extends Component {
           <GuidedExperience
             id="A1"
             stepNumber={0}
-            title={this.props.t("A1.Find Benefits for")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
             nextSection="A2"
             setSection={this.setSection}
             t={this.props.t}
-            type="profile"
-          />
+          >
+            <GuidedExperienceProfile
+              t={this.props.t}
+              onClick={option => this.setUserProfile(question, option)}
+              isDown={option =>
+                this.state.selectedEligibility[question] === option
+              }
+              title={this.props.t("A1.Find Benefits for")}
+              options={Array.from(
+                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+              ).filter(st => st !== "na")}
+            />
+          </GuidedExperience>
         );
       case "A2":
         question = "serviceType";
@@ -217,20 +222,23 @@ export class A extends Component {
           <GuidedExperience
             id="A2"
             stepNumber={1}
-            title={this.props.t("B3.ServiceType")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
             nextSection="A3"
             prevSection="A1"
             setSection={this.setSection}
             t={this.props.t}
-            type="profile"
-          />
+          >
+            <GuidedExperienceProfile
+              t={this.props.t}
+              onClick={option => this.setUserProfile(question, option)}
+              isDown={option =>
+                this.state.selectedEligibility[question] === option
+              }
+              title={this.props.t("B3.ServiceType")}
+              options={Array.from(
+                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+              ).filter(st => st !== "na")}
+            />
+          </GuidedExperience>
         );
       case "A3":
         question = "statusAndVitals";
@@ -238,20 +246,23 @@ export class A extends Component {
           <GuidedExperience
             id="A3"
             stepNumber={2}
-            title={this.props.t("B3.serviceStatus")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
             nextSection="A4"
             prevSection="A2"
             setSection={this.setSection}
             t={this.props.t}
-            type="profile"
-          />
+          >
+            <GuidedExperienceProfile
+              t={this.props.t}
+              title={this.props.t("B3.serviceStatus")}
+              onClick={option => this.setUserProfile(question, option)}
+              options={Array.from(
+                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+              ).filter(st => st !== "na")}
+              isDown={option =>
+                this.state.selectedEligibility[question] === option
+              }
+            />
+          </GuidedExperience>
         );
       case "A4":
         return (
@@ -259,14 +270,17 @@ export class A extends Component {
             id="A4"
             stepNumber={3}
             t={this.props.t}
-            needs={this.props.needs}
-            selectedNeeds={this.state.selectedNeeds}
-            setSelectedNeeds={this.setSelectedNeeds}
             nextSection="BB"
             prevSection="A3"
             setSection={this.setSection}
-            type="needs"
-          />
+          >
+            <GuidedExperienceNeeds
+              t={this.props.t}
+              needs={this.props.needs}
+              selectedNeeds={this.state.selectedNeeds}
+              setSelectedNeeds={this.setSelectedNeeds}
+            />
+          </GuidedExperience>
         );
       case "BB":
         return (

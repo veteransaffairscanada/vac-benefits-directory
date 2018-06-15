@@ -65,7 +65,6 @@ GuidedExperienceNeeds.propTypes = {
   needs: PropTypes.array,
   selectedNeeds: PropTypes.object,
   setSelectedNeeds: PropTypes.func,
-  setSection: PropTypes.func,
   t: PropTypes.func
 };
 

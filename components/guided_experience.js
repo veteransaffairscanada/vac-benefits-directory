@@ -10,15 +10,6 @@ import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 
 const styles = () => ({
-  subTitle: {
-    fontSize: "20px",
-    fontWeight: "100",
-    paddingBottom: "25px"
-  },
-  title: {
-    fontSize: "36px",
-    padding: "15px 0"
-  },
   root: {
     flexGrow: 1
   }
@@ -30,12 +21,7 @@ export class GuidedExperience extends Component {
 
     return (
       <div>
-        {this.props.type == "profile" ? (
-          <GuidedExperienceProfile {...this.props} />
-        ) : (
-          <GuidedExperienceNeeds {...this.props} />
-        )}
-
+        {this.props.children}
         <Grid
           container
           justify="center"
@@ -88,20 +74,13 @@ export class GuidedExperience extends Component {
 
 GuidedExperience.propTypes = {
   id: PropTypes.string,
-  title: PropTypes.string,
-  options: PropTypes.array,
-  onClick: PropTypes.func,
-  isDown: PropTypes.func,
   classes: PropTypes.object,
   nextSection: PropTypes.string,
   prevSection: PropTypes.string,
   t: PropTypes.func,
   setSection: PropTypes.func,
   stepNumber: PropTypes.number,
-  type: PropTypes.string,
-  needs: PropTypes.array,
-  selectedNeeds: PropTypes.array,
-  setSelectedNeeds: PropTypes.func
+  children: PropTypes.object
 };
 
 export default withStyles(styles)(GuidedExperience);

@@ -52,11 +52,7 @@ GuidedExperienceProfile.propTypes = {
   onClick: PropTypes.func,
   isDown: PropTypes.func,
   classes: PropTypes.object,
-  nextSection: PropTypes.string,
-  prevSection: PropTypes.string,
-  t: PropTypes.func,
-  setSection: PropTypes.func,
-  stepNumber: PropTypes.number
+  t: PropTypes.func
 };
 
 export default withStyles(styles)(GuidedExperienceProfile);
