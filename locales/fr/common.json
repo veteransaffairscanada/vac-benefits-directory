@@ -70,7 +70,8 @@
     "Size of Eligibility Paths Table":
       "Taille du tableau des chemins d'admissibilité",
     "Size of Needs Table": "Tableau de la taille des besoins",
-    "Size of Examples Table": "Taille de la table des exemples"
+    "Size of Examples Table": "Taille de la table des exemples",
+    "Benefits missing text": "Avantages du texte manquant"
   },
   "next": "prochain",
   "child benefits": "Avec cet avantage, vous pouvez également avoir accès",

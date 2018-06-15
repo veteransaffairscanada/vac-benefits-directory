@@ -131,13 +131,21 @@ export class BB extends Component {
       return benefits;
     }
 
+    // make it easy to invert the id
+    let benefitForId = {};
+    benefits.forEach(b => {
+      benefitForId[b.id] = b;
+    });
+
     // find benefits that match
-    let benefitIdsForProfile = [];
+    let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
-        benefitIdsForProfile = benefitIdsForProfile.concat(ep.benefits);
+        eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
     });
+    const eligibleBenefits = eligibleBenefitIds.map(id => benefitForId[id]);
+
     let benefitIdsForSelectedNeeds = [];
     if (Object.keys(selectedNeeds).length > 0) {
       Object.keys(selectedNeeds).forEach(id => {
@@ -149,26 +157,31 @@ export class BB extends Component {
     } else {
       benefitIdsForSelectedNeeds = benefits.map(b => b.id);
     }
-    let matchingBenefitIds = benefitIdsForProfile.filter(
+    let matchingBenefitIds = eligibleBenefitIds.filter(
       id => benefitIdsForSelectedNeeds.indexOf(id) > -1
     );
+    const matchingBenefits = matchingBenefitIds.map(id => benefitForId[id]);
 
-    // find benefits with matching children
-    const benefitIdsWithMatchingChildren = benefits
-      .filter(
-        b =>
-          b.childBenefits &&
-          b.childBenefits.filter(cbID => matchingBenefitIds.indexOf(cbID) > -1)
-            .length > 0
-      )
-      .map(b => b.id);
+    /* show:
+         - matching benefits
+         - eligible benefits with a matching child
+         ( maybe: - non-eligible benefits with a matching child that isn't already covered)
+     */
 
-    const benefitIDsToShow = matchingBenefitIds.concat(
-      benefitIdsWithMatchingChildren
+    const eligibleBenefitsWithMatchingChild = eligibleBenefits.filter(
+      b =>
+        b.childBenefits
+          ? b.childBenefits.filter(id => matchingBenefitIds.indexOf(id) > -1)
+              .length > 0
+          : false
     );
-    let benefitsToShow = benefits.filter(
-      b => benefitIDsToShow.indexOf(b.id) > -1
+
+    let benefitsToShow = matchingBenefits.concat(
+      eligibleBenefitsWithMatchingChild
     );
+    benefitsToShow = benefitsToShow.filter(
+      (b, n) => benefitsToShow.indexOf(b) === n
+    ); // dedup
 
     // if a benefit is already shown as a child, only show it (as a parent card) if it's available independently
     let childrenIDsShown = [];

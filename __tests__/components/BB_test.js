@@ -66,7 +66,7 @@ describe("BB", () => {
   });
 
   describe("filteredBenefits", () => {
-    let benefits, eligibilityPaths, selectedEligibility;
+    let benefits, eligibilityPaths, selectedEligibility, needs, selectedNeeds;
 
     let filterBenefits = () =>
       mounted_BB()
@@ -75,8 +75,8 @@ describe("BB", () => {
           benefits,
           eligibilityPaths,
           selectedEligibility,
-          [],
-          {}
+          needs,
+          selectedNeeds
         );
 
     beforeEach(() => {
@@ -93,13 +93,18 @@ describe("BB", () => {
         },
         {
           id: "2",
-          childBenefits: ["0", "1"],
+          childBenefits: ["0", "1", "4"],
           availableIndependently: "Independent"
         },
         {
           id: "3",
-          childBenefits: [],
+          childBenefits: ["4"],
           availableIndependently: "Independent"
+        },
+        {
+          id: "4",
+          childBenefits: [],
+          availableIndependently: "Requires Gateway Benefit"
         }
       ];
       eligibilityPaths = [
@@ -107,7 +112,7 @@ describe("BB", () => {
           patronType: "p1",
           serviceType: "na",
           statusAndVitals: "na",
-          benefits: ["0"]
+          benefits: ["0", "2", "4"]
         },
         {
           patronType: "p2",
@@ -119,7 +124,7 @@ describe("BB", () => {
           patronType: "p3",
           serviceType: "na",
           statusAndVitals: "na",
-          benefits: ["1", "3"]
+          benefits: ["1", "3", "4"]
         }
       ];
       selectedEligibility = {
@@ -127,17 +132,29 @@ describe("BB", () => {
         serviceType: "",
         statusAndVitals: ""
       };
+      needs = [];
+      selectedNeeds = {};
     });
 
     // don't show benefit 0 because it's not independent
     it("displays benefits 1, 2 and 3 if nothing selected", () => {
-      expect(filterBenefits().map(b => b.id)).toEqual(["1", "2", "3"]);
+      let returnValue = filterBenefits().map(b => b.id);
+      returnValue.sort();
+      expect(returnValue).toEqual(["1", "2", "3"]);
     });
 
-    // only 0 matches, but it's a child of 2, so we show 2
+    // 0 and 2 match, but 0 is a child of 2, so we just show 2
     it("display benefits 2 if patronType p1", () => {
       selectedEligibility.patronType = "p1";
       expect(filterBenefits().map(b => b.id)).toEqual(["2"]);
+    });
+
+    // eligible for 1, 3, 4. Need only matches 4, a child of 3. So show 3
+    it("shows an eligible parent for a matching child", () => {
+      selectedEligibility.patronType = "p3";
+      needs = [{ id: "n0", benefits: ["4"] }];
+      selectedNeeds = { n0: "n0" };
+      expect(filterBenefits().map(b => b.id)).toEqual(["3"]);
     });
   });
 

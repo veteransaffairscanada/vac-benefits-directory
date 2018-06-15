@@ -29,8 +29,8 @@ const benefitsFixture = [
     benefitPageEn: "English link",
     benefitPageFr: "French link",
     sortingPriority: "high",
-    oneLineDescriptionEn: "English benefit Description",
-    oneLineDescriptionFr: "Description de l'avantage français",
+    oneLineDescriptionEn: " Description En 3",
+    oneLineDescriptionFr: "Description Fr 3",
     availableIndependently: "Independent",
     examples: undefined
   }
