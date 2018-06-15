@@ -41,39 +41,6 @@ export class GuidedExperienceProfile extends Component {
             </Grid>
           ))}
         </Grid>
-        <Grid
-          container
-          justify="center"
-          spacing={24}
-          style={{ marginTop: "3em" }}
-        >
-          <Grid item sm={4} xs={12}>
-            <SelectButton
-              text={t("next")}
-              onClick={() => this.props.setSection(this.props.nextSection)}
-              isDown={false}
-            />
-          </Grid>
-        </Grid>
-
-        <Grid
-          container
-          justify="center"
-          spacing={24}
-          style={{ marginTop: "1em" }}
-        >
-          <Grid item sm={4} xs={12}>
-            <p style={{ textAlign: "center", fontSize: "1em" }}>
-              <a
-                className="AllBenefits"
-                href={"all-benefits?lng=" + t("current-language-code")}
-                target="_blank"
-              >
-                {t("Show All Benefits")}
-              </a>
-            </p>
-          </Grid>
-        </Grid>
       </div>
     );
   }
@@ -85,9 +52,7 @@ GuidedExperienceProfile.propTypes = {
   onClick: PropTypes.func,
   isDown: PropTypes.func,
   classes: PropTypes.object,
-  nextSection: PropTypes.string,
-  t: PropTypes.func,
-  setSection: PropTypes.func
+  t: PropTypes.func
 };
 
 export default withStyles(styles)(GuidedExperienceProfile);

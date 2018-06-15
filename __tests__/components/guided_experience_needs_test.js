@@ -39,7 +39,6 @@ describe("GuidedExperienceNeeds", () => {
       needs: needsFixture,
       selectedNeeds: {},
       setSelectedNeeds: jest.fn(),
-      setSection: jest.fn(),
       classes: {}
     };
     _shallowGuidedExperienceNeeds = undefined;
@@ -51,14 +50,10 @@ describe("GuidedExperienceNeeds", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("contains the needs and next buttons", () => {
-    let expectedNeeds = needsFixture.map(need => need.nameFr);
-    expectedNeeds.push("next");
-    expect(
-      shallow_GuidedExperienceNeeds()
-        .find("SelectButton")
-        .map(b => b.props().text)
-    ).toEqual(expectedNeeds);
+  it("contains the needs buttons", () => {
+    expect(shallow_GuidedExperienceNeeds().find("SelectButton").length).toEqual(
+      needsFixture.length
+    );
   });
 
   it("has the correct button down", () => {
@@ -67,7 +62,7 @@ describe("GuidedExperienceNeeds", () => {
       shallow_GuidedExperienceNeeds()
         .find("SelectButton")
         .map(b => b.props().isDown)
-    ).toEqual([true, false, false, false]);
+    ).toEqual([true, false, false]);
   });
 
   it("calls setSelectedNeeds when option pressed", () => {
@@ -76,13 +71,5 @@ describe("GuidedExperienceNeeds", () => {
       .first()
       .simulate("click");
     expect(props.setSelectedNeeds).toBeCalled();
-  });
-
-  it("calls setSection if the Next button is pressed", () => {
-    shallow_GuidedExperienceNeeds()
-      .find("SelectButton")
-      .last()
-      .simulate("click");
-    expect(props.setSection).toBeCalledWith("BB");
   });
 });
