@@ -202,12 +202,10 @@ export class A extends Component {
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
             ).filter(st => st !== "na")}
             onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
             nextSection="A2"
             setSection={this.setSection}
             t={this.props.t}
+            value={this.state.selectedEligibility[question]}
           />
         );
       case "A2":
@@ -220,12 +218,10 @@ export class A extends Component {
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
             ).filter(st => st !== "na")}
             onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
             nextSection="A3"
             setSection={this.setSection}
             t={this.props.t}
+            value={this.state.selectedEligibility[question]}
           />
         );
       case "A3":
@@ -238,12 +234,10 @@ export class A extends Component {
               new Set(this.props.eligibilityPaths.map(ep => ep[question]))
             ).filter(st => st !== "na")}
             onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
             nextSection="A4"
             setSection={this.setSection}
             t={this.props.t}
+            value={this.state.selectedEligibility[question]}
           />
         );
       case "A4":
