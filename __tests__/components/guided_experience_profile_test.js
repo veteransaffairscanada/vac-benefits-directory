@@ -39,8 +39,6 @@ describe("GuidedExperienceProfile", () => {
       options: ["op0", "op1"],
       onClick: jest.fn(),
       isDown: option => option === "op0",
-      nextSection: "nextSection",
-      setSection: jest.fn(),
       classes: {}
     };
     _shallowGuidedExperienceProfile = undefined;
@@ -52,12 +50,10 @@ describe("GuidedExperienceProfile", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("contains the options and next buttons", () => {
+  it("contains all the options", () => {
     expect(
-      shallow_GuidedExperienceProfile()
-        .find("SelectButton")
-        .map(b => b.props().text)
-    ).toEqual(["op0", "op1", "next"]);
+      shallow_GuidedExperienceProfile().find("SelectButton").length
+    ).toEqual(2);
   });
 
   it("has the correct button down", () => {
@@ -65,7 +61,7 @@ describe("GuidedExperienceProfile", () => {
       shallow_GuidedExperienceProfile()
         .find("SelectButton")
         .map(b => b.props().isDown)
-    ).toEqual([true, false, false]);
+    ).toEqual([true, false]);
   });
 
   it("calls onClick when option pressed", () => {
@@ -74,13 +70,5 @@ describe("GuidedExperienceProfile", () => {
       .first()
       .simulate("click");
     expect(props.onClick).toBeCalledWith(props.options[0]);
-  });
-
-  it("calls setSection if the Next button is pressed", () => {
-    shallow_GuidedExperienceProfile()
-      .find("SelectButton")
-      .at(2)
-      .simulate("click");
-    expect(props.setSection).toBeCalledWith(props.nextSection);
   });
 });

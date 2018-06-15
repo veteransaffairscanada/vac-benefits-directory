@@ -6,8 +6,6 @@ import MobileStepper from "material-ui/MobileStepper";
 import Button from "material-ui/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import GuidedExperienceProfile from "../components/guided_experience_profile";
-import GuidedExperienceNeeds from "../components/guided_experience_needs";
 
 const styles = () => ({
   root: {
