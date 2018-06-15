@@ -10,7 +10,9 @@
     "patronType":
       "Select the one that best describes who will be receiving the benefit.",
     "serviceType": "Select the one that best describes the service type.",
-    "statusAndVitals": "Select the one that best describes the status."
+    "statusAndVitals": "Select the one that best describes the status.",
+    "needs title": "I need help with...",
+    "needs subtitle": "Select all that apply"
   },
   "A1": {
     "Find Benefits for": "Find Benefits for"

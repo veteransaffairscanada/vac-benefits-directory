@@ -10,7 +10,9 @@
     "patronType":
       "Sélectionnez celui qui décrit le mieux qui bénéficiera de l'avantage.",
     "serviceType": "Sélectionnez celui qui décrit le mieux le type de service.",
-    "statusAndVitals": "Sélectionnez celui qui décrit le mieux l'état."
+    "statusAndVitals": "Sélectionnez celui qui décrit le mieux l'état.",
+    "needs title": "J'ai besoin d'aide avec ...",
+    "needs subtitle": "Sélectionnez tout ce qui s'y rapporte"
   },
   "A1": {
     "Find Benefits for": "Trouver des avantages pour"

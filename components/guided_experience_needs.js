@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid } from "material-ui";
-import SelectButton from "../components/select_button";
+import { Grid, Button } from "material-ui";
 import { withStyles } from "material-ui/styles/index";
 import Typography from "material-ui/Typography";
 
-const styles = () => ({
+const styles = theme => ({
   subTitle: {
     fontSize: "20px",
     fontWeight: "100",
@@ -14,6 +13,19 @@ const styles = () => ({
   title: {
     fontSize: "36px",
     padding: "15px 0"
+  },
+  need: {
+    margin: theme.spacing.unit,
+    backgroundColor: "#F5F5F5",
+    textTransform: "none",
+    textAlign: "left"
+  },
+  needSelected: {
+    margin: theme.spacing.unit,
+    backgroundColor: "#364150",
+    color: "white",
+    textTransform: "none",
+    textAlign: "left"
   }
 });
 
@@ -36,23 +48,31 @@ export class GuidedExperienceNeeds extends Component {
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Typography className={classes.title}>
-              {t("B3.What do you need help with?")}
+              {t("GE.needs title")}
+            </Typography>
+            <Typography className={classes.subTitle}>
+              {t("GE.needs subtitle")}
             </Typography>
           </Grid>
 
           {this.props.needs.map(need => (
-            <Grid key={need.id} item sm={4} xs={12}>
-              <SelectButton
-                id={need.id}
-                text={
-                  t("current-language-code") === "en"
-                    ? need.nameEn
-                    : need.nameFr
-                }
-                onClick={() => this.handleClick(need.id)}
-                isDown={this.props.selectedNeeds.hasOwnProperty(need.id)}
-              />
-            </Grid>
+            <Button
+              disableRipple={true}
+              key={need.id}
+              variant="raised"
+              onClick={() => this.handleClick(need.id)}
+              value={need.id}
+              isdownstatus={
+                this.props.selectedNeeds.hasOwnProperty(need.id) ? "down" : "up"
+              }
+              className={
+                this.props.selectedNeeds.hasOwnProperty(need.id)
+                  ? classes.needSelected
+                  : classes.need
+              }
+            >
+              {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
+            </Button>
           ))}
         </Grid>
       </div>
