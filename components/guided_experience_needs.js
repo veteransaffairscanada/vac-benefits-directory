@@ -34,12 +34,6 @@ export class GuidedExperienceNeeds extends Component {
     return (
       <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <Typography className={classes.title}>
-              {t("B3.What do you need help with?")}
-            </Typography>
-          </Grid>
-
           {this.props.needs.map(need => (
             <Grid key={need.id} item sm={4} xs={12}>
               <SelectButton
