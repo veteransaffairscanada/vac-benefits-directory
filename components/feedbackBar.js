@@ -7,21 +7,21 @@ import TextField from "material-ui/TextField";
 require("isomorphic-fetch");
 
 const CommentBox = styled("div")`
-  height: 300px;
+  height: 350px;
   background-color: #eee;
   color: #000;
   text-align: left;
-  font-size: 14px;
+  font-size: 18px;
   padding: 5px 0 0 15px;
   border-bottom: 1px solid #ddd;
 `;
 
 const Div = styled("div")`
   width: 100%;
-  height: 50px;
+  height: 70px;
   color: #000;
   text-align: left;
-  font-size: 14px;
+  font-size: 18px;
   padding-top: 5px;
   display: table;
 `;
@@ -29,20 +29,23 @@ const Div = styled("div")`
 const Inner = styled("div")`
   color: #000;
   text-align: left;
-  font-size: 14px;
+  font-size: 18px;
   float: left;
   padding-left: 15px;
+  padding-top: 10px;
 `;
 
 const InnerRight = styled("div")`
   color: #000;
   text-align: right;
-  font-size: 14px;
+  font-size: 18px;
   padding: 10px 40px 0 0;
   float: right;
 `;
 
 const TextHold = styled("div")`
+  background-color: #f5f5f5;
+  padding: 10px;
   width: 400px;
 `;
 
@@ -84,6 +87,9 @@ export class FeedbackBar extends Component {
   sendFeedback = answer => {
     this.setState({ feedbackSubmitted: true });
     logEvent("Page Feedback (" + this.props.t("feedback-prompt") + ")", answer);
+    if (answer == "No") {
+      this.setState({ commentFormToggled: true });
+    }
   };
 
   toggleCommentForm = () => {
@@ -108,8 +114,6 @@ export class FeedbackBar extends Component {
                 onChange={this.handleChange("action")}
                 value={this.state.action}
               />
-            </TextHold>
-            <TextHold>
               <TextField
                 id="commentWhatWentWrong"
                 label={t("comment-what-went-wrong")}
@@ -123,6 +127,7 @@ export class FeedbackBar extends Component {
             <Button
               id="sendComment"
               variant="raised"
+              color="primary"
               onClick={() => this.sendComment()}
             >
               {t("send")}
@@ -137,10 +142,19 @@ export class FeedbackBar extends Component {
           ) : (
             <Inner>
               {t("feedback-prompt")} &nbsp;
-              <Button id="feedbackYes" onClick={() => this.sendFeedback("Yes")}>
+              <Button
+                variant="raised"
+                id="feedbackYes"
+                onClick={() => this.sendFeedback("Yes")}
+              >
                 {t("yes")}
               </Button>
-              <Button id="feedbackNo" onClick={() => this.sendFeedback("No")}>
+              &nbsp; &nbsp;
+              <Button
+                variant="raised"
+                id="feedbackNo"
+                onClick={() => this.sendFeedback("No")}
+              >
                 {t("no")}
               </Button>
             </Inner>
@@ -149,13 +163,14 @@ export class FeedbackBar extends Component {
             <InnerRight>{t("comment-response")}</InnerRight>
           ) : (
             <InnerRight>
-              <span
+              <Button
+                variant="raised"
                 id="commentToggle"
                 style={{ cursor: "pointer" }}
                 onClick={() => this.toggleCommentForm()}
               >
                 {t("comment-prompt")}
-              </span>
+              </Button>
             </InnerRight>
           )}
         </Div>
