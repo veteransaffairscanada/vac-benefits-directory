@@ -8,6 +8,7 @@ import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
 
+import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
@@ -190,78 +191,119 @@ export class A extends Component {
   };
 
   sectionToDisplay = section => {
-    let question;
-    switch (section) {
-      case "A1":
+    let question, options;
+    const { t } = this.props;
+    switch (true) {
+      case section === "A1":
         question = "patronType";
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A1"
-            title={this.props.t("A1.Find Benefits for")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
+            stepNumber={0}
             nextSection="A2"
             setSection={this.setSection}
-            t={this.props.t}
-          />
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={this.state.selectedEligibility}
+          >
+            <GuidedExperienceProfile
+              value={this.state.selectedEligibility[question]}
+              t={t}
+              onClick={option => this.setUserProfile(question, option)}
+              isDown={option =>
+                this.state.selectedEligibility[question] === option
+              }
+              options={Array.from(
+                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+              ).filter(st => st !== "na")}
+            />
+          </GuidedExperience>
         );
-      case "A2":
+      case this.state.selectedEligibility["patronType"] !== "organization" &&
+        section === "A2":
         question = "serviceType";
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A2"
-            title={this.props.t("B3.ServiceType")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
+            stepNumber={1}
             nextSection="A3"
+            prevSection="A1"
             setSection={this.setSection}
-            t={this.props.t}
-          />
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={this.state.selectedEligibility}
+          >
+            <GuidedExperienceProfile
+              value={this.state.selectedEligibility[question]}
+              t={t}
+              onClick={option => this.setUserProfile(question, option)}
+              isDown={option =>
+                this.state.selectedEligibility[question] === option
+              }
+              options={Array.from(
+                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+              ).filter(st => st !== "na")}
+            />
+          </GuidedExperience>
         );
-      case "A3":
+      case this.state.selectedEligibility["patronType"] !== "organization" &&
+        section === "A3":
         question = "statusAndVitals";
+        options = Array.from(
+          new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+        ).filter(st => st !== "na");
+        if (this.state.selectedEligibility["patronType"] === "service-person") {
+          options.splice(options.indexOf("deceased"), 1);
+        }
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A3"
-            title={this.props.t("B3.serviceStatus")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
+            stepNumber={2}
             nextSection="A4"
+            prevSection="A2"
             setSection={this.setSection}
-            t={this.props.t}
-          />
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={this.state.selectedEligibility}
+          >
+            <GuidedExperienceProfile
+              value={this.state.selectedEligibility[question]}
+              t={t}
+              onClick={option => this.setUserProfile(question, option)}
+              options={options}
+              isDown={option =>
+                this.state.selectedEligibility[question] === option
+              }
+            />
+          </GuidedExperience>
         );
-      case "A4":
+      case this.state.selectedEligibility["patronType"] !== "organization" &&
+        section === "A4":
         return (
-          <GuidedExperienceNeeds
+          <GuidedExperience
             id="A4"
-            t={this.props.t}
-            needs={this.props.needs}
-            selectedNeeds={this.state.selectedNeeds}
-            setSelectedNeeds={this.setSelectedNeeds}
+            stepNumber={3}
+            t={t}
+            nextSection="BB"
+            prevSection="A3"
+            subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
-          />
+            selectedEligibility={this.state.selectedEligibility}
+          >
+            <GuidedExperienceNeeds
+              t={t}
+              needs={this.props.needs}
+              selectedNeeds={this.state.selectedNeeds}
+              setSelectedNeeds={this.setSelectedNeeds}
+            />
+          </GuidedExperience>
         );
-      case "BB":
+      case this.state.selectedEligibility["patronType"] === "organization" ||
+        section === "BB":
         return (
           <BB
             id="BB"
-            t={this.props.t}
+            t={t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             needs={this.props.needs}
