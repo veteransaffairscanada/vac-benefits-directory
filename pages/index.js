@@ -19,11 +19,6 @@ const HeroButton = styled("div")`
   padding-top: 50px;
 `;
 
-const HeroLink = styled("div")`
-  padding-top: 20px;
-  font-size: 24px;
-`;
-
 const Title = styled("div")`
   font-size: 38px;
   line-height: 56px;
@@ -39,7 +34,7 @@ export class App extends Component {
           <Title id="heroTitle">{t("index.title")}</Title>
           <HeroButton>
             <Button
-              id="heroButton"
+              id="heroGuidedLink"
               style={{ padding: "20px" }}
               variant="raised"
               color="primary"
@@ -47,17 +42,19 @@ export class App extends Component {
             >
               {t("index.guided experience")}
             </Button>
-          </HeroButton>
-          <HeroLink>
+            &nbsp; &nbsp; &nbsp;
             {t("index.or")}
-            &nbsp;
-            <a
-              id="heroLink"
+            &nbsp; &nbsp; &nbsp;
+            <Button
+              id="heroBenefitsLink"
+              style={{ padding: "20px" }}
+              variant="raised"
+              color="primary"
               href={"A?section=BB&lng=" + t("current-language-code")}
             >
               {t("index.all benefits")}
-            </a>
-          </HeroLink>
+            </Button>
+          </HeroButton>
         </Hero>
       </Layout>
     );
