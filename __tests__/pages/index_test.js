@@ -34,17 +34,17 @@ describe("Index page", () => {
     const appMounted = mount(<App {...props} />);
     expect(
       appMounted
-        .find("#heroButton")
+        .find("#heroGuidedLink")
         .first()
         .text()
     ).toEqual("index.guided experience");
   });
 
-  it("has a link for the directory", () => {
+  it("has a Button for the directory", () => {
     const appMounted = mount(<App {...props} />);
     expect(
       appMounted
-        .find("#heroLink")
+        .find("#heroBenefitsLink")
         .first()
         .text()
     ).toEqual("index.all benefits");
