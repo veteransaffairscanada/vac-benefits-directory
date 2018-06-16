@@ -42,9 +42,9 @@ export class App extends Component {
             >
               {t("index.guided experience")}
             </Button>
-            &nbsp;
+            &nbsp; &nbsp; &nbsp;
             {t("index.or")}
-            &nbsp;
+            &nbsp; &nbsp; &nbsp;
             <Button
               id="heroBenefitsLink"
               style={{ padding: "20px" }}
