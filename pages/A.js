@@ -19,9 +19,7 @@ export class A extends Component {
     super();
     this.cookies = new Cookies();
     this.state = {
-      bookmarkedBenefits: this.cookies.get("bookmarkedBenefits")
-        ? this.cookies.get("bookmarkedBenefits")
-        : [],
+      bookmarkedBenefits: [],
       section: "BB",
       selectedNeeds: {},
       selectedEligibility: {
@@ -93,6 +91,7 @@ export class A extends Component {
         : "";
     });
     const newState = {
+      bookmarkedBenefits: this.props.bookmarkedBenefits,
       section: this.props.url.query.section || "BB",
       selectedNeeds: filters.selectedNeeds,
       selectedEligibility: {
@@ -393,7 +392,8 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
-    examples: state.examples
+    examples: state.examples,
+    bookmarkedBenefits: state.bookmarkedBenefits
   };
 };
 
@@ -405,7 +405,8 @@ A.propTypes = {
   i18n: PropTypes.object,
   needs: PropTypes.array,
   t: PropTypes.func,
-  url: PropTypes.object
+  url: PropTypes.object,
+  bookmarkedBenefits: PropTypes.array
 };
 
 export default connect(mapStateToProps)(withI18next()(A));
