@@ -52,10 +52,9 @@ export class BenefitList extends React.Component {
         familyBenefitIds = familyBenefitIds.concat(ep.benefits);
       }
     });
-
     return sortedBenefits.map(
       (benefit, i) =>
-        true || benefit.availableIndependently === "Independant" ? ( // eslint-disable-line no-constant-condition
+        true || benefit.availableIndependently === "Independent" ? ( // eslint-disable-line no-constant-condition
           <BenefitCard
             id={"bc" + i}
             benefit={benefit}
@@ -68,6 +67,7 @@ export class BenefitList extends React.Component {
             onRef={this.props.onRef}
             toggleBookmark={this.props.toggleBookmark}
             bookmarkedBenefits={this.props.bookmarkedBenefits}
+            searchString={this.props.searchString}
           />
         ) : (
           ""
@@ -86,7 +86,8 @@ BenefitList.propTypes = {
   onRef: PropTypes.func,
   sortByValue: PropTypes.string,
   bookmarkedBenefits: PropTypes.array,
-  toggleBookmark: PropTypes.func
+  toggleBookmark: PropTypes.func,
+  searchString: PropTypes.string
 };
 
 export default BenefitList;

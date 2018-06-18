@@ -10,6 +10,7 @@ import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSumm
 import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import Highlighter from "react-highlight-words";
 
 import { logEvent } from "../utils/analytics";
 
@@ -125,9 +126,15 @@ export class BenefitCard extends Component {
             >
               <div>
                 <Typography component="p" className="benefitName">
-                  {this.props.t("current-language-code") === "en"
-                    ? benefit.vacNameEn
-                    : benefit.vacNameFr}
+                  <Highlighter
+                    searchWords={this.props.searchString.split(",")}
+                    autoEscape={true}
+                    textToHighlight={
+                      this.props.t("current-language-code") === "en"
+                        ? benefit.vacNameEn
+                        : benefit.vacNameFr
+                    }
+                  />
                 </Typography>
 
                 {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1 ? (
@@ -156,9 +163,15 @@ export class BenefitCard extends Component {
                 <Typography
                   className={"cardDescription " + classes.cardDescriptionText}
                 >
-                  {this.props.t("current-language-code") === "en"
-                    ? benefit.oneLineDescriptionEn
-                    : benefit.oneLineDescriptionFr}
+                  <Highlighter
+                    searchWords={this.props.searchString.split(",")}
+                    autoEscape={true}
+                    textToHighlight={
+                      this.props.t("current-language-code") === "en"
+                        ? benefit.oneLineDescriptionEn
+                        : benefit.oneLineDescriptionFr
+                    }
+                  />
                 </Typography>
               </div>
             </ExpansionPanelSummary>
@@ -271,7 +284,8 @@ BenefitCard.propTypes = {
   t: PropTypes.func,
   onRef: PropTypes.func,
   bookmarkedBenefits: PropTypes.array,
-  toggleBookmark: PropTypes.func
+  toggleBookmark: PropTypes.func,
+  searchString: PropTypes.string
 };
 
 export default withStyles(styles)(BenefitCard);

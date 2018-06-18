@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import React from "react";
 import { App } from "../../pages/index";
 
@@ -16,24 +16,37 @@ describe("Index page", () => {
   };
 
   it("passes axe tests", async () => {
-    let html = shallow(<App {...props} />).html();
+    let html = mount(<App {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has a description", () => {
-    const appMounted = shallow(<App {...props} />);
-    expect(appMounted.find("h1#TextDescription").text()).toEqual(
-      "home.poc-description"
-    );
+    const appMounted = mount(<App {...props} />);
+    expect(
+      appMounted
+        .find("#heroTitle")
+        .first()
+        .text()
+    ).toEqual("index.title");
   });
 
-  it("has buttons for wireframe  B and Data Validation", () => {
-    const appMounted = shallow(<App {...props} />);
-    expect(appMounted.find("SelectButton").map(b => b.props().text)).toEqual([
-      "index.guided experience",
-      "index.benefits directory",
-      "index.data validation",
-      "index.all benefits"
-    ]);
+  it("has a button for the guided experience", () => {
+    const appMounted = mount(<App {...props} />);
+    expect(
+      appMounted
+        .find("#heroGuidedLink")
+        .first()
+        .text()
+    ).toEqual("index.guided experience");
+  });
+
+  it("has a Button for the directory", () => {
+    const appMounted = mount(<App {...props} />);
+    expect(
+      appMounted
+        .find("#heroBenefitsLink")
+        .first()
+        .text()
+    ).toEqual("index.all benefits");
   });
 });

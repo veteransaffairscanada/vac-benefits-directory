@@ -6,6 +6,14 @@
     "List of all benefits": "La liste complète des avantages"
   },
 
+  "GE": {
+    "patronType":
+      "Sélectionnez celui qui décrit le mieux qui bénéficiera de l'avantage.",
+    "serviceType": "Sélectionnez celui qui décrit le mieux le type de service.",
+    "statusAndVitals": "Sélectionnez celui qui décrit le mieux l'état.",
+    "needs title": "J'ai besoin d'aide avec ...",
+    "needs subtitle": "Sélectionnez tout ce qui s'y rapporte"
+  },
   "A1": {
     "Find Benefits for": "Trouver des avantages pour"
   },
@@ -56,9 +64,12 @@
   },
   "index": {
     "data validation": "La validation des données",
-    "all benefits": "tous les avantages",
+    "all benefits": "Voir tous les avantages",
     "benefits directory": "annuaire des avantages",
-    "guided experience": "expérience guidée"
+    "guided experience": "Trouver des avantages pertinents pour vous",
+    "or": "ou",
+    "title":
+      "Nous sommes ici pour offrir du soutien aux Vétérans à toutes les étapes de leur vie pendant ou après l'armée"
   },
   "dv": {
     "name": "Nom",
@@ -70,9 +81,11 @@
     "Size of Eligibility Paths Table":
       "Taille du tableau des chemins d'admissibilité",
     "Size of Needs Table": "Tableau de la taille des besoins",
-    "Size of Examples Table": "Taille de la table des exemples"
+    "Size of Examples Table": "Taille de la table des exemples",
+    "Benefits missing text": "Avantages du texte manquant"
   },
   "next": "prochain",
+  "back": "arrière",
   "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
   "alpha": "Pour les tests seulement",
   "noscript":
@@ -102,8 +115,6 @@
   "service-person": "Vétéran ou membre actif",
   "family": "Membres de la famille",
   "organization": "Organisations",
-  "released": "Vétéran",
-  "still serving": "Membre actif",
   "deceased": "Décédé",
   "disabled-serviceStatusFilter": "Seulement requis pour FAC Vétérans",
   "disabled-servicePersonVitalStatusFilter": "Seulement requis pour la famille",
@@ -132,5 +143,6 @@
   "Clear": "Déselectionner",
   "Veteran child benefits": "Avec cet avantage, le Vétéran peut avoir accès à",
   "Family child benefits":
-    "Avec cet avantage, la famille du Vétéran peut avoir accès à"
+    "Avec cet avantage, la famille du Vétéran peut avoir accès à",
+  "search": "Chercher"
 }

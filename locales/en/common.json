@@ -5,6 +5,15 @@
   "all-benefits": {
     "List of all benefits": "List of all benefits"
   },
+
+  "GE": {
+    "patronType":
+      "Select the one that best describes who will be receiving the benefit.",
+    "serviceType": "Select the one that best describes the service type.",
+    "statusAndVitals": "Select the one that best describes the status.",
+    "needs title": "I need help with...",
+    "needs subtitle": "Select all that apply"
+  },
   "A1": {
     "Find Benefits for": "Find Benefits for"
   },
@@ -55,9 +64,12 @@
   },
   "index": {
     "data validation": "data validation",
-    "all benefits": "all benefits",
+    "all benefits": "View all benefits",
     "benefits directory": "benefits directory",
-    "guided experience": "guided experience"
+    "guided experience": "Find benefits relevant to you",
+    "or": "or",
+    "title":
+      "We are here to provide support for Veterans in all phases of their life during or after the military"
   },
   "dv": {
     "name": "Name",
@@ -68,9 +80,11 @@
     "Fail": "Fail",
     "Size of Eligibility Paths Table": "Size of eligibility paths table",
     "Size of Needs Table": "Size of needs table",
-    "Size of Examples Table": "Size of examples table"
+    "Size of Examples Table": "Size of examples table",
+    "Benefits missing text": "Benefits missing text"
   },
   "next": "next",
+  "back": "back",
   "child benefits": "With this benefit, you may also have access to",
   "alpha": "For testing only.",
   "noscript":
@@ -100,8 +114,6 @@
   "service-person": "Veteran or serving member",
   "family": "Family members",
   "organization": "Organizations",
-  "released": "Released",
-  "still serving": "Still Serving",
   "deceased": "Deceased",
   "disabled-serviceStatusFilter": "Only required for CAF Veterans",
   "disabled-servicePersonVitalStatusFilter": "Only required for family",
@@ -128,5 +140,6 @@
   "Clear": "Clear",
   "Veteran child benefits": "With this benefit the Veteran may have access to",
   "Family child benefits":
-    "With this benefit the Veteran's family may have access to"
+    "With this benefit the Veteran's family may have access to",
+  "search": "Search"
 }

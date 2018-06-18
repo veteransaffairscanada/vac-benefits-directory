@@ -1,11 +1,28 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { SelectButton } from "../components/select_button";
-
-import { Grid } from "material-ui";
+import Button from "material-ui/Button";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
+import styled from "react-emotion";
+
+const Hero = styled("div")`
+  background-color: #eee;
+  border-top: 10px solid #303f9f;
+  color: #000;
+  min-height: 350px;
+  padding: 75px 16% 20px 16%;
+  text-align: center;
+`;
+
+const HeroButton = styled("div")`
+  padding-top: 50px;
+`;
+
+const Title = styled("div")`
+  font-size: 38px;
+  line-height: 56px;
+`;
 
 export class App extends Component {
   render() {
@@ -13,43 +30,32 @@ export class App extends Component {
 
     return (
       <Layout i18n={i18n} t={t}>
-        <div style={{ padding: 12 }}>
-          <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <h1 id="TextDescription" name="TextDescription">
-                {t("home.poc-description")}
-              </h1>
-            </Grid>
-            <Grid item xs={3}>
-              <SelectButton
-                fullWidth={true}
-                href={"A?section=A1&lng=" + t("current-language-code")}
-                text={t("index.guided experience")}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <SelectButton
-                fullWidth={true}
-                href={"A?section=BB&lng=" + t("current-language-code")}
-                text={t("index.benefits directory")}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <SelectButton
-                fullWidth={true}
-                href={"data-validation"}
-                text={t("index.data validation")}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <SelectButton
-                fullWidth={true}
-                href={"all-benefits"}
-                text={t("index.all benefits")}
-              />
-            </Grid>
-          </Grid>
-        </div>
+        <Hero>
+          <Title id="heroTitle">{t("index.title")}</Title>
+          <HeroButton>
+            <Button
+              id="heroGuidedLink"
+              style={{ padding: "20px" }}
+              variant="raised"
+              color="primary"
+              href={"A?section=A1&lng=" + t("current-language-code")}
+            >
+              {t("index.guided experience")}
+            </Button>
+            &nbsp; &nbsp; &nbsp;
+            {t("index.or")}
+            &nbsp; &nbsp; &nbsp;
+            <Button
+              id="heroBenefitsLink"
+              style={{ padding: "20px" }}
+              variant="raised"
+              color="primary"
+              href={"A?section=BB&lng=" + t("current-language-code")}
+            >
+              {t("index.all benefits")}
+            </Button>
+          </HeroButton>
+        </Hero>
       </Layout>
     );
   }

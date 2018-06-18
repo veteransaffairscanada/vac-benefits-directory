@@ -9,6 +9,7 @@ import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
 import Cookies from "universal-cookie";
 
+import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
@@ -209,83 +210,132 @@ export class A extends Component {
   };
 
   sectionToDisplay = section => {
-    let question;
-    switch (section) {
-      case "A1":
+    let question, options;
+    const { t } = this.props;
+    const selectedEligibility = this.state.selectedEligibility;
+
+    const profileIsVetWSV =
+      selectedEligibility["patronType"] === "service-person" &&
+      selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
+
+    switch (true) {
+      case section === "A1":
         question = "patronType";
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A1"
-            title={this.props.t("A1.Find Benefits for")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
+            stepNumber={0}
             nextSection="A2"
             setSection={this.setSection}
-            t={this.props.t}
-          />
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={selectedEligibility}
+          >
+            <GuidedExperienceProfile
+              value={selectedEligibility[question]}
+              t={t}
+              onClick={option => this.setUserProfile(question, option)}
+              isDown={option => selectedEligibility[question] === option}
+              options={Array.from(
+                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+              ).filter(st => st !== "na")}
+            />
+          </GuidedExperience>
         );
-      case "A2":
+      case selectedEligibility["patronType"] !== "organization" &&
+        section === "A2":
         question = "serviceType";
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A2"
-            title={this.props.t("B3.ServiceType")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
+            stepNumber={1}
             nextSection="A3"
+            prevSection="A1"
             setSection={this.setSection}
-            t={this.props.t}
-          />
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={selectedEligibility}
+          >
+            <GuidedExperienceProfile
+              value={selectedEligibility[question]}
+              t={t}
+              onClick={option => this.setUserProfile(question, option)}
+              isDown={option => selectedEligibility[question] === option}
+              options={Array.from(
+                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+              ).filter(st => st !== "na")}
+            />
+          </GuidedExperience>
         );
-      case "A3":
+      case selectedEligibility["patronType"] !== "organization" &&
+        !(
+          selectedEligibility["patronType"] === "service-person" &&
+          selectedEligibility["serviceType"] === "WSV (WWII or Korea)"
+        ) &&
+        section === "A3":
         question = "statusAndVitals";
+        options = Array.from(
+          new Set(this.props.eligibilityPaths.map(ep => ep[question]))
+        ).filter(st => st !== "na");
+        if (selectedEligibility["patronType"] === "service-person") {
+          options.splice(options.indexOf("deceased"), 1);
+        }
+        if (selectedEligibility["serviceType"] === "WSV (WWII or Korea)") {
+          options.splice(options.indexOf("stillServing"), 1);
+        }
         return (
-          <GuidedExperienceProfile
+          <GuidedExperience
             id="A3"
-            title={this.props.t("B3.serviceStatus")}
-            options={Array.from(
-              new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-            ).filter(st => st !== "na")}
-            onClick={option => this.setUserProfile(question, option)}
-            isDown={option =>
-              this.state.selectedEligibility[question] === option
-            }
+            stepNumber={2}
             nextSection="A4"
+            prevSection="A2"
             setSection={this.setSection}
-            t={this.props.t}
-          />
+            subtitle={t("GE." + question)}
+            t={t}
+            selectedEligibility={selectedEligibility}
+          >
+            <GuidedExperienceProfile
+              value={selectedEligibility[question]}
+              t={t}
+              onClick={option => this.setUserProfile(question, option)}
+              options={options}
+              isDown={option => selectedEligibility[question] === option}
+            />
+          </GuidedExperience>
         );
-      case "A4":
+      case (selectedEligibility["patronType"] !== "organization" &&
+        section === "A4") ||
+        (profileIsVetWSV && section === "A3"):
         return (
-          <GuidedExperienceNeeds
+          <GuidedExperience
             id="A4"
-            t={this.props.t}
-            needs={this.props.needs}
-            selectedNeeds={this.state.selectedNeeds}
-            setSelectedNeeds={this.setSelectedNeeds}
+            stepNumber={3}
+            t={t}
+            nextSection="BB"
+            prevSection={profileIsVetWSV ? "A2" : "A3"}
+            subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
-          />
+            selectedEligibility={selectedEligibility}
+          >
+            <GuidedExperienceNeeds
+              t={t}
+              needs={this.props.needs}
+              selectedNeeds={this.state.selectedNeeds}
+              setSelectedNeeds={this.setSelectedNeeds}
+            />
+          </GuidedExperience>
         );
-      case "BB":
+      case selectedEligibility["patronType"] === "organization" ||
+        section === "BB":
         return (
           <BB
             id="BB"
-            t={this.props.t}
+            t={t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             needs={this.props.needs}
             examples={this.props.examples}
-            selectedEligibility={this.state.selectedEligibility}
+            selectedEligibility={selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             setSelectedNeeds={this.setSelectedNeeds}
@@ -296,12 +346,40 @@ export class A extends Component {
             pageWidth={this.state.width}
             bookmarkedBenefits={this.state.bookmarkedBenefits}
             toggleBookmark={this.toggleBookmark}
+            url={this.props.url}
           />
         );
     }
   };
 
   render() {
+    // reset bad choices
+    let selectedEligibility = this.state.selectedEligibility;
+    if (
+      this.state.selectedEligibility.patronType === "service-person" &&
+      this.state.selectedEligibility.statusAndVitals === "deceased"
+    ) {
+      selectedEligibility.statusAndVitals = "";
+      this.setState({ selectedEligibility: selectedEligibility });
+    }
+    if (
+      this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
+      this.state.selectedEligibility.statusAndVitals === "stillServing"
+    ) {
+      selectedEligibility.statusAndVitals = "";
+      this.setState({ selectedEligibility: selectedEligibility });
+    }
+    // Guided Experience skips statusAndVitals for service-person / WSV
+    if (
+      this.state.section !== "BB" &&
+      this.state.selectedEligibility.patronType === "service-person" &&
+      this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
+      this.state.selectedEligibility.statusAndVitals !== ""
+    ) {
+      selectedEligibility.statusAndVitals = "";
+      this.setState({ selectedEligibility: selectedEligibility });
+    }
+
     return (
       <Layout i18n={this.props.i18n} t={this.props.t}>
         {this.sectionToDisplay(this.state.section)}

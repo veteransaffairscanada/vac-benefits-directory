@@ -8,6 +8,8 @@ import { InputLabel } from "material-ui/Input";
 import { MenuItem } from "material-ui/Menu";
 import { FormControl } from "material-ui/Form";
 import Select from "material-ui/Select";
+import TextField from "material-ui/TextField";
+import lunr from "lunr";
 
 import "babel-polyfill/dist/polyfill";
 
@@ -55,8 +57,40 @@ const styles = theme => ({
 
 export class BB extends Component {
   state = {
+    enIdx: null,
+    frIdx: null,
+    searchString: "",
     sortByValue: "relevance"
   };
+
+  componentWillMount() {
+    const { benefits } = this.props;
+
+    const enIdx = lunr(function() {
+      this.pipeline.remove(lunr.stemmer);
+      this.pipeline.remove(lunr.stopWordFilter);
+      this.ref("id");
+      this.field("vacNameEn");
+      this.field("oneLineDescriptionEn");
+      benefits.forEach(function(doc) {
+        this.add(doc);
+      }, this);
+    });
+
+    const frIdx = lunr(function() {
+      this.pipeline.remove(lunr.stemmer);
+      this.pipeline.remove(lunr.stopWordFilter);
+      this.ref("id");
+      this.field("vacNameFr");
+      this.field("oneLineDescriptionFr");
+      benefits.forEach(function(doc) {
+        this.add(doc);
+      }, this);
+    });
+
+    this.setState({ enIdx: enIdx, frIdx: frIdx });
+  }
+
   children = [];
 
   collapseAllBenefits = () => {
@@ -97,13 +131,21 @@ export class BB extends Component {
       return benefits;
     }
 
+    // make it easy to invert the id
+    let benefitForId = {};
+    benefits.forEach(b => {
+      benefitForId[b.id] = b;
+    });
+
     // find benefits that match
-    let benefitIdsForProfile = [];
+    let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
       if (this.eligibilityMatch(ep, selectedEligibility)) {
-        benefitIdsForProfile = benefitIdsForProfile.concat(ep.benefits);
+        eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
     });
+    const eligibleBenefits = eligibleBenefitIds.map(id => benefitForId[id]);
+
     let benefitIdsForSelectedNeeds = [];
     if (Object.keys(selectedNeeds).length > 0) {
       Object.keys(selectedNeeds).forEach(id => {
@@ -115,26 +157,31 @@ export class BB extends Component {
     } else {
       benefitIdsForSelectedNeeds = benefits.map(b => b.id);
     }
-    let matchingBenefitIds = benefitIdsForProfile.filter(
+    let matchingBenefitIds = eligibleBenefitIds.filter(
       id => benefitIdsForSelectedNeeds.indexOf(id) > -1
     );
+    const matchingBenefits = matchingBenefitIds.map(id => benefitForId[id]);
 
-    // find benefits with matching children
-    const benefitIdsWithMatchingChildren = benefits
-      .filter(
-        b =>
-          b.childBenefits &&
-          b.childBenefits.filter(cbID => matchingBenefitIds.indexOf(cbID) > -1)
-            .length > 0
-      )
-      .map(b => b.id);
+    /* show:
+         - matching benefits
+         - eligible benefits with a matching child
+         ( maybe: - non-eligible benefits with a matching child that isn't already covered)
+     */
 
-    const benefitIDsToShow = matchingBenefitIds.concat(
-      benefitIdsWithMatchingChildren
+    const eligibleBenefitsWithMatchingChild = eligibleBenefits.filter(
+      b =>
+        b.childBenefits
+          ? b.childBenefits.filter(id => matchingBenefitIds.indexOf(id) > -1)
+              .length > 0
+          : false
     );
-    let benefitsToShow = benefits.filter(
-      b => benefitIDsToShow.indexOf(b.id) > -1
+
+    let benefitsToShow = matchingBenefits.concat(
+      eligibleBenefitsWithMatchingChild
     );
+    benefitsToShow = benefitsToShow.filter(
+      (b, n) => benefitsToShow.indexOf(b) === n
+    ); // dedup
 
     // if a benefit is already shown as a child, only show it (as a parent card) if it's available independently
     let childrenIDsShown = [];
@@ -146,6 +193,20 @@ export class BB extends Component {
         b.availableIndependently === "Independent" ||
         childrenIDsShown.indexOf(b.id) < 0
     );
+
+    // If there is a searchString the run another filter
+    if (this.state.searchString.trim() !== "") {
+      let results = [];
+      if (this.props.t("current-language-code") == "en") {
+        results = this.state.enIdx.search(this.state.searchString + "*");
+      } else {
+        results = this.state.frIdx.search(this.state.searchString + "*");
+      }
+      let resultIds = results.map(r => r.ref);
+      benefitsToShow = benefitsToShow.filter(benefit =>
+        resultIds.includes(benefit.id)
+      );
+    }
 
     return benefitsToShow;
   };
@@ -176,8 +237,15 @@ export class BB extends Component {
     }
   };
 
+  handleSearchChange = event => {
+    this.setState({
+      searchString: event.target.value
+    });
+  };
+
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
@@ -253,6 +321,18 @@ export class BB extends Component {
                         {t("B3.Alphabetical")}
                       </MenuItem>
                     </Select>
+                    {this.props.url.query.show_search ? (
+                      <TextField
+                        id="bbSearchField"
+                        label={t("search")}
+                        placeholder=""
+                        value={this.state.searchString}
+                        onChange={this.handleSearchChange}
+                        margin="normal"
+                      />
+                    ) : (
+                      ""
+                    )}
                   </FormControl>
                 </Grid>
 
@@ -276,6 +356,7 @@ export class BB extends Component {
                   sortByValue={this.state.sortByValue}
                   toggleBookmark={this.props.toggleBookmark}
                   bookmarkedBenefits={this.props.bookmarkedBenefits}
+                  searchString={this.state.searchString}
                 />
               </Grid>
             </Grid>
@@ -303,7 +384,8 @@ BB.propTypes = {
   toggleSelectedEligibility: PropTypes.func,
   pageWidth: PropTypes.number,
   bookmarkedBenefits: PropTypes.array,
-  toggleBookmark: PropTypes.func
+  toggleBookmark: PropTypes.func,
+  url: PropTypes.object
 };
 
 export default withStyles(styles)(BB);
