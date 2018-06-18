@@ -125,7 +125,11 @@ class ProfileSelector extends Component {
             )}
 
             {selectedEligibility.serviceType != "" &&
-            selectedEligibility.patronType != "organization" ? (
+            selectedEligibility.patronType != "organization" &&
+            !(
+              selectedEligibility.patronType === "service-person" &&
+              selectedEligibility.serviceType === "WSV (WWII or Korea)"
+            ) ? (
               <Grid item xs={12} id="statusAndVitalsFilter">
                 <RadioSelector
                   t={t}

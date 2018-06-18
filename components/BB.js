@@ -245,6 +245,15 @@ export class BB extends Component {
 
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+
+    if (
+      this.props.selectedEligibility.patronType === "service-person" &&
+      this.props.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
+      this.props.selectedEligibility.statusAndVitals !== "releasedAlive"
+    ) {
+      this.props.setUserProfile("statusAndVitals", "releasedAlive");
+    }
+
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
