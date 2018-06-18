@@ -332,24 +332,29 @@ export class A extends Component {
   };
 
   render() {
-    // reset illegal choices
+    // reset bad choices
+    let selectedEligibility = this.state.selectedEligibility;
+    if (
+      this.state.selectedEligibility.patronType === "service-person" &&
+      this.state.selectedEligibility.statusAndVitals === "deceased"
+    ) {
+      selectedEligibility.statusAndVitals = "";
+      this.setState({ selectedEligibility: selectedEligibility });
+    }
+    if (
+      this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
+      this.state.selectedEligibility.statusAndVitals === "stillServing"
+    ) {
+      selectedEligibility.statusAndVitals = "";
+      this.setState({ selectedEligibility: selectedEligibility });
+    }
+    // Guided Experience skips statusAndVitals for service-person / WSV
     if (
       this.state.section !== "BB" &&
       this.state.selectedEligibility.patronType === "service-person" &&
       this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
       this.state.selectedEligibility.statusAndVitals !== ""
     ) {
-      let selectedEligibility = this.state.selectedEligibility;
-      selectedEligibility.statusAndVitals = "";
-      this.setState({ selectedEligibility: selectedEligibility });
-    }
-    if (
-      this.state.section !== "BB" &&
-      this.state.selectedEligibility.patronType === "family" &&
-      this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
-      this.state.selectedEligibility.statusAndVitals === "stillServing"
-    ) {
-      let selectedEligibility = this.state.selectedEligibility;
       selectedEligibility.statusAndVitals = "";
       this.setState({ selectedEligibility: selectedEligibility });
     }

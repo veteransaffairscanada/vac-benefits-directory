@@ -245,6 +245,7 @@ export class BB extends Component {
 
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
       this.props.eligibilityPaths,
