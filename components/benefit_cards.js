@@ -15,6 +15,7 @@ import Highlighter from "react-highlight-words";
 import { logEvent } from "../utils/analytics";
 
 const styles = () => ({
+  iconButton: {},
   button: {
     marginTop: "30px"
   },
@@ -136,30 +137,25 @@ export class BenefitCard extends Component {
                         : benefit.vacNameFr
                     }
                   />
+
+                  {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1 ? (
+                    <IconButton
+                      className={classes.iconButton}
+                      aria-label="Favorite"
+                      onClick={() => this.toggleBookmark(benefit.id)}
+                    >
+                      <Favorite />
+                    </IconButton>
+                  ) : (
+                    <IconButton
+                      className={classes.iconButton}
+                      aria-label="Not Favorite"
+                      onClick={() => this.toggleBookmark(benefit.id)}
+                    >
+                      <FavoriteBorder />
+                    </IconButton>
+                  )}
                 </Typography>
-
-                {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1 ? (
-                  <IconButton className={classes.button} aria-label="Favorite">
-                    <Favorite />
-                  </IconButton>
-                ) : (
-                  <IconButton
-                    className={classes.button}
-                    aria-label="Not Favorite"
-                  >
-                    <FavoriteBorder />
-                  </IconButton>
-                )}
-
-                <Button
-                  variant="raised"
-                  size="small"
-                  onClick={() => this.toggleBookmark(benefit.id)}
-                >
-                  {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1
-                    ? "remove fav"
-                    : "fav"}
-                </Button>
 
                 <Typography
                   className={"cardDescription " + classes.cardDescriptionText}
