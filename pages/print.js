@@ -8,17 +8,23 @@ import BenefitList from "../components/benefit_list";
 
 export class Print extends Component {
   componentDidMount() {
-    console.log("hi");
     window.print();
   }
 
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    console.log(this.props.benefits);
     return (
       <Layout i18n={i18n} t={t}>
         <div style={{ padding: 12 }} className="allBenefitsList">
           <h1>{t("all-benefits.List of all benefits")}</h1>
           <Grid container spacing={24}>
+            <Grid item xs={12}>
+              Show me benefits for:
+            </Grid>
+            <Grid item xs={12}>
+              My needs are:
+            </Grid>
             <Grid item xs={12}>
               <BenefitList
                 t={t}

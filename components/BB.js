@@ -247,10 +247,6 @@ export class BB extends Component {
     });
   };
 
-  print = () => {
-    console.log("print");
-  };
-
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
@@ -347,7 +343,6 @@ export class BB extends Component {
                     variant="raised"
                     size="small"
                     target="dan"
-                    onClick={() => this.print()}
                     // href={"print?lng=" + t("current-language-code")}
                     href={"print"}
                   >
