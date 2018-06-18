@@ -193,6 +193,12 @@ export class A extends Component {
   sectionToDisplay = section => {
     let question, options;
     const { t } = this.props;
+    const selectedEligibility = this.state.selectedEligibility;
+
+    const profileIsVetWSV =
+      selectedEligibility["patronType"] === "service-person" &&
+      selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
+
     switch (true) {
       case section === "A1":
         question = "patronType";
@@ -204,22 +210,20 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={this.state.selectedEligibility}
+            selectedEligibility={selectedEligibility}
           >
             <GuidedExperienceProfile
-              value={this.state.selectedEligibility[question]}
+              value={selectedEligibility[question]}
               t={t}
               onClick={option => this.setUserProfile(question, option)}
-              isDown={option =>
-                this.state.selectedEligibility[question] === option
-              }
+              isDown={option => selectedEligibility[question] === option}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
             />
           </GuidedExperience>
         );
-      case this.state.selectedEligibility["patronType"] !== "organization" &&
+      case selectedEligibility["patronType"] !== "organization" &&
         section === "A2":
         question = "serviceType";
         return (
@@ -231,39 +235,33 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={this.state.selectedEligibility}
+            selectedEligibility={selectedEligibility}
           >
             <GuidedExperienceProfile
-              value={this.state.selectedEligibility[question]}
+              value={selectedEligibility[question]}
               t={t}
               onClick={option => this.setUserProfile(question, option)}
-              isDown={option =>
-                this.state.selectedEligibility[question] === option
-              }
+              isDown={option => selectedEligibility[question] === option}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
             />
           </GuidedExperience>
         );
-      case this.state.selectedEligibility["patronType"] !== "organization" &&
+      case selectedEligibility["patronType"] !== "organization" &&
         !(
-          this.state.selectedEligibility["patronType"] === "service-person" &&
-          this.state.selectedEligibility["serviceType"] ===
-            "WSV (WWII or Korea)"
+          selectedEligibility["patronType"] === "service-person" &&
+          selectedEligibility["serviceType"] === "WSV (WWII or Korea)"
         ) &&
         section === "A3":
         question = "statusAndVitals";
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
         ).filter(st => st !== "na");
-        if (this.state.selectedEligibility["patronType"] === "service-person") {
+        if (selectedEligibility["patronType"] === "service-person") {
           options.splice(options.indexOf("deceased"), 1);
         }
-        if (
-          this.state.selectedEligibility["serviceType"] ===
-          "WSV (WWII or Korea)"
-        ) {
+        if (selectedEligibility["serviceType"] === "WSV (WWII or Korea)") {
           options.splice(options.indexOf("stillServing"), 1);
         }
         return (
@@ -275,35 +273,30 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={this.state.selectedEligibility}
+            selectedEligibility={selectedEligibility}
           >
             <GuidedExperienceProfile
-              value={this.state.selectedEligibility[question]}
+              value={selectedEligibility[question]}
               t={t}
               onClick={option => this.setUserProfile(question, option)}
               options={options}
-              isDown={option =>
-                this.state.selectedEligibility[question] === option
-              }
+              isDown={option => selectedEligibility[question] === option}
             />
           </GuidedExperience>
         );
-      case (this.state.selectedEligibility["patronType"] !== "organization" &&
+      case (selectedEligibility["patronType"] !== "organization" &&
         section === "A4") ||
-        (this.state.selectedEligibility["patronType"] === "service-person" &&
-          this.state.selectedEligibility["serviceType"] ===
-            "WSV (WWII or Korea)" &&
-          section === "A3"):
+        (profileIsVetWSV && section === "A3"):
         return (
           <GuidedExperience
             id="A4"
             stepNumber={3}
             t={t}
             nextSection="BB"
-            prevSection="A3"
+            prevSection={profileIsVetWSV ? "A2" : "A3"}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
-            selectedEligibility={this.state.selectedEligibility}
+            selectedEligibility={selectedEligibility}
           >
             <GuidedExperienceNeeds
               t={t}
@@ -313,7 +306,7 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case this.state.selectedEligibility["patronType"] === "organization" ||
+      case selectedEligibility["patronType"] === "organization" ||
         section === "BB":
         return (
           <BB
@@ -323,7 +316,7 @@ export class A extends Component {
             eligibilityPaths={this.props.eligibilityPaths}
             needs={this.props.needs}
             examples={this.props.examples}
-            selectedEligibility={this.state.selectedEligibility}
+            selectedEligibility={selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             setSelectedNeeds={this.setSelectedNeeds}
