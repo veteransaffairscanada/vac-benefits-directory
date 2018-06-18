@@ -65,20 +65,21 @@ export class BenefitCard extends Component {
   };
 
   toggleBookmark = id => {
-    this.setState((previousState, _) => {
+    this.setState(previousState => {
       return { ...previousState, open: !previousState.open };
     });
     this.props.toggleBookmark(id);
   };
 
   toggleOpenState = () => {
-    this.setState((previousState, _) => {
+    this.setState(previousState => {
       return { ...previousState, open: !previousState.open };
     });
   };
 
   componentDidMount() {
     this.props.onRef(this);
+    this.forceUpdate();
   }
 
   componentWillUnmount() {
@@ -146,7 +147,7 @@ export class BenefitCard extends Component {
                     className={classes.button}
                     aria-label="Not Favorite"
                   >
-                    <AddIcon />
+                    <FavoriteBorder />
                   </IconButton>
                 )}
 
