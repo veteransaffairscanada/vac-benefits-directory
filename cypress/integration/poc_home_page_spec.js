@@ -13,7 +13,7 @@ describe("Test POC", function() {
     );
     cy.contains("Français").click();
     cy.contains(
-      "Nous sommes ici pour offrir du soutien aux vétérans à toutes les étapes de leur vie pendant ou après l'armée"
+      "Nous sommes ici pour offrir du soutien aux Vétérans à toutes les étapes de leur vie pendant ou après l'armée"
     );
   });
 });
