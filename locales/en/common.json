@@ -114,8 +114,6 @@
   "service-person": "Veteran or serving member",
   "family": "Family members",
   "organization": "Organizations",
-  "released": "Released",
-  "still serving": "Still Serving",
   "deceased": "Deceased",
   "disabled-serviceStatusFilter": "Only required for CAF Veterans",
   "disabled-servicePersonVitalStatusFilter": "Only required for family",
