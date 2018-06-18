@@ -247,6 +247,11 @@ export class A extends Component {
           </GuidedExperience>
         );
       case this.state.selectedEligibility["patronType"] !== "organization" &&
+        !(
+          this.state.selectedEligibility["patronType"] === "service-person" &&
+          this.state.selectedEligibility["serviceType"] ===
+            "WSV (WWII or Korea)"
+        ) &&
         section === "A3":
         question = "statusAndVitals";
         options = Array.from(
@@ -254,6 +259,12 @@ export class A extends Component {
         ).filter(st => st !== "na");
         if (this.state.selectedEligibility["patronType"] === "service-person") {
           options.splice(options.indexOf("deceased"), 1);
+        }
+        if (
+          this.state.selectedEligibility["serviceType"] ===
+          "WSV (WWII or Korea)"
+        ) {
+          options.splice(options.indexOf("stillServing"), 1);
         }
         return (
           <GuidedExperience
@@ -277,8 +288,12 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case this.state.selectedEligibility["patronType"] !== "organization" &&
-        section === "A4":
+      case (this.state.selectedEligibility["patronType"] !== "organization" &&
+        section === "A4") ||
+        (this.state.selectedEligibility["patronType"] === "service-person" &&
+          this.state.selectedEligibility["serviceType"] ===
+            "WSV (WWII or Korea)" &&
+          section === "A3"):
         return (
           <GuidedExperience
             id="A4"

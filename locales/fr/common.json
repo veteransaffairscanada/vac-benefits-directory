@@ -115,8 +115,6 @@
   "service-person": "Vétéran ou membre actif",
   "family": "Membres de la famille",
   "organization": "Organisations",
-  "released": "Vétéran",
-  "still serving": "Membre actif",
   "deceased": "Décédé",
   "disabled-serviceStatusFilter": "Seulement requis pour FAC Vétérans",
   "disabled-servicePersonVitalStatusFilter": "Seulement requis pour la famille",
