@@ -199,6 +199,13 @@ export class A extends Component {
       selectedEligibility["patronType"] === "service-person" &&
       selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
 
+    if (
+      selectedEligibility.patronType === "organization" &&
+      ["A2", "A3", "A4"].indexOf(section) > -1
+    ) {
+      this.setSection("BB");
+    }
+
     switch (true) {
       case section === "A1":
         question = "patronType";
