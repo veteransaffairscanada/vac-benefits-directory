@@ -99,19 +99,11 @@ export class GuidedExperience extends Component {
               })}
             </Grid>
 
-            {this.props.id == "A4" ? (
-              <Grid item xs={6} md={4}>
-                <Typography className={classnames(classes.title)}>
-                  {t("Select all that apply")}
-                </Typography>
-              </Grid>
-            ) : (
-              <Grid item xs={12}>
-                <Typography className={classnames(classes.subTitle)}>
-                  {this.props.subtitle}
-                </Typography>
-              </Grid>
-            )}
+            <Grid item xs={12}>
+              <Typography className={classnames(classes.subTitle)}>
+                {this.props.subtitle}
+              </Typography>
+            </Grid>
 
             <Grid item xs={12}>
               {this.props.children}
