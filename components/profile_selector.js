@@ -10,7 +10,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "babel-polyfill/dist/polyfill";
-import { Grid, Button } from "@material-ui/core/";
+import { Grid, Button } from "@material-ui/core";
 
 const styles = () => ({
   root: {

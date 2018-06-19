@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core/";
 import styled from "react-emotion";
 import { logEvent } from "../utils/analytics";
-import TextField from "@material-ui/core//TextField";
+import TextField from "@material-ui/core/TextField";
 require("isomorphic-fetch");
 
 const CommentBox = styled("div")`

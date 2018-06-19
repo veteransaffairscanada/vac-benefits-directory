@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { AppBar, Button, Toolbar, Typography } from "@material-ui/core/";
+import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 import { GoCSignature } from "@cdssnc/gcui";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
