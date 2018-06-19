@@ -17,6 +17,8 @@ import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
+// import getPageContext from "../lib/pageContext";
+// import { initStore } from "../store";
 
 const styles = theme => ({
   benefitsCount: {
@@ -247,6 +249,31 @@ export class BB extends Component {
     });
   };
 
+  getPrintUrl = (
+    filteredBenefits,
+    selectedEligibility,
+    selectedNeeds,
+    language
+  ) => {
+    const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
+    const needsIDs = Object.keys(selectedNeeds);
+    const selectedEligibilityKeys = Object.keys(selectedEligibility);
+    let url = "print";
+    url += "&lng=" + language;
+    if (selectedEligibilityKeys.length > 0) {
+      Object.keys(selectedEligibility).forEach(k => {
+        url += "&" + k + "=" + selectedEligibility[k];
+      });
+    }
+    if (needsIDs.length > 0) {
+      url += "?needs=" + needsIDs.join(",");
+    }
+    if (filteredBenefitsIDs.length > 0) {
+      url += "?benefits=" + filteredBenefitsIDs.join(",");
+    }
+    return url;
+  };
+
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
@@ -256,6 +283,13 @@ export class BB extends Component {
       this.props.selectedEligibility,
       this.props.needs,
       this.props.selectedNeeds
+    );
+
+    const url = this.getPrintUrl(
+      filteredBenefits,
+      this.props.selectedEligibility,
+      this.props.selectedNeeds,
+      t("current-language-code")
     );
 
     return (
@@ -339,13 +373,7 @@ export class BB extends Component {
                     )}
                   </FormControl>
 
-                  <Button
-                    variant="raised"
-                    size="small"
-                    target="dan"
-                    // href={"print?lng=" + t("current-language-code")}
-                    href={"print"}
-                  >
+                  <Button variant="raised" size="small" target="dan" href={url}>
                     <PrintIcon className={classnames(classes.leftIcon)} />
                     Print
                   </Button>

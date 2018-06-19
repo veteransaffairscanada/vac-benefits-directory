@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import BenefitList from "../components/benefit_list";
+import Router from "next/router";
 
 export class Print extends Component {
   componentDidMount() {
