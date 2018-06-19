@@ -205,6 +205,12 @@ export class A extends Component {
     } else if (selectedEligibility.serviceType === "" || profileIsVetWSV) {
       previousSectionA4 = "A2";
     }
+    if (
+      selectedEligibility.patronType === "organization" &&
+      ["A2", "A3", "A4"].indexOf(section) > -1
+    ) {
+      this.setSection("BB");
+    }
 
     switch (true) {
       case section === "BB" ||
