@@ -190,7 +190,7 @@ export class A extends Component {
     this.setURL(newState);
   };
 
-  sectionToDisplay = section => {
+  sectionToDisplay = passedSection => {
     let question, options;
     const { t } = this.props;
     const selectedEligibility = this.state.selectedEligibility;
@@ -199,7 +199,42 @@ export class A extends Component {
       selectedEligibility["patronType"] === "service-person" &&
       selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
 
+    let previousSectionOverride = "";
+    let section = passedSection;
+    //  if (selectedEligibility.patronType === "" && (passedSection === "A2" || passedSection === "A3")) {
+    //    section = "A4"
+    //    this.setSection(section);
+    //    previousSectionOverride = "A1"
+    // } else if (selectedEligibility.serviceType === "" && passedSection === "A3") {
+    //    section = "A4"
+    //    this.setSection(section);
+    //    previousSectionOverride = "A2"
+    //  }
+
     switch (true) {
+      case section === "BB" ||
+        (section !== "A1" && selectedEligibility.patronType === "organization"):
+        return (
+          <BB
+            id="BB"
+            t={t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+            needs={this.props.needs}
+            examples={this.props.examples}
+            selectedEligibility={selectedEligibility}
+            selectedNeeds={this.state.selectedNeeds}
+            toggleSelectedEligibility={this.toggleSelectedEligibility}
+            setSelectedNeeds={this.setSelectedNeeds}
+            setUserProfile={this.setUserProfile}
+            setSection={this.setSection}
+            clearFilters={this.clearFilters}
+            clearNeeds={this.clearNeeds}
+            pageWidth={this.state.width}
+            url={this.props.url}
+          />
+        );
+
       case section === "A1":
         question = "patronType";
         return (
@@ -223,8 +258,7 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case selectedEligibility["patronType"] !== "organization" &&
-        section === "A2":
+      case section === "A2":
         question = "serviceType";
         return (
           <GuidedExperience
@@ -248,12 +282,10 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case selectedEligibility["patronType"] !== "organization" &&
-        !(
-          selectedEligibility["patronType"] === "service-person" &&
-          selectedEligibility["serviceType"] === "WSV (WWII or Korea)"
-        ) &&
-        section === "A3":
+      case !(
+        selectedEligibility["patronType"] === "service-person" &&
+        selectedEligibility["serviceType"] === "WSV (WWII or Korea)"
+      ) && section === "A3":
         question = "statusAndVitals";
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -284,9 +316,7 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case (selectedEligibility["patronType"] !== "organization" &&
-        section === "A4") ||
-        (profileIsVetWSV && section === "A3"):
+      case section === "A4" || (profileIsVetWSV && section === "A3"):
         return (
           <GuidedExperience
             id="A4"
@@ -305,28 +335,6 @@ export class A extends Component {
               setSelectedNeeds={this.setSelectedNeeds}
             />
           </GuidedExperience>
-        );
-      case selectedEligibility["patronType"] === "organization" ||
-        section === "BB":
-        return (
-          <BB
-            id="BB"
-            t={t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
-            examples={this.props.examples}
-            selectedEligibility={selectedEligibility}
-            selectedNeeds={this.state.selectedNeeds}
-            toggleSelectedEligibility={this.toggleSelectedEligibility}
-            setSelectedNeeds={this.setSelectedNeeds}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
-            clearFilters={this.clearFilters}
-            clearNeeds={this.clearNeeds}
-            pageWidth={this.state.width}
-            url={this.props.url}
-          />
         );
     }
   };
