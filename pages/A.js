@@ -190,7 +190,7 @@ export class A extends Component {
     this.setURL(newState);
   };
 
-  sectionToDisplay = passedSection => {
+  sectionToDisplay = section => {
     let question, options;
     const { t } = this.props;
     const selectedEligibility = this.state.selectedEligibility;
@@ -199,17 +199,12 @@ export class A extends Component {
       selectedEligibility["patronType"] === "service-person" &&
       selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
 
-    let previousSectionOverride = "";
-    let section = passedSection;
-    //  if (selectedEligibility.patronType === "" && (passedSection === "A2" || passedSection === "A3")) {
-    //    section = "A4"
-    //    this.setSection(section);
-    //    previousSectionOverride = "A1"
-    // } else if (selectedEligibility.serviceType === "" && passedSection === "A3") {
-    //    section = "A4"
-    //    this.setSection(section);
-    //    previousSectionOverride = "A2"
-    //  }
+    let previousSectionA4 = "A3";
+    if (selectedEligibility.patronType === "") {
+      previousSectionA4 = "A1";
+    } else if (selectedEligibility.serviceType === "" || profileIsVetWSV) {
+      previousSectionA4 = "A2";
+    }
 
     switch (true) {
       case section === "BB" ||
@@ -233,6 +228,31 @@ export class A extends Component {
             pageWidth={this.state.width}
             url={this.props.url}
           />
+        );
+
+      case section === "A4" ||
+        (profileIsVetWSV && section === "A3") ||
+        (selectedEligibility.serviceType === "" && section === "A3") ||
+        (selectedEligibility.patronType === "" &&
+          (section === "A3" || section === "A2")):
+        return (
+          <GuidedExperience
+            id="A4"
+            stepNumber={3}
+            t={t}
+            nextSection="BB"
+            prevSection={previousSectionA4}
+            subtitle={t("B3.What do you need help with?")}
+            setSection={this.setSection}
+            selectedEligibility={selectedEligibility}
+          >
+            <GuidedExperienceNeeds
+              t={t}
+              needs={this.props.needs}
+              selectedNeeds={this.state.selectedNeeds}
+              setSelectedNeeds={this.setSelectedNeeds}
+            />
+          </GuidedExperience>
         );
 
       case section === "A1":
@@ -282,10 +302,7 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case !(
-        selectedEligibility["patronType"] === "service-person" &&
-        selectedEligibility["serviceType"] === "WSV (WWII or Korea)"
-      ) && section === "A3":
+      case section === "A3":
         question = "statusAndVitals";
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -313,26 +330,6 @@ export class A extends Component {
               onClick={option => this.setUserProfile(question, option)}
               options={options}
               isDown={option => selectedEligibility[question] === option}
-            />
-          </GuidedExperience>
-        );
-      case section === "A4" || (profileIsVetWSV && section === "A3"):
-        return (
-          <GuidedExperience
-            id="A4"
-            stepNumber={3}
-            t={t}
-            nextSection="BB"
-            prevSection={profileIsVetWSV ? "A2" : "A3"}
-            subtitle={t("B3.What do you need help with?")}
-            setSection={this.setSection}
-            selectedEligibility={selectedEligibility}
-          >
-            <GuidedExperienceNeeds
-              t={t}
-              needs={this.props.needs}
-              selectedNeeds={this.state.selectedNeeds}
-              setSelectedNeeds={this.setSelectedNeeds}
             />
           </GuidedExperience>
         );
