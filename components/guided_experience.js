@@ -9,8 +9,19 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import Typography from "material-ui/Typography";
 import classnames from "classnames";
 import EditIcon from "@material-ui/icons/Edit";
+import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
 
-const styles = () => ({
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: "#1A237E",
+      main: "#E8EAF6",
+      dark: "#0000FF", // '#002884',
+      contrastText: "#fff"
+    }
+  }
+});
+const styles = theme => ({
   root: {
     border: "solid 1px grey",
     marginTop: "40px",
@@ -21,21 +32,27 @@ const styles = () => ({
     padding: "20px"
   },
   stepper: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundColor: "#3F51B5"
+  },
+  navButtons: {
+    color: "white"
   },
   title: {
     fontSize: "2em",
-    color: "black",
-    marginBottom: "10px"
+    color: "black"
   },
   subTitle: {
     fontSize: "1em"
   },
   jumpButton: {
-    margin: "5px",
     textTransform: "none",
     paddingLeft: "20px",
-    paddingRight: "15px"
+    paddingRight: "15px",
+    margin: theme.spacing.unit,
+    backgroundColor: "#364150",
+    color: "white",
+    textAlign: "left"
   },
   edit: {
     marginLeft: "10px"
@@ -52,73 +69,77 @@ export class GuidedExperience extends Component {
     };
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
-      <div className={classnames(classes.root)}>
-        <Grid container spacing={24} className={classnames(classes.box)}>
-          <Grid item xs={6} md={4}>
-            <Typography className={classnames(classes.title)}>
-              {t("B3.Filter by eligibility")}
-            </Typography>
-          </Grid>
-          <Grid item xs={6} md={8}>
-            {eligibilityKeys.map((k, i) => {
-              if (selectedEligibility[k] == "") {
-                return "";
-              } else {
-                return (
-                  <Button
-                    size="small"
-                    variant="raised"
-                    color="primary"
-                    key={i}
-                    className={classnames(classes.jumpButton)}
-                    onClick={() => this.props.setSection(sectionMap[k])}
-                  >
-                    {t(selectedEligibility[k])}
-                    <EditIcon className={classnames(classes.edit)} />
-                  </Button>
-                );
-              }
-            })}
+      <MuiThemeProvider theme={theme}>
+        <div className={classnames(classes.root)}>
+          <Grid container spacing={24} className={classnames(classes.box)}>
+            <Grid item xs={12} md={4}>
+              <Typography className={classnames(classes.title)}>
+                {t("B3.Filter by eligibility")}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={8}>
+              {eligibilityKeys.map((k, i) => {
+                if (selectedEligibility[k] == "") {
+                  return "";
+                } else {
+                  return (
+                    <Button
+                      disableRipple={true}
+                      key={i}
+                      variant="raised"
+                      onClick={() => this.props.setSection(sectionMap[k])}
+                      size="small"
+                      className={classnames(classes.jumpButton)}
+                    >
+                      {t(selectedEligibility[k])}
+                      <EditIcon className={classnames(classes.edit)} />
+                    </Button>
+                  );
+                }
+              })}
+            </Grid>
+
+            <Grid item xs={12}>
+              <Typography className={classnames(classes.subTitle)}>
+                {this.props.subtitle}
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12}>
+              {this.props.children}
+            </Grid>
           </Grid>
 
-          <Grid item xs={12}>
-            <Typography className={classnames(classes.subTitle)}>
-              {this.props.subtitle}
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12}>
-            {this.props.children}
-          </Grid>
-        </Grid>
-
-        <MobileStepper
-          variant="progress"
-          steps={5}
-          position="static"
-          activeStep={this.props.stepNumber}
-          className={classnames(classes.stepper)}
-          nextButton={
-            <Button
-              size="small"
-              onClick={() => this.props.setSection(this.props.nextSection)}
-            >
-              {t("next")}
-              <KeyboardArrowRight />
-            </Button>
-          }
-          backButton={
-            <Button
-              size="small"
-              onClick={() => this.props.setSection(this.props.prevSection)}
-              disabled={this.props.stepNumber === 0}
-            >
-              <KeyboardArrowLeft />
-              {t("back")}
-            </Button>
-          }
-        />
-      </div>
+          <MobileStepper
+            variant="progress"
+            steps={5}
+            position="static"
+            activeStep={this.props.stepNumber}
+            className={classnames(classes.stepper)}
+            nextButton={
+              <Button
+                size="large"
+                onClick={() => this.props.setSection(this.props.nextSection)}
+                className={classnames(classes.navButtons)}
+              >
+                {t("next")}
+                <KeyboardArrowRight />
+              </Button>
+            }
+            backButton={
+              <Button
+                size="large"
+                onClick={() => this.props.setSection(this.props.prevSection)}
+                disabled={this.props.stepNumber === 0}
+                className={classnames(classes.navButtons)}
+              >
+                <KeyboardArrowLeft />
+                {t("back")}
+              </Button>
+            }
+          />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
@@ -136,4 +157,4 @@ GuidedExperience.propTypes = {
   selectedEligibility: PropTypes.object
 };
 
-export default withStyles(styles)(GuidedExperience);
+export default withStyles(styles, { withTheme: true })(GuidedExperience);

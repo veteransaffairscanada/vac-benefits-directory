@@ -4,6 +4,9 @@ import { Grid, Button } from "material-ui";
 import { withStyles } from "material-ui/styles/index";
 
 const styles = theme => ({
+  root: {
+    padding: "15px 15px 30px 15px"
+  },
   need: {
     margin: theme.spacing.unit,
     backgroundColor: "#F5F5F5",
@@ -34,7 +37,7 @@ export class GuidedExperienceNeeds extends Component {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <div style={{ padding: 12 }}>
+      <div className={classes.root}>
         <Grid container spacing={24}>
           {this.props.needs.map(need => (
             <Button
