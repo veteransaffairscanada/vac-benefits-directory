@@ -10,7 +10,7 @@ import Typography from "material-ui/Typography";
 import classnames from "classnames";
 import EditIcon from "@material-ui/icons/Edit";
 
-const styles = () => ({
+const styles = theme => ({
   root: {
     border: "solid 1px grey",
     marginTop: "40px",
@@ -32,10 +32,13 @@ const styles = () => ({
     fontSize: "1em"
   },
   jumpButton: {
-    margin: "5px",
     textTransform: "none",
     paddingLeft: "20px",
-    paddingRight: "15px"
+    paddingRight: "15px",
+    margin: theme.spacing.unit,
+    backgroundColor: "#364150",
+    color: "white",
+    textAlign: "left"
   },
   edit: {
     marginLeft: "10px"
@@ -66,12 +69,12 @@ export class GuidedExperience extends Component {
               } else {
                 return (
                   <Button
-                    size="small"
-                    variant="raised"
-                    color="primary"
+                    disableRipple={true}
                     key={i}
-                    className={classnames(classes.jumpButton)}
+                    variant="raised"
                     onClick={() => this.props.setSection(sectionMap[k])}
+                    size="small"
+                    className={classnames(classes.jumpButton)}
                   >
                     {t(selectedEligibility[k])}
                     <EditIcon className={classnames(classes.edit)} />
