@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:alpine
 MAINTAINER Max Neuvians <max.neuvians@tbs-sct.gc.ca>
 LABEL Description="Government of Canada VAC Proof of Concept" Vendor="Canadian Digital Service"
 
