@@ -6,9 +6,9 @@ import Table, {
   TableCell,
   TableHead,
   TableRow
-} from "material-ui/Table";
-import Paper from "material-ui/Paper";
-import { withStyles } from "material-ui/styles";
+} from "@material-ui/core/Table";
+import Paper from "@material-ui/core/Paper";
+import { withStyles } from "@material-ui/core/styles";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";

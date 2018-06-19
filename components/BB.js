@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "material-ui";
+import { Grid, Button } from "@material-ui/core/";
 import classnames from "classnames";
-import { withStyles } from "material-ui/styles";
-import Typography from "material-ui/Typography";
-import { InputLabel } from "material-ui/Input";
-import { MenuItem } from "material-ui/Menu";
-import { FormControl } from "material-ui/Form";
-import Select from "material-ui/Select";
-import TextField from "material-ui/TextField";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
 import lunr from "lunr";
 
 import "babel-polyfill/dist/polyfill";

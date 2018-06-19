@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Card, { CardContent, CardActions } from "material-ui/Card";
-import Button from "material-ui/Button";
+import Card, { CardContent, CardActions } from "@material-ui/core//Card";
+import Button from "@material-ui/core//Button";
 
-import { Typography } from "material-ui";
+import { Typography } from "@material-ui/core/";
 
 class SelectedOptionsCard extends Component {
   render() {

@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
-import Typography from "material-ui/Typography";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
 import RadioSelector from "./radio_selector";
-import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
-import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
-import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "babel-polyfill/dist/polyfill";
-import { Grid, Button } from "material-ui";
+import { Grid, Button } from "@material-ui/core/";
 
 const styles = () => ({
   root: {

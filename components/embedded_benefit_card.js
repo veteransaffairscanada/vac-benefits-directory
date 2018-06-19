@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Typography, Button, Grid } from "material-ui";
+import { Typography, Button, Grid } from "@material-ui/core/";
 import classnames from "classnames";
-import { withStyles } from "material-ui/styles";
-import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
-import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
-import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
-// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { withStyles } from "@material-ui/core/styles";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+// import ExpandMoreIcon from "@@material-ui/core//icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 

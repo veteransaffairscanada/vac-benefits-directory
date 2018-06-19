@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { WordMark } from "@cdssnc/gcui";
-import { Button, Toolbar, Typography } from "material-ui";
+import { Button, Toolbar, Typography } from "@material-ui/core/";
 import styled from "react-emotion";
 
 const Div = styled("div")`
