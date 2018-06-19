@@ -294,7 +294,6 @@ export class A extends Component {
             t={t}
             nextSection="BB"
             prevSection={profileIsVetWSV ? "A2" : "A3"}
-            subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
             selectedEligibility={selectedEligibility}
           >

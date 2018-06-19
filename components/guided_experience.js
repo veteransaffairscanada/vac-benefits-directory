@@ -40,8 +40,7 @@ const styles = theme => ({
   },
   title: {
     fontSize: "2em",
-    color: "black",
-    marginBottom: "10px"
+    color: "black"
   },
   subTitle: {
     fontSize: "1em"
@@ -73,12 +72,12 @@ export class GuidedExperience extends Component {
       <MuiThemeProvider theme={theme}>
         <div className={classnames(classes.root)}>
           <Grid container spacing={24} className={classnames(classes.box)}>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={12} md={4}>
               <Typography className={classnames(classes.title)}>
                 {t("B3.Filter by eligibility")}
               </Typography>
             </Grid>
-            <Grid item xs={6} md={8}>
+            <Grid item xs={12} md={8}>
               {eligibilityKeys.map((k, i) => {
                 if (selectedEligibility[k] == "") {
                   return "";
@@ -103,18 +102,16 @@ export class GuidedExperience extends Component {
             {this.props.id == "A4" ? (
               <Grid item xs={6} md={4}>
                 <Typography className={classnames(classes.title)}>
-                  {t("Filter by need")}
+                  {t("Select all that apply")}
                 </Typography>
               </Grid>
             ) : (
-              ""
+              <Grid item xs={12}>
+                <Typography className={classnames(classes.subTitle)}>
+                  {this.props.subtitle}
+                </Typography>
+              </Grid>
             )}
-
-            <Grid item xs={12}>
-              <Typography className={classnames(classes.subTitle)}>
-                {this.props.subtitle}
-              </Typography>
-            </Grid>
 
             <Grid item xs={12}>
               {this.props.children}
