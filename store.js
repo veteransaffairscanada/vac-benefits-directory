@@ -19,10 +19,6 @@ export const reducer = (state = initialState, action) => {
         needs: action.data.needs || state.needs,
         examples: action.data.examples || state.examples
       });
-    case "SAVE_BENEFITS":
-      return Object.assign({}, state, {
-        filteredBenefits: action.data.filteredBenefits || state.filteredBenefits
-      });
     default:
       return state;
   }
