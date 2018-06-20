@@ -82,4 +82,9 @@ describe("DataValidation", () => {
     props.benefits[0].vacNameEn = "";
     expect(mountedDataValidation().html()).toContain("Fail");
   });
+
+  it("fails if a benefit is missing EN or FR links", () => {
+    props.benefits[0].benefitPageFr = "";
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
 });

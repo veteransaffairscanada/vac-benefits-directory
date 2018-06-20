@@ -81,7 +81,7 @@
     "Size of Eligibility Paths Table": "Size of eligibility paths table",
     "Size of Needs Table": "Size of needs table",
     "Size of Examples Table": "Size of examples table",
-    "Benefits missing text": "Benefits missing text"
+    "Benefits with Empty Fields": "Benefits with empty fields"
   },
   "next": "next",
   "back": "back",
@@ -142,5 +142,6 @@
   "Family child benefits":
     "With this benefit the Veteran's family may have access to",
   "search": "Search",
-  "Print": "Print"
+  "Print": "Print",
+  "Select all that apply": "Select all that apply"
 }
