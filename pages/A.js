@@ -13,6 +13,7 @@ import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
+import Favorites from "../components/favorites";
 
 export class A extends Component {
   constructor() {
@@ -342,6 +343,23 @@ export class A extends Component {
             setSection={this.setSection}
             clearFilters={this.clearFilters}
             clearNeeds={this.clearNeeds}
+            pageWidth={this.state.width}
+            bookmarkedBenefits={this.state.bookmarkedBenefits}
+            toggleBookmark={this.toggleBookmark}
+            url={this.props.url}
+          />
+        );
+      case section === "favorites":
+        return (
+          <Favorites
+            id="favorites"
+            t={t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+            needs={this.props.needs}
+            examples={this.props.examples}
+            setUserProfile={this.setUserProfile}
+            setSection={this.setSection}
             pageWidth={this.state.width}
             bookmarkedBenefits={this.state.bookmarkedBenefits}
             toggleBookmark={this.toggleBookmark}

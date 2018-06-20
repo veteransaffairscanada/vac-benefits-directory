@@ -14,8 +14,6 @@ import lunr from "lunr";
 import "babel-polyfill/dist/polyfill";
 
 import BenefitList from "../components/benefit_list";
-import NeedsSelector from "./needs_selector";
-import ProfileSelector from "./profile_selector";
 
 const styles = theme => ({
   benefitsCount: {
@@ -55,7 +53,7 @@ const styles = theme => ({
   }
 });
 
-export class BB extends Component {
+export class Favorites extends Component {
   state = {
     enIdx: null,
     frIdx: null,
@@ -106,128 +104,19 @@ export class BB extends Component {
     });
   };
 
-  eligibilityMatch = (path, selected) => {
-    let matches = true;
-    ["serviceType", "patronType", "statusAndVitals"].forEach(criteria => {
-      if (
-        selected[criteria] != "" &&
-        path[criteria] !== "na" &&
-        selected[criteria] != path[criteria]
-      ) {
-        matches = false;
-      }
-    });
-    return matches;
-  };
-
-  filterBenefits = (
-    benefits,
-    eligibilityPaths,
-    selectedEligibility,
-    needs,
-    selectedNeeds
-  ) => {
+  filterBenefits = (benefits, bookmarkedBenefits) => {
     if (benefits.length === 0) {
       return benefits;
     }
-
-    // make it easy to invert the id
-    let benefitForId = {};
-    benefits.forEach(b => {
-      benefitForId[b.id] = b;
-    });
-
-    // find benefits that match
-    let eligibleBenefitIds = [];
-    eligibilityPaths.forEach(ep => {
-      if (this.eligibilityMatch(ep, selectedEligibility)) {
-        eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
-      }
-    });
-    const eligibleBenefits = eligibleBenefitIds.map(id => benefitForId[id]);
-
-    let benefitIdsForSelectedNeeds = [];
-    if (Object.keys(selectedNeeds).length > 0) {
-      Object.keys(selectedNeeds).forEach(id => {
-        const need = needs.filter(n => n.id === id)[0];
-        benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
-          need.benefits
-        );
-      });
-    } else {
-      benefitIdsForSelectedNeeds = benefits.map(b => b.id);
-    }
-    let matchingBenefitIds = eligibleBenefitIds.filter(
-      id => benefitIdsForSelectedNeeds.indexOf(id) > -1
-    );
-    const matchingBenefits = matchingBenefitIds.map(id => benefitForId[id]);
-
-    /* show:
-         - matching benefits
-         - eligible benefits with a matching child
-         ( maybe: - non-eligible benefits with a matching child that isn't already covered)
-     */
-
-    const eligibleBenefitsWithMatchingChild = eligibleBenefits.filter(
-      b =>
-        b.childBenefits
-          ? b.childBenefits.filter(id => matchingBenefitIds.indexOf(id) > -1)
-              .length > 0
-          : false
-    );
-
-    let benefitsToShow = matchingBenefits.concat(
-      eligibleBenefitsWithMatchingChild
-    );
-    benefitsToShow = benefitsToShow.filter(
-      (b, n) => benefitsToShow.indexOf(b) === n
-    ); // dedup
-
-    // if a benefit is already shown as a child, only show it (as a parent card) if it's available independently
-    let childrenIDsShown = [];
-    benefitsToShow.forEach(b => {
-      childrenIDsShown = childrenIDsShown.concat(b.childBenefits);
-    });
-    benefitsToShow = benefitsToShow.filter(
-      b =>
-        b.availableIndependently === "Independent" ||
-        childrenIDsShown.indexOf(b.id) < 0
-    );
-
-    // If there is a searchString the run another filter
-    if (this.state.searchString.trim() !== "") {
-      let results = [];
-      if (this.props.t("current-language-code") == "en") {
-        results = this.state.enIdx.search(this.state.searchString + "*");
-      } else {
-        results = this.state.frIdx.search(this.state.searchString + "*");
-      }
-      let resultIds = results.map(r => r.ref);
-      benefitsToShow = benefitsToShow.filter(benefit =>
-        resultIds.includes(benefit.id)
-      );
-    }
-
-    return benefitsToShow;
+    return benefits.filter(b => bookmarkedBenefits.indexOf(b.id) > -1);
   };
 
   handleSortByChange = event => {
     this.setState({ sortByValue: event.target.value });
   };
 
-  countSelection = () => {
-    const reducer = (acc, obj) => acc + (Object.values(obj)[0] == null ? 0 : 1);
-    let count = Object.values(this.props.selectedEligibility).reduce(
-      reducer,
-      0
-    );
-    return count + Object.values(this.props.selectedNeeds).length;
-  };
-
   countString = (x, t) => {
     switch (true) {
-      case this.countSelection() === 0:
-        return t("B3.All benefits to consider");
       case x == 0:
         return t("B3.No benefits");
       case x == 1:
@@ -248,10 +137,7 @@ export class BB extends Component {
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
-      this.props.eligibilityPaths,
-      this.props.selectedEligibility,
-      this.props.needs,
-      this.props.selectedNeeds
+      this.props.bookmarkedBenefits
     );
 
     return (
@@ -260,31 +146,6 @@ export class BB extends Component {
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
               <Typography className={classes.title}>{t("B3.title")}</Typography>
-              <Typography className={classes.subTitle}>
-                {t("B3.subtitle1")} <br />
-                {t("B3.subtitle2")}
-              </Typography>
-            </Grid>
-            <Grid item lg={3} md={4} sm={5} xs={12}>
-              <ProfileSelector
-                t={t}
-                handleChange={this.props.setSelectedNeeds}
-                clearFilters={this.props.clearFilters}
-                selectedEligibility={this.props.selectedEligibility}
-                setUserProfile={this.props.setUserProfile}
-                eligibilityPaths={this.props.eligibilityPaths}
-                pageWidth={this.props.pageWidth}
-              />
-              <Grid item xs={12}>
-                <NeedsSelector
-                  t={t}
-                  needs={this.props.needs}
-                  selectedNeeds={this.props.selectedNeeds}
-                  handleChange={this.props.setSelectedNeeds}
-                  clearNeeds={this.props.clearNeeds}
-                  pageWidth={this.props.pageWidth}
-                />
-              </Grid>
             </Grid>
             <Grid item lg={9} md={8} sm={7} xs={12}>
               <Grid item xs={12}>
@@ -338,14 +199,6 @@ export class BB extends Component {
 
                 <Grid item xs={9} className={classnames(classes.collapse)}>
                   <Button
-                    id="Favorites"
-                    variant="flat"
-                    size="small"
-                    onClick={() => this.props.setSection("favorites")}
-                  >
-                    {t("B3.favouritesButtonText")}
-                  </Button>
-                  <Button
                     id="CollapseBenefits"
                     variant="flat"
                     size="small"
@@ -375,21 +228,15 @@ export class BB extends Component {
   }
 }
 
-BB.propTypes = {
+Favorites.propTypes = {
   benefits: PropTypes.array,
   classes: PropTypes.object,
-  clearFilters: PropTypes.func,
-  clearNeeds: PropTypes.func,
   eligibilityPaths: PropTypes.array,
   examples: PropTypes.array,
   id: PropTypes.string,
   needs: PropTypes.array,
-  selectedEligibility: PropTypes.object,
-  selectedNeeds: PropTypes.object,
-  setSelectedNeeds: PropTypes.func,
   setUserProfile: PropTypes.func,
   t: PropTypes.func,
-  toggleSelectedEligibility: PropTypes.func,
   pageWidth: PropTypes.number,
   bookmarkedBenefits: PropTypes.array,
   toggleBookmark: PropTypes.func,
@@ -397,4 +244,4 @@ BB.propTypes = {
   setSection: PropTypes.func
 };
 
-export default withStyles(styles)(BB);
+export default withStyles(styles)(Favorites);
