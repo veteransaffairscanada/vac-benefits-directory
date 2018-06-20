@@ -82,7 +82,7 @@
       "Taille du tableau des chemins d'admissibilité",
     "Size of Needs Table": "Tableau de la taille des besoins",
     "Size of Examples Table": "Taille de la table des exemples",
-    "Benefits missing text": "Avantages du texte manquant"
+    "Benefits with Empty Fields": "Avantages avec des champs vides"
   },
   "next": "prochain",
   "back": "arrière",
