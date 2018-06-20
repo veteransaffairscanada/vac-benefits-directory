@@ -57,7 +57,7 @@ describe("Print", () => {
 
   it("parses url correctly", () => {
     props.url.query["patronType"] = "service-person";
-    props.url.query["serviceType"] = "WSV%20(WWII%20or%20Korea)";
+    props.url.query["serviceType"] = "WSV (WWII or Korea)";
     props.url.query["statusAndVitals"] = "releasedAlive";
     props.url.query["needs"] = "43534534,43534ewr534";
     expect(
