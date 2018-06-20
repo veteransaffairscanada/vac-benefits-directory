@@ -219,6 +219,23 @@ export class A extends Component {
       selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
 
     switch (true) {
+      case section === "favourites":
+        return (
+          <Favourites
+            id="favourites"
+            t={t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+            needs={this.props.needs}
+            examples={this.props.examples}
+            setUserProfile={this.setUserProfile}
+            setSection={this.setSection}
+            pageWidth={this.state.width}
+            favouriteBenefits={this.state.favouriteBenefits}
+            toggleFavourite={this.toggleFavourite}
+            url={this.props.url}
+          />
+        );
       case section === "A1":
         question = "patronType";
         return (
@@ -343,23 +360,6 @@ export class A extends Component {
             setSection={this.setSection}
             clearFilters={this.clearFilters}
             clearNeeds={this.clearNeeds}
-            pageWidth={this.state.width}
-            favouriteBenefits={this.state.favouriteBenefits}
-            toggleFavourite={this.toggleFavourite}
-            url={this.props.url}
-          />
-        );
-      case section === "favourites":
-        return (
-          <Favourites
-            id="favourites"
-            t={t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
-            examples={this.props.examples}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
             pageWidth={this.state.width}
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
