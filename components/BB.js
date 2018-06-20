@@ -10,6 +10,7 @@ import { FormControl } from "material-ui/Form";
 import Select from "material-ui/Select";
 import TextField from "material-ui/TextField";
 import lunr from "lunr";
+import PrintIcon from "@material-ui/icons/Print";
 
 import "babel-polyfill/dist/polyfill";
 
@@ -52,6 +53,9 @@ const styles = theme => ({
   topMatter: {
     borderBottom: "solid 1px lightgrey",
     marginBottom: "30px"
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
   }
 });
 
@@ -243,6 +247,31 @@ export class BB extends Component {
     });
   };
 
+  getPrintUrl = (
+    filteredBenefits,
+    selectedEligibility,
+    selectedNeeds,
+    language
+  ) => {
+    const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
+    const needsIDs = Object.keys(selectedNeeds);
+    const selectedEligibilityKeys = Object.keys(selectedEligibility);
+    let url = "print";
+    url += "?lng=" + language;
+    if (selectedEligibilityKeys.length > 0) {
+      Object.keys(selectedEligibility).forEach(k => {
+        url += "&" + k + "=" + selectedEligibility[k];
+      });
+    }
+    if (needsIDs.length > 0) {
+      url += "&needs=" + needsIDs.join(",");
+    }
+    if (filteredBenefitsIDs.length > 0) {
+      url += "&benefits=" + filteredBenefitsIDs.join(",");
+    }
+    return url;
+  };
+
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
@@ -254,8 +283,15 @@ export class BB extends Component {
       this.props.selectedNeeds
     );
 
+    const printUrl = this.getPrintUrl(
+      filteredBenefits,
+      this.props.selectedEligibility,
+      this.props.selectedNeeds,
+      t("current-language-code")
+    );
+
     return (
-      <div id={this.props.id}>
+      <div id={this.props.id} ref={el => (this.componentRef = el)}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
@@ -303,7 +339,7 @@ export class BB extends Component {
               </Grid>
 
               <Grid container spacing={24}>
-                <Grid item xs={3} className={classnames(classes.sortBy)}>
+                <Grid item xs={6} className={classnames(classes.sortBy)}>
                   <FormControl
                     id="sortBySelector"
                     className={classes.formControl}
@@ -334,9 +370,20 @@ export class BB extends Component {
                       ""
                     )}
                   </FormControl>
+
+                  <Button
+                    variant="raised"
+                    size="small"
+                    target="dan"
+                    href={printUrl}
+                    className="printButton"
+                  >
+                    <PrintIcon className={classnames(classes.leftIcon)} />
+                    {t("Print")}
+                  </Button>
                 </Grid>
 
-                <Grid item xs={9} className={classnames(classes.collapse)}>
+                <Grid item xs={6} className={classnames(classes.collapse)}>
                   <Button
                     id="CollapseBenefits"
                     variant="flat"
