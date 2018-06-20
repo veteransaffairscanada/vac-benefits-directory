@@ -139,7 +139,7 @@ export class Favourites extends Component {
             <Grid item xs={12} className={classes.topMatter}>
               <Typography className={classes.title}>{t("B3.title")}</Typography>
             </Grid>
-            <Grid item lg={9} md={8} sm={7} xs={12}>
+            <Grid item xs={12}>
               <Grid item xs={12}>
                 <Typography
                   className={"BenefitsCounter " + classes.benefitsCount}
