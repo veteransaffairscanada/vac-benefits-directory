@@ -19,9 +19,6 @@ const styles = theme => ({
   benefitsCount: {
     fontSize: "24px"
   },
-  checkEligibility: {
-    fontWeight: "100"
-  },
   collapse: {
     textAlign: "right",
     textDecoration: "underline",
@@ -37,11 +34,6 @@ const styles = theme => ({
   },
   sortByBox: {
     backgroundColor: "white"
-  },
-  subTitle: {
-    fontSize: "20px",
-    fontWeight: "100",
-    paddingBottom: "25px"
   },
   title: {
     fontSize: "36px",
