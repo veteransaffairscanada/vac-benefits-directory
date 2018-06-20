@@ -137,24 +137,18 @@ export class BenefitCard extends Component {
                         : benefit.vacNameFr
                     }
                   />
-
-                  {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1 ? (
-                    <IconButton
-                      className={classes.iconButton}
-                      aria-label="Favorite"
-                      onClick={() => this.toggleBookmark(benefit.id)}
-                    >
+                  <IconButton
+                    className={classes.iconButton}
+                    aria-label="Favorite Button"
+                    id={"FavoriteButton" + benefit.id}
+                    onClick={() => this.toggleBookmark(benefit.id)}
+                  >
+                    {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1 ? (
                       <Favorite />
-                    </IconButton>
-                  ) : (
-                    <IconButton
-                      className={classes.iconButton}
-                      aria-label="Not Favorite"
-                      onClick={() => this.toggleBookmark(benefit.id)}
-                    >
+                    ) : (
                       <FavoriteBorder />
-                    </IconButton>
-                  )}
+                    )}
+                  </IconButton>
                 </Typography>
 
                 <Typography

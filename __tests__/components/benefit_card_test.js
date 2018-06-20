@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
@@ -9,12 +9,18 @@ expect.extend(toHaveNoViolations);
 
 describe("BenefitCard", () => {
   let props;
-  let _mountedBenefitCard;
+  let _mountedBenefitCard, _shallowBenefitCard;
   const mountedBenefitCard = () => {
     if (!_mountedBenefitCard) {
       _mountedBenefitCard = mount(<BenefitCard {...props} />);
     }
     return _mountedBenefitCard;
+  };
+  const shallowBenefitCard = () => {
+    if (!_shallowBenefitCard) {
+      _shallowBenefitCard = shallow(<BenefitCard {...props} />);
+    }
+    return _shallowBenefitCard;
   };
 
   beforeEach(() => {
@@ -28,9 +34,11 @@ describe("BenefitCard", () => {
       classes: {},
       onRef: foo => foo,
       searchString: "",
-      bookmarkedBenefits: []
+      bookmarkedBenefits: [],
+      toggleBookmark: jest.fn()
     };
     _mountedBenefitCard = undefined;
+    _shallowBenefitCard = undefined;
   });
 
   // it("contains the benefit type", () => {
@@ -108,6 +116,33 @@ describe("BenefitCard", () => {
     expect(mountedBenefitCard().text()).not.toContain("Veteran child benefits");
     expect(mountedBenefitCard().text()).toContain("Family child benefits");
     expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameFr);
+  });
+
+  it("is not favourited if not in list", () => {
+    expect(
+      shallowBenefitCard()
+        .find("#FavoriteButton0")
+        .children()
+        .text()
+    ).toContain("(FavoriteBorder)");
+  });
+
+  it("is favourited if in list", () => {
+    props.bookmarkedBenefits = ["0"];
+    expect(
+      shallowBenefitCard()
+        .find("#FavoriteButton0")
+        .children()
+        .text()
+    ).toContain("(Favorite)");
+  });
+
+  it("calls toggleBookmark if favourite button pressed", () => {
+    const favouriteButton = mountedBenefitCard()
+      .find("#FavoriteButton0")
+      .first();
+    favouriteButton.simulate("click");
+    expect(props.toggleBookmark).toBeCalledWith("0");
   });
 
   describe("when language is French", () => {
