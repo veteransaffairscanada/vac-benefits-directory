@@ -53,7 +53,7 @@ const styles = theme => ({
   }
 });
 
-export class Favorites extends Component {
+export class Favourites extends Component {
   state = {
     enIdx: null,
     frIdx: null,
@@ -228,7 +228,7 @@ export class Favorites extends Component {
   }
 }
 
-Favorites.propTypes = {
+Favourites.propTypes = {
   benefits: PropTypes.array,
   classes: PropTypes.object,
   eligibilityPaths: PropTypes.array,
@@ -244,4 +244,4 @@ Favorites.propTypes = {
   setSection: PropTypes.func
 };
 
-export default withStyles(styles)(Favorites);
+export default withStyles(styles)(Favourites);

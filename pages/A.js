@@ -13,7 +13,7 @@ import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
-import Favorites from "../components/favorites";
+import Favourites from "../components/favourites";
 
 export class A extends Component {
   constructor() {
@@ -349,10 +349,10 @@ export class A extends Component {
             url={this.props.url}
           />
         );
-      case section === "favorites":
+      case section === "favourites":
         return (
-          <Favorites
-            id="favorites"
+          <Favourites
+            id="favourites"
             t={t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
