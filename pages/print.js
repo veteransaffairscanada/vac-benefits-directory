@@ -10,8 +10,22 @@ export class Print extends Component {
     window.print();
   }
 
+  countString = (filteredBenefits, benefits, t) => {
+    switch (true) {
+      case filteredBenefits.length === benefits.length:
+        return t("B3.All benefits to consider");
+      case filteredBenefits.length == 0:
+        return t("B3.No benefits");
+      case filteredBenefits.length == 1:
+        return t("B3.One benefit");
+      default:
+        return t("B3.x benefits to consider", { x: filteredBenefits.length });
+    }
+  };
+
   render() {
     const { i18n, t, benefits, needs } = this.props; // eslint-disable-line no-unused-vars
+
     const query = this.props.url.query;
     const filteredBenefitsIDs =
       Object.keys(query).indexOf("benefits") > -1
@@ -26,26 +40,40 @@ export class Print extends Component {
     const selectedNeeds = needs.filter(
       x => selectedNeedsIDs.indexOf(x.id) > -1
     );
+
     return (
       <div style={{ padding: 12 }} className="allBenefitsList">
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <Typography variant="title">Benefits for:</Typography>
+            <Typography variant="title">
+              {t("B3.Filter by eligibility")}
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <ul>
-              <li>patronType: {query["patronType"]}</li>
-              <li>serviceType: {query["serviceType"]}</li>
-              <li>statusAndVitals: {query["statusAndVitals"]}</li>
+              <li>{t(query["patronType"])}</li>
+              <li>{t(query["serviceType"])}</li>
+              <li>{t(query["statusAndVitals"])}</li>
             </ul>
           </Grid>
 
           <Grid item xs={12}>
-            <Typography variant="title">Interested in:</Typography>
+            <Typography variant="title">{t("Filter by need")}</Typography>
           </Grid>
 
           <Grid item xs={12}>
-            <ul>{selectedNeeds.map((n, i) => <li key={i}>{n.nameEn}</li>)}</ul>
+            <ul>
+              {selectedNeeds.map((n, i) => (
+                <li key={i}>
+                  {t("current-language-code") == "en" ? n.nameEn : n.nameFr}
+                </li>
+              ))}
+            </ul>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography variant="title">
+              {this.countString(filteredBenefits, benefits, t)}
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <BenefitList
