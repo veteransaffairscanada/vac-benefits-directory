@@ -283,7 +283,7 @@ export class BB extends Component {
       this.props.selectedNeeds
     );
 
-    const url = this.getPrintUrl(
+    const printUrl = this.getPrintUrl(
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
@@ -375,7 +375,7 @@ export class BB extends Component {
                     variant="raised"
                     size="small"
                     target="dan"
-                    href={url}
+                    href={printUrl}
                     className="printButton"
                   >
                     <PrintIcon className={classnames(classes.leftIcon)} />
