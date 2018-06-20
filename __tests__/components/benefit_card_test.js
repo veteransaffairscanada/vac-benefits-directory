@@ -35,6 +35,7 @@ describe("BenefitCard", () => {
       onRef: foo => foo,
       searchString: "",
       bookmarkedBenefits: [],
+      showBookmark: true,
       toggleBookmark: jest.fn()
     };
     _mountedBenefitCard = undefined;
@@ -143,6 +144,16 @@ describe("BenefitCard", () => {
       .first();
     favouriteButton.simulate("click");
     expect(props.toggleBookmark).toBeCalledWith("0");
+  });
+
+  it("hides the Favourite Button if showBookmark is false", () => {
+    props.showBookmark = false;
+    expect(shallowBenefitCard().find("#FavoriteButton0").length).toEqual(0);
+  });
+
+  it("hides the Favourite Button if showBookmark is undefined", () => {
+    props.showBookmark = undefined;
+    expect(shallowBenefitCard().find("#FavoriteButton0").length).toEqual(0);
   });
 
   describe("when language is French", () => {

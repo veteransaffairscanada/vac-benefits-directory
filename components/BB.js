@@ -365,6 +365,7 @@ export class BB extends Component {
                   toggleBookmark={this.props.toggleBookmark}
                   bookmarkedBenefits={this.props.bookmarkedBenefits}
                   searchString={this.state.searchString}
+                  showBookmarks={true}
                 />
               </Grid>
             </Grid>

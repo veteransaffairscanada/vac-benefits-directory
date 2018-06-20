@@ -137,18 +137,23 @@ export class BenefitCard extends Component {
                         : benefit.vacNameFr
                     }
                   />
-                  <IconButton
-                    className={classes.iconButton}
-                    aria-label="Favorite Button"
-                    id={"FavoriteButton" + benefit.id}
-                    onClick={() => this.toggleBookmark(benefit.id)}
-                  >
-                    {this.props.bookmarkedBenefits.indexOf(benefit.id) > -1 ? (
-                      <Favorite />
-                    ) : (
-                      <FavoriteBorder />
-                    )}
-                  </IconButton>
+                  {this.props.showBookmark ? (
+                    <IconButton
+                      className={classes.iconButton}
+                      aria-label="Favorite Button"
+                      id={"FavoriteButton" + benefit.id}
+                      onClick={() => this.toggleBookmark(benefit.id)}
+                    >
+                      {this.props.bookmarkedBenefits.indexOf(benefit.id) >
+                      -1 ? (
+                        <Favorite />
+                      ) : (
+                        <FavoriteBorder />
+                      )}
+                    </IconButton>
+                  ) : (
+                    ""
+                  )}
                 </Typography>
 
                 <Typography
@@ -276,6 +281,7 @@ BenefitCard.propTypes = {
   onRef: PropTypes.func,
   bookmarkedBenefits: PropTypes.array,
   toggleBookmark: PropTypes.func,
+  showBookmark: PropTypes.bool,
   searchString: PropTypes.string
 };
 

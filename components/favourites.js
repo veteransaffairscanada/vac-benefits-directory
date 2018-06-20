@@ -217,6 +217,7 @@ export class Favourites extends Component {
                   sortByValue={this.state.sortByValue}
                   toggleBookmark={this.props.toggleBookmark}
                   bookmarkedBenefits={this.props.bookmarkedBenefits}
+                  showBookmarks={true}
                   searchString={this.state.searchString}
                 />
               </Grid>

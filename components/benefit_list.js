@@ -67,6 +67,7 @@ export class BenefitList extends React.Component {
             onRef={this.props.onRef}
             toggleBookmark={this.props.toggleBookmark}
             bookmarkedBenefits={this.props.bookmarkedBenefits}
+            showBookmark={this.props.showBookmarks}
             searchString={this.props.searchString}
           />
         ) : (
@@ -87,6 +88,7 @@ BenefitList.propTypes = {
   sortByValue: PropTypes.string,
   bookmarkedBenefits: PropTypes.array,
   toggleBookmark: PropTypes.func,
+  showBookmarks: PropTypes.bool,
   searchString: PropTypes.string
 };
 
