@@ -49,7 +49,8 @@ describe("A", () => {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
-      }
+      },
+      bookmarkedBenefits: []
     };
     _mountedA = undefined;
   });
@@ -92,6 +93,7 @@ describe("A", () => {
         serviceType: "CAF",
         statusAndVitals: ""
       },
+      bookmarkedBenefits: [],
       width: 1024
     });
     expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
@@ -104,6 +106,7 @@ describe("A", () => {
         serviceType: "",
         statusAndVitals: ""
       },
+      bookmarkedBenefits: [],
       width: 1024
     });
     expect(Router.push).toBeCalledWith(
@@ -133,6 +136,7 @@ describe("A", () => {
         serviceType: "CAF",
         statusAndVitals: ""
       },
+      bookmarkedBenefits: [],
       width: 1024
     });
     expect(Router.push).toBeCalledWith(

@@ -42,6 +42,7 @@ export class AllBenefits extends Component {
                     key={i}
                     onRef={foo => foo}
                     searchString=""
+                    bookmarkedBenefits={this.props.bookmarkedBenefits}
                   />
                 ))}
               </Grid>
@@ -66,7 +67,8 @@ AllBenefits.propTypes = {
   examples: PropTypes.array,
   eligibilityPaths: PropTypes.array,
   i18n: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  bookmarkedBenefits: PropTypes.array
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

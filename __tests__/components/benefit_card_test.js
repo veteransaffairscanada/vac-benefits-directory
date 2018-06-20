@@ -27,7 +27,8 @@ describe("BenefitCard", () => {
       examples: examplesFixture,
       classes: {},
       onRef: foo => foo,
-      searchString: ""
+      searchString: "",
+      bookmarkedBenefits: []
     };
     _mountedBenefitCard = undefined;
   });

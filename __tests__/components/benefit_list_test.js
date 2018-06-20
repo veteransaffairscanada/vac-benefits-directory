@@ -36,7 +36,8 @@ describe("BenefitList", () => {
       examples: examplesFixture,
       onRef: k => k,
       sortByValue: "",
-      searchString: ""
+      searchString: "",
+      bookmarkedBenefits: []
     };
     _mountedBenefitList = undefined;
     _shallowBenefitList = undefined;
