@@ -259,17 +259,17 @@ export class BB extends Component {
     const needsIDs = Object.keys(selectedNeeds);
     const selectedEligibilityKeys = Object.keys(selectedEligibility);
     let url = "print";
-    url += "&lng=" + language;
+    url += "?lng=" + language;
     if (selectedEligibilityKeys.length > 0) {
       Object.keys(selectedEligibility).forEach(k => {
         url += "&" + k + "=" + selectedEligibility[k];
       });
     }
     if (needsIDs.length > 0) {
-      url += "?needs=" + needsIDs.join(",");
+      url += "&needs=" + needsIDs.join(",");
     }
     if (filteredBenefitsIDs.length > 0) {
-      url += "?benefits=" + filteredBenefitsIDs.join(",");
+      url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
     return url;
   };
