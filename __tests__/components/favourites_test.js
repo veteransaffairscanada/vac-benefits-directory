@@ -80,7 +80,7 @@ describe("Favourites", () => {
   });
 
   it("has a working filterBenefits function", async () => {
-    const favouritesInstance = mountedFavourites().instance();
+    const favouritesInstance = shallowFavourites().instance();
     expect(
       favouritesInstance.filterBenefits(benefitsFixture, []).length
     ).toEqual(0);

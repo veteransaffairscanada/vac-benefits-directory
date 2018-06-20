@@ -58,7 +58,8 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     examples: state.examples,
-    eligibilityPaths: state.eligibilityPaths
+    eligibilityPaths: state.eligibilityPaths,
+    bookmarkedBenefits: state.bookmarkedBenefits
   };
 };
 
