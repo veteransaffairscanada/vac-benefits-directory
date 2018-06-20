@@ -17,8 +17,6 @@ import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
-// import getPageContext from "../lib/pageContext";
-// import { initStore } from "../store";
 
 const styles = theme => ({
   benefitsCount: {
@@ -373,9 +371,15 @@ export class BB extends Component {
                     )}
                   </FormControl>
 
-                  <Button variant="raised" size="small" target="dan" href={url}>
+                  <Button
+                    variant="raised"
+                    size="small"
+                    target="dan"
+                    href={url}
+                    className="printButton"
+                  >
                     <PrintIcon className={classnames(classes.leftIcon)} />
-                    Print
+                    {t("Print")}
                   </Button>
                 </Grid>
 

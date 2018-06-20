@@ -50,7 +50,7 @@ export class Print extends Component {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <ul>
+            <ul className="eligibilityList">
               <li>{t(query["patronType"])}</li>
               <li>{t(query["serviceType"])}</li>
               <li>{t(query["statusAndVitals"])}</li>
@@ -62,7 +62,7 @@ export class Print extends Component {
           </Grid>
 
           <Grid item xs={12}>
-            <ul>
+            <ul className="needsList">
               {selectedNeeds.map((n, i) => (
                 <li key={i}>
                   {t("current-language-code") == "en" ? n.nameEn : n.nameFr}
@@ -110,7 +110,8 @@ Print.propTypes = {
   eligibilityPaths: PropTypes.array,
   i18n: PropTypes.object,
   t: PropTypes.func,
-  sortByValue: PropTypes.string
+  sortByValue: PropTypes.string,
+  url: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withI18next()(Print));
