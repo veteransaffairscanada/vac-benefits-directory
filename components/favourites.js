@@ -117,9 +117,9 @@ export class Favourites extends Component {
 
   countString = (x, t) => {
     switch (true) {
-      case x == 0:
+      case x === 0:
         return t("B3.No benefits");
-      case x == 1:
+      case x === 1:
         return t("B3.One benefit");
       default:
         return t("B3.x benefits to consider", { x: x });
