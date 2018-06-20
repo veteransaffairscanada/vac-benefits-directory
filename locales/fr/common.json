@@ -8,9 +8,11 @@
 
   "GE": {
     "patronType":
-      "Sélectionnez celui qui décrit le mieux qui bénéficiera de l'avantage.",
-    "serviceType": "Sélectionnez celui qui décrit le mieux le type de service.",
-    "statusAndVitals": "Sélectionnez celui qui décrit le mieux l'état.",
+      "Sélectionnez l'option qui décrit le mieux celui qui bénéficiera de l'avantage.",
+    "serviceType":
+      "Sélectionnez l'option qui décrit le mieux le type de service.",
+    "statusAndVitals":
+      "Sélectionnez l'option qui décrit le mieux le statut du membre.",
     "needs title": "J'ai besoin d'aide avec ...",
     "needs subtitle": "Sélectionnez tout ce qui s'y rapporte"
   },
@@ -83,10 +85,10 @@
       "Taille du tableau des chemins d'admissibilité",
     "Size of Needs Table": "Tableau de la taille des besoins",
     "Size of Examples Table": "Taille de la table des exemples",
-    "Benefits missing text": "Avantages du texte manquant"
+    "Benefits with Empty Fields": "Avantages avec des champs vides"
   },
-  "next": "prochain",
-  "back": "arrière",
+  "next": "Suivant",
+  "back": "Retour",
   "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
   "alpha": "Pour les tests seulement",
   "noscript":
@@ -145,5 +147,6 @@
   "Veteran child benefits": "Avec cet avantage, le Vétéran peut avoir accès à",
   "Family child benefits":
     "Avec cet avantage, la famille du Vétéran peut avoir accès à",
-  "search": "Chercher"
+  "search": "Chercher",
+  "Select all that apply": "Sélectionnez tous les sujets qui vous intéressent."
 }

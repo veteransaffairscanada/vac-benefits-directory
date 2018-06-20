@@ -1,4 +1,4 @@
-FROM node:carbon
+FROM node:alpine
 MAINTAINER Max Neuvians <max.neuvians@tbs-sct.gc.ca>
 LABEL Description="Government of Canada VAC Proof of Concept" Vendor="Canadian Digital Service"
 
@@ -29,7 +29,7 @@ ENV CIRCLE_PROJECT_REPONAME ${CIRCLE_PROJECT_REPONAME}
 ARG AIRTABLE_WRITE_KEY
 ENV AIRTABLE_WRITE_KEY ${AIRTABLE_WRITE_KEY}
 
-RUN yarn install && yarn build
+RUN yarn install --ignore-engines && yarn build
 USER node
 
 EXPOSE 3000

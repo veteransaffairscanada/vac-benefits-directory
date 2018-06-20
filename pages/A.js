@@ -218,6 +218,19 @@ export class A extends Component {
       selectedEligibility["patronType"] === "service-person" &&
       selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
 
+    let previousSectionA4 = "A3";
+    if (selectedEligibility.patronType === "") {
+      previousSectionA4 = "A1";
+    } else if (selectedEligibility.serviceType === "" || profileIsVetWSV) {
+      previousSectionA4 = "A2";
+    }
+    if (
+      selectedEligibility.patronType === "organization" &&
+      ["A2", "A3", "A4"].indexOf(section) > -1
+    ) {
+      this.setSection("BB");
+    }
+
     switch (true) {
       case section === "favourites":
         return (
@@ -236,6 +249,57 @@ export class A extends Component {
             url={this.props.url}
           />
         );
+
+      case section === "BB" ||
+        (section !== "A1" && selectedEligibility.patronType === "organization"):
+        return (
+          <BB
+            id="BB"
+            t={t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+            needs={this.props.needs}
+            examples={this.props.examples}
+            selectedEligibility={selectedEligibility}
+            selectedNeeds={this.state.selectedNeeds}
+            toggleSelectedEligibility={this.toggleSelectedEligibility}
+            setSelectedNeeds={this.setSelectedNeeds}
+            setUserProfile={this.setUserProfile}
+            setSection={this.setSection}
+            clearFilters={this.clearFilters}
+            clearNeeds={this.clearNeeds}
+            pageWidth={this.state.width}
+            favouriteBenefits={this.state.favouriteBenefits}
+            toggleFavourite={this.toggleFavourite}
+            url={this.props.url}
+          />
+        );
+
+      case section === "A4" ||
+        (profileIsVetWSV && section === "A3") ||
+        (selectedEligibility.serviceType === "" && section === "A3") ||
+        (selectedEligibility.patronType === "" &&
+          (section === "A3" || section === "A2")):
+        return (
+          <GuidedExperience
+            id="A4"
+            stepNumber={3}
+            t={t}
+            nextSection="BB"
+            prevSection={previousSectionA4}
+            subtitle={t("B3.What do you need help with?")}
+            setSection={this.setSection}
+            selectedEligibility={selectedEligibility}
+          >
+            <GuidedExperienceNeeds
+              t={t}
+              needs={this.props.needs}
+              selectedNeeds={this.state.selectedNeeds}
+              setSelectedNeeds={this.setSelectedNeeds}
+            />
+          </GuidedExperience>
+        );
+
       case section === "A1":
         question = "patronType";
         return (
@@ -259,8 +323,7 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case selectedEligibility["patronType"] !== "organization" &&
-        section === "A2":
+      case section === "A2":
         question = "serviceType";
         return (
           <GuidedExperience
@@ -284,12 +347,7 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case selectedEligibility["patronType"] !== "organization" &&
-        !(
-          selectedEligibility["patronType"] === "service-person" &&
-          selectedEligibility["serviceType"] === "WSV (WWII or Korea)"
-        ) &&
-        section === "A3":
+      case section === "A3":
         question = "statusAndVitals";
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -320,6 +378,7 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
+
       case (selectedEligibility["patronType"] !== "organization" &&
         section === "A4") ||
         (profileIsVetWSV && section === "A3"):
@@ -339,32 +398,8 @@ export class A extends Component {
               needs={this.props.needs}
               selectedNeeds={this.state.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
-            />
+            />;
           </GuidedExperience>
-        );
-      case selectedEligibility["patronType"] === "organization" ||
-        section === "BB":
-        return (
-          <BB
-            id="BB"
-            t={t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
-            examples={this.props.examples}
-            selectedEligibility={selectedEligibility}
-            selectedNeeds={this.state.selectedNeeds}
-            toggleSelectedEligibility={this.toggleSelectedEligibility}
-            setSelectedNeeds={this.setSelectedNeeds}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
-            clearFilters={this.clearFilters}
-            clearNeeds={this.clearNeeds}
-            pageWidth={this.state.width}
-            favouriteBenefits={this.state.favouriteBenefits}
-            toggleFavourite={this.toggleFavourite}
-            url={this.props.url}
-          />
         );
     }
   };
@@ -372,6 +407,7 @@ export class A extends Component {
   render() {
     // reset bad choices
     let selectedEligibility = this.state.selectedEligibility;
+
     if (
       this.state.selectedEligibility.patronType === "service-person" &&
       this.state.selectedEligibility.statusAndVitals === "deceased"
@@ -379,6 +415,7 @@ export class A extends Component {
       selectedEligibility.statusAndVitals = "";
       this.setState({ selectedEligibility: selectedEligibility });
     }
+
     if (
       this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
       this.state.selectedEligibility.statusAndVitals === "stillServing"
@@ -386,6 +423,7 @@ export class A extends Component {
       selectedEligibility.statusAndVitals = "";
       this.setState({ selectedEligibility: selectedEligibility });
     }
+
     // Guided Experience skips statusAndVitals for service-person / WSV
     if (
       this.state.section !== "BB" &&

@@ -35,7 +35,9 @@ export class DataValidation extends Component {
       !(b.vacNameEn && b.vacNameEn != "") ||
       !(b.vacNameFr && b.vacNameFr != "") ||
       !(b.oneLineDescriptionEn && b.oneLineDescriptionEn != "") ||
-      !(b.oneLineDescriptionFr && b.oneLineDescriptionFr != "")
+      !(b.oneLineDescriptionFr && b.oneLineDescriptionFr != "") ||
+      !(b.benefitPageEn && b.benefitPageEn != "") ||
+      !(b.benefitPageFr && b.benefitPageFr != "")
     );
   }
 
@@ -72,7 +74,7 @@ export class DataValidation extends Component {
         examples.length > 0 ? "Pass" : "Fail"
       ),
       this.createData(
-        "Benefits missing text",
+        "Benefits with Empty Fields",
         benefits.filter(this.checkIfMissingText).length,
         benefits.filter(this.checkIfMissingText).length == 0 ? "Pass" : "Fail"
       )
