@@ -65,11 +65,11 @@ export class BenefitCard extends Component {
     logEvent("Exit", url);
   };
 
-  toggleBookmark = id => {
+  toggleFavourite = id => {
     this.setState(previousState => {
       return { ...previousState, open: !previousState.open };
     });
-    this.props.toggleBookmark(id);
+    this.props.toggleFavourite(id);
   };
 
   toggleOpenState = () => {
@@ -137,15 +137,14 @@ export class BenefitCard extends Component {
                         : benefit.vacNameFr
                     }
                   />
-                  {this.props.showBookmark ? (
+                  {this.props.showFavourite ? (
                     <IconButton
                       className={classes.iconButton}
                       aria-label="Favorite Button"
                       id={"FavoriteButton" + benefit.id}
-                      onClick={() => this.toggleBookmark(benefit.id)}
+                      onClick={() => this.toggleFavourite(benefit.id)}
                     >
-                      {this.props.bookmarkedBenefits.indexOf(benefit.id) >
-                      -1 ? (
+                      {this.props.favouriteBenefits.indexOf(benefit.id) > -1 ? (
                         <Favorite />
                       ) : (
                         <FavoriteBorder />
@@ -279,9 +278,9 @@ BenefitCard.propTypes = {
   examples: PropTypes.array,
   t: PropTypes.func,
   onRef: PropTypes.func,
-  bookmarkedBenefits: PropTypes.array,
-  toggleBookmark: PropTypes.func,
-  showBookmark: PropTypes.bool,
+  favouriteBenefits: PropTypes.array,
+  toggleFavourite: PropTypes.func,
+  showFavourite: PropTypes.bool,
   searchString: PropTypes.string
 };
 

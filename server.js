@@ -92,8 +92,8 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
                 console.log("Cache refreshed @ " + data.timestamp);
               });
             } else {
-              req.data.bookmarkedBenefits = new Cookies(req.headers.cookie).get(
-                "bookmarkedBenefits"
+              req.data.favouriteBenefits = new Cookies(req.headers.cookie).get(
+                "favouriteBenefits"
               );
               handle(req, res);
             }

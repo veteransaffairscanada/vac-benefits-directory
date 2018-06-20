@@ -31,7 +31,7 @@ describe("AllBenefits", () => {
       loadDataStore: jest.fn(),
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      bookmarkedBenefits: []
+      favouriteBenefits: []
     };
     _mountedAllBenefits = undefined;
   });

@@ -104,11 +104,11 @@ export class Favourites extends Component {
     });
   };
 
-  filterBenefits = (benefits, bookmarkedBenefits) => {
+  filterBenefits = (benefits, favouriteBenefits) => {
     if (benefits.length === 0) {
       return benefits;
     }
-    return benefits.filter(b => bookmarkedBenefits.indexOf(b.id) > -1);
+    return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
   };
 
   handleSortByChange = event => {
@@ -137,7 +137,7 @@ export class Favourites extends Component {
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
-      this.props.bookmarkedBenefits
+      this.props.favouriteBenefits
     );
 
     return (
@@ -215,9 +215,9 @@ export class Favourites extends Component {
                   onRef={ref => this.children.push(ref)}
                   examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
-                  toggleBookmark={this.props.toggleBookmark}
-                  bookmarkedBenefits={this.props.bookmarkedBenefits}
-                  showBookmarks={true}
+                  toggleFavourite={this.props.toggleFavourite}
+                  favouriteBenefits={this.props.favouriteBenefits}
+                  showFavourites={true}
                   searchString={this.state.searchString}
                 />
               </Grid>
@@ -239,8 +239,8 @@ Favourites.propTypes = {
   setUserProfile: PropTypes.func,
   t: PropTypes.func,
   pageWidth: PropTypes.number,
-  bookmarkedBenefits: PropTypes.array,
-  toggleBookmark: PropTypes.func,
+  favouriteBenefits: PropTypes.array,
+  toggleFavourite: PropTypes.func,
   url: PropTypes.object,
   setSection: PropTypes.func
 };

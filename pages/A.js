@@ -20,7 +20,7 @@ export class A extends Component {
     super();
     this.cookies = new Cookies();
     this.state = {
-      bookmarkedBenefits: [],
+      favouriteBenefits: [],
       section: "BB",
       selectedNeeds: {},
       selectedEligibility: {
@@ -31,7 +31,7 @@ export class A extends Component {
       width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
-    // this.cookies.set("bookmarkedBenefits", [], { path: "/" });
+    // this.cookies.set("favouriteBenefits", [], { path: "/" });
   }
 
   stringToMap = s => {
@@ -92,7 +92,7 @@ export class A extends Component {
         : "";
     });
     const newState = {
-      bookmarkedBenefits: this.props.bookmarkedBenefits,
+      favouriteBenefits: this.props.favouriteBenefits,
       section: this.props.url.query.section || "BB",
       selectedNeeds: filters.selectedNeeds,
       selectedEligibility: {
@@ -172,17 +172,17 @@ export class A extends Component {
     this.setState({ selectedEligibility: newSelectedEligibility });
   };
 
-  toggleBookmark = id => {
-    let bookmarkedBenefits = this.cookies.get("bookmarkedBenefits")
-      ? this.cookies.get("bookmarkedBenefits")
+  toggleFavourite = id => {
+    let favouriteBenefits = this.cookies.get("favouriteBenefits")
+      ? this.cookies.get("favouriteBenefits")
       : [];
-    if (bookmarkedBenefits.indexOf(id) > -1) {
-      bookmarkedBenefits.splice(bookmarkedBenefits.indexOf(id), 1);
+    if (favouriteBenefits.indexOf(id) > -1) {
+      favouriteBenefits.splice(favouriteBenefits.indexOf(id), 1);
     } else {
-      bookmarkedBenefits.push(id);
+      favouriteBenefits.push(id);
     }
-    this.cookies.set("bookmarkedBenefits", bookmarkedBenefits, { path: "/" });
-    this.setState({ bookmarkedBenefits: bookmarkedBenefits });
+    this.cookies.set("favouriteBenefits", favouriteBenefits, { path: "/" });
+    this.setState({ favouriteBenefits: favouriteBenefits });
   };
 
   clearFilters = () => {
@@ -344,8 +344,8 @@ export class A extends Component {
             clearFilters={this.clearFilters}
             clearNeeds={this.clearNeeds}
             pageWidth={this.state.width}
-            bookmarkedBenefits={this.state.bookmarkedBenefits}
-            toggleBookmark={this.toggleBookmark}
+            favouriteBenefits={this.state.favouriteBenefits}
+            toggleFavourite={this.toggleFavourite}
             url={this.props.url}
           />
         );
@@ -361,8 +361,8 @@ export class A extends Component {
             setUserProfile={this.setUserProfile}
             setSection={this.setSection}
             pageWidth={this.state.width}
-            bookmarkedBenefits={this.state.bookmarkedBenefits}
-            toggleBookmark={this.toggleBookmark}
+            favouriteBenefits={this.state.favouriteBenefits}
+            toggleFavourite={this.toggleFavourite}
             url={this.props.url}
           />
         );
@@ -411,7 +411,7 @@ const mapStateToProps = state => {
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
     examples: state.examples,
-    bookmarkedBenefits: state.bookmarkedBenefits
+    favouriteBenefits: state.favouriteBenefits
   };
 };
 
@@ -424,7 +424,7 @@ A.propTypes = {
   needs: PropTypes.array,
   t: PropTypes.func,
   url: PropTypes.object,
-  bookmarkedBenefits: PropTypes.array
+  favouriteBenefits: PropTypes.array
 };
 
 export default connect(mapStateToProps)(withI18next()(A));

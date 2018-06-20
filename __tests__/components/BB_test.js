@@ -55,7 +55,7 @@ describe("BB", () => {
         avatar: "BB-avatar-92"
       },
       url: { query: {} },
-      bookmarkedBenefits: []
+      favouriteBenefits: []
     };
     _shallowBB = undefined;
     _mountedBB = undefined;

@@ -362,10 +362,10 @@ export class BB extends Component {
                   onRef={ref => this.children.push(ref)}
                   examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
-                  toggleBookmark={this.props.toggleBookmark}
-                  bookmarkedBenefits={this.props.bookmarkedBenefits}
+                  toggleFavourite={this.props.toggleFavourite}
+                  favouriteBenefits={this.props.favouriteBenefits}
                   searchString={this.state.searchString}
-                  showBookmarks={true}
+                  showFavourites={true}
                 />
               </Grid>
             </Grid>
@@ -392,8 +392,8 @@ BB.propTypes = {
   t: PropTypes.func,
   toggleSelectedEligibility: PropTypes.func,
   pageWidth: PropTypes.number,
-  bookmarkedBenefits: PropTypes.array,
-  toggleBookmark: PropTypes.func,
+  favouriteBenefits: PropTypes.array,
+  toggleFavourite: PropTypes.func,
   url: PropTypes.object,
   setSection: PropTypes.func
 };

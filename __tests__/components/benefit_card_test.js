@@ -34,9 +34,9 @@ describe("BenefitCard", () => {
       classes: {},
       onRef: foo => foo,
       searchString: "",
-      bookmarkedBenefits: [],
-      showBookmark: true,
-      toggleBookmark: jest.fn()
+      favouriteBenefits: [],
+      showFavourite: true,
+      toggleFavourite: jest.fn()
     };
     _mountedBenefitCard = undefined;
     _shallowBenefitCard = undefined;
@@ -129,7 +129,7 @@ describe("BenefitCard", () => {
   });
 
   it("is favourited if in list", () => {
-    props.bookmarkedBenefits = ["0"];
+    props.favouriteBenefits = ["0"];
     expect(
       shallowBenefitCard()
         .find("#FavoriteButton0")
@@ -138,21 +138,21 @@ describe("BenefitCard", () => {
     ).toContain("(Favorite)");
   });
 
-  it("calls toggleBookmark if favourite button pressed", () => {
+  it("calls toggleFavourite if favourite button pressed", () => {
     const favouriteButton = mountedBenefitCard()
       .find("#FavoriteButton0")
       .first();
     favouriteButton.simulate("click");
-    expect(props.toggleBookmark).toBeCalledWith("0");
+    expect(props.toggleFavourite).toBeCalledWith("0");
   });
 
-  it("hides the Favourite Button if showBookmark is false", () => {
-    props.showBookmark = false;
+  it("hides the Favourite Button if showFavourite is false", () => {
+    props.showFavourite = false;
     expect(shallowBenefitCard().find("#FavoriteButton0").length).toEqual(0);
   });
 
-  it("hides the Favourite Button if showBookmark is undefined", () => {
-    props.showBookmark = undefined;
+  it("hides the Favourite Button if showFavourite is undefined", () => {
+    props.showFavourite = undefined;
     expect(shallowBenefitCard().find("#FavoriteButton0").length).toEqual(0);
   });
 

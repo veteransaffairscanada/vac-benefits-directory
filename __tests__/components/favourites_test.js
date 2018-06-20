@@ -48,7 +48,7 @@ describe("Favourites", () => {
       toggleSelectedEligibility: jest.fn(),
       classes: {},
       url: { query: {} },
-      bookmarkedBenefits: ["3"]
+      favouriteBenefits: ["3"]
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
@@ -70,12 +70,12 @@ describe("Favourites", () => {
   });
 
   it("renders with no favourites", async () => {
-    props.bookmarkedBenefits = [];
+    props.favouriteBenefits = [];
     expect(mountedFavourites().find("BenefitCard").length).toEqual(0);
   });
 
   it("renders with 2 favourites", async () => {
-    props.bookmarkedBenefits = ["0", "3"];
+    props.favouriteBenefits = ["0", "3"];
     expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
 
