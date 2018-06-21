@@ -29,7 +29,8 @@ const styles = theme => ({
   ExpansionPanelSummary: {
     "&[aria-expanded*=true]": {
       backgroundColor: "#f8f8f8"
-    }
+    },
+    userSelect: "inherit"
   },
   bullet: {
     paddingBottom: "1em"
