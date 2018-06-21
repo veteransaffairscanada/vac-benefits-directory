@@ -42,6 +42,7 @@ export class AllBenefits extends Component {
                     key={i}
                     onRef={foo => foo}
                     searchString=""
+                    favouriteBenefits={this.props.favouriteBenefits}
                   />
                 ))}
               </Grid>
@@ -57,7 +58,8 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     examples: state.examples,
-    eligibilityPaths: state.eligibilityPaths
+    eligibilityPaths: state.eligibilityPaths,
+    favouriteBenefits: state.favouriteBenefits
   };
 };
 
@@ -66,7 +68,8 @@ AllBenefits.propTypes = {
   examples: PropTypes.array,
   eligibilityPaths: PropTypes.array,
   i18n: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  favouriteBenefits: PropTypes.array
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

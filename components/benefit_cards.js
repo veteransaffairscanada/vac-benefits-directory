@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Typography, Button, IconButton } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -9,6 +9,8 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Highlighter from "react-highlight-words";
+import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
 import { logEvent } from "../utils/analytics";
 
@@ -63,13 +65,22 @@ export class BenefitCard extends Component {
     logEvent("Exit", url);
   };
 
+  toggleFavourite = id => {
+    this.setState(previousState => {
+      return { ...previousState, open: !previousState.open };
+    });
+    this.props.toggleFavourite(id);
+  };
+
   toggleOpenState = () => {
-    let newState = !this.state.open;
-    this.setState({ open: newState });
+    this.setState(previousState => {
+      return { ...previousState, open: !previousState.open };
+    });
   };
 
   componentDidMount() {
     this.props.onRef(this);
+    this.forceUpdate();
   }
 
   componentWillUnmount() {
@@ -126,6 +137,21 @@ export class BenefitCard extends Component {
                         : benefit.vacNameFr
                     }
                   />
+                  {this.props.showFavourite ? (
+                    <IconButton
+                      aria-label="Favorite Button"
+                      id={"FavoriteButton" + benefit.id}
+                      onClick={() => this.toggleFavourite(benefit.id)}
+                    >
+                      {this.props.favouriteBenefits.indexOf(benefit.id) > -1 ? (
+                        <Favorite />
+                      ) : (
+                        <FavoriteBorder />
+                      )}
+                    </IconButton>
+                  ) : (
+                    ""
+                  )}
                 </Typography>
 
                 <Typography
@@ -251,6 +277,9 @@ BenefitCard.propTypes = {
   examples: PropTypes.array,
   t: PropTypes.func,
   onRef: PropTypes.func,
+  favouriteBenefits: PropTypes.array,
+  toggleFavourite: PropTypes.func,
+  showFavourite: PropTypes.bool,
   searchString: PropTypes.string
 };
 

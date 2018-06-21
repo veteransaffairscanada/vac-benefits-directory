@@ -60,7 +60,8 @@
     "All benefits to consider": "Showing all benefits",
     "check eligibility":
       "Remember to read the eligibility criteria for each benefit before applying.",
-    "Filter by eligibility": "Show me benefits for..."
+    "Filter by eligibility": "Show me benefits for...",
+    "favouritesButtonText": "Favourites"
   },
   "index": {
     "data validation": "data validation",

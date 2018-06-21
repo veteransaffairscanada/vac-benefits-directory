@@ -30,7 +30,8 @@ describe("AllBenefits", () => {
       storeHydrated: true,
       loadDataStore: jest.fn(),
       benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture
+      eligibilityPaths: eligibilityPathsFixture,
+      favouriteBenefits: []
     };
     _mountedAllBenefits = undefined;
   });

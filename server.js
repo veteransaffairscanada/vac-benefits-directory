@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const next = require("next");
+const Cookies = require("universal-cookie");
 
 const { parseUserAgent } = require("detect-browser");
 
@@ -91,6 +92,9 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
                 console.log("Cache refreshed @ " + data.timestamp);
               });
             } else {
+              req.data.favouriteBenefits = new Cookies(req.headers.cookie).get(
+                "favouriteBenefits"
+              );
               handle(req, res);
             }
           });

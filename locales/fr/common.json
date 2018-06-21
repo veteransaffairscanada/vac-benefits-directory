@@ -62,7 +62,8 @@
     "All benefits to consider": "Tous les avantages",
     "check eligibility":
       "Vérifiez les critéres d’admissibilité de chaque avantage avant de faire une demande.",
-    "Filter by eligibility": "Montrez-moi des avantages pour..."
+    "Filter by eligibility": "Montrez-moi des avantages pour...",
+    "favouritesButtonText": "Favoris"
   },
   "index": {
     "data validation": "La validation des données",

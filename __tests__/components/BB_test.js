@@ -54,7 +54,8 @@ describe("BB", () => {
         expandOpen: "BB-expandOpen-91",
         avatar: "BB-avatar-92"
       },
-      url: { query: {} }
+      url: { query: {} },
+      favouriteBenefits: []
     };
     _shallowBB = undefined;
     _mountedBB = undefined;

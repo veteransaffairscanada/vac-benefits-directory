@@ -11,9 +11,7 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import lunr from "lunr";
 import PrintIcon from "@material-ui/icons/Print";
-
 import "babel-polyfill/dist/polyfill";
-
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
@@ -385,6 +383,14 @@ export class BB extends Component {
 
                 <Grid item xs={6} className={classnames(classes.collapse)}>
                   <Button
+                    id="Favourites"
+                    variant="flat"
+                    size="small"
+                    onClick={() => this.props.setSection("favourites")}
+                  >
+                    {t("B3.favouritesButtonText")}
+                  </Button>
+                  <Button
                     id="CollapseBenefits"
                     variant="flat"
                     size="small"
@@ -401,7 +407,10 @@ export class BB extends Component {
                   onRef={ref => this.children.push(ref)}
                   examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
+                  toggleFavourite={this.props.toggleFavourite}
+                  favouriteBenefits={this.props.favouriteBenefits}
                   searchString={this.state.searchString}
+                  showFavourites={true}
                 />
               </Grid>
             </Grid>
@@ -428,7 +437,10 @@ BB.propTypes = {
   t: PropTypes.func,
   toggleSelectedEligibility: PropTypes.func,
   pageWidth: PropTypes.number,
-  url: PropTypes.object
+  favouriteBenefits: PropTypes.array,
+  toggleFavourite: PropTypes.func,
+  url: PropTypes.object,
+  setSection: PropTypes.func
 };
 
 export default withStyles(styles)(BB);
