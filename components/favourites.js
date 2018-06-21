@@ -7,11 +7,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import lunr from "lunr";
 import "babel-polyfill/dist/polyfill";
-
 import BenefitList from "../components/benefit_list";
 
 const styles = theme => ({
@@ -48,7 +46,6 @@ export class Favourites extends Component {
   state = {
     enIdx: null,
     frIdx: null,
-    searchString: "",
     sortByValue: "relevance"
   };
 
@@ -117,12 +114,6 @@ export class Favourites extends Component {
     }
   };
 
-  handleSearchChange = event => {
-    this.setState({
-      searchString: event.target.value
-    });
-  };
-
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
@@ -173,18 +164,6 @@ export class Favourites extends Component {
                         {t("B3.Alphabetical")}
                       </MenuItem>
                     </Select>
-                    {this.props.url.query.show_search ? (
-                      <TextField
-                        id="bbSearchField"
-                        label={t("search")}
-                        placeholder=""
-                        value={this.state.searchString}
-                        onChange={this.handleSearchChange}
-                        margin="normal"
-                      />
-                    ) : (
-                      ""
-                    )}
                   </FormControl>
                 </Grid>
 
@@ -209,7 +188,7 @@ export class Favourites extends Component {
                   toggleFavourite={this.props.toggleFavourite}
                   favouriteBenefits={this.props.favouriteBenefits}
                   showFavourites={true}
-                  searchString={this.state.searchString}
+                  searchString=""
                 />
               </Grid>
             </Grid>

@@ -11,9 +11,7 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import lunr from "lunr";
 import PrintIcon from "@material-ui/icons/Print";
-
 import "babel-polyfill/dist/polyfill";
-
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";

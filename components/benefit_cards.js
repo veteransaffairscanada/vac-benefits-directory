@@ -15,7 +15,6 @@ import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import { logEvent } from "../utils/analytics";
 
 const styles = () => ({
-  iconButton: {},
   button: {
     marginTop: "30px"
   },
@@ -139,7 +138,6 @@ export class BenefitCard extends Component {
                   />
                   {this.props.showFavourite ? (
                     <IconButton
-                      className={classes.iconButton}
                       aria-label="Favorite Button"
                       id={"FavoriteButton" + benefit.id}
                       onClick={() => this.toggleFavourite(benefit.id)}
