@@ -11,7 +11,7 @@
       "Select the one that best describes who will be receiving the benefit.",
     "serviceType": "Select the one that best describes the service type.",
     "statusAndVitals": "Select the one that best describes the status.",
-    "needs title": "I need help with...",
+    "needs title": "I need help with:",
     "needs subtitle": "Select all that apply"
   },
   "A1": {
@@ -60,8 +60,9 @@
     "All benefits to consider": "Showing all benefits",
     "check eligibility":
       "Remember to read the eligibility criteria for each benefit before applying.",
-    "Filter by eligibility": "Show me benefits for...",
+    "Filter by eligibility": "Show me benefits for:",
     "favouritesButtonText": "Favourites"
+
   },
   "index": {
     "data validation": "data validation",
@@ -133,7 +134,7 @@
   "Find out more": "Find out more",
   "Available to": "Available to",
   "examples": "Depending on your needs this program can provide",
-  "Filter by need": "I need help with...",
+  "Filter by need": "I need help with:",
   "Close all": "Close all",
   "stillServing": "Still-serving",
   "releasedAlive": "Released",
