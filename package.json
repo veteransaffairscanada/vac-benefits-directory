@@ -51,6 +51,7 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
+    "universal-cookie": "^2.1.5",
     "wait-on": "^2.1.0"
   },
   "devDependencies": {

@@ -13,7 +13,7 @@
       "Sélectionnez l'option qui décrit le mieux le type de service.",
     "statusAndVitals":
       "Sélectionnez l'option qui décrit le mieux le statut du membre.",
-    "needs title": "J'ai besoin d'aide avec ...",
+    "needs title": "J'ai besoin d'aide avec:",
     "needs subtitle": "Sélectionnez tout ce qui s'y rapporte"
   },
   "A1": {
@@ -63,6 +63,7 @@
     "check eligibility":
       "Vérifiez les critéres d’admissibilité de chaque avantage avant de faire une demande.",
     "Filter by eligibility": "Montrez-moi des avantages pour:"
+    "favouritesButtonText": "Favoris"
   },
   "index": {
     "data validation": "La validation des données",
@@ -137,7 +138,7 @@
   "Find out more": "En savoir plus",
   "Available to": "Disponible pour",
   "examples": "Selon vos besoins, ce programme peut fournir",
-  "Filter by need": "J’ai besoin d’aide avec...",
+  "Filter by need": "J’ai besoin d’aide avec:",
   "Select all that apply": "Sélectionnez tout ce qui s'applique.",
   "stillServing": "Toujours en train de servir",
   "releasedAlive": "Libéré",

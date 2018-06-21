@@ -65,6 +65,9 @@ export class BenefitList extends React.Component {
             t={this.props.t}
             key={benefit.id}
             onRef={this.props.onRef}
+            toggleFavourite={this.props.toggleFavourite}
+            favouriteBenefits={this.props.favouriteBenefits}
+            showFavourite={this.props.showFavourites}
             searchString={this.props.searchString}
           />
         ) : (
@@ -83,6 +86,9 @@ BenefitList.propTypes = {
   examples: PropTypes.array,
   onRef: PropTypes.func,
   sortByValue: PropTypes.string,
+  favouriteBenefits: PropTypes.array,
+  toggleFavourite: PropTypes.func,
+  showFavourites: PropTypes.bool,
   searchString: PropTypes.string
 };
 

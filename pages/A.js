@@ -7,16 +7,20 @@ import Layout from "../components/layout";
 import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 import { logEvent } from "../utils/analytics";
+import Cookies from "universal-cookie";
 
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
+import Favourites from "../components/favourites";
 
 export class A extends Component {
   constructor() {
     super();
+    this.cookies = new Cookies();
     this.state = {
+      favouriteBenefits: [],
       section: "BB",
       selectedNeeds: {},
       selectedEligibility: {
@@ -27,6 +31,7 @@ export class A extends Component {
       width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
+    // this.cookies.set("favouriteBenefits", [], { path: "/" });
   }
 
   stringToMap = s => {
@@ -87,6 +92,7 @@ export class A extends Component {
         : "";
     });
     const newState = {
+      favouriteBenefits: this.props.favouriteBenefits,
       section: this.props.url.query.section || "BB",
       selectedNeeds: filters.selectedNeeds,
       selectedEligibility: {
@@ -166,6 +172,19 @@ export class A extends Component {
     this.setState({ selectedEligibility: newSelectedEligibility });
   };
 
+  toggleFavourite = id => {
+    let favouriteBenefits = this.cookies.get("favouriteBenefits")
+      ? this.cookies.get("favouriteBenefits")
+      : [];
+    if (favouriteBenefits.indexOf(id) > -1) {
+      favouriteBenefits.splice(favouriteBenefits.indexOf(id), 1);
+    } else {
+      favouriteBenefits.push(id);
+    }
+    this.cookies.set("favouriteBenefits", favouriteBenefits, { path: "/" });
+    this.setState({ favouriteBenefits: favouriteBenefits });
+  };
+
   clearFilters = () => {
     const newState = {
       section: this.state.section,
@@ -213,6 +232,24 @@ export class A extends Component {
     }
 
     switch (true) {
+      case section === "favourites":
+        return (
+          <Favourites
+            id="favourites"
+            t={t}
+            benefits={this.props.benefits}
+            eligibilityPaths={this.props.eligibilityPaths}
+            needs={this.props.needs}
+            examples={this.props.examples}
+            setUserProfile={this.setUserProfile}
+            setSection={this.setSection}
+            pageWidth={this.state.width}
+            favouriteBenefits={this.state.favouriteBenefits}
+            toggleFavourite={this.toggleFavourite}
+            url={this.props.url}
+          />
+        );
+
       case section === "BB" ||
         (section !== "A1" && selectedEligibility.patronType === "organization"):
         return (
@@ -232,6 +269,8 @@ export class A extends Component {
             clearFilters={this.clearFilters}
             clearNeeds={this.clearNeeds}
             pageWidth={this.state.width}
+            favouriteBenefits={this.state.favouriteBenefits}
+            toggleFavourite={this.toggleFavourite}
             url={this.props.url}
           />
         );
@@ -339,12 +378,36 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
+
+      case (selectedEligibility["patronType"] !== "organization" &&
+        section === "A4") ||
+        (profileIsVetWSV && section === "A3"):
+        return (
+          <GuidedExperience
+            id="A4"
+            stepNumber={3}
+            t={t}
+            nextSection="BB"
+            prevSection={profileIsVetWSV ? "A2" : "A3"}
+            subtitle={t("B3.What do you need help with?")}
+            setSection={this.setSection}
+            selectedEligibility={selectedEligibility}
+          >
+            <GuidedExperienceNeeds
+              t={t}
+              needs={this.props.needs}
+              selectedNeeds={this.state.selectedNeeds}
+              setSelectedNeeds={this.setSelectedNeeds}
+            />;
+          </GuidedExperience>
+        );
     }
   };
 
   render() {
     // reset bad choices
     let selectedEligibility = this.state.selectedEligibility;
+
     if (
       this.state.selectedEligibility.patronType === "service-person" &&
       this.state.selectedEligibility.statusAndVitals === "deceased"
@@ -352,6 +415,7 @@ export class A extends Component {
       selectedEligibility.statusAndVitals = "";
       this.setState({ selectedEligibility: selectedEligibility });
     }
+
     if (
       this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
       this.state.selectedEligibility.statusAndVitals === "stillServing"
@@ -359,6 +423,7 @@ export class A extends Component {
       selectedEligibility.statusAndVitals = "";
       this.setState({ selectedEligibility: selectedEligibility });
     }
+
     // Guided Experience skips statusAndVitals for service-person / WSV
     if (
       this.state.section !== "BB" &&
@@ -383,7 +448,8 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
-    examples: state.examples
+    examples: state.examples,
+    favouriteBenefits: state.favouriteBenefits
   };
 };
 
@@ -395,7 +461,8 @@ A.propTypes = {
   i18n: PropTypes.object,
   needs: PropTypes.array,
   t: PropTypes.func,
-  url: PropTypes.object
+  url: PropTypes.object,
+  favouriteBenefits: PropTypes.array
 };
 
 export default connect(mapStateToProps)(withI18next()(A));

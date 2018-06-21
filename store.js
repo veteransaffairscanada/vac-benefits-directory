@@ -4,7 +4,8 @@ const initialState = {
   benefits: [],
   eligibilityPaths: [],
   needs: [],
-  examples: []
+  examples: [],
+  favouriteBenefits: []
 };
 
 // REDUCERS
@@ -17,7 +18,9 @@ export const reducer = (state = initialState, action) => {
         eligibilityPaths:
           action.data.eligibilityPaths || state.eligibilityPaths,
         needs: action.data.needs || state.needs,
-        examples: action.data.examples || state.examples
+        examples: action.data.examples || state.examples,
+        favouriteBenefits:
+          action.data.favouriteBenefits || state.favouriteBenefits
       });
     default:
       return state;
