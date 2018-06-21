@@ -36,7 +36,8 @@ const styles = () => ({
   ExpansionPanelSummary: {
     "&[aria-expanded*=true]": {
       backgroundColor: "#f8f8f8"
-    }
+    },
+    userSelect: "inherit"
   },
   ChildBenefitDesc: {
     paddingBottom: "30px"
