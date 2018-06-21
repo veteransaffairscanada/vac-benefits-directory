@@ -4,7 +4,7 @@ import { extractCritical } from "emotion-server";
 import JssProvider from "react-jss/lib/JssProvider";
 import flush from "styled-jsx/server";
 import getPageContext from "../lib/pageContext";
-import { MuiThemeProvider } from "material-ui/styles";
+import { MuiThemeProvider } from "@material-ui/core/styles";
 
 import { withI18next } from "../lib/withI18next";
 

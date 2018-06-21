@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid } from "material-ui";
-import { withStyles } from "material-ui/styles/index";
-import MobileStepper from "material-ui/MobileStepper";
-import Button from "material-ui/Button";
+import { Grid } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles/index";
+import MobileStepper from "@material-ui/core/MobileStepper";
+import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import Typography from "material-ui/Typography";
+import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
 import EditIcon from "@material-ui/icons/Edit";
-import { MuiThemeProvider, createMuiTheme } from "material-ui/styles";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
   palette: {

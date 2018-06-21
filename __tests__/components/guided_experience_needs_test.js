@@ -2,7 +2,7 @@
 
 import { mount, shallow } from "enzyme";
 import React from "react";
-import { Button } from "material-ui";
+import { Button } from "@material-ui/core";
 import { GuidedExperienceNeeds } from "../../components/guided_experience_needs";
 import needsFixture from "../fixtures/needs";
 

@@ -12,7 +12,7 @@ import MenuBar from "../components/menu_bar";
 import Noscript from "../components/noscript";
 
 import classnames from "classnames";
-import { withStyles } from "material-ui/styles";
+import { withStyles } from "@material-ui/core//styles";
 
 const Container = styled("div")`
   max-width: 1200px;

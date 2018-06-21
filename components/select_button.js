@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Card from "material-ui/Card";
-import { Button } from "material-ui";
+import Card from "@material-ui/core/Card";
+import { Button } from "@material-ui/core";
 
 export class SelectButton extends Component {
   render() {

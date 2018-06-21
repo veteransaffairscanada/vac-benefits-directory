@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { AppBar, Button, Toolbar, Typography } from "material-ui";
+import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
 import { GoCSignature } from "@cdssnc/gcui";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
@@ -21,7 +21,10 @@ class MenuBar extends Component {
     const { t } = this.props;
 
     return (
-      <AppBar style={{ backgroundColor: "#000", boxShadow: "none" }} position="static">
+      <AppBar
+        style={{ backgroundColor: "#000", boxShadow: "none" }}
+        position="static"
+      >
         <Toolbar style={{ paddingLeft: "15px", paddingRight: "0px" }}>
           <GoCSignature
             lang={t("current-language-code")}

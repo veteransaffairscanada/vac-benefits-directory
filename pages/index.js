@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Button from "material-ui/Button";
+import Button from "@material-ui/core/Button";
 
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";

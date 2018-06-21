@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, Button, IconButton } from "material-ui";
-import { withStyles } from "material-ui/styles";
+import { Grid, Typography, Button, IconButton } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
-import ExpansionPanel from "material-ui/ExpansionPanel/ExpansionPanel";
-import ExpansionPanelSummary from "material-ui/ExpansionPanel/ExpansionPanelSummary";
-import ExpansionPanelDetails from "material-ui/ExpansionPanel/ExpansionPanelDetails";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Highlighter from "react-highlight-words";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import Highlighter from "react-highlight-words";
 
 import { logEvent } from "../utils/analytics";
 
