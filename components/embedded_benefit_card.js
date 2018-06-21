@@ -18,7 +18,11 @@ const styles = theme => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
+    fontWeight: theme.typography.fontWeightRegular,
+    "-webkit-user-select": "all",
+    "-moz-user-select": "all",
+    "-ms-user-select": "all",
+    "user-select": "all"
   },
   ExpansionPanelClosed: {
     borderLeft: "5px solid"
@@ -27,6 +31,10 @@ const styles = theme => ({
     borderLeft: "5px solid #808080"
   },
   ExpansionPanelSummary: {
+    "-webkit-user-select": "none",
+    "-moz-user-select": "none",
+    "-ms-user-select": "none",
+    "user-select": "none",
     "&[aria-expanded*=true]": {
       backgroundColor: "#f8f8f8"
     }

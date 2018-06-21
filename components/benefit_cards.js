@@ -19,7 +19,11 @@ const styles = () => ({
   cardDescriptionText: {
     fontSize: "20px",
     fontWeight: 400,
-    padding: "15px 0px"
+    padding: "15px 0px",
+    "-webkit-user-select": "all",
+    "-moz-user-select": "all",
+    "-ms-user-select": "all",
+    "user-select": "all"
   },
   collapse: {
     paddingTop: "25px"
@@ -34,6 +38,10 @@ const styles = () => ({
     borderLeft: "5px solid #808080"
   },
   ExpansionPanelSummary: {
+    "-webkit-user-select": "none",
+    "-moz-user-select": "none",
+    "-ms-user-select": "none",
+    "user-select": "none",
     "&[aria-expanded*=true]": {
       backgroundColor: "#f8f8f8"
     }
