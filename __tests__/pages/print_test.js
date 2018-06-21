@@ -51,25 +51,23 @@ describe("Print", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("renders BenefitList component", () => {
-    expect(mountedPrint().find("BenefitList").length).toEqual(1);
-  });
-
   it("parses url correctly", () => {
     props.url.query["patronType"] = "service-person";
     props.url.query["serviceType"] = "WSV (WWII or Korea)";
     props.url.query["statusAndVitals"] = "releasedAlive";
     props.url.query["needs"] = "43534534,43534ewr534";
-    expect(
-      mountedPrint()
-        .find(".needsList")
-        .find("li").length
-    ).toEqual(2);
+    expect(mountedPrint().find(".needsListItem").length).toEqual(2);
 
     expect(
       mountedPrint()
-        .find(".eligibilityList")
-        .find("li").length
-    ).toEqual(3);
+        .find(".eligibilityListItem")
+        .find("b")
+        .text()
+    ).toEqual("service-person");
+  });
+
+  it("renders benefits correctly", () => {
+    props.url.query["benefits"] = "0,3";
+    expect(mountedPrint().find(".benefitsListItem").length).toEqual(2);
   });
 });

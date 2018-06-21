@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Grid, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
-import BenefitList from "../components/benefit_list";
 
 export class Print extends Component {
   componentDidMount() {
@@ -40,7 +39,6 @@ export class Print extends Component {
     const selectedNeeds = needs.filter(
       x => selectedNeedsIDs.indexOf(x.id) > -1
     );
-
     return (
       <div style={{ padding: 12 }} className="allBenefitsList">
         <Grid container spacing={24}>
@@ -50,11 +48,17 @@ export class Print extends Component {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <ul className="eligibilityList">
-              <li>{t(query["patronType"])}</li>
-              <li>{t(query["serviceType"])}</li>
-              <li>{t(query["statusAndVitals"])}</li>
-            </ul>
+            <div>
+              <div className="eligibilityListItem">
+                {t("B3.Benefits for")}: <b>{t(query["patronType"])}</b>
+              </div>
+              <div>
+                {t("B3.ServiceType")}: <b>{t(query["serviceType"])}</b>
+              </div>
+              <div>
+                {t("B3.serviceStatus")}: <b>{t(query["statusAndVitals"])}</b>
+              </div>
+            </div>
           </Grid>
 
           <Grid item xs={12}>
@@ -62,13 +66,15 @@ export class Print extends Component {
           </Grid>
 
           <Grid item xs={12}>
-            <ul className="needsList">
+            <div className="needsList">
               {selectedNeeds.map((n, i) => (
-                <li key={i}>
-                  {t("current-language-code") == "en" ? n.nameEn : n.nameFr}
-                </li>
+                <div key={i} className="needsListItem">
+                  -<b>
+                    {t("current-language-code") == "en" ? n.nameEn : n.nameFr}
+                  </b>
+                </div>
               ))}
-            </ul>
+            </div>
           </Grid>
           <Grid item xs={12}>
             <Typography variant="title">
@@ -76,16 +82,28 @@ export class Print extends Component {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <BenefitList
-              t={t}
-              filteredBenefits={filteredBenefits}
-              eligibilityPaths={this.props.eligibilityPaths}
-              benefits={this.props.benefits}
-              onRef={foo => foo}
-              examples={this.props.examples}
-              sortByValue={"popularity"}
-              searchString={""}
-            />
+            {filteredBenefits.map((b, i) => {
+              return (
+                <div
+                  key={i}
+                  style={{ marginBottom: "15px" }}
+                  className="benefitsListItem"
+                >
+                  <div>
+                    <b>
+                      {t("current-language-code") == "en"
+                        ? b.vacNameEn
+                        : b.vacNameFr}
+                    </b>
+                  </div>
+                  <div>
+                    {t("current-language-code") == "en"
+                      ? b.oneLineDescriptionEn
+                      : b.oneLineDescriptionFr}
+                  </div>
+                </div>
+              );
+            })}
           </Grid>
         </Grid>
       </div>
