@@ -90,4 +90,13 @@ describe("MenuBar", () => {
       "other-language"
     );
   });
+
+  it("refresh cache button shown if showRefreshCache is true", () => {
+    props.showRefreshCache = true;
+    expect(
+      mountedMenuBar()
+        .find("#refreshCache")
+        .first().length
+    ).toEqual(1);
+  });
 });
