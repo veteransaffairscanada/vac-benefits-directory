@@ -10,7 +10,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import lunr from "lunr";
-import PrintIcon from "@material-ui/icons/Print";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
@@ -51,9 +50,6 @@ const styles = theme => ({
   topMatter: {
     borderBottom: "solid 1px lightgrey",
     marginBottom: "30px"
-  },
-  leftIcon: {
-    marginRight: theme.spacing.unit
   }
 });
 
@@ -368,20 +364,18 @@ export class BB extends Component {
                       ""
                     )}
                   </FormControl>
+                </Grid>
 
+                <Grid item xs={6} className={classnames(classes.collapse)}>
                   <Button
-                    variant="raised"
+                    variant="flat"
                     size="small"
                     target="dan"
                     href={printUrl}
                     className="printButton"
                   >
-                    <PrintIcon className={classnames(classes.leftIcon)} />
                     {t("Print")}
                   </Button>
-                </Grid>
-
-                <Grid item xs={6} className={classnames(classes.collapse)}>
                   <Button
                     id="Favourites"
                     variant="flat"
