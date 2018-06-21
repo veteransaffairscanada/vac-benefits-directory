@@ -16,7 +16,8 @@ const styles = theme => ({
     backgroundColor: "white"
   },
   summary: {
-    opacity: "1 !important"
+    opacity: "1 !important",
+    userSelect: "inherit"
   },
   title: {
     color: "black !important"
