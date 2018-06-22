@@ -33,11 +33,15 @@ class MenuBar extends Component {
             flag="#fff"
           />
           <Typography style={{ flex: 1 }} />
-          <a href="/refresh">
-            <Button id="refreshCache" style={{ color: "#fff" }}>
-              {t("refresh-cache")}
-            </Button>
-          </a>
+          {this.props.showRefreshCache ? (
+            <a href="/refresh">
+              <Button id="refreshCache" style={{ color: "#fff" }}>
+                {t("refresh-cache")}
+              </Button>
+            </a>
+          ) : (
+            ""
+          )}
           <Button
             id="changeLanguage"
             style={{ color: "#fff" }}
@@ -53,7 +57,8 @@ class MenuBar extends Component {
 
 MenuBar.propTypes = {
   i18n: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  showRefreshCache: PropTypes.bool
 };
 
 export default MenuBar;
