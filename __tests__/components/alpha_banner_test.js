@@ -2,7 +2,6 @@ import React from "react";
 import { shallow } from "enzyme";
 import { AlphaBanner } from "../../components/alpha_banner";
 const { axe, toHaveNoViolations } = require("jest-axe");
-// import styled, { css } from 'react-emotion'
 expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
