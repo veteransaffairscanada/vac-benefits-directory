@@ -81,7 +81,13 @@ export class DataValidation extends Component {
     ];
 
     return (
-      <Layout i18n={i18n} t={t} hideNoscript={true} showRefreshCache={true}>
+      <Layout
+        title={t("dv.pageTitle")}
+        i18n={i18n}
+        t={t}
+        hideNoscript={true}
+        showRefreshCache={true}
+      >
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>

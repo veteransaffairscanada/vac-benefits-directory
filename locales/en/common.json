@@ -62,10 +62,8 @@
       "Remember to read the eligibility criteria for each benefit before applying.",
     "Filter by eligibility": "Show me benefits for:",
     "favouritesButtonText": "Favourites"
-
   },
   "index": {
-    "data validation": "data validation",
     "all benefits": "View all benefits",
     "benefits directory": "benefits directory",
     "guided experience": "Find benefits relevant to you",
@@ -74,6 +72,7 @@
       "We are here to provide support for Veterans in all phases of their life during or after the military"
   },
   "dv": {
+    "pageTitle": "Data Validation",
     "name": "Name",
     "value": "Value",
     "status": "Status",
