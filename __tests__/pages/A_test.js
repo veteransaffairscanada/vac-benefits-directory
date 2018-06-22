@@ -212,6 +212,27 @@ describe("A", () => {
     );
   });
 
+  it("setUserProfile clears other filters if Organization is selected", () => {
+    let AInstance = mountedA().instance();
+    const state = {
+      section: "A1",
+      selectedNeeds: {},
+      selectedEligibility: {
+        patronType: "family",
+        serviceType: "CAF",
+        statusAndVitals: "released"
+      }
+    };
+    AInstance.setState(state);
+    expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
+    expect(AInstance.state.selectedEligibility.statusAndVitals).toEqual(
+      "released"
+    );
+    AInstance.setUserProfile("patronType", "organization");
+    expect(AInstance.state.selectedEligibility.serviceType).toEqual("");
+    expect(AInstance.state.selectedEligibility.statusAndVitals).toEqual("");
+  });
+
   it("sectionToDisplay returns appropriate component", () => {
     let AInstance = mountedA().instance();
     expect(AInstance.sectionToDisplay("BB").props.id).toEqual("BB");
