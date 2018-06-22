@@ -159,7 +159,9 @@ export class Favourites extends Component {
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
-              <Typography className={classes.title}>{t("B3.title")}</Typography>
+              <Typography className={classes.title}>
+                {t("B3.favouritesButtonText")}
+              </Typography>
             </Grid>
             <Grid item xs={12}>
               <Grid item xs={12}>
