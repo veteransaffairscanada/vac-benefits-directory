@@ -53,11 +53,6 @@ describe("DataValidation", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("passes all tests using the default fixtures", () => {
-    expect(mountedDataValidation().html()).toContain("Pass");
-    expect(mountedDataValidation().html()).not.toContain("Fail");
-  });
-
   it("fails if there are no benefits", () => {
     props.benefits = [];
     expect(mountedDataValidation().html()).toContain("Fail");
