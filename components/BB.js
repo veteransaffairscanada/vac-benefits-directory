@@ -368,6 +368,14 @@ export class BB extends Component {
 
                 <Grid item xs={6} className={classnames(classes.collapse)}>
                   <Button
+                    id="Favourites"
+                    variant="flat"
+                    size="small"
+                    onClick={() => this.props.setSection("favourites")}
+                  >
+                    {t("B3.favouritesButtonText")}
+                  </Button>
+                  <Button
                     variant="flat"
                     size="small"
                     target="dan"
@@ -375,14 +383,6 @@ export class BB extends Component {
                     className="printButton"
                   >
                     {t("Print")}
-                  </Button>
-                  <Button
-                    id="Favourites"
-                    variant="flat"
-                    size="small"
-                    onClick={() => this.props.setSection("favourites")}
-                  >
-                    {t("B3.favouritesButtonText")}
                   </Button>
                   <Button
                     id="CollapseBenefits"
