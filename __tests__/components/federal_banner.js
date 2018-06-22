@@ -29,6 +29,12 @@ describe("FederalBanner", () => {
     _mountedFederalBanner = undefined;
   });
 
+  // Tests
+  it("passes axe tests", async () => {
+    let html = mountedFederalBanner().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
+
   it("shows the change language button", () => {
     expect(
       mountedFederalBanner()
