@@ -333,7 +333,7 @@ export class BB extends Component {
               </Grid>
 
               <Grid container spacing={24}>
-                <Grid item xs={6} className={classnames(classes.sortBy)}>
+                <Grid item xs={4} className={classnames(classes.sortBy)}>
                   <FormControl
                     id="sortBySelector"
                     className={classes.formControl}
@@ -366,7 +366,7 @@ export class BB extends Component {
                   </FormControl>
                 </Grid>
 
-                <Grid item xs={6} className={classnames(classes.collapse)}>
+                <Grid item xs={8} className={classnames(classes.collapse)}>
                   <Button
                     id="Favourites"
                     variant="flat"
