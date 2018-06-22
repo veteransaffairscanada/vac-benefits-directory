@@ -51,7 +51,7 @@ class Layout extends Component {
     );
     return (
       <div className={classnames(this.props.classes.root)}>
-        <Head t={this.props.t} />
+        <Head title={this.props.title} t={this.props.t} />
         <ErrorBoundary>
           <Content>
             <div className={classnames(this.props.classes.header)}>
@@ -84,7 +84,8 @@ Layout.propTypes = {
   classes: PropTypes.object,
   hideNoscript: PropTypes.bool,
   i18n: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  title: PropTypes.string
 };
 
 export default withStyles(styles)(Layout);
