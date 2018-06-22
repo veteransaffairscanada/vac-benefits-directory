@@ -99,4 +99,13 @@ describe("MenuBar", () => {
         .first().length
     ).toEqual(1);
   });
+
+  it("refresh cache button not shown if showRefreshCache is false", () => {
+    props.showRefreshCache = false;
+    expect(
+      mountedMenuBar()
+        .find("#refreshCache")
+        .first().length
+    ).toEqual(0);
+  });
 });
