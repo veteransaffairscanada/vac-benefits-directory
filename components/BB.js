@@ -373,7 +373,10 @@ export class BB extends Component {
                     size="small"
                     onClick={() => this.props.setSection("favourites")}
                   >
-                    {t("B3.favouritesButtonText")}
+                    {t("B3.favouritesButtonText") +
+                      " (" +
+                      this.props.favouriteBenefits.length +
+                      ")"}
                   </Button>
                   <Button
                     variant="flat"
