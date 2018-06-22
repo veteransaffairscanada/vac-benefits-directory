@@ -114,6 +114,31 @@ export class Favourites extends Component {
     }
   };
 
+  getPrintUrl = (
+    filteredBenefits,
+    selectedEligibility,
+    selectedNeeds,
+    language
+  ) => {
+    const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
+    const needsIDs = Object.keys(selectedNeeds);
+    const selectedEligibilityKeys = Object.keys(selectedEligibility);
+    let url = "print";
+    url += "?lng=" + language;
+    if (selectedEligibilityKeys.length > 0) {
+      Object.keys(selectedEligibility).forEach(k => {
+        url += "&" + k + "=" + selectedEligibility[k];
+      });
+    }
+    if (needsIDs.length > 0) {
+      url += "&needs=" + needsIDs.join(",");
+    }
+    if (filteredBenefitsIDs.length > 0) {
+      url += "&benefits=" + filteredBenefitsIDs.join(",");
+    }
+    return url;
+  };
+
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
@@ -122,12 +147,21 @@ export class Favourites extends Component {
       this.props.favouriteBenefits
     );
 
+    const printUrl = this.getPrintUrl(
+      filteredBenefits,
+      this.props.selectedEligibility,
+      this.props.selectedNeeds,
+      t("current-language-code")
+    );
+
     return (
       <div id={this.props.id}>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
-              <Typography className={classes.title}>{t("B3.title")}</Typography>
+              <Typography className={classes.title}>
+                {t("B3.favouritesButtonText")}
+              </Typography>
             </Grid>
             <Grid item xs={12}>
               <Grid item xs={12}>
@@ -168,6 +202,15 @@ export class Favourites extends Component {
                 </Grid>
 
                 <Grid item xs={9} className={classnames(classes.collapse)}>
+                  <Button
+                    variant="flat"
+                    size="small"
+                    target="dan"
+                    href={printUrl}
+                    className="printButton"
+                  >
+                    {t("Print")}
+                  </Button>
                   <Button
                     id="CollapseBenefits"
                     variant="flat"
@@ -212,7 +255,9 @@ Favourites.propTypes = {
   favouriteBenefits: PropTypes.array,
   toggleFavourite: PropTypes.func,
   url: PropTypes.object,
-  setSection: PropTypes.func
+  setSection: PropTypes.func,
+  selectedEligibility: PropTypes.object,
+  selectedNeeds: PropTypes.object
 };
 
 export default withStyles(styles)(Favourites);

@@ -245,6 +245,8 @@ export class A extends Component {
             eligibilityPaths={this.props.eligibilityPaths}
             needs={this.props.needs}
             examples={this.props.examples}
+            selectedEligibility={selectedEligibility}
+            selectedNeeds={this.state.selectedNeeds}
             setUserProfile={this.setUserProfile}
             setSection={this.setSection}
             pageWidth={this.state.width}

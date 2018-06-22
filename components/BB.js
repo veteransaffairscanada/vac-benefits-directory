@@ -368,15 +368,6 @@ export class BB extends Component {
 
                 <Grid item xs={6} className={classnames(classes.collapse)}>
                   <Button
-                    variant="flat"
-                    size="small"
-                    target="dan"
-                    href={printUrl}
-                    className="printButton"
-                  >
-                    {t("Print")}
-                  </Button>
-                  <Button
                     id="Favourites"
                     variant="flat"
                     size="small"
@@ -386,6 +377,15 @@ export class BB extends Component {
                       " (" +
                       this.props.favouriteBenefits.length +
                       ")"}
+                  </Button>
+                  <Button
+                    variant="flat"
+                    size="small"
+                    target="dan"
+                    href={printUrl}
+                    className="printButton"
+                  >
+                    {t("Print")}
                   </Button>
                   <Button
                     id="CollapseBenefits"
