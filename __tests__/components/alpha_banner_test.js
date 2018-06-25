@@ -34,7 +34,7 @@ describe("AlphaBanner", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("shows the change language button", () => {
+  it("shows the alpha badge", () => {
     expect(mountedAlphaBanner().find("PhaseBadge").length).toEqual(1);
   });
 });
