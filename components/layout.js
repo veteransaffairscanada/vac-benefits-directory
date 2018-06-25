@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
+import styled, { css } from "react-emotion";
 
-import { PhaseBanner } from "@cdssnc/gcui";
+import { AlphaBanner } from "../components/alpha_banner";
 
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
@@ -17,6 +17,10 @@ import { withStyles } from "@material-ui/core//styles";
 const Container = styled("div")`
   max-width: 1200px;
   margin: 0 auto;
+`;
+
+const alpha = css`
+  background-color: #555555;
 `;
 
 const Content = styled("div")`
@@ -46,20 +50,23 @@ class Layout extends Component {
   }
 
   render() {
-    const noScriptTag = this.props.hideNoscript ? null : (
-      <Noscript t={this.props.t} />
-    );
+    const { t } = this.props;
+    const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <div className={classnames(this.props.classes.root)}>
-        <Head title={this.props.title} t={this.props.t} />
+        <Head title={this.props.title} t={t} />
         <ErrorBoundary>
           <Content>
             <div className={classnames(this.props.classes.header)}>
+              <div className={alpha}>
+                <Container>
+                  <AlphaBanner>{t("alpha")}</AlphaBanner>
+                </Container>
+              </div>
               <Container>
-                <PhaseBanner alpha>{this.props.t("alpha")}</PhaseBanner>
                 <FederalBanner
                   i18n={this.props.i18n}
-                  t={this.props.t}
+                  t={t}
                   showRefreshCache={this.props.showRefreshCache}
                 />
               </Container>
@@ -68,12 +75,12 @@ class Layout extends Component {
           </Content>
           <div style={{ backgroundColor: "#eee" }}>
             <Container>
-              <FeedbackBar t={this.props.t} />
+              <FeedbackBar t={t} />
             </Container>
           </div>
           <div style={{ backgroundColor: "#ddd" }}>
             <Container>
-              <Footer t={this.props.t} />
+              <Footer t={t} />
             </Container>
           </div>
         </ErrorBoundary>

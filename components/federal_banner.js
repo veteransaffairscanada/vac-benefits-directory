@@ -26,7 +26,7 @@ const mediaQuery = Object.keys(breakpoints).reduce((accumulator, label) => {
 }, {});
 
 const container = css`
-  padding: 1.3rem 0rem 0.5rem 1rem;
+  padding: 1rem 0rem 0.5rem 1rem;
   width: auto;
   justify-content: space-between;
   background-color: black;
