@@ -8,7 +8,7 @@ import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
 import Footer from "../components/footer";
-import MenuBar from "../components/menu_bar";
+import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 
 import classnames from "classnames";
@@ -64,7 +64,7 @@ class Layout extends Component {
                 </Container>
               </div>
               <Container>
-                <MenuBar
+                <FederalBanner
                   i18n={this.props.i18n}
                   t={t}
                   showRefreshCache={this.props.showRefreshCache}

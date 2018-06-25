@@ -1,5 +1,5 @@
 import React from "react";
-import MenuBar from "../../components/menu_bar";
+import LanguageButton from "../../components/language_button";
 import { mount } from "enzyme";
 import Router from "next/router";
 
@@ -8,7 +8,7 @@ expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
-describe("MenuBar", () => {
+describe("LanguageButton", () => {
   Router.router = {
     push: jest.fn(),
     query: jest.fn(),
@@ -16,12 +16,12 @@ describe("MenuBar", () => {
   };
 
   let props;
-  let _mountedMenuBar;
-  const mountedMenuBar = () => {
-    if (!_mountedMenuBar) {
-      _mountedMenuBar = mount(<MenuBar {...props} />);
+  let _mountedLanguageButton;
+  const mountedLanguageButton = () => {
+    if (!_mountedLanguageButton) {
+      _mountedLanguageButton = mount(<LanguageButton {...props} />);
     }
-    return _mountedMenuBar;
+    return _mountedLanguageButton;
   };
 
   beforeEach(() => {
@@ -33,22 +33,13 @@ describe("MenuBar", () => {
         return key == "current-language-code" ? "en" : key;
       }
     };
-    _mountedMenuBar = undefined;
+    _mountedLanguageButton = undefined;
   });
 
   // Tests
   it("passes axe tests", async () => {
-    let html = mountedMenuBar().html();
+    let html = mountedLanguageButton().html();
     expect(await axe(html)).toHaveNoViolations();
-  });
-
-  it("shows the change language button", () => {
-    expect(
-      mountedMenuBar()
-        .find("#changeLanguage")
-        .at(0)
-        .text()
-    ).toEqual("other-language");
   });
 
   describe("clicking the change language button", () => {
@@ -65,12 +56,12 @@ describe("MenuBar", () => {
     });
 
     it("changes the text on the change language button", () => {
-      mountedMenuBar()
+      mountedLanguageButton()
         .find("#changeLanguage")
         .at(0)
         .simulate("click");
       expect(
-        mount(<MenuBar {...props} />)
+        mount(<LanguageButton {...props} />)
           .find("#changeLanguage")
           .at(0)
           .text()
@@ -81,7 +72,7 @@ describe("MenuBar", () => {
   it("Language change logged with Google Analytics", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
-    mountedMenuBar()
+    mountedLanguageButton()
       .find("#changeLanguage")
       .at(0)
       .simulate("click");
@@ -89,23 +80,5 @@ describe("MenuBar", () => {
       "Language change",
       "other-language"
     );
-  });
-
-  it("refresh cache button shown if showRefreshCache is true", () => {
-    props.showRefreshCache = true;
-    expect(
-      mountedMenuBar()
-        .find("#refreshCache")
-        .first().length
-    ).toEqual(1);
-  });
-
-  it("refresh cache button not shown if showRefreshCache is false", () => {
-    props.showRefreshCache = false;
-    expect(
-      mountedMenuBar()
-        .find("#refreshCache")
-        .first().length
-    ).toEqual(0);
   });
 });
