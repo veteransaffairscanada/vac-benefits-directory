@@ -49,7 +49,8 @@ export class DataValidation extends Component {
       benefits,
       eligibilityPaths,
       needs,
-      examples
+      examples,
+      text
     } = this.props; // eslint-disable-line no-unused-vars
 
     const data = [
@@ -72,6 +73,11 @@ export class DataValidation extends Component {
         "Size of Examples Table",
         examples.length,
         examples.length > 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "nameTextTableSize",
+        text.length,
+        text.length > 0 ? "Pass" : "Fail"
       ),
       this.createData(
         "Benefits with Empty Fields",
@@ -120,7 +126,8 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
-    examples: state.examples
+    examples: state.examples,
+    text: state.text
   };
 };
 
@@ -129,6 +136,7 @@ DataValidation.propTypes = {
   eligibilityPaths: PropTypes.array,
   needs: PropTypes.array,
   examples: PropTypes.array,
+  text: PropTypes.array,
   i18n: PropTypes.object,
   t: PropTypes.func,
   classes: PropTypes.object

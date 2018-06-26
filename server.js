@@ -108,6 +108,24 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
         });
       }
     );
+
+  let i18nEn = {};
+  let i18nFr = {};
+  data.text.forEach(text => {
+    if (!i18nEn[text.section]) {
+      i18nEn[text.section] = {};
+      i18nFr[text.section] = {};
+    }
+    i18nEn[text.section][text.key] = text.English;
+    i18nFr[text.section][text.key] = text.French;
+  });
+  // i18nInstance.addResources("en", "common", translationsEn)
+  // i18nInstance.addResources("fr", "common", translationsFr)
+
+  // i18nInstance.addResources("en", "common", {"dv": {"nameTextTableSize": "steve 4"}})
+
+  i18nInstance.addResourceBundle("en", "common", i18nEn);
+  i18nInstance.addResourceBundle("fr", "common", i18nFr);
 });
 
 // this code should run when the data-validation page is loaded and send that page the results
