@@ -7,6 +7,7 @@ const benefitsFixture = [
     benefitPageFr: "French link",
     oneLineDescriptionEn: " Description En 0",
     oneLineDescriptionFr: "Description Fr 0",
+    needs: ["0", "1"],
     childBenefits: ["1"],
     availableIndependently: "Independent",
     examples: undefined
