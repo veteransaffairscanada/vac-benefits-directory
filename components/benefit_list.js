@@ -1,10 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "../components/benefit_cards";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+import styled from "react-emotion";
+
+const Div = styled("div")`
+  width: 100%;
+  text-align: center;
+`;
 
 export class BenefitList extends React.Component {
-  componentDidUpdate() {
-    window.scrollTo(0, 0);
+  state = {
+    loading: false
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.filteredBenefits !== prevProps.filteredBenefits) {
+      this.setState({ loading: true });
+      setTimeout(() => {
+        this.setState({ loading: false });
+      }, 500);
+    }
   }
 
   sortBenefits = (filteredBenefits, language, sortByValue) => {
@@ -39,6 +56,7 @@ export class BenefitList extends React.Component {
   };
 
   render() {
+    let { loading } = this.state;
     const sortedBenefits = this.sortBenefits(
       this.props.filteredBenefits,
       this.props.t("current-language-code"),
@@ -56,27 +74,33 @@ export class BenefitList extends React.Component {
         familyBenefitIds = familyBenefitIds.concat(ep.benefits);
       }
     });
-    return sortedBenefits.map(
-      (benefit, i) =>
-        true || benefit.availableIndependently === "Independent" ? ( // eslint-disable-line no-constant-condition
-          <BenefitCard
-            id={"bc" + i}
-            benefit={benefit}
-            examples={this.props.examples}
-            allBenefits={this.props.benefits}
-            veteranBenefitIds={veteranBenefitIds}
-            familyBenefitIds={familyBenefitIds}
-            t={this.props.t}
-            key={benefit.id}
-            onRef={this.props.onRef}
-            toggleFavourite={this.props.toggleFavourite}
-            favouriteBenefits={this.props.favouriteBenefits}
-            showFavourite={this.props.showFavourites}
-            searchString={this.props.searchString}
-          />
-        ) : (
-          ""
-        )
+    return loading ? (
+      <Div>
+        <CircularProgress size={100} />
+      </Div>
+    ) : (
+      sortedBenefits.map(
+        (benefit, i) =>
+          true || benefit.availableIndependently === "Independent" ? ( // eslint-disable-line no-constant-condition
+            <BenefitCard
+              id={"bc" + i}
+              benefit={benefit}
+              examples={this.props.examples}
+              allBenefits={this.props.benefits}
+              veteranBenefitIds={veteranBenefitIds}
+              familyBenefitIds={familyBenefitIds}
+              t={this.props.t}
+              key={benefit.id}
+              onRef={this.props.onRef}
+              toggleFavourite={this.props.toggleFavourite}
+              favouriteBenefits={this.props.favouriteBenefits}
+              showFavourite={this.props.showFavourites}
+              searchString={this.props.searchString}
+            />
+          ) : (
+            ""
+          )
+      )
     );
   }
 }
