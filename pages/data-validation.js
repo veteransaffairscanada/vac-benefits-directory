@@ -30,6 +30,24 @@ export class DataValidation extends Component {
     return { name, value, status };
   };
 
+  componentWillMount() {
+    let i18nEn = {};
+    let i18nFr = {};
+    this.props.text.forEach(text => {
+      if (!i18nEn[text.section]) {
+        i18nEn[text.section] = {};
+        i18nFr[text.section] = {};
+      }
+      i18nEn[text.section][text.key] = text.English;
+      i18nFr[text.section][text.key] = text.French;
+    });
+
+    this.props.i18n.addResourceBundle("en", "common", i18nEn, true, true);
+    this.props.i18n.addResourceBundle("fr", "common", i18nFr, true, true);
+
+    console.log(this.props.i18n.store.data);
+  }
+
   checkIfMissingText(b) {
     return (
       !(b.vacNameEn && b.vacNameEn != "") ||

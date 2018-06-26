@@ -26,6 +26,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
     .use(i18nextMiddleware.LanguageDetector)
     .init(
       {
+        wait: true,
         fallbackLng: "en",
         preload: ["en", "fr"],
         ns: ["common"],
@@ -119,13 +120,9 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
     i18nEn[text.section][text.key] = text.English;
     i18nFr[text.section][text.key] = text.French;
   });
-  // i18nInstance.addResources("en", "common", translationsEn)
-  // i18nInstance.addResources("fr", "common", translationsFr)
 
-  // i18nInstance.addResources("en", "common", {"dv": {"nameTextTableSize": "steve 4"}})
-
-  i18nInstance.addResourceBundle("en", "common", i18nEn);
-  i18nInstance.addResourceBundle("fr", "common", i18nFr);
+  i18nInstance.addResourceBundle("en", "common", i18nEn, true, true);
+  i18nInstance.addResourceBundle("fr", "common", i18nFr, true, true);
 });
 
 // this code should run when the data-validation page is loaded and send that page the results
