@@ -21,6 +21,7 @@ const benefitsFixture = [
     oneLineDescriptionEn: "English benefit Description",
     oneLineDescriptionFr: "Description de l'avantage français",
     availableIndependently: "Requires Gateway Benefit",
+    needs: ["3"],
     examples: ["0", "1"]
   },
   {
@@ -32,6 +33,7 @@ const benefitsFixture = [
     sortingPriority: "high",
     oneLineDescriptionEn: " Description En 3",
     oneLineDescriptionFr: "Description Fr 3",
+    needs: ["0", "1"],
     availableIndependently: "Independent",
     examples: undefined
   }
