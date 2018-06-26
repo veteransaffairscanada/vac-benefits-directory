@@ -132,7 +132,7 @@ export class BenefitCard extends Component {
                     searchWords={this.props.searchString.split(",")}
                     autoEscape={true}
                     textToHighlight={
-                      this.props.t("current-language-code") === "en"
+                      this.props.t("all.current-language-code") === "en"
                         ? benefit.vacNameEn
                         : benefit.vacNameFr
                     }
@@ -161,7 +161,7 @@ export class BenefitCard extends Component {
                     searchWords={this.props.searchString.split(",")}
                     autoEscape={true}
                     textToHighlight={
-                      this.props.t("current-language-code") === "en"
+                      this.props.t("all.current-language-code") === "en"
                         ? benefit.oneLineDescriptionEn
                         : benefit.oneLineDescriptionFr
                     }
@@ -184,7 +184,7 @@ export class BenefitCard extends Component {
                     {examples.map(ex => {
                       return (
                         <li key={ex.id}>
-                          {this.props.t("current-language-code") === "en"
+                          {this.props.t("all.current-language-code") === "en"
                             ? ex.nameEn
                             : ex.nameFr}{" "}
                         </li>
@@ -198,13 +198,13 @@ export class BenefitCard extends Component {
                     variant="raised"
                     onClick={() =>
                       this.logExit(
-                        this.props.t("current-language-code") === "en"
+                        this.props.t("all.current-language-code") === "en"
                           ? benefit.benefitPageEn
                           : benefit.benefitPageFr
                       )
                     }
                     href={
-                      this.props.t("current-language-code") === "en"
+                      this.props.t("all.current-language-code") === "en"
                         ? benefit.benefitPageEn
                         : benefit.benefitPageFr
                     }

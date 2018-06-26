@@ -22,7 +22,7 @@ describe("AlphaBanner", () => {
         changeLanguage: () => {}
       },
       t: key => {
-        return key == "current-language-code" ? "en" : key;
+        return key == "all.current-language-code" ? "en" : key;
       }
     };
     _mountedAlphaBanner = undefined;

@@ -91,8 +91,8 @@
   "noscript":
     "Javascript is disabled and you may experience reduced functionality. To see a full list of benefits, click <a href='/all-benefits'>here</a>.",
   "other-language": "Français",
-  "current-language-code": "en",
-  "other-language-code": "fr",
+  "all.current-language-code": "en",
+  "all.other-language-code": "fr",
   "Privacy": "Privacy",
 
   "Show All Benefits": "Show All Benefits",

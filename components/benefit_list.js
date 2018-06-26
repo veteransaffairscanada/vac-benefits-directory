@@ -37,7 +37,7 @@ export class BenefitList extends React.Component {
   render() {
     const sortedBenefits = this.sortBenefits(
       this.props.filteredBenefits,
-      this.props.t("current-language-code"),
+      this.props.t("all.current-language-code"),
       this.props.sortByValue
     );
 

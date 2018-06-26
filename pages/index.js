@@ -38,7 +38,7 @@ export class App extends Component {
               style={{ padding: "20px" }}
               variant="raised"
               color="primary"
-              href={"A?section=A1&lng=" + t("current-language-code")}
+              href={"A?section=A1&lng=" + t("all.current-language-code")}
             >
               {t("index.guided experience")}
             </Button>
@@ -50,7 +50,7 @@ export class App extends Component {
               style={{ padding: "20px" }}
               variant="raised"
               color="primary"
-              href={"A?section=BB&lng=" + t("current-language-code")}
+              href={"A?section=BB&lng=" + t("all.current-language-code")}
             >
               {t("index.all benefits")}
             </Button>

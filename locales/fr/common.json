@@ -94,8 +94,8 @@
   "noscript":
     "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",
   "other-language": "English",
-  "current-language-code": "fr",
-  "other-language-code": "en",
+  "all.current-language-code": "fr",
+  "all.other-language-code": "en",
   "Privacy": "Intimité",
   "Show All Benefits": "Afficher tous les avantages",
   "title": "Preuve de concept pour le projet ACC",

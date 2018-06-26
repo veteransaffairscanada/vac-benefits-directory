@@ -151,7 +151,7 @@ export class Favourites extends Component {
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
-      t("current-language-code")
+      t("all.current-language-code")
     );
 
     return (

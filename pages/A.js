@@ -133,7 +133,7 @@ export class A extends Component {
         href += `&${selection}=${state.selectedEligibility[selection]}`;
       }
     });
-    href += "&lng=" + this.props.t("current-language-code");
+    href += "&lng=" + this.props.t("all.current-language-code");
     Router.push(href);
   };
 

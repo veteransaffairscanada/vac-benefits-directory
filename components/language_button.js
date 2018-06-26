@@ -7,12 +7,12 @@ import Router from "next/router";
 class LanguageButton extends Component {
   changeLanguage = () => {
     const newQuery = Router.query;
-    newQuery.lng = this.props.t("other-language-code");
+    newQuery.lng = this.props.t("all.other-language-code");
     Router.push({
       pathname: Router.pathname,
       query: newQuery
     });
-    this.props.i18n.changeLanguage(this.props.t("other-language-code"));
+    this.props.i18n.changeLanguage(this.props.t("all.other-language-code"));
     logEvent("Language change", this.props.t("other-language"));
   };
 

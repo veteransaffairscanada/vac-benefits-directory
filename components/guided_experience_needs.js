@@ -55,7 +55,9 @@ export class GuidedExperienceNeeds extends Component {
                   : classes.need
               }
             >
-              {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
+              {t("all.current-language-code") === "en"
+                ? need.nameEn
+                : need.nameFr}
             </Button>
           ))}
         </Grid>

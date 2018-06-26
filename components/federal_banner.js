@@ -62,7 +62,7 @@ class FederalBanner extends Component {
         <div className="svg-container">
           <GoCSignature
             width="320px"
-            lang={t("current-language-code")}
+            lang={t("all.current-language-code")}
             flag="#fff"
             text="#fff"
           />
