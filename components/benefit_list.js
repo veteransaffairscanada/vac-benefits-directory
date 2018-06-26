@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "../components/benefit_cards";
+import { connect } from "react-redux";
 
 export class BenefitList extends React.Component {
   sortBenefits = (filteredBenefits, language, sortByValue) => {
@@ -58,7 +59,6 @@ export class BenefitList extends React.Component {
           <BenefitCard
             id={"bc" + i}
             benefit={benefit}
-            examples={this.props.examples}
             allBenefits={this.props.benefits}
             veteranBenefitIds={veteranBenefitIds}
             familyBenefitIds={familyBenefitIds}
@@ -66,7 +66,6 @@ export class BenefitList extends React.Component {
             key={benefit.id}
             onRef={this.props.onRef}
             toggleFavourite={this.props.toggleFavourite}
-            favouriteBenefits={this.props.favouriteBenefits}
             showFavourite={this.props.showFavourites}
             searchString={this.props.searchString}
           />
@@ -76,6 +75,15 @@ export class BenefitList extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits,
+    eligibilityPaths: state.eligibilityPaths,
+    examples: state.examples,
+    favouriteBenefits: state.favouriteBenefits
+  };
+};
 
 BenefitList.propTypes = {
   classes: PropTypes.object,
@@ -92,4 +100,4 @@ BenefitList.propTypes = {
   searchString: PropTypes.string
 };
 
-export default BenefitList;
+export default connect(mapStateToProps)(BenefitList);

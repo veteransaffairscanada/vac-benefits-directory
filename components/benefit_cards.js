@@ -11,8 +11,8 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Highlighter from "react-highlight-words";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-
 import { logEvent } from "../utils/analytics";
+import { connect } from "react-redux";
 
 const styles = () => ({
   button: {
@@ -268,6 +268,14 @@ export class BenefitCard extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    eligibilityPaths: state.eligibilityPaths,
+    examples: state.examples,
+    favouriteBenefits: state.favouriteBenefits
+  };
+};
+
 BenefitCard.propTypes = {
   allBenefits: PropTypes.array,
   veteranBenefitIds: PropTypes.array,
@@ -283,4 +291,4 @@ BenefitCard.propTypes = {
   searchString: PropTypes.string
 };
 
-export default withStyles(styles)(BenefitCard);
+export default connect(mapStateToProps)(withStyles(styles)(BenefitCard));

@@ -401,7 +401,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              needs={this.props.needs}
               selectedNeeds={this.state.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
             />;
