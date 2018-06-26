@@ -44,8 +44,6 @@ export class DataValidation extends Component {
 
     this.props.i18n.addResourceBundle("en", "common", i18nEn);
     this.props.i18n.addResourceBundle("fr", "common", i18nFr);
-
-    console.log(this.props.i18n.store.data);
   }
 
   checkIfMissingText(b) {
