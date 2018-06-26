@@ -41,6 +41,10 @@ export class DataValidation extends Component {
     );
   }
 
+  checkMissingNeeds(b) {
+    return !(b.needs && b.needs != "");
+  }
+
   render() {
     const {
       i18n,
@@ -77,6 +81,11 @@ export class DataValidation extends Component {
         "Benefits with Empty Fields",
         benefits.filter(this.checkIfMissingText).length,
         benefits.filter(this.checkIfMissingText).length == 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "Benefits Without Needs",
+        benefits.filter(this.checkMissingNeeds).length,
+        benefits.filter(this.checkMissingNeeds).length == 0 ? "Pass" : "Fail"
       )
     ];
 
