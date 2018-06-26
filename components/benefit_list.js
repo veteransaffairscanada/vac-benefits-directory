@@ -7,12 +7,14 @@ import styled from "react-emotion";
 
 const Div = styled("div")`
   width: 100%;
-  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 40%;
 `;
 
 export class BenefitList extends React.Component {
   state = {
-    loading: false
+    loading: true
   };
 
   componentDidUpdate(prevProps) {
