@@ -62,12 +62,13 @@ export class BenefitList extends React.Component {
             allBenefits={this.props.benefits}
             veteranBenefitIds={veteranBenefitIds}
             familyBenefitIds={familyBenefitIds}
-            t={this.props.t}
+            // t={this.props.t}
             key={benefit.id}
-            onRef={this.props.onRef}
-            toggleFavourite={this.props.toggleFavourite}
-            showFavourite={this.props.showFavourites}
-            searchString={this.props.searchString}
+            // onRef={this.props.onRef}
+            // toggleFavourite={this.props.toggleFavourite}
+            // showFavourite={this.props.showFavourites}
+            // searchString={this.props.searchString}
+            {...this.props}
           />
         ) : (
           ""
