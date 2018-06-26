@@ -1,8 +1,13 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import BenefitCard from "../components/benefit_cards";
 
 export class BenefitList extends React.Component {
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   sortBenefits = (filteredBenefits, language, sortByValue) => {
     filteredBenefits.forEach(b => {
       if (b.sortingPriority === undefined) {
