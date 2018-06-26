@@ -62,8 +62,8 @@ export class App extends Component {
 }
 
 App.propTypes = {
-  i18n: PropTypes.object,
-  t: PropTypes.func
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withI18next(["common"])(App);

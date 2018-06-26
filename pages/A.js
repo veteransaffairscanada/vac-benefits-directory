@@ -460,15 +460,15 @@ const mapStateToProps = state => {
 };
 
 A.propTypes = {
-  benefits: PropTypes.array,
-  dispatch: PropTypes.func,
-  eligibilityPaths: PropTypes.array,
-  examples: PropTypes.array,
-  i18n: PropTypes.object,
-  needs: PropTypes.array,
-  t: PropTypes.func,
-  url: PropTypes.object,
-  favouriteBenefits: PropTypes.array
+  benefits: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
+  needs: PropTypes.array.isRequired,
+  t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(A));

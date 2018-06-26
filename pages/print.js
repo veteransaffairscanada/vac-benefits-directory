@@ -122,14 +122,14 @@ const mapStateToProps = state => {
 };
 
 Print.propTypes = {
-  benefits: PropTypes.array,
-  examples: PropTypes.array,
-  needs: PropTypes.array,
-  eligibilityPaths: PropTypes.array,
-  i18n: PropTypes.object,
-  t: PropTypes.func,
-  sortByValue: PropTypes.string,
-  url: PropTypes.object
+  benefits: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  needs: PropTypes.array.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  sortByValue: PropTypes.string.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(Print));

@@ -32,8 +32,8 @@ class LanguageButton extends Component {
 }
 
 LanguageButton.propTypes = {
-  i18n: PropTypes.object,
-  t: PropTypes.func
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default LanguageButton;

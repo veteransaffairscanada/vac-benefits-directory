@@ -419,25 +419,25 @@ export class BB extends Component {
 }
 
 BB.propTypes = {
-  benefits: PropTypes.array,
-  classes: PropTypes.object,
-  clearFilters: PropTypes.func,
-  clearNeeds: PropTypes.func,
-  eligibilityPaths: PropTypes.array,
-  examples: PropTypes.array,
-  id: PropTypes.string,
-  needs: PropTypes.array,
-  selectedEligibility: PropTypes.object,
-  selectedNeeds: PropTypes.object,
-  setSelectedNeeds: PropTypes.func,
-  setUserProfile: PropTypes.func,
-  t: PropTypes.func,
-  toggleSelectedEligibility: PropTypes.func,
-  pageWidth: PropTypes.number,
-  favouriteBenefits: PropTypes.array,
-  toggleFavourite: PropTypes.func,
-  url: PropTypes.object,
-  setSection: PropTypes.func
+  benefits: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired,
+  clearFilters: PropTypes.func.isRequired,
+  clearNeeds: PropTypes.func.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  id: PropTypes.string.isRequired,
+  needs: PropTypes.array.isRequired,
+  selectedEligibility: PropTypes.object.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
+  setSelectedNeeds: PropTypes.func.isRequired,
+  setUserProfile: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+  toggleSelectedEligibility: PropTypes.func.isRequired,
+  pageWidth: PropTypes.number.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired,
+  toggleFavourite: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
+  setSection: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(BB);

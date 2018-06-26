@@ -78,18 +78,18 @@ export class BenefitList extends React.Component {
 }
 
 BenefitList.propTypes = {
-  classes: PropTypes.object,
-  t: PropTypes.func,
-  filteredBenefits: PropTypes.array,
-  eligibilityPaths: PropTypes.array,
-  benefits: PropTypes.array,
-  examples: PropTypes.array,
-  onRef: PropTypes.func,
-  sortByValue: PropTypes.string,
-  favouriteBenefits: PropTypes.array,
-  toggleFavourite: PropTypes.func,
+  classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  filteredBenefits: PropTypes.array.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  benefits: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  onRef: PropTypes.func.isRequired,
+  sortByValue: PropTypes.string.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired,
+  toggleFavourite: PropTypes.func.isRequired,
   showFavourites: PropTypes.bool,
-  searchString: PropTypes.string
+  searchString: PropTypes.string.isRequired
 };
 
 export default BenefitList;

@@ -27,5 +27,5 @@ export const AlphaBanner = ({ children, ...rest }) => (
 
 AlphaBanner.propTypes = {
   children: PropTypes.any,
-  padding: PropTypes.string
+  padding: PropTypes.string.isRequired
 };

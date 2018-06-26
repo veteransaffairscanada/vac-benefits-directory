@@ -29,11 +29,11 @@ export class GuidedExperienceProfile extends Component {
 }
 
 GuidedExperienceProfile.propTypes = {
-  options: PropTypes.array,
-  onClick: PropTypes.func,
-  classes: PropTypes.object,
-  value: PropTypes.string,
-  t: PropTypes.func
+  options: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+  value: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default GuidedExperienceProfile;

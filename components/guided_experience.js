@@ -145,16 +145,16 @@ export class GuidedExperience extends Component {
 }
 
 GuidedExperience.propTypes = {
-  id: PropTypes.string,
-  classes: PropTypes.object,
-  nextSection: PropTypes.string,
-  prevSection: PropTypes.string,
-  t: PropTypes.func,
-  setSection: PropTypes.func,
-  subtitle: PropTypes.string,
-  stepNumber: PropTypes.number,
-  children: PropTypes.object,
-  selectedEligibility: PropTypes.object
+  id: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
+  nextSection: PropTypes.string.isRequired,
+  prevSection: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
+  setSection: PropTypes.func.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  stepNumber: PropTypes.number.isRequired,
+  children: PropTypes.object.isRequired,
+  selectedEligibility: PropTypes.object.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(GuidedExperience);
