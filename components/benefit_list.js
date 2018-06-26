@@ -14,7 +14,7 @@ const Div = styled("div")`
 
 export class BenefitList extends React.Component {
   state = {
-    loading: true
+    loading: false
   };
 
   componentDidUpdate(prevProps) {
