@@ -25,11 +25,11 @@ describe("A", () => {
 
   let props;
   let _mountedA;
-  let mockStore, data;
+  let mockStore, reduxData;
 
   const mountedA = () => {
     if (!_mountedA) {
-      _mountedA = shallow(<A {...props} {...data} />);
+      _mountedA = shallow(<A {...props} {...reduxData} />);
     }
     return _mountedA;
   };
@@ -59,13 +59,13 @@ describe("A", () => {
     };
     _mountedA = undefined;
     mockStore = configureStore();
-    data = {
+    reduxData = {
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture
     };
-    props.store = mockStore(data);
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {

@@ -14,18 +14,18 @@ describe("BenefitList", () => {
   let props;
   let _mountedBenefitList;
   let _shallowBenefitList;
-  let mockStore, data;
+  let mockStore, reduxData;
 
   const mountedBenefitList = () => {
     if (!_mountedBenefitList) {
-      _mountedBenefitList = mount(<BenefitList {...props} {...data} />);
+      _mountedBenefitList = mount(<BenefitList {...props} {...reduxData} />);
     }
     return _mountedBenefitList;
   };
 
   const shallowBenefitList = () => {
     if (!_shallowBenefitList) {
-      _shallowBenefitList = shallow(<BenefitList {...props} {...data} />);
+      _shallowBenefitList = shallow(<BenefitList {...props} {...reduxData} />);
     }
     return _shallowBenefitList;
   };
@@ -46,12 +46,12 @@ describe("BenefitList", () => {
     _shallowBenefitList = undefined;
 
     mockStore = configureStore();
-    data = {
+    reduxData = {
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       examples: examplesFixture
     };
-    props.store = mockStore(data);
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {

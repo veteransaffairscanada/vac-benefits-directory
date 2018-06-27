@@ -16,11 +16,11 @@ jest.mock("react-ga");
 describe("AllBenefits", () => {
   let props;
   let _mountedAllBenefits;
-  let mockStore, data;
+  let mockStore, reduxData;
 
   const mountedAllBenefits = () => {
     if (!_mountedAllBenefits) {
-      _mountedAllBenefits = shallow(<AllBenefits {...props} {...data} />);
+      _mountedAllBenefits = shallow(<AllBenefits {...props} {...reduxData} />);
     }
     return _mountedAllBenefits;
   };
@@ -37,12 +37,12 @@ describe("AllBenefits", () => {
     };
     _mountedAllBenefits = undefined;
     mockStore = configureStore();
-    data = {
+    reduxData = {
       benefits: benefitsFixture,
       examples: [],
       eligibilityPaths: eligibilityPathsFixture
     };
-    props.store = mockStore(data);
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {

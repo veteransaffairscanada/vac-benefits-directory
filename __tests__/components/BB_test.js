@@ -19,18 +19,18 @@ describe("BB", () => {
   let props;
   let _mountedBB;
   let _shallowBB;
-  let mockStore, data;
+  let mockStore, reduxData;
 
   const mounted_BB = () => {
     if (!_mountedBB) {
-      _mountedBB = mount(<BB {...props} {...data} />);
+      _mountedBB = mount(<BB {...props} {...reduxData} />);
     }
     return _mountedBB;
   };
 
   const shallow_BB = () => {
     if (!_shallowBB) {
-      _shallowBB = shallow(<BB {...props} {...data} />);
+      _shallowBB = shallow(<BB {...props} {...reduxData} />);
     }
     return _shallowBB;
   };
@@ -67,13 +67,13 @@ describe("BB", () => {
     _shallowBB = undefined;
     _mountedBB = undefined;
     mockStore = configureStore();
-    data = {
+    reduxData = {
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture
     };
-    props.store = mockStore(data);
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {

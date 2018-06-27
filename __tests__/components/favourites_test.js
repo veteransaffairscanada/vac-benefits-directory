@@ -19,18 +19,18 @@ describe("Favourites", () => {
   let props;
   let _mountedFavourites;
   let _shallowFavourites;
-  let mockStore, data;
+  let mockStore, reduxData;
 
   const mountedFavourites = () => {
     if (!_mountedFavourites) {
-      _mountedFavourites = mount(<Favourites {...props} {...data} />);
+      _mountedFavourites = mount(<Favourites {...props} {...reduxData} />);
     }
     return _mountedFavourites;
   };
 
   const shallowFavourites = () => {
     if (!_shallowFavourites) {
-      _shallowFavourites = shallow(<Favourites {...props} {...data} />);
+      _shallowFavourites = shallow(<Favourites {...props} {...reduxData} />);
     }
     return _shallowFavourites;
   };
@@ -54,13 +54,13 @@ describe("Favourites", () => {
     _mountedFavourites = undefined;
 
     mockStore = configureStore();
-    data = {
+    reduxData = {
       benefits: benefitsFixture,
       examples: examplesFixture,
       needs: needsFixture,
       eligibilityPaths: eligibilityPathsFixture
     };
-    props.store = mockStore(data);
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {
