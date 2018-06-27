@@ -6,6 +6,8 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
+import textFixture from "../__tests__/fixtures/text";
+
 import { logEvent } from "../utils/analytics";
 import Cookies from "universal-cookie";
 
@@ -113,7 +115,10 @@ export class A extends Component {
     if (this.props.url.query.use_testdata) {
       this.props.dispatch({
         type: "LOAD_DATA",
-        data: { benefits: benefitsFixture }
+        data: {
+          benefits: benefitsFixture,
+          text: textFixture
+        }
       });
     }
   }
