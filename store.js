@@ -3,13 +3,18 @@ import { createStore } from "redux";
 const initialState = {
   benefits: [],
   eligibilityPaths: [],
-  needs: [],
   examples: [],
-  favouriteBenefits: []
+  favouriteBenefits: [],
+  needs: [],
+  selectedNeeds: {},
+  patronType: "",
+  serviceType: "",
+  statusAndVitals: ""
 };
 
 // REDUCERS
 export const reducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case "LOAD_DATA":
       return Object.assign({}, state, {
@@ -21,6 +26,22 @@ export const reducer = (state = initialState, action) => {
         examples: action.data.examples || state.examples,
         favouriteBenefits:
           action.data.favouriteBenefits || state.favouriteBenefits
+      });
+    case "SET_PATRON_TYPE":
+      return Object.assign({}, state, {
+        patronType: action.data
+      });
+    case "SET_SELECTED_NEEDS":
+      return Object.assign({}, state, {
+        selectedNeeds: action.data
+      });
+    case "SET_SERVICE_TYPE":
+      return Object.assign({}, state, {
+        serviceType: action.data
+      });
+    case "SET_STATUS_TYPE":
+      return Object.assign({}, state, {
+        statusAndVitals: action.data
       });
     default:
       return state;

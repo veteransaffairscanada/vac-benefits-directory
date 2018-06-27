@@ -22,12 +22,6 @@ export class A extends Component {
     this.state = {
       favouriteBenefits: [],
       section: "BB",
-      selectedNeeds: {},
-      selectedEligibility: {
-        patronType: "",
-        serviceType: "",
-        statusAndVitals: ""
-      },
       width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
@@ -68,13 +62,7 @@ export class A extends Component {
           : "";
       });
       const newState = {
-        section: section || "BB",
-        selectedNeeds: filters.selectedNeeds,
-        selectedEligibility: {
-          patronType: filters.patronType,
-          serviceType: filters.serviceType,
-          statusAndVitals: filters.statusAndVitals
-        }
+        section: section || "BB"
       };
       this.setState(newState);
     };
@@ -93,13 +81,7 @@ export class A extends Component {
     });
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
-      section: this.props.url.query.section || "BB",
-      selectedNeeds: filters.selectedNeeds,
-      selectedEligibility: {
-        patronType: filters.patronType,
-        serviceType: filters.serviceType,
-        statusAndVitals: filters.statusAndVitals
-      }
+      section: this.props.url.query.section || "BB"
     };
     this.setState(newState);
   }
@@ -115,6 +97,12 @@ export class A extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.setURL();
+    }
+  }
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
@@ -123,25 +111,23 @@ export class A extends Component {
     this.setState({ width: window.innerWidth });
   }
 
-  setURL = state => {
+  setURL = (state = this.state) => {
     let href = "/A?section=" + state.section;
-    if (Object.keys(state.selectedNeeds).length > 0) {
-      href += "&selectedNeeds=" + Object.keys(state.selectedNeeds).join();
+    if (Object.keys(this.props.selectedNeeds).length > 0) {
+      href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
-    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
-      if (state.selectedEligibility[selection] !== "") {
-        href += `&${selection}=${state.selectedEligibility[selection]}`;
-      }
-    });
+    console.log(this.props.selectedEligibility);
+    //["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+    //  if (this.props.selectedEligibility[selection] !== "") {
+    //    href += `&${selection}=${this.props.selectedEligibility[selection]}`;
+    //  }
+    //});
     href += "&lng=" + this.props.t("current-language-code");
     Router.push(href);
   };
 
   setSection = section => {
-    let newState = this.state;
-    newState.section = section;
-    this.setState(newState);
-    this.setURL(newState);
+    this.setState({ section: section });
   };
 
   setSelectedNeeds = ids => {
@@ -150,30 +136,45 @@ export class A extends Component {
       selectedNeeds[id] = id;
       logEvent("FilterClick", "need", id);
     });
-    let newState = this.state;
-    newState.selectedNeeds = selectedNeeds;
-    this.setState(newState);
-    this.setURL(newState);
+    this.props.setSelectedNeeds(selectedNeeds);
   };
 
   setUserProfile = (criteria, id) => {
     logEvent("FilterClick", criteria, id);
-    let newSelectedEligibility = this.state.selectedEligibility;
-    newSelectedEligibility[criteria] = id;
-    if (this.state.selectedEligibility.patronType === "organization") {
-      newSelectedEligibility.serviceType = "";
-      newSelectedEligibility.statusAndVitals = "";
+    switch (criteria) {
+      case "patronType":
+        this.props.setPatronType(id);
+        if (id === "organization") {
+          this.props.setServiceType("");
+          this.props.setStatusType("");
+        }
+        break;
+      case "serviceType":
+        this.props.setServiceType(id);
+        break;
+      case "statusAndVitals":
+        this.props.setStatusType(id);
+        break;
+      default:
+        return true;
     }
-    let newState = this.state;
-    newState.selectedEligibility = newSelectedEligibility;
-    this.setState(newState);
-    this.setURL(newState);
   };
 
   toggleSelectedEligibility = (criteria, id) => () => {
-    let newSelectedEligibility = this.state.selectedEligibility;
-    newSelectedEligibility[criteria] = id;
-    this.setState({ selectedEligibility: newSelectedEligibility });
+    switch (criteria) {
+      case "patronType":
+        this.props.setPatronType(id);
+        if (id === "organization") {
+          this.props.setServiceType("");
+          this.props.setStatusType("");
+        }
+      case "serviceType":
+        this.props.setServiceType(id);
+      case "statusAndVitals":
+        this.props.setStatusType(id);
+      default:
+        return true;
+    }
   };
 
   toggleFavourite = id => {
@@ -190,33 +191,19 @@ export class A extends Component {
   };
 
   clearFilters = () => {
-    const newState = {
-      section: this.state.section,
-      selectedNeeds: this.state.selectedNeeds,
-      selectedEligibility: {
-        patronType: "",
-        serviceType: "",
-        statusAndVitals: ""
-      }
-    };
-    this.setState(newState);
-    this.setURL(newState);
+    this.props.setPatronType("");
+    this.props.setServiceType("");
+    this.props.setStatusType("");
   };
 
   clearNeeds = () => {
-    const newState = {
-      section: this.state.section,
-      selectedNeeds: {},
-      selectedEligibility: this.state.selectedEligibility
-    };
-    this.setState(newState);
-    this.setURL(newState);
+    this.props.setSelectedNeeds({});
   };
 
   sectionToDisplay = section => {
     let question, options;
     const { t } = this.props;
-    const selectedEligibility = this.state.selectedEligibility;
+    const selectedEligibility = this.props.selectedEligibility;
 
     const profileIsVetWSV =
       selectedEligibility["patronType"] === "service-person" &&
@@ -245,7 +232,7 @@ export class A extends Component {
             eligibilityPaths={this.props.eligibilityPaths}
             examples={this.props.examples}
             selectedEligibility={selectedEligibility}
-            selectedNeeds={this.state.selectedNeeds}
+            selectedNeeds={this.props.selectedNeeds}
             setUserProfile={this.setUserProfile}
             setSection={this.setSection}
             pageWidth={this.state.width}
@@ -256,13 +243,14 @@ export class A extends Component {
         );
 
       case section === "BB" ||
-        (section !== "A1" && selectedEligibility.patronType === "organization"):
+        (section !== "A1" &&
+          this.props.selectedEligibility.patronType === "organization"):
         return (
           <BB
             id="BB"
             t={t}
-            selectedEligibility={selectedEligibility}
-            selectedNeeds={this.state.selectedNeeds}
+            selectedEligibility={this.props.selectedEligibility}
+            selectedNeeds={this.props.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             setSelectedNeeds={this.setSelectedNeeds}
             setUserProfile={this.setUserProfile}
@@ -295,7 +283,7 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              selectedNeeds={this.state.selectedNeeds}
+              selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
             />
           </GuidedExperience>
@@ -396,7 +384,7 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              selectedNeeds={this.state.selectedNeeds}
+              selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
             />;
           </GuidedExperience>
@@ -406,33 +394,30 @@ export class A extends Component {
 
   render() {
     // reset bad choices
-    let selectedEligibility = this.state.selectedEligibility;
+    let selectedEligibility = this.props.selectedEligibility;
 
     if (
-      this.state.selectedEligibility.patronType === "service-person" &&
-      this.state.selectedEligibility.statusAndVitals === "deceased"
+      this.props.selectedEligibility.patronType === "service-person" &&
+      this.props.selectedEligibility.statusAndVitals === "deceased"
     ) {
-      selectedEligibility.statusAndVitals = "";
-      this.setState({ selectedEligibility: selectedEligibility });
+      this.props.setStatusType("");
     }
 
     if (
-      this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
-      this.state.selectedEligibility.statusAndVitals === "stillServing"
+      this.props.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
+      this.props.selectedEligibility.statusAndVitals === "stillServing"
     ) {
-      selectedEligibility.statusAndVitals = "";
-      this.setState({ selectedEligibility: selectedEligibility });
+      this.props.setStatusType("");
     }
 
     // Guided Experience skips statusAndVitals for service-person / WSV
     if (
       this.state.section !== "BB" &&
-      this.state.selectedEligibility.patronType === "service-person" &&
-      this.state.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
-      this.state.selectedEligibility.statusAndVitals !== ""
+      this.props.selectedEligibility.patronType === "service-person" &&
+      this.props.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
+      this.props.selectedEligibility.statusAndVitals !== ""
     ) {
-      selectedEligibility.statusAndVitals = "";
-      this.setState({ selectedEligibility: selectedEligibility });
+      this.props.setStatusType("");
     }
 
     return (
@@ -448,19 +433,41 @@ export class A extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    benefits: state.benefits,
-    eligibilityPaths: state.eligibilityPaths,
-    needs: state.needs,
-    favouriteBenefits: state.favouriteBenefits,
-    examples: state.examples
+    setPatronType: patronType => {
+      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
+    },
+    setSelectedNeeds: needsObject => {
+      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
+    },
+    setServiceType: serviceType => {
+      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
+    },
+    setStatusType: statusType => {
+      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    }
+  };
+};
+
+const mapStateToProps = reduxState => {
+  return {
+    benefits: reduxState.benefits,
+    eligibilityPaths: reduxState.eligibilityPaths,
+    examples: reduxState.examples,
+    favouriteBenefits: reduxState.favouriteBenefits,
+    needs: reduxState.needs,
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    },
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
 A.propTypes = {
   benefits: PropTypes.array.isRequired,
-  dispatch: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
@@ -468,7 +475,9 @@ A.propTypes = {
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
+  selectedEligibility: PropTypes.object.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withI18next()(A));
+export default connect(mapStateToProps, mapDispatchToProps)(withI18next()(A));
