@@ -109,7 +109,7 @@ describe("A", () => {
       favouriteBenefits: [],
       width: 1024
     });
-    expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
+    expect(AInstance.props.selectedEligibility.serviceType).toEqual("CAF");
     AInstance.clearFilters();
     expect(AInstance.state).toEqual({
       section: "S",
@@ -139,7 +139,7 @@ describe("A", () => {
       },
       width: 1024
     });
-    expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
+    expect(AInstance.props.selectedEligibility.serviceType).toEqual("CAF");
     AInstance.clearNeeds();
     expect(AInstance.state).toEqual({
       section: "S",
@@ -176,9 +176,9 @@ describe("A", () => {
       health: "health",
       financial: "financial"
     });
-    expect(AInstance.state.selectedEligibility.patronType).toEqual("family");
-    expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
-    expect(AInstance.state.selectedEligibility.statusAndVitals).toEqual("");
+    expect(AInstance.props.selectedEligibility.patronType).toEqual("family");
+    expect(AInstance.props.selectedEligibility.serviceType).toEqual("CAF");
+    expect(AInstance.props.selectedEligibility.statusAndVitals).toEqual("");
   });
 
   it("Router.onRouteChangeStart sets state correctly from url", () => {
@@ -187,7 +187,7 @@ describe("A", () => {
     Router.onRouteChangeStart(url);
     expect(AInstance.state.section).toEqual("test_section");
     expect(AInstance.state.selectedNeeds).toEqual({ a: "a", b: "b" });
-    expect(AInstance.state.selectedEligibility.patronType).toEqual("cc");
+    expect(AInstance.props.selectedEligibility.patronType).toEqual("cc");
   });
 
   it("toggleSelectedEligibility adds and removes id", () => {
@@ -237,13 +237,13 @@ describe("A", () => {
       }
     };
     AInstance.setState(state);
-    expect(AInstance.state.selectedEligibility.serviceType).toEqual("CAF");
-    expect(AInstance.state.selectedEligibility.statusAndVitals).toEqual(
+    expect(AInstance.props.selectedEligibility.serviceType).toEqual("CAF");
+    expect(AInstance.props.selectedEligibility.statusAndVitals).toEqual(
       "released"
     );
     AInstance.setUserProfile("patronType", "organization");
-    expect(AInstance.state.selectedEligibility.serviceType).toEqual("");
-    expect(AInstance.state.selectedEligibility.statusAndVitals).toEqual("");
+    expect(AInstance.props.selectedEligibility.serviceType).toEqual("");
+    expect(AInstance.props.selectedEligibility.statusAndVitals).toEqual("");
   });
 
   it("sectionToDisplay returns appropriate component", () => {

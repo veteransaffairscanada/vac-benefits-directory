@@ -14,7 +14,6 @@ const initialState = {
 
 // REDUCERS
 export const reducer = (state = initialState, action) => {
-  let newState;
   switch (action.type) {
     case "LOAD_DATA":
       return Object.assign({}, state, {

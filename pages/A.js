@@ -97,8 +97,8 @@ export class A extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props !== prevProps || this.state.section !== prevState.section) {
       this.setURL();
     }
   }
@@ -116,12 +116,11 @@ export class A extends Component {
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
-    console.log(this.props.selectedEligibility);
-    //["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
-    //  if (this.props.selectedEligibility[selection] !== "") {
-    //    href += `&${selection}=${this.props.selectedEligibility[selection]}`;
-    //  }
-    //});
+    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+      if (this.props.selectedEligibility[selection] !== "") {
+        href += `&${selection}=${this.props.selectedEligibility[selection]}`;
+      }
+    });
     href += "&lng=" + this.props.t("current-language-code");
     Router.push(href);
   };
@@ -168,10 +167,13 @@ export class A extends Component {
           this.props.setServiceType("");
           this.props.setStatusType("");
         }
+        break;
       case "serviceType":
         this.props.setServiceType(id);
+        break;
       case "statusAndVitals":
         this.props.setStatusType(id);
+        break;
       default:
         return true;
     }
