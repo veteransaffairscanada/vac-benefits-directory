@@ -67,6 +67,8 @@ export class A extends Component {
         i18nFr[text.key] = text.French;
       }
     });
+    this.props.i18n.addResourceBundle("en", "common", i18nEn);
+    this.props.i18n.addResourceBundle("fr", "common", i18nFr);
 
     Router.onRouteChangeStart = newUrl => {
       let myURL = {};
@@ -472,7 +474,7 @@ const mapStateToProps = state => {
     needs: state.needs,
     examples: state.examples,
     favouriteBenefits: state.favouriteBenefits,
-    text: state.test
+    text: state.text
   };
 };
 
