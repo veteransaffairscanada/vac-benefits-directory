@@ -66,7 +66,7 @@ export class GuidedExperienceNeeds extends Component {
 }
 const mapStateToProps = state => {
   return {
-    needs: state.eligibilityPaths
+    needs: state.needs
   };
 };
 
