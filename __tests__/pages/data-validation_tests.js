@@ -5,6 +5,7 @@ import React from "react";
 
 import { DataValidation } from "../../pages/data-validation";
 import benefitsFixture from "../fixtures/benefits";
+import textFixture from "../fixtures/text";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import examplesFixture from "../fixtures/examples";
@@ -27,14 +28,7 @@ describe("DataValidation", () => {
 
   beforeEach(() => {
     props = {
-      text: [
-        {
-          section: "section 0",
-          key: "key 0",
-          English: "English0",
-          French: "French0"
-        }
-      ],
+      text: textFixture,
       t: key => key,
       i18n: {
         addResourceBundle: jest.fn()
