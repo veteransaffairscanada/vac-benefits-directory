@@ -36,10 +36,13 @@ describe("A", () => {
 
   beforeEach(() => {
     props = {
+      text: [],
       url: {
         query: {}
       },
-      i18n: {},
+      i18n: {
+        addResourceBundle: jest.fn()
+      },
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },

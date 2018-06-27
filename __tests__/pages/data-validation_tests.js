@@ -27,8 +27,18 @@ describe("DataValidation", () => {
 
   beforeEach(() => {
     props = {
+      text: [
+        {
+          section: "section 0",
+          key: "key 0",
+          English: "English0",
+          French: "French0"
+        }
+      ],
       t: key => key,
-      i18n: {},
+      i18n: {
+        addResourceBundle: jest.fn()
+      },
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
