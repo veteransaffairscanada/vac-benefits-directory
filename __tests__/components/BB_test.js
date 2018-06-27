@@ -42,6 +42,7 @@ describe("BB", () => {
       selectedNeeds: {},
       needs: needsFixture,
       examples: [],
+      id: "BB",
       pageWidth: 42,
       selectedEligibility: {
         serviceType: "",

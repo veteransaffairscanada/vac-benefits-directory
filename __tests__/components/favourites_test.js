@@ -47,7 +47,6 @@ describe("Favourites", () => {
         statusAndVitals: ""
       },
       toggleSelectedEligibility: jest.fn(),
-      classes: {},
       url: { query: {} },
       favouriteBenefits: ["3"],
       toggleFavourite: () => true

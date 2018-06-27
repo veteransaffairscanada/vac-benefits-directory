@@ -155,7 +155,7 @@ export class Favourites extends Component {
     );
 
     return (
-      <div id={this.props.id}>
+      <div>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
