@@ -37,7 +37,8 @@ describe("BenefitList", () => {
       filteredBenefits: benefitsFixture,
       onRef: k => k,
       sortByValue: "",
-      searchString: ""
+      searchString: "",
+      favouriteBenefits: benefitsFixture
     };
     _mountedBenefitList = undefined;
     _shallowBenefitList = undefined;
@@ -47,8 +48,7 @@ describe("BenefitList", () => {
     data = {
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      examples: examplesFixture,
-      favouriteBenefits: benefitsFixture
+      examples: examplesFixture
     };
     props.store.dispatch({ type: "LOAD_DATA", data: data });
   });

@@ -44,6 +44,7 @@ describe("BB", () => {
         patronType: "",
         statusAndVitals: ""
       },
+      favouriteBenefits: [],
       toggleSelectedEligibility: jest.fn(),
       classes: {
         card: "BB-card-87",
@@ -62,7 +63,6 @@ describe("BB", () => {
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      favouriteBenefits: [],
       needs: needsFixture
     };
     props.store = mockStore(data);

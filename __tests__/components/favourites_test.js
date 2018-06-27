@@ -45,7 +45,8 @@ describe("Favourites", () => {
       },
       toggleSelectedEligibility: jest.fn(),
       classes: {},
-      url: { query: {} }
+      url: { query: {} },
+      favouriteBenefits: ["3"]
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
@@ -54,11 +55,9 @@ describe("Favourites", () => {
     data = {
       benefits: benefitsFixture,
       examples: examplesFixture,
-      eligibilityPaths: eligibilityPathsFixture,
-      favouriteBenefits: ["0", "3"]
+      eligibilityPaths: eligibilityPathsFixture
     };
     props.store = mockStore(data);
-    // props.store.dispatch({ type: "LOAD_DATA", data: data });
   });
 
   it("passes axe tests", async () => {
@@ -82,6 +81,7 @@ describe("Favourites", () => {
   });
 
   it("renders with 2 favourites", async () => {
+    props.favouriteBenefits = ["0", "3"];
     expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
 

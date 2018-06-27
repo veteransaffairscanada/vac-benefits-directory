@@ -270,8 +270,7 @@ export class BenefitCard extends Component {
 
 const mapStateToProps = state => {
   return {
-    examples: state.examples,
-    favouriteBenefits: state.favouriteBenefits
+    examples: state.examples
   };
 };
 

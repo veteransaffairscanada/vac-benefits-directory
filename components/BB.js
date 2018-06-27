@@ -405,6 +405,7 @@ export class BB extends Component {
                   toggleFavourite={this.props.toggleFavourite}
                   searchString={this.state.searchString}
                   showFavourites={true}
+                  favouriteBenefits={this.props.favouriteBenefits}
                   store={this.props.store}
                 />
               </Grid>
@@ -421,7 +422,6 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
     examples: state.examples,
-    favouriteBenefits: state.favouriteBenefits,
     needs: state.needs
   };
 };

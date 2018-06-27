@@ -69,6 +69,7 @@ export class BenefitList extends React.Component {
             showFavourite={this.props.showFavourites}
             searchString={this.props.searchString}
             store={this.props.store}
+            favouriteBenefits={this.props.favouriteBenefits}
           />
         ) : (
           ""
@@ -81,8 +82,7 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
-    examples: state.examples,
-    favouriteBenefits: state.favouriteBenefits
+    examples: state.examples
   };
 };
 

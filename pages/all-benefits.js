@@ -41,6 +41,7 @@ export class AllBenefits extends Component {
                     key={i}
                     onRef={foo => foo}
                     searchString=""
+                    store={this.props.store}
                   />
                 ))}
               </Grid>
@@ -63,7 +64,8 @@ AllBenefits.propTypes = {
   benefits: PropTypes.array,
   eligibilityPaths: PropTypes.array,
   i18n: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

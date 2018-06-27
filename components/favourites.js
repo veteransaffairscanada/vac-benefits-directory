@@ -230,6 +230,7 @@ export class Favourites extends Component {
                   showFavourites={true}
                   searchString=""
                   store={this.props.store}
+                  favouriteBenefits={this.props.favouriteBenefits}
                 />
               </Grid>
             </Grid>
@@ -244,8 +245,7 @@ const mapStateToProps = state => {
   return {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
-    examples: state.examples,
-    favouriteBenefits: state.favouriteBenefits
+    examples: state.examples
   };
 };
 

@@ -8,6 +8,9 @@ import { A } from "../../pages/A";
 import benefitsFixture from "../fixtures/benefits";
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
+import configureStore from "redux-mock-store";
+import examplesFixture from "../fixtures/examples";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -22,9 +25,11 @@ describe("A", () => {
 
   let props;
   let _mountedA;
+  let mockStore, data;
+
   const mountedA = () => {
     if (!_mountedA) {
-      _mountedA = shallow(<A {...props} />);
+      _mountedA = shallow(<A {...props} {...data} />);
     }
     return _mountedA;
   };
@@ -53,6 +58,14 @@ describe("A", () => {
       favouriteBenefits: []
     };
     _mountedA = undefined;
+    mockStore = configureStore();
+    data = {
+      benefits: benefitsFixture,
+      examples: examplesFixture,
+      eligibilityPaths: eligibilityPathsFixture,
+      needs: needsFixture
+    };
+    props.store = mockStore(data);
   });
 
   it("passes axe tests", async () => {
