@@ -30,7 +30,7 @@ describe("LanguageButton", () => {
         changeLanguage: () => {}
       },
       t: key => {
-        return key == "all.current-language-code" ? "en" : key;
+        return key == "current-language-code" ? "en" : key;
       }
     };
     _mountedLanguageButton = undefined;
@@ -65,7 +65,7 @@ describe("LanguageButton", () => {
           .find("#changeLanguage")
           .at(0)
           .text()
-      ).toEqual("other-language_all.other-language-code_en");
+      ).toEqual("other-language_other-language-code_en");
     });
   });
 

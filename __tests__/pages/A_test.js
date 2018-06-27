@@ -36,7 +36,7 @@ describe("A", () => {
       },
       i18n: undefined,
       t: key => {
-        return key == "all.current-language-code" ? "en" : key;
+        return key == "current-language-code" ? "en" : key;
       },
       storeHydrated: true,
       dispatch: jest.fn(),

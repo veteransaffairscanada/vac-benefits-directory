@@ -195,7 +195,7 @@ export class BB extends Component {
     // If there is a searchString the run another filter
     if (this.state.searchString.trim() !== "") {
       let results = [];
-      if (this.props.t("all.current-language-code") == "en") {
+      if (this.props.t("current-language-code") == "en") {
         results = this.state.enIdx.search(this.state.searchString + "*");
       } else {
         results = this.state.frIdx.search(this.state.searchString + "*");
@@ -281,7 +281,7 @@ export class BB extends Component {
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
-      t("all.current-language-code")
+      t("current-language-code")
     );
 
     return (

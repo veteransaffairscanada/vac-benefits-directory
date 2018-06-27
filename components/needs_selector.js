@@ -113,7 +113,7 @@ class NeedsSelector extends Component {
                       : classes.needSelected
                   }
                 >
-                  {t("all.current-language-code") === "en"
+                  {t("current-language-code") === "en"
                     ? need.nameEn
                     : need.nameFr}
                 </Button>

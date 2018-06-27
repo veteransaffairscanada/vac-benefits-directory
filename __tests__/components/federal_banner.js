@@ -23,7 +23,7 @@ describe("FederalBanner", () => {
         changeLanguage: () => {}
       },
       t: key => {
-        return key == "all.current-language-code" ? "en" : key;
+        return key == "current-language-code" ? "en" : key;
       }
     };
     _mountedFederalBanner = undefined;

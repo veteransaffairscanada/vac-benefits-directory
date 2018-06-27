@@ -63,7 +63,7 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <html lang={this.props.t("all.current-language-code")}>
+      <html lang={this.props.t("current-language-code")}>
         <Head>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>

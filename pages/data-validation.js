@@ -34,12 +34,17 @@ export class DataValidation extends Component {
     let i18nEn = {};
     let i18nFr = {};
     this.props.text.forEach(text => {
-      if (!i18nEn[text.section]) {
-        i18nEn[text.section] = {};
-        i18nFr[text.section] = {};
+      if (text.section) {
+        if (!i18nEn[text.section]) {
+          i18nEn[text.section] = {};
+          i18nFr[text.section] = {};
+        }
+        i18nEn[text.section][text.key] = text.English;
+        i18nFr[text.section][text.key] = text.French;
+      } else {
+        i18nEn[text.key] = text.English;
+        i18nFr[text.key] = text.French;
       }
-      i18nEn[text.section][text.key] = text.English;
-      i18nFr[text.section][text.key] = text.French;
     });
 
     this.props.i18n.addResourceBundle("en", "common", i18nEn);

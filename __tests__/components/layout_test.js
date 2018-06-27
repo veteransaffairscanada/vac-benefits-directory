@@ -23,7 +23,7 @@ describe("Layout", () => {
     window.GA_INITIALIZED = true;
     props = {
       t: key => {
-        return key === "all.current-language-code" ? "en" : key;
+        return key === "current-language-code" ? "en" : key;
       }
     };
     _mountedLayout = undefined;

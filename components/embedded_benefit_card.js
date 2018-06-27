@@ -64,7 +64,7 @@ export class EmbeddedBenefitCard extends Component {
 
   render() {
     const { t, classes, benefit } = this.props;
-    const language = t("all.current-language-code");
+    const language = t("current-language-code");
     return (
       <ExpansionPanel
         className={

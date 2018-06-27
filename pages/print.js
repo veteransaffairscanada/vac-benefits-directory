@@ -70,9 +70,7 @@ export class Print extends Component {
               {selectedNeeds.map((n, i) => (
                 <div key={i} className="needsListItem">
                   -<b>
-                    {t("all.current-language-code") == "en"
-                      ? n.nameEn
-                      : n.nameFr}
+                    {t("current-language-code") == "en" ? n.nameEn : n.nameFr}
                   </b>
                 </div>
               ))}
@@ -93,13 +91,13 @@ export class Print extends Component {
                 >
                   <div>
                     <b>
-                      {t("all.current-language-code") == "en"
+                      {t("current-language-code") == "en"
                         ? b.vacNameEn
                         : b.vacNameFr}
                     </b>
                   </div>
                   <div>
-                    {t("all.current-language-code") == "en"
+                    {t("current-language-code") == "en"
                       ? b.oneLineDescriptionEn
                       : b.oneLineDescriptionFr}
                   </div>

@@ -1,152 +1,152 @@
 {
-  "home": {
-    "poc-description": "Ceci est une preuve de concept pour le projet ACC"
-  },
-  "all-benefits": {
-    "List of all benefits": "La liste complète des avantages"
-  },
-
-  "GE": {
-    "patronType":
-      "Sélectionnez l'option qui décrit le mieux celui qui bénéficiera de l'avantage.",
-    "serviceType":
-      "Sélectionnez l'option qui décrit le mieux le type de service.",
-    "statusAndVitals":
-      "Sélectionnez l'option qui décrit le mieux le statut du membre.",
-    "needs title": "J'ai besoin d'aide avec:",
-    "needs subtitle": "Sélectionnez tout ce qui s'y rapporte"
-  },
-  "A1": {
-    "Find Benefits for": "Trouver des avantages pour"
-  },
-  "A2": {
-    "What best describes your status?": "Ce qui décrit le mieux votre statut?",
-    "Veteran": "Vétéran",
-    "Family": "Famille",
-    "Not Sure": "Pas certain",
-    "See Results": "Voir les résultats"
-  },
-  "A3": {
-    "Your Selection": "Votre sélection",
-    "Here are NNN benefits that may apply to you":
-      "Voici {{value}} avantages qui peuvent s'appliquer à vous",
-    "At this time there are no benefits that match your selections":
-      "Pour le moment, aucun avantage ne correspond à vos sélections.",
-    "Here is a benefit that may apply to you":
-      "Voici un avantage qui peut s'appliquer à vous",
-    "Please select a status": "Veuillez sélectionner un statut.",
-    "Please select a need": "Veuillez sélectionner un besoin."
-  },
-  "B3": {
-    "Status": "Statut",
-    "Needs": "Besoins",
-    "Filter Benefits": "Filtrer les avantages",
-    "ServiceType": "Type de service",
-    "PatronType": "Qui cherches-tu?",
-    "serviceStatus": "Statut du membre",
-    "servicePersonVitalStatus": "Est-ce que le Vétéran est en vie?",
-    "What do you need help with?": "Avec quoi as tu besoin d'aide?",
-    "Benefits for": "Bénéficiaire",
-    "Sort By": "Trier par",
-    "Popularity": "Popularité",
-    "Alphabetical": "Alphabétique",
-    "title": "Trouver des avantages qui vous conviennent",
-    "subtitle1":
-      "Anciens Combattants Canada offre plus de 20 avantages pour vous et votre famille.",
-    "subtitle2":
-      "Utilisez les filtres plus bas pour trouver les avantages qui répondent à vos besoins.",
-    "x benefits to consider": "{{x}} avantages à considérer",
-    "No benefits":
-      "Pour le moment, aucun avantage ne correspond à vos sélections.",
-    "One benefit": "Un avantage à considérer",
-    "All benefits to consider": "Tous les avantages",
-    "check eligibility":
-      "Vérifiez les critéres d’admissibilité de chaque avantage avant de faire une demande.",
-    "Filter by eligibility": "Montrez-moi des avantages pour:",
-    "favouritesButtonText": "Favoris"
-  },
-  "index": {
-    "all benefits": "Voir tous les avantages",
-    "benefits directory": "annuaire des avantages",
-    "guided experience": "Trouver des avantages pertinents pour vous",
-    "or": "ou",
-    "title":
-      "Nous sommes ici pour offrir du soutien aux Vétérans à toutes les étapes de leur vie pendant ou après l'armée"
-  },
-  "dv": {
-    "pageTitle": "Validation des Données",
-    "name": "Nom",
-    "value": "Valeur",
-    "status": "Statut",
-    "Size of Benefits Table": "Taille de la table des avantages",
-    "Pass": "Passer",
-    "Fail": "Échouer",
-    "Size of Eligibility Paths Table":
-      "Taille du tableau des chemins d'admissibilité",
-    "Size of Needs Table": "Tableau de la taille des besoins",
-    "Size of Examples Table": "Taille de la table des exemples",
-    "Benefits with Empty Fields": "Avantages avec des champs vides"
-  },
-  "next": "Suivant",
-  "back": "Retour",
-  "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
-  "alpha": "Pour les tests seulement",
-  "noscript":
-    "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",
-  "other-language": "English",
-  "all.current-language-code": "fr",
-  "all.other-language-code": "en",
-  "Privacy": "Intimité",
-  "Show All Benefits": "Afficher tous les avantages",
-  "title": "Preuve de concept pour le projet ACC",
-  "description": "Preuve de concept pour le projet ACC",
-  "Change": "Changes",
-  "View Details": "Voir les détails",
-  "refresh-cache": "Rafraîchir le cache",
-  "Support for Families": "Soutien aux familles",
-  "Financial": "Financier",
-  "Survivor's Pension": "Pension de survivant",
-  "Survivor's Pension Description":
-    "Les conjoints reçoivent le plein montant de la pension après la première année du décès.",
-  "Disability Award": "Prix ​​d'invalidité",
-  "Disability Award Description":
-    "Les paiements financiers versés aux personnes ayant une déficience liée au service.",
-  "CAF": "Forces Armées Canadiennes",
-  "RCMP": "Gendarmerie royale du Canada",
-  "WSV (WWII or Korea)":
-    "Vétérans de la Seconde Guerre mondiale ou la guerre de Corée",
-  "service-person": "Vétéran ou membre actif",
-  "family": "Membres de la famille",
-  "organization": "Organisations",
-  "deceased": "Décédé",
-  "disabled-serviceStatusFilter": "Seulement requis pour FAC Vétérans",
-  "disabled-servicePersonVitalStatusFilter": "Seulement requis pour la famille",
-  "yes": "Oui",
-  "no": "Non",
-  "comment-prompt": "Y at-il un problème avec cette page?",
-  "comment-response": "Merci pour votre commentaire",
-  "comment-help-us-improve": "Aidez-nous à améliorer ce site",
-  "comment-privacy-disclaimer":
-    "Veuillez ne pas inclure d'informations privées",
-  "comment-what-were-you-doing": "Que faisiez-vous?",
-  "comment-what-went-wrong": "Qu'est ce qui ne s'est pas bien passé?",
-  "send": "Envoyer",
-  "feedback-prompt": "Avez-vous trouvé l'information que vous cherchez?",
-  "feedback-response": "Merci pour votre avis.",
-  "Benefit Description": "Description de l'avantage",
-  "Showing x of y benefits": "Montrant {{x}} des {{y}} avantages.",
-  "Find out more": "En savoir plus",
-  "Available to": "Disponible pour",
-  "examples": "Selon vos besoins, ce programme peut fournir",
-  "Filter by need": "J’ai besoin d’aide avec:",
-  "stillServing": "Toujours en train de servir",
-  "releasedAlive": "Libéré",
-  "Close all": "Ferme tout",
-  "Clear": "Déselectionner",
-  "Veteran child benefits": "Avec cet avantage, le Vétéran peut avoir accès à",
-  "Family child benefits":
-    "Avec cet avantage, la famille du Vétéran peut avoir accès à",
-  "search": "Chercher",
-  "Print": "Imprimer",
-  "Select all that apply": "Sélectionnez tous les sujets qui vous intéressent."
+  //  "home": {
+  //    "poc-description": "Ceci est une preuve de concept pour le projet ACC"
+  //  },
+  //  "all-benefits": {
+  //    "List of all benefits": "La liste complète des avantages"
+  //  },
+  //
+  //  "GE": {
+  //    "patronType":
+  //      "Sélectionnez l'option qui décrit le mieux celui qui bénéficiera de l'avantage.",
+  //    "serviceType":
+  //      "Sélectionnez l'option qui décrit le mieux le type de service.",
+  //    "statusAndVitals":
+  //      "Sélectionnez l'option qui décrit le mieux le statut du membre.",
+  //    "needs title": "J'ai besoin d'aide avec:",
+  //    "needs subtitle": "Sélectionnez tout ce qui s'y rapporte"
+  //  },
+  //  "A1": {
+  //    "Find Benefits for": "Trouver des avantages pour"
+  //  },
+  //  "A2": {
+  //    "What best describes your status?": "Ce qui décrit le mieux votre statut?",
+  //    "Veteran": "Vétéran",
+  //    "Family": "Famille",
+  //    "Not Sure": "Pas certain",
+  //    "See Results": "Voir les résultats"
+  //  },
+  //  "A3": {
+  //    "Your Selection": "Votre sélection",
+  //    "Here are NNN benefits that may apply to you":
+  //      "Voici {{value}} avantages qui peuvent s'appliquer à vous",
+  //    "At this time there are no benefits that match your selections":
+  //      "Pour le moment, aucun avantage ne correspond à vos sélections.",
+  //    "Here is a benefit that may apply to you":
+  //      "Voici un avantage qui peut s'appliquer à vous",
+  //    "Please select a status": "Veuillez sélectionner un statut.",
+  //    "Please select a need": "Veuillez sélectionner un besoin."
+  //  },
+  //  "B3": {
+  //    "Status": "Statut",
+  //    "Needs": "Besoins",
+  //    "Filter Benefits": "Filtrer les avantages",
+  //    "ServiceType": "Type de service",
+  //    "PatronType": "Qui cherches-tu?",
+  //    "serviceStatus": "Statut du membre",
+  //    "servicePersonVitalStatus": "Est-ce que le Vétéran est en vie?",
+  //    "What do you need help with?": "Avec quoi as tu besoin d'aide?",
+  //    "Benefits for": "Bénéficiaire",
+  //    "Sort By": "Trier par",
+  //    "Popularity": "Popularité",
+  //    "Alphabetical": "Alphabétique",
+  //    "title": "Trouver des avantages qui vous conviennent",
+  //    "subtitle1":
+  //      "Anciens Combattants Canada offre plus de 20 avantages pour vous et votre famille.",
+  //    "subtitle2":
+  //      "Utilisez les filtres plus bas pour trouver les avantages qui répondent à vos besoins.",
+  //    "x benefits to consider": "{{x}} avantages à considérer",
+  //    "No benefits":
+  //      "Pour le moment, aucun avantage ne correspond à vos sélections.",
+  //    "One benefit": "Un avantage à considérer",
+  //    "All benefits to consider": "Tous les avantages",
+  //    "check eligibility":
+  //      "Vérifiez les critéres d’admissibilité de chaque avantage avant de faire une demande.",
+  //    "Filter by eligibility": "Montrez-moi des avantages pour:",
+  //    "favouritesButtonText": "Favoris"
+  //  },
+  //  "index": {
+  //    "all benefits": "Voir tous les avantages",
+  //    "benefits directory": "annuaire des avantages",
+  //    "guided experience": "Trouver des avantages pertinents pour vous",
+  //    "or": "ou",
+  //    "title":
+  //      "Nous sommes ici pour offrir du soutien aux Vétérans à toutes les étapes de leur vie pendant ou après l'armée"
+  //  },
+  //  "dv": {
+  //    "pageTitle": "Validation des Données",
+  //    "name": "Nom",
+  //    "value": "Valeur",
+  //    "status": "Statut",
+  //    "Size of Benefits Table": "Taille de la table des avantages",
+  //    "Pass": "Passer",
+  //    "Fail": "Échouer",
+  //    "Size of Eligibility Paths Table":
+  //      "Taille du tableau des chemins d'admissibilité",
+  //    "Size of Needs Table": "Tableau de la taille des besoins",
+  //    "Size of Examples Table": "Taille de la table des exemples",
+  //    "Benefits with Empty Fields": "Avantages avec des champs vides"
+  //  },
+  //  "next": "Suivant",
+  //  "back": "Retour",
+  //  "child benefits": "Avec cet avantage, vous pouvez également avoir accès",
+  //  "alpha": "Pour les tests seulement",
+  //  "noscript":
+  //    "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",
+  //  "other-language": "English",
+  //  "current-language-code": "fr",
+  //  "other-language-code": "en",
+  //  "Privacy": "Intimité",
+  //  "Show All Benefits": "Afficher tous les avantages",
+  //  "title": "Preuve de concept pour le projet ACC",
+  //  "description": "Preuve de concept pour le projet ACC",
+  //  "Change": "Changes",
+  //  "View Details": "Voir les détails",
+  //  "refresh-cache": "Rafraîchir le cache",
+  //  "Support for Families": "Soutien aux familles",
+  //  "Financial": "Financier",
+  //  "Survivor's Pension": "Pension de survivant",
+  //  "Survivor's Pension Description":
+  //    "Les conjoints reçoivent le plein montant de la pension après la première année du décès.",
+  //  "Disability Award": "Prix ​​d'invalidité",
+  //  "Disability Award Description":
+  //    "Les paiements financiers versés aux personnes ayant une déficience liée au service.",
+  //  "CAF": "Forces Armées Canadiennes",
+  //  "RCMP": "Gendarmerie royale du Canada",
+  //  "WSV (WWII or Korea)":
+  //    "Vétérans de la Seconde Guerre mondiale ou la guerre de Corée",
+  //  "service-person": "Vétéran ou membre actif",
+  //  "family": "Membres de la famille",
+  //  "organization": "Organisations",
+  //  "deceased": "Décédé",
+  //  "disabled-serviceStatusFilter": "Seulement requis pour FAC Vétérans",
+  //  "disabled-servicePersonVitalStatusFilter": "Seulement requis pour la famille",
+  //  "yes": "Oui",
+  //  "no": "Non",
+  //  "comment-prompt": "Y at-il un problème avec cette page?",
+  //  "comment-response": "Merci pour votre commentaire",
+  //  "comment-help-us-improve": "Aidez-nous à améliorer ce site",
+  //  "comment-privacy-disclaimer":
+  //    "Veuillez ne pas inclure d'informations privées",
+  //  "comment-what-were-you-doing": "Que faisiez-vous?",
+  //  "comment-what-went-wrong": "Qu'est ce qui ne s'est pas bien passé?",
+  //  "send": "Envoyer",
+  //  "feedback-prompt": "Avez-vous trouvé l'information que vous cherchez?",
+  //  "feedback-response": "Merci pour votre avis.",
+  //  "Benefit Description": "Description de l'avantage",
+  //  "Showing x of y benefits": "Montrant {{x}} des {{y}} avantages.",
+  //  "Find out more": "En savoir plus",
+  //  "Available to": "Disponible pour",
+  //  "examples": "Selon vos besoins, ce programme peut fournir",
+  //  "Filter by need": "J’ai besoin d’aide avec:",
+  //  "stillServing": "Toujours en train de servir",
+  //  "releasedAlive": "Libéré",
+  //  "Close all": "Ferme tout",
+  //  "Clear": "Déselectionner",
+  //  "Veteran child benefits": "Avec cet avantage, le Vétéran peut avoir accès à",
+  //  "Family child benefits":
+  //    "Avec cet avantage, la famille du Vétéran peut avoir accès à",
+  //  "search": "Chercher",
+  //  "Print": "Imprimer",
+  //  "Select all that apply": "Sélectionnez tous les sujets qui vous intéressent."
 }

@@ -52,6 +52,22 @@ export class A extends Component {
   };
 
   componentWillMount() {
+    let i18nEn = {};
+    let i18nFr = {};
+    this.props.text.forEach(text => {
+      if (text.section) {
+        if (!i18nEn[text.section]) {
+          i18nEn[text.section] = {};
+          i18nFr[text.section] = {};
+        }
+        i18nEn[text.section][text.key] = text.English;
+        i18nFr[text.section][text.key] = text.French;
+      } else {
+        i18nEn[text.key] = text.English;
+        i18nFr[text.key] = text.French;
+      }
+    });
+
     Router.onRouteChangeStart = newUrl => {
       let myURL = {};
       myURL.searchParams = this.getUrlParams(newUrl);
@@ -133,7 +149,7 @@ export class A extends Component {
         href += `&${selection}=${state.selectedEligibility[selection]}`;
       }
     });
-    href += "&lng=" + this.props.t("all.current-language-code");
+    href += "&lng=" + this.props.t("current-language-code");
     Router.push(href);
   };
 
@@ -455,7 +471,8 @@ const mapStateToProps = state => {
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
     examples: state.examples,
-    favouriteBenefits: state.favouriteBenefits
+    favouriteBenefits: state.favouriteBenefits,
+    text: state.test
   };
 };
 
@@ -468,7 +485,8 @@ A.propTypes = {
   needs: PropTypes.array,
   t: PropTypes.func,
   url: PropTypes.object,
-  favouriteBenefits: PropTypes.array
+  favouriteBenefits: PropTypes.array,
+  text: PropTypes.array
 };
 
 export default connect(mapStateToProps)(withI18next()(A));
