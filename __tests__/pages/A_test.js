@@ -34,7 +34,7 @@ describe("A", () => {
       url: {
         query: {}
       },
-      i18n: undefined,
+      i18n: {},
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },

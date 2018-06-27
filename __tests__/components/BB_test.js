@@ -36,15 +36,23 @@ describe("BB", () => {
     props = {
       t: key => key,
       benefits: benefitsFixture,
+      clearFilters: () => true,
+      clearNeeds: () => true,
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
       needs: needsFixture,
       examples: [],
+      id: "BB",
+      pageWidth: 42,
       selectedEligibility: {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
       },
+      setSection: () => true,
+      setSelectedNeeds: () => true,
+      setUserProfile: () => true,
+      toggleFavourite: () => true,
       toggleSelectedEligibility: jest.fn(),
       classes: {
         card: "BB-card-87",

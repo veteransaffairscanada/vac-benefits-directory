@@ -134,13 +134,13 @@ const mapStateToProps = state => {
 };
 
 DataValidation.propTypes = {
-  benefits: PropTypes.array,
-  eligibilityPaths: PropTypes.array,
-  needs: PropTypes.array,
-  examples: PropTypes.array,
-  i18n: PropTypes.object,
-  t: PropTypes.func,
-  classes: PropTypes.object
+  benefits: PropTypes.array.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  needs: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(

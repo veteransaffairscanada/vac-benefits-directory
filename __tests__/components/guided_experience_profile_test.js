@@ -38,7 +38,6 @@ describe("GuidedExperienceProfile", () => {
       options: ["op0", "op1"],
       onClick: jest.fn(),
       isDown: option => option === "op0",
-      classes: {},
       value: "op0"
     };
     _shallowGuidedExperienceProfile = undefined;

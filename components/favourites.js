@@ -155,7 +155,7 @@ export class Favourites extends Component {
     );
 
     return (
-      <div id={this.props.id}>
+      <div>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
@@ -243,21 +243,17 @@ export class Favourites extends Component {
 }
 
 Favourites.propTypes = {
-  benefits: PropTypes.array,
-  classes: PropTypes.object,
-  eligibilityPaths: PropTypes.array,
-  examples: PropTypes.array,
-  id: PropTypes.string,
-  needs: PropTypes.array,
-  setUserProfile: PropTypes.func,
-  t: PropTypes.func,
-  pageWidth: PropTypes.number,
-  favouriteBenefits: PropTypes.array,
-  toggleFavourite: PropTypes.func,
-  url: PropTypes.object,
-  setSection: PropTypes.func,
-  selectedEligibility: PropTypes.object,
-  selectedNeeds: PropTypes.object
+  benefits: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  needs: PropTypes.array.isRequired,
+  t: PropTypes.func.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired,
+  toggleFavourite: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
+  selectedEligibility: PropTypes.object.isRequired,
+  selectedNeeds: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Favourites);
