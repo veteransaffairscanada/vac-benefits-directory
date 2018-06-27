@@ -91,13 +91,13 @@ class Layout extends Component {
 }
 
 Layout.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.object,
   classes: PropTypes.object.isRequired,
-  hideNoscript: PropTypes.bool,
-  showRefreshCache: PropTypes.bool,
+  hideNoscript: PropTypes.bool.isRequired,
+  showRefreshCache: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
 export default withStyles(styles)(Layout);

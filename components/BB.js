@@ -425,7 +425,6 @@ BB.propTypes = {
   clearNeeds: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
-  id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,

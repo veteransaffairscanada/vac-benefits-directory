@@ -279,7 +279,7 @@ BenefitCard.propTypes = {
   onRef: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
-  showFavourite: PropTypes.bool,
+  showFavourite: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired
 };
 

@@ -33,9 +33,9 @@ class Head extends Component {
 }
 
 Head.propTypes = {
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   t: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
 export default Head;

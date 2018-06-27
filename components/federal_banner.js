@@ -87,7 +87,7 @@ class FederalBanner extends Component {
 FederalBanner.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  showRefreshCache: PropTypes.bool
+  showRefreshCache: PropTypes.bool.isRequired
 };
 
 export default FederalBanner;

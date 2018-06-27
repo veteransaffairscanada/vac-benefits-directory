@@ -36,6 +36,7 @@ describe("Favourites", () => {
     props = {
       t: key => key,
       benefits: benefitsFixture,
+      classes: {},
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
       needs: needsFixture,
@@ -48,7 +49,8 @@ describe("Favourites", () => {
       toggleSelectedEligibility: jest.fn(),
       classes: {},
       url: { query: {} },
-      favouriteBenefits: ["3"]
+      favouriteBenefits: ["3"],
+      toggleFavourite: () => true
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;

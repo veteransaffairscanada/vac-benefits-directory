@@ -78,7 +78,6 @@ export class BenefitList extends React.Component {
 }
 
 BenefitList.propTypes = {
-  classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
@@ -88,7 +87,7 @@ BenefitList.propTypes = {
   sortByValue: PropTypes.string.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
-  showFavourites: PropTypes.bool,
+  showFavourites: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired
 };
 

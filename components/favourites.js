@@ -247,15 +247,11 @@ Favourites.propTypes = {
   classes: PropTypes.object.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
-  id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
-  setUserProfile: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  setSection: PropTypes.func.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired
 };

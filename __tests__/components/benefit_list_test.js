@@ -37,6 +37,8 @@ describe("BenefitList", () => {
       onRef: k => k,
       sortByValue: "",
       searchString: "",
+      showFavourites: true,
+      toggleFavourite: () => true,
       favouriteBenefits: []
     };
     _mountedBenefitList = undefined;
