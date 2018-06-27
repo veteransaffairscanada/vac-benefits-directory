@@ -8,6 +8,26 @@ import { connect } from "react-redux";
 import BenefitCard from "../components/benefit_cards";
 
 export class AllBenefits extends Component {
+  componentWillMount() {
+    let i18nEn = {};
+    let i18nFr = {};
+    this.props.text.forEach(text => {
+      if (text.section) {
+        if (!i18nEn[text.section]) {
+          i18nEn[text.section] = {};
+          i18nFr[text.section] = {};
+        }
+        i18nEn[text.section][text.key] = text.English;
+        i18nFr[text.section][text.key] = text.French;
+      } else {
+        i18nEn[text.key] = text.English;
+        i18nFr[text.key] = text.French;
+      }
+    });
+    this.props.i18n.addResourceBundle("en", "common", i18nEn);
+    this.props.i18n.addResourceBundle("fr", "common", i18nFr);
+  }
+
   render() {
     let veteranBenefitIds = [];
     let familyBenefitIds = [];
@@ -59,7 +79,8 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     examples: state.examples,
     eligibilityPaths: state.eligibilityPaths,
-    favouriteBenefits: state.favouriteBenefits
+    favouriteBenefits: state.favouriteBenefits,
+    text: state.text
   };
 };
 
@@ -69,7 +90,8 @@ AllBenefits.propTypes = {
   eligibilityPaths: PropTypes.array,
   i18n: PropTypes.object,
   t: PropTypes.func,
-  favouriteBenefits: PropTypes.array
+  favouriteBenefits: PropTypes.array,
+  text: PropTypes.array
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));
