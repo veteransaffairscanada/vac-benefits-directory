@@ -14,6 +14,7 @@ import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
 import Favourites from "../components/favourites";
+import { redux2i18n } from "../utils/redux2i18n";
 
 export class A extends Component {
   constructor() {
@@ -52,23 +53,7 @@ export class A extends Component {
   };
 
   componentWillMount() {
-    let i18nEn = {};
-    let i18nFr = {};
-    this.props.text.forEach(text => {
-      if (text.section) {
-        if (!i18nEn[text.section]) {
-          i18nEn[text.section] = {};
-          i18nFr[text.section] = {};
-        }
-        i18nEn[text.section][text.key] = text.English;
-        i18nFr[text.section][text.key] = text.French;
-      } else {
-        i18nEn[text.key] = text.English;
-        i18nFr[text.key] = text.French;
-      }
-    });
-    this.props.i18n.addResourceBundle("en", "common", i18nEn);
-    this.props.i18n.addResourceBundle("fr", "common", i18nFr);
+    redux2i18n(this.props.i18n, this.props.text);
 
     Router.onRouteChangeStart = newUrl => {
       let myURL = {};

@@ -6,6 +6,7 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import styled from "react-emotion";
 import { connect } from "react-redux";
+import { redux2i18n } from "../utils/redux2i18n";
 
 const Hero = styled("div")`
   background-color: #eee;
@@ -27,23 +28,7 @@ const Title = styled("div")`
 
 export class App extends Component {
   componentWillMount() {
-    let i18nEn = {};
-    let i18nFr = {};
-    this.props.text.forEach(text => {
-      if (text.section) {
-        if (!i18nEn[text.section]) {
-          i18nEn[text.section] = {};
-          i18nFr[text.section] = {};
-        }
-        i18nEn[text.section][text.key] = text.English;
-        i18nFr[text.section][text.key] = text.French;
-      } else {
-        i18nEn[text.key] = text.English;
-        i18nFr[text.key] = text.French;
-      }
-    });
-    this.props.i18n.addResourceBundle("en", "common", i18nEn);
-    this.props.i18n.addResourceBundle("fr", "common", i18nFr);
+    redux2i18n(this.props.i18n, this.props.text);
   }
 
   render() {

@@ -17,6 +17,7 @@ const { i18nInstance } = require("./i18n");
 const deploy = require("./utils/deploy_notification");
 
 const airTable = require("./utils/airtable_es2015");
+const redux2i18n = require("./utils/redux2i18n");
 
 Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
   // init i18next with serverside settings
@@ -109,20 +110,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
         });
       }
     );
-
-  let i18nEn = {};
-  let i18nFr = {};
-  data.text.forEach(text => {
-    if (!i18nEn[text.section]) {
-      i18nEn[text.section] = {};
-      i18nFr[text.section] = {};
-    }
-    i18nEn[text.section][text.key] = text.English;
-    i18nFr[text.section][text.key] = text.French;
-  });
-
-  i18nInstance.addResourceBundle("en", "common", i18nEn, true, true);
-  i18nInstance.addResourceBundle("fr", "common", i18nFr, true, true);
+  redux2i18n.redux2i18n(i18nInstance, data.text);
 });
 
 // this code should run when the data-validation page is loaded and send that page the results
