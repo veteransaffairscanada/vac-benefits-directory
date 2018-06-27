@@ -34,10 +34,10 @@ class SelectedOptionsCard extends Component {
 }
 
 SelectedOptionsCard.propTypes = {
-  action: PropTypes.func,
-  id: PropTypes.string,
-  options: PropTypes.array,
-  t: PropTypes.func
+  action: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default SelectedOptionsCard;

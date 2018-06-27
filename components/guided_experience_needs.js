@@ -71,11 +71,11 @@ const mapStateToProps = state => {
 };
 
 GuidedExperienceNeeds.propTypes = {
-  classes: PropTypes.object,
-  needs: PropTypes.array,
-  selectedNeeds: PropTypes.object,
-  setSelectedNeeds: PropTypes.func,
-  t: PropTypes.func
+  classes: PropTypes.object.isRequired,
+  needs: PropTypes.array.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
+  setSelectedNeeds: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(

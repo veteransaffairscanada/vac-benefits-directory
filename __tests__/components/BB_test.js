@@ -38,12 +38,20 @@ describe("BB", () => {
   beforeEach(() => {
     props = {
       t: key => key,
+      clearFilters: () => true,
+      clearNeeds: () => true,
       selectedNeeds: {},
+      id: "BB",
+      pageWidth: 42,
       selectedEligibility: {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
       },
+      setSection: () => true,
+      setSelectedNeeds: () => true,
+      setUserProfile: () => true,
+      toggleFavourite: () => true,
       favouriteBenefits: [],
       toggleSelectedEligibility: jest.fn(),
       classes: {

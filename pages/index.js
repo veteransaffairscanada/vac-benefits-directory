@@ -29,7 +29,7 @@ export class App extends Component {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <Layout i18n={i18n} t={t}>
+      <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
         <Hero>
           <Title id="heroTitle">{t("index.title")}</Title>
           <HeroButton>
@@ -62,8 +62,8 @@ export class App extends Component {
 }
 
 App.propTypes = {
-  i18n: PropTypes.object,
-  t: PropTypes.func
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withI18next(["common"])(App);

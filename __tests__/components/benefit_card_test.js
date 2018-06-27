@@ -151,11 +151,6 @@ describe("BenefitCard", () => {
     expect(shallowBenefitCard().find("#FavoriteButton0").length).toEqual(0);
   });
 
-  it("hides the Favourite Button if showFavourite is undefined", () => {
-    props.showFavourite = undefined;
-    expect(shallowBenefitCard().find("#FavoriteButton0").length).toEqual(0);
-  });
-
   describe("when language is French", () => {
     beforeEach(() => {
       props.t = () => "fr";

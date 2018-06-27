@@ -38,19 +38,20 @@ describe("BenefitList", () => {
       onRef: k => k,
       sortByValue: "",
       searchString: "",
-      favouriteBenefits: benefitsFixture
+      showFavourites: true,
+      toggleFavourite: () => true,
+      favouriteBenefits: []
     };
     _mountedBenefitList = undefined;
     _shallowBenefitList = undefined;
 
     mockStore = configureStore();
-    props.store = mockStore();
     data = {
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       examples: examplesFixture
     };
-    props.store.dispatch({ type: "LOAD_DATA", data: data });
+    props.store = mockStore(data);
   });
 
   it("passes axe tests", async () => {

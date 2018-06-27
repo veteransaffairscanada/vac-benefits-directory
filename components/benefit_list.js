@@ -3,7 +3,31 @@ import PropTypes from "prop-types";
 import BenefitCard from "../components/benefit_cards";
 import { connect } from "react-redux";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+import styled from "react-emotion";
+
+const Div = styled("div")`
+  width: 100%;
+  position: fixed;
+  left: 50%;
+  top: 40%;
+`;
+
 export class BenefitList extends React.Component {
+  state = {
+    loading: false
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.filteredBenefits !== prevProps.filteredBenefits) {
+      this.setState({ loading: true });
+      setTimeout(() => {
+        this.setState({ loading: false });
+      }, 500);
+    }
+  }
+
   sortBenefits = (filteredBenefits, language, sortByValue) => {
     filteredBenefits.forEach(b => {
       if (b.sortingPriority === undefined) {
@@ -36,6 +60,7 @@ export class BenefitList extends React.Component {
   };
 
   render() {
+    let { loading } = this.state;
     const sortedBenefits = this.sortBenefits(
       this.props.filteredBenefits,
       this.props.t("current-language-code"),
@@ -53,27 +78,34 @@ export class BenefitList extends React.Component {
         familyBenefitIds = familyBenefitIds.concat(ep.benefits);
       }
     });
-    return sortedBenefits.map(
-      (benefit, i) =>
-        true || benefit.availableIndependently === "Independent" ? ( // eslint-disable-line no-constant-condition
-          <BenefitCard
-            id={"bc" + i}
-            benefit={benefit}
-            allBenefits={this.props.benefits}
-            veteranBenefitIds={veteranBenefitIds}
-            familyBenefitIds={familyBenefitIds}
-            t={this.props.t}
-            key={benefit.id}
-            onRef={this.props.onRef}
-            toggleFavourite={this.props.toggleFavourite}
-            showFavourite={this.props.showFavourites}
-            searchString={this.props.searchString}
-            store={this.props.store}
-            favouriteBenefits={this.props.favouriteBenefits}
-          />
-        ) : (
-          ""
-        )
+    return loading ? (
+      <Div>
+        <CircularProgress size={100} />
+      </Div>
+    ) : (
+      sortedBenefits.map(
+        (benefit, i) =>
+          true || benefit.availableIndependently === "Independent" ? ( // eslint-disable-line no-constant-condition
+            <BenefitCard
+              id={"bc" + i}
+              benefit={benefit}
+              examples={this.props.examples}
+              allBenefits={this.props.benefits}
+              veteranBenefitIds={veteranBenefitIds}
+              familyBenefitIds={familyBenefitIds}
+              t={this.props.t}
+              key={benefit.id}
+              onRef={this.props.onRef}
+              toggleFavourite={this.props.toggleFavourite}
+              favouriteBenefits={this.props.favouriteBenefits}
+              showFavourite={this.props.showFavourites}
+              searchString={this.props.searchString}
+              store={this.props.store}
+            />
+          ) : (
+            ""
+          )
+      )
     );
   }
 }
@@ -87,18 +119,17 @@ const mapStateToProps = state => {
 };
 
 BenefitList.propTypes = {
-  classes: PropTypes.object,
-  t: PropTypes.func,
-  filteredBenefits: PropTypes.array,
-  eligibilityPaths: PropTypes.array,
-  benefits: PropTypes.array,
-  examples: PropTypes.array,
-  onRef: PropTypes.func,
-  sortByValue: PropTypes.string,
-  favouriteBenefits: PropTypes.array,
-  toggleFavourite: PropTypes.func,
-  showFavourites: PropTypes.bool,
-  searchString: PropTypes.string,
+  t: PropTypes.func.isRequired,
+  filteredBenefits: PropTypes.array.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  benefits: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  onRef: PropTypes.func.isRequired,
+  sortByValue: PropTypes.string.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired,
+  toggleFavourite: PropTypes.func.isRequired,
+  showFavourites: PropTypes.bool.isRequired,
+  searchString: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 

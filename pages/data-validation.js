@@ -41,6 +41,10 @@ export class DataValidation extends Component {
     );
   }
 
+  checkMissingNeeds(b) {
+    return !(b.needs && b.needs != "");
+  }
+
   render() {
     const {
       i18n,
@@ -77,6 +81,11 @@ export class DataValidation extends Component {
         "Benefits with Empty Fields",
         benefits.filter(this.checkIfMissingText).length,
         benefits.filter(this.checkIfMissingText).length == 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "Benefits Without Needs",
+        benefits.filter(this.checkMissingNeeds).length,
+        benefits.filter(this.checkMissingNeeds).length == 0 ? "Pass" : "Fail"
       )
     ];
 
@@ -125,13 +134,13 @@ const mapStateToProps = state => {
 };
 
 DataValidation.propTypes = {
-  benefits: PropTypes.array,
-  eligibilityPaths: PropTypes.array,
-  needs: PropTypes.array,
-  examples: PropTypes.array,
-  i18n: PropTypes.object,
-  t: PropTypes.func,
-  classes: PropTypes.object
+  benefits: PropTypes.array.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  needs: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(

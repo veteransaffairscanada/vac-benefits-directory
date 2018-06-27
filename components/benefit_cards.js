@@ -275,18 +275,18 @@ const mapStateToProps = state => {
 };
 
 BenefitCard.propTypes = {
-  allBenefits: PropTypes.array,
-  veteranBenefitIds: PropTypes.array,
-  familyBenefitIds: PropTypes.array,
-  benefit: PropTypes.object,
-  classes: PropTypes.object,
-  examples: PropTypes.array,
-  t: PropTypes.func,
-  onRef: PropTypes.func,
+  allBenefits: PropTypes.array.isRequired,
+  veteranBenefitIds: PropTypes.array.isRequired,
+  familyBenefitIds: PropTypes.array.isRequired,
+  benefit: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  examples: PropTypes.array.isRequired,
+  t: PropTypes.func.isRequired,
+  onRef: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array,
   toggleFavourite: PropTypes.func,
-  showFavourite: PropTypes.bool,
-  searchString: PropTypes.string,
+  showFavourite: PropTypes.bool.isRequired,
+  searchString: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 

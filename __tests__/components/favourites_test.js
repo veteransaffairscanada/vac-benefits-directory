@@ -7,6 +7,7 @@ import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -37,6 +38,7 @@ describe("Favourites", () => {
   beforeEach(() => {
     props = {
       t: key => key,
+      classes: {},
       selectedNeeds: {},
       selectedEligibility: {
         serviceType: "",
@@ -44,9 +46,9 @@ describe("Favourites", () => {
         statusAndVitals: ""
       },
       toggleSelectedEligibility: jest.fn(),
-      classes: {},
       url: { query: {} },
-      favouriteBenefits: ["3"]
+      favouriteBenefits: ["3"],
+      toggleFavourite: () => true
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
@@ -55,6 +57,7 @@ describe("Favourites", () => {
     data = {
       benefits: benefitsFixture,
       examples: examplesFixture,
+      needs: needsFixture,
       eligibilityPaths: eligibilityPathsFixture
     };
     props.store = mockStore(data);

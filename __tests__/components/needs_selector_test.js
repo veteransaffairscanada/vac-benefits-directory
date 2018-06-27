@@ -19,6 +19,7 @@ describe("NeedsSelector", () => {
 
   beforeEach(() => {
     props = {
+      clearNeeds: () => true,
       t: key => key,
       needs: needsFixture,
       selectedNeeds: {},

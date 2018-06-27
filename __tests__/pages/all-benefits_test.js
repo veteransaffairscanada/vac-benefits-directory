@@ -30,12 +30,16 @@ describe("AllBenefits", () => {
       t: key => key,
       i18n: {},
       storeHydrated: true,
-      loadDataStore: jest.fn()
+      loadDataStore: jest.fn(),
+      favouriteBenefits: [],
+      showFavourites: true,
+      toggleFavourite: () => true
     };
     _mountedAllBenefits = undefined;
     mockStore = configureStore();
     data = {
       benefits: benefitsFixture,
+      examples: [],
       eligibilityPaths: eligibilityPathsFixture
     };
     props.store = mockStore(data);

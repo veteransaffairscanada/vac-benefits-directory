@@ -65,14 +65,13 @@ export class RadioSelector extends React.Component {
   }
 }
 RadioSelector.propTypes = {
-  classes: PropTypes.object,
-  disabledString: PropTypes.string,
-  legend: PropTypes.string,
-  filters: PropTypes.array,
-  selectedEligibility: PropTypes.object,
+  classes: PropTypes.object.isRequired,
+  legend: PropTypes.string.isRequired,
+  filters: PropTypes.array.isRequired,
+  selectedEligibility: PropTypes.object.isRequired,
   selectedFilter: PropTypes.string,
-  setUserProfile: PropTypes.func,
-  t: PropTypes.func
+  setUserProfile: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(RadioSelector);
