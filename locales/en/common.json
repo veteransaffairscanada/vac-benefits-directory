@@ -82,7 +82,8 @@
     "Size of Eligibility Paths Table": "Size of eligibility paths table",
     "Size of Needs Table": "Size of needs table",
     "Size of Examples Table": "Size of examples table",
-    "Benefits with Empty Fields": "Benefits with empty fields"
+    "Benefits with Empty Fields": "Benefits with empty fields",
+    "Benefits Without Needs": "Benefits without Needs"
   },
   "next": "next",
   "back": "back",

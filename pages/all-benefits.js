@@ -28,7 +28,7 @@ export class AllBenefits extends Component {
 
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <Layout i18n={i18n} t={t} hideNoscript={true}>
+      <Layout i18n={i18n} t={t} hideNoscript={true} showRefreshCache={false}>
         <div style={{ padding: 12 }} className="allBenefitsList">
           <h1>{t("all-benefits.List of all benefits")}</h1>
           <Grid container spacing={24}>
@@ -39,7 +39,6 @@ export class AllBenefits extends Component {
                     className="benefitCard"
                     id={"bc" + i}
                     benefit={benefit}
-                    examples={this.props.examples}
                     allBenefits={this.props.benefits}
                     veteranBenefitIds={veteranBenefitIds}
                     familyBenefitIds={familyBenefitIds}
@@ -47,7 +46,9 @@ export class AllBenefits extends Component {
                     key={i}
                     onRef={foo => foo}
                     searchString=""
-                    favouriteBenefits={this.props.favouriteBenefits}
+                    store={this.props.store}
+                    examples={this.props.examples}
+                    showFavourite={false}
                   />
                 ))}
               </Grid>
@@ -70,13 +71,13 @@ const mapStateToProps = state => {
 };
 
 AllBenefits.propTypes = {
-  benefits: PropTypes.array,
-  examples: PropTypes.array,
-  eligibilityPaths: PropTypes.array,
-  i18n: PropTypes.object,
-  t: PropTypes.func,
-  favouriteBenefits: PropTypes.array,
-  text: PropTypes.array
+  benefits: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  store: PropTypes.object,
+  text: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

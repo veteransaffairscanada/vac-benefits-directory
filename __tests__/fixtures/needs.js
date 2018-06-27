@@ -2,7 +2,8 @@ const needsFixture = [
   {
     id: "43534534",
     nameEn: "Health",
-    nameFr: "FF Health"
+    nameFr: "FF Health",
+    benefits: ["0"]
   },
   {
     id: "43534ewr534",

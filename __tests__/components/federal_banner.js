@@ -24,7 +24,8 @@ describe("FederalBanner", () => {
       },
       t: key => {
         return key == "current-language-code" ? "en" : key;
-      }
+      },
+      showRefreshCache: false
     };
     _mountedFederalBanner = undefined;
   });

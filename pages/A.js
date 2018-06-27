@@ -246,7 +246,6 @@ export class A extends Component {
             t={t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
             examples={this.props.examples}
             selectedEligibility={selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
@@ -265,10 +264,6 @@ export class A extends Component {
           <BB
             id="BB"
             t={t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
-            examples={this.props.examples}
             selectedEligibility={selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
@@ -281,6 +276,7 @@ export class A extends Component {
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
             url={this.props.url}
+            store={this.props.store}
           />
         );
 
@@ -302,7 +298,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              needs={this.props.needs}
               selectedNeeds={this.state.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
             />
@@ -404,7 +399,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              needs={this.props.needs}
               selectedNeeds={this.state.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
             />;
@@ -445,7 +439,12 @@ export class A extends Component {
     }
 
     return (
-      <Layout i18n={this.props.i18n} t={this.props.t}>
+      <Layout
+        i18n={this.props.i18n}
+        t={this.props.t}
+        hideNoscript={false}
+        showRefreshCache={false}
+      >
         {this.sectionToDisplay(this.state.section)}
       </Layout>
     );
@@ -457,23 +456,24 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
-    examples: state.examples,
     favouriteBenefits: state.favouriteBenefits,
+    examples: state.examples,
     text: state.text
   };
 };
 
 A.propTypes = {
-  benefits: PropTypes.array,
-  dispatch: PropTypes.func,
-  eligibilityPaths: PropTypes.array,
-  examples: PropTypes.array,
-  i18n: PropTypes.object,
-  needs: PropTypes.array,
-  t: PropTypes.func,
-  url: PropTypes.object,
-  favouriteBenefits: PropTypes.array,
-  text: PropTypes.array
+  benefits: PropTypes.array.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
+  needs: PropTypes.array.isRequired,
+  t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired,
+  store: PropTypes.object,
+  text: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(A));

@@ -29,6 +29,7 @@ describe("Print", () => {
       url: {
         query: {}
       },
+      i18n: {},
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
@@ -41,7 +42,8 @@ describe("Print", () => {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
-      }
+      },
+      sortByValue: ""
     };
     _mountedPrint = undefined;
   });

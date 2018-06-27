@@ -22,6 +22,9 @@ describe("Layout", () => {
   beforeEach(() => {
     window.GA_INITIALIZED = true;
     props = {
+      hideNoscript: true,
+      i18n: {},
+      showRefreshCache: false,
       t: key => {
         return key === "current-language-code" ? "en" : key;
       }

@@ -140,14 +140,14 @@ class NeedsSelector extends Component {
 }
 
 NeedsSelector.propTypes = {
-  classes: PropTypes.object,
-  handleChange: PropTypes.func,
-  needs: PropTypes.array,
-  selectedNeeds: PropTypes.object,
-  t: PropTypes.func,
-  theme: PropTypes.object,
-  clearNeeds: PropTypes.func,
-  pageWidth: PropTypes.number
+  classes: PropTypes.object.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  needs: PropTypes.array.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
+  clearNeeds: PropTypes.func.isRequired,
+  pageWidth: PropTypes.number.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(NeedsSelector);

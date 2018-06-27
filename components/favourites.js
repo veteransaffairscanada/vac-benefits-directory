@@ -11,6 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import lunr from "lunr";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
+import { connect } from "react-redux";
 
 const styles = theme => ({
   benefitsCount: {
@@ -155,7 +156,7 @@ export class Favourites extends Component {
     );
 
     return (
-      <div id={this.props.id}>
+      <div>
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
@@ -223,15 +224,13 @@ export class Favourites extends Component {
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
-                  eligibilityPaths={this.props.eligibilityPaths}
-                  benefits={this.props.benefits}
                   onRef={ref => this.children.push(ref)}
-                  examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
                   toggleFavourite={this.props.toggleFavourite}
-                  favouriteBenefits={this.props.favouriteBenefits}
                   showFavourites={true}
                   searchString=""
+                  store={this.props.store}
+                  favouriteBenefits={this.props.favouriteBenefits}
                 />
               </Grid>
             </Grid>
@@ -242,22 +241,27 @@ export class Favourites extends Component {
   }
 }
 
-Favourites.propTypes = {
-  benefits: PropTypes.array,
-  classes: PropTypes.object,
-  eligibilityPaths: PropTypes.array,
-  examples: PropTypes.array,
-  id: PropTypes.string,
-  needs: PropTypes.array,
-  setUserProfile: PropTypes.func,
-  t: PropTypes.func,
-  pageWidth: PropTypes.number,
-  favouriteBenefits: PropTypes.array,
-  toggleFavourite: PropTypes.func,
-  url: PropTypes.object,
-  setSection: PropTypes.func,
-  selectedEligibility: PropTypes.object,
-  selectedNeeds: PropTypes.object
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits,
+    eligibilityPaths: state.eligibilityPaths,
+    examples: state.examples
+  };
 };
 
-export default withStyles(styles)(Favourites);
+Favourites.propTypes = {
+  benefits: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  needs: PropTypes.array.isRequired,
+  t: PropTypes.func.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired,
+  toggleFavourite: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
+  selectedEligibility: PropTypes.object.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
+  store: PropTypes.object
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(Favourites));

@@ -168,14 +168,14 @@ class ProfileSelector extends Component {
 }
 
 ProfileSelector.propTypes = {
-  classes: PropTypes.object,
-  t: PropTypes.func,
-  theme: PropTypes.object,
-  clearFilters: PropTypes.func,
-  setUserProfile: PropTypes.func,
-  eligibilityPaths: PropTypes.array,
-  selectedEligibility: PropTypes.object,
-  pageWidth: PropTypes.number
+  classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
+  clearFilters: PropTypes.func.isRequired,
+  setUserProfile: PropTypes.func.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  selectedEligibility: PropTypes.object.isRequired,
+  pageWidth: PropTypes.number.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(ProfileSelector);

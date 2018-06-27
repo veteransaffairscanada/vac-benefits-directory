@@ -92,11 +92,11 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.object,
-  classes: PropTypes.object,
-  hideNoscript: PropTypes.bool,
-  showRefreshCache: PropTypes.bool,
-  i18n: PropTypes.object,
-  t: PropTypes.func,
+  classes: PropTypes.object.isRequired,
+  hideNoscript: PropTypes.bool.isRequired,
+  showRefreshCache: PropTypes.bool.isRequired,
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
   title: PropTypes.string
 };
 

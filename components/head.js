@@ -34,7 +34,7 @@ class Head extends Component {
 
 Head.propTypes = {
   description: PropTypes.string,
-  t: PropTypes.func,
+  t: PropTypes.func.isRequired,
   title: PropTypes.string
 };
 

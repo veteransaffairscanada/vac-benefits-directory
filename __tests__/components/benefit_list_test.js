@@ -6,22 +6,26 @@ expect.extend(toHaveNoViolations);
 
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+
+import configureStore from "redux-mock-store";
 
 describe("BenefitList", () => {
   let props;
   let _mountedBenefitList;
   let _shallowBenefitList;
+  let mockStore, reduxData;
 
   const mountedBenefitList = () => {
     if (!_mountedBenefitList) {
-      _mountedBenefitList = mount(<BenefitList {...props} />);
+      _mountedBenefitList = mount(<BenefitList {...props} {...reduxData} />);
     }
     return _mountedBenefitList;
   };
 
   const shallowBenefitList = () => {
     if (!_shallowBenefitList) {
-      _shallowBenefitList = shallow(<BenefitList {...props} />);
+      _shallowBenefitList = shallow(<BenefitList {...props} {...reduxData} />);
     }
     return _shallowBenefitList;
   };
@@ -31,16 +35,23 @@ describe("BenefitList", () => {
       classes: {},
       t: key => key,
       filteredBenefits: benefitsFixture,
-      eligibilityPaths: [],
-      benefits: benefitsFixture,
-      examples: examplesFixture,
       onRef: k => k,
       sortByValue: "",
       searchString: "",
+      showFavourites: true,
+      toggleFavourite: () => true,
       favouriteBenefits: []
     };
     _mountedBenefitList = undefined;
     _shallowBenefitList = undefined;
+
+    mockStore = configureStore();
+    reduxData = {
+      benefits: benefitsFixture,
+      eligibilityPaths: eligibilityPathsFixture,
+      examples: examplesFixture
+    };
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {

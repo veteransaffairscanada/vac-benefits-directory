@@ -35,7 +35,7 @@ export class App extends Component {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <Layout i18n={i18n} t={t}>
+      <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
         <Hero>
           <Title id="heroTitle">{t("index.title")}</Title>
           <HeroButton>
@@ -74,9 +74,9 @@ const mapStateToProps = state => {
 };
 
 App.propTypes = {
-  i18n: PropTypes.object,
-  t: PropTypes.func,
-  text: PropTypes.array
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  text: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(App)); // withI18next(["common"])(App);
