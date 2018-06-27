@@ -11,6 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import lunr from "lunr";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
+import { connect } from "react-redux";
 
 const styles = theme => ({
   benefitsCount: {
@@ -223,15 +224,13 @@ export class Favourites extends Component {
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
-                  eligibilityPaths={this.props.eligibilityPaths}
-                  benefits={this.props.benefits}
                   onRef={ref => this.children.push(ref)}
-                  examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
                   toggleFavourite={this.props.toggleFavourite}
-                  favouriteBenefits={this.props.favouriteBenefits}
                   showFavourites={true}
                   searchString=""
+                  store={this.props.store}
+                  favouriteBenefits={this.props.favouriteBenefits}
                 />
               </Grid>
             </Grid>
@@ -241,6 +240,14 @@ export class Favourites extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits,
+    eligibilityPaths: state.eligibilityPaths,
+    examples: state.examples
+  };
+};
 
 Favourites.propTypes = {
   benefits: PropTypes.array.isRequired,
@@ -253,7 +260,8 @@ Favourites.propTypes = {
   toggleFavourite: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
-  selectedNeeds: PropTypes.object.isRequired
+  selectedNeeds: PropTypes.object.isRequired,
+  store: PropTypes.object
 };
 
-export default withStyles(styles)(Favourites);
+export default connect(mapStateToProps)(withStyles(styles)(Favourites));

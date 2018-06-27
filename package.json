@@ -50,6 +50,7 @@
     "reactstrap": "^5.0.0-beta.3",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
+    "redux-mock-store": "^1.5.3",
     "redux-thunk": "^2.2.0",
     "universal-cookie": "^2.1.5",
     "wait-on": "^2.1.0"

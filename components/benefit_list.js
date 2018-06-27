@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "../components/benefit_cards";
+import { connect } from "react-redux";
+
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import styled from "react-emotion";
@@ -98,6 +100,7 @@ export class BenefitList extends React.Component {
               favouriteBenefits={this.props.favouriteBenefits}
               showFavourite={this.props.showFavourites}
               searchString={this.props.searchString}
+              store={this.props.store}
             />
           ) : (
             ""
@@ -106,6 +109,14 @@ export class BenefitList extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits,
+    eligibilityPaths: state.eligibilityPaths,
+    examples: state.examples
+  };
+};
 
 BenefitList.propTypes = {
   t: PropTypes.func.isRequired,
@@ -118,7 +129,8 @@ BenefitList.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
   showFavourites: PropTypes.bool.isRequired,
-  searchString: PropTypes.string.isRequired
+  searchString: PropTypes.string.isRequired,
+  store: PropTypes.object
 };
 
-export default BenefitList;
+export default connect(mapStateToProps)(BenefitList);

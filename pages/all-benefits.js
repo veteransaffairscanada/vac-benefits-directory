@@ -34,7 +34,6 @@ export class AllBenefits extends Component {
                     className="benefitCard"
                     id={"bc" + i}
                     benefit={benefit}
-                    examples={this.props.examples}
                     allBenefits={this.props.benefits}
                     veteranBenefitIds={veteranBenefitIds}
                     familyBenefitIds={familyBenefitIds}
@@ -42,9 +41,9 @@ export class AllBenefits extends Component {
                     key={i}
                     onRef={foo => foo}
                     searchString=""
-                    favouriteBenefits={this.props.favouriteBenefits}
-                    showFavourite={this.props.showFavourites}
-                    toggleFavourite={this.props.toggleFavourite}
+                    store={this.props.store}
+                    examples={this.props.examples}
+                    showFavourite={false}
                   />
                 ))}
               </Grid>
@@ -59,9 +58,7 @@ export class AllBenefits extends Component {
 const mapStateToProps = state => {
   return {
     benefits: state.benefits,
-    examples: state.examples,
-    eligibilityPaths: state.eligibilityPaths,
-    favouriteBenefits: state.favouriteBenefits
+    eligibilityPaths: state.eligibilityPaths
   };
 };
 
@@ -70,10 +67,8 @@ AllBenefits.propTypes = {
   examples: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
-  showFavourites: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
-  toggleFavourite: PropTypes.func.isRequired,
-  favouriteBenefits: PropTypes.array.isRequired
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

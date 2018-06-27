@@ -243,7 +243,6 @@ export class A extends Component {
             t={t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
             examples={this.props.examples}
             selectedEligibility={selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
@@ -262,10 +261,6 @@ export class A extends Component {
           <BB
             id="BB"
             t={t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
-            examples={this.props.examples}
             selectedEligibility={selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
@@ -278,6 +273,7 @@ export class A extends Component {
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
             url={this.props.url}
+            store={this.props.store}
           />
         );
 
@@ -299,7 +295,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              needs={this.props.needs}
               selectedNeeds={this.state.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
             />
@@ -401,7 +396,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              needs={this.props.needs}
               selectedNeeds={this.state.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
             />;
@@ -459,8 +453,8 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
-    examples: state.examples,
-    favouriteBenefits: state.favouriteBenefits
+    favouriteBenefits: state.favouriteBenefits,
+    examples: state.examples
   };
 };
 
@@ -473,7 +467,8 @@ A.propTypes = {
   needs: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  favouriteBenefits: PropTypes.array.isRequired
+  favouriteBenefits: PropTypes.array.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withI18next()(A));

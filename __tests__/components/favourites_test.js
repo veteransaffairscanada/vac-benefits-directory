@@ -5,8 +5,10 @@ import React from "react";
 
 import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
-import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
+import examplesFixture from "../fixtures/examples";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -17,17 +19,18 @@ describe("Favourites", () => {
   let props;
   let _mountedFavourites;
   let _shallowFavourites;
+  let mockStore, reduxData;
 
   const mountedFavourites = () => {
     if (!_mountedFavourites) {
-      _mountedFavourites = mount(<Favourites {...props} />);
+      _mountedFavourites = mount(<Favourites {...props} {...reduxData} />);
     }
     return _mountedFavourites;
   };
 
   const shallowFavourites = () => {
     if (!_shallowFavourites) {
-      _shallowFavourites = shallow(<Favourites {...props} />);
+      _shallowFavourites = shallow(<Favourites {...props} {...reduxData} />);
     }
     return _shallowFavourites;
   };
@@ -35,12 +38,8 @@ describe("Favourites", () => {
   beforeEach(() => {
     props = {
       t: key => key,
-      benefits: benefitsFixture,
       classes: {},
-      eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
-      needs: needsFixture,
-      examples: [],
       selectedEligibility: {
         serviceType: "",
         patronType: "",
@@ -53,6 +52,15 @@ describe("Favourites", () => {
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
+
+    mockStore = configureStore();
+    reduxData = {
+      benefits: benefitsFixture,
+      examples: examplesFixture,
+      needs: needsFixture,
+      eligibilityPaths: eligibilityPathsFixture
+    };
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {

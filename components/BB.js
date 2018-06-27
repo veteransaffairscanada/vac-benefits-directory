@@ -14,6 +14,7 @@ import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
+import { connect } from "react-redux";
 
 const styles = theme => ({
   benefitsCount: {
@@ -399,15 +400,13 @@ export class BB extends Component {
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
-                  eligibilityPaths={this.props.eligibilityPaths}
-                  benefits={this.props.benefits}
                   onRef={ref => this.children.push(ref)}
-                  examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
                   toggleFavourite={this.props.toggleFavourite}
-                  favouriteBenefits={this.props.favouriteBenefits}
                   searchString={this.state.searchString}
                   showFavourites={true}
+                  favouriteBenefits={this.props.favouriteBenefits}
+                  store={this.props.store}
                 />
               </Grid>
             </Grid>
@@ -417,6 +416,15 @@ export class BB extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits,
+    eligibilityPaths: state.eligibilityPaths,
+    examples: state.examples,
+    needs: state.needs
+  };
+};
 
 BB.propTypes = {
   benefits: PropTypes.array.isRequired,
@@ -437,7 +445,8 @@ BB.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  setSection: PropTypes.func.isRequired
+  setSection: PropTypes.func.isRequired,
+  store: PropTypes.object
 };
 
-export default withStyles(styles)(BB);
+export default connect(mapStateToProps)(withStyles(styles)(BB));
