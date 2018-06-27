@@ -29,7 +29,7 @@ export class App extends Component {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <Layout i18n={i18n} t={t}>
+      <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
         <Hero>
           <Title id="heroTitle">{t("index.title")}</Title>
           <HeroButton>

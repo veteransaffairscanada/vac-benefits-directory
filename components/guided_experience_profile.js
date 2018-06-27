@@ -31,7 +31,6 @@ export class GuidedExperienceProfile extends Component {
 GuidedExperienceProfile.propTypes = {
   options: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
   value: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired
 };

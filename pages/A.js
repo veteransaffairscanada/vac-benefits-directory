@@ -442,7 +442,12 @@ export class A extends Component {
     }
 
     return (
-      <Layout i18n={this.props.i18n} t={this.props.t}>
+      <Layout
+        i18n={this.props.i18n}
+        t={this.props.t}
+        hideNoscript={false}
+        showRefreshCache={false}
+      >
         {this.sectionToDisplay(this.state.section)}
       </Layout>
     );
