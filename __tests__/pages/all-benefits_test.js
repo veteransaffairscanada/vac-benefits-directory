@@ -6,6 +6,7 @@ import React from "react";
 import { AllBenefits } from "../../pages/all-benefits";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -15,10 +16,11 @@ jest.mock("react-ga");
 describe("AllBenefits", () => {
   let props;
   let _mountedAllBenefits;
+  let mockStore, data;
 
   const mountedAllBenefits = () => {
     if (!_mountedAllBenefits) {
-      _mountedAllBenefits = shallow(<AllBenefits {...props} />);
+      _mountedAllBenefits = shallow(<AllBenefits {...props} {...data} />);
     }
     return _mountedAllBenefits;
   };
@@ -28,12 +30,15 @@ describe("AllBenefits", () => {
       t: key => key,
       i18n: {},
       storeHydrated: true,
-      loadDataStore: jest.fn(),
-      benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
-      favouriteBenefits: []
+      loadDataStore: jest.fn()
     };
     _mountedAllBenefits = undefined;
+    mockStore = configureStore();
+    data = {
+      benefits: benefitsFixture,
+      eligibilityPaths: eligibilityPathsFixture
+    };
+    props.store = mockStore(data);
   });
 
   it("passes axe tests", async () => {

@@ -270,7 +270,6 @@ export class BenefitCard extends Component {
 
 const mapStateToProps = state => {
   return {
-    eligibilityPaths: state.eligibilityPaths,
     examples: state.examples,
     favouriteBenefits: state.favouriteBenefits
   };
@@ -288,7 +287,8 @@ BenefitCard.propTypes = {
   favouriteBenefits: PropTypes.array,
   toggleFavourite: PropTypes.func,
   showFavourite: PropTypes.bool,
-  searchString: PropTypes.string
+  searchString: PropTypes.string,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(BenefitCard));

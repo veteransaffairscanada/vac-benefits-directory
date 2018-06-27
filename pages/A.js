@@ -243,7 +243,6 @@ export class A extends Component {
             t={t}
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
-            needs={this.props.needs}
             examples={this.props.examples}
             selectedEligibility={selectedEligibility}
             selectedNeeds={this.state.selectedNeeds}

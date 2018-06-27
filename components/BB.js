@@ -405,6 +405,7 @@ export class BB extends Component {
                   toggleFavourite={this.props.toggleFavourite}
                   searchString={this.state.searchString}
                   showFavourites={true}
+                  store={this.props.store}
                 />
               </Grid>
             </Grid>
@@ -420,7 +421,8 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
     examples: state.examples,
-    favouriteBenefits: state.favouriteBenefits
+    favouriteBenefits: state.favouriteBenefits,
+    needs: state.needs
   };
 };
 
@@ -443,7 +445,8 @@ BB.propTypes = {
   favouriteBenefits: PropTypes.array,
   toggleFavourite: PropTypes.func,
   url: PropTypes.object,
-  setSection: PropTypes.func
+  setSection: PropTypes.func,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(BB));

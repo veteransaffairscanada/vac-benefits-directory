@@ -14,19 +14,18 @@ describe("BenefitList", () => {
   let props;
   let _mountedBenefitList;
   let _shallowBenefitList;
-  let mockStore;
-  let data;
+  let mockStore, data;
 
   const mountedBenefitList = () => {
     if (!_mountedBenefitList) {
-      _mountedBenefitList = mount(<BenefitList {...props} />);
+      _mountedBenefitList = mount(<BenefitList {...props} {...data} />);
     }
     return _mountedBenefitList;
   };
 
   const shallowBenefitList = () => {
     if (!_shallowBenefitList) {
-      _shallowBenefitList = shallow(<BenefitList {...props} />);
+      _shallowBenefitList = shallow(<BenefitList {...props} {...data} />);
     }
     return _shallowBenefitList;
   };
@@ -36,13 +35,9 @@ describe("BenefitList", () => {
       classes: {},
       t: key => key,
       filteredBenefits: benefitsFixture,
-      eligibilityPaths: [],
-      benefits: benefitsFixture,
-      examples: examplesFixture,
       onRef: k => k,
       sortByValue: "",
-      searchString: "",
-      favouriteBenefits: []
+      searchString: ""
     };
     _mountedBenefitList = undefined;
     _shallowBenefitList = undefined;
@@ -58,11 +53,10 @@ describe("BenefitList", () => {
     props.store.dispatch({ type: "LOAD_DATA", data: data });
   });
 
-  // it("passes axe tests", async () => {
-  //   let html = mountedBenefitList().html();
-  //   console.log(html)
-  //   expect(await axe(html)).toHaveNoViolations();
-  // });
+  it("passes axe tests", async () => {
+    let html = mountedBenefitList().html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
 
   it("has a correct sortBenefits function when sorting by popularity", () => {
     let BLInstance = shallowBenefitList().instance();

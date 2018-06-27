@@ -229,6 +229,7 @@ export class Favourites extends Component {
                   toggleFavourite={this.props.toggleFavourite}
                   showFavourites={true}
                   searchString=""
+                  store={this.props.store}
                 />
               </Grid>
             </Grid>
@@ -254,7 +255,6 @@ Favourites.propTypes = {
   eligibilityPaths: PropTypes.array,
   examples: PropTypes.array,
   id: PropTypes.string,
-  needs: PropTypes.array,
   setUserProfile: PropTypes.func,
   t: PropTypes.func,
   pageWidth: PropTypes.number,
@@ -263,7 +263,8 @@ Favourites.propTypes = {
   url: PropTypes.object,
   setSection: PropTypes.func,
   selectedEligibility: PropTypes.object,
-  selectedNeeds: PropTypes.object
+  selectedNeeds: PropTypes.object,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(Favourites));

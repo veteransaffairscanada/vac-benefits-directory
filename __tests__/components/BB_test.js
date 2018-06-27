@@ -2,11 +2,13 @@
 
 import { mount, shallow } from "enzyme";
 import React from "react";
+import configureStore from "redux-mock-store";
 
 import { BB } from "../../components/BB";
 import benefitsFixture from "../fixtures/benefits";
-import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
+import examplesFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -17,17 +19,18 @@ describe("BB", () => {
   let props;
   let _mountedBB;
   let _shallowBB;
+  let mockStore, data;
 
   const mounted_BB = () => {
     if (!_mountedBB) {
-      _mountedBB = mount(<BB {...props} />);
+      _mountedBB = mount(<BB {...props} {...data} />);
     }
     return _mountedBB;
   };
 
   const shallow_BB = () => {
     if (!_shallowBB) {
-      _shallowBB = shallow(<BB {...props} />);
+      _shallowBB = shallow(<BB {...props} {...data} />);
     }
     return _shallowBB;
   };
@@ -35,11 +38,7 @@ describe("BB", () => {
   beforeEach(() => {
     props = {
       t: key => key,
-      benefits: benefitsFixture,
-      eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
-      needs: needsFixture,
-      examples: [],
       selectedEligibility: {
         serviceType: "",
         patronType: "",
@@ -54,11 +53,19 @@ describe("BB", () => {
         expandOpen: "BB-expandOpen-91",
         avatar: "BB-avatar-92"
       },
-      url: { query: {} },
-      favouriteBenefits: []
+      url: { query: {} }
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
+    mockStore = configureStore();
+    data = {
+      benefits: benefitsFixture,
+      examples: examplesFixture,
+      eligibilityPaths: eligibilityPathsFixture,
+      favouriteBenefits: [],
+      needs: needsFixture
+    };
+    props.store = mockStore(data);
   });
 
   it("passes axe tests", async () => {
@@ -237,7 +244,7 @@ describe("BB", () => {
     it("returns 1 if one selectedEligibilty is selected", () => {
       mounted_BB().setProps({
         selectedEligibility: {
-          patronType: elegibilityPathsFixture[0].patronType
+          patronType: eligibilityPathsFixture[0].patronType
         }
       });
       expect(
@@ -264,7 +271,7 @@ describe("BB", () => {
       mounted_BB().setProps({ selectedNeeds: needsSelection });
       mounted_BB().setProps({
         selectedEligibility: {
-          patronType: elegibilityPathsFixture[0].patronType
+          patronType: eligibilityPathsFixture[0].patronType
         }
       });
       expect(
@@ -315,7 +322,7 @@ describe("BB", () => {
           .instance()
           .filterBenefits(
             benefitsFixture,
-            elegibilityPathsFixture,
+            eligibilityPathsFixture,
             {
               serviceType: "",
               patronType: "",
@@ -337,7 +344,7 @@ describe("BB", () => {
           .instance()
           .filterBenefits(
             benefitsFixture,
-            elegibilityPathsFixture,
+            eligibilityPathsFixture,
             {
               serviceType: "",
               patronType: "",

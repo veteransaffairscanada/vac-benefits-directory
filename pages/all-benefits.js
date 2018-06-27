@@ -34,7 +34,6 @@ export class AllBenefits extends Component {
                     className="benefitCard"
                     id={"bc" + i}
                     benefit={benefit}
-                    examples={this.props.examples}
                     allBenefits={this.props.benefits}
                     veteranBenefitIds={veteranBenefitIds}
                     familyBenefitIds={familyBenefitIds}
@@ -42,7 +41,6 @@ export class AllBenefits extends Component {
                     key={i}
                     onRef={foo => foo}
                     searchString=""
-                    favouriteBenefits={this.props.favouriteBenefits}
                   />
                 ))}
               </Grid>
@@ -57,19 +55,15 @@ export class AllBenefits extends Component {
 const mapStateToProps = state => {
   return {
     benefits: state.benefits,
-    examples: state.examples,
-    eligibilityPaths: state.eligibilityPaths,
-    favouriteBenefits: state.favouriteBenefits
+    eligibilityPaths: state.eligibilityPaths
   };
 };
 
 AllBenefits.propTypes = {
   benefits: PropTypes.array,
-  examples: PropTypes.array,
   eligibilityPaths: PropTypes.array,
   i18n: PropTypes.object,
-  t: PropTypes.func,
-  favouriteBenefits: PropTypes.array
+  t: PropTypes.func
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

@@ -62,13 +62,13 @@ export class BenefitList extends React.Component {
             allBenefits={this.props.benefits}
             veteranBenefitIds={veteranBenefitIds}
             familyBenefitIds={familyBenefitIds}
-            // t={this.props.t}
+            t={this.props.t}
             key={benefit.id}
-            // onRef={this.props.onRef}
-            // toggleFavourite={this.props.toggleFavourite}
-            // showFavourite={this.props.showFavourites}
-            // searchString={this.props.searchString}
-            {...this.props}
+            onRef={this.props.onRef}
+            toggleFavourite={this.props.toggleFavourite}
+            showFavourite={this.props.showFavourites}
+            searchString={this.props.searchString}
+            store={this.props.store}
           />
         ) : (
           ""
@@ -98,7 +98,8 @@ BenefitList.propTypes = {
   favouriteBenefits: PropTypes.array,
   toggleFavourite: PropTypes.func,
   showFavourites: PropTypes.bool,
-  searchString: PropTypes.string
+  searchString: PropTypes.string,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(BenefitList);

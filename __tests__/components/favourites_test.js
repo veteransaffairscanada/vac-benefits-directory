@@ -5,8 +5,9 @@ import React from "react";
 
 import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
-import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
-import needsFixture from "../fixtures/needs";
+import examplesFixture from "../fixtures/examples";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -17,17 +18,18 @@ describe("Favourites", () => {
   let props;
   let _mountedFavourites;
   let _shallowFavourites;
+  let mockStore, data;
 
   const mountedFavourites = () => {
     if (!_mountedFavourites) {
-      _mountedFavourites = mount(<Favourites {...props} />);
+      _mountedFavourites = mount(<Favourites {...props} {...data} />);
     }
     return _mountedFavourites;
   };
 
   const shallowFavourites = () => {
     if (!_shallowFavourites) {
-      _shallowFavourites = shallow(<Favourites {...props} />);
+      _shallowFavourites = shallow(<Favourites {...props} {...data} />);
     }
     return _shallowFavourites;
   };
@@ -35,11 +37,7 @@ describe("Favourites", () => {
   beforeEach(() => {
     props = {
       t: key => key,
-      benefits: benefitsFixture,
-      eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
-      needs: needsFixture,
-      examples: [],
       selectedEligibility: {
         serviceType: "",
         patronType: "",
@@ -47,11 +45,20 @@ describe("Favourites", () => {
       },
       toggleSelectedEligibility: jest.fn(),
       classes: {},
-      url: { query: {} },
-      favouriteBenefits: ["3"]
+      url: { query: {} }
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
+
+    mockStore = configureStore();
+    data = {
+      benefits: benefitsFixture,
+      examples: examplesFixture,
+      eligibilityPaths: eligibilityPathsFixture,
+      favouriteBenefits: ["0", "3"]
+    };
+    props.store = mockStore(data);
+    // props.store.dispatch({ type: "LOAD_DATA", data: data });
   });
 
   it("passes axe tests", async () => {
@@ -75,7 +82,6 @@ describe("Favourites", () => {
   });
 
   it("renders with 2 favourites", async () => {
-    props.favouriteBenefits = ["0", "3"];
     expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
 
