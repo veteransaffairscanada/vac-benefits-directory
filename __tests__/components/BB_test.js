@@ -40,7 +40,6 @@ describe("BB", () => {
       t: key => key,
       clearFilters: () => true,
       clearNeeds: () => true,
-      selectedNeeds: {},
       id: "BB",
       pageWidth: 42,
       selectedEligibility: {
@@ -71,7 +70,8 @@ describe("BB", () => {
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      needs: needsFixture
+      needs: needsFixture,
+      selectedNeeds: {}
     };
     props.store = mockStore(reduxData);
   });

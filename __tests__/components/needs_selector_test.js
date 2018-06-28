@@ -2,17 +2,20 @@ import React from "react";
 import { mount } from "enzyme";
 import NeedsSelector from "../../components/needs_selector";
 import needsFixture from "../fixtures/needs";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 describe("NeedsSelector", () => {
   let props;
-  let _mountedNeedsSelector;
+  let _mountedNeedsSelector, mockStore, reduxData;
 
   const mountedNeedsSelector = () => {
     if (!_mountedNeedsSelector) {
-      _mountedNeedsSelector = mount(<NeedsSelector {...props} />);
+      _mountedNeedsSelector = mount(
+        <NeedsSelector {...props} {...reduxData} />
+      );
     }
     return _mountedNeedsSelector;
   };
@@ -21,11 +24,15 @@ describe("NeedsSelector", () => {
     props = {
       clearNeeds: () => true,
       t: key => key,
-      needs: needsFixture,
-      selectedNeeds: {},
       handleChange: jest.fn(),
       pageWidth: 1000
     };
+    reduxData = {
+      needs: needsFixture,
+      selectedNeeds: {}
+    };
+    mockStore = configureStore();
+    props.store = mockStore(reduxData);
     _mountedNeedsSelector = undefined;
   });
 
@@ -42,8 +49,9 @@ describe("NeedsSelector", () => {
   });
 
   it("works if needs haven't loaded yet", () => {
-    props.needs = [];
-    props.selectedNeeds = { 43534534: "43534534" };
+    reduxData.needs = [];
+    reduxData.selectedNeeds = { 43534534: "43534534" };
+    props.store = mockStore(reduxData);
     expect(mountedNeedsSelector());
   });
 
@@ -59,12 +67,6 @@ describe("NeedsSelector", () => {
       .at(0)
       .simulate("click");
     expect(props.handleChange).toHaveBeenCalled();
-  });
-
-  it("works if needs haven't loaded yet", () => {
-    props.needs = [];
-    props.selectedNeeds = { 43534534: "43534534" };
-    expect(mountedNeedsSelector());
   });
 
   it("is expanded if pageWidth > 600px", () => {
