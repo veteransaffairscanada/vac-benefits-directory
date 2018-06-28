@@ -301,7 +301,6 @@ export class BB extends Component {
                 t={t}
                 handleChange={this.props.setSelectedNeeds}
                 clearFilters={this.props.clearFilters}
-                setUserProfile={this.props.setUserProfile}
                 pageWidth={this.props.pageWidth}
                 store={this.props.store}
               />
@@ -442,7 +441,6 @@ BB.propTypes = {
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
-  setUserProfile: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   toggleSelectedEligibility: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,

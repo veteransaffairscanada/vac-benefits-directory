@@ -191,8 +191,6 @@ export class A extends Component {
             eligibilityPaths={this.props.eligibilityPaths}
             examples={this.props.examples}
             selectedNeeds={this.props.selectedNeeds}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
             pageWidth={this.state.width}
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}

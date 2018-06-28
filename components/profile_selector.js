@@ -100,10 +100,11 @@ class ProfileSelector extends Component {
                 t={t}
                 legend={t("B3.Benefits for")}
                 filters={patronTypes}
-                selectedFilter={selectedEligibility.patronType}
-                setUserProfile={id =>
-                  this.props.setUserProfile("patronType", id)
-                }
+                criteria={"patronType"}
+                // selectedFilter={selectedEligibility.patronType}
+                // setUserProfile={id =>
+                // this.props.setPatronType("patronType", id)
+                // }
                 store={this.props.store}
               />
             </Grid>
@@ -116,10 +117,11 @@ class ProfileSelector extends Component {
                   t={t}
                   legend={t("B3.ServiceType")}
                   filters={serviceTypes}
-                  selectedFilter={selectedEligibility.serviceType}
-                  setUserProfile={id =>
-                    this.props.setUserProfile("serviceType", id)
-                  }
+                  criteria={"serviceType"}
+                  // selectedFilter={selectedEligibility.serviceType}
+                  // setUserProfile={id =>
+                  //   this.props.setServiceType("serviceType", id)
+                  // }
                   store={this.props.store}
                 />
               </Grid>
@@ -140,9 +142,10 @@ class ProfileSelector extends Component {
                   legend={t("B3.serviceStatus")}
                   filters={statusAndVitals}
                   selectedFilter={selectedEligibility.statusAndVitals}
-                  setUserProfile={id =>
-                    this.props.setUserProfile("statusAndVitals", id)
-                  }
+                  criteria={"statusAndVitals"}
+                  // setUserProfile={id =>
+                  //   this.props.setStatusType("statusAndVitals", id)
+                  // }
                   store={this.props.store}
                 />
               </Grid>
@@ -186,7 +189,6 @@ ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   clearFilters: PropTypes.func.isRequired,
-  setUserProfile: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   pageWidth: PropTypes.number.isRequired,
