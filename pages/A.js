@@ -6,6 +6,8 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
+import textFixture from "../__tests__/fixtures/text";
+
 import { logEvent } from "../utils/analytics";
 import Cookies from "universal-cookie";
 
@@ -14,6 +16,7 @@ import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
 import Favourites from "../components/favourites";
+import { redux2i18n } from "../utils/redux2i18n";
 
 export class A extends Component {
   constructor() {
@@ -29,6 +32,7 @@ export class A extends Component {
   }
 
   componentWillMount() {
+    redux2i18n(this.props.i18n, this.props.text);
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
       section: this.props.url.query.section || "BB"
@@ -43,7 +47,10 @@ export class A extends Component {
     if (this.props.url.query.use_testdata) {
       this.props.dispatch({
         type: "LOAD_DATA",
-        data: { benefits: benefitsFixture }
+        data: {
+          benefits: benefitsFixture,
+          text: textFixture
+        }
       });
     }
   }
@@ -412,7 +419,8 @@ const mapStateToProps = reduxState => {
       serviceType: reduxState.serviceType,
       statusAndVitals: reduxState.statusAndVitals
     },
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    text: state.text
   };
 };
 
@@ -432,7 +440,8 @@ A.propTypes = {
   setSelectedNeeds: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusType: PropTypes.func.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  text: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18next()(A));

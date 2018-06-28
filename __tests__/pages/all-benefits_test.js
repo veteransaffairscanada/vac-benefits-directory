@@ -27,8 +27,11 @@ describe("AllBenefits", () => {
 
   beforeEach(() => {
     props = {
+      text: [],
       t: key => key,
-      i18n: {},
+      i18n: {
+        addResourceBundle: jest.fn()
+      },
       storeHydrated: true,
       loadDataStore: jest.fn(),
       favouriteBenefits: [],

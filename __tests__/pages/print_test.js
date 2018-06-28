@@ -29,7 +29,10 @@ describe("Print", () => {
       url: {
         query: {}
       },
-      i18n: {},
+      text: [],
+      i18n: {
+        addResourceBundle: jest.fn()
+      },
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
