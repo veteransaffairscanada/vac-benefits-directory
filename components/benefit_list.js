@@ -20,7 +20,10 @@ export class BenefitList extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.filteredBenefits !== prevProps.filteredBenefits) {
+    if (
+      JSON.stringify(this.props.filteredBenefits) !==
+      JSON.stringify(prevProps.filteredBenefits)
+    ) {
       this.setState({ loading: true });
       setTimeout(() => {
         this.setState({ loading: false });
