@@ -148,9 +148,11 @@ describe("A", () => {
     expect(AInstance.props.setStatusType).toBeCalledWith("");
   });
 
-  it("sectionToDisplay returns appropriate component", () => {
-    let AInstance = mountedA().instance();
-    expect(AInstance.sectionToDisplay("BB").props.id).toEqual("BB");
+  it("sectionToDisplay returns correct section", () => {
+    ["BB", "favourites", "A1", "A2", "A3", "A4"].forEach(section => {
+      let AInstance = mountedA().instance();
+      expect(AInstance.sectionToDisplay(section).props.id).toEqual(section);
+    });
   });
 
   it("componantDidMount hydrates Redux with fixtures if use_testdata set", () => {
