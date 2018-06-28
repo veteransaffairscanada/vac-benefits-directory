@@ -197,6 +197,7 @@ export class A extends Component {
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
             url={this.props.url}
+            store={this.props.store}
           />
         );
 
@@ -235,11 +236,13 @@ export class A extends Component {
             prevSection={previousSectionA4}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
+            store={this.props.store}
           >
             <GuidedExperienceNeeds
               t={t}
               selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -254,6 +257,7 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
               value={this.props[question]}
@@ -263,6 +267,7 @@ export class A extends Component {
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -277,6 +282,7 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
               value={this.props[question]}
@@ -286,6 +292,7 @@ export class A extends Component {
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -309,6 +316,7 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
               value={this.props[question]}
@@ -316,6 +324,7 @@ export class A extends Component {
               onClick={option => this.setUserProfile(question, option)}
               options={options}
               isDown={option => this.props[question] === option}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -331,11 +340,13 @@ export class A extends Component {
             prevSection={profileIsVetWSV ? "A2" : "A3"}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
+            store={this.props.store}
           >
             <GuidedExperienceNeeds
               t={t}
               selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
+              store={this.props.store}
             />;
           </GuidedExperience>
         );

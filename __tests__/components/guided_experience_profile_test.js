@@ -2,6 +2,7 @@
 
 import { mount, shallow } from "enzyme";
 import React from "react";
+import configureStore from "redux-mock-store";
 
 import { GuidedExperienceProfile } from "../../components/guided_experience_profile";
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -13,6 +14,7 @@ describe("GuidedExperienceProfile", () => {
   let props;
   let _mountedGuidedExperienceProfile;
   let _shallowGuidedExperienceProfile;
+  let mockStore, reduxData;
 
   const mounted_GuidedExperienceProfile = () => {
     if (!_mountedGuidedExperienceProfile) {
@@ -42,6 +44,15 @@ describe("GuidedExperienceProfile", () => {
     };
     _shallowGuidedExperienceProfile = undefined;
     _mountedGuidedExperienceProfile = undefined;
+    reduxData = {
+      selectedEligibility: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      }
+    };
+    mockStore = configureStore();
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {

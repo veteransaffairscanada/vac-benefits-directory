@@ -55,11 +55,6 @@ describe("A", () => {
       selectedNeeds: {},
       needs: needsFixture,
       examples: [],
-      selectedEligibility: {
-        serviceType: "",
-        patronType: "",
-        statusAndVitals: ""
-      },
       setPatronType: jest.fn(),
       setSelectedNeeds: jest.fn(),
       setServiceType: jest.fn(),
@@ -72,7 +67,10 @@ describe("A", () => {
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      needs: needsFixture
+      needs: needsFixture,
+      serviceType: "CAF",
+      patronType: "family",
+      statusAndVitals: ""
     };
     props.store = mockStore(reduxData);
   });
@@ -83,11 +81,6 @@ describe("A", () => {
   });
 
   it("has a correct setURL function", () => {
-    props.selectedEligibility = {
-      patronType: "family",
-      serviceType: "CAF",
-      statusAndVitals: ""
-    };
     props.selectedNeeds = { health: "health", financial: "financial" };
     let AInstance = mountedA().instance();
     const state = {

@@ -100,33 +100,35 @@ class ProfileSelector extends Component {
                 t={t}
                 legend={t("B3.Benefits for")}
                 filters={patronTypes}
-                selectedEligibility={selectedEligibility}
                 selectedFilter={selectedEligibility.patronType}
                 setUserProfile={id =>
                   this.props.setUserProfile("patronType", id)
                 }
+                store={this.props.store}
               />
             </Grid>
 
-            {selectedEligibility.patronType != "" &&
+            {selectedEligibility.patronType &&
+            selectedEligibility.patronType != "" &&
             selectedEligibility.patronType != "organization" ? (
               <Grid item xs={12} id="serviceTypeFilter">
                 <RadioSelector
                   t={t}
                   legend={t("B3.ServiceType")}
                   filters={serviceTypes}
-                  selectedEligibility={selectedEligibility}
                   selectedFilter={selectedEligibility.serviceType}
                   setUserProfile={id =>
                     this.props.setUserProfile("serviceType", id)
                   }
+                  store={this.props.store}
                 />
               </Grid>
             ) : (
               ""
             )}
 
-            {selectedEligibility.serviceType != "" &&
+            {selectedEligibility.serviceType &&
+            selectedEligibility.serviceType != "" &&
             selectedEligibility.patronType != "organization" &&
             !(
               selectedEligibility.patronType === "service-person" &&
@@ -137,11 +139,11 @@ class ProfileSelector extends Component {
                   t={t}
                   legend={t("B3.serviceStatus")}
                   filters={statusAndVitals}
-                  selectedEligibility={selectedEligibility}
                   selectedFilter={selectedEligibility.statusAndVitals}
                   setUserProfile={id =>
                     this.props.setUserProfile("statusAndVitals", id)
                   }
+                  store={this.props.store}
                 />
               </Grid>
             ) : (
@@ -187,7 +189,8 @@ ProfileSelector.propTypes = {
   setUserProfile: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
-  pageWidth: PropTypes.number.isRequired
+  pageWidth: PropTypes.number.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(

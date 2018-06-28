@@ -21,6 +21,7 @@ export class GuidedExperienceProfile extends Component {
             selectedEligibility={{}}
             selectedFilter={this.props.value}
             setUserProfile={id => this.props.onClick(id)}
+            store={this.props.store}
           />
         </Grid>
       </div>
@@ -32,7 +33,8 @@ GuidedExperienceProfile.propTypes = {
   options: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  store: PropTypes.object
 };
 
 export default GuidedExperienceProfile;

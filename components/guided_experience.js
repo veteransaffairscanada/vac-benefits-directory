@@ -165,7 +165,8 @@ GuidedExperience.propTypes = {
   subtitle: PropTypes.string.isRequired,
   stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
-  selectedEligibility: PropTypes.object.isRequired
+  selectedEligibility: PropTypes.object.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(

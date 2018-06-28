@@ -303,6 +303,7 @@ export class BB extends Component {
                 clearFilters={this.props.clearFilters}
                 setUserProfile={this.props.setUserProfile}
                 pageWidth={this.props.pageWidth}
+                store={this.props.store}
               />
               <Grid item xs={12}>
                 <NeedsSelector
