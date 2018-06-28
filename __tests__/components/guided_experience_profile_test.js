@@ -12,27 +12,7 @@ jest.mock("react-ga");
 
 describe("GuidedExperienceProfile", () => {
   let props;
-  let _mountedGuidedExperienceProfile;
-  let _shallowGuidedExperienceProfile;
   let mockStore, reduxData;
-
-  const mounted_GuidedExperienceProfile = () => {
-    if (!_mountedGuidedExperienceProfile) {
-      _mountedGuidedExperienceProfile = mount(
-        <GuidedExperienceProfile {...props} />
-      );
-    }
-    return _mountedGuidedExperienceProfile;
-  };
-
-  const shallow_GuidedExperienceProfile = () => {
-    if (!_shallowGuidedExperienceProfile) {
-      _shallowGuidedExperienceProfile = shallow(
-        <GuidedExperienceProfile {...props} />
-      );
-    }
-    return _shallowGuidedExperienceProfile;
-  };
 
   beforeEach(() => {
     props = {
@@ -42,27 +22,25 @@ describe("GuidedExperienceProfile", () => {
       isDown: option => option === "op0",
       value: "op0"
     };
-    _shallowGuidedExperienceProfile = undefined;
-    _mountedGuidedExperienceProfile = undefined;
     reduxData = {
-      selectedEligibility: {
-        serviceType: "",
-        patronType: "",
-        statusAndVitals: ""
-      }
+      serviceType: "",
+      patronType: "",
+      statusAndVitals: ""
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {
-    let html = mounted_GuidedExperienceProfile().html();
+    let html = mount(
+      <GuidedExperienceProfile {...props} {...reduxData} />
+    ).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("contains all the options", () => {
     expect(
-      mounted_GuidedExperienceProfile()
+      mount(<GuidedExperienceProfile {...props} {...reduxData} />)
         .find("#RadioSelector")
         .find("Radio").length
     ).toEqual(2);
@@ -70,7 +48,7 @@ describe("GuidedExperienceProfile", () => {
 
   it("has the correct button down", () => {
     expect(
-      shallow_GuidedExperienceProfile()
+      shallow(<GuidedExperienceProfile {...props} {...reduxData} />)
         .find("#RadioSelector")
         .props().selectedFilter
     ).toEqual("op0");
