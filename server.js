@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const next = require("next");
 const Cookies = require("universal-cookie");
+const helmet = require("helmet");
 
 const { parseUserAgent } = require("detect-browser");
 
@@ -41,6 +42,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
         app.prepare().then(() => {
           const server = express();
           server.use(bodyParser.json());
+          server.use(helmet());
           // enable middleware for i18next
           server.use(i18nextMiddleware.handle(i18nInstance));
 
