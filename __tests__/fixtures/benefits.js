@@ -9,7 +9,7 @@ const benefitsFixture = [
     oneLineDescriptionFr: "Description Fr 0",
     needs: ["0", "1"],
     childBenefits: ["1"],
-    eligibilityPaths: ["0"],
+    elibigbilityPaths: ["0"],
     availableIndependently: "Independent",
     examples: undefined
   },
@@ -23,7 +23,7 @@ const benefitsFixture = [
     oneLineDescriptionFr: "Description de l'avantage français",
     availableIndependently: "Requires Gateway Benefit",
     needs: ["3"],
-    eligibilityPaths: ["0"],
+    elibigbilityPaths: ["0"],
     examples: ["0", "1"]
   },
   {
@@ -36,7 +36,7 @@ const benefitsFixture = [
     oneLineDescriptionEn: " Description En 3",
     oneLineDescriptionFr: "Description Fr 3",
     needs: ["0", "1"],
-    eligibilityPaths: ["0"],
+    elibigbilityPaths: ["0"],
     availableIndependently: "Independent",
     examples: undefined
   }
