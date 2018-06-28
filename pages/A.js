@@ -75,8 +75,8 @@ export class A extends Component {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
     ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
-      if (this.props.selectedEligibility[selection] !== "") {
-        href += `&${selection}=${this.props.selectedEligibility[selection]}`;
+      if (this.props[selection] !== "") {
+        href += `&${selection}=${this.props[selection]}`;
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
@@ -163,20 +163,19 @@ export class A extends Component {
   sectionToDisplay = section => {
     let question, options;
     const { t } = this.props;
-    const selectedEligibility = this.props.selectedEligibility;
 
     const profileIsVetWSV =
-      selectedEligibility["patronType"] === "service-person" &&
-      selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
+      this.props["patronType"] === "service-person" &&
+      this.props["serviceType"] === "WSV (WWII or Korea)";
 
     let previousSectionA4 = "A3";
-    if (selectedEligibility.patronType === "") {
+    if (this.props.patronType === "") {
       previousSectionA4 = "A1";
-    } else if (selectedEligibility.serviceType === "" || profileIsVetWSV) {
+    } else if (this.props.serviceType === "" || profileIsVetWSV) {
       previousSectionA4 = "A2";
     }
     if (
-      selectedEligibility.patronType === "organization" &&
+      this.props.patronType === "organization" &&
       ["A2", "A3", "A4"].indexOf(section) > -1
     ) {
       this.setSection("BB");
@@ -191,7 +190,6 @@ export class A extends Component {
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             examples={this.props.examples}
-            selectedEligibility={selectedEligibility}
             selectedNeeds={this.props.selectedNeeds}
             setUserProfile={this.setUserProfile}
             setSection={this.setSection}
@@ -199,17 +197,16 @@ export class A extends Component {
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
             url={this.props.url}
+            store={this.props.store}
           />
         );
 
       case section === "BB" ||
-        (section !== "A1" &&
-          this.props.selectedEligibility.patronType === "organization"):
+        (section !== "A1" && this.props.patronType === "organization"):
         return (
           <BB
             id="BB"
             t={t}
-            selectedEligibility={this.props.selectedEligibility}
             selectedNeeds={this.props.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             setSelectedNeeds={this.setSelectedNeeds}
@@ -227,8 +224,8 @@ export class A extends Component {
 
       case section === "A4" ||
         (profileIsVetWSV && section === "A3") ||
-        (selectedEligibility.serviceType === "" && section === "A3") ||
-        (selectedEligibility.patronType === "" &&
+        (this.props.serviceType === "" && section === "A3") ||
+        (this.props.patronType === "" &&
           (section === "A3" || section === "A2")):
         return (
           <GuidedExperience
@@ -239,12 +236,13 @@ export class A extends Component {
             prevSection={previousSectionA4}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
             <GuidedExperienceNeeds
               t={t}
               selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -259,16 +257,17 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={selectedEligibility[question]}
+              value={this.props[question]}
               t={t}
               onClick={option => this.setUserProfile(question, option)}
-              isDown={option => selectedEligibility[question] === option}
+              isDown={option => this.props[question] === option}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -283,16 +282,17 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={selectedEligibility[question]}
+              value={this.props[question]}
               t={t}
               onClick={option => this.setUserProfile(question, option)}
-              isDown={option => selectedEligibility[question] === option}
+              isDown={option => this.props[question] === option}
               options={Array.from(
                 new Set(this.props.eligibilityPaths.map(ep => ep[question]))
               ).filter(st => st !== "na")}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -301,10 +301,10 @@ export class A extends Component {
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
         ).filter(st => st !== "na");
-        if (selectedEligibility["patronType"] === "service-person") {
+        if (this.props.patronType === "service-person") {
           options.splice(options.indexOf("deceased"), 1);
         }
-        if (selectedEligibility["serviceType"] === "WSV (WWII or Korea)") {
+        if (this.props.serviceType === "WSV (WWII or Korea)") {
           options.splice(options.indexOf("stillServing"), 1);
         }
         return (
@@ -316,20 +316,20 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={selectedEligibility[question]}
+              value={this.props[question]}
               t={t}
               onClick={option => this.setUserProfile(question, option)}
               options={options}
-              isDown={option => selectedEligibility[question] === option}
+              isDown={option => this.props[question] === option}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
 
-      case (selectedEligibility["patronType"] !== "organization" &&
-        section === "A4") ||
+      case (this.props.patronType !== "organization" && section === "A4") ||
         (profileIsVetWSV && section === "A3"):
         return (
           <GuidedExperience
@@ -340,12 +340,13 @@ export class A extends Component {
             prevSection={profileIsVetWSV ? "A2" : "A3"}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
             <GuidedExperienceNeeds
               t={t}
               selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
+              store={this.props.store}
             />;
           </GuidedExperience>
         );
@@ -354,15 +355,15 @@ export class A extends Component {
 
   render() {
     if (
-      this.props.selectedEligibility.patronType === "service-person" &&
-      this.props.selectedEligibility.statusAndVitals === "deceased"
+      this.props.patronType === "service-person" &&
+      this.props.statusAndVitals === "deceased"
     ) {
       this.props.setStatusType("");
     }
 
     if (
-      this.props.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
-      this.props.selectedEligibility.statusAndVitals === "stillServing"
+      this.props.serviceType === "WSV (WWII or Korea)" &&
+      this.props.statusAndVitals === "stillServing"
     ) {
       this.props.setStatusType("");
     }
@@ -370,9 +371,9 @@ export class A extends Component {
     // Guided Experience skips statusAndVitals for service-person / WSV
     if (
       this.state.section !== "BB" &&
-      this.props.selectedEligibility.patronType === "service-person" &&
-      this.props.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
-      this.props.selectedEligibility.statusAndVitals !== ""
+      this.props.patronType === "service-person" &&
+      this.props.serviceType === "WSV (WWII or Korea)" &&
+      this.props.statusAndVitals !== ""
     ) {
       this.props.setStatusType("");
     }
@@ -414,11 +415,9 @@ const mapStateToProps = reduxState => {
     examples: reduxState.examples,
     favouriteBenefits: reduxState.favouriteBenefits,
     needs: reduxState.needs,
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals
-    },
+    patronType: reduxState.patronType,
+    serviceType: reduxState.serviceType,
+    statusAndVitals: reduxState.statusAndVitals,
     selectedNeeds: reduxState.selectedNeeds,
     text: reduxState.text
   };
@@ -434,7 +433,9 @@ A.propTypes = {
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
+  patronType: PropTypes.string.isRequired,
+  serviceType: PropTypes.string.isRequired,
+  statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setPatronType: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,

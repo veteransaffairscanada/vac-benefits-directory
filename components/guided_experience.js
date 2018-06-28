@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
 import EditIcon from "@material-ui/icons/Edit";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 const theme = createMuiTheme({
   palette: {
@@ -144,6 +145,16 @@ export class GuidedExperience extends Component {
   }
 }
 
+const mapStateToProps = reduxState => {
+  return {
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    }
+  };
+};
+
 GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
@@ -154,7 +165,10 @@ GuidedExperience.propTypes = {
   subtitle: PropTypes.string.isRequired,
   stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
-  selectedEligibility: PropTypes.object.isRequired
+  selectedEligibility: PropTypes.object.isRequired,
+  store: PropTypes.object
 };
 
-export default withStyles(styles, { withTheme: true })(GuidedExperience);
+export default connect(mapStateToProps)(
+  withStyles(styles, { withTheme: true })(GuidedExperience)
+);

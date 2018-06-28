@@ -8,6 +8,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { connect } from "react-redux";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "@material-ui/core";
@@ -99,33 +100,35 @@ class ProfileSelector extends Component {
                 t={t}
                 legend={t("B3.Benefits for")}
                 filters={patronTypes}
-                selectedEligibility={selectedEligibility}
                 selectedFilter={selectedEligibility.patronType}
                 setUserProfile={id =>
                   this.props.setUserProfile("patronType", id)
                 }
+                store={this.props.store}
               />
             </Grid>
 
-            {selectedEligibility.patronType != "" &&
+            {selectedEligibility.patronType &&
+            selectedEligibility.patronType != "" &&
             selectedEligibility.patronType != "organization" ? (
               <Grid item xs={12} id="serviceTypeFilter">
                 <RadioSelector
                   t={t}
                   legend={t("B3.ServiceType")}
                   filters={serviceTypes}
-                  selectedEligibility={selectedEligibility}
                   selectedFilter={selectedEligibility.serviceType}
                   setUserProfile={id =>
                     this.props.setUserProfile("serviceType", id)
                   }
+                  store={this.props.store}
                 />
               </Grid>
             ) : (
               ""
             )}
 
-            {selectedEligibility.serviceType != "" &&
+            {selectedEligibility.serviceType &&
+            selectedEligibility.serviceType != "" &&
             selectedEligibility.patronType != "organization" &&
             !(
               selectedEligibility.patronType === "service-person" &&
@@ -136,11 +139,11 @@ class ProfileSelector extends Component {
                   t={t}
                   legend={t("B3.serviceStatus")}
                   filters={statusAndVitals}
-                  selectedEligibility={selectedEligibility}
                   selectedFilter={selectedEligibility.statusAndVitals}
                   setUserProfile={id =>
                     this.props.setUserProfile("statusAndVitals", id)
                   }
+                  store={this.props.store}
                 />
               </Grid>
             ) : (
@@ -167,6 +170,17 @@ class ProfileSelector extends Component {
   }
 }
 
+const mapStateToProps = reduxState => {
+  return {
+    eligibilityPaths: reduxState.eligibilityPaths,
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    }
+  };
+};
+
 ProfileSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
@@ -175,7 +189,10 @@ ProfileSelector.propTypes = {
   setUserProfile: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
-  pageWidth: PropTypes.number.isRequired
+  pageWidth: PropTypes.number.isRequired,
+  store: PropTypes.object
 };
 
-export default withStyles(styles, { withTheme: true })(ProfileSelector);
+export default connect(mapStateToProps)(
+  withStyles(styles, { withTheme: true })(ProfileSelector)
+);

@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { FormControl, FormControlLabel, FormLabel } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
+import { connect } from "react-redux";
 
 const styles = theme => ({
   formControl: {
@@ -64,6 +65,17 @@ export class RadioSelector extends React.Component {
     }
   }
 }
+
+const mapStateToProps = reduxState => {
+  return {
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    }
+  };
+};
+
 RadioSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   legend: PropTypes.string.isRequired,
@@ -74,4 +86,4 @@ RadioSelector.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(RadioSelector);
+export default connect(mapStateToProps)(withStyles(styles)(RadioSelector));
