@@ -111,7 +111,7 @@ describe("A", () => {
   it("has a correct clearNeeds function", () => {
     let AInstance = mountedA().instance();
     AInstance.clearNeeds();
-    expect(AInstance.props.selectedEligibility.statusAndVitals).toEqual("");
+    expect(AInstance.props.setSelectedNeeds).toBeCalledWith({});
   });
 
   it("componentWillMount sets state correctly from empty url", () => {
@@ -151,8 +151,8 @@ describe("A", () => {
   it("setUserProfile clears other filters if Organization is selected", () => {
     let AInstance = mountedA().instance();
     AInstance.setUserProfile("patronType", "organization");
-    AInstance.toggleSelectedEligibility("setServiceType", "");
-    AInstance.toggleSelectedEligibility("statusAndVitals", "");
+    expect(AInstance.props.setServiceType).toBeCalledWith("");
+    expect(AInstance.props.setStatusType).toBeCalledWith("");
   });
 
   it("sectionToDisplay returns appropriate component", () => {
