@@ -12,7 +12,10 @@ jest.mock("react-ga");
 describe("Index page", () => {
   let props = {
     t: key => key,
-    i18n: {}
+    text: [],
+    i18n: {
+      addResourceBundle: jest.fn()
+    }
   };
 
   it("passes axe tests", async () => {

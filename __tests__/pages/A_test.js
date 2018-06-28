@@ -6,6 +6,8 @@ import Router from "next/router";
 import React from "react";
 import { A } from "../../pages/A";
 import benefitsFixture from "../fixtures/benefits";
+import textFixture from "../fixtures/text";
+
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
@@ -36,10 +38,13 @@ describe("A", () => {
 
   beforeEach(() => {
     props = {
+      text: [],
       url: {
         query: {}
       },
-      i18n: {},
+      i18n: {
+        addResourceBundle: jest.fn()
+      },
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
@@ -258,7 +263,8 @@ describe("A", () => {
       }
     };
     const expectedArgs = {
-      benefits: benefitsFixture
+      benefits: benefitsFixture,
+      text: textFixture
     };
     expect(mountedA().instance().props.dispatch).toBeCalledWith({
       type: "LOAD_DATA",

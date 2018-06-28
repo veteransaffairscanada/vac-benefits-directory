@@ -5,6 +5,8 @@ import Button from "@material-ui/core/Button";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import styled from "react-emotion";
+import { connect } from "react-redux";
+import { redux2i18n } from "../utils/redux2i18n";
 
 const Hero = styled("div")`
   background-color: #eee;
@@ -25,6 +27,10 @@ const Title = styled("div")`
 `;
 
 export class App extends Component {
+  componentWillMount() {
+    redux2i18n(this.props.i18n, this.props.text);
+  }
+
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
@@ -61,9 +67,16 @@ export class App extends Component {
   }
 }
 
-App.propTypes = {
-  i18n: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired
+const mapStateToProps = state => {
+  return {
+    text: state.text
+  };
 };
 
-export default withI18next(["common"])(App);
+App.propTypes = {
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  text: PropTypes.array.isRequired
+};
+
+export default connect(mapStateToProps)(withI18next()(App)); // withI18next(["common"])(App);
