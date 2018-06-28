@@ -46,7 +46,7 @@ export class DataValidation extends Component {
   }
 
   checkEligibiltyPaths(b) {
-    return !(b.elibigbilityPaths && b.elibigbilityPaths != "");
+    return !(b.eligibilityPaths && b.eligibilityPaths != "");
   }
 
   render() {
