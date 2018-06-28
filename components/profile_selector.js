@@ -8,6 +8,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { connect } from "react-redux";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "@material-ui/core";
@@ -167,6 +168,17 @@ class ProfileSelector extends Component {
   }
 }
 
+const mapStateToProps = reduxState => {
+  return {
+    eligibilityPaths: reduxState.eligibilityPaths,
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    }
+  };
+};
+
 ProfileSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
@@ -178,4 +190,6 @@ ProfileSelector.propTypes = {
   pageWidth: PropTypes.number.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(ProfileSelector);
+export default connect(mapStateToProps)(
+  withStyles(styles, { withTheme: true })(ProfileSelector)
+);

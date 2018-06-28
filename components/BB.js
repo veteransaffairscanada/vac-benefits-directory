@@ -301,9 +301,7 @@ export class BB extends Component {
                 t={t}
                 handleChange={this.props.setSelectedNeeds}
                 clearFilters={this.props.clearFilters}
-                selectedEligibility={this.props.selectedEligibility}
                 setUserProfile={this.props.setUserProfile}
-                eligibilityPaths={this.props.eligibilityPaths}
                 pageWidth={this.props.pageWidth}
               />
               <Grid item xs={12}>
@@ -417,12 +415,17 @@ export class BB extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    benefits: state.benefits,
-    eligibilityPaths: state.eligibilityPaths,
-    examples: state.examples,
-    needs: state.needs
+    benefits: reduxState.benefits,
+    eligibilityPaths: reduxState.eligibilityPaths,
+    examples: reduxState.examples,
+    needs: reduxState.needs,
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    }
   };
 };
 
