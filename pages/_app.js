@@ -21,6 +21,12 @@ export default withRedux(initStore)(
           data: ctx.query.patronType
         });
       }
+      if (!ctx.query.patronType && currentState.patronType !== "") {
+        ctx.store.dispatch({
+          type: "SET_PATRON_TYPE",
+          data: ""
+        });
+      }
 
       if (
         ctx.query.serviceType &&
@@ -31,6 +37,12 @@ export default withRedux(initStore)(
           data: ctx.query.serviceType
         });
       }
+      if (!ctx.query.serviceType && currentState.serviceType !== "") {
+        ctx.store.dispatch({
+          type: "SET_SERVICE_TYPE",
+          data: ""
+        });
+      }
 
       if (
         ctx.query.statusAndVitals &&
@@ -39,6 +51,12 @@ export default withRedux(initStore)(
         ctx.store.dispatch({
           type: "SET_STATUS_TYPE",
           data: ctx.query.statusAndVitals
+        });
+      }
+      if (!ctx.query.serviceType && currentState.serviceType !== "") {
+        ctx.store.dispatch({
+          type: "SET_STATUS_TYPE",
+          data: ""
         });
       }
 
@@ -56,6 +74,15 @@ export default withRedux(initStore)(
             data: selectedNeeds
           });
         }
+      }
+      if (
+        !ctx.query.selectedNeeds &&
+        JSON.stringify(currentState.selectedNeeds) !== JSON.stringify({})
+      ) {
+        ctx.store.dispatch({
+          type: "SET_SELECTED_NEEDS",
+          data: {}
+        });
       }
 
       const pageProps = Component.getInitialProps
