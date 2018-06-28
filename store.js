@@ -3,9 +3,13 @@ import { createStore } from "redux";
 const initialState = {
   benefits: [],
   eligibilityPaths: [],
-  needs: [],
   examples: [],
   favouriteBenefits: [],
+  needs: [],
+  selectedNeeds: {},
+  patronType: "",
+  serviceType: "",
+  statusAndVitals: "",
   text: []
 };
 
@@ -23,6 +27,22 @@ export const reducer = (state = initialState, action) => {
         favouriteBenefits:
           action.data.favouriteBenefits || state.favouriteBenefits,
         text: action.data.text || state.text
+      });
+    case "SET_PATRON_TYPE":
+      return Object.assign({}, state, {
+        patronType: action.data
+      });
+    case "SET_SELECTED_NEEDS":
+      return Object.assign({}, state, {
+        selectedNeeds: action.data
+      });
+    case "SET_SERVICE_TYPE":
+      return Object.assign({}, state, {
+        serviceType: action.data
+      });
+    case "SET_STATUS_TYPE":
+      return Object.assign({}, state, {
+        statusAndVitals: action.data
       });
     default:
       return state;
