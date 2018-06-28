@@ -55,6 +55,10 @@ describe("A", () => {
         patronType: "",
         statusAndVitals: ""
       },
+      setPatronType: jest.fn(),
+      setSelectedNeeds: jest.fn(),
+      setServiceType: jest.fn(),
+      setStatusType: jest.fn(),
       favouriteBenefits: []
     };
     _mountedA = undefined;
@@ -73,21 +77,16 @@ describe("A", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has a correct stringToMap function", () => {
-    let AInstance = mountedA().instance();
-    expect(AInstance.stringToMap("a,cc")).toEqual({ a: "a", cc: "cc" });
-  });
-
   it("has a correct setURL function", () => {
+    props.selectedEligibility = {
+      patronType: "family",
+      serviceType: "CAF",
+      statusAndVitals: ""
+    };
+    props.selectedNeeds = { health: "health", financial: "financial" };
     let AInstance = mountedA().instance();
     const state = {
-      section: "S",
-      selectedNeeds: { health: "health", financial: "financial" },
-      selectedEligibility: {
-        patronType: "family",
-        serviceType: "CAF",
-        statusAndVitals: ""
-      }
+      section: "S"
     };
     const expectedURL =
       "/A?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF&lng=en";
@@ -98,111 +97,30 @@ describe("A", () => {
 
   it("has a correct clearFilters function", () => {
     let AInstance = mountedA().instance();
-    AInstance.setState({
-      section: "S",
-      selectedNeeds: { health: "health", financial: "financial" },
-      selectedEligibility: {
-        patronType: "family",
-        serviceType: "CAF",
-        statusAndVitals: ""
-      },
-      favouriteBenefits: [],
-      width: 1024
-    });
-    expect(AInstance.props.selectedEligibility.serviceType).toEqual("CAF");
     AInstance.clearFilters();
-    expect(AInstance.state).toEqual({
-      section: "S",
-      selectedNeeds: { health: "health", financial: "financial" },
-      selectedEligibility: {
-        patronType: "",
-        serviceType: "",
-        statusAndVitals: ""
-      },
-      favouriteBenefits: [],
-      width: 1024
-    });
-    expect(Router.push).toBeCalledWith(
-      "/A?section=S&selectedNeeds=health,financial&lng=en"
-    );
+    expect(AInstance.props.setPatronType).toBeCalledWith("");
+    expect(AInstance.props.setServiceType).toBeCalledWith("");
+    expect(AInstance.props.setStatusType).toBeCalledWith("");
   });
 
   it("has a correct clearNeeds function", () => {
     let AInstance = mountedA().instance();
-    AInstance.setState({
-      section: "S",
-      selectedNeeds: { health: "health", financial: "financial" },
-      selectedEligibility: {
-        patronType: "family",
-        serviceType: "CAF",
-        statusAndVitals: ""
-      },
-      width: 1024
-    });
-    expect(AInstance.props.selectedEligibility.serviceType).toEqual("CAF");
     AInstance.clearNeeds();
-    expect(AInstance.state).toEqual({
-      section: "S",
-      selectedNeeds: {},
-      selectedEligibility: {
-        patronType: "family",
-        serviceType: "CAF",
-        statusAndVitals: ""
-      },
-      favouriteBenefits: [],
-      width: 1024
-    });
-    expect(Router.push).toBeCalledWith(
-      "/A?section=S&patronType=family&serviceType=CAF&lng=en"
-    );
+    expect(AInstance.props.selectedEligibility.statusAndVitals).toEqual("");
   });
 
   it("componentWillMount sets state correctly from empty url", () => {
     expect(mountedA().state().section).toEqual("BB");
   });
 
-  it("componentWillMount sets state correctly from populated url", () => {
-    props.url = {
-      query: {
-        section: "test section",
-        selectedNeeds: "health,financial",
-        patronType: "family",
-        serviceType: "CAF"
-      }
-    };
-    let AInstance = mountedA().instance();
-    expect(AInstance.state.section).toEqual("test section");
-    expect(AInstance.state.selectedNeeds).toEqual({
-      health: "health",
-      financial: "financial"
-    });
-    expect(AInstance.props.selectedEligibility.patronType).toEqual("family");
-    expect(AInstance.props.selectedEligibility.serviceType).toEqual("CAF");
-    expect(AInstance.props.selectedEligibility.statusAndVitals).toEqual("");
-  });
-
-  it("Router.onRouteChangeStart sets state correctly from url", () => {
-    let AInstance = mountedA().instance();
-    const url = "/A?section=test_section&selectedNeeds=a,b&patronType=cc";
-    Router.onRouteChangeStart(url);
-    expect(AInstance.state.section).toEqual("test_section");
-    expect(AInstance.state.selectedNeeds).toEqual({ a: "a", b: "b" });
-    expect(AInstance.props.selectedEligibility.patronType).toEqual("cc");
-  });
-
   it("toggleSelectedEligibility adds and removes id", () => {
     let AInstance = mountedA().instance();
-    expect(
-      !AInstance.state.selectedEligibility["serviceType"].hasOwnProperty("x")
-    );
+    AInstance.toggleSelectedEligibility("patronType", "x")();
+    expect(AInstance.props.setPatronType).toBeCalledWith("x");
     AInstance.toggleSelectedEligibility("serviceType", "x")();
-    expect(
-      AInstance.state.selectedEligibility["serviceType"].hasOwnProperty("x")
-    );
-    AInstance.toggleSelectedEligibility("serviceType", "x")();
-    expect(
-      !AInstance.state.selectedEligibility["serviceType"].hasOwnProperty("x")
-    );
+    expect(AInstance.props.setServiceType).toBeCalledWith("x");
+    AInstance.toggleSelectedEligibility("statusAndVitals", "x")();
+    expect(AInstance.props.setStatusType).toBeCalledWith("x");
   });
 
   it("setSelectedNeeds logs an analytics event", () => {
@@ -227,23 +145,9 @@ describe("A", () => {
 
   it("setUserProfile clears other filters if Organization is selected", () => {
     let AInstance = mountedA().instance();
-    const state = {
-      section: "A1",
-      selectedNeeds: {},
-      selectedEligibility: {
-        patronType: "family",
-        serviceType: "CAF",
-        statusAndVitals: "released"
-      }
-    };
-    AInstance.setState(state);
-    expect(AInstance.props.selectedEligibility.serviceType).toEqual("CAF");
-    expect(AInstance.props.selectedEligibility.statusAndVitals).toEqual(
-      "released"
-    );
     AInstance.setUserProfile("patronType", "organization");
-    expect(AInstance.props.selectedEligibility.serviceType).toEqual("");
-    expect(AInstance.props.selectedEligibility.statusAndVitals).toEqual("");
+    AInstance.toggleSelectedEligibility("setServiceType", "");
+    AInstance.toggleSelectedEligibility("statusAndVitals", "");
   });
 
   it("sectionToDisplay returns appropriate component", () => {

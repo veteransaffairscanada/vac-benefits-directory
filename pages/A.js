@@ -28,61 +28,12 @@ export class A extends Component {
     // this.cookies.set("favouriteBenefits", [], { path: "/" });
   }
 
-  stringToMap = s => {
-    // convert a comma separated list into a map
-    let map = {};
-    s.split(",").forEach(x => {
-      map[x] = x;
-    });
-    return map;
-  };
-
-  getUrlParams = search => {
-    let hashes = search.slice(search.indexOf("?") + 1).split("&");
-    return hashes.reduce((params, hash) => {
-      let [key, val] = hash.split("=");
-      return Object.assign(params, { [key]: decodeURIComponent(val) });
-    }, {});
-  };
-
   componentWillMount() {
-    Router.onRouteChangeStart = newUrl => {
-      let myURL = {};
-      myURL.searchParams = this.getUrlParams(newUrl);
-      const section = myURL.searchParams.section;
-      let filters = {};
-      ["selectedNeeds"].forEach(filter => {
-        filters[filter] = myURL.searchParams[filter]
-          ? this.stringToMap(myURL.searchParams[filter])
-          : {};
-      });
-      ["patronType", "serviceType", "statusAndVitals"].forEach(filter => {
-        filters[filter] = myURL.searchParams[filter]
-          ? myURL.searchParams[filter]
-          : "";
-      });
-      const newState = {
-        section: section || "BB"
-      };
-      this.setState(newState);
-    };
-
-    let filters = {};
-    ["selectedNeeds"].forEach(filter => {
-      filters[filter] = this.props.url.query[filter]
-        ? this.stringToMap(this.props.url.query[filter])
-        : {};
-    });
-
-    ["patronType", "serviceType", "statusAndVitals"].forEach(filter => {
-      filters[filter] = this.props.url.query[filter]
-        ? this.props.url.query[filter]
-        : "";
-    });
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
       section: this.props.url.query.section || "BB"
     };
+
     this.setState(newState);
   }
 
@@ -395,9 +346,6 @@ export class A extends Component {
   };
 
   render() {
-    // reset bad choices
-    let selectedEligibility = this.props.selectedEligibility;
-
     if (
       this.props.selectedEligibility.patronType === "service-person" &&
       this.props.selectedEligibility.statusAndVitals === "deceased"
@@ -470,6 +418,7 @@ const mapStateToProps = reduxState => {
 
 A.propTypes = {
   benefits: PropTypes.array.isRequired,
+  dispatch: PropTypes.func,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
@@ -479,6 +428,10 @@ A.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  setPatronType: PropTypes.func.isRequired,
+  setSelectedNeeds: PropTypes.func.isRequired,
+  setServiceType: PropTypes.func.isRequired,
+  setStatusType: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
