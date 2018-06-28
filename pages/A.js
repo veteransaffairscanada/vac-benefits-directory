@@ -420,7 +420,7 @@ const mapStateToProps = reduxState => {
       statusAndVitals: reduxState.statusAndVitals
     },
     selectedNeeds: reduxState.selectedNeeds,
-    text: state.text
+    text: reduxState.text
   };
 };
 
