@@ -426,7 +426,8 @@ const mapStateToProps = reduxState => {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
       statusAndVitals: reduxState.statusAndVitals
-    }
+    },
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 

@@ -207,7 +207,7 @@ export class A extends Component {
           <BB
             id="BB"
             t={t}
-            selectedNeeds={this.props.selectedNeeds}
+            // selectedNeeds={this.props.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             setSelectedNeeds={this.setSelectedNeeds}
             setUserProfile={this.setUserProfile}
