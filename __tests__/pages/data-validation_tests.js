@@ -89,7 +89,7 @@ describe("DataValidation", () => {
   });
 
   it("fails if a benefit does not have any linked Needs", () => {
-    props.benefits[0].benefitPageFr = "";
+    props.benefits[0].needs = "";
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
