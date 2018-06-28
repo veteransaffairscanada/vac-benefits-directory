@@ -87,4 +87,14 @@ describe("DataValidation", () => {
     props.benefits[0].benefitPageFr = "";
     expect(mountedDataValidation().html()).toContain("Fail");
   });
+
+  it("fails if a benefit does not have any linked Needs", () => {
+    props.benefits[0].benefitPageFr = "";
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
+
+  it("fails if a benefit is not connected to any Eligibility Paths", () => {
+    props.benefits[0].eligibilityPaths = "";
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
 });
