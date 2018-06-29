@@ -96,15 +96,6 @@ export class A extends Component {
     this.setState({ section: section });
   };
 
-  setSelectedNeeds = ids => {
-    let selectedNeeds = {};
-    ids.forEach(id => {
-      selectedNeeds[id] = id;
-      logEvent("FilterClick", "need", id);
-    });
-    this.props.setSelectedNeeds(selectedNeeds);
-  };
-
   setUserProfile = (criteria, id) => {
     logEvent("FilterClick", criteria, id);
     switch (criteria) {
@@ -165,10 +156,6 @@ export class A extends Component {
     this.props.setStatusType("");
   };
 
-  clearNeeds = () => {
-    this.props.setSelectedNeeds({});
-  };
-
   sectionToDisplay = section => {
     let question, options;
     const { t } = this.props;
@@ -216,11 +203,9 @@ export class A extends Component {
             id="BB"
             t={t}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
-            setSelectedNeeds={this.setSelectedNeeds}
             setUserProfile={this.setUserProfile}
             setSection={this.setSection}
             clearFilters={this.clearFilters}
-            clearNeeds={this.clearNeeds}
             pageWidth={this.state.width}
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
@@ -245,11 +230,7 @@ export class A extends Component {
             setSection={this.setSection}
             store={this.props.store}
           >
-            <GuidedExperienceNeeds
-              t={t}
-              setSelectedNeeds={this.setSelectedNeeds}
-              store={this.props.store}
-            />
+            <GuidedExperienceNeeds t={t} store={this.props.store} />
           </GuidedExperience>
         );
 
@@ -348,11 +329,7 @@ export class A extends Component {
             setSection={this.setSection}
             store={this.props.store}
           >
-            <GuidedExperienceNeeds
-              t={t}
-              setSelectedNeeds={this.setSelectedNeeds}
-              store={this.props.store}
-            />;
+            <GuidedExperienceNeeds t={t} store={this.props.store} />;
           </GuidedExperience>
         );
     }
@@ -401,9 +378,6 @@ const mapDispatchToProps = dispatch => {
     setPatronType: patronType => {
       dispatch({ type: "SET_PATRON_TYPE", data: patronType });
     },
-    setSelectedNeeds: needsObject => {
-      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
-    },
     setServiceType: serviceType => {
       dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
     },
@@ -443,7 +417,6 @@ A.propTypes = {
   statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setPatronType: PropTypes.func.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusType: PropTypes.func.isRequired,
   store: PropTypes.object,
