@@ -8,7 +8,6 @@ import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 import textFixture from "../__tests__/fixtures/text";
 
-import { logEvent } from "../utils/analytics";
 import Cookies from "universal-cookie";
 
 import GuidedExperience from "../components/guided_experience";
