@@ -101,12 +101,6 @@ describe("A", () => {
     expect(AInstance.props.setStatusType).toBeCalledWith("");
   });
 
-  it("has a correct clearNeeds function", () => {
-    let AInstance = mountedA().instance();
-    AInstance.clearNeeds();
-    expect(AInstance.props.setSelectedNeeds).toBeCalledWith({});
-  });
-
   it("componentWillMount sets state correctly from empty url", () => {
     expect(mountedA().state().section).toEqual("BB");
   });
@@ -119,14 +113,6 @@ describe("A", () => {
     expect(AInstance.props.setServiceType).toBeCalledWith("x");
     AInstance.toggleSelectedEligibility("statusAndVitals", "x")();
     expect(AInstance.props.setStatusType).toBeCalledWith("x");
-  });
-
-  it("setSelectedNeeds logs an analytics event", () => {
-    let AInstance = mountedA().instance();
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    AInstance.setSelectedNeeds(["foo"]);
-    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
   });
 
   it("setUserProfile logs an analytics event", () => {

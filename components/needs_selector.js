@@ -50,7 +50,7 @@ const styles = theme => ({
   }
 });
 
-class NeedsSelector extends Component {
+export class NeedsSelector extends Component {
   state = {
     open: false
   };
@@ -61,11 +61,11 @@ class NeedsSelector extends Component {
   };
 
   handleClick = id => {
-    logEvent("FilterClick", "need", id);
     let newSelectedNeeds = JSON.parse(JSON.stringify(this.props.selectedNeeds));
     if (newSelectedNeeds.hasOwnProperty(id)) {
       delete newSelectedNeeds[id];
     } else {
+      logEvent("FilterClick", "need", id);
       newSelectedNeeds[id] = id;
     }
     this.props.setSelectedNeeds(newSelectedNeeds);
