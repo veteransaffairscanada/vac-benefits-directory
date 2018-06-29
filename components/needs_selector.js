@@ -7,6 +7,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { connect } from "react-redux";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "@material-ui/core";
@@ -139,6 +140,13 @@ class NeedsSelector extends Component {
   }
 }
 
+const mapStateToProps = reduxState => {
+  return {
+    needs: reduxState.needs,
+    selectedNeeds: reduxState.selectedNeeds
+  };
+};
+
 NeedsSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   handleChange: PropTypes.func.isRequired,
@@ -147,7 +155,10 @@ NeedsSelector.propTypes = {
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
   clearNeeds: PropTypes.func.isRequired,
-  pageWidth: PropTypes.number.isRequired
+  pageWidth: PropTypes.number.isRequired,
+  store: PropTypes.object
 };
 
-export default withStyles(styles, { withTheme: true })(NeedsSelector);
+export default connect(mapStateToProps)(
+  withStyles(styles, { withTheme: true })(NeedsSelector)
+);

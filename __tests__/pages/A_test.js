@@ -52,7 +52,6 @@ describe("A", () => {
       dispatch: jest.fn(),
       benefits: benefitsFixture,
       eligibilityPaths: elegibilityPathsFixture,
-      selectedNeeds: {},
       needs: needsFixture,
       examples: [],
       setPatronType: jest.fn(),
@@ -68,6 +67,7 @@ describe("A", () => {
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
+      selectedNeeds: {},
       serviceType: "CAF",
       patronType: "family",
       statusAndVitals: ""
@@ -81,7 +81,7 @@ describe("A", () => {
   });
 
   it("has a correct setURL function", () => {
-    props.selectedNeeds = { health: "health", financial: "financial" };
+    reduxData.selectedNeeds = { health: "health", financial: "financial" };
     let AInstance = mountedA().instance();
     const state = {
       section: "S"

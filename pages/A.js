@@ -199,7 +199,6 @@ export class A extends Component {
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             examples={this.props.examples}
-            selectedNeeds={this.props.selectedNeeds}
             setUserProfile={this.setUserProfile}
             setSection={this.setSection}
             pageWidth={this.state.width}
@@ -216,7 +215,6 @@ export class A extends Component {
           <BB
             id="BB"
             t={t}
-            selectedNeeds={this.props.selectedNeeds}
             toggleSelectedEligibility={this.toggleSelectedEligibility}
             setSelectedNeeds={this.setSelectedNeeds}
             setUserProfile={this.setUserProfile}
@@ -249,7 +247,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
               store={this.props.store}
             />
@@ -353,7 +350,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
               store={this.props.store}
             />;
