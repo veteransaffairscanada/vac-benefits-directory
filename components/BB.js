@@ -246,6 +246,7 @@ export class BB extends Component {
     filteredBenefits,
     selectedEligibility,
     selectedNeeds,
+    sortby,
     language
   ) => {
     const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
@@ -261,6 +262,7 @@ export class BB extends Component {
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
+    url += "&sortBy=" + sortby;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
@@ -282,6 +284,7 @@ export class BB extends Component {
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
+      this.state.sortByValue,
       t("current-language-code")
     );
 

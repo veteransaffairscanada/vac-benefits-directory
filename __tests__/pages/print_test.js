@@ -62,13 +62,30 @@ describe("Print", () => {
     props.url.query["statusAndVitals"] = "releasedAlive";
     props.url.query["needs"] = "43534534,43534ewr534";
     expect(mountedPrint().find(".needsListItem").length).toEqual(2);
-
     expect(
       mountedPrint()
         .find(".eligibilityListItem")
         .find("b")
         .text()
     ).toEqual("service-person");
+  });
+
+  it("has a correct sortBenefits function when sorting by popularity", () => {
+    let BLInstance = mountedPrint().instance();
+    expect(
+      BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
+        b => b.id
+      )
+    ).toEqual(["3", "1", "0"]);
+  });
+
+  it("has a correct sortBenefits function when sorting alphabetically", () => {
+    let BLInstance = mountedPrint().instance();
+    expect(
+      BLInstance.sortBenefits(benefitsFixture, "en", "alphabetical").map(
+        b => b.id
+      )
+    ).toEqual(["1", "0", "3"]);
   });
 
   it("renders benefits correctly", () => {
