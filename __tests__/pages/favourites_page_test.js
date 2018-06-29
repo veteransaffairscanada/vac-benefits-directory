@@ -6,7 +6,6 @@ import Router from "next/router";
 import React from "react";
 import { FavouritesPage } from "../../pages/favourites";
 import benefitsFixture from "../fixtures/benefits";
-import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import examplesFixture from "../fixtures/examples";
@@ -38,30 +37,17 @@ describe("A", () => {
 
   beforeEach(() => {
     props = {
-      text: [],
-      url: {
-        query: {}
-      },
       i18n: {
         addResourceBundle: jest.fn()
       },
       t: key => {
         return key === "current-language-code" ? "en" : key;
-      },
-      storeHydrated: true,
-      dispatch: jest.fn(),
-      benefits: benefitsFixture,
-      eligibilityPaths: elegibilityPathsFixture,
-      needs: needsFixture,
-      examples: [],
-      setPatronType: jest.fn(),
-      setSelectedNeeds: jest.fn(),
-      setServiceType: jest.fn(),
-      setStatusAndVitals: jest.fn()
+      }
     };
     _mountedFavouritesPage = undefined;
     mockStore = configureStore();
     reduxData = {
+      text: [],
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,

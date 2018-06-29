@@ -51,11 +51,6 @@ export class FavouritesPage extends Component {
         <Favourites
           id="favourites"
           t={t}
-          benefits={this.props.benefits}
-          eligibilityPaths={this.props.eligibilityPaths}
-          examples={this.props.examples}
-          setUserProfile={this.setUserProfile}
-          setSection={this.setSection}
           favouriteBenefits={this.state.favouriteBenefits}
           toggleFavourite={this.toggleFavourite}
           store={this.props.store}
@@ -67,18 +62,12 @@ export class FavouritesPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    benefits: state.benefits,
-    examples: state.examples,
-    eligibilityPaths: state.eligibilityPaths,
     favouriteBenefits: state.favouriteBenefits,
     text: state.text
   };
 };
 
 FavouritesPage.propTypes = {
-  benefits: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
