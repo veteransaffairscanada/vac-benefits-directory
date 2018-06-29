@@ -155,6 +155,12 @@ describe("A", () => {
     });
   });
 
+  it("setSection sets the state in section", () => {
+    let AInstance = mountedA().instance();
+    AInstance.setSection("AA");
+    expect(mountedA().state("section")).toEqual("AA");
+  });
+
   it("componantDidMount hydrates Redux with fixtures if use_testdata set", () => {
     props.url = {
       query: {
