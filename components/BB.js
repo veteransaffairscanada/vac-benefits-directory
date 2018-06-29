@@ -300,7 +300,6 @@ export class BB extends Component {
               <ProfileSelector
                 t={t}
                 handleChange={this.props.setSelectedNeeds}
-                clearFilters={this.props.clearFilters}
                 pageWidth={this.props.pageWidth}
                 store={this.props.store}
               />
@@ -432,7 +431,6 @@ const mapStateToProps = reduxState => {
 BB.propTypes = {
   benefits: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
-  clearFilters: PropTypes.func.isRequired,
   clearNeeds: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
@@ -442,7 +440,6 @@ BB.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  toggleSelectedEligibility: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,

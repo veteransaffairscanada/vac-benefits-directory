@@ -5,6 +5,7 @@ import { FormControl, FormControlLabel, FormLabel } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import { connect } from "react-redux";
+import { logEvent } from "../utils/analytics";
 
 const styles = theme => ({
   formControl: {
@@ -13,44 +14,80 @@ const styles = theme => ({
 });
 
 export class RadioSelector extends React.Component {
-  handleSelect = event => {
-    // this.props.setUserProfile(event.target.value);
-    this.props[this.props.criteria](event.target.value);
+  setters = {
+    patronType: this.props.setPatronType,
+    serviceType: this.props.setServiceType,
+    statusAndVitals: this.props.setStatusAndVitals
   };
 
-  isDisabled = (id, serviceType, patronType) => {
-    if (serviceType == "WSV (WWII or Korea)" && id == "stillServing") {
+  isDisabled = (filter_id, serviceType, patronType) => {
+    if (serviceType == "WSV (WWII or Korea)" && filter_id == "stillServing") {
       return true;
     }
-    if (patronType == "service-person" && id == "deceased") {
+    if (patronType == "service-person" && filter_id == "deceased") {
       return true;
     }
     return false;
   };
 
+  setUserProfile = (criteria, id) => {
+    logEvent("FilterClick", criteria, id);
+    switch (criteria) {
+      case "patronType":
+        this.props.setPatronType(id);
+        if (id === "organization") {
+          this.props.setServiceType("");
+          this.props.setStatusAndVitals("");
+        }
+        break;
+      case "serviceType":
+        this.props.setServiceType(id);
+        break;
+      case "statusAndVitals":
+        this.props.setStatusAndVitals(id);
+        break;
+      default:
+        return true;
+    }
+  };
+
+  handleSelect = event => {
+    this.setUserProfile(this.props.selectorType, event.target.value);
+  };
+
   render() {
-    const { classes, t, criteria } = this.props;
-    console.log(this.props["x" + criteria]);
-    if (Object.values(this.props.filters).length != 0) {
+    const allFilterIds = Array.from(
+      new Set(
+        this.props.eligibilityPaths.map(ep => ep[this.props.selectorType])
+      )
+    ).filter(st => st !== "na");
+    const { classes, t, selectorType } = this.props;
+    const selected = {
+      patronType: this.props.selectedPatronType,
+      serviceType: this.props.selectedServiceType,
+      statusAndVitals: this.props.selectedStatusAndVitals
+    };
+
+    if (Object.values(allFilterIds).length != 0) {
       return (
         <FormControl className={classes.formControl}>
           <FormLabel>{this.props.legend}</FormLabel>
           <RadioGroup
             aria-label={this.props.legend}
-            value={this.props["x" + criteria][criteria]}
+            value={selected[selectorType]}
             onChange={this.handleSelect}
           >
-            {this.props.filters.map(x => {
+            {allFilterIds.map(filter_id => {
               return (
                 <FormControlLabel
-                  key={x.id}
-                  value={x.id}
+                  key={filter_id}
+                  value={filter_id}
                   control={<Radio />}
-                  label={t(x.name_en)}
+                  label={t(filter_id)}
                   disabled={this.isDisabled(
-                    x.id,
-                    this.props.xserviceType,
-                    this.props.xpatronType
+                    filter_id,
+                    this.props.selectedServiceType,
+                    this.props.selectedPatronType
                   )}
                 />
               );
@@ -66,13 +103,13 @@ export class RadioSelector extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    patronType: patronType => {
+    setPatronType: patronType => {
       dispatch({ type: "SET_PATRON_TYPE", data: patronType });
     },
-    serviceType: serviceType => {
+    setServiceType: serviceType => {
       dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
     },
-    statusType: statusType => {
+    setStatusAndVitals: statusType => {
       dispatch({ type: "SET_STATUS_TYPE", data: statusType });
     }
   };
@@ -80,23 +117,26 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    xpatronType: reduxState.patronType,
-    xserviceType: reduxState.serviceType,
-    xstatusAndVitals: reduxState.statusAndVitals
+    selectedPatronType: reduxState.patronType,
+    selectedServiceType: reduxState.serviceType,
+    selectedStatusAndVitals: reduxState.statusAndVitals,
+    eligibilityPaths: reduxState.eligibilityPaths
   };
 };
 
 RadioSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   legend: PropTypes.string.isRequired,
-  filters: PropTypes.array.isRequired,
-  selectedFilter: PropTypes.string,
   setUserProfile: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  criteria: PropTypes.string.isRequired,
+  selectedPatronType: PropTypes.func.isRequired,
+  selectedServiceType: PropTypes.func.isRequired,
+  selectedStatusAndVitals: PropTypes.func.isRequired,
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
-  setStatusType: PropTypes.func.isRequired,
+  setStatusAndVitals: PropTypes.func.isRequired,
+  selectorType: PropTypes.string.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
   store: PropTypes.object
 };
 

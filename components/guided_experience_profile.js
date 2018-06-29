@@ -6,21 +6,14 @@ import RadioSelector from "./radio_selector";
 export class GuidedExperienceProfile extends Component {
   render() {
     const { t } = this.props;
-
-    const filters = this.props.options.map(op => {
-      return { id: op, name_en: op };
-    });
     return (
       <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
           <RadioSelector
-            id="RadioSelector"
+            id={"RadioSelector" + this.props.selectorType}
             t={t}
             legend={""}
-            filters={filters}
-            selectedEligibility={{}}
-            selectedFilter={this.props.value}
-            setUserProfile={id => this.props.onClick(id)}
+            selectorType={this.props.selectorType}
             store={this.props.store}
           />
         </Grid>
@@ -30,10 +23,8 @@ export class GuidedExperienceProfile extends Component {
 }
 
 GuidedExperienceProfile.propTypes = {
-  options: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
+  selectorType: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 

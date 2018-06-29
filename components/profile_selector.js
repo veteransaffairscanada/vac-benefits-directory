@@ -43,38 +43,14 @@ class ProfileSelector extends Component {
     this.setState({ open: newState });
   };
 
+  clearFilters = () => {
+    this.props.setPatronType("");
+    this.props.setServiceType("");
+    this.props.setStatusAndVitals("");
+  };
+
   render() {
-    const {
-      selectedEligibility,
-      classes,
-      t,
-      eligibilityPaths,
-      pageWidth
-    } = this.props;
-
-    let serviceTypes = Array.from(
-      new Set(eligibilityPaths.map(ep => ep.serviceType))
-    )
-      .filter(st => st !== "na")
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
-    const patronTypes = Array.from(
-      new Set(eligibilityPaths.map(ep => ep.patronType))
-    )
-      .filter(st => st !== "na")
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
-
-    let statusAndVitals = Array.from(
-      new Set(eligibilityPaths.map(ep => ep.statusAndVitals))
-    )
-      .filter(st => st !== "na")
-      .map(st => {
-        return { id: st, name_en: st, name_fr: "FF " + st };
-      });
+    const { patronType, serviceType, classes, t, pageWidth } = this.props;
 
     return (
       <ExpansionPanel
@@ -92,6 +68,7 @@ class ProfileSelector extends Component {
             {t("B3.Filter by eligibility")}
           </Typography>
         </ExpansionPanelSummary>
+
         <ExpansionPanelDetails>
           <Grid container spacing={8}>
             <Grid item xs={9} />
@@ -99,29 +76,17 @@ class ProfileSelector extends Component {
               <RadioSelector
                 t={t}
                 legend={t("B3.Benefits for")}
-                filters={patronTypes}
-                criteria={"patronType"}
-                // selectedFilter={selectedEligibility.patronType}
-                // setUserProfile={id =>
-                // this.props.setPatronType("patronType", id)
-                // }
+                selectorType={"patronType"}
                 store={this.props.store}
               />
             </Grid>
 
-            {selectedEligibility.patronType &&
-            selectedEligibility.patronType != "" &&
-            selectedEligibility.patronType != "organization" ? (
+            {patronType && patronType != "" && patronType != "organization" ? (
               <Grid item xs={12} id="serviceTypeFilter">
                 <RadioSelector
                   t={t}
                   legend={t("B3.ServiceType")}
-                  filters={serviceTypes}
-                  criteria={"serviceType"}
-                  // selectedFilter={selectedEligibility.serviceType}
-                  // setUserProfile={id =>
-                  //   this.props.setServiceType("serviceType", id)
-                  // }
+                  selectorType={"serviceType"}
                   store={this.props.store}
                 />
               </Grid>
@@ -129,23 +94,18 @@ class ProfileSelector extends Component {
               ""
             )}
 
-            {selectedEligibility.serviceType &&
-            selectedEligibility.serviceType != "" &&
-            selectedEligibility.patronType != "organization" &&
+            {serviceType &&
+            serviceType != "" &&
+            patronType != "organization" &&
             !(
-              selectedEligibility.patronType === "service-person" &&
-              selectedEligibility.serviceType === "WSV (WWII or Korea)"
+              patronType === "service-person" &&
+              serviceType === "WSV (WWII or Korea)"
             ) ? (
               <Grid item xs={12} id="statusAndVitalsFilter">
                 <RadioSelector
                   t={t}
                   legend={t("B3.serviceStatus")}
-                  filters={statusAndVitals}
-                  selectedFilter={selectedEligibility.statusAndVitals}
-                  criteria={"statusAndVitals"}
-                  // setUserProfile={id =>
-                  //   this.props.setStatusType("statusAndVitals", id)
-                  // }
+                  selectorType={"statusAndVitals"}
                   store={this.props.store}
                 />
               </Grid>
@@ -160,7 +120,7 @@ class ProfileSelector extends Component {
                 variant="flat"
                 size="small"
                 onClick={() => {
-                  this.props.clearFilters();
+                  this.clearFilters();
                 }}
               >
                 {t("Clear")}
@@ -173,14 +133,24 @@ class ProfileSelector extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setPatronType: patronType => {
+      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
+    },
+    setServiceType: serviceType => {
+      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
+    },
+    setStatusAndVitals: statusType => {
+      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    }
+  };
+};
+
 const mapStateToProps = reduxState => {
   return {
-    eligibilityPaths: reduxState.eligibilityPaths,
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals
-    }
+    patronType: reduxState.patronType,
+    serviceType: reduxState.serviceType
   };
 };
 
@@ -188,13 +158,15 @@ ProfileSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  clearFilters: PropTypes.func.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
+  setPatronType: PropTypes.func.isRequired,
+  setServiceType: PropTypes.func.isRequired,
+  setStatusAndVitals: PropTypes.func.isRequired,
+  patronType: PropTypes.string.isRequired,
+  serviceType: PropTypes.string.isRequired,
   pageWidth: PropTypes.number.isRequired,
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   withStyles(styles, { withTheme: true })(ProfileSelector)
 );
