@@ -33,7 +33,7 @@ const styles = () => ({
   }
 });
 
-class ProfileSelector extends Component {
+export class ProfileSelector extends Component {
   state = {
     open: false
   };
