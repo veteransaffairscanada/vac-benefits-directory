@@ -8,7 +8,6 @@ import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 import textFixture from "../__tests__/fixtures/text";
 
-import { logEvent } from "../utils/analytics";
 import Cookies from "universal-cookie";
 
 import GuidedExperience from "../components/guided_experience";
@@ -96,47 +95,6 @@ export class A extends Component {
     this.setState({ section: section });
   };
 
-  setUserProfile = (criteria, id) => {
-    logEvent("FilterClick", criteria, id);
-    switch (criteria) {
-      case "patronType":
-        this.props.setPatronType(id);
-        if (id === "organization") {
-          this.props.setServiceType("");
-          this.props.setStatusType("");
-        }
-        break;
-      case "serviceType":
-        this.props.setServiceType(id);
-        break;
-      case "statusAndVitals":
-        this.props.setStatusType(id);
-        break;
-      default:
-        return true;
-    }
-  };
-
-  toggleSelectedEligibility = (criteria, id) => () => {
-    switch (criteria) {
-      case "patronType":
-        this.props.setPatronType(id);
-        if (id === "organization") {
-          this.props.setServiceType("");
-          this.props.setStatusType("");
-        }
-        break;
-      case "serviceType":
-        this.props.setServiceType(id);
-        break;
-      case "statusAndVitals":
-        this.props.setStatusType(id);
-        break;
-      default:
-        return true;
-    }
-  };
-
   toggleFavourite = id => {
     let favouriteBenefits = this.cookies.get("favouriteBenefits")
       ? this.cookies.get("favouriteBenefits")
@@ -148,12 +106,6 @@ export class A extends Component {
     }
     this.cookies.set("favouriteBenefits", favouriteBenefits, { path: "/" });
     this.setState({ favouriteBenefits: favouriteBenefits });
-  };
-
-  clearFilters = () => {
-    this.props.setPatronType("");
-    this.props.setServiceType("");
-    this.props.setStatusType("");
   };
 
   sectionToDisplay = section => {
@@ -186,8 +138,6 @@ export class A extends Component {
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             examples={this.props.examples}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
             pageWidth={this.state.width}
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
@@ -202,15 +152,12 @@ export class A extends Component {
           <BB
             id="BB"
             t={t}
-            toggleSelectedEligibility={this.toggleSelectedEligibility}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
-            clearFilters={this.clearFilters}
             pageWidth={this.state.width}
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
             url={this.props.url}
             store={this.props.store}
+            setSection={this.setSection}
           />
         );
 
@@ -247,13 +194,8 @@ export class A extends Component {
             store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={this.props[question]}
               t={t}
-              onClick={option => this.setUserProfile(question, option)}
-              isDown={option => this.props[question] === option}
-              options={Array.from(
-                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-              ).filter(st => st !== "na")}
+              selectorType={"patronType"}
               store={this.props.store}
             />
           </GuidedExperience>
@@ -272,13 +214,8 @@ export class A extends Component {
             store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={this.props[question]}
               t={t}
-              onClick={option => this.setUserProfile(question, option)}
-              isDown={option => this.props[question] === option}
-              options={Array.from(
-                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-              ).filter(st => st !== "na")}
+              selectorType={"serviceType"}
               store={this.props.store}
             />
           </GuidedExperience>
@@ -306,12 +243,10 @@ export class A extends Component {
             store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={this.props[question]}
               t={t}
-              onClick={option => this.setUserProfile(question, option)}
-              options={options}
-              isDown={option => this.props[question] === option}
+              selectorType={"statusAndVitals"}
               store={this.props.store}
+              options={options}
             />
           </GuidedExperience>
         );
@@ -340,24 +275,24 @@ export class A extends Component {
       this.props.patronType === "service-person" &&
       this.props.statusAndVitals === "deceased"
     ) {
-      this.props.setStatusType("");
+      this.props.setStatusAndVitals("");
     }
 
     if (
       this.props.serviceType === "WSV (WWII or Korea)" &&
       this.props.statusAndVitals === "stillServing"
     ) {
-      this.props.setStatusType("");
+      this.props.setStatusAndVitals("");
     }
 
     // Guided Experience skips statusAndVitals for service-person / WSV
     if (
-      this.state.section !== "BB" &&
+      // this.state.section !== "BB" &&
       this.props.patronType === "service-person" &&
       this.props.serviceType === "WSV (WWII or Korea)" &&
       this.props.statusAndVitals !== ""
     ) {
-      this.props.setStatusType("");
+      this.props.setStatusAndVitals("");
     }
 
     return (
@@ -375,14 +310,8 @@ export class A extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPatronType: patronType => {
-      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
-    },
-    setServiceType: serviceType => {
-      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
-    },
-    setStatusType: statusType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    setStatusAndVitals: patronType => {
+      dispatch({ type: "SET_STATUS_TYPE", data: patronType });
     }
   };
 };
@@ -416,9 +345,7 @@ A.propTypes = {
   serviceType: PropTypes.string.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  setPatronType: PropTypes.func.isRequired,
-  setServiceType: PropTypes.func.isRequired,
-  setStatusType: PropTypes.func.isRequired,
+  setStatusAndVitals: PropTypes.func.isRequired,
   store: PropTypes.object,
   text: PropTypes.array.isRequired
 };

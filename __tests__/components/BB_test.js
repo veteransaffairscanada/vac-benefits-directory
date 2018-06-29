@@ -42,17 +42,10 @@ describe("BB", () => {
       clearNeeds: () => true,
       id: "BB",
       pageWidth: 42,
-      selectedEligibility: {
-        serviceType: "",
-        patronType: "",
-        statusAndVitals: ""
-      },
       setSection: () => true,
       setSelectedNeeds: () => true,
-      setUserProfile: () => true,
       toggleFavourite: () => true,
       favouriteBenefits: [],
-      toggleSelectedEligibility: jest.fn(),
       classes: {
         card: "BB-card-87",
         media: "BB-media-88",
@@ -71,6 +64,14 @@ describe("BB", () => {
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
+      serviceType: "",
+      patronType: "",
+      statusAndVitals: "",
+      selectedEligibility: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      },
       selectedNeeds: {}
     };
     props.store = mockStore(reduxData);

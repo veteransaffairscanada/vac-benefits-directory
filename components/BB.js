@@ -302,8 +302,6 @@ export class BB extends Component {
             <Grid item lg={3} md={4} sm={5} xs={12}>
               <ProfileSelector
                 t={t}
-                clearFilters={this.props.clearFilters}
-                setUserProfile={this.props.setUserProfile}
                 pageWidth={this.props.pageWidth}
                 store={this.props.store}
               />
@@ -433,16 +431,13 @@ const mapStateToProps = reduxState => {
 BB.propTypes = {
   benefits: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
-  clearFilters: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  setUserProfile: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  toggleSelectedEligibility: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
