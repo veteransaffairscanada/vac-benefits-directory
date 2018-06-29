@@ -15,6 +15,9 @@ import Layout from "../components/layout";
 import { connect } from "react-redux";
 import { redux2i18n } from "../utils/redux2i18n";
 
+let brokenBenefits;
+let i = 0;
+
 const styles = theme => ({
   root: {
     width: "100%",
@@ -35,6 +38,16 @@ export class DataValidation extends Component {
     redux2i18n(this.props.i18n, this.props.text);
   }
 
+  getBrokenBenefits(b) {
+    for (var i = 0; i < b.length; i++) {
+      console.log("OUTSIDE " + b[i].vacNameEn);
+      if (!(b.needs && b.needs != "")) {
+        console.log("IF " + b.vacNameEn);
+      }
+    }
+    return "";
+  }
+
   checkIfMissingText(b) {
     return (
       !(b.vacNameEn && b.vacNameEn != "") ||
@@ -47,6 +60,9 @@ export class DataValidation extends Component {
   }
 
   checkMissingNeeds(b) {
+    //if(!(b.needs && b.needs != "")){console.log(b.vacNameEn);}
+    //console.log(!(b.needs && b.needs != ""));
+    //console.log(b.vacNameEn);
     return !(b.needs && b.needs != "");
   }
 
@@ -127,6 +143,11 @@ export class DataValidation extends Component {
                   </TableRow>
                 );
               })}
+              <TableRow>
+                <TableCell> "Benefit IDs" </TableCell>
+                <TableCell> {this.getBrokenBenefits(benefits)} </TableCell>
+                <TableCell> TEST </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </Paper>
