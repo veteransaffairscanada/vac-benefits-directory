@@ -20,7 +20,7 @@ export class RadioSelector extends React.Component {
     statusAndVitals: this.props.setStatusAndVitals
   };
 
-  isDisabled = (filter_id, serviceType, patronType) => {
+  isDisabled = (filter_id, patronType, serviceType) => {
     if (serviceType == "WSV (WWII or Korea)" && filter_id == "stillServing") {
       return true;
     }
@@ -89,8 +89,8 @@ export class RadioSelector extends React.Component {
                   label={t(filter_id)}
                   disabled={this.isDisabled(
                     filter_id,
-                    this.props.selectedServiceType,
-                    this.props.selectedPatronType
+                    this.props.selectedPatronType,
+                    this.props.selectedServiceType
                   )}
                 />
               );
@@ -130,11 +130,10 @@ const mapStateToProps = reduxState => {
 RadioSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   legend: PropTypes.string.isRequired,
-  setUserProfile: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  selectedPatronType: PropTypes.func.isRequired,
-  selectedServiceType: PropTypes.func.isRequired,
-  selectedStatusAndVitals: PropTypes.func.isRequired,
+  selectedPatronType: PropTypes.string.isRequired,
+  selectedServiceType: PropTypes.string.isRequired,
+  selectedStatusAndVitals: PropTypes.string.isRequired,
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,

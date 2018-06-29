@@ -368,6 +368,7 @@ A.propTypes = {
   statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
+  setStatusAndVitals: PropTypes.func.isRequired,
   store: PropTypes.object,
   text: PropTypes.array.isRequired
 };
