@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core/";
 import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
+import { logEvent } from "../utils/analytics";
 
 const styles = theme => ({
   root: {
@@ -25,13 +26,14 @@ const styles = theme => ({
 
 export class GuidedExperienceNeeds extends Component {
   handleClick = id => {
-    let newSelectedNeeds = this.props.selectedNeeds;
+    logEvent("FilterClick", "need", id);
+    let newSelectedNeeds = JSON.parse(JSON.stringify(this.props.selectedNeeds));
     if (newSelectedNeeds.hasOwnProperty(id)) {
       delete newSelectedNeeds[id];
     } else {
       newSelectedNeeds[id] = id;
     }
-    this.props.setSelectedNeeds(Object.keys(newSelectedNeeds));
+    this.props.setSelectedNeeds(newSelectedNeeds);
   };
 
   render() {
@@ -64,6 +66,15 @@ export class GuidedExperienceNeeds extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setSelectedNeeds: needsObject => {
+      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
+    }
+  };
+};
+
 const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
@@ -79,6 +90,6 @@ GuidedExperienceNeeds.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   withStyles(styles)(GuidedExperienceNeeds)
 );

@@ -261,6 +261,7 @@ export class BB extends Component {
     filteredBenefits,
     selectedEligibility,
     selectedNeeds,
+    sortby,
     language
   ) => {
     const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
@@ -276,6 +277,7 @@ export class BB extends Component {
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
+    url += "&sortBy=" + sortby;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
@@ -297,6 +299,7 @@ export class BB extends Component {
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
+      this.state.sortByValue,
       t("current-language-code")
     );
 
@@ -314,17 +317,12 @@ export class BB extends Component {
             <Grid item lg={3} md={4} sm={5} xs={12}>
               <ProfileSelector
                 t={t}
-                handleChange={this.props.setSelectedNeeds}
-                clearFilters={this.props.clearFilters}
-                setUserProfile={this.props.setUserProfile}
                 pageWidth={this.props.pageWidth}
                 store={this.props.store}
               />
               <Grid item xs={12}>
                 <NeedsSelector
                   t={t}
-                  handleChange={this.props.setSelectedNeeds}
-                  clearNeeds={this.props.clearNeeds}
                   pageWidth={this.props.pageWidth}
                   store={this.props.store}
                 />
@@ -449,18 +447,13 @@ const mapStateToProps = reduxState => {
 BB.propTypes = {
   benefits: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
-  clearFilters: PropTypes.func.isRequired,
-  clearNeeds: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired,
-  setUserProfile: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  toggleSelectedEligibility: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,

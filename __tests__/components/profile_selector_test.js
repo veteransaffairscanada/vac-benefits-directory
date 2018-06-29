@@ -1,6 +1,6 @@
 import React from "react";
-import { mount } from "enzyme";
-import ProfileSelector from "../../components/profile_selector";
+import { mount, shallow } from "enzyme";
+import { ProfileSelector } from "../../components/profile_selector";
 // import profileFixture from "../fixtures/needs";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -14,14 +14,17 @@ describe("ProfileSelector", () => {
   beforeEach(() => {
     props = {
       t: key => key,
-      clearFilters: key => key,
-      setUserProfile: key => key,
-      pageWidth: 1000
+      pageWidth: 1000,
+      classes: {},
+      theme: {}
     };
     reduxData = {
       eligibilityPaths: eligibilityPathsFixture,
       serviceType: "",
       patronType: "",
+      setPatronType: jest.fn(),
+      setServiceType: jest.fn(),
+      setStatusAndVitals: jest.fn(),
       statusAndVitals: ""
     };
     mockStore = configureStore();
@@ -123,5 +126,15 @@ describe("ProfileSelector", () => {
         .find("ExpansionPanel")
         .prop("expanded")
     ).toEqual(false);
+  });
+
+  it("has a correct clearFilters function", () => {
+    let instance = shallow(
+      <ProfileSelector {...props} {...reduxData} />
+    ).instance();
+    instance.clearFilters();
+    expect(reduxData.setPatronType).toBeCalledWith("");
+    expect(reduxData.setServiceType).toBeCalledWith("");
+    expect(reduxData.setStatusAndVitals).toBeCalledWith("");
   });
 });
