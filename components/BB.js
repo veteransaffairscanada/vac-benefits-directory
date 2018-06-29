@@ -261,6 +261,7 @@ export class BB extends Component {
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
+    url += "&sortBy=" + this.state.sortByValue;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }

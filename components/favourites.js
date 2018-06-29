@@ -134,6 +134,7 @@ export class Favourites extends Component {
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
+    url += "&sortBy=" + this.state.sortByValue;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
@@ -245,6 +246,7 @@ const mapStateToProps = reduxState => {
   return {
     benefits: reduxState.benefits,
     eligibilityPaths: reduxState.eligibilityPaths,
+    needs: reduxState.needs,
     examples: reduxState.examples,
     selectedEligibility: {
       patronType: reduxState.patronType,
