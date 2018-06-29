@@ -15,6 +15,7 @@ export class GuidedExperienceProfile extends Component {
             legend={""}
             selectorType={this.props.selectorType}
             store={this.props.store}
+            options={this.props.options}
           />
         </Grid>
       </div>
@@ -25,6 +26,7 @@ export class GuidedExperienceProfile extends Component {
 GuidedExperienceProfile.propTypes = {
   t: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
+  options: PropTypes.array,
   store: PropTypes.object
 };
 

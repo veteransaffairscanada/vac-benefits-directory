@@ -260,6 +260,7 @@ export class A extends Component {
               t={t}
               selectorType={"statusAndVitals"}
               store={this.props.store}
+              options={options}
             />
           </GuidedExperience>
         );

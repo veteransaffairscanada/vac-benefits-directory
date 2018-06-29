@@ -56,11 +56,14 @@ export class RadioSelector extends React.Component {
   };
 
   render() {
-    const allFilterIds = Array.from(
-      new Set(
-        this.props.eligibilityPaths.map(ep => ep[this.props.selectorType])
-      )
-    ).filter(st => st !== "na");
+    const allFilterIds = this.props.options
+      ? this.props.options
+      : Array.from(
+          new Set(
+            this.props.eligibilityPaths.map(ep => ep[this.props.selectorType])
+          )
+        ).filter(st => st !== "na");
+
     const { classes, t, selectorType } = this.props;
     const selected = {
       patronType: this.props.selectedPatronType,
@@ -137,6 +140,7 @@ RadioSelector.propTypes = {
   setStatusAndVitals: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  options: PropTypes.array,
   store: PropTypes.object
 };
 
