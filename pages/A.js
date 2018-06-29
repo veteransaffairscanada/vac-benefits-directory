@@ -33,6 +33,15 @@ export class A extends Component {
 
   componentWillMount() {
     redux2i18n(this.props.i18n, this.props.text);
+
+    Router.onRouteChangeStart = newUrl => {
+      let matches = newUrl.match(/section=([^&]*)/);
+      const newState = {
+        section: matches[1] || "BB"
+      };
+      this.setState(newState);
+    };
+
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
       section: this.props.url.query.section || "BB"
