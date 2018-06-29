@@ -28,6 +28,7 @@
     "emotion": "^9.1.1",
     "emotion-server": "^9.1.2",
     "express": "4.16.2",
+    "google-map-react": "^1.0.5",
     "helmet": "^3.12.1",
     "i18next": "10.4.1",
     "i18next-browser-languagedetector": "2.1.0",

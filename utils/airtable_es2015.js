@@ -38,6 +38,7 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
   dataStore.needs = await fetchTableFromAirtable("needs");
   dataStore.examples = await fetchTableFromAirtable("examples");
   dataStore.text = await fetchTableFromAirtable("text");
+  dataStore.areaOffices = await fetchTableFromAirtable("areaOffices");
   dataStore.timestamp = await Date.now();
   return dataStore;
 });
