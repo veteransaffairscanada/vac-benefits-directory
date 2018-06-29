@@ -8,20 +8,20 @@ import { initStore } from "../store";
 export default withRedux(initStore)(
   class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
-      let currentState = ctx.store.getState();
+      let currentReduxState = ctx.store.getState();
       if (ctx.req) {
         ctx.store.dispatch({ type: "LOAD_DATA", data: ctx.req.data });
       }
       if (
         ctx.query.patronType &&
-        ctx.query.patronType !== currentState.patronType
+        ctx.query.patronType !== currentReduxState.patronType
       ) {
         ctx.store.dispatch({
           type: "SET_PATRON_TYPE",
           data: ctx.query.patronType
         });
       }
-      if (!ctx.query.patronType && currentState.patronType !== "") {
+      if (!ctx.query.patronType && currentReduxState.patronType !== "") {
         ctx.store.dispatch({
           type: "SET_PATRON_TYPE",
           data: ""
@@ -30,14 +30,14 @@ export default withRedux(initStore)(
 
       if (
         ctx.query.serviceType &&
-        ctx.query.serviceType !== currentState.serviceType
+        ctx.query.serviceType !== currentReduxState.serviceType
       ) {
         ctx.store.dispatch({
           type: "SET_SERVICE_TYPE",
           data: ctx.query.serviceType
         });
       }
-      if (!ctx.query.serviceType && currentState.serviceType !== "") {
+      if (!ctx.query.serviceType && currentReduxState.serviceType !== "") {
         ctx.store.dispatch({
           type: "SET_SERVICE_TYPE",
           data: ""
@@ -46,14 +46,17 @@ export default withRedux(initStore)(
 
       if (
         ctx.query.statusAndVitals &&
-        ctx.query.statusAndVitals !== currentState.statusAndVitals
+        ctx.query.statusAndVitals !== currentReduxState.statusAndVitals
       ) {
         ctx.store.dispatch({
           type: "SET_STATUS_TYPE",
           data: ctx.query.statusAndVitals
         });
       }
-      if (!ctx.query.serviceType && currentState.serviceType !== "") {
+      if (
+        !ctx.query.statusAndVitals &&
+        currentReduxState.statusAndVitals !== ""
+      ) {
         ctx.store.dispatch({
           type: "SET_STATUS_TYPE",
           data: ""
@@ -67,7 +70,7 @@ export default withRedux(initStore)(
         });
         if (
           JSON.stringify(selectedNeeds) !==
-          JSON.stringify(currentState.selectedNeeds)
+          JSON.stringify(currentReduxState.selectedNeeds)
         ) {
           ctx.store.dispatch({
             type: "SET_SELECTED_NEEDS",
@@ -77,7 +80,7 @@ export default withRedux(initStore)(
       }
       if (
         !ctx.query.selectedNeeds &&
-        JSON.stringify(currentState.selectedNeeds) !== JSON.stringify({})
+        JSON.stringify(currentReduxState.selectedNeeds) !== JSON.stringify({})
       ) {
         ctx.store.dispatch({
           type: "SET_SELECTED_NEEDS",
@@ -88,6 +91,7 @@ export default withRedux(initStore)(
       const pageProps = Component.getInitialProps
         ? await Component.getInitialProps(ctx)
         : {};
+
       return { pageProps };
     }
 
