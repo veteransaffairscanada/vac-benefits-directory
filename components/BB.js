@@ -246,6 +246,7 @@ export class BB extends Component {
     filteredBenefits,
     selectedEligibility,
     selectedNeeds,
+    sortby,
     language
   ) => {
     const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
@@ -261,6 +262,7 @@ export class BB extends Component {
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
+    url += "&sortBy=" + sortby;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
@@ -282,6 +284,7 @@ export class BB extends Component {
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
+      this.state.sortByValue,
       t("current-language-code")
     );
 
@@ -306,11 +309,10 @@ export class BB extends Component {
               <Grid item xs={12}>
                 <NeedsSelector
                   t={t}
-                  needs={this.props.needs}
-                  selectedNeeds={this.props.selectedNeeds}
                   handleChange={this.props.setSelectedNeeds}
                   clearNeeds={this.props.clearNeeds}
                   pageWidth={this.props.pageWidth}
+                  store={this.props.store}
                 />
               </Grid>
             </Grid>
@@ -424,7 +426,8 @@ const mapStateToProps = reduxState => {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
       statusAndVitals: reduxState.statusAndVitals
-    }
+    },
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 

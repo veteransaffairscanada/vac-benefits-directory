@@ -64,9 +64,10 @@ export class GuidedExperienceNeeds extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    needs: state.needs
+    needs: reduxState.needs,
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 

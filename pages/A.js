@@ -33,6 +33,15 @@ export class A extends Component {
 
   componentWillMount() {
     redux2i18n(this.props.i18n, this.props.text);
+
+    Router.onRouteChangeStart = newUrl => {
+      let matches = newUrl.match(/section=([^&]*)/);
+      const newState = {
+        section: matches[1] || "BB"
+      };
+      this.setState(newState);
+    };
+
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
       section: this.props.url.query.section || "BB"
@@ -143,7 +152,6 @@ export class A extends Component {
             benefits={this.props.benefits}
             eligibilityPaths={this.props.eligibilityPaths}
             examples={this.props.examples}
-            selectedNeeds={this.props.selectedNeeds}
             pageWidth={this.state.width}
             favouriteBenefits={this.state.favouriteBenefits}
             toggleFavourite={this.toggleFavourite}
@@ -158,7 +166,6 @@ export class A extends Component {
           <BB
             id="BB"
             t={t}
-            selectedNeeds={this.props.selectedNeeds}
             setSelectedNeeds={this.setSelectedNeeds}
             setSection={this.setSection}
             clearNeeds={this.clearNeeds}
@@ -188,7 +195,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
               store={this.props.store}
             />
@@ -280,7 +286,6 @@ export class A extends Component {
           >
             <GuidedExperienceNeeds
               t={t}
-              selectedNeeds={this.props.selectedNeeds}
               setSelectedNeeds={this.setSelectedNeeds}
               store={this.props.store}
             />;

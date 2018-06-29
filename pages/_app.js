@@ -8,41 +8,90 @@ import { initStore } from "../store";
 export default withRedux(initStore)(
   class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
+      let currentReduxState = ctx.store.getState();
       if (ctx.req) {
         ctx.store.dispatch({ type: "LOAD_DATA", data: ctx.req.data });
-        if (ctx.query.patronType) {
-          ctx.store.dispatch({
-            type: "SET_PATRON_TYPE",
-            data: ctx.query.patronType
-          });
-        }
-        if (ctx.query.serviceType) {
-          ctx.store.dispatch({
-            type: "SET_SERVICE_TYPE",
-            data: ctx.query.serviceType
-          });
-        }
-        if (ctx.query.statusAndVitals) {
-          ctx.store.dispatch({
-            type: "SET_STATUS_TYPE",
-            data: ctx.query.statusAndVitals
-          });
-        }
-        if (ctx.query.selectedNeeds) {
-          let selectedNeeds = {};
-          ctx.query.selectedNeeds.split(",").forEach(id => {
-            selectedNeeds[id] = id;
-          });
+      }
+      if (
+        ctx.query.patronType &&
+        ctx.query.patronType !== currentReduxState.patronType
+      ) {
+        ctx.store.dispatch({
+          type: "SET_PATRON_TYPE",
+          data: ctx.query.patronType
+        });
+      }
+      if (!ctx.query.patronType && currentReduxState.patronType !== "") {
+        ctx.store.dispatch({
+          type: "SET_PATRON_TYPE",
+          data: ""
+        });
+      }
+
+      if (
+        ctx.query.serviceType &&
+        ctx.query.serviceType !== currentReduxState.serviceType
+      ) {
+        ctx.store.dispatch({
+          type: "SET_SERVICE_TYPE",
+          data: ctx.query.serviceType
+        });
+      }
+      if (!ctx.query.serviceType && currentReduxState.serviceType !== "") {
+        ctx.store.dispatch({
+          type: "SET_SERVICE_TYPE",
+          data: ""
+        });
+      }
+
+      if (
+        ctx.query.statusAndVitals &&
+        ctx.query.statusAndVitals !== currentReduxState.statusAndVitals
+      ) {
+        ctx.store.dispatch({
+          type: "SET_STATUS_TYPE",
+          data: ctx.query.statusAndVitals
+        });
+      }
+      if (
+        !ctx.query.statusAndVitals &&
+        currentReduxState.statusAndVitals !== ""
+      ) {
+        ctx.store.dispatch({
+          type: "SET_STATUS_TYPE",
+          data: ""
+        });
+      }
+
+      if (ctx.query.selectedNeeds) {
+        let selectedNeeds = {};
+        ctx.query.selectedNeeds.split(",").forEach(id => {
+          selectedNeeds[id] = id;
+        });
+        if (
+          JSON.stringify(selectedNeeds) !==
+          JSON.stringify(currentReduxState.selectedNeeds)
+        ) {
           ctx.store.dispatch({
             type: "SET_SELECTED_NEEDS",
             data: selectedNeeds
           });
         }
       }
+      if (
+        !ctx.query.selectedNeeds &&
+        JSON.stringify(currentReduxState.selectedNeeds) !== JSON.stringify({})
+      ) {
+        ctx.store.dispatch({
+          type: "SET_SELECTED_NEEDS",
+          data: {}
+        });
+      }
 
       const pageProps = Component.getInitialProps
         ? await Component.getInitialProps(ctx)
         : {};
+
       return { pageProps };
     }
 
