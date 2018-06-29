@@ -7,6 +7,8 @@ import configureStore from "redux-mock-store";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
+jest.mock("react-ga");
+
 describe("NeedsSelector", () => {
   let props;
   let _mountedNeedsSelector, mockStore, reduxData;

@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { redux2i18n } from "../utils/redux2i18n";
 import Favourites from "../components/favourites";
 import Cookies from "universal-cookie";
-import Router from "next/router";
 
 export class FavouritesPage extends Component {
   constructor() {
@@ -72,8 +71,7 @@ const mapStateToProps = state => {
     examples: state.examples,
     eligibilityPaths: state.eligibilityPaths,
     favouriteBenefits: state.favouriteBenefits,
-    text: state.text,
-    selectedNeeds: state.selectedNeeds
+    text: state.text
   };
 };
 
@@ -85,8 +83,7 @@ FavouritesPage.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
-  text: PropTypes.array.isRequired,
-  selectedNeeds: PropTypes.array
+  text: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(FavouritesPage));
