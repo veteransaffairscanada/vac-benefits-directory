@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "@material-ui/core";
+import { logEvent } from "../utils/analytics";
 
 const styles = theme => ({
   root: {
@@ -60,18 +61,22 @@ class NeedsSelector extends Component {
   };
 
   handleClick = id => {
-    let newSelectedNeeds = this.props.selectedNeeds;
+    logEvent("FilterClick", "need", id);
+    let newSelectedNeeds = JSON.parse(JSON.stringify(this.props.selectedNeeds));
     if (newSelectedNeeds.hasOwnProperty(id)) {
       delete newSelectedNeeds[id];
     } else {
       newSelectedNeeds[id] = id;
     }
-    this.props.handleChange(Object.keys(newSelectedNeeds));
+    this.props.setSelectedNeeds(newSelectedNeeds);
+  };
+
+  clearNeeds = () => {
+    this.props.setSelectedNeeds({});
   };
 
   render() {
     const { needs, classes, t, pageWidth } = this.props;
-    const selectedNeeds = Object.keys(this.props.selectedNeeds);
     return (
       <ExpansionPanel
         className={classnames(classes.root)}
@@ -109,9 +114,9 @@ class NeedsSelector extends Component {
                   onClick={() => this.handleClick(need.id)}
                   value={need.id}
                   className={
-                    selectedNeeds.indexOf(need.id) === -1
-                      ? classes.need
-                      : classes.needSelected
+                    this.props.selectedNeeds[need.id]
+                      ? classes.needSelected
+                      : classes.need
                   }
                 >
                   {t("current-language-code") === "en"
@@ -127,7 +132,7 @@ class NeedsSelector extends Component {
                 variant="flat"
                 size="small"
                 onClick={() => {
-                  this.props.clearNeeds();
+                  this.clearNeeds();
                 }}
               >
                 {t("Clear")}
@@ -140,6 +145,14 @@ class NeedsSelector extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setSelectedNeeds: needsObject => {
+      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
+    }
+  };
+};
+
 const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
@@ -149,16 +162,15 @@ const mapStateToProps = reduxState => {
 
 NeedsSelector.propTypes = {
   classes: PropTypes.object.isRequired,
-  handleChange: PropTypes.func.isRequired,
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  setSelectedNeeds: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  clearNeeds: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   withStyles(styles, { withTheme: true })(NeedsSelector)
 );

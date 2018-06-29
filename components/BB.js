@@ -308,8 +308,6 @@ export class BB extends Component {
               <Grid item xs={12}>
                 <NeedsSelector
                   t={t}
-                  handleChange={this.props.setSelectedNeeds}
-                  clearNeeds={this.props.clearNeeds}
                   pageWidth={this.props.pageWidth}
                   store={this.props.store}
                 />
