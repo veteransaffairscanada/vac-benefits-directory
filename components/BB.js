@@ -15,6 +15,7 @@ import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
+import Router from "next/router";
 
 const styles = theme => ({
   benefitsCount: {
@@ -242,6 +243,20 @@ export class BB extends Component {
     });
   };
 
+  getFavouritesURL = () => {
+    let href = "/favourites?";
+    if (Object.keys(this.props.selectedNeeds).length > 0) {
+      href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
+    }
+    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+      if (this.props[selection] !== "") {
+        href += `&${selection}=${this.props.selectedEligibility[selection]}`;
+      }
+    });
+    href += "&lng=" + this.props.t("current-language-code");
+    return href;
+  };
+
   getPrintUrl = (
     filteredBenefits,
     selectedEligibility,
@@ -367,16 +382,17 @@ export class BB extends Component {
 
                 <Grid item xs={8} className={classnames(classes.collapse)}>
                   <Button
-                    id="Favourites"
+                    id="Favourites Page"
                     variant="flat"
                     size="small"
-                    onClick={() => this.props.setSection("favourites")}
+                    href={this.getFavouritesURL()}
                   >
                     {t("B3.favouritesButtonText") +
                       " (" +
                       this.props.favouriteBenefits.length +
                       ")"}
                   </Button>
+
                   <Button
                     variant="flat"
                     size="small"
