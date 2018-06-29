@@ -119,6 +119,7 @@ export class Favourites extends Component {
     filteredBenefits,
     selectedEligibility,
     selectedNeeds,
+    sortBy,
     language
   ) => {
     const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
@@ -134,7 +135,7 @@ export class Favourites extends Component {
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
-    url += "&sortBy=" + this.state.sortByValue;
+    url += "&sortBy=" + sortBy;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
@@ -153,6 +154,7 @@ export class Favourites extends Component {
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
+      this.state.sortByValue,
       t("current-language-code")
     );
 

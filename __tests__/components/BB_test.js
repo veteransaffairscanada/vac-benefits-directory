@@ -299,7 +299,7 @@ describe("BB", () => {
       expect(mounted_BB().state().frIdx).not.toEqual(null);
     });
 
-    it("shows a text serach box is show_search url param is set", () => {
+    it("shows a text search box is show_search url param is set", () => {
       mounted_BB().setProps({ url: { query: { show_search: true } } });
       expect(
         mounted_BB()
@@ -380,10 +380,11 @@ describe("BB", () => {
         [{ id: "id1" }, { id: "id2" }],
         { patronType: "service-person" },
         { need1: "need1", need2: "need2" },
+        "sorting",
         "en"
       );
     expect(url).toEqual(
-      "print?lng=en&patronType=service-person&needs=need1,need2&benefits=id1,id2"
+      "print?lng=en&patronType=service-person&needs=need1,need2&sortBy=sorting&benefits=id1,id2"
     );
   });
 });

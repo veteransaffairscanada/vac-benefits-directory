@@ -1,7 +1,6 @@
 exports.redux2i18n = undefined;
 
 var redux2i18n = (exports.redux2i18n = function redux2i18n(i18n, translations) {
-  // eslint-disable-line no-unused-vars
   // export const redux2i18n = (i18n, translations) => {
   let i18nEn = {};
   let i18nFr = {};
