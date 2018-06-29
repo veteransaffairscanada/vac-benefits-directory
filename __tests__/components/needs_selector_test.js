@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import NeedsSelector from "../../components/needs_selector";
+import { NeedsSelector } from "../../components/needs_selector";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 
@@ -22,14 +22,15 @@ describe("NeedsSelector", () => {
 
   beforeEach(() => {
     props = {
-      clearNeeds: () => true,
+      theme: {},
+      classes: {},
       t: key => key,
-      handleChange: jest.fn(),
       pageWidth: 1000
     };
     reduxData = {
       needs: needsFixture,
-      selectedNeeds: {}
+      selectedNeeds: {},
+      setSelectedNeeds: jest.fn()
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
@@ -60,13 +61,13 @@ describe("NeedsSelector", () => {
     expect(mountedNeedsSelector());
   });
 
-  it("fires the the handleChange function when a need is selected", () => {
+  it("fires the the setSelectedNeeds function when a need is selected", () => {
     mountedNeedsSelector()
       .find("#needs_buttons")
       .find("Button")
       .at(0)
       .simulate("click");
-    expect(props.handleChange).toHaveBeenCalled();
+    expect(reduxData.setSelectedNeeds).toHaveBeenCalled();
   });
 
   it("is expanded if pageWidth > 600px", () => {
@@ -84,5 +85,19 @@ describe("NeedsSelector", () => {
         .find("ExpansionPanel")
         .prop("expanded")
     ).toEqual(false);
+  });
+
+  it("handleClick logs an analytics event", () => {
+    let needsInstance = mountedNeedsSelector().instance();
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    needsInstance.handleClick("foo");
+    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
+  });
+
+  it("has a correct clearNeeds function", () => {
+    let needsInstance = mountedNeedsSelector().instance();
+    needsInstance.clearNeeds();
+    expect(needsInstance.props.setSelectedNeeds).toBeCalledWith({});
   });
 });

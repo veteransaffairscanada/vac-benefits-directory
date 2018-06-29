@@ -93,22 +93,8 @@ describe("A", () => {
     expect(Router.push).toBeCalledWith(expectedURL);
   });
 
-  it("has a correct clearNeeds function", () => {
-    let AInstance = mountedA().instance();
-    AInstance.clearNeeds();
-    expect(AInstance.props.setSelectedNeeds).toBeCalledWith({});
-  });
-
   it("componentWillMount sets state correctly from empty url", () => {
     expect(mountedA().state().section).toEqual("BB");
-  });
-
-  it("setSelectedNeeds logs an analytics event", () => {
-    let AInstance = mountedA().instance();
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    AInstance.setSelectedNeeds(["foo"]);
-    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
   });
 
   it("sectionToDisplay returns correct section", () => {
