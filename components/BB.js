@@ -14,6 +14,7 @@ import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
+import { connect } from "react-redux";
 
 const styles = theme => ({
   benefitsCount: {
@@ -300,10 +301,9 @@ export class BB extends Component {
                 t={t}
                 handleChange={this.props.setSelectedNeeds}
                 clearFilters={this.props.clearFilters}
-                selectedEligibility={this.props.selectedEligibility}
                 setUserProfile={this.props.setUserProfile}
-                eligibilityPaths={this.props.eligibilityPaths}
                 pageWidth={this.props.pageWidth}
+                store={this.props.store}
               />
               <Grid item xs={12}>
                 <NeedsSelector
@@ -399,15 +399,13 @@ export class BB extends Component {
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
-                  eligibilityPaths={this.props.eligibilityPaths}
-                  benefits={this.props.benefits}
                   onRef={ref => this.children.push(ref)}
-                  examples={this.props.examples}
                   sortByValue={this.state.sortByValue}
                   toggleFavourite={this.props.toggleFavourite}
-                  favouriteBenefits={this.props.favouriteBenefits}
                   searchString={this.state.searchString}
                   showFavourites={true}
+                  favouriteBenefits={this.props.favouriteBenefits}
+                  store={this.props.store}
                 />
               </Grid>
             </Grid>
@@ -418,26 +416,41 @@ export class BB extends Component {
   }
 }
 
-BB.propTypes = {
-  benefits: PropTypes.array,
-  classes: PropTypes.object,
-  clearFilters: PropTypes.func,
-  clearNeeds: PropTypes.func,
-  eligibilityPaths: PropTypes.array,
-  examples: PropTypes.array,
-  id: PropTypes.string,
-  needs: PropTypes.array,
-  selectedEligibility: PropTypes.object,
-  selectedNeeds: PropTypes.object,
-  setSelectedNeeds: PropTypes.func,
-  setUserProfile: PropTypes.func,
-  t: PropTypes.func,
-  toggleSelectedEligibility: PropTypes.func,
-  pageWidth: PropTypes.number,
-  favouriteBenefits: PropTypes.array,
-  toggleFavourite: PropTypes.func,
-  url: PropTypes.object,
-  setSection: PropTypes.func
+const mapStateToProps = reduxState => {
+  return {
+    benefits: reduxState.benefits,
+    eligibilityPaths: reduxState.eligibilityPaths,
+    examples: reduxState.examples,
+    needs: reduxState.needs,
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    }
+  };
 };
 
-export default withStyles(styles)(BB);
+BB.propTypes = {
+  benefits: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired,
+  clearFilters: PropTypes.func.isRequired,
+  clearNeeds: PropTypes.func.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  id: PropTypes.string.isRequired,
+  needs: PropTypes.array.isRequired,
+  selectedEligibility: PropTypes.object.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
+  setSelectedNeeds: PropTypes.func.isRequired,
+  setUserProfile: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+  toggleSelectedEligibility: PropTypes.func.isRequired,
+  pageWidth: PropTypes.number.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired,
+  toggleFavourite: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
+  setSection: PropTypes.func.isRequired,
+  store: PropTypes.object
+};
+
+export default connect(mapStateToProps)(withStyles(styles)(BB));

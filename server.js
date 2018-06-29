@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const next = require("next");
 const Cookies = require("universal-cookie");
+const helmet = require("helmet");
 
 const { parseUserAgent } = require("detect-browser");
 
@@ -17,6 +18,7 @@ const { i18nInstance } = require("./i18n");
 const deploy = require("./utils/deploy_notification");
 
 const airTable = require("./utils/airtable_es2015");
+const redux2i18n = require("./utils/redux2i18n");
 
 Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
   // init i18next with serverside settings
@@ -26,6 +28,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
     .use(i18nextMiddleware.LanguageDetector)
     .init(
       {
+        wait: true,
         fallbackLng: "en",
         preload: ["en", "fr"],
         ns: ["common"],
@@ -39,6 +42,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
         app.prepare().then(() => {
           const server = express();
           server.use(bodyParser.json());
+          server.use(helmet());
           // enable middleware for i18next
           server.use(i18nextMiddleware.handle(i18nInstance));
 
@@ -108,6 +112,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
         });
       }
     );
+  redux2i18n.redux2i18n(i18nInstance, data.text);
 });
 
 // this code should run when the data-validation page is loaded and send that page the results

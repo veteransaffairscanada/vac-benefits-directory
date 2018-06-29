@@ -29,6 +29,10 @@ describe("Print", () => {
       url: {
         query: {}
       },
+      text: [],
+      i18n: {
+        addResourceBundle: jest.fn()
+      },
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
@@ -41,7 +45,8 @@ describe("Print", () => {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
-      }
+      },
+      sortByValue: ""
     };
     _mountedPrint = undefined;
   });

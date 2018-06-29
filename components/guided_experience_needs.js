@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core/";
 import { withStyles } from "@material-ui/core/styles/index";
+import { connect } from "react-redux";
 
 const styles = theme => ({
   root: {
@@ -63,13 +64,20 @@ export class GuidedExperienceNeeds extends Component {
     );
   }
 }
-
-GuidedExperienceNeeds.propTypes = {
-  classes: PropTypes.object,
-  needs: PropTypes.array,
-  selectedNeeds: PropTypes.object,
-  setSelectedNeeds: PropTypes.func,
-  t: PropTypes.func
+const mapStateToProps = state => {
+  return {
+    needs: state.needs
+  };
 };
 
-export default withStyles(styles)(GuidedExperienceNeeds);
+GuidedExperienceNeeds.propTypes = {
+  classes: PropTypes.object.isRequired,
+  needs: PropTypes.array.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
+  setSelectedNeeds: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps)(
+  withStyles(styles)(GuidedExperienceNeeds)
+);

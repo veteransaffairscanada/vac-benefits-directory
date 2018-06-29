@@ -22,7 +22,7 @@ class ErrorBoundary extends Component {
 }
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.array
+  children: PropTypes.array.isRequired
 };
 
 export default ErrorBoundary;

@@ -124,10 +124,10 @@ export class EmbeddedBenefitCard extends Component {
 }
 
 EmbeddedBenefitCard.propTypes = {
-  benefit: PropTypes.object,
-  classes: PropTypes.object,
-  t: PropTypes.func,
-  onRef: PropTypes.func
+  benefit: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  onRef: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(EmbeddedBenefitCard);

@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "../components/benefit_cards";
+import { connect } from "react-redux";
+
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import styled from "react-emotion";
@@ -18,7 +20,10 @@ export class BenefitList extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.filteredBenefits !== prevProps.filteredBenefits) {
+    if (
+      JSON.stringify(this.props.filteredBenefits) !==
+      JSON.stringify(prevProps.filteredBenefits)
+    ) {
       this.setState({ loading: true });
       setTimeout(() => {
         this.setState({ loading: false });
@@ -98,6 +103,7 @@ export class BenefitList extends React.Component {
               favouriteBenefits={this.props.favouriteBenefits}
               showFavourite={this.props.showFavourites}
               searchString={this.props.searchString}
+              store={this.props.store}
             />
           ) : (
             ""
@@ -107,19 +113,27 @@ export class BenefitList extends React.Component {
   }
 }
 
-BenefitList.propTypes = {
-  classes: PropTypes.object,
-  t: PropTypes.func,
-  filteredBenefits: PropTypes.array,
-  eligibilityPaths: PropTypes.array,
-  benefits: PropTypes.array,
-  examples: PropTypes.array,
-  onRef: PropTypes.func,
-  sortByValue: PropTypes.string,
-  favouriteBenefits: PropTypes.array,
-  toggleFavourite: PropTypes.func,
-  showFavourites: PropTypes.bool,
-  searchString: PropTypes.string
+const mapStateToProps = state => {
+  return {
+    benefits: state.benefits,
+    eligibilityPaths: state.eligibilityPaths,
+    examples: state.examples
+  };
 };
 
-export default BenefitList;
+BenefitList.propTypes = {
+  t: PropTypes.func.isRequired,
+  filteredBenefits: PropTypes.array.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  benefits: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  onRef: PropTypes.func.isRequired,
+  sortByValue: PropTypes.string.isRequired,
+  favouriteBenefits: PropTypes.array.isRequired,
+  toggleFavourite: PropTypes.func.isRequired,
+  showFavourites: PropTypes.bool.isRequired,
+  searchString: PropTypes.string.isRequired,
+  store: PropTypes.object
+};
+
+export default connect(mapStateToProps)(BenefitList);

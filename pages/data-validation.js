@@ -13,6 +13,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
+import { redux2i18n } from "../utils/redux2i18n";
 
 const styles = theme => ({
   root: {
@@ -29,6 +30,10 @@ export class DataValidation extends Component {
   createData = (name, value, status) => {
     return { name, value, status };
   };
+
+  componentWillMount() {
+    redux2i18n(this.props.i18n, this.props.text);
+  }
 
   checkIfMissingText(b) {
     return (
@@ -57,7 +62,8 @@ export class DataValidation extends Component {
       benefits,
       eligibilityPaths,
       needs,
-      examples
+      examples,
+      text
     } = this.props; // eslint-disable-line no-unused-vars
 
     const data = [
@@ -80,6 +86,11 @@ export class DataValidation extends Component {
         "Size of Examples Table",
         examples.length,
         examples.length > 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "nameTextTableSize",
+        text.length,
+        text.length > 0 ? "Pass" : "Fail"
       ),
       this.createData(
         "Benefits with Empty Fields",
@@ -138,18 +149,20 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
-    examples: state.examples
+    examples: state.examples,
+    text: state.text
   };
 };
 
 DataValidation.propTypes = {
-  benefits: PropTypes.array,
-  eligibilityPaths: PropTypes.array,
-  needs: PropTypes.array,
-  examples: PropTypes.array,
-  i18n: PropTypes.object,
-  t: PropTypes.func,
-  classes: PropTypes.object
+  benefits: PropTypes.array.isRequired,
+  eligibilityPaths: PropTypes.array.isRequired,
+  needs: PropTypes.array.isRequired,
+  examples: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
+  text: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(

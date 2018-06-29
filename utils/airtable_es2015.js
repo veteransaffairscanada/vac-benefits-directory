@@ -6,18 +6,27 @@ var readKey = "keySzaXvONeLwsBm4"; // Read access only API key
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
 
 var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
-  var url =
-    "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/" +
-    table +
-    "?maxRecords=100&view=Grid%20view";
-  var resp = await fetch(url, {
-    headers: {
-      Authorization: "Bearer " + readKey
+  var offset = undefined;
+  var jsonRecords = [];
+  do {
+    var url =
+      "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/" +
+      table +
+      "?view=Grid%20view";
+    if (offset) {
+      url = url + "&offset=" + offset;
     }
-  });
-  var json = await resp.json();
+    var resp = await fetch(url, {
+      headers: {
+        Authorization: "Bearer " + readKey
+      }
+    });
+    var json = await resp.json();
+    jsonRecords = jsonRecords.concat(json.records);
+    offset = json.offset;
+  } while (offset);
 
-  return json.records.map(function(item) {
+  return jsonRecords.map(function(item) {
     return item.fields;
   });
 };
@@ -28,6 +37,7 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
   dataStore.eligibilityPaths = await fetchTableFromAirtable("eligibilityPaths");
   dataStore.needs = await fetchTableFromAirtable("needs");
   dataStore.examples = await fetchTableFromAirtable("examples");
+  dataStore.text = await fetchTableFromAirtable("text");
   dataStore.timestamp = await Date.now();
   return dataStore;
 });

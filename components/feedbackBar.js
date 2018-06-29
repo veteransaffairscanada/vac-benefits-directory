@@ -180,7 +180,7 @@ export class FeedbackBar extends Component {
 }
 
 FeedbackBar.propTypes = {
-  t: PropTypes.func
+  t: PropTypes.func.isRequired
 };
 
 export default FeedbackBar;

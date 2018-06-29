@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
 import EditIcon from "@material-ui/icons/Edit";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { connect } from "react-redux";
 
 const theme = createMuiTheme({
   palette: {
@@ -144,17 +145,30 @@ export class GuidedExperience extends Component {
   }
 }
 
-GuidedExperience.propTypes = {
-  id: PropTypes.string,
-  classes: PropTypes.object,
-  nextSection: PropTypes.string,
-  prevSection: PropTypes.string,
-  t: PropTypes.func,
-  setSection: PropTypes.func,
-  subtitle: PropTypes.string,
-  stepNumber: PropTypes.number,
-  children: PropTypes.object,
-  selectedEligibility: PropTypes.object
+const mapStateToProps = reduxState => {
+  return {
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    }
+  };
 };
 
-export default withStyles(styles, { withTheme: true })(GuidedExperience);
+GuidedExperience.propTypes = {
+  id: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
+  nextSection: PropTypes.string.isRequired,
+  prevSection: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired,
+  setSection: PropTypes.func.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  stepNumber: PropTypes.number.isRequired,
+  children: PropTypes.object.isRequired,
+  selectedEligibility: PropTypes.object.isRequired,
+  store: PropTypes.object
+};
+
+export default connect(mapStateToProps)(
+  withStyles(styles, { withTheme: true })(GuidedExperience)
+);
