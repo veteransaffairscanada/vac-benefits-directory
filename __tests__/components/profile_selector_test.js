@@ -129,7 +129,7 @@ describe("ProfileSelector", () => {
   });
 
   it("has a correct clearFilters function", () => {
-    let instance = mount(
+    let instance = shallow(
       <ProfileSelector {...props} {...reduxData} />
     ).instance();
     instance.clearFilters();
