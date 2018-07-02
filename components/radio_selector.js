@@ -39,9 +39,35 @@ export class RadioSelector extends React.Component {
           this.props.setServiceType("");
           this.props.setStatusAndVitals("");
         }
+        if (
+          id === "service-person" &&
+          this.props.selectedStatusAndVitals === "deceased"
+        ) {
+          this.props.setStatusAndVitals("");
+        }
+        if (
+          id === "service-person" &&
+          this.props.selectedServiceType === "WSV (WWII or Korea)" &&
+          this.props.selectedStatusAndVitals !== ""
+        ) {
+          this.props.setStatusAndVitals("");
+        }
         break;
       case "serviceType":
         this.props.setServiceType(id);
+        if (
+          id === "WSV (WWII or Korea)" &&
+          this.props.selectedStatusAndVitals === "stillServing"
+        ) {
+          this.props.setStatusAndVitals("");
+        }
+        if (
+          id === "WSV (WWII or Korea)" &&
+          this.props.selectedPatronType === "service-person" &&
+          this.props.selectedStatusAndVitals !== ""
+        ) {
+          this.props.setStatusAndVitals("");
+        }
         break;
       case "statusAndVitals":
         this.props.setStatusAndVitals(id);

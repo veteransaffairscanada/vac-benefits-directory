@@ -271,30 +271,6 @@ export class A extends Component {
   };
 
   render() {
-    if (
-      this.props.patronType === "service-person" &&
-      this.props.statusAndVitals === "deceased"
-    ) {
-      this.props.setStatusAndVitals("");
-    }
-
-    if (
-      this.props.serviceType === "WSV (WWII or Korea)" &&
-      this.props.statusAndVitals === "stillServing"
-    ) {
-      this.props.setStatusAndVitals("");
-    }
-
-    // Guided Experience skips statusAndVitals for service-person / WSV
-    if (
-      // this.state.section !== "BB" &&
-      this.props.patronType === "service-person" &&
-      this.props.serviceType === "WSV (WWII or Korea)" &&
-      this.props.statusAndVitals !== ""
-    ) {
-      this.props.setStatusAndVitals("");
-    }
-
     return (
       <Layout
         i18n={this.props.i18n}

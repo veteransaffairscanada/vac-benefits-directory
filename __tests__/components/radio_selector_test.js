@@ -84,4 +84,45 @@ describe("RadioSelector", () => {
     expect(props.setServiceType).toBeCalledWith("");
     expect(props.setStatusAndVitals).toBeCalledWith("");
   });
+
+  it("setUserProfile clears statusAndVitals filters if service-person is selected and is deceased", () => {
+    props.selectedStatusAndVitals = "deceased";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("patronType", "service-person");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile clears statusAndVitals filters if WSV (WWII or Korea) is selected and is stillServing", () => {
+    props.selectedStatusAndVitals = "stillServing";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("serviceType", "WSV (WWII or Korea)");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile clears statusAndVitals filters if service-person is selected, serviceType is WSV (WWII or Korea), and a statusAndVitals is set", () => {
+    props.selectedStatusAndVitals = "stillServing";
+    props.selectedServiceType = "WSV (WWII or Korea)";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("patronType", "service-person");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile clears statusAndVitals filters if WSV (WWII or Korea) is selected, patronType is service-person, and a statusAndVitals is set", () => {
+    props.selectedStatusAndVitals = "stillServing";
+    props.selectedPatronType = "service-person";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("serviceType", "WSV (WWII or Korea)");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile can set statusAndVitals", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("statusAndVitals", "deceased");
+    expect(props.setStatusAndVitals).toBeCalledWith("deceased");
+  });
+
+  it("setUserProfile returns true as default", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    expect(instance.setUserProfile("foo", "bar")).toEqual(true);
+  });
 });
