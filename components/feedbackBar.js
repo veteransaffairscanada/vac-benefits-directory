@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core/";
 import styled from "react-emotion";
 import { logEvent } from "../utils/analytics";
+import Raven from "raven-js";
 import TextField from "@material-ui/core/TextField";
 require("isomorphic-fetch");
 
@@ -81,7 +82,7 @@ export class FeedbackBar extends Component {
         "content-type": "application/json"
       },
       method: "POST"
-    });
+    }).catch(err => Raven.captureException(err));
   };
 
   sendFeedback = answer => {
