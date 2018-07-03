@@ -8,19 +8,57 @@ import {
   GoogleMap,
   Marker
 } from "react-google-maps";
+const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 export class AreaOfficeMap extends Component {
+  state = {};
+  getToggleOpen(i) {
+    return _ => {
+      const obj = {};
+      obj[i] = !this.state[i];
+      this.setState(obj);
+    };
+  }
+  componentWillMount() {
+    this.props.areaOffices.forEach((d, i) => {
+      const obj = {};
+      obj[i] = false;
+      this.setState(obj);
+    });
+  }
+
   render() {
     return (
-      <GoogleMap defaultZoom={4} defaultCenter={{ lat: 49, lng: -104 }}>
+      <GoogleMap
+        defaultZoom={4}
+        defaultCenter={{ lat: 52, lng: -90 }}
+        {...this.props}
+      >
         {this.props.areaOffices.map((d, i) => {
           return (
             <Marker
               key={i}
               position={{ lat: +d.lat, lng: +d.lng }}
-              // onClick={props.onMarkerClick}
-              // text={d.office_name}
-            />
+              onClick={this.getToggleOpen(i)}
+            >
+              {this.state[i] ? (
+                <InfoBox>
+                  <div
+                    style={{
+                      backgroundColor: `white`,
+                      opacity: 0.75,
+                      padding: `12px`
+                    }}
+                  >
+                    <div style={{ fontSize: `16px`, fontColor: `black` }}>
+                      {this.props.t(d.office_name)}
+                    </div>
+                  </div>
+                </InfoBox>
+              ) : (
+                ""
+              )}
+            </Marker>
           );
         })}
       </GoogleMap>

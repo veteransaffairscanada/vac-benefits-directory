@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { withStyles } from "@material-ui/core/styles";
-
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
@@ -33,7 +31,7 @@ export class Map extends Component {
   }
 
   render() {
-    const { classes, i18n, t } = this.props;
+    const { i18n, t } = this.props;
     return (
       <Layout
         title={"Map"}
@@ -44,11 +42,13 @@ export class Map extends Component {
       >
         <AreaOfficeMap
           googleMapURL={
-            "https://maps.googleapis.com/maps/api/js?key=AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE&v=3.exp&libraries=geometry,drawing,places"
+            "https://maps.googleapis.com/maps/api/js?key=AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE&language=" +
+            t("current-language-code") +
+            "&v=3.exp&libraries=geometry,drawing,places"
           }
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
+          loadingElement={<div style={{ height: "100%" }} />}
+          containerElement={<div style={{ height: "400px" }} />}
+          mapElement={<div style={{ height: "100%" }} />}
           t={t}
         />
       </Layout>
@@ -58,13 +58,11 @@ export class Map extends Component {
 
 const mapStateToProps = state => {
   return {
-    areaOffices: state.areaOffices,
     text: state.text
   };
 };
 
 Map.propTypes = {
-  areaOffices: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
