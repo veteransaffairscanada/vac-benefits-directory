@@ -9,7 +9,7 @@ import BB from "../components/BB";
 import Cookies from "universal-cookie";
 import Router from "next/router";
 
-export class BenefitsDirectoryPage extends Component {
+export class BenefitsDirectory extends Component {
   constructor() {
     super();
     this.cookies = new Cookies();
@@ -108,7 +108,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-BenefitsDirectoryPage.propTypes = {
+BenefitsDirectory.propTypes = {
   url: PropTypes.object.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
@@ -121,4 +121,4 @@ BenefitsDirectoryPage.propTypes = {
   selectedNeeds: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(withI18next()(BenefitsDirectoryPage));
+export default connect(mapStateToProps)(withI18next()(BenefitsDirectory));

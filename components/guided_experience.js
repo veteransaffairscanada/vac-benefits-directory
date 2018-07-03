@@ -111,7 +111,7 @@ export class GuidedExperience extends Component {
             </Grid>
           </Grid>
 
-          {this.props.nextSection === "BB" ? (
+          {this.props.nextSection === "benefits-directory" ? (
             <MobileStepper
               variant="progress"
               steps={5}

@@ -21,7 +21,7 @@ export class A extends Component {
     this.cookies = new Cookies();
     this.state = {
       favouriteBenefits: [],
-      section: "BB"
+      section: "A1"
     };
   }
 
@@ -131,7 +131,7 @@ export class A extends Component {
             id="A4"
             stepNumber={3}
             t={t}
-            nextSection="BB"
+            nextSection="benefits-directory"
             benefitsDirectoryUrl={benefitsDirectoryUrl}
             prevSection={previousSectionA4}
             subtitle={t("B3.What do you need help with?")}
@@ -148,7 +148,11 @@ export class A extends Component {
           <GuidedExperience
             id="A1"
             stepNumber={0}
-            nextSection={this.props.patronType === "organization" ? "BB" : "A2"}
+            nextSection={
+              this.props.patronType === "organization"
+                ? "benefits-directory"
+                : "A2"
+            }
             benefitsDirectoryUrl={benefitsDirectoryUrl}
             setSection={this.setSection}
             subtitle={t("GE." + question)}
@@ -220,7 +224,7 @@ export class A extends Component {
             id="A4"
             stepNumber={3}
             t={t}
-            nextSection="BB"
+            nextSection="benefits-directory"
             benefitsDirectoryUrl={benefitsDirectoryUrl}
             prevSection={profileIsVetWSV ? "A2" : "A3"}
             subtitle={t("B3.What do you need help with?")}
