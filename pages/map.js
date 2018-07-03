@@ -7,9 +7,7 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import { redux2i18n } from "../utils/redux2i18n";
-import GoogleMapReact from "google-map-react";
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import AreaOfficeMap from "../components/area_office_map";
 
 const styles = theme => ({
   root: {
@@ -44,25 +42,15 @@ export class Map extends Component {
         hideNoscript={true}
         showRefreshCache={false}
       >
-        <div style={{ height: "400px", width: "50%" }}>
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: "AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE"
-            }}
-            defaultCenter={this.props.center}
-            defaultZoom={this.props.zoom}
-          >
-            {this.props.areaOffices.map(d => {
-              return (
-                <AnyReactComponent
-                  lat={+d.lat}
-                  lng={+d.lng}
-                  text={d.office_name}
-                />
-              );
-            })}
-          </GoogleMapReact>
-        </div>
+        <AreaOfficeMap
+          googleMapURL={
+            "https://maps.googleapis.com/maps/api/js?key=AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE&v=3.exp&libraries=geometry,drawing,places"
+          }
+          loadingElement={<div style={{ height: `100%` }} />}
+          containerElement={<div style={{ height: `400px` }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+          t={t}
+        />
       </Layout>
     );
   }
