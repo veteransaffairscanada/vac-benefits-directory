@@ -12,22 +12,23 @@ const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 export class AreaOfficeMap extends Component {
   state = {};
-  getToggleOpen(i) {
-    return _ => {
+  getToggleOpen(id) {
+    return () => {
       const obj = {};
-      obj[i] = !this.state[i];
+      obj[id] = !this.state[id];
       this.setState(obj);
     };
   }
   componentWillMount() {
-    this.props.areaOffices.forEach((d, i) => {
+    this.props.areaOffices.forEach(d => {
       const obj = {};
-      obj[i] = false;
+      obj[d.id] = false;
       this.setState(obj);
     });
   }
 
   render() {
+    const { t } = this.props;
     return (
       <GoogleMap
         defaultZoom={4}
@@ -39,9 +40,9 @@ export class AreaOfficeMap extends Component {
             <Marker
               key={i}
               position={{ lat: +d.lat, lng: +d.lng }}
-              onClick={this.getToggleOpen(i)}
+              onClick={this.getToggleOpen(d.id)}
             >
-              {this.state[i] ? (
+              {this.state[d.id] ? (
                 <InfoBox>
                   <div
                     style={{
@@ -51,7 +52,7 @@ export class AreaOfficeMap extends Component {
                     }}
                   >
                     <div style={{ fontSize: `16px`, fontColor: `black` }}>
-                      {this.props.t(d.office_name)}
+                      {d["name_" + t("current-language-code")]}
                     </div>
                   </div>
                 </InfoBox>
