@@ -119,12 +119,18 @@ export class A extends Component {
     } else if (this.props.serviceType === "" || profileIsVetWSV) {
       previousSectionA4 = "A2";
     }
-    // if (
-    //   this.props.patronType === "organization" &&
-    //   ["A2", "A3", "A4"].indexOf(section) > -1
-    // ) {
-    //   this.setSection("BB");
-    // }
+
+    let benefitsDirectoryUrl =
+      "/benefits-directory?lng=" + this.props.t("current-language-code");
+    if (Object.keys(this.props.selectedNeeds).length > 0) {
+      benefitsDirectoryUrl +=
+        "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
+    }
+    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+      if (this.props[selection] !== "") {
+        benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
+      }
+    });
 
     switch (true) {
       case section === "A4" ||
@@ -138,6 +144,7 @@ export class A extends Component {
             stepNumber={3}
             t={t}
             nextSection="BB"
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             prevSection={previousSectionA4}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
@@ -153,7 +160,8 @@ export class A extends Component {
           <GuidedExperience
             id="A1"
             stepNumber={0}
-            nextSection="A2"
+            nextSection={this.props.patronType === "organization" ? "BB" : "A2"}
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
@@ -225,6 +233,7 @@ export class A extends Component {
             stepNumber={3}
             t={t}
             nextSection="BB"
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             prevSection={profileIsVetWSV ? "A2" : "A3"}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
