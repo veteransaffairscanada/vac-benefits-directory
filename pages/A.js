@@ -14,7 +14,6 @@ import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import BB from "../components/BB";
-import Favourites from "../components/favourites";
 import { redux2i18n } from "../utils/redux2i18n";
 
 export class A extends Component {
@@ -130,22 +129,6 @@ export class A extends Component {
     }
 
     switch (true) {
-      case section === "favourites":
-        return (
-          <Favourites
-            id="favourites"
-            t={t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            examples={this.props.examples}
-            pageWidth={this.state.width}
-            favouriteBenefits={this.state.favouriteBenefits}
-            toggleFavourite={this.toggleFavourite}
-            url={this.props.url}
-            store={this.props.store}
-          />
-        );
-
       case section === "BB" ||
         (section !== "A1" && this.props.patronType === "organization"):
         return (

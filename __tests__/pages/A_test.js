@@ -98,7 +98,7 @@ describe("A", () => {
   });
 
   it("sectionToDisplay returns correct section", () => {
-    ["BB", "favourites", "A1", "A2", "A3", "A4"].forEach(section => {
+    ["BB", "A1", "A2", "A3", "A4"].forEach(section => {
       let AInstance = mountedA().instance();
       expect(AInstance.sectionToDisplay(section).props.id).toEqual(section);
     });
