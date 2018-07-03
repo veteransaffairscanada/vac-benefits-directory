@@ -13,7 +13,6 @@ import Cookies from "universal-cookie";
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
-import BB from "../components/BB";
 import { redux2i18n } from "../utils/redux2i18n";
 
 export class A extends Component {
@@ -26,7 +25,6 @@ export class A extends Component {
       width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
-    // this.cookies.set("favouriteBenefits", [], { path: "/" });
   }
 
   componentWillMount() {
@@ -35,14 +33,14 @@ export class A extends Component {
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
       const newState = {
-        section: matches[1] || "BB"
+        section: matches[1] || "A1"
       };
       this.setState(newState);
     };
 
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
-      section: this.props.url.query.section || "BB"
+      section: this.props.url.query.section || "A1"
     };
 
     this.setState(newState);
@@ -121,29 +119,14 @@ export class A extends Component {
     } else if (this.props.serviceType === "" || profileIsVetWSV) {
       previousSectionA4 = "A2";
     }
-    if (
-      this.props.patronType === "organization" &&
-      ["A2", "A3", "A4"].indexOf(section) > -1
-    ) {
-      this.setSection("BB");
-    }
+    // if (
+    //   this.props.patronType === "organization" &&
+    //   ["A2", "A3", "A4"].indexOf(section) > -1
+    // ) {
+    //   this.setSection("BB");
+    // }
 
     switch (true) {
-      case section === "BB" ||
-        (section !== "A1" && this.props.patronType === "organization"):
-        return (
-          <BB
-            id="BB"
-            t={t}
-            pageWidth={this.state.width}
-            favouriteBenefits={this.state.favouriteBenefits}
-            toggleFavourite={this.toggleFavourite}
-            url={this.props.url}
-            store={this.props.store}
-            setSection={this.setSection}
-          />
-        );
-
       case section === "A4" ||
         (profileIsVetWSV && section === "A3") ||
         (this.props.serviceType === "" && section === "A3") ||
