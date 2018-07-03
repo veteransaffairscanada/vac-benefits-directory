@@ -46,14 +46,13 @@ export class AreaOfficeMap extends Component {
                 <InfoBox>
                   <div
                     style={{
-                      backgroundColor: `white`,
-                      opacity: 0.75,
-                      padding: `12px`
+                      fontSize: `16px`,
+                      fontColor: `black`,
+                      backgroundColor: "white",
+                      padding: "12px"
                     }}
                   >
-                    <div style={{ fontSize: `16px`, fontColor: `black` }}>
-                      {d["name_" + t("current-language-code")]}
-                    </div>
+                    {d["name_" + t("current-language-code")]}
                   </div>
                 </InfoBox>
               ) : (
