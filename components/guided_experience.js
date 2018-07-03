@@ -159,7 +159,7 @@ GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   nextSection: PropTypes.string.isRequired,
-  prevSection: PropTypes.string.isRequired,
+  prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
   setSection: PropTypes.func.isRequired,
   subtitle: PropTypes.string.isRequired,
