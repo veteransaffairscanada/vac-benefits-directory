@@ -106,6 +106,7 @@ export class FeedbackBar extends Component {
                 fullWidth={true}
                 onChange={this.handleChange("action")}
                 value={this.state.action}
+                autoFocus
               />
               <TextField
                 id="commentWhatWentWrong"
