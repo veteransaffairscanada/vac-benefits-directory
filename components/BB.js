@@ -349,7 +349,6 @@ BB.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  setSection: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 

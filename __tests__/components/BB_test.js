@@ -43,18 +43,10 @@ describe("BB", () => {
       id: "BB",
       filteredBenefits: [],
       pageWidth: 42,
-      setSection: () => true,
       setSelectedNeeds: () => true,
       toggleFavourite: () => true,
       favouriteBenefits: [],
-      classes: {
-        card: "BB-card-87",
-        media: "BB-media-88",
-        actions: "BB-actions-89",
-        expand: "BB-expand-90",
-        expandOpen: "BB-expandOpen-91",
-        avatar: "BB-avatar-92"
-      },
+      classes: {},
       url: { query: {} }
     };
     _shallowBB = undefined;
