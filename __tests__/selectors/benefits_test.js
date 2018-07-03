@@ -52,7 +52,7 @@ describe("getFilteredBenefits", () => {
           benefits: ["1", "3", "4"]
         }
       ],
-      needs: needsFixture,
+      needs: [],
       selectedNeeds: {},
       patronType: "",
       serviceType: "",
