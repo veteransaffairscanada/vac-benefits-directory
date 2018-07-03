@@ -1,8 +1,5 @@
 import { getFilteredBenefits } from "../../selectors/benefits";
 
-import needsFixture from "../fixtures/needs";
-import examplesFixture from "../fixtures/needs";
-
 describe("getFilteredBenefits", () => {
   let state;
 
