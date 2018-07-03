@@ -96,20 +96,6 @@ describe("BB", () => {
     expect(mounted_BB().find("NeedsSelector").length).toEqual(1);
   });
 
-  // Broken test
-  // used to worked before because of other wrong code
-  // ;(
-
-  // it("allows a person to click on filters", () => {
-  //   mounted_BB()
-  //   let filter = mounted_BB()
-  //     .find("DropDownSelector")
-  //     .first();
-  //   let checkbox = filter.find("Select").first();
-  //   checkbox.simulate("click");
-  //   expect(props.toggleSelectedEligibility).toBeCalled();
-  // });
-
   it("has a Clear Filters button", () => {
     expect(shallow_BB().find("#ClearEligibilityFilters"));
   });
@@ -218,50 +204,6 @@ describe("BB", () => {
         .handleSearchChange({ target: { value: "foo" } });
       expect(mounted_BB().state().searchString).toEqual("foo");
     });
-
-    // it("if the search string is empty the results are not filtered", () => {
-    //   let filterBenefits = () =>
-    //     mounted_BB()
-    //       .instance()
-    //       .filterBenefits(
-    //         benefitsFixture,
-    //         eligibilityPathsFixture,
-    //         {
-    //           serviceType: "",
-    //           patronType: "",
-    //           statusAndVitals: ""
-    //         },
-    //         [],
-    //         {}
-    //       );
-    //
-    //   mounted_BB()
-    //     .instance()
-    //     .handleSearchChange({ target: { value: " " } });
-    //   expect(filterBenefits().map(b => b.id)).toEqual(["0"]);
-    // });
-    //
-    // it("the search string filters results", () => {
-    //   let filterBenefits = () =>
-    //     mounted_BB()
-    //       .instance()
-    //       .filterBenefits(
-    //         benefitsFixture,
-    //         eligibilityPathsFixture,
-    //         {
-    //           serviceType: "",
-    //           patronType: "",
-    //           statusAndVitals: ""
-    //         },
-    //         [],
-    //         {}
-    //       );
-    //
-    //   mounted_BB()
-    //     .instance()
-    //     .handleSearchChange({ target: { value: "foo" } });
-    //   expect(filterBenefits().map(b => b.id)).toEqual([]);
-    // });
   });
 
   it("contains the print button", () => {
