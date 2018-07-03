@@ -15,7 +15,7 @@ import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
-import { getFilteredBenefits } from "../selectors";
+import { getFilteredBenefits } from "../selectors/benefits";
 
 const styles = theme => ({
   benefitsCount: {
