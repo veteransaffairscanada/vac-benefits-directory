@@ -111,65 +111,43 @@ export class GuidedExperience extends Component {
             </Grid>
           </Grid>
 
-          {this.props.nextSection === "benefits-directory" ? (
-            <MobileStepper
-              variant="progress"
-              steps={5}
-              position="static"
-              activeStep={this.props.stepNumber}
-              className={classnames(classes.stepper)}
-              nextButton={
-                <Button
-                  size="large"
-                  href={this.props.benefitsDirectoryUrl}
-                  className={classnames(classes.navButtons)}
-                >
-                  {t("next")}
-                  <KeyboardArrowRight />
-                </Button>
-              }
-              backButton={
-                <Button
-                  size="large"
-                  onClick={() => this.props.setSection(this.props.prevSection)}
-                  disabled={this.props.stepNumber === 0}
-                  className={classnames(classes.navButtons)}
-                >
-                  <KeyboardArrowLeft />
-                  {t("back")}
-                </Button>
-              }
-            />
-          ) : (
-            <MobileStepper
-              variant="progress"
-              steps={5}
-              position="static"
-              activeStep={this.props.stepNumber}
-              className={classnames(classes.stepper)}
-              nextButton={
-                <Button
-                  size="large"
-                  onClick={() => this.props.setSection(this.props.nextSection)}
-                  className={classnames(classes.navButtons)}
-                >
-                  {t("next")}
-                  <KeyboardArrowRight />
-                </Button>
-              }
-              backButton={
-                <Button
-                  size="large"
-                  onClick={() => this.props.setSection(this.props.prevSection)}
-                  disabled={this.props.stepNumber === 0}
-                  className={classnames(classes.navButtons)}
-                >
-                  <KeyboardArrowLeft />
-                  {t("back")}
-                </Button>
-              }
-            />
-          )}
+          <MobileStepper
+            variant="progress"
+            steps={5}
+            position="static"
+            activeStep={this.props.stepNumber}
+            className={classnames(classes.stepper)}
+            nextButton={
+              <Button
+                size="large"
+                href={
+                  this.props.nextSection === "benefits-directory"
+                    ? this.props.benefitsDirectoryUrl
+                    : undefined
+                }
+                onClick={
+                  this.props.nextSection === "benefits-directory"
+                    ? undefined
+                    : () => this.props.setSection(this.props.nextSection)
+                }
+                className={classnames(classes.navButtons)}
+              >
+                {t("next")}
+                <KeyboardArrowRight />
+              </Button>
+            }
+            backButton={
+              <Button
+                size="large"
+                onClick={() => this.props.setSection(this.props.prevSection)}
+                disabled={this.props.stepNumber === 0}
+                className={classnames(classes.navButtons)}
+              >
+                <KeyboardArrowLeft />
+                {t("back")}
+              </Button>
+            }
+          />
         </div>
       </MuiThemeProvider>
     );
