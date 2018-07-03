@@ -21,10 +21,8 @@ export class A extends Component {
     this.cookies = new Cookies();
     this.state = {
       favouriteBenefits: [],
-      section: "BB",
-      width: 1000
+      section: "BB"
     };
-    this.updateWindowWidth = this.updateWindowWidth.bind(this);
   }
 
   componentWillMount() {
@@ -47,8 +45,6 @@ export class A extends Component {
   }
 
   componentDidMount() {
-    this.updateWindowWidth();
-    window.addEventListener("resize", this.updateWindowWidth);
     if (this.props.url.query.use_testdata) {
       this.props.dispatch({
         type: "LOAD_DATA",
@@ -64,14 +60,6 @@ export class A extends Component {
     if (this.props !== prevProps || this.state.section !== prevState.section) {
       this.setURL();
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowWidth);
-  }
-
-  updateWindowWidth() {
-    this.setState({ width: window.innerWidth });
   }
 
   setURL = (state = this.state) => {
