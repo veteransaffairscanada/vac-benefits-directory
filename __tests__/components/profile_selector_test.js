@@ -101,6 +101,26 @@ describe("ProfileSelector", () => {
     ).toEqual(0);
   });
 
+  it("has no clear button if patronType is empty", () => {
+    reduxData.patronType = "";
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#ClearEligibilityFilters")
+        .first().length
+    ).toEqual(0);
+  });
+
+  it("has a clear button if patronType is populated", () => {
+    reduxData.patronType = "organization";
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#ClearEligibilityFilters")
+        .first().length
+    ).toEqual(1);
+  });
+
   it("has the correct radio button text", () => {
     const text = mount(<ProfileSelector {...props} {...reduxData} />)
       .find("#patronTypeFilter")
