@@ -69,15 +69,13 @@ export class AreaOfficeMap extends Component {
 
 const mapStateToProps = state => {
   return {
-    areaOffices: state.areaOffices,
-    text: state.text
+    areaOffices: state.areaOffices
   };
 };
 
 AreaOfficeMap.propTypes = {
   areaOffices: PropTypes.array.isRequired,
-  t: PropTypes.func.isRequired,
-  text: PropTypes.array.isRequired
+  t: PropTypes.func.isRequired
 };
 
 export default withScriptjs(
