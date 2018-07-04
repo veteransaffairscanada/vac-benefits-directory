@@ -18,9 +18,6 @@ const styles = theme => ({
     width: "100%",
     marginTop: theme.spacing.unit * 3,
     overflowX: "auto"
-  },
-  table: {
-    width: 1000
   }
 });
 
@@ -64,9 +61,7 @@ export class Map extends Component {
   computeDistanceKm(lat1, long1, lat2, long2) {
     var R = 6371; // kilometres
     const Radians = degrees => degrees * Math.PI / 180;
-
     if (!lat1 || !lat2 || !long1 || !long2) return undefined;
-
     const lat1Rad = Radians(lat1);
     const long1Rad = Radians(long1);
     const lat2Rad = Radians(lat2);
@@ -80,7 +75,6 @@ export class Map extends Component {
   render() {
     const { i18n, t, classes } = this.props;
     const language = t("current-language-code");
-
     let officeDistance = {};
     this.props.areaOffices.forEach(ae => {
       officeDistance[ae.id] = this.computeDistanceKm(
@@ -90,9 +84,10 @@ export class Map extends Component {
         ae.lng
       );
     });
-
     const sortedAreaOffices = this.props.areaOffices.sort((a, b) => {
-      const diff = officeDistance[a.id] - officeDistance[b.id];
+      const diff = officeDistance[a.id]
+        ? officeDistance[a.id] - officeDistance[b.id]
+        : a.name_en.toUpperCase().localeCompare(b.name_en.toUpperCase());
       switch (true) {
         case diff > 0:
           return 1;
@@ -110,48 +105,50 @@ export class Map extends Component {
         hideNoscript={true}
         showRefreshCache={false}
       >
-        <AreaOfficeMap
-          id="AreaOfficeMap"
-          googleMapURL={
-            "https://maps.googleapis.com/maps/api/js?key=AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE&language=" +
-            t("current-language-code") +
-            "&v=3.exp&libraries=geometry,drawing,places"
-          }
-          loadingElement={<div style={{ height: "100%" }} />}
-          containerElement={<div style={{ height: "400px" }} />}
-          mapElement={<div style={{ height: "100%" }} />}
-          lat={this.state.lat}
-          lng={this.state.lng}
-          zoom={this.state.zoom}
-          t={t}
-        />
+        <div>
+          <AreaOfficeMap
+            id="AreaOfficeMap"
+            googleMapURL={
+              "https://maps.googleapis.com/maps/api/js?key=AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE&language=" +
+              t("current-language-code") +
+              "&v=3.exp&libraries=geometry,drawing,places"
+            }
+            loadingElement={<div style={{ height: "100%" }} />}
+            containerElement={<div style={{ height: "400px" }} />}
+            mapElement={<div style={{ height: "100%" }} />}
+            lat={this.state.lat}
+            lng={this.state.lng}
+            zoom={this.state.zoom}
+            t={t}
+          />
 
-        <Paper className={classes.root}>
-          <Table className={classes.table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>{t("map.office")}</TableCell>
-                <TableCell>{t("map.address")}</TableCell>
-                <TableCell>{t("map.distance")}</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {sortedAreaOffices.map(ae => {
-                return (
-                  <TableRow key={ae.id}>
-                    <TableCell>
-                      {language === "en" ? ae.name_en : ae.name_fr}
-                    </TableCell>
-                    <TableCell>
-                      {language === "en" ? ae.address_en : ae.address_fr}
-                    </TableCell>
-                    <TableCell>{officeDistance[ae.id]}</TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </Paper>
+          <Paper className={classes.root}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>{t("map.office")}</TableCell>
+                  <TableCell>{t("map.address")}</TableCell>
+                  <TableCell>{t("map.distance")}</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {sortedAreaOffices.map(ae => {
+                  return (
+                    <TableRow key={ae.id}>
+                      <TableCell>
+                        {language === "en" ? ae.name_en : ae.name_fr}
+                      </TableCell>
+                      <TableCell>
+                        {language === "en" ? ae.address_en : ae.address_fr}
+                      </TableCell>
+                      <TableCell>{officeDistance[ae.id]}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </Paper>
+        </div>
       </Layout>
     );
   }
