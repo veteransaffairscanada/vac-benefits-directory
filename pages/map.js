@@ -59,7 +59,7 @@ export class Map extends Component {
   }
 
   computeDistanceKm(lat1, long1, lat2, long2) {
-    var R = 6371; // kilometres
+    const R = 6371; // kilometres
     const Radians = degrees => degrees * Math.PI / 180;
     if (!lat1 || !lat2 || !long1 || !long2) return undefined;
     const lat1Rad = Radians(lat1);
@@ -68,8 +68,7 @@ export class Map extends Component {
     const long2Rad = Radians(long2);
     const x = (long2Rad - long1Rad) * Math.cos((lat1Rad + lat2Rad) / 2);
     const y = lat2Rad - lat1Rad;
-    const d = Math.sqrt(x * x + y * y) * R;
-    return d;
+    return Math.sqrt(x * x + y * y) * R;
   }
 
   render() {
