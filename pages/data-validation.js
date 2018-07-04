@@ -35,6 +35,12 @@ export class DataValidation extends Component {
     redux2i18n(this.props.i18n, this.props.text);
   }
 
+  getBrokenBenefits(b, i) {
+    if (this.checkMissingNeeds(b) || this.checkIfMissingText(b)) {
+      return " " + b.id + " (" + (i + 1) + "),";
+    }
+  }
+
   checkIfMissingText(b) {
     return (
       !(b.vacNameEn && b.vacNameEn != "") ||
@@ -136,6 +142,15 @@ export class DataValidation extends Component {
                   </TableRow>
                 );
               })}
+              <TableRow>
+                <TableCell> {t("dv.Benefits failing tests")} </TableCell>
+                <TableCell>
+                  {" "}
+                  {benefits.map((b, i) => {
+                    return this.getBrokenBenefits(b, i);
+                  })}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </Paper>

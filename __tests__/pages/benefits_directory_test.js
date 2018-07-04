@@ -52,7 +52,46 @@ describe("BenefitsDirectory", () => {
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      enIdx: JSON.stringify({
+        version: "2.2.1",
+        fields: ["vacNameEn", "oneLineDescriptionEn"],
+        fieldVectors: [
+          ["vacNameEn/1", [0, 0.288]],
+          ["oneLineDescriptionEn/1", [1, 0.288]]
+        ],
+        invertedIndex: [
+          [
+            "biz",
+            { _index: 1, vacNameEn: {}, oneLineDescriptionEn: { "1": {} } }
+          ],
+          [
+            "fiz",
+            { _index: 0, vacNameEn: { "1": {} }, oneLineDescriptionEn: {} }
+          ]
+        ],
+        pipeline: ["stemmer"]
+      }),
+      frIdx: JSON.stringify({
+        version: "2.2.1",
+        fields: ["vacNameFr", "oneLineDescriptionFr"],
+        fieldVectors: [
+          ["vacNameFr/1", [0, 0.288]],
+          ["oneLineDescriptionFr/1", [1, 0.288]]
+        ],
+        invertedIndex: [
+          [
+            "biz",
+            { _index: 1, vacNameFr: {}, oneLineDescriptionFr: { "1": {} } }
+          ],
+          [
+            "fiz",
+            { _index: 0, vacNameFr: { "1": {} }, oneLineDescriptionFr: {} }
+          ]
+        ],
+        pipeline: ["stemmer"]
+      }),
       needs: needsFixture,
+      searchString: "",
       selectedNeeds: {},
       serviceType: "CAF",
       patronType: "family",

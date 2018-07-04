@@ -3,6 +3,9 @@
 import { shallow } from "enzyme";
 import React from "react";
 import { Map } from "../../pages/map";
+import areaOfficesFixture from "../fixtures/area_offices";
+import configureStore from "redux-mock-store";
+
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -10,6 +13,7 @@ jest.mock("react-ga");
 
 describe("Map", () => {
   let props;
+  let mockStore, reduxData;
 
   beforeEach(() => {
     props = {
@@ -22,16 +26,33 @@ describe("Map", () => {
       },
       classes: {}
     };
+    reduxData = {
+      areaOffices: areaOfficesFixture
+    };
+    mockStore = configureStore();
+    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {
-    let html = shallow(<Map {...props} />).html();
+    let html = shallow(<Map {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("renders AreaOfficeMap", () => {
-    expect(shallow(<Map {...props} />).find("#AreaOfficeMap").length).toEqual(
-      1
-    );
+    expect(
+      shallow(<Map {...props} {...reduxData} />).find("#AreaOfficeMap").length
+    ).toEqual(1);
+  });
+
+  it("has a table", () => {
+    expect(
+      shallow(<Map {...props} {...reduxData} />).find("#tableHeader").length
+    ).toEqual(1);
+    expect(
+      shallow(<Map {...props} {...reduxData} />).find("#tableRow0").length
+    ).toEqual(1);
+    expect(
+      shallow(<Map {...props} {...reduxData} />).find("#tableRow1").length
+    ).toEqual(1);
   });
 });

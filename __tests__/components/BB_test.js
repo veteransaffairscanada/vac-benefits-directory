@@ -60,12 +60,14 @@ describe("BB", () => {
       needs: needsFixture,
       serviceType: "",
       patronType: "",
+      searchString: "",
       statusAndVitals: "",
       selectedEligibility: {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
       },
+      setSearchString: jest.fn(),
       selectedNeeds: {}
     };
     props.store = mockStore(reduxData);
@@ -164,16 +166,7 @@ describe("BB", () => {
   });
 
   describe("search feature", () => {
-    it("creates a lunr index for english benefits", () => {
-      expect(mounted_BB().state().enIdx).not.toEqual(null);
-    });
-
-    it("creates a lunr index for french benefits", () => {
-      expect(mounted_BB().state().frIdx).not.toEqual(null);
-    });
-
-    it("shows a text search box is show_search url param is set", () => {
-      mounted_BB().setProps({ url: { query: { show_search: true } } });
+    it("shows a text search box", () => {
       expect(
         mounted_BB()
           .find("#bbSearchField")
@@ -181,20 +174,11 @@ describe("BB", () => {
       ).toEqual(1);
     });
 
-    it("hides a text serach box is show_search url param is not set", () => {
-      mounted_BB().setProps({ url: { query: {} } });
-      expect(
-        mounted_BB()
-          .find("#bbSearchField")
-          .first().length
-      ).toEqual(0);
-    });
-
-    it("handleSearchChange sets the state of searchString", () => {
+    it("handleSearchChange sets the searchString state in redux", () => {
       mounted_BB()
         .instance()
         .handleSearchChange({ target: { value: "foo" } });
-      expect(mounted_BB().state().searchString).toEqual("foo");
+      expect(reduxData.setSearchString).toBeCalledWith("foo");
     });
   });
 
