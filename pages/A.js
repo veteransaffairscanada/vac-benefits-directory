@@ -13,7 +13,6 @@ import Cookies from "universal-cookie";
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
-import BB from "../components/BB";
 import { redux2i18n } from "../utils/redux2i18n";
 
 export class A extends Component {
@@ -22,11 +21,8 @@ export class A extends Component {
     this.cookies = new Cookies();
     this.state = {
       favouriteBenefits: [],
-      section: "BB",
-      width: 1000
+      section: "A1"
     };
-    this.updateWindowWidth = this.updateWindowWidth.bind(this);
-    // this.cookies.set("favouriteBenefits", [], { path: "/" });
   }
 
   componentWillMount() {
@@ -35,22 +31,20 @@ export class A extends Component {
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
       const newState = {
-        section: matches[1] || "BB"
+        section: matches[1] || "A1"
       };
       this.setState(newState);
     };
 
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
-      section: this.props.url.query.section || "BB"
+      section: this.props.url.query.section || "A1"
     };
 
     this.setState(newState);
   }
 
   componentDidMount() {
-    this.updateWindowWidth();
-    window.addEventListener("resize", this.updateWindowWidth);
     if (this.props.url.query.use_testdata) {
       this.props.dispatch({
         type: "LOAD_DATA",
@@ -66,14 +60,6 @@ export class A extends Component {
     if (this.props !== prevProps || this.state.section !== prevState.section) {
       this.setURL();
     }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowWidth);
-  }
-
-  updateWindowWidth() {
-    this.setState({ width: window.innerWidth });
   }
 
   setURL = (state = this.state) => {
@@ -121,29 +107,20 @@ export class A extends Component {
     } else if (this.props.serviceType === "" || profileIsVetWSV) {
       previousSectionA4 = "A2";
     }
-    if (
-      this.props.patronType === "organization" &&
-      ["A2", "A3", "A4"].indexOf(section) > -1
-    ) {
-      this.setSection("BB");
+
+    let benefitsDirectoryUrl =
+      "/benefits-directory?lng=" + this.props.t("current-language-code");
+    if (Object.keys(this.props.selectedNeeds).length > 0) {
+      benefitsDirectoryUrl +=
+        "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
+    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+      if (this.props[selection] !== "") {
+        benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
+      }
+    });
 
     switch (true) {
-      case section === "BB" ||
-        (section !== "A1" && this.props.patronType === "organization"):
-        return (
-          <BB
-            id="BB"
-            t={t}
-            pageWidth={this.state.width}
-            favouriteBenefits={this.state.favouriteBenefits}
-            toggleFavourite={this.toggleFavourite}
-            url={this.props.url}
-            store={this.props.store}
-            setSection={this.setSection}
-          />
-        );
-
       case section === "A4" ||
         (profileIsVetWSV && section === "A3") ||
         (this.props.serviceType === "" && section === "A3") ||
@@ -154,7 +131,8 @@ export class A extends Component {
             id="A4"
             stepNumber={3}
             t={t}
-            nextSection="BB"
+            nextSection="benefits-directory"
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             prevSection={previousSectionA4}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
@@ -170,7 +148,12 @@ export class A extends Component {
           <GuidedExperience
             id="A1"
             stepNumber={0}
-            nextSection="A2"
+            nextSection={
+              this.props.patronType === "organization"
+                ? "benefits-directory"
+                : "A2"
+            }
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
@@ -241,7 +224,8 @@ export class A extends Component {
             id="A4"
             stepNumber={3}
             t={t}
-            nextSection="BB"
+            nextSection="benefits-directory"
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             prevSection={profileIsVetWSV ? "A2" : "A3"}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}

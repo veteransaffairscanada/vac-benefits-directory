@@ -113,19 +113,23 @@ export class ProfileSelector extends Component {
               ""
             )}
 
-            <Grid item xs={12} className={classnames(classes.gridItemButton)}>
-              <Button
-                className={classnames(classes.clearButton)}
-                id="ClearEligibilityFilters"
-                variant="flat"
-                size="small"
-                onClick={() => {
-                  this.clearFilters();
-                }}
-              >
-                {t("Clear")}
-              </Button>
-            </Grid>
+            {this.props.patronType !== "" ? (
+              <Grid item xs={12} className={classnames(classes.gridItemButton)}>
+                <Button
+                  className={classnames(classes.clearButton)}
+                  id="ClearEligibilityFilters"
+                  variant="flat"
+                  size="small"
+                  onClick={() => {
+                    this.clearFilters();
+                  }}
+                >
+                  {t("Clear")}
+                </Button>
+              </Grid>
+            ) : (
+              ""
+            )}
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>

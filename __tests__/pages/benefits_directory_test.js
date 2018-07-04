@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import Router from "next/router";
 
 import React from "react";
-import { FavouritesPage } from "../../pages/favourites";
+import { BenefitsDirectory } from "../../pages/benefits-directory";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
@@ -16,23 +16,23 @@ expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
-describe("Favourites Page", () => {
+describe("BenefitsDirectory", () => {
   Router.router = {
     push: jest.fn()
   };
   Router.push = jest.fn();
 
   let props;
-  let _mountedFavouritesPage;
+  let _mountedBenefitsDirectory;
   let mockStore, reduxData;
 
-  const mountedFavouritesPage = () => {
-    if (!_mountedFavouritesPage) {
-      _mountedFavouritesPage = shallow(
-        <FavouritesPage {...props} {...reduxData} />
+  const mountedBenefitsDirectory = () => {
+    if (!_mountedBenefitsDirectory) {
+      _mountedBenefitsDirectory = shallow(
+        <BenefitsDirectory {...props} {...reduxData} />
       );
     }
-    return _mountedFavouritesPage;
+    return _mountedBenefitsDirectory;
   };
 
   beforeEach(() => {
@@ -42,9 +42,10 @@ describe("Favourites Page", () => {
       },
       t: key => {
         return key === "current-language-code" ? "en" : key;
-      }
+      },
+      url: { query: {} }
     };
-    _mountedFavouritesPage = undefined;
+    _mountedBenefitsDirectory = undefined;
     mockStore = configureStore();
     reduxData = {
       text: [],
@@ -62,16 +63,25 @@ describe("Favourites Page", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mountedFavouritesPage().html();
+    let html = mountedBenefitsDirectory().html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has a working toggleFavourite function", async () => {
-    let instance = mountedFavouritesPage().instance();
+    let instance = mountedBenefitsDirectory().instance();
     instance.toggleFavourite("c0");
     instance.toggleFavourite("c1");
     expect(instance.cookies.get("favouriteBenefits")).toEqual(["c0", "c1"]);
     instance.toggleFavourite("c0");
     expect(instance.cookies.get("favouriteBenefits")).toEqual(["c1"]);
+  });
+
+  it("has a correct setURL function", () => {
+    reduxData.selectedNeeds = { health: "health", financial: "financial" };
+    let AInstance = mountedBenefitsDirectory().instance();
+    const expectedURL =
+      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=family&serviceType=CAF";
+    AInstance.setURL();
+    expect(Router.push).toBeCalledWith(expectedURL);
   });
 });

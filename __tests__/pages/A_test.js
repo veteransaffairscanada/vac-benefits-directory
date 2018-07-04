@@ -94,11 +94,11 @@ describe("A", () => {
   });
 
   it("componentWillMount sets state correctly from empty url", () => {
-    expect(mountedA().state().section).toEqual("BB");
+    expect(mountedA().state().section).toEqual("A1");
   });
 
   it("sectionToDisplay returns correct section", () => {
-    ["BB", "A1", "A2", "A3", "A4"].forEach(section => {
+    ["A1", "A2", "A3", "A4"].forEach(section => {
       let AInstance = mountedA().instance();
       expect(AInstance.sectionToDisplay(section).props.id).toEqual(section);
     });

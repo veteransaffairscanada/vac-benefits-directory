@@ -36,14 +36,6 @@ const Inner = styled("div")`
   padding-top: 10px;
 `;
 
-const InnerRight = styled("div")`
-  color: #000;
-  text-align: right;
-  font-size: 18px;
-  padding: 10px 40px 0 0;
-  float: right;
-`;
-
 const TextHold = styled("div")`
   background-color: #f5f5f5;
   padding: 10px;
@@ -114,6 +106,7 @@ export class FeedbackBar extends Component {
                 fullWidth={true}
                 onChange={this.handleChange("action")}
                 value={this.state.action}
+                autoFocus
               />
               <TextField
                 id="commentWhatWentWrong"
@@ -159,20 +152,6 @@ export class FeedbackBar extends Component {
                 {t("no")}
               </Button>
             </Inner>
-          )}
-          {this.state.commentSubmitted ? (
-            <InnerRight>{t("comment-response")}</InnerRight>
-          ) : (
-            <InnerRight>
-              <Button
-                variant="raised"
-                id="commentToggle"
-                style={{ cursor: "pointer" }}
-                onClick={() => this.toggleCommentForm()}
-              >
-                {t("comment-prompt")}
-              </Button>
-            </InnerRight>
           )}
         </Div>
       </div>

@@ -125,19 +125,23 @@ export class NeedsSelector extends Component {
                 </Button>
               ))}
             </Grid>
-            <Grid item xs={12} className={classnames(classes.gridItemButton)}>
-              <Button
-                className={classnames(classes.clearButton)}
-                id="ClearFilters"
-                variant="flat"
-                size="small"
-                onClick={() => {
-                  this.clearNeeds();
-                }}
-              >
-                {t("Clear")}
-              </Button>
-            </Grid>
+            {JSON.stringify(this.props.selectedNeeds) !== "{}" ? (
+              <Grid item xs={12} className={classnames(classes.gridItemButton)}>
+                <Button
+                  className={classnames(classes.clearButton)}
+                  id="ClearFilters"
+                  variant="flat"
+                  size="small"
+                  onClick={() => {
+                    this.clearNeeds();
+                  }}
+                >
+                  {t("Clear")}
+                </Button>
+              </Grid>
+            ) : (
+              ""
+            )}
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>

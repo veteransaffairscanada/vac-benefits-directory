@@ -120,7 +120,16 @@ export class GuidedExperience extends Component {
             nextButton={
               <Button
                 size="large"
-                onClick={() => this.props.setSection(this.props.nextSection)}
+                href={
+                  this.props.nextSection === "benefits-directory"
+                    ? this.props.benefitsDirectoryUrl
+                    : undefined
+                }
+                onClick={
+                  this.props.nextSection === "benefits-directory"
+                    ? undefined
+                    : () => this.props.setSection(this.props.nextSection)
+                }
                 className={classnames(classes.navButtons)}
               >
                 {t("next")}
@@ -166,7 +175,8 @@ GuidedExperience.propTypes = {
   stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  benefitsDirectoryUrl: PropTypes.string
 };
 
 export default connect(mapStateToProps)(
