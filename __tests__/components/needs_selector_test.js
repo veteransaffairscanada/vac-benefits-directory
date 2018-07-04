@@ -1,31 +1,41 @@
 import React from "react";
 import { mount } from "enzyme";
-import NeedsSelector from "../../components/needs_selector";
+import { NeedsSelector } from "../../components/needs_selector";
 import needsFixture from "../fixtures/needs";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
+jest.mock("react-ga");
+
 describe("NeedsSelector", () => {
   let props;
-  let _mountedNeedsSelector;
+  let _mountedNeedsSelector, mockStore, reduxData;
 
   const mountedNeedsSelector = () => {
     if (!_mountedNeedsSelector) {
-      _mountedNeedsSelector = mount(<NeedsSelector {...props} />);
+      _mountedNeedsSelector = mount(
+        <NeedsSelector {...props} {...reduxData} />
+      );
     }
     return _mountedNeedsSelector;
   };
 
   beforeEach(() => {
     props = {
-      clearNeeds: () => true,
+      theme: {},
+      classes: {},
       t: key => key,
-      needs: needsFixture,
-      selectedNeeds: {},
-      handleChange: jest.fn(),
       pageWidth: 1000
     };
+    reduxData = {
+      needs: needsFixture,
+      selectedNeeds: {},
+      setSelectedNeeds: jest.fn()
+    };
+    mockStore = configureStore();
+    props.store = mockStore(reduxData);
     _mountedNeedsSelector = undefined;
   });
 
@@ -42,8 +52,9 @@ describe("NeedsSelector", () => {
   });
 
   it("works if needs haven't loaded yet", () => {
-    props.needs = [];
-    props.selectedNeeds = { 43534534: "43534534" };
+    reduxData.needs = [];
+    reduxData.selectedNeeds = { 43534534: "43534534" };
+    props.store = mockStore(reduxData);
     expect(mountedNeedsSelector());
   });
 
@@ -52,19 +63,13 @@ describe("NeedsSelector", () => {
     expect(mountedNeedsSelector());
   });
 
-  it("fires the the handleChange function when a need is selected", () => {
+  it("fires the the setSelectedNeeds function when a need is selected", () => {
     mountedNeedsSelector()
       .find("#needs_buttons")
       .find("Button")
       .at(0)
       .simulate("click");
-    expect(props.handleChange).toHaveBeenCalled();
-  });
-
-  it("works if needs haven't loaded yet", () => {
-    props.needs = [];
-    props.selectedNeeds = { 43534534: "43534534" };
-    expect(mountedNeedsSelector());
+    expect(reduxData.setSelectedNeeds).toHaveBeenCalled();
   });
 
   it("is expanded if pageWidth > 600px", () => {
@@ -82,5 +87,39 @@ describe("NeedsSelector", () => {
         .find("ExpansionPanel")
         .prop("expanded")
     ).toEqual(false);
+  });
+
+  it("handleClick logs an analytics event", () => {
+    let needsInstance = mountedNeedsSelector().instance();
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    needsInstance.handleClick("foo");
+    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
+  });
+
+  it("has no clear button if selectedNeeds is empty", () => {
+    reduxData.selectedNeeds = {};
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<NeedsSelector {...props} {...reduxData} />)
+        .find("#ClearFilters")
+        .first().length
+    ).toEqual(0);
+  });
+
+  it("has a clear button if selectedNeeds is populated", () => {
+    reduxData.selectedNeeds = { foo: "bar" };
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<NeedsSelector {...props} {...reduxData} />)
+        .find("#ClearFilters")
+        .first().length
+    ).toEqual(1);
+  });
+
+  it("has a correct clearNeeds function", () => {
+    let needsInstance = mountedNeedsSelector().instance();
+    needsInstance.clearNeeds();
+    expect(needsInstance.props.setSelectedNeeds).toBeCalledWith({});
   });
 });

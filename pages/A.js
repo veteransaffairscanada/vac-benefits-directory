@@ -8,14 +8,11 @@ import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
 import textFixture from "../__tests__/fixtures/text";
 
-import { logEvent } from "../utils/analytics";
 import Cookies from "universal-cookie";
 
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
-import BB from "../components/BB";
-import Favourites from "../components/favourites";
 import { redux2i18n } from "../utils/redux2i18n";
 
 export class A extends Component {
@@ -24,26 +21,30 @@ export class A extends Component {
     this.cookies = new Cookies();
     this.state = {
       favouriteBenefits: [],
-      section: "BB",
-      width: 1000
+      section: "A1"
     };
-    this.updateWindowWidth = this.updateWindowWidth.bind(this);
-    // this.cookies.set("favouriteBenefits", [], { path: "/" });
   }
 
   componentWillMount() {
     redux2i18n(this.props.i18n, this.props.text);
+
+    Router.onRouteChangeStart = newUrl => {
+      let matches = newUrl.match(/section=([^&]*)/);
+      const newState = {
+        section: matches[1] || "A1"
+      };
+      this.setState(newState);
+    };
+
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
-      section: this.props.url.query.section || "BB"
+      section: this.props.url.query.section || "A1"
     };
 
     this.setState(newState);
   }
 
   componentDidMount() {
-    this.updateWindowWidth();
-    window.addEventListener("resize", this.updateWindowWidth);
     if (this.props.url.query.use_testdata) {
       this.props.dispatch({
         type: "LOAD_DATA",
@@ -61,22 +62,14 @@ export class A extends Component {
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowWidth);
-  }
-
-  updateWindowWidth() {
-    this.setState({ width: window.innerWidth });
-  }
-
   setURL = (state = this.state) => {
     let href = "/A?section=" + state.section;
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
     ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
-      if (this.props.selectedEligibility[selection] !== "") {
-        href += `&${selection}=${this.props.selectedEligibility[selection]}`;
+      if (this.props[selection] !== "") {
+        href += `&${selection}=${this.props[selection]}`;
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
@@ -85,56 +78,6 @@ export class A extends Component {
 
   setSection = section => {
     this.setState({ section: section });
-  };
-
-  setSelectedNeeds = ids => {
-    let selectedNeeds = {};
-    ids.forEach(id => {
-      selectedNeeds[id] = id;
-      logEvent("FilterClick", "need", id);
-    });
-    this.props.setSelectedNeeds(selectedNeeds);
-  };
-
-  setUserProfile = (criteria, id) => {
-    logEvent("FilterClick", criteria, id);
-    switch (criteria) {
-      case "patronType":
-        this.props.setPatronType(id);
-        if (id === "organization") {
-          this.props.setServiceType("");
-          this.props.setStatusType("");
-        }
-        break;
-      case "serviceType":
-        this.props.setServiceType(id);
-        break;
-      case "statusAndVitals":
-        this.props.setStatusType(id);
-        break;
-      default:
-        return true;
-    }
-  };
-
-  toggleSelectedEligibility = (criteria, id) => () => {
-    switch (criteria) {
-      case "patronType":
-        this.props.setPatronType(id);
-        if (id === "organization") {
-          this.props.setServiceType("");
-          this.props.setStatusType("");
-        }
-        break;
-      case "serviceType":
-        this.props.setServiceType(id);
-        break;
-      case "statusAndVitals":
-        this.props.setStatusType(id);
-        break;
-      default:
-        return true;
-    }
   };
 
   toggleFavourite = id => {
@@ -150,102 +93,52 @@ export class A extends Component {
     this.setState({ favouriteBenefits: favouriteBenefits });
   };
 
-  clearFilters = () => {
-    this.props.setPatronType("");
-    this.props.setServiceType("");
-    this.props.setStatusType("");
-  };
-
-  clearNeeds = () => {
-    this.props.setSelectedNeeds({});
-  };
-
   sectionToDisplay = section => {
     let question, options;
     const { t } = this.props;
-    const selectedEligibility = this.props.selectedEligibility;
 
     const profileIsVetWSV =
-      selectedEligibility["patronType"] === "service-person" &&
-      selectedEligibility["serviceType"] === "WSV (WWII or Korea)";
+      this.props["patronType"] === "service-person" &&
+      this.props["serviceType"] === "WSV (WWII or Korea)";
 
     let previousSectionA4 = "A3";
-    if (selectedEligibility.patronType === "") {
+    if (this.props.patronType === "") {
       previousSectionA4 = "A1";
-    } else if (selectedEligibility.serviceType === "" || profileIsVetWSV) {
+    } else if (this.props.serviceType === "" || profileIsVetWSV) {
       previousSectionA4 = "A2";
     }
-    if (
-      selectedEligibility.patronType === "organization" &&
-      ["A2", "A3", "A4"].indexOf(section) > -1
-    ) {
-      this.setSection("BB");
+
+    let benefitsDirectoryUrl =
+      "/benefits-directory?lng=" + this.props.t("current-language-code");
+    if (Object.keys(this.props.selectedNeeds).length > 0) {
+      benefitsDirectoryUrl +=
+        "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
+    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+      if (this.props[selection] !== "") {
+        benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
+      }
+    });
 
     switch (true) {
-      case section === "favourites":
-        return (
-          <Favourites
-            id="favourites"
-            t={t}
-            benefits={this.props.benefits}
-            eligibilityPaths={this.props.eligibilityPaths}
-            examples={this.props.examples}
-            selectedEligibility={selectedEligibility}
-            selectedNeeds={this.props.selectedNeeds}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
-            pageWidth={this.state.width}
-            favouriteBenefits={this.state.favouriteBenefits}
-            toggleFavourite={this.toggleFavourite}
-            url={this.props.url}
-          />
-        );
-
-      case section === "BB" ||
-        (section !== "A1" &&
-          this.props.selectedEligibility.patronType === "organization"):
-        return (
-          <BB
-            id="BB"
-            t={t}
-            selectedEligibility={this.props.selectedEligibility}
-            selectedNeeds={this.props.selectedNeeds}
-            toggleSelectedEligibility={this.toggleSelectedEligibility}
-            setSelectedNeeds={this.setSelectedNeeds}
-            setUserProfile={this.setUserProfile}
-            setSection={this.setSection}
-            clearFilters={this.clearFilters}
-            clearNeeds={this.clearNeeds}
-            pageWidth={this.state.width}
-            favouriteBenefits={this.state.favouriteBenefits}
-            toggleFavourite={this.toggleFavourite}
-            url={this.props.url}
-            store={this.props.store}
-          />
-        );
-
       case section === "A4" ||
         (profileIsVetWSV && section === "A3") ||
-        (selectedEligibility.serviceType === "" && section === "A3") ||
-        (selectedEligibility.patronType === "" &&
+        (this.props.serviceType === "" && section === "A3") ||
+        (this.props.patronType === "" &&
           (section === "A3" || section === "A2")):
         return (
           <GuidedExperience
             id="A4"
             stepNumber={3}
             t={t}
-            nextSection="BB"
+            nextSection="benefits-directory"
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             prevSection={previousSectionA4}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
-            <GuidedExperienceNeeds
-              t={t}
-              selectedNeeds={this.props.selectedNeeds}
-              setSelectedNeeds={this.setSelectedNeeds}
-            />
+            <GuidedExperienceNeeds t={t} store={this.props.store} />
           </GuidedExperience>
         );
 
@@ -255,20 +148,21 @@ export class A extends Component {
           <GuidedExperience
             id="A1"
             stepNumber={0}
-            nextSection="A2"
+            nextSection={
+              this.props.patronType === "organization"
+                ? "benefits-directory"
+                : "A2"
+            }
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={selectedEligibility[question]}
               t={t}
-              onClick={option => this.setUserProfile(question, option)}
-              isDown={option => selectedEligibility[question] === option}
-              options={Array.from(
-                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-              ).filter(st => st !== "na")}
+              selectorType={"patronType"}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -283,16 +177,12 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={selectedEligibility[question]}
               t={t}
-              onClick={option => this.setUserProfile(question, option)}
-              isDown={option => selectedEligibility[question] === option}
-              options={Array.from(
-                new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-              ).filter(st => st !== "na")}
+              selectorType={"serviceType"}
+              store={this.props.store}
             />
           </GuidedExperience>
         );
@@ -301,10 +191,10 @@ export class A extends Component {
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
         ).filter(st => st !== "na");
-        if (selectedEligibility["patronType"] === "service-person") {
+        if (this.props.patronType === "service-person") {
           options.splice(options.indexOf("deceased"), 1);
         }
-        if (selectedEligibility["serviceType"] === "WSV (WWII or Korea)") {
+        if (this.props.serviceType === "WSV (WWII or Korea)") {
           options.splice(options.indexOf("stillServing"), 1);
         }
         return (
@@ -316,67 +206,38 @@ export class A extends Component {
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
             <GuidedExperienceProfile
-              value={selectedEligibility[question]}
               t={t}
-              onClick={option => this.setUserProfile(question, option)}
+              selectorType={"statusAndVitals"}
+              store={this.props.store}
               options={options}
-              isDown={option => selectedEligibility[question] === option}
             />
           </GuidedExperience>
         );
 
-      case (selectedEligibility["patronType"] !== "organization" &&
-        section === "A4") ||
+      case (this.props.patronType !== "organization" && section === "A4") ||
         (profileIsVetWSV && section === "A3"):
         return (
           <GuidedExperience
             id="A4"
             stepNumber={3}
             t={t}
-            nextSection="BB"
+            nextSection="benefits-directory"
+            benefitsDirectoryUrl={benefitsDirectoryUrl}
             prevSection={profileIsVetWSV ? "A2" : "A3"}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
-            selectedEligibility={selectedEligibility}
+            store={this.props.store}
           >
-            <GuidedExperienceNeeds
-              t={t}
-              selectedNeeds={this.props.selectedNeeds}
-              setSelectedNeeds={this.setSelectedNeeds}
-            />;
+            <GuidedExperienceNeeds t={t} store={this.props.store} />;
           </GuidedExperience>
         );
     }
   };
 
   render() {
-    if (
-      this.props.selectedEligibility.patronType === "service-person" &&
-      this.props.selectedEligibility.statusAndVitals === "deceased"
-    ) {
-      this.props.setStatusType("");
-    }
-
-    if (
-      this.props.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
-      this.props.selectedEligibility.statusAndVitals === "stillServing"
-    ) {
-      this.props.setStatusType("");
-    }
-
-    // Guided Experience skips statusAndVitals for service-person / WSV
-    if (
-      this.state.section !== "BB" &&
-      this.props.selectedEligibility.patronType === "service-person" &&
-      this.props.selectedEligibility.serviceType === "WSV (WWII or Korea)" &&
-      this.props.selectedEligibility.statusAndVitals !== ""
-    ) {
-      this.props.setStatusType("");
-    }
-
     return (
       <Layout
         i18n={this.props.i18n}
@@ -392,17 +253,8 @@ export class A extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPatronType: patronType => {
-      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
-    },
-    setSelectedNeeds: needsObject => {
-      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
-    },
-    setServiceType: serviceType => {
-      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
-    },
-    setStatusType: statusType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    setStatusAndVitals: patronType => {
+      dispatch({ type: "SET_STATUS_TYPE", data: patronType });
     }
   };
 };
@@ -414,11 +266,9 @@ const mapStateToProps = reduxState => {
     examples: reduxState.examples,
     favouriteBenefits: reduxState.favouriteBenefits,
     needs: reduxState.needs,
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals
-    },
+    patronType: reduxState.patronType,
+    serviceType: reduxState.serviceType,
+    statusAndVitals: reduxState.statusAndVitals,
     selectedNeeds: reduxState.selectedNeeds,
     text: reduxState.text
   };
@@ -434,12 +284,11 @@ A.propTypes = {
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
+  patronType: PropTypes.string.isRequired,
+  serviceType: PropTypes.string.isRequired,
+  statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  setPatronType: PropTypes.func.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired,
-  setServiceType: PropTypes.func.isRequired,
-  setStatusType: PropTypes.func.isRequired,
+  setStatusAndVitals: PropTypes.func.isRequired,
   store: PropTypes.object,
   text: PropTypes.array.isRequired
 };

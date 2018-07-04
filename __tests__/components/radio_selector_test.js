@@ -1,63 +1,44 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import { RadioSelector } from "../../components/radio_selector";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 describe("RadioSelector", () => {
   let props;
-  let _mountedRadioSelector;
-  let _shallowMountedRadioSelector;
-
-  const mountedRadioSelector = () => {
-    if (!_mountedRadioSelector) {
-      _mountedRadioSelector = mount(<RadioSelector {...props} />);
-    }
-    return _mountedRadioSelector;
-  };
-
-  const shallowMountedRadioSelector = () => {
-    if (!_shallowMountedRadioSelector) {
-      _shallowMountedRadioSelector = shallow(<RadioSelector {...props} />);
-    }
-    return _shallowMountedRadioSelector;
-  };
 
   beforeEach(() => {
     props = {
       classes: {},
-      disabledString: "",
       legend: "",
-      filters: [
-        { id: "releasedAlive", name_en: "releasedAlive" },
-        { id: "stillServing", name_en: "stillServing" },
-        { id: "deceased", name_en: "deceased" }
-      ],
-      selectedFilter: "",
+      setPatronType: jest.fn(),
+      setServiceType: jest.fn(),
+      setStatusAndVitals: jest.fn(),
+      options: ["releasedAlive", "stillServing", "deceased"],
+      selectorType: "statusAndVitals",
+      selectedPatronType: "",
+      selectedServiceType: "",
+      selectedStatusAndVitals: "releasedAlive",
       t: key => key,
-      setUserProfile: key => key,
-      selectedEligibility: {
-        patronType: "service-person",
-        serviceType: "WSV (WWII or Korea)",
-        statusAndVitals: "releasedAlive"
-      }
+      eligibilityPaths: eligibilityPathsFixture
     };
-    _mountedRadioSelector = undefined;
-    _shallowMountedRadioSelector = undefined;
   });
 
   it("passes axe tests", async () => {
-    let html = mountedRadioSelector().html();
+    let html = mount(<RadioSelector {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has 3 FormControlLabels", () => {
-    expect(mountedRadioSelector().find("FormControlLabel").length).toEqual(3);
+    expect(
+      mount(<RadioSelector {...props} />).find("FormControlLabel").length
+    ).toEqual(3);
   });
 
   it("2nd FormControlLabel has the correct text", () => {
     expect(
-      mountedRadioSelector()
+      mount(<RadioSelector {...props} />)
         .find("FormControlLabel")
         .at(1)
         .text()
@@ -65,19 +46,83 @@ describe("RadioSelector", () => {
   });
 
   it("isDisabled returns false if we don't hit a condition", () => {
-    const isDisabled = shallowMountedRadioSelector().instance().isDisabled;
-    expect(isDisabled("a", { a: "a" })).toEqual(false);
+    const isDisabled = shallow(<RadioSelector {...props} />).instance()
+      .isDisabled;
+    expect(isDisabled("a", "a", "")).toEqual(false);
   });
 
   it("isDisabled returns true if we do hit a condition", () => {
-    const isDisabled = shallowMountedRadioSelector().instance().isDisabled;
+    const isDisabled = shallow(<RadioSelector {...props} />).instance()
+      .isDisabled;
 
-    expect(isDisabled("deceased", { patronType: "service-person" })).toEqual(
-      true
+    expect(isDisabled("deceased", "service-person", "")).toEqual(true);
+    expect(isDisabled("stillServing", "", "WSV (WWII or Korea)")).toEqual(true);
+  });
+
+  it("handleSelect calls setUserProfile", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile = jest.fn();
+    instance.handleSelect({ target: { value: "x" } });
+    expect(instance.setUserProfile).toBeCalledWith("statusAndVitals", "x");
+  });
+
+  it("setUserProfile logs an analytics event", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    instance.setUserProfile("serviceType", "x");
+    expect(analytics.logEvent).toBeCalledWith(
+      "FilterClick",
+      "serviceType",
+      "x"
     );
+  });
 
-    expect(
-      isDisabled("stillServing", { serviceType: "WSV (WWII or Korea)" })
-    ).toEqual(true);
+  it("setUserProfile clears other filters if Organization is selected", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("patronType", "organization");
+    expect(props.setServiceType).toBeCalledWith("");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile clears statusAndVitals filters if service-person is selected and is deceased", () => {
+    props.selectedStatusAndVitals = "deceased";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("patronType", "service-person");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile clears statusAndVitals filters if WSV (WWII or Korea) is selected and is stillServing", () => {
+    props.selectedStatusAndVitals = "stillServing";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("serviceType", "WSV (WWII or Korea)");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile clears statusAndVitals filters if service-person is selected, serviceType is WSV (WWII or Korea), and a statusAndVitals is set", () => {
+    props.selectedStatusAndVitals = "stillServing";
+    props.selectedServiceType = "WSV (WWII or Korea)";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("patronType", "service-person");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile clears statusAndVitals filters if WSV (WWII or Korea) is selected, patronType is service-person, and a statusAndVitals is set", () => {
+    props.selectedStatusAndVitals = "stillServing";
+    props.selectedPatronType = "service-person";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("serviceType", "WSV (WWII or Korea)");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+  });
+
+  it("setUserProfile can set statusAndVitals", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("statusAndVitals", "deceased");
+    expect(props.setStatusAndVitals).toBeCalledWith("deceased");
+  });
+
+  it("setUserProfile returns true as default", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    expect(instance.setUserProfile("foo", "bar")).toEqual(true);
   });
 });

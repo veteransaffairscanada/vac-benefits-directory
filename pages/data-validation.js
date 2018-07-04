@@ -56,6 +56,10 @@ export class DataValidation extends Component {
     return !(b.needs && b.needs != "");
   }
 
+  checkEligibiltyPaths(b) {
+    return !(b.eligibilityPaths && b.eligibilityPaths != "");
+  }
+
   render() {
     const {
       i18n,
@@ -103,6 +107,11 @@ export class DataValidation extends Component {
         "Benefits Without Needs",
         benefits.filter(this.checkMissingNeeds).length,
         benefits.filter(this.checkMissingNeeds).length == 0 ? "Pass" : "Fail"
+      ),
+      this.createData(
+        "Benefits not in an Eligibility Path",
+        benefits.filter(this.checkEligibiltyPaths).length,
+        benefits.filter(this.checkEligibiltyPaths).length == 0 ? "Pass" : "Fail"
       )
     ];
 

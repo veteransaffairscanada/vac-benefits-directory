@@ -52,18 +52,12 @@ describe("A", () => {
       dispatch: jest.fn(),
       benefits: benefitsFixture,
       eligibilityPaths: elegibilityPathsFixture,
-      selectedNeeds: {},
       needs: needsFixture,
       examples: [],
-      selectedEligibility: {
-        serviceType: "",
-        patronType: "",
-        statusAndVitals: ""
-      },
       setPatronType: jest.fn(),
       setSelectedNeeds: jest.fn(),
       setServiceType: jest.fn(),
-      setStatusType: jest.fn(),
+      setStatusAndVitals: jest.fn(),
       favouriteBenefits: []
     };
     _mountedA = undefined;
@@ -72,7 +66,11 @@ describe("A", () => {
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      needs: needsFixture
+      needs: needsFixture,
+      selectedNeeds: {},
+      serviceType: "CAF",
+      patronType: "family",
+      statusAndVitals: ""
     };
     props.store = mockStore(reduxData);
   });
@@ -83,12 +81,7 @@ describe("A", () => {
   });
 
   it("has a correct setURL function", () => {
-    props.selectedEligibility = {
-      patronType: "family",
-      serviceType: "CAF",
-      statusAndVitals: ""
-    };
-    props.selectedNeeds = { health: "health", financial: "financial" };
+    reduxData.selectedNeeds = { health: "health", financial: "financial" };
     let AInstance = mountedA().instance();
     const state = {
       section: "S"
@@ -100,64 +93,21 @@ describe("A", () => {
     expect(Router.push).toBeCalledWith(expectedURL);
   });
 
-  it("has a correct clearFilters function", () => {
-    let AInstance = mountedA().instance();
-    AInstance.clearFilters();
-    expect(AInstance.props.setPatronType).toBeCalledWith("");
-    expect(AInstance.props.setServiceType).toBeCalledWith("");
-    expect(AInstance.props.setStatusType).toBeCalledWith("");
-  });
-
-  it("has a correct clearNeeds function", () => {
-    let AInstance = mountedA().instance();
-    AInstance.clearNeeds();
-    expect(AInstance.props.setSelectedNeeds).toBeCalledWith({});
-  });
-
   it("componentWillMount sets state correctly from empty url", () => {
-    expect(mountedA().state().section).toEqual("BB");
+    expect(mountedA().state().section).toEqual("A1");
   });
 
-  it("toggleSelectedEligibility adds and removes id", () => {
-    let AInstance = mountedA().instance();
-    AInstance.toggleSelectedEligibility("patronType", "x")();
-    expect(AInstance.props.setPatronType).toBeCalledWith("x");
-    AInstance.toggleSelectedEligibility("serviceType", "x")();
-    expect(AInstance.props.setServiceType).toBeCalledWith("x");
-    AInstance.toggleSelectedEligibility("statusAndVitals", "x")();
-    expect(AInstance.props.setStatusType).toBeCalledWith("x");
+  it("sectionToDisplay returns correct section", () => {
+    ["A1", "A2", "A3", "A4"].forEach(section => {
+      let AInstance = mountedA().instance();
+      expect(AInstance.sectionToDisplay(section).props.id).toEqual(section);
+    });
   });
 
-  it("setSelectedNeeds logs an analytics event", () => {
+  it("setSection sets the state in section", () => {
     let AInstance = mountedA().instance();
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    AInstance.setSelectedNeeds(["foo"]);
-    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
-  });
-
-  it("setUserProfile logs an analytics event", () => {
-    let AInstance = mountedA().instance();
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    AInstance.setUserProfile("serviceType", "x");
-    expect(analytics.logEvent).toBeCalledWith(
-      "FilterClick",
-      "serviceType",
-      "x"
-    );
-  });
-
-  it("setUserProfile clears other filters if Organization is selected", () => {
-    let AInstance = mountedA().instance();
-    AInstance.setUserProfile("patronType", "organization");
-    expect(AInstance.props.setServiceType).toBeCalledWith("");
-    expect(AInstance.props.setStatusType).toBeCalledWith("");
-  });
-
-  it("sectionToDisplay returns appropriate component", () => {
-    let AInstance = mountedA().instance();
-    expect(AInstance.sectionToDisplay("BB").props.id).toEqual("BB");
+    AInstance.setSection("AA");
+    expect(mountedA().state("section")).toEqual("AA");
   });
 
   it("componantDidMount hydrates Redux with fixtures if use_testdata set", () => {

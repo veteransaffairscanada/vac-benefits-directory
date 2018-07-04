@@ -15,6 +15,7 @@ import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
+import { getFilteredBenefits } from "../selectors/benefits";
 
 const styles = theme => ({
   benefitsCount: {
@@ -105,111 +106,6 @@ export class BB extends Component {
     });
   };
 
-  eligibilityMatch = (path, selected) => {
-    let matches = true;
-    ["serviceType", "patronType", "statusAndVitals"].forEach(criteria => {
-      if (
-        selected[criteria] != "" &&
-        path[criteria] !== "na" &&
-        selected[criteria] != path[criteria]
-      ) {
-        matches = false;
-      }
-    });
-    return matches;
-  };
-
-  filterBenefits = (
-    benefits,
-    eligibilityPaths,
-    selectedEligibility,
-    needs,
-    selectedNeeds
-  ) => {
-    if (benefits.length === 0) {
-      return benefits;
-    }
-
-    // make it easy to invert the id
-    let benefitForId = {};
-    benefits.forEach(b => {
-      benefitForId[b.id] = b;
-    });
-
-    // find benefits that match
-    let eligibleBenefitIds = [];
-    eligibilityPaths.forEach(ep => {
-      if (this.eligibilityMatch(ep, selectedEligibility)) {
-        eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
-      }
-    });
-    const eligibleBenefits = eligibleBenefitIds.map(id => benefitForId[id]);
-
-    let benefitIdsForSelectedNeeds = [];
-    if (Object.keys(selectedNeeds).length > 0) {
-      Object.keys(selectedNeeds).forEach(id => {
-        const need = needs.filter(n => n.id === id)[0];
-        benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
-          need.benefits
-        );
-      });
-    } else {
-      benefitIdsForSelectedNeeds = benefits.map(b => b.id);
-    }
-    let matchingBenefitIds = eligibleBenefitIds.filter(
-      id => benefitIdsForSelectedNeeds.indexOf(id) > -1
-    );
-    const matchingBenefits = matchingBenefitIds.map(id => benefitForId[id]);
-
-    /* show:
-         - matching benefits
-         - eligible benefits with a matching child
-         ( maybe: - non-eligible benefits with a matching child that isn't already covered)
-     */
-
-    const eligibleBenefitsWithMatchingChild = eligibleBenefits.filter(
-      b =>
-        b.childBenefits
-          ? b.childBenefits.filter(id => matchingBenefitIds.indexOf(id) > -1)
-              .length > 0
-          : false
-    );
-
-    let benefitsToShow = matchingBenefits.concat(
-      eligibleBenefitsWithMatchingChild
-    );
-    benefitsToShow = benefitsToShow.filter(
-      (b, n) => benefitsToShow.indexOf(b) === n
-    ); // dedup
-
-    // if a benefit is already shown as a child, only show it (as a parent card) if it's available independently
-    let childrenIDsShown = [];
-    benefitsToShow.forEach(b => {
-      childrenIDsShown = childrenIDsShown.concat(b.childBenefits);
-    });
-    benefitsToShow = benefitsToShow.filter(
-      b =>
-        b.availableIndependently === "Independent" ||
-        childrenIDsShown.indexOf(b.id) < 0
-    );
-
-    // If there is a searchString the run another filter
-    if (this.state.searchString.trim() !== "") {
-      let results = [];
-      if (this.props.t("current-language-code") == "en") {
-        results = this.state.enIdx.search(this.state.searchString + "*");
-      } else {
-        results = this.state.frIdx.search(this.state.searchString + "*");
-      }
-      let resultIds = results.map(r => r.ref);
-      benefitsToShow = benefitsToShow.filter(benefit =>
-        resultIds.includes(benefit.id)
-      );
-    }
-
-    return benefitsToShow;
-  };
-
   handleSortByChange = event => {
     this.setState({ sortByValue: event.target.value });
   };
@@ -242,10 +138,25 @@ export class BB extends Component {
     });
   };
 
+  getFavouritesURL = () => {
+    let href = "/favourites?";
+    if (Object.keys(this.props.selectedNeeds).length > 0) {
+      href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
+    }
+    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+      if (this.props[selection] !== "") {
+        href += `&${selection}=${this.props.selectedEligibility[selection]}`;
+      }
+    });
+    href += "&lng=" + this.props.t("current-language-code");
+    return href;
+  };
+
   getPrintUrl = (
     filteredBenefits,
     selectedEligibility,
     selectedNeeds,
+    sortby,
     language
   ) => {
     const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
@@ -261,6 +172,7 @@ export class BB extends Component {
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
+    url += "&sortBy=" + sortby;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
@@ -270,18 +182,13 @@ export class BB extends Component {
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
 
-    const filteredBenefits = this.filterBenefits(
-      this.props.benefits,
-      this.props.eligibilityPaths,
-      this.props.selectedEligibility,
-      this.props.needs,
-      this.props.selectedNeeds
-    );
+    const filteredBenefits = this.props.filteredBenefits;
 
     const printUrl = this.getPrintUrl(
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
+      this.state.sortByValue,
       t("current-language-code")
     );
 
@@ -299,21 +206,14 @@ export class BB extends Component {
             <Grid item lg={3} md={4} sm={5} xs={12}>
               <ProfileSelector
                 t={t}
-                handleChange={this.props.setSelectedNeeds}
-                clearFilters={this.props.clearFilters}
-                selectedEligibility={this.props.selectedEligibility}
-                setUserProfile={this.props.setUserProfile}
-                eligibilityPaths={this.props.eligibilityPaths}
                 pageWidth={this.props.pageWidth}
+                store={this.props.store}
               />
               <Grid item xs={12}>
                 <NeedsSelector
                   t={t}
-                  needs={this.props.needs}
-                  selectedNeeds={this.props.selectedNeeds}
-                  handleChange={this.props.setSelectedNeeds}
-                  clearNeeds={this.props.clearNeeds}
                   pageWidth={this.props.pageWidth}
+                  store={this.props.store}
                 />
               </Grid>
             </Grid>
@@ -369,16 +269,17 @@ export class BB extends Component {
 
                 <Grid item xs={8} className={classnames(classes.collapse)}>
                   <Button
-                    id="Favourites"
+                    id="Favourites Page"
                     variant="flat"
                     size="small"
-                    onClick={() => this.props.setSection("favourites")}
+                    href={this.getFavouritesURL()}
                   >
                     {t("B3.favouritesButtonText") +
                       " (" +
                       this.props.favouriteBenefits.length +
                       ")"}
                   </Button>
+
                   <Button
                     variant="flat"
                     size="small"
@@ -417,35 +318,37 @@ export class BB extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    benefits: state.benefits,
-    eligibilityPaths: state.eligibilityPaths,
-    examples: state.examples,
-    needs: state.needs
+    benefits: reduxState.benefits,
+    eligibilityPaths: reduxState.eligibilityPaths,
+    examples: reduxState.examples,
+    filteredBenefits: getFilteredBenefits(reduxState),
+    needs: reduxState.needs,
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    },
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
 BB.propTypes = {
   benefits: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
-  clearFilters: PropTypes.func.isRequired,
-  clearNeeds: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
+  filteredBenefits: PropTypes.array,
   id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired,
-  setUserProfile: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  toggleSelectedEligibility: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  setSection: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 

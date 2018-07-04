@@ -119,6 +119,7 @@ export class Favourites extends Component {
     filteredBenefits,
     selectedEligibility,
     selectedNeeds,
+    sortBy,
     language
   ) => {
     const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
@@ -134,6 +135,7 @@ export class Favourites extends Component {
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
+    url += "&sortBy=" + sortBy;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
@@ -152,6 +154,7 @@ export class Favourites extends Component {
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
+      this.state.sortByValue,
       t("current-language-code")
     );
 
@@ -241,11 +244,18 @@ export class Favourites extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    benefits: state.benefits,
-    eligibilityPaths: state.eligibilityPaths,
-    examples: state.examples
+    benefits: reduxState.benefits,
+    eligibilityPaths: reduxState.eligibilityPaths,
+    needs: reduxState.needs,
+    examples: reduxState.examples,
+    selectedEligibility: {
+      patronType: reduxState.patronType,
+      serviceType: reduxState.serviceType,
+      statusAndVitals: reduxState.statusAndVitals
+    },
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
@@ -258,7 +268,6 @@ Favourites.propTypes = {
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   toggleFavourite: PropTypes.func.isRequired,
-  url: PropTypes.object.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   store: PropTypes.object

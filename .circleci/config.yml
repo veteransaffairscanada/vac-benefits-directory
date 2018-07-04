@@ -125,11 +125,9 @@ workflows:
   build_and_deploy:
    jobs:
      - build
-     - integration
      - deploy:
         requires:
          - build
-         - integration
         filters:
           branches:
             only:

@@ -33,6 +33,7 @@ describe("GuidedExperience", () => {
       classes: {},
       id: "YY",
       nextSection: "ZZ",
+      benefitsDirectoryUrl: "/benefits-directory",
       prevSection: "XX",
       stepNumber: 1,
       children: <div className="thing" />,
@@ -89,5 +90,25 @@ describe("GuidedExperience", () => {
       .first()
       .simulate("click");
     expect(props.setSection).toBeCalledWith("A1");
+  });
+
+  it("the Next button does not contain an href if nextSection != benefits-directory", () => {
+    props.nextSection = "A2";
+    expect(
+      mounted_GuidedExperience()
+        .find("Button")
+        .last()
+        .props().href
+    ).toEqual(undefined);
+  });
+
+  it("the Next button contains an appropriate href if nextSection == benefits-directory", () => {
+    props.nextSection = "benefits-directory";
+    expect(
+      mounted_GuidedExperience()
+        .find("Button")
+        .last()
+        .props().href
+    ).toEqual(props.benefitsDirectoryUrl);
   });
 });
