@@ -132,7 +132,7 @@ export class BB extends Component {
   };
 
   handleSearchChange = event => {
-    this.setSearchString(event.target.value);
+    this.props.setSearchString(event.target.value);
   };
 
   getFavouritesURL = () => {

@@ -60,12 +60,14 @@ describe("BB", () => {
       needs: needsFixture,
       serviceType: "",
       patronType: "",
+      searchString: "",
       statusAndVitals: "",
       selectedEligibility: {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
       },
+      setSearchString: jest.fn(),
       selectedNeeds: {}
     };
     props.store = mockStore(reduxData);
@@ -190,11 +192,11 @@ describe("BB", () => {
       ).toEqual(0);
     });
 
-    it("handleSearchChange sets the state of searchString", () => {
+    it("handleSearchChange sets the searchString state in redux", () => {
       mounted_BB()
         .instance()
         .handleSearchChange({ target: { value: "foo" } });
-      expect(mounted_BB().state().searchString).toEqual("foo");
+      expect(reduxData.setSearchString).toBeCalledWith("foo");
     });
   });
 
