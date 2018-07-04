@@ -108,7 +108,9 @@ export class Map extends Component {
           <AreaOfficeMap
             id="AreaOfficeMap"
             googleMapURL={
-              "https://maps.googleapis.com/maps/api/js?key=AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE&language=" +
+              "https://maps.googleapis.com/maps/api/js?key=" +
+              google_maps_key +
+              "&language=" +
               t("current-language-code") +
               "&v=3.exp&libraries=geometry,drawing,places"
             }
