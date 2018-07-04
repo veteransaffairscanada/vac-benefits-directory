@@ -8,7 +8,7 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:9
-      
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -32,7 +32,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+
       # run tests!
       - run: yarn test -w2
       - run:
@@ -91,7 +91,7 @@ jobs:
       - run:
           command: |
               docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-              docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg AIRTABLE_WRITE_KEY="${AIRTABLE_WRITE_KEY}" .
+              docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg GOOGLE_MAPS_KEY="${GOOGLE_MAPS_KEY}" --build-arg AIRTABLE_WRITE_KEY="${AIRTABLE_WRITE_KEY}" .
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy API Docker Image"
@@ -101,14 +101,14 @@ jobs:
           when: on_fail
 
     working_directory: ~/repo
-  update_ecs: 
-    docker: 
+  update_ecs:
+    docker:
       - image: "cdssnc/ecs-cli:latest"
-    steps: 
-      - checkout: 
+    steps:
+      - checkout:
           path: ~/repo
       - setup_remote_docker
-      - run: 
+      - run:
          command: |
               cd deploy
               ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE --timeout 15
