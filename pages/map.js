@@ -125,7 +125,7 @@ export class Map extends Component {
           <Paper className={classes.root}>
             <Table>
               <TableHead>
-                <TableRow>
+                <TableRow id="tableHeader">
                   <TableCell>{t("map.office")}</TableCell>
                   <TableCell>{t("map.address")}</TableCell>
                   <TableCell>{t("map.distance")}</TableCell>
@@ -134,7 +134,7 @@ export class Map extends Component {
               <TableBody>
                 {sortedAreaOffices.map(ae => {
                   return (
-                    <TableRow key={ae.id}>
+                    <TableRow key={ae.id} id={"tableRow" + ae.id}>
                       <TableCell>
                         {language === "en" ? ae.name_en : ae.name_fr}
                       </TableCell>

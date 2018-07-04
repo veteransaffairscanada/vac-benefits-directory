@@ -4,8 +4,9 @@ import { mount, shallow } from "enzyme";
 import React from "react";
 import WrappedAreaOfficeMap from "../../components/area_office_map";
 import { AreaOfficeMap } from "../../components/area_office_map";
-
 import configureStore from "redux-mock-store";
+import areaOfficesFixture from "../fixtures/area_offices";
+
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -27,24 +28,7 @@ describe("AreaOfficeMap", () => {
       }
     };
     reduxData = {
-      areaOffices: [
-        {
-          name_en: "name_en",
-          name_fr: "name_fr",
-          address_en: "address_en",
-          address_fr: "address_fr",
-          lat: "50",
-          lng: "-100"
-        },
-        {
-          name_en: "name_en",
-          name_fr: "name_fr",
-          address_en: "address_en",
-          address_fr: "address_fr",
-          lat: "55",
-          lng: "-100"
-        }
-      ]
+      areaOffices: areaOfficesFixture
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
