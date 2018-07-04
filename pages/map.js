@@ -17,7 +17,7 @@ const styles = theme => ({
     width: 500
   }
 });
-
+const google_maps_key = process.env.GOOGLE_MAPS_KEY;
 export class Map extends Component {
   static defaultProps = {
     center: {
@@ -43,7 +43,9 @@ export class Map extends Component {
         <AreaOfficeMap
           id="AreaOfficeMap"
           googleMapURL={
-            "https://maps.googleapis.com/maps/api/js?key=AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE&language=" +
+            "https://maps.googleapis.com/maps/api/js?key=" +
+            google_maps_key +
+            "&language=" +
             t("current-language-code") +
             "&v=3.exp&libraries=geometry,drawing,places"
           }
