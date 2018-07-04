@@ -224,7 +224,7 @@ export class BB extends Component {
                       id="bbSearchField"
                       label={t("search")}
                       placeholder=""
-                      value={this.state.searchString}
+                      value={this.props.searchString}
                       onChange={this.handleSearchChange}
                       margin="normal"
                     />
