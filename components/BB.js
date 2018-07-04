@@ -249,18 +249,14 @@ export class BB extends Component {
                         {t("B3.Alphabetical")}
                       </MenuItem>
                     </Select>
-                    {this.props.url.query.show_search ? (
-                      <TextField
-                        id="bbSearchField"
-                        label={t("search")}
-                        placeholder=""
-                        value={this.state.searchString}
-                        onChange={this.handleSearchChange}
-                        margin="normal"
-                      />
-                    ) : (
-                      ""
-                    )}
+                    <TextField
+                      id="bbSearchField"
+                      label={t("search")}
+                      placeholder=""
+                      value={this.state.searchString}
+                      onChange={this.handleSearchChange}
+                      margin="normal"
+                    />
                   </FormControl>
                 </Grid>
 
