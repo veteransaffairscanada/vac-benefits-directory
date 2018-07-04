@@ -11,6 +11,12 @@ import {
 const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 export class AreaOfficeMap extends Component {
+  static defaultProps = {
+    lat: 49,
+    lng: -104,
+    zoom: 4
+  };
+
   state = {};
   getToggleOpen(id) {
     return () => {
@@ -31,8 +37,8 @@ export class AreaOfficeMap extends Component {
     const { t } = this.props;
     return (
       <GoogleMap
-        defaultZoom={4}
-        defaultCenter={{ lat: 52, lng: -90 }}
+        defaultZoom={5}
+        center={{ lat: this.props.lat, lng: this.props.lng }}
         {...this.props}
       >
         {this.props.areaOffices.map((d, i) => {
@@ -74,6 +80,9 @@ const mapStateToProps = state => {
 
 AreaOfficeMap.propTypes = {
   areaOffices: PropTypes.array.isRequired,
+  lat: PropTypes.number,
+  lng: PropTypes.number,
+  zoom: PropTypes.number,
   t: PropTypes.func.isRequired
 };
 
