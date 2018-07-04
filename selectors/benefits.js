@@ -1,10 +1,15 @@
+import lunr from "lunr";
 import { createSelector } from "reselect";
 
 const getBenefits = state => state.benefits;
+const getCurrentLanguage = (state, props) => props.t("current-language-code");
 const getEligibilityPaths = state => state.eligibilityPaths;
+const getEnIdx = state => state.enIdx;
+const getFrIdx = state => state.frIdx;
 const getNeeds = state => state.needs;
 const getNeedsFilter = state => state.selectedNeeds;
 const getPatronFilter = state => state.patronType;
+const getSearchStringFilter = state => state.searchString;
 const getServiceFilter = state => state.serviceType;
 const getStatusFilter = state => state.statusAndVitals;
 
@@ -16,7 +21,11 @@ export const getFilteredBenefits = createSelector(
     getNeedsFilter,
     getBenefits,
     getNeeds,
-    getEligibilityPaths
+    getEligibilityPaths,
+    getSearchStringFilter,
+    getCurrentLanguage,
+    getEnIdx,
+    getFrIdx
   ],
   (
     patronFilter,
@@ -25,8 +34,16 @@ export const getFilteredBenefits = createSelector(
     selectedNeeds,
     benefits,
     needs,
-    eligibilityPaths
+    eligibilityPaths,
+    searchString,
+    currentLanguage,
+    enIdx,
+    frIdx
   ) => {
+    // Reinitalize indexes after they are serialized by Redux
+    enIdx = lunr.Index.load(JSON.parse(enIdx));
+    frIdx = lunr.Index.load(JSON.parse(frIdx));
+
     let selectedEligibility = {
       patronType: patronFilter,
       serviceType: serviceFilter,
@@ -112,6 +129,20 @@ export const getFilteredBenefits = createSelector(
         b.availableIndependently === "Independent" ||
         childrenIDsShown.indexOf(b.id) < 0
     );
+
+    // If there is a searchString the run another filter
+    if (searchString.trim() !== "") {
+      let results = [];
+      if (currentLanguage == "en") {
+        results = enIdx.search(searchString + "*");
+      } else {
+        results = frIdx.search(searchString + "*");
+      }
+      let resultIds = results.map(r => r.ref);
+      benefitsToShow = benefitsToShow.filter(benefit =>
+        resultIds.includes(benefit.id)
+      );
+    }
 
     return benefitsToShow;
   }

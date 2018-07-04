@@ -9,7 +9,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
-import lunr from "lunr";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
@@ -59,37 +58,8 @@ export class BB extends Component {
   state = {
     enIdx: null,
     frIdx: null,
-    searchString: "",
     sortByValue: "relevance"
   };
-
-  componentWillMount() {
-    const { benefits } = this.props;
-
-    const enIdx = lunr(function() {
-      this.pipeline.remove(lunr.stemmer);
-      this.pipeline.remove(lunr.stopWordFilter);
-      this.ref("id");
-      this.field("vacNameEn");
-      this.field("oneLineDescriptionEn");
-      benefits.forEach(function(doc) {
-        this.add(doc);
-      }, this);
-    });
-
-    const frIdx = lunr(function() {
-      this.pipeline.remove(lunr.stemmer);
-      this.pipeline.remove(lunr.stopWordFilter);
-      this.ref("id");
-      this.field("vacNameFr");
-      this.field("oneLineDescriptionFr");
-      benefits.forEach(function(doc) {
-        this.add(doc);
-      }, this);
-    });
-
-    this.setState({ enIdx: enIdx, frIdx: frIdx });
-  }
 
   children = [];
 
@@ -133,9 +103,7 @@ export class BB extends Component {
   };
 
   handleSearchChange = event => {
-    this.setState({
-      searchString: event.target.value
-    });
+    this.props.setSearchString(event.target.value);
   };
 
   getFavouritesURL = () => {
@@ -252,18 +220,14 @@ export class BB extends Component {
                         {t("B3.Alphabetical")}
                       </MenuItem>
                     </Select>
-                    {this.props.url.query.show_search ? (
-                      <TextField
-                        id="bbSearchField"
-                        label={t("search")}
-                        placeholder=""
-                        value={this.state.searchString}
-                        onChange={this.handleSearchChange}
-                        margin="normal"
-                      />
-                    ) : (
-                      ""
-                    )}
+                    <TextField
+                      id="bbSearchField"
+                      label={t("search")}
+                      placeholder=""
+                      value={this.state.searchString}
+                      onChange={this.handleSearchChange}
+                      margin="normal"
+                    />
                   </FormControl>
                 </Grid>
 
@@ -304,7 +268,7 @@ export class BB extends Component {
                   onRef={ref => this.children.push(ref)}
                   sortByValue={this.state.sortByValue}
                   toggleFavourite={this.props.toggleFavourite}
-                  searchString={this.state.searchString}
+                  searchString={this.props.searchString}
                   showFavourites={true}
                   favouriteBenefits={this.props.favouriteBenefits}
                   store={this.props.store}
@@ -318,13 +282,22 @@ export class BB extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
+const mapDispatchToProps = dispatch => {
+  return {
+    setSearchString: searchString => {
+      dispatch({ type: "SET_SEARCH_STRING", data: searchString });
+    }
+  };
+};
+
+const mapStateToProps = (reduxState, props) => {
   return {
     benefits: reduxState.benefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
-    filteredBenefits: getFilteredBenefits(reduxState),
+    filteredBenefits: getFilteredBenefits(reduxState, props),
     needs: reduxState.needs,
+    searchString: reduxState.searchString,
     selectedEligibility: {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
@@ -342,8 +315,10 @@ BB.propTypes = {
   filteredBenefits: PropTypes.array,
   id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
+  searchString: PropTypes.string.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  setSearchString: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
@@ -352,4 +327,6 @@ BB.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(BB));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(BB)
+);
