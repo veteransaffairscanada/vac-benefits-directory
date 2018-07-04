@@ -9,7 +9,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
-import lunr from "lunr";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import NeedsSelector from "./needs_selector";
@@ -61,34 +60,6 @@ export class BB extends Component {
     frIdx: null,
     sortByValue: "relevance"
   };
-
-  componentWillMount() {
-    const { benefits } = this.props;
-
-    const enIdx = lunr(function() {
-      this.pipeline.remove(lunr.stemmer);
-      this.pipeline.remove(lunr.stopWordFilter);
-      this.ref("id");
-      this.field("vacNameEn");
-      this.field("oneLineDescriptionEn");
-      benefits.forEach(function(doc) {
-        this.add(doc);
-      }, this);
-    });
-
-    const frIdx = lunr(function() {
-      this.pipeline.remove(lunr.stemmer);
-      this.pipeline.remove(lunr.stopWordFilter);
-      this.ref("id");
-      this.field("vacNameFr");
-      this.field("oneLineDescriptionFr");
-      benefits.forEach(function(doc) {
-        this.add(doc);
-      }, this);
-    });
-
-    this.setState({ enIdx: enIdx, frIdx: frIdx });
-  }
 
   children = [];
 
@@ -319,12 +290,12 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState, props) => {
   return {
     benefits: reduxState.benefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
-    filteredBenefits: getFilteredBenefits(reduxState),
+    filteredBenefits: getFilteredBenefits(reduxState, props),
     needs: reduxState.needs,
     searchString: reduxState.searchString,
     selectedEligibility: {

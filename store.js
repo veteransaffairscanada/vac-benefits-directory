@@ -1,11 +1,14 @@
+import lunr from "lunr";
 import { createStore } from "redux";
 
 const initialState = {
   areaOffices: [],
   benefits: [],
   eligibilityPaths: [],
+  enIdx: {},
   examples: [],
   favouriteBenefits: [],
+  frIdx: {},
   needs: [],
   patronType: "",
   searchString: "",
@@ -17,7 +20,39 @@ const initialState = {
 
 // REDUCERS
 export const reducer = (state = initialState, action) => {
+  let benefits;
+  let enIdx;
+  let frIdx;
+
   switch (action.type) {
+    case "INDEX_BENEFITS":
+      benefits = state.benefits;
+      enIdx = lunr(function() {
+        this.pipeline.remove(lunr.stemmer);
+        this.pipeline.remove(lunr.stopWordFilter);
+        this.ref("id");
+        this.field("vacNameEn");
+        this.field("oneLineDescriptionEn");
+        benefits.forEach(function(doc) {
+          this.add(doc);
+        }, this);
+      });
+
+      frIdx = lunr(function() {
+        this.pipeline.remove(lunr.stemmer);
+        this.pipeline.remove(lunr.stopWordFilter);
+        this.ref("id");
+        this.field("vacNameFr");
+        this.field("oneLineDescriptionFr");
+        benefits.forEach(function(doc) {
+          this.add(doc);
+        }, this);
+      });
+
+      return Object.assign({}, state, {
+        enIdx: JSON.stringify(enIdx),
+        frIdx: JSON.stringify(frIdx)
+      });
     case "LOAD_DATA":
       return Object.assign({}, state, {
         storeHydrated: action.data.storeHydrated || state.storeHydrated,
