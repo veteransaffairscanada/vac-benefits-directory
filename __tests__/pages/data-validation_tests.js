@@ -107,5 +107,15 @@ describe("DataValidation", () => {
     expect(instance.getBrokenBenefits(props.benefits[0], 0)).toEqual(
       " " + props.benefits[0].id + " (1),"
     );
+
+  it("fails if a benefit does not have any linked Needs", () => {
+    props.benefits[0].needs = "";
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
+
+  it("fails if a benefit is not connected to any Eligibility Paths", () => {
+    props.benefits[0].eligibilityPaths = "";
+    expect(mountedDataValidation().html()).toContain("Fail");
+
   });
 });

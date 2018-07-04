@@ -36,32 +36,11 @@ describe("Feedback bar", () => {
     expect(mountedFeedbackBar().text()).toContain("feedback-prompt");
   });
 
-  it("shows the comment prompt", () => {
-    expect(mountedFeedbackBar().text()).toContain("comment-prompt");
-  });
-
-  describe("clicking the comment button", () => {
-    it("shows the comment box", () => {
-      mountedFeedbackBar()
-        .find("#commentToggle")
-        .at(0)
-        .simulate("click");
-      expect(mountedFeedbackBar().text()).toContain("comment-help-us-improve");
-      expect(mountedFeedbackBar().text()).toContain(
-        "comment-privacy-disclaimer"
-      );
-      expect(mountedFeedbackBar().text()).toContain(
-        "comment-what-were-you-doing"
-      );
-      expect(mountedFeedbackBar().text()).toContain("comment-what-went-wrong");
-    });
-  });
-
   describe("clicking the comment submit button", () => {
     it("calls the sendComment function", () => {
       const spy = jest.spyOn(mountedFeedbackBar().instance(), "sendComment");
       mountedFeedbackBar()
-        .find("#commentToggle")
+        .find("#feedbackNo")
         .at(0)
         .simulate("click");
 
@@ -76,7 +55,7 @@ describe("Feedback bar", () => {
 
   it("editing the what were you doing text field updates the action state", () => {
     mountedFeedbackBar()
-      .find("#commentToggle")
+      .find("#feedbackNo")
       .at(0)
       .simulate("click");
 
@@ -90,7 +69,7 @@ describe("Feedback bar", () => {
 
   it("editing the what went wrong text field updates the action state", () => {
     mountedFeedbackBar()
-      .find("#commentToggle")
+      .find("#feedbackNo")
       .at(0)
       .simulate("click");
 
