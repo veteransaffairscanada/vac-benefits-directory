@@ -59,7 +59,6 @@ export class BB extends Component {
   state = {
     enIdx: null,
     frIdx: null,
-    searchString: "",
     sortByValue: "relevance"
   };
 
@@ -133,9 +132,7 @@ export class BB extends Component {
   };
 
   handleSearchChange = event => {
-    this.setState({
-      searchString: event.target.value
-    });
+    this.setSearchString(event.target.value);
   };
 
   getFavouritesURL = () => {
@@ -304,7 +301,7 @@ export class BB extends Component {
                   onRef={ref => this.children.push(ref)}
                   sortByValue={this.state.sortByValue}
                   toggleFavourite={this.props.toggleFavourite}
-                  searchString={this.state.searchString}
+                  searchString={this.props.searchString}
                   showFavourites={true}
                   favouriteBenefits={this.props.favouriteBenefits}
                   store={this.props.store}
@@ -318,6 +315,14 @@ export class BB extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setSearchString: searchString => {
+      dispatch({ type: "SET_SEARCH_STRING", data: searchString });
+    }
+  };
+};
+
 const mapStateToProps = reduxState => {
   return {
     benefits: reduxState.benefits,
@@ -325,6 +330,7 @@ const mapStateToProps = reduxState => {
     examples: reduxState.examples,
     filteredBenefits: getFilteredBenefits(reduxState),
     needs: reduxState.needs,
+    searchString: reduxState.searchString,
     selectedEligibility: {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
@@ -342,8 +348,10 @@ BB.propTypes = {
   filteredBenefits: PropTypes.array,
   id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
+  searchString: PropTypes.string.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  setSearchString: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
@@ -352,4 +360,6 @@ BB.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(BB));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(BB)
+);

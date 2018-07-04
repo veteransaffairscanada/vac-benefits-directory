@@ -1,17 +1,18 @@
 import { createStore } from "redux";
 
 const initialState = {
+  areaOffices: [],
   benefits: [],
   eligibilityPaths: [],
   examples: [],
   favouriteBenefits: [],
   needs: [],
-  selectedNeeds: {},
   patronType: "",
+  searchString: "",
+  selectedNeeds: {},
   serviceType: "",
   statusAndVitals: "",
-  text: [],
-  areaOffices: []
+  text: []
 };
 
 // REDUCERS
@@ -33,6 +34,10 @@ export const reducer = (state = initialState, action) => {
     case "SET_PATRON_TYPE":
       return Object.assign({}, state, {
         patronType: action.data
+      });
+    case "SET_SEARCH_STRING":
+      return Object.assign({}, state, {
+        searchString: action.data
       });
     case "SET_SELECTED_NEEDS":
       return Object.assign({}, state, {
