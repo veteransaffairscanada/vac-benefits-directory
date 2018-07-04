@@ -33,6 +33,9 @@ describe("DataValidation", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
+      //  data-validation: {
+      //    getBrokenBenefits: jest.fn()
+      //  },
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
@@ -90,5 +93,19 @@ describe("DataValidation", () => {
   it("fails if a benefit is missing EN or FR links", () => {
     props.benefits[0].benefitPageFr = "";
     expect(mountedDataValidation().html()).toContain("Fail");
+  });
+
+  it("pass if checkMissingNeeds finds missing needs", () => {
+    props.benefits[0].needs = "";
+    const instance = shallow(<DataValidation {...props} />).instance();
+    expect(instance.checkMissingNeeds(props.benefits[0])).toEqual(true);
+  });
+
+  it("fails if getBrokenBenefits doesn't return broken benefits", () => {
+    props.benefits[0].vacNameEn = "";
+    const instance = shallow(<DataValidation {...props} />).instance();
+    expect(instance.getBrokenBenefits(props.benefits[0], 0)).toEqual(
+      " " + props.benefits[0].id + " (1),"
+    );
   });
 });

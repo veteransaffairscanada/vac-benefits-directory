@@ -35,14 +35,10 @@ export class DataValidation extends Component {
     redux2i18n(this.props.i18n, this.props.text);
   }
 
-  getBrokenBenefits(b) {
-    let brokenBenefits = "";
-    for (var i = 1; i < b.length; i++) {
-      if (this.checkMissingNeeds(b[i]) || this.checkIfMissingText(b[i])) {
-        brokenBenefits = brokenBenefits + " " + b[i].id + " (" + (i + 1) + "),";
-      }
+  getBrokenBenefits(b, i) {
+    if (this.checkMissingNeeds(b) || this.checkIfMissingText(b)) {
+      return " " + b.id + " (" + (i + 1) + "),";
     }
-    return brokenBenefits;
   }
 
   checkIfMissingText(b) {
@@ -139,7 +135,12 @@ export class DataValidation extends Component {
               })}
               <TableRow>
                 <TableCell> {t("dv.Benefits failing tests")} </TableCell>
-                <TableCell> {this.getBrokenBenefits(benefits)} </TableCell>
+                <TableCell>
+                  {" "}
+                  {benefits.map((b, i) => {
+                    return this.getBrokenBenefits(b, i);
+                  })}
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>
