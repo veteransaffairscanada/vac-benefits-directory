@@ -1,15 +1,10 @@
 {
   "name": "vac-poc",
-  "scripts": {
-  },
+  "scripts": {},
   "env": {
+    "GOOGLE_MAPS_KEY": { "required": true }
   },
-  "formation": {
-  },
-  "addons": [
-
-  ],
-  "buildpacks": [
-
-  ]
+  "formation": {},
+  "addons": [],
+  "buildpacks": []
 }
