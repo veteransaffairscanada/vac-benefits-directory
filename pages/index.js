@@ -68,7 +68,12 @@ export class App extends Component {
           </HeroButton>
         </Hero>
         <Search>
-          <SearchComponent i18n={this.props.i18n} t={this.props.t} />
+          <SearchComponent
+            id="searchComponent"
+            i18n={this.props.i18n}
+            store={this.props.store}
+            t={this.props.t}
+          />
         </Search>
       </Layout>
     );
@@ -83,6 +88,7 @@ const mapStateToProps = state => {
 
 App.propTypes = {
   i18n: PropTypes.object.isRequired,
+  store: PropTypes.object,
   t: PropTypes.func.isRequired,
   text: PropTypes.array.isRequired
 };

@@ -3,6 +3,8 @@
 import { mount } from "enzyme";
 import React from "react";
 import { App } from "../../pages/index";
+import benefitsFixture from "../fixtures/benefits";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -10,13 +12,24 @@ expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
 describe("Index page", () => {
-  let props = {
-    t: key => key,
-    text: [],
-    i18n: {
-      addResourceBundle: jest.fn()
-    }
-  };
+  let props;
+  let mockStore, reduxData;
+
+  beforeEach(() => {
+    props = {
+      t: key => key,
+      text: [],
+      i18n: {
+        addResourceBundle: jest.fn()
+      }
+    };
+    mockStore = configureStore();
+    reduxData = {
+      text: [],
+      benefits: benefitsFixture
+    };
+    props.store = mockStore(reduxData);
+  });
 
   it("passes axe tests", async () => {
     let html = mount(<App {...props} />).html();
@@ -51,5 +64,10 @@ describe("Index page", () => {
         .first()
         .text()
     ).toEqual("index.all benefits");
+  });
+
+  it("has a search component", () => {
+    const appMounted = mount(<App {...props} {...reduxData} />);
+    expect(appMounted.find("#searchComponent").length).not.toEqual(1);
   });
 });

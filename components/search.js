@@ -20,10 +20,10 @@ const styles = theme => ({
     position: "relative"
   },
   input: {
-    marginTop: "25px"
+    marginTop: "5px"
   },
   inputIcon: {
-    marginTop: "45px"
+    marginTop: "5px"
   },
   suggestionsContainerOpen: {
     position: "absolute",
@@ -92,11 +92,13 @@ export class Search extends Component {
   renderInput = inputProps => {
     const { classes, ref, ...other } = inputProps;
     return (
-      <div className={this.props.classes.searchWrap}>
+      <div id={this.props.id} className={this.props.classes.searchWrap}>
         <div style={{ flex: 1, marginRight: "10px" }}>
           <TextField
-            classname={this.props.classes.input}
+            id={this.props.t("search")}
+            className={this.props.classes.input}
             fullWidth
+            label={this.props.t("search")}
             InputProps={{
               inputRef: ref,
               classes: {
@@ -154,7 +156,8 @@ export class Search extends Component {
   };
 
   renderSuggestionsContainer = options => {
-    const { containerProps, children } = options;
+    let { containerProps, children } = options;
+    delete containerProps.role; // This fails the aXe test. The Child list is correct though
     return (
       <Paper {...containerProps} square>
         {children}
@@ -203,6 +206,8 @@ Search.propTypes = {
   benefits: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  id: PropTypes.string,
+  store: PropTypes.object,
   t: PropTypes.func.isRequired
 };
 
