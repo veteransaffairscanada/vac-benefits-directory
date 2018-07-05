@@ -51,7 +51,7 @@ export class Map extends Component {
   }
 
   componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.text);
+    redux2i18n(this.props.i18n, this.props.translations);
   }
 
   componentDidMount() {
@@ -159,7 +159,7 @@ export class Map extends Component {
 
 const mapStateToProps = state => {
   return {
-    text: state.text,
+    translations: state.translations,
     areaOffices: state.areaOffices
   };
 };
@@ -169,7 +169,7 @@ Map.propTypes = {
   t: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   areaOffices: PropTypes.array.isRequired,
-  text: PropTypes.array.isRequired
+  translations: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(connect(mapStateToProps)(withI18next()(Map)));

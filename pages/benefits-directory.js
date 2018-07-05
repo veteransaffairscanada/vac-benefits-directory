@@ -21,7 +21,7 @@ export class BenefitsDirectory extends Component {
   }
 
   componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.text);
+    redux2i18n(this.props.i18n, this.props.translations);
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits
     };
@@ -103,7 +103,7 @@ export class BenefitsDirectory extends Component {
 const mapStateToProps = reduxState => {
   return {
     favouriteBenefits: reduxState.favouriteBenefits,
-    text: reduxState.text,
+    translations: reduxState.translations,
     patronType: reduxState.patronType,
     searchString: reduxState.searchString,
     serviceType: reduxState.serviceType,
@@ -118,7 +118,7 @@ BenefitsDirectory.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
-  text: PropTypes.array.isRequired,
+  translations: PropTypes.array.isRequired,
   patronType: PropTypes.string.isRequired,
   searchString: PropTypes.string.isRequired,
   serviceType: PropTypes.string.isRequired,

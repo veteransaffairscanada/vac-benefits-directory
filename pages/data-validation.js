@@ -32,7 +32,7 @@ export class DataValidation extends Component {
   };
 
   componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.text);
+    redux2i18n(this.props.i18n, this.props.translations);
   }
 
   getBrokenBenefits(b, i) {
@@ -69,7 +69,7 @@ export class DataValidation extends Component {
       eligibilityPaths,
       needs,
       examples,
-      text
+      translations
     } = this.props; // eslint-disable-line no-unused-vars
 
     const data = [
@@ -94,9 +94,9 @@ export class DataValidation extends Component {
         examples.length > 0 ? "Pass" : "Fail"
       ),
       this.createData(
-        "nameTextTableSize",
-        text.length,
-        text.length > 0 ? "Pass" : "Fail"
+        "nameTranslationTableSize",
+        translations.length,
+        translations.length > 0 ? "Pass" : "Fail"
       ),
       this.createData(
         "Benefits with Empty Fields",
@@ -165,7 +165,7 @@ const mapStateToProps = state => {
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
     examples: state.examples,
-    text: state.text
+    translations: state.translations
   };
 };
 
@@ -177,7 +177,7 @@ DataValidation.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  text: PropTypes.array.isRequired
+  translations: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(

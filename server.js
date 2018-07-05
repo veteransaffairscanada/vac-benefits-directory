@@ -112,7 +112,7 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
         });
       }
     );
-  redux2i18n.redux2i18n(i18nInstance, data.text);
+  redux2i18n.redux2i18n(i18nInstance, data.translations);
 });
 
 // this code should run when the data-validation page is loaded and send that page the results

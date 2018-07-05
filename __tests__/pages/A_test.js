@@ -6,7 +6,7 @@ import Router from "next/router";
 import React from "react";
 import { A } from "../../pages/A";
 import benefitsFixture from "../fixtures/benefits";
-import textFixture from "../fixtures/text";
+import translationsFixture from "../fixtures/translations";
 
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
@@ -38,7 +38,7 @@ describe("A", () => {
 
   beforeEach(() => {
     props = {
-      text: [],
+      translations: [],
       url: {
         query: {}
       },
@@ -118,7 +118,7 @@ describe("A", () => {
     };
     const expectedArgs = {
       benefits: benefitsFixture,
-      text: textFixture
+      translations: translationsFixture
     };
     expect(mountedA().instance().props.dispatch).toBeCalledWith({
       type: "LOAD_DATA",
