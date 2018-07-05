@@ -61,7 +61,11 @@ To add a new ENV variable to the source code, take the following steps:
 4.  Add another build argument to [config.yml](./.circleci/config.yml):
     `--build-arg YOUR_VARIABLE_NAME="${YOUR_VARIABLE_NAME}"`
 5.  Add the ENV variable to circleci through their web interface: https://circleci.com/gh/cds-snc/vac-benefits-directory -> Settings -> Environment Variables
-6.  Add the ENV variable to heroku through their web interface
+6.  Add the ENV variable to heroku through their web interface.
+    It will need to be added to any production apps as well as the app that the pull request reviews are based on, namely
+    [vac-poc-staging](https://dashboard.heroku.com/apps/vac-poc-staging). Go to the apps, then the Settings tab, then "Reveal Config Vars"
+    and set the variable.
+
 7.  Add `"YOUR_VARIABLE_NAME": { "required": true }` to the `env` object in [app.json](./app.json)
 
 ## Reference
