@@ -6,15 +6,12 @@ import Layout from "../components/layout";
 import { connect } from "react-redux";
 import { redux2i18n } from "../utils/redux2i18n";
 import BB from "../components/BB";
-import Cookies from "universal-cookie";
 import Router from "next/router";
 
 export class BenefitsDirectory extends Component {
   constructor() {
     super();
-    this.cookies = new Cookies();
     this.state = {
-      favouriteBenefits: [],
       width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
@@ -22,10 +19,6 @@ export class BenefitsDirectory extends Component {
 
   componentWillMount() {
     redux2i18n(this.props.i18n, this.props.text);
-    const newState = {
-      favouriteBenefits: this.props.favouriteBenefits
-    };
-    this.setState(newState);
   }
 
   componentDidMount() {
@@ -63,19 +56,6 @@ export class BenefitsDirectory extends Component {
     Router.push(href);
   };
 
-  toggleFavourite = id => {
-    let favouriteBenefits = this.cookies.get("favouriteBenefits")
-      ? this.cookies.get("favouriteBenefits")
-      : [];
-    if (favouriteBenefits.indexOf(id) > -1) {
-      favouriteBenefits.splice(favouriteBenefits.indexOf(id), 1);
-    } else {
-      favouriteBenefits.push(id);
-    }
-    this.cookies.set("favouriteBenefits", favouriteBenefits, { path: "/" });
-    this.setState({ favouriteBenefits: favouriteBenefits });
-  };
-
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
@@ -89,8 +69,6 @@ export class BenefitsDirectory extends Component {
           id="BB"
           t={t}
           pageWidth={this.state.width}
-          favouriteBenefits={this.state.favouriteBenefits}
-          toggleFavourite={this.toggleFavourite}
           url={this.props.url}
           store={this.props.store}
           setSection={this.setSection}
@@ -102,7 +80,6 @@ export class BenefitsDirectory extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    favouriteBenefits: reduxState.favouriteBenefits,
     text: reduxState.text,
     patronType: reduxState.patronType,
     searchString: reduxState.searchString,
@@ -114,7 +91,6 @@ const mapStateToProps = reduxState => {
 
 BenefitsDirectory.propTypes = {
   url: PropTypes.object.isRequired,
-  favouriteBenefits: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,

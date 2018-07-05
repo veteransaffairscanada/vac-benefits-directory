@@ -6,9 +6,9 @@ import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import FavouriteButton from "./favourite_button";
 
 import { logEvent } from "../utils/analytics";
 
@@ -49,11 +49,11 @@ export class EmbeddedBenefitCard extends Component {
     logEvent("Exit", url);
   };
 
-  toggleState = () => {
-    let newState = !this.state.open;
-    this.setState({ open: newState });
+  toggleOpenState = () => {
+    this.setState(previousState => {
+      return { ...previousState, open: !previousState.open };
+    });
   };
-
   componentDidMount() {
     this.props.onRef(this);
   }
@@ -76,10 +76,18 @@ export class EmbeddedBenefitCard extends Component {
       >
         <ExpansionPanelSummary
           expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
-          onClick={() => this.toggleState()}
+          onClick={() => this.toggleOpenState()}
           className={classes.ExpansionPanelSummary}
         >
           <Typography className={classnames(classes.heading)}>
+            {this.props.showFavourite ? (
+              <FavouriteButton
+                benefit={benefit}
+                toggleOpenState={this.toggleOpenState}
+              />
+            ) : (
+              ""
+            )}
             {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
           </Typography>
         </ExpansionPanelSummary>
@@ -127,7 +135,8 @@ EmbeddedBenefitCard.propTypes = {
   benefit: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  onRef: PropTypes.func.isRequired
+  onRef: PropTypes.func.isRequired,
+  showFavourite: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(EmbeddedBenefitCard);

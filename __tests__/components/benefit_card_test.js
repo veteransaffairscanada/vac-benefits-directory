@@ -125,7 +125,7 @@ describe("BenefitCard", () => {
         .find("#FavoriteButton0")
         .children()
         .text()
-    ).toContain("(FavoriteBorder)");
+    ).toContain("(BookmarkBorder)");
   });
 
   it("is favourited if in list", () => {
@@ -135,7 +135,7 @@ describe("BenefitCard", () => {
         .find("#FavoriteButton0")
         .children()
         .text()
-    ).toContain("(Favorite)");
+    ).toContain("(Bookmark)");
   });
 
   it("calls toggleFavourite if favourite button pressed", () => {

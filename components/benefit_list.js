@@ -99,7 +99,6 @@ export class BenefitList extends React.Component {
               t={this.props.t}
               key={benefit.id}
               onRef={this.props.onRef}
-              toggleFavourite={this.props.toggleFavourite}
               favouriteBenefits={this.props.favouriteBenefits}
               showFavourite={this.props.showFavourites}
               searchString={this.props.searchString}
@@ -113,11 +112,12 @@ export class BenefitList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    benefits: state.benefits,
-    eligibilityPaths: state.eligibilityPaths,
-    examples: state.examples
+    benefits: reduxState.benefits,
+    favouriteBenefits: reduxState.favouriteBenefits,
+    eligibilityPaths: reduxState.eligibilityPaths,
+    examples: reduxState.examples
   };
 };
 
@@ -130,7 +130,6 @@ BenefitList.propTypes = {
   onRef: PropTypes.func.isRequired,
   sortByValue: PropTypes.string.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  toggleFavourite: PropTypes.func.isRequired,
   showFavourites: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object
