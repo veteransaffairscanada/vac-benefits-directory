@@ -57,6 +57,9 @@ export class BenefitsDirectory extends Component {
         href += `&${selection}=${this.props[selection]}`;
       }
     });
+    if (this.props.searchString !== "") {
+      href += `&searchString=${this.props.searchString}`;
+    }
     Router.push(href);
   };
 
@@ -102,6 +105,7 @@ const mapStateToProps = reduxState => {
     favouriteBenefits: reduxState.favouriteBenefits,
     text: reduxState.text,
     patronType: reduxState.patronType,
+    searchString: reduxState.searchString,
     serviceType: reduxState.serviceType,
     statusAndVitals: reduxState.statusAndVitals,
     selectedNeeds: reduxState.selectedNeeds
@@ -116,6 +120,7 @@ BenefitsDirectory.propTypes = {
   store: PropTypes.object,
   text: PropTypes.array.isRequired,
   patronType: PropTypes.string.isRequired,
+  searchString: PropTypes.string.isRequired,
   serviceType: PropTypes.string.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired

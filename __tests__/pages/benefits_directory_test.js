@@ -117,9 +117,10 @@ describe("BenefitsDirectory", () => {
 
   it("has a correct setURL function", () => {
     reduxData.selectedNeeds = { health: "health", financial: "financial" };
+    reduxData.searchString = "foo";
     let AInstance = mountedBenefitsDirectory().instance();
     const expectedURL =
-      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=family&serviceType=CAF";
+      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=family&serviceType=CAF&searchString=foo";
     AInstance.setURL();
     expect(Router.push).toBeCalledWith(expectedURL);
   });
