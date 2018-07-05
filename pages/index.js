@@ -33,7 +33,7 @@ const Title = styled("div")`
 
 export class App extends Component {
   componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.text);
+    redux2i18n(this.props.i18n, this.props.translations);
   }
 
   render() {
@@ -82,7 +82,7 @@ export class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    text: state.text
+    translations: state.translations
   };
 };
 
@@ -90,7 +90,7 @@ App.propTypes = {
   i18n: PropTypes.object.isRequired,
   store: PropTypes.object,
   t: PropTypes.func.isRequired,
-  text: PropTypes.array.isRequired
+  translations: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(App));

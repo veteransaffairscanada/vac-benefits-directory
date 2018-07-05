@@ -6,7 +6,7 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import "babel-polyfill/dist/polyfill";
 import benefitsFixture from "../__tests__/fixtures/benefits";
-import textFixture from "../__tests__/fixtures/text";
+import translationsFixture from "../__tests__/fixtures/translations";
 
 import Cookies from "universal-cookie";
 
@@ -26,7 +26,7 @@ export class A extends Component {
   }
 
   componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.text);
+    redux2i18n(this.props.i18n, this.props.translations);
 
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
@@ -50,7 +50,7 @@ export class A extends Component {
         type: "LOAD_DATA",
         data: {
           benefits: benefitsFixture,
-          text: textFixture
+          translations: translationsFixture
         }
       });
     }
@@ -270,7 +270,7 @@ const mapStateToProps = reduxState => {
     serviceType: reduxState.serviceType,
     statusAndVitals: reduxState.statusAndVitals,
     selectedNeeds: reduxState.selectedNeeds,
-    text: reduxState.text
+    translations: reduxState.translations
   };
 };
 
@@ -290,7 +290,7 @@ A.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,
   store: PropTypes.object,
-  text: PropTypes.array.isRequired
+  translations: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18next()(A));
