@@ -31,9 +31,38 @@ https://cdsvacpoc.azurewebsites.net/
 
 ## Configuration
 
-The application uses Sentry.io for error logging. If you would also like to use sentry, make sure your public client key is the `SENTRY_DSN` enviroment variable.
+The application uses Sentry.io for error logging. If you would also like to use sentry, make sure your public client key is the `SENTRY_DSN` environment variable.
 
 Google Analytics is used for behaviour tracking, ex: How many people switch between languages. If you would like to include your own GA key set the `GA_UA` environment variable.
+
+The Google maps api is used to display a map of area office locations. If you would like to include your own api key set the `GOOGLE_MAPS_KEY` environment variable.
+
+Here is an example of how to add an ENV variable locally on OSX:
+
+1.  In the terminal, run: `nano ~/.bash_profile`
+2.  Add the following line: `export GOOGLE_MAPS_KEY="foo"`
+3.  [ctrl] + x, and type `y` to save
+4.  `source .bash_profile`
+5.  `echo $GOOGLE_MAPS_KEY` to make sure it is set
+6.  `yarn dev` to start the dev server
+7.  Visit http://localhost:3000/map?lng=en with your browser to check that the map is loading
+
+## Adding a new environment variable to the source code
+
+To add a new ENV variable to the source code, take the following steps:
+
+1.  Follow the steps above to add it locally
+2.  Reference it in the src code with `process.env.YOUR_VARIABLE_NAME`
+3.  Add the following lines to [Dockerfile](./Dockerfile):
+    ```
+    ARG YOUR_VARIABLE_NAME
+    ENV YOUR_VARIABLE_NAME ${YOUR_VARIABLE_NAME}
+    ```
+4.  Add another build argument to [config.yml](./.circleci/config.yml):
+    `--build-arg YOUR_VARIABLE_NAME="${YOUR_VARIABLE_NAME}"`
+5.  Add the ENV variable to circleci through their web interface: https://circleci.com/gh/cds-snc/vac-benefits-directory -> Settings -> Environment Variables
+6.  Add the ENV variable to heroku through their web interface
+7.  Add `"YOUR_VARIABLE_NAME": { "required": true }` to the `env` object in [app.json](./app.json)
 
 ## Reference
 
