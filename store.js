@@ -15,7 +15,7 @@ const initialState = {
   selectedNeeds: {},
   serviceType: "",
   statusAndVitals: "",
-  text: []
+  translations: []
 };
 
 // REDUCERS
@@ -63,7 +63,7 @@ export const reducer = (state = initialState, action) => {
         examples: action.data.examples || state.examples,
         favouriteBenefits:
           action.data.favouriteBenefits || state.favouriteBenefits,
-        text: action.data.text || state.text,
+        translations: action.data.translations || state.translations,
         areaOffices: action.data.areaOffices || state.areaOffices
       });
     case "SET_PATRON_TYPE":

@@ -17,7 +17,7 @@ describe("Map", () => {
 
   beforeEach(() => {
     props = {
-      text: [],
+      translations: [],
       i18n: {
         addResourceBundle: jest.fn()
       },

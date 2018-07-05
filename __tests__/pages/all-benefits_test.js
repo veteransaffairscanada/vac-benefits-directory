@@ -27,7 +27,7 @@ describe("AllBenefits", () => {
 
   beforeEach(() => {
     props = {
-      text: [],
+      translations: [],
       t: key => key,
       i18n: {
         addResourceBundle: jest.fn()
