@@ -9,7 +9,6 @@ import configureStore from "redux-mock-store";
 describe("Search", () => {
   let props;
   let _mountedSearch;
-  let _shallowSearch;
   let mockStore, reduxData;
 
   const mounted_Search = () => {
@@ -17,13 +16,6 @@ describe("Search", () => {
       _mountedSearch = mount(<Search {...props} {...reduxData} />);
     }
     return _mountedSearch;
-  };
-
-  const shallow_Search = () => {
-    if (!_shallowSearch) {
-      _shallowSearch = shallow(<Search {...props} {...reduxData} />);
-    }
-    return _shallowSearch;
   };
 
   beforeEach(() => {
@@ -34,7 +26,6 @@ describe("Search", () => {
       t: key => key,
       theme: {}
     };
-    _shallowSearch = undefined;
     _mountedSearch = undefined;
     reduxData = {
       benefits: benefitsFixture
