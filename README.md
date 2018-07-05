@@ -1,8 +1,8 @@
 # VAC Benefits Directory
 
-CircleCI Status: [![CircleCI](https://circleci.com/gh/cds-snc/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-benefits-directory)
+Master Status: [![CircleCI](https://circleci.com/gh/cds-snc/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-benefits-directory)
 
-This is a proof of concept for the VAC project, currently hosted at
+This is the code for the VAC Benefits Directory being developed by VAC and CDS. The app is currently deployed at
 https://cdsvacpoc.azurewebsites.net/
 
 ## Quickstart
@@ -10,7 +10,7 @@ https://cdsvacpoc.azurewebsites.net/
 * `yarn install`
 * `yarn dev`
 
-## How to get VAC Benefits Directory to work on VAC machines(May 31, 2018)
+## How to get VAC Benefits Directory to work on VAC machines (May 31, 2018)
 
 * download Node.JS of version 9 or newer(as .zip since .msi is blocked)
 
@@ -60,8 +60,8 @@ To add a new ENV variable to the source code, take the following steps:
     ```
 4.  Add another build argument to [config.yml](./.circleci/config.yml):
     `--build-arg YOUR_VARIABLE_NAME="${YOUR_VARIABLE_NAME}"`
-5.  Add the ENV variable to circleci through their web interface: https://circleci.com/gh/cds-snc/vac-benefits-directory -> Settings -> Environment Variables
-6.  Add the ENV variable to heroku through their web interface.
+5.  Add the ENV variable to CircleCI through their web interface: https://circleci.com/gh/cds-snc/vac-benefits-directory -> Settings -> Environment Variables
+6.  Add the ENV variable to Heroku through their web interface.
     It will need to be added to any production apps as well as the app that the pull request reviews are based on, namely
     [vac-poc-staging](https://dashboard.heroku.com/apps/vac-poc-staging). Go to the apps, then the Settings tab, then "Reveal Config Vars"
     and set the variable.
