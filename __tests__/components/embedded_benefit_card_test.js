@@ -118,4 +118,13 @@ describe("EmbeddedBenefitCard", () => {
       benefitsFixture[1].benefitPageEn
     );
   });
+
+  it("has a needs chip", () => {
+    props.selectedNeeds["0"] = "0";
+    expect(
+      mountedEmbeddedBenefitCard()
+        .find("Chip")
+        .text()
+    ).toEqual("Health");
+  });
 });

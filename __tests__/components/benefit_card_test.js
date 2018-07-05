@@ -5,7 +5,6 @@ import configureStore from "redux-mock-store";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -182,6 +181,16 @@ describe("BenefitCard", () => {
       ).toEqual("fr");
     });
   });
+
+  it("has a needs chip", () => {
+    reduxData.selectedNeeds["0"] = "0";
+    expect(
+      mountedBenefitCard()
+        .find("Chip")
+        .text()
+    ).toEqual("Health");
+  });
+
   it("changes open state when somebody clicks on it", () => {
     expect(mountedBenefitCard().state().open).toEqual(false);
     mountedBenefitCard()
@@ -190,6 +199,7 @@ describe("BenefitCard", () => {
       .simulate("click");
     expect(mountedBenefitCard().state().open).toEqual(true);
   });
+
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
