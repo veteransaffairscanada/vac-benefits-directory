@@ -132,6 +132,7 @@ export class Search extends Component {
       </div>
     );
   };
+
   renderSuggestion = (suggestion, { query, isHighlighted }) => {
     const matches = match(suggestion, query);
     const parts = parse(suggestion, matches);
