@@ -9,6 +9,7 @@ import translationsFixture from "../fixtures/translations";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import examplesFixture from "../fixtures/examples";
+import areaOfficesFixture from "../fixtures/area_offices";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -40,6 +41,7 @@ describe("DataValidation", () => {
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
       examples: examplesFixture,
+      areaOffices: areaOfficesFixture,
       classes: {}
     };
     _mountedDataValidation = undefined;
@@ -85,6 +87,11 @@ describe("DataValidation", () => {
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
+  it("fails if areaOffices is empty", () => {
+    props.areaOffices = [];
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
+
   it("fails if a benefit is missing english or french text", () => {
     props.benefits[0].vacNameEn = "";
     expect(mountedDataValidation().html()).toContain("Fail");
@@ -95,10 +102,18 @@ describe("DataValidation", () => {
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
-  it("pass if checkMissingNeeds finds missing needs", () => {
+  it("fail if checkMissingNeeds doesn't find missing needs", () => {
     props.benefits[0].needs = "";
     const instance = shallow(<DataValidation {...props} />).instance();
     expect(instance.checkMissingNeeds(props.benefits[0])).toEqual(true);
+  });
+
+  it("fail if checkAreaOfficesFields doesn't find empty fields", () => {
+    props.areaOffices[0].name_en = "";
+    const instance = shallow(<DataValidation {...props} />).instance();
+    expect(instance.checkAreaOfficesFields(props.areaOffices[0], 0)).toEqual(
+      " " + props.areaOffices[0].id + " (" + 1 + "),"
+    );
   });
 
   it("fails if getBrokenBenefits doesn't return broken benefits", () => {
