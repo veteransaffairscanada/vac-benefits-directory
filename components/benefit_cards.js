@@ -251,6 +251,7 @@ export class BenefitCard extends Component {
                             t={this.props.t}
                             key={cb.id}
                             onRef={ref => this.children.push(ref)}
+                            store={this.props.store}
                           />
                         ))}
                         <br />
@@ -275,6 +276,7 @@ export class BenefitCard extends Component {
                             t={this.props.t}
                             key={cb.id}
                             onRef={ref => this.children.push(ref)}
+                            store={this.props.store}
                           />
                         ))}
                       </div>

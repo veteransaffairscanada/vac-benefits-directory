@@ -66,6 +66,8 @@ const mapStateToProps = state => {
     examples: state.examples,
     eligibilityPaths: state.eligibilityPaths,
     favouriteBenefits: state.favouriteBenefits,
+    needs: state.needs,
+    selectedNeeds: state.selectedNeeds,
     text: state.text
   };
 };
@@ -77,6 +79,8 @@ AllBenefits.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
+  needs: PropTypes.array.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
   text: PropTypes.array.isRequired
 };
 

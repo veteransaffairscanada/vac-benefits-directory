@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { EmbeddedBenefitCard } from "../../components/embedded_benefit_card";
 import benefitsFixture from "../fixtures/benefits";
+import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -21,7 +22,9 @@ describe("EmbeddedBenefitCard", () => {
       t: () => "en",
       benefit: benefitsFixture[0],
       classes: {},
-      onRef: foo => foo
+      onRef: foo => foo,
+      needs: needsFixture,
+      selectedNeeds: {}
     };
     _mountedEmbeddedBenefitCard = undefined;
   });

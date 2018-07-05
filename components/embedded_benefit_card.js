@@ -160,7 +160,8 @@ EmbeddedBenefitCard.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  onRef: PropTypes.func.isRequired
+  onRef: PropTypes.func.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(
