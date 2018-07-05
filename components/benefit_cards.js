@@ -96,7 +96,7 @@ export class BenefitCard extends Component {
     const { t, classes } = this.props;
 
     const childBenefits = benefit.childBenefits
-      ? this.props.allBenefits.filter(
+      ? this.props.allBenefits.filter(g
           ab => benefit.childBenefits.indexOf(ab.id) > -1
         )
       : [];

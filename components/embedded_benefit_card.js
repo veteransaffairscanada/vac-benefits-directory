@@ -91,7 +91,7 @@ export class EmbeddedBenefitCard extends Component {
           onClick={() => this.toggleState()}
           className={classes.ExpansionPanelSummary}
         >
-          <Typography className={classnames(classes.heading)}>
+          <div className={classnames(classes.heading)}>
             {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
 
             {needsMet.map(need => (
@@ -105,7 +105,7 @@ export class EmbeddedBenefitCard extends Component {
                 }
               />
             ))}
-          </Typography>
+          </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container spacing={24}>

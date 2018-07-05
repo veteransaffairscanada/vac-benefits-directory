@@ -53,7 +53,6 @@ describe("EmbeddedBenefitCard", () => {
     expect(
       mountedEmbeddedBenefitCard()
         .find("ExpansionPanelSummary")
-        .find("Typography")
         .text()
     ).toEqual(benefitsFixture[0].vacNameEn);
     expect(
@@ -65,10 +64,9 @@ describe("EmbeddedBenefitCard", () => {
     expect(
       mountedEmbeddedBenefitCard()
         .find("ExpansionPanelDetails")
-        .find("Typography")
         .first()
         .text()
-    ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
+    ).toEqual(benefitsFixture[0].oneLineDescriptionEn + "en");
   });
 
   describe("when language is French", () => {
@@ -80,7 +78,6 @@ describe("EmbeddedBenefitCard", () => {
       expect(
         mountedEmbeddedBenefitCard()
           .find("ExpansionPanelSummary")
-          .find("Typography")
           .text()
       ).toEqual(benefitsFixture[0].vacNameFr);
       expect(
@@ -92,10 +89,9 @@ describe("EmbeddedBenefitCard", () => {
       expect(
         mountedEmbeddedBenefitCard()
           .find("ExpansionPanelDetails")
-          .find("Typography")
           .first()
           .text()
-      ).toEqual(benefitsFixture[0].oneLineDescriptionFr);
+      ).toEqual(benefitsFixture[0].oneLineDescriptionFr + "fr");
     });
   });
   it("changes open state when somebody clicks on it", () => {
