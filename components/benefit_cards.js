@@ -8,13 +8,17 @@ import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Chip from "@material-ui/core/Chip";
 import Highlighter from "react-highlight-words";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 
-const styles = () => ({
+const styles = theme => ({
+  chip: {
+    margin: theme.spacing.unit / 2
+  },
   button: {
     marginTop: "30px"
   },
@@ -110,6 +114,14 @@ export class BenefitCard extends Component {
         ? this.props.examples.filter(ex => benefit.examples.indexOf(ex.id) > -1)
         : [];
 
+    const needsMet = benefit.needs
+      ? this.props.needs.filter(
+          need =>
+            benefit.needs.indexOf(need.id) > -1 &&
+            this.props.selectedNeeds[need.id]
+        )
+      : [];
+
     return (
       <Grid item xs={12}>
         <div className={classes.root}>
@@ -167,6 +179,18 @@ export class BenefitCard extends Component {
                     }
                   />
                 </Typography>
+
+                {needsMet.map(need => (
+                  <Chip
+                    key={benefit.id + need.id}
+                    className={classes.chip}
+                    label={
+                      this.props.t("current-language-code") === "en"
+                        ? need.nameEn
+                        : need.nameFr
+                    }
+                  />
+                ))}
               </div>
             </ExpansionPanelSummary>
 
@@ -268,9 +292,11 @@ export class BenefitCard extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    examples: state.examples
+    examples: reduxState.examples,
+    needs: reduxState.needs,
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
@@ -281,6 +307,8 @@ BenefitCard.propTypes = {
   benefit: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   examples: PropTypes.array.isRequired,
+  needs: PropTypes.array.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   onRef: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array,
