@@ -18,14 +18,14 @@ describe("Index page", () => {
   beforeEach(() => {
     props = {
       t: key => key,
-      text: [],
+      translations: [],
       i18n: {
         addResourceBundle: jest.fn()
       }
     };
     mockStore = configureStore();
     reduxData = {
-      text: [],
+      translations: [],
       benefits: benefitsFixture
     };
     props.store = mockStore(reduxData);
