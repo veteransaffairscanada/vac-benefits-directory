@@ -115,12 +115,8 @@ describe("EmbeddedBenefitCard", () => {
     );
   });
 
-  it("has a needs chip", () => {
+  it("has a needs tag", () => {
     props.selectedNeeds["0"] = "0";
-    expect(
-      mountedEmbeddedBenefitCard()
-        .find("Chip")
-        .text()
-    ).toEqual("Health");
+    expect(mountedEmbeddedBenefitCard().text()).toContain("Need 0");
   });
 });

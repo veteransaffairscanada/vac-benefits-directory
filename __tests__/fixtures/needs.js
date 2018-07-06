@@ -1,19 +1,19 @@
 const needsFixture = [
   {
     id: "0",
-    nameEn: "Health",
-    nameFr: "FF Health",
+    nameEn: "Need 0",
+    nameFr: "Fr Need 0",
     benefits: ["0"]
   },
   {
     id: "1",
-    nameEn: "Assistance around the home",
-    nameFr: "FF Assistance around the home"
+    nameEn: "Need 1",
+    nameFr: "Fr Need 1"
   },
   {
     id: "2",
-    nameEn: "Finding a Job",
-    nameFr: "FF Finding a Job"
+    nameEn: "Need 2",
+    nameFr: "Fr Need 2"
   }
 ];
 

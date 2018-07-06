@@ -182,13 +182,9 @@ describe("BenefitCard", () => {
     });
   });
 
-  it("has a needs chip", () => {
+  it("has a needs tag", () => {
     reduxData.selectedNeeds["0"] = "0";
-    expect(
-      mountedBenefitCard()
-        .find("Chip")
-        .text()
-    ).toEqual("Health");
+    expect(mountedBenefitCard().text()).toContain("Need 0");
   });
 
   it("changes open state when somebody clicks on it", () => {
