@@ -3,22 +3,24 @@ import { mount, shallow } from "enzyme";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 describe("BenefitCard", () => {
   let props;
+  let mockStore, reduxData;
   let _mountedBenefitCard, _shallowBenefitCard;
   const mountedBenefitCard = () => {
     if (!_mountedBenefitCard) {
-      _mountedBenefitCard = mount(<BenefitCard {...props} />);
+      _mountedBenefitCard = mount(<BenefitCard {...props} {...reduxData} />);
     }
     return _mountedBenefitCard;
   };
   const shallowBenefitCard = () => {
     if (!_shallowBenefitCard) {
-      _shallowBenefitCard = shallow(<BenefitCard {...props} />);
+      _shallowBenefitCard = shallow(<BenefitCard {...props} {...reduxData} />);
     }
     return _shallowBenefitCard;
   };
@@ -35,11 +37,16 @@ describe("BenefitCard", () => {
       onRef: foo => foo,
       searchString: "",
       favouriteBenefits: [],
-      showFavourite: true,
-      toggleFavourite: jest.fn()
+      showFavourite: true
+    };
+    reduxData = {
+      benefits: benefitsFixture,
+      favouriteBenefits: []
     };
     _mountedBenefitCard = undefined;
     _shallowBenefitCard = undefined;
+    mockStore = configureStore();
+    props.store = mockStore(reduxData);
   });
 
   // it("contains the benefit type", () => {
@@ -119,36 +126,9 @@ describe("BenefitCard", () => {
     expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameFr);
   });
 
-  it("is not favourited if not in list", () => {
-    expect(
-      shallowBenefitCard()
-        .find("#FavoriteButton0")
-        .children()
-        .text()
-    ).toContain("(BookmarkBorder)");
-  });
-
-  it("is favourited if in list", () => {
-    props.favouriteBenefits = ["0"];
-    expect(
-      shallowBenefitCard()
-        .find("#FavoriteButton0")
-        .children()
-        .text()
-    ).toContain("(Bookmark)");
-  });
-
-  it("calls toggleFavourite if favourite button pressed", () => {
-    const favouriteButton = mountedBenefitCard()
-      .find("#FavoriteButton0")
-      .first();
-    favouriteButton.simulate("click");
-    expect(props.toggleFavourite).toBeCalledWith("0");
-  });
-
   it("hides the Favourite Button if showFavourite is false", () => {
     props.showFavourite = false;
-    expect(shallowBenefitCard().find("#FavoriteButton0").length).toEqual(0);
+    expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
   });
 
   describe("when language is French", () => {

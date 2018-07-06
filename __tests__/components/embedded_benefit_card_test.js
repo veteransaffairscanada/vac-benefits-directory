@@ -21,7 +21,8 @@ describe("EmbeddedBenefitCard", () => {
       t: () => "en",
       benefit: benefitsFixture[0],
       classes: {},
-      onRef: foo => foo
+      onRef: foo => foo,
+      showFavourite: false
     };
     _mountedEmbeddedBenefitCard = undefined;
   });

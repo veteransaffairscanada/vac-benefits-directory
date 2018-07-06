@@ -106,15 +106,6 @@ describe("BenefitsDirectory", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has a working toggleFavourite function", async () => {
-    let instance = mountedBenefitsDirectory().instance();
-    instance.toggleFavourite("c0");
-    instance.toggleFavourite("c1");
-    expect(instance.cookies.get("favouriteBenefits")).toEqual(["c0", "c1"]);
-    instance.toggleFavourite("c0");
-    expect(instance.cookies.get("favouriteBenefits")).toEqual(["c1"]);
-  });
-
   it("has a correct setURL function", () => {
     reduxData.selectedNeeds = { health: "health", financial: "financial" };
     reduxData.searchString = "foo";

@@ -229,7 +229,6 @@ export class Favourites extends Component {
                   filteredBenefits={filteredBenefits}
                   onRef={ref => this.children.push(ref)}
                   sortByValue={this.state.sortByValue}
-                  toggleFavourite={this.props.toggleFavourite}
                   showFavourites={true}
                   searchString=""
                   store={this.props.store}
@@ -267,7 +266,6 @@ Favourites.propTypes = {
   needs: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  toggleFavourite: PropTypes.func.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   store: PropTypes.object

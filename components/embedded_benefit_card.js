@@ -84,6 +84,7 @@ export class EmbeddedBenefitCard extends Component {
               <FavouriteButton
                 benefit={benefit}
                 toggleOpenState={this.toggleOpenState}
+                store={this.props.store}
               />
             ) : (
               ""
@@ -136,7 +137,8 @@ EmbeddedBenefitCard.propTypes = {
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   onRef: PropTypes.func.isRequired,
-  showFavourite: PropTypes.bool.isRequired
+  showFavourite: PropTypes.bool.isRequired,
+  store: PropTypes.object
 };
 
 export default withStyles(styles)(EmbeddedBenefitCard);

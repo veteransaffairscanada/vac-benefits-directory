@@ -24,7 +24,6 @@ export class FavouriteButton extends Component {
     this.cookies.set("favouriteBenefits", favouriteBenefits, { path: "/" });
     this.props.saveFavourites(favouriteBenefits);
     this.props.toggleOpenState();
-    console.log("toggle");
   };
 
   render() {
@@ -32,13 +31,12 @@ export class FavouriteButton extends Component {
       <IconButton
         style={{ marginLeft: "-15px" }}
         aria-label="Favorite Button"
-        id={"FavoriteButton" + this.props.benefit.id}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
       >
         {this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1 ? (
-          <Bookmark />
+          <Bookmark className={"bookmarked"} />
         ) : (
-          <BookmarkBorder />
+          <BookmarkBorder className={"notBookmarked"} />
         )}
       </IconButton>
     );
@@ -66,7 +64,8 @@ FavouriteButton.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   saveFavourites: PropTypes.func.isRequired,
   benefit: PropTypes.object.isRequired,
-  toggleOpenState: PropTypes.func.isRequired
+  toggleOpenState: PropTypes.func.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavouriteButton);

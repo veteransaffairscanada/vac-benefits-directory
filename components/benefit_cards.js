@@ -124,6 +124,7 @@ export class BenefitCard extends Component {
                     <FavouriteButton
                       benefit={benefit}
                       toggleOpenState={this.toggleOpenState}
+                      store={this.props.store}
                     />
                   ) : (
                     ""
@@ -213,6 +214,7 @@ export class BenefitCard extends Component {
                             key={cb.id}
                             onRef={ref => this.children.push(ref)}
                             showFavourite={this.props.showFavourite}
+                            store={this.props.store}
                           />
                         ))}
                         <br />
@@ -238,6 +240,7 @@ export class BenefitCard extends Component {
                             key={cb.id}
                             onRef={ref => this.children.push(ref)}
                             showFavourite={this.props.showFavourite}
+                            store={this.props.store}
                           />
                         ))}
                       </div>

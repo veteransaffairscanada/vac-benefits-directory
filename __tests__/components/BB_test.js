@@ -44,16 +44,15 @@ describe("BB", () => {
       filteredBenefits: [],
       pageWidth: 42,
       setSelectedNeeds: () => true,
-      toggleFavourite: () => true,
       favouriteBenefits: [],
       classes: {},
       url: { query: {} }
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
-    mockStore = configureStore();
     reduxData = {
       benefits: benefitsFixture,
+      favouriteBenefits: [],
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       filteredBenefits: benefitsFixture,
@@ -70,6 +69,7 @@ describe("BB", () => {
       setSearchString: jest.fn(),
       selectedNeeds: {}
     };
+    mockStore = configureStore();
     props.store = mockStore(reduxData);
   });
 
