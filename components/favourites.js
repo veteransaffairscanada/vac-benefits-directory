@@ -211,6 +211,7 @@ export class Favourites extends Component {
                     size="small"
                     target="dan"
                     href={printUrl}
+                    style={{ textTransform: "none" }}
                     className="printButton"
                   >
                     {t("Print")}
@@ -219,6 +220,7 @@ export class Favourites extends Component {
                     id="CollapseBenefits"
                     variant="flat"
                     size="small"
+                    style={{ textTransform: "none" }}
                     onClick={this.collapseAllBenefits}
                   >
                     {t("Close all")}
