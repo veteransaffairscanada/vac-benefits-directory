@@ -96,7 +96,7 @@ export class BenefitCard extends Component {
     const { t, classes } = this.props;
 
     const childBenefits = benefit.childBenefits
-      ? this.props.allBenefits.filter(g
+      ? this.props.allBenefits.filter(
           ab => benefit.childBenefits.indexOf(ab.id) > -1
         )
       : [];
@@ -139,7 +139,7 @@ export class BenefitCard extends Component {
               onClick={() => this.toggleOpenState()}
             >
               <div>
-                <Typography component="p" className="benefitName">
+                <div component="p" className="benefitName">
                   <Highlighter
                     searchWords={this.props.searchString.split(",")}
                     autoEscape={true}
@@ -164,7 +164,18 @@ export class BenefitCard extends Component {
                   ) : (
                     ""
                   )}
-                </Typography>
+                  {needsMet.map(need => (
+                    <Chip
+                      key={benefit.id + need.id}
+                      className={classes.chip}
+                      label={
+                        this.props.t("current-language-code") === "en"
+                          ? need.nameEn
+                          : need.nameFr
+                      }
+                    />
+                  ))}
+                </div>
 
                 <Typography
                   className={"cardDescription " + classes.cardDescriptionText}
@@ -179,18 +190,6 @@ export class BenefitCard extends Component {
                     }
                   />
                 </Typography>
-
-                {needsMet.map(need => (
-                  <Chip
-                    key={benefit.id + need.id}
-                    className={classes.chip}
-                    label={
-                      this.props.t("current-language-code") === "en"
-                        ? need.nameEn
-                        : need.nameFr
-                    }
-                  />
-                ))}
               </div>
             </ExpansionPanelSummary>
 
