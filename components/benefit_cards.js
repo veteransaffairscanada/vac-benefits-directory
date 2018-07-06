@@ -17,7 +17,10 @@ import { connect } from "react-redux";
 
 const styles = theme => ({
   chip: {
-    margin: theme.spacing.unit / 2
+    margin: theme.spacing.unit / 2,
+    backgroundColor: "#364150",
+    color: "white",
+    borderRadius: 0
   },
   button: {
     marginTop: "30px"
