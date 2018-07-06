@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 
 const styles = theme => ({
   needsTag: {
-    margin: theme.spacing.unit / 2,
+    marginLeft: 2 * theme.spacing.unit,
     backgroundColor: "#364150",
     color: "white",
     borderRadius: 0,
@@ -61,8 +61,8 @@ const styles = theme => ({
     width: "100%",
     marginLeft: "20px"
   },
-  benefitNameText: {
-    fontSize: "6px !important"
+  benefitName: {
+    fontWeight: 500
   }
 });
 
@@ -138,7 +138,7 @@ export class BenefitCard extends Component {
               onClick={() => this.toggleOpenState()}
             >
               <div>
-                <div component="p" className="benefitName">
+                <div component="p" className={classes.benefitName}>
                   {this.props.showFavourite ? (
                     <FavouriteButton
                       benefit={benefit}
@@ -157,16 +157,18 @@ export class BenefitCard extends Component {
                         : benefit.vacNameFr
                     }
                   />
-                  {needsMet.map(need => (
-                    <div
-                      key={benefit.id + need.id}
-                      className={classes.needsTag}
-                    >
-                      {this.props.t("current-language-code") === "en"
-                        ? need.nameEn
-                        : need.nameFr}
-                    </div>
-                  ))}
+                  <div style={{ display: "inline-flex" }}>
+                    {needsMet.map(need => (
+                      <div
+                        key={benefit.id + need.id}
+                        className={classes.needsTag}
+                      >
+                        {this.props.t("current-language-code") === "en"
+                          ? need.nameEn
+                          : need.nameFr}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <Typography

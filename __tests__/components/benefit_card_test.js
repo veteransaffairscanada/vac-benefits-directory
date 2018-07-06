@@ -62,12 +62,7 @@ describe("BenefitCard", () => {
   });
 
   it("contains the name", () => {
-    expect(
-      mountedBenefitCard()
-        .find(".benefitName")
-        .first()
-        .text()
-    ).toEqual(benefitsFixture[0].vacNameEn);
+    expect(mountedBenefitCard().text()).toContain(benefitsFixture[0].vacNameEn);
   });
 
   it("contains the description", () => {
@@ -136,12 +131,9 @@ describe("BenefitCard", () => {
     });
 
     it("contains the French name", () => {
-      expect(
-        mountedBenefitCard()
-          .find(".benefitName")
-          .first()
-          .text()
-      ).toEqual(benefitsFixture[0].vacNameFr);
+      expect(mountedBenefitCard().text()).toContain(
+        benefitsFixture[0].vacNameFr
+      );
     });
 
     it("has a button with the French link", () => {
