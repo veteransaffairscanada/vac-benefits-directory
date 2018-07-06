@@ -120,4 +120,13 @@ describe("EmbeddedBenefitCard", () => {
     props.selectedNeeds["0"] = "0";
     expect(mountedEmbeddedBenefitCard().text()).toContain("Need 0");
   });
+
+  it("is expanded if the benefit meets the need", () => {
+    props.selectedNeeds["0"] = "0";
+    expect(mountedEmbeddedBenefitCard().instance().state.open).toEqual(true);
+  });
+
+  it("is not expanded if the benefit doesn't meet the need", () => {
+    expect(mountedEmbeddedBenefitCard().instance().state.open).toEqual(false);
+  });
 });

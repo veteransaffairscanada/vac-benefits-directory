@@ -63,24 +63,33 @@ export class EmbeddedBenefitCard extends Component {
       return { ...previousState, open: !previousState.open };
     });
   };
+
   componentDidMount() {
     this.props.onRef(this);
+    const needsMet = this.getNeedsMet();
+    if (needsMet.length > 0) {
+      this.setState({ open: true });
+    }
   }
 
   componentWillUnmount() {
     this.props.onRef(undefined);
   }
 
-  render() {
-    const { t, classes, benefit } = this.props;
-    const language = t("current-language-code");
-    const needsMet = benefit.needs
+  getNeedsMet() {
+    return this.props.benefit.needs
       ? this.props.needs.filter(
           need =>
-            benefit.needs.indexOf(need.id) > -1 &&
+            this.props.benefit.needs.indexOf(need.id) > -1 &&
             this.props.selectedNeeds[need.id]
         )
       : [];
+  }
+
+  render() {
+    const { t, classes, benefit } = this.props;
+    const language = t("current-language-code");
+    const needsMet = this.getNeedsMet();
 
     return (
       <ExpansionPanel
