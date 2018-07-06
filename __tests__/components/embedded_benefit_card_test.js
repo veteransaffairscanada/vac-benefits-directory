@@ -124,4 +124,13 @@ describe("EmbeddedBenefitCard", () => {
         .text()
     ).toEqual("Health");
   });
+
+  it("is expanded if the benefit meets the need", () => {
+    props.selectedNeeds["0"] = "0";
+    expect(mountedEmbeddedBenefitCard().instance().state.open).toEqual(true);
+  });
+
+  it("is not expanded if the benefit doesn't meet the need", () => {
+    expect(mountedEmbeddedBenefitCard().instance().state.open).toEqual(false);
+  });
 });
