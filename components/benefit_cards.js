@@ -20,7 +20,9 @@ const styles = theme => ({
     margin: theme.spacing.unit / 2,
     backgroundColor: "#364150",
     color: "white",
-    borderRadius: 0
+    borderRadius: 0,
+    display: "inline-flex",
+    padding: "0px 2px"
   },
   button: {
     marginTop: "30px"
@@ -168,15 +170,19 @@ export class BenefitCard extends Component {
                     ""
                   )}
                   {needsMet.map(need => (
-                    <Chip
+                    <div
                       key={benefit.id + need.id}
                       className={classes.chip}
-                      label={
-                        this.props.t("current-language-code") === "en"
-                          ? need.nameEn
-                          : need.nameFr
-                      }
-                    />
+                      // label={
+                      //   this.props.t("current-language-code") === "en"
+                      //     ? need.nameEn
+                      //     : need.nameFr
+                      // }
+                    >
+                      {this.props.t("current-language-code") === "en"
+                        ? need.nameEn
+                        : need.nameFr}
+                    </div>
                   ))}
                 </div>
 
