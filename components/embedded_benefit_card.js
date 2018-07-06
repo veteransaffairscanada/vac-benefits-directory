@@ -6,7 +6,6 @@ import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import Chip from "@material-ui/core/Chip";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 
@@ -14,8 +13,13 @@ import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 
 const styles = theme => ({
-  chip: {
-    margin: theme.spacing.unit / 2
+  needsTag: {
+    margin: theme.spacing.unit / 2,
+    backgroundColor: "#364150",
+    color: "white",
+    borderRadius: 0,
+    display: "inline-flex",
+    padding: "2px 4px"
   },
   root: {
     width: "100%"
@@ -93,18 +97,15 @@ export class EmbeddedBenefitCard extends Component {
         >
           <div className={classnames(classes.heading)}>
             {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-
-            {needsMet.map(need => (
-              <Chip
-                key={benefit.id + need.id}
-                className={classes.chip}
-                label={
-                  this.props.t("current-language-code") === "en"
+            <div style={{ margin: 10, display: "inline-flex" }}>
+              {needsMet.map(need => (
+                <div key={benefit.id + need.id} className={classes.needsTag}>
+                  {this.props.t("current-language-code") === "en"
                     ? need.nameEn
-                    : need.nameFr
-                }
-              />
-            ))}
+                    : need.nameFr}
+                </div>
+              ))}
+            </div>
           </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>

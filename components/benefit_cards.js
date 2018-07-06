@@ -8,7 +8,6 @@ import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import Chip from "@material-ui/core/Chip";
 import Highlighter from "react-highlight-words";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
@@ -16,13 +15,13 @@ import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 
 const styles = theme => ({
-  chip: {
+  needsTag: {
     margin: theme.spacing.unit / 2,
     backgroundColor: "#364150",
     color: "white",
     borderRadius: 0,
     display: "inline-flex",
-    padding: "0px 2px"
+    padding: "2px 4px"
   },
   button: {
     marginTop: "30px"
@@ -172,12 +171,7 @@ export class BenefitCard extends Component {
                   {needsMet.map(need => (
                     <div
                       key={benefit.id + need.id}
-                      className={classes.chip}
-                      // label={
-                      //   this.props.t("current-language-code") === "en"
-                      //     ? need.nameEn
-                      //     : need.nameFr
-                      // }
+                      className={classes.needsTag}
                     >
                       {this.props.t("current-language-code") === "en"
                         ? need.nameEn
