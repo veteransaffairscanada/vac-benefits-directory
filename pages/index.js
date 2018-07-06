@@ -46,7 +46,7 @@ export class App extends Component {
           <HeroButton>
             <Button
               id="heroGuidedLink"
-              style={{ padding: "20px" }}
+              style={{ padding: "20px", textTransform: "none" }}
               variant="raised"
               color="primary"
               href={"A?section=A1&lng=" + t("current-language-code")}
@@ -58,7 +58,7 @@ export class App extends Component {
             &nbsp; &nbsp; &nbsp;
             <Button
               id="heroBenefitsLink"
-              style={{ padding: "20px" }}
+              style={{ padding: "20px", textTransform: "none" }}
               variant="raised"
               color="primary"
               href={"benefits-directory?lng=" + t("current-language-code")}

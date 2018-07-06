@@ -213,6 +213,7 @@ export class BenefitCard extends Component {
                     className={classes.button}
                     target="_blank"
                     variant="raised"
+                    style={{ textTransform: "none" }}
                     onClick={() =>
                       this.logExit(
                         this.props.t("current-language-code") === "en"

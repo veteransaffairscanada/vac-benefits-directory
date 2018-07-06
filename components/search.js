@@ -116,7 +116,7 @@ export class Search extends Component {
         <div>
           <Button
             id="searchButtonLink"
-            style={{ padding: "20px" }}
+            style={{ padding: "20px", textTransform: "none" }}
             variant="raised"
             color="primary"
             href={

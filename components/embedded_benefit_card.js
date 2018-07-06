@@ -149,6 +149,7 @@ export class EmbeddedBenefitCard extends Component {
                 size="small"
                 target="_blank"
                 variant="raised"
+                style={{ textTransform: "none" }}
                 onClick={() =>
                   this.logExit(
                     language === "en"
