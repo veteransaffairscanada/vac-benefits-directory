@@ -15,6 +15,7 @@ import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
+import Bookmark from "@material-ui/icons/Bookmark";
 
 const styles = theme => ({
   benefitsCount: {
@@ -238,6 +239,7 @@ export class BB extends Component {
                     size="small"
                     href={this.getFavouritesURL()}
                   >
+                    <Bookmark style={{ fontSize: "16px" }} />
                     {t("B3.favouritesButtonText") +
                       " (" +
                       this.props.favouriteBenefits.length +
