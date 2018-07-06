@@ -60,7 +60,7 @@ describe("Print", () => {
     props.url.query["patronType"] = "service-person";
     props.url.query["serviceType"] = "WSV (WWII or Korea)";
     props.url.query["statusAndVitals"] = "releasedAlive";
-    props.url.query["needs"] = "43534534,43534ewr534";
+    props.url.query["needs"] = "0,1";
     expect(mountedPrint().find(".needsListItem").length).toEqual(2);
     expect(
       mountedPrint()

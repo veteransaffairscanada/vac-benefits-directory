@@ -41,6 +41,8 @@ describe("AllBenefits", () => {
     _mountedAllBenefits = undefined;
     mockStore = configureStore();
     reduxData = {
+      needs: [],
+      selectedNeeds: {},
       benefits: benefitsFixture,
       examples: [],
       eligibilityPaths: eligibilityPathsFixture

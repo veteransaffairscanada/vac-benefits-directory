@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { EmbeddedBenefitCard } from "../../components/embedded_benefit_card";
 import benefitsFixture from "../fixtures/benefits";
+import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -21,7 +22,9 @@ describe("EmbeddedBenefitCard", () => {
       t: () => "en",
       benefit: benefitsFixture[0],
       classes: {},
-      onRef: foo => foo
+      onRef: foo => foo,
+      needs: needsFixture,
+      selectedNeeds: {}
     };
     _mountedEmbeddedBenefitCard = undefined;
   });
@@ -50,7 +53,6 @@ describe("EmbeddedBenefitCard", () => {
     expect(
       mountedEmbeddedBenefitCard()
         .find("ExpansionPanelSummary")
-        .find("Typography")
         .text()
     ).toEqual(benefitsFixture[0].vacNameEn);
     expect(
@@ -62,10 +64,9 @@ describe("EmbeddedBenefitCard", () => {
     expect(
       mountedEmbeddedBenefitCard()
         .find("ExpansionPanelDetails")
-        .find("Typography")
         .first()
         .text()
-    ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
+    ).toEqual(benefitsFixture[0].oneLineDescriptionEn + "en");
   });
 
   describe("when language is French", () => {
@@ -77,7 +78,6 @@ describe("EmbeddedBenefitCard", () => {
       expect(
         mountedEmbeddedBenefitCard()
           .find("ExpansionPanelSummary")
-          .find("Typography")
           .text()
       ).toEqual(benefitsFixture[0].vacNameFr);
       expect(
@@ -89,10 +89,9 @@ describe("EmbeddedBenefitCard", () => {
       expect(
         mountedEmbeddedBenefitCard()
           .find("ExpansionPanelDetails")
-          .find("Typography")
           .first()
           .text()
-      ).toEqual(benefitsFixture[0].oneLineDescriptionFr);
+      ).toEqual(benefitsFixture[0].oneLineDescriptionFr + "fr");
     });
   });
   it("changes open state when somebody clicks on it", () => {
@@ -114,5 +113,14 @@ describe("EmbeddedBenefitCard", () => {
       "Exit",
       benefitsFixture[1].benefitPageEn
     );
+  });
+
+  it("has a needs chip", () => {
+    props.selectedNeeds["0"] = "0";
+    expect(
+      mountedEmbeddedBenefitCard()
+        .find("Chip")
+        .text()
+    ).toEqual("Health");
   });
 });

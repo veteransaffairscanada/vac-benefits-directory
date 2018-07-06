@@ -1,24 +1,28 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
+import configureStore from "redux-mock-store";
+
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
+import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 describe("BenefitCard", () => {
   let props;
+  let mockStore, reduxData;
   let _mountedBenefitCard, _shallowBenefitCard;
   const mountedBenefitCard = () => {
     if (!_mountedBenefitCard) {
-      _mountedBenefitCard = mount(<BenefitCard {...props} />);
+      _mountedBenefitCard = mount(<BenefitCard {...props} {...reduxData} />);
     }
     return _mountedBenefitCard;
   };
   const shallowBenefitCard = () => {
     if (!_shallowBenefitCard) {
-      _shallowBenefitCard = shallow(<BenefitCard {...props} />);
+      _shallowBenefitCard = shallow(<BenefitCard {...props} {...reduxData} />);
     }
     return _shallowBenefitCard;
   };
@@ -30,7 +34,6 @@ describe("BenefitCard", () => {
       allBenefits: benefitsFixture,
       veteranBenefitIds: [],
       familyBenefitIds: [],
-      examples: examplesFixture,
       classes: {},
       onRef: foo => foo,
       searchString: "",
@@ -38,17 +41,17 @@ describe("BenefitCard", () => {
       showFavourite: true,
       toggleFavourite: jest.fn()
     };
+    mockStore = configureStore();
+    reduxData = {
+      examples: examplesFixture,
+      needs: needsFixture,
+      selectedNeeds: {}
+    };
+    props.store = mockStore(reduxData);
+
     _mountedBenefitCard = undefined;
     _shallowBenefitCard = undefined;
   });
-
-  // it("contains the benefit type", () => {
-  //   expect(
-  //     mountedBenefitCard()
-  //       .find("CardHeader")
-  //       .prop("title")
-  //   ).toEqual(benefitsFixture[0].benefitTypeEn);
-  // });
 
   it("passes axe tests", async () => {
     let html = mountedBenefitCard().html();
@@ -178,6 +181,16 @@ describe("BenefitCard", () => {
       ).toEqual("fr");
     });
   });
+
+  it("has a needs chip", () => {
+    reduxData.selectedNeeds["0"] = "0";
+    expect(
+      mountedBenefitCard()
+        .find("Chip")
+        .text()
+    ).toEqual("Health");
+  });
+
   it("changes open state when somebody clicks on it", () => {
     expect(mountedBenefitCard().state().open).toEqual(false);
     mountedBenefitCard()
@@ -186,6 +199,7 @@ describe("BenefitCard", () => {
       .simulate("click");
     expect(mountedBenefitCard().state().open).toEqual(true);
   });
+
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
