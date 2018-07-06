@@ -32,24 +32,20 @@ export class DataValidation extends Component {
   };
 
   componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.text);
+    redux2i18n(this.props.i18n, this.props.translations);
   }
 
-  getBrokenBenefits(b, i) {
-    if (this.checkMissingNeeds(b) || this.checkIfMissingText(b)) {
-      return " " + b.id + " (" + (i + 1) + "),";
-    }
-  }
-
-  checkIfMissingText(b) {
-    return (
+  checkBenefitsFields(b, i) {
+    if (
       !(b.vacNameEn && b.vacNameEn != "") ||
       !(b.vacNameFr && b.vacNameFr != "") ||
       !(b.oneLineDescriptionEn && b.oneLineDescriptionEn != "") ||
       !(b.oneLineDescriptionFr && b.oneLineDescriptionFr != "") ||
       !(b.benefitPageEn && b.benefitPageEn != "") ||
       !(b.benefitPageFr && b.benefitPageFr != "")
-    );
+    ) {
+      return " " + b.id + " (" + (i + 1) + "),";
+    }
   }
 
   checkAreaOfficesFields(a, i) {
@@ -65,12 +61,26 @@ export class DataValidation extends Component {
     }
   }
 
-  checkMissingNeeds(b) {
-    return !(b.needs && b.needs != "");
+  checkTranslationsFields(t, i) {
+    if (
+      !(t.key && t.key != "") ||
+      !(t.English && t.English != "") ||
+      !(t.French && t.French != "")
+    ) {
+      return " " + t.id + " (" + (i + 1) + "),";
+    }
   }
 
-  checkEligibiltyPaths(b) {
-    return !(b.eligibilityPaths && b.eligibilityPaths != "");
+  checkMissingNeeds(b, i) {
+    if (!(b.needs && b.needs != "")) {
+      return " " + b.id + " (" + (i + 1) + "),";
+    }
+  }
+
+  checkEligibiltyPaths(b, i) {
+    if (!(b.eligibilityPaths && b.eligibilityPaths != "")) {
+      return " " + b.id + " (" + (i + 1) + "),";
+    }
   }
 
   render() {
@@ -82,7 +92,7 @@ export class DataValidation extends Component {
       eligibilityPaths,
       needs,
       examples,
-      text,
+      translations,
       areaOffices
     } = this.props; // eslint-disable-line no-unused-vars
 
@@ -108,9 +118,9 @@ export class DataValidation extends Component {
         examples.length > 0 ? "Pass" : "Fail"
       ),
       this.createData(
-        "nameTextTableSize",
-        text.length,
-        text.length > 0 ? "Pass" : "Fail"
+        "nameTranslationTableSize",
+        translations.length,
+        translations.length > 0 ? "Pass" : "Fail"
       ),
       this.createData(
         "nameAreaOfficesSize",
@@ -119,23 +129,30 @@ export class DataValidation extends Component {
       ),
       this.createData(
         "Benefits with Empty Fields",
-        benefits.filter(this.checkIfMissingText).length,
-        benefits.filter(this.checkIfMissingText).length == 0 ? "Pass" : "Fail"
+        benefits.map(this.checkBenefitsFields),
+        benefits.filter(this.checkBenefitsFields).length == 0 ? "Pass" : "Fail"
       ),
       this.createData(
         "Benefits Without Needs",
-        benefits.filter(this.checkMissingNeeds).length,
+        benefits.map(this.checkMissingNeeds),
         benefits.filter(this.checkMissingNeeds).length == 0 ? "Pass" : "Fail"
       ),
       this.createData(
         "Benefits not in an Eligibility Path",
-        benefits.filter(this.checkEligibiltyPaths).length,
+        benefits.map(this.checkEligibiltyPaths),
         benefits.filter(this.checkEligibiltyPaths).length == 0 ? "Pass" : "Fail"
       ),
       this.createData(
         "emptyAreaOffices",
-        areaOffices.filter(this.checkAreaOfficesFields).length,
+        areaOffices.map(this.checkAreaOfficesFields),
         areaOffices.filter(this.checkAreaOfficesFields).length == 0
+          ? "Pass"
+          : "Fail"
+      ),
+      this.createData(
+        "emptyTranslations",
+        translations.map(this.checkTranslationsFields),
+        translations.filter(this.checkTranslationsFields).length == 0
           ? "Pass"
           : "Fail"
       )
@@ -168,22 +185,6 @@ export class DataValidation extends Component {
                   </TableRow>
                 );
               })}
-              <TableRow>
-                <TableCell> {t("dv.Benefits failing tests")} </TableCell>
-                <TableCell>
-                  {benefits.map((b, i) => {
-                    return this.getBrokenBenefits(b, i);
-                  })}
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>{t("dv.areaOfficesTests")}</TableCell>
-                <TableCell>
-                  {areaOffices.map((a, i) => {
-                    return this.checkAreaOfficesFields(a, i);
-                  })}
-                </TableCell>
-              </TableRow>
             </TableBody>
           </Table>
         </Paper>
@@ -198,7 +199,7 @@ const mapStateToProps = state => {
     eligibilityPaths: state.eligibilityPaths,
     needs: state.needs,
     examples: state.examples,
-    text: state.text,
+    translations: state.translations,
     areaOffices: state.areaOffices
   };
 };
@@ -211,7 +212,7 @@ DataValidation.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  text: PropTypes.array.isRequired,
+  translations: PropTypes.array.isRequired,
   areaOffices: PropTypes.array.isRequired
 };
 

@@ -139,7 +139,7 @@ export class BenefitCard extends Component {
               onClick={() => this.toggleOpenState()}
             >
               <div>
-                <div component="p" className="benefitName">
+                <div className="benefitName">
                   <Highlighter
                     searchWords={this.props.searchString.split(",")}
                     autoEscape={true}

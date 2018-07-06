@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
-
+import SearchComponent from "../components/search";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import styled from "react-emotion";
@@ -21,6 +21,11 @@ const HeroButton = styled("div")`
   padding-top: 50px;
 `;
 
+const Search = styled("div")`
+  padding: 70px;
+  text-align: center;
+`;
+
 const Title = styled("div")`
   font-size: 38px;
   line-height: 56px;
@@ -28,7 +33,7 @@ const Title = styled("div")`
 
 export class App extends Component {
   componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.text);
+    redux2i18n(this.props.i18n, this.props.translations);
   }
 
   render() {
@@ -62,6 +67,14 @@ export class App extends Component {
             </Button>
           </HeroButton>
         </Hero>
+        <Search>
+          <SearchComponent
+            id="searchComponent"
+            i18n={this.props.i18n}
+            store={this.props.store}
+            t={this.props.t}
+          />
+        </Search>
       </Layout>
     );
   }
@@ -69,14 +82,15 @@ export class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    text: state.text
+    translations: state.translations
   };
 };
 
 App.propTypes = {
   i18n: PropTypes.object.isRequired,
+  store: PropTypes.object,
   t: PropTypes.func.isRequired,
-  text: PropTypes.array.isRequired
+  translations: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps)(withI18next()(App)); // withI18next(["common"])(App);
+export default connect(mapStateToProps)(withI18next()(App));

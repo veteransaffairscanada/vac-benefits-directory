@@ -29,7 +29,7 @@ describe("Print", () => {
       url: {
         query: {}
       },
-      text: [],
+      translations: [],
       i18n: {
         addResourceBundle: jest.fn()
       },
