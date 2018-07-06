@@ -39,9 +39,7 @@ describe("BenefitList", () => {
       onRef: k => k,
       sortByValue: "",
       searchString: "",
-      showFavourites: true,
-      toggleFavourite: () => true,
-      favouriteBenefits: []
+      showFavourites: true
     };
     _mountedBenefitList = undefined;
     _shallowBenefitList = undefined;
@@ -49,6 +47,7 @@ describe("BenefitList", () => {
     mockStore = configureStore();
     reduxData = {
       benefits: benefitsFixture,
+      favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
       examples: examplesFixture,
       needs: needsFixture,

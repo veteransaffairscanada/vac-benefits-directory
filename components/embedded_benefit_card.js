@@ -9,6 +9,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Chip from "@material-ui/core/Chip";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import FavouriteButton from "./favourite_button";
 
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
@@ -53,11 +54,11 @@ export class EmbeddedBenefitCard extends Component {
     logEvent("Exit", url);
   };
 
-  toggleState = () => {
-    let newState = !this.state.open;
-    this.setState({ open: newState });
+  toggleOpenState = () => {
+    this.setState(previousState => {
+      return { ...previousState, open: !previousState.open };
+    });
   };
-
   componentDidMount() {
     this.props.onRef(this);
   }
@@ -88,10 +89,19 @@ export class EmbeddedBenefitCard extends Component {
       >
         <ExpansionPanelSummary
           expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
-          onClick={() => this.toggleState()}
+          onClick={() => this.toggleOpenState()}
           className={classes.ExpansionPanelSummary}
         >
           <div className={classnames(classes.heading)}>
+            {this.props.showFavourite ? (
+              <FavouriteButton
+                benefit={benefit}
+                toggleOpenState={this.toggleOpenState}
+                store={this.props.store}
+              />
+            ) : (
+              ""
+            )}
             {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
 
             {needsMet.map(need => (
@@ -161,6 +171,7 @@ EmbeddedBenefitCard.propTypes = {
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   onRef: PropTypes.func.isRequired,
+  showFavourite: PropTypes.bool.isRequired,
   store: PropTypes.object
 };
 

@@ -23,6 +23,7 @@ describe("EmbeddedBenefitCard", () => {
       benefit: benefitsFixture[0],
       classes: {},
       onRef: foo => foo,
+      showFavourite: false,
       needs: needsFixture,
       selectedNeeds: {}
     };

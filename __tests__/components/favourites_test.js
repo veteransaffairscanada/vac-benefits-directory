@@ -44,10 +44,7 @@ describe("Favourites", () => {
         patronType: "",
         statusAndVitals: ""
       },
-      toggleSelectedEligibility: jest.fn(),
-      url: { query: {} },
-      favouriteBenefits: ["3"],
-      toggleFavourite: () => true
+      url: { query: {} }
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
@@ -57,6 +54,7 @@ describe("Favourites", () => {
       benefits: benefitsFixture,
       examples: examplesFixture,
       needs: needsFixture,
+      favouriteBenefits: ["3"],
       selectedNeeds: {},
       eligibilityPaths: eligibilityPathsFixture
     };
@@ -79,12 +77,14 @@ describe("Favourites", () => {
   });
 
   it("renders with no favourites", async () => {
-    props.favouriteBenefits = [];
+    reduxData.favouriteBenefits = [];
+    props.store = mockStore(reduxData);
     expect(mountedFavourites().find("BenefitCard").length).toEqual(0);
   });
 
   it("renders with 2 favourites", async () => {
-    props.favouriteBenefits = ["0", "3"];
+    reduxData.favouriteBenefits = ["0", "3"];
+    props.store = mockStore(reduxData);
     expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
 

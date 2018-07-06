@@ -267,10 +267,8 @@ export class BB extends Component {
                   filteredBenefits={filteredBenefits}
                   onRef={ref => this.children.push(ref)}
                   sortByValue={this.state.sortByValue}
-                  toggleFavourite={this.props.toggleFavourite}
                   searchString={this.props.searchString}
                   showFavourites={true}
-                  favouriteBenefits={this.props.favouriteBenefits}
                   store={this.props.store}
                 />
               </Grid>
@@ -293,6 +291,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (reduxState, props) => {
   return {
     benefits: reduxState.benefits,
+    favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
     filteredBenefits: getFilteredBenefits(reduxState, props),
@@ -322,7 +321,6 @@ BB.propTypes = {
   t: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  toggleFavourite: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   store: PropTypes.object
 };
