@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 
 const styles = theme => ({
   needsTag: {
-    margin: theme.spacing.unit / 2,
+    marginLeft: 2 * theme.spacing.unit,
     backgroundColor: "#364150",
     color: "white",
     borderRadius: 0,
@@ -97,7 +97,7 @@ export class EmbeddedBenefitCard extends Component {
         >
           <div className={classnames(classes.heading)}>
             {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-            <div style={{ margin: 10, display: "inline-flex" }}>
+            <div style={{ display: "inline-flex" }}>
               {needsMet.map(need => (
                 <div key={benefit.id + need.id} className={classes.needsTag}>
                   {this.props.t("current-language-code") === "en"
