@@ -9,6 +9,7 @@ import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 
 import configureStore from "redux-mock-store";
+import needsFixture from "../fixtures/needs";
 
 describe("BenefitList", () => {
   let props;
@@ -48,7 +49,9 @@ describe("BenefitList", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
-      examples: examplesFixture
+      examples: examplesFixture,
+      needs: needsFixture,
+      selectedNeeds: {}
     };
     props.store = mockStore(reduxData);
   });

@@ -1,9 +1,11 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
+import configureStore from "redux-mock-store";
+
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
-import configureStore from "redux-mock-store";
+import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -32,30 +34,27 @@ describe("BenefitCard", () => {
       allBenefits: benefitsFixture,
       veteranBenefitIds: [],
       familyBenefitIds: [],
-      examples: examplesFixture,
       classes: {},
       onRef: foo => foo,
       searchString: "",
       favouriteBenefits: [],
       showFavourite: true
     };
+    mockStore = configureStore();
     reduxData = {
+      examples: examplesFixture,
+      needs: needsFixture,
+      selectedNeeds: {},
       benefits: benefitsFixture,
       favouriteBenefits: []
     };
+    props.store = mockStore(reduxData);
+
     _mountedBenefitCard = undefined;
     _shallowBenefitCard = undefined;
     mockStore = configureStore();
     props.store = mockStore(reduxData);
   });
-
-  // it("contains the benefit type", () => {
-  //   expect(
-  //     mountedBenefitCard()
-  //       .find("CardHeader")
-  //       .prop("title")
-  //   ).toEqual(benefitsFixture[0].benefitTypeEn);
-  // });
 
   it("passes axe tests", async () => {
     let html = mountedBenefitCard().html();
@@ -158,6 +157,16 @@ describe("BenefitCard", () => {
       ).toEqual("fr");
     });
   });
+
+  it("has a needs chip", () => {
+    reduxData.selectedNeeds["0"] = "0";
+    expect(
+      mountedBenefitCard()
+        .find("Chip")
+        .text()
+    ).toEqual("Health");
+  });
+
   it("changes open state when somebody clicks on it", () => {
     expect(mountedBenefitCard().state().open).toEqual(false);
     mountedBenefitCard()
@@ -166,6 +175,7 @@ describe("BenefitCard", () => {
       .simulate("click");
     expect(mountedBenefitCard().state().open).toEqual(true);
   });
+
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();

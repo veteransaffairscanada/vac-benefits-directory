@@ -10,7 +10,7 @@ import { redux2i18n } from "../utils/redux2i18n";
 
 export class AllBenefits extends Component {
   componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.text);
+    redux2i18n(this.props.i18n, this.props.translations);
   }
 
   render() {
@@ -66,7 +66,9 @@ const mapStateToProps = state => {
     examples: state.examples,
     eligibilityPaths: state.eligibilityPaths,
     favouriteBenefits: state.favouriteBenefits,
-    text: state.text
+    needs: state.needs,
+    selectedNeeds: state.selectedNeeds,
+    translations: state.translations
   };
 };
 
@@ -77,7 +79,9 @@ AllBenefits.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
-  text: PropTypes.array.isRequired
+  needs: PropTypes.array.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
+  translations: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));

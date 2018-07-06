@@ -27,7 +27,7 @@ describe("AllBenefits", () => {
 
   beforeEach(() => {
     props = {
-      text: [],
+      translations: [],
       t: key => key,
       i18n: {
         addResourceBundle: jest.fn()
@@ -41,6 +41,8 @@ describe("AllBenefits", () => {
     _mountedAllBenefits = undefined;
     mockStore = configureStore();
     reduxData = {
+      needs: [],
+      selectedNeeds: {},
       benefits: benefitsFixture,
       examples: [],
       eligibilityPaths: eligibilityPathsFixture

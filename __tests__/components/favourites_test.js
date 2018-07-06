@@ -39,7 +39,6 @@ describe("Favourites", () => {
     props = {
       t: key => key,
       classes: {},
-      selectedNeeds: {},
       selectedEligibility: {
         serviceType: "",
         patronType: "",
@@ -55,8 +54,9 @@ describe("Favourites", () => {
       benefits: benefitsFixture,
       examples: examplesFixture,
       needs: needsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
-      favouriteBenefits: ["3"]
+      favouriteBenefits: ["3"],
+      selectedNeeds: {},
+      eligibilityPaths: eligibilityPathsFixture
     };
     props.store = mockStore(reduxData);
   });

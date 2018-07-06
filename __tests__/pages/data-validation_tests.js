@@ -5,10 +5,11 @@ import React from "react";
 
 import { DataValidation } from "../../pages/data-validation";
 import benefitsFixture from "../fixtures/benefits";
-import textFixture from "../fixtures/text";
+import translationsFixture from "../fixtures/translations";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import examplesFixture from "../fixtures/examples";
+import areaOfficesFixture from "../fixtures/area_offices";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -28,7 +29,7 @@ describe("DataValidation", () => {
 
   beforeEach(() => {
     props = {
-      text: textFixture,
+      translations: translationsFixture,
       t: key => key,
       i18n: {
         addResourceBundle: jest.fn()
@@ -40,6 +41,7 @@ describe("DataValidation", () => {
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
       examples: examplesFixture,
+      areaOffices: areaOfficesFixture,
       classes: {}
     };
     _mountedDataValidation = undefined;
@@ -85,6 +87,11 @@ describe("DataValidation", () => {
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
+  it("fails if areaOffices is empty", () => {
+    props.areaOffices = [];
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
+
   it("fails if a benefit is missing english or french text", () => {
     props.benefits[0].vacNameEn = "";
     expect(mountedDataValidation().html()).toContain("Fail");
@@ -95,20 +102,6 @@ describe("DataValidation", () => {
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
-  it("pass if checkMissingNeeds finds missing needs", () => {
-    props.benefits[0].needs = "";
-    const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkMissingNeeds(props.benefits[0])).toEqual(true);
-  });
-
-  it("fails if getBrokenBenefits doesn't return broken benefits", () => {
-    props.benefits[0].vacNameEn = "";
-    const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.getBrokenBenefits(props.benefits[0], 0)).toEqual(
-      " " + props.benefits[0].id + " (1),"
-    );
-  });
-
   it("fails if a benefit does not have any linked Needs", () => {
     props.benefits[0].needs = "";
     expect(mountedDataValidation().html()).toContain("Fail");
@@ -117,5 +110,45 @@ describe("DataValidation", () => {
   it("fails if a benefit is not connected to any Eligibility Paths", () => {
     props.benefits[0].eligibilityPaths = "";
     expect(mountedDataValidation().html()).toContain("Fail");
+  });
+
+  it("fails if checkBenefitsFields doesn't find empty fields", () => {
+    props.benefits[0].vacNameEn = "";
+    const instance = shallow(<DataValidation {...props} />).instance();
+    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toEqual(
+      " " + props.benefits[0].id + " (" + 1 + "),"
+    );
+  });
+
+  it("fails if checkTranslationsFields doesn't find empty fields", () => {
+    props.translations[0].vacNameEn = "";
+    const instance = shallow(<DataValidation {...props} />).instance();
+    expect(instance.checkMissingNeeds(props.translations[0], 0)).toEqual(
+      " " + props.translations[0].id + " (" + 1 + "),"
+    );
+  });
+
+  it("fails if checkMissingNeeds doesn't find missing needs", () => {
+    props.benefits[0].needs = "";
+    const instance = shallow(<DataValidation {...props} />).instance();
+    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toEqual(
+      " " + props.benefits[0].id + " (" + 1 + "),"
+    );
+  });
+
+  it("fails if checkEligibiltyPaths doesn't find missing needs", () => {
+    props.benefits[0].eligibilityPaths = "";
+    const instance = shallow(<DataValidation {...props} />).instance();
+    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toEqual(
+      " " + props.benefits[0].id + " (" + 1 + "),"
+    );
+  });
+
+  it("fail if checkAreaOfficesFields doesn't find empty fields", () => {
+    props.areaOffices[0].name_en = "";
+    const instance = shallow(<DataValidation {...props} />).instance();
+    expect(instance.checkAreaOfficesFields(props.areaOffices[0], 0)).toEqual(
+      " " + props.areaOffices[0].id + " (" + 1 + "),"
+    );
   });
 });

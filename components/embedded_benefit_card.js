@@ -6,13 +6,18 @@ import { withStyles } from "@material-ui/core/styles";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Chip from "@material-ui/core/Chip";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import FavouriteButton from "./favourite_button";
 
 import { logEvent } from "../utils/analytics";
+import { connect } from "react-redux";
 
 const styles = theme => ({
+  chip: {
+    margin: theme.spacing.unit / 2
+  },
   root: {
     width: "100%"
   },
@@ -65,6 +70,14 @@ export class EmbeddedBenefitCard extends Component {
   render() {
     const { t, classes, benefit } = this.props;
     const language = t("current-language-code");
+    const needsMet = benefit.needs
+      ? this.props.needs.filter(
+          need =>
+            benefit.needs.indexOf(need.id) > -1 &&
+            this.props.selectedNeeds[need.id]
+        )
+      : [];
+
     return (
       <ExpansionPanel
         className={
@@ -79,7 +92,7 @@ export class EmbeddedBenefitCard extends Component {
           onClick={() => this.toggleOpenState()}
           className={classes.ExpansionPanelSummary}
         >
-          <Typography className={classnames(classes.heading)}>
+          <div className={classnames(classes.heading)}>
             {this.props.showFavourite ? (
               <FavouriteButton
                 benefit={benefit}
@@ -90,7 +103,19 @@ export class EmbeddedBenefitCard extends Component {
               ""
             )}
             {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-          </Typography>
+
+            {needsMet.map(need => (
+              <Chip
+                key={benefit.id + need.id}
+                className={classes.chip}
+                label={
+                  this.props.t("current-language-code") === "en"
+                    ? need.nameEn
+                    : need.nameFr
+                }
+              />
+            ))}
+          </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container spacing={24}>
@@ -132,8 +157,17 @@ export class EmbeddedBenefitCard extends Component {
   }
 }
 
+const mapStateToProps = reduxState => {
+  return {
+    needs: reduxState.needs,
+    selectedNeeds: reduxState.selectedNeeds
+  };
+};
+
 EmbeddedBenefitCard.propTypes = {
   benefit: PropTypes.object.isRequired,
+  needs: PropTypes.array.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   onRef: PropTypes.func.isRequired,
@@ -141,4 +175,6 @@ EmbeddedBenefitCard.propTypes = {
   store: PropTypes.object
 };
 
-export default withStyles(styles)(EmbeddedBenefitCard);
+export default connect(mapStateToProps)(
+  withStyles(styles)(EmbeddedBenefitCard)
+);
