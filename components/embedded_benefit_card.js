@@ -27,7 +27,7 @@ const styles = theme => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
+    fontWeight: 500
   },
   ExpansionPanelClosed: {
     borderLeft: "5px solid"
@@ -46,6 +46,11 @@ const styles = theme => ({
   },
   description: {
     paddingTop: "1em"
+  },
+  cardDescriptionText: {
+    fontSize: "20px",
+    fontWeight: 400,
+    padding: "15px 0px"
   }
 });
 
@@ -105,7 +110,7 @@ export class EmbeddedBenefitCard extends Component {
           onClick={() => this.toggleOpenState()}
           className={classes.ExpansionPanelSummary}
         >
-          <div className={classnames(classes.heading)}>
+          <div className={classes.heading}>
             {this.props.showFavourite ? (
               <FavouriteButton
                 benefit={benefit}
@@ -132,7 +137,7 @@ export class EmbeddedBenefitCard extends Component {
             <Grid item xs={12}>
               <Typography
                 variant="title"
-                className={classnames(classes.description)}
+                className={classnames(classes.cardDescriptionText)}
               >
                 {language === "en"
                   ? benefit.oneLineDescriptionEn

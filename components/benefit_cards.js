@@ -61,8 +61,8 @@ const styles = theme => ({
     width: "100%",
     marginLeft: "20px"
   },
-  benefitNameText: {
-    fontSize: "6px !important"
+  benefitName: {
+    fontWeight: 500
   }
 });
 
@@ -138,7 +138,7 @@ export class BenefitCard extends Component {
               onClick={() => this.toggleOpenState()}
             >
               <div>
-                <div component="p" className="benefitName">
+                <div component="p" className={classes.benefitName}>
                   {this.props.showFavourite ? (
                     <FavouriteButton
                       benefit={benefit}
