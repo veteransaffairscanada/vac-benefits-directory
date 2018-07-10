@@ -51,7 +51,7 @@ export class BenefitsDirectory extends Component {
       }
     });
     if (this.props.searchString !== "") {
-      href += `&searchString=${this.props.searchString}`;
+      href += `&searchString=${encodeURIComponent(this.props.searchString)}`;
     }
     if (this.props.url.query["option"]) {
       href += `&option=${this.props.url.query["option"]}`;
