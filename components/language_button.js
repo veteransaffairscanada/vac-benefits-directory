@@ -23,7 +23,7 @@ class LanguageButton extends Component {
       <Button
         id="changeLanguage"
         onClick={this.changeLanguage}
-        style={{ color: "#fff" }}
+        style={{ color: "#fff", textTransform: "none" }}
       >
         {t("other-language")}
       </Button>

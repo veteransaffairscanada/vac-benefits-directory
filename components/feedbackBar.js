@@ -121,6 +121,7 @@ export class FeedbackBar extends Component {
             <Button
               id="sendComment"
               variant="raised"
+              style={{ textTransform: "none" }}
               color="primary"
               onClick={() => this.sendComment()}
             >
@@ -138,6 +139,7 @@ export class FeedbackBar extends Component {
               {t("feedback-prompt")} &nbsp;
               <Button
                 variant="raised"
+                style={{ textTransform: "none" }}
                 id="feedbackYes"
                 onClick={() => this.sendFeedback("Yes")}
               >
@@ -146,6 +148,7 @@ export class FeedbackBar extends Component {
               &nbsp; &nbsp;
               <Button
                 variant="raised"
+                style={{ textTransform: "none" }}
                 id="feedbackNo"
                 onClick={() => this.sendFeedback("No")}
               >

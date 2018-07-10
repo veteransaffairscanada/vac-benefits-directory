@@ -238,6 +238,7 @@ export class BB extends Component {
                     variant="flat"
                     size="small"
                     href={this.getFavouritesURL()}
+                    style={{ textTransform: "none" }}
                   >
                     <Bookmark style={{ fontSize: "16px" }} />
                     {t("B3.favouritesButtonText") +
@@ -252,6 +253,7 @@ export class BB extends Component {
                     target="dan"
                     href={printUrl}
                     className="printButton"
+                    style={{ textTransform: "none" }}
                   >
                     {t("Print")}
                   </Button>
@@ -260,6 +262,7 @@ export class BB extends Component {
                     variant="flat"
                     size="small"
                     onClick={this.collapseAllBenefits}
+                    style={{ textTransform: "none" }}
                   >
                     {t("Close all")}
                   </Button>

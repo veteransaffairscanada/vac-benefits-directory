@@ -20,7 +20,9 @@ class Footer extends Component {
     return (
       <Div role="navigation">
         <Toolbar>
-          <Button id="privacy">{this.props.t("Privacy")}</Button>
+          <Button id="privacy" style={{ textTransform: "none" }}>
+            {this.props.t("Privacy")}
+          </Button>
           <Typography style={{ flex: 1 }} />
           Build: {envDetails}
           <Typography style={{ flex: 1 }} />

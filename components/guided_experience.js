@@ -120,6 +120,7 @@ export class GuidedExperience extends Component {
             nextButton={
               <Button
                 size="large"
+                style={{ textTransform: "none" }}
                 href={
                   this.props.nextSection === "benefits-directory"
                     ? this.props.benefitsDirectoryUrl
@@ -139,6 +140,7 @@ export class GuidedExperience extends Component {
             backButton={
               <Button
                 size="large"
+                style={{ textTransform: "none" }}
                 onClick={() => this.props.setSection(this.props.prevSection)}
                 disabled={this.props.stepNumber === 0}
                 className={classnames(classes.navButtons)}
