@@ -1,4 +1,4 @@
-import { getFilteredBenefits } from "../../selectors/benefits";
+import { getFilteredBenefits } from "../../selectors/benefits_B";
 
 describe("getFilteredBenefits", () => {
   let props;
@@ -103,19 +103,18 @@ describe("getFilteredBenefits", () => {
     };
   });
 
-  // don't show benefit 0 because it's not independent
-  it("displays benefits 1, 2 and 3 if nothing selected", () => {
+  it("displays all benefits if nothing selected", () => {
     let returnValue = getFilteredBenefits(state, props).map(b => b.id);
     returnValue.sort();
-    expect(returnValue).toEqual(["1", "2", "3"]);
+    expect(returnValue).toEqual(["0", "1", "2", "3", "4"]);
   });
 
-  // 0 and 2 match, but 0 is a child of  -> show both
-  it("display benefits 0, 2 if patronType p1", () => {
+  it("displays benefits 0, 2, 4 if patronType p1", () => {
     state.patronType = "p1";
     expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
       "0",
-      "2"
+      "2",
+      "4"
     ]);
   });
 

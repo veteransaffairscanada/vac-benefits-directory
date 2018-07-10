@@ -53,9 +53,9 @@ export const getFilteredBenefits = createSelector(
       let matches = true;
       ["serviceType", "patronType", "statusAndVitals"].forEach(criteria => {
         if (
-          selected[criteria] != "" &&
+          selected[criteria] !== "" &&
           path[criteria] !== "na" &&
-          selected[criteria] != path[criteria]
+          selected[criteria] !== path[criteria]
         ) {
           matches = false;
         }
@@ -66,12 +66,6 @@ export const getFilteredBenefits = createSelector(
     if (benefits.length === 0) {
       return benefits;
     }
-
-    // make it easy to invert the id
-    let benefitForId = {};
-    benefits.forEach(b => {
-      benefitForId[b.id] = b;
-    });
 
     // find benefits that match
     let eligibleBenefitIds = [];
@@ -95,7 +89,22 @@ export const getFilteredBenefits = createSelector(
     let matchingBenefitIds = eligibleBenefitIds.filter(
       id => benefitIdsForSelectedNeeds.indexOf(id) > -1
     );
+    let matchingBenefits = benefits.filter(b =>
+      matchingBenefitIds.includes(b.id)
+    );
 
-    return matchingBenefitIds.map(id => benefitForId[id]);
+    // If there is a searchString the run another filter
+    if (searchString.trim() !== "") {
+      let results = [];
+      if (currentLanguage === "en") {
+        results = enIdx.search(searchString + "*");
+      } else {
+        results = frIdx.search(searchString + "*");
+      }
+      let resultIds = results.map(r => r.ref);
+      matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));
+    }
+
+    return matchingBenefits;
   }
 );
