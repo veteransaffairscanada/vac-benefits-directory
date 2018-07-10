@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "../components/benefit_cards";
+import BenefitCardB from "../components/benefit_cards_b";
 import { connect } from "react-redux";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -88,8 +89,8 @@ export class BenefitList extends React.Component {
     ) : (
       sortedBenefits.map(
         (benefit, i) =>
-          true || benefit.availableIndependently === "Independent" ? ( // eslint-disable-line no-constant-condition
-            <BenefitCard
+          this.props.url.query.option == "B" ? (
+            <BenefitCardB
               id={"bc" + i}
               benefit={benefit}
               examples={this.props.examples}
@@ -105,7 +106,21 @@ export class BenefitList extends React.Component {
               store={this.props.store}
             />
           ) : (
-            ""
+            <BenefitCard
+              id={"bc" + i}
+              benefit={benefit}
+              examples={this.props.examples}
+              allBenefits={this.props.benefits}
+              veteranBenefitIds={veteranBenefitIds}
+              familyBenefitIds={familyBenefitIds}
+              t={this.props.t}
+              key={benefit.id}
+              onRef={this.props.onRef}
+              favouriteBenefits={this.props.favouriteBenefits}
+              showFavourite={this.props.showFavourites}
+              searchString={this.props.searchString}
+              store={this.props.store}
+            />
           )
       )
     );
@@ -132,7 +147,8 @@ BenefitList.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   showFavourites: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(BenefitList);

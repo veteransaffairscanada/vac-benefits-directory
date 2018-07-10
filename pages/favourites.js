@@ -54,6 +54,7 @@ export class FavouritesPage extends Component {
           favouriteBenefits={this.state.favouriteBenefits}
           toggleFavourite={this.toggleFavourite}
           store={this.props.store}
+          url={this.props.url}
         />
       </Layout>
     );
@@ -72,7 +73,8 @@ FavouritesPage.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
-  translations: PropTypes.array.isRequired
+  translations: PropTypes.array.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(FavouritesPage));

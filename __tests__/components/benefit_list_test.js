@@ -13,36 +13,18 @@ import needsFixture from "../fixtures/needs";
 
 describe("BenefitList", () => {
   let props;
-  let _mountedBenefitList;
-  let _shallowBenefitList;
   let mockStore, reduxData;
-
-  const mountedBenefitList = () => {
-    if (!_mountedBenefitList) {
-      _mountedBenefitList = mount(<BenefitList {...props} {...reduxData} />);
-    }
-    return _mountedBenefitList;
-  };
-
-  const shallowBenefitList = () => {
-    if (!_shallowBenefitList) {
-      _shallowBenefitList = shallow(<BenefitList {...props} {...reduxData} />);
-    }
-    return _shallowBenefitList;
-  };
 
   beforeEach(() => {
     props = {
-      classes: {},
       t: key => key,
       filteredBenefits: benefitsFixture,
       onRef: k => k,
       sortByValue: "",
       searchString: "",
-      showFavourites: true
+      showFavourites: true,
+      url: { query: { option: "" } }
     };
-    _mountedBenefitList = undefined;
-    _shallowBenefitList = undefined;
 
     mockStore = configureStore();
     reduxData = {
@@ -57,12 +39,14 @@ describe("BenefitList", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mountedBenefitList().html();
+    let html = mount(<BenefitList {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has a correct sortBenefits function when sorting by popularity", () => {
-    let BLInstance = shallowBenefitList().instance();
+    let BLInstance = shallow(
+      <BenefitList {...props} {...reduxData} />
+    ).instance();
     expect(
       BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
         b => b.id
@@ -71,7 +55,9 @@ describe("BenefitList", () => {
   });
 
   it("has a correct sortBenefits function when sorting alphabetically", () => {
-    let BLInstance = shallowBenefitList().instance();
+    let BLInstance = shallow(
+      <BenefitList {...props} {...reduxData} />
+    ).instance();
     expect(
       BLInstance.sortBenefits(benefitsFixture, "en", "alphabetical").map(
         b => b.id
@@ -80,6 +66,17 @@ describe("BenefitList", () => {
   });
 
   it("displays the correct number of benefits cards", () => {
-    expect(mountedBenefitList().find("BenefitCard").length).toEqual(3);
+    expect(
+      mount(<BenefitList {...props} {...reduxData} />).find("BenefitCard")
+        .length
+    ).toEqual(3);
+  });
+
+  it("displays BenefitCardB if url flag is set", () => {
+    props.url.query.option = "B";
+    expect(
+      mount(<BenefitList {...props} {...reduxData} />).find("BenefitCardB")
+        .length
+    ).toEqual(3);
   });
 });
