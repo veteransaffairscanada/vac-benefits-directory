@@ -188,46 +188,99 @@ export class BenefitCard extends Component {
             </ExpansionPanelSummary>
 
             <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
-              <Grid item xs={12}>
-                {examples.length > 0 ? (
-                  <Typography className={classes.ExampleDesc}>
-                    {t("examples") + ":"}
+              <Grid container spacing={24}>
+                <Grid item xs={12}>
+                  {examples.length > 0 ? (
+                    <Typography className={classes.ExampleDesc}>
+                      {t("examples") + ":"}
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                  <Typography className={classes.examples}>
+                    {examples.map(ex => {
+                      return (
+                        <li key={ex.id}>
+                          {this.props.t("current-language-code") === "en"
+                            ? ex.nameEn
+                            : ex.nameFr}{" "}
+                        </li>
+                      );
+                    })}
                   </Typography>
-                ) : (
-                  ""
-                )}
-                <Typography className={classes.examples}>
-                  {examples.map(ex => {
-                    return (
-                      <li key={ex.id}>
-                        {this.props.t("current-language-code") === "en"
-                          ? ex.nameEn
-                          : ex.nameFr}{" "}
-                      </li>
-                    );
-                  })}
-                </Typography>
 
-                <Button
-                  className={classes.button}
-                  target="_blank"
-                  variant="raised"
-                  style={{ textTransform: "none" }}
-                  onClick={() =>
-                    this.logExit(
+                  <Button
+                    className={classes.button}
+                    target="_blank"
+                    variant="raised"
+                    style={{ textTransform: "none" }}
+                    onClick={() =>
+                      this.logExit(
+                        this.props.t("current-language-code") === "en"
+                          ? benefit.benefitPageEn
+                          : benefit.benefitPageFr
+                      )
+                    }
+                    href={
                       this.props.t("current-language-code") === "en"
                         ? benefit.benefitPageEn
                         : benefit.benefitPageFr
-                    )
-                  }
-                  href={
-                    this.props.t("current-language-code") === "en"
-                      ? benefit.benefitPageEn
-                      : benefit.benefitPageFr
-                  }
-                >
-                  {this.props.t("Find out more")}
-                </Button>
+                    }
+                  >
+                    {this.props.t("Find out more")}
+                  </Button>
+                </Grid>
+
+                <Grid item xs={12}>
+                  {veteranBenefits.length > 0 ? (
+                    <div className={classes.children}>
+                      <Typography className={classes.ChildBenefitDesc}>
+                        {t("Veteran child benefits")}:
+                      </Typography>
+                      <div>
+                        {veteranBenefits.map((cb, i) => (
+                          <EmbeddedBenefitCard
+                            id={"cb" + i}
+                            benefit={cb}
+                            t={this.props.t}
+                            key={cb.id}
+                            onRef={ref => this.children.push(ref)}
+                            showFavourite={this.props.showFavourite}
+                            store={this.props.store}
+                          />
+                        ))}
+                        <br />
+                        <br />
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  {familyBenefits.length > 0 ? (
+                    <div className={classes.children}>
+                      <Typography className={classes.ChildBenefitDesc}>
+                        {t("Family child benefits")}:
+                      </Typography>
+                      <div>
+                        {familyBenefits.map((cb, i) => (
+                          <EmbeddedBenefitCard
+                            id={"cb" + i}
+                            className="BenefitCards"
+                            benefit={cb}
+                            t={this.props.t}
+                            key={cb.id}
+                            onRef={ref => this.children.push(ref)}
+                            showFavourite={this.props.showFavourite}
+                            store={this.props.store}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </Grid>
               </Grid>
             </ExpansionPanelDetails>
           </ExpansionPanel>

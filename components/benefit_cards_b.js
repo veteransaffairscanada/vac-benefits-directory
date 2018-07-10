@@ -230,57 +230,6 @@ export class BenefitCardB extends Component {
                     {this.props.t("Find out more")}
                   </Button>
                 </Grid>
-
-                <Grid item xs={12}>
-                  {veteranBenefits.length > 0 ? (
-                    <div className={classes.children}>
-                      <Typography className={classes.ChildBenefitDesc}>
-                        {t("Veteran child benefits")}:
-                      </Typography>
-                      <div>
-                        {veteranBenefits.map((cb, i) => (
-                          <EmbeddedBenefitCard
-                            id={"cb" + i}
-                            benefit={cb}
-                            t={this.props.t}
-                            key={cb.id}
-                            onRef={ref => this.children.push(ref)}
-                            showFavourite={this.props.showFavourite}
-                            store={this.props.store}
-                          />
-                        ))}
-                        <br />
-                        <br />
-                      </div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-
-                  {familyBenefits.length > 0 ? (
-                    <div className={classes.children}>
-                      <Typography className={classes.ChildBenefitDesc}>
-                        {t("Family child benefits")}:
-                      </Typography>
-                      <div>
-                        {familyBenefits.map((cb, i) => (
-                          <EmbeddedBenefitCard
-                            id={"cb" + i}
-                            className="BenefitCards"
-                            benefit={cb}
-                            t={this.props.t}
-                            key={cb.id}
-                            onRef={ref => this.children.push(ref)}
-                            showFavourite={this.props.showFavourite}
-                            store={this.props.store}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-                </Grid>
               </Grid>
             </ExpansionPanelDetails>
           </ExpansionPanel>
