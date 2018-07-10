@@ -15,12 +15,12 @@ import { connect } from "react-redux";
 
 const styles = theme => ({
   needsTag: {
-    marginRight: theme.spacing.unit,
+    marginLeft: 2 * theme.spacing.unit,
     backgroundColor: "#364150",
     color: "white",
-    borderRadius: 2,
+    borderRadius: 0,
     display: "inline-flex",
-    padding: "4px 6px"
+    padding: "2px 4px"
   },
   button: {
     marginTop: "30px"
@@ -157,6 +157,18 @@ export class BenefitCard extends Component {
                         : benefit.vacNameFr
                     }
                   />
+                  <div style={{ display: "inline-flex" }}>
+                    {needsMet.map(need => (
+                      <div
+                        key={benefit.id + need.id}
+                        className={classes.needsTag}
+                      >
+                        {this.props.t("current-language-code") === "en"
+                          ? need.nameEn
+                          : need.nameFr}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <Typography
@@ -172,19 +184,6 @@ export class BenefitCard extends Component {
                     }
                   />
                 </Typography>
-
-                <div>
-                  {needsMet.map(need => (
-                    <div
-                      key={benefit.id + need.id}
-                      className={classes.needsTag}
-                    >
-                      {this.props.t("current-language-code") === "en"
-                        ? need.nameEn
-                        : need.nameFr}
-                    </div>
-                  ))}
-                </div>
               </div>
             </ExpansionPanelSummary>
 
