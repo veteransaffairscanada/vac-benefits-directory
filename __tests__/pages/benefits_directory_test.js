@@ -48,6 +48,7 @@ describe("BenefitsDirectory", () => {
     _mountedBenefitsDirectory = undefined;
     mockStore = configureStore();
     reduxData = {
+      option: "",
       translations: [],
       benefits: benefitsFixture,
       examples: examplesFixture,

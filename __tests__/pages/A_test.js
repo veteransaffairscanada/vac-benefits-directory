@@ -70,7 +70,8 @@ describe("A", () => {
       selectedNeeds: {},
       serviceType: "CAF",
       patronType: "family",
-      statusAndVitals: ""
+      statusAndVitals: "",
+      option: ""
     };
     props.store = mockStore(reduxData);
   });
