@@ -72,7 +72,6 @@ export class BenefitsDirectory extends Component {
           id="BB"
           t={t}
           pageWidth={this.state.width}
-          url={this.props.url}
           store={this.props.store}
           setSection={this.setSection}
         />

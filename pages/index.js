@@ -37,8 +37,13 @@ export class App extends Component {
   }
 
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
-
+    const { i18n, t, option } = this.props; // eslint-disable-line no-unused-vars
+    let urlGE = "A?section=A1&lng=" + t("current-language-code");
+    let urlBD = "benefits-directory?lng=" + t("current-language-code");
+    if (option && option != "") {
+      urlGE += "&option=" + option;
+      urlBD += "&option=" + option;
+    }
     return (
       <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
         <Hero>
@@ -49,7 +54,7 @@ export class App extends Component {
               style={{ padding: "20px", textTransform: "none" }}
               variant="raised"
               color="primary"
-              href={"A?section=A1&lng=" + t("current-language-code")}
+              href={urlGE}
             >
               {t("index.guided experience")}
             </Button>
@@ -61,7 +66,7 @@ export class App extends Component {
               style={{ padding: "20px", textTransform: "none" }}
               variant="raised"
               color="primary"
-              href={"benefits-directory?lng=" + t("current-language-code")}
+              href={urlBD}
             >
               {t("index.all benefits")}
             </Button>
@@ -80,9 +85,10 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    translations: state.translations
+    translations: reduxState.translations,
+    option: reduxState.option
   };
 };
 
@@ -90,7 +96,8 @@ App.propTypes = {
   i18n: PropTypes.object.isRequired,
   store: PropTypes.object,
   t: PropTypes.func.isRequired,
-  translations: PropTypes.array.isRequired
+  translations: PropTypes.array.isRequired,
+  option: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(App));
