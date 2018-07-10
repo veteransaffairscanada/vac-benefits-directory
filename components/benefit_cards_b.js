@@ -153,8 +153,8 @@ export class BenefitCardB extends Component {
                     autoEscape={true}
                     textToHighlight={
                       this.props.t("current-language-code") === "en"
-                        ? benefit.vacNameEn
-                        : benefit.vacNameFr
+                        ? benefit.vacNameEn + "B"
+                        : benefit.vacNameFr + "B"
                     }
                   />
                   <div style={{ display: "inline-flex" }}>
