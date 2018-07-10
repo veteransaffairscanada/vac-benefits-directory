@@ -273,6 +273,7 @@ export class BB extends Component {
                   searchString={this.props.searchString}
                   showFavourites={true}
                   store={this.props.store}
+                  url={this.props.url}
                 />
               </Grid>
             </Grid>

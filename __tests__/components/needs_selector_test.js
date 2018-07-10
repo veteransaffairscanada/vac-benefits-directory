@@ -23,6 +23,7 @@ describe("NeedsSelector", () => {
   };
 
   beforeEach(() => {
+    window.scrollTo = jest.fn();
     props = {
       theme: {},
       classes: {},
@@ -99,9 +100,8 @@ describe("NeedsSelector", () => {
 
   it("scrolls to the top of the page when clicked", () => {
     let needsInstance = mountedNeedsSelector().instance();
-    global.scrollTo = jest.fn();
     needsInstance.handleClick("foo");
-    expect(global.scrollTo).toBeCalled();
+    expect(window.scrollTo).toBeCalled();
   });
 
   it("has no clear button if selectedNeeds is empty", () => {

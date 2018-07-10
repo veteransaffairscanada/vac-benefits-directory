@@ -23,17 +23,7 @@ describe("Favourites Page", () => {
   Router.push = jest.fn();
 
   let props;
-  let _mountedFavouritesPage;
   let mockStore, reduxData;
-
-  const mountedFavouritesPage = () => {
-    if (!_mountedFavouritesPage) {
-      _mountedFavouritesPage = shallow(
-        <FavouritesPage {...props} {...reduxData} />
-      );
-    }
-    return _mountedFavouritesPage;
-  };
 
   beforeEach(() => {
     props = {
@@ -42,9 +32,9 @@ describe("Favourites Page", () => {
       },
       t: key => {
         return key === "current-language-code" ? "en" : key;
-      }
+      },
+      url: { query: { option: "" } }
     };
-    _mountedFavouritesPage = undefined;
     mockStore = configureStore();
     reduxData = {
       translations: [],
@@ -62,12 +52,14 @@ describe("Favourites Page", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mountedFavouritesPage().html();
+    let html = shallow(<FavouritesPage {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has a working toggleFavourite function", async () => {
-    let instance = mountedFavouritesPage().instance();
+    let instance = shallow(
+      <FavouritesPage {...props} {...reduxData} />
+    ).instance();
     instance.toggleFavourite("c0");
     instance.toggleFavourite("c1");
     expect(instance.cookies.get("favouriteBenefits")).toEqual(["c0", "c1"]);

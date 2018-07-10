@@ -235,6 +235,7 @@ export class Favourites extends Component {
                   searchString=""
                   store={this.props.store}
                   favouriteBenefits={this.props.favouriteBenefits}
+                  url={this.props.url}
                 />
               </Grid>
             </Grid>
@@ -270,7 +271,8 @@ Favourites.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(Favourites));
