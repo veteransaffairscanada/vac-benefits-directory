@@ -57,8 +57,6 @@ const styles = theme => ({
 
 export class BB extends Component {
   state = {
-    enIdx: null,
-    frIdx: null,
     sortByValue: "relevance"
   };
 
