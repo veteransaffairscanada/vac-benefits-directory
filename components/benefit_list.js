@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "../components/benefit_cards";
+import BenefitCardB from "../components/benefit_cards_b";
 import { connect } from "react-redux";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -132,7 +133,8 @@ BenefitList.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   showFavourites: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(BenefitList);
