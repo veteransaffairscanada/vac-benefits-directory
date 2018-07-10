@@ -97,6 +97,13 @@ describe("NeedsSelector", () => {
     expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
   });
 
+  it("scrolls to the top of the page when clicked", () => {
+    let needsInstance = mountedNeedsSelector().instance();
+    global.scrollTo = jest.fn();
+    needsInstance.handleClick("foo");
+    expect(global.scrollTo).toBeCalled();
+  });
+
   it("has no clear button if selectedNeeds is empty", () => {
     reduxData.selectedNeeds = {};
     props.store = mockStore(reduxData);

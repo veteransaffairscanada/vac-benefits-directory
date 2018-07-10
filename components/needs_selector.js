@@ -68,7 +68,9 @@ export class NeedsSelector extends Component {
       logEvent("FilterClick", "need", id);
       newSelectedNeeds[id] = id;
     }
-    window.scrollTo(0, 0);
+    if (window) {
+      window.scrollTo(0, 0);
+    }
     this.props.setSelectedNeeds(newSelectedNeeds);
   };
 
