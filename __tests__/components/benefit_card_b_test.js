@@ -86,19 +86,25 @@ describe("BenefitCardB", () => {
     expect(mountedBenefitCard().html()).not.toContain("examples:");
   });
 
-  it("has a correctly configured button", () => {
+  it("has a correctly configured external link button", () => {
     expect(
       mountedBenefitCard()
+        .find("ExpansionPanelDetails")
+        .first()
         .find("Button")
         .prop("target")
     ).toEqual("_blank");
     expect(
       mountedBenefitCard()
+        .find("ExpansionPanelDetails")
+        .first()
         .find("Button")
         .prop("href")
     ).toEqual(benefitsFixture[1].benefitPageEn);
     expect(
       mountedBenefitCard()
+        .find("ExpansionPanelDetails")
+        .first()
         .find("Button")
         .text()
     ).toEqual("en");
@@ -123,11 +129,15 @@ describe("BenefitCardB", () => {
     it("has a button with the French link", () => {
       expect(
         mountedBenefitCard()
+          .find("ExpansionPanelDetails")
+          .first()
           .find("Button")
           .prop("href")
       ).toEqual(benefitsFixture[1].benefitPageFr);
       expect(
         mountedBenefitCard()
+          .find("ExpansionPanelDetails")
+          .first()
           .find("Button")
           .text()
       ).toEqual("fr");
@@ -152,6 +162,8 @@ describe("BenefitCardB", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
     mountedBenefitCard()
+      .find("ExpansionPanelDetails")
+      .first()
       .find("Button")
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
