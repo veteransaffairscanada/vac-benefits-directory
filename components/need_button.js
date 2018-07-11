@@ -11,7 +11,6 @@ const styles = theme => ({
     marginBottom: 1.5 * theme.spacing.unit,
     textTransform: "none",
     textAlign: "left",
-    borderColor: "red",
     borderStyle: "solid",
     borderWidth: "2px",
     borderRadius: "5px",
