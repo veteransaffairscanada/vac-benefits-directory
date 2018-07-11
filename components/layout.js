@@ -32,7 +32,12 @@ const styles = () => ({
     backgroundColor: "#f5f5f5"
   },
   header: {
-    backgroundColor: "#000",
+    backgroundColor: "#434343",
+    padding: "0px"
+  },
+  breadcrumb: {
+    background: "linear-gradient(to bottom, #C0C0C0, #f5f5f5)",
+    minHeight: 30,
     padding: "0px"
   }
 });
@@ -71,6 +76,7 @@ class Layout extends Component {
                 />
               </Container>
             </div>
+            <div className={classnames(this.props.classes.breadcrumb)} />
             <Container role="main">{this.props.children}</Container>
           </Content>
           <div style={{ backgroundColor: "#eee" }}>
