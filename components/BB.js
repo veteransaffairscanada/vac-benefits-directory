@@ -5,6 +5,7 @@ import classnames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
@@ -16,10 +17,19 @@ import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
 import Bookmark from "@material-ui/icons/Bookmark";
+import Print from "@material-ui/icons/Print";
+import SearchIcon from "@material-ui/icons/Search";
 
 const styles = theme => ({
   benefitsCount: {
     fontSize: "24px"
+  },
+  buttonBarButton: {
+    fontSize: "20px",
+    fontWeight: "100",
+    paddingLeft: "0px",
+    textDecoration: "none",
+    textTransform: "none"
   },
   checkEligibility: {
     fontWeight: "100"
@@ -33,6 +43,12 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 120
   },
+  input: {
+    marginTop: "5px"
+  },
+  searchField: {
+    marginTop: "-15px"
+  },
   sortBy: {
     textAlign: "left",
     marginLeft: "-7px"
@@ -43,7 +59,7 @@ const styles = theme => ({
   subTitle: {
     fontSize: "20px",
     fontWeight: "100",
-    paddingBottom: "25px"
+    paddingBottom: "40px"
   },
   title: {
     fontSize: "36px",
@@ -169,6 +185,59 @@ export class BB extends Component {
                 {t("B3.subtitle1")} <br />
                 {t("B3.subtitle2")}
               </Typography>
+              <Grid container spacing={24}>
+                <Grid item xs={12} md={9}>
+                  <Button
+                    id="Favourites Page"
+                    variant="flat"
+                    size="large"
+                    href={this.getFavouritesURL()}
+                    className={classes.buttonBarButton}
+                  >
+                    <Bookmark style={{ fontSize: "20px" }} />
+                    &nbsp;
+                    {t("B3.favouritesButtonText") +
+                      " (" +
+                      this.props.favouriteBenefits.length +
+                      ")"}
+                  </Button>
+                  <Button
+                    variant="flat"
+                    size="large"
+                    target="dan"
+                    href={printUrl}
+                    className={classes.buttonBarButton}
+                    id="printButton"
+                  >
+                    <Print style={{ fontSize: "20px" }} />
+                    &nbsp;
+                    {t("Print")}
+                  </Button>
+                </Grid>
+                <Grid item xs={12} md={3}>
+                  <TextField
+                    id="bbSearchField"
+                    label={t("search")}
+                    placeholder=""
+                    fullWidth
+                    value={this.props.searchString}
+                    onChange={this.handleSearchChange}
+                    className={classes.searchField}
+                    InputProps={{
+                      classes: {
+                        input: classes.input
+                      },
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <SearchIcon
+                            className={this.props.classes.inputIcon}
+                          />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item lg={3} md={4} sm={5} xs={12}>
               <ProfileSelector
@@ -219,42 +288,10 @@ export class BB extends Component {
                         {t("B3.Alphabetical")}
                       </MenuItem>
                     </Select>
-                    <TextField
-                      id="bbSearchField"
-                      label={t("search")}
-                      placeholder=""
-                      value={this.props.searchString}
-                      onChange={this.handleSearchChange}
-                      margin="normal"
-                    />
                   </FormControl>
                 </Grid>
 
                 <Grid item xs={8} className={classnames(classes.collapse)}>
-                  <Button
-                    id="Favourites Page"
-                    variant="flat"
-                    size="small"
-                    href={this.getFavouritesURL()}
-                    style={{ textTransform: "none" }}
-                  >
-                    <Bookmark style={{ fontSize: "16px" }} />
-                    {t("B3.favouritesButtonText") +
-                      " (" +
-                      this.props.favouriteBenefits.length +
-                      ")"}
-                  </Button>
-
-                  <Button
-                    variant="flat"
-                    size="small"
-                    target="dan"
-                    href={printUrl}
-                    className="printButton"
-                    style={{ textTransform: "none" }}
-                  >
-                    {t("Print")}
-                  </Button>
                   <Button
                     id="CollapseBenefits"
                     variant="flat"
