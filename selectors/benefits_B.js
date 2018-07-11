@@ -13,7 +13,7 @@ const getSearchStringFilter = state => state.searchString;
 const getServiceFilter = state => state.serviceType;
 const getStatusFilter = state => state.statusAndVitals;
 
-export const getFilteredBenefits = createSelector(
+export const getFilteredBenefitsB = createSelector(
   [
     getPatronFilter,
     getServiceFilter,
