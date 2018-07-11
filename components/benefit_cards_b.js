@@ -114,8 +114,7 @@ export class BenefitCardB extends Component {
       });
     } else {
       return this.props.t("benefits_b.eligible_for_multi", {
-        x: this.childBenefitTitle(childBenefits[0]),
-        y: length - 1
+        x: length
       });
     }
   };

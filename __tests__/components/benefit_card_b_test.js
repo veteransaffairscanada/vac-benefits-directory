@@ -115,6 +115,52 @@ describe("BenefitCardB", () => {
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
   });
 
+  it("shows a child benefit title if the benefit has a child", () => {
+    expect(
+      mountedBenefitCard()
+        .find("Paper")
+        .first()
+        .text()
+    ).toContain("en");
+  });
+
+  describe(".childBenefitTitle", () => {
+    it("returns the title of a card in english", () => {
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .childBenefitTitle(benefitsFixture[0])
+      ).toEqual(benefitsFixture[0].vacNameEn);
+    });
+
+    it("returns the title of a card in french", () => {
+      props.t = () => "fr";
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .childBenefitTitle(benefitsFixture[0])
+      ).toEqual(benefitsFixture[0].vacNameFr);
+    });
+  });
+
+  describe(".childBenefitNames", () => {
+    it("returns the title of a benefit if there is one benefit", () => {
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .childBenefitNames(benefitsFixture[0])
+      ).toContain("en");
+    });
+
+    it("returns the count of benefits if there is more than one", () => {
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .childBenefitNames([benefitsFixture])
+      ).toContain("en");
+    });
+  });
+
   describe("when language is French", () => {
     beforeEach(() => {
       props.t = () => "fr";
@@ -141,6 +187,15 @@ describe("BenefitCardB", () => {
           .find("Button")
           .text()
       ).toEqual("fr");
+    });
+
+    it("shows a child benefit title if the benefit has a child", () => {
+      expect(
+        mountedBenefitCard()
+          .find("Paper")
+          .first()
+          .text()
+      ).toContain("fr");
     });
   });
 
