@@ -8,12 +8,11 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { connect } from "react-redux";
-
+import NeedButton from "./need_button";
 import "babel-polyfill/dist/polyfill";
 import { Grid, Button } from "@material-ui/core";
-import { logEvent } from "../utils/analytics";
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     backgroundColor: "white"
   },
@@ -27,19 +26,6 @@ const styles = theme => ({
   needsButtons: {
     display: "flex",
     flexWrap: "wrap"
-  },
-  need: {
-    margin: theme.spacing.unit,
-    backgroundColor: "#F5F5F5",
-    textTransform: "none",
-    textAlign: "left"
-  },
-  needSelected: {
-    margin: theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    textTransform: "none",
-    textAlign: "left"
   },
   clearButton: {
     textDecoration: "underline",
@@ -58,20 +44,6 @@ export class NeedsSelector extends Component {
   toggleOpenState = () => {
     let newState = !this.state.open;
     this.setState({ open: newState });
-  };
-
-  handleClick = id => {
-    let newSelectedNeeds = JSON.parse(JSON.stringify(this.props.selectedNeeds));
-    if (newSelectedNeeds.hasOwnProperty(id)) {
-      delete newSelectedNeeds[id];
-    } else {
-      logEvent("FilterClick", "need", id);
-      newSelectedNeeds[id] = id;
-    }
-    if (window) {
-      window.scrollTo(0, 0);
-    }
-    this.props.setSelectedNeeds(newSelectedNeeds);
   };
 
   clearNeeds = () => {
@@ -110,22 +82,7 @@ export class NeedsSelector extends Component {
               className={classes.needsButtons}
             >
               {needs.map(need => (
-                <Button
-                  disableRipple={true}
-                  key={need.id}
-                  variant="raised"
-                  onClick={() => this.handleClick(need.id)}
-                  value={need.id}
-                  className={
-                    this.props.selectedNeeds[need.id]
-                      ? classes.needSelected
-                      : classes.need
-                  }
-                >
-                  {t("current-language-code") === "en"
-                    ? need.nameEn
-                    : need.nameFr}
-                </Button>
+                <NeedButton key={need.id} need={need} t={t} />
               ))}
             </Grid>
             {JSON.stringify(this.props.selectedNeeds) !== "{}" ? (
@@ -173,11 +130,10 @@ NeedsSelector.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired,
   pageWidth: PropTypes.number.isRequired,
   store: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles, { withTheme: true })(NeedsSelector)
+  withStyles(styles)(NeedsSelector)
 );
