@@ -9,7 +9,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Highlighter from "react-highlight-words";
-import FavouriteButton from "./favourite_button";
+import FavouriteButton from "./favourite_button_b";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 
@@ -139,22 +139,13 @@ export class BenefitCardB extends Component {
             >
               <div>
                 <div component="p" className={classes.benefitName}>
-                  {this.props.showFavourite ? (
-                    <FavouriteButton
-                      benefit={benefit}
-                      toggleOpenState={this.toggleOpenState}
-                      store={this.props.store}
-                    />
-                  ) : (
-                    ""
-                  )}
                   <Highlighter
                     searchWords={this.props.searchString.split(",")}
                     autoEscape={true}
                     textToHighlight={
                       this.props.t("current-language-code") === "en"
-                        ? benefit.vacNameEn + "B"
-                        : benefit.vacNameFr + "B"
+                        ? benefit.vacNameEn
+                        : benefit.vacNameFr
                     }
                   />
                   <div style={{ display: "inline-flex" }}>
@@ -184,6 +175,16 @@ export class BenefitCardB extends Component {
                     }
                   />
                 </Typography>
+                {this.props.showFavourite ? (
+                  <FavouriteButton
+                    benefit={benefit}
+                    toggleOpenState={this.toggleOpenState}
+                    store={this.props.store}
+                    t={this.props.t}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
             </ExpansionPanelSummary>
 
