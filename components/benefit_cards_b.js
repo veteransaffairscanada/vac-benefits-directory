@@ -166,10 +166,14 @@ export class BenefitCardB extends Component {
     return (
       <Grid item xs={12}>
         <div className={classes.root}>
-          <ExpansionPanel expanded={this.state.open}>
-            className={this.state.open
-              ? classes.ExpansionPanelOpen
-              : classes.ExpansionPanelClosed}
+          <ExpansionPanel
+            expanded={this.state.open}
+            className={
+              this.state.open
+                ? classes.ExpansionPanelOpen
+                : classes.ExpansionPanelClosed
+            }
+          >
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
               expandIcon={
