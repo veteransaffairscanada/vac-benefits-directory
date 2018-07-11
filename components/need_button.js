@@ -78,7 +78,8 @@ NeedButton.propTypes = {
   need: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
-  selectedNeeds: PropTypes.object.isRequired
+  selectedNeeds: PropTypes.object.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

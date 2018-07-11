@@ -51,7 +51,7 @@ export class NeedsSelector extends Component {
   };
 
   render() {
-    const { needs, classes, t, pageWidth } = this.props;
+    const { needs, classes, t, pageWidth, store } = this.props;
     return (
       <ExpansionPanel
         className={classnames(classes.root)}
@@ -82,7 +82,7 @@ export class NeedsSelector extends Component {
               className={classes.needsButtons}
             >
               {needs.map(need => (
-                <NeedButton key={need.id} need={need} t={t} />
+                <NeedButton key={need.id} need={need} t={t} store={store} />
               ))}
             </Grid>
             {JSON.stringify(this.props.selectedNeeds) !== "{}" ? (

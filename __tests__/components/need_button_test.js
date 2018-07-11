@@ -1,0 +1,51 @@
+import React from "react";
+import { mount } from "enzyme";
+import { NeedButton } from "../../components/need_button";
+import needsFixture from "../fixtures/needs";
+
+const { axe, toHaveNoViolations } = require("jest-axe");
+expect.extend(toHaveNoViolations);
+
+jest.mock("react-ga");
+
+describe("NeedButton", () => {
+  let props;
+
+  beforeEach(() => {
+    window.scrollTo = jest.fn();
+    props = {
+      classes: {},
+      need: needsFixture[0],
+      t: key => key,
+      setSelectedNeeds: jest.fn(),
+      selectedNeeds: {}
+    };
+  });
+
+  it("passes axe tests", async () => {
+    let html = mount(<NeedButton {...props} />).html();
+    expect(await axe(html)).toHaveNoViolations();
+  });
+
+  it("fires the the setSelectedNeeds function when a need is selected", () => {
+    mount(<NeedButton {...props} />)
+      .find("Button")
+      .at(0)
+      .simulate("click");
+    expect(props.setSelectedNeeds).toHaveBeenCalled();
+  });
+
+  it("handleClick logs an analytics event", () => {
+    let needsInstance = mount(<NeedButton {...props} />).instance();
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    needsInstance.handleClick("foo");
+    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
+  });
+
+  it("scrolls to the top of the page when clicked", () => {
+    let needsInstance = mount(<NeedButton {...props} />).instance();
+    needsInstance.handleClick("foo");
+    expect(window.scrollTo).toBeCalled();
+  });
+});

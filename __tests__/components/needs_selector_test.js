@@ -64,15 +64,6 @@ describe("NeedsSelector", () => {
     expect(mountedNeedsSelector());
   });
 
-  it("fires the the setSelectedNeeds function when a need is selected", () => {
-    mountedNeedsSelector()
-      .find("#needs_buttons")
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(reduxData.setSelectedNeeds).toHaveBeenCalled();
-  });
-
   it("is expanded if pageWidth > 600px", () => {
     expect(
       mountedNeedsSelector()
@@ -88,20 +79,6 @@ describe("NeedsSelector", () => {
         .find("ExpansionPanel")
         .prop("expanded")
     ).toEqual(false);
-  });
-
-  it("handleClick logs an analytics event", () => {
-    let needsInstance = mountedNeedsSelector().instance();
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    needsInstance.handleClick("foo");
-    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
-  });
-
-  it("scrolls to the top of the page when clicked", () => {
-    let needsInstance = mountedNeedsSelector().instance();
-    needsInstance.handleClick("foo");
-    expect(window.scrollTo).toBeCalled();
   });
 
   it("has no clear button if selectedNeeds is empty", () => {
