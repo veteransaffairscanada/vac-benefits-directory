@@ -1,4 +1,4 @@
-import { getFilteredBenefits } from "../../selectors/benefits_B";
+import { getFilteredBenefitsB } from "../../selectors/benefits_B";
 
 describe("getFilteredBenefits", () => {
   let props;
@@ -104,14 +104,14 @@ describe("getFilteredBenefits", () => {
   });
 
   it("displays all benefits if nothing selected", () => {
-    let returnValue = getFilteredBenefits(state, props).map(b => b.id);
+    let returnValue = getFilteredBenefitsB(state, props).map(b => b.id);
     returnValue.sort();
     expect(returnValue).toEqual(["0", "1", "2", "3", "4"]);
   });
 
   it("displays benefits 0, 2, 4 if patronType p1", () => {
     state.patronType = "p1";
-    expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
+    expect(getFilteredBenefitsB(state, props).map(b => b.id)).toEqual([
       "0",
       "2",
       "4"
@@ -120,12 +120,12 @@ describe("getFilteredBenefits", () => {
 
   it("runs a lunr search on the english index if searchString is set an english is used", () => {
     state.searchString = "Fiz";
-    expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual(["1"]);
+    expect(getFilteredBenefitsB(state, props).map(b => b.id)).toEqual(["1"]);
   });
 
   it("runs a lunr search on the french index if searchString is set an french is used", () => {
     props.t = () => "fr";
     state.searchString = "Fiz";
-    expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual(["1"]);
+    expect(getFilteredBenefitsB(state, props).map(b => b.id)).toEqual(["1"]);
   });
 });

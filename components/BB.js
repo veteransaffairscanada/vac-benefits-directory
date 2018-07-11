@@ -16,6 +16,7 @@ import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
+import { getFilteredBenefitsB } from "../selectors/benefits_B";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
@@ -335,7 +336,10 @@ const mapStateToProps = (reduxState, props) => {
     favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
-    filteredBenefits: getFilteredBenefits(reduxState, props),
+    filteredBenefits:
+      reduxState.option == "B"
+        ? getFilteredBenefitsB(reduxState, props)
+        : getFilteredBenefits(reduxState, props),
     needs: reduxState.needs,
     searchString: reduxState.searchString,
     selectedEligibility: {

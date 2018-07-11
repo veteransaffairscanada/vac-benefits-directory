@@ -4,11 +4,13 @@ import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Highlighter from "react-highlight-words";
 import FavouriteButton from "./favourite_button_b";
+import Paper from "@material-ui/core/Paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 
@@ -24,6 +26,13 @@ const styles = theme => ({
   button: {
     marginTop: "30px"
   },
+  cardBottom: {
+    backgroundColor: "#e8e8e8",
+    borderRadius: "0px",
+    borderTop: "1px solid #8b8b8b",
+    padding: "15px 0px 15px 24px",
+    position: "relative"
+  },
   cardDescriptionText: {
     fontSize: "20px",
     fontWeight: 400,
@@ -35,17 +44,20 @@ const styles = theme => ({
   root: {
     width: "100%"
   },
-  ExpansionPanelClosed: {
-    borderLeft: "5px solid"
-  },
+  ExpansionPanelClosed: {},
   ExpansionPanelOpen: {
-    borderLeft: "5px solid #808080"
+    marginBottom: "0px"
   },
   ExpansionPanelSummary: {
-    "&[aria-expanded*=true]": {
-      backgroundColor: "#f8f8f8"
-    },
+    borderBottom: "0px",
     userSelect: "inherit"
+  },
+  expandIcon: {
+    color: "#3e57e2",
+    marginTop: "40px",
+    "&:hover": {
+      background: "none"
+    }
   },
   ChildBenefitDesc: {
     paddingBottom: "30px"
@@ -62,6 +74,16 @@ const styles = theme => ({
   },
   benefitName: {
     fontWeight: 500
+  },
+  returnIcon: {
+    "-moz-transform": "scaleX(-1)",
+    "-o-transform": "scaleX(-1)",
+    "-webkit-transform": "scaleX(-1)",
+    transform: "scaleX(-1)",
+    float: "left",
+    filter: "FlipH",
+    "-ms-filter": "FlipH",
+    paddingLeft: "10px"
   }
 });
 
@@ -89,18 +111,37 @@ export class BenefitCardB extends Component {
     this.props.onRef(undefined);
   }
 
+  childBenefitTitle = benefit => {
+    return this.props.t("current-language-code") === "en"
+      ? benefit.vacNameEn
+      : benefit.vacNameFr;
+  };
+
+  childBenefitNames = childBenefits => {
+    const length = childBenefits.length;
+    if (length == 1) {
+      return this.props.t("benefits_b.eligible_for_single", {
+        x: this.childBenefitTitle(childBenefits[0])
+      });
+    } else {
+      return this.props.t("benefits_b.eligible_for_multi", {
+        x: length
+      });
+    }
+  };
+
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
 
     // we'll probably need these in the header / footer when that gets added
     //
-    // const childBenefits = benefit.childBenefits
-    //   ? this.props.allBenefits.filter(
-    //       ab => benefit.childBenefits.indexOf(ab.id) > -1
-    //     )
-    //   : [];
-    //
+    const childBenefits = benefit.childBenefits
+      ? this.props.allBenefits.filter(
+          ab => benefit.childBenefits.indexOf(ab.id) > -1
+        )
+      : [];
+
     // const veteranBenefits = childBenefits.filter(
     //   ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
     // );
@@ -126,16 +167,26 @@ export class BenefitCardB extends Component {
       <Grid item xs={12}>
         <div className={classes.root}>
           <ExpansionPanel
+            expanded={this.state.open}
             className={
               this.state.open
                 ? classes.ExpansionPanelOpen
                 : classes.ExpansionPanelClosed
             }
-            expanded={this.state.open}
           >
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
-              expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
+              expandIcon={
+                this.state.open ? (
+                  <RemoveIcon className={classes.expandIcon} />
+                ) : (
+                  <AddIcon className={classes.expandIcon} />
+                )
+              }
+              IconButtonProps={{
+                className: classes.expandIcon,
+                disableRipple: true
+              }}
               onClick={() => this.toggleOpenState()}
             >
               <div>
@@ -188,7 +239,6 @@ export class BenefitCardB extends Component {
                 )}
               </div>
             </ExpansionPanelSummary>
-
             <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
@@ -235,6 +285,14 @@ export class BenefitCardB extends Component {
               </Grid>
             </ExpansionPanelDetails>
           </ExpansionPanel>
+          {childBenefits.length > 0 ? (
+            <Paper className={classes.cardBottom}>
+              <KeyboardReturnIcon className={classes.returnIcon} />
+              {this.childBenefitNames(childBenefits)}
+            </Paper>
+          ) : (
+            ""
+          )}
         </div>
       </Grid>
     );
