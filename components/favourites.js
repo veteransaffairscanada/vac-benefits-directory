@@ -12,10 +12,18 @@ import lunr from "lunr";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
+import Print from "@material-ui/icons/Print";
 
 const styles = theme => ({
   benefitsCount: {
     fontSize: "24px"
+  },
+  buttonBarButton: {
+    fontSize: "20px",
+    fontWeight: "100",
+    paddingLeft: "0px",
+    textDecoration: "none",
+    textTransform: "none"
   },
   collapse: {
     textAlign: "right",
@@ -166,6 +174,18 @@ export class Favourites extends Component {
               <Typography className={classes.title}>
                 {t("B3.favouritesButtonText")}
               </Typography>
+              <Button
+                variant="flat"
+                size="large"
+                target="dan"
+                href={printUrl}
+                className={classes.buttonBarButton}
+                id="printButton"
+              >
+                <Print style={{ fontSize: "20px" }} />
+                &nbsp;
+                {t("Print")}
+              </Button>
             </Grid>
             <Grid item xs={12}>
               <Grid item xs={12}>
@@ -206,16 +226,6 @@ export class Favourites extends Component {
                 </Grid>
 
                 <Grid item xs={9} className={classnames(classes.collapse)}>
-                  <Button
-                    variant="flat"
-                    size="small"
-                    target="dan"
-                    href={printUrl}
-                    style={{ textTransform: "none" }}
-                    className="printButton"
-                  >
-                    {t("Print")}
-                  </Button>
                   <Button
                     id="CollapseBenefits"
                     variant="flat"
