@@ -26,18 +26,19 @@ describe("Index page", () => {
     mockStore = configureStore();
     reduxData = {
       translations: [],
-      benefits: benefitsFixture
+      benefits: benefitsFixture,
+      option: ""
     };
     props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<App {...props} />).html();
+    let html = mount(<App {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has a description", () => {
-    const appMounted = mount(<App {...props} />);
+    const appMounted = mount(<App {...props} {...reduxData} />);
     expect(
       appMounted
         .find("#heroTitle")
@@ -47,7 +48,7 @@ describe("Index page", () => {
   });
 
   it("has a button for the guided experience", () => {
-    const appMounted = mount(<App {...props} />);
+    const appMounted = mount(<App {...props} {...reduxData} />);
     expect(
       appMounted
         .find("#heroGuidedLink")
@@ -57,7 +58,7 @@ describe("Index page", () => {
   });
 
   it("has a Button for the directory", () => {
-    const appMounted = mount(<App {...props} />);
+    const appMounted = mount(<App {...props} {...reduxData} />);
     expect(
       appMounted
         .find("#heroBenefitsLink")

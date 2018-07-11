@@ -43,8 +43,7 @@ describe("Favourites", () => {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
-      },
-      url: { query: { option: "" } }
+      }
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
@@ -56,7 +55,8 @@ describe("Favourites", () => {
       needs: needsFixture,
       favouriteBenefits: ["3"],
       selectedNeeds: {},
-      eligibilityPaths: eligibilityPathsFixture
+      eligibilityPaths: eligibilityPathsFixture,
+      option: ""
     };
     props.store = mockStore(reduxData);
   });

@@ -23,7 +23,7 @@ describe("BenefitList", () => {
       sortByValue: "",
       searchString: "",
       showFavourites: true,
-      url: { query: { option: "" } }
+      option: ""
     };
 
     mockStore = configureStore();
@@ -73,7 +73,7 @@ describe("BenefitList", () => {
   });
 
   it("displays BenefitCardB if url flag is set", () => {
-    props.url.query.option = "B";
+    props.option = "B";
     expect(
       mount(<BenefitList {...props} {...reduxData} />).find("BenefitCardB")
         .length

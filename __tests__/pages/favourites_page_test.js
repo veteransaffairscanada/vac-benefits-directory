@@ -32,8 +32,7 @@ describe("Favourites Page", () => {
       },
       t: key => {
         return key === "current-language-code" ? "en" : key;
-      },
-      url: { query: { option: "" } }
+      }
     };
     mockStore = configureStore();
     reduxData = {
@@ -46,7 +45,8 @@ describe("Favourites Page", () => {
       serviceType: "CAF",
       patronType: "family",
       statusAndVitals: "",
-      favouriteBenefits: [benefitsFixture[0].id]
+      favouriteBenefits: [benefitsFixture[0].id],
+      option: ""
     };
     props.store = mockStore(reduxData);
   });

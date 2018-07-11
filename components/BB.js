@@ -116,6 +116,7 @@ export class BB extends Component {
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
+    href += "&option=" + this.props.option;
     return href;
   };
 
@@ -273,7 +274,6 @@ export class BB extends Component {
                   searchString={this.props.searchString}
                   showFavourites={true}
                   store={this.props.store}
-                  url={this.props.url}
                 />
               </Grid>
             </Grid>
@@ -306,7 +306,8 @@ const mapStateToProps = (reduxState, props) => {
       serviceType: reduxState.serviceType,
       statusAndVitals: reduxState.statusAndVitals
     },
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    option: reduxState.option
   };
 };
 
@@ -325,8 +326,8 @@ BB.propTypes = {
   t: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  url: PropTypes.object.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  option: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

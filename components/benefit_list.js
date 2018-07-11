@@ -89,7 +89,7 @@ export class BenefitList extends React.Component {
     ) : (
       sortedBenefits.map(
         (benefit, i) =>
-          this.props.url.query.option == "B" ? (
+          this.props.option == "B" ? (
             <BenefitCardB
               id={"bc" + i}
               benefit={benefit}
@@ -132,7 +132,8 @@ const mapStateToProps = reduxState => {
     benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples
+    examples: reduxState.examples,
+    option: reduxState.option
   };
 };
 
@@ -148,7 +149,7 @@ BenefitList.propTypes = {
   showFavourites: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object,
-  url: PropTypes.object.isRequired
+  option: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps)(BenefitList);
