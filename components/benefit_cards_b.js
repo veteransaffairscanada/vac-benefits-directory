@@ -4,7 +4,6 @@ import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import EmbeddedBenefitCard from "./embedded_benefit_card";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -94,18 +93,20 @@ export class BenefitCardB extends Component {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
 
-    const childBenefits = benefit.childBenefits
-      ? this.props.allBenefits.filter(
-          ab => benefit.childBenefits.indexOf(ab.id) > -1
-        )
-      : [];
-
-    const veteranBenefits = childBenefits.filter(
-      ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
-    );
-    const familyBenefits = childBenefits.filter(
-      ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
-    );
+    // we'll probably need these in the header / footer when that gets added
+    //
+    // const childBenefits = benefit.childBenefits
+    //   ? this.props.allBenefits.filter(
+    //       ab => benefit.childBenefits.indexOf(ab.id) > -1
+    //     )
+    //   : [];
+    //
+    // const veteranBenefits = childBenefits.filter(
+    //   ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
+    // );
+    // const familyBenefits = childBenefits.filter(
+    //   ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
+    // );
 
     const examples =
       typeof benefit.examples !== "undefined" &&
@@ -229,57 +230,6 @@ export class BenefitCardB extends Component {
                   >
                     {this.props.t("Find out more")}
                   </Button>
-                </Grid>
-
-                <Grid item xs={12}>
-                  {veteranBenefits.length > 0 ? (
-                    <div className={classes.children}>
-                      <Typography className={classes.ChildBenefitDesc}>
-                        {t("Veteran child benefits")}:
-                      </Typography>
-                      <div>
-                        {veteranBenefits.map((cb, i) => (
-                          <EmbeddedBenefitCard
-                            id={"cb" + i}
-                            benefit={cb}
-                            t={this.props.t}
-                            key={cb.id}
-                            onRef={ref => this.children.push(ref)}
-                            showFavourite={this.props.showFavourite}
-                            store={this.props.store}
-                          />
-                        ))}
-                        <br />
-                        <br />
-                      </div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
-
-                  {familyBenefits.length > 0 ? (
-                    <div className={classes.children}>
-                      <Typography className={classes.ChildBenefitDesc}>
-                        {t("Family child benefits")}:
-                      </Typography>
-                      <div>
-                        {familyBenefits.map((cb, i) => (
-                          <EmbeddedBenefitCard
-                            id={"cb" + i}
-                            className="BenefitCards"
-                            benefit={cb}
-                            t={this.props.t}
-                            key={cb.id}
-                            onRef={ref => this.children.push(ref)}
-                            showFavourite={this.props.showFavourite}
-                            store={this.props.store}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ) : (
-                    ""
-                  )}
                 </Grid>
               </Grid>
             </ExpansionPanelDetails>
