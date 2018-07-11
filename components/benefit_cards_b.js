@@ -44,6 +44,10 @@ const styles = theme => ({
   root: {
     width: "100%"
   },
+  ExpansionPanelClosed: {},
+  ExpansionPanelOpen: {
+    marginBottom: "0px"
+  },
   ExpansionPanelSummary: {
     borderBottom: "0px",
     userSelect: "inherit"
@@ -163,6 +167,9 @@ export class BenefitCardB extends Component {
       <Grid item xs={12}>
         <div className={classes.root}>
           <ExpansionPanel expanded={this.state.open}>
+            className={this.state.open
+              ? classes.ExpansionPanelOpen
+              : classes.ExpansionPanelClosed}
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
               expandIcon={
@@ -228,7 +235,6 @@ export class BenefitCardB extends Component {
                 )}
               </div>
             </ExpansionPanelSummary>
-
             <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
