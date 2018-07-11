@@ -15,7 +15,8 @@ const initialState = {
   selectedNeeds: {},
   serviceType: "",
   statusAndVitals: "",
-  translations: []
+  translations: [],
+  option: ""
 };
 
 // REDUCERS
@@ -85,6 +86,10 @@ export const reducer = (state = initialState, action) => {
     case "SET_STATUS_TYPE":
       return Object.assign({}, state, {
         statusAndVitals: action.data
+      });
+    case "SET_OPTION":
+      return Object.assign({}, state, {
+        option: action.data
       });
     default:
       return state;

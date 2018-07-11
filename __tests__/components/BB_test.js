@@ -67,7 +67,8 @@ describe("BB", () => {
         statusAndVitals: ""
       },
       setSearchString: jest.fn(),
-      selectedNeeds: {}
+      selectedNeeds: {},
+      option: ""
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

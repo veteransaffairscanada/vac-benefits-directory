@@ -110,22 +110,6 @@ describe("BenefitCardB", () => {
     ).toEqual("en");
   });
 
-  it("has embedded Veteran child benefit card", () => {
-    props.t = key => key;
-    props.veteranBenefitIds = ["1"];
-    expect(mountedBenefitCard().text()).not.toContain("Family child benefits");
-    expect(mountedBenefitCard().text()).toContain("Veteran child benefits");
-    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameFr);
-  });
-
-  it("has embedded family child benefit card", () => {
-    props.t = key => key;
-    props.familyBenefitIds = ["1"];
-    expect(mountedBenefitCard().text()).not.toContain("Veteran child benefits");
-    expect(mountedBenefitCard().text()).toContain("Family child benefits");
-    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameFr);
-  });
-
   it("hides the Favourite Button if showFavourite is false", () => {
     props.showFavourite = false;
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);

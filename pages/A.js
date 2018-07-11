@@ -73,6 +73,9 @@ export class A extends Component {
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
+    if (this.props.option && this.props.option != "") {
+      href += "&option=" + this.props.option;
+    }
     Router.push(href);
   };
 
@@ -119,6 +122,9 @@ export class A extends Component {
         benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
       }
     });
+    if (this.props.option && this.props.option != "") {
+      benefitsDirectoryUrl += "&option=" + this.props.option;
+    }
 
     switch (true) {
       case section === "A4" ||
@@ -270,7 +276,8 @@ const mapStateToProps = reduxState => {
     serviceType: reduxState.serviceType,
     statusAndVitals: reduxState.statusAndVitals,
     selectedNeeds: reduxState.selectedNeeds,
-    translations: reduxState.translations
+    translations: reduxState.translations,
+    option: reduxState.option
   };
 };
 
@@ -290,7 +297,8 @@ A.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,
   store: PropTypes.object,
-  translations: PropTypes.array.isRequired
+  translations: PropTypes.array.isRequired,
+  option: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withI18next()(A));
