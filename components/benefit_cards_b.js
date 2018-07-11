@@ -48,6 +48,13 @@ const styles = theme => ({
     borderBottom: "0px",
     userSelect: "inherit"
   },
+  expandIcon: {
+    color: "#3e57e2",
+    marginTop: "40px",
+    "&:hover": {
+      background: "none"
+    }
+  },
   ChildBenefitDesc: {
     paddingBottom: "30px"
   },
@@ -158,7 +165,17 @@ export class BenefitCardB extends Component {
           <ExpansionPanel expanded={this.state.open}>
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
-              expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
+              expandIcon={
+                this.state.open ? (
+                  <RemoveIcon className={classes.expandIcon} />
+                ) : (
+                  <AddIcon className={classes.expandIcon} />
+                )
+              }
+              IconButtonProps={{
+                className: classes.expandIcon,
+                disableRipple: true
+              }}
               onClick={() => this.toggleOpenState()}
             >
               <div>
