@@ -29,7 +29,7 @@ export class FavouriteButton extends Component {
   render() {
     return (
       <Button
-        style={{ marginLeft: "-15px" }}
+        style={{ color: "#3e57e2", marginLeft: "-20px", textTransform: "none" }}
         aria-label={this.props.t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
       >
@@ -38,7 +38,7 @@ export class FavouriteButton extends Component {
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
-        {this.props.t("B3.favouritesButtonText")}
+        {this.props.t("B3.favouritesButtonBText")}
       </Button>
     );
   }
