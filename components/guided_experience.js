@@ -10,6 +10,7 @@ import classnames from "classnames";
 import EditIcon from "@material-ui/icons/Edit";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import styled from "react-emotion";
 
 const theme = createMuiTheme({
   palette: {
@@ -21,6 +22,14 @@ const theme = createMuiTheme({
     }
   }
 });
+
+const BlueBar = styled("div")`
+  background-color: #303f9f;
+  height: 5px;
+  width: 100px;
+  margin-bottom: 40px;
+`;
+
 const styles = theme => ({
   root: {
     border: "solid 1px grey",
@@ -114,6 +123,7 @@ export class GuidedExperience extends Component {
               </Grid>
 
               <Grid item xs={12}>
+                <BlueBar />
                 <Typography className={classnames(classes.subTitle)}>
                   {this.props.subtitle}
                 </Typography>
