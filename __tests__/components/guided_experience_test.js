@@ -55,7 +55,6 @@ describe("GuidedExperience", () => {
 
   it("calls setSection if the Next button is pressed", () => {
     mounted_GuidedExperience()
-      .find("MobileStepper")
       .find("Button")
       .last()
       .simulate("click");
@@ -64,7 +63,6 @@ describe("GuidedExperience", () => {
 
   it("calls setSection if the Back button is pressed", () => {
     mounted_GuidedExperience()
-      .find("MobileStepper")
       .find("Button")
       .first()
       .simulate("click");
@@ -79,7 +77,7 @@ describe("GuidedExperience", () => {
     expect(
       mounted_GuidedExperience()
         .find("Button")
-        .at(2)
+        .at(3)
         .text()
     ).toEqual("still-serving");
   });
@@ -87,7 +85,7 @@ describe("GuidedExperience", () => {
   it("sets the correct section if the edit answer button is pressed", () => {
     mounted_GuidedExperience()
       .find("Button")
-      .first()
+      .at(1)
       .simulate("click");
     expect(props.setSection).toBeCalledWith("A1");
   });

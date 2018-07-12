@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles/index";
-import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import ArrowBack from "@material-ui/icons/ArrowBack";
+import ArrowForward from "@material-ui/icons/ArrowForward";
 import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
 import EditIcon from "@material-ui/icons/Edit";
@@ -25,19 +24,22 @@ const theme = createMuiTheme({
 const styles = theme => ({
   root: {
     border: "solid 1px grey",
-    marginTop: "40px",
     backgroundColor: "white",
+    marginTop: "5px",
     margin: "15px"
   },
   box: {
     padding: "20px"
   },
-  stepper: {
-    flexGrow: 1,
-    backgroundColor: "#3F51B5"
+  prevButton: {
+    marginTop: "20px",
+    marginLeft: "15px"
   },
-  navButtons: {
-    color: "white"
+  nextButton: {
+    backgroundColor: "black",
+    color: "white",
+    marginTop: 0,
+    margin: "25px"
   },
   title: {
     fontSize: "2em",
@@ -71,85 +73,76 @@ export class GuidedExperience extends Component {
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <MuiThemeProvider theme={theme}>
-        <div className={classnames(classes.root)}>
-          <Grid container spacing={24} className={classnames(classes.box)}>
-            <Grid item xs={12} md={4}>
-              <Typography className={classnames(classes.title)}>
-                {t("B3.Filter by eligibility")}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={8}>
-              {eligibilityKeys.map((k, i) => {
-                if (selectedEligibility[k] == "") {
-                  return "";
-                } else {
-                  return (
-                    <Button
-                      disableRipple={true}
-                      key={i}
-                      variant="raised"
-                      onClick={() => this.props.setSection(sectionMap[k])}
-                      size="small"
-                      className={classnames(classes.jumpButton)}
-                    >
-                      {t(selectedEligibility[k])}
-                      <EditIcon className={classnames(classes.edit)} />
-                    </Button>
-                  );
-                }
-              })}
+        <div>
+          <Button
+            size="medium"
+            style={{ textTransform: "none" }}
+            onClick={() => this.props.setSection(this.props.prevSection)}
+            disabled={this.props.stepNumber === 0}
+            className={classnames(classes.prevButton)}
+          >
+            <ArrowBack />
+            &nbsp; &nbsp; {t("back")}
+          </Button>
+          <div className={classnames(classes.root)}>
+            <Grid container spacing={24} className={classnames(classes.box)}>
+              <Grid item xs={12} md={4}>
+                <Typography className={classnames(classes.title)}>
+                  {t("B3.Filter by eligibility")}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} md={8}>
+                {eligibilityKeys.map((k, i) => {
+                  if (selectedEligibility[k] == "") {
+                    return "";
+                  } else {
+                    return (
+                      <Button
+                        disableRipple={true}
+                        key={i}
+                        variant="raised"
+                        onClick={() => this.props.setSection(sectionMap[k])}
+                        size="small"
+                        className={classnames(classes.jumpButton)}
+                      >
+                        {t(selectedEligibility[k])}
+                        <EditIcon className={classnames(classes.edit)} />
+                      </Button>
+                    );
+                  }
+                })}
+              </Grid>
+
+              <Grid item xs={12}>
+                <Typography className={classnames(classes.subTitle)}>
+                  {this.props.subtitle}
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12}>
+                {this.props.children}
+              </Grid>
             </Grid>
 
-            <Grid item xs={12}>
-              <Typography className={classnames(classes.subTitle)}>
-                {this.props.subtitle}
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12}>
-              {this.props.children}
-            </Grid>
-          </Grid>
-
-          <MobileStepper
-            variant="progress"
-            steps={5}
-            position="static"
-            activeStep={this.props.stepNumber}
-            className={classnames(classes.stepper)}
-            nextButton={
-              <Button
-                size="large"
-                style={{ textTransform: "none" }}
-                href={
-                  this.props.nextSection === "benefits-directory"
-                    ? this.props.benefitsDirectoryUrl
-                    : undefined
-                }
-                onClick={
-                  this.props.nextSection === "benefits-directory"
-                    ? undefined
-                    : () => this.props.setSection(this.props.nextSection)
-                }
-                className={classnames(classes.navButtons)}
-              >
-                {t("next")}
-                <KeyboardArrowRight />
-              </Button>
-            }
-            backButton={
-              <Button
-                size="large"
-                style={{ textTransform: "none" }}
-                onClick={() => this.props.setSection(this.props.prevSection)}
-                disabled={this.props.stepNumber === 0}
-                className={classnames(classes.navButtons)}
-              >
-                <KeyboardArrowLeft />
-                {t("back")}
-              </Button>
-            }
-          />
+            <Button
+              size="medium"
+              style={{ textTransform: "none" }}
+              href={
+                this.props.nextSection === "benefits-directory"
+                  ? this.props.benefitsDirectoryUrl
+                  : undefined
+              }
+              onClick={
+                this.props.nextSection === "benefits-directory"
+                  ? undefined
+                  : () => this.props.setSection(this.props.nextSection)
+              }
+              className={classnames(classes.nextButton)}
+            >
+              {t("next")} &nbsp; &nbsp;
+              <ArrowForward />
+            </Button>
+          </div>
         </div>
       </MuiThemeProvider>
     );
