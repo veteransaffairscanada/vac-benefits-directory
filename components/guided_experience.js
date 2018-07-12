@@ -61,31 +61,15 @@ const styles = theme => ({
 });
 
 export class GuidedExperience extends Component {
-  backClick = current_section => {
-    const {
-      setPatronType,
-      setServiceType,
-      setStatusAndVitals,
-      setSelectedNeeds
-    } = this.props;
-    const setters = {
-      A1: () => setPatronType(""),
-      A2: () => setServiceType(""),
-      A3: () => setStatusAndVitals(""),
-      A4: () => setSelectedNeeds({})
-    };
-    return () => {
-      setters[current_section]();
-      this.props.setSection(this.props.prevSection);
-    };
+  sectionMap = {
+    patronType: "A1",
+    serviceType: "A2",
+    statusAndVitals: "A3"
   };
+
   render() {
     const { t, classes, selectedEligibility } = this.props;
-    const sectionMap = {
-      patronType: "A1",
-      serviceType: "A2",
-      statusAndVitals: "A3"
-    };
+
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <MuiThemeProvider theme={theme}>
@@ -100,7 +84,7 @@ export class GuidedExperience extends Component {
               {eligibilityKeys.map((k, i) => {
                 if (
                   selectedEligibility[k] == "" ||
-                  sectionMap[k] == this.props.id
+                  this.sectionMap[k] == this.props.id
                 ) {
                   return "";
                 } else {
@@ -109,7 +93,7 @@ export class GuidedExperience extends Component {
                       disableRipple={true}
                       key={i}
                       variant="raised"
-                      onClick={() => this.props.setSection(sectionMap[k])}
+                      onClick={() => this.props.setSection(this.sectionMap[k])}
                       size="small"
                       className={classnames(classes.jumpButton)}
                     >
@@ -162,7 +146,7 @@ export class GuidedExperience extends Component {
               <Button
                 size="large"
                 style={{ textTransform: "none" }}
-                onClick={this.backClick(this.props.id)}
+                onClick={() => this.props.setSection(this.props.prevSection)}
                 disabled={this.props.stepNumber === 0}
                 className={classnames(classes.navButtons)}
               >

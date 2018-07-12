@@ -81,6 +81,24 @@ export class A extends Component {
 
   setSection = section => {
     this.setState({ section: section });
+    const {
+      setPatronType,
+      setServiceType,
+      setStatusAndVitals,
+      setSelectedNeeds
+    } = this.props;
+    const setters = [
+      () => setPatronType(""),
+      () => setServiceType(""),
+      () => setStatusAndVitals(""),
+      () => setSelectedNeeds({})
+    ];
+    const current_section_index = +section[1];
+    setters.forEach((setter, i) => {
+      if (i >= current_section_index) {
+        setter();
+      }
+    });
   };
 
   toggleFavourite = id => {
@@ -259,8 +277,17 @@ export class A extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setStatusAndVitals: patronType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: patronType });
+    setPatronType: patronType => {
+      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
+    },
+    setServiceType: serviceType => {
+      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
+    },
+    setStatusAndVitals: statusType => {
+      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    },
+    setSelectedNeeds: needsObject => {
+      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
     }
   };
 };
@@ -295,7 +322,10 @@ A.propTypes = {
   serviceType: PropTypes.string.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  setPatronType: PropTypes.func.isRequired,
+  setServiceType: PropTypes.func.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,
+  setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object,
   translations: PropTypes.array.isRequired,
   option: PropTypes.string.isRequired
