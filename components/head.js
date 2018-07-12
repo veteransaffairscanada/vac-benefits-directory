@@ -25,7 +25,7 @@ class Head extends Component {
         <link rel="icon" href="/static/favicon.ico" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+          href="https://fonts.googleapis.com/css?family=Merriweather:300,400,500"
         />
       </NextHead>
     );

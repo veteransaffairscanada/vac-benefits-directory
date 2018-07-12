@@ -66,7 +66,8 @@ const styles = () => ({
     marginLeft: "20px"
   },
   benefitName: {
-    fontWeight: 500
+    color: "#3e57e2",
+    padding: "10px 0"
   },
   returnIcon: {
     "-moz-transform": "scaleX(-1)",
