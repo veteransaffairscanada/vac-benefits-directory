@@ -72,13 +72,15 @@ const styles = theme => ({
 });
 
 export class GuidedExperience extends Component {
+  sectionMap = {
+    patronType: "A1",
+    serviceType: "A2",
+    statusAndVitals: "A3"
+  };
+
   render() {
     const { t, classes, selectedEligibility } = this.props;
-    const sectionMap = {
-      patronType: "A1",
-      serviceType: "A2",
-      statusAndVitals: "A3"
-    };
+
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <MuiThemeProvider theme={theme}>
@@ -102,7 +104,10 @@ export class GuidedExperience extends Component {
               </Grid>
               <Grid item xs={12} md={8}>
                 {eligibilityKeys.map((k, i) => {
-                  if (selectedEligibility[k] == "") {
+                  if (
+                    selectedEligibility[k] == "" ||
+                    this.sectionMap[k] == this.props.id
+                  ) {
                     return "";
                   } else {
                     return (
@@ -110,7 +115,9 @@ export class GuidedExperience extends Component {
                         disableRipple={true}
                         key={i}
                         variant="raised"
-                        onClick={() => this.props.setSection(sectionMap[k])}
+                        onClick={() =>
+                          this.props.setSection(this.sectionMap[k])
+                        }
                         size="small"
                         className={classnames(classes.jumpButton)}
                       >
