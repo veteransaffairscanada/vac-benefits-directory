@@ -9,7 +9,7 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import { withI18next } from "../lib/withI18next";
 
 const bodyStyling = {
-  fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  fontFamily: "Merriweather, serif",
   margin: 0
 };
 

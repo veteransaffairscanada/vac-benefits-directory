@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "react-emotion";
 
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+
 import { AlphaBanner } from "../components/alpha_banner";
 
 import ErrorBoundary from "../components/error_boundary";
@@ -37,6 +39,10 @@ const styles = () => ({
   }
 });
 
+const theme = createMuiTheme({
+  typography: { fontFamily: ["Merriweather", "serif"] }
+});
+
 class Layout extends Component {
   componentDidMount() {
     const emotionStyles = document.getElementById("emotion-server-side");
@@ -53,39 +59,41 @@ class Layout extends Component {
     const { t } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
-      <div className={classnames(this.props.classes.root)}>
-        <Head title={this.props.title} t={t} />
-        <ErrorBoundary>
-          <Content>
-            <div className={classnames(this.props.classes.header)}>
-              <div className={alpha}>
+      <MuiThemeProvider theme={theme}>
+        <div className={classnames(this.props.classes.root)}>
+          <Head title={this.props.title} t={t} />
+          <ErrorBoundary>
+            <Content>
+              <div className={classnames(this.props.classes.header)}>
+                <div className={alpha}>
+                  <Container>
+                    <AlphaBanner>{t("alpha")}</AlphaBanner>
+                  </Container>
+                </div>
                 <Container>
-                  <AlphaBanner>{t("alpha")}</AlphaBanner>
+                  <FederalBanner
+                    i18n={this.props.i18n}
+                    t={t}
+                    showRefreshCache={this.props.showRefreshCache}
+                  />
                 </Container>
               </div>
+              <Container role="main">{this.props.children}</Container>
+            </Content>
+            <div style={{ backgroundColor: "#eee" }}>
               <Container>
-                <FederalBanner
-                  i18n={this.props.i18n}
-                  t={t}
-                  showRefreshCache={this.props.showRefreshCache}
-                />
+                <FeedbackBar t={t} />
               </Container>
             </div>
-            <Container role="main">{this.props.children}</Container>
-          </Content>
-          <div style={{ backgroundColor: "#eee" }}>
-            <Container>
-              <FeedbackBar t={t} />
-            </Container>
-          </div>
-          <div style={{ backgroundColor: "#ddd" }}>
-            <Container>
-              <Footer t={t} />
-            </Container>
-          </div>
-        </ErrorBoundary>
-        {noScriptTag}
-      </div>
+            <div style={{ backgroundColor: "#ddd" }}>
+              <Container>
+                <Footer t={t} />
+              </Container>
+            </div>
+          </ErrorBoundary>
+          {noScriptTag}
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
