@@ -129,19 +129,21 @@ export class BenefitCardB extends Component {
       : benefit.vacNameFr;
   };
 
-  parentBenefitNames = parentBenefits => {
-    const length = parentBenefits.length;
-
-    if (length === 1) {
-      return this.props.t("benefits_b.single_parent", {
-        x: this.benefitTitle(parentBenefits[0])
+  parentBenefitNames = (parentBenefits, availableIndependently) => {
+    if (availableIndependently === "Independent") {
+      const nameString = parentBenefits
+        .map(b => this.benefitTitle(b))
+        .join(", ")
+        .replace(/,([^,]*)$/, " or " + "$1");
+      return this.props.t("benefits_b.independant_with_parents", {
+        x: nameString
       });
     } else {
       const nameString = parentBenefits
         .map(b => this.benefitTitle(b))
         .join(", ")
         .replace(/,([^,]*)$/, " or " + "$1");
-      return this.props.t("benefits_b.single_parent", {
+      return this.props.t("benefits_b.needs_parents", {
         x: nameString
       });
     }
@@ -203,7 +205,10 @@ export class BenefitCardB extends Component {
           {parentBenefits.length > 0 ? (
             <Paper className={classes.cardTop}>
               <KeyboardReturnIcon className={classes.parentIcon} />
-              {this.parentBenefitNames(parentBenefits)}
+              {this.parentBenefitNames(
+                parentBenefits,
+                benefit.availableIndependently
+              )}
             </Paper>
           ) : (
             ""
