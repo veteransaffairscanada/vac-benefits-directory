@@ -26,6 +26,13 @@ const styles = () => ({
     padding: "15px 0px 15px 24px",
     position: "relative"
   },
+  cardTop: {
+    backgroundColor: "#e8e8e8",
+    borderRadius: "0px",
+    borderBottom: "1px solid #8b8b8b",
+    padding: "15px 0px 15px 24px",
+    position: "relative"
+  },
   cardDescriptionText: {
     fontSize: "20px",
     fontWeight: 400,
@@ -39,7 +46,8 @@ const styles = () => ({
   },
   ExpansionPanelClosed: {},
   ExpansionPanelOpen: {
-    marginBottom: "0px"
+    marginBottom: "0px",
+    marginTop: "0px"
   },
   ExpansionPanelSummary: {
     borderBottom: "0px",
@@ -78,6 +86,16 @@ const styles = () => ({
     filter: "FlipH",
     "-ms-filter": "FlipH",
     paddingLeft: "10px"
+  },
+  parentIcon: {
+    "-moz-transform": "scaleXY(-1) scaleY(-1)",
+    "-o-transform": "scaleXY(-1) scaleY(-1)",
+    "-webkit-transform": "scaleX(-1) scaleY(-1)",
+    transform: "scaleXY(-1)",
+    float: "left",
+    // filter: "FlipH",
+    // "-ms-filter": "FlipH",
+    paddingLeft: "10px"
   }
 });
 
@@ -105,17 +123,37 @@ export class BenefitCardB extends Component {
     this.props.onRef(undefined);
   }
 
-  childBenefitTitle = benefit => {
+  benefitTitle = benefit => {
     return this.props.t("current-language-code") === "en"
       ? benefit.vacNameEn
       : benefit.vacNameFr;
   };
 
+  parentBenefitNames = (parentBenefits, availableIndependently) => {
+    if (availableIndependently === "Independent") {
+      const nameString = parentBenefits
+        .map(b => this.benefitTitle(b))
+        .join(", ")
+        .replace(/,([^,]*)$/, " or " + "$1");
+      return this.props.t("benefits_b.independant_with_parents", {
+        x: nameString
+      });
+    } else {
+      const nameString = parentBenefits
+        .map(b => this.benefitTitle(b))
+        .join(", ")
+        .replace(/,([^,]*)$/, " or " + "$1");
+      return this.props.t("benefits_b.needs_parents", {
+        x: nameString
+      });
+    }
+  };
+
   childBenefitNames = childBenefits => {
     const length = childBenefits.length;
-    if (length == 1) {
+    if (length === 1) {
       return this.props.t("benefits_b.eligible_for_single", {
-        x: this.childBenefitTitle(childBenefits[0])
+        x: this.benefitTitle(childBenefits[0])
       });
     } else {
       return this.props.t("benefits_b.eligible_for_multi", {
@@ -128,14 +166,18 @@ export class BenefitCardB extends Component {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
 
-    // we'll probably need these in the header / footer when that gets added
-    //
+    const parentBenefits = this.props.allBenefits.filter(
+      b => b.childBenefits && b.childBenefits.includes(benefit.id)
+    );
+
     const childBenefits = benefit.childBenefits
       ? this.props.allBenefits.filter(
           ab => benefit.childBenefits.indexOf(ab.id) > -1
         )
       : [];
 
+    // we'll probably need these in the header / footer when that gets added
+    //
     // const veteranBenefits = childBenefits.filter(
     //   ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
     // );
@@ -160,6 +202,18 @@ export class BenefitCardB extends Component {
     return (
       <Grid item xs={12}>
         <div className={classes.root}>
+          {parentBenefits.length > 0 ? (
+            <Paper className={classes.cardTop}>
+              <KeyboardReturnIcon className={classes.parentIcon} />
+              {this.parentBenefitNames(
+                parentBenefits,
+                benefit.availableIndependently
+              )}
+            </Paper>
+          ) : (
+            ""
+          )}
+
           <ExpansionPanel
             expanded={this.state.open}
             className={
@@ -294,11 +348,13 @@ const mapStateToProps = reduxState => {
   return {
     examples: reduxState.examples,
     needs: reduxState.needs,
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    benefits: reduxState.benefits
   };
 };
 
 BenefitCardB.propTypes = {
+  benefits: PropTypes.array.isRequired,
   allBenefits: PropTypes.array.isRequired,
   veteranBenefitIds: PropTypes.array.isRequired,
   familyBenefitIds: PropTypes.array.isRequired,
