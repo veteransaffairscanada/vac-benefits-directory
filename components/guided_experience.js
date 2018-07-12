@@ -61,6 +61,24 @@ const styles = theme => ({
 });
 
 export class GuidedExperience extends Component {
+  backClick = current_section => {
+    const {
+      setPatronType,
+      setServiceType,
+      setStatusAndVitals,
+      setSelectedNeeds
+    } = this.props;
+    const setters = {
+      A1: () => setPatronType(""),
+      A2: () => setServiceType(""),
+      A3: () => setStatusAndVitals(""),
+      A4: () => setSelectedNeeds({})
+    };
+    return () => {
+      setters[current_section]();
+      this.props.setSection(this.props.prevSection);
+    };
+  };
   render() {
     const { t, classes, selectedEligibility } = this.props;
     const sectionMap = {
@@ -69,7 +87,6 @@ export class GuidedExperience extends Component {
       statusAndVitals: "A3"
     };
     const eligibilityKeys = Object.keys(selectedEligibility);
-    console.log(eligibilityKeys);
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classnames(classes.root)}>
@@ -145,7 +162,7 @@ export class GuidedExperience extends Component {
               <Button
                 size="large"
                 style={{ textTransform: "none" }}
-                onClick={() => this.props.setSection(this.props.prevSection)}
+                onClick={this.backClick(this.props.id)}
                 disabled={this.props.stepNumber === 0}
                 className={classnames(classes.navButtons)}
               >
@@ -159,6 +176,23 @@ export class GuidedExperience extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setPatronType: patronType => {
+      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
+    },
+    setServiceType: serviceType => {
+      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
+    },
+    setStatusAndVitals: statusType => {
+      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    },
+    setSelectedNeeds: needsObject => {
+      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
+    }
+  };
+};
 
 const mapStateToProps = reduxState => {
   return {
@@ -182,9 +216,13 @@ GuidedExperience.propTypes = {
   children: PropTypes.object.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   store: PropTypes.object,
-  benefitsDirectoryUrl: PropTypes.string
+  benefitsDirectoryUrl: PropTypes.string,
+  setPatronType: PropTypes.func.isRequired,
+  setServiceType: PropTypes.func.isRequired,
+  setStatusAndVitals: PropTypes.func.isRequired,
+  setSelectedNeeds: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   withStyles(styles, { withTheme: true })(GuidedExperience)
 );
