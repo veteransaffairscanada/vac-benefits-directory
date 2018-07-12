@@ -126,4 +126,11 @@ describe("A", () => {
       data: expectedArgs
     });
   });
+
+  it("clears redux data for future questions", () => {
+    let AInstance = mountedA().instance();
+    AInstance.setSection("A2");
+    expect(props.setStatusAndVitals).toBeCalledWith("");
+    expect(props.setSelectedNeeds).toBeCalledWith({});
+  });
 });

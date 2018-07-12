@@ -161,23 +161,6 @@ export class GuidedExperience extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setPatronType: patronType => {
-      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
-    },
-    setServiceType: serviceType => {
-      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
-    },
-    setStatusAndVitals: statusType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
-    },
-    setSelectedNeeds: needsObject => {
-      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
-    }
-  };
-};
-
 const mapStateToProps = reduxState => {
   return {
     selectedEligibility: {
@@ -200,13 +183,9 @@ GuidedExperience.propTypes = {
   children: PropTypes.object.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   store: PropTypes.object,
-  benefitsDirectoryUrl: PropTypes.string,
-  setPatronType: PropTypes.func.isRequired,
-  setServiceType: PropTypes.func.isRequired,
-  setStatusAndVitals: PropTypes.func.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired
+  benefitsDirectoryUrl: PropTypes.string
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
+export default connect(mapStateToProps)(
   withStyles(styles, { withTheme: true })(GuidedExperience)
 );
