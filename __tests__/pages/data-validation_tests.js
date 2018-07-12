@@ -115,40 +115,40 @@ describe("DataValidation", () => {
   it("fails if checkBenefitsFields doesn't find empty fields", () => {
     props.benefits[0].vacNameEn = "";
     const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toEqual(
-      " " + props.benefits[0].id + " (" + 1 + "),"
+    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
+      props.benefits[0].id
     );
   });
 
   it("fails if checkTranslationsFields doesn't find empty fields", () => {
     props.translations[0].vacNameEn = "";
     const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkMissingNeeds(props.translations[0], 0)).toEqual(
-      " " + props.translations[0].id + " (" + 1 + "),"
+    expect(instance.checkMissingNeeds(props.translations[0], 0)).toContain(
+      props.translations[0].id
     );
   });
 
   it("fails if checkMissingNeeds doesn't find missing needs", () => {
     props.benefits[0].needs = "";
     const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toEqual(
-      " " + props.benefits[0].id + " (" + 1 + "),"
+    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
+      props.benefits[0].id
     );
   });
 
   it("fails if checkEligibiltyPaths doesn't find missing needs", () => {
     props.benefits[0].eligibilityPaths = "";
     const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toEqual(
-      " " + props.benefits[0].id + " (" + 1 + "),"
+    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
+      props.benefits[0].id
     );
   });
 
   it("fail if checkAreaOfficesFields doesn't find empty fields", () => {
     props.areaOffices[0].name_en = "";
     const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkAreaOfficesFields(props.areaOffices[0], 0)).toEqual(
-      " " + props.areaOffices[0].id + " (" + 1 + "),"
+    expect(instance.checkAreaOfficesFields(props.areaOffices[0], 0)).toContain(
+      props.areaOffices[0].id
     );
   });
 });
