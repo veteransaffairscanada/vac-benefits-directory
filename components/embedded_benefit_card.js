@@ -9,19 +9,11 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import FavouriteButton from "./favourite_button";
-
+import NeedTag from "./need_tag";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 
 const styles = theme => ({
-  needsTag: {
-    marginLeft: 2 * theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    borderRadius: 0,
-    display: "inline-flex",
-    padding: "2px 4px"
-  },
   root: {
     width: "100%"
   },
@@ -121,13 +113,9 @@ export class EmbeddedBenefitCard extends Component {
               ""
             )}
             {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-            <div style={{ display: "inline-flex" }}>
+            <div style={{ display: "inline-flex", paddingLeft: "15px" }}>
               {needsMet.map(need => (
-                <div key={benefit.id + need.id} className={classes.needsTag}>
-                  {this.props.t("current-language-code") === "en"
-                    ? need.nameEn
-                    : need.nameFr}
-                </div>
+                <NeedTag key={benefit.id + need.id} t={t} need={need} />
               ))}
             </div>
           </div>

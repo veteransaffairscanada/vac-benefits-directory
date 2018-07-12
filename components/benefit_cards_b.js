@@ -13,16 +13,9 @@ import FavouriteButton from "./favourite_button_b";
 import Paper from "@material-ui/core/Paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
+import NeedTag from "./need_tag";
 
-const styles = theme => ({
-  needsTag: {
-    marginRight: theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    borderRadius: 2,
-    display: "inline-flex",
-    padding: "4px 6px"
-  },
+const styles = () => ({
   button: {
     marginTop: "30px"
   },
@@ -217,14 +210,11 @@ export class BenefitCardB extends Component {
                 </Typography>
                 <div>
                   {needsMet.map(need => (
-                    <div
+                    <NeedTag
                       key={benefit.id + need.id}
-                      className={classes.needsTag}
-                    >
-                      {this.props.t("current-language-code") === "en"
-                        ? need.nameEn
-                        : need.nameFr}
-                    </div>
+                      t={this.props.t}
+                      need={need}
+                    />
                   ))}
                 </div>
                 {this.props.showFavourite ? (

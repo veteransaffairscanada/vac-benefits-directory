@@ -12,16 +12,9 @@ import Highlighter from "react-highlight-words";
 import FavouriteButton from "./favourite_button";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
+import NeedTag from "./need_tag";
 
-const styles = theme => ({
-  needsTag: {
-    marginLeft: 2 * theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    borderRadius: 0,
-    display: "inline-flex",
-    padding: "2px 4px"
-  },
+const styles = () => ({
   button: {
     marginTop: "30px"
   },
@@ -157,16 +150,9 @@ export class BenefitCard extends Component {
                         : benefit.vacNameFr
                     }
                   />
-                  <div style={{ display: "inline-flex" }}>
+                  <div style={{ display: "inline-flex", marginLeft: "15px" }}>
                     {needsMet.map(need => (
-                      <div
-                        key={benefit.id + need.id}
-                        className={classes.needsTag}
-                      >
-                        {this.props.t("current-language-code") === "en"
-                          ? need.nameEn
-                          : need.nameFr}
-                      </div>
+                      <NeedTag key={benefit.id + need.id} t={t} need={need} />
                     ))}
                   </div>
                 </div>
