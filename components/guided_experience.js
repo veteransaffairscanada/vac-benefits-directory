@@ -69,6 +69,7 @@ export class GuidedExperience extends Component {
       statusAndVitals: "A3"
     };
     const eligibilityKeys = Object.keys(selectedEligibility);
+    console.log(eligibilityKeys);
     return (
       <MuiThemeProvider theme={theme}>
         <div className={classnames(classes.root)}>
@@ -80,7 +81,10 @@ export class GuidedExperience extends Component {
             </Grid>
             <Grid item xs={12} md={8}>
               {eligibilityKeys.map((k, i) => {
-                if (selectedEligibility[k] == "") {
+                if (
+                  selectedEligibility[k] == "" ||
+                  sectionMap[k] == this.props.id
+                ) {
                   return "";
                 } else {
                   return (
