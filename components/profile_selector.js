@@ -50,7 +50,14 @@ export class ProfileSelector extends Component {
   };
 
   render() {
-    const { patronType, serviceType, classes, t, pageWidth } = this.props;
+    const {
+      patronType,
+      serviceType,
+      statusAndVitals,
+      classes,
+      t,
+      pageWidth
+    } = this.props;
 
     return (
       <ExpansionPanel
@@ -113,16 +120,24 @@ export class ProfileSelector extends Component {
               ""
             )}
 
-            <Grid item xs={12} id="serviceHealthIssueFilter">
-              <RadioSelector
-                t={t}
-                legend={t("Do you have a service-related health issue?")}
-                selectorType={"serviceHealthIssue"}
-                options={["true", "false"]}
-                store={this.props.store}
-              />
-            </Grid>
-
+            {serviceType &&
+            serviceType != "" &&
+            patronType != "organization" &&
+            (statusAndVitals != "" ||
+              (patronType === "service-person" &&
+                serviceType === "WSV (WWII or Korea)")) ? (
+              <Grid item xs={12} id="serviceHealthIssueFilter">
+                <RadioSelector
+                  t={t}
+                  legend={t("health issue question")}
+                  selectorType={"serviceHealthIssue"}
+                  options={["true", "false"]}
+                  store={this.props.store}
+                />
+              </Grid>
+            ) : (
+              ""
+            )}
             {this.props.patronType !== "" ? (
               <Grid item xs={12} className={classnames(classes.gridItemButton)}>
                 <Button
@@ -164,7 +179,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     patronType: reduxState.patronType,
-    serviceType: reduxState.serviceType
+    serviceType: reduxState.serviceType,
+    statusAndVitals: reduxState.statusAndVitals
   };
 };
 
