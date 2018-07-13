@@ -29,7 +29,7 @@ const BlueBar = styled("div")`
   margin-bottom: 40px;
 `;
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     border: "solid 1px grey",
     backgroundColor: "white",
@@ -50,20 +50,14 @@ const styles = theme => ({
     margin: "25px"
   },
   title: {
-    fontSize: "2em",
+    fontSize: "1.5em",
     color: "black"
   },
   subTitle: {
     fontSize: "1em"
   },
   jumpButton: {
-    textTransform: "none",
-    variant: "text",
-    margin: theme.spacing.unit,
-    color: "blue",
-    padding: 0,
-    minHeight: 0,
-    minWidth: 0
+    fontSize: "1.5em"
   }
 });
 
@@ -93,12 +87,12 @@ export class GuidedExperience extends Component {
           </Button>
           <div className={classnames(classes.root)}>
             <Grid container spacing={24} className={classnames(classes.box)}>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={3}>
                 <Typography className={classnames(classes.title)}>
                   {t("B3.Filter by eligibility")}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={8}>
+              <Grid item xs={12} md={9}>
                 {eligibilityKeys.map((k, i) => {
                   if (
                     selectedEligibility[k] == "" ||
@@ -107,19 +101,19 @@ export class GuidedExperience extends Component {
                     return "";
                   } else {
                     return (
-                      <Button
-                        disableRipple={true}
-                        key={i}
-                        onClick={() =>
-                          this.props.setSection(this.sectionMap[k])
-                        }
-                        size="small"
-                        className={classnames(classes.jumpButton)}
-                      >
-                        <b>
-                          <u>{t(selectedEligibility[k])}</u>
-                        </b>
-                      </Button>
+                      <span>
+                        <a
+                          className={classes.jumpButton}
+                          href="#"
+                          key={i}
+                          onClick={() =>
+                            this.props.setSection(this.sectionMap[k])
+                          }
+                        >
+                          {t(selectedEligibility[k])}
+                        </a>
+                        &nbsp;&nbsp;&nbsp;
+                      </span>
                     );
                   }
                 })}
