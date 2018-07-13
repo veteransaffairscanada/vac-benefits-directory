@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
   needsTag: {
     marginRight: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
     color: "black",
     borderRadius: 1,
     display: "inline-flex",
