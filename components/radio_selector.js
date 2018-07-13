@@ -76,7 +76,6 @@ export class RadioSelector extends React.Component {
       case "serviceHealthIssue":
         this.props.setServiceHealthIssue(id);
         break;
-      default:
         return true;
     }
   };
@@ -86,7 +85,6 @@ export class RadioSelector extends React.Component {
   };
 
   render() {
-    console.log(this.props.eligibilityPaths);
     const allFilterIds = this.props.options
       ? this.props.options
       : Array.from(
