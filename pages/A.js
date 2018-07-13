@@ -262,6 +262,7 @@ export class A extends Component {
   };
 
   render() {
+    console.log(this.props.eligibilityPaths);
     return (
       <Layout
         i18n={this.props.i18n}

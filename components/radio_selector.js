@@ -17,7 +17,8 @@ export class RadioSelector extends React.Component {
   setters = {
     patronType: this.props.setPatronType,
     serviceType: this.props.setServiceType,
-    statusAndVitals: this.props.setStatusAndVitals
+    statusAndVitals: this.props.setStatusAndVitals,
+    serviceHealthIssue: this.props.setServiceHealthIssue
   };
 
   isDisabled = (filter_id, patronType, serviceType) => {
@@ -72,6 +73,9 @@ export class RadioSelector extends React.Component {
       case "statusAndVitals":
         this.props.setStatusAndVitals(id);
         break;
+      case "serviceHealthIssue":
+        this.props.setServiceHealthIssue(id);
+        break;
       default:
         return true;
     }
@@ -82,6 +86,7 @@ export class RadioSelector extends React.Component {
   };
 
   render() {
+    console.log(this.props.eligibilityPaths);
     const allFilterIds = this.props.options
       ? this.props.options
       : Array.from(
@@ -94,7 +99,8 @@ export class RadioSelector extends React.Component {
     const selected = {
       patronType: this.props.selectedPatronType,
       serviceType: this.props.selectedServiceType,
-      statusAndVitals: this.props.selectedStatusAndVitals
+      statusAndVitals: this.props.selectedStatusAndVitals,
+      serviceHealthIssue: this.props.selectedServiceHealthIssue
     };
 
     if (Object.values(allFilterIds).length != 0) {
@@ -140,6 +146,9 @@ const mapDispatchToProps = dispatch => {
     },
     setStatusAndVitals: statusType => {
       dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    },
+    setServiceHealthIssue: healthIssueType => {
+      dispatch({ type: "SET_HEALTH_ISSUE", data: healthIssueType });
     }
   };
 };
@@ -149,6 +158,7 @@ const mapStateToProps = reduxState => {
     selectedPatronType: reduxState.patronType,
     selectedServiceType: reduxState.serviceType,
     selectedStatusAndVitals: reduxState.statusAndVitals,
+    selectedServiceHealthIssue: reduxState.serviceHealthIssue,
     eligibilityPaths: reduxState.eligibilityPaths
   };
 };
@@ -160,9 +170,11 @@ RadioSelector.propTypes = {
   selectedPatronType: PropTypes.string.isRequired,
   selectedServiceType: PropTypes.string.isRequired,
   selectedStatusAndVitals: PropTypes.string.isRequired,
+  selectedServiceHealthIssue: PropTypes.string.isRequired,
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,
+  setServiceHealthIssue: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   options: PropTypes.array,

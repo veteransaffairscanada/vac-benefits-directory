@@ -113,6 +113,16 @@ export class ProfileSelector extends Component {
               ""
             )}
 
+            <Grid item xs={12} id="serviceHealthIssueFilter">
+              <RadioSelector
+                t={t}
+                legend={t("Do you have a service-related health issue?")}
+                selectorType={"serviceHealthIssue"}
+                options={["true", "false"]}
+                store={this.props.store}
+              />
+            </Grid>
+
             {this.props.patronType !== "" ? (
               <Grid item xs={12} className={classnames(classes.gridItemButton)}>
                 <Button
