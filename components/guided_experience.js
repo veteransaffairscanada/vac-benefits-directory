@@ -7,7 +7,6 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
-import EditIcon from "@material-ui/icons/Edit";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import styled from "react-emotion";
@@ -24,7 +23,7 @@ const theme = createMuiTheme({
 });
 
 const BlueBar = styled("div")`
-  background-color: #303f9f;
+  background-color: blue;
   height: 5px;
   width: 100px;
   margin-bottom: 40px;
@@ -59,15 +58,12 @@ const styles = theme => ({
   },
   jumpButton: {
     textTransform: "none",
-    paddingLeft: "20px",
-    paddingRight: "15px",
+    variant: "text",
     margin: theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    textAlign: "left"
-  },
-  edit: {
-    marginLeft: "10px"
+    color: "blue",
+    padding: 0,
+    minHeight: 0,
+    minWidth: 0
   }
 });
 
@@ -114,15 +110,15 @@ export class GuidedExperience extends Component {
                       <Button
                         disableRipple={true}
                         key={i}
-                        variant="raised"
                         onClick={() =>
                           this.props.setSection(this.sectionMap[k])
                         }
                         size="small"
                         className={classnames(classes.jumpButton)}
                       >
-                        {t(selectedEligibility[k])}
-                        <EditIcon className={classnames(classes.edit)} />
+                        <b>
+                          <u>{t(selectedEligibility[k])}</u>
+                        </b>
                       </Button>
                     );
                   }
