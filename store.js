@@ -1,29 +1,34 @@
 import lunr from "lunr";
 import { createStore } from "redux";
+import airtableConstants from "./utils/airtable_constants";
 
 const initialState = {
-  areaOffices: [],
-  benefits: [],
-  eligibilityPaths: [],
+  // areaOffices: [],
+  // benefits: [],
+  // eligibilityPaths: [],
   enIdx: {},
-  examples: [],
+  // examples: [],
   favouriteBenefits: [],
   frIdx: {},
-  needs: [],
+  // needs: [],
   patronType: "",
   searchString: "",
   selectedNeeds: {},
   serviceType: "",
   statusAndVitals: "",
-  translations: [],
+  // translations: [],
   option: ""
 };
+airtableConstants.tableNames.forEach(tableName => {
+  initialState[tableName] = [];
+});
 
 // REDUCERS
 export const reducer = (state = initialState, action) => {
   let benefits;
   let enIdx;
   let frIdx;
+  let newState;
 
   switch (action.type) {
     case "INDEX_BENEFITS":
@@ -55,18 +60,22 @@ export const reducer = (state = initialState, action) => {
         frIdx: JSON.stringify(frIdx)
       });
     case "LOAD_DATA":
-      return Object.assign({}, state, {
+      newState = {
         storeHydrated: action.data.storeHydrated || state.storeHydrated,
-        benefits: action.data.benefits || state.benefits,
-        eligibilityPaths:
-          action.data.eligibilityPaths || state.eligibilityPaths,
-        needs: action.data.needs || state.needs,
-        examples: action.data.examples || state.examples,
+        // benefits: action.data.benefits || state.benefits,
+        // eligibilityPaths:
+        //   action.data.eligibilityPaths || state.eligibilityPaths,
+        // needs: action.data.needs || state.needs,
+        // examples: action.data.examples || state.examples,
         favouriteBenefits:
-          action.data.favouriteBenefits || state.favouriteBenefits,
-        translations: action.data.translations || state.translations,
-        areaOffices: action.data.areaOffices || state.areaOffices
+          action.data.favouriteBenefits || state.favouriteBenefits
+        // translations: action.data.translations || state.translations,
+        // areaOffices: action.data.areaOffices || state.areaOffices
+      };
+      airtableConstants.tableNames.forEach(tableName => {
+        newState[tableName] = action.data[tableName] || state[tableName];
       });
+      return Object.assign({}, state, newState);
     case "SET_PATRON_TYPE":
       return Object.assign({}, state, {
         patronType: action.data
