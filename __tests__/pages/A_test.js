@@ -71,6 +71,7 @@ describe("A", () => {
       serviceType: "CAF",
       patronType: "family",
       statusAndVitals: "",
+      serviceHealthIssue: "",
       option: ""
     };
     props.store = mockStore(reduxData);

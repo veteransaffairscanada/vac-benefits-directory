@@ -76,6 +76,7 @@ export class RadioSelector extends React.Component {
       case "serviceHealthIssue":
         this.props.setServiceHealthIssue(id);
         break;
+      default:
         return true;
     }
   };

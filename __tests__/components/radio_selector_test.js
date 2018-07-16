@@ -15,11 +15,13 @@ describe("RadioSelector", () => {
       setPatronType: jest.fn(),
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
+      setServiceHealthIssue: jest.fn(),
       options: ["releasedAlive", "stillServing", "deceased"],
       selectorType: "statusAndVitals",
       selectedPatronType: "",
       selectedServiceType: "",
       selectedStatusAndVitals: "releasedAlive",
+      selectedServiceHealthIssue: "",
       t: key => key,
       eligibilityPaths: eligibilityPathsFixture
     };

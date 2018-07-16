@@ -22,6 +22,7 @@ describe("ProfileSelector", () => {
       eligibilityPaths: eligibilityPathsFixture,
       serviceType: "",
       patronType: "",
+      serviceHealthIssue: "",
       setPatronType: jest.fn(),
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
