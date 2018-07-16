@@ -67,7 +67,12 @@ export class A extends Component {
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
-    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+    [
+      "patronType",
+      "serviceType",
+      "statusAndVitals",
+      "serviceHealthIssue"
+    ].forEach(selection => {
       if (this.props[selection] !== "") {
         href += `&${selection}=${this.props[selection]}`;
       }
@@ -85,12 +90,14 @@ export class A extends Component {
       setPatronType,
       setServiceType,
       setStatusAndVitals,
+      setServiceHealthIssue,
       setSelectedNeeds
     } = this.props;
     const setters = [
       () => setPatronType(""),
       () => setServiceType(""),
       () => setStatusAndVitals(""),
+      () => setServiceHealthIssue(""),
       () => setSelectedNeeds({})
     ];
     const current_section_index = +section[1];
@@ -116,26 +123,35 @@ export class A extends Component {
 
   sectionToDisplay = section => {
     let question, options;
-    const { t } = this.props;
+    const {
+      t,
+      patronType,
+      serviceType,
+      statusAndVitals,
+      selectedNeeds
+    } = this.props;
 
-    const profileIsVetWSV =
-      this.props["patronType"] === "service-person" &&
-      this.props["serviceType"] === "WSV (WWII or Korea)";
-
-    let previousSectionA4 = "A3";
-    if (this.props.patronType === "") {
-      previousSectionA4 = "A1";
-    } else if (this.props.serviceType === "" || profileIsVetWSV) {
-      previousSectionA4 = "A2";
+    let previousSectionA5 = "A4";
+    if (patronType === "") {
+      previousSectionA5 = "A1";
+    } else if (serviceType === "") {
+      previousSectionA5 = "A2";
+    } else if (statusAndVitals === "" && serviceType != "WSV (WWII or Korea)") {
+      previousSectionA5 = "A3";
     }
 
     let benefitsDirectoryUrl =
-      "/benefits-directory?lng=" + this.props.t("current-language-code");
-    if (Object.keys(this.props.selectedNeeds).length > 0) {
+      "/benefits-directory?lng=" + t("current-language-code");
+    if (Object.keys(selectedNeeds).length > 0) {
       benefitsDirectoryUrl +=
-        "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
+        "&selectedNeeds=" + Object.keys(selectedNeeds).join();
     }
-    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+    [
+      "patronType",
+      "serviceType",
+      "statusAndVitals",
+      "serviceHealthIssue"
+    ].forEach(selection => {
       if (this.props[selection] !== "") {
         benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
       }
@@ -145,41 +161,19 @@ export class A extends Component {
     }
 
     switch (true) {
-      case section === "A4" ||
-        (profileIsVetWSV && section === "A3") ||
-        (this.props.serviceType === "" && section === "A3") ||
-        (this.props.patronType === "" &&
-          (section === "A3" || section === "A2")):
-        return (
-          <GuidedExperience
-            id="A4"
-            stepNumber={3}
-            t={t}
-            nextSection="benefits-directory"
-            benefitsDirectoryUrl={benefitsDirectoryUrl}
-            prevSection={previousSectionA4}
-            subtitle={t("B3.What do you need help with?")}
-            setSection={this.setSection}
-            store={this.props.store}
-          >
-            <GuidedExperienceNeeds t={t} store={this.props.store} />
-          </GuidedExperience>
-        );
-
       case section === "A1":
-        question = "patronType";
         return (
           <GuidedExperience
             id="A1"
             stepNumber={0}
             nextSection={
-              this.props.patronType === "organization"
+              patronType === "organization"
                 ? "benefits-directory"
-                : "A2"
+                : patronType === "" ? "A5" : "A2"
             }
             benefitsDirectoryUrl={benefitsDirectoryUrl}
             setSection={this.setSection}
-            subtitle={t("GE." + question)}
+            subtitle={t("GE.patronType")}
             t={t}
             store={this.props.store}
           >
@@ -191,15 +185,18 @@ export class A extends Component {
           </GuidedExperience>
         );
       case section === "A2":
-        question = "serviceType";
         return (
           <GuidedExperience
             id="A2"
             stepNumber={1}
-            nextSection="A3"
+            nextSection={
+              serviceType === "WSV (WWII or Korea)"
+                ? "A4"
+                : serviceType === "" ? "A5" : "A3"
+            }
             prevSection="A1"
             setSection={this.setSection}
-            subtitle={t("GE." + question)}
+            subtitle={t("GE.serviceType")}
             t={t}
             store={this.props.store}
           >
@@ -215,17 +212,14 @@ export class A extends Component {
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
         ).filter(st => st !== "na");
-        if (this.props.patronType === "service-person") {
+        if (patronType === "service-person") {
           options.splice(options.indexOf("deceased"), 1);
-        }
-        if (this.props.serviceType === "WSV (WWII or Korea)") {
-          options.splice(options.indexOf("stillServing"), 1);
         }
         return (
           <GuidedExperience
             id="A3"
             stepNumber={2}
-            nextSection="A4"
+            nextSection={statusAndVitals === "" ? "A5" : "A4"}
             prevSection="A2"
             setSection={this.setSection}
             subtitle={t("GE." + question)}
@@ -240,22 +234,40 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-
-      case (this.props.patronType !== "organization" && section === "A4") ||
-        (profileIsVetWSV && section === "A3"):
+      case section === "A4":
         return (
           <GuidedExperience
             id="A4"
             stepNumber={3}
+            nextSection="A5"
+            prevSection={serviceType === "WSV (WWII or Korea)" ? "A2" : "A3"}
+            setSection={this.setSection}
+            subtitle={t("health issue question")}
+            t={t}
+            store={this.props.store}
+          >
+            <GuidedExperienceProfile
+              t={t}
+              selectorType={"serviceHealthIssue"}
+              store={this.props.store}
+              options={["true", "false"]}
+            />
+          </GuidedExperience>
+        );
+      case section === "A5":
+        return (
+          <GuidedExperience
+            id="A5"
+            stepNumber={4}
             t={t}
             nextSection="benefits-directory"
             benefitsDirectoryUrl={benefitsDirectoryUrl}
-            prevSection={profileIsVetWSV ? "A2" : "A3"}
+            prevSection={previousSectionA5}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
             store={this.props.store}
           >
-            <GuidedExperienceNeeds t={t} store={this.props.store} />;
+            <GuidedExperienceNeeds t={t} store={this.props.store} />
           </GuidedExperience>
         );
     }
@@ -288,6 +300,9 @@ const mapDispatchToProps = dispatch => {
     },
     setSelectedNeeds: needsObject => {
       dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
+    },
+    setServiceHealthIssue: serviceHealthIssue => {
+      dispatch({ type: "SET_HEALTH_ISSUE", data: serviceHealthIssue });
     }
   };
 };
@@ -302,6 +317,7 @@ const mapStateToProps = reduxState => {
     patronType: reduxState.patronType,
     serviceType: reduxState.serviceType,
     statusAndVitals: reduxState.statusAndVitals,
+    serviceHealthIssue: reduxState.serviceHealthIssue,
     selectedNeeds: reduxState.selectedNeeds,
     translations: reduxState.translations,
     option: reduxState.option
@@ -325,6 +341,7 @@ A.propTypes = {
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,
+  setServiceHealthIssue: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object,
   translations: PropTypes.array.isRequired,

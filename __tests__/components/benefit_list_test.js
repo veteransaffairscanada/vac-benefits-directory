@@ -67,7 +67,7 @@ describe("BenefitList", () => {
 
   it("displays the correct number of benefits cards", () => {
     expect(
-      mount(<BenefitList {...props} {...reduxData} />).find("BenefitCard")
+      mount(<BenefitList {...props} {...reduxData} />).find("BenefitCardB")
         .length
     ).toEqual(3);
   });
