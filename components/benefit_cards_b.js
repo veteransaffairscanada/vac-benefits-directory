@@ -14,16 +14,17 @@ import Paper from "@material-ui/core/Paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
+import EmbeddedBenefitCard from "./embedded_benefit_card";
 
 const styles = () => ({
   button: {
-    marginTop: "30px"
+    // marginTop: "30px"
   },
   cardBottom: {
     backgroundColor: "#e8e8e8",
     borderRadius: "0px",
     borderTop: "1px solid #8b8b8b",
-    padding: "15px 0px 15px 24px",
+    // padding: "15px 0px 15px 24px",
     position: "relative"
   },
   cardTop: {
@@ -34,7 +35,8 @@ const styles = () => ({
     position: "relative"
   },
   cardBody: {
-    paddingLeft: "15px"
+    paddingLeft: "15px",
+    paddingBottom: "15px"
   },
   cardDescriptionText: {
     fontSize: "20px",
@@ -250,6 +252,7 @@ export class BenefitCardB extends Component {
                 />
               ))}
             </div>
+
             {this.props.showFavourite ? (
               <FavouriteButton
                 benefit={benefit}
@@ -304,7 +307,56 @@ export class BenefitCardB extends Component {
                 timeout="auto"
                 className={classes.collapse}
               >
-                <div> Steve! </div>
+                <Grid item xs={12}>
+                  {veteranBenefits.length > 0 ? (
+                    <div className={classes.children}>
+                      <Typography className={classes.ChildBenefitDesc}>
+                        {t("Veteran child benefits")}:
+                      </Typography>
+                      <div>
+                        {veteranBenefits.map((cb, i) => (
+                          <EmbeddedBenefitCard
+                            id={"cb" + i}
+                            benefit={cb}
+                            t={this.props.t}
+                            key={cb.id}
+                            onRef={ref => this.children.push(ref)}
+                            showFavourite={this.props.showFavourite}
+                            store={this.props.store}
+                          />
+                        ))}
+                        <br />
+                        <br />
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+
+                  {familyBenefits.length > 0 ? (
+                    <div className={classes.children}>
+                      <Typography className={classes.ChildBenefitDesc}>
+                        {t("Family child benefits")}:
+                      </Typography>
+                      <div>
+                        {familyBenefits.map((cb, i) => (
+                          <EmbeddedBenefitCard
+                            id={"cb" + i}
+                            className="BenefitCards"
+                            benefit={cb}
+                            t={this.props.t}
+                            key={cb.id}
+                            onRef={ref => this.children.push(ref)}
+                            showFavourite={this.props.showFavourite}
+                            store={this.props.store}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    ""
+                  )}
+                </Grid>
               </ExpansionPanelDetails>
             </ExpansionPanel>
           ) : (
