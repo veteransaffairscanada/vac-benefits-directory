@@ -21,7 +21,6 @@ const styles = () => ({
     backgroundColor: "#3e57e2",
     color: "white",
     textAlign: "right"
-    // marginTop: "30px"
   },
   cardBottom: {
     paddingLeft: "0px",

@@ -160,7 +160,6 @@ describe("BenefitCardB", () => {
         mountedBenefitCard()
           .instance()
           .childBenefitNames(benefitsFixture[0], [benefitsFixture], false)
-        // .childBenefitNames([benefitsFixture])
       ).toContain("en");
     });
   });
