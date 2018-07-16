@@ -26,10 +26,10 @@ const styles = () => ({
     // marginTop: "30px"
   },
   cardBottom: {
+    paddingLeft: "0px",
     backgroundColor: "#e8e8e8",
     borderRadius: "0px",
     borderTop: "1px solid #8b8b8b",
-    // padding: "15px 0px 15px 24px",
     position: "relative"
   },
   cardTop: {
@@ -45,7 +45,6 @@ const styles = () => ({
   },
   cardDescriptionText: {
     fontSize: "20px",
-    fontWeight: 400,
     padding: "15px 0px"
   },
   collapse: {
@@ -84,7 +83,7 @@ const styles = () => ({
     marginLeft: "20px"
   },
   benefitName: {
-    color: "#3e57e2",
+    fontWeight: 500,
     padding: "10px 0"
   },
   returnIcon: {
@@ -169,16 +168,24 @@ export class BenefitCardB extends Component {
     }
   };
 
-  childBenefitNames = childBenefits => {
+  childBenefitNames = (benefit, childBenefits) => {
     const length = childBenefits.length;
     if (length === 1) {
-      return this.props.t("benefits_b.eligible_for_single", {
-        x: this.benefitTitle(childBenefits[0])
-      });
+      return (
+        this.benefitTitle(benefit) +
+        " " +
+        this.props.t("benefits_b.eligible_for_single", {
+          x: this.benefitTitle(childBenefits[0])
+        })
+      );
     } else {
-      return this.props.t("benefits_b.eligible_for_multi", {
-        x: length
-      });
+      return (
+        this.benefitTitle(benefit) +
+        " " +
+        this.props.t("benefits_b.eligible_for_multi", {
+          x: length
+        })
+      );
     }
   };
 
@@ -271,7 +278,7 @@ export class BenefitCardB extends Component {
             {this.props.showFavourite ? (
               <FavouriteButton
                 benefit={benefit}
-                toggleOpenState={this.toggleOpenState}
+                toggleOpenState={() => {}}
                 store={this.props.store}
                 t={this.props.t}
               />
@@ -316,7 +323,7 @@ export class BenefitCardB extends Component {
                 onClick={() => this.toggleOpenState()}
               >
                 <KeyboardReturnIcon className={classes.returnIcon} />
-                {this.childBenefitNames(childBenefits)}
+                {this.childBenefitNames(benefit, childBenefits)}
               </ExpansionPanelSummary>
 
               <ExpansionPanelDetails
