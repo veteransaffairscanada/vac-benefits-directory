@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Typography, Button, Grid } from "@material-ui/core";
 import classnames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-
+import { KeyboardBackspace } from "@material-ui/icons";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import Paper from "@material-ui/core/Paper";
@@ -11,11 +11,14 @@ import Paper from "@material-ui/core/Paper";
 const styles = theme => ({
   root: {
     margin: "20px",
+    marginTop: "0px",
     padding: "10px"
   },
   heading: {
+    textTransform: "none",
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: 500
+    fontWeight: 500,
+    color: "#3c51e6"
   },
   ExpansionPanelClosed: {
     borderLeft: "5px solid"
@@ -39,6 +42,16 @@ const styles = theme => ({
     fontSize: "15px",
     // fontWeight: 400,
     paddingTop: "15px"
+  },
+  rightArrowIcon: {
+    "-moz-transform": "scaleX(-1)",
+    "-o-transform": "scaleX(-1)",
+    "-webkit-transform": "scaleX(-1)",
+    transform: "scaleX(-1)",
+    float: "left",
+    filter: "FlipH",
+    "-ms-filter": "FlipH",
+    paddingRight: "10px"
   }
 });
 
@@ -85,7 +98,7 @@ export class EmbeddedBenefitCard extends Component {
 
     return (
       <Paper className={classes.root}>
-        <a
+        <Button
           className={classes.heading}
           onClick={() =>
             this.logExit(
@@ -97,7 +110,8 @@ export class EmbeddedBenefitCard extends Component {
           }
         >
           {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-        </a>
+          <KeyboardBackspace className={classes.rightArrowIcon} />
+        </Button>
 
         <Grid container spacing={24}>
           <Grid item xs={12}>
