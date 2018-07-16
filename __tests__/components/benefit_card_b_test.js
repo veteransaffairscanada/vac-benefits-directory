@@ -4,7 +4,6 @@ import configureStore from "redux-mock-store";
 
 import { BenefitCardB } from "../../components/benefit_cards_b";
 import benefitsFixture from "../fixtures/benefits";
-import examplesFixture from "../fixtures/examples";
 import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -42,7 +41,6 @@ describe("BenefitCardB", () => {
     };
     mockStore = configureStore();
     reduxData = {
-      examples: examplesFixture,
       needs: needsFixture,
       selectedNeeds: {},
       benefits: benefitsFixture,

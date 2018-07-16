@@ -59,25 +59,11 @@ const styles = () => ({
     borderBottom: "0px",
     userSelect: "inherit"
   },
-  expandIcon: {
-    color: "#3e57e2",
-    marginTop: "40px",
-    "&:hover": {
-      background: "none"
-    }
-  },
   ChildBenefitDesc: {
     paddingBottom: "30px"
   },
   children: {
     width: "100%"
-  },
-  ExampleDesc: {
-    paddingBottom: "10px"
-  },
-  examples: {
-    width: "100%",
-    marginLeft: "20px"
   },
   benefitName: {
     fontWeight: 500,
@@ -389,7 +375,6 @@ export class BenefitCardB extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    examples: reduxState.examples,
     needs: reduxState.needs,
     selectedNeeds: reduxState.selectedNeeds,
     benefits: reduxState.benefits
@@ -403,7 +388,6 @@ BenefitCardB.propTypes = {
   familyBenefitIds: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
