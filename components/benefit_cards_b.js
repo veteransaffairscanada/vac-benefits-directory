@@ -127,7 +127,6 @@ export class BenefitCardB extends Component {
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
-
     // we'll probably need these in the header / footer when that gets added
     //
     const childBenefits = benefit.childBenefits
