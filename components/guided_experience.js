@@ -101,11 +101,11 @@ export class GuidedExperience extends Component {
                     return "";
                   } else {
                     return (
-                      <span>
+                      <span key={i}>
                         <a
+                          id={"jumpButton" + i}
                           className={classes.jumpButton}
                           href="#"
-                          key={i}
                           onClick={() =>
                             this.props.setSection(this.sectionMap[k])
                           }
