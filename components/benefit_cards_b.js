@@ -176,14 +176,12 @@ export class BenefitCardB extends Component {
         )
       : [];
 
-    // we'll probably need these in the header / footer when that gets added
-    //
-    // const veteranBenefits = childBenefits.filter(
-    //   ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
-    // );
-    // const familyBenefits = childBenefits.filter(
-    //   ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
-    // );
+    const veteranBenefits = childBenefits.filter(
+      ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
+    );
+    const familyBenefits = childBenefits.filter(
+      ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
+    );
 
     const examples =
       typeof benefit.examples !== "undefined" &&
@@ -214,127 +212,100 @@ export class BenefitCardB extends Component {
             ""
           )}
 
-          <ExpansionPanel
-            expanded={this.state.open}
-            className={
-              this.state.open
-                ? classes.ExpansionPanelOpen
-                : classes.ExpansionPanelClosed
-            }
-          >
-            <ExpansionPanelSummary
-              className={classes.ExpansionPanelSummary}
-              expandIcon={
-                this.state.open ? (
-                  <RemoveIcon className={classes.expandIcon} />
-                ) : (
-                  <AddIcon className={classes.expandIcon} />
+          <div className={classes.ExpansionPanelSummary}>
+            <div component="p" className={classes.benefitName}>
+              <Highlighter
+                searchWords={this.props.searchString.split(",")}
+                autoEscape={true}
+                textToHighlight={
+                  this.props.t("current-language-code") === "en"
+                    ? benefit.vacNameEn
+                    : benefit.vacNameFr
+                }
+              />
+            </div>
+
+            <Typography
+              className={"cardDescription " + classes.cardDescriptionText}
+            >
+              <Highlighter
+                searchWords={this.props.searchString.split(",")}
+                autoEscape={true}
+                textToHighlight={
+                  this.props.t("current-language-code") === "en"
+                    ? benefit.oneLineDescriptionEn
+                    : benefit.oneLineDescriptionFr
+                }
+              />
+            </Typography>
+            <div>
+              {needsMet.map(need => (
+                <NeedTag
+                  key={benefit.id + need.id}
+                  t={this.props.t}
+                  need={need}
+                />
+              ))}
+            </div>
+            {this.props.showFavourite ? (
+              <FavouriteButton
+                benefit={benefit}
+                toggleOpenState={this.toggleOpenState}
+                store={this.props.store}
+                t={this.props.t}
+              />
+            ) : (
+              ""
+            )}
+            <Button
+              className={classes.button}
+              target="_blank"
+              variant="raised"
+              style={{ textTransform: "none" }}
+              onClick={() =>
+                this.logExit(
+                  this.props.t("current-language-code") === "en"
+                    ? benefit.benefitPageEn
+                    : benefit.benefitPageFr
                 )
               }
-              IconButtonProps={{
-                className: classes.expandIcon,
-                disableRipple: true
-              }}
-              onClick={() => this.toggleOpenState()}
+              href={
+                this.props.t("current-language-code") === "en"
+                  ? benefit.benefitPageEn
+                  : benefit.benefitPageFr
+              }
             >
-              <div>
-                <div component="p" className={classes.benefitName}>
-                  <Highlighter
-                    searchWords={this.props.searchString.split(",")}
-                    autoEscape={true}
-                    textToHighlight={
-                      this.props.t("current-language-code") === "en"
-                        ? benefit.vacNameEn
-                        : benefit.vacNameFr
-                    }
-                  />
-                </div>
+              {this.props.t("Find out more")}
+            </Button>
+          </div>
 
-                <Typography
-                  className={"cardDescription " + classes.cardDescriptionText}
-                >
-                  <Highlighter
-                    searchWords={this.props.searchString.split(",")}
-                    autoEscape={true}
-                    textToHighlight={
-                      this.props.t("current-language-code") === "en"
-                        ? benefit.oneLineDescriptionEn
-                        : benefit.oneLineDescriptionFr
-                    }
-                  />
-                </Typography>
-                <div>
-                  {needsMet.map(need => (
-                    <NeedTag
-                      key={benefit.id + need.id}
-                      t={this.props.t}
-                      need={need}
-                    />
-                  ))}
-                </div>
-                {this.props.showFavourite ? (
-                  <FavouriteButton
-                    benefit={benefit}
-                    toggleOpenState={this.toggleOpenState}
-                    store={this.props.store}
-                    t={this.props.t}
-                  />
-                ) : (
-                  ""
-                )}
-              </div>
-            </ExpansionPanelSummary>
-            <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
-              <Grid container spacing={24}>
-                <Grid item xs={12}>
-                  {examples.length > 0 ? (
-                    <Typography className={classes.ExampleDesc}>
-                      {t("examples") + ":"}
-                    </Typography>
-                  ) : (
-                    ""
-                  )}
-                  <Typography className={classes.examples}>
-                    {examples.map(ex => {
-                      return (
-                        <li key={ex.id}>
-                          {this.props.t("current-language-code") === "en"
-                            ? ex.nameEn
-                            : ex.nameFr}{" "}
-                        </li>
-                      );
-                    })}
-                  </Typography>
-
-                  <Button
-                    className={classes.button}
-                    target="_blank"
-                    variant="raised"
-                    style={{ textTransform: "none" }}
-                    onClick={() =>
-                      this.logExit(
-                        this.props.t("current-language-code") === "en"
-                          ? benefit.benefitPageEn
-                          : benefit.benefitPageFr
-                      )
-                    }
-                    href={
-                      this.props.t("current-language-code") === "en"
-                        ? benefit.benefitPageEn
-                        : benefit.benefitPageFr
-                    }
-                  >
-                    {this.props.t("Find out more")}
-                  </Button>
-                </Grid>
-              </Grid>
-            </ExpansionPanelDetails>
-          </ExpansionPanel>
           {childBenefits.length > 0 ? (
-            <Paper className={classes.cardBottom}>
-              <KeyboardReturnIcon className={classes.returnIcon} />
-              {this.childBenefitNames(childBenefits)}
-            </Paper>
+            <ExpansionPanel
+              expanded={this.state.open}
+              className={
+                this.state.open
+                  ? classes.ExpansionPanelOpen
+                  : classes.ExpansionPanelClosed
+              }
+            >
+              <ExpansionPanelSummary
+                className={classes.ExpansionPanelSummary}
+                expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
+                onClick={() => this.toggleOpenState()}
+              >
+                <Paper className={classes.cardBottom}>
+                  <KeyboardReturnIcon className={classes.returnIcon} />
+                  {this.childBenefitNames(childBenefits)}
+                </Paper>
+              </ExpansionPanelSummary>
+
+              <ExpansionPanelDetails
+                timeout="auto"
+                className={classes.collapse}
+              >
+                <div> Steve! </div>
+              </ExpansionPanelDetails>
+            </ExpansionPanel>
           ) : (
             ""
           )}
