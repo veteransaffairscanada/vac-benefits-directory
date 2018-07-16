@@ -15,6 +15,7 @@ const styles = theme => ({
     padding: "10px"
   },
   heading: {
+    size: "small",
     textTransform: "none",
     fontSize: theme.typography.pxToRem(15),
     fontWeight: 500,
@@ -51,7 +52,7 @@ const styles = theme => ({
     float: "left",
     filter: "FlipH",
     "-ms-filter": "FlipH",
-    paddingRight: "10px"
+    paddingRight: "5px"
   }
 });
 
@@ -99,6 +100,7 @@ export class EmbeddedBenefitCard extends Component {
     return (
       <Paper className={classes.root}>
         <Button
+          target="_blank"
           className={classes.heading}
           onClick={() =>
             this.logExit(
