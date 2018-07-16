@@ -4,6 +4,7 @@ import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import PriorityHigh from "@material-ui/icons/PriorityHigh";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
@@ -21,14 +22,14 @@ const styles = () => ({
     marginTop: "30px"
   },
   cardBottom: {
-    backgroundColor: "#e8e8e8",
+    backgroundColor: "#f1f7fc",
     borderRadius: "0px",
     borderTop: "1px solid #8b8b8b",
     padding: "15px 0px 15px 24px",
     position: "relative"
   },
   cardTop: {
-    backgroundColor: "#e8e8e8",
+    backgroundColor: "#f1f7fc",
     borderRadius: "0px",
     borderBottom: "1px solid #8b8b8b",
     padding: "15px 0px 15px 24px",
@@ -89,7 +90,11 @@ const styles = () => ({
     paddingLeft: "10px"
   },
   parentIcon: {
-    float: "left"
+    position: "relative",
+    marginRight: 5
+  },
+  headerDesc: {
+    position: "absolute"
   }
 });
 
@@ -125,13 +130,7 @@ export class BenefitCardB extends Component {
 
   parentBenefitNames = (parentBenefits, availableIndependently) => {
     if (availableIndependently === "Independent") {
-      const nameString = parentBenefits
-        .map(b => this.benefitTitle(b))
-        .join(", ")
-        .replace(/,([^,]*)$/, " or " + "$1");
-      return this.props.t("benefits_b.independant_with_parents", {
-        x: nameString
-      });
+      return "";
     } else {
       const nameString = parentBenefits
         .map(b => this.benefitTitle(b))
@@ -187,13 +186,16 @@ export class BenefitCardB extends Component {
     return (
       <Grid item xs={12}>
         <div className={classes.root}>
-          {parentBenefits.length > 0 ? (
+          {parentBenefits.length > 0 &&
+          benefit.availableIndependently == "Requires Gateway Benefit" ? (
             <Paper className={classes.cardTop}>
-              <PriorityHigh className={classes.parentIcon} />
-              {this.parentBenefitNames(
-                parentBenefits,
-                benefit.availableIndependently
-              )}
+              <ErrorOutlineIcon className={classes.parentIcon} />
+              <span className={classes.headerDesc}>
+                {this.parentBenefitNames(
+                  parentBenefits,
+                  benefit.availableIndependently
+                )}
+              </span>
             </Paper>
           ) : (
             ""
