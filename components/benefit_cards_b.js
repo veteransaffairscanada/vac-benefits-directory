@@ -33,6 +33,9 @@ const styles = () => ({
     padding: "15px 0px 15px 24px",
     position: "relative"
   },
+  cardBody: {
+    paddingLeft: "15px"
+  },
   cardDescriptionText: {
     fontSize: "20px",
     fontWeight: 400,
@@ -199,7 +202,7 @@ export class BenefitCardB extends Component {
 
     return (
       <Grid item xs={12}>
-        <div className={classes.root}>
+        <Paper className={classes.root}>
           {parentBenefits.length > 0 ? (
             <Paper className={classes.cardTop}>
               <KeyboardReturnIcon className={classes.parentIcon} />
@@ -212,7 +215,7 @@ export class BenefitCardB extends Component {
             ""
           )}
 
-          <div className={classes.ExpansionPanelSummary}>
+          <Paper className={classes.cardBody}>
             <div component="p" className={classes.benefitName}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
@@ -277,7 +280,7 @@ export class BenefitCardB extends Component {
             >
               {this.props.t("Find out more")}
             </Button>
-          </div>
+          </Paper>
 
           {childBenefits.length > 0 ? (
             <ExpansionPanel
@@ -289,14 +292,12 @@ export class BenefitCardB extends Component {
               }
             >
               <ExpansionPanelSummary
-                className={classes.ExpansionPanelSummary}
+                className={classes.cardBottom}
                 expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
                 onClick={() => this.toggleOpenState()}
               >
-                <Paper className={classes.cardBottom}>
-                  <KeyboardReturnIcon className={classes.returnIcon} />
-                  {this.childBenefitNames(childBenefits)}
-                </Paper>
+                <KeyboardReturnIcon className={classes.returnIcon} />
+                {this.childBenefitNames(childBenefits)}
               </ExpansionPanelSummary>
 
               <ExpansionPanelDetails
@@ -309,7 +310,7 @@ export class BenefitCardB extends Component {
           ) : (
             ""
           )}
-        </div>
+        </Paper>
       </Grid>
     );
   }
