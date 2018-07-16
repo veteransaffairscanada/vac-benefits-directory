@@ -124,12 +124,12 @@ describe("BenefitCardB", () => {
     ).toContain("en");
   });
 
-  describe(".childBenefitTitle", () => {
+  describe(".benefitTitle", () => {
     it("returns the title of a card in english", () => {
       expect(
         mountedBenefitCard()
           .instance()
-          .childBenefitTitle(benefitsFixture[0])
+          .benefitTitle(benefitsFixture[0])
       ).toEqual(benefitsFixture[0].vacNameEn);
     });
 
@@ -138,8 +138,26 @@ describe("BenefitCardB", () => {
       expect(
         mountedBenefitCard()
           .instance()
-          .childBenefitTitle(benefitsFixture[0])
+          .benefitTitle(benefitsFixture[0])
       ).toEqual(benefitsFixture[0].vacNameFr);
+    });
+  });
+
+  describe(".parentBenefitNames", () => {
+    it("returns the title of a benefit if there is one benefit", () => {
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .parentBenefitNames([benefitsFixture[0]])
+      ).toContain("en");
+    });
+
+    it("returns the titles of benefits if there are more than one", () => {
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .parentBenefitNames([benefitsFixture])
+      ).toContain("en");
     });
   });
 
