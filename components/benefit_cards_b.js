@@ -170,15 +170,6 @@ export class BenefitCardB extends Component {
         )
       : [];
 
-    // we'll probably need these in the header / footer when that gets added
-    //
-    // const veteranBenefits = childBenefits.filter(
-    //   ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
-    // );
-    // const familyBenefits = childBenefits.filter(
-    //   ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
-    // );
-
     const examples =
       typeof benefit.examples !== "undefined" &&
       typeof this.props.examples !== "undefined"
