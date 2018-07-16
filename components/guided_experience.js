@@ -58,6 +58,9 @@ const styles = () => ({
   },
   jumpButton: {
     fontSize: "1.5em"
+  },
+  comma: {
+    marginRight: "0.5em"
   }
 });
 
@@ -112,7 +115,9 @@ export class GuidedExperience extends Component {
                         >
                           {t(selectedEligibility[k])}
                         </a>
-                        &nbsp;&nbsp;&nbsp;
+                        <span className={classes.comma}>
+                          {i + 1 === eligibilityKeys.length ? "" : ","}
+                        </span>
                       </span>
                     );
                   }
