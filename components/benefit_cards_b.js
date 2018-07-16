@@ -168,24 +168,30 @@ export class BenefitCardB extends Component {
     }
   };
 
-  childBenefitNames = (benefit, childBenefits) => {
+  childBenefitNames = (benefit, childBenefits, open) => {
     const length = childBenefits.length;
-    if (length === 1) {
-      return (
-        this.benefitTitle(benefit) +
-        " " +
-        this.props.t("benefits_b.eligible_for_single", {
-          x: this.benefitTitle(childBenefits[0])
-        })
-      );
+    if (open) {
+      return this.props.t("benefits_b.eligible_open_veteran", {
+        x: this.benefitTitle(benefit)
+      });
     } else {
-      return (
-        this.benefitTitle(benefit) +
-        " " +
-        this.props.t("benefits_b.eligible_for_multi", {
-          x: length
-        })
-      );
+      if (length === 1) {
+        return (
+          this.benefitTitle(benefit) +
+          " " +
+          this.props.t("benefits_b.eligible_for_single", {
+            x: this.benefitTitle(childBenefits[0])
+          })
+        );
+      } else {
+        return (
+          this.benefitTitle(benefit) +
+          " " +
+          this.props.t("benefits_b.eligible_for_multi", {
+            x: length
+          })
+        );
+      }
     }
   };
 
@@ -323,7 +329,11 @@ export class BenefitCardB extends Component {
                 onClick={() => this.toggleOpenState()}
               >
                 <KeyboardReturnIcon className={classes.returnIcon} />
-                {this.childBenefitNames(benefit, childBenefits)}
+                {this.childBenefitNames(
+                  benefit,
+                  childBenefits,
+                  this.state.open
+                )}
               </ExpansionPanelSummary>
 
               <ExpansionPanelDetails
@@ -333,9 +343,6 @@ export class BenefitCardB extends Component {
                 <Grid item xs={12}>
                   {veteranBenefits.length > 0 ? (
                     <div className={classes.children}>
-                      <Typography className={classes.ChildBenefitDesc}>
-                        {t("Veteran child benefits")}:
-                      </Typography>
                       <div>
                         {veteranBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
@@ -359,7 +366,7 @@ export class BenefitCardB extends Component {
                   {familyBenefits.length > 0 ? (
                     <div className={classes.children}>
                       <Typography className={classes.ChildBenefitDesc}>
-                        {t("Family child benefits")}:
+                        {t("benefits_b.eligible_open_family")}
                       </Typography>
                       <div>
                         {familyBenefits.map((cb, i) => (
