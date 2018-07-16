@@ -3,20 +3,14 @@ import { createStore } from "redux";
 import airtableConstants from "./utils/airtable_constants";
 
 const initialState = {
-  // areaOffices: [],
-  // benefits: [],
-  // eligibilityPaths: [],
   enIdx: {},
-  // examples: [],
   favouriteBenefits: [],
   frIdx: {},
-  // needs: [],
   patronType: "",
   searchString: "",
   selectedNeeds: {},
   serviceType: "",
   statusAndVitals: "",
-  // translations: [],
   option: ""
 };
 airtableConstants.tableNames.forEach(tableName => {
@@ -62,15 +56,8 @@ export const reducer = (state = initialState, action) => {
     case "LOAD_DATA":
       newState = {
         storeHydrated: action.data.storeHydrated || state.storeHydrated,
-        // benefits: action.data.benefits || state.benefits,
-        // eligibilityPaths:
-        //   action.data.eligibilityPaths || state.eligibilityPaths,
-        // needs: action.data.needs || state.needs,
-        // examples: action.data.examples || state.examples,
         favouriteBenefits:
           action.data.favouriteBenefits || state.favouriteBenefits
-        // translations: action.data.translations || state.translations,
-        // areaOffices: action.data.areaOffices || state.areaOffices
       };
       airtableConstants.tableNames.forEach(tableName => {
         newState[tableName] = action.data[tableName] || state[tableName];
