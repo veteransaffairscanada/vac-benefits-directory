@@ -4,7 +4,6 @@ import configureStore from "redux-mock-store";
 
 import { BenefitCardB } from "../../components/benefit_cards_b";
 import benefitsFixture from "../fixtures/benefits";
-import examplesFixture from "../fixtures/examples";
 import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -42,7 +41,6 @@ describe("BenefitCardB", () => {
     };
     mockStore = configureStore();
     reduxData = {
-      examples: examplesFixture,
       needs: needsFixture,
       selectedNeeds: {},
       benefits: benefitsFixture,
@@ -74,38 +72,23 @@ describe("BenefitCardB", () => {
     ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
   });
 
-  it("renders if there are examples", () => {
-    props.t = key => key;
-    props.benefit = benefitsFixture[1];
-    expect(mountedBenefitCard().html()).toContain("examples:");
-  });
-
-  it("renders if there are no examples", () => {
-    props.t = key => key;
-    props.benefit = benefitsFixture[0];
-    expect(mountedBenefitCard().html()).not.toContain("examples:");
-  });
-
   it("has a correctly configured external link button", () => {
     expect(
       mountedBenefitCard()
-        .find("ExpansionPanelDetails")
-        .first()
         .find("Button")
+        .at(1)
         .prop("target")
     ).toEqual("_blank");
     expect(
       mountedBenefitCard()
-        .find("ExpansionPanelDetails")
-        .first()
         .find("Button")
+        .at(1)
         .prop("href")
     ).toEqual(benefitsFixture[1].benefitPageEn);
     expect(
       mountedBenefitCard()
-        .find("ExpansionPanelDetails")
-        .first()
         .find("Button")
+        .at(1)
         .text()
     ).toEqual("en");
   });
@@ -166,7 +149,7 @@ describe("BenefitCardB", () => {
       expect(
         mountedBenefitCard()
           .instance()
-          .childBenefitNames(benefitsFixture[0])
+          .childBenefitNames(benefitsFixture[0], benefitsFixture[0], false)
       ).toContain("en");
     });
 
@@ -174,7 +157,7 @@ describe("BenefitCardB", () => {
       expect(
         mountedBenefitCard()
           .instance()
-          .childBenefitNames([benefitsFixture])
+          .childBenefitNames(benefitsFixture[0], [benefitsFixture], false)
       ).toContain("en");
     });
   });
@@ -193,16 +176,14 @@ describe("BenefitCardB", () => {
     it("has a button with the French link", () => {
       expect(
         mountedBenefitCard()
-          .find("ExpansionPanelDetails")
-          .first()
           .find("Button")
+          .at(1)
           .prop("href")
       ).toEqual(benefitsFixture[1].benefitPageFr);
       expect(
         mountedBenefitCard()
-          .find("ExpansionPanelDetails")
-          .first()
           .find("Button")
+          .at(1)
           .text()
       ).toEqual("fr");
     });
@@ -225,7 +206,7 @@ describe("BenefitCardB", () => {
   it("changes open state when somebody clicks on it", () => {
     expect(mountedBenefitCard().state().open).toEqual(false);
     mountedBenefitCard()
-      .find("div > div > div")
+      .find("ExpansionPanelSummary")
       .at(0)
       .simulate("click");
     expect(mountedBenefitCard().state().open).toEqual(true);
@@ -235,9 +216,8 @@ describe("BenefitCardB", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
     mountedBenefitCard()
-      .find("ExpansionPanelDetails")
-      .first()
       .find("Button")
+      .at(1)
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
