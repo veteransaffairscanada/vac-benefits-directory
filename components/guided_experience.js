@@ -75,13 +75,23 @@ export class GuidedExperience extends Component {
   sectionMap = {
     patronType: "A1",
     serviceType: "A2",
-    statusAndVitals: "A3"
+    statusAndVitals: "A3",
+    serviceHealthIssue: "A4"
   };
 
   render() {
     const { t, classes, selectedEligibility } = this.props;
-
     const eligibilityKeys = Object.keys(selectedEligibility);
+    let jump_button_text = (k, selectedEligibility) => {
+      if (k === "serviceHealthIssue" && selectedEligibility[k] == "true") {
+        return "GE.has service related health issue";
+      }
+      if (k === "serviceHealthIssue" && selectedEligibility[k] == "false") {
+        return "GE.no service related health issue";
+      }
+      return selectedEligibility[k];
+    };
+
     return (
       <MuiThemeProvider theme={theme}>
         <div>
@@ -121,7 +131,7 @@ export class GuidedExperience extends Component {
                         size="small"
                         className={classnames(classes.jumpButton)}
                       >
-                        {t(selectedEligibility[k])}
+                        {t(jump_button_text(k, selectedEligibility))}
                         <EditIcon className={classnames(classes.edit)} />
                       </Button>
                     );
@@ -171,7 +181,8 @@ const mapStateToProps = reduxState => {
     selectedEligibility: {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals
+      statusAndVitals: reduxState.statusAndVitals,
+      serviceHealthIssue: reduxState.serviceHealthIssue
     }
   };
 };

@@ -64,6 +64,25 @@ export default withRedux(initStore)(
         });
       }
 
+      if (
+        ctx.query.serviceHealthIssue &&
+        ctx.query.serviceHealthIssue !== currentReduxState.serviceHealthIssue
+      ) {
+        ctx.store.dispatch({
+          type: "SET_HEALTH_ISSUE",
+          data: ctx.query.serviceHealthIssue
+        });
+      }
+      if (
+        !ctx.query.serviceHealthIssue &&
+        currentReduxState.serviceHealthIssue !== ""
+      ) {
+        ctx.store.dispatch({
+          type: "SET_HEALTH_ISSUE",
+          data: ""
+        });
+      }
+
       if (ctx.query.selectedNeeds) {
         let selectedNeeds = {};
         ctx.query.selectedNeeds.split(",").forEach(id => {
