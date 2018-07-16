@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
-import { KeyboardBackspace, ExpandMore, ExpandLess } from "@material-ui/icons";
+import { KeyboardBackspace } from "@material-ui/icons";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -18,7 +16,7 @@ import { connect } from "react-redux";
 import NeedTag from "./need_tag";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
 
-const styles = theme => ({
+const styles = () => ({
   button: {
     backgroundColor: "#3e57e2",
     color: "white",
@@ -112,8 +110,6 @@ const styles = theme => ({
     "-webkit-transform": "scaleX(-1) scaleY(-1)",
     transform: "scaleXY(-1)",
     float: "left",
-    // filter: "FlipH",
-    // "-ms-filter": "FlipH",
     paddingLeft: "10px"
   }
 });
@@ -215,12 +211,6 @@ export class BenefitCardB extends Component {
     const familyBenefits = childBenefits.filter(
       ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
     );
-
-    const examples =
-      typeof benefit.examples !== "undefined" &&
-      typeof this.props.examples !== "undefined"
-        ? this.props.examples.filter(ex => benefit.examples.indexOf(ex.id) > -1)
-        : [];
 
     const needsMet = benefit.needs
       ? this.props.needs.filter(
