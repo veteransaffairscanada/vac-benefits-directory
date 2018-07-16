@@ -16,33 +16,17 @@ const styles = theme => ({
   },
   heading: {
     size: "small",
+    paddingLeft: "0px",
+    paddingRight: "0px",
     textTransform: "none",
     fontSize: theme.typography.pxToRem(15),
     fontWeight: 500,
     color: "#3c51e6"
   },
-  ExpansionPanelClosed: {
-    borderLeft: "5px solid"
-  },
-  ExpansionPanelOpen: {
-    borderLeft: "5px solid #808080"
-  },
-  ExpansionPanelSummary: {
-    "&[aria-expanded*=true]": {
-      backgroundColor: "#f8f8f8"
-    },
-    userSelect: "inherit"
-  },
-  bullet: {
-    paddingBottom: "1em"
-  },
-  description: {
-    paddingTop: "1em"
-  },
   cardDescriptionText: {
     fontSize: "15px",
-    // fontWeight: 400,
-    paddingTop: "15px"
+    lineHeight: "1.6",
+    paddingTop: "0px"
   },
   rightArrowIcon: {
     "-moz-transform": "scaleX(-1)",
