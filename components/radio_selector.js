@@ -39,6 +39,7 @@ export class RadioSelector extends React.Component {
         if (id === "organization") {
           this.props.setServiceType("");
           this.props.setStatusAndVitals("");
+          this.props.setServiceHealthIssue("");
         }
         if (
           id === "service-person" &&

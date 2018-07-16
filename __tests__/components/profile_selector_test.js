@@ -26,6 +26,7 @@ describe("ProfileSelector", () => {
       setPatronType: jest.fn(),
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
+      setServiceHealthIssue: jest.fn(),
       statusAndVitals: ""
     };
     mockStore = configureStore();

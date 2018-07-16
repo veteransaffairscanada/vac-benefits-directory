@@ -47,6 +47,7 @@ export class ProfileSelector extends Component {
     this.props.setPatronType("");
     this.props.setServiceType("");
     this.props.setStatusAndVitals("");
+    this.props.setServiceHealthIssue("");
   };
 
   render() {
@@ -172,6 +173,9 @@ const mapDispatchToProps = dispatch => {
     },
     setStatusAndVitals: statusType => {
       dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    },
+    setServiceHealthIssue: serviceHealthIssue => {
+      dispatch({ type: "SET_HEALTH_ISSUE", data: serviceHealthIssue });
     }
   };
 };
@@ -191,6 +195,7 @@ ProfileSelector.propTypes = {
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,
+  setServiceHealthIssue: PropTypes.func.isRequired,
   patronType: PropTypes.string.isRequired,
   serviceType: PropTypes.string.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
