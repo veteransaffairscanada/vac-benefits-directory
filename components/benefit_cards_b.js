@@ -40,8 +40,8 @@ const styles = () => ({
     position: "relative"
   },
   cardBody: {
-    paddingLeft: "15px",
-    paddingBottom: "15px"
+    padding: "15px",
+    paddingTop: "0px"
   },
   cardDescriptionText: {
     fontSize: "20px",
@@ -282,7 +282,7 @@ export class BenefitCardB extends Component {
               className={classes.button}
               target="_blank"
               variant="raised"
-              style={{ textTransform: "none" }}
+              style={{ textTransform: "none", float: "right" }}
               onClick={() =>
                 this.logExit(
                   this.props.t("current-language-code") === "en"
