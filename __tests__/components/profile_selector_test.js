@@ -180,5 +180,6 @@ describe("ProfileSelector", () => {
     expect(reduxData.setPatronType).toBeCalledWith("");
     expect(reduxData.setServiceType).toBeCalledWith("");
     expect(reduxData.setStatusAndVitals).toBeCalledWith("");
+    expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
   });
 });
