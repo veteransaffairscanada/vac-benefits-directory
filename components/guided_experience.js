@@ -81,7 +81,6 @@ export class GuidedExperience extends Component {
 
   render() {
     const { t, classes, selectedEligibility } = this.props;
-
     const eligibilityKeys = Object.keys(selectedEligibility);
 
     let jump_button_text = (k, selectedEligibility) => {
