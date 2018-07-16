@@ -5,8 +5,8 @@ import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
-import { KeyboardBackspace } from "@material-ui/icons";
-
+import { KeyboardBackspace, ExpandMore, ExpandLess } from "@material-ui/icons";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -18,7 +18,7 @@ import { connect } from "react-redux";
 import NeedTag from "./need_tag";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
 
-const styles = () => ({
+const styles = theme => ({
   button: {
     backgroundColor: "#3e57e2",
     color: "white",
@@ -319,7 +319,7 @@ export class BenefitCardB extends Component {
             >
               <ExpansionPanelSummary
                 className={classes.cardBottom}
-                expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
+                expandIcon={<ExpandMoreIcon />}
                 onClick={() => this.toggleOpenState()}
               >
                 <KeyboardReturnIcon className={classes.returnIcon} />
