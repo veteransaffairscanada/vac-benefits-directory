@@ -58,6 +58,7 @@ describe("A", () => {
       setSelectedNeeds: jest.fn(),
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
+      setServiceHealthIssue: jest.fn(),
       favouriteBenefits: []
     };
     _mountedA = undefined;
