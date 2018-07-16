@@ -75,7 +75,8 @@ export class GuidedExperience extends Component {
   sectionMap = {
     patronType: "A1",
     serviceType: "A2",
-    statusAndVitals: "A3"
+    statusAndVitals: "A3",
+    serviceHealthIssue: "A4"
   };
 
   render() {
@@ -171,7 +172,8 @@ const mapStateToProps = reduxState => {
     selectedEligibility: {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals
+      statusAndVitals: reduxState.statusAndVitals,
+      serviceHealthIssue: reduxState.serviceHealthIssue
     }
   };
 };

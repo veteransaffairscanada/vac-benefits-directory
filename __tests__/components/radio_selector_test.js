@@ -123,6 +123,12 @@ describe("RadioSelector", () => {
     expect(props.setStatusAndVitals).toBeCalledWith("deceased");
   });
 
+  it("setUserProfile can set serviceHealthIssue", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("serviceHealthIssue", "true");
+    expect(props.setServiceHealthIssue).toBeCalledWith("true");
+  });
+
   it("setUserProfile returns true as default", () => {
     let instance = shallow(<RadioSelector {...props} />).instance();
     expect(instance.setUserProfile("foo", "bar")).toEqual(true);

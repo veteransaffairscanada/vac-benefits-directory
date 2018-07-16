@@ -193,6 +193,7 @@ ProfileSelector.propTypes = {
   setStatusAndVitals: PropTypes.func.isRequired,
   patronType: PropTypes.string.isRequired,
   serviceType: PropTypes.string.isRequired,
+  statusAndVitals: PropTypes.string.isRequired,
   pageWidth: PropTypes.number.isRequired,
   store: PropTypes.object
 };
