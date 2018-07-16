@@ -34,19 +34,10 @@ var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
 
 var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateFromAirtable() {
   let dataStore = {};
-
   airtableConstants.tableNames.forEach(async function(tableName) {
     dataStore[tableName] = await fetchTableFromAirtable(tableName);
   });
-
-  // dataStore.benefits = await fetchTableFromAirtable("benefits");
-  // dataStore.eligibilityPaths = await fetchTableFromAirtable("eligibilityPaths");
-  // dataStore.needs = await fetchTableFromAirtable("needs");
-  // dataStore.examples = await fetchTableFromAirtable("examples");
-  // dataStore.translations = await fetchTableFromAirtable("translations");
-  // dataStore.areaOffices = await fetchTableFromAirtable("areaOffices");
-  // dataStore.timestamp = await Date.now();
-
+  dataStore.timestamp = await Date.now();
   return dataStore;
 });
 
