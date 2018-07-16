@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
+import PriorityHigh from "@material-ui/icons/PriorityHigh";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -88,14 +89,7 @@ const styles = () => ({
     paddingLeft: "10px"
   },
   parentIcon: {
-    "-moz-transform": "scaleXY(-1) scaleY(-1)",
-    "-o-transform": "scaleXY(-1) scaleY(-1)",
-    "-webkit-transform": "scaleX(-1) scaleY(-1)",
-    transform: "scaleXY(-1)",
-    float: "left",
-    // filter: "FlipH",
-    // "-ms-filter": "FlipH",
-    paddingLeft: "10px"
+    float: "left"
   }
 });
 
@@ -204,7 +198,7 @@ export class BenefitCardB extends Component {
         <div className={classes.root}>
           {parentBenefits.length > 0 ? (
             <Paper className={classes.cardTop}>
-              <KeyboardReturnIcon className={classes.parentIcon} />
+              <PriorityHigh className={classes.parentIcon} />
               {this.parentBenefitNames(
                 parentBenefits,
                 benefit.availableIndependently
