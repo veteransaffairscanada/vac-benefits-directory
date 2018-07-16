@@ -5,6 +5,8 @@ import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
+import { KeyboardBackspace } from "@material-ui/icons";
+
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -18,6 +20,9 @@ import EmbeddedBenefitCard from "./embedded_benefit_card";
 
 const styles = () => ({
   button: {
+    backgroundColor: "#3e57e2",
+    color: "white",
+    textAlign: "right"
     // marginTop: "30px"
   },
   cardBottom: {
@@ -91,6 +96,16 @@ const styles = () => ({
     filter: "FlipH",
     "-ms-filter": "FlipH",
     paddingLeft: "10px"
+  },
+  rightArrowIcon: {
+    "-moz-transform": "scaleX(-1)",
+    "-o-transform": "scaleX(-1)",
+    "-webkit-transform": "scaleX(-1)",
+    transform: "scaleX(-1)",
+    float: "left",
+    filter: "FlipH",
+    "-ms-filter": "FlipH",
+    paddingRight: "10px"
   },
   parentIcon: {
     "-moz-transform": "scaleXY(-1) scaleY(-1)",
@@ -282,6 +297,7 @@ export class BenefitCardB extends Component {
               }
             >
               {this.props.t("Find out more")}
+              <KeyboardBackspace className={classes.rightArrowIcon} />
             </Button>
           </Paper>
 
