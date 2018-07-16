@@ -4,7 +4,7 @@ import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import EmbeddedBenefitCard from "./embedded_benefit_card";
+import EmbeddedBenefitCard from "./embedded_benefit_card_b";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
