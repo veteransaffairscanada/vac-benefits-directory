@@ -349,9 +349,9 @@ const mapStateToProps = (reduxState, props) => {
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
     filteredBenefits:
-      reduxState.option == "B"
-        ? getFilteredBenefitsB(reduxState, props)
-        : getFilteredBenefits(reduxState, props),
+      reduxState.option == "A"
+        ? getFilteredBenefits(reduxState, props)
+        : getFilteredBenefitsB(reduxState, props),
     needs: reduxState.needs,
     searchString: reduxState.searchString,
     selectedEligibility: {

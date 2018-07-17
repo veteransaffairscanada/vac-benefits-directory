@@ -24,6 +24,9 @@ const HeroButton = styled("div")`
 const Search = styled("div")`
   padding: 70px;
   text-align: center;
+  @media (max-width: 400px) {
+    padding: 10px;
+  }
 `;
 
 const Title = styled("div")`
@@ -51,7 +54,11 @@ export class App extends Component {
           <HeroButton>
             <Button
               id="heroGuidedLink"
-              style={{ padding: "20px", textTransform: "none" }}
+              style={{
+                marginBottom: "10px",
+                padding: "20px",
+                textTransform: "none"
+              }}
               variant="raised"
               color="primary"
               href={urlGE}
@@ -63,7 +70,11 @@ export class App extends Component {
             &nbsp; &nbsp; &nbsp;
             <Button
               id="heroBenefitsLink"
-              style={{ padding: "20px", textTransform: "none" }}
+              style={{
+                marginBottom: "10px",
+                padding: "20px",
+                textTransform: "none"
+              }}
               variant="raised"
               color="primary"
               href={urlBD}
