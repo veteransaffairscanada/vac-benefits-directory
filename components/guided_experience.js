@@ -7,7 +7,6 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
-import EditIcon from "@material-ui/icons/Edit";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import styled from "react-emotion";
@@ -24,13 +23,13 @@ const theme = createMuiTheme({
 });
 
 const BlueBar = styled("div")`
-  background-color: #303f9f;
+  background-color: blue;
   height: 5px;
   width: 100px;
   margin-bottom: 40px;
 `;
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     border: "solid 1px grey",
     backgroundColor: "white",
@@ -51,23 +50,17 @@ const styles = theme => ({
     margin: "25px"
   },
   title: {
-    fontSize: "2em",
+    fontSize: "1.5em",
     color: "black"
   },
   subTitle: {
     fontSize: "1em"
   },
   jumpButton: {
-    textTransform: "none",
-    paddingLeft: "20px",
-    paddingRight: "15px",
-    margin: theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    textAlign: "left"
+    fontSize: "1.5em"
   },
-  edit: {
-    marginLeft: "10px"
+  comma: {
+    marginRight: "0.5em"
   }
 });
 
@@ -82,15 +75,6 @@ export class GuidedExperience extends Component {
   render() {
     const { t, classes, selectedEligibility } = this.props;
     const eligibilityKeys = Object.keys(selectedEligibility);
-    let jump_button_text = (k, selectedEligibility) => {
-      if (k === "serviceHealthIssue" && selectedEligibility[k] == "true") {
-        return "GE.has service related health issue";
-      }
-      if (k === "serviceHealthIssue" && selectedEligibility[k] == "false") {
-        return "GE.no service related health issue";
-      }
-      return selectedEligibility[k];
-    };
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -115,12 +99,12 @@ export class GuidedExperience extends Component {
           </Button>
           <div className={classnames(classes.root)}>
             <Grid container spacing={24} className={classnames(classes.box)}>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={3}>
                 <Typography className={classnames(classes.title)}>
                   {t("B3.Filter by eligibility")}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={8}>
+              <Grid item xs={12} md={9}>
                 {eligibilityKeys.map((k, i) => {
                   if (
                     selectedEligibility[k] == "" ||
@@ -129,19 +113,21 @@ export class GuidedExperience extends Component {
                     return "";
                   } else {
                     return (
-                      <Button
-                        disableRipple={true}
-                        key={i}
-                        variant="raised"
-                        onClick={() =>
-                          this.props.setSection(this.sectionMap[k])
-                        }
-                        size="small"
-                        className={classnames(classes.jumpButton)}
-                      >
-                        {t(jump_button_text(k, selectedEligibility))}
-                        <EditIcon className={classnames(classes.edit)} />
-                      </Button>
+                      <span key={i}>
+                        <a
+                          id={"jumpButton" + i}
+                          className={classes.jumpButton}
+                          href="#"
+                          onClick={() =>
+                            this.props.setSection(this.sectionMap[k])
+                          }
+                        >
+                          {t(selectedEligibility[k])}
+                        </a>
+                        <span className={classes.comma}>
+                          {i + 1 === eligibilityKeys.length ? "" : ","}
+                        </span>
+                      </span>
                     );
                   }
                 })}
