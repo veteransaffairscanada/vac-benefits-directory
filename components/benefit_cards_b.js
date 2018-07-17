@@ -29,6 +29,9 @@ const styles = () => ({
     borderTop: "1px solid #8b8b8b",
     position: "relative"
   },
+  cardBottomContent: {
+    margin: "0 15px"
+  },
   cardTop: {
     backgroundColor: "#e8e8e8",
     borderRadius: "0px",
@@ -303,12 +306,14 @@ export class BenefitCardB extends Component {
                 expandIcon={<ExpandMoreIcon />}
                 onClick={() => this.toggleOpenState()}
               >
-                <KeyboardReturnIcon className={classes.returnIcon} />
-                {this.childBenefitNames(
-                  benefit,
-                  childBenefits,
-                  this.state.open
-                )}
+                <div className={classes.cardBottomContent}>
+                  <KeyboardReturnIcon className={classes.returnIcon} />
+                  {this.childBenefitNames(
+                    benefit,
+                    childBenefits,
+                    this.state.open
+                  )}
+                </div>
               </ExpansionPanelSummary>
 
               <ExpansionPanelDetails
