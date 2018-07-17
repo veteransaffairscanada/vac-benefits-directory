@@ -64,7 +64,7 @@ export class ProfileSelector extends Component {
       <ExpansionPanel
         className={classnames(classes.root)}
         defaultExpanded
-        disabled={pageWidth >= 600 ? true : false}
+        disabled={pageWidth >= 600}
         expanded={pageWidth >= 600 ? true : this.state.open}
       >
         <ExpansionPanelSummary
@@ -89,7 +89,9 @@ export class ProfileSelector extends Component {
               />
             </Grid>
 
-            {patronType && patronType != "" && patronType != "organization" ? (
+            {patronType &&
+            patronType !== "" &&
+            patronType !== "organization" ? (
               <Grid item xs={12} id="serviceTypeFilter">
                 <RadioSelector
                   t={t}
@@ -103,8 +105,8 @@ export class ProfileSelector extends Component {
             )}
 
             {serviceType &&
-            serviceType != "" &&
-            patronType != "organization" &&
+            serviceType !== "" &&
+            patronType !== "organization" &&
             !(
               patronType === "service-person" &&
               serviceType === "WSV (WWII or Korea)"
@@ -122,15 +124,19 @@ export class ProfileSelector extends Component {
             )}
 
             {serviceType &&
-            serviceType != "" &&
-            patronType != "organization" &&
-            (statusAndVitals != "" ||
+            serviceType !== "" &&
+            patronType !== "organization" &&
+            (statusAndVitals !== "" ||
               (patronType === "service-person" &&
                 serviceType === "WSV (WWII or Korea)")) ? (
               <Grid item xs={12} id="serviceHealthIssueFilter">
                 <RadioSelector
                   t={t}
-                  legend={t("health issue question")}
+                  legend={t(
+                    this.props.statusAndVitals === "deceased"
+                      ? "health issue question deceased"
+                      : "health issue question"
+                  )}
                   selectorType={"serviceHealthIssue"}
                   options={["true", "false"]}
                   store={this.props.store}
