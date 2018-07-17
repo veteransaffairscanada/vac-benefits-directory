@@ -40,6 +40,10 @@ const styles = theme => ({
   box: {
     padding: "20px"
   },
+  container: {
+    margin: "0 auto",
+    maxWidth: "1200px"
+  },
   prevButton: {
     marginTop: "20px",
     marginLeft: "15px"
@@ -94,7 +98,7 @@ export class GuidedExperience extends Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <div>
+        <div className={classes.container}>
           <Button
             size="medium"
             style={{ textTransform: "none" }}
