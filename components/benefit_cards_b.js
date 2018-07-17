@@ -14,7 +14,7 @@ import Paper from "@material-ui/core/Paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
-import EmbeddedBenefitCard from "./embedded_benefit_card";
+import EmbeddedBenefitCard from "./embedded_benefit_card_b";
 
 const styles = () => ({
   button: {
