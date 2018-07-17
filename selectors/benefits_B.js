@@ -9,6 +9,7 @@ const getFrIdx = state => state.frIdx;
 const getNeeds = state => state.needs;
 const getNeedsFilter = state => state.selectedNeeds;
 const getPatronFilter = state => state.patronType;
+const getHealthIssueFilter = state => state.serviceHealthIssue;
 const getSearchStringFilter = state => state.searchString;
 const getServiceFilter = state => state.serviceType;
 const getStatusFilter = state => state.statusAndVitals;
@@ -18,6 +19,7 @@ export const getFilteredBenefitsB = createSelector(
     getPatronFilter,
     getServiceFilter,
     getStatusFilter,
+    getHealthIssueFilter,
     getNeedsFilter,
     getBenefits,
     getNeeds,
@@ -31,6 +33,7 @@ export const getFilteredBenefitsB = createSelector(
     patronFilter,
     serviceFilter,
     statusFilter,
+    healthIssueFilter,
     selectedNeeds,
     benefits,
     needs,
@@ -47,11 +50,17 @@ export const getFilteredBenefitsB = createSelector(
     let selectedEligibility = {
       patronType: patronFilter,
       serviceType: serviceFilter,
-      statusAndVitals: statusFilter
+      statusAndVitals: statusFilter,
+      serviceHealthIssue: healthIssueFilter
     };
     let eligibilityMatch = (path, selected) => {
       let matches = true;
-      ["serviceType", "patronType", "statusAndVitals"].forEach(criteria => {
+      [
+        "serviceType",
+        "patronType",
+        "statusAndVitals",
+        "serviceHealthIssue"
+      ].forEach(criteria => {
         if (
           selected[criteria] !== "" &&
           path[criteria] !== "na" &&

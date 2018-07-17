@@ -89,8 +89,8 @@ export class BenefitList extends React.Component {
     ) : (
       sortedBenefits.map(
         (benefit, i) =>
-          this.props.option == "B" ? (
-            <BenefitCardB
+          this.props.option == "A" ? (
+            <BenefitCard
               id={"bc" + i}
               benefit={benefit}
               examples={this.props.examples}
@@ -106,7 +106,7 @@ export class BenefitList extends React.Component {
               store={this.props.store}
             />
           ) : (
-            <BenefitCard
+            <BenefitCardB
               id={"bc" + i}
               benefit={benefit}
               examples={this.props.examples}

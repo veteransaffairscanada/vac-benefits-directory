@@ -45,7 +45,12 @@ export class BenefitsDirectory extends Component {
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
-    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
+    [
+      "patronType",
+      "serviceType",
+      "statusAndVitals",
+      "serviceHealthIssue"
+    ].forEach(selection => {
       if (this.props[selection] !== "") {
         href += `&${selection}=${this.props[selection]}`;
       }
@@ -87,6 +92,7 @@ const mapStateToProps = reduxState => {
     searchString: reduxState.searchString,
     serviceType: reduxState.serviceType,
     statusAndVitals: reduxState.statusAndVitals,
+    serviceHealthIssue: reduxState.serviceHealthIssue,
     selectedNeeds: reduxState.selectedNeeds
   };
 };
