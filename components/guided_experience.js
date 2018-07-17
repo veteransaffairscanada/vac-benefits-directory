@@ -111,13 +111,16 @@ export class GuidedExperience extends Component {
               <Grid item xs={12} md={9}>
                 {eligibilityKeys.map((k, i) => {
                   if (
-                    selectedEligibility[k] == "" ||
-                    this.sectionMap[k] == this.props.id
+                    selectedEligibility[k] === "" ||
+                    this.sectionMap[k] === this.props.id
                   ) {
                     return "";
                   } else {
                     return (
                       <span key={i}>
+                        <span className={classes.comma}>
+                          {i === 0 ? "" : ","}
+                        </span>
                         <a
                           id={"jumpButton" + i}
                           className={classes.jumpButton}
@@ -128,9 +131,6 @@ export class GuidedExperience extends Component {
                         >
                           {t(selectedEligibility[k])}
                         </a>
-                        <span className={classes.comma}>
-                          {i + 1 === eligibilityKeys.length ? "" : ","}
-                        </span>
                       </span>
                     );
                   }
