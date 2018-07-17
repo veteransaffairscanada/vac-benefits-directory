@@ -98,8 +98,16 @@ export class GuidedExperience extends Component {
           <Button
             size="medium"
             style={{ textTransform: "none" }}
-            onClick={() => this.props.setSection(this.props.prevSection)}
-            disabled={this.props.stepNumber === 0}
+            href={
+              this.props.prevSection === "index"
+                ? this.props.indexURL
+                : undefined
+            }
+            onClick={
+              this.props.prevSection === "index"
+                ? undefined
+                : () => this.props.setSection(this.props.prevSection)
+            }
             className={classnames(classes.prevButton)}
           >
             <ArrowBack />
@@ -199,7 +207,8 @@ GuidedExperience.propTypes = {
   children: PropTypes.object.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   store: PropTypes.object,
-  benefitsDirectoryUrl: PropTypes.string
+  benefitsDirectoryUrl: PropTypes.string,
+  indexURL: PropTypes.string
 };
 
 export default connect(mapStateToProps)(
