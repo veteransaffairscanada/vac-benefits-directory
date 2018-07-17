@@ -136,9 +136,11 @@ export class BenefitCardB extends Component {
         .map(b => this.benefitTitle(b))
         .join(", ")
         .replace(/,([^,]*)$/, " or " + "$1");
-      return this.props.t("benefits_b.needs_parents", {
-        x: nameString
-      });
+      return (
+        this.props.t("benefits_b.needs_parents", {
+          x: nameString
+        }) + this.benefitTitle(this.props.benefit)
+      );
     }
   };
 
