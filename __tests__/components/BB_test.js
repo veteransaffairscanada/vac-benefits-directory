@@ -66,6 +66,7 @@ describe("BB", () => {
         patronType: "",
         statusAndVitals: ""
       },
+      serviceHealthIssue: "",
       setSearchString: jest.fn(),
       selectedNeeds: {},
       option: ""

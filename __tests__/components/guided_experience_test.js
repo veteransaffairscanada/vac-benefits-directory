@@ -74,18 +74,14 @@ describe("GuidedExperience", () => {
   });
 
   it("has edit answer buttons with correct text", () => {
-    expect(
-      mounted_GuidedExperience()
-        .find("Button")
-        .at(3)
-        .text()
-    ).toEqual("still-serving");
+    expect(document.getElementById("jumpButton2").textContent).toEqual(
+      "still-serving"
+    );
   });
 
   it("sets the correct section if the edit answer button is pressed", () => {
     mounted_GuidedExperience()
-      .find("Button")
-      .at(1)
+      .find("#jumpButton0")
       .simulate("click");
     expect(props.setSection).toBeCalledWith("A1");
   });

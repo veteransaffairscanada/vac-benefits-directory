@@ -22,9 +22,11 @@ describe("ProfileSelector", () => {
       eligibilityPaths: eligibilityPathsFixture,
       serviceType: "",
       patronType: "",
+      serviceHealthIssue: "",
       setPatronType: jest.fn(),
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
+      setServiceHealthIssue: jest.fn(),
       statusAndVitals: ""
     };
     mockStore = configureStore();
@@ -101,6 +103,28 @@ describe("ProfileSelector", () => {
     ).toEqual(0);
   });
 
+  it("has a statusAndVitalsFilter filter if a serviceType is selected other than organization", () => {
+    reduxData.patronType = "foo";
+    reduxData.serviceType = "bar";
+    reduxData.statusAndVitals = "xyz";
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#serviceHealthIssueFilter")
+        .first().length
+    ).toEqual(1);
+  });
+
+  it("has no statusAndVitalsFilter filter if patronType is organization", () => {
+    reduxData.patronType = "organization";
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#serviceHealthIssueFilter")
+        .first().length
+    ).toEqual(0);
+  });
+
   it("has no clear button if patronType is empty", () => {
     reduxData.patronType = "";
     props.store = mockStore(reduxData);
@@ -156,5 +180,6 @@ describe("ProfileSelector", () => {
     expect(reduxData.setPatronType).toBeCalledWith("");
     expect(reduxData.setServiceType).toBeCalledWith("");
     expect(reduxData.setStatusAndVitals).toBeCalledWith("");
+    expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
   });
 });

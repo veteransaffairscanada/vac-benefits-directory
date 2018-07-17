@@ -168,7 +168,7 @@ export class Favourites extends Component {
 
     return (
       <div>
-        <div style={{ padding: 12 }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
               <Typography className={classes.title}>

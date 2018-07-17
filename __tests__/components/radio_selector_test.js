@@ -15,11 +15,13 @@ describe("RadioSelector", () => {
       setPatronType: jest.fn(),
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
+      setServiceHealthIssue: jest.fn(),
       options: ["releasedAlive", "stillServing", "deceased"],
       selectorType: "statusAndVitals",
       selectedPatronType: "",
       selectedServiceType: "",
       selectedStatusAndVitals: "releasedAlive",
+      selectedServiceHealthIssue: "",
       t: key => key,
       eligibilityPaths: eligibilityPathsFixture
     };
@@ -119,6 +121,12 @@ describe("RadioSelector", () => {
     let instance = shallow(<RadioSelector {...props} />).instance();
     instance.setUserProfile("statusAndVitals", "deceased");
     expect(props.setStatusAndVitals).toBeCalledWith("deceased");
+  });
+
+  it("setUserProfile can set serviceHealthIssue", () => {
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("serviceHealthIssue", "true");
+    expect(props.setServiceHealthIssue).toBeCalledWith("true");
   });
 
   it("setUserProfile returns true as default", () => {

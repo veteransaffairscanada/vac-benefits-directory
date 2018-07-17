@@ -2,6 +2,7 @@ require("isomorphic-fetch");
 
 exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 
+var airtableConstants = require("./airtable_constants");
 var readKey = "keySzaXvONeLwsBm4"; // Read access only API key
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
 
@@ -33,12 +34,9 @@ var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
 
 var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateFromAirtable() {
   let dataStore = {};
-  dataStore.benefits = await fetchTableFromAirtable("benefits");
-  dataStore.eligibilityPaths = await fetchTableFromAirtable("eligibilityPaths");
-  dataStore.needs = await fetchTableFromAirtable("needs");
-  dataStore.examples = await fetchTableFromAirtable("examples");
-  dataStore.translations = await fetchTableFromAirtable("translations");
-  dataStore.areaOffices = await fetchTableFromAirtable("areaOffices");
+  airtableConstants.tableNames.forEach(async function(tableName) {
+    dataStore[tableName] = await fetchTableFromAirtable(tableName);
+  });
   dataStore.timestamp = await Date.now();
   return dataStore;
 });

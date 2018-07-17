@@ -7,7 +7,6 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
-import EditIcon from "@material-ui/icons/Edit";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import styled from "react-emotion";
@@ -24,13 +23,13 @@ const theme = createMuiTheme({
 });
 
 const BlueBar = styled("div")`
-  background-color: #303f9f;
+  background-color: blue;
   height: 5px;
   width: 100px;
   margin-bottom: 40px;
 `;
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     border: "solid 1px grey",
     backgroundColor: "white",
@@ -39,6 +38,10 @@ const styles = theme => ({
   },
   box: {
     padding: "20px"
+  },
+  container: {
+    margin: "0 auto",
+    maxWidth: "1200px"
   },
   prevButton: {
     marginTop: "20px",
@@ -51,23 +54,17 @@ const styles = theme => ({
     margin: "25px"
   },
   title: {
-    fontSize: "2em",
+    fontSize: "1.5em",
     color: "black"
   },
   subTitle: {
     fontSize: "1em"
   },
   jumpButton: {
-    textTransform: "none",
-    paddingLeft: "20px",
-    paddingRight: "15px",
-    margin: theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    textAlign: "left"
+    fontSize: "1.5em"
   },
-  edit: {
-    marginLeft: "10px"
+  comma: {
+    marginRight: "0.5em"
   }
 });
 
@@ -75,21 +72,30 @@ export class GuidedExperience extends Component {
   sectionMap = {
     patronType: "A1",
     serviceType: "A2",
-    statusAndVitals: "A3"
+    statusAndVitals: "A3",
+    serviceHealthIssue: "A4"
   };
 
   render() {
     const { t, classes, selectedEligibility } = this.props;
-
     const eligibilityKeys = Object.keys(selectedEligibility);
+
     return (
       <MuiThemeProvider theme={theme}>
-        <div>
+        <div className={classes.container}>
           <Button
             size="medium"
             style={{ textTransform: "none" }}
-            onClick={() => this.props.setSection(this.props.prevSection)}
-            disabled={this.props.stepNumber === 0}
+            href={
+              this.props.prevSection === "index"
+                ? this.props.indexURL
+                : undefined
+            }
+            onClick={
+              this.props.prevSection === "index"
+                ? undefined
+                : () => this.props.setSection(this.props.prevSection)
+            }
             className={classnames(classes.prevButton)}
           >
             <ArrowBack />
@@ -97,12 +103,12 @@ export class GuidedExperience extends Component {
           </Button>
           <div className={classnames(classes.root)}>
             <Grid container spacing={24} className={classnames(classes.box)}>
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={3}>
                 <Typography className={classnames(classes.title)}>
                   {t("B3.Filter by eligibility")}
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={8}>
+              <Grid item xs={12} md={9}>
                 {eligibilityKeys.map((k, i) => {
                   if (
                     selectedEligibility[k] == "" ||
@@ -111,19 +117,21 @@ export class GuidedExperience extends Component {
                     return "";
                   } else {
                     return (
-                      <Button
-                        disableRipple={true}
-                        key={i}
-                        variant="raised"
-                        onClick={() =>
-                          this.props.setSection(this.sectionMap[k])
-                        }
-                        size="small"
-                        className={classnames(classes.jumpButton)}
-                      >
-                        {t(selectedEligibility[k])}
-                        <EditIcon className={classnames(classes.edit)} />
-                      </Button>
+                      <span key={i}>
+                        <a
+                          id={"jumpButton" + i}
+                          className={classes.jumpButton}
+                          href="#"
+                          onClick={() =>
+                            this.props.setSection(this.sectionMap[k])
+                          }
+                        >
+                          {t(selectedEligibility[k])}
+                        </a>
+                        <span className={classes.comma}>
+                          {i + 1 === eligibilityKeys.length ? "" : ","}
+                        </span>
+                      </span>
                     );
                   }
                 })}
@@ -171,7 +179,8 @@ const mapStateToProps = reduxState => {
     selectedEligibility: {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals
+      statusAndVitals: reduxState.statusAndVitals,
+      serviceHealthIssue: reduxState.serviceHealthIssue
     }
   };
 };
@@ -188,7 +197,8 @@ GuidedExperience.propTypes = {
   children: PropTypes.object.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   store: PropTypes.object,
-  benefitsDirectoryUrl: PropTypes.string
+  benefitsDirectoryUrl: PropTypes.string,
+  indexURL: PropTypes.string
 };
 
 export default connect(mapStateToProps)(

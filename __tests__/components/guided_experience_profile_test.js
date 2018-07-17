@@ -25,6 +25,7 @@ describe("GuidedExperienceProfile", () => {
       serviceType: "",
       patronType: "",
       statusAndVitals: "",
+      serviceHealthIssue: "",
       eligibilityPaths: eligibilityPathsFixture
     };
     mockStore = configureStore();
