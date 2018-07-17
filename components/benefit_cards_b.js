@@ -4,25 +4,36 @@ import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
+import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
+import PriorityHigh from "@material-ui/icons/PriorityHigh";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Highlighter from "react-highlight-words";
-import FavouriteButton from "./favourite_button";
+import FavouriteButton from "./favourite_button_b";
+import Paper from "@material-ui/core/Paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
+import NeedTag from "./need_tag";
 
-const styles = theme => ({
-  needsTag: {
-    marginRight: theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    borderRadius: 2,
-    display: "inline-flex",
-    padding: "4px 6px"
-  },
+const styles = () => ({
   button: {
     marginTop: "30px"
+  },
+  cardBottom: {
+    backgroundColor: "#f1f7fc",
+    borderRadius: "0px",
+    borderTop: "1px solid #8b8b8b",
+    padding: "15px 0px 15px 24px",
+    position: "relative"
+  },
+  cardTop: {
+    backgroundColor: "#f1f7fc",
+    borderRadius: "0px",
+    borderBottom: "1px solid #8b8b8b",
+    padding: "15px 0px 15px 24px",
+    position: "relative"
   },
   cardDescriptionText: {
     fontSize: "20px",
@@ -35,17 +46,21 @@ const styles = theme => ({
   root: {
     width: "100%"
   },
-  ExpansionPanelClosed: {
-    borderLeft: "5px solid"
-  },
+  ExpansionPanelClosed: {},
   ExpansionPanelOpen: {
-    borderLeft: "5px solid #808080"
+    marginBottom: "0px",
+    marginTop: "0px"
   },
   ExpansionPanelSummary: {
-    "&[aria-expanded*=true]": {
-      backgroundColor: "#f8f8f8"
-    },
+    borderBottom: "0px",
     userSelect: "inherit"
+  },
+  expandIcon: {
+    color: "#3e57e2",
+    marginTop: "40px",
+    "&:hover": {
+      background: "none"
+    }
   },
   ChildBenefitDesc: {
     paddingBottom: "30px"
@@ -61,7 +76,25 @@ const styles = theme => ({
     marginLeft: "20px"
   },
   benefitName: {
-    fontWeight: 500
+    color: "#3e57e2",
+    padding: "10px 0"
+  },
+  returnIcon: {
+    "-moz-transform": "scaleX(-1)",
+    "-o-transform": "scaleX(-1)",
+    "-webkit-transform": "scaleX(-1)",
+    transform: "scaleX(-1)",
+    float: "left",
+    filter: "FlipH",
+    "-ms-filter": "FlipH",
+    paddingLeft: "10px"
+  },
+  parentIcon: {
+    position: "relative",
+    marginRight: 5
+  },
+  headerDesc: {
+    position: "absolute"
   }
 });
 
@@ -89,24 +122,56 @@ export class BenefitCardB extends Component {
     this.props.onRef(undefined);
   }
 
+  benefitTitle = benefit => {
+    return this.props.t("current-language-code") === "en"
+      ? benefit.vacNameEn
+      : benefit.vacNameFr;
+  };
+
+  parentBenefitNames = (parentBenefits, availableIndependently) => {
+    if (availableIndependently === "Independent") {
+      const nameString = parentBenefits
+        .map(b => this.benefitTitle(b))
+        .join(", ")
+        .replace(/,([^,]*)$/, " or " + "$1");
+      return "";
+    } else {
+      const nameString = parentBenefits
+        .map(b => this.benefitTitle(b))
+        .join(", ")
+        .replace(/,([^,]*)$/, " or " + "$1");
+      return this.props.t("benefits_b.needs_parents", {
+        x: nameString
+      });
+    }
+  };
+
+  childBenefitNames = childBenefits => {
+    const length = childBenefits.length;
+    if (length === 1) {
+      return this.props.t("benefits_b.eligible_for_single", {
+        x: this.benefitTitle(childBenefits[0])
+      });
+    } else {
+      return this.props.t("benefits_b.eligible_for_multi", {
+        x: length
+      });
+    }
+  };
+
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
 
-    // we'll probably need these in the header / footer when that gets added
-    //
-    // const childBenefits = benefit.childBenefits
-    //   ? this.props.allBenefits.filter(
-    //       ab => benefit.childBenefits.indexOf(ab.id) > -1
-    //     )
-    //   : [];
-    //
-    // const veteranBenefits = childBenefits.filter(
-    //   ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
-    // );
-    // const familyBenefits = childBenefits.filter(
-    //   ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
-    // );
+    const parentBenefits = this.props.allBenefits.filter(
+      b => b.childBenefits && b.childBenefits.includes(benefit.id)
+    );
+
+    const childBenefits = benefit.childBenefits
+      ? this.props.allBenefits.filter(
+          ab => benefit.childBenefits.indexOf(ab.id) > -1
+        )
+      : [];
 
     const examples =
       typeof benefit.examples !== "undefined" &&
@@ -125,37 +190,53 @@ export class BenefitCardB extends Component {
     return (
       <Grid item xs={12}>
         <div className={classes.root}>
+          {parentBenefits.length > 0 &&
+          benefit.availableIndependently == "Requires Gateway Benefit" ? (
+            <Paper className={classes.cardTop}>
+              <ErrorOutlineIcon className={classes.parentIcon} />
+              <span className={classes.headerDesc}>
+                {this.parentBenefitNames(
+                  parentBenefits,
+                  benefit.availableIndependently
+                )}
+              </span>
+            </Paper>
+          ) : (
+            ""
+          )}
+
           <ExpansionPanel
+            expanded={this.state.open}
             className={
               this.state.open
                 ? classes.ExpansionPanelOpen
                 : classes.ExpansionPanelClosed
             }
-            expanded={this.state.open}
           >
             <ExpansionPanelSummary
               className={classes.ExpansionPanelSummary}
-              expandIcon={this.state.open ? <RemoveIcon /> : <AddIcon />}
+              expandIcon={
+                this.state.open ? (
+                  <RemoveIcon className={classes.expandIcon} />
+                ) : (
+                  <AddIcon className={classes.expandIcon} />
+                )
+              }
+              IconButtonProps={{
+                className: classes.expandIcon,
+                disableRipple: true
+              }}
               onClick={() => this.toggleOpenState()}
             >
               <div>
                 <div component="p" className={classes.benefitName}>
-                  {this.props.showFavourite ? (
-                    <FavouriteButton
-                      benefit={benefit}
-                      toggleOpenState={this.toggleOpenState}
-                      store={this.props.store}
-                    />
-                  ) : (
-                    ""
-                  )}
                   <Highlighter
                     searchWords={this.props.searchString.split(",")}
                     autoEscape={true}
                     textToHighlight={
                       this.props.t("current-language-code") === "en"
-                        ? benefit.vacNameEn + "B"
-                        : benefit.vacNameFr + "B"
+                        ? benefit.vacNameEn
+                        : benefit.vacNameFr
                     }
                   />
                 </div>
@@ -175,19 +256,25 @@ export class BenefitCardB extends Component {
                 </Typography>
                 <div>
                   {needsMet.map(need => (
-                    <div
+                    <NeedTag
                       key={benefit.id + need.id}
-                      className={classes.needsTag}
-                    >
-                      {this.props.t("current-language-code") === "en"
-                        ? need.nameEn
-                        : need.nameFr}
-                    </div>
+                      t={this.props.t}
+                      need={need}
+                    />
                   ))}
                 </div>
+                {this.props.showFavourite ? (
+                  <FavouriteButton
+                    benefit={benefit}
+                    toggleOpenState={this.toggleOpenState}
+                    store={this.props.store}
+                    t={this.props.t}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
             </ExpansionPanelSummary>
-
             <ExpansionPanelDetails timeout="auto" className={classes.collapse}>
               <Grid container spacing={24}>
                 <Grid item xs={12}>
@@ -234,6 +321,14 @@ export class BenefitCardB extends Component {
               </Grid>
             </ExpansionPanelDetails>
           </ExpansionPanel>
+          {childBenefits.length > 0 ? (
+            <Paper className={classes.cardBottom}>
+              <KeyboardReturnIcon className={classes.returnIcon} />
+              {this.childBenefitNames(childBenefits)}
+            </Paper>
+          ) : (
+            ""
+          )}
         </div>
       </Grid>
     );
@@ -244,11 +339,13 @@ const mapStateToProps = reduxState => {
   return {
     examples: reduxState.examples,
     needs: reduxState.needs,
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    benefits: reduxState.benefits
   };
 };
 
 BenefitCardB.propTypes = {
+  benefits: PropTypes.array.isRequired,
   allBenefits: PropTypes.array.isRequired,
   veteranBenefitIds: PropTypes.array.isRequired,
   familyBenefitIds: PropTypes.array.isRequired,
