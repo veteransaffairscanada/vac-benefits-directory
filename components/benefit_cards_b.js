@@ -40,8 +40,10 @@ const styles = () => ({
     backgroundColor: "#f1f7fc",
     borderRadius: "0px",
     borderBottom: "1px solid #8b8b8b",
-    padding: "15px 0px 15px 24px",
-    position: "relative"
+    padding: "15px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   cardBody: {
     padding: "25px",
@@ -101,11 +103,14 @@ const styles = () => ({
     paddingRight: "10px"
   },
   parentIcon: {
-    position: "relative",
-    marginRight: 5
+    flexGrow: 1,
+    marginRight: 15,
+    fontSize: 40,
+    "-webkit-text-stroke": "1px black"
   },
   headerDesc: {
-    position: "absolute"
+    width: "auto",
+    flexGrow: 3
   }
 });
 
@@ -139,21 +144,28 @@ export class BenefitCardB extends Component {
       : benefit.vacNameFr;
   };
 
-  parentBenefitNames = (parentBenefits, availableIndependently) => {
-    if (availableIndependently === "Independent") {
-      return "";
-    } else {
-      const nameString = parentBenefits
-        .map(b => this.benefitTitle(b))
-        .join(", ")
-        .replace(/,([^,]*)$/, " or " + "$1");
-      return (
-        this.props.t("benefits_b.needs_parents", {
-          x: nameString
-        }) + this.benefitTitle(this.props.benefit)
-      );
-    }
+  benefitUrl = benefit => {
+    return this.props.t("current-language-code") === "en"
+      ? benefit.benefitPageEn
+      : benefit.benefitPageFr;
   };
+
+  // cardHeaderContent = (parentBenefits, availableIndependently) => {
+  //   if (availableIndependently === "Independent") {
+  //     return "";
+  //   } else {
+  //     const nameString = parentBenefits
+  //       .map(b => (
+  //         return (<a href='this.benefitTitle(b)'> test </a>)))
+  //       .join(" " + this.props.t("index.or") + " " )
+  //       //.replace(/,([^,]*)$/, " or " + "$1");
+  //     const cardHeaderText = this.props.t("benefits_b.card_header_1") + " " +
+  //             nameString + " " +
+  //             this.props.t("benefits_b.card_header_2") + " " +
+  //             this.benefitTitle(this.props.benefit) + "." ;
+  //     return cardHeaderText;
+  //   }
+  // };
 
   childBenefitNames = (benefit, childBenefits, open) => {
     const length = childBenefits.length;
@@ -219,10 +231,24 @@ export class BenefitCardB extends Component {
             <Paper className={classes.cardTop}>
               <ErrorOutlineIcon className={classes.parentIcon} />
               <span className={classes.headerDesc}>
-                {this.parentBenefitNames(
-                  parentBenefits,
-                  benefit.availableIndependently
-                )}
+                <span>{t("benefits_b.card_header_1") + " "}</span>
+                {parentBenefits
+                  .map(b => (
+                    <a href={this.benefitUrl(b)}>{this.benefitTitle(b)}</a>
+                  ))
+                  .flatMap(
+                    (value, index, array) =>
+                      array.length - 1 !== index
+                        ? [value, <span> {" " + t("index.or")} </span>]
+                        : [value, <span> </span>]
+                  )}
+
+                <span>
+                  {this.props.t("benefits_b.card_header_2") +
+                    " " +
+                    this.benefitTitle(this.props.benefit) +
+                    "."}
+                </span>
               </span>
             </Paper>
           ) : (
