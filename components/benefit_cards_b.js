@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-import PriorityHigh from "@material-ui/icons/PriorityHigh";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { KeyboardBackspace } from "@material-ui/icons";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -150,23 +147,6 @@ export class BenefitCardB extends Component {
       : benefit.benefitPageFr;
   };
 
-  // cardHeaderContent = (parentBenefits, availableIndependently) => {
-  //   if (availableIndependently === "Independent") {
-  //     return "";
-  //   } else {
-  //     const nameString = parentBenefits
-  //       .map(b => (
-  //         return (<a href='this.benefitTitle(b)'> test </a>)))
-  //       .join(" " + this.props.t("index.or") + " " )
-  //       //.replace(/,([^,]*)$/, " or " + "$1");
-  //     const cardHeaderText = this.props.t("benefits_b.card_header_1") + " " +
-  //             nameString + " " +
-  //             this.props.t("benefits_b.card_header_2") + " " +
-  //             this.benefitTitle(this.props.benefit) + "." ;
-  //     return cardHeaderText;
-  //   }
-  // };
-
   childBenefitNames = (benefit, childBenefits, open) => {
     const length = childBenefits.length;
     if (open) {
@@ -233,14 +213,19 @@ export class BenefitCardB extends Component {
               <span className={classes.headerDesc}>
                 <span>{t("benefits_b.card_header_1") + " "}</span>
                 {parentBenefits
-                  .map(b => (
-                    <a href={this.benefitUrl(b)}>{this.benefitTitle(b)}</a>
+                  .map((b, i) => (
+                    <a key={i} href={this.benefitUrl(b)}>
+                      {this.benefitTitle(b)}
+                    </a>
                   ))
                   .flatMap(
                     (value, index, array) =>
                       array.length - 1 !== index
-                        ? [value, <span> {" " + t("index.or")} </span>]
-                        : [value, <span> </span>]
+                        ? [
+                            value,
+                            <span key={index}> {" " + t("index.or")} </span>
+                          ]
+                        : [value, <span key={index}> </span>]
                   )}
 
                 <span>
