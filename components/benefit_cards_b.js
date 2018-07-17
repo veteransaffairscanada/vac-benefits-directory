@@ -40,8 +40,10 @@ const styles = () => ({
     backgroundColor: "#f1f7fc",
     borderRadius: "0px",
     borderBottom: "1px solid #8b8b8b",
-    padding: "15px 0px 15px 24px",
-    position: "relative"
+    padding: "15px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   cardBody: {
     padding: "15px",
@@ -97,11 +99,14 @@ const styles = () => ({
     paddingRight: "10px"
   },
   parentIcon: {
-    position: "relative",
-    marginRight: 5
+    flexGrow: 1,
+    marginRight: 15,
+    fontSize: 40,
+    "-webkit-text-stroke": "1px black"
   },
   headerDesc: {
-    position: "relative"
+    width: "auto",
+    flexGrow: 3
   }
 });
 
