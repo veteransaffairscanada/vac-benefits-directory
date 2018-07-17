@@ -252,7 +252,7 @@ export class BB extends Component {
               </div>
             </Grid>
             <Grid container spacing={24} className={classes.container}>
-              <Grid item lg={3} md={4} sm={5} xs={12}>
+              <Grid item lg={4} md={4} sm={5} xs={12}>
                 <ProfileSelector
                   t={t}
                   pageWidth={this.props.pageWidth}
@@ -266,7 +266,7 @@ export class BB extends Component {
                   />
                 </Grid>
               </Grid>
-              <Grid item lg={9} md={8} sm={7} xs={12}>
+              <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid item xs={12}>
                   <Typography
                     className={"BenefitsCounter " + classes.benefitsCount}
