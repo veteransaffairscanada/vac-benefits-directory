@@ -100,7 +100,7 @@ export class A extends Component {
       () => setServiceHealthIssue(""),
       () => setSelectedNeeds({})
     ];
-    const current_section_index = +section[1];
+    const current_section_index = section[1];
     setters.forEach((setter, i) => {
       if (i >= current_section_index) {
         setter();
@@ -140,6 +140,8 @@ export class A extends Component {
       previousSectionA5 = "A3";
     }
 
+    let indexURL = "/index?lng=" + t("current-language-code");
+
     let benefitsDirectoryUrl =
       "/benefits-directory?lng=" + t("current-language-code");
     if (Object.keys(selectedNeeds).length > 0) {
@@ -171,7 +173,9 @@ export class A extends Component {
                 ? "benefits-directory"
                 : patronType === "" ? "A5" : "A2"
             }
+            prevSection="index"
             benefitsDirectoryUrl={benefitsDirectoryUrl}
+            indexURL={indexURL}
             setSection={this.setSection}
             subtitle={t("GE.patronType")}
             t={t}
