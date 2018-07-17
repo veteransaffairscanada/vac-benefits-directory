@@ -29,7 +29,10 @@ export class AllBenefits extends Component {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true} showRefreshCache={false}>
-        <div style={{ padding: 12 }} className="allBenefitsList">
+        <div
+          style={{ padding: 12, maxWidth: "1200px", margin: "0 auto" }}
+          className="allBenefitsList"
+        >
           <h1>{t("all-benefits.List of all benefits")}</h1>
           <Grid container spacing={24}>
             <Grid item xs={12}>

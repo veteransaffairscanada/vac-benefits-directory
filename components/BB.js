@@ -40,11 +40,16 @@ const styles = theme => ({
     textDecoration: "underline",
     marginTop: "34px"
   },
+  container: {
+    maxWidth: "1200px",
+    margin: "0 auto"
+  },
   formControl: {
     margin: theme.spacing.unit,
     minWidth: 120
   },
   input: {
+    marginRight: "10px",
     marginTop: "5px"
   },
   searchField: {
@@ -67,8 +72,10 @@ const styles = theme => ({
     padding: "15px 0"
   },
   topMatter: {
+    backgroundColor: "#fff",
     borderBottom: "solid 1px lightgrey",
-    marginBottom: "30px"
+    marginBottom: "30px",
+    paddingLeft: "30px !important"
   }
 });
 
@@ -182,137 +189,142 @@ export class BB extends Component {
         <div style={{ padding: 12 }}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={classes.topMatter}>
-              <Typography className={classes.title}>{t("B3.title")}</Typography>
-              <Typography className={classes.subTitle}>
-                {t("B3.subtitle1")} <br />
-                {t("B3.subtitle2")}
-              </Typography>
-              <Grid container spacing={24}>
-                <Grid item xs={12} md={9}>
-                  <Button
-                    id="Favourites Page"
-                    variant="flat"
-                    size="large"
-                    href={this.getFavouritesURL()}
-                    className={classes.buttonBarButton}
-                  >
-                    <Bookmark style={{ fontSize: "20px" }} />
-                    &nbsp;
-                    {t("B3.favouritesButtonText") +
-                      " (" +
-                      this.props.favouriteBenefits.length +
-                      ")"}
-                  </Button>
-                  <Button
-                    variant="flat"
-                    size="large"
-                    target="dan"
-                    href={printUrl}
-                    className={classes.buttonBarButton}
-                    id="printButton"
-                  >
-                    <Print style={{ fontSize: "20px" }} />
-                    &nbsp;
-                    {t("Print")}
-                  </Button>
+              <div className={classes.container}>
+                <Typography className={classes.title}>
+                  {t("B3.title")}
+                </Typography>
+                <Typography className={classes.subTitle}>
+                  {t("B3.subtitle1")} <br />
+                  {t("B3.subtitle2")}
+                </Typography>
+                <Grid container spacing={24}>
+                  <Grid item xs={12} md={9}>
+                    <Button
+                      id="Favourites Page"
+                      variant="flat"
+                      size="large"
+                      href={this.getFavouritesURL()}
+                      className={classes.buttonBarButton}
+                    >
+                      <Bookmark style={{ fontSize: "20px" }} />
+                      &nbsp;
+                      {t("B3.favouritesButtonText") +
+                        " (" +
+                        this.props.favouriteBenefits.length +
+                        ")"}
+                    </Button>
+                    <Button
+                      variant="flat"
+                      size="large"
+                      target="dan"
+                      href={printUrl}
+                      className={classes.buttonBarButton}
+                      id="printButton"
+                    >
+                      <Print style={{ fontSize: "20px" }} />
+                      &nbsp;
+                      {t("Print")}
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} md={3}>
+                    <TextField
+                      id="bbSearchField"
+                      label={t("search")}
+                      placeholder=""
+                      value={this.props.searchString}
+                      onChange={this.handleSearchChange}
+                      className={classes.searchField}
+                      InputProps={{
+                        classes: {
+                          input: classes.input
+                        },
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <SearchIcon
+                              className={this.props.classes.inputIcon}
+                            />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} md={3}>
-                  <TextField
-                    id="bbSearchField"
-                    label={t("search")}
-                    placeholder=""
-                    fullWidth
-                    value={this.props.searchString}
-                    onChange={this.handleSearchChange}
-                    className={classes.searchField}
-                    InputProps={{
-                      classes: {
-                        input: classes.input
-                      },
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <SearchIcon
-                            className={this.props.classes.inputIcon}
-                          />
-                        </InputAdornment>
-                      )
-                    }}
-                  />
-                </Grid>
-              </Grid>
+              </div>
             </Grid>
-            <Grid item lg={3} md={4} sm={5} xs={12}>
-              <ProfileSelector
-                t={t}
-                pageWidth={this.props.pageWidth}
-                store={this.props.store}
-              />
-              <Grid item xs={12}>
-                <NeedsSelector
+            <Grid container spacing={24} className={classes.container}>
+              <Grid item lg={3} md={4} sm={5} xs={12}>
+                <ProfileSelector
                   t={t}
                   pageWidth={this.props.pageWidth}
                   store={this.props.store}
                 />
+                <Grid item xs={12}>
+                  <NeedsSelector
+                    t={t}
+                    pageWidth={this.props.pageWidth}
+                    store={this.props.store}
+                  />
+                </Grid>
               </Grid>
-            </Grid>
-            <Grid item lg={9} md={8} sm={7} xs={12}>
-              <Grid item xs={12}>
-                <Typography
-                  className={"BenefitsCounter " + classes.benefitsCount}
-                >
-                  {this.countString(filteredBenefits.length, t)}
-                </Typography>
-                {filteredBenefits.length > 0 ? (
-                  <Typography className={classes.checkEligibility}>
-                    {t("B3.check eligibility")}
+              <Grid item lg={9} md={8} sm={7} xs={12}>
+                <Grid item xs={12}>
+                  <Typography
+                    className={"BenefitsCounter " + classes.benefitsCount}
+                  >
+                    {this.countString(filteredBenefits.length, t)}
                   </Typography>
-                ) : (
-                  ""
-                )}
-              </Grid>
+                  {filteredBenefits.length > 0 ? (
+                    <Typography className={classes.checkEligibility}>
+                      {t("B3.check eligibility")}
+                    </Typography>
+                  ) : (
+                    ""
+                  )}
+                </Grid>
 
-              <Grid container spacing={24}>
-                <Grid item xs={4} className={classnames(classes.sortBy)}>
-                  <FormControl
-                    id="sortBySelector"
-                    className={classes.formControl}
-                  >
-                    <InputLabel>{t("B3.Sort By")}</InputLabel>
-                    <Select
-                      value={this.state.sortByValue}
-                      onChange={this.handleSortByChange}
-                      className={classnames(classes.sortByBox)}
+                <Grid container spacing={24}>
+                  <Grid item xs={4} className={classnames(classes.sortBy)}>
+                    <FormControl
+                      id="sortBySelector"
+                      className={classes.formControl}
                     >
-                      <MenuItem value={"relevance"}>
-                        {t("B3.Popularity")}
-                      </MenuItem>
-                      <MenuItem value={"alphabetical"}>
-                        {t("B3.Alphabetical")}
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
+                      <InputLabel>{t("B3.Sort By")}</InputLabel>
+                      <Select
+                        value={this.state.sortByValue}
+                        onChange={this.handleSortByChange}
+                        className={classnames(classes.sortByBox)}
+                      >
+                        <MenuItem value={"relevance"}>
+                          {t("B3.Popularity")}
+                        </MenuItem>
+                        <MenuItem value={"alphabetical"}>
+                          {t("B3.Alphabetical")}
+                        </MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
 
-                <Grid item xs={8} className={classnames(classes.collapse)}>
-                  <Button
-                    id="CollapseBenefits"
-                    variant="flat"
-                    size="small"
-                    onClick={this.collapseAllBenefits}
-                    style={{ textTransform: "none" }}
-                  >
-                    {t("Close all")}
-                  </Button>
+                  <Grid item xs={8} className={classnames(classes.collapse)}>
+                    <Button
+                      id="CollapseBenefits"
+                      variant="flat"
+                      size="small"
+                      onClick={this.collapseAllBenefits}
+                      style={{ textTransform: "none" }}
+                    >
+                      {t("Close all")}
+                    </Button>
+                  </Grid>
+                  <BenefitList
+                    t={t}
+                    filteredBenefits={filteredBenefits}
+                    onRef={ref => this.children.push(ref)}
+                    sortByValue={this.state.sortByValue}
+                    searchString={this.props.searchString}
+                    showFavourites={true}
+                    store={this.props.store}
+                  />
                 </Grid>
-                <BenefitList
-                  t={t}
-                  filteredBenefits={filteredBenefits}
-                  onRef={ref => this.children.push(ref)}
-                  sortByValue={this.state.sortByValue}
-                  searchString={this.props.searchString}
-                  showFavourites={true}
-                  store={this.props.store}
-                />
               </Grid>
             </Grid>
           </Grid>

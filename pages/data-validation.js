@@ -17,9 +17,10 @@ import { redux2i18n } from "../utils/redux2i18n";
 
 const styles = theme => ({
   root: {
-    width: "100%",
+    maxWidth: "1200px",
     marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
+    overflowX: "auto",
+    margin: "0 auto"
   },
   table: {
     width: 500

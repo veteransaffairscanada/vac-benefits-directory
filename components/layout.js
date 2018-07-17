@@ -78,7 +78,7 @@ class Layout extends Component {
                   />
                 </Container>
               </div>
-              <Container role="main">{this.props.children}</Container>
+              <div role="main">{this.props.children}</div>
             </Content>
             <div style={{ backgroundColor: "#eee" }}>
               <Container>
