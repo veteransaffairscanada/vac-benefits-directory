@@ -25,6 +25,9 @@ const Div = styled("div")`
   font-size: 18px;
   padding-top: 5px;
   display: table;
+  @media (max-width: 400px) {
+    height: 100px;
+  }
 `;
 
 const Inner = styled("div")`
@@ -34,6 +37,12 @@ const Inner = styled("div")`
   float: left;
   padding-left: 15px;
   padding-top: 10px;
+  @media (max-width: 400px) {
+    font-size: 16px;
+    button {
+      margin-top: 10px;
+    }
+  }
 `;
 
 const TextHold = styled("div")`
