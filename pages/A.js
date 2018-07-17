@@ -246,7 +246,11 @@ export class A extends Component {
             nextSection="A5"
             prevSection={serviceType === "WSV (WWII or Korea)" ? "A2" : "A3"}
             setSection={this.setSection}
-            subtitle={t("health issue question")}
+            subtitle={t(
+              this.props.statusAndVitals === "deceased"
+                ? "health issue question deceased"
+                : "health issue question"
+            )}
             t={t}
             store={this.props.store}
           >
