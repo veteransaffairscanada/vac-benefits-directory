@@ -23,7 +23,7 @@ const styles = () => ({
     textAlign: "right"
   },
   cardBottom: {
-    paddingLeft: "0px",
+    paddingLeft: "9px",
     backgroundColor: "#f5f5f5",
     borderRadius: "0px",
     borderTop: "1px solid #f5f5f5",
@@ -40,12 +40,13 @@ const styles = () => ({
     position: "relative"
   },
   cardBody: {
-    padding: "15px",
-    paddingTop: "0px"
+    padding: "25px",
+    paddingTop: "15px"
   },
   cardDescriptionText: {
-    fontSize: "20px",
-    padding: "15px 0px"
+    fontSize: "18px",
+    padding: "10px 0px",
+    paddingBottom: "15px"
   },
   collapse: {
     paddingTop: "25px",
@@ -72,7 +73,7 @@ const styles = () => ({
     width: "100%"
   },
   benefitName: {
-    fontWeight: 500,
+    fontWeight: 600,
     padding: "10px 0"
   },
   returnIcon: {
