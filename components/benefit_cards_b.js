@@ -24,16 +24,16 @@ const styles = () => ({
   },
   cardBottom: {
     paddingLeft: "0px",
-    backgroundColor: "#e8e8e8",
+    backgroundColor: "#f5f5f5",
     borderRadius: "0px",
-    borderTop: "1px solid #8b8b8b",
+    borderTop: "1px solid #f5f5f5",
     position: "relative"
   },
   cardBottomContent: {
     margin: "0 15px"
   },
   cardTop: {
-    backgroundColor: "#e8e8e8",
+    backgroundColor: "#f5f5f5",
     borderRadius: "0px",
     borderBottom: "1px solid #8b8b8b",
     padding: "15px 0px 15px 24px",
@@ -48,7 +48,9 @@ const styles = () => ({
     padding: "15px 0px"
   },
   collapse: {
-    paddingTop: "25px"
+    paddingTop: "25px",
+    paddingLeft: "15px",
+    backgroundColor: "#f5f5f5"
   },
   root: {
     width: "100%"
@@ -63,6 +65,7 @@ const styles = () => ({
     userSelect: "inherit"
   },
   ChildBenefitDesc: {
+    fontSize: "16px",
     paddingBottom: "30px"
   },
   children: {
@@ -344,11 +347,12 @@ export class BenefitCardB extends Component {
                   )}
 
                   {familyBenefits.length > 0 ? (
-                    <div className={classes.children}>
+                    <div>
+                      <KeyboardReturnIcon className={classes.returnIcon} />
                       <Typography className={classes.ChildBenefitDesc}>
                         {t("benefits_b.eligible_open_family")}
                       </Typography>
-                      <div>
+                      <div className={classes.children}>
                         {familyBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
                             id={"cb" + i}
