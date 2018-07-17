@@ -58,6 +58,7 @@ describe("A", () => {
       setSelectedNeeds: jest.fn(),
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
+      setServiceHealthIssue: jest.fn(),
       favouriteBenefits: []
     };
     _mountedA = undefined;
@@ -71,6 +72,7 @@ describe("A", () => {
       serviceType: "CAF",
       patronType: "family",
       statusAndVitals: "",
+      serviceHealthIssue: "",
       option: ""
     };
     props.store = mockStore(reduxData);

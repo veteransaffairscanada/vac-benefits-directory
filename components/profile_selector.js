@@ -47,10 +47,18 @@ export class ProfileSelector extends Component {
     this.props.setPatronType("");
     this.props.setServiceType("");
     this.props.setStatusAndVitals("");
+    this.props.setServiceHealthIssue("");
   };
 
   render() {
-    const { patronType, serviceType, classes, t, pageWidth } = this.props;
+    const {
+      patronType,
+      serviceType,
+      statusAndVitals,
+      classes,
+      t,
+      pageWidth
+    } = this.props;
 
     return (
       <ExpansionPanel
@@ -113,6 +121,24 @@ export class ProfileSelector extends Component {
               ""
             )}
 
+            {serviceType &&
+            serviceType != "" &&
+            patronType != "organization" &&
+            (statusAndVitals != "" ||
+              (patronType === "service-person" &&
+                serviceType === "WSV (WWII or Korea)")) ? (
+              <Grid item xs={12} id="serviceHealthIssueFilter">
+                <RadioSelector
+                  t={t}
+                  legend={t("health issue question")}
+                  selectorType={"serviceHealthIssue"}
+                  options={["true", "false"]}
+                  store={this.props.store}
+                />
+              </Grid>
+            ) : (
+              ""
+            )}
             {this.props.patronType !== "" ? (
               <Grid item xs={12} className={classnames(classes.gridItemButton)}>
                 <Button
@@ -147,6 +173,9 @@ const mapDispatchToProps = dispatch => {
     },
     setStatusAndVitals: statusType => {
       dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    },
+    setServiceHealthIssue: serviceHealthIssue => {
+      dispatch({ type: "SET_HEALTH_ISSUE", data: serviceHealthIssue });
     }
   };
 };
@@ -154,7 +183,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     patronType: reduxState.patronType,
-    serviceType: reduxState.serviceType
+    serviceType: reduxState.serviceType,
+    statusAndVitals: reduxState.statusAndVitals
   };
 };
 
@@ -165,8 +195,10 @@ ProfileSelector.propTypes = {
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,
+  setServiceHealthIssue: PropTypes.func.isRequired,
   patronType: PropTypes.string.isRequired,
   serviceType: PropTypes.string.isRequired,
+  statusAndVitals: PropTypes.string.isRequired,
   pageWidth: PropTypes.number.isRequired,
   store: PropTypes.object
 };
