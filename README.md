@@ -1,6 +1,7 @@
 # VAC Benefits Directory
 
-Master Status: [![CircleCI](https://circleci.com/gh/cds-snc/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-benefits-directory)
+[![CircleCI](https://circleci.com/gh/cds-snc/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-benefits-directory)
+[![Known Vulnerabilities](https://snyk.io/test/github/cds-snc/vac-benefits-directory/badge.svg)](https://snyk.io/test/github/cds-snc/vac-benefits-directory)
 
 This is the code for the VAC Benefits Directory being developed by VAC and CDS. The app is currently deployed at
 https://cdsvacpoc.azurewebsites.net/
