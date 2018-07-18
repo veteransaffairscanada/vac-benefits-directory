@@ -35,7 +35,7 @@ const Title = styled("div")`
 `;
 
 export class App extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     redux2i18n(this.props.i18n, this.props.translations);
   }
 

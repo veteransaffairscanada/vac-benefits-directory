@@ -32,7 +32,7 @@ export class DataValidation extends Component {
     return { name, value, status };
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     redux2i18n(this.props.i18n, this.props.translations);
   }
 

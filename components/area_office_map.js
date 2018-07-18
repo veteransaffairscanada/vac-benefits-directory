@@ -25,7 +25,7 @@ export class AreaOfficeMap extends Component {
       this.setState(obj);
     };
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.areaOffices.forEach(d => {
       const obj = {};
       obj[d.id] = false;

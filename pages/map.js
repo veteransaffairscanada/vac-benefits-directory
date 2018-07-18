@@ -50,7 +50,7 @@ export class Map extends Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     redux2i18n(this.props.i18n, this.props.translations);
   }
 
@@ -60,7 +60,7 @@ export class Map extends Component {
 
   computeDistanceKm(lat1, long1, lat2, long2) {
     const R = 6371; // kilometres
-    const Radians = degrees => degrees * Math.PI / 180;
+    const Radians = degrees => (degrees * Math.PI) / 180;
     if (!lat1 || !lat2 || !long1 || !long2) return undefined;
     const lat1Rad = Radians(lat1);
     const long1Rad = Radians(long1);

@@ -17,7 +17,7 @@ export class BenefitsDirectory extends Component {
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     redux2i18n(this.props.i18n, this.props.translations);
   }
 
