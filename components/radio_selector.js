@@ -10,6 +10,10 @@ import { logEvent } from "../utils/analytics";
 const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit
+  },
+  formLabel: {
+    lineHeight: "1.5em",
+    marginBottom: "10px"
   }
 });
 
@@ -106,7 +110,9 @@ export class RadioSelector extends React.Component {
     if (Object.values(allFilterIds).length != 0) {
       return (
         <FormControl className={classes.formControl}>
-          <FormLabel>{this.props.legend}</FormLabel>
+          <FormLabel className={classes.formLabel}>
+            {this.props.legend}
+          </FormLabel>
           <RadioGroup
             aria-label={this.props.legend}
             value={selected[selectorType]}
@@ -181,6 +187,7 @@ RadioSelector.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles)(RadioSelector)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(RadioSelector));
