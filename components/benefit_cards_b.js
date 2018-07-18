@@ -40,7 +40,7 @@ const styles = () => ({
     backgroundColor: "#f1f7fc",
     borderRadius: "0px",
     borderBottom: "1px solid #8b8b8b",
-    padding: "15px",
+    padding: "15px 15px 15px 10px",
     display: "flex",
     justifyContent: "center",
     alignItems: "center"
@@ -102,11 +102,16 @@ const styles = () => ({
     flexGrow: 1,
     marginRight: 15,
     fontSize: 40,
-    "-webkit-text-stroke": "1px black"
+    transform: "scale(.9)",
+    color: "#434343"
   },
   headerDesc: {
     width: "auto",
-    flexGrow: 3
+    flexGrow: 3,
+    color: "#434343"
+  },
+  headerUrl: {
+    color: "#006CC9"
   }
 });
 
@@ -145,23 +150,6 @@ export class BenefitCardB extends Component {
       ? benefit.benefitPageEn
       : benefit.benefitPageFr;
   };
-
-  // cardHeaderContent = (parentBenefits, availableIndependently) => {
-  //   if (availableIndependently === "Independent") {
-  //     return "";
-  //   } else {
-  //     const nameString = parentBenefits
-  //       .map(b => (
-  //         return (<a href='this.benefitTitle(b)'> test </a>)))
-  //       .join(" " + this.props.t("index.or") + " " )
-  //       //.replace(/,([^,]*)$/, " or " + "$1");
-  //     const cardHeaderText = this.props.t("benefits_b.card_header_1") + " " +
-  //             nameString + " " +
-  //             this.props.t("benefits_b.card_header_2") + " " +
-  //             this.benefitTitle(this.props.benefit) + "." ;
-  //     return cardHeaderText;
-  //   }
-  // };
 
   childBenefitNames = (benefit, childBenefits, open) => {
     const length = childBenefits.length;
@@ -230,7 +218,9 @@ export class BenefitCardB extends Component {
                 <span>{t("benefits_b.card_header_1") + " "}</span>
                 {parentBenefits
                   .map(b => (
-                    <a href={this.benefitUrl(b)}>{this.benefitTitle(b)}</a>
+                    <a className={classes.headerUrl} href={this.benefitUrl(b)}>
+                      {this.benefitTitle(b)}
+                    </a>
                   ))
                   .flatMap(
                     (value, index, array) =>
