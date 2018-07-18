@@ -189,7 +189,7 @@ export class BenefitCardB extends Component {
         {this.benefitTitle(b)}
       </a>
     ));
-    console.log(a_elements);
+
     let a_elements_with_ors = [];
     a_elements.forEach((value, index) => {
       if (a_elements.length - 1 !== index) {
@@ -245,7 +245,7 @@ export class BenefitCardB extends Component {
               <ErrorOutlineIcon className={classes.parentIcon} />
               <span className={classes.headerDesc}>
                 <span>{t("benefits_b.card_header_1") + " "}</span>
-                {this.get_benefit_a_elements(parentBenefits)}
+                {this.get_benefit_a_elements(parentBenefits)}{" "}
                 <span>
                   {this.props.t("benefits_b.card_header_2") +
                     " " +
