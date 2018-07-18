@@ -179,6 +179,34 @@ export class BenefitCardB extends Component {
     }
   };
 
+  get_benefit_a_elements = parentBenefits => {
+    let a_elements = parentBenefits.map((b, i) => (
+      <a
+        key={"a" + i}
+        className={this.props.classes.headerUrl}
+        href={this.benefitUrl(b)}
+      >
+        {this.benefitTitle(b)}
+      </a>
+    ));
+    console.log(a_elements);
+    let a_elements_with_ors = [];
+    a_elements.forEach((value, index) => {
+      if (a_elements.length - 1 !== index) {
+        a_elements_with_ors = a_elements_with_ors.concat([
+          value,
+          <span key={"b" + index}> {" " + this.props.t("index.or")} </span>
+        ]);
+      } else {
+        a_elements_with_ors = a_elements_with_ors.concat([
+          value,
+          <span key={"c" + index}> </span>
+        ]);
+      }
+    });
+    return a_elements_with_ors;
+  };
+
   render() {
     const benefit = this.props.benefit;
     const { t, classes } = this.props;
@@ -217,22 +245,7 @@ export class BenefitCardB extends Component {
               <ErrorOutlineIcon className={classes.parentIcon} />
               <span className={classes.headerDesc}>
                 <span>{t("benefits_b.card_header_1") + " "}</span>
-                {parentBenefits
-                  .map(b => (
-                    <a className={classes.headerUrl} href={this.benefitUrl(b)}>
-                      {this.benefitTitle(b)}
-                    </a>
-                  ))
-                  .flatMap(
-                    (value, index, array) =>
-                      array.length - 1 !== index
-                        ? [
-                            value,
-                            <span key={index}> {" " + t("index.or")} </span>
-                          ]
-                        : [value, <span key={index}> </span>]
-                  )}
-
+                {this.get_benefit_a_elements(parentBenefits)}
                 <span>
                   {this.props.t("benefits_b.card_header_2") +
                     " " +

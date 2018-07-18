@@ -126,22 +126,23 @@ describe("BenefitCardB", () => {
     });
   });
 
-  describe(".parentBenefitNames", () => {
-    it("returns the title of a benefit if there is one benefit", () => {
-      expect(
-        mountedBenefitCard()
-          .instance()
-          .parentBenefitNames([benefitsFixture[0]])
-      ).toContain("en");
-    });
+  it("no header is present if there are no parent benefits", () => {
+    expect(
+      mountedBenefitCard()
+        .find("Paper")
+        .first()
+        .text()
+    ).not.toContain(benefitsFixture[1].vacNameEn);
+  });
 
-    it("returns the titles of benefits if there are more than one", () => {
-      expect(
-        mountedBenefitCard()
-          .instance()
-          .parentBenefitNames([benefitsFixture])
-      ).toContain("en");
-    });
+  it("header is present if benefit has parents and requires gateway", () => {
+    props.benefit = benefitsFixture[1];
+    expect(
+      mountedBenefitCard()
+        .find("Paper")
+        .first()
+        .text()
+    ).toContain(benefitsFixture[0].vacNameEn);
   });
 
   describe(".childBenefitNames", () => {
