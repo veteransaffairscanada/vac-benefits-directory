@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { KeyboardBackspace } from "@material-ui/icons";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -23,8 +24,8 @@ const styles = () => ({
     textAlign: "right"
   },
   cardBottom: {
+    backgroundColor: "#f1f7fc",
     paddingLeft: "9px",
-    backgroundColor: "#f5f5f5",
     borderRadius: "0px",
     borderTop: "1px solid #f5f5f5",
     position: "relative"
@@ -33,11 +34,13 @@ const styles = () => ({
     margin: "0 15px"
   },
   cardTop: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#f1f7fc",
     borderRadius: "0px",
     borderBottom: "1px solid #8b8b8b",
-    padding: "15px 0px 15px 24px",
-    position: "relative"
+    padding: "15px 15px 15px 10px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   cardBody: {
     padding: "25px",
@@ -97,12 +100,19 @@ const styles = () => ({
     paddingRight: "10px"
   },
   parentIcon: {
-    "-moz-transform": "scaleXY(-1) scaleY(-1)",
-    "-o-transform": "scaleXY(-1) scaleY(-1)",
-    "-webkit-transform": "scaleX(-1) scaleY(-1)",
-    transform: "scaleXY(-1)",
-    float: "left",
-    paddingLeft: "10px"
+    flexGrow: 1,
+    marginRight: 15,
+    fontSize: 40,
+    transform: "scale(.9)",
+    color: "#434343"
+  },
+  headerDesc: {
+    width: "auto",
+    flexGrow: 3,
+    color: "#434343"
+  },
+  headerUrl: {
+    color: "#006CC9"
   }
 });
 
@@ -136,24 +146,10 @@ export class BenefitCardB extends Component {
       : benefit.vacNameFr;
   };
 
-  parentBenefitNames = (parentBenefits, availableIndependently) => {
-    if (availableIndependently === "Independent") {
-      const nameString = parentBenefits
-        .map(b => this.benefitTitle(b))
-        .join(", ")
-        .replace(/,([^,]*)$/, " or " + "$1");
-      return this.props.t("benefits_b.independant_with_parents", {
-        x: nameString
-      });
-    } else {
-      const nameString = parentBenefits
-        .map(b => this.benefitTitle(b))
-        .join(", ")
-        .replace(/,([^,]*)$/, " or " + "$1");
-      return this.props.t("benefits_b.needs_parents", {
-        x: nameString
-      });
-    }
+  benefitUrl = benefit => {
+    return this.props.t("current-language-code") === "en"
+      ? benefit.benefitPageEn
+      : benefit.benefitPageFr;
   };
 
   childBenefitNames = (benefit, childBenefits, open) => {
@@ -181,6 +177,34 @@ export class BenefitCardB extends Component {
         );
       }
     }
+  };
+
+  get_benefit_a_elements = parentBenefits => {
+    let a_elements = parentBenefits.map((b, i) => (
+      <a
+        key={"a" + i}
+        className={this.props.classes.headerUrl}
+        href={this.benefitUrl(b)}
+      >
+        {this.benefitTitle(b)}
+      </a>
+    ));
+
+    let a_elements_with_ors = [];
+    a_elements.forEach((value, index) => {
+      if (a_elements.length - 1 !== index) {
+        a_elements_with_ors = a_elements_with_ors.concat([
+          value,
+          <span key={"b" + index}> {" " + this.props.t("index.or")} </span>
+        ]);
+      } else {
+        a_elements_with_ors = a_elements_with_ors.concat([
+          value,
+          <span key={"c" + index}> </span>
+        ]);
+      }
+    });
+    return a_elements_with_ors;
   };
 
   render() {
@@ -214,14 +238,21 @@ export class BenefitCardB extends Component {
 
     return (
       <Grid item xs={12}>
-        <Paper className={classes.root}>
-          {parentBenefits.length > 0 ? (
+        <div className={classes.root}>
+          {parentBenefits.length > 0 &&
+          benefit.availableIndependently == "Requires Gateway Benefit" ? (
             <Paper className={classes.cardTop}>
-              <KeyboardReturnIcon className={classes.parentIcon} />
-              {this.parentBenefitNames(
-                parentBenefits,
-                benefit.availableIndependently
-              )}
+              <ErrorOutlineIcon className={classes.parentIcon} />
+              <span className={classes.headerDesc}>
+                <span>{t("benefits_b.card_header_1") + " "}</span>
+                {this.get_benefit_a_elements(parentBenefits)}{" "}
+                <span>
+                  {this.props.t("benefits_b.card_header_2") +
+                    " " +
+                    this.benefitTitle(this.props.benefit) +
+                    "."}
+                </span>
+              </span>
             </Paper>
           ) : (
             ""
@@ -377,7 +408,7 @@ export class BenefitCardB extends Component {
           ) : (
             ""
           )}
-        </Paper>
+        </div>
       </Grid>
     );
   }
