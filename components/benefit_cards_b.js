@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-import PriorityHigh from "@material-ui/icons/PriorityHigh";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { KeyboardBackspace } from "@material-ui/icons";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -28,9 +25,9 @@ const styles = () => ({
   },
   cardBottom: {
     backgroundColor: "#f1f7fc",
-    paddingLeft: "0px",
+    paddingLeft: "9px",
     borderRadius: "0px",
-    borderTop: "1px solid #8b8b8b",
+    borderTop: "1px solid #f5f5f5",
     position: "relative"
   },
   cardBottomContent: {
@@ -46,15 +43,18 @@ const styles = () => ({
     alignItems: "center"
   },
   cardBody: {
-    padding: "15px",
-    paddingTop: "0px"
+    padding: "25px",
+    paddingTop: "15px"
   },
   cardDescriptionText: {
-    fontSize: "20px",
-    padding: "15px 0px"
+    fontSize: "18px",
+    padding: "10px 0px",
+    paddingBottom: "15px"
   },
   collapse: {
-    paddingTop: "25px"
+    paddingTop: "25px",
+    paddingLeft: "15px",
+    backgroundColor: "#f5f5f5"
   },
   root: {
     width: "100%"
@@ -69,13 +69,14 @@ const styles = () => ({
     userSelect: "inherit"
   },
   ChildBenefitDesc: {
+    fontSize: "16px",
     paddingBottom: "30px"
   },
   children: {
     width: "100%"
   },
   benefitName: {
-    fontWeight: 500,
+    fontWeight: 600,
     padding: "10px 0"
   },
   returnIcon: {
@@ -225,8 +226,11 @@ export class BenefitCardB extends Component {
                   .flatMap(
                     (value, index, array) =>
                       array.length - 1 !== index
-                        ? [value, <span> {" " + t("index.or")} </span>]
-                        : [value, <span> </span>]
+                        ? [
+                            value,
+                            <span key={index}> {" " + t("index.or")} </span>
+                          ]
+                        : [value, <span key={index}> </span>]
                   )}
 
                 <span>
@@ -362,11 +366,12 @@ export class BenefitCardB extends Component {
                   )}
 
                   {familyBenefits.length > 0 ? (
-                    <div className={classes.children}>
+                    <div>
+                      <KeyboardReturnIcon className={classes.returnIcon} />
                       <Typography className={classes.ChildBenefitDesc}>
                         {t("benefits_b.eligible_open_family")}
                       </Typography>
-                      <div>
+                      <div className={classes.children}>
                         {familyBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
                             id={"cb" + i}
