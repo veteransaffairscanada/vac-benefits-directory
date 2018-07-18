@@ -6,6 +6,16 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  typography: { fontFamily: ["Merriweather", "serif"] },
+  palette: {
+    secondary: {
+      main: "#3e57e2"
+    }
+  }
+});
 
 const styles = theme => ({
   formControl: {
@@ -26,10 +36,10 @@ export class RadioSelector extends React.Component {
   };
 
   isDisabled = (filter_id, patronType, serviceType) => {
-    if (serviceType == "WSV (WWII or Korea)" && filter_id == "stillServing") {
+    if (serviceType === "WSV (WWII or Korea)" && filter_id === "stillServing") {
       return true;
     }
-    if (patronType == "service-person" && filter_id == "deceased") {
+    if (patronType === "service-person" && filter_id === "deceased") {
       return true;
     }
     return false;
@@ -107,34 +117,36 @@ export class RadioSelector extends React.Component {
       serviceHealthIssue: this.props.selectedServiceHealthIssue
     };
 
-    if (Object.values(allFilterIds).length != 0) {
+    if (Object.values(allFilterIds).length !== 0) {
       return (
-        <FormControl className={classes.formControl}>
-          <FormLabel className={classes.formLabel}>
-            {this.props.legend}
-          </FormLabel>
-          <RadioGroup
-            aria-label={this.props.legend}
-            value={selected[selectorType]}
-            onChange={this.handleSelect}
-          >
-            {allFilterIds.map(filter_id => {
-              return (
-                <FormControlLabel
-                  key={filter_id}
-                  value={filter_id}
-                  control={<Radio />}
-                  label={t(filter_id)}
-                  disabled={this.isDisabled(
-                    filter_id,
-                    this.props.selectedPatronType,
-                    this.props.selectedServiceType
-                  )}
-                />
-              );
-            })}
-          </RadioGroup>
-        </FormControl>
+        <MuiThemeProvider theme={theme}>
+          <FormControl className={classes.formControl}>
+            <FormLabel className={classes.formLabel}>
+              {this.props.legend}
+            </FormLabel>
+            <RadioGroup
+              aria-label={this.props.legend}
+              value={selected[selectorType]}
+              onChange={this.handleSelect}
+            >
+              {allFilterIds.map(filter_id => {
+                return (
+                  <FormControlLabel
+                    key={filter_id}
+                    value={filter_id}
+                    control={<Radio />}
+                    label={t(filter_id)}
+                    disabled={this.isDisabled(
+                      filter_id,
+                      this.props.selectedPatronType,
+                      this.props.selectedServiceType
+                    )}
+                  />
+                );
+              })}
+            </RadioGroup>
+          </FormControl>
+        </MuiThemeProvider>
       );
     } else {
       return null;
