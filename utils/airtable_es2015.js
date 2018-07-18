@@ -34,6 +34,10 @@ var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
 
 var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateFromAirtable() {
   let dataStore = {};
+  airtableConstants.tableNames.forEach(function(tableName) {
+    dataStore[tableName] = [];
+  });
+
   airtableConstants.tableNames.forEach(async function(tableName) {
     dataStore[tableName] = await fetchTableFromAirtable(tableName);
   });
