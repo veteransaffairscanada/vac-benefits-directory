@@ -32,7 +32,7 @@ ENV AIRTABLE_WRITE_KEY ${AIRTABLE_WRITE_KEY}
 ARG GOOGLE_MAPS_KEY
 ENV GOOGLE_MAPS_KEY ${GOOGLE_MAPS_KEY}
 
-RUN yarn install --ignore-engines && yarn build
+RUN yarn install
 USER node
 
 EXPOSE 3000

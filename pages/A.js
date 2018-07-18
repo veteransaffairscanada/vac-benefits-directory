@@ -25,7 +25,7 @@ export class A extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     redux2i18n(this.props.i18n, this.props.translations);
 
     Router.onRouteChangeStart = newUrl => {
@@ -171,7 +171,9 @@ export class A extends Component {
             nextSection={
               patronType === "organization"
                 ? "benefits-directory"
-                : patronType === "" ? "A5" : "A2"
+                : patronType === ""
+                  ? "A5"
+                  : "A2"
             }
             prevSection="index"
             benefitsDirectoryUrl={benefitsDirectoryUrl}
@@ -196,7 +198,9 @@ export class A extends Component {
             nextSection={
               serviceType === "WSV (WWII or Korea)"
                 ? "A4"
-                : serviceType === "" ? "A5" : "A3"
+                : serviceType === ""
+                  ? "A5"
+                  : "A3"
             }
             prevSection="A1"
             setSection={this.setSection}
@@ -356,4 +360,7 @@ A.propTypes = {
   option: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withI18next()(A));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withI18next()(A));

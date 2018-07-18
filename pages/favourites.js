@@ -17,7 +17,7 @@ export class FavouritesPage extends Component {
     };
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     redux2i18n(this.props.i18n, this.props.translations);
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits

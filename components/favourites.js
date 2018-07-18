@@ -58,7 +58,7 @@ export class Favourites extends Component {
     sortByValue: "relevance"
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { benefits } = this.props;
 
     const enIdx = lunr(function() {

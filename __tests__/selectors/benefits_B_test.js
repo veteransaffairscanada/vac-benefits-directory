@@ -57,7 +57,7 @@ describe("getFilteredBenefits", () => {
         }
       ],
       enIdx: JSON.stringify({
-        version: "2.2.1",
+        version: "2.3.0",
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
           ["vacNameEn/1", [0, 0.288]],
@@ -76,7 +76,7 @@ describe("getFilteredBenefits", () => {
         pipeline: ["stemmer"]
       }),
       frIdx: JSON.stringify({
-        version: "2.2.1",
+        version: "2.3.0",
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
           ["vacNameFr/1", [0, 0.288]],

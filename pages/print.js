@@ -6,7 +6,7 @@ import { withI18next } from "../lib/withI18next";
 import { redux2i18n } from "../utils/redux2i18n";
 
 export class Print extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     redux2i18n(this.props.i18n, this.props.translations);
   }
 
