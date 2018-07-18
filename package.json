@@ -2,6 +2,9 @@
   "name": "vac-poc",
   "license": "MIT",
   "description": "Proof of concept for VAC benefits navigator",
+  "engines": {
+    "node": "10.6.0"
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
