@@ -50,10 +50,12 @@ var fallback =
   " | " +
   COMMIT_URL;
 
-console.log(fallback);
-
 var notify = (exports.notify = function notify() {
-  if (typeof WEBHOOK_URL != "undefined") {
+  if (
+    typeof WEBHOOK_URL != "undefined" &&
+    WEBHOOK_URL != "" &&
+    WEBHOOK_URL != null
+  ) {
     fetch("https://api.ipify.org/?format=json")
       .then(function(resp) {
         return resp.json();
