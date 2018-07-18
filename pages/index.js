@@ -8,12 +8,18 @@ import styled from "react-emotion";
 import { connect } from "react-redux";
 import { redux2i18n } from "../utils/redux2i18n";
 
+const BlueBar = styled("div")`
+  border-top: 10px solid #303f9f;
+  width: 100%;
+`;
+
 const Hero = styled("div")`
   background-color: #eee;
-  border-top: 10px solid #303f9f;
   color: #000;
   min-height: 350px;
-  padding: 75px 16% 20px 16%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 75px 0 20px 0;
   text-align: center;
 `;
 
@@ -22,6 +28,8 @@ const HeroButton = styled("div")`
 `;
 
 const Search = styled("div")`
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 70px;
   text-align: center;
   @media (max-width: 400px) {
@@ -49,6 +57,7 @@ export class App extends Component {
     }
     return (
       <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
+        <BlueBar />
         <Hero>
           <Title id="heroTitle">{t("index.title")}</Title>
           <HeroButton>
