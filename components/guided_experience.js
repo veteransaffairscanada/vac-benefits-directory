@@ -19,7 +19,8 @@ const theme = createMuiTheme({
       dark: "#0000FF", // '#002884',
       contrastText: "#fff"
     }
-  }
+  },
+  typography: { fontFamily: ["Merriweather", "serif"] }
 });
 
 const BlueBar = styled("div")`
