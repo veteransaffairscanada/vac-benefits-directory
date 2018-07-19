@@ -196,7 +196,8 @@ export class A extends Component {
             id="A2"
             stepNumber={1}
             nextSection={
-              serviceType === "WSV (WWII or Korea)"
+              serviceType === "WSV (WWII or Korea)" &&
+              patronType === "service-person"
                 ? "A4"
                 : serviceType === ""
                   ? "A5"
@@ -222,6 +223,9 @@ export class A extends Component {
         ).filter(st => st !== "na");
         if (patronType === "service-person") {
           options.splice(options.indexOf("deceased"), 1);
+        }
+        if (serviceType === "WSV (WWII or Korea)") {
+          options.splice(options.indexOf("stillServing"), 1);
         }
         return (
           <GuidedExperience
