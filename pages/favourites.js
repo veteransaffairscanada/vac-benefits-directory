@@ -16,7 +16,7 @@ export class FavouritesPage extends Component {
     };
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits
     };

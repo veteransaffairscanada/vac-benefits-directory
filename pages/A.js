@@ -21,7 +21,7 @@ export class A extends Component {
     };
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
       const newState = {
