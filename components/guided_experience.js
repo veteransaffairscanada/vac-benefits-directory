@@ -19,7 +19,8 @@ const theme = createMuiTheme({
       dark: "#0000FF", // '#002884',
       contrastText: "#fff"
     }
-  }
+  },
+  typography: { fontFamily: ["Merriweather", "serif"] }
 });
 
 const BlueBar = styled("div")`
@@ -51,7 +52,10 @@ const styles = () => ({
     backgroundColor: "black",
     color: "white",
     marginTop: 0,
-    margin: "25px"
+    margin: "25px",
+    "&:hover": {
+      background: "#606060"
+    }
   },
   title: {
     fontSize: "1.5em",

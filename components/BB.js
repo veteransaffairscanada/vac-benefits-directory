@@ -28,7 +28,9 @@ const styles = theme => ({
   buttonBarButton: {
     fontSize: "20px",
     fontWeight: "100",
+    marginRight: "20px",
     paddingLeft: "0px",
+    paddingRight: "0px",
     textDecoration: "none",
     textTransform: "none"
   },
@@ -383,6 +385,7 @@ BB.propTypes = {
   option: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles)(BB)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(BB));
