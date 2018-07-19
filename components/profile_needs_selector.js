@@ -135,7 +135,7 @@ const mapStateToProps = reduxState => {
 ProfileNeedsSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  patronType: PropTypes.object.isRequired,
+  patronType: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   setPatronType: PropTypes.func.isRequired,

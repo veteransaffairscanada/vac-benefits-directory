@@ -58,7 +58,6 @@ NeedsSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   needs: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
-  pageWidth: PropTypes.number.isRequired,
   store: PropTypes.object
 };
 
