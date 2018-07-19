@@ -6,7 +6,6 @@ import Router from "next/router";
 import React from "react";
 import { A } from "../../pages/A";
 import benefitsFixture from "../fixtures/benefits";
-import translationsFixture from "../fixtures/translations";
 
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
