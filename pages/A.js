@@ -4,16 +4,12 @@ import Router from "next/router";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
-import "babel-polyfill/dist/polyfill";
-import benefitsFixture from "../__tests__/fixtures/benefits";
-import translationsFixture from "../__tests__/fixtures/translations";
 
 import Cookies from "universal-cookie";
 
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
-import { redux2i18n } from "../utils/redux2i18n";
 
 export class A extends Component {
   constructor() {
@@ -26,8 +22,6 @@ export class A extends Component {
   }
 
   UNSAFE_componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.translations);
-
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
       const newState = {
@@ -42,18 +36,6 @@ export class A extends Component {
     };
 
     this.setState(newState);
-  }
-
-  componentDidMount() {
-    if (this.props.url.query.use_testdata) {
-      this.props.dispatch({
-        type: "LOAD_DATA",
-        data: {
-          benefits: benefitsFixture,
-          translations: translationsFixture
-        }
-      });
-    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -331,7 +313,6 @@ const mapStateToProps = reduxState => {
     statusAndVitals: reduxState.statusAndVitals,
     serviceHealthIssue: reduxState.serviceHealthIssue,
     selectedNeeds: reduxState.selectedNeeds,
-    translations: reduxState.translations,
     option: reduxState.option
   };
 };
@@ -356,7 +337,6 @@ A.propTypes = {
   setServiceHealthIssue: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object,
-  translations: PropTypes.array.isRequired,
   option: PropTypes.string.isRequired
 };
 

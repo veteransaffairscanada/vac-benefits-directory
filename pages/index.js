@@ -6,7 +6,6 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import styled from "react-emotion";
 import { connect } from "react-redux";
-import { redux2i18n } from "../utils/redux2i18n";
 
 const BlueBar = styled("div")`
   border-top: 10px solid #303f9f;
@@ -43,10 +42,6 @@ const Title = styled("div")`
 `;
 
 export class App extends Component {
-  UNSAFE_componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.translations);
-  }
-
   render() {
     const { i18n, t, option } = this.props; // eslint-disable-line no-unused-vars
     let urlGE = "A?section=A1&lng=" + t("current-language-code");
@@ -107,7 +102,6 @@ export class App extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    translations: reduxState.translations,
     option: reduxState.option
   };
 };
@@ -116,7 +110,6 @@ App.propTypes = {
   i18n: PropTypes.object.isRequired,
   store: PropTypes.object,
   t: PropTypes.func.isRequired,
-  translations: PropTypes.array.isRequired,
   option: PropTypes.string.isRequired
 };
 

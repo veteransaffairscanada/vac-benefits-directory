@@ -13,7 +13,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { redux2i18n } from "../utils/redux2i18n";
 
 const styles = theme => ({
   root: {
@@ -31,10 +30,6 @@ export class DataValidation extends Component {
   createData = (name, value, status) => {
     return { name, value, status };
   };
-
-  UNSAFE_componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.translations);
-  }
 
   checkBenefitsFields(b, i) {
     if (

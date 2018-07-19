@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { redux2i18n } from "../utils/redux2i18n";
 import BB from "../components/BB";
 import Router from "next/router";
 
@@ -15,10 +14,6 @@ export class BenefitsDirectory extends Component {
       width: 1000
     };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
-  }
-
-  UNSAFE_componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.translations);
   }
 
   componentDidMount() {
@@ -87,7 +82,6 @@ export class BenefitsDirectory extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    translations: reduxState.translations,
     patronType: reduxState.patronType,
     searchString: reduxState.searchString,
     serviceType: reduxState.serviceType,
@@ -102,7 +96,6 @@ BenefitsDirectory.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
-  translations: PropTypes.array.isRequired,
   patronType: PropTypes.string.isRequired,
   searchString: PropTypes.string.isRequired,
   serviceType: PropTypes.string.isRequired,

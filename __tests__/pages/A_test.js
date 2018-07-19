@@ -113,22 +113,6 @@ describe("A", () => {
     expect(mountedA().state("section")).toEqual("AA");
   });
 
-  it("componantDidMount hydrates Redux with fixtures if use_testdata set", () => {
-    props.url = {
-      query: {
-        use_testdata: "true"
-      }
-    };
-    const expectedArgs = {
-      benefits: benefitsFixture,
-      translations: translationsFixture
-    };
-    expect(mountedA().instance().props.dispatch).toBeCalledWith({
-      type: "LOAD_DATA",
-      data: expectedArgs
-    });
-  });
-
   it("clears redux data for future questions", () => {
     let AInstance = mountedA().instance();
     AInstance.setSection("A2");
