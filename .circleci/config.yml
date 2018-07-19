@@ -43,44 +43,6 @@ jobs:
           name: "Report failing Master"
           when: on_fail
 
-  integration:
-    docker:
-      # the Docker image with Cypress dependencies
-      - image: cypress/base:10
-        environment:
-          ## this enables colors in the output
-          TERM: xterm
-    working_directory: ~/app
-    parallelism: 1
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-npm-deps-{{ checksum "package.json" }}
-      - run: yarn --ignore-engines install
-      - save_cache:
-          key: v1-npm-deps-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run:
-          name: Running E2E tests
-          command: |
-              yarn build
-              yarn start &
-              yarn cypress:wait
-              yarn cypress:run
-      - run:
-          command: ~/repo/.circleci/notify_failure.sh
-          name: "Report failing Master"
-          when: on_fail
-
-      - store_test_results:
-          path: cypress-results
-      - store_artifacts:
-          path: cypress/videos
-      - store_artifacts:
-          path: cypress/screenshots
-
   deploy:
     docker:
       - image: docker:17.12.1-ce-git
