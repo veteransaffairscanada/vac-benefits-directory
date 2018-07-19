@@ -24,9 +24,9 @@ export class NeedsSelector extends Component {
     return (
       <div>
         <Typography variant="subheading" className={classnames(classes.title)}>
-          {t("Filter by need")}
+          {t("filter by category")}
         </Typography>
-        <Grid container spacing={8}>
+        <Grid container spacing={16}>
           <Grid item xs={9}>
             <Typography variant="body2">
               {t("Select all that apply")}
