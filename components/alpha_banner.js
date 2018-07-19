@@ -21,7 +21,7 @@ const Banner = styled("aside")`
 export const AlphaBanner = ({ children, ...rest }) => (
   <Banner {...rest}>
     <PhaseBadge phase="alpha" />
-    <span>{children}</span>
+    <span style={{ marginLeft: "10px" }}>{children}</span>
   </Banner>
 );
 
