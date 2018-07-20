@@ -26,7 +26,10 @@ describe("ProfileSelector", () => {
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
       setServiceHealthIssue: jest.fn(),
-      statusAndVitals: ""
+      statusAndVitals: "",
+      showServiceType: true,
+      showStatusAndVitals: true,
+      showServiceHealthIssue: true
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
@@ -45,68 +48,17 @@ describe("ProfileSelector", () => {
     ).toEqual(1);
   });
 
-  it("does not have a serviceTypes filter by default", () => {
-    expect(
-      mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#serviceTypeFilter")
-        .first().length
-    ).toEqual(0);
-  });
-
-  it("has a serviceTypes filter if a patronType is selected other than organization", () => {
-    reduxData.patronType = "foo";
-    props.store = mockStore(reduxData);
+  it("shows each question when showQuestion is true ", () => {
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
         .find("#serviceTypeFilter")
         .first().length
     ).toEqual(1);
-  });
-
-  it("has no serviceTypes filter if patronType is organization", () => {
-    reduxData.patronType = "organization";
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#serviceTypeFilter")
-        .first().length
-    ).toEqual(0);
-  });
-
-  it("does not have a statusAndVitals filter by default", () => {
-    expect(
-      mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#statusAndVitalsFilter")
-        .first().length
-    ).toEqual(0);
-  });
-
-  it("has a statusAndVitalsFilter filter if a serviceType is selected other than organization", () => {
-    reduxData.patronType = "foo";
-    reduxData.serviceType = "bar";
-    props.store = mockStore(reduxData);
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
         .find("#statusAndVitalsFilter")
         .first().length
     ).toEqual(1);
-  });
-
-  it("has no statusAndVitalsFilter filter if patronType is organization", () => {
-    reduxData.patronType = "organization";
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#statusAndVitalsFilter")
-        .first().length
-    ).toEqual(0);
-  });
-
-  it("has a statusAndVitalsFilter filter if a serviceType is selected other than organization", () => {
-    reduxData.patronType = "foo";
-    reduxData.serviceType = "bar";
-    reduxData.statusAndVitals = "xyz";
-    props.store = mockStore(reduxData);
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
         .find("#serviceHealthIssueFilter")
@@ -114,9 +66,20 @@ describe("ProfileSelector", () => {
     ).toEqual(1);
   });
 
-  it("has no statusAndVitalsFilter filter if patronType is organization", () => {
-    reduxData.patronType = "organization";
-    props.store = mockStore(reduxData);
+  it("shows each question when showQuestion is false ", () => {
+    reduxData.showServiceType = false;
+    reduxData.showStatusAndVitals = false;
+    reduxData.showServiceHealthIssue = false;
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#serviceTypeFilter")
+        .first().length
+    ).toEqual(0);
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#statusAndVitalsFilter")
+        .first().length
+    ).toEqual(0);
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
         .find("#serviceHealthIssueFilter")
