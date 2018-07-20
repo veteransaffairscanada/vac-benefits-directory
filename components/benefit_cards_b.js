@@ -30,8 +30,11 @@ const styles = () => ({
     borderTop: "1px solid #f5f5f5",
     position: "relative"
   },
-  cardBottomContent: {
-    margin: "0 15px"
+  cardBottomTitle: {
+    paddingLeft: "15px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   CardBottomOpen: {
     marginBottom: "0px",
@@ -65,10 +68,6 @@ const styles = () => ({
     width: "100%"
   },
   ExpansionPanelClosed: {},
-  ExpansionPanelSummary: {
-    borderBottom: "0px",
-    userSelect: "inherit"
-  },
   ChildBenefitDesc: {
     fontSize: "16px",
     paddingBottom: "30px"
@@ -342,13 +341,17 @@ export class BenefitCardB extends Component {
                 expandIcon={<ExpandMoreIcon />}
                 onClick={() => this.toggleOpenState()}
               >
-                <div className={classes.cardBottomContent}>
+                <div className={classes.cardBottomTitle}>
                   <KeyboardReturnIcon className={classes.returnIcon} />
-                  {this.childBenefitNames(
-                    benefit,
-                    childBenefits,
-                    this.state.open
-                  )}
+                  <span className={classes.headerDesc}>
+                    <span>
+                      {this.childBenefitNames(
+                        benefit,
+                        childBenefits,
+                        this.state.open
+                      )}
+                    </span>
+                  </span>
                 </div>
               </ExpansionPanelSummary>
 
