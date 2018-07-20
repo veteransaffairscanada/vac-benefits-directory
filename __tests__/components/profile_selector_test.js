@@ -1,7 +1,6 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import { ProfileSelector } from "../../components/profile_selector";
-// import profileFixture from "../fixtures/needs";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -125,26 +124,6 @@ describe("ProfileSelector", () => {
     ).toEqual(0);
   });
 
-  it("has no clear button if patronType is empty", () => {
-    reduxData.patronType = "";
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#ClearEligibilityFilters")
-        .first().length
-    ).toEqual(0);
-  });
-
-  it("has a clear button if patronType is populated", () => {
-    reduxData.patronType = "organization";
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#ClearEligibilityFilters")
-        .first().length
-    ).toEqual(1);
-  });
-
   it("has the correct radio button text", () => {
     const text = mount(<ProfileSelector {...props} {...reduxData} />)
       .find("#patronTypeFilter")
@@ -153,33 +132,5 @@ describe("ProfileSelector", () => {
       .first()
       .text();
     expect(text).toEqual("service-person");
-  });
-
-  it("is expanded if pageWidth > 600px", () => {
-    expect(
-      mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("ExpansionPanel")
-        .prop("expanded")
-    ).toEqual(true);
-  });
-
-  it("is not expanded if pageWidth < 600px", () => {
-    props.pageWidth = 100;
-    expect(
-      mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("ExpansionPanel")
-        .prop("expanded")
-    ).toEqual(false);
-  });
-
-  it("has a correct clearFilters function", () => {
-    let instance = shallow(
-      <ProfileSelector {...props} {...reduxData} />
-    ).instance();
-    instance.clearFilters();
-    expect(reduxData.setPatronType).toBeCalledWith("");
-    expect(reduxData.setServiceType).toBeCalledWith("");
-    expect(reduxData.setStatusAndVitals).toBeCalledWith("");
-    expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
   });
 });

@@ -19,7 +19,7 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
   formControl: {
-    margin: theme.spacing.unit
+    marginTop: theme.spacing.unit
   },
   formLabel: {
     lineHeight: "1.5em",
@@ -199,7 +199,6 @@ RadioSelector.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(RadioSelector));
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(RadioSelector)
+);
