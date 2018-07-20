@@ -33,6 +33,7 @@ export default withRedux(initStore)(
         ctx.query.serviceType &&
         ctx.query.serviceType !== currentReduxState.serviceType
       ) {
+        console.log("set serviceType from url");
         ctx.store.dispatch({
           type: "SET_SERVICE_TYPE",
           data: ctx.query.serviceType
