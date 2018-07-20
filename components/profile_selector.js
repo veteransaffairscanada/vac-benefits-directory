@@ -7,6 +7,11 @@ import RadioSelector from "./radio_selector";
 import { connect } from "react-redux";
 import "babel-polyfill/dist/polyfill";
 import { Grid } from "@material-ui/core";
+import {
+  showStatusAndVitals,
+  showServiceHealthIssue,
+  showServiceType
+} from "../selectors/show_filters";
 
 const styles = () => ({
   title: {
@@ -16,8 +21,14 @@ const styles = () => ({
 
 export class ProfileSelector extends Component {
   render() {
-    const { patronType, serviceType, statusAndVitals, classes, t } = this.props;
-
+    const {
+      classes,
+      t,
+      showServiceType,
+      showStatusAndVitals,
+      showServiceHealthIssue
+    } = this.props;
+    console.log([showServiceType, showStatusAndVitals, showServiceHealthIssue]);
     return (
       <div>
         <Typography variant="subheading" className={classnames(classes.title)}>
@@ -33,7 +44,7 @@ export class ProfileSelector extends Component {
             />
           </Grid>
 
-          {patronType && patronType !== "" && patronType !== "organization" ? (
+          {showServiceType ? (
             <Grid item xs={12} id="serviceTypeFilter">
               <RadioSelector
                 t={t}
@@ -46,13 +57,7 @@ export class ProfileSelector extends Component {
             ""
           )}
 
-          {serviceType &&
-          serviceType !== "" &&
-          patronType !== "organization" &&
-          !(
-            patronType === "service-person" &&
-            serviceType === "WSV (WWII or Korea)"
-          ) ? (
+          {showStatusAndVitals ? (
             <Grid item xs={12} id="statusAndVitalsFilter">
               <RadioSelector
                 t={t}
@@ -65,12 +70,7 @@ export class ProfileSelector extends Component {
             ""
           )}
 
-          {serviceType &&
-          serviceType !== "" &&
-          patronType !== "organization" &&
-          (statusAndVitals !== "" ||
-            (patronType === "service-person" &&
-              serviceType === "WSV (WWII or Korea)")) ? (
+          {showServiceHealthIssue ? (
             <Grid item xs={12} id="serviceHealthIssueFilter">
               <RadioSelector
                 t={t}
@@ -97,7 +97,10 @@ const mapStateToProps = reduxState => {
   return {
     patronType: reduxState.patronType,
     serviceType: reduxState.serviceType,
-    statusAndVitals: reduxState.statusAndVitals
+    statusAndVitals: reduxState.statusAndVitals,
+    showStatusAndVitals: showStatusAndVitals(reduxState, this.props),
+    showServiceHealthIssue: showServiceHealthIssue(reduxState, this.props),
+    showServiceType: showServiceType(reduxState, this.props)
   };
 };
 
@@ -108,7 +111,10 @@ ProfileSelector.propTypes = {
   patronType: PropTypes.string.isRequired,
   serviceType: PropTypes.string.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  showStatusAndVitals: PropTypes.bool.isRequired,
+  showServiceHealthIssue: PropTypes.bool.isRequired,
+  showServiceType: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps)(
