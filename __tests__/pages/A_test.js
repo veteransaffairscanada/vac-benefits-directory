@@ -6,7 +6,6 @@ import Router from "next/router";
 import React from "react";
 import { A } from "../../pages/A";
 import benefitsFixture from "../fixtures/benefits";
-import translationsFixture from "../fixtures/translations";
 
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
@@ -111,22 +110,6 @@ describe("A", () => {
     let AInstance = mountedA().instance();
     AInstance.setSection("AA");
     expect(mountedA().state("section")).toEqual("AA");
-  });
-
-  it("componantDidMount hydrates Redux with fixtures if use_testdata set", () => {
-    props.url = {
-      query: {
-        use_testdata: "true"
-      }
-    };
-    const expectedArgs = {
-      benefits: benefitsFixture,
-      translations: translationsFixture
-    };
-    expect(mountedA().instance().props.dispatch).toBeCalledWith({
-      type: "LOAD_DATA",
-      data: expectedArgs
-    });
   });
 
   it("clears redux data for future questions", () => {

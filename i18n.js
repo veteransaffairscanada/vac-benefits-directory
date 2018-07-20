@@ -40,11 +40,31 @@ if (process.browser) {
 if (!i18nInstance.isInitialized) i18nInstance.init(options);
 
 // a simple helper to getInitialProps passed on loaded i18n data
-const getInitialProps = (req, namespaces) => {
-  if (!namespaces) namespaces = i18nInstance.options.defaultNS;
+const getInitialProps = (req, namespaces, store) => {
+  namespaces = i18nInstance.options.defaultNS;
   if (typeof namespaces === "string") namespaces = [namespaces];
 
   req.i18n.toJSON = () => null; // do not serialize i18next instance and send to client
+
+  let i18nEn = {};
+  let i18nFr = {};
+
+  store.getState().translations.forEach(translation => {
+    if (translation.section) {
+      if (!i18nEn[translation.section]) {
+        i18nEn[translation.section] = {};
+        i18nFr[translation.section] = {};
+      }
+      i18nEn[translation.section][translation.key] = translation.English;
+      i18nFr[translation.section][translation.key] = translation.French;
+    } else {
+      i18nEn[translation.key] = translation.English;
+      i18nFr[translation.key] = translation.French;
+    }
+  });
+
+  req.i18n.addResourceBundle("en", "common", i18nEn);
+  req.i18n.addResourceBundle("fr", "common", i18nFr);
 
   const initialI18nStore = {};
   req.i18n.languages.forEach(l => {

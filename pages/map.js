@@ -4,7 +4,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { redux2i18n } from "../utils/redux2i18n";
 import AreaOfficeMap from "../components/area_office_map";
 import TableHead from "@material-ui/core/TableHead/index";
 import Paper from "@material-ui/core/Paper/index";
@@ -48,10 +47,6 @@ export class Map extends Component {
         zoom: undefined
       });
     }
-  }
-
-  UNSAFE_componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.translations);
   }
 
   componentDidMount() {
@@ -159,7 +154,6 @@ export class Map extends Component {
 
 const mapStateToProps = state => {
   return {
-    translations: state.translations,
     areaOffices: state.areaOffices
   };
 };
@@ -168,8 +162,7 @@ Map.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  areaOffices: PropTypes.array.isRequired,
-  translations: PropTypes.array.isRequired
+  areaOffices: PropTypes.array.isRequired
 };
 
 export default withStyles(styles)(connect(mapStateToProps)(withI18next()(Map)));

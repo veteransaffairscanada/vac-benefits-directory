@@ -3,13 +3,8 @@ import PropTypes from "prop-types";
 import { Grid, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
-import { redux2i18n } from "../utils/redux2i18n";
 
 export class Print extends Component {
-  UNSAFE_componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.translations);
-  }
-
   componentDidMount() {
     window.print();
   }
@@ -153,8 +148,7 @@ const mapStateToProps = state => {
     benefits: state.benefits,
     examples: state.examples,
     eligibilityPaths: state.eligibilityPaths,
-    needs: state.needs,
-    translations: state.translations
+    needs: state.needs
   };
 };
 
@@ -165,8 +159,7 @@ Print.propTypes = {
   eligibilityPaths: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  url: PropTypes.object.isRequired,
-  translations: PropTypes.array.isRequired
+  url: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(Print));

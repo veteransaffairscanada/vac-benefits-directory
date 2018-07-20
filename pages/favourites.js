@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { redux2i18n } from "../utils/redux2i18n";
 import Favourites from "../components/favourites";
 import Cookies from "universal-cookie";
 
@@ -17,8 +16,7 @@ export class FavouritesPage extends Component {
     };
   }
 
-  UNSAFE_componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.translations);
+  componentDidMount() {
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits
     };
@@ -62,8 +60,7 @@ export class FavouritesPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    favouriteBenefits: state.favouriteBenefits,
-    translations: state.translations
+    favouriteBenefits: state.favouriteBenefits
   };
 };
 
@@ -71,8 +68,7 @@ FavouritesPage.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  store: PropTypes.object,
-  translations: PropTypes.array.isRequired
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withI18next()(FavouritesPage));

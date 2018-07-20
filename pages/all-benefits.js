@@ -6,13 +6,8 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BenefitCard from "../components/benefit_cards";
-import { redux2i18n } from "../utils/redux2i18n";
 
 export class AllBenefits extends Component {
-  UNSAFE_componentWillMount() {
-    redux2i18n(this.props.i18n, this.props.translations);
-  }
-
   render() {
     let veteranBenefitIds = [];
     let familyBenefitIds = [];
@@ -70,8 +65,7 @@ const mapStateToProps = state => {
     eligibilityPaths: state.eligibilityPaths,
     favouriteBenefits: state.favouriteBenefits,
     needs: state.needs,
-    selectedNeeds: state.selectedNeeds,
-    translations: state.translations
+    selectedNeeds: state.selectedNeeds
   };
 };
 
@@ -83,8 +77,7 @@ AllBenefits.propTypes = {
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
   needs: PropTypes.array.isRequired,
-  selectedNeeds: PropTypes.object.isRequired,
-  translations: PropTypes.array.isRequired
+  selectedNeeds: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(withI18next()(AllBenefits));
