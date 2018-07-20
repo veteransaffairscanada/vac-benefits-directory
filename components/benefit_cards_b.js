@@ -65,10 +65,6 @@ const styles = () => ({
     width: "100%"
   },
   ExpansionPanelClosed: {},
-  ExpansionPanelOpen: {
-    marginBottom: "0px",
-    marginTop: "0px"
-  },
   ExpansionPanelSummary: {
     borderBottom: "0px",
     userSelect: "inherit"
