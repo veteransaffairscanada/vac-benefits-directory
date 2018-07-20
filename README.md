@@ -8,26 +8,26 @@ https://cdsvacpoc.azurewebsites.net/
 
 ## Quickstart
 
-* `yarn install`
-* `yarn dev`
+- `yarn install`
+- `yarn dev`
 
 ## How to get VAC Benefits Directory to work on VAC machines (May 31, 2018)
 
-* download Node.JS of version 9 or newer(as .zip since .msi is blocked)
+- download Node.JS of version 9 or newer(as .zip since .msi is blocked)
 
-* following steps required tp set up the newly installed Node cmd line commands such as npm globally
+- following steps required tp set up the newly installed Node cmd line commands such as npm globally
 
   > Start menu > Control Panel > User accounts > user accounts > change my environment variables >
   > select path > Edit > Now enter the location of where you have Node installed with a ; to seperate
   > between any other entries here.
   > EX: C:\dev ; C:\Node
 
-* `npm install -g yarn`
-* `yarn install` (While in project main directory, takes a while, especially on building packages)
+- `npm install -g yarn`
+- `yarn install` (While in project main directory, takes a while, especially on building packages)
 
-* `yarn dev` (run while CD'd in project folder used to start the local server)
+- `yarn dev` (run while CD'd in project folder used to start the local server)
 
-* If you run into syntax errors chances are there are missing packages/dependencies and you may want to try
+- If you run into syntax errors chances are there are missing packages/dependencies and you may want to try
   running a clean yarn install. Delete Node_modules folder and then re run `yarn install` in the main folder.
 
 ## Configuration
@@ -73,7 +73,7 @@ To add a new ENV variable to the source code, take the following steps:
 
 This application uses the following resources:
 
-* NextJS [https://learnnextjs.com/](https://learnnextjs.com/)
-* Jest [https://facebook.github.io/jest/](https://facebook.github.io/jest/)
-* React i18next [https://react.i18next.com/](https://react.i18next.com/)
-* Prettier [https://prettier.io/](https://prettier.io/)
+- NextJS [https://learnnextjs.com/](https://learnnextjs.com/)
+- Jest [https://facebook.github.io/jest/](https://facebook.github.io/jest/)
+- React i18next [https://react.i18next.com/](https://react.i18next.com/)
+- Prettier [https://prettier.io/](https://prettier.io/)

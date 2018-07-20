@@ -33,6 +33,11 @@ const styles = () => ({
   cardBottomContent: {
     margin: "0 15px"
   },
+  CardBottomOpen: {
+    marginBottom: "0px",
+    marginTop: "0px",
+    "& $cardBottom": { backgroundColor: "#f5f5f5" }
+  },
   cardTop: {
     backgroundColor: "#f1f7fc",
     borderRadius: "0px",
@@ -60,10 +65,6 @@ const styles = () => ({
     width: "100%"
   },
   ExpansionPanelClosed: {},
-  ExpansionPanelOpen: {
-    marginBottom: "0px",
-    marginTop: "0px"
-  },
   ExpansionPanelSummary: {
     borderBottom: "0px",
     userSelect: "inherit"
@@ -332,7 +333,7 @@ export class BenefitCardB extends Component {
               expanded={this.state.open}
               className={
                 this.state.open
-                  ? classes.ExpansionPanelOpen
+                  ? classes.CardBottomOpen
                   : classes.ExpansionPanelClosed
               }
             >
