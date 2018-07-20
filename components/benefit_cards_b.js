@@ -30,8 +30,18 @@ const styles = () => ({
     borderTop: "1px solid #f5f5f5",
     position: "relative"
   },
-  cardBottomContent: {
-    margin: "0 15px"
+  cardBottomTitle: {
+    paddingLeft: "15px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  cardBottomFamilyTitle: {
+    marginLeft: "9px",
+    marginBottom: "25px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
   CardBottomOpen: {
     marginBottom: "0px",
@@ -65,14 +75,6 @@ const styles = () => ({
     width: "100%"
   },
   ExpansionPanelClosed: {},
-  ExpansionPanelSummary: {
-    borderBottom: "0px",
-    userSelect: "inherit"
-  },
-  ChildBenefitDesc: {
-    fontSize: "16px",
-    paddingBottom: "30px"
-  },
   children: {
     width: "100%"
   },
@@ -342,13 +344,17 @@ export class BenefitCardB extends Component {
                 expandIcon={<ExpandMoreIcon />}
                 onClick={() => this.toggleOpenState()}
               >
-                <div className={classes.cardBottomContent}>
+                <div className={classes.cardBottomTitle}>
                   <KeyboardReturnIcon className={classes.returnIcon} />
-                  {this.childBenefitNames(
-                    benefit,
-                    childBenefits,
-                    this.state.open
-                  )}
+                  <span className={classes.headerDesc}>
+                    <span>
+                      {this.childBenefitNames(
+                        benefit,
+                        childBenefits,
+                        this.state.open
+                      )}
+                    </span>
+                  </span>
                 </div>
               </ExpansionPanelSummary>
 
@@ -381,10 +387,12 @@ export class BenefitCardB extends Component {
 
                   {familyBenefits.length > 0 ? (
                     <div>
-                      <KeyboardReturnIcon className={classes.returnIcon} />
-                      <Typography className={classes.ChildBenefitDesc}>
-                        {t("benefits_b.eligible_open_family")}
-                      </Typography>
+                      <div className={classes.cardBottomFamilyTitle}>
+                        <KeyboardReturnIcon className={classes.returnIcon} />
+                        <span className={classes.headerDesc}>
+                          {t("benefits_b.eligible_open_family")}
+                        </span>
+                      </div>
                       <div className={classes.children}>
                         {familyBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
