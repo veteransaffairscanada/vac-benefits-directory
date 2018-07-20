@@ -36,6 +36,13 @@ const styles = () => ({
     justifyContent: "center",
     alignItems: "center"
   },
+  cardBottomFamilyTitle: {
+    marginLeft: "9px",
+    marginBottom: "25px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  },
   CardBottomOpen: {
     marginBottom: "0px",
     marginTop: "0px",
@@ -68,10 +75,6 @@ const styles = () => ({
     width: "100%"
   },
   ExpansionPanelClosed: {},
-  ChildBenefitDesc: {
-    fontSize: "16px",
-    paddingBottom: "30px"
-  },
   children: {
     width: "100%"
   },
@@ -384,10 +387,12 @@ export class BenefitCardB extends Component {
 
                   {familyBenefits.length > 0 ? (
                     <div>
-                      <KeyboardReturnIcon className={classes.returnIcon} />
-                      <Typography className={classes.ChildBenefitDesc}>
-                        {t("benefits_b.eligible_open_family")}
-                      </Typography>
+                      <div className={classes.cardBottomFamilyTitle}>
+                        <KeyboardReturnIcon className={classes.returnIcon} />
+                        <span className={classes.headerDesc}>
+                          {t("benefits_b.eligible_open_family")}
+                        </span>
+                      </div>
                       <div className={classes.children}>
                         {familyBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
