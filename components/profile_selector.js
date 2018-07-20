@@ -28,7 +28,6 @@ export class ProfileSelector extends Component {
       showStatusAndVitals,
       showServiceHealthIssue
     } = this.props;
-    console.log([showServiceType, showStatusAndVitals, showServiceHealthIssue]);
     return (
       <div>
         <Typography variant="subheading" className={classnames(classes.title)}>
@@ -95,12 +94,10 @@ export class ProfileSelector extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    patronType: reduxState.patronType,
-    serviceType: reduxState.serviceType,
     statusAndVitals: reduxState.statusAndVitals,
-    showStatusAndVitals: showStatusAndVitals(reduxState, this.props),
-    showServiceHealthIssue: showServiceHealthIssue(reduxState, this.props),
-    showServiceType: showServiceType(reduxState, this.props)
+    showStatusAndVitals: showStatusAndVitals(reduxState),
+    showServiceHealthIssue: showServiceHealthIssue(reduxState),
+    showServiceType: showServiceType(reduxState)
   };
 };
 
@@ -108,8 +105,6 @@ ProfileSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   theme: PropTypes.object.isRequired,
-  patronType: PropTypes.string.isRequired,
-  serviceType: PropTypes.string.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
   store: PropTypes.object,
   showStatusAndVitals: PropTypes.bool.isRequired,

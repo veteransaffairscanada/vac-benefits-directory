@@ -69,7 +69,10 @@ describe("BB", () => {
       serviceHealthIssue: "",
       setSearchString: jest.fn(),
       selectedNeeds: {},
-      option: ""
+      option: "",
+      showServiceType: true,
+      showStatusAndVitals: true,
+      showServiceHealthIssue: true
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
