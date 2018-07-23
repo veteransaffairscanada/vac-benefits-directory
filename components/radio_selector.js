@@ -60,6 +60,7 @@ export class RadioSelector extends React.Component {
           this.props.selectedStatusAndVitals === "deceased"
         ) {
           this.props.setStatusAndVitals("");
+          this.props.setServiceHealthIssue("");
         }
         if (
           id === "service-person" &&
@@ -67,6 +68,7 @@ export class RadioSelector extends React.Component {
           this.props.selectedStatusAndVitals !== ""
         ) {
           this.props.setStatusAndVitals("");
+          this.props.setServiceHealthIssue("");
         }
         break;
       case "serviceType":
@@ -76,6 +78,7 @@ export class RadioSelector extends React.Component {
           this.props.selectedStatusAndVitals === "stillServing"
         ) {
           this.props.setStatusAndVitals("");
+          this.props.setServiceHealthIssue("");
         }
         if (
           id === "WSV (WWII or Korea)" &&
@@ -83,7 +86,15 @@ export class RadioSelector extends React.Component {
           this.props.selectedStatusAndVitals !== ""
         ) {
           this.props.setStatusAndVitals("");
+          this.props.setServiceHealthIssue("");
         }
+        if (
+          (id === "RCMP" || id === "CAF") &&
+          this.props.selectedStatusAndVitals === ""
+        ) {
+          this.props.setServiceHealthIssue("");
+        }
+
         break;
       case "statusAndVitals":
         this.props.setStatusAndVitals(id);
@@ -199,6 +210,7 @@ RadioSelector.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles)(RadioSelector)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(RadioSelector));
