@@ -298,17 +298,6 @@ export class BB extends Component {
                     </FormControl>
                   </Grid>
 
-                  <Grid item xs={8} className={classnames(classes.collapse)}>
-                    <Button
-                      id="CollapseBenefits"
-                      variant="flat"
-                      size="small"
-                      onClick={this.collapseAllBenefits}
-                      style={{ textTransform: "none" }}
-                    >
-                      {t("Close all")}
-                    </Button>
-                  </Grid>
                   <BenefitList
                     t={t}
                     filteredBenefits={filteredBenefits}
@@ -343,7 +332,7 @@ const mapStateToProps = (reduxState, props) => {
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
     filteredBenefits:
-      reduxState.option == "A"
+      reduxState.option === "A"
         ? getFilteredBenefits(reduxState, props)
         : getFilteredBenefitsB(reduxState, props),
     needs: reduxState.needs,
