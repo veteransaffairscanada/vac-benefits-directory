@@ -57,21 +57,6 @@ export class Favourites extends Component {
     sortByValue: "relevance"
   };
 
-  children = [];
-
-  collapseAllBenefits = () => {
-    this.children.forEach(c => {
-      if (c) {
-        c.setState({ open: false });
-        c.children.forEach(cc => {
-          if (cc) {
-            cc.setState({ open: false });
-          }
-        });
-      }
-    });
-  };
-
   filterBenefits = (benefits, favouriteBenefits) => {
     if (benefits.length === 0) {
       return benefits;
@@ -174,50 +159,29 @@ export class Favourites extends Component {
                 )}
               </Grid>
 
-              <Grid container spacing={24}>
-                <Grid item xs={3} className={classnames(classes.sortBy)}>
-                  <FormControl
-                    id="sortBySelector"
-                    className={classes.formControl}
-                  >
-                    <InputLabel>{t("B3.Sort By")}</InputLabel>
-                    <Select
-                      value={this.state.sortByValue}
-                      onChange={this.handleSortByChange}
-                      className={classnames(classes.sortByBox)}
-                    >
-                      <MenuItem value={"relevance"}>
-                        {t("B3.Popularity")}
-                      </MenuItem>
-                      <MenuItem value={"alphabetical"}>
-                        {t("B3.Alphabetical")}
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
+              <FormControl id="sortBySelector" className={classes.formControl}>
+                <InputLabel>{t("B3.Sort By")}</InputLabel>
+                <Select
+                  value={this.state.sortByValue}
+                  onChange={this.handleSortByChange}
+                  className={classnames(classes.sortByBox)}
+                >
+                  <MenuItem value={"relevance"}>{t("B3.Popularity")}</MenuItem>
+                  <MenuItem value={"alphabetical"}>
+                    {t("B3.Alphabetical")}
+                  </MenuItem>
+                </Select>
+              </FormControl>
 
-                <Grid item xs={9} className={classnames(classes.collapse)}>
-                  <Button
-                    id="CollapseBenefits"
-                    variant="flat"
-                    size="small"
-                    style={{ textTransform: "none" }}
-                    onClick={this.collapseAllBenefits}
-                  >
-                    {t("Close all")}
-                  </Button>
-                </Grid>
-                <BenefitList
-                  t={t}
-                  filteredBenefits={filteredBenefits}
-                  onRef={ref => this.children.push(ref)}
-                  sortByValue={this.state.sortByValue}
-                  showFavourites={true}
-                  searchString=""
-                  store={this.props.store}
-                  favouriteBenefits={this.props.favouriteBenefits}
-                />
-              </Grid>
+              <BenefitList
+                t={t}
+                filteredBenefits={filteredBenefits}
+                sortByValue={this.state.sortByValue}
+                showFavourites={true}
+                searchString=""
+                store={this.props.store}
+                favouriteBenefits={this.props.favouriteBenefits}
+              />
             </Grid>
           </Grid>
         </div>
