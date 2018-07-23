@@ -77,6 +77,7 @@ export const reducer = (state = initialState, action) => {
         selectedNeeds: action.data
       });
     case "SET_SERVICE_TYPE":
+      console.log("SET_SERVICE_TYPE");
       return Object.assign({}, state, {
         serviceType: action.data
       });

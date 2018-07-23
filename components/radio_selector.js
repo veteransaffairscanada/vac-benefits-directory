@@ -7,6 +7,11 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import {
+  showStatusAndVitals,
+  showServiceHealthIssue,
+  showServiceType
+} from "../selectors/show_filters";
 
 const theme = createMuiTheme({
   typography: { fontFamily: ["Merriweather", "serif"] },
@@ -28,13 +33,6 @@ const styles = theme => ({
 });
 
 export class RadioSelector extends React.Component {
-  setters = {
-    patronType: this.props.setPatronType,
-    serviceType: this.props.setServiceType,
-    statusAndVitals: this.props.setStatusAndVitals,
-    serviceHealthIssue: this.props.setServiceHealthIssue
-  };
-
   isDisabled = (filter_id, patronType, serviceType) => {
     if (serviceType === "WSV (WWII or Korea)" && filter_id === "stillServing") {
       return true;
@@ -50,24 +48,24 @@ export class RadioSelector extends React.Component {
     switch (criteria) {
       case "patronType":
         this.props.setPatronType(id);
-        if (id === "organization") {
-          this.props.setServiceType("");
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
-        }
-        if (
-          id === "service-person" &&
-          this.props.selectedStatusAndVitals === "deceased"
-        ) {
-          this.props.setStatusAndVitals("");
-        }
-        if (
-          id === "service-person" &&
-          this.props.selectedServiceType === "WSV (WWII or Korea)" &&
-          this.props.selectedStatusAndVitals !== ""
-        ) {
-          this.props.setStatusAndVitals("");
-        }
+        // if (id === "organization") {
+        //   this.props.setServiceType("");
+        //   this.props.setStatusAndVitals("");
+        //   this.props.setServiceHealthIssue("");
+        // }
+        // if (
+        //   id === "service-person" &&
+        //   this.props.selectedStatusAndVitals === "deceased"
+        // ) {
+        //   this.props.setStatusAndVitals("");
+        // }
+        // if (
+        //   id === "service-person" &&
+        //   this.props.selectedServiceType === "WSV (WWII or Korea)" &&
+        //   this.props.selectedStatusAndVitals !== ""
+        // ) {
+        //   this.props.setStatusAndVitals("");
+        // }
         break;
       case "serviceType":
         this.props.setServiceType(id);
@@ -99,6 +97,19 @@ export class RadioSelector extends React.Component {
   handleSelect = event => {
     this.setUserProfile(this.props.selectorType, event.target.value);
   };
+
+  componentDidUpdate() {
+    console.log("radio selector componentDidUpdate");
+    if (!this.props.showServiceType) {
+      this.props.setServiceType("");
+    }
+    if (!this.props.showStatusAndVitals) {
+      this.props.setStatusAndVitals("");
+    }
+    if (!this.props.showServiceHealthIssue) {
+      this.props.setServiceHealthIssue("");
+    }
+  }
 
   render() {
     const allFilterIds = this.props.options
@@ -177,7 +188,10 @@ const mapStateToProps = reduxState => {
     selectedServiceType: reduxState.serviceType,
     selectedStatusAndVitals: reduxState.statusAndVitals,
     selectedServiceHealthIssue: reduxState.serviceHealthIssue,
-    eligibilityPaths: reduxState.eligibilityPaths
+    eligibilityPaths: reduxState.eligibilityPaths,
+    showStatusAndVitals: showStatusAndVitals(reduxState),
+    showServiceHealthIssue: showServiceHealthIssue(reduxState),
+    showServiceType: showServiceType(reduxState)
   };
 };
 
@@ -196,9 +210,13 @@ RadioSelector.propTypes = {
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   options: PropTypes.array,
-  store: PropTypes.object
+  store: PropTypes.object,
+  showStatusAndVitals: PropTypes.bool.isRequired,
+  showServiceHealthIssue: PropTypes.bool.isRequired,
+  showServiceType: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles)(RadioSelector)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(RadioSelector));
