@@ -85,21 +85,6 @@ export class BB extends Component {
     sortByValue: "relevance"
   };
 
-  children = [];
-
-  collapseAllBenefits = () => {
-    this.children.forEach(c => {
-      if (c) {
-        c.setState({ open: false });
-        c.children.forEach(cc => {
-          if (cc) {
-            cc.setState({ open: false });
-          }
-        });
-      }
-    });
-  };
-
   handleSortByChange = event => {
     this.setState({ sortByValue: event.target.value });
   };
@@ -117,9 +102,9 @@ export class BB extends Component {
     switch (true) {
       case this.countSelection() === 0:
         return t("B3.All benefits to consider");
-      case x == 0:
+      case x === 0:
         return t("B3.No benefits");
-      case x == 1:
+      case x === 1:
         return t("B3.One benefit");
       default:
         return t("B3.x benefits to consider", { x: x });
@@ -301,7 +286,6 @@ export class BB extends Component {
                   <BenefitList
                     t={t}
                     filteredBenefits={filteredBenefits}
-                    onRef={ref => this.children.push(ref)}
                     sortByValue={this.state.sortByValue}
                     searchString={this.props.searchString}
                     showFavourites={true}

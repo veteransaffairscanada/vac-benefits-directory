@@ -99,7 +99,7 @@ export class BenefitList extends React.Component {
               familyBenefitIds={familyBenefitIds}
               t={this.props.t}
               key={benefit.id}
-              onRef={this.props.onRef}
+              onRef={() => {}}
               favouriteBenefits={this.props.favouriteBenefits}
               showFavourite={this.props.showFavourites}
               searchString={this.props.searchString}
@@ -115,7 +115,6 @@ export class BenefitList extends React.Component {
               familyBenefitIds={familyBenefitIds}
               t={this.props.t}
               key={benefit.id}
-              onRef={this.props.onRef}
               favouriteBenefits={this.props.favouriteBenefits}
               showFavourite={this.props.showFavourites}
               searchString={this.props.searchString}
@@ -143,7 +142,6 @@ BenefitList.propTypes = {
   eligibilityPaths: PropTypes.array.isRequired,
   benefits: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
-  onRef: PropTypes.func.isRequired,
   sortByValue: PropTypes.string.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   showFavourites: PropTypes.bool.isRequired,

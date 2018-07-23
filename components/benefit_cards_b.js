@@ -135,12 +135,7 @@ export class BenefitCardB extends Component {
   };
 
   componentDidMount() {
-    this.props.onRef(this);
     this.forceUpdate();
-  }
-
-  componentWillUnmount() {
-    this.props.onRef(undefined);
   }
 
   benefitTitle = benefit => {
@@ -374,7 +369,6 @@ export class BenefitCardB extends Component {
                             benefit={cb}
                             t={this.props.t}
                             key={cb.id}
-                            onRef={ref => this.children.push(ref)}
                             showFavourite={this.props.showFavourite}
                             store={this.props.store}
                           />
@@ -403,7 +397,6 @@ export class BenefitCardB extends Component {
                             benefit={cb}
                             t={this.props.t}
                             key={cb.id}
-                            onRef={ref => this.children.push(ref)}
                             showFavourite={this.props.showFavourite}
                             store={this.props.store}
                           />
@@ -443,7 +436,6 @@ BenefitCardB.propTypes = {
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  onRef: PropTypes.func.isRequired,
   showFavourite: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object
