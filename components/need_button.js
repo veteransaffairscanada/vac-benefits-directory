@@ -29,7 +29,7 @@ export class NeedButton extends Component {
       logEvent("FilterClick", "need", id);
       newSelectedNeeds[id] = id;
     }
-    if (window) {
+    if (window && this.props.pageWidth >= 600) {
       window.scrollTo(0, 0);
     }
     this.props.setSelectedNeeds(newSelectedNeeds);
@@ -78,9 +78,11 @@ NeedButton.propTypes = {
   t: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  pageWidth: PropTypes.number.isRequired,
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles, { withTheme: true })(NeedButton)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(NeedButton));
