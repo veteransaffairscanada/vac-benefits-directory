@@ -261,37 +261,33 @@ export class BB extends Component {
                   )}
                 </Grid>
 
-                <Grid container spacing={24}>
-                  <Grid item xs={4} className={classnames(classes.sortBy)}>
-                    <FormControl
-                      id="sortBySelector"
-                      className={classes.formControl}
-                    >
-                      <InputLabel>{t("B3.Sort By")}</InputLabel>
-                      <Select
-                        value={this.state.sortByValue}
-                        onChange={this.handleSortByChange}
-                        className={classnames(classes.sortByBox)}
-                      >
-                        <MenuItem value={"relevance"}>
-                          {t("B3.Popularity")}
-                        </MenuItem>
-                        <MenuItem value={"alphabetical"}>
-                          {t("B3.Alphabetical")}
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
+                <FormControl
+                  id="sortBySelector"
+                  className={classes.formControl}
+                >
+                  <InputLabel>{t("B3.Sort By")}</InputLabel>
+                  <Select
+                    value={this.state.sortByValue}
+                    onChange={this.handleSortByChange}
+                    className={classnames(classes.sortByBox)}
+                  >
+                    <MenuItem value={"relevance"}>
+                      {t("B3.Popularity")}
+                    </MenuItem>
+                    <MenuItem value={"alphabetical"}>
+                      {t("B3.Alphabetical")}
+                    </MenuItem>
+                  </Select>
+                </FormControl>
 
-                  <BenefitList
-                    t={t}
-                    filteredBenefits={filteredBenefits}
-                    sortByValue={this.state.sortByValue}
-                    searchString={this.props.searchString}
-                    showFavourites={true}
-                    store={this.props.store}
-                  />
-                </Grid>
+                <BenefitList
+                  t={t}
+                  filteredBenefits={filteredBenefits}
+                  sortByValue={this.state.sortByValue}
+                  searchString={this.props.searchString}
+                  showFavourites={true}
+                  store={this.props.store}
+                />
               </Grid>
             </Grid>
           </Grid>
