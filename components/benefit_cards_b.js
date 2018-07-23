@@ -188,6 +188,8 @@ export class BenefitCardB extends Component {
         key={"a" + i}
         className={this.props.classes.headerUrl}
         href={this.benefitUrl(b)}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {this.benefitTitle(b)}
       </a>
