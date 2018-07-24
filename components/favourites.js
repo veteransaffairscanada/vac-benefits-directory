@@ -6,13 +6,24 @@ import { withStyles } from "@material-ui/core/styles";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
+import ArrowBack from "@material-ui/icons/ArrowBack";
+import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
 
 const styles = theme => ({
+  backLink: {
+    fontSize: "20px",
+    fontWeight: "100",
+    marginBottom: "15px",
+    paddingLeft: "0px",
+    textDecoration: "none",
+    textTransform: "none"
+  },
   benefitsCount: {
-    fontSize: "24px"
+    fontSize: "36px"
   },
   buttonBarButton: {
+    color: "#3e57e2",
     fontSize: "20px",
     fontWeight: "100",
     paddingLeft: "0px",
@@ -23,6 +34,15 @@ const styles = theme => ({
     textAlign: "right",
     textDecoration: "underline",
     marginTop: "34px"
+  },
+  contactUsTitle: {
+    fontSize: "22px",
+    fontWeight: "bold",
+    margin: "20px 0"
+  },
+  emptyList: {
+    marginTop: "20px",
+    textAlign: "center"
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -40,7 +60,7 @@ const styles = theme => ({
     padding: "15px 0"
   },
   topMatter: {
-    marginBottom: "30px",
+    marginBottom: "25px",
     marginTop: "30px"
   }
 });
@@ -106,6 +126,17 @@ export class Favourites extends Component {
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: 12 }}>
         <Grid container spacing={24}>
           <Grid item xs={12} className={classes.topMatter}>
+            <Button
+              variant="flat"
+              size="large"
+              className={classes.backLink}
+              id="backButton"
+              href="javascript:history.back()"
+            >
+              <ArrowBack />
+              &nbsp; &nbsp;
+              {t("favourites.back_link")}
+            </Button>
             <Typography className={"BenefitsCounter " + classes.benefitsCount}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
             </Typography>
@@ -122,6 +153,15 @@ export class Favourites extends Component {
                 favouriteBenefits={this.props.favouriteBenefits}
               />
             </Grid>
+            {filteredBenefits.length == 0 ? (
+              <div className={classes.emptyList}>
+                <Bookmark style={{ fontSize: "70px" }} />
+                <br />
+                {t("favourites.help")}
+              </div>
+            ) : (
+              ""
+            )}
           </Grid>
           <Grid item md={4} xs={12}>
             <Button
@@ -131,10 +171,46 @@ export class Favourites extends Component {
               className={classes.buttonBarButton}
               id="printButton"
             >
-              <Print style={{ color: "#3e57e2", fontSize: "48px" }} />
+              <Print style={{ fontSize: "48px" }} />
               &nbsp;
               {t("Print")}
             </Button>
+            <Typography className={classes.contactUsTitle}>
+              {t("favourites.contact_us")}
+            </Typography>
+            <Typography>
+              <a href="/map">{t("favourites.visit_prompt")}</a>
+            </Typography>
+            <br />
+            <Typography>{t("favourites.print_instructions")}</Typography>
+            <br />
+            <hr />
+            <br />
+            <Typography>
+              <a href="tel:">{t("phone")}</a>
+            </Typography>
+            <br />
+            <Typography>{t("favourites.call_time")}</Typography>
+            <br />
+            <hr />
+            <br />
+            <Typography>
+              <a href="mailto:">{t("email")}</a>
+            </Typography>
+            <br />
+            <Typography>{t("favourites.email_disclaimer")}</Typography>
+            <br />
+            <Typography className={classes.contactUsTitle}>
+              {t("favourites.apply_prompt")}
+            </Typography>
+            <Typography>
+              <a href="" target="_blank">
+                {t("favourites.login_link")}
+              </a>
+              &nbsp;
+              {t("favourites.login_prompt")}
+            </Typography>
+            <br />
           </Grid>
         </Grid>
       </div>
