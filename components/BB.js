@@ -19,7 +19,7 @@ import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
 
-const styles = theme => ({
+const styles = () => ({
   benefitsCount: {
     fontSize: "24px"
   },
@@ -47,7 +47,6 @@ const styles = theme => ({
     width: "100%"
   },
   formControl: {
-    // margin: theme.spacing.unit,
     minWidth: 120
   },
   input: {
@@ -58,13 +57,8 @@ const styles = theme => ({
     width: "100%",
     maxWidth: "400px"
   },
-  // sortBy: {
-  //   textAlign: "left",
-  //   paddingLeft: "7px"
-  // },
   sortByBox: {
     backgroundColor: "white"
-    // paddingLeft: "7px"
   },
   subTitle: {
     fontSize: "20px",
