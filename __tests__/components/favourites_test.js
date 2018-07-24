@@ -67,10 +67,10 @@ describe("Favourites", () => {
   });
 
   it("displays only one benefit", async () => {
-    expect(mountedFavourites().find("BenefitCardB").length).toEqual(1);
+    expect(mountedFavourites().find("BenefitCard").length).toEqual(1);
     expect(
       mountedFavourites()
-        .find("BenefitCardB")
+        .find("BenefitCard")
         .first()
         .props().benefit.id
     ).toEqual("3");
@@ -85,7 +85,7 @@ describe("Favourites", () => {
   it("renders with 2 favourites", async () => {
     reduxData.favouriteBenefits = ["0", "3"];
     props.store = mockStore(reduxData);
-    expect(mountedFavourites().find("BenefitCardB").length).toEqual(2);
+    expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
 
   it("has a working filterBenefits function", async () => {

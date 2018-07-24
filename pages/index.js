@@ -5,7 +5,6 @@ import SearchComponent from "../components/search";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import styled from "react-emotion";
-import { connect } from "react-redux";
 
 const BlueBar = styled("div")`
   border-top: 10px solid #303f9f;
@@ -43,13 +42,9 @@ const Title = styled("div")`
 
 export class App extends Component {
   render() {
-    const { i18n, t, option } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t } = this.props;
     let urlGE = "A?section=A1&lng=" + t("current-language-code");
     let urlBD = "benefits-directory?lng=" + t("current-language-code");
-    if (option && option != "") {
-      urlGE += "&option=" + option;
-      urlBD += "&option=" + option;
-    }
     return (
       <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
         <BlueBar />
@@ -100,17 +95,10 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
-  return {
-    option: reduxState.option
-  };
-};
-
 App.propTypes = {
   i18n: PropTypes.object.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired,
-  option: PropTypes.string.isRequired
+  t: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(withI18next()(App));
+export default withI18next()(App);

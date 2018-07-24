@@ -120,6 +120,15 @@ export class GuidedExperience extends Component {
                   ) {
                     return "";
                   } else {
+                    let translation_key = "";
+                    if (k === "serviceHealthIssue") {
+                      translation_key = JSON.parse(selectedEligibility[k])
+                        ? "GE.has service related health issue"
+                        : "GE.no service related health issue";
+                    } else {
+                      translation_key = selectedEligibility[k];
+                    }
+
                     return (
                       <span key={i}>
                         <span className={classes.comma}>
@@ -133,7 +142,7 @@ export class GuidedExperience extends Component {
                             this.props.setSection(this.sectionMap[k])
                           }
                         >
-                          {t(selectedEligibility[k])}
+                          {t(translation_key)}
                         </a>
                       </span>
                     );

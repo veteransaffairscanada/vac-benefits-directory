@@ -15,13 +15,11 @@ const getServiceFilter = state => state.serviceType;
 const getStatusFilter = state => state.statusAndVitals;
 
 export const getFilteredBenefits = createSelector(
-  // note: needs to be [getXFilter, getYFilter, ...], (XFilter, YFilter, ...],
-  // not [getYFilter, getXFilter, ...], (XFilter, YFilter, ...]
   [
-    getHealthIssueFilter,
     getPatronFilter,
     getServiceFilter,
     getStatusFilter,
+    getHealthIssueFilter,
     getNeedsFilter,
     getBenefits,
     getNeeds,
@@ -32,10 +30,10 @@ export const getFilteredBenefits = createSelector(
     getFrIdx
   ],
   (
-    healthIssueFilter,
     patronFilter,
     serviceFilter,
     statusFilter,
+    healthIssueFilter,
     selectedNeeds,
     benefits,
     needs,
@@ -64,9 +62,9 @@ export const getFilteredBenefits = createSelector(
         "serviceHealthIssue"
       ].forEach(criteria => {
         if (
-          selected[criteria] != "" &&
+          selected[criteria] !== "" &&
           path[criteria] !== "na" &&
-          selected[criteria] != path[criteria]
+          selected[criteria] !== path[criteria]
         ) {
           matches = false;
         }
@@ -78,12 +76,6 @@ export const getFilteredBenefits = createSelector(
       return benefits;
     }
 
-    // make it easy to invert the id
-    let benefitForId = {};
-    benefits.forEach(b => {
-      benefitForId[b.id] = b;
-    });
-
     // find benefits that match
     let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
@@ -91,7 +83,6 @@ export const getFilteredBenefits = createSelector(
         eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
     });
-    const eligibleBenefits = eligibleBenefitIds.map(id => benefitForId[id]);
 
     let benefitIdsForSelectedNeeds = [];
     if (Object.keys(selectedNeeds).length > 0) {
@@ -107,54 +98,22 @@ export const getFilteredBenefits = createSelector(
     let matchingBenefitIds = eligibleBenefitIds.filter(
       id => benefitIdsForSelectedNeeds.indexOf(id) > -1
     );
-    const matchingBenefits = matchingBenefitIds.map(id => benefitForId[id]);
-
-    /* show:
-         - matching benefits
-         - eligible benefits with a matching child
-         ( maybe: - non-eligible benefits with a matching child that isn't already covered)
-     */
-
-    const eligibleBenefitsWithMatchingChild = eligibleBenefits.filter(
-      b =>
-        b.childBenefits
-          ? b.childBenefits.filter(id => matchingBenefitIds.indexOf(id) > -1)
-              .length > 0
-          : false
-    );
-
-    let benefitsToShow = matchingBenefits.concat(
-      eligibleBenefitsWithMatchingChild
-    );
-    benefitsToShow = benefitsToShow.filter(
-      (b, n) => benefitsToShow.indexOf(b) === n
-    ); // dedup
-
-    // if a benefit is already shown as a child, only show it (as a parent card) if it's available independently
-    let childrenIDsShown = [];
-    benefitsToShow.forEach(b => {
-      childrenIDsShown = childrenIDsShown.concat(b.childBenefits);
-    });
-    benefitsToShow = benefitsToShow.filter(
-      b =>
-        b.availableIndependently === "Independent" ||
-        childrenIDsShown.indexOf(b.id) < 0
+    let matchingBenefits = benefits.filter(b =>
+      matchingBenefitIds.includes(b.id)
     );
 
     // If there is a searchString the run another filter
     if (searchString.trim() !== "") {
       let results = [];
-      if (currentLanguage == "en") {
+      if (currentLanguage === "en") {
         results = enIdx.search(searchString + "*");
       } else {
         results = frIdx.search(searchString + "*");
       }
       let resultIds = results.map(r => r.ref);
-      benefitsToShow = benefitsToShow.filter(benefit =>
-        resultIds.includes(benefit.id)
-      );
+      matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));
     }
 
-    return benefitsToShow;
+    return matchingBenefits;
   }
 );

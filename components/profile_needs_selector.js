@@ -77,7 +77,7 @@ export class ProfileNeedsSelector extends Component {
               <ProfileSelector t={t} store={store} />
             </Grid>
             <Grid item sm={12}>
-              <NeedsSelector t={t} store={store} />
+              <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
             </Grid>
             {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
             this.props.patronType !== "" ? (
@@ -146,6 +146,7 @@ ProfileNeedsSelector.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps, mapDispatchToProps1)(
-  withStyles(styles)(ProfileNeedsSelector)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps1
+)(withStyles(styles)(ProfileNeedsSelector));

@@ -4,7 +4,6 @@ import configureStore from "redux-mock-store";
 
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
-import examplesFixture from "../fixtures/examples";
 import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -42,7 +41,6 @@ describe("BenefitCard", () => {
     };
     mockStore = configureStore();
     reduxData = {
-      examples: examplesFixture,
       needs: needsFixture,
       selectedNeeds: {},
       benefits: benefitsFixture,
@@ -74,55 +72,95 @@ describe("BenefitCard", () => {
     ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
   });
 
-  it("renders if there are examples", () => {
-    props.t = key => key;
-    props.benefit = benefitsFixture[1];
-    expect(mountedBenefitCard().html()).toContain("examples:");
-  });
-
-  it("renders if there are no examples", () => {
-    props.t = key => key;
-    props.benefit = benefitsFixture[0];
-    expect(mountedBenefitCard().html()).not.toContain("examples:");
-  });
-
-  it("has a correctly configured button", () => {
+  it("has a correctly configured external link button", () => {
     expect(
       mountedBenefitCard()
         .find("Button")
+        .at(1)
         .prop("target")
     ).toEqual("_blank");
     expect(
       mountedBenefitCard()
         .find("Button")
+        .at(1)
         .prop("href")
     ).toEqual(benefitsFixture[1].benefitPageEn);
     expect(
       mountedBenefitCard()
         .find("Button")
+        .at(1)
         .text()
     ).toEqual("en");
-  });
-
-  it("has embedded Veteran child benefit card", () => {
-    props.t = key => key;
-    props.veteranBenefitIds = ["1"];
-    expect(mountedBenefitCard().text()).not.toContain("Family child benefits");
-    expect(mountedBenefitCard().text()).toContain("Veteran child benefits");
-    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameFr);
-  });
-
-  it("has embedded family child benefit card", () => {
-    props.t = key => key;
-    props.familyBenefitIds = ["1"];
-    expect(mountedBenefitCard().text()).not.toContain("Veteran child benefits");
-    expect(mountedBenefitCard().text()).toContain("Family child benefits");
-    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameFr);
   });
 
   it("hides the Favourite Button if showFavourite is false", () => {
     props.showFavourite = false;
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
+  });
+
+  it("shows a child benefit title if the benefit has a child", () => {
+    expect(
+      mountedBenefitCard()
+        .find("Paper")
+        .first()
+        .text()
+    ).toContain("en");
+  });
+
+  describe(".benefitTitle", () => {
+    it("returns the title of a card in english", () => {
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .benefitTitle(benefitsFixture[0])
+      ).toEqual(benefitsFixture[0].vacNameEn);
+    });
+
+    it("returns the title of a card in french", () => {
+      props.t = () => "fr";
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .benefitTitle(benefitsFixture[0])
+      ).toEqual(benefitsFixture[0].vacNameFr);
+    });
+  });
+
+  it("no header is present if there are no parent benefits", () => {
+    expect(
+      mountedBenefitCard()
+        .find("Paper")
+        .first()
+        .text()
+    ).not.toContain(benefitsFixture[1].vacNameEn);
+  });
+
+  it("header is present if benefit has parents and requires gateway", () => {
+    props.benefit = benefitsFixture[1];
+    expect(
+      mountedBenefitCard()
+        .find("Paper")
+        .first()
+        .text()
+    ).toContain(benefitsFixture[0].vacNameEn);
+  });
+
+  describe(".childBenefitNames", () => {
+    it("returns the title of a benefit if there is one benefit", () => {
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .childBenefitNames(benefitsFixture[0], benefitsFixture[0], false)
+      ).toContain("en");
+    });
+
+    it("returns the count of benefits if there is more than one", () => {
+      expect(
+        mountedBenefitCard()
+          .instance()
+          .childBenefitNames(benefitsFixture[0], [benefitsFixture], false)
+      ).toContain("en");
+    });
   });
 
   describe("when language is French", () => {
@@ -140,13 +178,24 @@ describe("BenefitCard", () => {
       expect(
         mountedBenefitCard()
           .find("Button")
+          .at(1)
           .prop("href")
       ).toEqual(benefitsFixture[1].benefitPageFr);
       expect(
         mountedBenefitCard()
           .find("Button")
+          .at(1)
           .text()
       ).toEqual("fr");
+    });
+
+    it("shows a child benefit title if the benefit has a child", () => {
+      expect(
+        mountedBenefitCard()
+          .find("Paper")
+          .first()
+          .text()
+      ).toContain("fr");
     });
   });
 
@@ -158,7 +207,7 @@ describe("BenefitCard", () => {
   it("changes open state when somebody clicks on it", () => {
     expect(mountedBenefitCard().state().open).toEqual(false);
     mountedBenefitCard()
-      .find("div > div > div")
+      .find("ExpansionPanelSummary")
       .at(0)
       .simulate("click");
     expect(mountedBenefitCard().state().open).toEqual(true);
@@ -169,6 +218,7 @@ describe("BenefitCard", () => {
     analytics.logEvent = jest.fn();
     mountedBenefitCard()
       .find("Button")
+      .at(1)
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",

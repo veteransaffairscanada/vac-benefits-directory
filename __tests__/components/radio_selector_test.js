@@ -133,4 +133,11 @@ describe("RadioSelector", () => {
     let instance = shallow(<RadioSelector {...props} />).instance();
     expect(instance.setUserProfile("foo", "bar")).toEqual(true);
   });
+
+  it("setUserProfile clears serviceHealthIssue if RCMP is selected and a statusAndVitals is not set (b/c the serviceHealthIssue Q will be hidden)", () => {
+    props.selectedStatusAndVitals = "";
+    let instance = shallow(<RadioSelector {...props} />).instance();
+    instance.setUserProfile("serviceType", "RCMP");
+    expect(props.setServiceHealthIssue).toBeCalledWith("");
+  });
 });

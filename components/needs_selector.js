@@ -20,7 +20,7 @@ const styles = () => ({
 
 export class NeedsSelector extends Component {
   render() {
-    const { needs, classes, t, store } = this.props;
+    const { needs, classes, t, store, pageWidth } = this.props;
     return (
       <div>
         <Typography variant="subheading" className={classnames(classes.title)}>
@@ -39,7 +39,13 @@ export class NeedsSelector extends Component {
             className={classes.needsButtons}
           >
             {needs.map(need => (
-              <NeedButton key={need.id} need={need} t={t} store={store} />
+              <NeedButton
+                key={need.id}
+                need={need}
+                t={t}
+                pageWidth={pageWidth}
+                store={store}
+              />
             ))}
           </Grid>
         </Grid>
@@ -57,6 +63,7 @@ const mapStateToProps = reduxState => {
 NeedsSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   needs: PropTypes.array.isRequired,
+  pageWidth: PropTypes.number.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object
 };

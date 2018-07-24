@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import BenefitCard from "../components/benefit_cards";
-import BenefitCardB from "../components/benefit_cards_b";
+import BenefitCard from "./benefit_cards";
 import { connect } from "react-redux";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -87,42 +86,22 @@ export class BenefitList extends React.Component {
         <CircularProgress size={100} />
       </Div>
     ) : (
-      sortedBenefits.map(
-        (benefit, i) =>
-          this.props.option == "A" ? (
-            <BenefitCard
-              id={"bc" + i}
-              benefit={benefit}
-              examples={this.props.examples}
-              allBenefits={this.props.benefits}
-              veteranBenefitIds={veteranBenefitIds}
-              familyBenefitIds={familyBenefitIds}
-              t={this.props.t}
-              key={benefit.id}
-              onRef={this.props.onRef}
-              favouriteBenefits={this.props.favouriteBenefits}
-              showFavourite={this.props.showFavourites}
-              searchString={this.props.searchString}
-              store={this.props.store}
-            />
-          ) : (
-            <BenefitCardB
-              id={"bc" + i}
-              benefit={benefit}
-              examples={this.props.examples}
-              allBenefits={this.props.benefits}
-              veteranBenefitIds={veteranBenefitIds}
-              familyBenefitIds={familyBenefitIds}
-              t={this.props.t}
-              key={benefit.id}
-              onRef={this.props.onRef}
-              favouriteBenefits={this.props.favouriteBenefits}
-              showFavourite={this.props.showFavourites}
-              searchString={this.props.searchString}
-              store={this.props.store}
-            />
-          )
-      )
+      sortedBenefits.map((benefit, i) => (
+        <BenefitCard
+          id={"bc" + i}
+          benefit={benefit}
+          examples={this.props.examples}
+          allBenefits={this.props.benefits}
+          veteranBenefitIds={veteranBenefitIds}
+          familyBenefitIds={familyBenefitIds}
+          t={this.props.t}
+          key={benefit.id}
+          favouriteBenefits={this.props.favouriteBenefits}
+          showFavourite={this.props.showFavourites}
+          searchString={this.props.searchString}
+          store={this.props.store}
+        />
+      ))
     );
   }
 }
@@ -132,8 +111,7 @@ const mapStateToProps = reduxState => {
     benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples,
-    option: reduxState.option
+    examples: reduxState.examples
   };
 };
 
@@ -143,13 +121,11 @@ BenefitList.propTypes = {
   eligibilityPaths: PropTypes.array.isRequired,
   benefits: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
-  onRef: PropTypes.func.isRequired,
   sortByValue: PropTypes.string.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   showFavourites: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
-  store: PropTypes.object,
-  option: PropTypes.string.isRequired
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(BenefitList);

@@ -29,7 +29,10 @@ describe("ProfileNeedsSelector", () => {
       setStatusAndVitals: jest.fn(),
       setServiceHealthIssue: jest.fn(),
       setSelectedNeeds: jest.fn(),
-      eligibilityPaths: eligibilityPathsFixture
+      eligibilityPaths: eligibilityPathsFixture,
+      showServiceType: true,
+      showStatusAndVitals: true,
+      showServiceHealthIssue: true
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
