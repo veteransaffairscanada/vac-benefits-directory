@@ -19,6 +19,8 @@ import { withStyles } from "@material-ui/core//styles";
 const Container = styled("div")`
   max-width: 1200px;
   margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
 `;
 
 const alpha = css`
