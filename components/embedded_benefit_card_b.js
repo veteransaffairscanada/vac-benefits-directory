@@ -54,14 +54,6 @@ export class EmbeddedBenefitCard extends Component {
     });
   };
 
-  componentDidMount() {
-    this.props.onRef(this);
-  }
-
-  componentWillUnmount() {
-    this.props.onRef(undefined);
-  }
-
   render() {
     const { t, classes, benefit } = this.props;
     const language = t("current-language-code");
@@ -105,7 +97,6 @@ EmbeddedBenefitCard.propTypes = {
   benefit: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  onRef: PropTypes.func.isRequired,
   showFavourite: PropTypes.bool.isRequired,
   store: PropTypes.object
 };

@@ -85,21 +85,6 @@ export class BB extends Component {
     sortByValue: "relevance"
   };
 
-  children = [];
-
-  collapseAllBenefits = () => {
-    this.children.forEach(c => {
-      if (c) {
-        c.setState({ open: false });
-        c.children.forEach(cc => {
-          if (cc) {
-            cc.setState({ open: false });
-          }
-        });
-      }
-    });
-  };
-
   handleSortByChange = event => {
     this.setState({ sortByValue: event.target.value });
   };
@@ -117,9 +102,9 @@ export class BB extends Component {
     switch (true) {
       case this.countSelection() === 0:
         return t("B3.All benefits to consider");
-      case x == 0:
+      case x === 0:
         return t("B3.No benefits");
-      case x == 1:
+      case x === 1:
         return t("B3.One benefit");
       default:
         return t("B3.x benefits to consider", { x: x });
@@ -275,44 +260,29 @@ export class BB extends Component {
                     ""
                   )}
                 </Grid>
-
                 <Grid container spacing={24}>
-                  <Grid item xs={4} className={classnames(classes.sortBy)}>
-                    <FormControl
-                      id="sortBySelector"
-                      className={classes.formControl}
+                  <FormControl
+                    id="sortBySelector"
+                    className={classes.formControl}
+                  >
+                    <InputLabel>{t("B3.Sort By")}</InputLabel>
+                    <Select
+                      value={this.state.sortByValue}
+                      onChange={this.handleSortByChange}
+                      className={classnames(classes.sortByBox)}
                     >
-                      <InputLabel>{t("B3.Sort By")}</InputLabel>
-                      <Select
-                        value={this.state.sortByValue}
-                        onChange={this.handleSortByChange}
-                        className={classnames(classes.sortByBox)}
-                      >
-                        <MenuItem value={"relevance"}>
-                          {t("B3.Popularity")}
-                        </MenuItem>
-                        <MenuItem value={"alphabetical"}>
-                          {t("B3.Alphabetical")}
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
+                      <MenuItem value={"relevance"}>
+                        {t("B3.Popularity")}
+                      </MenuItem>
+                      <MenuItem value={"alphabetical"}>
+                        {t("B3.Alphabetical")}
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
 
-                  <Grid item xs={8} className={classnames(classes.collapse)}>
-                    <Button
-                      id="CollapseBenefits"
-                      variant="flat"
-                      size="small"
-                      onClick={this.collapseAllBenefits}
-                      style={{ textTransform: "none" }}
-                    >
-                      {t("Close all")}
-                    </Button>
-                  </Grid>
                   <BenefitList
                     t={t}
                     filteredBenefits={filteredBenefits}
-                    onRef={ref => this.children.push(ref)}
                     sortByValue={this.state.sortByValue}
                     searchString={this.props.searchString}
                     showFavourites={true}
@@ -343,7 +313,7 @@ const mapStateToProps = (reduxState, props) => {
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
     filteredBenefits:
-      reduxState.option == "A"
+      reduxState.option === "A"
         ? getFilteredBenefits(reduxState, props)
         : getFilteredBenefitsB(reduxState, props),
     needs: reduxState.needs,
