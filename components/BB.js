@@ -28,6 +28,7 @@ const styles = theme => ({
     fontSize: "20px",
     fontWeight: "100",
     marginRight: "20px",
+    marginTop: "20px",
     paddingLeft: "0px",
     paddingRight: "0px",
     textDecoration: "none",
@@ -43,7 +44,9 @@ const styles = theme => ({
   },
   container: {
     maxWidth: "1200px",
-    margin: "0 auto"
+    margin: "0 auto",
+    // backgroundColor: "green",
+    width: "100%"
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -54,7 +57,8 @@ const styles = theme => ({
     marginTop: "5px"
   },
   searchField: {
-    marginTop: "-15px"
+    width: "100%",
+    maxWidth: "400px"
   },
   sortBy: {
     textAlign: "left",
@@ -65,8 +69,7 @@ const styles = theme => ({
   },
   subTitle: {
     fontSize: "20px",
-    fontWeight: "100",
-    paddingBottom: "40px"
+    fontWeight: "100"
   },
   title: {
     fontSize: "36px",
@@ -74,9 +77,9 @@ const styles = theme => ({
   },
   topMatter: {
     backgroundColor: "#fff",
+    // backgroundColor: "blue",
     borderBottom: "solid 1px lightgrey",
-    marginBottom: "30px",
-    paddingLeft: "30px !important"
+    marginBottom: "30px"
   }
 });
 
@@ -186,11 +189,15 @@ export class BB extends Component {
     );
 
     return (
-      <div id={this.props.id} ref={el => (this.componentRef = el)}>
-        <div style={{ padding: 12 }}>
-          <Grid container spacing={24}>
-            <Grid item xs={12} className={classes.topMatter}>
-              <div className={classes.container}>
+      <div
+        id={this.props.id}
+        style={{ padding: "16px" }}
+        ref={el => (this.componentRef = el)}
+      >
+        <Grid container spacing={32}>
+          <Grid item xs={12} className={classes.topMatter}>
+            <Grid container spacing={32} className={classes.container}>
+              <Grid item xs={12}>
                 <Typography className={classes.title}>
                   {t("B3.title")}
                 </Typography>
@@ -198,61 +205,59 @@ export class BB extends Component {
                   {t("B3.subtitle1")} <br />
                   {t("B3.subtitle2")}
                 </Typography>
-                <Grid container spacing={24}>
-                  <Grid item xs={12} md={9}>
-                    <Button
-                      id="Favourites Page"
-                      variant="flat"
-                      size="large"
-                      href={this.getFavouritesURL()}
-                      className={classes.buttonBarButton}
-                    >
-                      <Bookmark style={{ fontSize: "20px" }} />
-                      &nbsp;
-                      {t("B3.favouritesButtonText") +
-                        " (" +
-                        this.props.favouriteBenefits.length +
-                        ")"}
-                    </Button>
-                    <Button
-                      variant="flat"
-                      size="large"
-                      target="dan"
-                      href={printUrl}
-                      className={classes.buttonBarButton}
-                      id="printButton"
-                    >
-                      <Print style={{ fontSize: "20px" }} />
-                      &nbsp;
-                      {t("Print")}
-                    </Button>
-                  </Grid>
-                  <Grid item xs={12} md={3}>
-                    <TextField
-                      id="bbSearchField"
-                      label={t("search")}
-                      placeholder=""
-                      value={this.props.searchString}
-                      onChange={this.handleSearchChange}
-                      className={classes.searchField}
-                      InputProps={{
-                        classes: {
-                          input: classes.input
-                        },
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <SearchIcon
-                              className={this.props.classes.inputIcon}
-                            />
-                          </InputAdornment>
-                        )
-                      }}
-                    />
-                  </Grid>
-                </Grid>
-              </div>
+              </Grid>
+              <Grid item xs={12} md={9}>
+                <Button
+                  id="Favourites Page"
+                  variant="flat"
+                  size="large"
+                  href={this.getFavouritesURL()}
+                  className={classes.buttonBarButton}
+                >
+                  <Bookmark style={{ fontSize: "20px" }} />
+                  &nbsp;
+                  {t("B3.favouritesButtonText") +
+                    " (" +
+                    this.props.favouriteBenefits.length +
+                    ")"}
+                </Button>
+                <Button
+                  variant="flat"
+                  size="large"
+                  target="dan"
+                  href={printUrl}
+                  className={classes.buttonBarButton}
+                  id="printButton"
+                >
+                  <Print style={{ fontSize: "20px" }} />
+                  &nbsp;
+                  {t("Print")}
+                </Button>
+              </Grid>
+              <Grid item xs={12} md={3}>
+                <TextField
+                  id="bbSearchField"
+                  label={t("search")}
+                  placeholder=""
+                  value={this.props.searchString}
+                  onChange={this.handleSearchChange}
+                  className={classes.searchField}
+                  InputProps={{
+                    classes: {
+                      input: classes.input
+                    },
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon className={this.props.classes.inputIcon} />
+                      </InputAdornment>
+                    )
+                  }}
+                />
+              </Grid>
             </Grid>
-            <Grid container spacing={24} className={classes.container}>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container spacing={32} className={classes.container}>
               <Grid item lg={4} md={4} sm={5} xs={12}>
                 <ProfileNeedsSelector
                   t={t}
@@ -322,7 +327,7 @@ export class BB extends Component {
               </Grid>
             </Grid>
           </Grid>
-        </div>
+        </Grid>
       </div>
     );
   }
