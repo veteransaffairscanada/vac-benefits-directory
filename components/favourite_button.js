@@ -38,7 +38,11 @@ export class FavouriteButton extends Component {
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
-        {this.props.t("B3.favouritesButtonBText")}
+        {this.props.t(
+          this.props.pageWidth >= 650
+            ? "B3.favouritesButtonBText"
+            : "B3.favouritesButtonBTextMobile"
+        )}
       </Button>
     );
   }
@@ -57,7 +61,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    favouriteBenefits: reduxState.favouriteBenefits
+    favouriteBenefits: reduxState.favouriteBenefits,
+    pageWidth: reduxState.pageWidth
   };
 };
 
@@ -67,7 +72,8 @@ FavouriteButton.propTypes = {
   benefit: PropTypes.object.isRequired,
   toggleOpenState: PropTypes.func.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  pageWidth: PropTypes.number.isRequired
 };
 
 export default connect(

@@ -16,7 +16,8 @@ describe("FavouriteButton", () => {
       favouriteBenefits: ["0"],
       saveFavourites: jest.fn(),
       benefit: benefitsFixture[0],
-      toggleOpenState: jest.fn()
+      toggleOpenState: jest.fn(),
+      pageWidth: 1000
     };
   });
 

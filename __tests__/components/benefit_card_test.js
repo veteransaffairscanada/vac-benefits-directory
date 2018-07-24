@@ -44,7 +44,8 @@ describe("BenefitCard", () => {
       needs: needsFixture,
       selectedNeeds: {},
       benefits: benefitsFixture,
-      favouriteBenefits: []
+      favouriteBenefits: [],
+      pageWidth: 1000
     };
     props.store = mockStore(reduxData);
 
