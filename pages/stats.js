@@ -5,7 +5,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-
+import octokit from "@octokit/rest";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 
@@ -34,6 +34,10 @@ export class Stats extends Component {
   }
 
   componentDidMount() {
+    // octokit.pullRequests.getAll({owner:"cds-snc", repo:"vac-benefits-directory", state:"all"}).then(result=>{
+    //   console.log(result)
+    // })
+
     Promise.resolve(this.getData()).then(data => {
       this.setState({
         pullRequests: data
@@ -90,6 +94,7 @@ export class Stats extends Component {
         showRefreshCache={false}
       >
         <div className={classes.root}>
+          <h1> {t("stats.title")} </h1>
           <Table className={classes.table}>
             <colgroup>
               <col style={{ width: "10%" }} />
