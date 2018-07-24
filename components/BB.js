@@ -45,7 +45,6 @@ const styles = theme => ({
   container: {
     maxWidth: "1200px",
     margin: "0 auto",
-    // backgroundColor: "green",
     width: "100%"
   },
   formControl: {
@@ -77,7 +76,6 @@ const styles = theme => ({
   },
   topMatter: {
     backgroundColor: "#fff",
-    // backgroundColor: "blue",
     borderBottom: "solid 1px lightgrey",
     marginBottom: "30px"
   }
