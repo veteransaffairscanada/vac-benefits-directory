@@ -11,8 +11,7 @@ const initialState = {
   selectedNeeds: {},
   serviceType: "",
   statusAndVitals: "",
-  serviceHealthIssue: "",
-  option: ""
+  serviceHealthIssue: ""
 };
 airtableConstants.tableNames.forEach(tableName => {
   initialState[tableName] = [];
@@ -87,10 +86,6 @@ export const reducer = (state = initialState, action) => {
     case "SET_HEALTH_ISSUE":
       return Object.assign({}, state, {
         serviceHealthIssue: action.data
-      });
-    case "SET_OPTION":
-      return Object.assign({}, state, {
-        option: action.data
       });
     default:
       return state;

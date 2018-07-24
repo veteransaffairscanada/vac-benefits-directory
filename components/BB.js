@@ -15,7 +15,6 @@ import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
-import { getFilteredBenefitsB } from "../selectors/benefits_B";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
@@ -126,7 +125,6 @@ export class BB extends Component {
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
-    href += "&option=" + this.props.option;
     return href;
   };
 
@@ -312,10 +310,7 @@ const mapStateToProps = (reduxState, props) => {
     favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
-    filteredBenefits:
-      reduxState.option === "A"
-        ? getFilteredBenefits(reduxState, props)
-        : getFilteredBenefitsB(reduxState, props),
+    filteredBenefits: getFilteredBenefits(reduxState, props),
     needs: reduxState.needs,
     searchString: reduxState.searchString,
     selectedEligibility: {
@@ -323,8 +318,7 @@ const mapStateToProps = (reduxState, props) => {
       serviceType: reduxState.serviceType,
       statusAndVitals: reduxState.statusAndVitals
     },
-    selectedNeeds: reduxState.selectedNeeds,
-    option: reduxState.option
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
@@ -343,8 +337,7 @@ BB.propTypes = {
   t: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  store: PropTypes.object,
-  option: PropTypes.string.isRequired
+  store: PropTypes.object
 };
 
 export default connect(
