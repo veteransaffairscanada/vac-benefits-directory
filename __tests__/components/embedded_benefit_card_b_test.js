@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { EmbeddedBenefitCard } from "../../components/embedded_benefit_card_b";
+import { EmbeddedBenefitCard } from "../../components/embedded_benefit_card";
 import benefitsFixture from "../fixtures/benefits";
 
 const { axe, toHaveNoViolations } = require("jest-axe");

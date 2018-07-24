@@ -67,15 +67,7 @@ describe("BenefitList", () => {
 
   it("displays the correct number of benefits cards", () => {
     expect(
-      mount(<BenefitList {...props} {...reduxData} />).find("BenefitCardB")
-        .length
-    ).toEqual(3);
-  });
-
-  it("displays BenefitCardB if url flag is set", () => {
-    props.option = "B";
-    expect(
-      mount(<BenefitList {...props} {...reduxData} />).find("BenefitCardB")
+      mount(<BenefitList {...props} {...reduxData} />).find("BenefitCard")
         .length
     ).toEqual(3);
   });

@@ -2,26 +2,26 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import configureStore from "redux-mock-store";
 
-import { BenefitCardB } from "../../components/benefit_cards_b";
+import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
-describe("BenefitCardB", () => {
+describe("BenefitCard", () => {
   let props;
   let mockStore, reduxData;
   let _mountedBenefitCard, _shallowBenefitCard;
   const mountedBenefitCard = () => {
     if (!_mountedBenefitCard) {
-      _mountedBenefitCard = mount(<BenefitCardB {...props} {...reduxData} />);
+      _mountedBenefitCard = mount(<BenefitCard {...props} {...reduxData} />);
     }
     return _mountedBenefitCard;
   };
   const shallowBenefitCard = () => {
     if (!_shallowBenefitCard) {
-      _shallowBenefitCard = shallow(<BenefitCardB {...props} {...reduxData} />);
+      _shallowBenefitCard = shallow(<BenefitCard {...props} {...reduxData} />);
     }
     return _shallowBenefitCard;
   };
