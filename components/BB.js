@@ -235,11 +235,7 @@ export class BB extends Component {
           <Grid item xs={12}>
             <Grid container spacing={32} className={classes.container}>
               <Grid item lg={4} md={4} sm={5} xs={12}>
-                <ProfileNeedsSelector
-                  t={t}
-                  pageWidth={this.props.pageWidth}
-                  store={this.props.store}
-                />
+                <ProfileNeedsSelector t={t} store={this.props.store} />
               </Grid>
               <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid container spacing={16}>
@@ -338,7 +334,6 @@ BB.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   setSearchString: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   store: PropTypes.object
 };

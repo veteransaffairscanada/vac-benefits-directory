@@ -10,9 +10,6 @@ import Router from "next/router";
 export class BenefitsDirectory extends Component {
   constructor() {
     super();
-    this.state = {
-      width: 1000
-    };
     this.updateWindowWidth = this.updateWindowWidth.bind(this);
   }
 
@@ -31,7 +28,7 @@ export class BenefitsDirectory extends Component {
   }
 
   updateWindowWidth() {
-    this.setState({ width: window.innerWidth });
+    this.props.setPageWidth(window.innerWidth);
   }
 
   setURL = () => {
@@ -68,7 +65,6 @@ export class BenefitsDirectory extends Component {
         <BB
           id="BB"
           t={t}
-          pageWidth={this.state.width}
           store={this.props.store}
           setSection={this.setSection}
         />
@@ -76,6 +72,14 @@ export class BenefitsDirectory extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setPageWidth: pageWidth => {
+      dispatch({ type: "SET_PAGEWIDTH", data: pageWidth });
+    }
+  };
+};
 
 const mapStateToProps = reduxState => {
   return {
@@ -97,7 +101,11 @@ BenefitsDirectory.propTypes = {
   searchString: PropTypes.string.isRequired,
   serviceType: PropTypes.string.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
-  selectedNeeds: PropTypes.object.isRequired
+  selectedNeeds: PropTypes.object.isRequired,
+  setPageWidth: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(withI18next()(BenefitsDirectory));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withI18next()(BenefitsDirectory));

@@ -56,7 +56,8 @@ describe("Favourites", () => {
       favouriteBenefits: ["3"],
       selectedNeeds: {},
       eligibilityPaths: eligibilityPathsFixture,
-      option: ""
+      option: "",
+      pageWidth: 1000
     };
     props.store = mockStore(reduxData);
   });
