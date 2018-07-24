@@ -187,7 +187,7 @@ export class Favourites extends Component {
             <hr />
             <br />
             <Typography>
-              <a href="tel:">{t("phone")}</a>
+              <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
             </Typography>
             <br />
             <Typography>{t("favourites.call_time")}</Typography>
@@ -195,7 +195,7 @@ export class Favourites extends Component {
             <hr />
             <br />
             <Typography>
-              <a href="mailto:">{t("email")}</a>
+              <a href={"mailto:" + t("contact.email")}>{t("contact.email")}</a>
             </Typography>
             <br />
             <Typography>{t("favourites.email_disclaimer")}</Typography>
@@ -204,7 +204,11 @@ export class Favourites extends Component {
               {t("favourites.apply_prompt")}
             </Typography>
             <Typography>
-              <a href="" target="_blank">
+              <a
+                href={t("contact.my_vac_link")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {t("favourites.login_link")}
               </a>
               &nbsp;
