@@ -12,6 +12,7 @@ describe("FavouriteButton", () => {
 
   beforeEach(() => {
     props = {
+      t: key => key,
       favouriteBenefits: ["0"],
       saveFavourites: jest.fn(),
       benefit: benefitsFixture[0],
