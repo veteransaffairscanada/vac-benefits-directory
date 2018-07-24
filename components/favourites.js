@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import { Grid, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import { withStyles } from "@material-ui/core/styles";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
@@ -45,8 +40,8 @@ const styles = theme => ({
     padding: "15px 0"
   },
   topMatter: {
-    borderBottom: "solid 1px lightgrey",
-    marginBottom: "30px"
+    marginBottom: "30px",
+    marginTop: "30px"
   }
 });
 
@@ -62,21 +57,6 @@ export class Favourites extends Component {
       return benefits;
     }
     return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
-  };
-
-  handleSortByChange = event => {
-    this.setState({ sortByValue: event.target.value });
-  };
-
-  countString = (x, t) => {
-    switch (true) {
-      case x === 0:
-        return t("B3.No benefits");
-      case x === 1:
-        return t("B3.One benefit");
-      default:
-        return t("B3.x benefits to consider", { x: x });
-    }
   };
 
   getPrintUrl = (
@@ -123,74 +103,40 @@ export class Favourites extends Component {
     );
 
     return (
-      <div>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: 12 }}>
-          <Grid container spacing={24}>
-            <Grid item xs={12} className={classes.topMatter}>
-              <Typography className={classes.title}>
-                {t("B3.favouritesButtonText")}
-              </Typography>
-              <Button
-                variant="flat"
-                size="large"
-                target="dan"
-                href={printUrl}
-                className={classes.buttonBarButton}
-                id="printButton"
-              >
-                <Print style={{ fontSize: "20px" }} />
-                &nbsp;
-                {t("Print")}
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid item xs={12}>
-                <Typography
-                  className={"BenefitsCounter " + classes.benefitsCount}
-                >
-                  {this.countString(filteredBenefits.length, t)}
-                </Typography>
-                {filteredBenefits.length > 0 ? (
-                  <Typography className={classes.checkEligibility}>
-                    {t("B3.check eligibility")}
-                  </Typography>
-                ) : (
-                  ""
-                )}
-              </Grid>
-              <Grid container spacing={24}>
-                <FormControl
-                  id="sortBySelector"
-                  className={classes.formControl}
-                >
-                  <InputLabel>{t("B3.Sort By")}</InputLabel>
-                  <Select
-                    value={this.state.sortByValue}
-                    onChange={this.handleSortByChange}
-                    className={classnames(classes.sortByBox)}
-                  >
-                    <MenuItem value={"relevance"}>
-                      {t("B3.Popularity")}
-                    </MenuItem>
-                    <MenuItem value={"alphabetical"}>
-                      {t("B3.Alphabetical")}
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-
-                <BenefitList
-                  t={t}
-                  filteredBenefits={filteredBenefits}
-                  sortByValue={this.state.sortByValue}
-                  showFavourites={true}
-                  searchString=""
-                  store={this.props.store}
-                  favouriteBenefits={this.props.favouriteBenefits}
-                />
-              </Grid>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: 12 }}>
+        <Grid container spacing={24}>
+          <Grid item xs={12} className={classes.topMatter}>
+            <Typography className={"BenefitsCounter " + classes.benefitsCount}>
+              {t("favourites.saved_benefits", { x: filteredBenefits.length })}
+            </Typography>
+          </Grid>
+          <Grid item md={8} xs={12}>
+            <Grid container spacing={24}>
+              <BenefitList
+                t={t}
+                filteredBenefits={filteredBenefits}
+                sortByValue={this.state.sortByValue}
+                showFavourites={true}
+                searchString=""
+                store={this.props.store}
+                favouriteBenefits={this.props.favouriteBenefits}
+              />
             </Grid>
           </Grid>
-        </div>
+          <Grid item md={4} xs={12}>
+            <Button
+              variant="flat"
+              size="large"
+              href={printUrl}
+              className={classes.buttonBarButton}
+              id="printButton"
+            >
+              <Print style={{ color: "#3e57e2", fontSize: "48px" }} />
+              &nbsp;
+              {t("Print")}
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     );
   }
