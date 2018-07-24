@@ -200,6 +200,7 @@ export class Favourites extends Component {
             <br />
             <Typography>{t("favourites.email_disclaimer")}</Typography>
             <br />
+            <hr />
             <Typography className={classes.contactUsTitle}>
               {t("favourites.apply_prompt")}
             </Typography>
