@@ -60,9 +60,6 @@ export class A extends Component {
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
-    if (this.props.option && this.props.option != "") {
-      href += "&option=" + this.props.option;
-    }
     Router.push(href);
   };
 
@@ -140,9 +137,6 @@ export class A extends Component {
         benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
       }
     });
-    if (this.props.option && this.props.option != "") {
-      benefitsDirectoryUrl += "&option=" + this.props.option;
-    }
 
     switch (true) {
       case section === "A1":
@@ -316,8 +310,7 @@ const mapStateToProps = reduxState => {
     serviceType: reduxState.serviceType,
     statusAndVitals: reduxState.statusAndVitals,
     serviceHealthIssue: reduxState.serviceHealthIssue,
-    selectedNeeds: reduxState.selectedNeeds,
-    option: reduxState.option
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
@@ -340,8 +333,7 @@ A.propTypes = {
   setStatusAndVitals: PropTypes.func.isRequired,
   setServiceHealthIssue: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
-  store: PropTypes.object,
-  option: PropTypes.string.isRequired
+  store: PropTypes.object
 };
 
 export default connect(

@@ -125,7 +125,6 @@ export class BB extends Component {
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
-    href += "&option=" + this.props.option;
     return href;
   };
 
@@ -319,8 +318,7 @@ const mapStateToProps = (reduxState, props) => {
       serviceType: reduxState.serviceType,
       statusAndVitals: reduxState.statusAndVitals
     },
-    selectedNeeds: reduxState.selectedNeeds,
-    option: reduxState.option
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
@@ -339,8 +337,7 @@ BB.propTypes = {
   t: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  store: PropTypes.object,
-  option: PropTypes.string.isRequired
+  store: PropTypes.object
 };
 
 export default connect(

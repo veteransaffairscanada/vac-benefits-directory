@@ -124,19 +124,6 @@ export default withRedux(initStore)(
         });
       }
 
-      if (ctx.query.option && ctx.query.option !== currentReduxState.option) {
-        ctx.store.dispatch({
-          type: "SET_OPTION",
-          data: ctx.query.option
-        });
-      }
-      if (!ctx.query.option && currentReduxState.option !== "") {
-        ctx.store.dispatch({
-          type: "SET_OPTION",
-          data: ""
-        });
-      }
-
       const pageProps = Component.getInitialProps
         ? await Component.getInitialProps(ctx)
         : {};
