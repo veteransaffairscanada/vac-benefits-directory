@@ -2,7 +2,6 @@ import React from "react";
 import { mount } from "enzyme";
 import { EmbeddedBenefitCard } from "../../components/embedded_benefit_card";
 import benefitsFixture from "../fixtures/benefits";
-import needsFixture from "../fixtures/needs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -23,9 +22,7 @@ describe("EmbeddedBenefitCard", () => {
       benefit: benefitsFixture[0],
       classes: {},
       onRef: foo => foo,
-      showFavourite: false,
-      needs: needsFixture,
-      selectedNeeds: {}
+      showFavourite: false
     };
     _mountedEmbeddedBenefitCard = undefined;
   });
@@ -35,39 +32,26 @@ describe("EmbeddedBenefitCard", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("contains a ExpansionPanel", () => {
-    expect(mountedEmbeddedBenefitCard().find("ExpansionPanel").length).toEqual(
-      1
-    );
-  });
-
   it("has a blank target", () => {
     expect(
       mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelDetails")
         .find("Button")
         .prop("target")
     ).toEqual("_blank");
   });
 
   it("has expected English text and href", () => {
+    expect(mountedEmbeddedBenefitCard().text()).toContain(
+      benefitsFixture[0].vacNameEn
+    );
     expect(
       mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelSummary")
-        .text()
-    ).toEqual(benefitsFixture[0].vacNameEn);
-    expect(
-      mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelDetails")
         .find("Button")
         .prop("href")
     ).toEqual(benefitsFixture[0].benefitPageEn);
-    expect(
-      mountedEmbeddedBenefitCard()
-        .find("ExpansionPanelDetails")
-        .first()
-        .text()
-    ).toEqual(benefitsFixture[0].oneLineDescriptionEn + "en");
+    expect(mountedEmbeddedBenefitCard().text()).toContain(
+      benefitsFixture[0].oneLineDescriptionEn
+    );
   });
 
   describe("when language is French", () => {
@@ -76,57 +60,29 @@ describe("EmbeddedBenefitCard", () => {
     });
 
     it("has expected French text and href", () => {
+      expect(mountedEmbeddedBenefitCard().text()).toContain(
+        benefitsFixture[0].vacNameFr
+      );
       expect(
         mountedEmbeddedBenefitCard()
-          .find("ExpansionPanelSummary")
-          .text()
-      ).toEqual(benefitsFixture[0].vacNameFr);
-      expect(
-        mountedEmbeddedBenefitCard()
-          .find("ExpansionPanelDetails")
           .find("Button")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
-      expect(
-        mountedEmbeddedBenefitCard()
-          .find("ExpansionPanelDetails")
-          .first()
-          .text()
-      ).toEqual(benefitsFixture[0].oneLineDescriptionFr + "fr");
+      expect(mountedEmbeddedBenefitCard().text()).toContain(
+        benefitsFixture[0].oneLineDescriptionFr
+      );
     });
   });
-  it("changes open state when somebody clicks on it", () => {
-    expect(mountedEmbeddedBenefitCard().state().open).toEqual(false);
-    mountedEmbeddedBenefitCard()
-      .find("div > div")
-      .at(0)
-      .simulate("click");
-    expect(mountedEmbeddedBenefitCard().state().open).toEqual(true);
-  });
+
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
     mountedEmbeddedBenefitCard()
-      .find("ExpansionPanelDetails")
       .find("Button")
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
       benefitsFixture[1].benefitPageEn
     );
-  });
-
-  it("has a needs tag", () => {
-    props.selectedNeeds["0"] = "0";
-    expect(mountedEmbeddedBenefitCard().text()).toContain("Need 0");
-  });
-
-  it("is expanded if the benefit meets the need", () => {
-    props.selectedNeeds["0"] = "0";
-    expect(mountedEmbeddedBenefitCard().instance().state.open).toEqual(true);
-  });
-
-  it("is not expanded if the benefit doesn't meet the need", () => {
-    expect(mountedEmbeddedBenefitCard().instance().state.open).toEqual(false);
   });
 });

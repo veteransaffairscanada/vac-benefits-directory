@@ -1,23 +1,29 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import { Grid, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import { withStyles } from "@material-ui/core/styles";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
+import ArrowBack from "@material-ui/icons/ArrowBack";
+import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
 
 const styles = theme => ({
+  backLink: {
+    fontSize: "20px",
+    fontWeight: "100",
+    marginBottom: "15px",
+    paddingLeft: "0px",
+    textDecoration: "none",
+    textTransform: "none"
+  },
   benefitsCount: {
-    fontSize: "24px"
+    fontSize: "36px"
   },
   buttonBarButton: {
+    color: "#3e57e2",
     fontSize: "20px",
     fontWeight: "100",
     paddingLeft: "0px",
@@ -28,6 +34,15 @@ const styles = theme => ({
     textAlign: "right",
     textDecoration: "underline",
     marginTop: "34px"
+  },
+  contactUsTitle: {
+    fontSize: "22px",
+    fontWeight: "bold",
+    margin: "20px 0"
+  },
+  emptyList: {
+    marginTop: "20px",
+    textAlign: "center"
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -45,8 +60,8 @@ const styles = theme => ({
     padding: "15px 0"
   },
   topMatter: {
-    borderBottom: "solid 1px lightgrey",
-    marginBottom: "30px"
+    marginBottom: "25px",
+    marginTop: "30px"
   }
 });
 
@@ -57,41 +72,11 @@ export class Favourites extends Component {
     sortByValue: "relevance"
   };
 
-  children = [];
-
-  collapseAllBenefits = () => {
-    this.children.forEach(c => {
-      if (c) {
-        c.setState({ open: false });
-        c.children.forEach(cc => {
-          if (cc) {
-            cc.setState({ open: false });
-          }
-        });
-      }
-    });
-  };
-
   filterBenefits = (benefits, favouriteBenefits) => {
     if (benefits.length === 0) {
       return benefits;
     }
     return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
-  };
-
-  handleSortByChange = event => {
-    this.setState({ sortByValue: event.target.value });
-  };
-
-  countString = (x, t) => {
-    switch (true) {
-      case x === 0:
-        return t("B3.No benefits");
-      case x === 1:
-        return t("B3.One benefit");
-      default:
-        return t("B3.x benefits to consider", { x: x });
-    }
   };
 
   getPrintUrl = (
@@ -138,100 +123,112 @@ export class Favourites extends Component {
     );
 
     return (
-      <div>
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            paddingLeft: "16px",
-            paddingRight: "16px"
-          }}
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          paddingLeft: "16px",
+          paddingRight: "16px"
+        }}
+      >
+        <Grid
+          container
+          spacing={24}
+          style={{ paddingLeft: "16px", paddingRight: "16px" }}
         >
-          <Grid
-            container
-            spacing={0}
-            style={{ paddingLeft: "16px", paddingRight: "16px" }}
-          >
-            <Grid item xs={12} className={classes.topMatter}>
-              <Typography className={classes.title}>
-                {t("B3.favouritesButtonText")}
-              </Typography>
-              <Button
-                variant="flat"
-                size="large"
-                target="dan"
-                href={printUrl}
-                className={classes.buttonBarButton}
-                id="printButton"
-              >
-                <Print style={{ fontSize: "20px" }} />
-                &nbsp;
-                {t("Print")}
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid item xs={12}>
-                <Typography
-                  className={"BenefitsCounter " + classes.benefitsCount}
-                >
-                  {this.countString(filteredBenefits.length, t)}
-                </Typography>
-                {filteredBenefits.length > 0 ? (
-                  <Typography className={classes.checkEligibility}>
-                    {t("B3.check eligibility")}
-                  </Typography>
-                ) : (
-                  ""
-                )}
-              </Grid>
-
-              <Grid container spacing={24}>
-                <Grid item xs={3} className={classnames(classes.sortBy)}>
-                  <FormControl
-                    id="sortBySelector"
-                    className={classes.formControl}
-                  >
-                    <InputLabel>{t("B3.Sort By")}</InputLabel>
-                    <Select
-                      value={this.state.sortByValue}
-                      onChange={this.handleSortByChange}
-                      className={classnames(classes.sortByBox)}
-                    >
-                      <MenuItem value={"relevance"}>
-                        {t("B3.Popularity")}
-                      </MenuItem>
-                      <MenuItem value={"alphabetical"}>
-                        {t("B3.Alphabetical")}
-                      </MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-
-                <Grid item xs={9} className={classnames(classes.collapse)}>
-                  <Button
-                    id="CollapseBenefits"
-                    variant="flat"
-                    size="small"
-                    style={{ textTransform: "none" }}
-                    onClick={this.collapseAllBenefits}
-                  >
-                    {t("Close all")}
-                  </Button>
-                </Grid>
-                <BenefitList
-                  t={t}
-                  filteredBenefits={filteredBenefits}
-                  onRef={ref => this.children.push(ref)}
-                  sortByValue={this.state.sortByValue}
-                  showFavourites={true}
-                  searchString=""
-                  store={this.props.store}
-                  favouriteBenefits={this.props.favouriteBenefits}
-                />
-              </Grid>
-            </Grid>
+          <Grid item xs={12} className={classes.topMatter}>
+            <Button
+              variant="flat"
+              size="large"
+              className={classes.backLink}
+              id="backButton"
+              href="javascript:history.back()"
+            >
+              <ArrowBack />
+              &nbsp; &nbsp;
+              {t("favourites.back_link")}
+            </Button>
+            <Typography className={"BenefitsCounter " + classes.benefitsCount}>
+              {t("favourites.saved_benefits", { x: filteredBenefits.length })}
+            </Typography>
           </Grid>
-        </div>
+          <Grid item md={8} xs={12}>
+            <Grid container spacing={24}>
+              <BenefitList
+                t={t}
+                filteredBenefits={filteredBenefits}
+                sortByValue={this.state.sortByValue}
+                showFavourites={true}
+                searchString=""
+                store={this.props.store}
+                favouriteBenefits={this.props.favouriteBenefits}
+              />
+            </Grid>
+            {filteredBenefits.length == 0 ? (
+              <div className={classes.emptyList}>
+                <Bookmark style={{ fontSize: "70px" }} />
+                <br />
+                {t("favourites.help")}
+              </div>
+            ) : (
+              ""
+            )}
+          </Grid>
+          <Grid item md={4} xs={12}>
+            <Button
+              variant="flat"
+              size="large"
+              href={printUrl}
+              className={classes.buttonBarButton}
+              id="printButton"
+            >
+              <Print style={{ fontSize: "48px" }} />
+              &nbsp;
+              {t("Print")}
+            </Button>
+            <Typography className={classes.contactUsTitle}>
+              {t("favourites.contact_us")}
+            </Typography>
+            <Typography>
+              <a href="/map">{t("favourites.visit_prompt")}</a>
+            </Typography>
+            <br />
+            <Typography>{t("favourites.print_instructions")}</Typography>
+            <br />
+            <hr />
+            <br />
+            <Typography>
+              <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
+            </Typography>
+            <br />
+            <Typography>{t("favourites.call_time")}</Typography>
+            <br />
+            <hr />
+            <br />
+            <Typography>
+              <a href={"mailto:" + t("contact.email")}>{t("contact.email")}</a>
+            </Typography>
+            <br />
+            <Typography>{t("favourites.email_disclaimer")}</Typography>
+            <br />
+            <hr />
+            <Typography className={classes.contactUsTitle}>
+              {t("favourites.apply_prompt")}
+            </Typography>
+            <Typography>
+              <a
+                href={t("contact.my_vac_link")}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("favourites.login_link")}
+              </a>
+              &nbsp;
+              {t("favourites.login_prompt")}
+            </Typography>
+            <br />
+          </Grid>
+        </Grid>
       </div>
     );
   }

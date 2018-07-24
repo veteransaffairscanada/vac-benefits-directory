@@ -15,7 +15,6 @@ import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
-import { getFilteredBenefitsB } from "../selectors/benefits_B";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
@@ -48,7 +47,7 @@ const styles = theme => ({
     width: "100%"
   },
   formControl: {
-    margin: theme.spacing.unit,
+    // margin: theme.spacing.unit,
     minWidth: 120
   },
   input: {
@@ -59,12 +58,13 @@ const styles = theme => ({
     width: "100%",
     maxWidth: "400px"
   },
-  sortBy: {
-    textAlign: "left",
-    marginLeft: "-7px"
-  },
+  // sortBy: {
+  //   textAlign: "left",
+  //   paddingLeft: "7px"
+  // },
   sortByBox: {
     backgroundColor: "white"
+    // paddingLeft: "7px"
   },
   subTitle: {
     fontSize: "20px",
@@ -86,21 +86,6 @@ export class BB extends Component {
     sortByValue: "relevance"
   };
 
-  children = [];
-
-  collapseAllBenefits = () => {
-    this.children.forEach(c => {
-      if (c) {
-        c.setState({ open: false });
-        c.children.forEach(cc => {
-          if (cc) {
-            cc.setState({ open: false });
-          }
-        });
-      }
-    });
-  };
-
   handleSortByChange = event => {
     this.setState({ sortByValue: event.target.value });
   };
@@ -118,9 +103,9 @@ export class BB extends Component {
     switch (true) {
       case this.countSelection() === 0:
         return t("B3.All benefits to consider");
-      case x == 0:
+      case x === 0:
         return t("B3.No benefits");
-      case x == 1:
+      case x === 1:
         return t("B3.One benefit");
       default:
         return t("B3.x benefits to consider", { x: x });
@@ -142,7 +127,6 @@ export class BB extends Component {
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
-    href += "&option=" + this.props.option;
     return href;
   };
 
@@ -264,23 +248,22 @@ export class BB extends Component {
                 />
               </Grid>
               <Grid item lg={8} md={8} sm={7} xs={12}>
-                <Grid item xs={12}>
-                  <Typography
-                    className={"BenefitsCounter " + classes.benefitsCount}
-                  >
-                    {this.countString(filteredBenefits.length, t)}
-                  </Typography>
-                  {filteredBenefits.length > 0 ? (
-                    <Typography className={classes.checkEligibility}>
-                      {t("B3.check eligibility")}
+                <Grid container spacing={16}>
+                  <Grid item xs={12}>
+                    <Typography
+                      className={"BenefitsCounter " + classes.benefitsCount}
+                    >
+                      {this.countString(filteredBenefits.length, t)}
                     </Typography>
-                  ) : (
-                    ""
-                  )}
-                </Grid>
-
-                <Grid container spacing={24}>
-                  <Grid item xs={4} className={classnames(classes.sortBy)}>
+                    {filteredBenefits.length > 0 ? (
+                      <Typography className={classes.checkEligibility}>
+                        {t("B3.check eligibility")}
+                      </Typography>
+                    ) : (
+                      ""
+                    )}
+                  </Grid>
+                  <Grid item xs={12}>
                     <FormControl
                       id="sortBySelector"
                       className={classes.formControl}
@@ -300,27 +283,18 @@ export class BB extends Component {
                       </Select>
                     </FormControl>
                   </Grid>
-
-                  <Grid item xs={8} className={classnames(classes.collapse)}>
-                    <Button
-                      id="CollapseBenefits"
-                      variant="flat"
-                      size="small"
-                      onClick={this.collapseAllBenefits}
-                      style={{ textTransform: "none" }}
-                    >
-                      {t("Close all")}
-                    </Button>
+                  <Grid item xs={12}>
+                    <Grid container spacing={24}>
+                      <BenefitList
+                        t={t}
+                        filteredBenefits={filteredBenefits}
+                        sortByValue={this.state.sortByValue}
+                        searchString={this.props.searchString}
+                        showFavourites={true}
+                        store={this.props.store}
+                      />
+                    </Grid>
                   </Grid>
-                  <BenefitList
-                    t={t}
-                    filteredBenefits={filteredBenefits}
-                    onRef={ref => this.children.push(ref)}
-                    sortByValue={this.state.sortByValue}
-                    searchString={this.props.searchString}
-                    showFavourites={true}
-                    store={this.props.store}
-                  />
                 </Grid>
               </Grid>
             </Grid>
@@ -345,10 +319,7 @@ const mapStateToProps = (reduxState, props) => {
     favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
-    filteredBenefits:
-      reduxState.option == "A"
-        ? getFilteredBenefits(reduxState, props)
-        : getFilteredBenefitsB(reduxState, props),
+    filteredBenefits: getFilteredBenefits(reduxState, props),
     needs: reduxState.needs,
     searchString: reduxState.searchString,
     selectedEligibility: {
@@ -356,8 +327,7 @@ const mapStateToProps = (reduxState, props) => {
       serviceType: reduxState.serviceType,
       statusAndVitals: reduxState.statusAndVitals
     },
-    selectedNeeds: reduxState.selectedNeeds,
-    option: reduxState.option
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
@@ -376,8 +346,7 @@ BB.propTypes = {
   t: PropTypes.func.isRequired,
   pageWidth: PropTypes.number.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  store: PropTypes.object,
-  option: PropTypes.string.isRequired
+  store: PropTypes.object
 };
 
 export default connect(
