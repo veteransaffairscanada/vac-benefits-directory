@@ -43,7 +43,8 @@ describe("BenefitsDirectory", () => {
       t: key => {
         return key === "current-language-code" ? "en" : key;
       },
-      url: { query: {} }
+      url: { query: {} },
+      setPageWidth: jest.fn()
     };
     _mountedBenefitsDirectory = undefined;
     mockStore = configureStore();
@@ -98,7 +99,8 @@ describe("BenefitsDirectory", () => {
       patronType: "family",
       statusAndVitals: "",
       serviceHealthIssue: "",
-      favouriteBenefits: [benefitsFixture[0].id]
+      favouriteBenefits: [benefitsFixture[0].id],
+      pageWidth: 1000
     };
     props.store = mockStore(reduxData);
   });
