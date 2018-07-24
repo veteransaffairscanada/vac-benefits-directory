@@ -240,7 +240,7 @@ export class BenefitCard extends Component {
       <Grid item xs={12}>
         <div className={classes.root}>
           {parentBenefits.length > 0 &&
-          benefit.availableIndependently == "Requires Gateway Benefit" ? (
+          benefit.availableIndependently === "Requires Gateway Benefit" ? (
             <Paper className={classes.cardTop}>
               <ErrorOutlineIcon className={classes.parentIcon} />
               <span className={classes.headerDesc}>

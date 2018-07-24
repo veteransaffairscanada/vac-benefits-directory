@@ -128,7 +128,8 @@ const mapDispatchToProps1 = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     selectedNeeds: reduxState.selectedNeeds,
-    patronType: reduxState.patronType
+    patronType: reduxState.patronType,
+    pageWidth: reduxState.pageWidth
   };
 };
 
