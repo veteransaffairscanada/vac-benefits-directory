@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import lunr from "lunr";
 
 import Button from "@material-ui/core/Button";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -13,6 +14,8 @@ import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
+
+import Router from "next/router";
 
 const styles = theme => ({
   container: {
@@ -47,34 +50,76 @@ const styles = theme => ({
 });
 
 export class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.enIdx = lunr.Index.load(JSON.parse(this.props.enIdx));
+    this.frIdx = lunr.Index.load(JSON.parse(this.props.frIdx));
+  }
+
   state = {
     value: "",
     suggestions: []
   };
 
+  doSearch = () => {
+    let href =
+      "/benefits-directory?lng=" +
+      this.props.t("current-language-code") +
+      "&searchString=" +
+      this.state.value;
+    Router.push(href);
+  };
+
   getSuggestions = value => {
-    const inputValue = value
-      .trim()
-      .toLowerCase()
-      .replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const inputLength = inputValue.length;
-    let titles;
-
-    if (this.props.t("current-language-code") == "en") {
-      titles = this.props.benefits.map(benefit => benefit["vacNameEn"]);
-    } else {
-      titles = this.props.benefits.map(benefit => benefit["vacNameFr"]);
+    let results = [];
+    if (value.trim() === "") {
+      return results;
     }
-
-    const regex = new RegExp(inputValue, "i");
-
-    return inputLength === 0 ? [] : titles.filter(title => regex.test(title));
+    value = value.toLowerCase();
+    if (this.props.t("current-language-code") === "en") {
+      results = this.enIdx.query(q => {
+        value.split(" ").forEach(term => {
+          q.term(term, { usePipeline: true, boost: 100 });
+          q.term(term, {
+            usePipeline: false,
+            boost: 10,
+            wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+          });
+          q.term(term, { usePipeline: false, editDistance: 1 });
+        });
+      });
+    } else {
+      results = this.frIdx.query(q => {
+        value.split(" ").forEach(term => {
+          q.term(term, { usePipeline: true, boost: 100 });
+          q.term(term, {
+            usePipeline: false,
+            boost: 10,
+            wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+          });
+          q.term(term, { usePipeline: false, editDistance: 1 });
+        });
+      });
+    }
+    let resultIds = results.map(r => r.ref);
+    let matchingBenefits = this.props.benefits.filter(b =>
+      resultIds.includes(b.id)
+    );
+    return this.props.t("current-language-code") === "en"
+      ? matchingBenefits.map(b => b.vacNameEn)
+      : matchingBenefits.map(b => b.vacNameFr);
   };
 
   getSuggestionValue = suggestion => suggestion;
 
   onChange = (event, { newValue }) => {
     this.setState({ value: newValue });
+  };
+
+  onKeyPress = e => {
+    if (e.key === "Enter") {
+      this.doSearch();
+    }
   };
 
   onSuggestionsFetchRequested = ({ value }) => {
@@ -99,6 +144,7 @@ export class Search extends Component {
             className={this.props.classes.input}
             fullWidth
             label={this.props.t("search")}
+            onKeyPress={this.onKeyPress}
             InputProps={{
               inputRef: ref,
               classes: {
@@ -199,15 +245,19 @@ export class Search extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    benefits: reduxState.benefits
+    benefits: reduxState.benefits,
+    enIdx: reduxState.enIdx,
+    frIdx: reduxState.frIdx
   };
 };
 
 Search.propTypes = {
   benefits: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
+  enIdx: PropTypes.string.isRequired,
   i18n: PropTypes.object.isRequired,
   id: PropTypes.string,
+  frIdx: PropTypes.string.isRequired,
   store: PropTypes.object,
   t: PropTypes.func.isRequired
 };
