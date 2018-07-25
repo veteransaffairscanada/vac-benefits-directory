@@ -104,6 +104,7 @@ export const getFilteredBenefits = createSelector(
 
     // If there is a searchString the run another filter
     if (searchString.trim() !== "") {
+      searchString = searchString.toLowerCase();
       let results = [];
       if (currentLanguage === "en") {
         results = enIdx.query(q => {

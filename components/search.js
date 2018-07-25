@@ -75,6 +75,7 @@ export class Search extends Component {
     if (value.trim() === "") {
       return results;
     }
+    value = value.toLowerCase();
     if (this.props.t("current-language-code") === "en") {
       results = this.enIdx.query(q => {
         value.split(" ").forEach(term => {
