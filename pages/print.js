@@ -4,6 +4,7 @@ import { Grid, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import { withStyles } from "@material-ui/core/styles";
+import { WordMark } from "@cdssnc/gcui";
 
 const styles = () => ({
   root: {
@@ -12,7 +13,7 @@ const styles = () => ({
   title: {
     fontSize: "22px",
     fontWeight: "bold",
-    margin: "20px 0"
+    marginBottom: "10px"
   },
   bold: {
     fontWeight: "bold"
@@ -89,6 +90,17 @@ export class Print extends Component {
     return (
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <img
+              src={
+                t("current-language-code") == "en"
+                  ? "../static/vac-sig-eng-2018.svg"
+                  : "../static/vac-sig-fra-2018.svg"
+              }
+              alt="VAC Logo"
+              style={{ width: "400px" }}
+            />
+          </Grid>
           <Grid item xs={6}>
             <div className={classes.title}>{t("favourites.contact_us")}</div>
             <div className={classes.bold}>{t("contact.phone")}</div>
@@ -172,6 +184,9 @@ export class Print extends Component {
                 </div>
               );
             })}
+          </Grid>
+          <Grid item xs={12} style={{ textAlign: "right" }}>
+            <WordMark width="6em" flag="#000" />
           </Grid>
         </Grid>
       </div>
