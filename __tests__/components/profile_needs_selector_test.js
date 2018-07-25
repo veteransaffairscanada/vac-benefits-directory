@@ -53,36 +53,6 @@ describe("ProfileNeedsSelector", () => {
     ).toEqual(0);
   });
 
-  it("has a clear button if patronType is populated", () => {
-    reduxData.patronType = "organization";
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
-        .find("#ClearFilters")
-        .first().length
-    ).toEqual(1);
-  });
-
-  it("has no clear button if selectedNeeds is empty", () => {
-    reduxData.selectedNeeds = {};
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
-        .find("#ClearFilters")
-        .first().length
-    ).toEqual(0);
-  });
-
-  it("has a clear button if selectedNeeds is populated", () => {
-    reduxData.selectedNeeds = { foo: "bar" };
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
-        .find("#ClearFilters")
-        .first().length
-    ).toEqual(1);
-  });
-
   it("is expanded if pageWidth > 600px", () => {
     expect(
       mount(<ProfileNeedsSelector {...props} {...reduxData} />)
@@ -98,17 +68,5 @@ describe("ProfileNeedsSelector", () => {
         .find("ExpansionPanel")
         .prop("expanded")
     ).toEqual(false);
-  });
-
-  it("has a correct clearFilters function", () => {
-    let instance = shallow(
-      <ProfileNeedsSelector {...props} {...reduxData} />
-    ).instance();
-    instance.clearFilters();
-    expect(reduxData.setPatronType).toBeCalledWith("");
-    expect(reduxData.setServiceType).toBeCalledWith("");
-    expect(reduxData.setStatusAndVitals).toBeCalledWith("");
-    expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
-    expect(reduxData.setSelectedNeeds).toBeCalledWith({});
   });
 });

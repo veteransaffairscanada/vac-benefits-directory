@@ -32,19 +32,26 @@ export class ProfileSelector extends Component {
     this.props.setSelectedNeeds({});
   };
 
-  render() {
-    let filterSelected;
-    if (
-      this.props.selectedPatronType !== "" ||
-      this.props.selectedServiceType !== "" ||
-      this.props.selectedStatusAndVitals !== "" ||
-      this.props.selectedServiceHealthIssue != ""
-    ) {
-      filterSelected = 1;
-    } else {
-      filterSelected = 0;
+  countSelected = () => {
+    let selectedProfileFilters = 0;
+    if (this.props.selectedPatronType !== "") {
+      selectedProfileFilters++;
     }
+    if (this.props.selectedServiceType !== "") {
+      selectedProfileFilters++;
+    }
+    if (this.props.selectedStatusAndVitals !== "") {
+      selectedProfileFilters++;
+    }
+    if (this.props.selectedServiceHealthIssue !== "") {
+      selectedProfileFilters++;
+    }
+    return (
+      selectedProfileFilters + Object.values(this.props.selectedNeeds).length
+    );
+  };
 
+  render() {
     const {
       classes,
       t,
@@ -54,10 +61,6 @@ export class ProfileSelector extends Component {
     } = this.props;
     return (
       <div>
-        <Typography
-          variant="subheading"
-          className={classnames(classes.title)}
-        />
         {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
         this.props.selectedPatronType !== "" ? (
           <Grid item sm={12} className={classnames(classes.gridItemButton)}>
@@ -71,11 +74,7 @@ export class ProfileSelector extends Component {
                 this.clearFilters();
               }}
             >
-              {t("reset filters")}{" "}
-              {"(" +
-                (filterSelected +
-                  Object.values(this.props.selectedNeeds).length) +
-                ")"}
+              {t("reset filters")} {"(" + this.countSelected() + ")"}
             </Button>
           </Grid>
         ) : (

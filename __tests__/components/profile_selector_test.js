@@ -21,11 +21,17 @@ describe("ProfileSelector", () => {
       eligibilityPaths: eligibilityPathsFixture,
       serviceType: "",
       patronType: "",
+      selectedPatronType: "",
+      selectedServiceType: "",
+      selectedStatusAndVitals: "",
+      selectedServiceHealthIssue: "",
+      selectedNeeds: {},
       serviceHealthIssue: "",
       setPatronType: jest.fn(),
       setServiceType: jest.fn(),
       setStatusAndVitals: jest.fn(),
       setServiceHealthIssue: jest.fn(),
+      setSelectedNeeds: jest.fn(),
       statusAndVitals: "",
       showServiceType: true,
       showStatusAndVitals: true,
@@ -95,5 +101,57 @@ describe("ProfileSelector", () => {
       .first()
       .text();
     expect(text).toEqual("service-person");
+  });
+
+  it("has a clear button if patronType is populated", () => {
+    reduxData.selectedPatronType = "organization";
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#ClearFilters")
+        .first().length
+    ).toEqual(1);
+  });
+
+  it("has no clear button if selectedNeeds is empty", () => {
+    reduxData.selectedNeeds = {};
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#ClearFilters")
+        .first().length
+    ).toEqual(0);
+  });
+
+  it("has a clear button if selectedNeeds is populated", () => {
+    reduxData.selectedNeeds = { foo: "bar" };
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileSelector {...props} {...reduxData} />)
+        .find("#ClearFilters")
+        .first().length
+    ).toEqual(1);
+  });
+
+  it("has a correct clearFilters function", () => {
+    let instance = mount(
+      <ProfileSelector {...props} {...reduxData} />
+    ).instance();
+    instance.clearFilters();
+    expect(reduxData.setPatronType).toBeCalledWith("");
+    expect(reduxData.setServiceType).toBeCalledWith("");
+    expect(reduxData.setStatusAndVitals).toBeCalledWith("");
+    expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
+    expect(reduxData.setSelectedNeeds).toBeCalledWith({});
+  });
+
+  it("has a correct countSelected function", () => {
+    reduxData.selectedNeeds = { foo: "bar" };
+    reduxData.selectedServiceType = "fiz";
+    reduxData.selectedPatronType = "organization";
+    let instance = mount(
+      <ProfileSelector {...props} {...reduxData} />
+    ).instance();
+    expect(instance.countSelected()).toEqual(3);
   });
 });
