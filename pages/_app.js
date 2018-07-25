@@ -11,14 +11,12 @@ export default withRedux(initStore)(
       let currentReduxState = ctx.store.getState();
 
       if (ctx.req) {
+        ctx.store.dispatch({ type: "LOAD_DATA", data: ctx.req.data });
+        ctx.store.dispatch({ type: "INDEX_BENEFITS" });
         ctx.store.dispatch({
           type: "LOAD_GITHUBDATA",
           data: ctx.req.githubData
         });
-      }
-      if (ctx.req) {
-        ctx.store.dispatch({ type: "LOAD_DATA", data: ctx.req.data });
-        ctx.store.dispatch({ type: "INDEX_BENEFITS" });
       }
       if (
         ctx.query.patronType &&
