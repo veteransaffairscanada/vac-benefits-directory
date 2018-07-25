@@ -34,8 +34,6 @@ export const reducer = (state = initialState, action) => {
     case "INDEX_BENEFITS":
       benefits = state.benefits;
       enIdx = lunr(function() {
-        //this.pipeline.remove(lunr.stemmer);
-        //this.pipeline.remove(lunr.stopWordFilter);
         this.ref("id");
         this.field("vacNameEn");
         this.field("oneLineDescriptionEn");
@@ -45,8 +43,6 @@ export const reducer = (state = initialState, action) => {
       });
 
       frIdx = lunr(function() {
-        //this.pipeline.remove(lunr.stemmer);
-        //this.pipeline.remove(lunr.stopWordFilter);
         this.ref("id");
         this.use(lunr.fr);
         this.field("vacNameFr");
