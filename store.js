@@ -1,6 +1,11 @@
 import lunr from "lunr";
+import stemmerSupport from "lunr-languages/lunr.stemmer.support.js";
+import fr from "lunr-languages/lunr.fr.js";
 import { createStore } from "redux";
 import airtableConstants from "./utils/airtable_constants";
+
+stemmerSupport(lunr);
+fr(lunr);
 
 const initialState = {
   enIdx: {},
@@ -29,8 +34,8 @@ export const reducer = (state = initialState, action) => {
     case "INDEX_BENEFITS":
       benefits = state.benefits;
       enIdx = lunr(function() {
-        this.pipeline.remove(lunr.stemmer);
-        this.pipeline.remove(lunr.stopWordFilter);
+        //this.pipeline.remove(lunr.stemmer);
+        //this.pipeline.remove(lunr.stopWordFilter);
         this.ref("id");
         this.field("vacNameEn");
         this.field("oneLineDescriptionEn");
@@ -40,9 +45,10 @@ export const reducer = (state = initialState, action) => {
       });
 
       frIdx = lunr(function() {
-        this.pipeline.remove(lunr.stemmer);
-        this.pipeline.remove(lunr.stopWordFilter);
+        //this.pipeline.remove(lunr.stemmer);
+        //this.pipeline.remove(lunr.stopWordFilter);
         this.ref("id");
+        this.use(lunr.fr);
         this.field("vacNameFr");
         this.field("oneLineDescriptionFr");
         benefits.forEach(function(doc) {
