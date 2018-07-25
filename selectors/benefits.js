@@ -106,9 +106,17 @@ export const getFilteredBenefits = createSelector(
     if (searchString.trim() !== "") {
       let results = [];
       if (currentLanguage === "en") {
-        results = enIdx.search(searchString + "*");
+        results = enIdx.query(q => {
+          q.term(searchString, { usePipeline: true, boost: 100 });
+          q.term(searchString + "*", { usePipeline: false, boost: 10 });
+          q.term(searchString, { usePipeline: false, editDistance: 1 });
+        });
       } else {
-        results = frIdx.search(searchString + "*");
+        results = frIdx.query(q => {
+          q.term(searchString, { usePipeline: true, boost: 100 });
+          q.term(searchString + "*", { usePipeline: false, boost: 10 });
+          q.term(searchString, { usePipeline: false, editDistance: 1 });
+        });
       }
       let resultIds = results.map(r => r.ref);
       matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));
