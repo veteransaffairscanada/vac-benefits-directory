@@ -99,12 +99,19 @@ export class Print extends Component {
           </Grid>
           <Grid item xs={6}>
             <div className={classes.title}>{t("print.closest_office")}</div>
+            <br />
+            <hr />
+            <br />
+            <hr />
+            <br />
+            <hr />
           </Grid>
           <Grid item xs={12}>
             <div className={classes.title}>{t("favourites.apply_prompt")}</div>
             <div className={classes.bold}>{t("contact.my_vac_link")}</div>
             <div>{t("print.sign_up_for_my_vac")}</div>
           </Grid>
+
           <Grid item xs={12}>
             <div variant="title">{t("B3.Filter by eligibility")}</div>
           </Grid>
