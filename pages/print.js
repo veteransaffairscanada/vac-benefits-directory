@@ -3,6 +3,21 @@ import PropTypes from "prop-types";
 import { Grid, Typography } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = () => ({
+  root: {
+    fontFamily: "Merriweather, serif"
+  },
+  title: {
+    fontSize: "22px",
+    fontWeight: "bold",
+    margin: "20px 0"
+  },
+  bold: {
+    fontWeight: "bold"
+  }
+});
 
 export class Print extends Component {
   componentDidMount() {
@@ -51,7 +66,7 @@ export class Print extends Component {
   };
 
   render() {
-    const { i18n, t, benefits, needs } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const filteredBenefitsIDs =
@@ -72,12 +87,26 @@ export class Print extends Component {
       x => selectedNeedsIDs.indexOf(x.id) > -1
     );
     return (
-      <div style={{ padding: 12 }} className="allBenefitsList">
+      <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
+          <Grid item xs={6}>
+            <div className={classes.title}>{t("favourites.contact_us")}</div>
+            <div className={classes.bold}>{t("contact.phone")}</div>
+            <div>{t("favourites.call_time")}</div>
+            <br />
+            <div className={classes.bold}>{t("contact.email")}</div>
+            <div>{t("favourites.email_disclaimer")}</div>
+          </Grid>
+          <Grid item xs={6}>
+            <div className={classes.title}>{t("print.closest_office")}</div>
+          </Grid>
           <Grid item xs={12}>
-            <Typography variant="title">
-              {t("B3.Filter by eligibility")}
-            </Typography>
+            <div className={classes.title}>{t("favourites.apply_prompt")}</div>
+            <div className={classes.bold}>{t("contact.my_vac_link")}</div>
+            <div>{t("print.sign_up_for_my_vac")}</div>
+          </Grid>
+          <Grid item xs={12}>
+            <div variant="title">{t("B3.Filter by eligibility")}</div>
           </Grid>
           <Grid item xs={12}>
             <div>
@@ -157,9 +186,12 @@ Print.propTypes = {
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(withI18next()(Print));
+export default connect(mapStateToProps)(
+  withI18next()(withStyles(styles)(Print))
+);
