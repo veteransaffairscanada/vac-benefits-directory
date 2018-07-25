@@ -32,7 +32,6 @@ getAllData = async function() {
 Promise.resolve(getAllData()).then(allData => {
   const data = allData.airtableData;
   const githubData = allData.githubData;
-  console.log("server", githubData);
 
   // init i18next with serverside settings
   // using i18next-express-middleware

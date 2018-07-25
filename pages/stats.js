@@ -25,46 +25,10 @@ const styles = theme => ({
 });
 
 export class Stats extends Component {
-  // octokit.authenticate({
-  //   type: "token",
-  //   token: access_token
-  // });
-  // console.log("token", access_token);
-
-  // getDataOctokit = async function getDataOctokitfn() {
-  //   let jsonRecords = [];
-  //
-  //   const resp = await octokit.pullRequests.getAll({ owner: "cds-snc", repo: "vac-benefits-directory", state: "all" });
-  //   const json = await resp.json();
-  //
-  //   jsonRecords = jsonRecords.concat(json);
-  //
-  //   return jsonRecords.map(pr => {
-  //     let day = new Date(pr.merged_at);
-  //     day.setHours(0, 0, 0);
-  //     return {
-  //       created_at: pr.created_at,
-  //       closed_at: pr.closed_at,
-  //       merged_at: pr.merged_at,
-  //       merged_day: day,
-  //       title: pr.title,
-  //       user: pr.user.login
-  //     };
-  //   });
-  // };
-  //
-
   render() {
     const { classes, i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
     const pullRequests = this.props.githubData;
-
-    // not used yet
-    let dailyPRs = [];
-    pullRequests.forEach(pr => {
-      dailyPRs[pr.merged_day] =
-        1 + (dailyPRs[pr.merged_day] ? dailyPRs[pr.merged_day] : 0);
-    });
 
     return (
       <Layout
@@ -78,7 +42,6 @@ export class Stats extends Component {
           <Table className={classes.table}>
             <colgroup>
               <col style={{ width: "10%" }} />
-              {/*<col style={{ width: "10%" }}/>*/}
               <col style={{ width: "60%" }} />
               <col style={{ width: "30%" }} />
             </colgroup>
@@ -95,7 +58,7 @@ export class Stats extends Component {
                   <TableRow key={i}>
                     <TableCell>{pr.merged_at}</TableCell>
                     <TableCell>{pr.title}</TableCell>
-                    <TableCell>{pr.user}</TableCell>
+                    <TableCell>{pr.user.login}</TableCell>
                   </TableRow>
                 );
               })}
