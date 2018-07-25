@@ -28,7 +28,45 @@ describe("Search", () => {
     };
     _mountedSearch = undefined;
     reduxData = {
-      benefits: benefitsFixture
+      benefits: benefitsFixture,
+      enIdx: JSON.stringify({
+        version: "2.3.0",
+        fields: ["vacNameEn", "oneLineDescriptionEn"],
+        fieldVectors: [
+          ["vacNameEn/1", [0, 0.288]],
+          ["oneLineDescriptionEn/1", [1, 0.288]]
+        ],
+        invertedIndex: [
+          [
+            "biz",
+            { _index: 1, vacNameEn: {}, oneLineDescriptionEn: { "1": {} } }
+          ],
+          [
+            "fiz",
+            { _index: 0, vacNameEn: { "1": {} }, oneLineDescriptionEn: {} }
+          ]
+        ],
+        pipeline: ["stemmer"]
+      }),
+      frIdx: JSON.stringify({
+        version: "2.3.0",
+        fields: ["vacNameFr", "oneLineDescriptionFr"],
+        fieldVectors: [
+          ["vacNameFr/1", [0, 0.288]],
+          ["oneLineDescriptionFr/1", [1, 0.288]]
+        ],
+        invertedIndex: [
+          [
+            "biz",
+            { _index: 1, vacNameFr: {}, oneLineDescriptionFr: { "1": {} } }
+          ],
+          [
+            "fiz",
+            { _index: 0, vacNameFr: { "1": {} }, oneLineDescriptionFr: {} }
+          ]
+        ],
+        pipeline: ["stemmer"]
+      })
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
@@ -53,8 +91,8 @@ describe("Search", () => {
       expect(
         mounted_Search()
           .instance()
-          .getSuggestions("Disability")
-      ).toEqual(["Disability Pension", "Disability Award"]);
+          .getSuggestions("fiz")
+      ).toEqual(["Disability Award"]);
     });
 
     it("returns an array with partial matches on vacName in French", () => {
@@ -62,8 +100,8 @@ describe("Search", () => {
       expect(
         mounted_Search()
           .instance()
-          .getSuggestions("Pension")
-      ).toEqual(["Pension d'invalidité"]);
+          .getSuggestions("fiz")
+      ).toEqual(["Prix ​​d'invalidité"]);
     });
   });
 

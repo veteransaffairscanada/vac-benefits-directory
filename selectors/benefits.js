@@ -107,15 +107,29 @@ export const getFilteredBenefits = createSelector(
       let results = [];
       if (currentLanguage === "en") {
         results = enIdx.query(q => {
-          q.term(searchString, { usePipeline: true, boost: 100 });
-          q.term(searchString + "*", { usePipeline: false, boost: 10 });
-          q.term(searchString, { usePipeline: false, editDistance: 1 });
+          searchString.split(" ").forEach(term => {
+            q.term(term, { usePipeline: true, boost: 100 });
+            q.term(term, {
+              usePipeline: false,
+              boost: 10,
+              wildcard:
+                lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+            });
+            q.term(term, { usePipeline: false, editDistance: 1 });
+          });
         });
       } else {
         results = frIdx.query(q => {
-          q.term(searchString, { usePipeline: true, boost: 100 });
-          q.term(searchString + "*", { usePipeline: false, boost: 10 });
-          q.term(searchString, { usePipeline: false, editDistance: 1 });
+          searchString.split(" ").forEach(term => {
+            q.term(term, { usePipeline: true, boost: 100 });
+            q.term(term, {
+              usePipeline: false,
+              boost: 10,
+              wildcard:
+                lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+            });
+            q.term(term, { usePipeline: false, editDistance: 1 });
+          });
         });
       }
       let resultIds = results.map(r => r.ref);
