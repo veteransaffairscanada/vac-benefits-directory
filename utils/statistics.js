@@ -11,7 +11,8 @@ var getGithubData = (exports.getGithubData = async function getGithubData() {
   const resp = await octokit.pullRequests.getAll({
     owner: "cds-snc",
     repo: "vac-benefits-directory",
-    state: "all"
+    state: "all",
+    per_page: 100
   });
   return resp.data;
 });

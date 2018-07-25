@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Moment from "react-moment";
+import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -25,10 +27,12 @@ const styles = theme => ({
 });
 
 export class Stats extends Component {
+  filterMerged = () => {
+    return this.props.githubData.filter(pr => pr.merged_at);
+  };
+
   render() {
     const { classes, i18n, t } = this.props; // eslint-disable-line no-unused-vars
-
-    const pullRequests = this.props.githubData;
 
     return (
       <Layout
@@ -39,31 +43,37 @@ export class Stats extends Component {
       >
         <div className={classes.root}>
           <h1> {t("stats.title")} </h1>
-          <Table className={classes.table}>
-            <colgroup>
-              <col style={{ width: "10%" }} />
-              <col style={{ width: "60%" }} />
-              <col style={{ width: "30%" }} />
-            </colgroup>
-            <TableHead>
-              <TableRow>
-                <TableCell>Merged At</TableCell>
-                <TableCell>Title</TableCell>
-                <TableCell>User</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {pullRequests.map((pr, i) => {
-                return (
-                  <TableRow key={i}>
-                    <TableCell>{pr.merged_at}</TableCell>
-                    <TableCell>{pr.title}</TableCell>
-                    <TableCell>{pr.user.login}</TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
+          <Paper>
+            <Table className={classes.table}>
+              <colgroup>
+                <col style={{ width: "30%" }} />
+                <col style={{ width: "40%" }} />
+                <col style={{ width: "30%" }} />
+              </colgroup>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Merged At</TableCell>
+                  <TableCell>Title</TableCell>
+                  <TableCell>User</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.filterMerged().map((pr, i) => {
+                  return (
+                    <TableRow key={i}>
+                      <TableCell>
+                        <Moment format="DD/MM/YYYY hh:mm A">
+                          {pr.merged_at}
+                        </Moment>
+                      </TableCell>
+                      <TableCell>{pr.title}</TableCell>
+                      <TableCell>{pr.user.login}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </Paper>
         </div>
       </Layout>
     );
