@@ -19,7 +19,21 @@ const deploy = require("./utils/deploy_notification");
 
 const airTable = require("./utils/airtable_es2015");
 
-Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
+const { getGithubData } = require("./utils/statistics");
+
+getAllData = async function() {
+  const githubData = await getGithubData();
+  const airtableData = await airTable.hydrateFromAirtable();
+
+  return { githubData: githubData, airtableData: airtableData };
+};
+
+// Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
+Promise.resolve(getAllData()).then(allData => {
+  const data = allData.airtableData;
+  const githubData = allData.githubData;
+  console.log("server", githubData);
+
   // init i18next with serverside settings
   // using i18next-express-middleware
   i18nInstance
@@ -65,6 +79,8 @@ Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
             }, 1000 * 60 * 60);
 
             req.data = data;
+            req.githubData = githubData;
+
             if (
               browser &&
               browser.name === "ie" &&

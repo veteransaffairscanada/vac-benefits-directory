@@ -53,6 +53,12 @@ export const reducer = (state = initialState, action) => {
         enIdx: JSON.stringify(enIdx),
         frIdx: JSON.stringify(frIdx)
       });
+
+    case "LOAD_GITHUBDATA":
+      return Object.assign({}, state, {
+        githubData: action.data
+      });
+
     case "LOAD_DATA":
       newState = {
         storeHydrated: action.data.storeHydrated || state.storeHydrated,

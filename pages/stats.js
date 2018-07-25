@@ -5,14 +5,13 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import octokit from "@octokit/rest";
+
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 
-import fetch from "isomorphic-fetch";
 import { withStyles } from "@material-ui/core/styles/index";
+import { connect } from "react-redux";
 
-const access_token = process.env.GITHUB_PUBLIC_ACCESS_TOKEN;
 const styles = theme => ({
   root: {
     maxWidth: "1200px",
@@ -26,62 +25,43 @@ const styles = theme => ({
 });
 
 export class Stats extends Component {
-  constructor() {
-    super();
-    this.state = {
-      pullRequests: []
-    };
-  }
+  // octokit.authenticate({
+  //   type: "token",
+  //   token: access_token
+  // });
+  // console.log("token", access_token);
 
-  componentDidMount() {
-    // octokit.pullRequests.getAll({owner:"cds-snc", repo:"vac-benefits-directory", state:"all"}).then(result=>{
-    //   console.log(result)
-    // })
-
-    Promise.resolve(this.getData()).then(data => {
-      this.setState({
-        pullRequests: data
-      });
-    });
-  }
-
-  getData = async function fetchTableFromAirtable() {
-    let offset = undefined;
-    let jsonRecords = [];
-
-    do {
-      let url =
-        "https://api.github.com/repos/cds-snc/vac-benefits-directory/pulls?per_page=20&access_token=" +
-        access_token +
-        "&state=closed";
-      if (offset) {
-        url = url + "&page=" + offset;
-      }
-      const resp = await fetch(url, {});
-      const json = await resp.json();
-      jsonRecords = jsonRecords.concat(json);
-      // offset = json.offset;
-    } while (offset);
-
-    return jsonRecords.map(pr => {
-      let day = new Date(pr.merged_at);
-      day.setHours(0, 0, 0);
-      return {
-        created_at: pr.created_at,
-        closed_at: pr.closed_at,
-        merged_at: pr.merged_at,
-        merged_day: day,
-        title: pr.title,
-        user: pr.user.login
-      };
-    });
-  };
+  // getDataOctokit = async function getDataOctokitfn() {
+  //   let jsonRecords = [];
+  //
+  //   const resp = await octokit.pullRequests.getAll({ owner: "cds-snc", repo: "vac-benefits-directory", state: "all" });
+  //   const json = await resp.json();
+  //
+  //   jsonRecords = jsonRecords.concat(json);
+  //
+  //   return jsonRecords.map(pr => {
+  //     let day = new Date(pr.merged_at);
+  //     day.setHours(0, 0, 0);
+  //     return {
+  //       created_at: pr.created_at,
+  //       closed_at: pr.closed_at,
+  //       merged_at: pr.merged_at,
+  //       merged_day: day,
+  //       title: pr.title,
+  //       user: pr.user.login
+  //     };
+  //   });
+  // };
+  //
 
   render() {
     const { classes, i18n, t } = this.props; // eslint-disable-line no-unused-vars
 
+    const pullRequests = this.props.githubData;
+
+    // not used yet
     let dailyPRs = [];
-    this.state.pullRequests.forEach(pr => {
+    pullRequests.forEach(pr => {
       dailyPRs[pr.merged_day] =
         1 + (dailyPRs[pr.merged_day] ? dailyPRs[pr.merged_day] : 0);
     });
@@ -110,7 +90,7 @@ export class Stats extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.pullRequests.map((pr, i) => {
+              {pullRequests.map((pr, i) => {
                 return (
                   <TableRow key={i}>
                     <TableCell>{pr.merged_at}</TableCell>
@@ -127,10 +107,19 @@ export class Stats extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    githubData: state.githubData
+  };
+};
+
 Stats.propTypes = {
+  githubData: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(withI18next()(Stats));
+export default withStyles(styles)(
+  connect(mapStateToProps)(withI18next()(Stats))
+);
