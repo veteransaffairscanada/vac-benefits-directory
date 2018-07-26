@@ -17,12 +17,29 @@ const styles = () => ({
   },
   bold: {
     fontWeight: "bold"
+  },
+  rules: {
+    width: "100%",
+    lineHeight: "1.5em",
+    marginTop: "0.5em",
+    height: "3em",
+    backgroundImage: "linear-gradient(black 1px, transparent 0)",
+    backgroundPosition: "0px 1.2em",
+    backgroundSize: "100% 1.5em",
+    "-webkit-print-color-adjust": "exact"
   }
 });
 
+const profile_questions = [
+  "patronType",
+  "serviceType",
+  "statusAndVitals",
+  "serviceHealthIssue"
+];
+
 export class Print extends Component {
   componentDidMount() {
-    window.print();
+    // window.print();
   }
 
   countString = (filteredBenefits, benefits, t) => {
@@ -87,6 +104,24 @@ export class Print extends Component {
     const selectedNeeds = needs.filter(
       x => selectedNeedsIDs.indexOf(x.id) > -1
     );
+
+    const profile_text = profile_questions
+      .map(k => {
+        if (k === "serviceHealthIssue" && query[k] === "true") {
+          return t("GE.has service related health issue");
+        }
+        if (k === "serviceHealthIssue" && query[k] === "false") {
+          return t("GE.no service related health issue");
+        }
+        return t(query[k]);
+      })
+      .filter(x => (x && x.length > 0 ? true : false))
+      .join(", ");
+
+    const needs_text = selectedNeeds
+      .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
+      .join(", ");
+
     return (
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
@@ -111,12 +146,7 @@ export class Print extends Component {
           </Grid>
           <Grid item xs={6}>
             <div className={classes.title}>{t("print.closest_office")}</div>
-            <br />
-            <hr />
-            <br />
-            <hr />
-            <br />
-            <hr />
+            <div className={classes.rules} style={{ height: "5em" }} />
           </Grid>
           <Grid item xs={12}>
             <div className={classes.title}>{t("favourites.apply_prompt")}</div>
@@ -125,37 +155,31 @@ export class Print extends Component {
           </Grid>
 
           <Grid item xs={12}>
-            <div variant="title">{t("B3.Filter by eligibility")}</div>
-          </Grid>
-          <Grid item xs={12}>
-            <div>
-              <div className="eligibilityListItem">
-                {t("B3.Benefits for")}: <b>{t(query["patronType"])}</b>
+            <div
+              style={{
+                borderStyle: "solid",
+                borderWidth: "1px",
+                padding: "1.5em"
+              }}
+            >
+              <div className={classes.title}>
+                {t("print.fill_out_profile_needs_prompt")}
               </div>
-              <div>
-                {t("B3.ServiceType")}: <b>{t(query["serviceType"])}</b>
-              </div>
-              <div>
-                {t("B3.serviceStatus")}: <b>{t(query["statusAndVitals"])}</b>
-              </div>
-            </div>
-          </Grid>
 
-          <Grid item xs={12}>
-            <Typography variant="title">{t("Filter by need")}</Typography>
-          </Grid>
-
-          <Grid item xs={12}>
-            <div className="needsList">
-              {selectedNeeds.map((n, i) => (
-                <div key={i} className="needsListItem">
-                  -<b>
-                    {t("current-language-code") === "en" ? n.nameEn : n.nameFr}
-                  </b>
+              <div className="profile_section" style={{ marginBottom: "1em" }}>
+                <div className={classes.bold}>
+                  {t("print.who_is_receiving")}
                 </div>
-              ))}
+                <div className={classes.rules}>{profile_text}</div>
+              </div>
+
+              <div className="needs_section">
+                <div className={classes.bold}>{t("print.what_needs")}</div>
+                <div className={classes.rules}>{needs_text}</div>
+              </div>
             </div>
           </Grid>
+
           <Grid item xs={12}>
             <Typography variant="title">
               {this.countString(sortedFilteredBenefits, benefits, t)}

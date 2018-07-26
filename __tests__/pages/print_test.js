@@ -45,7 +45,8 @@ describe("Print", () => {
       selectedEligibility: {
         serviceType: "",
         patronType: "",
-        statusAndVitals: ""
+        statusAndVitals: "",
+        serviceHealthIssue: ""
       },
       sortByValue: ""
     };
@@ -61,14 +62,38 @@ describe("Print", () => {
     props.url.query["patronType"] = "service-person";
     props.url.query["serviceType"] = "WSV (WWII or Korea)";
     props.url.query["statusAndVitals"] = "releasedAlive";
+    props.url.query["serviceHealthIssue"] = "true";
     props.url.query["needs"] = "0,1";
-    expect(mountedPrint().find(".needsListItem").length).toEqual(2);
+
     expect(
       mountedPrint()
-        .find(".eligibilityListItem")
-        .find("b")
+        .find(".profile_section")
         .text()
-    ).toEqual("service-person");
+    ).toContain("service-person");
+
+    expect(
+      mountedPrint()
+        .find(".profile_section")
+        .text()
+    ).toContain("WSV (WWII or Korea)");
+
+    expect(
+      mountedPrint()
+        .find(".profile_section")
+        .text()
+    ).toContain("releasedAlive");
+
+    expect(
+      mountedPrint()
+        .find(".profile_section")
+        .text()
+    ).toContain("GE.has service related health issue");
+
+    expect(
+      mountedPrint()
+        .find(".needs_section")
+        .text()
+    ).toContain("1");
   });
 
   it("has a correct sortBenefits function when sorting by popularity", () => {
