@@ -4,13 +4,12 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ClearIcon from "@material-ui/icons/Clear";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { withStyles } from "@material-ui/core/styles";
 import classnames from "classnames";
 import { connect } from "react-redux";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 const styles = () => ({
@@ -39,14 +38,6 @@ const styles = () => ({
 export class ProfileNeedsSelector extends Component {
   state = {
     open: false
-  };
-
-  clearFilters = () => {
-    this.props.setPatronType("");
-    this.props.setServiceType("");
-    this.props.setStatusAndVitals("");
-    this.props.setServiceHealthIssue("");
-    this.props.setSelectedNeeds({});
   };
 
   toggleOpenState = () => {
@@ -79,25 +70,6 @@ export class ProfileNeedsSelector extends Component {
             <Grid item sm={12}>
               <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
             </Grid>
-            {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-            this.props.patronType !== "" ? (
-              <Grid item sm={12} className={classnames(classes.gridItemButton)}>
-                <Button
-                  className={classnames(classes.clearButton)}
-                  id="ClearFilters"
-                  variant="flat"
-                  size="small"
-                  onClick={() => {
-                    this.clearFilters();
-                  }}
-                >
-                  {t("reset filters")}
-                  <ClearIcon />
-                </Button>
-              </Grid>
-            ) : (
-              ""
-            )}
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
