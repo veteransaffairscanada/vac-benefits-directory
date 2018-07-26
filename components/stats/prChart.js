@@ -57,6 +57,9 @@ export class PrChart extends Component {
 
   chartData = () => {
     let filtered = this.filterMerged();
+    if (filtered.length == 0) {
+      return [];
+    }
     let lastDate = Moment(filtered[filtered.length - 1].merged_at);
     let firstDate = Moment(filtered[0].merged_at);
     let range = Moment.range(firstDate, lastDate).snapTo("day");

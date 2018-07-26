@@ -4,6 +4,10 @@ exports.getGithubData = undefined;
 const access_token = process.env.GITHUB_PUBLIC_ACCESS_TOKEN;
 
 var getGithubData = (exports.getGithubData = async function getGithubData() {
+  if (access_token == null) {
+    return { pullRequests: [] };
+  }
+
   octokit.authenticate({
     type: "token",
     token: access_token
