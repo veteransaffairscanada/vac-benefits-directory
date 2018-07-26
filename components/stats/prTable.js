@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Moment from "react-moment";
+import Moment from "moment";
+import ReactMoment from "react-moment";
 import PropTypes from "prop-types";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -18,7 +19,19 @@ const styles = () => ({
 
 export class PrTable extends Component {
   filterMerged = () => {
-    return this.props.githubData.filter(pr => pr.merged_at);
+    return this.props.githubData.pullRequests
+      .filter(pr => pr.merged_at)
+      .sort(this.sortByMergedAt);
+  };
+
+  sortByMergedAt = (a, b) => {
+    if (Moment(a.merged_at).valueOf() > Moment(b.merged_at).valueOf()) {
+      return 1;
+    }
+    if (Moment(a.merged_at).valueOf() < Moment(b.merged_at).valueOf()) {
+      return -1;
+    }
+    return 0;
   };
 
   render() {
@@ -43,7 +56,9 @@ export class PrTable extends Component {
             return (
               <TableRow key={i}>
                 <TableCell>
-                  <Moment format="DD/MM/YYYY hh:mm A">{pr.merged_at}</Moment>
+                  <ReactMoment format="DD/MM/YYYY hh:mm A">
+                    {pr.merged_at}
+                  </ReactMoment>
                 </TableCell>
                 <TableCell>{pr.title}</TableCell>
                 <TableCell>{pr.user.login}</TableCell>

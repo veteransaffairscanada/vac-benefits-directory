@@ -8,11 +8,17 @@ var getGithubData = (exports.getGithubData = async function getGithubData() {
     type: "token",
     token: access_token
   });
-  const resp = await octokit.pullRequests.getAll({
+
+  let data = {};
+
+  const prResp = await octokit.pullRequests.getAll({
     owner: "cds-snc",
     repo: "vac-benefits-directory",
     state: "all",
     per_page: 100
   });
-  return resp.data;
+
+  data.pullRequests = prResp.data;
+
+  return data;
 });

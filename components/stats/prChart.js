@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import ReactHighcharts from "react-highcharts";
-import Moment from "moment";
+import MomentBase from "moment";
+import { extendMoment } from "moment-range";
 import PropTypes from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
+
+const Moment = extendMoment(MomentBase);
 
 const styles = () => ({});
 
@@ -53,6 +56,11 @@ export class PrChart extends Component {
   };
 
   chartData = () => {
+    let filtered = this.filterMerged();
+    let lastDate = Moment(filtered[filtered.length - 1].merged_at);
+    let firstDate = Moment(filtered[0].merged_at);
+    let range = Moment.range(firstDate, lastDate).snapTo("day");
+    let dates = Array.from(range.by("day"));
     const reducer = (acc, currentVal) => {
       let date = Moment(currentVal.merged_at).format("YYYY-MM-DD");
       if (acc.hasOwnProperty(date)) {
@@ -63,14 +71,27 @@ export class PrChart extends Component {
       return acc;
     };
     let dataObject = this.filterMerged().reduce(reducer, {});
-    return Object.keys(dataObject).map(i => [
-      Moment(i).valueOf(),
-      dataObject[i]
-    ]);
+    return dates.map(m => {
+      let key = m.format("YYYY-MM-DD");
+      let value = dataObject.hasOwnProperty(key) ? dataObject[key] : 0;
+      return [m.valueOf(), value];
+    });
   };
 
   filterMerged = () => {
-    return this.props.githubData.filter(pr => pr.merged_at);
+    return this.props.githubData.pullRequests
+      .filter(pr => pr.merged_at)
+      .sort(this.sortByMergedAt);
+  };
+
+  sortByMergedAt = (a, b) => {
+    if (Moment(a.merged_at).valueOf() > Moment(b.merged_at).valueOf()) {
+      return 1;
+    }
+    if (Moment(a.merged_at).valueOf() < Moment(b.merged_at).valueOf()) {
+      return -1;
+    }
+    return 0;
   };
 
   render() {
