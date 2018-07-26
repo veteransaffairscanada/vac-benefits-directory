@@ -18,7 +18,11 @@ const styles = theme => ({
   },
   distanceCell: {
     textAlign: "right",
-    verticalAlign: "top"
+    verticalAlign: "top",
+    width: "20px"
+  },
+  officeCell: {
+    paddingRight: "10px"
   },
   officeTitle: {
     fontWeight: "bold"
@@ -92,7 +96,7 @@ export class AreaOfficeTable extends Component {
           {this.sortedAreaOffices().map(ae => {
             return (
               <TableRow key={ae.id} id={"tableRow" + ae.id}>
-                <TableCell>
+                <TableCell className={this.props.classes.officeCell}>
                   <Pin className={this.props.classes.pin} />
                   <p className={this.props.classes.officeTitle}>
                     {language === "en" ? ae.name_en : ae.name_fr}
