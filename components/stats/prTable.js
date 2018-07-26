@@ -45,7 +45,7 @@ export class PrTable extends Component {
         </colgroup>
         <TableHead>
           <TableRow>
-            <TableCell>Merged At</TableCell>
+            <TableCell>Merged on</TableCell>
             <TableCell>Title</TableCell>
           </TableRow>
         </TableHead>
@@ -54,9 +54,7 @@ export class PrTable extends Component {
             return (
               <TableRow key={i}>
                 <TableCell>
-                  <ReactMoment format="DD/MM/YYYY hh:mm A">
-                    {pr.merged_at}
-                  </ReactMoment>
+                  <ReactMoment format="llll">{pr.merged_at}</ReactMoment>
                 </TableCell>
                 <TableCell>{pr.title}</TableCell>
               </TableRow>
