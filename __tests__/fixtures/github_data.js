@@ -1,7 +1,7 @@
 const githubData = {
   pullRequests: [
     {
-      merged_at: "2018-07-25T19:12:05Z",
+      merged_at: "2018-07-26T19:12:05Z",
       title: "PR 2"
     },
     {
