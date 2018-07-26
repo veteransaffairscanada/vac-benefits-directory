@@ -17,12 +17,25 @@ const styles = () => ({
   },
   bold: {
     fontWeight: "bold"
+  },
+  form: {
+    borderBottom: "solid",
+    // borderWidth: "1px",
+    width: "100%",
+    height: "2em"
   }
 });
 
+const profile_questions = [
+  "patronType",
+  "serviceType",
+  "statusAndVitals",
+  "serviceHealthIssue"
+];
+
 export class Print extends Component {
   componentDidMount() {
-    window.print();
+    // window.print();
   }
 
   countString = (filteredBenefits, benefits, t) => {
@@ -87,6 +100,9 @@ export class Print extends Component {
     const selectedNeeds = needs.filter(
       x => selectedNeedsIDs.indexOf(x.id) > -1
     );
+
+    const profile_text = profile_questions.map(k => t(query[k])).join(", ");
+    console.log(profile_text);
     return (
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
@@ -111,12 +127,9 @@ export class Print extends Component {
           </Grid>
           <Grid item xs={6}>
             <div className={classes.title}>{t("print.closest_office")}</div>
-            <br />
-            <hr />
-            <br />
-            <hr />
-            <br />
-            <hr />
+            <div className={classes.form} style={{ borderWidth: "1px" }} />
+            <div className={classes.form} style={{ borderWidth: "1px" }} />
+            <div className={classes.form} style={{ borderWidth: "1px" }} />
           </Grid>
           <Grid item xs={12}>
             <div className={classes.title}>{t("favourites.apply_prompt")}</div>
@@ -125,37 +138,41 @@ export class Print extends Component {
           </Grid>
 
           <Grid item xs={12}>
-            <div variant="title">{t("B3.Filter by eligibility")}</div>
-          </Grid>
-          <Grid item xs={12}>
-            <div>
-              <div className="eligibilityListItem">
-                {t("B3.Benefits for")}: <b>{t(query["patronType"])}</b>
+            <div
+              style={{
+                borderStyle: "solid",
+                borderWidth: "2px",
+                padding: "10px"
+              }}
+            >
+              <div className={classes.title}>
+                {t("print.fill_out_profile_needs_prompt")}
               </div>
-              <div>
-                {t("B3.ServiceType")}: <b>{t(query["serviceType"])}</b>
+
+              <div style={{ marginBottom: "20px" }}>
+                <span className={classes.bold} style={{ marginRight: "20px" }}>
+                  {t("print.who_is_receiving")}
+                </span>
+                <span style={{ borderBottom: "solid", borderWidth: "1px" }}>
+                  {profile_text}
+                </span>
               </div>
+
               <div>
-                {t("B3.serviceStatus")}: <b>{t(query["statusAndVitals"])}</b>
+                <span className={classes.bold}>{t("print.what_needs")}</span>
+                {selectedNeeds.map((n, i) => (
+                  <span key={i} className="needsListItem">
+                    -<b>
+                      {t("current-language-code") === "en"
+                        ? n.nameEn
+                        : n.nameFr}
+                    </b>
+                  </span>
+                ))}
               </div>
             </div>
           </Grid>
 
-          <Grid item xs={12}>
-            <Typography variant="title">{t("Filter by need")}</Typography>
-          </Grid>
-
-          <Grid item xs={12}>
-            <div className="needsList">
-              {selectedNeeds.map((n, i) => (
-                <div key={i} className="needsListItem">
-                  -<b>
-                    {t("current-language-code") === "en" ? n.nameEn : n.nameFr}
-                  </b>
-                </div>
-              ))}
-            </div>
-          </Grid>
           <Grid item xs={12}>
             <Typography variant="title">
               {this.countString(sortedFilteredBenefits, benefits, t)}
