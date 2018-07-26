@@ -5,6 +5,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Pin from "@material-ui/icons/Place";
 
 import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
@@ -14,6 +15,20 @@ const styles = theme => ({
     width: "100%",
     marginTop: theme.spacing.unit * 3,
     overflowX: "auto"
+  },
+  distanceCell: {
+    textAlign: "right",
+    verticalAlign: "top"
+  },
+  officeTitle: {
+    fontWeight: "bold"
+  },
+  pin: {
+    color: "#ea4335",
+    float: "left",
+    fontSize: "60px",
+    marginBottom: "30px",
+    paddingTop: "10px"
   }
 });
 
@@ -70,7 +85,6 @@ export class AreaOfficeTable extends Component {
         <TableHead>
           <TableRow id="tableHeader">
             <TableCell>{t("map.office")}</TableCell>
-            <TableCell>{t("map.address")}</TableCell>
             <TableCell>{t("map.distance")}</TableCell>
           </TableRow>
         </TableHead>
@@ -79,13 +93,16 @@ export class AreaOfficeTable extends Component {
             return (
               <TableRow key={ae.id} id={"tableRow" + ae.id}>
                 <TableCell>
-                  {language === "en" ? ae.name_en : ae.name_fr}
-                </TableCell>
-                <TableCell>
+                  <Pin className={this.props.classes.pin} />
+                  <p className={this.props.classes.officeTitle}>
+                    {language === "en" ? ae.name_en : ae.name_fr}
+                  </p>
                   {language === "en" ? ae.address_en : ae.address_fr}
                 </TableCell>
-                <TableCell style={{ textAlign: "right" }}>
-                  {Math.round(officeDistance[ae.id]) + " km"}
+                <TableCell className={this.props.classes.distanceCell}>
+                  <p className={this.props.classes.officeTitle}>
+                    {Math.round(officeDistance[ae.id]) + " km"}
+                  </p>
                 </TableCell>
               </TableRow>
             );

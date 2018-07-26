@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import { connect } from "react-redux";
 import AreaOfficeMap from "../components/area_office_map";
 import AreaOfficeTable from "../components/area_office_table";
+import { Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper/index";
 
 const styles = theme => ({
@@ -60,32 +61,37 @@ export class Map extends Component {
         showRefreshCache={false}
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <AreaOfficeMap
-            id="AreaOfficeMap"
-            googleMapURL={
-              "https://maps.googleapis.com/maps/api/js?key=" +
-              google_maps_key +
-              "&language=" +
-              t("current-language-code") +
-              "&v=3.exp&libraries=geometry,drawing,places"
-            }
-            loadingElement={<div style={{ height: "100%" }} />}
-            containerElement={<div style={{ height: "400px" }} />}
-            mapElement={<div style={{ height: "100%" }} />}
-            lat={this.state.lat}
-            lng={this.state.lng}
-            zoom={this.state.zoom}
-            t={t}
-          />
-
           <Paper className={classes.root}>
-            <AreaOfficeTable
-              id="AreaOfficeTable"
-              lat={this.state.lat}
-              lng={this.state.lng}
-              store={this.props.store}
-              t={t}
-            />
+            <Grid container>
+              <Grid item xs={12} md={8}>
+                <AreaOfficeMap
+                  id="AreaOfficeMap"
+                  googleMapURL={
+                    "https://maps.googleapis.com/maps/api/js?key=" +
+                    google_maps_key +
+                    "&language=" +
+                    t("current-language-code") +
+                    "&v=3.exp&libraries=geometry,drawing,places"
+                  }
+                  loadingElement={<div style={{ height: "100%" }} />}
+                  containerElement={<div style={{ height: "400px" }} />}
+                  mapElement={<div style={{ height: "100%" }} />}
+                  lat={this.state.lat}
+                  lng={this.state.lng}
+                  zoom={this.state.zoom}
+                  t={t}
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <AreaOfficeTable
+                  id="AreaOfficeTable"
+                  lat={this.state.lat}
+                  lng={this.state.lng}
+                  store={this.props.store}
+                  t={t}
+                />
+              </Grid>
+            </Grid>
           </Paper>
         </div>
       </Layout>
