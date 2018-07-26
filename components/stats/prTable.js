@@ -76,7 +76,7 @@ const mapStateToProps = reduxState => {
 
 PrTable.propTypes = {
   classes: PropTypes.object.isRequired,
-  githubData: PropTypes.array.isRequired,
+  githubData: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
