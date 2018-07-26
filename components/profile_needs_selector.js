@@ -30,6 +30,9 @@ const styles = () => ({
     textTransform: "unset",
     fontSize: "16px"
   },
+  filterTitle: {
+    paddingRight: "0px"
+  },
   gridItemButton: {
     textAlign: "center"
   }
@@ -78,7 +81,6 @@ export class ProfileNeedsSelector extends Component {
       <ExpansionPanel
         className={classnames(classes.root)}
         defaultExpanded
-        disabled={pageWidth >= 600 ? true : false}
         expanded={pageWidth >= 600 ? true : this.state.open}
       >
         <ExpansionPanelSummary
@@ -86,10 +88,14 @@ export class ProfileNeedsSelector extends Component {
           expandIcon={pageWidth >= 600 ? "" : <ExpandMoreIcon />}
           onClick={pageWidth >= 600 ? foo => foo : () => this.toggleOpenState()}
         >
-          <Typography variant="title">{t("filters")}</Typography>
-          {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-          this.props.patronType !== "" ? (
-            <Grid item sm={12} className={classnames(classes.gridItemButton)}>
+          <Typography
+            variant="title"
+            className={classnames(classes.filterTitle)}
+          >
+            {t("filters")}{" "}
+            {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
+              this.props.patronType !== "") &&
+            pageWidth > 600 ? (
               <Button
                 className={classnames(classes.clearButton)}
                 id="ClearFilters"
@@ -101,10 +107,10 @@ export class ProfileNeedsSelector extends Component {
               >
                 {t("reset filters")} {"(" + this.countSelected() + ")"}
               </Button>
-            </Grid>
-          ) : (
-            ""
-          )}
+            ) : (
+              ""
+            )}
+          </Typography>
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>
