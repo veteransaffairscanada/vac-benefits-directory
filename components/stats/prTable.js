@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
 
-const styles = theme => ({
+const styles = () => ({
   table: {
     // width: 1000
   }
