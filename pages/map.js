@@ -83,6 +83,7 @@ export class Map extends Component {
               id="AreaOfficeTable"
               lat={this.state.lat}
               lng={this.state.lng}
+              store={this.props.store}
               t={t}
             />
           </Paper>
@@ -102,7 +103,8 @@ Map.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  areaOffices: PropTypes.array.isRequired
+  areaOffices: PropTypes.array.isRequired,
+  store: PropTypes.object
 };
 
 export default withStyles(styles)(connect(mapStateToProps)(withI18next()(Map)));
