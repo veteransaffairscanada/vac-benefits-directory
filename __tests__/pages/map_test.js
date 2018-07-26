@@ -44,15 +44,9 @@ describe("Map", () => {
     ).toEqual(1);
   });
 
-  it("has a table", () => {
+  it("renders AreaOfficeTable", () => {
     expect(
-      shallow(<Map {...props} {...reduxData} />).find("#tableHeader").length
-    ).toEqual(1);
-    expect(
-      shallow(<Map {...props} {...reduxData} />).find("#tableRow0").length
-    ).toEqual(1);
-    expect(
-      shallow(<Map {...props} {...reduxData} />).find("#tableRow1").length
+      shallow(<Map {...props} {...reduxData} />).find("#AreaOfficeTable").length
     ).toEqual(1);
   });
 });

@@ -6,7 +6,7 @@ const areaOfficesFixture = [
     address_en: "address_en",
     address_fr: "address_fr",
     lat: "50",
-    lng: "-100"
+    lng: "100"
   },
   {
     id: "1",
@@ -14,7 +14,7 @@ const areaOfficesFixture = [
     name_fr: "name_fr",
     address_en: "address_en",
     address_fr: "address_fr",
-    lat: "55",
+    lat: "-50",
     lng: "-100"
   }
 ];
