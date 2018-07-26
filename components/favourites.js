@@ -123,8 +123,19 @@ export class Favourites extends Component {
     );
 
     return (
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: 12 }}>
-        <Grid container spacing={24}>
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          paddingLeft: "16px",
+          paddingRight: "16px"
+        }}
+      >
+        <Grid
+          container
+          spacing={24}
+          style={{ paddingLeft: "16px", paddingRight: "16px" }}
+        >
           <Grid item xs={12} className={classes.topMatter}>
             <Button
               variant="flat"

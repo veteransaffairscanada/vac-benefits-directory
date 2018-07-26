@@ -72,7 +72,8 @@ describe("BB", () => {
       option: "",
       showServiceType: true,
       showStatusAndVitals: true,
-      showServiceHealthIssue: true
+      showServiceHealthIssue: true,
+      pageWidth: 1000
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

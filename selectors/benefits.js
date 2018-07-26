@@ -104,11 +104,34 @@ export const getFilteredBenefits = createSelector(
 
     // If there is a searchString the run another filter
     if (searchString.trim() !== "") {
+      searchString = searchString.toLowerCase();
       let results = [];
       if (currentLanguage === "en") {
-        results = enIdx.search(searchString + "*");
+        results = enIdx.query(q => {
+          searchString.split(" ").forEach(term => {
+            q.term(term, { usePipeline: true, boost: 100 });
+            q.term(term, {
+              usePipeline: false,
+              boost: 10,
+              wildcard:
+                lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+            });
+            q.term(term, { usePipeline: false, editDistance: 1 });
+          });
+        });
       } else {
-        results = frIdx.search(searchString + "*");
+        results = frIdx.query(q => {
+          searchString.split(" ").forEach(term => {
+            q.term(term, { usePipeline: true, boost: 100 });
+            q.term(term, {
+              usePipeline: false,
+              boost: 10,
+              wildcard:
+                lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+            });
+            q.term(term, { usePipeline: false, editDistance: 1 });
+          });
+        });
       }
       let resultIds = results.map(r => r.ref);
       matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));

@@ -37,6 +37,7 @@ describe("Print", () => {
         return key == "current-language-code" ? "en" : key;
       },
       benefits: benefitsFixture,
+      classes: {},
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
       needs: needsFixture,

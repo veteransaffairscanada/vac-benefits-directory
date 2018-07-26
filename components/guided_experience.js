@@ -42,7 +42,9 @@ const styles = () => ({
   },
   container: {
     margin: "0 auto",
-    maxWidth: "1200px"
+    maxWidth: "1200px",
+    paddingLeft: "16px",
+    paddingRight: "16px"
   },
   prevButton: {
     marginTop: "20px",

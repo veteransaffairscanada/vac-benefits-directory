@@ -46,7 +46,8 @@ describe("Favourites Page", () => {
       patronType: "family",
       statusAndVitals: "",
       favouriteBenefits: [benefitsFixture[0].id],
-      option: ""
+      option: "",
+      pageWidth: 1000
     };
     props.store = mockStore(reduxData);
   });

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { IconButton } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import Bookmark from "@material-ui/icons/Bookmark";
 import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
 import { connect } from "react-redux";
@@ -28,9 +28,9 @@ export class FavouriteButton extends Component {
 
   render() {
     return (
-      <IconButton
-        style={{ marginLeft: "-15px" }}
-        aria-label="Favorite Button"
+      <Button
+        style={{ color: "#3e57e2", marginLeft: "-20px", textTransform: "none" }}
+        aria-label={this.props.t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
       >
         {this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1 ? (
@@ -38,7 +38,12 @@ export class FavouriteButton extends Component {
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
-      </IconButton>
+        {this.props.t(
+          this.props.pageWidth >= 650
+            ? "B3.favouritesButtonBText"
+            : "B3.favouritesButtonBTextMobile"
+        )}
+      </Button>
     );
   }
 }
@@ -56,7 +61,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    favouriteBenefits: reduxState.favouriteBenefits
+    favouriteBenefits: reduxState.favouriteBenefits,
+    pageWidth: reduxState.pageWidth
   };
 };
 
@@ -65,7 +71,12 @@ FavouriteButton.propTypes = {
   saveFavourites: PropTypes.func.isRequired,
   benefit: PropTypes.object.isRequired,
   toggleOpenState: PropTypes.func.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  t: PropTypes.func.isRequired,
+  pageWidth: PropTypes.number.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FavouriteButton);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FavouriteButton);
