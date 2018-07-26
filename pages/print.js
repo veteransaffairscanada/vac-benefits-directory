@@ -18,11 +18,15 @@ const styles = () => ({
   bold: {
     fontWeight: "bold"
   },
-  form: {
-    borderBottom: "solid",
-    // borderWidth: "1px",
+  rules: {
     width: "100%",
-    height: "2em"
+    lineHeight: "1.5em",
+    marginTop: "0.5em",
+    height: "3em",
+    backgroundImage: "linear-gradient(black 1px, transparent 0)",
+    backgroundPosition: "0px 1.2em",
+    backgroundSize: "100% 1.5em",
+    "-webkit-print-color-adjust": "exact"
   }
 });
 
@@ -101,8 +105,23 @@ export class Print extends Component {
       x => selectedNeedsIDs.indexOf(x.id) > -1
     );
 
-    const profile_text = profile_questions.map(k => t(query[k])).join(", ");
-    console.log(profile_text);
+    const profile_text = profile_questions
+      .map(k => {
+        if (k === "serviceHealthIssue" && query[k] === "true") {
+          return t("GE.has service related health issue");
+        }
+        if (k === "serviceHealthIssue" && query[k] === "false") {
+          return t("GE.no service related health issue");
+        }
+        return t(query[k]);
+      })
+      .filter(x => (x.length > 0 ? true : false))
+      .join(", ");
+
+    const needs_text = selectedNeeds
+      .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
+      .join(", ");
+
     return (
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
@@ -127,9 +146,7 @@ export class Print extends Component {
           </Grid>
           <Grid item xs={6}>
             <div className={classes.title}>{t("print.closest_office")}</div>
-            <div className={classes.form} style={{ borderWidth: "1px" }} />
-            <div className={classes.form} style={{ borderWidth: "1px" }} />
-            <div className={classes.form} style={{ borderWidth: "1px" }} />
+            <div className={classes.rules} style={{ height: "5em" }} />
           </Grid>
           <Grid item xs={12}>
             <div className={classes.title}>{t("favourites.apply_prompt")}</div>
@@ -149,26 +166,16 @@ export class Print extends Component {
                 {t("print.fill_out_profile_needs_prompt")}
               </div>
 
-              <div style={{ marginBottom: "20px" }}>
-                <span className={classes.bold} style={{ marginRight: "20px" }}>
+              <div style={{ marginBottom: "1em" }}>
+                <div className={classes.bold}>
                   {t("print.who_is_receiving")}
-                </span>
-                <span style={{ borderBottom: "solid", borderWidth: "1px" }}>
-                  {profile_text}
-                </span>
+                </div>
+                <div className={classes.rules}>{profile_text}</div>
               </div>
 
-              <div>
-                <span className={classes.bold}>{t("print.what_needs")}</span>
-                {selectedNeeds.map((n, i) => (
-                  <span key={i} className="needsListItem">
-                    -<b>
-                      {t("current-language-code") === "en"
-                        ? n.nameEn
-                        : n.nameFr}
-                    </b>
-                  </span>
-                ))}
+              <div style={{ marginBottom: "1em" }}>
+                <div className={classes.bold}>{t("print.what_needs")}</div>
+                <div className={classes.rules}>{needs_text}</div>
               </div>
             </div>
           </Grid>

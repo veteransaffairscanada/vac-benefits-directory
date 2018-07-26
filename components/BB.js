@@ -315,7 +315,8 @@ const mapStateToProps = (reduxState, props) => {
     selectedEligibility: {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals
+      statusAndVitals: reduxState.statusAndVitals,
+      serviceHealthIssue: reduxState.serviceHealthIssue
     },
     selectedNeeds: reduxState.selectedNeeds
   };
