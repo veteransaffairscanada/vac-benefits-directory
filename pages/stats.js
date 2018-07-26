@@ -38,12 +38,20 @@ export class Stats extends Component {
           <Grid container spacing={16}>
             <Grid item xs={12}>
               <Paper>
-                <PrChart t={this.props.t} />
+                <PrChart
+                  t={this.props.t}
+                  store={this.props.store}
+                  id="PrChart"
+                />
               </Paper>
             </Grid>
             <Grid item xs={12}>
               <Paper>
-                <PrTable t={this.props.t} />
+                <PrTable
+                  t={this.props.t}
+                  store={this.props.store}
+                  id="PrTable"
+                />
               </Paper>
             </Grid>
           </Grid>
@@ -56,6 +64,7 @@ export class Stats extends Component {
 Stats.propTypes = {
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
