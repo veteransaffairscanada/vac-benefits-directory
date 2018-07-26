@@ -115,7 +115,7 @@ export class Print extends Component {
         }
         return t(query[k]);
       })
-      .filter(x => (x.length > 0 ? true : false))
+      .filter(x => (x && x.length > 0 ? true : false))
       .join(", ");
 
     const needs_text = selectedNeeds
@@ -158,22 +158,22 @@ export class Print extends Component {
             <div
               style={{
                 borderStyle: "solid",
-                borderWidth: "2px",
-                padding: "10px"
+                borderWidth: "1px",
+                padding: "1.5em"
               }}
             >
               <div className={classes.title}>
                 {t("print.fill_out_profile_needs_prompt")}
               </div>
 
-              <div style={{ marginBottom: "1em" }}>
+              <div className="profile_section" style={{ marginBottom: "1em" }}>
                 <div className={classes.bold}>
                   {t("print.who_is_receiving")}
                 </div>
                 <div className={classes.rules}>{profile_text}</div>
               </div>
 
-              <div style={{ marginBottom: "1em" }}>
+              <div className="needs_section">
                 <div className={classes.bold}>{t("print.what_needs")}</div>
                 <div className={classes.rules}>{needs_text}</div>
               </div>
