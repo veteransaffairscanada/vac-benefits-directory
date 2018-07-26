@@ -105,8 +105,8 @@ const mapStateToProps = reduxState => {
 AreaOfficeTable.propTypes = {
   areaOffices: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
-  lat: PropTypes.number,
-  lng: PropTypes.number,
+  lat: PropTypes.any,
+  lng: PropTypes.any,
   t: PropTypes.func.isRequired
 };
 

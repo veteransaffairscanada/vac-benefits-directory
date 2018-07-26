@@ -18,6 +18,7 @@ describe("AreaOfficeTable", () => {
 
   beforeEach(() => {
     props = {
+      classes: {},
       lat: "0",
       lng: "0",
       t: key => {
@@ -36,6 +37,36 @@ describe("AreaOfficeTable", () => {
       <WrappedAreaOfficeTable {...props} {...reduxData} />
     ).html();
     expect(await axe(html)).toHaveNoViolations();
+  });
+
+  describe("computeDistanceKm", () => {
+    it("computes distance between two points", () => {
+      expect(
+        mount(<AreaOfficeTable {...props} {...reduxData} />)
+          .instance()
+          .computeDistanceKm("0", "0", "10", "10")
+      ).toEqual(1569.5446022429596);
+    });
+  });
+
+  describe("officeDistance", () => {
+    it("calulates this distance between the position and offices", () => {
+      expect(
+        mount(<AreaOfficeTable {...props} {...reduxData} />)
+          .instance()
+          .officeDistance()
+      ).toEqual({ "0": 11509.581646975785, "1": 11509.581646975785 });
+    });
+  });
+
+  describe("sortedAreaOffices", () => {
+    it("sorts area offices", () => {
+      expect(
+        mount(<AreaOfficeTable {...props} {...reduxData} />)
+          .instance()
+          .sortedAreaOffices()
+      ).toEqual(areaOfficesFixture);
+    });
   });
 
   it("has a table", () => {
