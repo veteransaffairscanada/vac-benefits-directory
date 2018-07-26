@@ -34,7 +34,7 @@ export class PrChart extends Component {
       },
       tooltip: {
         headerFormat: "<b>{series.name}</b><br>",
-        pointFormat: "{point.x:%e. %b}: {point.y}"
+        pointFormat: "{point.x:%a %e %b}: <b>{point.y}</b>"
       },
       legend: {
         enabled: false

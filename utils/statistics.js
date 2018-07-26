@@ -9,16 +9,26 @@ var getGithubData = (exports.getGithubData = async function getGithubData() {
     token: access_token
   });
 
+  async function paginate(method, params) {
+    let response = await method(params);
+    let { data } = response;
+    while (octokit.hasNextPage(response)) {
+      response = await octokit.getNextPage(response);
+      data = data.concat(response.data);
+    }
+    return data;
+  }
+
   let data = {};
 
-  const prResp = await octokit.pullRequests.getAll({
+  const prResp = await paginate(octokit.pullRequests.getAll, {
     owner: "cds-snc",
     repo: "vac-benefits-directory",
     state: "all",
     per_page: 100
   });
 
-  data.pullRequests = prResp.data;
+  data.pullRequests = prResp;
 
   return data;
 });

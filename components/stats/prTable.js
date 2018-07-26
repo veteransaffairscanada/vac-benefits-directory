@@ -40,15 +40,13 @@ export class PrTable extends Component {
     return (
       <Table className={classes.table}>
         <colgroup>
-          <col style={{ width: "30%" }} />
-          <col style={{ width: "40%" }} />
-          <col style={{ width: "30%" }} />
+          <col style={{ width: "50%" }} />
+          <col style={{ width: "50%" }} />
         </colgroup>
         <TableHead>
           <TableRow>
             <TableCell>Merged At</TableCell>
             <TableCell>Title</TableCell>
-            <TableCell>User</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -61,7 +59,6 @@ export class PrTable extends Component {
                   </ReactMoment>
                 </TableCell>
                 <TableCell>{pr.title}</TableCell>
-                <TableCell>{pr.user.login}</TableCell>
               </TableRow>
             );
           })}
