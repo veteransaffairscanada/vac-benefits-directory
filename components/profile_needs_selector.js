@@ -4,7 +4,6 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ClearIcon from "@material-ui/icons/Clear";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { withStyles } from "@material-ui/core/styles";
@@ -31,6 +30,9 @@ const styles = () => ({
     textTransform: "unset",
     fontSize: "16px"
   },
+  filterTitle: {
+    paddingRight: "0px"
+  },
   gridItemButton: {
     textAlign: "center"
   }
@@ -39,6 +41,21 @@ const styles = () => ({
 export class ProfileNeedsSelector extends Component {
   state = {
     open: false
+  };
+
+  countSelected = () => {
+    let selectedProfileFilters = 0;
+    if (
+      this.props.selectedPatronType !== "" ||
+      this.props.selectedServiceType !== "" ||
+      this.props.selectedStatusAndVitals !== "" ||
+      this.props.selectedServiceHealthIssue !== ""
+    ) {
+      selectedProfileFilters = 1;
+    }
+    return (
+      selectedProfileFilters + Object.values(this.props.selectedNeeds).length
+    );
   };
 
   clearFilters = () => {
@@ -60,7 +77,6 @@ export class ProfileNeedsSelector extends Component {
       <ExpansionPanel
         className={classnames(classes.root)}
         defaultExpanded
-        disabled={pageWidth >= 600 ? true : false}
         expanded={pageWidth >= 600 ? true : this.state.open}
       >
         <ExpansionPanelSummary
@@ -68,7 +84,29 @@ export class ProfileNeedsSelector extends Component {
           expandIcon={pageWidth >= 600 ? "" : <ExpandMoreIcon />}
           onClick={pageWidth >= 600 ? foo => foo : () => this.toggleOpenState()}
         >
-          <Typography variant="title">{t("filters")}</Typography>
+          <Typography
+            variant="title"
+            className={classnames(classes.filterTitle)}
+          >
+            {t("filters")}{" "}
+            {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
+              this.props.patronType !== "") &&
+            pageWidth > 600 ? (
+              <Button
+                className={classnames(classes.clearButton)}
+                id="ClearFilters"
+                variant="flat"
+                size="small"
+                onClick={() => {
+                  this.clearFilters();
+                }}
+              >
+                {t("reset filters")} {"(" + this.countSelected() + ")"}
+              </Button>
+            ) : (
+              ""
+            )}
+          </Typography>
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>
@@ -78,26 +116,30 @@ export class ProfileNeedsSelector extends Component {
             </Grid>
             <Grid item sm={12}>
               <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
-            </Grid>
-            {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-            this.props.patronType !== "" ? (
-              <Grid item sm={12} className={classnames(classes.gridItemButton)}>
-                <Button
-                  className={classnames(classes.clearButton)}
-                  id="ClearFilters"
-                  variant="flat"
-                  size="small"
-                  onClick={() => {
-                    this.clearFilters();
-                  }}
+
+              {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
+                this.props.patronType !== "") &&
+              pageWidth <= 600 ? (
+                <Typography
+                  variant="title"
+                  className={classnames(classes.filterTitle)}
                 >
-                  {t("reset filters")}
-                  <ClearIcon />
-                </Button>
-              </Grid>
-            ) : (
-              ""
-            )}
+                  <Button
+                    className={classnames(classes.clearButton)}
+                    id="ClearFilters"
+                    variant="flat"
+                    size="small"
+                    onClick={() => {
+                      this.clearFilters();
+                    }}
+                  >
+                    {t("reset filters")} {"(" + this.countSelected() + ")"}
+                  </Button>
+                </Typography>
+              ) : (
+                ""
+              )}
+            </Grid>
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
@@ -128,6 +170,10 @@ const mapDispatchToProps1 = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     selectedNeeds: reduxState.selectedNeeds,
+    selectedPatronType: reduxState.patronType,
+    selectedServiceType: reduxState.serviceType,
+    selectedStatusAndVitals: reduxState.statusAndVitals,
+    selectedServiceHealthIssue: reduxState.serviceHealthIssue,
     patronType: reduxState.patronType,
     pageWidth: reduxState.pageWidth
   };
@@ -144,7 +190,11 @@ ProfileNeedsSelector.propTypes = {
   setStatusAndVitals: PropTypes.func.isRequired,
   setServiceHealthIssue: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  selectedPatronType: PropTypes.string.isRequired,
+  selectedServiceType: PropTypes.string.isRequired,
+  selectedStatusAndVitals: PropTypes.string.isRequired,
+  selectedServiceHealthIssue: PropTypes.string.isRequired
 };
 
 export default connect(

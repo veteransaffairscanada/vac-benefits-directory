@@ -1,5 +1,5 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import { ProfileNeedsSelector } from "../../components/profile_needs_selector";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -22,6 +22,10 @@ describe("ProfileNeedsSelector", () => {
       serviceType: "",
       statusAndVitals: "",
       serviceHealthIssue: "",
+      selectedPatronType: "",
+      selectedServiceType: "",
+      selectedStatusAndVitals: "",
+      selectedServiceHealthIssue: "",
       selectedNeeds: {},
       needs: needsFixture,
       setPatronType: jest.fn(),
@@ -101,7 +105,7 @@ describe("ProfileNeedsSelector", () => {
   });
 
   it("has a correct clearFilters function", () => {
-    let instance = shallow(
+    let instance = mount(
       <ProfileNeedsSelector {...props} {...reduxData} />
     ).instance();
     instance.clearFilters();
