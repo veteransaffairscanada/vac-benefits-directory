@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { withI18next } from "../lib/withI18next";
+import Typography from "@material-ui/core/Typography";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import AreaOfficeMap from "../components/area_office_map";
 import AreaOfficeTable from "../components/area_office_table";
-import { Grid } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
+import ArrowBack from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper/index";
 
 const styles = theme => ({
@@ -14,6 +16,21 @@ const styles = theme => ({
     width: "100%",
     marginTop: theme.spacing.unit * 3,
     overflowX: "auto"
+  },
+  mapTitle: {
+    fontSize: "36px"
+  },
+  backLink: {
+    fontSize: "20px",
+    fontWeight: "100",
+    marginBottom: "15px",
+    paddingLeft: "0px",
+    textDecoration: "none",
+    textTransform: "none"
+  },
+  topMatter: {
+    marginBottom: "25px",
+    marginTop: "30px"
   }
 });
 const google_maps_key = process.env.GOOGLE_MAPS_KEY;
@@ -60,7 +77,43 @@ export class Map extends Component {
         hideNoscript={true}
         showRefreshCache={false}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            paddingLeft: "16px",
+            paddingRight: "16px"
+          }}
+        >
+          <Grid
+            container
+            spacing={24}
+            style={{ paddingLeft: "16px", paddingRight: "16px" }}
+          >
+            <Grid item xs={12} md={8} className={classes.topMatter}>
+              <Button
+                variant="flat"
+                size="large"
+                className={classes.backLink}
+                id="backButton"
+                href="javascript:history.back()"
+              >
+                <ArrowBack />
+                &nbsp; &nbsp;
+                {t("favourites.back_link")}
+              </Button>
+              <Typography className={"MapTitle " + classes.mapTitle}>
+                {t("map.vacOffices")}
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4} className={classes.topMatter}>
+              <Typography>
+                <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
+              </Typography>
+              <Typography>{t("favourites.call_time")}</Typography>
+            </Grid>
+          </Grid>
+
           <Paper className={classes.root}>
             <Grid container>
               <Grid item xs={12} md={8}>
