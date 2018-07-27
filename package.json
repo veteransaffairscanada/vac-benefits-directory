@@ -10,7 +10,7 @@
     "build": "next build",
     "postinstall": "next build",
     "start": "NODE_ENV=production node server.js",
-    "test": "set NODE_ENV=test jest --coverage",
+    "test": "NODE_ENV=test jest --coverage",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged"
   },
@@ -58,8 +58,7 @@
     "regenerator-runtime": "^0.12.0",
     "reselect": "^3.0.1",
     "universal-cookie": "^2.2.0",
-    "wait-on": "^2.1.0",
-    "yarn": "^1.7.0"
+    "wait-on": "^2.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.54",

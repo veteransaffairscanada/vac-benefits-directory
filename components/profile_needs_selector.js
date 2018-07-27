@@ -121,13 +121,13 @@ export class ProfileNeedsSelector extends Component {
             <Grid item sm={12}>
               <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
 
-              <Typography
-                variant="title"
-                className={classnames(classes.filterTitle)}
-              >
-                {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-                  this.props.patronType !== "") &&
-                pageWidth <= 600 ? (
+              {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
+                this.props.patronType !== "") &&
+              pageWidth <= 600 ? (
+                <Typography
+                  variant="title"
+                  className={classnames(classes.filterTitle)}
+                >
                   <Button
                     className={classnames(classes.clearButton)}
                     id="ClearFilters"
@@ -139,10 +139,10 @@ export class ProfileNeedsSelector extends Component {
                   >
                     {t("reset filters")} {"(" + this.countSelected() + ")"}
                   </Button>
-                ) : (
-                  ""
-                )}
-              </Typography>
+                </Typography>
+              ) : (
+                ""
+              )}
             </Grid>
           </Grid>
         </ExpansionPanelDetails>
