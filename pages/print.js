@@ -39,7 +39,7 @@ const profile_questions = [
 
 export class Print extends Component {
   componentDidMount() {
-    // window.print();
+    window.print();
   }
 
   countString = (filteredBenefits, benefits, t) => {
@@ -84,7 +84,7 @@ export class Print extends Component {
   };
 
   render() {
-    const { i18n, t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, benefits, needs, classes, closestAreaOffice } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const filteredBenefitsIDs =
@@ -122,8 +122,6 @@ export class Print extends Component {
       .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
       .join(", ");
 
-    console.log(this.props.closestAreaOffice);
-
     return (
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
@@ -149,7 +147,13 @@ export class Print extends Component {
           <Grid item xs={6}>
             <div className={classes.title}>{t("print.closest_office")}</div>
             <div className={classes.rules} style={{ height: "5em" }}>
-              {"abcd"}
+              {t("current-language-code") == "en"
+                ? closestAreaOffice.name_en
+                : closestAreaOffice.name_fr}
+              <br />
+              {t("current-language-code") == "en"
+                ? closestAreaOffice.address_en
+                : closestAreaOffice.address_fr}
             </div>
           </Grid>
           <Grid item xs={12}>

@@ -93,10 +93,6 @@ export const reducer = (state = initialState, action) => {
         serviceHealthIssue: action.data
       });
     case "SET_CLOSEST_OFFICE":
-      console.log(
-        "state.closestAreaOffice " + Object.values(state.closestAreaOffice)
-      );
-      console.log("action.data " + Object.values(action.data));
       return Object.assign({}, state, {
         closestAreaOffice: action.data
       });

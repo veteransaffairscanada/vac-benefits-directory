@@ -192,7 +192,9 @@ export class Favourites extends Component {
               {t("favourites.contact_us")}
             </Typography>
             <Typography>
-              <Link href="/map">{t("favourites.visit_prompt")}</Link>
+              <Link href="/map">
+                <a>{t("favourites.visit_prompt")}</a>
+              </Link>
             </Typography>
             <br />
             <Typography>{t("favourites.print_instructions")}</Typography>

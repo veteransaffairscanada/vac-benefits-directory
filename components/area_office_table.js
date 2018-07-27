@@ -83,10 +83,10 @@ export class AreaOfficeTable extends Component {
           return 0;
       }
     });
-    // if (Object.values(officeDistance)[0]) {
-    // this.props.setClosestAreaOffice(222) // sortedOffices[0]
-    // console.log("store " + sortedOffices[0].name_en + " in redux")
-    // }
+    if (Object.values(officeDistance)[0]) {
+      this.props.setClosestAreaOffice(sortedOffices[0]);
+      console.log("store " + sortedOffices[0].name_en + " in redux");
+    }
     return sortedOffices;
   };
 
@@ -95,8 +95,8 @@ export class AreaOfficeTable extends Component {
   }
 
   componentDidMount() {
-    console.log("hi");
-    this.updateClosestOffice(); // sortedOffices[0]
+    // console.log("hi");
+    // this.updateClosestOffice(); // sortedOffices[0]
   }
   render() {
     const { t } = this.props;
