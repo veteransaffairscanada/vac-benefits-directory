@@ -106,7 +106,13 @@ export class Map extends Component {
                 {t("map.vacOffices")}
               </Typography>
             </Grid>
-            <Grid item xs={12} md={4} className={classes.topMatter}>
+            <Grid
+              item
+              xs={12}
+              md={4}
+              className={classes.topMatter}
+              id="contactInfo"
+            >
               <Typography>
                 <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
               </Typography>
