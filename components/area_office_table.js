@@ -37,6 +37,11 @@ const styles = theme => ({
 });
 
 export class AreaOfficeTable extends Component {
+  constructor() {
+    super();
+    this.updateClosestOffice = this.updateClosestOffice.bind(this);
+  }
+
   computeDistanceKm = (lat1, long1, lat2, long2) => {
     const R = 6371; // kilometres
     const Radians = degrees => (degrees * Math.PI) / 180;
@@ -65,7 +70,7 @@ export class AreaOfficeTable extends Component {
 
   sortedAreaOffices = () => {
     let officeDistance = this.officeDistance();
-    return this.props.areaOffices.sort((a, b) => {
+    let sortedOffices = this.props.areaOffices.sort((a, b) => {
       const diff = officeDistance[a.id]
         ? officeDistance[a.id] - officeDistance[b.id]
         : a.name_en.toUpperCase().localeCompare(b.name_en.toUpperCase());
@@ -78,8 +83,21 @@ export class AreaOfficeTable extends Component {
           return 0;
       }
     });
+    // if (Object.values(officeDistance)[0]) {
+    // this.props.setClosestAreaOffice(222) // sortedOffices[0]
+    // console.log("store " + sortedOffices[0].name_en + " in redux")
+    // }
+    return sortedOffices;
   };
 
+  updateClosestOffice() {
+    this.props.setClosestAreaOffice({ test: "it's set!" }); // sortedOffices[0]
+  }
+
+  componentDidMount() {
+    console.log("hi");
+    this.updateClosestOffice(); // sortedOffices[0]
+  }
   render() {
     const { t } = this.props;
     const language = t("current-language-code");
@@ -117,6 +135,14 @@ export class AreaOfficeTable extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setClosestAreaOffice: closestAreaOffice => {
+      dispatch({ type: "SET_CLOSEST_OFFICE", data: closestAreaOffice });
+    }
+  };
+};
+
 const mapStateToProps = reduxState => {
   return {
     areaOffices: reduxState.areaOffices
@@ -125,12 +151,14 @@ const mapStateToProps = reduxState => {
 
 AreaOfficeTable.propTypes = {
   areaOffices: PropTypes.array.isRequired,
+  setClosestAreaOffice: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   lat: PropTypes.any,
   lng: PropTypes.any,
   t: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(
-  withStyles(styles, { withTheme: true })(AreaOfficeTable)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(AreaOfficeTable));

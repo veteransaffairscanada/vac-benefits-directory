@@ -17,6 +17,7 @@ const initialState = {
   serviceType: "",
   statusAndVitals: "",
   serviceHealthIssue: "",
+  closestAreaOffice: {},
   pageWidth: 1000
 };
 airtableConstants.tableNames.forEach(tableName => {
@@ -66,6 +67,7 @@ export const reducer = (state = initialState, action) => {
         newState[tableName] = action.data[tableName] || state[tableName];
       });
       return Object.assign({}, state, newState);
+
     case "SET_PATRON_TYPE":
       return Object.assign({}, state, {
         patronType: action.data
@@ -90,10 +92,16 @@ export const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         serviceHealthIssue: action.data
       });
-    case "SET_PAGEWIDTH":
+    case "SET_CLOSEST_OFFICE":
+      console.log(
+        "state.closestAreaOffice " + Object.values(state.closestAreaOffice)
+      );
+      console.log("action.data " + Object.values(action.data));
       return Object.assign({}, state, {
-        pageWidth: action.data
+        closestAreaOffice: action.data
       });
+    case "SET_PAGEWIDTH":
+      return Object.assign({}, state, { pageWidth: action.data });
     default:
       return state;
   }
