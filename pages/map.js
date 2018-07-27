@@ -100,7 +100,7 @@ export class Map extends Component {
               >
                 <ArrowBack />
                 &nbsp; &nbsp;
-                {t("favourites.back_link")}
+                {t("back")}
               </Button>
               <Typography className={"MapTitle " + classes.mapTitle}>
                 {t("map.vacOffices")}
