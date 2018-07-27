@@ -45,17 +45,13 @@ export class ProfileNeedsSelector extends Component {
 
   countSelected = () => {
     let selectedProfileFilters = 0;
-    if (this.props.selectedPatronType !== "") {
-      selectedProfileFilters++;
-    }
-    if (this.props.selectedServiceType !== "") {
-      selectedProfileFilters++;
-    }
-    if (this.props.selectedStatusAndVitals !== "") {
-      selectedProfileFilters++;
-    }
-    if (this.props.selectedServiceHealthIssue !== "") {
-      selectedProfileFilters++;
+    if (
+      this.props.selectedPatronType !== "" ||
+      this.props.selectedServiceType !== "" ||
+      this.props.selectedStatusAndVitals !== "" ||
+      this.props.selectedServiceHealthIssue !== ""
+    ) {
+      selectedProfileFilters = 1;
     }
     return (
       selectedProfileFilters + Object.values(this.props.selectedNeeds).length
