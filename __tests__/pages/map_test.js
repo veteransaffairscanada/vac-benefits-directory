@@ -49,4 +49,16 @@ describe("Map", () => {
       shallow(<Map {...props} {...reduxData} />).find("#AreaOfficeTable").length
     ).toEqual(1);
   });
+
+  it("has a back button", () => {
+    expect(
+      shallow(<Map {...props} {...reduxData} />).find("#backButton").length
+    ).toEqual(1);
+  });
+
+  it("has contact Info", () => {
+    expect(
+      shallow(<Map {...props} {...reduxData} />).find("#contactInfo").length
+    ).toEqual(1);
+  });
 });
