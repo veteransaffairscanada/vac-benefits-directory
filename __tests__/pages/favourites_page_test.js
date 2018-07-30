@@ -56,15 +56,4 @@ describe("Favourites Page", () => {
     let html = shallow(<FavouritesPage {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
-
-  it("has a working toggleFavourite function", async () => {
-    let instance = shallow(
-      <FavouritesPage {...props} {...reduxData} />
-    ).instance();
-    instance.toggleFavourite("c0");
-    instance.toggleFavourite("c1");
-    expect(instance.cookies.get("favouriteBenefits")).toEqual(["c0", "c1"]);
-    instance.toggleFavourite("c0");
-    expect(instance.cookies.get("favouriteBenefits")).toEqual(["c1"]);
-  });
 });
