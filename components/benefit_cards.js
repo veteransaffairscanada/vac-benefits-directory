@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import { Grid, Typography, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -179,15 +180,16 @@ export class BenefitCard extends Component {
 
   get_benefit_a_elements = parentBenefits => {
     let a_elements = parentBenefits.map((b, i) => (
-      <a
-        key={"a" + i}
-        className={this.props.classes.headerUrl}
-        href={this.benefitUrl(b)}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {this.benefitTitle(b)}
-      </a>
+      <Link href={this.benefitUrl(b)}>
+        <a
+          key={"a" + i}
+          className={this.props.classes.headerUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {this.benefitTitle(b)}
+        </a>
+      </Link>
     ));
 
     let a_elements_with_ors = [];
