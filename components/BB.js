@@ -95,7 +95,7 @@ export class BB extends Component {
 
   countString = (x, t) => {
     switch (true) {
-      case this.countSelection() === 0:
+      case this.countSelection() === 0 && this.props.searchString.trim() === "":
         return t("B3.All benefits to consider");
       case x === 0:
         return t("B3.No benefits");
