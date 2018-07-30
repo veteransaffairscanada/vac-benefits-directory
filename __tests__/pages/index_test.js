@@ -2,6 +2,7 @@
 
 import { mount } from "enzyme";
 import React from "react";
+import Router from "next/router";
 import { App } from "../../pages/index";
 import benefitsFixture from "../fixtures/benefits";
 import configureStore from "redux-mock-store";
@@ -10,6 +11,9 @@ const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
+
+const mockedRouter = { push: () => {}, prefetch: () => {} };
+Router.router = mockedRouter;
 
 describe("Index page", () => {
   let props;
