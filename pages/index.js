@@ -36,8 +36,10 @@ const Search = styled("div")`
 `;
 
 const Title = styled("div")`
-  font-size: 38px;
-  line-height: 56px;
+  font-size: 25px;
+  line-height: 50px;
+  max-width: 700px;
+  margin: 0 auto;
 `;
 
 export class App extends Component {
@@ -57,7 +59,9 @@ export class App extends Component {
                   id="heroGuidedLink"
                   style={{
                     marginBottom: "10px",
-                    padding: "20px",
+                    padding: "10px",
+                    paddingLeft: "60px",
+                    paddingRight: "60px",
                     textTransform: "none"
                   }}
                   variant="raised"
@@ -66,22 +70,23 @@ export class App extends Component {
                 >
                   {t("index.guided experience")}
                 </Button>
-                &nbsp; &nbsp; &nbsp;
-                {t("index.or")}
-                &nbsp; &nbsp; &nbsp;
-                <Button
-                  id="heroBenefitsLink"
-                  style={{
-                    marginBottom: "10px",
-                    padding: "20px",
-                    textTransform: "none"
-                  }}
-                  variant="raised"
-                  color="primary"
-                  href={urlBD}
-                >
-                  {t("index.all benefits")}
-                </Button>
+
+                <div>
+                  {t("index.or")}
+                  <a
+                    id="heroBenefitsLink"
+                    style={{
+                      marginBottom: "10px",
+                      padding: "20px",
+                      textTransform: "none"
+                    }}
+                    variant="raised"
+                    color="primary"
+                    href={urlBD}
+                  >
+                    {t("index.all benefits")}
+                  </a>
+                </div>
               </HeroButton>
             </div>
             <Search>
