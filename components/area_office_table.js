@@ -65,7 +65,7 @@ export class AreaOfficeTable extends Component {
 
   sortedAreaOffices = () => {
     let officeDistance = this.officeDistance();
-    return this.props.areaOffices.sort((a, b) => {
+    let sortedOffices = this.props.areaOffices.sort((a, b) => {
       const diff = officeDistance[a.id]
         ? officeDistance[a.id] - officeDistance[b.id]
         : a.name_en.toUpperCase().localeCompare(b.name_en.toUpperCase());
@@ -78,6 +78,10 @@ export class AreaOfficeTable extends Component {
           return 0;
       }
     });
+    if (Object.values(officeDistance)[0]) {
+      this.props.setClosestAreaOffice(sortedOffices[0]);
+    }
+    return sortedOffices;
   };
 
   render() {
@@ -117,6 +121,14 @@ export class AreaOfficeTable extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setClosestAreaOffice: closestAreaOffice => {
+      dispatch({ type: "SET_CLOSEST_OFFICE", data: closestAreaOffice });
+    }
+  };
+};
+
 const mapStateToProps = reduxState => {
   return {
     areaOffices: reduxState.areaOffices
@@ -125,12 +137,14 @@ const mapStateToProps = reduxState => {
 
 AreaOfficeTable.propTypes = {
   areaOffices: PropTypes.array.isRequired,
+  setClosestAreaOffice: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   lat: PropTypes.any,
   lng: PropTypes.any,
   t: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(
-  withStyles(styles, { withTheme: true })(AreaOfficeTable)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles, { withTheme: true })(AreaOfficeTable));

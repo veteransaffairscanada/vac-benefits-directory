@@ -18,6 +18,7 @@ import { getFilteredBenefits } from "../selectors/benefits";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
+import Link from "next/link";
 
 const styles = () => ({
   benefitsCount: {
@@ -183,32 +184,34 @@ export class BB extends Component {
                 </Typography>
               </Grid>
               <Grid item xs={12} md={9}>
-                <Button
-                  id="Favourites Page"
-                  variant="flat"
-                  size="large"
-                  href={this.getFavouritesURL()}
-                  className={classes.buttonBarButton}
-                >
-                  <Bookmark style={{ fontSize: "20px" }} />
-                  &nbsp;
-                  {t("B3.favouritesButtonText") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </Button>
-                <Button
-                  variant="flat"
-                  size="large"
-                  target="dan"
-                  href={printUrl}
-                  className={classes.buttonBarButton}
-                  id="printButton"
-                >
-                  <Print style={{ fontSize: "20px" }} />
-                  &nbsp;
-                  {t("Print")}
-                </Button>
+                <Link href={this.getFavouritesURL()}>
+                  <Button
+                    id="Favourites Page"
+                    variant="flat"
+                    size="large"
+                    className={classes.buttonBarButton}
+                  >
+                    <Bookmark style={{ fontSize: "20px" }} />
+                    &nbsp;
+                    {t("B3.favouritesButtonText") +
+                      " (" +
+                      this.props.favouriteBenefits.length +
+                      ")"}
+                  </Button>
+                </Link>
+                <Link href={printUrl}>
+                  <Button
+                    variant="flat"
+                    size="large"
+                    target="dan"
+                    className={classes.buttonBarButton}
+                    id="printButton"
+                  >
+                    <Print style={{ fontSize: "20px" }} />
+                    &nbsp;
+                    {t("Print")}
+                  </Button>
+                </Link>
               </Grid>
               <Grid item xs={12} md={3}>
                 <TextField
