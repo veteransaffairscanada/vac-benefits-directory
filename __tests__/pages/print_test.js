@@ -6,6 +6,7 @@ import { Print } from "../../pages/print";
 import benefitsFixture from "../fixtures/benefits";
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
+import areaOfficesFixture from "../fixtures/area_offices";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -48,7 +49,8 @@ describe("Print", () => {
         statusAndVitals: "",
         serviceHealthIssue: ""
       },
-      sortByValue: ""
+      sortByValue: "",
+      closestAreaOffice: areaOfficesFixture[0]
     };
     _mountedPrint = undefined;
   });
@@ -117,5 +119,13 @@ describe("Print", () => {
   it("renders benefits correctly", () => {
     props.url.query["benefits"] = "0,3";
     expect(mountedPrint().find(".benefitsListItem").length).toEqual(2);
+  });
+
+  it("includes the address for the closest area office", () => {
+    expect(
+      mountedPrint()
+        .find("#closest_office_info")
+        .html()
+    ).toContain("address_en");
   });
 });

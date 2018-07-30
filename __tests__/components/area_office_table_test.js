@@ -23,7 +23,8 @@ describe("AreaOfficeTable", () => {
       lng: "0",
       t: key => {
         return key == "current-language-code" ? "en" : key;
-      }
+      },
+      setClosestAreaOffice: jest.fn()
     };
     reduxData = {
       areaOffices: areaOfficesFixture
@@ -83,5 +84,13 @@ describe("AreaOfficeTable", () => {
       shallow(<AreaOfficeTable {...props} {...reduxData} />).find("#tableRow1")
         .length
     ).toEqual(1);
+  });
+
+  it("stores the closest area office when a location is given", () => {
+    shallow(<AreaOfficeTable {...props} {...reduxData} />)
+      .instance()
+      .sortedAreaOffices();
+
+    expect(props.setClosestAreaOffice).toBeCalledWith(reduxData.areaOffices[0]);
   });
 });

@@ -37,11 +37,6 @@ const styles = theme => ({
 });
 
 export class AreaOfficeTable extends Component {
-  constructor() {
-    super();
-    this.updateClosestOffice = this.updateClosestOffice.bind(this);
-  }
-
   computeDistanceKm = (lat1, long1, lat2, long2) => {
     const R = 6371; // kilometres
     const Radians = degrees => (degrees * Math.PI) / 180;
@@ -85,19 +80,10 @@ export class AreaOfficeTable extends Component {
     });
     if (Object.values(officeDistance)[0]) {
       this.props.setClosestAreaOffice(sortedOffices[0]);
-      console.log("store " + sortedOffices[0].name_en + " in redux");
     }
     return sortedOffices;
   };
 
-  updateClosestOffice() {
-    this.props.setClosestAreaOffice({ test: "it's set!" }); // sortedOffices[0]
-  }
-
-  componentDidMount() {
-    // console.log("hi");
-    // this.updateClosestOffice(); // sortedOffices[0]
-  }
   render() {
     const { t } = this.props;
     const language = t("current-language-code");

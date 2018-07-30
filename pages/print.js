@@ -144,7 +144,7 @@ export class Print extends Component {
             <div className={classes.bold}>{t("contact.email")}</div>
             <div>{t("favourites.email_disclaimer")}</div>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} id="closest_office_info">
             <div className={classes.title}>{t("print.closest_office")}</div>
             <div className={classes.rules} style={{ height: "5em" }}>
               {t("current-language-code") == "en"
