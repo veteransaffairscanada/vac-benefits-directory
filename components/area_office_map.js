@@ -12,34 +12,25 @@ const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 export class AreaOfficeMap extends Component {
   static defaultProps = {
-    lat: 49,
-    lng: -104,
+    userLocation: {
+      lat: 49,
+      lng: -104
+    },
     zoom: 4
   };
 
-  state = {};
-  getToggleOpen(id) {
+  selectOffice(selected_office) {
     return () => {
-      const obj = {};
-      obj[id] = !this.state[id];
-      this.setState(obj);
+      this.props.setSelectedAreaOffice(selected_office);
     };
   }
 
-  componentDidMount() {
-    this.props.areaOffices.forEach(d => {
-      const obj = {};
-      obj[d.id] = false;
-      this.setState(obj);
-    });
-  }
-
   render() {
-    const { t } = this.props;
+    const { t, userLocation } = this.props;
     return (
       <GoogleMap
         defaultZoom={5}
-        center={{ lat: this.props.lat, lng: this.props.lng }}
+        center={{ lat: userLocation.lat, lng: userLocation.lng }}
         {...this.props}
       >
         {this.props.areaOffices.map((d, i) => {
@@ -47,9 +38,9 @@ export class AreaOfficeMap extends Component {
             <Marker
               key={i}
               position={{ lat: +d.lat, lng: +d.lng }}
-              onClick={this.getToggleOpen(d.id)}
+              onClick={this.selectOffice(d)}
             >
-              {this.state[d.id] ? (
+              {this.props.selectedAreaOffice.id === d.id ? (
                 <InfoBox>
                   <div
                     style={{
@@ -73,20 +64,38 @@ export class AreaOfficeMap extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    areaOffices: state.areaOffices
+    setSelectedAreaOffice: selectedAreaOffice => {
+      dispatch({ type: "SET_SELECTED_OFFICE", data: selectedAreaOffice });
+    }
+  };
+};
+
+const mapStateToProps = reduxState => {
+  return {
+    areaOffices: reduxState.areaOffices,
+    selectedAreaOffice: reduxState.selectedAreaOffice,
+    userLocation: reduxState.userLocation
   };
 };
 
 AreaOfficeMap.propTypes = {
   areaOffices: PropTypes.array.isRequired,
-  lat: PropTypes.number,
-  lng: PropTypes.number,
-  zoom: PropTypes.number,
+  // lat: PropTypes.number,
+  // lng: PropTypes.number,
+  // zoom: PropTypes.number,
+  setSelectedAreaOffice: PropTypes.func.isRequired,
+  selectedAreaOffice: PropTypes.object.isRequired,
+  userLocation: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
 export default withScriptjs(
-  withGoogleMap(connect(mapStateToProps)(AreaOfficeMap))
+  withGoogleMap(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(AreaOfficeMap)
+  )
 );

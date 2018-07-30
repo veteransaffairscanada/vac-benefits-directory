@@ -35,30 +35,19 @@ const styles = theme => ({
 });
 const google_maps_key = process.env.GOOGLE_MAPS_KEY;
 export class Map extends Component {
-  constructor() {
-    super();
-    this.state = {
-      lat: undefined,
-      lng: undefined,
-      zoom: undefined
-    };
-  }
-
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        this.setState({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-          zoom: 10
+        this.props.setUserLocation({
+          lat: +position.coords.latitude,
+          lng: +position.coords.longitude
         });
       });
     } else {
       //browser doesn't support geolocation
-      this.setState({
+      this.props.setUserLocation({
         lat: undefined,
-        lng: undefined,
-        zoom: undefined
+        lng: undefined
       });
     }
   }
@@ -135,17 +124,13 @@ export class Map extends Component {
                   loadingElement={<div style={{ height: "100%" }} />}
                   containerElement={<div style={{ height: "400px" }} />}
                   mapElement={<div style={{ height: "100%" }} />}
-                  lat={this.state.lat}
-                  lng={this.state.lng}
-                  zoom={this.state.zoom}
+                  // zoom={this.state.zoom}
                   t={t}
                 />
               </Grid>
               <Grid item xs={12} md={4}>
                 <AreaOfficeTable
                   id="AreaOfficeTable"
-                  lat={this.state.lat}
-                  lng={this.state.lng}
                   store={this.props.store}
                   t={t}
                 />
@@ -157,6 +142,13 @@ export class Map extends Component {
     );
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    setUserLocation: userLocation => {
+      dispatch({ type: "SET_USER_LOCATION", data: userLocation });
+    }
+  };
+};
 
 const mapStateToProps = state => {
   return {
@@ -169,7 +161,13 @@ Map.propTypes = {
   t: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   areaOffices: PropTypes.array.isRequired,
+  setUserLocation: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
-export default withStyles(styles)(connect(mapStateToProps)(withI18next()(Map)));
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withI18next()(Map))
+);

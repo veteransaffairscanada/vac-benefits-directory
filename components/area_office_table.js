@@ -33,6 +33,9 @@ const styles = theme => ({
     fontSize: "60px",
     marginBottom: "30px",
     paddingTop: "10px"
+  },
+  selectedRow: {
+    backgroundColor: "#e4e8fe"
   }
 });
 
@@ -54,8 +57,8 @@ export class AreaOfficeTable extends Component {
     let officeDistance = {};
     this.props.areaOffices.forEach(ae => {
       officeDistance[ae.id] = this.computeDistanceKm(
-        this.props.lat,
-        this.props.lng,
+        this.props.userLocation.lat,
+        this.props.userLocation.lng,
         ae.lat,
         ae.lng
       );
@@ -85,7 +88,7 @@ export class AreaOfficeTable extends Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, classes, selectedAreaOffice } = this.props;
     const language = t("current-language-code");
     const officeDistance = this.officeDistance();
     return (
@@ -99,16 +102,25 @@ export class AreaOfficeTable extends Component {
         <TableBody>
           {this.sortedAreaOffices().map(ae => {
             return (
-              <TableRow key={ae.id} id={"tableRow" + ae.id}>
-                <TableCell className={this.props.classes.officeCell}>
-                  <Pin className={this.props.classes.pin} />
-                  <p className={this.props.classes.officeTitle}>
+              <TableRow
+                key={ae.id}
+                id={"tableRow" + ae.id}
+                className={
+                  ae.id === selectedAreaOffice.id ? classes.selectedRow : ""
+                }
+                onClick={() => {
+                  this.props.setSelectedAreaOffice(ae);
+                }}
+              >
+                <TableCell className={classes.officeCell}>
+                  <Pin className={classes.pin} />
+                  <p className={classes.officeTitle}>
                     {language === "en" ? ae.name_en : ae.name_fr}
                   </p>
                   {language === "en" ? ae.address_en : ae.address_fr}
                 </TableCell>
-                <TableCell className={this.props.classes.distanceCell}>
-                  <p className={this.props.classes.officeTitle}>
+                <TableCell className={classes.distanceCell}>
+                  <p className={classes.officeTitle}>
                     {Math.round(officeDistance[ae.id]) + " km"}
                   </p>
                 </TableCell>
@@ -125,22 +137,30 @@ const mapDispatchToProps = dispatch => {
   return {
     setClosestAreaOffice: closestAreaOffice => {
       dispatch({ type: "SET_CLOSEST_OFFICE", data: closestAreaOffice });
+    },
+    setSelectedAreaOffice: selectedAreaOffice => {
+      dispatch({ type: "SET_SELECTED_OFFICE", data: selectedAreaOffice });
     }
   };
 };
 
 const mapStateToProps = reduxState => {
   return {
-    areaOffices: reduxState.areaOffices
+    areaOffices: reduxState.areaOffices,
+    closestAreaOffice: reduxState.closestAreaOffice,
+    selectedAreaOffice: reduxState.selectedAreaOffice,
+    userLocation: reduxState.userLocation
   };
 };
 
 AreaOfficeTable.propTypes = {
   areaOffices: PropTypes.array.isRequired,
+  closestAreaOffice: PropTypes.object.isRequired,
+  selectedAreaOffice: PropTypes.object.isRequired,
   setClosestAreaOffice: PropTypes.func.isRequired,
+  setSelectedAreaOffice: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  lat: PropTypes.any,
-  lng: PropTypes.any,
+  userLocation: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
