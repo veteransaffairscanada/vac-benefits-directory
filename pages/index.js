@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import SearchComponent from "../components/search";
@@ -53,35 +54,37 @@ export class App extends Component {
             <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>
               <Title id="heroTitle">{t("index.title")}</Title>
               <HeroButton>
-                <Button
-                  id="heroGuidedLink"
-                  style={{
-                    marginBottom: "10px",
-                    padding: "20px",
-                    textTransform: "none"
-                  }}
-                  variant="raised"
-                  color="primary"
-                  href={urlGE}
-                >
-                  {t("index.guided experience")}
-                </Button>
+                <Link prefetch href={urlGE}>
+                  <Button
+                    id="heroGuidedLink"
+                    style={{
+                      marginBottom: "10px",
+                      padding: "20px",
+                      textTransform: "none"
+                    }}
+                    variant="raised"
+                    color="primary"
+                  >
+                    {t("index.guided experience")}
+                  </Button>
+                </Link>
                 &nbsp; &nbsp; &nbsp;
                 {t("index.or")}
                 &nbsp; &nbsp; &nbsp;
-                <Button
-                  id="heroBenefitsLink"
-                  style={{
-                    marginBottom: "10px",
-                    padding: "20px",
-                    textTransform: "none"
-                  }}
-                  variant="raised"
-                  color="primary"
-                  href={urlBD}
-                >
-                  {t("index.all benefits")}
-                </Button>
+                <Link prefetch href={urlBD}>
+                  <Button
+                    id="heroBenefitsLink"
+                    style={{
+                      marginBottom: "10px",
+                      padding: "20px",
+                      textTransform: "none"
+                    }}
+                    variant="raised"
+                    color="primary"
+                  >
+                    {t("index.all benefits")}
+                  </Button>
+                </Link>
               </HeroButton>
             </div>
             <Search>
