@@ -143,7 +143,6 @@ export class Search extends Component {
             id={this.props.t("search")}
             className={this.props.classes.input}
             fullWidth
-            label={this.props.t("search")}
             onKeyPress={this.onKeyPress}
             InputProps={{
               inputRef: ref,
@@ -162,7 +161,12 @@ export class Search extends Component {
         <div>
           <Button
             id="searchButtonLink"
-            style={{ padding: "20px", textTransform: "none" }}
+            style={{
+              padding: "10px",
+              paddingLeft: "50px",
+              paddingRight: "50px",
+              textTransform: "none"
+            }}
             variant="raised"
             color="primary"
             href={
@@ -172,7 +176,7 @@ export class Search extends Component {
               this.state.value
             }
           >
-            {this.props.t("search")}
+            {this.props.t("search-button")}
           </Button>
         </div>
       </div>
