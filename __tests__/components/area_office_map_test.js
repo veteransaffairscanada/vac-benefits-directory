@@ -4,7 +4,6 @@ import { mount, shallow } from "enzyme";
 import React from "react";
 import WrappedAreaOfficeMap from "../../components/area_office_map";
 import { AreaOfficeMap } from "../../components/area_office_map";
-import configureStore from "redux-mock-store";
 import areaOfficesFixture from "../fixtures/area_offices";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -14,7 +13,6 @@ jest.mock("react-ga");
 
 describe("AreaOfficeMap", () => {
   let props;
-  let mockStore, reduxData;
 
   beforeEach(() => {
     props = {
@@ -25,23 +23,30 @@ describe("AreaOfficeMap", () => {
       mapElement: <div style={{ height: "100%" }} />,
       t: key => {
         return key == "current-language-code" ? "en" : key;
-      }
+      },
+      areaOffices: areaOfficesFixture,
+      userLocation: { lat: 0, lng: 0 },
+      setSelectedAreaOffice: jest.fn(),
+      selectedAreaOffice: areaOfficesFixture[0]
     };
-    reduxData = {
-      areaOffices: areaOfficesFixture
-    };
-    mockStore = configureStore();
-    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<WrappedAreaOfficeMap {...props} {...reduxData} />).html();
+    let html = mount(<WrappedAreaOfficeMap {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("renders the correct number of Markers", () => {
-    expect(
-      shallow(<AreaOfficeMap {...props} {...reduxData} />).find("Marker").length
-    ).toEqual(2);
+    expect(shallow(<AreaOfficeMap {...props} />).find("Marker").length).toEqual(
+      2
+    );
+  });
+
+  it("selects an area office when a pin is clicked", () => {
+    shallow(<AreaOfficeMap {...props} />)
+      .find("Marker")
+      .at(1)
+      .simulate("click");
+    expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
   });
 });

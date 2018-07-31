@@ -2,9 +2,7 @@
 
 import { mount, shallow } from "enzyme";
 import React from "react";
-import WrappedAreaOfficeTable from "../../components/area_office_table";
 import { AreaOfficeTable } from "../../components/area_office_table";
-import configureStore from "redux-mock-store";
 import areaOfficesFixture from "../fixtures/area_offices";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -14,36 +12,30 @@ jest.mock("react-ga");
 
 describe("AreaOfficeTable", () => {
   let props;
-  let mockStore, reduxData;
 
   beforeEach(() => {
     props = {
       classes: {},
-      lat: "0",
-      lng: "0",
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
-      setClosestAreaOffice: jest.fn()
+      setClosestAreaOffice: jest.fn(),
+      areaOffices: areaOfficesFixture,
+      userLocation: { lat: 0, lng: 0 },
+      setSelectedAreaOffice: jest.fn(),
+      selectedAreaOffice: areaOfficesFixture[0]
     };
-    reduxData = {
-      areaOffices: areaOfficesFixture
-    };
-    mockStore = configureStore();
-    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {
-    let html = mount(
-      <WrappedAreaOfficeTable {...props} {...reduxData} />
-    ).html();
+    let html = mount(<AreaOfficeTable {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   describe("computeDistanceKm", () => {
     it("computes distance between two points", () => {
       expect(
-        mount(<AreaOfficeTable {...props} {...reduxData} />)
+        mount(<AreaOfficeTable {...props} />)
           .instance()
           .computeDistanceKm("0", "0", "10", "10")
       ).toEqual(1569.5446022429596);
@@ -53,7 +45,7 @@ describe("AreaOfficeTable", () => {
   describe("officeDistance", () => {
     it("calulates this distance between the position and offices", () => {
       expect(
-        mount(<AreaOfficeTable {...props} {...reduxData} />)
+        mount(<AreaOfficeTable {...props} />)
           .instance()
           .officeDistance()
       ).toEqual({ "0": 11509.581646975785, "1": 11509.581646975785 });
@@ -63,7 +55,7 @@ describe("AreaOfficeTable", () => {
   describe("sortedAreaOffices", () => {
     it("sorts area offices", () => {
       expect(
-        mount(<AreaOfficeTable {...props} {...reduxData} />)
+        mount(<AreaOfficeTable {...props} />)
           .instance()
           .sortedAreaOffices()
       ).toEqual(areaOfficesFixture);
@@ -72,25 +64,28 @@ describe("AreaOfficeTable", () => {
 
   it("has a table", () => {
     expect(
-      shallow(<AreaOfficeTable {...props} {...reduxData} />).find(
-        "#tableHeader"
-      ).length
+      shallow(<AreaOfficeTable {...props} />).find("#tableHeader").length
     ).toEqual(1);
     expect(
-      shallow(<AreaOfficeTable {...props} {...reduxData} />).find("#tableRow0")
-        .length
+      shallow(<AreaOfficeTable {...props} />).find("#tableRow0").length
     ).toEqual(1);
     expect(
-      shallow(<AreaOfficeTable {...props} {...reduxData} />).find("#tableRow1")
-        .length
+      shallow(<AreaOfficeTable {...props} />).find("#tableRow1").length
     ).toEqual(1);
   });
 
   it("stores the closest area office when a location is given", () => {
-    shallow(<AreaOfficeTable {...props} {...reduxData} />)
+    shallow(<AreaOfficeTable {...props} />)
       .instance()
       .sortedAreaOffices();
+    expect(props.setClosestAreaOffice).toBeCalledWith(props.areaOffices[0]);
+  });
 
-    expect(props.setClosestAreaOffice).toBeCalledWith(reduxData.areaOffices[0]);
+  it("selects an area office when a row is clicked", () => {
+    mount(<AreaOfficeTable {...props} />)
+      .find("TableRow")
+      .at(2)
+      .simulate("click");
+    expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
   });
 });
