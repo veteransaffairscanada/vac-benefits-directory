@@ -122,7 +122,7 @@ export class Map extends Component {
                     "&v=3.exp&libraries=geometry,drawing,places"
                   }
                   loadingElement={<div style={{ height: "100%" }} />}
-                  containerElement={<div style={{ height: "400px" }} />}
+                  containerElement={<div style={{ height: "456px" }} />}
                   mapElement={<div style={{ height: "100%" }} />}
                   // zoom={this.state.zoom}
                   t={t}
