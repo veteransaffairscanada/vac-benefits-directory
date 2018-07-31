@@ -22,6 +22,11 @@ export class AreaOfficeMap extends Component {
   selectOffice(selected_office) {
     return () => {
       this.props.setSelectedAreaOffice(selected_office);
+      // element in area_office_table
+      var elmnt = document.getElementById("tableRow" + selected_office.id);
+      if (elmnt !== null) {
+        elmnt.scrollIntoView();
+      }
     };
   }
 
