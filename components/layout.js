@@ -62,7 +62,7 @@ class Layout extends Component {
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <MuiThemeProvider theme={theme}>
-        <div className={classnames(this.props.classes.root)}>
+        <div style={{ backgroundColor: this.props.backgroundColor }}>
           <Head title={this.props.title} t={t} />
           <ErrorBoundary>
             <Content>
@@ -107,7 +107,12 @@ Layout.propTypes = {
   showRefreshCache: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  title: PropTypes.string
+  title: PropTypes.string,
+  backgroundColor: PropTypes.string
+};
+
+Layout.defaultProps = {
+  backgroundColor: "#f5f5f5"
 };
 
 export default withStyles(styles)(Layout);
