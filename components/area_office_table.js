@@ -13,12 +13,15 @@ import { connect } from "react-redux";
 const styles = theme => ({
   root: {
     width: "100%",
-    marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
+    marginTop: theme.spacing.unit * 3
   },
   distanceCell: {
     textAlign: "right",
     verticalAlign: "top",
+    width: "20px"
+  },
+  distanceCellTitle: {
+    textAlign: "right",
     width: "20px"
   },
   officeCell: {
@@ -100,43 +103,56 @@ export class AreaOfficeTable extends Component {
     const officeDistance = this.officeDistance();
 
     return (
-      <Table>
-        <TableHead>
-          <TableRow id="tableHeader">
-            <TableCell>{t("map.office")}</TableCell>
-            <TableCell>{t("map.distance")}</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {this.sortedAreaOffices().map(ae => {
-            return (
-              <TableRow
-                key={ae.id}
-                id={"tableRow" + ae.id}
-                className={
-                  ae.id === selectedAreaOffice.id ? classes.selectedRow : ""
-                }
-                onClick={() => {
-                  this.props.setSelectedAreaOffice(ae);
-                }}
-              >
+      <div>
+        <div style={{ width: "100%" }}>
+          <Table>
+            <TableHead>
+              <TableRow id="tableHeader">
                 <TableCell className={classes.officeCell}>
-                  <Pin className={classes.pin} />
-                  <p className={classes.officeTitle}>
-                    {language === "en" ? ae.name_en : ae.name_fr}
-                  </p>
-                  {language === "en" ? ae.address_en : ae.address_fr}
+                  {t("map.office")}
                 </TableCell>
-                <TableCell className={classes.distanceCell}>
-                  <p className={classes.officeTitle}>
-                    {Math.round(officeDistance[ae.id]) + " km"}
-                  </p>
+                <TableCell className={classes.distanceCellTitle}>
+                  {t("map.distance")}
                 </TableCell>
               </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
+            </TableHead>
+          </Table>
+        </div>
+
+        <div style={{ height: "400px", width: "100%", overflowY: "scroll" }}>
+          <Table>
+            <TableBody>
+              {this.sortedAreaOffices().map(ae => {
+                return (
+                  <TableRow
+                    key={ae.id}
+                    id={"tableRow" + ae.id}
+                    className={
+                      ae.id === selectedAreaOffice.id ? classes.selectedRow : ""
+                    }
+                    onClick={() => {
+                      this.props.setSelectedAreaOffice(ae);
+                    }}
+                  >
+                    <TableCell className={classes.officeCell}>
+                      <Pin className={classes.pin} />
+                      <p className={classes.officeTitle}>
+                        {language === "en" ? ae.name_en : ae.name_fr}
+                      </p>
+                      {language === "en" ? ae.address_en : ae.address_fr}
+                    </TableCell>
+                    <TableCell className={classes.distanceCell}>
+                      <p className={classes.officeTitle}>
+                        {Math.round(officeDistance[ae.id]) + " km"}
+                      </p>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
     );
   }
 }
