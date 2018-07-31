@@ -27,7 +27,13 @@ describe("Map", () => {
       classes: {}
     };
     reduxData = {
-      areaOffices: areaOfficesFixture
+      areaOffices: areaOfficesFixture,
+      userLocation: { lat: 0, lng: 0 },
+      setUserLocation: jest.fn(),
+      setClosestAreaOffice: jest.fn(),
+      setSelectedAreaOffice: jest.fn(),
+      closestAreaOffice: areaOfficesFixture[0],
+      selectedAreaOffice: areaOfficesFixture[0]
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
