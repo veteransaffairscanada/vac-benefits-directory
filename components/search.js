@@ -23,7 +23,7 @@ const styles = theme => ({
     position: "relative"
   },
   input: {
-    paddingTop: "6px"
+    // paddingTop: "6px"
   },
   inputIcon: {},
   suggestionsContainerOpen: {
@@ -54,7 +54,7 @@ const styles = theme => ({
     listStyleType: "none"
   },
   searchButton: {
-    padding: "10px",
+    padding: "15px",
     paddingLeft: "50px",
     paddingRight: "50px",
     textTransform: "none",
@@ -156,6 +156,7 @@ export class Search extends Component {
             id={this.props.t("search")}
             className={classes.input}
             fullWidth
+            label={this.props.t("search")}
             onKeyPress={this.onKeyPress}
             InputProps={{
               disableUnderline: true,
@@ -226,11 +227,10 @@ export class Search extends Component {
   };
 
   render() {
-    const { classes, t } = this.props;
+    const { classes } = this.props;
     const { value, suggestions } = this.state;
     const inputProps = {
       classes,
-      placeholder: t("search"),
       value,
       onChange: this.onChange
     };

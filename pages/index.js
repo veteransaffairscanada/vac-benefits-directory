@@ -66,7 +66,7 @@ export class App extends Component {
                   id="heroGuidedLink"
                   style={{
                     marginBottom: "10px",
-                    padding: "10px",
+                    padding: "15px",
                     paddingLeft: "60px",
                     paddingRight: "60px",
                     textTransform: "none",
