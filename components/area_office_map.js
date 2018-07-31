@@ -94,7 +94,7 @@ export class AreaOfficeMap extends Component {
                       target="_blank"
                       variant="raised"
                       href={
-                        "https://maps.google.com/?ll=" + d.lat + "," + d.lng
+                        "http://maps.apple.com/?daddr=" + d.lat + "," + d.lng
                       }
                     >
                       Get Directions
