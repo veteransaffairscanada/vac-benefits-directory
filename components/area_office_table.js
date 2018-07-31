@@ -87,10 +87,18 @@ export class AreaOfficeTable extends Component {
     return sortedOffices;
   };
 
+  componentDidMount() {
+    var elmnt = document.getElementById(
+      "tableRow" + this.props.selectedAreaOffice.id
+    );
+    // elmnt.scrollIntoView();
+  }
+
   render() {
     const { t, classes, selectedAreaOffice } = this.props;
     const language = t("current-language-code");
     const officeDistance = this.officeDistance();
+
     return (
       <Table>
         <TableHead>
