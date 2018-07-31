@@ -134,6 +134,7 @@ AreaOfficeMap.propTypes = {
   setSelectedAreaOffice: PropTypes.func.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
   userLocation: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
