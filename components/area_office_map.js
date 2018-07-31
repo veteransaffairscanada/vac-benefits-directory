@@ -25,12 +25,15 @@ export class AreaOfficeMap extends Component {
     };
   }
 
+  onCentreChanged() {}
+
   render() {
-    const { t, userLocation } = this.props;
+    const { t, mapCentre } = this.props;
     return (
       <GoogleMap
         defaultZoom={5}
-        center={{ lat: userLocation.lat, lng: userLocation.lng }}
+        center={{ lat: +mapCentre.lat, lng: +mapCentre.lng }}
+        onCenterChanged={this.onCentreChanged}
         {...this.props}
       >
         {this.props.areaOffices.map((d, i) => {
@@ -68,6 +71,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setSelectedAreaOffice: selectedAreaOffice => {
       dispatch({ type: "SET_SELECTED_OFFICE", data: selectedAreaOffice });
+    },
+    setMapCentre: mapCentre => {
+      dispatch({ type: "SET_MAP_CENTRE", data: mapCentre });
     }
   };
 };
@@ -76,7 +82,8 @@ const mapStateToProps = reduxState => {
   return {
     areaOffices: reduxState.areaOffices,
     selectedAreaOffice: reduxState.selectedAreaOffice,
-    userLocation: reduxState.userLocation
+    userLocation: reduxState.userLocation,
+    mapCentre: reduxState.mapCentre
   };
 };
 
@@ -85,6 +92,7 @@ AreaOfficeMap.propTypes = {
   setSelectedAreaOffice: PropTypes.func.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
   userLocation: PropTypes.object.isRequired,
+  mapCentre: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 

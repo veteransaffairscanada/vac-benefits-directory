@@ -38,10 +38,12 @@ export class Map extends Component {
   getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        this.props.setUserLocation({
+        let coords = {
           lat: +position.coords.latitude,
           lng: +position.coords.longitude
-        });
+        };
+        this.props.setUserLocation(coords);
+        this.props.setMapCentre(coords);
       });
     } else {
       //browser doesn't support geolocation
@@ -146,6 +148,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setUserLocation: userLocation => {
       dispatch({ type: "SET_USER_LOCATION", data: userLocation });
+    },
+    setMapCentre: mapCentre => {
+      dispatch({ type: "SET_MAP_CENTRE", data: mapCentre });
     }
   };
 };
@@ -162,6 +167,7 @@ Map.propTypes = {
   classes: PropTypes.object.isRequired,
   areaOffices: PropTypes.array.isRequired,
   setUserLocation: PropTypes.func.isRequired,
+  setMapCentre: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
