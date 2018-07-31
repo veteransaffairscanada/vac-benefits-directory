@@ -1,6 +1,6 @@
 ## Documentation
 
-###Table of Contents
+### Table of Contents
 
 1.  Next.JS and Server Side Rendering
 2.  AirTable
