@@ -19,7 +19,7 @@ const initialState = {
   serviceHealthIssue: "",
   closestAreaOffice: {},
   selectedAreaOffice: {},
-  userLocation: {},
+  userLocation: { lat: 49, lng: -104 },
   pageWidth: 1000
 };
 airtableConstants.tableNames.forEach(tableName => {

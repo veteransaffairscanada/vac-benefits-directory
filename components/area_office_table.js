@@ -43,7 +43,7 @@ export class AreaOfficeTable extends Component {
   computeDistanceKm = (lat1, long1, lat2, long2) => {
     const R = 6371; // kilometres
     const Radians = degrees => (degrees * Math.PI) / 180;
-    if (!lat1 || !lat2 || !long1 || !long2) return undefined;
+    // if (!lat1 || !lat2 || !long1 || !long2) return undefined;
     const lat1Rad = Radians(lat1);
     const long1Rad = Radians(long1);
     const lat2Rad = Radians(lat2);
@@ -147,7 +147,6 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     areaOffices: reduxState.areaOffices,
-    closestAreaOffice: reduxState.closestAreaOffice,
     selectedAreaOffice: reduxState.selectedAreaOffice,
     userLocation: reduxState.userLocation
   };
@@ -155,7 +154,6 @@ const mapStateToProps = reduxState => {
 
 AreaOfficeTable.propTypes = {
   areaOffices: PropTypes.array.isRequired,
-  closestAreaOffice: PropTypes.object.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
   setClosestAreaOffice: PropTypes.func.isRequired,
   setSelectedAreaOffice: PropTypes.func.isRequired,
