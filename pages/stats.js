@@ -7,7 +7,6 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 
 import PrChart from "../components/stats/prChart";
-import PrTable from "../components/stats/prTable";
 
 import { withStyles } from "@material-ui/core/styles/index";
 
@@ -45,15 +44,6 @@ export class Stats extends Component {
                 />
               </Paper>
             </Grid>
-            <Grid item xs={12}>
-              <Paper>
-                <PrTable
-                  t={this.props.t}
-                  store={this.props.store}
-                  id="PrTable"
-                />
-              </Paper>
-            </Grid>
           </Grid>
         </div>
       </Layout>
@@ -64,7 +54,7 @@ export class Stats extends Component {
 Stats.propTypes = {
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired,
+  store: PropTypes.object,
   t: PropTypes.func.isRequired
 };
 
