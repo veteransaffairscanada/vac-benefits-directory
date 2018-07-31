@@ -88,11 +88,9 @@ AreaOfficeMap.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withScriptjs(
-  withGoogleMap(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(AreaOfficeMap)
-  )
+export default withGoogleMap(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AreaOfficeMap)
 );
