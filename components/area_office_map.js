@@ -90,6 +90,7 @@ export class AreaOfficeMap extends Component {
                     </div>
                     <br />
                     <Button
+                      id="getDirectionsButton"
                       className={classes.button}
                       target="_blank"
                       variant="raised"

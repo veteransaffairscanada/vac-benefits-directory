@@ -5,6 +5,8 @@ import React from "react";
 import WrappedAreaOfficeMap from "../../components/area_office_map";
 import { AreaOfficeMap } from "../../components/area_office_map";
 import areaOfficesFixture from "../fixtures/area_offices";
+import { withStyles } from "@material-ui/core/styles";
+import { KeyboardBackspace } from "@material-ui/icons";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -27,7 +29,8 @@ describe("AreaOfficeMap", () => {
       areaOffices: areaOfficesFixture,
       userLocation: { lat: 0, lng: 0 },
       setSelectedAreaOffice: jest.fn(),
-      selectedAreaOffice: areaOfficesFixture[0]
+      selectedAreaOffice: areaOfficesFixture[0],
+      classes: {}
     };
   });
 
@@ -48,5 +51,28 @@ describe("AreaOfficeMap", () => {
       .at(1)
       .simulate("click");
     expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
+  });
+
+  it("pops up InfoWindow when a pin is clicked", () => {
+    const map = shallow(<AreaOfficeMap {...props} />);
+    map
+      .find("Marker")
+      .at(1)
+      .simulate("click");
+    expect(map.find("InfoWindow").length).toEqual(1);
+  });
+
+  it("InfoWindow has a button", () => {
+    const map = shallow(<AreaOfficeMap {...props} />);
+    map
+      .find("Marker")
+      .at(1)
+      .simulate("click");
+    expect(
+      map
+        .find("InfoWindow")
+        .first()
+        .find("#getDirectionsButton").length
+    ).toEqual(1);
   });
 });
