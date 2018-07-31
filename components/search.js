@@ -23,11 +23,9 @@ const styles = theme => ({
     position: "relative"
   },
   input: {
-    marginTop: "5px"
+    paddingTop: "6px"
   },
-  inputIcon: {
-    marginTop: "5px"
-  },
+  inputIcon: {},
   suggestionsContainerOpen: {
     position: "absolute",
     zIndex: 1,
@@ -37,7 +35,15 @@ const styles = theme => ({
   },
   searchWrap: {
     display: "inline-flex",
-    width: "100%"
+    width: "100%",
+    borderStyle: "solid",
+    borderWidth: "1px",
+    borderRadius: "0px",
+    paddingLeft: "5px"
+  },
+  searchBox: {
+    flex: 1,
+    marginRight: "10px"
   },
   suggestion: {
     display: "block"
@@ -46,6 +52,13 @@ const styles = theme => ({
     margin: 0,
     padding: 0,
     listStyleType: "none"
+  },
+  searchButton: {
+    padding: "10px",
+    paddingLeft: "50px",
+    paddingRight: "50px",
+    textTransform: "none",
+    borderRadius: "0px"
   }
 });
 
@@ -138,13 +151,14 @@ export class Search extends Component {
     const { classes, ref, ...other } = inputProps;
     return (
       <div id={this.props.id} className={this.props.classes.searchWrap}>
-        <div style={{ flex: 1, marginRight: "10px" }}>
+        <div className={classes.searchBox}>
           <TextField
             id={this.props.t("search")}
-            className={this.props.classes.input}
+            className={classes.input}
             fullWidth
             onKeyPress={this.onKeyPress}
             InputProps={{
+              disableUnderline: true,
               inputRef: ref,
               classes: {
                 input: classes.input
@@ -161,12 +175,7 @@ export class Search extends Component {
         <div>
           <Button
             id="searchButtonLink"
-            style={{
-              padding: "10px",
-              paddingLeft: "50px",
-              paddingRight: "50px",
-              textTransform: "none"
-            }}
+            className={classes.searchButton}
             variant="raised"
             color="primary"
             href={
