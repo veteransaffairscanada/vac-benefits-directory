@@ -14,20 +14,17 @@ const BlueBar = styled("div")`
 const Hero = styled("div")`
   background-color: #eee;
   color: #000;
-  // min-height: 350px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 75px 16px 0px 16px;
+  padding: 75px 16px 50px 16px;
   text-align: center;
 `;
 
 const SearchArea = styled("div")`
-  background-color: #eee;
   color: #000;
-  min-height: 100px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 75px 16px 20px 16px;
+  padding: 0px 16px 20px 16px;
   text-align: center;
 `;
 
@@ -36,7 +33,7 @@ const HeroButton = styled("div")`
 `;
 
 const Search = styled("div")`
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 75px 16px 20px 16px;
   text-align: center;
@@ -101,6 +98,8 @@ export class App extends Component {
               </HeroButton>
             </div>
           </Hero>
+        </div>
+        <div>
           <SearchArea>
             <Search>
               <SearchComponent
