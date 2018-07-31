@@ -1,14 +1,38 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Button } from "@material-ui/core/";
+import { withStyles } from "@material-ui/core/styles";
+import { KeyboardBackspace } from "@material-ui/icons";
 
 import {
+  InfoWindow,
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
 } from "react-google-maps";
-const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
+
+const styles = () => ({
+  button: {
+    backgroundColor: "#3e57e2",
+    color: "white",
+    textAlign: "right",
+    textTransform: "none",
+    fontSize: "12px",
+    padding: "6px"
+  },
+  rightArrowIcon: {
+    "-moz-transform": "scaleX(-1)",
+    "-o-transform": "scaleX(-1)",
+    "-webkit-transform": "scaleX(-1)",
+    transform: "scaleX(-1)",
+    float: "left",
+    filter: "FlipH",
+    "-ms-filter": "FlipH",
+    paddingRight: "10px"
+  }
+});
 
 export class AreaOfficeMap extends Component {
   static defaultProps = {
@@ -26,7 +50,7 @@ export class AreaOfficeMap extends Component {
   }
 
   render() {
-    const { t, userLocation } = this.props;
+    const { t, userLocation, classes } = this.props;
     return (
       <GoogleMap
         defaultZoom={5}
@@ -41,18 +65,43 @@ export class AreaOfficeMap extends Component {
               onClick={this.selectOffice(d)}
             >
               {this.props.selectedAreaOffice.id === d.id ? (
-                <InfoBox>
+                <InfoWindow options={{ maxWidth: 200 }}>
                   <div
                     style={{
-                      fontSize: `16px`,
                       fontColor: `black`,
-                      backgroundColor: "white",
-                      padding: "12px"
+                      backgroundColor: "white"
                     }}
                   >
-                    {d["name_" + t("current-language-code")]}
+                    <div
+                      style={{
+                        fontSize: `14px`,
+                        fontWeight: "500"
+                      }}
+                    >
+                      {d["name_" + t("current-language-code")]}
+                    </div>
+                    <br />
+                    <div
+                      style={{
+                        fontSize: `12px`
+                      }}
+                    >
+                      {d["address_" + t("current-language-code")]}
+                    </div>
+                    <br />
+                    <Button
+                      className={classes.button}
+                      target="_blank"
+                      variant="raised"
+                      href={
+                        "https://maps.google.com/?ll=" + d.lat + "," + d.lng
+                      }
+                    >
+                      Get Directions
+                      <KeyboardBackspace className={classes.rightArrowIcon} />
+                    </Button>
                   </div>
-                </InfoBox>
+                </InfoWindow>
               ) : (
                 ""
               )}
@@ -93,6 +142,6 @@ export default withScriptjs(
     connect(
       mapStateToProps,
       mapDispatchToProps
-    )(AreaOfficeMap)
+    )(withStyles(styles)(AreaOfficeMap))
   )
 );

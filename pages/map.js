@@ -33,7 +33,7 @@ const styles = theme => ({
     marginTop: "30px"
   }
 });
-const google_maps_key = process.env.GOOGLE_MAPS_KEY;
+const google_maps_key = "process.env.GOOGLE_MAPS_KEY";
 export class Map extends Component {
   getLocation() {
     if (navigator.geolocation) {
