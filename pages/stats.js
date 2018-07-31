@@ -54,7 +54,7 @@ export class Stats extends Component {
 Stats.propTypes = {
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired,
+  store: PropTypes.object,
   t: PropTypes.func.isRequired
 };
 

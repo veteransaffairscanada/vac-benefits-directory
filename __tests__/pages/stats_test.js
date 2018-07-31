@@ -43,10 +43,4 @@ describe("Stats", () => {
       shallow(<Stats {...props} {...reduxData} />).find("#PrChart").length
     ).toEqual(1);
   });
-
-  it("renders PrTable", () => {
-    expect(
-      shallow(<Stats {...props} {...reduxData} />).find("#PrTable").length
-    ).toEqual(1);
-  });
 });

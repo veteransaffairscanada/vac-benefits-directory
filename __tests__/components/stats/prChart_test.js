@@ -49,25 +49,6 @@ describe("prChart", () => {
     });
   });
 
-  describe("chartData", () => {
-    it("returns an array of time stamps between the start and an end date", () => {
-      expect(
-        prChart()
-          .instance()
-          .chartData().length
-      ).toEqual(3);
-    });
-
-    it("shows value per date", () => {
-      let result = prChart()
-        .instance()
-        .chartData();
-      expect(result[0][1]).toEqual(1);
-      expect(result[1][1]).toEqual(0);
-      expect(result[2][1]).toEqual(1);
-    });
-  });
-
   describe("filterMerged", () => {
     it("filters out non-merged PRs", () => {
       expect(prChart().props().githubData.pullRequests.length).toEqual(3);
@@ -87,6 +68,45 @@ describe("prChart", () => {
           .instance()
           .filterMerged()[0].title
       ).toEqual("PR 1");
+    });
+  });
+
+  describe("maxValue", () => {
+    it("returns the maximum number of PRs per day in data set", () => {
+      expect(
+        prChart()
+          .instance()
+          .maxValue()
+      ).toEqual(1);
+    });
+  });
+
+  describe("prData", () => {
+    it("returns an array of time stamps between the start and an end date", () => {
+      expect(
+        prChart()
+          .instance()
+          .prData().length
+      ).toEqual(3);
+    });
+
+    it("shows value per date", () => {
+      let result = prChart()
+        .instance()
+        .prData();
+      expect(result[0][1]).toEqual(1);
+      expect(result[1][1]).toEqual(0);
+      expect(result[2][1]).toEqual(1);
+    });
+  });
+
+  describe("releaseData", () => {
+    it("returns an array of object representing release dates", () => {
+      expect(
+        prChart()
+          .instance()
+          .releaseData()[0].tag
+      ).toEqual("release1");
     });
   });
 
