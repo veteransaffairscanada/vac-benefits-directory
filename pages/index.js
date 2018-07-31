@@ -55,7 +55,13 @@ export class App extends Component {
     let urlGE = "A?section=A1&lng=" + t("current-language-code");
     let urlBD = "benefits-directory?lng=" + t("current-language-code");
     return (
-      <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
+      <Layout
+        i18n={i18n}
+        t={t}
+        hideNoscript={false}
+        showRefreshCache={false}
+        backgroundColor="white"
+      >
         <BlueBar />
         <div style={{ backgroundColor: "#eee" }}>
           <Hero>
