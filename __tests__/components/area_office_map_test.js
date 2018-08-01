@@ -5,8 +5,6 @@ import React from "react";
 import WrappedAreaOfficeMap from "../../components/area_office_map";
 import { AreaOfficeMap } from "../../components/area_office_map";
 import areaOfficesFixture from "../fixtures/area_offices";
-import { withStyles } from "@material-ui/core/styles";
-import { KeyboardBackspace } from "@material-ui/icons";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
