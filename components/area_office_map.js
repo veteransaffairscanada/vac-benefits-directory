@@ -71,7 +71,7 @@ export class AreaOfficeMap extends Component {
   }
 
   render() {
-    const { t, mapView, userLocation, classes } = this.props;
+    const { t, mapView, classes } = this.props;
     return (
       <GoogleMap
         ref={this.state.onMapMounted}
@@ -162,7 +162,6 @@ const mapStateToProps = reduxState => {
   return {
     areaOffices: reduxState.areaOffices,
     selectedAreaOffice: reduxState.selectedAreaOffice,
-    userLocation: reduxState.userLocation,
     mapView: reduxState.mapView
   };
 };
@@ -172,7 +171,6 @@ AreaOfficeMap.propTypes = {
   setSelectedAreaOffice: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
-  userLocation: PropTypes.object.isRequired,
   mapView: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
