@@ -60,12 +60,14 @@ class FederalBanner extends Component {
     return (
       <div className={container}>
         <div className="svg-container">
-          <GoCSignature
-            width="100%"
-            lang={t("current-language-code")}
-            flag="#fff"
-            text="#fff"
-          />
+          <a href="/">
+            <GoCSignature
+              width="100%"
+              lang={t("current-language-code")}
+              flag="#fff"
+              text="#fff"
+            />
+          </a>
         </div>
         <div>
           {this.props.showRefreshCache ? (
