@@ -45,16 +45,27 @@ export class PlaceSearch extends Component {
     const refs = {};
 
     this.state = {
-      places: [],
+      bounds: { east: -55, north: 73, south: 43, west: -143 },
       onSearchBoxMounted: ref => {
         refs.searchBox = ref;
       },
       onPlacesChanged: () => {
         const places = refs.searchBox.getPlaces();
-        console.log(places);
-      }
+        if (places.length > 0) {
+          this.setState({ selected: places[0].geometry.location });
+        }
+      },
+      places: [],
+      selected: null
     };
   }
+
+  setLocation = () => {
+    let location = this.state.selected;
+    if (location != null) {
+      this.props.setUserLocation({ lat: location.lat(), lng: location.lng() });
+    }
+  };
 
   render() {
     return (
@@ -88,6 +99,7 @@ export class PlaceSearch extends Component {
               className={this.props.classes.searchButton}
               variant="raised"
               color="primary"
+              onClick={() => this.setLocation()}
             >
               <SearchIcon className={this.props.classes.inputIcon} />
             </Button>
@@ -106,10 +118,17 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const mapStateToProps = () => {
+  return {};
+};
+
 PlaceSearch.propTypes = {
   classes: PropTypes.object.isRequired,
   setUserLocation: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
 };
 
-export default connect(mapDispatchToProps)(withStyles(styles)(PlaceSearch));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(PlaceSearch));
