@@ -9,6 +9,8 @@ import areaOfficesFixture from "../fixtures/area_offices";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
+import { withScriptjs } from "react-google-maps";
+
 jest.mock("react-ga");
 
 describe("AreaOfficeMap", () => {
@@ -32,7 +34,8 @@ describe("AreaOfficeMap", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<WrappedAreaOfficeMap {...props} />).html();
+    let WrappedComponent = withScriptjs(WrappedAreaOfficeMap);
+    let html = mount(<WrappedComponent {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 

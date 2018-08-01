@@ -7,6 +7,7 @@ import Layout from "../components/layout";
 import { connect } from "react-redux";
 import AreaOfficeMap from "../components/area_office_map";
 import AreaOfficeTable from "../components/area_office_table";
+import PlaceSearch from "../components/place_search";
 import { Grid, Button } from "@material-ui/core";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper/index";
@@ -29,11 +30,9 @@ const styles = theme => ({
     textTransform: "none"
   },
   topMatter: {
-    marginBottom: "25px",
     marginTop: "30px"
   }
 });
-const google_maps_key = process.env.GOOGLE_MAPS_KEY;
 export class Map extends Component {
   getLocation() {
     if (navigator.geolocation) {
@@ -107,6 +106,20 @@ export class Map extends Component {
               </Typography>
               <Typography>{t("favourites.call_time")}</Typography>
             </Grid>
+            <Grid
+              item
+              xs={12}
+              className={classes.placeSearch}
+              id="placeSearchHold"
+            >
+              <PlaceSearch
+                id="PlaceSearch"
+                containerElement={<div style={{ height: "0px" }} />}
+                loadingElement={<div style={{ height: "100%" }} />}
+                store={this.props.store}
+                t={t}
+              />
+            </Grid>
           </Grid>
 
           <Paper className={classes.root}>
@@ -114,17 +127,9 @@ export class Map extends Component {
               <Grid item xs={12} md={8}>
                 <AreaOfficeMap
                   id="AreaOfficeMap"
-                  googleMapURL={
-                    "https://maps.googleapis.com/maps/api/js?key=" +
-                    google_maps_key +
-                    "&language=" +
-                    t("current-language-code") +
-                    "&v=3.exp&libraries=geometry,drawing,places"
-                  }
                   loadingElement={<div style={{ height: "100%" }} />}
                   containerElement={<div style={{ height: "456px" }} />}
                   mapElement={<div style={{ height: "100%" }} />}
-                  // zoom={this.state.zoom}
                   t={t}
                 />
               </Grid>

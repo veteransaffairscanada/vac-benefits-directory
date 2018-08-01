@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} from "react-google-maps";
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 export class AreaOfficeMap extends Component {
@@ -93,11 +88,9 @@ AreaOfficeMap.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withScriptjs(
-  withGoogleMap(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(AreaOfficeMap)
-  )
+export default withGoogleMap(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AreaOfficeMap)
 );
