@@ -94,6 +94,7 @@ export class AreaOfficeTable extends Component {
     const { t, classes, selectedAreaOffice } = this.props;
     const language = t("current-language-code");
     const officeDistance = this.officeDistance();
+
     return (
       <div>
         <div style={{ width: "100%" }}>

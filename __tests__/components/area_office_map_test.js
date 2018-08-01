@@ -9,6 +9,8 @@ import areaOfficesFixture from "../fixtures/area_offices";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
+import { withScriptjs } from "react-google-maps";
+
 jest.mock("react-ga");
 
 describe("AreaOfficeMap", () => {
@@ -29,12 +31,14 @@ describe("AreaOfficeMap", () => {
       setSelectedAreaOffice: jest.fn(),
       setMapView: jest.fn(),
       selectedAreaOffice: areaOfficesFixture[0],
-      mapView: { lat: 49, lng: -100, zoom: 10 }
+      mapView: { lat: 49, lng: -100, zoom: 10 },
+      classes: {}
     };
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<WrappedAreaOfficeMap {...props} />).html();
+    let WrappedComponent = withScriptjs(WrappedAreaOfficeMap);
+    let html = mount(<WrappedComponent {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
@@ -50,5 +54,28 @@ describe("AreaOfficeMap", () => {
       .at(1)
       .simulate("click");
     expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
+  });
+
+  it("pops up InfoWindow when a pin is clicked", () => {
+    const map = shallow(<AreaOfficeMap {...props} />);
+    map
+      .find("Marker")
+      .at(1)
+      .simulate("click");
+    expect(map.find("InfoWindow").length).toEqual(1);
+  });
+
+  it("InfoWindow has a button", () => {
+    const map = shallow(<AreaOfficeMap {...props} />);
+    map
+      .find("Marker")
+      .at(1)
+      .simulate("click");
+    expect(
+      map
+        .find("InfoWindow")
+        .first()
+        .find("#getDirectionsButton").length
+    ).toEqual(1);
   });
 });

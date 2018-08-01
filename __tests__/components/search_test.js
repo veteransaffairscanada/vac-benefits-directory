@@ -28,6 +28,7 @@ describe("Search", () => {
     };
     _mountedSearch = undefined;
     reduxData = {
+      pageWidth: 1000,
       benefits: benefitsFixture,
       enIdx: JSON.stringify({
         version: "2.3.0",
@@ -174,6 +175,15 @@ describe("Search", () => {
           })
       ).not.toEqual("");
     });
+  });
+
+  it("has a search button on big screens", () => {
+    expect(mounted_Search().find("#searchButtonLink").length).not.toEqual(0);
+  });
+
+  it("does not have a search button on narrow screens", () => {
+    reduxData.pageWidth = 100;
+    expect(mounted_Search().find("#searchButtonLink").length).toEqual(0);
   });
 
   describe("renderSuggestionsContainer", () => {

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import SearchComponent from "../components/search";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import styled from "react-emotion";
+import { connect } from "react-redux";
 
 const BlueBar = styled("div")`
   border-top: 10px solid #303f9f;
@@ -50,6 +52,24 @@ const Title = styled("div")`
 `;
 
 export class App extends Component {
+  constructor() {
+    super();
+    this.updateWindowWidth = this.updateWindowWidth.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowWidth();
+    window.addEventListener("resize", this.updateWindowWidth);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateWindowWidth);
+  }
+
+  updateWindowWidth() {
+    this.props.setPageWidth(window.innerWidth);
+  }
+
   render() {
     const { i18n, t } = this.props;
     let urlGE = "A?section=A1&lng=" + t("current-language-code");
@@ -68,38 +88,39 @@ export class App extends Component {
             <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>
               <Title id="heroTitle">{t("index.title")}</Title>
               <HeroButton>
-                <Button
-                  id="heroGuidedLink"
-                  style={{
-                    marginBottom: "10px",
-                    padding: "15px",
-                    paddingLeft: "60px",
-                    paddingRight: "60px",
-                    textTransform: "none",
-                    borderRadius: "0px"
-                  }}
-                  variant="raised"
-                  color="primary"
-                  href={urlGE}
-                >
-                  {t("index.guided experience")}
-                </Button>
-
-                <div>
-                  {t("index.or")}
-                  <a
-                    id="heroBenefitsLink"
+                <Link prefetch href={urlGE}>
+                  <Button
+                    id="heroGuidedLink"
                     style={{
                       marginBottom: "10px",
-                      padding: "20px",
-                      textTransform: "none"
+                      padding: "15px",
+                      paddingLeft: "60px",
+                      paddingRight: "60px",
+                      textTransform: "none",
+                      borderRadius: "0px"
                     }}
                     variant="raised"
                     color="primary"
-                    href={urlBD}
                   >
-                    {t("index.all benefits")}
-                  </a>
+                    {t("index.guided experience")}
+                  </Button>
+                </Link>
+                <div>
+                  {t("index.or")}
+                  <Link prefetch href={urlBD}>
+                    <a
+                      id="heroBenefitsLink"
+                      style={{
+                        marginBottom: "10px",
+                        padding: "20px",
+                        textTransform: "none"
+                      }}
+                      variant="raised"
+                      color="primary"
+                    >
+                      {t("index.all benefits")}
+                    </a>
+                  </Link>
                 </div>
               </HeroButton>
             </div>
@@ -125,7 +146,22 @@ export class App extends Component {
 App.propTypes = {
   i18n: PropTypes.object.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  setPageWidth: PropTypes.func.isRequired
 };
 
-export default withI18next()(App);
+const mapStateToProps = () => {
+  return {};
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    setPageWidth: pageWidth => {
+      dispatch({ type: "SET_PAGEWIDTH", data: pageWidth });
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withI18next()(App));

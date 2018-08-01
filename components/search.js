@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import lunr from "lunr";
 
@@ -21,9 +22,6 @@ const styles = theme => ({
   container: {
     flexGrow: 1,
     position: "relative"
-  },
-  input: {
-    // paddingTop: "6px"
   },
   inputIcon: {},
   suggestionsContainerOpen: {
@@ -154,7 +152,6 @@ export class Search extends Component {
         <div className={classes.searchBox}>
           <TextField
             id={this.props.t("search")}
-            className={classes.input}
             fullWidth
             label={this.props.t("search")}
             onKeyPress={this.onKeyPress}
@@ -173,22 +170,29 @@ export class Search extends Component {
             }}
           />
         </div>
-        <div>
-          <Button
-            id="searchButtonLink"
-            className={classes.searchButton}
-            variant="raised"
-            color="primary"
-            href={
-              "benefits-directory?lng=" +
-              this.props.t("current-language-code") +
-              "&searchString=" +
-              this.state.value
-            }
-          >
-            {this.props.t("search-button")}
-          </Button>
-        </div>
+        {this.props.pageWidth >= 650 ? (
+          <div>
+            <Link
+              href={
+                "benefits-directory?lng=" +
+                this.props.t("current-language-code") +
+                "&searchString=" +
+                this.state.value
+              }
+            >
+              <Button
+                id="searchButtonLink"
+                className={classes.searchButton}
+                variant="raised"
+                color="primary"
+              >
+                {this.props.t("search-button")}
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   };
@@ -260,7 +264,8 @@ const mapStateToProps = reduxState => {
   return {
     benefits: reduxState.benefits,
     enIdx: reduxState.enIdx,
-    frIdx: reduxState.frIdx
+    frIdx: reduxState.frIdx,
+    pageWidth: reduxState.pageWidth
   };
 };
 
@@ -272,7 +277,8 @@ Search.propTypes = {
   id: PropTypes.string,
   frIdx: PropTypes.string.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  pageWidth: PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(Search));
