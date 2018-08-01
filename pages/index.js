@@ -150,7 +150,7 @@ App.propTypes = {
   setPageWidth: PropTypes.func.isRequired
 };
 
-const mapStateToProps = reduxState => {
+const mapStateToProps = () => {
   return {};
 };
 const mapDispatchToProps = dispatch => {
