@@ -14,5 +14,5 @@ For each red (major version) upgrade:
 
 - [] Upgrade
 - [] Run tests
-- [] Example app locally
+- [] Examine app locally
 - [] Commit
