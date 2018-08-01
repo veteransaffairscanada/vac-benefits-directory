@@ -44,6 +44,17 @@ describe("BenefitList", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
+  it("has a correct cleanSortingPriority function", () => {
+    let BLInstance = shallow(
+      <BenefitList {...props} {...reduxData} />
+    ).instance();
+    expect(BLInstance.cleanSortingPriority("high")).toEqual("high");
+    expect(BLInstance.cleanSortingPriority("medium")).toEqual("medium");
+    expect(BLInstance.cleanSortingPriority("low")).toEqual("low");
+    expect(BLInstance.cleanSortingPriority("bad value")).toEqual("low");
+    expect(BLInstance.cleanSortingPriority(undefined)).toEqual("low");
+  });
+
   it("has a correct sortBenefits function when sorting by popularity", () => {
     let BLInstance = shallow(
       <BenefitList {...props} {...reduxData} />
