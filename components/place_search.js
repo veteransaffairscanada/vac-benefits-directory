@@ -60,6 +60,12 @@ export class PlaceSearch extends Component {
     };
   }
 
+  onKeyPress = e => {
+    if (e.key === "Enter") {
+      this.setLocation();
+    }
+  };
+
   setLocation = () => {
     let location = this.state.selected;
     if (location != null) {
@@ -83,6 +89,7 @@ export class PlaceSearch extends Component {
               placeholder={this.props.t("map.search-location-prompt")}
               fullWidth
               label={this.props.t("map.search-locations")}
+              onKeyPress={this.onKeyPress}
               InputProps={{
                 disableUnderline: true,
                 classes: {
