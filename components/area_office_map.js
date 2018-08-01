@@ -85,7 +85,8 @@ export class AreaOfficeMap extends Component {
                     <div
                       style={{
                         fontSize: `14px`,
-                        fontWeight: "500"
+                        fontWeight: "500",
+                        fontFamily: ["Merriweather", "serif"]
                       }}
                     >
                       {d["name_" + t("current-language-code")]}
@@ -93,7 +94,8 @@ export class AreaOfficeMap extends Component {
                     <br />
                     <div
                       style={{
-                        fontSize: `12px`
+                        fontSize: `12px`,
+                        fontFamily: ["Merriweather", "serif"]
                       }}
                     >
                       {d["address_" + t("current-language-code")]}
