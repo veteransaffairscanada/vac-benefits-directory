@@ -42,6 +42,14 @@ const styles = () => ({
 });
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiButton: {
+      root: { "&:focus": { opacity: 0.3 } }
+    },
+    MuiTouchRipple: {
+      ripplePulsate: { opacity: 0 }
+    }
+  },
   typography: { fontFamily: ["Merriweather", "serif"] }
 });
 

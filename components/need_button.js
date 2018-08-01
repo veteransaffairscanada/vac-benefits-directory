@@ -14,6 +14,9 @@ const styles = theme => ({
     borderStyle: "solid",
     borderWidth: "2px",
     borderRadius: "5px",
+    "&:focus": {
+      borderWidth: "4px"
+    },
     "&:hover": {
       opacity: "0.5"
     }
