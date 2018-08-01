@@ -33,7 +33,8 @@ describe("Map", () => {
       setClosestAreaOffice: jest.fn(),
       setSelectedAreaOffice: jest.fn(),
       closestAreaOffice: areaOfficesFixture[0],
-      selectedAreaOffice: areaOfficesFixture[0]
+      selectedAreaOffice: areaOfficesFixture[0],
+      setMapView: jest.fn()
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

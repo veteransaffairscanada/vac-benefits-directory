@@ -101,7 +101,6 @@ AreaOfficeMap.propTypes = {
   areaOffices: PropTypes.array.isRequired,
   setSelectedAreaOffice: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
-  // onCenterChanged: PropTypes.func.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
   userLocation: PropTypes.object.isRequired,
   mapView: PropTypes.object.isRequired,
