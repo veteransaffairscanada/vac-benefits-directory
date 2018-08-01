@@ -170,25 +170,29 @@ export class Search extends Component {
             }}
           />
         </div>
-        <div>
-          <Link
-            href={
-              "benefits-directory?lng=" +
-              this.props.t("current-language-code") +
-              "&searchString=" +
-              this.state.value
-            }
-          >
-            <Button
-              id="searchButtonLink"
-              className={classes.searchButton}
-              variant="raised"
-              color="primary"
+        {this.props.pageWidth >= 650 ? (
+          <div>
+            <Link
+              href={
+                "benefits-directory?lng=" +
+                this.props.t("current-language-code") +
+                "&searchString=" +
+                this.state.value
+              }
             >
-              {this.props.t("search-button")}
-            </Button>
-          </Link>
-        </div>
+              <Button
+                id="searchButtonLink"
+                className={classes.searchButton}
+                variant="raised"
+                color="primary"
+              >
+                {this.props.t("search-button")}
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     );
   };
@@ -260,7 +264,8 @@ const mapStateToProps = reduxState => {
   return {
     benefits: reduxState.benefits,
     enIdx: reduxState.enIdx,
-    frIdx: reduxState.frIdx
+    frIdx: reduxState.frIdx,
+    pageWidth: reduxState.pageWidth
   };
 };
 
@@ -272,7 +277,8 @@ Search.propTypes = {
   id: PropTypes.string,
   frIdx: PropTypes.string.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  pageWidth: PropTypes.number.isRequired
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(Search));
