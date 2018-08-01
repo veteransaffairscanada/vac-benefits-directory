@@ -56,7 +56,10 @@ const styles = theme => ({
     paddingLeft: "50px",
     paddingRight: "50px",
     textTransform: "none",
-    borderRadius: "0px"
+    borderRadius: "0px",
+    [theme.breakpoints.down("xs")]: {
+      display: "none"
+    }
   }
 });
 
@@ -170,29 +173,25 @@ export class Search extends Component {
             }}
           />
         </div>
-        {this.props.pageWidth >= 650 ? (
-          <div>
-            <Link
-              href={
-                "benefits-directory?lng=" +
-                this.props.t("current-language-code") +
-                "&searchString=" +
-                this.state.value
-              }
+        <div>
+          <Link
+            href={
+              "benefits-directory?lng=" +
+              this.props.t("current-language-code") +
+              "&searchString=" +
+              this.state.value
+            }
+          >
+            <Button
+              id="searchButtonLink"
+              className={classes.searchButton}
+              variant="raised"
+              color="primary"
             >
-              <Button
-                id="searchButtonLink"
-                className={classes.searchButton}
-                variant="raised"
-                color="primary"
-              >
-                {this.props.t("search-button")}
-              </Button>
-            </Link>
-          </div>
-        ) : (
-          ""
-        )}
+              {this.props.t("search-button")}
+            </Button>
+          </Link>
+        </div>
       </div>
     );
   };
@@ -264,8 +263,7 @@ const mapStateToProps = reduxState => {
   return {
     benefits: reduxState.benefits,
     enIdx: reduxState.enIdx,
-    frIdx: reduxState.frIdx,
-    pageWidth: reduxState.pageWidth
+    frIdx: reduxState.frIdx
   };
 };
 
@@ -277,8 +275,7 @@ Search.propTypes = {
   id: PropTypes.string,
   frIdx: PropTypes.string.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired,
-  pageWidth: PropTypes.number.isRequired
+  t: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(Search));
