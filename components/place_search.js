@@ -55,6 +55,7 @@ export class PlaceSearch extends Component {
         }
       },
       places: [],
+      refs: refs,
       selected: null
     };
   }
