@@ -5,7 +5,7 @@ Our aim is to update all package dependencies once per sprint. Responsibility fo
 In a new branch
 
 - [] Prune things no longer needed
-  Run `yarn upgrade-interactive --latest --ignore-engines` to find upgraded packages
+- [] Run `yarn upgrade-interactive --latest --ignore-engines` to find upgraded packages
 - [] Upgrade patch and minor version changes (green and yellow)
 - [] Run tests
 - [] Commit
