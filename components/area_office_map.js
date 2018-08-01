@@ -7,7 +7,6 @@ import { KeyboardBackspace } from "@material-ui/icons";
 
 import {
   InfoWindow,
-  withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker
@@ -36,9 +35,9 @@ const styles = () => ({
 
 const isIOS =
   typeof navigator !== "undefined" &&
-  (navigator.platform.indexOf("iPhone") != -1 ||
-    navigator.platform.indexOf("iPod") != -1 ||
-    navigator.platform.indexOf("iPad") != -1);
+  (navigator.platform.indexOf("iPhone") !== -1 ||
+    navigator.platform.indexOf("iPod") !== -1 ||
+    navigator.platform.indexOf("iPad") !== -1);
 
 export class AreaOfficeMap extends Component {
   static defaultProps = {
@@ -52,6 +51,11 @@ export class AreaOfficeMap extends Component {
   selectOffice(selected_office) {
     return () => {
       this.props.setSelectedAreaOffice(selected_office);
+      // element in area_office_table
+      const elmnt = document.getElementById("tableRow" + selected_office.id);
+      if (elmnt !== null) {
+        elmnt.scrollIntoView();
+      }
     };
   }
 
@@ -153,11 +157,9 @@ AreaOfficeMap.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withScriptjs(
-  withGoogleMap(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(withStyles(styles)(AreaOfficeMap))
-  )
+export default withGoogleMap(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withStyles(styles)(AreaOfficeMap))
 );
