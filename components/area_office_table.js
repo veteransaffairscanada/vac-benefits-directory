@@ -124,6 +124,11 @@ export class AreaOfficeTable extends Component {
                       ae.id === selectedAreaOffice.id ? classes.selectedRow : ""
                     }
                     onClick={() => {
+                      this.props.setMapView({
+                        lat: ae.lat,
+                        lng: ae.lng,
+                        zoom: 10
+                      });
                       this.props.setSelectedAreaOffice(ae);
                     }}
                   >
@@ -157,6 +162,9 @@ const mapDispatchToProps = dispatch => {
     },
     setSelectedAreaOffice: selectedAreaOffice => {
       dispatch({ type: "SET_SELECTED_OFFICE", data: selectedAreaOffice });
+    },
+    setMapView: mapView => {
+      dispatch({ type: "SET_MAP_VIEW", data: mapView });
     }
   };
 };
@@ -174,6 +182,7 @@ AreaOfficeTable.propTypes = {
   selectedAreaOffice: PropTypes.object.isRequired,
   setClosestAreaOffice: PropTypes.func.isRequired,
   setSelectedAreaOffice: PropTypes.func.isRequired,
+  setMapView: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   userLocation: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired

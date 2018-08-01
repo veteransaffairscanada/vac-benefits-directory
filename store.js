@@ -20,7 +20,8 @@ const initialState = {
   closestAreaOffice: {},
   selectedAreaOffice: {},
   userLocation: { lat: 49, lng: -104 },
-  pageWidth: 1000
+  pageWidth: 1000,
+  mapView: { lat: 49, lng: -104, zoom: 1 }
 };
 airtableConstants.tableNames.forEach(tableName => {
   initialState[tableName] = [];
@@ -111,6 +112,10 @@ export const reducer = (state = initialState, action) => {
     case "SET_USER_LOCATION":
       return Object.assign({}, state, {
         userLocation: action.data
+      });
+    case "SET_MAP_VIEW":
+      return Object.assign({}, state, {
+        mapView: action.data
       });
     case "SET_PAGEWIDTH":
       return Object.assign({}, state, { pageWidth: action.data });

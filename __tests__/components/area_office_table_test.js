@@ -23,7 +23,8 @@ describe("AreaOfficeTable", () => {
       areaOffices: areaOfficesFixture,
       userLocation: { lat: 0, lng: 0 },
       setSelectedAreaOffice: jest.fn(),
-      selectedAreaOffice: areaOfficesFixture[0]
+      selectedAreaOffice: areaOfficesFixture[0],
+      setMapView: jest.fn()
     };
   });
 
@@ -87,5 +88,17 @@ describe("AreaOfficeTable", () => {
       .at(2)
       .simulate("click");
     expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
+  });
+
+  it("sets the map view when a row is clicked", () => {
+    mount(<AreaOfficeTable {...props} />)
+      .find("TableRow")
+      .at(2)
+      .simulate("click");
+    expect(props.setMapView).toBeCalledWith({
+      lat: props.areaOffices[1].lat,
+      lng: props.areaOffices[1].lng,
+      zoom: 10
+    });
   });
 });

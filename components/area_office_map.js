@@ -40,13 +40,24 @@ const isIOS =
     navigator.platform.indexOf("iPad") !== -1);
 
 export class AreaOfficeMap extends Component {
-  static defaultProps = {
-    userLocation: {
-      lat: 49,
-      lng: -104
-    },
-    zoom: 4
-  };
+  constructor(props) {
+    super(props);
+    this.props.setMapView({ lat: 51, lng: -104, zoom: 3 });
+    const refs = {};
+    this.state = {
+      onMapMounted: ref => {
+        refs.map = ref;
+      },
+      onCenterChanged: () => {
+        const centre = refs.map.getCenter();
+        this.props.setMapView({
+          lat: centre.lat(),
+          lng: centre.lng(),
+          zoom: 10
+        });
+      }
+    };
+  }
 
   selectOffice(selected_office) {
     return () => {
@@ -60,12 +71,14 @@ export class AreaOfficeMap extends Component {
   }
 
   render() {
-    const { t, userLocation, classes } = this.props;
+    const { t, mapView, classes } = this.props;
     return (
       <GoogleMap
-        defaultZoom={5}
-        center={{ lat: userLocation.lat, lng: userLocation.lng }}
+        ref={this.state.onMapMounted}
+        center={{ lat: +mapView.lat, lng: +mapView.lng }}
+        onCenterChanged={this.state.onCenterChanged}
         {...this.props}
+        zoom={+mapView.zoom}
       >
         {this.props.areaOffices.map((d, i) => {
           return (
@@ -138,6 +151,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setSelectedAreaOffice: selectedAreaOffice => {
       dispatch({ type: "SET_SELECTED_OFFICE", data: selectedAreaOffice });
+    },
+    setMapView: mapView => {
+      dispatch({ type: "SET_MAP_VIEW", data: mapView });
     }
   };
 };
@@ -146,15 +162,16 @@ const mapStateToProps = reduxState => {
   return {
     areaOffices: reduxState.areaOffices,
     selectedAreaOffice: reduxState.selectedAreaOffice,
-    userLocation: reduxState.userLocation
+    mapView: reduxState.mapView
   };
 };
 
 AreaOfficeMap.propTypes = {
   areaOffices: PropTypes.array.isRequired,
   setSelectedAreaOffice: PropTypes.func.isRequired,
+  setMapView: PropTypes.func.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
-  userLocation: PropTypes.object.isRequired,
+  mapView: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
