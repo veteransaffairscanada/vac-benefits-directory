@@ -5,6 +5,20 @@ import Bookmark from "@material-ui/icons/Bookmark";
 import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
+import { withStyles } from "@material-ui/core/styles/index";
+
+const styles = theme => ({
+  hideSmall: {
+    [theme.breakpoints.down(700)]: {
+      display: "none"
+    }
+  },
+  hideBig: {
+    [theme.breakpoints.up(700)]: {
+      display: "none"
+    }
+  }
+});
 
 export class FavouriteButton extends Component {
   constructor() {
@@ -27,6 +41,7 @@ export class FavouriteButton extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <Button
         style={{ color: "#3e57e2", marginLeft: "-20px", textTransform: "none" }}
@@ -38,11 +53,12 @@ export class FavouriteButton extends Component {
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
-        {this.props.t(
-          this.props.pageWidth >= 650
-            ? "B3.favouritesButtonBText"
-            : "B3.favouritesButtonBTextMobile"
-        )}
+        <div className={classes.hideSmall}>
+          {this.props.t("B3.favouritesButtonBText")}
+        </div>
+        <div className={classes.hideBig}>
+          {this.props.t("B3.favouritesButtonBTextMobile")}
+        </div>
       </Button>
     );
   }
@@ -61,8 +77,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    favouriteBenefits: reduxState.favouriteBenefits,
-    pageWidth: reduxState.pageWidth
+    favouriteBenefits: reduxState.favouriteBenefits
   };
 };
 
@@ -73,10 +88,10 @@ FavouriteButton.propTypes = {
   toggleOpenState: PropTypes.func.isRequired,
   store: PropTypes.object,
   t: PropTypes.func.isRequired,
-  pageWidth: PropTypes.number.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(FavouriteButton);
+)(withStyles(styles)(FavouriteButton));

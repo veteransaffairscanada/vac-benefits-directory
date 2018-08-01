@@ -29,8 +29,6 @@ describe("Index page", () => {
     };
     mockStore = configureStore();
     reduxData = {
-      setPageWidth: jest.fn(),
-      pageWidth: 1000,
       translations: [],
       benefits: benefitsFixture,
       enIdx: JSON.stringify({
