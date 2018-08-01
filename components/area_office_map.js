@@ -11,13 +11,24 @@ import {
 const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
 
 export class AreaOfficeMap extends Component {
-  static defaultProps = {
-    userLocation: {
-      lat: 49,
-      lng: -104
-    },
-    zoom: 4
-  };
+  constructor(props) {
+    super(props);
+    this.props.setMapView({ lat: 51, lng: -104, zoom: 3 });
+    const refs = {};
+    this.state = {
+      onMapMounted: ref => {
+        refs.map = ref;
+      },
+      onCenterChanged: () => {
+        const centre = refs.map.getCenter();
+        this.props.setMapView({
+          lat: centre.lat(),
+          lng: centre.lng(),
+          zoom: 10
+        });
+      }
+    };
+  }
 
   selectOffice(selected_office) {
     return () => {
@@ -25,16 +36,15 @@ export class AreaOfficeMap extends Component {
     };
   }
 
-  onCentreChanged() {}
-
   render() {
-    const { t, mapCentre } = this.props;
+    const { t, mapView } = this.props;
     return (
       <GoogleMap
-        defaultZoom={5}
-        center={{ lat: +mapCentre.lat, lng: +mapCentre.lng }}
-        onCenterChanged={this.onCentreChanged}
+        ref={this.state.onMapMounted}
+        center={{ lat: +mapView.lat, lng: +mapView.lng }}
+        onCenterChanged={this.state.onCenterChanged}
         {...this.props}
+        zoom={+mapView.zoom}
       >
         {this.props.areaOffices.map((d, i) => {
           return (
@@ -72,8 +82,8 @@ const mapDispatchToProps = dispatch => {
     setSelectedAreaOffice: selectedAreaOffice => {
       dispatch({ type: "SET_SELECTED_OFFICE", data: selectedAreaOffice });
     },
-    setMapCentre: mapCentre => {
-      dispatch({ type: "SET_MAP_CENTRE", data: mapCentre });
+    setMapView: mapView => {
+      dispatch({ type: "SET_MAP_VIEW", data: mapView });
     }
   };
 };
@@ -83,16 +93,18 @@ const mapStateToProps = reduxState => {
     areaOffices: reduxState.areaOffices,
     selectedAreaOffice: reduxState.selectedAreaOffice,
     userLocation: reduxState.userLocation,
-    mapCentre: reduxState.mapCentre
+    mapView: reduxState.mapView
   };
 };
 
 AreaOfficeMap.propTypes = {
   areaOffices: PropTypes.array.isRequired,
   setSelectedAreaOffice: PropTypes.func.isRequired,
+  setMapView: PropTypes.func.isRequired,
+  // onCenterChanged: PropTypes.func.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
   userLocation: PropTypes.object.isRequired,
-  mapCentre: PropTypes.object.isRequired,
+  mapView: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 

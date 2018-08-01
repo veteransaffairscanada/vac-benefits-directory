@@ -43,7 +43,7 @@ export class Map extends Component {
           lng: +position.coords.longitude
         };
         this.props.setUserLocation(coords);
-        this.props.setMapCentre(coords);
+        this.props.setMapView({ lat: coords.lat, lng: coords.lng, zoom: 10 });
       });
     } else {
       //browser doesn't support geolocation
@@ -126,7 +126,6 @@ export class Map extends Component {
                   loadingElement={<div style={{ height: "100%" }} />}
                   containerElement={<div style={{ height: "456px" }} />}
                   mapElement={<div style={{ height: "100%" }} />}
-                  // zoom={this.state.zoom}
                   t={t}
                 />
               </Grid>
@@ -149,8 +148,8 @@ const mapDispatchToProps = dispatch => {
     setUserLocation: userLocation => {
       dispatch({ type: "SET_USER_LOCATION", data: userLocation });
     },
-    setMapCentre: mapCentre => {
-      dispatch({ type: "SET_MAP_CENTRE", data: mapCentre });
+    setMapView: mapView => {
+      dispatch({ type: "SET_MAP_VIEW", data: mapView });
     }
   };
 };
@@ -167,7 +166,7 @@ Map.propTypes = {
   classes: PropTypes.object.isRequired,
   areaOffices: PropTypes.array.isRequired,
   setUserLocation: PropTypes.func.isRequired,
-  setMapCentre: PropTypes.func.isRequired,
+  setMapView: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
