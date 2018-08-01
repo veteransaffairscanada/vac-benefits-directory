@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
-import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { StandaloneSearchBox } from "react-google-maps/lib/components/places/StandaloneSearchBox";
@@ -78,6 +77,7 @@ export class PlaceSearch extends Component {
         <div className={this.props.classes.searchWrap}>
           <div className={this.props.classes.searchBox}>
             <TextField
+              id={this.props.classes.input}
               className={this.props.classes.input}
               placeholder={this.props.t("map.search-location-prompt")}
               fullWidth
@@ -101,7 +101,7 @@ export class PlaceSearch extends Component {
               color="primary"
               onClick={() => this.setLocation()}
             >
-              <SearchIcon className={this.props.classes.inputIcon} />
+              {this.props.t("map.search-locations")}
             </Button>
           </div>
         </div>

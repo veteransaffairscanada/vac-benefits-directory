@@ -116,6 +116,7 @@ export class Map extends Component {
                 id="PlaceSearch"
                 containerElement={<div style={{ height: "0px" }} />}
                 loadingElement={<div style={{ height: "100%" }} />}
+                store={this.props.store}
                 t={t}
               />
             </Grid>

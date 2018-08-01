@@ -2,9 +2,8 @@
 
 import { mount, shallow } from "enzyme";
 import React from "react";
-import WrappedAreaOfficeMap from "../../components/area_office_map";
-import { AreaOfficeMap } from "../../components/area_office_map";
-import areaOfficesFixture from "../fixtures/area_offices";
+import WrappedPlaceSearch from "../../components/place_search";
+import { PlaceSearch } from "../../components/place_search";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -13,7 +12,7 @@ import { withScriptjs } from "react-google-maps";
 
 jest.mock("react-ga");
 
-describe("AreaOfficeMap", () => {
+describe("PlaceSearch", () => {
   let props;
 
   beforeEach(() => {
@@ -26,30 +25,14 @@ describe("AreaOfficeMap", () => {
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
-      areaOffices: areaOfficesFixture,
       userLocation: { lat: 0, lng: 0 },
-      setSelectedAreaOffice: jest.fn(),
-      selectedAreaOffice: areaOfficesFixture[0]
+      setUserLocation: jest.fn()
     };
   });
 
   it("passes axe tests", async () => {
-    let WrappedComponent = withScriptjs(WrappedAreaOfficeMap);
+    let WrappedComponent = withScriptjs(WrappedPlaceSearch);
     let html = mount(<WrappedComponent {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
-  });
-
-  it("renders the correct number of Markers", () => {
-    expect(shallow(<AreaOfficeMap {...props} />).find("Marker").length).toEqual(
-      2
-    );
-  });
-
-  it("selects an area office when a pin is clicked", () => {
-    shallow(<AreaOfficeMap {...props} />)
-      .find("Marker")
-      .at(1)
-      .simulate("click");
-    expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
   });
 });
