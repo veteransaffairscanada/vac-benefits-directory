@@ -18,7 +18,7 @@ export class PrChart extends Component {
         zoomType: "x"
       },
       title: {
-        text: "Deploys over time"
+        text: "Stats over time"
       },
       xAxis: {
         type: "datetime",
@@ -27,17 +27,11 @@ export class PrChart extends Component {
         }
       },
       yAxis: {
+        allowDecimals: false,
         title: {
           text: "Deploys per day"
         },
         min: 0
-      },
-      tooltip: {
-        headerFormat: "<b>{series.name}</b><br>",
-        pointFormat: "{point.x:%a %e %b}: <b>{point.y}</b>"
-      },
-      legend: {
-        enabled: false
       },
       plotOptions: {
         spline: {
@@ -48,14 +42,39 @@ export class PrChart extends Component {
       },
       series: [
         {
+          data: this.prData(),
           name: "Deploys",
-          data: this.chartData()
+          tooltip: {
+            headerFormat: "<b>{series.name}</b><br>",
+            pointFormat: "{point.x:%a %e %b}: <b>{point.y}</b>"
+          },
+          type: "spline"
+        },
+        {
+          data: this.releaseData(),
+          name: "Releases",
+          tooltip: {
+            headerFormat: "<b>{series.name}</b><br>",
+            pointFormat: "{point.x:%a %e %b}: <b>{point.tag}</b>"
+          },
+          type: "column"
         }
       ]
     };
   };
 
-  chartData = () => {
+  filterMerged = () => {
+    return this.props.githubData.pullRequests
+      .filter(pr => pr.merged_at)
+      .sort(this.sortByMergedAt);
+  };
+
+  maxValue = () => {
+    let values = this.prData().map(t => t[1]);
+    return Math.max.apply(null, values);
+  };
+
+  prData = () => {
     let filtered = this.filterMerged();
     if (filtered.length == 0) {
       return [];
@@ -81,10 +100,19 @@ export class PrChart extends Component {
     });
   };
 
-  filterMerged = () => {
-    return this.props.githubData.pullRequests
-      .filter(pr => pr.merged_at)
-      .sort(this.sortByMergedAt);
+  releaseData = () => {
+    let filtered = this.filterMerged();
+    let max = this.maxValue();
+    return this.props.githubData.releases.map(release => {
+      let commit = filtered.find(
+        c => c.merge_commit_sha === release.commit.sha
+      );
+      return {
+        tag: release.name,
+        x: Moment(commit.created_at).valueOf(),
+        y: max
+      };
+    });
   };
 
   sortByMergedAt = (a, b) => {

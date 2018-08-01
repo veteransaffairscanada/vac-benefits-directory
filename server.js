@@ -30,7 +30,7 @@ getAllData = async function() {
 
 // Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
 Promise.resolve(getAllData()).then(allData => {
-  const data = allData.airtableData;
+  let data = allData.airtableData;
   const githubData = allData.githubData;
 
   // init i18next with serverside settings

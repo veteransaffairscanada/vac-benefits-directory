@@ -23,12 +23,7 @@ const styles = theme => ({
     flexGrow: 1,
     position: "relative"
   },
-  input: {
-    marginTop: "5px"
-  },
-  inputIcon: {
-    marginTop: "5px"
-  },
+  inputIcon: {},
   suggestionsContainerOpen: {
     position: "absolute",
     zIndex: 1,
@@ -38,7 +33,15 @@ const styles = theme => ({
   },
   searchWrap: {
     display: "inline-flex",
-    width: "100%"
+    width: "100%",
+    borderStyle: "solid",
+    borderWidth: "1px",
+    borderRadius: "0px",
+    paddingLeft: "5px"
+  },
+  searchBox: {
+    flex: 1,
+    marginRight: "10px"
   },
   suggestion: {
     display: "block"
@@ -47,6 +50,13 @@ const styles = theme => ({
     margin: 0,
     padding: 0,
     listStyleType: "none"
+  },
+  searchButton: {
+    padding: "15px",
+    paddingLeft: "50px",
+    paddingRight: "50px",
+    textTransform: "none",
+    borderRadius: "0px"
   }
 });
 
@@ -139,14 +149,14 @@ export class Search extends Component {
     const { classes, ref, ...other } = inputProps;
     return (
       <div id={this.props.id} className={this.props.classes.searchWrap}>
-        <div style={{ flex: 1, marginRight: "10px" }}>
+        <div className={classes.searchBox}>
           <TextField
             id={this.props.t("search")}
-            className={this.props.classes.input}
             fullWidth
             label={this.props.t("search")}
             onKeyPress={this.onKeyPress}
             InputProps={{
+              disableUnderline: true,
               inputRef: ref,
               classes: {
                 input: classes.input
@@ -171,11 +181,11 @@ export class Search extends Component {
           >
             <Button
               id="searchButtonLink"
-              style={{ padding: "20px", textTransform: "none" }}
+              className={classes.searchButton}
               variant="raised"
               color="primary"
             >
-              {this.props.t("search")}
+              {this.props.t("search-button")}
             </Button>
           </Link>
         </div>
@@ -217,11 +227,10 @@ export class Search extends Component {
   };
 
   render() {
-    const { classes, t } = this.props;
+    const { classes } = this.props;
     const { value, suggestions } = this.state;
     const inputProps = {
       classes,
-      placeholder: t("search"),
       value,
       onChange: this.onChange
     };

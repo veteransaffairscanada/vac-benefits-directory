@@ -15,10 +15,17 @@ const BlueBar = styled("div")`
 const Hero = styled("div")`
   background-color: #eee;
   color: #000;
-  min-height: 350px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 75px 16px 20px 16px;
+  padding: 75px 16px 50px 16px;
+  text-align: center;
+`;
+
+const SearchArea = styled("div")`
+  color: #000;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0px 16px 20px 16px;
   text-align: center;
 `;
 
@@ -27,7 +34,7 @@ const HeroButton = styled("div")`
 `;
 
 const Search = styled("div")`
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 75px 16px 20px 16px;
   text-align: center;
@@ -37,8 +44,10 @@ const Search = styled("div")`
 `;
 
 const Title = styled("div")`
-  font-size: 38px;
-  line-height: 56px;
+  font-size: 25px;
+  line-height: 50px;
+  max-width: 700px;
+  margin: 0 auto;
 `;
 
 export class App extends Component {
@@ -47,7 +56,13 @@ export class App extends Component {
     let urlGE = "A?section=A1&lng=" + t("current-language-code");
     let urlBD = "benefits-directory?lng=" + t("current-language-code");
     return (
-      <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
+      <Layout
+        i18n={i18n}
+        t={t}
+        hideNoscript={false}
+        showRefreshCache={false}
+        backgroundColor="white"
+      >
         <BlueBar />
         <div style={{ backgroundColor: "#eee" }}>
           <Hero>
@@ -59,8 +74,11 @@ export class App extends Component {
                     id="heroGuidedLink"
                     style={{
                       marginBottom: "10px",
-                      padding: "20px",
-                      textTransform: "none"
+                      padding: "15px",
+                      paddingLeft: "60px",
+                      paddingRight: "60px",
+                      textTransform: "none",
+                      borderRadius: "0px"
                     }}
                     variant="raised"
                     color="primary"
@@ -68,25 +86,29 @@ export class App extends Component {
                     {t("index.guided experience")}
                   </Button>
                 </Link>
-                &nbsp; &nbsp; &nbsp;
-                {t("index.or")}
-                &nbsp; &nbsp; &nbsp;
-                <Link prefetch href={urlBD}>
-                  <Button
-                    id="heroBenefitsLink"
-                    style={{
-                      marginBottom: "10px",
-                      padding: "20px",
-                      textTransform: "none"
-                    }}
-                    variant="raised"
-                    color="primary"
-                  >
-                    {t("index.all benefits")}
-                  </Button>
-                </Link>
+                <div>
+                  {t("index.or")}
+                  <Link prefetch href={urlBD}>
+                    <a
+                      id="heroBenefitsLink"
+                      style={{
+                        marginBottom: "10px",
+                        padding: "20px",
+                        textTransform: "none"
+                      }}
+                      variant="raised"
+                      color="primary"
+                    >
+                      {t("index.all benefits")}
+                    </a>
+                  </Link>
+                </div>
               </HeroButton>
             </div>
+          </Hero>
+        </div>
+        <div>
+          <SearchArea>
             <Search>
               <SearchComponent
                 id="searchComponent"
@@ -95,7 +117,7 @@ export class App extends Component {
                 t={this.props.t}
               />
             </Search>
-          </Hero>
+          </SearchArea>
         </div>
       </Layout>
     );

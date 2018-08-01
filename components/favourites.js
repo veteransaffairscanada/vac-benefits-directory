@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
+import Link from "next/link";
 
 const styles = theme => ({
   backLink: {
@@ -175,22 +176,25 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Button
-              variant="flat"
-              size="large"
-              href={printUrl}
-              className={classes.buttonBarButton}
-              id="printButton"
-            >
-              <Print style={{ fontSize: "48px" }} />
-              &nbsp;
-              {t("Print")}
-            </Button>
+            <Link href={printUrl}>
+              <Button
+                variant="flat"
+                size="large"
+                className={classes.buttonBarButton}
+                id="printButton"
+              >
+                <Print style={{ fontSize: "48px" }} />
+                &nbsp;
+                {t("Print")}
+              </Button>
+            </Link>
             <Typography className={classes.contactUsTitle}>
               {t("favourites.contact_us")}
             </Typography>
             <Typography>
-              <a href="/map">{t("favourites.visit_prompt")}</a>
+              <Link href="/map">
+                <a>{t("favourites.visit_prompt")}</a>
+              </Link>
             </Typography>
             <br />
             <Typography>{t("favourites.print_instructions")}</Typography>

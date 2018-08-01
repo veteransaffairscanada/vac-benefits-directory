@@ -39,7 +39,7 @@ const profile_questions = [
 
 export class Print extends Component {
   componentDidMount() {
-    // window.print();
+    window.print();
   }
 
   countString = (filteredBenefits, benefits, t) => {
@@ -84,7 +84,7 @@ export class Print extends Component {
   };
 
   render() {
-    const { i18n, t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, benefits, needs, classes, closestAreaOffice } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const filteredBenefitsIDs =
@@ -144,9 +144,17 @@ export class Print extends Component {
             <div className={classes.bold}>{t("contact.email")}</div>
             <div>{t("favourites.email_disclaimer")}</div>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} id="closest_office_info">
             <div className={classes.title}>{t("print.closest_office")}</div>
-            <div className={classes.rules} style={{ height: "5em" }} />
+            <div className={classes.rules} style={{ height: "5em" }}>
+              {t("current-language-code") == "en"
+                ? closestAreaOffice.name_en
+                : closestAreaOffice.name_fr}
+              <br />
+              {t("current-language-code") == "en"
+                ? closestAreaOffice.address_en
+                : closestAreaOffice.address_fr}
+            </div>
           </Grid>
           <Grid item xs={12}>
             <div className={classes.title}>{t("favourites.apply_prompt")}</div>
@@ -218,12 +226,13 @@ export class Print extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    benefits: state.benefits,
-    examples: state.examples,
-    eligibilityPaths: state.eligibilityPaths,
-    needs: state.needs
+    benefits: reduxState.benefits,
+    examples: reduxState.examples,
+    eligibilityPaths: reduxState.eligibilityPaths,
+    needs: reduxState.needs,
+    closestAreaOffice: reduxState.closestAreaOffice
   };
 };
 
@@ -232,6 +241,7 @@ Print.propTypes = {
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  closestAreaOffice: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
