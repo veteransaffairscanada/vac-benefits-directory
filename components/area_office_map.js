@@ -34,6 +34,12 @@ const styles = () => ({
   }
 });
 
+const isIOS =
+  typeof navigator !== "undefined" &&
+  (navigator.platform.indexOf("iPhone") != -1 ||
+    navigator.platform.indexOf("iPod") != -1 ||
+    navigator.platform.indexOf("iPad") != -1);
+
 export class AreaOfficeMap extends Component {
   static defaultProps = {
     userLocation: {
@@ -95,7 +101,15 @@ export class AreaOfficeMap extends Component {
                       target="_blank"
                       variant="raised"
                       href={
-                        "http://maps.apple.com/?daddr=" + d.lat + "," + d.lng
+                        isIOS
+                          ? "https://maps.apple.com/?daddr=" +
+                            d.lat +
+                            "," +
+                            d.lng
+                          : "https://www.google.com/maps?saddr=My+Location&daddr=" +
+                            d.lat +
+                            "," +
+                            d.lng
                       }
                     >
                       Get Directions
