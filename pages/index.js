@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import SearchComponent from "../components/search";
@@ -68,38 +69,39 @@ export class App extends Component {
             <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>
               <Title id="heroTitle">{t("index.title")}</Title>
               <HeroButton>
-                <Button
-                  id="heroGuidedLink"
-                  style={{
-                    marginBottom: "10px",
-                    padding: "15px",
-                    paddingLeft: "60px",
-                    paddingRight: "60px",
-                    textTransform: "none",
-                    borderRadius: "0px"
-                  }}
-                  variant="raised"
-                  color="primary"
-                  href={urlGE}
-                >
-                  {t("index.guided experience")}
-                </Button>
-
-                <div>
-                  {t("index.or")}
-                  <a
-                    id="heroBenefitsLink"
+                <Link prefetch href={urlGE}>
+                  <Button
+                    id="heroGuidedLink"
                     style={{
                       marginBottom: "10px",
-                      padding: "20px",
-                      textTransform: "none"
+                      padding: "15px",
+                      paddingLeft: "60px",
+                      paddingRight: "60px",
+                      textTransform: "none",
+                      borderRadius: "0px"
                     }}
                     variant="raised"
                     color="primary"
-                    href={urlBD}
                   >
-                    {t("index.all benefits")}
-                  </a>
+                    {t("index.guided experience")}
+                  </Button>
+                </Link>
+                <div>
+                  {t("index.or")}
+                  <Link prefetch href={urlBD}>
+                    <a
+                      id="heroBenefitsLink"
+                      style={{
+                        marginBottom: "10px",
+                        padding: "20px",
+                        textTransform: "none"
+                      }}
+                      variant="raised"
+                      color="primary"
+                    >
+                      {t("index.all benefits")}
+                    </a>
+                  </Link>
                 </div>
               </HeroButton>
             </div>
