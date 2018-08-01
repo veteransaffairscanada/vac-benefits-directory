@@ -1,9 +1,43 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Button } from "@material-ui/core/";
+import { withStyles } from "@material-ui/core/styles";
+import { KeyboardBackspace } from "@material-ui/icons";
 
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
+import {
+  InfoWindow,
+  withGoogleMap,
+  GoogleMap,
+  Marker
+} from "react-google-maps";
+
+const styles = () => ({
+  button: {
+    backgroundColor: "#3e57e2",
+    color: "white",
+    textAlign: "right",
+    textTransform: "none",
+    fontSize: "12px",
+    padding: "6px"
+  },
+  rightArrowIcon: {
+    "-moz-transform": "scaleX(-1)",
+    "-o-transform": "scaleX(-1)",
+    "-webkit-transform": "scaleX(-1)",
+    transform: "scaleX(-1)",
+    float: "left",
+    filter: "FlipH",
+    "-ms-filter": "FlipH",
+    paddingRight: "10px"
+  }
+});
+
+const isIOS =
+  typeof navigator !== "undefined" &&
+  (navigator.platform.indexOf("iPhone") !== -1 ||
+    navigator.platform.indexOf("iPod") !== -1 ||
+    navigator.platform.indexOf("iPad") !== -1);
 
 export class AreaOfficeMap extends Component {
   static defaultProps = {
@@ -18,7 +52,7 @@ export class AreaOfficeMap extends Component {
     return () => {
       this.props.setSelectedAreaOffice(selected_office);
       // element in area_office_table
-      var elmnt = document.getElementById("tableRow" + selected_office.id);
+      const elmnt = document.getElementById("tableRow" + selected_office.id);
       if (elmnt !== null) {
         elmnt.scrollIntoView();
       }
@@ -26,7 +60,7 @@ export class AreaOfficeMap extends Component {
   }
 
   render() {
-    const { t, userLocation } = this.props;
+    const { t, userLocation, classes } = this.props;
     return (
       <GoogleMap
         defaultZoom={5}
@@ -41,18 +75,54 @@ export class AreaOfficeMap extends Component {
               onClick={this.selectOffice(d)}
             >
               {this.props.selectedAreaOffice.id === d.id ? (
-                <InfoBox>
+                <InfoWindow options={{ maxWidth: 200 }}>
                   <div
                     style={{
-                      fontSize: `16px`,
                       fontColor: `black`,
-                      backgroundColor: "white",
-                      padding: "12px"
+                      backgroundColor: "white"
                     }}
                   >
-                    {d["name_" + t("current-language-code")]}
+                    <div
+                      style={{
+                        fontSize: `14px`,
+                        fontWeight: "500",
+                        fontFamily: ["Merriweather", "serif"]
+                      }}
+                    >
+                      {d["name_" + t("current-language-code")]}
+                    </div>
+                    <br />
+                    <div
+                      style={{
+                        fontSize: `12px`,
+                        fontFamily: ["Merriweather", "serif"]
+                      }}
+                    >
+                      {d["address_" + t("current-language-code")]}
+                    </div>
+                    <br />
+                    <Button
+                      id="getDirectionsButton"
+                      className={classes.button}
+                      target="_blank"
+                      variant="raised"
+                      href={
+                        isIOS
+                          ? "https://maps.apple.com/?daddr=" +
+                            d.lat +
+                            "," +
+                            d.lng
+                          : "https://www.google.com/maps?saddr=My+Location&daddr=" +
+                            d.lat +
+                            "," +
+                            d.lng
+                      }
+                    >
+                      Get Directions
+                      <KeyboardBackspace className={classes.rightArrowIcon} />
+                    </Button>
                   </div>
-                </InfoBox>
+                </InfoWindow>
               ) : (
                 ""
               )}
@@ -85,6 +155,7 @@ AreaOfficeMap.propTypes = {
   setSelectedAreaOffice: PropTypes.func.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
   userLocation: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
@@ -92,5 +163,5 @@ export default withGoogleMap(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(AreaOfficeMap)
+  )(withStyles(styles)(AreaOfficeMap))
 );
