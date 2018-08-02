@@ -57,6 +57,19 @@ export class Map extends Component {
     this.getLocation();
   }
 
+  get_link = page => {
+    return (
+      page +
+      "?" +
+      Object.entries(this.props.url.query)
+        .filter(x => x[0] !== "" && x[1] !== "")
+        .map(x => {
+          return x[0] + "=" + x[1];
+        })
+        .join("&")
+    );
+  };
+
   render() {
     const { i18n, t, classes } = this.props;
     return (
@@ -86,7 +99,7 @@ export class Map extends Component {
                 size="large"
                 className={classes.backLink}
                 id="backButton"
-                href="javascript:history.back()"
+                href={this.get_link("favourites")}
               >
                 <ArrowBack />
                 &nbsp; &nbsp;
@@ -173,6 +186,7 @@ Map.propTypes = {
   areaOffices: PropTypes.array.isRequired,
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
   store: PropTypes.object
 };
 

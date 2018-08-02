@@ -107,9 +107,21 @@ export class Favourites extends Component {
     return url;
   };
 
+  get_link = page => {
+    return (
+      page +
+      "?" +
+      Object.entries(this.props.url.query)
+        .filter(x => x[0] !== "" && x[1] !== "")
+        .map(x => {
+          return x[0] + "=" + x[1];
+        })
+        .join("&")
+    );
+  };
+
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
-
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
       this.props.favouriteBenefits
@@ -143,7 +155,7 @@ export class Favourites extends Component {
               size="large"
               className={classes.backLink}
               id="backButton"
-              href="javascript:history.back()"
+              href={this.get_link("benefits-directory")}
             >
               <ArrowBack />
               &nbsp; &nbsp;
@@ -192,7 +204,7 @@ export class Favourites extends Component {
               {t("favourites.contact_us")}
             </Typography>
             <Typography>
-              <Link href="/map">
+              <Link href={this.get_link("map")}>
                 <a>{t("favourites.visit_prompt")}</a>
               </Link>
             </Typography>
@@ -263,6 +275,7 @@ Favourites.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  url: PropTypes.object.isRequired,
   store: PropTypes.object
 };
 
