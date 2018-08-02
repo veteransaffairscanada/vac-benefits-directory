@@ -63,6 +63,27 @@ describe("AreaOfficeTable", () => {
     });
   });
 
+  describe("sortProvinces", () => {
+    it("sorts an array of provices alphabetically in english", () => {
+      expect(
+        mount(<AreaOfficeTable {...props} />)
+          .instance()
+          .sortProvinces(["C,D", "A,B"])
+      ).toEqual(["A,B", "C,D"]);
+    });
+
+    it("sorts an array of provices alphabetically in french", () => {
+      (props.t = key => {
+        return key == "current-language-code" ? "fr" : key;
+      }),
+        expect(
+          mount(<AreaOfficeTable {...props} />)
+            .instance()
+            .sortProvinces(["C,B", "D,A"])
+        ).toEqual(["D,A", "C,B"]);
+    });
+  });
+
   it("has a table", () => {
     expect(
       shallow(<AreaOfficeTable {...props} />).find("#tableHeader").length
