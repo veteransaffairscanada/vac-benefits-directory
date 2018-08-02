@@ -9,21 +9,20 @@ require("isomorphic-fetch");
 
 const CommentBox = styled("div")`
   height: 350px;
-  background-color: #eee;
-  color: #000;
+  background-color: #4a90e2;
+  color: #fff;
   text-align: left;
-  font-size: 18px;
+  font-size: 14px;
   padding: 5px 0 0 15px;
-  border-bottom: 1px solid #ddd;
 `;
 
 const Div = styled("div")`
+  background-color: #4a90e2;
   width: 100%;
-  height: 70px;
-  color: #000;
+  height: 53px;
+  color: #fff;
   text-align: left;
-  font-size: 18px;
-  padding-top: 5px;
+  font-size: 14px;
   display: table;
   @media (max-width: 400px) {
     height: 100px;
@@ -31,10 +30,9 @@ const Div = styled("div")`
 `;
 
 const Inner = styled("div")`
-  color: #000;
-  text-align: left;
-  font-size: 18px;
-  float: left;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
   padding-left: 15px;
   padding-top: 10px;
   @media (max-width: 400px) {
@@ -46,7 +44,7 @@ const Inner = styled("div")`
 `;
 
 const TextHold = styled("div")`
-  background-color: #f5f5f5;
+  background-color: #4a90e2;
   padding: 10px;
   width: 400px;
 `;
@@ -109,15 +107,20 @@ export class FeedbackBar extends Component {
             <p>{t("comment-privacy-disclaimer")}</p>
             <TextHold>
               <TextField
+                inputProps={{ style: { color: "white" } }}
+                InputLabelProps={{ style: { color: "white" } }}
                 id="commentWhatWereYouDoing"
                 label={t("comment-what-were-you-doing")}
                 margin="normal"
                 fullWidth={true}
                 onChange={this.handleChange("action")}
+                style={{ color: "white" }}
                 value={this.state.action}
                 autoFocus
               />
               <TextField
+                inputProps={{ style: { color: "white" } }}
+                InputLabelProps={{ style: { color: "white" } }}
                 id="commentWhatWentWrong"
                 label={t("comment-what-went-wrong")}
                 margin="normal"
@@ -129,9 +132,8 @@ export class FeedbackBar extends Component {
             <br />
             <Button
               id="sendComment"
-              variant="raised"
-              style={{ textTransform: "none" }}
-              color="primary"
+              variant="outlined"
+              style={{ color: "#fff", textTransform: "none" }}
               onClick={() => this.sendComment()}
             >
               {t("send")}
@@ -147,8 +149,8 @@ export class FeedbackBar extends Component {
             <Inner>
               {t("feedback-prompt")} &nbsp;
               <Button
-                variant="raised"
-                style={{ textTransform: "none" }}
+                variant="flat"
+                style={{ color: "#fff", textTransform: "none" }}
                 id="feedbackYes"
                 onClick={() => this.sendFeedback("Yes")}
               >
@@ -156,8 +158,8 @@ export class FeedbackBar extends Component {
               </Button>
               &nbsp; &nbsp;
               <Button
-                variant="raised"
-                style={{ textTransform: "none" }}
+                variant="flat"
+                style={{ color: "#fff", textTransform: "none" }}
                 id="feedbackNo"
                 onClick={() => this.sendFeedback("No")}
               >

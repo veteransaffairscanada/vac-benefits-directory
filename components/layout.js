@@ -91,10 +91,9 @@ class Layout extends Component {
               <div role="main">{this.props.children}</div>
             </Content>
             <div style={{ backgroundColor: "#eee" }}>
-              <Container>
-                <FeedbackBar t={t} />
-              </Container>
+              <Container />
             </div>
+            <FeedbackBar t={t} />
             <div style={{ backgroundColor: "#ddd" }}>
               <Container>
                 <Footer t={t} />
