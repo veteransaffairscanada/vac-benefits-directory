@@ -114,7 +114,7 @@ export class AreaOfficeTable extends Component {
     return sortedOffices;
   };
 
-  sortProvices = provinces => {
+  sortProvinces = provinces => {
     let index = this.props.t("current-language-code") == "en" ? 0 : 1;
     return provinces.sort((a, b) =>
       a.split(",")[index].localeCompare(b.split(",")[index])
@@ -185,7 +185,7 @@ export class AreaOfficeTable extends Component {
           <Table>
             <TableBody>
               {this.isDefaultLocation()
-                ? this.sortProvices(Object.keys(defaultOffices)).map(
+                ? this.sortProvinces(Object.keys(defaultOffices)).map(
                     (name, index) => {
                       return (
                         <div key={index}>
