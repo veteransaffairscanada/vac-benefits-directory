@@ -197,7 +197,7 @@ export class AreaOfficeTable extends Component {
                               >
                                 {t("current-language-code") == "en"
                                   ? name.split(",")[0]
-                                  : name.split(",")[1]}
+                                  : name.split(",")[1]}{" "}
                                 ({defaultOffices[name].length})
                               </TableCell>
                             </TableRow>
