@@ -78,7 +78,11 @@ Promise.resolve(getAllData()).then(allData => {
             }, 1000 * 60 * 60);
 
             req.data = data;
-            req.githubData = githubData;
+            if (req.url.includes("stats")) {
+              req.githubData = githubData;
+            } else {
+              req.githubData = {};
+            }
 
             if (
               browser &&
