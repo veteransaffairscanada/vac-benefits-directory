@@ -122,13 +122,9 @@ export class AreaOfficeMap extends Component {
                       href={
                         isIOS
                           ? "https://maps.apple.com/?daddr=" +
-                            d.lat +
-                            "," +
-                            d.lng
+                            d["address_" + t("current-language-code")]
                           : "https://www.google.com/maps?saddr=My+Location&daddr=" +
-                            d.lat +
-                            "," +
-                            d.lng
+                            d["address_" + t("current-language-code")]
                       }
                     >
                       {t("map.get_directions")}
