@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import { withStyles } from "@material-ui/core/styles";
@@ -27,6 +27,15 @@ const styles = () => ({
     backgroundPosition: "0px 1.2em",
     backgroundSize: "100% 1.5em",
     "-webkit-print-color-adjust": "exact"
+  },
+  benefitRow: {
+    "@media print": {
+      "page-break-inside": "avoid !important"
+    }
+  },
+  benefitCell: {
+    paddingBottom: "10px",
+    paddingLeft: "0px"
   }
 });
 
@@ -187,40 +196,40 @@ export class Print extends Component {
               </div>
             </div>
           </Grid>
+        </Grid>
 
-          <Grid item xs={12}>
-            <Typography variant="title">
-              {this.countString(sortedFilteredBenefits, benefits, t)}
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
+        <div className={classes.title} style={{ marginTop: "20px" }}>
+          {this.countString(sortedFilteredBenefits, benefits, t)}
+        </div>
+        <table style={{ width: "100%" }}>
+          <tbody>
             {sortedFilteredBenefits.map((b, i) => {
               return (
-                <div
-                  key={i}
-                  style={{ marginBottom: "15px" }}
-                  className="benefitsListItem"
-                >
-                  <div>
-                    <b>
-                      {t("current-language-code") == "en"
-                        ? b.vacNameEn
-                        : b.vacNameFr}
-                    </b>
-                  </div>
-                  <div>
-                    {t("current-language-code") == "en"
-                      ? b.oneLineDescriptionEn
-                      : b.oneLineDescriptionFr}
-                  </div>
-                </div>
+                <tr key={i} className={classes.benefitRow}>
+                  <td className={classes.benefitCell}>
+                    <div className="benefitsListItem">
+                      <div>
+                        <b>
+                          {t("current-language-code") == "en"
+                            ? b.vacNameEn
+                            : b.vacNameFr}
+                        </b>
+                      </div>
+                      <div>
+                        {t("current-language-code") == "en"
+                          ? b.oneLineDescriptionEn
+                          : b.oneLineDescriptionFr}
+                      </div>
+                    </div>
+                  </td>
+                </tr>
               );
             })}
-          </Grid>
-          <Grid item xs={12} style={{ textAlign: "right" }}>
-            <WordMark width="6em" flag="#000" />
-          </Grid>
-        </Grid>
+          </tbody>
+        </table>
+        <div style={{ textAlign: "right", width: "100%", marginTop: "20px" }}>
+          <WordMark width="6em" flag="#000" />
+        </div>
       </div>
     );
   }
