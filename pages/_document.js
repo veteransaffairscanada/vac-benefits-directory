@@ -65,6 +65,8 @@ class MyDocument extends Document {
     const googleMapURL =
       "https://maps.googleapis.com/maps/api/js?key=" +
       process.env.GOOGLE_MAPS_KEY +
+      "&language=" +
+      this.props.t("current-language-code") +
       "&v=3.exp&libraries=geometry,drawing,places";
 
     return (
