@@ -131,7 +131,7 @@ export class AreaOfficeMap extends Component {
                             d.lng
                       }
                     >
-                      Get Directions
+                      {t("map.get_directions")}
                       <KeyboardBackspace className={classes.rightArrowIcon} />
                     </Button>
                   </div>
