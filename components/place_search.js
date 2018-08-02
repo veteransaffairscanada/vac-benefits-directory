@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { StandaloneSearchBox } from "react-google-maps/lib/components/places/StandaloneSearchBox";
 
-const styles = () => ({
+const styles = theme => ({
   container: {
     flexGrow: 1,
     position: "relative"
@@ -30,6 +30,9 @@ const styles = () => ({
     marginRight: "10px"
   },
   searchButton: {
+    [theme.breakpoints.down("750")]: {
+      display: "none"
+    },
     padding: "15px",
     paddingLeft: "50px",
     paddingRight: "50px",
