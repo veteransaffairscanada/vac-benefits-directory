@@ -32,7 +32,8 @@ describe("Favourites Page", () => {
       },
       t: key => {
         return key === "current-language-code" ? "en" : key;
-      }
+      },
+      url: { query: {} }
     };
     mockStore = configureStore();
     reduxData = {

@@ -186,6 +186,7 @@ Map.propTypes = {
   areaOffices: PropTypes.array.isRequired,
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
   store: PropTypes.object
 };
 

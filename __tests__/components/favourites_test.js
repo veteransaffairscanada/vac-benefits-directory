@@ -43,7 +43,8 @@ describe("Favourites", () => {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
-      }
+      },
+      url: { query: {} }
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;

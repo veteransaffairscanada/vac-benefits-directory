@@ -24,7 +24,8 @@ describe("Map", () => {
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
-      classes: {}
+      classes: {},
+      url: { query: {} }
     };
     reduxData = {
       areaOffices: areaOfficesFixture,
