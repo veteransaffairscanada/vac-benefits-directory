@@ -123,6 +123,7 @@ export class AreaOfficeTable extends Component {
 
   tableRow = ae => {
     const language = this.props.t("current-language-code");
+    const distances = this.officeDistance();
     return (
       <TableRow
         key={ae.id}
@@ -153,7 +154,7 @@ export class AreaOfficeTable extends Component {
             ""
           ) : (
             <p className={this.props.classes.officeTitle}>
-              {Math.round(this.officeDistance[ae.id]) + " km"}
+              {Math.round(distances[ae.id]) + " km"}
             </p>
           )}
         </TableCell>
