@@ -194,7 +194,7 @@ export class AreaOfficeTable extends Component {
                             <TableRow>
                               <TableCell
                                 className={classes.provinceCell}
-                                colspan="2"
+                                colSpan="2"
                               >
                                 {t("current-language-code") == "en"
                                   ? name.split(",")[0]
