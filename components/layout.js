@@ -24,7 +24,7 @@ const Container = styled("div")`
 `;
 
 const alpha = css`
-  background-color: #555555;
+  background-color: #345075;
 `;
 
 const Content = styled("div")`
@@ -75,11 +75,6 @@ class Layout extends Component {
           <ErrorBoundary>
             <Content>
               <div className={classnames(this.props.classes.header)}>
-                <div className={alpha}>
-                  <Container>
-                    <AlphaBanner>{t("alpha")}</AlphaBanner>
-                  </Container>
-                </div>
                 <Container>
                   <FederalBanner
                     i18n={this.props.i18n}
@@ -87,6 +82,11 @@ class Layout extends Component {
                     showRefreshCache={this.props.showRefreshCache}
                   />
                 </Container>
+                <div className={alpha}>
+                  <Container>
+                    <AlphaBanner>{t("alpha")}</AlphaBanner>
+                  </Container>
+                </div>
               </div>
               <div role="main">{this.props.children}</div>
             </Content>
