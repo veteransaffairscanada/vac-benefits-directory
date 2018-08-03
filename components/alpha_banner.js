@@ -21,10 +21,15 @@ const Banner = styled("aside")`
   `)};
 `;
 
+const Text = styled("div")`
+  margin-left: 10px;
+  // float: right;
+`;
+
 export const AlphaBanner = ({ children, ...rest }) => (
   <Banner {...rest}>
     <PhaseBadge phase="alpha" />
-    <span style={{ marginLeft: "10px" }}>{children}</span>
+    <Text>{children}</Text>
   </Banner>
 );
 
