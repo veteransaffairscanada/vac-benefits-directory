@@ -15,7 +15,7 @@ import Typography from "@material-ui/core/Typography";
 const styles = theme => ({
   root: {
     backgroundColor: "white",
-    [theme.breakpoints.down(600)]: {
+    [theme.breakpoints.up(600)]: {
       display: "none"
     }
   },
@@ -41,7 +41,7 @@ const styles = theme => ({
   }
 });
 
-export class ProfileNeedsSelector extends Component {
+export class ProfileNeedsSelectorMobile extends Component {
   state = {
     open: false
   };
@@ -80,35 +80,18 @@ export class ProfileNeedsSelector extends Component {
       <ExpansionPanel
         className={classnames(classes.root)}
         defaultExpanded
-        expanded={pageWidth >= 600 ? true : this.state.open}
+        expanded={this.state.open}
       >
         <ExpansionPanelSummary
           className={classnames(classes.summary)}
-          expandIcon={pageWidth >= 600 ? "" : <ExpandMoreIcon />}
-          onClick={pageWidth >= 600 ? foo => foo : () => this.toggleOpenState()}
+          expandIcon={<ExpandMoreIcon />}
+          onClick={() => this.toggleOpenState()}
         >
           <Typography
             variant="title"
             className={classnames(classes.filterTitle)}
           >
             {t("filters")}{" "}
-            {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-              this.props.patronType !== "") &&
-            pageWidth > 600 ? (
-              <Button
-                className={classnames(classes.clearButton)}
-                id="ClearFilters"
-                variant="flat"
-                size="small"
-                onClick={() => {
-                  this.clearFilters();
-                }}
-              >
-                {t("reset filters")} {"(" + this.countSelected() + ")"}
-              </Button>
-            ) : (
-              ""
-            )}
           </Typography>
         </ExpansionPanelSummary>
 
@@ -120,9 +103,8 @@ export class ProfileNeedsSelector extends Component {
             <Grid item sm={12}>
               <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
 
-              {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-                this.props.patronType !== "") &&
-              pageWidth <= 600 ? (
+              {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
+              this.props.patronType !== "" ? (
                 <Typography
                   variant="title"
                   className={classnames(classes.filterTitle)}
@@ -182,7 +164,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-ProfileNeedsSelector.propTypes = {
+ProfileNeedsSelectorMobile.propTypes = {
   classes: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   patronType: PropTypes.string.isRequired,
@@ -203,4 +185,4 @@ ProfileNeedsSelector.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps1
-)(withStyles(styles)(ProfileNeedsSelector));
+)(withStyles(styles)(ProfileNeedsSelectorMobile));
