@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { GoCSignature } from "@cdssnc/gcui";
 import { css } from "react-emotion";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
@@ -29,7 +28,7 @@ const container = css`
   padding: 1rem 0rem 0.5rem 1rem;
   width: auto;
   justify-content: space-between;
-  background-color: black;
+  background-color: #555;
   display: -webkit-flex;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -42,6 +41,11 @@ const container = css`
     height: 30px;
   }
 
+  .svg-logo {
+    width: 400px;
+    fill: white;
+  }
+
   ${mediaQuery.xs(css`
     .svg-container {
       width: 280px;
@@ -50,6 +54,8 @@ const container = css`
       svg {
         width: 280px;
         height: 30px;
+        background-color: white;
+        fill: white;
       }
     }
   `)};
@@ -60,11 +66,14 @@ class FederalBanner extends Component {
     return (
       <div className={container}>
         <div className="svg-container">
-          <GoCSignature
-            width="100%"
-            lang={t("current-language-code")}
-            flag="#fff"
-            text="#fff"
+          <img
+            src={
+              t("current-language-code") == "en"
+                ? "../static/vac-sig-eng-2018-white.svg"
+                : "../static/vac-sig-fra-2018-white.svg"
+            }
+            alt="VAC Logo"
+            className="svg-logo"
           />
         </div>
         <div>

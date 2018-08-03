@@ -36,7 +36,7 @@ const styles = () => ({
     backgroundColor: "#f5f5f5"
   },
   header: {
-    backgroundColor: "#000",
+    backgroundColor: "#555",
     padding: "0px"
   }
 });
