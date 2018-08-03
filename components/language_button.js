@@ -52,7 +52,7 @@ class LanguageButton extends Component {
         </Button>
 
         <Button
-          id="changeLanguage"
+          id="changeLanguageMobile"
           onClick={this.changeLanguage}
           className={classes.mobileButton}
         >
@@ -64,8 +64,9 @@ class LanguageButton extends Component {
 }
 
 LanguageButton.propTypes = {
+  i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  classes: PropTypes.object.isrequired
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(LanguageButton);

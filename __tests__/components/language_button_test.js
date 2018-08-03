@@ -26,11 +26,12 @@ describe("LanguageButton", () => {
 
   beforeEach(() => {
     props = {
+      classes: {},
       i18n: {
         changeLanguage: () => {}
       },
       t: key => {
-        return key == "current-language-code" ? "en" : key;
+        return key === "current-language-code" ? "en" : key;
       }
     };
     _mountedLanguageButton = undefined;
