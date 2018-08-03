@@ -28,14 +28,14 @@ Lastly, our initial evaluation of NextJS showed that it worked well with a numbe
 
 ### Contribute to github repo
 
-Download github desktop @ https://desktop.github.com/
-go to https://github.com/cds-snc/vac-benefits-directory
-click "Clone or download" button and select open in desktop
-select where you would like to save the project locally
+Download github desktop @ https://desktop.github.com/.
+Go to https://github.com/cds-snc/vac-benefits-directory
+click "Clone or download" button and select open in desktop.
+Select where you would like to save the project locally.
 
-When making changes first make a new branch
-Click Branch in the top left corner, then new branch
+When making changes first make a new branch.
+Click Branch in the top left corner, then new branch.
 
-After making your changes commit changes in github desktop then push changes in the top right corner
-Navigate over to the github page, find the branch. Then create a new pull request to better explain what changes you have implemented.
-After that the pull request will be available for reviewers to look at and make sure everything looks good before merging into master
+After making your changes commit those changes in github desktop then select push changes in the top right corner.
+Navigate over to the github page https://github.com/cds-snc/vac-benefits-directory and find the branch. Then create a new pull request to better explain what changes you have implemented.
+After that the pull request will be available for reviewers to look at and make sure everything looks good before merging it into master.
