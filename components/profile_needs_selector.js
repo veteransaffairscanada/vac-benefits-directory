@@ -9,11 +9,13 @@ import ProfileSelector from "./profile_selector";
 import { withStyles } from "@material-ui/core/styles";
 import classnames from "classnames";
 import { connect } from "react-redux";
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   root: {
+    padding: "25px",
+    paddingTop: "20px",
     backgroundColor: "white",
     [theme.breakpoints.down(600)]: {
       display: "none"
@@ -34,7 +36,8 @@ const styles = theme => ({
     fontSize: "16px"
   },
   filterTitle: {
-    paddingRight: "0px"
+    paddingRight: "0px",
+    marginBottom: "25px"
   },
   gridItemButton: {
     textAlign: "center"
@@ -77,75 +80,60 @@ export class ProfileNeedsSelector extends Component {
   render() {
     const { t, pageWidth, store, classes } = this.props;
     return (
-      <ExpansionPanel
-        className={classnames(classes.root)}
-        defaultExpanded
-        expanded={pageWidth >= 600 ? true : this.state.open}
-      >
-        <ExpansionPanelSummary
-          className={classnames(classes.summary)}
-          expandIcon={pageWidth >= 600 ? "" : <ExpandMoreIcon />}
-          onClick={pageWidth >= 600 ? foo => foo : () => this.toggleOpenState()}
-        >
-          <Typography
-            variant="title"
-            className={classnames(classes.filterTitle)}
-          >
-            {t("filters")}{" "}
+      <Paper className={classes.root}>
+        <Typography variant="title" className={classnames(classes.filterTitle)}>
+          {t("filters")}{" "}
+          {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
+            this.props.patronType !== "") &&
+          pageWidth > 600 ? (
+            <Button
+              className={classnames(classes.clearButton)}
+              id="ClearFilters"
+              variant="flat"
+              size="small"
+              onClick={() => {
+                this.clearFilters();
+              }}
+            >
+              {t("reset filters")} {"(" + this.countSelected() + ")"}
+            </Button>
+          ) : (
+            ""
+          )}
+        </Typography>
+
+        <Grid container>
+          <Grid item sm={12} className={classnames(classes.profileSelector)}>
+            <ProfileSelector t={t} store={store} />
+          </Grid>
+          <Grid item sm={12}>
+            <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
+
             {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
               this.props.patronType !== "") &&
-            pageWidth > 600 ? (
-              <Button
-                className={classnames(classes.clearButton)}
-                id="ClearFilters"
-                variant="flat"
-                size="small"
-                onClick={() => {
-                  this.clearFilters();
-                }}
+            pageWidth <= 600 ? (
+              <Typography
+                variant="title"
+                className={classnames(classes.filterTitle)}
               >
-                {t("reset filters")} {"(" + this.countSelected() + ")"}
-              </Button>
+                <Button
+                  className={classnames(classes.clearButton)}
+                  id="ClearFilters"
+                  variant="flat"
+                  size="small"
+                  onClick={() => {
+                    this.clearFilters();
+                  }}
+                >
+                  {t("reset filters")} {"(" + this.countSelected() + ")"}
+                </Button>
+              </Typography>
             ) : (
               ""
             )}
-          </Typography>
-        </ExpansionPanelSummary>
-
-        <ExpansionPanelDetails>
-          <Grid container>
-            <Grid item sm={12} className={classnames(classes.profileSelector)}>
-              <ProfileSelector t={t} store={store} />
-            </Grid>
-            <Grid item sm={12}>
-              <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
-
-              {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-                this.props.patronType !== "") &&
-              pageWidth <= 600 ? (
-                <Typography
-                  variant="title"
-                  className={classnames(classes.filterTitle)}
-                >
-                  <Button
-                    className={classnames(classes.clearButton)}
-                    id="ClearFilters"
-                    variant="flat"
-                    size="small"
-                    onClick={() => {
-                      this.clearFilters();
-                    }}
-                  >
-                    {t("reset filters")} {"(" + this.countSelected() + ")"}
-                  </Button>
-                </Typography>
-              ) : (
-                ""
-              )}
-            </Grid>
           </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </Grid>
+      </Paper>
     );
   }
 }
