@@ -9,10 +9,13 @@ const Banner = styled("aside")`
   display: -ms-flexbox;
   align-items: center;
   -ms-flex-align: center;
-  padding: 0.5rem 1rem 0.3rem 1rem;
+  padding: 0.4rem 1rem 0.4rem 1rem;
   min-width: 20em;
   color: #fff;
   font: 0.694rem sans-serif;
+  span:first-child {
+    background-color: #d42dc9;
+  }
   ${mediaQuery.sm(css`
     display: block;
   `)};

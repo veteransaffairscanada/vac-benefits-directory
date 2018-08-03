@@ -84,7 +84,15 @@ class Layout extends Component {
                 </Container>
                 <div className={alpha}>
                   <Container>
-                    <AlphaBanner>{t("alpha")}</AlphaBanner>
+                    <AlphaBanner>
+                      {t("alpha")} &nbsp;
+                      <a
+                        href={"mailto:" + t("contact.email")}
+                        style={{ color: "white" }}
+                      >
+                        {t("alpha-feedback")}
+                      </a>
+                    </AlphaBanner>
                   </Container>
                 </div>
               </div>
