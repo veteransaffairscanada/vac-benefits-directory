@@ -111,7 +111,7 @@ export class ProfileNeedsSelectorMobile extends Component {
                 >
                   <Button
                     className={classnames(classes.clearButton)}
-                    id="ClearFilters"
+                    id="ClearFiltersMobile"
                     variant="flat"
                     size="small"
                     onClick={() => {

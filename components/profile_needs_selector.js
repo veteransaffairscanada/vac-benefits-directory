@@ -83,9 +83,8 @@ export class ProfileNeedsSelector extends Component {
       <Paper className={classes.root}>
         <Typography variant="title" className={classnames(classes.filterTitle)}>
           {t("filters")}{" "}
-          {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-            this.props.patronType !== "") &&
-          pageWidth > 600 ? (
+          {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
+          this.props.patronType !== "" ? (
             <Button
               className={classnames(classes.clearButton)}
               id="ClearFilters"
@@ -108,29 +107,6 @@ export class ProfileNeedsSelector extends Component {
           </Grid>
           <Grid item sm={12}>
             <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
-
-            {(JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-              this.props.patronType !== "") &&
-            pageWidth <= 600 ? (
-              <Typography
-                variant="title"
-                className={classnames(classes.filterTitle)}
-              >
-                <Button
-                  className={classnames(classes.clearButton)}
-                  id="ClearFilters"
-                  variant="flat"
-                  size="small"
-                  onClick={() => {
-                    this.clearFilters();
-                  }}
-                >
-                  {t("reset filters")} {"(" + this.countSelected() + ")"}
-                </Button>
-              </Typography>
-            ) : (
-              ""
-            )}
           </Grid>
         </Grid>
       </Paper>
