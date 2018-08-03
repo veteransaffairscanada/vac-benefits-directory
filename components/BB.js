@@ -153,7 +153,7 @@ export class BB extends Component {
   };
 
   render() {
-    const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { t, pageWidth, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.props.filteredBenefits;
 
@@ -209,7 +209,7 @@ export class BB extends Component {
                   >
                     <Print style={{ fontSize: "20px" }} />
                     &nbsp;
-                    {t("Print")}
+                    {pageWidth > 600 ? t("Print") : ""}
                   </Button>
                 </Link>
               </Grid>
@@ -321,7 +321,8 @@ const mapStateToProps = (reduxState, props) => {
       statusAndVitals: reduxState.statusAndVitals,
       serviceHealthIssue: reduxState.serviceHealthIssue
     },
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    pageWidth: reduxState.pageWidth
   };
 };
 
@@ -339,7 +340,8 @@ BB.propTypes = {
   setSearchString: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  pageWidth: PropTypes.number.isRequired
 };
 
 export default connect(
