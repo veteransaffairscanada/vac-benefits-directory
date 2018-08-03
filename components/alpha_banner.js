@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "react-emotion";
+import styled from "react-emotion";
 import { PhaseBadge } from "@cdssnc/gcui";
-import { mediaQuery } from "../styles";
 
 const Banner = styled("aside")`
   display: flex;
@@ -16,14 +15,10 @@ const Banner = styled("aside")`
   span:first-child {
     background-color: #d42dc9;
   }
-  ${mediaQuery.sm(css`
-    display: block;
-  `)};
 `;
 
 const Text = styled("div")`
   margin-left: 10px;
-  // float: right;
 `;
 
 export const AlphaBanner = ({ children, ...rest }) => (
