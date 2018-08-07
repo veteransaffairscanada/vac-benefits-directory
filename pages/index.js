@@ -62,7 +62,7 @@ export class App extends Component {
         showRefreshCache={false}
         backgroundColor="white"
       >
-        <div style={{ backgroundColor: "#eee" }}>
+        <div style={{ backgroundColor: "#eeeeee" }}>
           <Hero>
             <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>
               <Title id="heroTitle">{t("index.title")}</Title>
