@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import { withStyles } from "@material-ui/core/styles";
+import Checkbox from "@material-ui/core/Checkbox";
 import { WordMark } from "@cdssnc/gcui";
 
 const styles = () => ({
@@ -22,11 +23,11 @@ const styles = () => ({
     width: "100%",
     lineHeight: "1.5em",
     marginTop: "0.5em",
-    height: "3em",
-    backgroundImage: "linear-gradient(black 1px, transparent 0)",
-    backgroundPosition: "0px 1.2em",
-    backgroundSize: "100% 1.5em",
-    "-webkit-print-color-adjust": "exact"
+    height: "3em"
+  },
+  test: {
+    borderBottom: "1px solid",
+    paddingBottom: "5px"
   },
   benefitRow: {
     "@media print": {
@@ -93,6 +94,8 @@ export class Print extends Component {
   };
 
   render() {
+    console.log(selectedNeeds);
+
     const { i18n, t, benefits, needs, classes, closestAreaOffice } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
@@ -179,20 +182,25 @@ export class Print extends Component {
                 padding: "1.5em"
               }}
             >
-              <div className={classes.title}>
-                {t("print.fill_out_profile_needs_prompt")}
-              </div>
+              <span className={classes.title}>
+                {t("[F]Optional Questions for us to serve you better")}
+              </span>
 
               <div className="profile_section" style={{ marginBottom: "1em" }}>
-                <div className={classes.bold}>
+                <span className={classes.bold}>
                   {t("print.who_is_receiving")}
-                </div>
-                <div className={classes.rules}>{profile_text}</div>
+                  {"  "}
+                </span>
+                <span className={classes.test}>{profile_text}</span>
               </div>
 
               <div className="needs_section">
                 <div className={classes.bold}>{t("print.what_needs")}</div>
-                <div className={classes.rules}>{needs_text}</div>
+                <Grid item xs={12} className={classes.rules}>
+                  {needs.map(need => (
+                    <Checkbox color="default" key={need.id} need={need} t={t} />
+                  ))}
+                </Grid>
               </div>
             </div>
           </Grid>
