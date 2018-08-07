@@ -26,14 +26,13 @@ const styles = () => ({
     fontSize: "24px"
   },
   buttonBarButton: {
-    fontSize: "20px",
     fontWeight: "100",
     marginRight: "20px",
-    marginTop: "20px",
     paddingLeft: "0px",
     paddingRight: "0px",
     textDecoration: "none",
-    textTransform: "none"
+    textTransform: "none",
+    color: "#3e57e2"
   },
   checkEligibility: {
     fontWeight: "100"
@@ -68,12 +67,12 @@ const styles = () => ({
   },
   title: {
     fontSize: "36px",
-    padding: "15px 0"
+    paddingBottom: "15px"
   },
   topMatter: {
     backgroundColor: "#fff",
-    borderBottom: "solid 1px lightgrey",
-    marginBottom: "30px"
+    borderBottom: "solid 1px lightgrey"
+    // paddingBottom: "30px"
   }
 });
 
@@ -174,22 +173,13 @@ export class BB extends Component {
       >
         <Grid container spacing={32}>
           <Grid item xs={12} className={classes.topMatter}>
-            <Grid container spacing={32} className={classes.container}>
-              <Grid item xs={12}>
-                <Typography className={classes.title}>
-                  {t("B3.title")}
-                </Typography>
-                <Typography className={classes.subTitle}>
-                  {t("B3.subtitle1")} <br />
-                  {t("B3.subtitle2")}
-                </Typography>
-              </Grid>
+            <Grid container spacing={24} className={classes.container}>
               <Grid item xs={12} md={9}>
                 <Link href={this.getFavouritesURL()}>
                   <Button
                     id="Favourites Page"
                     variant="flat"
-                    size="large"
+                    size="medium"
                     className={classes.buttonBarButton}
                   >
                     <Bookmark style={{ fontSize: "20px" }} />
@@ -203,7 +193,7 @@ export class BB extends Component {
                 <Link href={printUrl}>
                   <Button
                     variant="flat"
-                    size="large"
+                    size="medium"
                     target="dan"
                     className={classes.buttonBarButton}
                     id="printButton"
@@ -214,25 +204,17 @@ export class BB extends Component {
                   </Button>
                 </Link>
               </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="bbSearchField"
-                  label={t("search")}
-                  placeholder=""
-                  value={this.props.searchString}
-                  onChange={this.handleSearchChange}
-                  className={classes.searchField}
-                  InputProps={{
-                    classes: {
-                      input: classes.input
-                    },
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon className={this.props.classes.inputIcon} />
-                      </InputAdornment>
-                    )
-                  }}
-                />
+              <Grid item xs={12}>
+                <Typography className={"BenefitsCounter " + classes.title}>
+                  {this.countString(filteredBenefits.length, t)}
+                </Typography>
+                {filteredBenefits.length > 0 ? (
+                  <Typography className={classes.subTitle}>
+                    {t("B3.check eligibility")}
+                  </Typography>
+                ) : (
+                  ""
+                )}
               </Grid>
             </Grid>
           </Grid>
@@ -244,21 +226,7 @@ export class BB extends Component {
               </Grid>
               <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid container spacing={16}>
-                  <Grid item xs={12}>
-                    <Typography
-                      className={"BenefitsCounter " + classes.benefitsCount}
-                    >
-                      {this.countString(filteredBenefits.length, t)}
-                    </Typography>
-                    {filteredBenefits.length > 0 ? (
-                      <Typography className={classes.checkEligibility}>
-                        {t("B3.check eligibility")}
-                      </Typography>
-                    ) : (
-                      ""
-                    )}
-                  </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} md={6}>
                     <FormControl
                       id="sortBySelector"
                       className={classes.formControl}
@@ -277,6 +245,28 @@ export class BB extends Component {
                         </MenuItem>
                       </Select>
                     </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <TextField
+                      id="bbSearchField"
+                      label={t("search")}
+                      placeholder=""
+                      value={this.props.searchString}
+                      onChange={this.handleSearchChange}
+                      className={classes.searchField}
+                      InputProps={{
+                        classes: {
+                          input: classes.input
+                        },
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <SearchIcon
+                              className={this.props.classes.inputIcon}
+                            />
+                          </InputAdornment>
+                        )
+                      }}
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     <Grid container spacing={24}>
