@@ -94,7 +94,7 @@ class Layout extends Component {
                     <AlphaBanner>
                       {t("alpha")} &nbsp;
                       <a
-                        href={"mailto:" + t("contact.email")}
+                        href={"mailto:" + t("contact.feedback_email")}
                         style={{ color: "white" }}
                       >
                         {t("alpha-feedback")}
