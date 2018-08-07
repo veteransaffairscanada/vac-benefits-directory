@@ -150,17 +150,19 @@ export class Favourites extends Component {
           style={{ paddingLeft: "16px", paddingRight: "16px" }}
         >
           <Grid item xs={12} className={classes.topMatter}>
-            <Button
-              variant="flat"
-              size="large"
-              className={classes.backLink}
-              id="backButton"
-              href={this.get_link("benefits-directory")}
-            >
-              <ArrowBack />
-              &nbsp; &nbsp;
-              {t("favourites.back_link")}
-            </Button>
+            <Link href={this.get_link("benefits-directory")}>
+              <Button
+                variant="flat"
+                size="large"
+                className={classes.backLink}
+                id="backButton"
+              >
+                <ArrowBack />
+                &nbsp; &nbsp;
+                {t("favourites.back_link")}
+              </Button>
+            </Link>
+
             <Typography className={"BenefitsCounter " + classes.benefitsCount}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
             </Typography>

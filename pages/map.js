@@ -11,6 +11,7 @@ import PlaceSearch from "../components/place_search";
 import { Grid, Button } from "@material-ui/core";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper/index";
+import Link from "next/link";
 
 const styles = theme => ({
   root: {
@@ -94,17 +95,18 @@ export class Map extends Component {
             style={{ paddingLeft: "16px", paddingRight: "16px" }}
           >
             <Grid item xs={12} md={8} className={classes.topMatter}>
-              <Button
-                variant="flat"
-                size="large"
-                className={classes.backLink}
-                id="backButton"
-                href={this.get_link("favourites")}
-              >
-                <ArrowBack />
-                &nbsp; &nbsp;
-                {t("back")}
-              </Button>
+              <Link href={this.get_link("favourites")}>
+                <Button
+                  variant="flat"
+                  size="large"
+                  className={classes.backLink}
+                  id="backButton"
+                >
+                  <ArrowBack />
+                  &nbsp; &nbsp;
+                  {t("back")}
+                </Button>
+              </Link>
               <Typography className={"MapTitle " + classes.mapTitle}>
                 {t("map.vacOffices")}
               </Typography>
