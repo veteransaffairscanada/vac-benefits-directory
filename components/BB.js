@@ -22,9 +22,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import Link from "next/link";
 
 const styles = () => ({
-  benefitsCount: {
-    fontSize: "24px"
-  },
   buttonBarButton: {
     fontWeight: "100",
     marginRight: "20px",
@@ -33,9 +30,6 @@ const styles = () => ({
     textDecoration: "none",
     textTransform: "none",
     color: "#3e57e2"
-  },
-  checkEligibility: {
-    fontWeight: "100"
   },
   collapse: {
     textAlign: "right",
@@ -72,7 +66,6 @@ const styles = () => ({
   topMatter: {
     backgroundColor: "#fff",
     borderBottom: "solid 1px lightgrey"
-    // paddingBottom: "30px"
   }
 });
 
