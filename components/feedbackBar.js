@@ -115,7 +115,11 @@ export class FeedbackBar extends Component {
             <TextHold>
               <TextField
                 inputProps={{
-                  style: { backgroundColor: "white", marginTop: "10px" }
+                  style: {
+                    backgroundColor: "white",
+                    marginTop: "10px",
+                    padding: "10px"
+                  }
                 }}
                 InputLabelProps={{
                   shrink: true,
@@ -132,7 +136,11 @@ export class FeedbackBar extends Component {
               />
               <TextField
                 inputProps={{
-                  style: { backgroundColor: "white", marginTop: "10px" }
+                  style: {
+                    backgroundColor: "white",
+                    marginTop: "10px",
+                    padding: "10px"
+                  }
                 }}
                 InputLabelProps={{
                   shrink: true,
