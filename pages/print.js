@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import { withStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { WordMark } from "@cdssnc/gcui";
 
 const styles = () => ({
@@ -25,7 +26,7 @@ const styles = () => ({
     marginTop: "0.5em",
     height: "3em"
   },
-  test: {
+  profile: {
     borderBottom: "1px solid",
     paddingBottom: "5px"
   },
@@ -183,7 +184,7 @@ export class Print extends Component {
               }}
             >
               <span className={classes.title}>
-                {t("[F]Optional Questions for us to serve you better")}
+                {t("print.optional_questions")}
               </span>
 
               <div className="profile_section" style={{ marginBottom: "1em" }}>
@@ -191,14 +192,19 @@ export class Print extends Component {
                   {t("print.who_is_receiving")}
                   {"  "}
                 </span>
-                <span className={classes.test}>{profile_text}</span>
+                <span className={classes.profile}>{profile_text}</span>
               </div>
 
               <div className="needs_section">
                 <div className={classes.bold}>{t("print.what_needs")}</div>
                 <Grid item xs={12} className={classes.rules}>
                   {needs.map(need => (
-                    <Checkbox color="default" key={need.id} need={need} t={t} />
+                    <FormControlLabel
+                      control={
+                        <Checkbox color="default" key={need.id} need={need} />
+                      }
+                      label={need.nameEn}
+                    />
                   ))}
                 </Grid>
               </div>
