@@ -179,7 +179,7 @@ export class Search extends Component {
   };
 
   renderInput = inputProps => {
-    const { classes, ref, ...other } = inputProps;
+    const { classes, ...other } = inputProps;
     return (
       <div id={this.props.id} className={this.props.classes.searchWrap}>
         <div className={classes.searchBox}>
@@ -192,28 +192,8 @@ export class Search extends Component {
             className={classes.searchInputField}
             onKeyDown={this.onKeyDown}
             onKeyUp={this.onKeyUp}
+            {...other}
           />
-
-          {/*<TextField*/}
-          {/*id={this.props.t("search")}*/}
-          {/*fullWidth*/}
-          {/*InputLabelProps={{ style: { display: "none" } }}*/}
-          {/*label={this.props.t("search")}*/}
-          {/*onKeyPress={this.onKeyPress}*/}
-          {/*InputProps={{*/}
-          {/*disableUnderline: true,*/}
-          {/*inputRef: ref,*/}
-          {/*classes: {*/}
-          {/*input: classes.input*/}
-          {/*},*/}
-          {/*startAdornment: (*/}
-          {/*<InputAdornment position="start">*/}
-          {/*<SearchIcon className={this.props.classes.inputIcon} />*/}
-          {/*</InputAdornment>*/}
-          {/*),*/}
-          {/*...other*/}
-          {/*}}*/}
-          {/*/>*/}
         </div>
         <div>
           <Link
