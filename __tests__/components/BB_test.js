@@ -206,4 +206,11 @@ describe("BB", () => {
       "print?lng=en&patronType=service-person&needs=need1,need2&sortBy=sorting&benefits=id1,id2"
     );
   });
+
+  it("has a correct getFavouritesURL function", () => {
+    const url = mounted_BB()
+      .instance()
+      .getFavouritesURL();
+    expect(url).toEqual("/favourites?&lng=current-language-code");
+  });
 });

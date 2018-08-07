@@ -48,6 +48,15 @@ const theme = createMuiTheme({
       ripplePulsate: { opacity: 0 }
     }
   },
+
+  palette: {
+    secondary: {
+      light: "#f1f7fc",
+      main: "#f1f7fc",
+      dark: "#d8dee2", // '#002884',
+      contrastText: "#006cc9"
+    }
+  },
   typography: { fontFamily: ["Merriweather", "serif"] }
 });
 
