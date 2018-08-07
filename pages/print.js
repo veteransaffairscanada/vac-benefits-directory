@@ -138,10 +138,23 @@ export class Print extends Component {
       .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
       .join(", ");
 
+    let closestAO = {};
+    let selectedAO = {};
+
+    if (query.closestAOID !== undefined)
+      closestAO = this.props.areaOffices.filter(
+        ao => ao.id === query.closestAOID
+      )[0];
+
+    if (query.selectedAOID !== undefined)
+      selectedAO = this.props.areaOffices.filter(
+        ao => ao.id === query.selectedAOID
+      )[0];
+
     const printAreaOffice =
-      JSON.stringify(selectedAreaOffice) === JSON.stringify({})
-        ? closestAreaOffice
-        : selectedAreaOffice;
+      JSON.stringify(selectedAO) === JSON.stringify({})
+        ? closestAO
+        : selectedAO;
 
     return (
       <div style={{ padding: 12 }} className={classes.root}>
@@ -253,8 +266,7 @@ const mapStateToProps = reduxState => {
     examples: reduxState.examples,
     eligibilityPaths: reduxState.eligibilityPaths,
     needs: reduxState.needs,
-    selectedAreaOffice: reduxState.selectedAreaOffice,
-    closestAreaOffice: reduxState.closestAreaOffice
+    areaOffices: reduxState.areaOffices
   };
 };
 
@@ -263,12 +275,11 @@ Print.propTypes = {
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
-  selectedAreaOffice: PropTypes.object.isRequired,
-  closestAreaOffice: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  url: PropTypes.object.isRequired
+  url: PropTypes.object.isRequired,
+  areaOffices: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(
