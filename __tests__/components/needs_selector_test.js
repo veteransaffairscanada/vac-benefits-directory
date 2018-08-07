@@ -47,7 +47,7 @@ describe("NeedsSelector", () => {
 
   it("has the exact number of children as passed", () => {
     const select = mountedNeedsSelector()
-      .find("#needs_buttons")
+      // .find("#needs_buttons")
       .find("Button");
     expect(select.length).toEqual(needsFixture.length);
   });

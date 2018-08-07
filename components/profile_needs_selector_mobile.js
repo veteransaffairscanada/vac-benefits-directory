@@ -1,19 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { withStyles } from "@material-ui/core/styles";
 import classnames from "classnames";
 import { connect } from "react-redux";
-import { Grid, Button, Paper } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   root: {
-    padding: "25px",
-    paddingTop: "20px",
     backgroundColor: "white",
-    [theme.breakpoints.down(600)]: {
+    [theme.breakpoints.up(600)]: {
       display: "none"
     }
   },
@@ -32,15 +34,14 @@ const styles = theme => ({
     fontSize: "16px"
   },
   filterTitle: {
-    paddingRight: "0px",
-    marginBottom: "25px"
+    paddingRight: "0px"
   },
   gridItemButton: {
     textAlign: "center"
   }
 });
 
-export class ProfileNeedsSelector extends Component {
+export class ProfileNeedsSelectorMobile extends Component {
   state = {
     open: false
   };
@@ -76,36 +77,57 @@ export class ProfileNeedsSelector extends Component {
   render() {
     const { t, pageWidth, store, classes } = this.props;
     return (
-      <Paper className={classes.root}>
-        <Typography variant="title" className={classnames(classes.filterTitle)}>
-          {t("filters")}{" "}
-          {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-          this.props.patronType !== "" ? (
-            <Button
-              className={classnames(classes.clearButton)}
-              id="ClearFilters"
-              variant="flat"
-              size="small"
-              onClick={() => {
-                this.clearFilters();
-              }}
-            >
-              {t("reset filters")} {"(" + this.countSelected() + ")"}
-            </Button>
-          ) : (
-            ""
-          )}
-        </Typography>
+      <ExpansionPanel
+        className={classnames(classes.root)}
+        defaultExpanded
+        expanded={this.state.open}
+      >
+        <ExpansionPanelSummary
+          className={classnames(classes.summary)}
+          expandIcon={<ExpandMoreIcon />}
+          onClick={() => this.toggleOpenState()}
+        >
+          <Typography
+            variant="title"
+            className={classnames(classes.filterTitle)}
+          >
+            {t("filters")}{" "}
+          </Typography>
+        </ExpansionPanelSummary>
 
-        <Grid container>
-          <Grid item sm={12} className={classnames(classes.profileSelector)}>
-            <ProfileSelector t={t} store={store} />
+        <ExpansionPanelDetails>
+          <Grid container>
+            <Grid item sm={12} className={classnames(classes.profileSelector)}>
+              <ProfileSelector t={t} store={store} />
+            </Grid>
+            <Grid item sm={12}>
+              <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
+
+              {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
+              this.props.patronType !== "" ? (
+                <Typography
+                  variant="title"
+                  className={classnames(classes.filterTitle)}
+                >
+                  <Button
+                    className={classnames(classes.clearButton)}
+                    id="ClearFiltersMobile"
+                    variant="flat"
+                    size="small"
+                    onClick={() => {
+                      this.clearFilters();
+                    }}
+                  >
+                    {t("reset filters")} {"(" + this.countSelected() + ")"}
+                  </Button>
+                </Typography>
+              ) : (
+                ""
+              )}
+            </Grid>
           </Grid>
-          <Grid item sm={12}>
-            <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
-          </Grid>
-        </Grid>
-      </Paper>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     );
   }
 }
@@ -142,7 +164,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-ProfileNeedsSelector.propTypes = {
+ProfileNeedsSelectorMobile.propTypes = {
   classes: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   patronType: PropTypes.string.isRequired,
@@ -163,4 +185,4 @@ ProfileNeedsSelector.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps1
-)(withStyles(styles)(ProfileNeedsSelector));
+)(withStyles(styles)(ProfileNeedsSelectorMobile));

@@ -13,6 +13,7 @@ import TextField from "@material-ui/core/TextField";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
+import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
 import Bookmark from "@material-ui/icons/Bookmark";
@@ -238,6 +239,7 @@ export class BB extends Component {
           <Grid item xs={12}>
             <Grid container spacing={32} className={classes.container}>
               <Grid item lg={4} md={4} sm={5} xs={12}>
+                <ProfileNeedsSelectorMobile t={t} store={this.props.store} />
                 <ProfileNeedsSelector t={t} store={this.props.store} />
               </Grid>
               <Grid item lg={8} md={8} sm={7} xs={12}>

@@ -70,7 +70,8 @@ export const reducer = (state = initialState, action) => {
       newState = {
         storeHydrated: action.data.storeHydrated || state.storeHydrated,
         favouriteBenefits:
-          action.data.favouriteBenefits || state.favouriteBenefits
+          action.data.favouriteBenefits || state.favouriteBenefits,
+        timestamp: action.data.timestamp || state.timestamp
       };
       airtableConstants.tableNames.forEach(tableName => {
         newState[tableName] = action.data[tableName] || state[tableName];

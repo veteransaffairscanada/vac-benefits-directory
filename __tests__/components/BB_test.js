@@ -89,11 +89,11 @@ describe("BB", () => {
   });
 
   it("has the ProfileSelector component", () => {
-    expect(mounted_BB().find("ProfileSelector").length).toEqual(1);
+    expect(mounted_BB().find("ProfileSelector").length).not.toEqual(0);
   });
 
   it("has the NeedsSelector component", () => {
-    expect(mounted_BB().find("NeedsSelector").length).toEqual(1);
+    expect(mounted_BB().find("NeedsSelector").length).not.toEqual(0);
   });
 
   it("has a Clear Filters button", () => {

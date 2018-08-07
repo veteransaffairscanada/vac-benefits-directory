@@ -24,7 +24,7 @@ const Container = styled("div")`
 `;
 
 const alpha = css`
-  background-color: #555555;
+  background-color: #345075;
 `;
 
 const Content = styled("div")`
@@ -32,9 +32,6 @@ const Content = styled("div")`
 `;
 
 const styles = () => ({
-  root: {
-    backgroundColor: "#f5f5f5"
-  },
   header: {
     backgroundColor: "#000",
     padding: "0px"
@@ -47,6 +44,7 @@ const theme = createMuiTheme({
       root: { "&:focus": { opacity: 0.3 } }
     },
     MuiTouchRipple: {
+      childPulsate: { opacity: 0 },
       ripplePulsate: { opacity: 0 }
     }
   },
@@ -75,11 +73,6 @@ class Layout extends Component {
           <ErrorBoundary>
             <Content>
               <div className={classnames(this.props.classes.header)}>
-                <div className={alpha}>
-                  <Container>
-                    <AlphaBanner>{t("alpha")}</AlphaBanner>
-                  </Container>
-                </div>
                 <Container>
                   <FederalBanner
                     i18n={this.props.i18n}
@@ -87,14 +80,28 @@ class Layout extends Component {
                     showRefreshCache={this.props.showRefreshCache}
                   />
                 </Container>
+                <div className={alpha}>
+                  <Container>
+                    <AlphaBanner>
+                      {t("alpha")} &nbsp;
+                      <a
+                        href={"mailto:" + t("contact.email")}
+                        style={{ color: "white" }}
+                      >
+                        {t("alpha-feedback")}
+                      </a>
+                    </AlphaBanner>
+                  </Container>
+                </div>
               </div>
               <div role="main">{this.props.children}</div>
             </Content>
-            <div style={{ backgroundColor: "#eee" }}>
-              <Container />
+            <div style={{ backgroundColor: "#505050" }}>
+              <Container>
+                <FeedbackBar t={t} />
+              </Container>
             </div>
-            <FeedbackBar t={t} />
-            <div style={{ backgroundColor: "#ddd" }}>
+            <div style={{ backgroundColor: "#434343" }}>
               <Container>
                 <Footer t={t} />
               </Container>
@@ -119,7 +126,7 @@ Layout.propTypes = {
 };
 
 Layout.defaultProps = {
-  backgroundColor: "#f5f5f5"
+  backgroundColor: "#e3e3e3"
 };
 
 export default withStyles(styles)(Layout);

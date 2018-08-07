@@ -5,19 +5,20 @@ import styled from "react-emotion";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
 import TextField from "@material-ui/core/TextField";
+import ArrowForward from "@material-ui/icons/ArrowForward";
 require("isomorphic-fetch");
 
 const CommentBox = styled("div")`
   height: 350px;
-  background-color: #4a90e2;
+  background-color: #505050;
   color: #fff;
   text-align: left;
   font-size: 14px;
-  padding: 5px 0 0 15px;
+  padding: 5px 0 0 0;
 `;
 
 const Div = styled("div")`
-  background-color: #4a90e2;
+  background-color: #505050;
   width: 100%;
   height: 53px;
   color: #fff;
@@ -29,11 +30,13 @@ const Div = styled("div")`
   }
 `;
 
+const FeedbackWrapper = styled("div")`
+  margin-top: 25px;
+`;
+
 const Inner = styled("div")`
   color: #fff;
-  text-align: center;
   font-size: 14px;
-  padding-left: 15px;
   padding-top: 10px;
   @media (max-width: 400px) {
     font-size: 16px;
@@ -44,8 +47,8 @@ const Inner = styled("div")`
 `;
 
 const TextHold = styled("div")`
-  background-color: #4a90e2;
-  padding: 10px;
+  background-color: #505050;
+  padding: 10px 0;
   width: 400px;
 `;
 
@@ -62,6 +65,10 @@ export class FeedbackBar extends Component {
     this.setState({
       [name]: event.target.value
     });
+  };
+
+  cancelComment = () => {
+    this.setState({ commentFormToggled: false });
   };
 
   sendComment = () => {
@@ -100,15 +107,24 @@ export class FeedbackBar extends Component {
     const { t } = this.props;
 
     return (
-      <div role="navigation">
+      <FeedbackWrapper role="navigation">
         {this.state.commentFormToggled ? (
           <CommentBox>
             <h2>{t("comment-help-us-improve")}</h2>
             <p>{t("comment-privacy-disclaimer")}</p>
             <TextHold>
               <TextField
-                inputProps={{ style: { color: "white" } }}
-                InputLabelProps={{ style: { color: "white" } }}
+                inputProps={{
+                  style: {
+                    backgroundColor: "white",
+                    marginTop: "10px",
+                    padding: "10px"
+                  }
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                  style: { color: "white", fontSize: "18px" }
+                }}
                 id="commentWhatWereYouDoing"
                 label={t("comment-what-were-you-doing")}
                 margin="normal"
@@ -119,8 +135,17 @@ export class FeedbackBar extends Component {
                 autoFocus
               />
               <TextField
-                inputProps={{ style: { color: "white" } }}
-                InputLabelProps={{ style: { color: "white" } }}
+                inputProps={{
+                  style: {
+                    backgroundColor: "white",
+                    marginTop: "10px",
+                    padding: "10px"
+                  }
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                  style: { color: "white", fontSize: "18px" }
+                }}
                 id="commentWhatWentWrong"
                 label={t("comment-what-went-wrong")}
                 margin="normal"
@@ -132,11 +157,22 @@ export class FeedbackBar extends Component {
             <br />
             <Button
               id="sendComment"
-              variant="outlined"
-              style={{ color: "#fff", textTransform: "none" }}
+              variant="contained"
+              color="primary"
+              style={{ textTransform: "none" }}
               onClick={() => this.sendComment()}
             >
               {t("send")}
+              &nbsp; &nbsp;
+              <ArrowForward />
+            </Button>
+            &nbsp; &nbsp;
+            <Button
+              id="cancelComment"
+              style={{ color: "#fff", textTransform: "none" }}
+              onClick={() => this.cancelComment()}
+            >
+              {t("cancel")}
             </Button>
           </CommentBox>
         ) : null}
@@ -168,7 +204,7 @@ export class FeedbackBar extends Component {
             </Inner>
           )}
         </Div>
-      </div>
+      </FeedbackWrapper>
     );
   }
 }

@@ -7,13 +7,8 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import styled from "react-emotion";
 
-const BlueBar = styled("div")`
-  border-top: 10px solid #303f9f;
-  width: 100%;
-`;
-
 const Hero = styled("div")`
-  background-color: #eee;
+  background-color: #e3e3e3;
   color: #000;
   max-width: 1200px;
   margin: 0 auto;
@@ -67,8 +62,7 @@ export class App extends Component {
         showRefreshCache={false}
         backgroundColor="white"
       >
-        <BlueBar />
-        <div style={{ backgroundColor: "#eee" }}>
+        <div style={{ backgroundColor: "#e3e3e3" }}>
           <Hero>
             <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>
               <Title id="heroTitle">{t("index.title")}</Title>

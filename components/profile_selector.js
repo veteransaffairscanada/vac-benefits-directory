@@ -34,7 +34,7 @@ export class ProfileSelector extends Component {
           {t("B3.Filter by eligibility")}
         </Typography>
         <Grid container spacing={8}>
-          <Grid item xs={12} id="patronTypeFilter">
+          <Grid item xs={12} className="patronTypeFilter">
             <RadioSelector
               t={t}
               legend={t("B3.Benefits for")}
@@ -44,7 +44,7 @@ export class ProfileSelector extends Component {
           </Grid>
 
           {showServiceType ? (
-            <Grid item xs={12} id="serviceTypeFilter">
+            <Grid item xs={12} className="serviceTypeFilter">
               <RadioSelector
                 t={t}
                 legend={t("B3.ServiceType")}
@@ -57,7 +57,7 @@ export class ProfileSelector extends Component {
           )}
 
           {showStatusAndVitals ? (
-            <Grid item xs={12} id="statusAndVitalsFilter">
+            <Grid item xs={12} className="statusAndVitalsFilter">
               <RadioSelector
                 t={t}
                 legend={t("B3.serviceStatus")}
@@ -70,7 +70,7 @@ export class ProfileSelector extends Component {
           )}
 
           {showServiceHealthIssue ? (
-            <Grid item xs={12} id="serviceHealthIssueFilter">
+            <Grid item xs={12} className="serviceHealthIssueFilter">
               <RadioSelector
                 t={t}
                 legend={t(
