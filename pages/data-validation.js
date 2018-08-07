@@ -175,17 +175,15 @@ export class DataValidation extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
+                <TableCell>{t("dv.status")}</TableCell>
                 <TableCell>{t("dv.name")}</TableCell>
                 <TableCell>{t("dv.value")}</TableCell>
-                <TableCell>{t("dv.status")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {data.map((n, i) => {
                 return (
                   <TableRow key={i}>
-                    <TableCell>{t("dv." + n.name)}</TableCell>
-                    <TableCell>{n.value}</TableCell>
                     <TableCell
                       style={{
                         color: n.status ? "green" : "red",
@@ -194,6 +192,8 @@ export class DataValidation extends Component {
                     >
                       {t("dv." + (n.status ? "Pass" : "Fail"))}
                     </TableCell>
+                    <TableCell>{t("dv." + n.name)}</TableCell>
+                    <TableCell>{n.value}</TableCell>
                   </TableRow>
                 );
               })}
