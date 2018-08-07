@@ -164,11 +164,6 @@ export class Search extends Component {
               classes: {
                 input: classes.input
               },
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon className={this.props.classes.inputIcon} />
-                </InputAdornment>
-              ),
               ...other
             }}
           />
