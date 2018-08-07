@@ -32,9 +32,6 @@ const Content = styled("div")`
 `;
 
 const styles = () => ({
-  root: {
-    backgroundColor: "#f5f5f5"
-  },
   header: {
     backgroundColor: "#000",
     padding: "0px"
@@ -128,7 +125,7 @@ Layout.propTypes = {
 };
 
 Layout.defaultProps = {
-  backgroundColor: "#f5f5f5"
+  backgroundColor: "#e3e3e3"
 };
 
 export default withStyles(styles)(Layout);

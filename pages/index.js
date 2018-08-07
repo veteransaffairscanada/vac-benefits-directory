@@ -8,7 +8,7 @@ import Layout from "../components/layout";
 import styled from "react-emotion";
 
 const Hero = styled("div")`
-  background-color: #eee;
+  background-color: #e3e3e3;
   color: #000;
   max-width: 1200px;
   margin: 0 auto;
@@ -62,7 +62,7 @@ export class App extends Component {
         showRefreshCache={false}
         backgroundColor="white"
       >
-        <div style={{ backgroundColor: "#eee" }}>
+        <div style={{ backgroundColor: "#e3e3e3" }}>
           <Hero>
             <div style={{ paddingLeft: "16px", paddingRight: "16px" }}>
               <Title id="heroTitle">{t("index.title")}</Title>
