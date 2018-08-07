@@ -8,15 +8,9 @@ class FIP extends Component {
     this.state = { fillColor: props.fillColor, t: props.t };
   }
 
-  componentDidMount() {
-    this.forceUpdate();
-  }
-
   render() {
     const { t } = this.props;
     const lang = t("current-language-code");
-
-    console.log(lang);
 
     if (lang === "en") {
       return (
