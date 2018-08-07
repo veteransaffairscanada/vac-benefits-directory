@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import lunr from "lunr";
 
 import Button from "@material-ui/core/Button";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -23,13 +21,18 @@ const styles = theme => ({
     flexGrow: 1,
     position: "relative"
   },
-  inputIcon: {},
+  inputIcon: {
+    paddingTop: "3px",
+    paddingRight: "5px"
+  },
   suggestionsContainerOpen: {
     position: "absolute",
     zIndex: 1,
     marginTop: theme.spacing.unit,
     left: 0,
-    right: 0
+    right: 0,
+    overflow: "auto",
+    maxHeight: "300px"
   },
   searchWrap: {
     display: "inline-flex",
@@ -40,8 +43,22 @@ const styles = theme => ({
     paddingLeft: "5px"
   },
   searchBox: {
+    display: "inline-flex",
+    padding: "10px",
+    fontSize: "15px",
     flex: 1,
-    marginRight: "10px"
+    marginRight: "10px",
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
+  },
+  searchInputField: {
+    display: "inline-flex",
+    fontSize: "15px",
+    flex: 1,
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
   },
   suggestion: {
     display: "block"
@@ -130,7 +147,12 @@ export class Search extends Component {
     this.setState({ value: newValue });
   };
 
-  onKeyPress = e => {
+  onKeyDown = () => {
+    this.setState({ value: document.getElementById("inputField").value });
+  };
+
+  onKeyUp = e => {
+    this.setState({ value: document.getElementById("inputField").value });
     if (e.key === "Enter") {
       this.doSearch();
     }
@@ -149,28 +171,20 @@ export class Search extends Component {
   };
 
   renderInput = inputProps => {
-    const { classes, ref, ...other } = inputProps;
+    const { classes, ...other } = inputProps;
     return (
       <div id={this.props.id} className={this.props.classes.searchWrap}>
         <div className={classes.searchBox}>
-          <TextField
-            id={this.props.t("search")}
-            fullWidth
-            label={this.props.t("search")}
-            onKeyPress={this.onKeyPress}
-            InputProps={{
-              disableUnderline: true,
-              inputRef: ref,
-              classes: {
-                input: classes.input
-              },
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon className={this.props.classes.inputIcon} />
-                </InputAdornment>
-              ),
-              ...other
-            }}
+          <SearchIcon className={this.props.classes.inputIcon} />
+          <input
+            id="inputField"
+            aria-label="search"
+            type="text"
+            placeholder={this.props.t("search")}
+            className={classes.searchInputField}
+            onKeyDown={this.onKeyDown}
+            onKeyUp={this.onKeyUp}
+            {...other}
           />
         </div>
         <div>
