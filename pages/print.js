@@ -93,7 +93,14 @@ export class Print extends Component {
   };
 
   render() {
-    const { i18n, t, benefits, needs, classes, closestAreaOffice } = this.props; // eslint-disable-line no-unused-vars
+    const {
+      t,
+      benefits,
+      needs,
+      classes,
+      selectedAreaOffice,
+      closestAreaOffice
+    } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const filteredBenefitsIDs =
@@ -131,6 +138,11 @@ export class Print extends Component {
       .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
       .join(", ");
 
+    const printAreaOffice =
+      JSON.stringify(selectedAreaOffice) === JSON.stringify({})
+        ? closestAreaOffice
+        : selectedAreaOffice;
+
     return (
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
@@ -157,12 +169,12 @@ export class Print extends Component {
             <div className={classes.title}>{t("print.closest_office")}</div>
             <div className={classes.rules} style={{ height: "5em" }}>
               {t("current-language-code") == "en"
-                ? closestAreaOffice.name_en
-                : closestAreaOffice.name_fr}
+                ? printAreaOffice.name_en
+                : printAreaOffice.name_fr}
               <br />
               {t("current-language-code") == "en"
-                ? closestAreaOffice.address_en
-                : closestAreaOffice.address_fr}
+                ? printAreaOffice.address_en
+                : printAreaOffice.address_fr}
             </div>
           </Grid>
           <Grid item xs={12}>
@@ -241,6 +253,7 @@ const mapStateToProps = reduxState => {
     examples: reduxState.examples,
     eligibilityPaths: reduxState.eligibilityPaths,
     needs: reduxState.needs,
+    selectedAreaOffice: reduxState.selectedAreaOffice,
     closestAreaOffice: reduxState.closestAreaOffice
   };
 };
@@ -250,6 +263,7 @@ Print.propTypes = {
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  selectedAreaOffice: PropTypes.object.isRequired,
   closestAreaOffice: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
