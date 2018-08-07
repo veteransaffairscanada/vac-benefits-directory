@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import lunr from "lunr";
 
 import Button from "@material-ui/core/Button";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import TextField from "@material-ui/core/TextField";
 import SearchIcon from "@material-ui/icons/Search";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -17,7 +15,6 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
 import Router from "next/router";
-import styled from "react-emotion";
 
 const styles = theme => ({
   container: {
