@@ -43,7 +43,7 @@ describe("ProfileSelector", () => {
   it("has a patronType filter", () => {
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#patronTypeFilter")
+        .find(".patronTypeFilter")
         .first().length
     ).toEqual(1);
   });
@@ -51,45 +51,45 @@ describe("ProfileSelector", () => {
   it("shows each question when showQuestion is true ", () => {
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#serviceTypeFilter")
+        .find(".serviceTypeFilter")
         .first().length
     ).toEqual(1);
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#statusAndVitalsFilter")
+        .find(".statusAndVitalsFilter")
         .first().length
     ).toEqual(1);
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#serviceHealthIssueFilter")
+        .find(".serviceHealthIssueFilter")
         .first().length
     ).toEqual(1);
   });
 
-  it("shows each question when showQuestion is false ", () => {
+  it("does not show any questions when showQuestion is false", () => {
     reduxData.showServiceType = false;
     reduxData.showStatusAndVitals = false;
     reduxData.showServiceHealthIssue = false;
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#serviceTypeFilter")
+        .find(".serviceTypeFilter")
         .first().length
     ).toEqual(0);
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#statusAndVitalsFilter")
+        .find(".statusAndVitalsFilter")
         .first().length
     ).toEqual(0);
     expect(
       mount(<ProfileSelector {...props} {...reduxData} />)
-        .find("#serviceHealthIssueFilter")
+        .find(".serviceHealthIssueFilter")
         .first().length
     ).toEqual(0);
   });
 
   it("has the correct radio button text", () => {
     const text = mount(<ProfileSelector {...props} {...reduxData} />)
-      .find("#patronTypeFilter")
+      .find(".patronTypeFilter")
       .first()
       .find("FormControlLabel")
       .first()

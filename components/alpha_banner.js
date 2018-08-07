@@ -1,27 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "react-emotion";
+import styled from "react-emotion";
 import { PhaseBadge } from "@cdssnc/gcui";
-import { mediaQuery } from "../styles";
 
 const Banner = styled("aside")`
   display: flex;
   display: -ms-flexbox;
   align-items: center;
   -ms-flex-align: center;
-  padding: 0.5rem 1rem 0.3rem 1rem;
+  padding: 0.4rem 1rem 0.4rem 1rem;
   min-width: 20em;
   color: #fff;
   font: 0.694rem sans-serif;
-  ${mediaQuery.sm(css`
-    display: block;
-  `)};
+  span:first-child {
+    background-color: #d42dc9;
+  }
+`;
+
+const Text = styled("div")`
+  margin-left: 10px;
 `;
 
 export const AlphaBanner = ({ children, ...rest }) => (
   <Banner {...rest}>
     <PhaseBadge phase="alpha" />
-    <span style={{ marginLeft: "10px" }}>{children}</span>
+    <Text>{children}</Text>
   </Banner>
 );
 
