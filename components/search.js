@@ -147,13 +147,6 @@ export class Search extends Component {
     this.setState({ value: newValue });
   };
 
-  onKeyPress = e => {
-    this.setState({ value: document.getElementById("inputField").value });
-    if (e.key === "Enter") {
-      this.doSearch();
-    }
-  };
-
   onKeyDown = () => {
     this.setState({ value: document.getElementById("inputField").value });
   };
