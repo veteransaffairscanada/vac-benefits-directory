@@ -50,7 +50,8 @@ describe("Print", () => {
         serviceHealthIssue: ""
       },
       sortByValue: "",
-      selectedAreaOffice: areaOfficesFixture[0]
+      selectedAreaOffice: areaOfficesFixture[0],
+      closestAreaOffice: areaOfficesFixture[0]
     };
     _mountedPrint = undefined;
   });
