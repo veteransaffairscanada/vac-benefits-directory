@@ -55,7 +55,6 @@ const container = css`
       svg {
         width: 280px;
         height: 30px;
-        background-color: white;
         fill: white;
       }
     }
