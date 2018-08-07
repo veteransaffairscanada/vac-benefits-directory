@@ -30,7 +30,9 @@ const styles = theme => ({
     zIndex: 1,
     marginTop: theme.spacing.unit,
     left: 0,
-    right: 0
+    right: 0,
+    overflow: "auto",
+    maxHeight: "300px"
   },
   searchWrap: {
     display: "inline-flex",
