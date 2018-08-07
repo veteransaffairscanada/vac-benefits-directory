@@ -79,7 +79,7 @@ const styles = () => ({
     fontSize: "15px",
     flex: 1,
     borderWidth: "0px",
-    // width: "100%",
+    width: "100%",
     fontFamily: "Merriweather"
   },
   inputIcon: {
