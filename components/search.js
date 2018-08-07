@@ -19,21 +19,15 @@ import { withStyles } from "@material-ui/core/styles";
 import Router from "next/router";
 import styled from "react-emotion";
 
-const styledSearch = styled("input")`
-  // float: left;
-  // padding: 6px;
-  // border: none;
-  // margin-top: 8px;
-  // margin-right: 16px;
-  // font-size: 17px;
-`;
-
 const styles = theme => ({
   container: {
     flexGrow: 1,
     position: "relative"
   },
-  inputIcon: {},
+  inputIcon: {
+    paddingTop: "3px",
+    paddingRight: "5px"
+  },
   suggestionsContainerOpen: {
     position: "absolute",
     zIndex: 1,
@@ -155,6 +149,18 @@ export class Search extends Component {
   };
 
   onKeyPress = e => {
+    this.setState({ value: document.getElementById("inputField").value });
+    if (e.key === "Enter") {
+      this.doSearch();
+    }
+  };
+
+  onKeyDown = () => {
+    this.setState({ value: document.getElementById("inputField").value });
+  };
+
+  onKeyUp = e => {
+    this.setState({ value: document.getElementById("inputField").value });
     if (e.key === "Enter") {
       this.doSearch();
     }
@@ -177,13 +183,15 @@ export class Search extends Component {
     return (
       <div id={this.props.id} className={this.props.classes.searchWrap}>
         <div className={classes.searchBox}>
+          <SearchIcon className={this.props.classes.inputIcon} />
           <input
+            id="inputField"
             aria-label="search"
             type="text"
             placeholder={this.props.t("search")}
             className={classes.searchInputField}
-            onKeyPress={this.onKeyPress}
-            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            onKeyUp={this.onKeyUp}
           />
 
           {/*<TextField*/}
