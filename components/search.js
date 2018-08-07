@@ -17,6 +17,16 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
 import Router from "next/router";
+import styled from "react-emotion";
+
+const styledSearch = styled("input")`
+  // float: left;
+  // padding: 6px;
+  // border: none;
+  // margin-top: 8px;
+  // margin-right: 16px;
+  // font-size: 17px;
+`;
 
 const styles = theme => ({
   container: {
@@ -40,8 +50,22 @@ const styles = theme => ({
     paddingLeft: "5px"
   },
   searchBox: {
+    display: "inline-flex",
+    padding: "10px",
+    fontSize: "15px",
     flex: 1,
-    marginRight: "10px"
+    marginRight: "10px",
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
+  },
+  searchInputField: {
+    display: "inline-flex",
+    fontSize: "15px",
+    flex: 1,
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
   },
   suggestion: {
     display: "block"
@@ -153,20 +177,35 @@ export class Search extends Component {
     return (
       <div id={this.props.id} className={this.props.classes.searchWrap}>
         <div className={classes.searchBox}>
-          <TextField
-            id={this.props.t("search")}
-            fullWidth
-            label={this.props.t("search")}
+          <input
+            aria-label="search"
+            type="text"
+            placeholder={this.props.t("search")}
+            className={classes.searchInputField}
             onKeyPress={this.onKeyPress}
-            InputProps={{
-              disableUnderline: true,
-              inputRef: ref,
-              classes: {
-                input: classes.input
-              },
-              ...other
-            }}
+            onChange={this.onChange}
           />
+
+          {/*<TextField*/}
+          {/*id={this.props.t("search")}*/}
+          {/*fullWidth*/}
+          {/*InputLabelProps={{ style: { display: "none" } }}*/}
+          {/*label={this.props.t("search")}*/}
+          {/*onKeyPress={this.onKeyPress}*/}
+          {/*InputProps={{*/}
+          {/*disableUnderline: true,*/}
+          {/*inputRef: ref,*/}
+          {/*classes: {*/}
+          {/*input: classes.input*/}
+          {/*},*/}
+          {/*startAdornment: (*/}
+          {/*<InputAdornment position="start">*/}
+          {/*<SearchIcon className={this.props.classes.inputIcon} />*/}
+          {/*</InputAdornment>*/}
+          {/*),*/}
+          {/*...other*/}
+          {/*}}*/}
+          {/*/>*/}
         </div>
         <div>
           <Link
