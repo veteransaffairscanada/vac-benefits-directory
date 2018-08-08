@@ -11,6 +11,10 @@ const styles = () => ({
   root: {
     fontFamily: "Merriweather, serif"
   },
+  bigTitle: {
+    fontSize: "32px",
+    fontWeight: "bold"
+  },
   title: {
     fontSize: "22px",
     fontWeight: "bold",
@@ -41,6 +45,13 @@ const styles = () => ({
   svgContainer: {
     width: "320px",
     height: "30px"
+  },
+  hr: {
+    color: "black",
+    backgroundColor: "black",
+    border: 0,
+    height: "2px",
+    "-webkit-print-color-adjust": "exact"
   }
 });
 
@@ -53,7 +64,7 @@ const profile_questions = [
 
 export class Print extends Component {
   componentDidMount() {
-    window.print();
+    // window.print();
   }
 
   countString = (filteredBenefits, benefits, t) => {
@@ -162,32 +173,6 @@ export class Print extends Component {
               <FIP fillColor="black" t={this.props.t} />
             </div>
           </Grid>
-          <Grid item xs={6}>
-            <div className={classes.title}>{t("favourites.contact_us")}</div>
-            <div className={classes.bold}>{t("contact.phone")}</div>
-            <div>{t("favourites.call_time")}</div>
-            <br />
-            <div className={classes.bold}>{t("contact.email")}</div>
-            <div>{t("favourites.email_disclaimer")}</div>
-          </Grid>
-          <Grid item xs={6} id="closest_office_info">
-            <div className={classes.title}>{t("print.closest_office")}</div>
-            <div className={classes.rules} style={{ height: "5em" }}>
-              {t("current-language-code") == "en"
-                ? printAreaOffice.name_en
-                : printAreaOffice.name_fr}
-              <br />
-              {t("current-language-code") == "en"
-                ? printAreaOffice.address_en
-                : printAreaOffice.address_fr}
-            </div>
-          </Grid>
-          <Grid item xs={12}>
-            <div className={classes.title}>{t("favourites.apply_prompt")}</div>
-            <div className={classes.bold}>{t("contact.my_vac_link")}</div>
-            <div>{t("print.sign_up_for_my_vac")}</div>
-          </Grid>
-
           <Grid item xs={12}>
             <div
               style={{
@@ -215,7 +200,7 @@ export class Print extends Component {
           </Grid>
         </Grid>
 
-        <div className={classes.title} style={{ marginTop: "20px" }}>
+        <div className={classes.bigTitle} style={{ marginTop: "20px" }}>
           {this.countString(sortedFilteredBenefits, benefits, t)}
         </div>
         <table style={{ width: "100%" }}>
@@ -244,6 +229,40 @@ export class Print extends Component {
             })}
           </tbody>
         </table>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <hr className={classes.hr} />
+          </Grid>
+          <Grid item xs={12}>
+            <div className={classes.bigTitle}>
+              {t("print.have_any_questions")}
+            </div>
+          </Grid>
+          <Grid item xs={6}>
+            <div className={classes.title}>{t("favourites.contact_us")}</div>
+            <div className={classes.bold}>{t("contact.phone")}</div>
+            <div>{t("favourites.call_time")}</div>
+            <br />
+            <div className={classes.bold}>{t("contact.email")}</div>
+            <div>{t("favourites.email_disclaimer")}</div>
+            <br />
+            <div className={classes.title}>{t("print.apply_online")}</div>
+            <div className={classes.bold}>{t("contact.my_vac_link")}</div>
+            <div>{t("print.sign_up_for_my_vac")}</div>
+          </Grid>
+          <Grid item xs={6} id="closest_office_info">
+            <div className={classes.title}>{t("print.closest_office")}</div>
+            <div className={classes.rules} style={{ height: "5em" }}>
+              {t("current-language-code") == "en"
+                ? printAreaOffice.name_en
+                : printAreaOffice.name_fr}
+              <br />
+              {t("current-language-code") == "en"
+                ? printAreaOffice.address_en
+                : printAreaOffice.address_fr}
+            </div>
+          </Grid>
+        </Grid>
         <div style={{ textAlign: "right", width: "100%", marginTop: "20px" }}>
           <WordMark width="6em" flag="#000" />
         </div>
