@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import { withStyles } from "@material-ui/core/styles";
 import { WordMark } from "@cdssnc/gcui";
+import FIP from "../components/fip";
 
 const styles = () => ({
   root: {
@@ -36,6 +37,10 @@ const styles = () => ({
   benefitCell: {
     paddingBottom: "10px",
     paddingLeft: "0px"
+  },
+  svgContainer: {
+    width: "320px",
+    height: "30px"
   }
 });
 
@@ -153,15 +158,9 @@ export class Print extends Component {
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <img
-              src={
-                t("current-language-code") == "en"
-                  ? "../static/vac-sig-eng-2018.svg"
-                  : "../static/vac-sig-fra-2018.svg"
-              }
-              alt="VAC Logo"
-              style={{ width: "400px" }}
-            />
+            <div className={classes.svgContainer}>
+              <FIP fillColor="black" t={this.props.t} />
+            </div>
           </Grid>
           <Grid item xs={6}>
             <div className={classes.title}>{t("favourites.contact_us")}</div>

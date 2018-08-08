@@ -33,7 +33,7 @@ const Content = styled("div")`
 
 const styles = () => ({
   header: {
-    backgroundColor: "#000",
+    backgroundColor: "#555",
     padding: "0px"
   }
 });
