@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Link from "next/link";
 import PropTypes from "prop-types";
 import lunr from "lunr";
 
@@ -188,7 +187,11 @@ export class Search extends Component {
           />
         </div>
         <div>
-          <Link
+          <Button
+            id="searchButtonLink"
+            className={classes.searchButton}
+            variant="raised"
+            color="primary"
             href={
               "benefits-directory?lng=" +
               this.props.t("current-language-code") +
@@ -196,15 +199,8 @@ export class Search extends Component {
               this.state.value
             }
           >
-            <Button
-              id="searchButtonLink"
-              className={classes.searchButton}
-              variant="raised"
-              color="primary"
-            >
-              {this.props.t("search-button")}
-            </Button>
-          </Link>
+            {this.props.t("search-button")}
+          </Button>
         </div>
       </div>
     );
