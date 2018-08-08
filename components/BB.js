@@ -40,10 +40,15 @@ const styles = () => ({
     width: "100%"
   },
   formControl: {
-    minWidth: 120
+    minWidth: 120,
+    paddingTop: "4px"
   },
   sortByBox: {
-    backgroundColor: "white"
+    backgroundColor: "white",
+    padding: "5px 10px 0 10px",
+    borderStyle: "solid",
+    borderWidth: "1px",
+    borderRadius: "1px"
   },
   subTitle: {
     fontSize: "20px",
@@ -81,6 +86,9 @@ const styles = () => ({
     borderWidth: "0px",
     width: "100%",
     fontFamily: "Merriweather"
+  },
+  sortByLabel: {
+    color: "#434343"
   },
   inputIcon: {
     paddingRight: "10px",
@@ -251,15 +259,19 @@ export class BB extends Component {
               <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid container spacing={16}>
                   <Grid item xs={12} md={6}>
+                    <InputLabel className={classes.sortByLabel}>
+                      {t("B3.Sort By")}
+                    </InputLabel>
+                    &nbsp;&nbsp;
                     <FormControl
                       id="sortBySelector"
                       className={classes.formControl}
                     >
-                      <InputLabel>{t("B3.Sort By")}</InputLabel>
                       <Select
                         value={this.state.sortByValue}
                         onChange={this.handleSortByChange}
                         className={classnames(classes.sortByBox)}
+                        disableUnderline={true}
                       >
                         <MenuItem value={"relevance"}>
                           {t("B3.Popularity")}
