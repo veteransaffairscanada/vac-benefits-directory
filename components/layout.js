@@ -43,10 +43,10 @@ const theme = createMuiTheme({
     // MuiButton: {
     //   root: { "&:focus": { opacity: 0.3 } }
     // },
-    // MuiTouchRipple: {
-    //   childPulsate: { opacity: 0 },
-    //   ripplePulsate: { opacity: 0 }
-    // }
+    MuiTouchRipple: {
+      childPulsate: { opacity: 0 },
+      ripplePulsate: { opacity: 0 }
+    }
   },
 
   palette: {
