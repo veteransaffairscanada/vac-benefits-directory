@@ -205,11 +205,11 @@ describe("BB", () => {
         { need1: "need1", need2: "need2" },
         "sorting",
         "en",
-        "0",
-        "0"
+        areaOfficesFixture[0],
+        areaOfficesFixture[1]
       );
     expect(url).toEqual(
-      "print?lng=en&patronType=service-person&needs=need1,need2&sortBy=sorting&benefits=id1,id2"
+      "print?lng=en&patronType=service-person&needs=need1,need2&sortBy=sorting&benefits=id1,id2&closestAOID=0&selectedAOID=1"
     );
   });
 
