@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
-import Link from "next/link";
 
 const styles = theme => ({
   backLink: {
@@ -150,18 +149,17 @@ export class Favourites extends Component {
           style={{ paddingLeft: "16px", paddingRight: "16px" }}
         >
           <Grid item xs={12} className={classes.topMatter}>
-            <Link href={this.get_link("benefits-directory")}>
-              <Button
-                variant="flat"
-                size="large"
-                className={classes.backLink}
-                id="backButton"
-              >
-                <ArrowBack />
-                &nbsp; &nbsp;
-                {t("favourites.back_link")}
-              </Button>
-            </Link>
+            <Button
+              variant="flat"
+              size="large"
+              className={classes.backLink}
+              id="backButton"
+              href={this.get_link("benefits-directory")}
+            >
+              <ArrowBack />
+              &nbsp; &nbsp;
+              {t("favourites.back_link")}
+            </Button>
 
             <Typography className={"BenefitsCounter " + classes.benefitsCount}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
@@ -190,25 +188,22 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Link href={printUrl}>
-              <Button
-                variant="flat"
-                size="large"
-                className={classes.buttonBarButton}
-                id="printButton"
-              >
-                <Print style={{ fontSize: "48px" }} />
-                &nbsp;
-                {t("Print")}
-              </Button>
-            </Link>
+            <Button
+              variant="flat"
+              size="large"
+              className={classes.buttonBarButton}
+              id="printButton"
+              href={printUrl}
+            >
+              <Print style={{ fontSize: "48px" }} />
+              &nbsp;
+              {t("Print")}
+            </Button>
             <Typography className={classes.contactUsTitle}>
               {t("favourites.contact_us")}
             </Typography>
             <Typography>
-              <Link href={this.get_link("map")}>
-                <a>{t("favourites.visit_prompt")}</a>
-              </Link>
+              <a href={this.get_link("map")}>{t("favourites.visit_prompt")}</a>
             </Typography>
             <br />
             <Typography>{t("favourites.print_instructions")}</Typography>

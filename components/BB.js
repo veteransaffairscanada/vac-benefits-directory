@@ -17,7 +17,6 @@ import { getFilteredBenefits } from "../selectors/benefits";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
-import Link from "next/link";
 
 const styles = () => ({
   buttonBarButton: {
@@ -187,34 +186,32 @@ export class BB extends Component {
           <Grid item xs={12} className={classes.topMatter}>
             <Grid container spacing={24} className={classes.container}>
               <Grid item xs={12} md={9}>
-                <Link href={this.getFavouritesURL()}>
-                  <Button
-                    id="Favourites Page"
-                    variant="flat"
-                    size="medium"
-                    className={classes.buttonBarButton}
-                  >
-                    <Bookmark style={{ fontSize: "20px" }} />
-                    &nbsp;
-                    {t("B3.favouritesButtonText") +
-                      " (" +
-                      this.props.favouriteBenefits.length +
-                      ")"}
-                  </Button>
-                </Link>
-                <Link href={printUrl}>
-                  <Button
-                    variant="flat"
-                    size="medium"
-                    target="dan"
-                    className={classes.buttonBarButton}
-                    id="printButton"
-                  >
-                    <Print style={{ fontSize: "20px" }} />
-                    &nbsp;
-                    {pageWidth > 600 ? t("Print") : ""}
-                  </Button>
-                </Link>
+                <Button
+                  id="Favourites Page"
+                  variant="flat"
+                  size="medium"
+                  className={classes.buttonBarButton}
+                  href={this.getFavouritesURL()}
+                >
+                  <Bookmark style={{ fontSize: "20px" }} />
+                  &nbsp;
+                  {t("B3.favouritesButtonText") +
+                    " (" +
+                    this.props.favouriteBenefits.length +
+                    ")"}
+                </Button>
+                <Button
+                  variant="flat"
+                  size="medium"
+                  target="dan"
+                  href={printUrl}
+                  className={classes.buttonBarButton}
+                  id="printButton"
+                >
+                  <Print style={{ fontSize: "20px" }} />
+                  &nbsp;
+                  {pageWidth > 600 ? t("Print") : ""}
+                </Button>
               </Grid>
               <Grid item xs={12}>
                 <Typography className={"BenefitsCounter " + classes.title}>
