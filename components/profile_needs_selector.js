@@ -12,7 +12,7 @@ const styles = theme => ({
   root: {
     padding: "25px",
     paddingTop: "20px",
-    backgroundColor: "white",
+    backgroundColor: "#e6e6e6",
     [theme.breakpoints.down(600)]: {
       display: "none"
     }
@@ -33,7 +33,9 @@ const styles = theme => ({
   },
   filterTitle: {
     paddingRight: "0px",
-    marginBottom: "25px"
+    marginBottom: "5px",
+    fontWeight: "bold",
+    fontSize: "22px"
   },
   gridItemButton: {
     textAlign: "center"

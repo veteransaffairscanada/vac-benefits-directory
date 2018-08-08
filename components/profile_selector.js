@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import classnames from "classnames";
 import RadioSelector from "./radio_selector";
 import { connect } from "react-redux";
 import "babel-polyfill/dist/polyfill";
@@ -13,16 +10,9 @@ import {
   showServiceType
 } from "../selectors/show_filters";
 
-const styles = () => ({
-  title: {
-    color: "black !important"
-  }
-});
-
 export class ProfileSelector extends Component {
   render() {
     const {
-      classes,
       t,
       showServiceType,
       showStatusAndVitals,
@@ -30,14 +20,11 @@ export class ProfileSelector extends Component {
     } = this.props;
     return (
       <div>
-        <Typography variant="subheading" className={classnames(classes.title)}>
-          {t("B3.Filter by eligibility")}
-        </Typography>
         <Grid container spacing={8}>
           <Grid item xs={12} className="patronTypeFilter">
             <RadioSelector
               t={t}
-              legend={t("B3.Benefits for")}
+              legend={t("B3.Filter by eligibility")}
               selectorType={"patronType"}
               store={this.props.store}
             />
@@ -112,6 +99,4 @@ ProfileSelector.propTypes = {
   showServiceType: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps)(
-  withStyles(styles, { withTheme: true })(ProfileSelector)
-);
+export default connect(mapStateToProps)(ProfileSelector);
