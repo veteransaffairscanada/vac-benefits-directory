@@ -38,7 +38,7 @@ const container = css`
 
   .svg-container {
     /* same as the width value in our svg */
-    width: 320px;
+    width: 400px;
     height: 30px;
   }
 
