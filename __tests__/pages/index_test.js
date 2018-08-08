@@ -21,11 +21,13 @@ describe("Index page", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
-      translations: [],
+      classes: {},
+      favouriteBenefits: [],
       i18n: {
         addResourceBundle: jest.fn()
-      }
+      },
+      t: key => key,
+      translations: []
     };
     mockStore = configureStore();
     reduxData = {
@@ -50,6 +52,7 @@ describe("Index page", () => {
         ],
         pipeline: ["stemmer"]
       }),
+      favouriteBenefits: [],
       frIdx: JSON.stringify({
         version: "2.3.0",
         fields: ["vacNameFr", "oneLineDescriptionFr"],
@@ -69,7 +72,13 @@ describe("Index page", () => {
         ],
         pipeline: ["stemmer"]
       }),
-      option: ""
+      option: "",
+      selectedEligibility: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      },
+      selectedNeeds: {}
     };
     props.store = mockStore(reduxData);
   });
@@ -96,7 +105,7 @@ describe("Index page", () => {
         .find("#heroGuidedLink")
         .first()
         .text()
-    ).toEqual("index.guided experience");
+    ).toContain("index.guided experience");
   });
 
   it("has a Button for the directory", () => {
@@ -106,11 +115,19 @@ describe("Index page", () => {
         .find("#heroBenefitsLink")
         .first()
         .text()
-    ).toEqual("index.all benefits");
+    ).toContain("index.all benefits");
   });
 
   it("has a search component", () => {
     const appMounted = mount(<App {...props} {...reduxData} />);
     expect(appMounted.find("#searchComponent").length).not.toEqual(1);
+  });
+
+  it("has a correct getFavouritesURL function", () => {
+    const appMounted = mount(<App {...props} {...reduxData} />);
+    const url = appMounted.instance().getFavouritesURL();
+    expect(url).toEqual(
+      "/favourites?&patronType=&serviceType=&statusAndVitals=&lng=current-language-code"
+    );
   });
 });

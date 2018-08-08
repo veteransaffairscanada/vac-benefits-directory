@@ -10,6 +10,7 @@ import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import areaOfficesFixture from "../fixtures/area_offices";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -48,7 +49,10 @@ describe("Favourites Page", () => {
       statusAndVitals: "",
       favouriteBenefits: [benefitsFixture[0].id],
       option: "",
-      pageWidth: 1000
+      pageWidth: 1000,
+      areaOffices: areaOfficesFixture,
+      selectedAreaOffice: areaOfficesFixture[0],
+      closestAreaOffice: areaOfficesFixture[0]
     };
     props.store = mockStore(reduxData);
   });

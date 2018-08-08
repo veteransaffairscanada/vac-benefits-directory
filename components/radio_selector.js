@@ -23,7 +23,9 @@ const styles = theme => ({
   },
   formLabel: {
     lineHeight: "1.5em",
-    marginBottom: "10px"
+    marginBottom: "10px",
+    color: "black !important",
+    fontWeight: "bold"
   }
 });
 

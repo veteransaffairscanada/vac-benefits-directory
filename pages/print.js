@@ -95,9 +95,7 @@ export class Print extends Component {
   };
 
   render() {
-    console.log(selectedNeeds);
-
-    const { i18n, t, benefits, needs, classes, closestAreaOffice } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const filteredBenefitsIDs =
@@ -135,6 +133,29 @@ export class Print extends Component {
       .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
       .join(", ");
 
+    console.log(selectedNeedsIDs);
+    {
+      needs.map((need, i) => console.log(need.id));
+    }
+
+    let closestAreaOffice = {};
+    let selectedAreaOffice = {};
+
+    if (query.closestAOID !== undefined)
+      closestAreaOffice = this.props.areaOffices.filter(
+        ao => ao.id === query.closestAOID
+      )[0];
+
+    if (query.selectedAOID !== undefined)
+      selectedAreaOffice = this.props.areaOffices.filter(
+        ao => ao.id === query.selectedAOID
+      )[0];
+
+    const printAreaOffice =
+      JSON.stringify(selectedAreaOffice) === JSON.stringify({})
+        ? closestAreaOffice
+        : selectedAreaOffice;
+
     return (
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
@@ -161,12 +182,12 @@ export class Print extends Component {
             <div className={classes.title}>{t("print.closest_office")}</div>
             <div className={classes.rules} style={{ height: "5em" }}>
               {t("current-language-code") == "en"
-                ? closestAreaOffice.name_en
-                : closestAreaOffice.name_fr}
+                ? printAreaOffice.name_en
+                : printAreaOffice.name_fr}
               <br />
               {t("current-language-code") == "en"
-                ? closestAreaOffice.address_en
-                : closestAreaOffice.address_fr}
+                ? printAreaOffice.address_en
+                : printAreaOffice.address_fr}
             </div>
           </Grid>
           <Grid item xs={12}>
@@ -184,7 +205,7 @@ export class Print extends Component {
               }}
             >
               <span className={classes.title}>
-                {t("print.optional_questions")}
+                {t("print.fill_out_profile_needs_prompt")}
               </span>
 
               <div className="profile_section" style={{ marginBottom: "1em" }}>
@@ -197,14 +218,22 @@ export class Print extends Component {
 
               <div className="needs_section">
                 <div className={classes.bold}>{t("print.what_needs")}</div>
-                <Grid item xs={12} className={classes.rules}>
-                  {needs.map(need => (
-                    <FormControlLabel
-                      control={
-                        <Checkbox color="default" key={need.id} need={need} />
-                      }
-                      label={need.nameEn}
-                    />
+                <Grid container spacing={28}>
+                  {needs.map((need, i) => (
+                    <Grid item xs={3} key={i}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            color="default"
+                            disabled
+                            key={need.id}
+                            need={need}
+                            checked={selectedNeedsIDs.includes(need.id)}
+                          />
+                        }
+                        label={need.nameEn}
+                      />
+                    </Grid>
                   ))}
                 </Grid>
               </div>
@@ -255,7 +284,7 @@ const mapStateToProps = reduxState => {
     examples: reduxState.examples,
     eligibilityPaths: reduxState.eligibilityPaths,
     needs: reduxState.needs,
-    closestAreaOffice: reduxState.closestAreaOffice
+    areaOffices: reduxState.areaOffices
   };
 };
 
@@ -264,11 +293,11 @@ Print.propTypes = {
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
-  closestAreaOffice: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  url: PropTypes.object.isRequired
+  url: PropTypes.object.isRequired,
+  areaOffices: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(

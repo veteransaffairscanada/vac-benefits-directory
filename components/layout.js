@@ -32,9 +32,6 @@ const Content = styled("div")`
 `;
 
 const styles = () => ({
-  root: {
-    backgroundColor: "#f5f5f5"
-  },
   header: {
     backgroundColor: "#000",
     padding: "0px"
@@ -49,6 +46,15 @@ const theme = createMuiTheme({
     MuiTouchRipple: {
       childPulsate: { opacity: 0 },
       ripplePulsate: { opacity: 0 }
+    }
+  },
+
+  palette: {
+    secondary: {
+      light: "#f1f7fc",
+      main: "#f1f7fc",
+      dark: "#d8dee2", // '#002884',
+      contrastText: "#006cc9"
     }
   },
   typography: { fontFamily: ["Merriweather", "serif"] }
@@ -88,7 +94,7 @@ class Layout extends Component {
                     <AlphaBanner>
                       {t("alpha")} &nbsp;
                       <a
-                        href={"mailto:" + t("contact.email")}
+                        href={"mailto:" + t("contact.feedback_email")}
                         style={{ color: "white" }}
                       >
                         {t("alpha-feedback")}
@@ -99,11 +105,12 @@ class Layout extends Component {
               </div>
               <div role="main">{this.props.children}</div>
             </Content>
-            <div style={{ backgroundColor: "#eee" }}>
-              <Container />
+            <div style={{ backgroundColor: "#505050" }}>
+              <Container>
+                <FeedbackBar t={t} />
+              </Container>
             </div>
-            <FeedbackBar t={t} />
-            <div style={{ backgroundColor: "#ddd" }}>
+            <div style={{ backgroundColor: "#434343" }}>
               <Container>
                 <Footer t={t} />
               </Container>
@@ -128,7 +135,7 @@ Layout.propTypes = {
 };
 
 Layout.defaultProps = {
-  backgroundColor: "#f5f5f5"
+  backgroundColor: "#e3e3e3"
 };
 
 export default withStyles(styles)(Layout);
