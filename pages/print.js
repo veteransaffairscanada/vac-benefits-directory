@@ -131,23 +131,23 @@ export class Print extends Component {
       .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
       .join(", ");
 
-    let closestAO = {};
-    let selectedAO = {};
+    let closestAreaOffice = {};
+    let selectedAreaOffice = {};
 
     if (query.closestAOID !== undefined)
-      closestAO = this.props.areaOffices.filter(
+      closestAreaOffice = this.props.areaOffices.filter(
         ao => ao.id === query.closestAOID
       )[0];
 
     if (query.selectedAOID !== undefined)
-      selectedAO = this.props.areaOffices.filter(
+      selectedAreaOffice = this.props.areaOffices.filter(
         ao => ao.id === query.selectedAOID
       )[0];
 
     const printAreaOffice =
-      JSON.stringify(selectedAO) === JSON.stringify({})
-        ? closestAO
-        : selectedAO;
+      JSON.stringify(selectedAreaOffice) === JSON.stringify({})
+        ? closestAreaOffice
+        : selectedAreaOffice;
 
     return (
       <div style={{ padding: 12 }} className={classes.root}>
