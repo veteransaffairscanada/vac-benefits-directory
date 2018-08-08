@@ -40,12 +40,11 @@ const styles = () => ({
     width: "100%"
   },
   formControl: {
-    minWidth: 120,
-    paddingTop: "4px"
+    minWidth: 120
   },
   sortByBox: {
     backgroundColor: "white",
-    padding: "5px 10px 0 10px",
+    padding: "6px 10px 6px 10px",
     borderStyle: "solid",
     borderWidth: "1px",
     borderRadius: "1px"
@@ -88,7 +87,8 @@ const styles = () => ({
     fontFamily: "Merriweather"
   },
   sortByLabel: {
-    color: "#434343"
+    color: "#434343",
+    verticalAlign: "text-top"
   },
   inputIcon: {
     paddingRight: "10px",
