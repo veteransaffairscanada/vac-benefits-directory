@@ -116,9 +116,6 @@ export class Print extends Component {
     );
     const selectedNeedsIDs =
       Object.keys(query).indexOf("needs") > -1 ? query.needs.split(",") : [];
-    const selectedNeeds = needs.filter(
-      x => selectedNeedsIDs.indexOf(x.id) > -1
-    );
 
     const profile_text = profile_questions
       .map(k => {
@@ -213,7 +210,7 @@ export class Print extends Component {
 
               <div className="needs_section">
                 <div className={classes.bold}>{t("print.what_needs")}</div>
-                <Grid container spacing={28}>
+                <Grid container spacing={24}>
                   {needs.map((need, i) => (
                     <Grid item xs={3} key={i}>
                       <FormControlLabel
