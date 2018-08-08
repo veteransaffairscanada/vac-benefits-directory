@@ -3,6 +3,7 @@ import { css } from "react-emotion";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import LanguageButton from "./language_button";
+import FIP from "./fip";
 
 export const breakpoints = {
   xs: 481,
@@ -37,7 +38,7 @@ const container = css`
 
   .svg-container {
     /* same as the width value in our svg */
-    width: 320px;
+    width: 400px;
     height: 30px;
   }
 
@@ -54,7 +55,6 @@ const container = css`
       svg {
         width: 280px;
         height: 30px;
-        background-color: white;
         fill: white;
       }
     }
@@ -66,15 +66,7 @@ class FederalBanner extends Component {
     return (
       <div className={container}>
         <div className="svg-container">
-          <img
-            src={
-              t("current-language-code") == "en"
-                ? "../static/vac-sig-eng-2018-white.svg"
-                : "../static/vac-sig-fra-2018-white.svg"
-            }
-            alt="VAC Logo"
-            className="svg-logo"
-          />
+          <FIP fillColor="white" t={this.props.t} />
         </div>
         <div>
           {this.props.showRefreshCache ? (
