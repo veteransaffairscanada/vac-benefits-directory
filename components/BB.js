@@ -5,11 +5,9 @@ import classnames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import TextField from "@material-ui/core/TextField";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
@@ -44,14 +42,6 @@ const styles = () => ({
   formControl: {
     minWidth: 120
   },
-  input: {
-    marginRight: "10px",
-    marginTop: "5px"
-  },
-  searchField: {
-    width: "100%",
-    maxWidth: "400px"
-  },
   sortByBox: {
     backgroundColor: "white"
   },
@@ -66,6 +56,35 @@ const styles = () => ({
   topMatter: {
     backgroundColor: "#fff",
     borderBottom: "solid 1px lightgrey"
+  },
+  searchWrap: {
+    width: "100%",
+    display: "inline-flex",
+    borderStyle: "solid",
+    borderWidth: "1px",
+    borderRadius: "1px",
+    backgroundColor: "white"
+  },
+  searchBox: {
+    display: "inline-flex",
+    padding: "10px",
+    fontSize: "15px",
+    flex: 1,
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
+  },
+  searchInputField: {
+    display: "inline-flex",
+    fontSize: "15px",
+    flex: 1,
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
+  },
+  inputIcon: {
+    paddingRight: "10px",
+    marginLeft: "5px"
   }
 });
 
@@ -240,26 +259,20 @@ export class BB extends Component {
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <TextField
-                      id="bbSearchField"
-                      label={t("search")}
-                      placeholder=""
-                      value={this.props.searchString}
-                      onChange={this.handleSearchChange}
-                      className={classes.searchField}
-                      InputProps={{
-                        classes: {
-                          input: classes.input
-                        },
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <SearchIcon
-                              className={this.props.classes.inputIcon}
-                            />
-                          </InputAdornment>
-                        )
-                      }}
-                    />
+                    <div className={classes.searchWrap}>
+                      <div className={classes.searchBox}>
+                        <SearchIcon className={classes.inputIcon} />
+                        <input
+                          id="bbSearchField"
+                          aria-label="search"
+                          type="text"
+                          placeholder={this.props.t("search")}
+                          className={classes.searchInputField}
+                          value={this.props.searchString}
+                          onChange={this.handleSearchChange}
+                        />
+                      </div>
+                    </div>
                   </Grid>
                   <Grid item xs={12}>
                     <Grid container spacing={24}>
