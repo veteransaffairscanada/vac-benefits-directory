@@ -5,11 +5,9 @@ import classnames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import InputLabel from "@material-ui/core/InputLabel";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import TextField from "@material-ui/core/TextField";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
@@ -22,21 +20,14 @@ import SearchIcon from "@material-ui/icons/Search";
 import Link from "next/link";
 
 const styles = () => ({
-  benefitsCount: {
-    fontSize: "24px"
-  },
   buttonBarButton: {
-    fontSize: "20px",
     fontWeight: "100",
     marginRight: "20px",
-    marginTop: "20px",
     paddingLeft: "0px",
     paddingRight: "0px",
     textDecoration: "none",
-    textTransform: "none"
-  },
-  checkEligibility: {
-    fontWeight: "100"
+    textTransform: "none",
+    color: "#3e57e2"
   },
   collapse: {
     textAlign: "right",
@@ -51,14 +42,6 @@ const styles = () => ({
   formControl: {
     minWidth: 120
   },
-  input: {
-    marginRight: "10px",
-    marginTop: "5px"
-  },
-  searchField: {
-    width: "100%",
-    maxWidth: "400px"
-  },
   sortByBox: {
     backgroundColor: "white"
   },
@@ -68,12 +51,40 @@ const styles = () => ({
   },
   title: {
     fontSize: "36px",
-    padding: "15px 0"
+    paddingBottom: "15px"
   },
   topMatter: {
     backgroundColor: "#fff",
-    borderBottom: "solid 1px lightgrey",
-    marginBottom: "30px"
+    borderBottom: "solid 1px lightgrey"
+  },
+  searchWrap: {
+    width: "100%",
+    display: "inline-flex",
+    borderStyle: "solid",
+    borderWidth: "1px",
+    borderRadius: "1px",
+    backgroundColor: "white"
+  },
+  searchBox: {
+    display: "inline-flex",
+    padding: "10px",
+    fontSize: "15px",
+    flex: 1,
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
+  },
+  searchInputField: {
+    display: "inline-flex",
+    fontSize: "15px",
+    flex: 1,
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
+  },
+  inputIcon: {
+    paddingRight: "10px",
+    marginLeft: "5px"
   }
 });
 
@@ -184,22 +195,13 @@ export class BB extends Component {
       >
         <Grid container spacing={32}>
           <Grid item xs={12} className={classes.topMatter}>
-            <Grid container spacing={32} className={classes.container}>
-              <Grid item xs={12}>
-                <Typography className={classes.title}>
-                  {t("B3.title")}
-                </Typography>
-                <Typography className={classes.subTitle}>
-                  {t("B3.subtitle1")} <br />
-                  {t("B3.subtitle2")}
-                </Typography>
-              </Grid>
+            <Grid container spacing={24} className={classes.container}>
               <Grid item xs={12} md={9}>
                 <Link href={this.getFavouritesURL()}>
                   <Button
                     id="Favourites Page"
                     variant="flat"
-                    size="large"
+                    size="medium"
                     className={classes.buttonBarButton}
                   >
                     <Bookmark style={{ fontSize: "20px" }} />
@@ -213,7 +215,7 @@ export class BB extends Component {
                 <Button
                   href={printUrl}
                   variant="flat"
-                  size="large"
+                  size="medium"
                   target="print_page"
                   className={classes.buttonBarButton}
                   id="printButton"
@@ -223,25 +225,17 @@ export class BB extends Component {
                   {pageWidth > 600 ? t("Print") : ""}
                 </Button>
               </Grid>
-              <Grid item xs={12} md={3}>
-                <TextField
-                  id="bbSearchField"
-                  label={t("search")}
-                  placeholder=""
-                  value={this.props.searchString}
-                  onChange={this.handleSearchChange}
-                  className={classes.searchField}
-                  InputProps={{
-                    classes: {
-                      input: classes.input
-                    },
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon className={this.props.classes.inputIcon} />
-                      </InputAdornment>
-                    )
-                  }}
-                />
+              <Grid item xs={12}>
+                <Typography className={"BenefitsCounter " + classes.title}>
+                  {this.countString(filteredBenefits.length, t)}
+                </Typography>
+                {filteredBenefits.length > 0 ? (
+                  <Typography className={classes.subTitle}>
+                    {t("B3.check eligibility")}
+                  </Typography>
+                ) : (
+                  ""
+                )}
               </Grid>
             </Grid>
           </Grid>
@@ -253,21 +247,7 @@ export class BB extends Component {
               </Grid>
               <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid container spacing={16}>
-                  <Grid item xs={12}>
-                    <Typography
-                      className={"BenefitsCounter " + classes.benefitsCount}
-                    >
-                      {this.countString(filteredBenefits.length, t)}
-                    </Typography>
-                    {filteredBenefits.length > 0 ? (
-                      <Typography className={classes.checkEligibility}>
-                        {t("B3.check eligibility")}
-                      </Typography>
-                    ) : (
-                      ""
-                    )}
-                  </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={12} md={6}>
                     <FormControl
                       id="sortBySelector"
                       className={classes.formControl}
@@ -286,6 +266,22 @@ export class BB extends Component {
                         </MenuItem>
                       </Select>
                     </FormControl>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <div className={classes.searchWrap}>
+                      <div className={classes.searchBox}>
+                        <SearchIcon className={classes.inputIcon} />
+                        <input
+                          id="bbSearchField"
+                          aria-label="search"
+                          type="text"
+                          placeholder={this.props.t("search")}
+                          className={classes.searchInputField}
+                          value={this.props.searchString}
+                          onChange={this.handleSearchChange}
+                        />
+                      </div>
+                    </div>
                   </Grid>
                   <Grid item xs={12}>
                     <Grid container spacing={24}>
