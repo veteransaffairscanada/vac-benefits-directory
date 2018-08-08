@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { GoCSignature } from "@cdssnc/gcui";
 import { css } from "react-emotion";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import LanguageButton from "./language_button";
+import FIP from "./fip";
 
 export const breakpoints = {
   xs: 481,
@@ -29,7 +29,7 @@ const container = css`
   padding: 1rem 0rem 0.5rem 1rem;
   width: auto;
   justify-content: space-between;
-  background-color: black;
+  background-color: #555;
   display: -webkit-flex;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -38,8 +38,13 @@ const container = css`
 
   .svg-container {
     /* same as the width value in our svg */
-    width: 320px;
+    width: 400px;
     height: 30px;
+  }
+
+  .svg-logo {
+    width: 400px;
+    fill: white;
   }
 
   ${mediaQuery.xs(css`
@@ -50,6 +55,7 @@ const container = css`
       svg {
         width: 280px;
         height: 30px;
+        fill: white;
       }
     }
   `)};
@@ -60,12 +66,7 @@ class FederalBanner extends Component {
     return (
       <div className={container}>
         <div className="svg-container">
-          <GoCSignature
-            width="100%"
-            lang={t("current-language-code")}
-            flag="#fff"
-            text="#fff"
-          />
+          <FIP fillColor="white" t={this.props.t} />
         </div>
         <div>
           {this.props.showRefreshCache ? (

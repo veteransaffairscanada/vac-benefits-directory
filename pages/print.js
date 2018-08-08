@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import { withStyles } from "@material-ui/core/styles";
 import { WordMark } from "@cdssnc/gcui";
+import FIP from "../components/fip";
 
 const styles = () => ({
   root: {
@@ -36,6 +37,10 @@ const styles = () => ({
   benefitCell: {
     paddingBottom: "10px",
     paddingLeft: "0px"
+  },
+  svgContainer: {
+    width: "320px",
+    height: "30px"
   }
 });
 
@@ -93,14 +98,7 @@ export class Print extends Component {
   };
 
   render() {
-    const {
-      t,
-      benefits,
-      needs,
-      classes,
-      selectedAreaOffice,
-      closestAreaOffice
-    } = this.props; // eslint-disable-line no-unused-vars
+    const { t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const filteredBenefitsIDs =
@@ -138,6 +136,19 @@ export class Print extends Component {
       .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
       .join(", ");
 
+    let closestAreaOffice = {};
+    let selectedAreaOffice = {};
+
+    if (query.closestAOID !== undefined)
+      closestAreaOffice = this.props.areaOffices.filter(
+        ao => ao.id === query.closestAOID
+      )[0];
+
+    if (query.selectedAOID !== undefined)
+      selectedAreaOffice = this.props.areaOffices.filter(
+        ao => ao.id === query.selectedAOID
+      )[0];
+
     const printAreaOffice =
       JSON.stringify(selectedAreaOffice) === JSON.stringify({})
         ? closestAreaOffice
@@ -147,15 +158,9 @@ export class Print extends Component {
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <img
-              src={
-                t("current-language-code") == "en"
-                  ? "../static/vac-sig-eng-2018.svg"
-                  : "../static/vac-sig-fra-2018.svg"
-              }
-              alt="VAC Logo"
-              style={{ width: "400px" }}
-            />
+            <div className={classes.svgContainer}>
+              <FIP fillColor="black" t={this.props.t} />
+            </div>
           </Grid>
           <Grid item xs={6}>
             <div className={classes.title}>{t("favourites.contact_us")}</div>
@@ -253,8 +258,7 @@ const mapStateToProps = reduxState => {
     examples: reduxState.examples,
     eligibilityPaths: reduxState.eligibilityPaths,
     needs: reduxState.needs,
-    selectedAreaOffice: reduxState.selectedAreaOffice,
-    closestAreaOffice: reduxState.closestAreaOffice
+    areaOffices: reduxState.areaOffices
   };
 };
 
@@ -263,12 +267,11 @@ Print.propTypes = {
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
-  selectedAreaOffice: PropTypes.object.isRequired,
-  closestAreaOffice: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  url: PropTypes.object.isRequired
+  url: PropTypes.object.isRequired,
+  areaOffices: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(
