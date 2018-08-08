@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
+import Link from "next/link";
 
 const styles = theme => ({
   backLink: {
@@ -214,7 +215,9 @@ export class Favourites extends Component {
               {t("favourites.contact_us")}
             </Typography>
             <Typography>
-              <a href={this.get_link("map")}>{t("favourites.visit_prompt")}</a>
+              <Link href={this.get_link("map")}>
+                <a>{t("favourites.visit_prompt")}</a>
+              </Link>
             </Typography>
             <br />
             <Typography>{t("favourites.print_instructions")}</Typography>
