@@ -26,10 +26,6 @@ const styles = theme => ({
     marginBottom: "10px",
     color: "black !important",
     fontWeight: "bold"
-  },
-  radioOption: {
-    // lineHeight: "1em",
-    // height: "2em"
   }
 });
 
@@ -153,7 +149,6 @@ export class RadioSelector extends React.Component {
                     value={filter_id}
                     control={<Radio />}
                     label={t(filter_id)}
-                    className={classes.radioOption}
                     disabled={this.isDisabled(
                       filter_id,
                       this.props.selectedPatronType,
