@@ -65,7 +65,7 @@ export class AreaOfficeMap extends Component {
       // element in area_office_table
       const elmnt = document.getElementById("tableRow" + selected_office.id);
       if (elmnt !== null) {
-        elmnt.scrollIntoView();
+        document.getElementById("scrolling_div").scrollTop = elmnt.offsetTop;
       }
     };
   }
