@@ -134,6 +134,9 @@ export class BB extends Component {
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
+    if (this.props.searchString !== "") {
+      href += "&searchString=" + this.props.searchString;
+    }
     return href;
   };
 
