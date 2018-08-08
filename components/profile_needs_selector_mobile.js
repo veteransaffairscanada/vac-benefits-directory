@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   root: {
-    backgroundColor: "white",
+    backgroundColor: "#f5f5f5",
     [theme.breakpoints.up(600)]: {
       display: "none"
     }
