@@ -56,8 +56,10 @@ export class Print extends Component {
     window.print();
   }
 
-  countString = (filteredBenefits, benefits, t) => {
+  countString = (filteredBenefits, benefits, t, printingFromFavourites) => {
     switch (true) {
+      case printingFromFavourites:
+        return t("favourites.saved_benefits", { x: filteredBenefits.length });
       case filteredBenefits.length === benefits.length:
         return t("B3.All benefits to consider");
       case filteredBenefits.length === 0:
@@ -101,6 +103,7 @@ export class Print extends Component {
     const { t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
+    const printingFromFavourites = query.fromFavourites !== undefined;
     const filteredBenefitsIDs =
       Object.keys(query).indexOf("benefits") > -1
         ? query.benefits.split(",")
@@ -119,22 +122,26 @@ export class Print extends Component {
       x => selectedNeedsIDs.indexOf(x.id) > -1
     );
 
-    const profile_text = profile_questions
-      .map(k => {
-        if (k === "serviceHealthIssue" && query[k] === "true") {
-          return t("GE.has service related health issue");
-        }
-        if (k === "serviceHealthIssue" && query[k] === "false") {
-          return t("GE.no service related health issue");
-        }
-        return t(query[k]);
-      })
-      .filter(x => (x && x.length > 0 ? true : false))
-      .join(", ");
+    const profile_text = printingFromFavourites
+      ? ""
+      : profile_questions
+          .map(k => {
+            if (k === "serviceHealthIssue" && query[k] === "true") {
+              return t("GE.has service related health issue");
+            }
+            if (k === "serviceHealthIssue" && query[k] === "false") {
+              return t("GE.no service related health issue");
+            }
+            return t(query[k]);
+          })
+          .filter(x => (x && x.length > 0 ? true : false))
+          .join(", ");
 
-    const needs_text = selectedNeeds
-      .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
-      .join(", ");
+    const needs_text = printingFromFavourites
+      ? ""
+      : selectedNeeds
+          .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
+          .join(", ");
 
     let closestAreaOffice = {};
     let selectedAreaOffice = {};
@@ -216,7 +223,12 @@ export class Print extends Component {
         </Grid>
 
         <div className={classes.title} style={{ marginTop: "20px" }}>
-          {this.countString(sortedFilteredBenefits, benefits, t)}
+          {this.countString(
+            sortedFilteredBenefits,
+            benefits,
+            t,
+            printingFromFavourites
+          )}
         </div>
         <table style={{ width: "100%" }}>
           <tbody>
