@@ -50,8 +50,7 @@ describe("Print", () => {
         serviceHealthIssue: ""
       },
       sortByValue: "",
-      selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0]
+      areaOffices: areaOfficesFixture
     };
     _mountedPrint = undefined;
   });
@@ -123,6 +122,7 @@ describe("Print", () => {
   });
 
   it("includes the address for the closest area office", () => {
+    props.url.query["closestAOID"] = "0";
     expect(
       mountedPrint()
         .find("#closest_office_info")

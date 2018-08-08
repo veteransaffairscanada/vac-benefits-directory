@@ -93,14 +93,7 @@ export class Print extends Component {
   };
 
   render() {
-    const {
-      t,
-      benefits,
-      needs,
-      classes,
-      selectedAreaOffice,
-      closestAreaOffice
-    } = this.props; // eslint-disable-line no-unused-vars
+    const { t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const filteredBenefitsIDs =
