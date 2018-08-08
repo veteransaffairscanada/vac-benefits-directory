@@ -1,13 +1,13 @@
 import React from "react";
 import { mount } from "enzyme";
-import { ProfileNeedsSelector } from "../../components/profile_needs_selector";
+import { ProfileNeedsSelectorMobile } from "../../components/profile_needs_selector_mobile";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 
-describe("ProfileNeedsSelector", () => {
+describe("ProfileNeedsSelectorMobile", () => {
   let props;
   let mockStore, reduxData;
 
@@ -43,7 +43,9 @@ describe("ProfileNeedsSelector", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<ProfileNeedsSelector {...props} {...reduxData} />).html();
+    let html = mount(
+      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
+    ).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
@@ -51,8 +53,8 @@ describe("ProfileNeedsSelector", () => {
     reduxData.patronType = "";
     props.store = mockStore(reduxData);
     expect(
-      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
-        .find("#ClearFilters")
+      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
+        .find("#ClearFiltersMobile")
         .first().length
     ).toEqual(0);
   });
@@ -61,8 +63,8 @@ describe("ProfileNeedsSelector", () => {
     reduxData.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
-      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
-        .find("#ClearFilters")
+      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
+        .find("#ClearFiltersMobile")
         .first().length
     ).toEqual(1);
   });
@@ -71,8 +73,8 @@ describe("ProfileNeedsSelector", () => {
     reduxData.selectedNeeds = {};
     props.store = mockStore(reduxData);
     expect(
-      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
-        .find("#ClearFilters")
+      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
+        .find("#ClearFiltersMobile")
         .first().length
     ).toEqual(0);
   });
@@ -81,15 +83,15 @@ describe("ProfileNeedsSelector", () => {
     reduxData.selectedNeeds = { foo: "bar" };
     props.store = mockStore(reduxData);
     expect(
-      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
-        .find("#ClearFilters")
+      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
+        .find("#ClearFiltersMobile")
         .first().length
     ).toEqual(1);
   });
 
   it("has a correct clearFilters function", () => {
     let instance = mount(
-      <ProfileNeedsSelector {...props} {...reduxData} />
+      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
     ).instance();
     instance.clearFilters();
     expect(reduxData.setPatronType).toBeCalledWith("");

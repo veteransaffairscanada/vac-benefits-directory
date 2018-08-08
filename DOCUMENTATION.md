@@ -25,3 +25,27 @@ Next.JS differs in this approach in that it can pre-render or "server render" th
 The advantages here are significant: for one the loading experience is faster as the HTML and CSS coming from the server display right away vs. awaiting the Javascript file to unbundle and render the HTML and CSS. Additionally in case the browser is unable to execute the javascript bundle because of an incompatibility (ex. using legacy browsers such as IE 10), we were able to create fallback solutions using the already rendered HTML and CSS. Most important, however, is that using Next.JS allows developer to use the same code base they use on the front-end of their application to also run on the back-end, significantly reducing the amount of complexity.
 
 Lastly, our initial evaluation of NextJS showed that it worked well with a number of other Javascript components such as user interface libraries, search, and translation.
+
+### Translations
+
+Given the Government of Canada's mandate to support both official languages, we use `react-18next` [https://react.i18next.com](https://react.i18next.com/ "react-18next") to allow us on-the-fly translations of all the text visibile on a given page.
+
+The default mode for `react-18next` is to pull translated `key`-`value` strings out of static JSON files that correspond with the locale set for the browser, or a `lng` GET param set in the URL. This requires any modification or addition of translation strings to go through a `commit` cycle in Git, limiting accessibility to business owners and other non-technical users. Instead we are storing all translatable strings in `AirTable` where they can be easily modified using a user interface similar to Excel.
+
+Upon boot, and every hour after, the server will download and cache all the translation strings in memory (A refresh of the cache can also be requested upon demand). The strings are then stored in `redux` and made available to all `react` compoments. A `translation` function then takes the `key` of a string and looks up the matching value in the corresponding locale.
+
+When a new string is added to `AirTable`, both an English and a French version are included. If the person adding the string is not comfortable in both official languages they are encouraged to add a `[TRANSLATE]` in front of the translation that they are uncomfortable with. This allows other members of the team to see the incomplete translation both in `AirTable` and the actual application, allowing them to fix the string if they have sufficient proficiency.
+
+### Contribute to GitHub repo
+
+Download github desktop @ https://desktop.github.com/.
+Go to https://github.com/cds-snc/vac-benefits-directory
+click "Clone or download" button and select open in desktop.
+Select where you would like to save the project locally.
+
+When making changes first make a new branch.
+Click Branch in the top left corner, then new branch.
+
+After making your changes commit those changes in github desktop then select push changes in the top right corner.
+Navigate over to the github page https://github.com/cds-snc/vac-benefits-directory and find the branch. Then create a new pull request to better explain what changes you have implemented.
+After that the pull request will be available for reviewers to look at and make sure everything looks good before merging it into master.

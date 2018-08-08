@@ -85,7 +85,9 @@ export class Favourites extends Component {
     selectedEligibility,
     selectedNeeds,
     sortBy,
-    language
+    language,
+    closestAreaOffice,
+    selectedAreaOffice
   ) => {
     const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
     const needsIDs = Object.keys(selectedNeeds);
@@ -103,6 +105,12 @@ export class Favourites extends Component {
     url += "&sortBy=" + sortBy;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
+    }
+    if (closestAreaOffice.id !== undefined) {
+      url += "&closestAOID=" + closestAreaOffice.id;
+    }
+    if (selectedAreaOffice.id !== undefined) {
+      url += "&selectedAOID=" + selectedAreaOffice.id;
     }
     return url;
   };
@@ -132,7 +140,9 @@ export class Favourites extends Component {
       this.props.selectedEligibility,
       this.props.selectedNeeds,
       this.state.sortByValue,
-      t("current-language-code")
+      t("current-language-code"),
+      this.props.closestAreaOffice,
+      this.props.selectedAreaOffice
     );
 
     return (
@@ -150,17 +160,19 @@ export class Favourites extends Component {
           style={{ paddingLeft: "16px", paddingRight: "16px" }}
         >
           <Grid item xs={12} className={classes.topMatter}>
-            <Button
-              variant="flat"
-              size="large"
-              className={classes.backLink}
-              id="backButton"
-              href={this.get_link("benefits-directory")}
-            >
-              <ArrowBack />
-              &nbsp; &nbsp;
-              {t("favourites.back_link")}
-            </Button>
+            <Link href={this.get_link("benefits-directory")}>
+              <Button
+                variant="flat"
+                size="large"
+                className={classes.backLink}
+                id="backButton"
+              >
+                <ArrowBack />
+                &nbsp; &nbsp;
+                {t("favourites.back_link")}
+              </Button>
+            </Link>
+
             <Typography className={"BenefitsCounter " + classes.benefitsCount}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
             </Typography>
@@ -188,18 +200,18 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Link href={printUrl}>
-              <Button
-                variant="flat"
-                size="large"
-                className={classes.buttonBarButton}
-                id="printButton"
-              >
-                <Print style={{ fontSize: "48px" }} />
-                &nbsp;
-                {t("Print")}
-              </Button>
-            </Link>
+            <Button
+              href={printUrl}
+              target="_blank"
+              variant="flat"
+              size="large"
+              className={classes.buttonBarButton}
+              id="printButton"
+            >
+              <Print style={{ fontSize: "48px" }} />
+              &nbsp;
+              {t("Print")}
+            </Button>
             <Typography className={classes.contactUsTitle}>
               {t("favourites.contact_us")}
             </Typography>
@@ -261,7 +273,9 @@ const mapStateToProps = reduxState => {
       serviceType: reduxState.serviceType,
       statusAndVitals: reduxState.statusAndVitals
     },
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    selectedAreaOffice: reduxState.selectedAreaOffice,
+    closestAreaOffice: reduxState.closestAreaOffice
   };
 };
 
@@ -276,7 +290,9 @@ Favourites.propTypes = {
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   url: PropTypes.object.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  selectedAreaOffice: PropTypes.object.isRequired,
+  closestAreaOffice: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(withStyles(styles)(Favourites));

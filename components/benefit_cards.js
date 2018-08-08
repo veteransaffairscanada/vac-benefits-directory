@@ -79,6 +79,7 @@ const styles = () => ({
     width: "100%"
   },
   benefitName: {
+    fontSize: "24px",
     fontWeight: 600,
     padding: "10px 0"
   },

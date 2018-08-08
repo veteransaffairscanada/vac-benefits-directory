@@ -6,8 +6,9 @@ import styled from "react-emotion";
 
 const Div = styled("div")`
   width: 100%;
+  background-color: #434343;
   height: 65px;
-  color: #000;
+  color: #fff;
   text-align: center;
 `;
 
@@ -19,10 +20,10 @@ class Footer extends Component {
 
     return (
       <Div role="navigation">
-        <Toolbar>
+        <Toolbar style={{ padding: 0 }}>
           <Button
             id="privacy"
-            style={{ textTransform: "none" }}
+            style={{ color: "#fff", paddingLeft: 0, textTransform: "none" }}
             href={this.props.t("privacy-link")}
             target="_blank"
           >
@@ -32,7 +33,7 @@ class Footer extends Component {
           Build: {envDetails}
           <Typography style={{ flex: 1 }} />
           <div>
-            <WordMark width="6em" flag="#000" />
+            <WordMark width="6em" flag="#fff" text="#fff" />
           </div>
         </Toolbar>
       </Div>

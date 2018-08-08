@@ -81,6 +81,22 @@ describe("Feedback bar", () => {
     expect(mountedFeedbackBar().state().failure).toEqual("bar");
   });
 
+  describe("clicking the comment cancel button", () => {
+    it("changes the toggle state", () => {
+      mountedFeedbackBar()
+        .find("#feedbackNo")
+        .at(0)
+        .simulate("click");
+
+      mountedFeedbackBar()
+        .find("#cancelComment")
+        .at(0)
+        .simulate("click");
+
+      expect(mountedFeedbackBar().state().commentFormToggled).toEqual(false);
+    });
+  });
+
   describe("clicking the yes button", () => {
     it("shows the feedback response", () => {
       mountedFeedbackBar()

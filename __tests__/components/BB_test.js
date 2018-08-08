@@ -9,6 +9,7 @@ import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import examplesFixture from "../fixtures/needs";
+import areaOfficesFixture from "../fixtures/area_offices";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -73,7 +74,10 @@ describe("BB", () => {
       showServiceType: true,
       showStatusAndVitals: true,
       showServiceHealthIssue: true,
-      pageWidth: 1000
+      pageWidth: 1000,
+      areaOffices: areaOfficesFixture,
+      selectedAreaOffice: areaOfficesFixture[0],
+      closestAreaOffice: areaOfficesFixture[0]
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
@@ -89,11 +93,11 @@ describe("BB", () => {
   });
 
   it("has the ProfileSelector component", () => {
-    expect(mounted_BB().find("ProfileSelector").length).toEqual(1);
+    expect(mounted_BB().find("ProfileSelector").length).not.toEqual(0);
   });
 
   it("has the NeedsSelector component", () => {
-    expect(mounted_BB().find("NeedsSelector").length).toEqual(1);
+    expect(mounted_BB().find("NeedsSelector").length).not.toEqual(0);
   });
 
   it("has a Clear Filters button", () => {
@@ -200,10 +204,19 @@ describe("BB", () => {
         { patronType: "service-person" },
         { need1: "need1", need2: "need2" },
         "sorting",
-        "en"
+        "en",
+        areaOfficesFixture[0],
+        areaOfficesFixture[1]
       );
     expect(url).toEqual(
-      "print?lng=en&patronType=service-person&needs=need1,need2&sortBy=sorting&benefits=id1,id2"
+      "print?lng=en&patronType=service-person&needs=need1,need2&sortBy=sorting&benefits=id1,id2&closestAOID=0&selectedAOID=1"
     );
+  });
+
+  it("has a correct getFavouritesURL function", () => {
+    const url = mounted_BB()
+      .instance()
+      .getFavouritesURL();
+    expect(url).toEqual("/favourites?&lng=current-language-code");
   });
 });
