@@ -40,9 +40,6 @@ const styles = () => ({
 
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: {
-      root: { "&:focus": { opacity: 0.3 } }
-    },
     MuiTouchRipple: {
       childPulsate: { opacity: 0 },
       ripplePulsate: { opacity: 0 }
