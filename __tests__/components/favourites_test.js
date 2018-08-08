@@ -7,6 +7,7 @@ import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import areaOfficesFixture from "../fixtures/area_offices";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 
@@ -58,7 +59,10 @@ describe("Favourites", () => {
       selectedNeeds: {},
       eligibilityPaths: eligibilityPathsFixture,
       option: "",
-      pageWidth: 1000
+      pageWidth: 1000,
+      areaOffices: areaOfficesFixture,
+      selectedAreaOffice: areaOfficesFixture[0],
+      closestAreaOffice: areaOfficesFixture[0]
     };
     props.store = mockStore(reduxData);
   });

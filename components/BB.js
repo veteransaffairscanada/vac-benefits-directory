@@ -142,7 +142,9 @@ export class BB extends Component {
     selectedEligibility,
     selectedNeeds,
     sortby,
-    language
+    language,
+    closestAreaOffice,
+    selectedAreaOffice
   ) => {
     const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
     const needsIDs = Object.keys(selectedNeeds);
@@ -161,6 +163,12 @@ export class BB extends Component {
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
+    if (closestAreaOffice.id !== undefined) {
+      url += "&closestAOID=" + closestAreaOffice.id;
+    }
+    if (selectedAreaOffice.id !== undefined) {
+      url += "&selectedAOID=" + selectedAreaOffice.id;
+    }
     return url;
   };
 
@@ -174,7 +182,9 @@ export class BB extends Component {
       this.props.selectedEligibility,
       this.props.selectedNeeds,
       this.state.sortByValue,
-      t("current-language-code")
+      t("current-language-code"),
+      this.props.closestAreaOffice,
+      this.props.selectedAreaOffice
     );
 
     return (
@@ -202,19 +212,18 @@ export class BB extends Component {
                       ")"}
                   </Button>
                 </Link>
-                <Link href={printUrl}>
-                  <Button
-                    variant="flat"
-                    size="medium"
-                    target="dan"
-                    className={classes.buttonBarButton}
-                    id="printButton"
-                  >
-                    <Print style={{ fontSize: "20px" }} />
-                    &nbsp;
-                    {pageWidth > 600 ? t("Print") : ""}
-                  </Button>
-                </Link>
+                <Button
+                  href={printUrl}
+                  variant="flat"
+                  size="medium"
+                  target="print_page"
+                  className={classes.buttonBarButton}
+                  id="printButton"
+                >
+                  <Print style={{ fontSize: "20px" }} />
+                  &nbsp;
+                  {pageWidth > 600 ? t("Print") : ""}
+                </Button>
               </Grid>
               <Grid item xs={12}>
                 <Typography className={"BenefitsCounter " + classes.title}>
@@ -320,7 +329,9 @@ const mapStateToProps = (reduxState, props) => {
       serviceHealthIssue: reduxState.serviceHealthIssue
     },
     selectedNeeds: reduxState.selectedNeeds,
-    pageWidth: reduxState.pageWidth
+    pageWidth: reduxState.pageWidth,
+    selectedAreaOffice: reduxState.selectedAreaOffice,
+    closestAreaOffice: reduxState.closestAreaOffice
   };
 };
 
@@ -339,7 +350,9 @@ BB.propTypes = {
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   store: PropTypes.object,
-  pageWidth: PropTypes.number.isRequired
+  pageWidth: PropTypes.number.isRequired,
+  selectedAreaOffice: PropTypes.object.isRequired,
+  closestAreaOffice: PropTypes.object.isRequired
 };
 
 export default connect(
