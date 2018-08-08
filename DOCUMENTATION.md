@@ -26,7 +26,7 @@ The advantages here are significant: for one the loading experience is faster as
 
 Lastly, our initial evaluation of NextJS showed that it worked well with a number of other Javascript components such as user interface libraries, search, and translation.
 
-### Translation
+### Translations
 
 Given the Government of Canada's mandate to support both official languages, we use `react-18next` [https://react.i18next.com](https://react.i18next.com/ "react-18next") to allow us on-the-fly translations of all the text visibile on a given page.
 
