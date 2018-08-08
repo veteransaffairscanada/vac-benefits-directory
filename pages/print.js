@@ -12,6 +12,10 @@ const styles = () => ({
   root: {
     fontFamily: "Merriweather, serif"
   },
+  checkboxes: {
+    disabled: "true",
+    ripple: "disabled"
+  },
   title: {
     fontSize: "22px",
     fontWeight: "bold",
@@ -129,15 +133,6 @@ export class Print extends Component {
       .filter(x => (x && x.length > 0 ? true : false))
       .join(", ");
 
-    const needs_text = selectedNeeds
-      .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
-      .join(", ");
-
-    console.log(selectedNeedsIDs);
-    {
-      needs.map((need, i) => console.log(need.id));
-    }
-
     let closestAreaOffice = {};
     let selectedAreaOffice = {};
 
@@ -224,8 +219,9 @@ export class Print extends Component {
                       <FormControlLabel
                         control={
                           <Checkbox
+                            className={classes.checkboxes}
                             color="default"
-                            disabled
+                            disableRipple={true}
                             key={need.id}
                             need={need}
                             checked={selectedNeedsIDs.includes(need.id)}
