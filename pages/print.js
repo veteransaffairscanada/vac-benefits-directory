@@ -122,26 +122,22 @@ export class Print extends Component {
       x => selectedNeedsIDs.indexOf(x.id) > -1
     );
 
-    const profile_text = printingFromFavourites
-      ? ""
-      : profile_questions
-          .map(k => {
-            if (k === "serviceHealthIssue" && query[k] === "true") {
-              return t("GE.has service related health issue");
-            }
-            if (k === "serviceHealthIssue" && query[k] === "false") {
-              return t("GE.no service related health issue");
-            }
-            return t(query[k]);
-          })
-          .filter(x => (x && x.length > 0 ? true : false))
-          .join(", ");
+    const profile_text = profile_questions
+      .map(k => {
+        if (k === "serviceHealthIssue" && query[k] === "true") {
+          return t("GE.has service related health issue");
+        }
+        if (k === "serviceHealthIssue" && query[k] === "false") {
+          return t("GE.no service related health issue");
+        }
+        return t(query[k]);
+      })
+      .filter(x => (x && x.length > 0 ? true : false))
+      .join(", ");
 
-    const needs_text = printingFromFavourites
-      ? ""
-      : selectedNeeds
-          .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
-          .join(", ");
+    const needs_text = selectedNeeds
+      .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
+      .join(", ");
 
     let closestAreaOffice = {};
     let selectedAreaOffice = {};
@@ -195,31 +191,38 @@ export class Print extends Component {
             <div>{t("print.sign_up_for_my_vac")}</div>
           </Grid>
 
-          <Grid item xs={12}>
-            <div
-              style={{
-                borderStyle: "solid",
-                borderWidth: "1px",
-                padding: "1.5em"
-              }}
-            >
-              <div className={classes.title}>
-                {t("print.fill_out_profile_needs_prompt")}
-              </div>
-
-              <div className="profile_section" style={{ marginBottom: "1em" }}>
-                <div className={classes.bold}>
-                  {t("print.who_is_receiving")}
+          {printingFromFavourites ? (
+            ""
+          ) : (
+            <Grid item xs={12}>
+              <div
+                style={{
+                  borderStyle: "solid",
+                  borderWidth: "1px",
+                  padding: "1.5em"
+                }}
+              >
+                <div className={classes.title}>
+                  {t("print.fill_out_profile_needs_prompt")}
                 </div>
-                <div className={classes.rules}>{profile_text}</div>
-              </div>
 
-              <div className="needs_section">
-                <div className={classes.bold}>{t("print.what_needs")}</div>
-                <div className={classes.rules}>{needs_text}</div>
+                <div
+                  className="profile_section"
+                  style={{ marginBottom: "1em" }}
+                >
+                  <div className={classes.bold}>
+                    {t("print.who_is_receiving")}
+                  </div>
+                  <div className={classes.rules}>{profile_text}</div>
+                </div>
+
+                <div className="needs_section">
+                  <div className={classes.bold}>{t("print.what_needs")}</div>
+                  <div className={classes.rules}>{needs_text}</div>
+                </div>
               </div>
-            </div>
-          </Grid>
+            </Grid>
+          )}
         </Grid>
 
         <div className={classes.title} style={{ marginTop: "20px" }}>
