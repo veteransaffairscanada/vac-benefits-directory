@@ -43,8 +43,8 @@ const styles = () => ({
     paddingLeft: "0px"
   },
   svgContainer: {
-    width: "320px",
-    height: "30px"
+    width: "450px",
+    height: "38px"
   },
   hr: {
     color: "black",
@@ -211,7 +211,10 @@ export class Print extends Component {
           )}
         </Grid>
 
-        <div className={classes.bigTitle} style={{ marginTop: "20px" }}>
+        <div
+          className={classes.bigTitle}
+          style={{ marginTop: "20px", marginBottom: "15px" }}
+        >
           {this.countString(
             sortedFilteredBenefits,
             benefits,
@@ -245,7 +248,7 @@ export class Print extends Component {
             })}
           </tbody>
         </table>
-        <Grid container spacing={24}>
+        <Grid container spacing={24} style={{ marginTop: "12px" }}>
           <Grid item xs={12}>
             <hr className={classes.hr} />
           </Grid>
@@ -268,7 +271,11 @@ export class Print extends Component {
           </Grid>
           <Grid item xs={6} id="closest_office_info">
             <div className={classes.title}>{t("print.closest_office")}</div>
-            <div className={classes.rules} style={{ height: "5em" }}>
+
+            <div className={classes.bold}>{t("print.map_link")}</div>
+            <div>{t("print.visit_office_prompt")}</div>
+
+            <div style={{ marginTop: "0.5em" }}>
               {t("current-language-code") == "en"
                 ? printAreaOffice.name_en
                 : printAreaOffice.name_fr}
