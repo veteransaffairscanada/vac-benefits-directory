@@ -193,88 +193,93 @@ export class Print extends Component {
           {printingFromFavourites ? (
             ""
           ) : (
-          <Grid item xs={12}>
-            <div
-              style={{
-                borderStyle: "solid",
-                borderWidth: "1px",
-                padding: "1.5em"
-              }}
-            >
-              <span className={classes.title}>
-                {t("print.fill_out_profile_needs_prompt")}
-              </span>
-
-              <div className="profile_section" style={{ marginBottom: "1em" }}>
-                <span className={classes.bold}>
-                  {t("print.who_is_receiving")}
-                  {"  "}
+            <Grid item xs={12}>
+              <div
+                style={{
+                  borderStyle: "solid",
+                  borderWidth: "1px",
+                  padding: "1.5em"
+                }}
+              >
+                <span className={classes.title}>
+                  {t("print.fill_out_profile_needs_prompt")}
                 </span>
-                <span className={classes.profile}>{profile_text}</span>
-              </div>
 
-              <div className="needs_section">
-                <div className={classes.bold}>{t("print.what_needs")}</div>
-                <Grid container spacing={24}>
-                  {needs.map((need, i) => (
-                    <Grid item xs={3} key={i}>
-                      <FormControlLabel
-                        control={
-                          <Checkbox
-                            className={classes.checkboxes}
-                            color="default"
-                            disableRipple={true}
-                            key={need.id}
-                            id={"checkbox" + need.id}
-                            checked={selectedNeedsIDs.includes(need.id)}
-                          />
-                        }
-                        label={need.nameEn}
-                      />
-                    </Grid>
-                  ))}
-                </Grid>
+                <div
+                  className="profile_section"
+                  style={{ marginBottom: "1em" }}
+                >
+                  <span className={classes.bold}>
+                    {t("print.who_is_receiving")}
+                    {"  "}
+                  </span>
+                  <span className={classes.profile}>{profile_text}</span>
+                </div>
+
+                <div className="needs_section">
+                  <div className={classes.bold}>{t("print.what_needs")}</div>
+                  <Grid container spacing={24}>
+                    {needs.map((need, i) => (
+                      <Grid item xs={3} key={i}>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              className={classes.checkboxes}
+                              color="default"
+                              disableRipple={true}
+                              key={need.id}
+                              id={"checkbox" + need.id}
+                              checked={selectedNeedsIDs.includes(need.id)}
+                            />
+                          }
+                          label={need.nameEn}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
+                </div>
               </div>
             </Grid>
           )}
 
-        <div className={classes.title} style={{ marginTop: "20px" }}>
-          {this.countString(
-            sortedFilteredBenefits,
-            benefits,
-            t,
-            printingFromFavourites
-          )}
-        </div>
-        <table style={{ width: "100%" }}>
-          <tbody>
-            {sortedFilteredBenefits.map((b, i) => {
-              return (
-                <tr key={i} className={classes.benefitRow}>
-                  <td className={classes.benefitCell}>
-                    <div className="benefitsListItem">
-                      <div>
-                        <b>
+          <div className={classes.title} style={{ marginTop: "20px" }}>
+            {this.countString(
+              sortedFilteredBenefits,
+              benefits,
+              t,
+              printingFromFavourites
+            )}
+          </div>
+          <table style={{ width: "100%" }}>
+            <tbody>
+              {sortedFilteredBenefits.map((b, i) => {
+                return (
+                  <tr key={i} className={classes.benefitRow}>
+                    <td className={classes.benefitCell}>
+                      <div className="benefitsListItem">
+                        <div>
+                          <b>
+                            {t("current-language-code") == "en"
+                              ? b.vacNameEn
+                              : b.vacNameFr}
+                          </b>
+                        </div>
+                        <div>
                           {t("current-language-code") == "en"
-                            ? b.vacNameEn
-                            : b.vacNameFr}
-                        </b>
+                            ? b.oneLineDescriptionEn
+                            : b.oneLineDescriptionFr}
+                        </div>
                       </div>
-                      <div>
-                        {t("current-language-code") == "en"
-                          ? b.oneLineDescriptionEn
-                          : b.oneLineDescriptionFr}
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <div style={{ textAlign: "right", width: "100%", marginTop: "20px" }}>
-          <WordMark width="6em" flag="#000" />
-        </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <div style={{ textAlign: "right", width: "100%", marginTop: "20px" }}>
+            <WordMark width="6em" flag="#000" />
+          </div>
+        </Grid>
       </div>
     );
   }
