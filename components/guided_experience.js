@@ -165,6 +165,7 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Button
+              id="nextButton"
               size="medium"
               style={{ textTransform: "none" }}
               href={

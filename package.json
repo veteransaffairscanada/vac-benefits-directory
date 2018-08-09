@@ -11,6 +11,7 @@
     "postinstall": "next build",
     "start": "NODE_ENV=production node server.js",
     "test": "NODE_ENV=test jest --coverage",
+    "testcafe": "testcafe chrome testcafe/",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged"
   },
@@ -83,6 +84,8 @@
     "jest": "^23.4.2",
     "prettier": "^1.14.0",
     "pretty-quick": "^1.6.0",
-    "react-test-renderer": "^16.4.2"
+    "react-test-renderer": "^16.4.2",
+    "testcafe": "^0.21.1",
+    "testcafe-react-selectors": "^2.1.0"
   }
 }
