@@ -46,15 +46,15 @@ This resulted in the following, recommended, process:
    - Writes unit and integration tests for the code they have added
    - Changes/removes unit and integration tests for code they have modified
    - Runs the test suite that ensure all tests pass
-   - Uses a code coverage tool to ensure all signifcant logic has been tested
-   - Commit the final code, pushes the code to GitHub, and opens a pull request in GitHub
+   - Uses a code coverage tool to ensure all significant logic has been tested
+   - Commits the final code, pushes the code to GitHub, and opens a pull request in GitHub
    - Awaits CircleCI to verify that all our tests will pass
    - Spot check features using Heroku review apps
-   - Requests other members of the team to review the pull request
+   - Requests other members of the team to review the pull request - only one review is required, but all team members are invited to review the pull request
    - If other team members have comments, they will note these in GitHub for the developer to either fix them or discuss
    - Other team members approve the pull request once all open discussion has been resolved
-   - Pull requests are then closed and their associated branch merged into master
-   - CircleCI verifies once again that all tests pass and deploys the code into production
+   - Pull requests are then merged into `master`
+   - CircleCI verifies once again that all tests pass on the updated `master` and deploys the code into production
 7. This process is repeated iteratively until all issues for a sprint are resolved and new set of issues can be created or until a new sprint starts.
 8. At the end of a sprint the development team reviews the issues completed and suggest improvements on for the next sprint.
 
