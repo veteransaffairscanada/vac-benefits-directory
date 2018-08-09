@@ -17,7 +17,8 @@ const styles = theme => ({
   },
   inputIcon: {
     paddingTop: "3px",
-    paddingRight: "5px"
+    paddingRight: "5px",
+    paddingLeft: "5px"
   },
   searchWrap: {
     display: "inline-flex",
@@ -25,7 +26,6 @@ const styles = theme => ({
     borderStyle: "solid",
     borderWidth: "1px",
     borderRadius: "0px",
-    paddingLeft: "5px",
     backgroundColor: "white"
   },
   searchBox: {
