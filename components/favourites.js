@@ -112,6 +112,7 @@ export class Favourites extends Component {
     if (selectedAreaOffice.id !== undefined) {
       url += "&selectedAOID=" + selectedAreaOffice.id;
     }
+    url += "&fromFavourites=true";
     return url;
   };
 

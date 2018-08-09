@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 const styles = theme => ({
   root: {
     backgroundColor: "white",
-    marginTop: "58px",
+    margin: "58px 15px 58px 15px",
     padding: "69px 96px 100px 96px",
     [theme.breakpoints.down("xs")]: {
       padding: "35px 48px 50px 48px"
@@ -46,13 +46,16 @@ const styles = theme => ({
   },
   container: {
     margin: "0 auto",
-    maxWidth: "1140px",
+    maxWidth: "1200px",
     paddingLeft: "16px",
     paddingRight: "16px"
   },
   image: {
     margin: "40px 40px 0 40px",
-    width: "100%"
+    width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
+    }
   },
   prompt: {
     color: "#303232",
