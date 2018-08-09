@@ -70,7 +70,7 @@ const profile_questions = [
 
 export class Print extends Component {
   componentDidMount() {
-    // window.print();
+    window.print();
   }
 
   countString = (filteredBenefits, benefits, t, printingFromFavourites) => {
