@@ -130,7 +130,7 @@ export class RadioSelector extends React.Component {
       serviceHealthIssue: this.props.selectedServiceHealthIssue
     };
 
-    if (Object.values(allFilterIds).length !== 0) {
+    if (Object.keys(allFilterIds).length != 0) {
       return (
         <MuiThemeProvider theme={theme}>
           <FormControl className={classes.formControl}>

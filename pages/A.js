@@ -10,6 +10,7 @@ import Cookies from "universal-cookie";
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
+import "../utils/polyfills";
 
 export class A extends Component {
   constructor() {
