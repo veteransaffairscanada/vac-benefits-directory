@@ -127,6 +127,7 @@ export class Map extends Component {
             <Grid
               item
               xs={12}
+              md={5}
               className={classes.placeSearch}
               id="placeSearchHold"
             >
