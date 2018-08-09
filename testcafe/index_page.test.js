@@ -12,6 +12,7 @@ fixture("Guided Experience").page("http://localhost:3000/");
 
 test("Can click throught GE and get to BD", async t => {
   await t
+    .setPageLoadTimeout(50000)
     .click("#heroGuidedLink")
     .click("#nextButton")
     .click("#nextButton")
