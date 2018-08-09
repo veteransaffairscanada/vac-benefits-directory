@@ -26,6 +26,40 @@ The advantages here are significant: for one the loading experience is faster as
 
 Lastly, our initial evaluation of NextJS showed that it worked well with a number of other Javascript components such as user interface libraries, search, and translation.
 
+### Test Driven Development
+
+Developers on this project follow a process that is loosely based on [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development "Test Driven Developement") and other practices associated with "small a" [Agile](https://en.wikipedia.org/wiki/Agile_software_development "Agile") development. Without following strict guidelines, developers agreed that an iterative and continous approach is preferable to segmented release cycles.
+
+To facilitate this process, we have chosen to use a [Continous Integration](https://en.wikipedia.org/wiki/Continuous_integration "Continous Integration") and [Continous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery "Continous Delivery") process whereby new features and code are added to the product frequenty, reviewed and verified, and shipped as soon as they are done. We are currently using [https://circleci.com/](https://circleci.com/ "Circle CI") as our platform for running all our unit tests before deploying. Alongside that we are also using [https://heroku.com](https://heroku.com "Heroku") to create staging versions of our application for manual review.
+
+This resulted in the following, recommended, process:
+
+1. Development sprints are given two week spans of time
+2. At the beginning of a sprint, the development team meets with the other members of the larger team to discuss development priorities for new features.
+3. The development team reviews open issues from the last sprint and prioritizes them with the next development targets.
+4. Features are broken down into issues on GitHub and developers agree on how much time each issue potentially can take
+5. Developers self-assign issues from the list of open issues in GitHub.
+6. To resolve an issue a developer:
+   - Checks out a new branch from `master`
+   - Builds the feature or resolves the bug described in the issue
+   - Continously commits code to their branch at sensible intervals
+   - Writes unit and integration tests for the code they have added
+   - Changes/removes unit and integration tests for code they have modified
+   - Runs the test suite that ensure all tests pass
+   - Uses a code coverage tool to ensure all significant logic has been tested
+   - Commits the final code, pushes the code to GitHub, and opens a pull request in GitHub
+   - Awaits CircleCI to verify that all our tests will pass
+   - Spot check features using Heroku review apps
+   - Requests other members of the team to review the pull request - only one review is required, but all team members are invited to review the pull request
+   - If other team members have comments, they will note these in GitHub for the developer to either fix them or discuss
+   - Other team members approve the pull request once all open discussion has been resolved
+   - Pull requests are then merged into `master`
+   - CircleCI verifies once again that all tests pass on the updated `master` and deploys the code into production
+7. This process is repeated iteratively until all issues for a sprint are resolved and new set of issues can be created or until a new sprint starts.
+8. At the end of a sprint the development team reviews the issues completed and suggest improvements on for the next sprint.
+
+The advantages of this process is that features get broken down and reviewed by the entire development team before work. This gives line of sight to the whole team on what is being worked on. Additionally anything being worked on is easily manageable by the person writing the code, as well as understandable by the person reviewing it. Using testing as the foundational practice allows for a high degree of confidence in the functionality of the code base. It also for allows instant feedback if a developer breaks existing functionality. Based on this high degree of confidence it allows a model of continuous delivery which ensures that stake holders and customers receive the features once they are ready vs. when they can be scheduled for release.
+
 ### Translations
 
 Given the Government of Canada's mandate to support both official languages, we use `react-18next` [https://react.i18next.com](https://react.i18next.com/ "react-18next") to allow us on-the-fly translations of all the text visibile on a given page.
