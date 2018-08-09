@@ -4,12 +4,27 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import { withStyles } from "@material-ui/core/styles";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { WordMark } from "@cdssnc/gcui";
 import FIP from "../components/fip";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 const styles = () => ({
   root: {
     fontFamily: "Merriweather, serif"
+  },
+  checkboxes: {
+    disabled: "true",
+    ripple: "disabled",
+    height: "30px",
+    width: "20px",
+    marginRight: "6px",
+    marginLeft: "12px"
+  },
+  bigTitle: {
+    fontSize: "32px",
+    fontWeight: "bold"
   },
   title: {
     fontSize: "22px",
@@ -23,6 +38,7 @@ const styles = () => ({
     width: "100%",
     lineHeight: "1.5em",
     marginTop: "0.5em",
+    marginBottom: "0.5em",
     height: "3em",
     backgroundImage: "linear-gradient(black 1px, transparent 0)",
     backgroundPosition: "0px 1.2em",
@@ -39,8 +55,23 @@ const styles = () => ({
     paddingLeft: "0px"
   },
   svgContainer: {
-    width: "320px",
-    height: "30px"
+    width: "450px",
+    height: "38px"
+  },
+  hr: {
+    color: "black",
+    backgroundColor: "black",
+    border: 0,
+    height: "2px",
+    "-webkit-print-color-adjust": "exact"
+  }
+});
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ["Merriweather", "serif"],
+    fontSize: "24px",
+    lineHeight: "1em"
   }
 });
 
@@ -100,7 +131,7 @@ export class Print extends Component {
   };
 
   render() {
-    const { t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const printingFromFavourites = query.fromFavourites !== undefined;
@@ -118,9 +149,6 @@ export class Print extends Component {
     );
     const selectedNeedsIDs =
       Object.keys(query).indexOf("needs") > -1 ? query.needs.split(",") : [];
-    const selectedNeeds = needs.filter(
-      x => selectedNeedsIDs.indexOf(x.id) > -1
-    );
 
     const profile_text = profile_questions
       .map(k => {
@@ -133,10 +161,6 @@ export class Print extends Component {
         return t(query[k]);
       })
       .filter(x => (x && x.length > 0 ? true : false))
-      .join(", ");
-
-    const needs_text = selectedNeeds
-      .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
       .join(", ");
 
     let closestAreaOffice = {};
@@ -158,111 +182,144 @@ export class Print extends Component {
         : selectedAreaOffice;
 
     return (
-      <div style={{ padding: 12 }} className={classes.root}>
-        <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <div className={classes.svgContainer}>
-              <FIP fillColor="black" t={this.props.t} />
-            </div>
-          </Grid>
-          <Grid item xs={6}>
-            <div className={classes.title}>{t("favourites.contact_us")}</div>
-            <div className={classes.bold}>{t("contact.phone")}</div>
-            <div>{t("favourites.call_time")}</div>
-            <br />
-            <div className={classes.bold}>{t("contact.email")}</div>
-            <div>{t("favourites.email_disclaimer")}</div>
-          </Grid>
-          <Grid item xs={6} id="closest_office_info">
-            <div className={classes.title}>{t("print.closest_office")}</div>
-            <div className={classes.rules} style={{ height: "5em" }}>
-              {t("current-language-code") == "en"
-                ? printAreaOffice.name_en
-                : printAreaOffice.name_fr}
-              <br />
-              {t("current-language-code") == "en"
-                ? printAreaOffice.address_en
-                : printAreaOffice.address_fr}
-            </div>
-          </Grid>
-          <Grid item xs={12}>
-            <div className={classes.title}>{t("favourites.apply_prompt")}</div>
-            <div className={classes.bold}>{t("contact.my_vac_link")}</div>
-            <div>{t("print.sign_up_for_my_vac")}</div>
-          </Grid>
-
-          {printingFromFavourites ? (
-            ""
-          ) : (
+      <MuiThemeProvider theme={theme}>
+        <div style={{ padding: 12 }} className={classes.root}>
+          <Grid container spacing={24}>
             <Grid item xs={12}>
-              <div
-                style={{
-                  borderStyle: "solid",
-                  borderWidth: "1px",
-                  padding: "1.5em"
-                }}
-              >
-                <div className={classes.title}>
-                  {t("print.fill_out_profile_needs_prompt")}
-                </div>
+              <div className={classes.svgContainer}>
+                <FIP fillColor="black" t={this.props.t} />
+              </div>
+            </Grid>
 
+            {printingFromFavourites ? (
+              ""
+            ) : (
+              <Grid item xs={12}>
                 <div
-                  className="profile_section"
-                  style={{ marginBottom: "1em" }}
+                  style={{
+                    borderStyle: "solid",
+                    borderWidth: "2px",
+                    padding: "1.5em"
+                  }}
                 >
                   <div className={classes.bold}>
                     {t("print.who_is_receiving")}
                   </div>
-                  <div className={classes.rules}>{profile_text}</div>
-                </div>
+                  <div className={"profile_section " + classes.rules}>
+                    {profile_text}
+                  </div>
 
-                <div className="needs_section">
-                  <div className={classes.bold}>{t("print.what_needs")}</div>
-                  <div className={classes.rules}>{needs_text}</div>
+                  <div className="needs_section">
+                    <Grid container spacing={0}>
+                      {needs.map((need, i) => (
+                        <Grid item xs={4} key={i}>
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                className={classes.checkboxes}
+                                color="default"
+                                disableRipple={true}
+                                key={need.id}
+                                id={"checkbox" + need.id}
+                                checked={selectedNeedsIDs.includes(need.id)}
+                              />
+                            }
+                            label={
+                              t("current-language-code") == "en"
+                                ? need.nameEn
+                                : need.nameFr
+                            }
+                            style={{ marginRight: "0px" }}
+                          />
+                        </Grid>
+                      ))}
+                    </Grid>
+                  </div>
                 </div>
+              </Grid>
+            )}
+          </Grid>
+
+          <div
+            className={classes.bigTitle}
+            style={{ marginTop: "20px", marginBottom: "15px" }}
+          >
+            {this.countString(
+              sortedFilteredBenefits,
+              benefits,
+              t,
+              printingFromFavourites
+            )}
+          </div>
+          <table style={{ width: "100%" }}>
+            <tbody>
+              {sortedFilteredBenefits.map((b, i) => {
+                return (
+                  <tr key={i} className={classes.benefitRow}>
+                    <td className={classes.benefitCell}>
+                      <div className="benefitsListItem">
+                        <div>
+                          <b>
+                            {t("current-language-code") == "en"
+                              ? b.vacNameEn
+                              : b.vacNameFr}
+                          </b>
+                        </div>
+                        <div>
+                          {t("current-language-code") == "en"
+                            ? b.oneLineDescriptionEn
+                            : b.oneLineDescriptionFr}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <Grid container spacing={24} style={{ marginTop: "12px" }}>
+            <Grid item xs={12}>
+              <hr className={classes.hr} />
+            </Grid>
+            <Grid item xs={12}>
+              <div className={classes.bigTitle}>
+                {t("print.have_any_questions")}
               </div>
             </Grid>
-          )}
-        </Grid>
+            <Grid item xs={6}>
+              <div className={classes.title}>{t("favourites.contact_us")}</div>
+              <div className={classes.bold}>{t("contact.phone")}</div>
+              <div>{t("favourites.call_time")}</div>
+              <br />
+              <div className={classes.bold}>{t("contact.email")}</div>
+              <div>{t("favourites.email_disclaimer")}</div>
+              <br />
+              <div className={classes.title}>{t("print.apply_online")}</div>
+              <div className={classes.bold}>{t("contact.my_vac_link")}</div>
+              <div>{t("print.sign_up_for_my_vac")}</div>
+            </Grid>
+            <Grid item xs={6} id="closest_office_info">
+              <div className={classes.title}>{t("print.closest_office")}</div>
 
-        <div className={classes.title} style={{ marginTop: "20px" }}>
-          {this.countString(
-            sortedFilteredBenefits,
-            benefits,
-            t,
-            printingFromFavourites
-          )}
+              <div className={classes.bold}>{t("print.map_link")}</div>
+              <div>{t("print.visit_office_prompt")}</div>
+
+              <div style={{ marginTop: "0.5em" }}>
+                {t("current-language-code") == "en"
+                  ? printAreaOffice.name_en
+                  : printAreaOffice.name_fr}
+                <br />
+                {t("current-language-code") == "en"
+                  ? printAreaOffice.address_en
+                  : printAreaOffice.address_fr}
+              </div>
+            </Grid>
+          </Grid>
+          <div style={{ textAlign: "right", width: "100%", marginTop: "20px" }}>
+            <WordMark width="6em" flag="#000" />
+          </div>
         </div>
-        <table style={{ width: "100%" }}>
-          <tbody>
-            {sortedFilteredBenefits.map((b, i) => {
-              return (
-                <tr key={i} className={classes.benefitRow}>
-                  <td className={classes.benefitCell}>
-                    <div className="benefitsListItem">
-                      <div>
-                        <b>
-                          {t("current-language-code") == "en"
-                            ? b.vacNameEn
-                            : b.vacNameFr}
-                        </b>
-                      </div>
-                      <div>
-                        {t("current-language-code") == "en"
-                          ? b.oneLineDescriptionEn
-                          : b.oneLineDescriptionFr}
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <div style={{ textAlign: "right", width: "100%", marginTop: "20px" }}>
-          <WordMark width="6em" flag="#000" />
-        </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
