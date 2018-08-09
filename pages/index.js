@@ -52,7 +52,10 @@ const styles = theme => ({
   },
   image: {
     margin: "40px 40px 0 40px",
-    width: "100%"
+    width: "100%",
+    [theme.breakpoints.down("sm")]: {
+      display: "none"
+    }
   },
   prompt: {
     color: "#303232",
