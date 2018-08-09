@@ -12,6 +12,7 @@ import { Grid, Button } from "@material-ui/core";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper/index";
 import Link from "next/link";
+import "../utils/polyfills";
 
 const styles = theme => ({
   root: {
@@ -126,6 +127,7 @@ export class Map extends Component {
             <Grid
               item
               xs={12}
+              md={5}
               className={classes.placeSearch}
               id="placeSearchHold"
             >

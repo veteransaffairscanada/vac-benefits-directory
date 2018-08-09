@@ -12,7 +12,7 @@ const styles = theme => ({
   root: {
     padding: "25px",
     paddingTop: "20px",
-    backgroundColor: "#e6e6e6",
+    backgroundColor: "#f5f5f5",
     [theme.breakpoints.down(600)]: {
       display: "none"
     }

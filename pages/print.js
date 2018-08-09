@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { WordMark } from "@cdssnc/gcui";
+import FIP from "../components/fip";
 
 const styles = () => ({
   root: {
@@ -42,6 +43,10 @@ const styles = () => ({
   benefitCell: {
     paddingBottom: "10px",
     paddingLeft: "0px"
+  },
+  svgContainer: {
+    width: "320px",
+    height: "30px"
   }
 });
 
@@ -57,8 +62,10 @@ export class Print extends Component {
     window.print();
   }
 
-  countString = (filteredBenefits, benefits, t) => {
+  countString = (filteredBenefits, benefits, t, printingFromFavourites) => {
     switch (true) {
+      case printingFromFavourites:
+        return t("favourites.saved_benefits", { x: filteredBenefits.length });
       case filteredBenefits.length === benefits.length:
         return t("B3.All benefits to consider");
       case filteredBenefits.length === 0:
@@ -102,6 +109,7 @@ export class Print extends Component {
     const { i18n, t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
+    const printingFromFavourites = query.fromFavourites !== undefined;
     const filteredBenefitsIDs =
       Object.keys(query).indexOf("benefits") > -1
         ? query.benefits.split(",")
@@ -152,15 +160,9 @@ export class Print extends Component {
       <div style={{ padding: 12 }} className={classes.root}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <img
-              src={
-                t("current-language-code") == "en"
-                  ? "../static/vac-sig-eng-2018.svg"
-                  : "../static/vac-sig-fra-2018.svg"
-              }
-              alt="VAC Logo"
-              style={{ width: "400px" }}
-            />
+            <div className={classes.svgContainer}>
+              <FIP fillColor="black" t={this.props.t} />
+            </div>
           </Grid>
           <Grid item xs={6}>
             <div className={classes.title}>{t("favourites.contact_us")}</div>
@@ -188,6 +190,9 @@ export class Print extends Component {
             <div>{t("print.sign_up_for_my_vac")}</div>
           </Grid>
 
+          {printingFromFavourites ? (
+            ""
+          ) : (
           <Grid item xs={12}>
             <div
               style={{
@@ -230,12 +235,16 @@ export class Print extends Component {
                   ))}
                 </Grid>
               </div>
-            </div>
-          </Grid>
-        </Grid>
+            </Grid>
+          )}
 
         <div className={classes.title} style={{ marginTop: "20px" }}>
-          {this.countString(sortedFilteredBenefits, benefits, t)}
+          {this.countString(
+            sortedFilteredBenefits,
+            benefits,
+            t,
+            printingFromFavourites
+          )}
         </div>
         <table style={{ width: "100%" }}>
           <tbody>

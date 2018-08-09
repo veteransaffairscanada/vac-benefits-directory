@@ -33,16 +33,13 @@ const Content = styled("div")`
 
 const styles = () => ({
   header: {
-    backgroundColor: "#000",
+    backgroundColor: "#555",
     padding: "0px"
   }
 });
 
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: {
-      root: { "&:focus": { opacity: 0.3 } }
-    },
     MuiTouchRipple: {
       childPulsate: { opacity: 0 },
       ripplePulsate: { opacity: 0 }

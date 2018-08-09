@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
 import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import SearchIcon from "@material-ui/icons/Search";
 import { StandaloneSearchBox } from "react-google-maps/lib/components/places/StandaloneSearchBox";
 
 const styles = theme => ({
@@ -15,7 +15,10 @@ const styles = theme => ({
   input: {
     // paddingTop: "6px"
   },
-  inputIcon: {},
+  inputIcon: {
+    paddingTop: "3px",
+    paddingRight: "5px"
+  },
   searchWrap: {
     display: "inline-flex",
     width: "100%",
@@ -23,11 +26,17 @@ const styles = theme => ({
     borderWidth: "1px",
     borderRadius: "0px",
     paddingLeft: "5px",
-    backgroundColor: "#fff"
+    backgroundColor: "white"
   },
   searchBox: {
+    display: "inline-flex",
+    padding: "10px",
+    fontSize: "15px",
     flex: 1,
-    marginRight: "10px"
+    marginRight: "10px",
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
   },
   searchButton: {
     [theme.breakpoints.down("750")]: {
@@ -38,6 +47,14 @@ const styles = theme => ({
     paddingRight: "50px",
     textTransform: "none",
     borderRadius: "0px"
+  },
+  searchInputField: {
+    display: "inline-flex",
+    fontSize: "15px",
+    flex: 1,
+    borderWidth: "0px",
+    width: "100%",
+    fontFamily: "Merriweather"
   }
 });
 
@@ -86,22 +103,15 @@ export class PlaceSearch extends Component {
       >
         <div className={this.props.classes.searchWrap}>
           <div className={this.props.classes.searchBox}>
-            <TextField
-              id={this.props.classes.input}
-              className={this.props.classes.input}
+            <SearchIcon className={this.props.classes.inputIcon} />
+            <input
+              id="inputField"
+              aria-label={this.props.t("map.search-locations")}
+              type="text"
               placeholder={this.props.t("map.search-location-prompt")}
-              fullWidth
-              label={this.props.t("map.search-locations")}
-              onKeyPress={this.onKeyPress}
-              InputProps={{
-                disableUnderline: true,
-                classes: {
-                  input: this.props.classes.input
-                }
-              }}
-              InputLabelProps={{
-                shrink: true
-              }}
+              className={this.props.classes.searchInputField}
+              onKeyDown={this.onKeyPress}
+              onKeyUp={this.onKeyDown}
             />
           </div>
           <div>
