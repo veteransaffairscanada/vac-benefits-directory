@@ -49,11 +49,11 @@ const container = css`
 
   ${mediaQuery.xs(css`
     .svg-container {
-      width: 280px;
+      width: 220px;
       height: 30px;
 
       svg {
-        width: 280px;
+        width: 220px;
         height: 30px;
         fill: white;
       }
