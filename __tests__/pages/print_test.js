@@ -91,11 +91,7 @@ describe("Print", () => {
         .text()
     ).toContain("GE.has service related health issue");
 
-    expect(
-      mountedPrint()
-        .find(".needs_section")
-        .text()
-    ).toContain("1");
+    expect(mountedPrint().html()).toContain("checkbox1");
   });
 
   it("has a correct sortBenefits function when sorting by popularity", () => {

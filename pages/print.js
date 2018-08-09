@@ -4,12 +4,18 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
 import { withStyles } from "@material-ui/core/styles";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { WordMark } from "@cdssnc/gcui";
 import FIP from "../components/fip";
 
 const styles = () => ({
   root: {
     fontFamily: "Merriweather, serif"
+  },
+  checkboxes: {
+    disabled: "true",
+    ripple: "disabled"
   },
   bigTitle: {
     fontSize: "32px",
@@ -27,11 +33,11 @@ const styles = () => ({
     width: "100%",
     lineHeight: "1.5em",
     marginTop: "0.5em",
-    height: "3em",
-    backgroundImage: "linear-gradient(black 1px, transparent 0)",
-    backgroundPosition: "0px 1.2em",
-    backgroundSize: "100% 1.5em",
-    "-webkit-print-color-adjust": "exact"
+    height: "3em"
+  },
+  profile: {
+    borderBottom: "1px solid",
+    paddingBottom: "5px"
   },
   benefitRow: {
     "@media print": {
@@ -111,7 +117,7 @@ export class Print extends Component {
   };
 
   render() {
-    const { t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const printingFromFavourites = query.fromFavourites !== undefined;
@@ -129,9 +135,6 @@ export class Print extends Component {
     );
     const selectedNeedsIDs =
       Object.keys(query).indexOf("needs") > -1 ? query.needs.split(",") : [];
-    const selectedNeeds = needs.filter(
-      x => selectedNeedsIDs.indexOf(x.id) > -1
-    );
 
     const profile_text = profile_questions
       .map(k => {
@@ -144,10 +147,6 @@ export class Print extends Component {
         return t(query[k]);
       })
       .filter(x => (x && x.length > 0 ? true : false))
-      .join(", ");
-
-    const needs_text = selectedNeeds
-      .map(n => (t("current-language-code") === "en" ? n.nameEn : n.nameFr))
       .join(", ");
 
     let closestAreaOffice = {};
@@ -188,23 +187,42 @@ export class Print extends Component {
                   padding: "1.5em"
                 }}
               >
-                <div className={classes.title}>
+                <span className={classes.title}>
                   {t("print.fill_out_profile_needs_prompt")}
-                </div>
+                </span>
 
                 <div
                   className="profile_section"
                   style={{ marginBottom: "1em" }}
                 >
-                  <div className={classes.bold}>
+                  <span className={classes.bold}>
                     {t("print.who_is_receiving")}
-                  </div>
-                  <div className={classes.rules}>{profile_text}</div>
+                    {"  "}
+                  </span>
+                  <span className={classes.profile}>{profile_text}</span>
                 </div>
 
                 <div className="needs_section">
                   <div className={classes.bold}>{t("print.what_needs")}</div>
-                  <div className={classes.rules}>{needs_text}</div>
+                  <Grid container spacing={24}>
+                    {needs.map((need, i) => (
+                      <Grid item xs={3} key={i}>
+                        <FormControlLabel
+                          control={
+                            <Checkbox
+                              className={classes.checkboxes}
+                              color="default"
+                              disableRipple={true}
+                              key={need.id}
+                              id={"checkbox" + need.id}
+                              checked={selectedNeedsIDs.includes(need.id)}
+                            />
+                          }
+                          label={need.nameEn}
+                        />
+                      </Grid>
+                    ))}
+                  </Grid>
                 </div>
               </div>
             </Grid>
