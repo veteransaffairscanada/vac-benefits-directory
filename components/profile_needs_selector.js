@@ -7,6 +7,7 @@ import classnames from "classnames";
 import { connect } from "react-redux";
 import { Grid, Button, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
 
 const styles = theme => ({
   root: {
@@ -27,9 +28,16 @@ const styles = theme => ({
     marginBottom: "30px"
   },
   clearButton: {
-    textDecoration: "underline",
+    textDecoration: "none",
     textTransform: "unset",
-    fontSize: "16px"
+    fontSize: "60%",
+    float: "right",
+    color: "blue"
+  },
+  clearIcon: {
+    fontSize: "100%",
+    marginLeft: theme.spacing.unit,
+    fontWeight: "bold"
   },
   filterTitle: {
     paddingRight: "0px",
@@ -93,6 +101,7 @@ export class ProfileNeedsSelector extends Component {
               }}
             >
               {t("reset filters")} {"(" + this.countSelected() + ")"}
+              <CloseIcon className={classnames(classes.clearIcon)} />
             </Button>
           ) : (
             ""
