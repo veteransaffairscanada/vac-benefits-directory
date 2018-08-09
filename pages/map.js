@@ -15,10 +15,8 @@ import Link from "next/link";
 import "../utils/polyfills";
 
 const styles = theme => ({
-  root: {
-    width: "100%",
-    marginTop: theme.spacing.unit * 3,
-    overflowX: "auto"
+  paper: {
+    marginTop: theme.spacing.unit * 3
   },
   mapTitle: {
     fontSize: "36px"
@@ -33,6 +31,16 @@ const styles = theme => ({
   },
   topMatter: {
     marginTop: "30px"
+  },
+  container: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    paddingLeft: "16px",
+    paddingRight: "16px"
+  },
+  root: {
+    marginLeft: "15px",
+    marginRight: "15px"
   }
 });
 export class Map extends Component {
@@ -82,85 +90,78 @@ export class Map extends Component {
         hideNoscript={true}
         showRefreshCache={false}
       >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            paddingLeft: "16px",
-            paddingRight: "16px"
-          }}
-        >
-          <Grid
-            container
-            spacing={24}
-            style={{ paddingLeft: "16px", paddingRight: "16px" }}
-          >
-            <Grid item xs={12} md={8} className={classes.topMatter}>
-              <Link href={this.get_link("favourites")}>
-                <Button
-                  variant="flat"
-                  size="large"
-                  className={classes.backLink}
-                  id="backButton"
-                >
-                  <ArrowBack />
-                  &nbsp; &nbsp;
-                  {t("back")}
-                </Button>
-              </Link>
-              <Typography className={"MapTitle " + classes.mapTitle}>
-                {t("map.vacOffices")}
-              </Typography>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              md={4}
-              className={classes.topMatter}
-              id="contactInfo"
-            >
-              <Typography>
-                <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
-              </Typography>
-              <Typography>{t("favourites.call_time")}</Typography>
-            </Grid>
-            <Grid
-              item
-              xs={12}
-              md={5}
-              className={classes.placeSearch}
-              id="placeSearchHold"
-            >
-              <PlaceSearch
-                id="PlaceSearch"
-                containerElement={<div style={{ height: "0px" }} />}
-                loadingElement={<div style={{ height: "100%" }} />}
-                store={this.props.store}
-                t={t}
-              />
-            </Grid>
-          </Grid>
-
-          <Paper className={classes.root}>
-            <Grid container>
-              <Grid item xs={12} md={8}>
-                <AreaOfficeMap
-                  id="AreaOfficeMap"
-                  loadingElement={<div style={{ height: "100%" }} />}
-                  containerElement={<div style={{ height: "456px" }} />}
-                  mapElement={<div style={{ height: "100%" }} />}
-                  t={t}
-                />
+        <div className={classes.container}>
+          <div className={classes.root}>
+            <Grid container spacing={24}>
+              <Grid item xs={12} md={8} className={classes.topMatter}>
+                <Link href={this.get_link("favourites")}>
+                  <Button
+                    variant="flat"
+                    size="large"
+                    className={classes.backLink}
+                    id="backButton"
+                  >
+                    <ArrowBack />
+                    &nbsp; &nbsp;
+                    {t("back")}
+                  </Button>
+                </Link>
+                <Typography className={"MapTitle " + classes.mapTitle}>
+                  {t("map.vacOffices")}
+                </Typography>
               </Grid>
-              <Grid item xs={12} md={4}>
-                <AreaOfficeTable
-                  id="AreaOfficeTable"
+              <Grid
+                item
+                xs={12}
+                md={4}
+                className={classes.topMatter}
+                id="contactInfo"
+              >
+                <Typography>
+                  <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
+                </Typography>
+                <Typography>{t("favourites.call_time")}</Typography>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md={5}
+                className={classes.placeSearch}
+                id="placeSearchHold"
+              >
+                <PlaceSearch
+                  id="PlaceSearch"
+                  containerElement={
+                    <div style={{ height: "0px", marginRight: "50px" }} />
+                  }
+                  loadingElement={<div style={{ height: "100%" }} />}
                   store={this.props.store}
                   t={t}
                 />
               </Grid>
             </Grid>
-          </Paper>
+
+            <Paper className={classes.paper}>
+              <Grid container>
+                <Grid item xs={12} md={8}>
+                  <AreaOfficeMap
+                    id="AreaOfficeMap"
+                    loadingElement={<div style={{ height: "100%" }} />}
+                    containerElement={<div style={{ height: "456px" }} />}
+                    mapElement={<div style={{ height: "100%" }} />}
+                    t={t}
+                  />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <AreaOfficeTable
+                    id="AreaOfficeTable"
+                    store={this.props.store}
+                    t={t}
+                  />
+                </Grid>
+              </Grid>
+            </Paper>
+          </div>
         </div>
       </Layout>
     );
