@@ -56,8 +56,10 @@ export class Print extends Component {
     window.print();
   }
 
-  countString = (filteredBenefits, benefits, t) => {
+  countString = (filteredBenefits, benefits, t, printingFromFavourites) => {
     switch (true) {
+      case printingFromFavourites:
+        return t("favourites.saved_benefits", { x: filteredBenefits.length });
       case filteredBenefits.length === benefits.length:
         return t("B3.All benefits to consider");
       case filteredBenefits.length === 0:
@@ -101,6 +103,7 @@ export class Print extends Component {
     const { t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
+    const printingFromFavourites = query.fromFavourites !== undefined;
     const filteredBenefitsIDs =
       Object.keys(query).indexOf("benefits") > -1
         ? query.benefits.split(",")
@@ -188,35 +191,47 @@ export class Print extends Component {
             <div>{t("print.sign_up_for_my_vac")}</div>
           </Grid>
 
-          <Grid item xs={12}>
-            <div
-              style={{
-                borderStyle: "solid",
-                borderWidth: "1px",
-                padding: "1.5em"
-              }}
-            >
-              <div className={classes.title}>
-                {t("print.fill_out_profile_needs_prompt")}
-              </div>
-
-              <div className="profile_section" style={{ marginBottom: "1em" }}>
-                <div className={classes.bold}>
-                  {t("print.who_is_receiving")}
+          {printingFromFavourites ? (
+            ""
+          ) : (
+            <Grid item xs={12}>
+              <div
+                style={{
+                  borderStyle: "solid",
+                  borderWidth: "1px",
+                  padding: "1.5em"
+                }}
+              >
+                <div className={classes.title}>
+                  {t("print.fill_out_profile_needs_prompt")}
                 </div>
-                <div className={classes.rules}>{profile_text}</div>
-              </div>
 
-              <div className="needs_section">
-                <div className={classes.bold}>{t("print.what_needs")}</div>
-                <div className={classes.rules}>{needs_text}</div>
+                <div
+                  className="profile_section"
+                  style={{ marginBottom: "1em" }}
+                >
+                  <div className={classes.bold}>
+                    {t("print.who_is_receiving")}
+                  </div>
+                  <div className={classes.rules}>{profile_text}</div>
+                </div>
+
+                <div className="needs_section">
+                  <div className={classes.bold}>{t("print.what_needs")}</div>
+                  <div className={classes.rules}>{needs_text}</div>
+                </div>
               </div>
-            </div>
-          </Grid>
+            </Grid>
+          )}
         </Grid>
 
         <div className={classes.title} style={{ marginTop: "20px" }}>
-          {this.countString(sortedFilteredBenefits, benefits, t)}
+          {this.countString(
+            sortedFilteredBenefits,
+            benefits,
+            t,
+            printingFromFavourites
+          )}
         </div>
         <table style={{ width: "100%" }}>
           <tbody>
