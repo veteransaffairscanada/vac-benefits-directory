@@ -84,7 +84,7 @@ const profile_questions = [
 
 export class Print extends Component {
   componentDidMount() {
-    // window.print();
+    window.print();
   }
 
   countString = (filteredBenefits, benefits, t, printingFromFavourites) => {
@@ -202,10 +202,12 @@ export class Print extends Component {
                     padding: "1.5em"
                   }}
                 >
-                  <div className={"profile_section " + classes.bold}>
+                  <div className={classes.bold}>
                     {t("print.who_is_receiving")}
                   </div>
-                  <div className={classes.rules}>{profile_text}</div>
+                  <div className={"profile_section " + classes.rules}>
+                    {profile_text}
+                  </div>
 
                   <div className="needs_section">
                     <Grid container spacing={0}>
