@@ -219,8 +219,6 @@ export class Print extends Component {
                             className={classes.checkboxes}
                             color="default"
                             disableRipple={true}
-                            key={need.id}
-                            need={need}
                             checked={selectedNeedsIDs.includes(need.id)}
                           />
                         }
