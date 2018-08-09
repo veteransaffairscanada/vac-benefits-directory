@@ -9,10 +9,10 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:10
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
+    # Specify service dependencies here if necessary
+    # CircleCI maintains a library of pre-built images
+    # documented at https://circleci.com/docs/2.0/circleci-images/
+    # - image: circleci/mongo:3.4.4
 
     working_directory: ~/repo
 
@@ -22,9 +22,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
       - run: yarn install
 
@@ -34,9 +34,13 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
+      - run:
+          command: yarn test:e2e
+          name: "TestCafe e2e Windows 11 tests"
       - run: yarn test -w2
       - run:
-          command: node node_modules/eslint/bin/eslint.js pages components __tests__
+          command:
+            node node_modules/eslint/bin/eslint.js pages components __tests__
           name: lint
       - run:
           command: ~/repo/.circleci/notify_failure.sh
@@ -52,14 +56,13 @@ jobs:
       - setup_remote_docker
       - run:
           command: |
-              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-              docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg GOOGLE_MAPS_KEY="${GOOGLE_MAPS_KEY}" --build-arg AIRTABLE_WRITE_KEY="${AIRTABLE_WRITE_KEY}" --build-arg GITHUB_PUBLIC_ACCESS_TOKEN="${GITHUB_PUBLIC_ACCESS_TOKEN}" .
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
+            docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+            docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg GOOGLE_MAPS_KEY="${GOOGLE_MAPS_KEY}" --build-arg AIRTABLE_WRITE_KEY="${AIRTABLE_WRITE_KEY}" --build-arg GITHUB_PUBLIC_ACCESS_TOKEN="${GITHUB_PUBLIC_ACCESS_TOKEN}" .
+            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
           name: "Build and Deploy API Docker Image"
       - run:
-          command: apt-get install curl
-          command: ~/repo/.circleci/notify_failure.sh
+          command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
           name: "Report failing Master"
           when: on_fail
 
@@ -72,10 +75,10 @@ jobs:
           path: ~/repo
       - setup_remote_docker
       - run:
-         command: |
-              cd deploy
-              ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE --timeout 15
-         name: "Update ECS Task"
+          command: |
+            cd deploy
+            ecs-cli compose --file docker-compose.yml --ecs-params ecs-params.yml --cluster staging-ecs-cluster --project-name staging-vac-poc  service up --launch-type FARGATE --timeout 15
+          name: "Update ECS Task"
       - run:
           command: ~/repo/.circleci/notify_failure.sh
           name: "Report failing Master"
@@ -86,12 +89,12 @@ jobs:
 workflows:
   version: 2
   build_and_deploy:
-   jobs:
-     - build
-     - deploy:
-        requires:
-         - build
-        filters:
-          branches:
-            only:
-              - master
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master

@@ -3,7 +3,9 @@ import { Selector } from "testcafe";
 
 const BDSelector = Selector("#BB");
 
-fixture("Guided Experience").page("http://localhost:3000");
+// fixture("Guided Experience").page("https://cdsvacpoc.azurewebsites.net/");
+
+fixture("Guided Experience").page("http://localhost:3000/");
 // .beforeEach(async () => {
 //   await waitForReact();
 // });

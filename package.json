@@ -12,6 +12,7 @@
     "start": "NODE_ENV=production node server.js",
     "test": "NODE_ENV=test jest --coverage",
     "testcafe": "testcafe chrome testcafe/",
+    "test:e2e": "testcafe 'browserstack:ie@11:Windows 10' testcafe/*.js --app 'node server.js'",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged"
   },
@@ -86,6 +87,7 @@
     "pretty-quick": "^1.6.0",
     "react-test-renderer": "^16.4.2",
     "testcafe": "^0.21.1",
+    "testcafe-browser-provider-browserstack": "^1.5.0",
     "testcafe-react-selectors": "^2.1.0"
   }
 }
