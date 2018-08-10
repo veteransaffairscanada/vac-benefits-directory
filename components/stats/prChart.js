@@ -92,10 +92,36 @@ export class PrChart extends Component {
       }
       return acc;
     };
+    const reducerLife = (acc, currentVal) => {
+      let date = Moment(currentVal.merged_at).format("YYYY-MM-DD");
+      let lifeLength = Moment(currentVal.merged_at).diff(
+        Moment(currentVal.created_at),
+        "day",
+        true
+      );
+      if (acc.hasOwnProperty(date)) {
+        acc[date] = acc[date] + lifeLength;
+      } else {
+        acc[date] = 1;
+      }
+      return acc;
+    };
+
+    const dataCounts = this.filterMerged().reduce(reducer, {});
+    const dataLifetimes = this.filterMerged().reduce(reducerLife, {});
+
     let dataObject = this.filterMerged().reduce(reducer, {});
+
+    let dataObjectLifetimes = {};
+    Object.keys(dataLifetimes).forEach(key => {
+      dataObjectLifetimes[key] = dataLifetimes[key] / dataCounts[key];
+    });
+
     return dates.map(m => {
       let key = m.format("YYYY-MM-DD");
-      let value = dataObject.hasOwnProperty(key) ? dataObject[key] : 0;
+      let value = dataObjectLifetimes.hasOwnProperty(key)
+        ? dataObjectLifetimes[key]
+        : 0;
       return [m.valueOf(), value];
     });
   };
