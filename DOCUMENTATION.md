@@ -2,13 +2,13 @@
 
 ### Table of Contents
 
-1.  [Next.JS and Server Side Rendering](#Next.JS-and-Server-Side-Rendering)
-2.  [AirTable](#AirTable)
-3.  [Test Driven Development](#Test-Driven-Development)
+1.  [Next.JS and Server Side Rendering](#next.js-and-server-side-rendering)
+2.  [AirTable](#airtable)
+3.  [Test Driven Development](#test-driven-development)
 4.  Deployment
-5.  [Translations](./DOCUMENTATION.md#Translations)
-6.  [Heroku](./DOCUMENTATION.md#Heroku)
-7.  [Contributing to GitHub repo](./DOCUMENTATION.md#Contributing to GitHub repo)
+5.  [Translations](#translations)
+6.  [Heroku](#heroku)
+7.  [Contributing to GitHub repo](#contributing-to-github-repo)
 
 ### Next.JS and Server Side Rendering
 
@@ -26,7 +26,7 @@ The advantages here are significant: for one the loading experience is faster as
 
 Lastly, our initial evaluation of NextJS showed that it worked well with a number of other Javascript components such as user interface libraries, search, and translation.
 
-# AirTable
+### AirTable
 
 #### What is AirTable?
 
