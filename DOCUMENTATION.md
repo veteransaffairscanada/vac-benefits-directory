@@ -2,7 +2,7 @@
 
 ### Table of Contents
 
-1.  [Next.JS and Server Side Rendering](#next.js-and-server-side-rendering)
+1.  [Next.JS and Server Side Rendering](#nextjs-and-server-side-rendering)
 2.  [AirTable](#airtable)
 3.  [Test Driven Development](#test-driven-development)
 4.  Deployment
