@@ -70,6 +70,36 @@ Upon boot, and every hour after, the server will download and cache all the tran
 
 When a new string is added to `AirTable`, both an English and a French version are included. If the person adding the string is not comfortable in both official languages they are encouraged to add a `[TRANSLATE]` in front of the translation that they are uncomfortable with. This allows other members of the team to see the incomplete translation both in `AirTable` and the actual application, allowing them to fix the string if they have sufficient proficiency.
 
+### Heroku
+
+We are using Heroku for two purposes:
+
+- to allow us to quickly deploy a fixed branch to the web
+  (for user and accessibility testing, and the VAC Working Group), and
+- to create apps from branches to help with pull request review
+
+We have a Heroku "CDS team" which the developers have admin access to, at https://dashboard.heroku.com/teams/cds/overview
+
+To create a one-off app:
+
+- Use the "New" button in the upper right corner, and click "Create new app".
+- Give the app a name and click "Create app".
+- The app's page opens. Under Deploy, connect the app to GitHub and a specific repo.
+- choose a branch to deploy.
+
+Heroku also automatically creates an app for each PR in our repository. This is extremely useful for code review.
+Heroku will add a link to the app in the GitHub PR.
+
+To set up PR review apps we use a Heroku Pipeline. From the dashboard:
+
+- Click New / Create new pipeline.
+- Give the pipeline a name, connect it to a repo and click "Create pipeline".
+- Add an existing app (or create a new one) to the Staging or Production sections.
+  The review apps will inherit environment variables from this app.
+- Click "Enable Review Apps".
+- Check the box next to "Create new review apps for new pull requests automatically".
+- Click "Enable".
+
 ### Contribute to GitHub repo
 
 Download github desktop @ https://desktop.github.com/.
