@@ -2,13 +2,13 @@
 
 ### Table of Contents
 
-1.  Next.JS and Server Side Rendering
-2.  AirTable
-3.  Test Driven Development
+1.  [Next.JS and Server Side Rendering](#nextjs-and-server-side-rendering)
+2.  [AirTable](#airtable)
+3.  [Test Driven Development](#test-driven-development)
 4.  Deployment
-5.  Translations
-6.  Heroku
-7.  Contributing
+5.  [Translations](#translations)
+6.  [Heroku](#heroku)
+7.  [Contributing to GitHub repo](#contributing-to-github-repo)
 
 ### Next.JS and Server Side Rendering
 
@@ -136,7 +136,7 @@ with your account details so we can add you to the team.
 Note that our PR apps are automatically created by Heroku, so developers do not require Heroku access
 to have review apps created for their PRs.
 
-### Contribute to GitHub repo
+### Contributing to GitHub repo
 
 Download github desktop @ https://desktop.github.com/.
 Go to https://github.com/cds-snc/vac-benefits-directory
