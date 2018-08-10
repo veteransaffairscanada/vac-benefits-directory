@@ -11,8 +11,8 @@
     "postinstall": "next build",
     "start": "NODE_ENV=production node server.js",
     "test": "NODE_ENV=test jest --coverage",
-    "testcafe": "testcafe chrome testcafe/",
-    "test:e2e": "testcafe 'browserstack:ie@11:Windows 10' testcafe/*.js --app 'node server.js'",
+    "test:e2e": "testcafe chrome testcafe/",
+    "test:e2e_windows": "testcafe 'browserstack:ie@11:Windows 10' testcafe/*.js --app 'node server.js'",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged"
   },
