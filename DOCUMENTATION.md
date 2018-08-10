@@ -2,9 +2,9 @@
 
 ### Table of Contents
 
-1.  [Next.JS and Server Side Rendering](./DOCUMENTATION.md#Next.JS and Server Side Rendering)
-2.  [AirTable](./DOCUMENTATION.md#AirTable)
-3.  [Test Driven Development](./DOCUMENTATION.md#Test Driven Development)
+1.  [Next.JS and Server Side Rendering](#Next.JS-and-Server-Side-Rendering)
+2.  [AirTable](#AirTable)
+3.  [Test Driven Development](#Test-Driven-Development)
 4.  Deployment
 5.  [Translations](./DOCUMENTATION.md#Translations)
 6.  [Heroku](./DOCUMENTATION.md#Heroku)
@@ -26,7 +26,7 @@ The advantages here are significant: for one the loading experience is faster as
 
 Lastly, our initial evaluation of NextJS showed that it worked well with a number of other Javascript components such as user interface libraries, search, and translation.
 
-### AirTable
+# AirTable
 
 #### What is AirTable?
 
