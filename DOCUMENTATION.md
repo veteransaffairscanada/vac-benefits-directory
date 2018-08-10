@@ -2,13 +2,13 @@
 
 ### Table of Contents
 
-1.  Next.JS and Server Side Rendering
-2.  AirTable
-3.  Test Driven Development
+1.  [Next.JS and Server Side Rendering](#Next.JS and Server Side Rendering)
+2.  [AirTable](#AirTable)
+3.  [Test Driven Development](#Test Driven Development)
 4.  Deployment
-5.  Translations
+5.  [Translations](#Translations)
 6.  Fixings
-7.  Contributing
+7.  [Contributing to GitHub repo](#Contributing to GitHub repo)
 
 ### Next.JS and Server Side Rendering
 
@@ -91,7 +91,7 @@ Upon boot, and every hour after, the server will download and cache all the tran
 
 When a new string is added to `AirTable`, both an English and a French version are included. If the person adding the string is not comfortable in both official languages they are encouraged to add a `[TRANSLATE]` in front of the translation that they are uncomfortable with. This allows other members of the team to see the incomplete translation both in `AirTable` and the actual application, allowing them to fix the string if they have sufficient proficiency.
 
-### Contribute to GitHub repo
+### Contributing to GitHub repo
 
 Download github desktop @ https://desktop.github.com/.
 Go to https://github.com/cds-snc/vac-benefits-directory

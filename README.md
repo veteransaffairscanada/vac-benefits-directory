@@ -6,6 +6,8 @@
 This is the code for the VAC Benefits Directory being developed by VAC and CDS. The app is currently deployed at
 https://cdsvacpoc.azurewebsites.net/
 
+The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [DOCUMENTATION.md](./DOCUMENTATION.md).
+
 ## Quickstart
 
 - `yarn install`
