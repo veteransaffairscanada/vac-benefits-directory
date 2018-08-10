@@ -6,6 +6,8 @@ import WrappedAreaOfficeMap from "../../components/area_office_map";
 import { AreaOfficeMap } from "../../components/area_office_map";
 import areaOfficesFixture from "../fixtures/area_offices";
 
+const GOOGLE_MAPS_KEY=process.env.GOOGLE_MAPS_KEY
+
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -19,7 +21,7 @@ describe("AreaOfficeMap", () => {
   beforeEach(() => {
     props = {
       googleMapURL:
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyCU5iYqJ_8g4bvR4AI3-LEzwlzr1DJ1dmE&language=en&v=3.exp&libraries=geometry,drawing,places",
+        "https://maps.googleapis.com/maps/api/js?key=" + GOOGLE_MAPS_KEY + "&language=en&v=3.exp&libraries=geometry,drawing,places",
       loadingElement: <div style={{ height: "100%" }} />,
       containerElement: <div style={{ height: "400px" }} />,
       mapElement: <div style={{ height: "100%" }} />,
