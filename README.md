@@ -46,7 +46,7 @@ Here is an example of how to add an ENV variable locally on OSX:
 4.  `source ~/.bash_profile` (or `source ~/.zshrc`)
 5.  `echo $GOOGLE_MAPS_KEY` to make sure it is set
 6.  `yarn dev` to start the dev server
-7.  Visit http://localhost:3000/map?lng=en with your browser to check that the map is loading
+7.  Visit http://localhost:3000/map with your browser to check that the map is loading
 
 ## Adding a new environment variable to the source code
 
