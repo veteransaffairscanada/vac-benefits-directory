@@ -7,7 +7,7 @@
 3.  Test Driven Development
 4.  Deployment
 5.  Translations
-6.  Fixings
+6.  Heroku
 7.  Contributing
 
 ### Next.JS and Server Side Rendering
@@ -72,6 +72,14 @@ When a new string is added to `AirTable`, both an English and a French version a
 
 ### Heroku
 
+#### What is Heroku?
+
+[Heroku](https://www.heroku.com) is a "platform as a service" that enables developers to build, run,
+and operate applications entirely in the cloud. In particular, Heroku allows quick and easy deployment of apps,
+either manually through a CLI or through the Heroku web interface.
+
+#### Why and how are we using it?
+
 We are using Heroku for two purposes:
 
 - to allow us to quickly deploy a fixed branch to the web
@@ -99,6 +107,13 @@ To set up PR review apps we use a Heroku Pipeline. From the dashboard:
 - Click "Enable Review Apps".
 - Check the box next to "Create new review apps for new pull requests automatically".
 - Click "Enable".
+
+#### How does one get access?
+
+To join the CDS Heroku team, create a (free) Heroku account and email vac@cds-snc.ca
+with your account details so we can add you to the team.
+Note that our PR apps are automatically created by Heroku, so developers do not require Heroku access
+to have review apps created for their PRs.
 
 ### Contribute to GitHub repo
 
