@@ -43,7 +43,7 @@ export class PrDurationChart extends Component {
       series: [
         {
           data: this.prData(),
-          name: "Deploys",
+          name: "Average PR Duration",
           tooltip: {
             headerFormat: "<b>{series.name}</b><br>",
             pointFormat: "{point.x:%a %e %b}: <b>{point.y}</b>"
