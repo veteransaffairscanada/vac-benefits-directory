@@ -94,9 +94,9 @@ describe("prChart", () => {
       let result = prChart()
         .instance()
         .prData();
-      expect(result[0][1]).toEqual(0.5);
-      expect(result[1][1]).toEqual(0);
-      expect(result[2][1]).toEqual(0.75);
+      expect(result[0].y).toEqual(0.5);
+      expect(result[1].y).toEqual(0);
+      expect(result[2].y).toEqual(0.75);
     });
   });
 

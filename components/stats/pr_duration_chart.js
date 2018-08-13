@@ -71,7 +71,7 @@ export class PrDurationChart extends Component {
   };
 
   maxValue = () => {
-    let values = this.prData().map(t => t[1]);
+    let values = this.prData().map(t => t.y);
     return Math.max.apply(null, values);
   };
 
