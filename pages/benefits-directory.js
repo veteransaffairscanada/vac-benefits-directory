@@ -55,7 +55,6 @@ export class BenefitsDirectory extends Component {
 
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
-    console.log(this.props.url);
     return (
       <Layout
         i18n={this.props.i18n}
