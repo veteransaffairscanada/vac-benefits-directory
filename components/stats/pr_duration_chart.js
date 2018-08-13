@@ -46,7 +46,8 @@ export class PrDurationChart extends Component {
           name: "Average PR Duration",
           tooltip: {
             headerFormat: "<b>{series.name}</b><br>",
-            pointFormat: "{point.x:%a %e %b}: <b>{point.y}</b>"
+            pointFormat:
+              "{point.x:%a %e %b}: <b>{point.days} d  {point.hours} h</b>"
           },
           type: "spline"
         },
@@ -120,7 +121,12 @@ export class PrDurationChart extends Component {
       let value = dataObjectLifetimes.hasOwnProperty(key)
         ? dataObjectLifetimes[key]
         : 0;
-      return [m.valueOf(), value];
+      return {
+        x: m.valueOf(),
+        days: Math.floor(value),
+        hours: Math.round((value - Math.floor(value)) * 24),
+        y: value
+      };
     });
   };
 
