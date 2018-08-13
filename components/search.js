@@ -13,8 +13,6 @@ import parse from "autosuggest-highlight/parse";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 
-import Router from "next/router";
-
 const styles = theme => ({
   container: {
     flexGrow: 1,
@@ -97,7 +95,7 @@ export class Search extends Component {
       this.props.t("current-language-code") +
       "&searchString=" +
       this.state.value;
-    Router.push(href);
+    window.location.href = href;
   };
 
   getSuggestions = value => {
