@@ -51,12 +51,12 @@ describe("prChart", () => {
 
   describe("filterMerged", () => {
     it("filters out non-merged PRs", () => {
-      expect(prChart().props().githubData.pullRequests.length).toEqual(4);
+      expect(prChart().props().githubData.pullRequests).toHaveLength(4);
       expect(
         prChart()
           .instance()
-          .filterMerged().length
-      ).toEqual(3);
+          .filterMerged()
+      ).toHaveLength(3);
     });
 
     it("sorts merged PRs in ASC order", () => {
@@ -86,8 +86,8 @@ describe("prChart", () => {
       expect(
         prChart()
           .instance()
-          .prData().length
-      ).toEqual(3);
+          .prData()
+      ).toHaveLength(3);
     });
 
     it("shows value per date", () => {
@@ -122,7 +122,7 @@ describe("prChart", () => {
       ).toEqual(0);
     });
 
-    it("return 1 if the first date is larger than the second", () => {
+    it("return a positive number if the first date is larger than the second", () => {
       expect(
         prChart()
           .instance()
@@ -130,10 +130,10 @@ describe("prChart", () => {
             { merged_at: "2000-02-01" },
             { merged_at: "2000-01-01" }
           )
-      ).toEqual(1);
+      ).toBeGreaterThan(0);
     });
 
-    it("return -1 if the first date is less than the second", () => {
+    it("return a negative number if the first date is less than the second", () => {
       expect(
         prChart()
           .instance()
@@ -141,7 +141,7 @@ describe("prChart", () => {
             { merged_at: "2000-01-01" },
             { merged_at: "2000-02-01" }
           )
-      ).toEqual(-1);
+      ).toBeLessThan(0);
     });
   });
 });
