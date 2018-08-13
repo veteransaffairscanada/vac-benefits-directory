@@ -3,7 +3,8 @@ module.exports = {
   testPathIgnorePatterns: [
     "<rootDir>/.next/",
     "<rootDir>/node_modules/",
-    "<rootDir>/__tests__/fixtures/"
+    "<rootDir>/__tests__/fixtures/",
+    "<rootDir>/testcafe"
   ],
   collectCoverageFrom: [
     "pages/*.js",

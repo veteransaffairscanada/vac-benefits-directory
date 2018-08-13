@@ -2,13 +2,13 @@
 
 ### Table of Contents
 
-1.  Next.JS and Server Side Rendering
-2.  AirTable
-3.  Test Driven Development
+1.  [Next.JS and Server Side Rendering](#nextjs-and-server-side-rendering)
+2.  [AirTable](#airtable)
+3.  [Test Driven Development](#test-driven-development)
 4.  Deployment
-5.  Translations
-6.  Fixings
-7.  Contributing
+5.  [Translations](#translations)
+6.  [Heroku](#heroku)
+7.  [Contributing to GitHub repo](#contributing-to-github-repo)
 
 ### Next.JS and Server Side Rendering
 
@@ -25,6 +25,27 @@ Next.JS differs in this approach in that it can pre-render or "server render" th
 The advantages here are significant: for one the loading experience is faster as the HTML and CSS coming from the server display right away vs. awaiting the Javascript file to unbundle and render the HTML and CSS. Additionally in case the browser is unable to execute the javascript bundle because of an incompatibility (ex. using legacy browsers such as IE 10), we were able to create fallback solutions using the already rendered HTML and CSS. Most important, however, is that using Next.JS allows developer to use the same code base they use on the front-end of their application to also run on the back-end, significantly reducing the amount of complexity.
 
 Lastly, our initial evaluation of NextJS showed that it worked well with a number of other Javascript components such as user interface libraries, search, and translation.
+
+### AirTable
+
+#### What is AirTable?
+
+[AirTable](https://airtable.com/) is an online spreadsheet product similar to Google Sheets but with a better API, better access controls, and a revision history. It allows spreadsheets to be created and data added or changed through the AirTable web application or through its REST API. This can be controlled by setting up user accounts and giving them read and/or write permission. You can also generate API keys that have read and/or write permission. Custom API documentation (with example calls!) is generated using the table/column names for your project, and can be viewed on airtable.com.
+
+#### Why and how are we using it?
+
+We're using AirTable because it allows non-developers (and developers!) to easily edit the data used by our app. This is very useful for:
+
+1. Translations: Content designers and translators can edit the UI text used in the app by going to the translations table, doing a ctrl+f search for the English or French UI text they want to change, and then modifying it.
+2. Eligibility logic: The logic used by our app to determine who is eligible for what benefits is set in the eligibilityPaths table. The columns: patronType, serviceType, statusAndVitals, and serviceHealthIssue each correspond to a question asked of the user in the app. Each row has a unique combination of answers to these questions. Each row also has a list of benefits that are likely available to a user who answers in this way. The list of benefits are linked to rows in the benefits table.
+3. Benefits: This table contains a row for each benefit, and a column (eligibilityPaths) with a list of ids linked to rows in the eligibilityPaths table. Updating this list will update the ids in the benefits column in the eligibilityPaths table.
+4. Feedback: Content submitted from the feedback bar in the app footer is written to the feedback table on AirTable. To do this, the server has a write key set in ENV variables.
+
+AirTable data is read by the server and injected into Redux, which is then sent to the client.
+
+#### How does one get access?
+
+To request access to edit content in AirTable, set up an account on their website and then email vac@cds-snc.ca with your account details so we can add you to the project.
 
 ### Test Driven Development
 
@@ -70,7 +91,52 @@ Upon boot, and every hour after, the server will download and cache all the tran
 
 When a new string is added to `AirTable`, both an English and a French version are included. If the person adding the string is not comfortable in both official languages they are encouraged to add a `[TRANSLATE]` in front of the translation that they are uncomfortable with. This allows other members of the team to see the incomplete translation both in `AirTable` and the actual application, allowing them to fix the string if they have sufficient proficiency.
 
-### Contribute to GitHub repo
+### Heroku
+
+#### What is Heroku?
+
+[Heroku](https://www.heroku.com) is a "platform as a service" that enables developers to build, run,
+and operate applications entirely in the cloud. In particular, Heroku allows quick and easy deployment of apps,
+either manually through a CLI or through the Heroku web interface.
+
+#### Why and how are we using it?
+
+We are using Heroku for two purposes:
+
+- to allow us to quickly deploy a fixed branch to the web
+  (for user and accessibility testing, and the VAC Working Group), and
+- to create apps from branches to help with pull request review
+
+We have a Heroku "CDS team" which the developers have admin access to, at https://dashboard.heroku.com/teams/cds/overview
+
+To create a one-off app:
+
+- Use the "New" button in the upper right corner, and click "Create new app".
+- Give the app a name and click "Create app".
+- The app's page opens. Under Deploy, connect the app to GitHub and a specific repo.
+- choose a branch to deploy.
+
+Heroku also automatically creates an app for each PR in our repository. This is extremely useful for code review.
+Heroku will add a link to the app in the GitHub PR.
+
+To set up PR review apps we use a Heroku Pipeline. From the dashboard:
+
+- Click New / Create new pipeline.
+- Give the pipeline a name, connect it to a repo and click "Create pipeline".
+- Add an existing app (or create a new one) to the Staging or Production sections.
+  The review apps will inherit environment variables from this app.
+- Click "Enable Review Apps".
+- Check the box next to "Create new review apps for new pull requests automatically".
+- Click "Enable".
+
+#### How does one get access?
+
+To join the CDS Heroku team, create a (free) Heroku account and email vac@cds-snc.ca
+with your account details so we can add you to the team.
+Note that our PR apps are automatically created by Heroku, so developers do not require Heroku access
+to have review apps created for their PRs.
+
+### Contributing to GitHub repo
 
 Download github desktop @ https://desktop.github.com/.
 Go to https://github.com/cds-snc/vac-benefits-directory
