@@ -3,7 +3,7 @@ require("isomorphic-fetch");
 exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 
 var airtableConstants = require("./airtable_constants");
-var readKey = "keySzaXvONeLwsBm4"; // Read access only API key
+var readKey = process.env.AIRTABLE_READ_KEY;
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
 
 var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
