@@ -127,26 +127,22 @@ export class PrDurationChart extends Component {
   releaseData = () => {
     let filtered = this.filterMerged();
     let max = this.maxValue();
-    return this.props.githubData.releases.map(release => {
-      let commit = filtered.find(
-        c => c.merge_commit_sha === release.commit.sha
-      );
-      return {
-        tag: release.name,
-        x: Moment(commit.created_at).valueOf(),
-        y: max
-      };
-    });
+    return this.props.githubData.releases
+      .map(release => {
+        let commit = filtered.find(
+          c => c.merge_commit_sha === release.commit.sha
+        );
+        return {
+          tag: release.name,
+          x: Moment(commit.created_at).valueOf(),
+          y: max
+        };
+      })
+      .sort((a, b) => a.x - b.x);
   };
 
   sortByMergedAt = (a, b) => {
-    if (Moment(a.merged_at).valueOf() > Moment(b.merged_at).valueOf()) {
-      return 1;
-    }
-    if (Moment(a.merged_at).valueOf() < Moment(b.merged_at).valueOf()) {
-      return -1;
-    }
-    return 0;
+    return Moment(a.merged_at).diff(Moment(b.merged_at));
   };
 
   render() {
