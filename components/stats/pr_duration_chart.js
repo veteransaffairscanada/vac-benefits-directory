@@ -18,7 +18,7 @@ export class PrDurationChart extends Component {
         zoomType: "x"
       },
       title: {
-        text: "Average duration of PR"
+        text: "Average duration of PR per day"
       },
       xAxis: {
         type: "datetime",
@@ -104,6 +104,8 @@ export class PrDurationChart extends Component {
       } else {
         acc[date] = 1;
       }
+
+      console.log(currentVal.merged_at, date, currentVal.created_at, "diff:");
       return acc;
     };
 

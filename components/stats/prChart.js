@@ -18,7 +18,7 @@ export class PrChart extends Component {
         zoomType: "x"
       },
       title: {
-        text: "Stats over time"
+        text: "Deploys per Day"
       },
       xAxis: {
         type: "datetime",
@@ -29,7 +29,7 @@ export class PrChart extends Component {
       yAxis: {
         allowDecimals: false,
         title: {
-          text: "Deploys per day"
+          text: "Days"
         },
         min: 0
       },
@@ -92,7 +92,6 @@ export class PrChart extends Component {
       }
       return acc;
     };
-
     let dataObject = this.filterMerged().reduce(reducer, {});
     return dates.map(m => {
       let key = m.format("YYYY-MM-DD");
