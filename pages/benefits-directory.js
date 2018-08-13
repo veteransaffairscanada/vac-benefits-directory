@@ -50,11 +50,12 @@ export class BenefitsDirectory extends Component {
     if (this.props.searchString !== "") {
       href += `&searchString=${encodeURIComponent(this.props.searchString)}`;
     }
-    Router.push(href);
+    Router.replace(href);
   };
 
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    console.log(this.props.url);
     return (
       <Layout
         i18n={this.props.i18n}

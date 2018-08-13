@@ -61,7 +61,7 @@ export class A extends Component {
       }
     });
     href += "&lng=" + this.props.t("current-language-code");
-    Router.push(href);
+    Router.replace(href);
   };
 
   setSection = section => {

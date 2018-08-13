@@ -18,10 +18,7 @@ expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
 describe("BenefitsDirectory", () => {
-  Router.router = {
-    push: jest.fn()
-  };
-  Router.push = jest.fn();
+  Router.replace = jest.fn();
 
   let props;
   let _mountedBenefitsDirectory;
@@ -121,6 +118,6 @@ describe("BenefitsDirectory", () => {
     const expectedURL =
       "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=family&serviceType=CAF&searchString=foo";
     AInstance.setURL();
-    expect(Router.push).toBeCalledWith(expectedURL);
+    expect(Router.replace).toBeCalledWith(expectedURL);
   });
 });
