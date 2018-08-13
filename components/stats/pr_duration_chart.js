@@ -76,7 +76,7 @@ export class PrDurationChart extends Component {
 
   prData = () => {
     let filtered = this.filterMerged();
-    if (filtered.length == 0) {
+    if (filtered.length === 0) {
       return [];
     }
     let lastDate = Moment(filtered[filtered.length - 1].merged_at);
@@ -94,18 +94,16 @@ export class PrDurationChart extends Component {
     };
     const reducerLife = (acc, currentVal) => {
       let date = Moment(currentVal.merged_at).format("YYYY-MM-DD");
-      let lifeLength = Moment(currentVal.merged_at).diff(
+      let duration = Moment(currentVal.merged_at).diff(
         Moment(currentVal.created_at),
         "day",
         true
       );
       if (acc.hasOwnProperty(date)) {
-        acc[date] = acc[date] + lifeLength;
+        acc[date] = acc[date] + duration;
       } else {
-        acc[date] = 1;
+        acc[date] = duration;
       }
-
-      console.log(currentVal.merged_at, date, currentVal.created_at, "diff:");
       return acc;
     };
 

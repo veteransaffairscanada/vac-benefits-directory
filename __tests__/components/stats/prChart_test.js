@@ -51,12 +51,12 @@ describe("prChart", () => {
 
   describe("filterMerged", () => {
     it("filters out non-merged PRs", () => {
-      expect(prChart().props().githubData.pullRequests.length).toEqual(3);
+      expect(prChart().props().githubData.pullRequests.length).toEqual(4);
       expect(
         prChart()
           .instance()
           .filterMerged().length
-      ).toEqual(2);
+      ).toEqual(3);
     });
 
     it("sorts merged PRs in ASC order", () => {
@@ -77,7 +77,7 @@ describe("prChart", () => {
         prChart()
           .instance()
           .maxValue()
-      ).toEqual(1);
+      ).toEqual(2);
     });
   });
 
@@ -96,7 +96,7 @@ describe("prChart", () => {
         .prData();
       expect(result[0][1]).toEqual(1);
       expect(result[1][1]).toEqual(0);
-      expect(result[2][1]).toEqual(1);
+      expect(result[2][1]).toEqual(2);
     });
   });
 
