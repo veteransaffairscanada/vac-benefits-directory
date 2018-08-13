@@ -19,10 +19,7 @@ expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
 describe("A", () => {
-  Router.router = {
-    push: jest.fn()
-  };
-  Router.push = jest.fn();
+  Router.replace = jest.fn();
 
   let props;
   let _mountedA;
@@ -92,7 +89,7 @@ describe("A", () => {
       "/A?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF&lng=en";
     AInstance.setState(state);
     AInstance.setURL(state);
-    expect(Router.push).toBeCalledWith(expectedURL);
+    expect(Router.replace).toBeCalledWith(expectedURL);
   });
 
   it("componentWillMount sets state correctly from empty url", () => {

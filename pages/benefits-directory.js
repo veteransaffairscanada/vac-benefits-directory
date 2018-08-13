@@ -50,7 +50,7 @@ export class BenefitsDirectory extends Component {
     if (this.props.searchString !== "") {
       href += `&searchString=${encodeURIComponent(this.props.searchString)}`;
     }
-    Router.push(href);
+    Router.replace(href);
   };
 
   render() {
