@@ -11,25 +11,25 @@ const Moment = extendMoment(MomentBase);
 
 const styles = () => ({});
 
-export class PrChart extends Component {
+export class PrDurationChart extends Component {
   chartConfig = () => {
     return {
       chart: {
         zoomType: "x"
       },
       title: {
-        text: "Stats over time"
+        text: "Average duration of PR"
       },
       xAxis: {
         type: "datetime",
         title: {
-          text: "Date"
+          text: "Date Merged"
         }
       },
       yAxis: {
         allowDecimals: false,
         title: {
-          text: "Deploys per day"
+          text: "Days"
         },
         min: 0
       },
@@ -92,11 +92,34 @@ export class PrChart extends Component {
       }
       return acc;
     };
+    const reducerLife = (acc, currentVal) => {
+      let date = Moment(currentVal.merged_at).format("YYYY-MM-DD");
+      let lifeLength = Moment(currentVal.merged_at).diff(
+        Moment(currentVal.created_at),
+        "day",
+        true
+      );
+      if (acc.hasOwnProperty(date)) {
+        acc[date] = acc[date] + lifeLength;
+      } else {
+        acc[date] = 1;
+      }
+      return acc;
+    };
 
-    let dataObject = this.filterMerged().reduce(reducer, {});
+    const dataCounts = this.filterMerged().reduce(reducer, {});
+    const dataLifetimes = this.filterMerged().reduce(reducerLife, {});
+
+    let dataObjectLifetimes = {};
+    Object.keys(dataLifetimes).forEach(key => {
+      dataObjectLifetimes[key] = dataLifetimes[key] / dataCounts[key];
+    });
+
     return dates.map(m => {
       let key = m.format("YYYY-MM-DD");
-      let value = dataObject.hasOwnProperty(key) ? dataObject[key] : 0;
+      let value = dataObjectLifetimes.hasOwnProperty(key)
+        ? dataObjectLifetimes[key]
+        : 0;
       return [m.valueOf(), value];
     });
   };
@@ -138,12 +161,12 @@ const mapStateToProps = reduxState => {
   };
 };
 
-PrChart.propTypes = {
+PrDurationChart.propTypes = {
   classes: PropTypes.object.isRequired,
   githubData: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(
-  withStyles(styles, { withTheme: true })(PrChart)
+  withStyles(styles, { withTheme: true })(PrDurationChart)
 );
