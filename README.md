@@ -15,14 +15,14 @@ Some are also required for testing. You will also need some of these set for loc
 (at the very least, you should have `AIRTABLE_READ_KEY` and `GOOGLE_MAPS_KEY`).
 Contact other developers on the project for what values we're currently using.
 
-| Variable                     | Use                                                     | Needed                          |
+| Variable                     | Use                                                     | Where                           |
 | ---------------------------- | ------------------------------------------------------- | ------------------------------- |
 | `AIRTABLE_READ_KEY`          | load data (benefits / translations / etc) from Airtable | production / locally            |
 | `GOOGLE_MAPS_KEY`            | do Google Maps queries on the map page                  | production / locally / CircleCI |
 | `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                    | production                      |
 | `SENTRY_DSN`                 | save browser errors to Sentry                           | production                      |
 | `GA_UA`                      | track app usage with Google Analytics                   | production                      |
-| `GITHUB_PUBLIC_ACCESS_TOKEN` | gather statistics from GitHub for the stats page        | production                      |
+| `GITHUB_PUBLIC_ACCESS_TOKEN` | gather data from GitHub for the stats page              | production                      |
 | `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                   | locally                         |
 | `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                   | locally                         |
 
