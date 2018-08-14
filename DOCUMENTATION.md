@@ -2,16 +2,16 @@
 
 ### Table of Contents
 
-1.  [Next.JS and Server Side Rendering](#nextjs-and-server-side-rendering)
-2.  [AirTable](#airtable)
-3.  [Heroku](#heroku)
-4.  [CircleCI](#circleci)
-5.  [Test Driven Development](#test-driven-development)
-6.  Deployment
-7.  [Translations](#translations)
-8.  [Snyk](#snyk)
-9.  [Security review](#security-review)
-10. [Contributing to GitHub repo](#contributing-to-github-repo)
+- [Next.JS and Server Side Rendering](#nextjs-and-server-side-rendering)
+- [AirTable](#airtable)
+- [Heroku](#heroku)
+- [CircleCI](#circleci)
+- [BrowserStack](#browserstack)
+- [Test Driven Development](#test-driven-development)
+- [Translations](#translations)
+- [Snyk](#snyk)
+- [Security review](#security-review)
+- [Contributing to GitHub repo](#contributing-to-github-repo)
 
 ### Next.JS and Server Side Rendering
 
@@ -147,6 +147,24 @@ This resulted in the following, recommended, process:
 8. At the end of a sprint the development team reviews the issues completed and suggest improvements on for the next sprint.
 
 The advantages of this process is that features get broken down and reviewed by the entire development team before work. This gives line of sight to the whole team on what is being worked on. Additionally anything being worked on is easily manageable by the person writing the code, as well as understandable by the person reviewing it. Using testing as the foundational practice allows for a high degree of confidence in the functionality of the code base. It also for allows instant feedback if a developer breaks existing functionality. Based on this high degree of confidence it allows a model of continuous delivery which ensures that stake holders and customers receive the features once they are ready vs. when they can be scheduled for release.
+
+### BrowserStack
+
+#### What is it?
+
+[BrowserStack](https://www.browserstack.com) is a cloud service that allows instant access to over 1000 real devices and browsers.
+
+#### Why and how are we using it?
+
+We use BrowserStack to test our app on other devices and browsers. In particular, since our development machines are MacBooks we need
+an easy method to test on Windows / Internet Explorer. We use BrowserStack in two ways
+
+- as a live platform to evaluate the app manually
+- as a host for automated testing (described below)
+
+#### How does one get access?
+
+Create a personal account on BrowserStack and then contact a developer to get your account associated with the CDS account.
 
 ### Translations
 
