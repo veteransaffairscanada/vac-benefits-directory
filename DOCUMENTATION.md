@@ -12,6 +12,7 @@
 8.  [Snyk](#snyk)
 9.  [Security review](#security-review)
 10. [Contributing to GitHub repo](#contributing-to-github-repo)
+11. [Pair Programming](#pair-programming)
 
 ### Next.JS and Server Side Rendering
 
@@ -201,3 +202,31 @@ Click Branch in the top left corner, then new branch.
 After making your changes commit those changes in github desktop then select push changes in the top right corner.
 Navigate over to the github page https://github.com/cds-snc/vac-benefits-directory and find the branch. Then create a new pull request to better explain what changes you have implemented.
 After that the pull request will be available for reviewers to look at and make sure everything looks good before merging it into master.
+
+### Pair programming
+
+#### What is it?
+
+[Pair programming](https://en.wikipedia.org/wiki/Pair_programming) is where 2 developers work together on the same task using the same workstation.
+
+#### Why and how are we using it?
+
+- to quickly onboard developers new to the project - knowledge transfer happens quickly when pairing with a developer who knows the codebase
+- to work on difficult features where 2 brains are an advantage
+- for fun!
+
+When the 2 developers are not in the same location, we have accomplished pairing with the following:
+
+- Phone call for voice - this is the most reliable if there is a slow network connection on 1 or more end.
+- [Atom](https://atom.io/) with Teletype for writing code
+- [Slack](https://slack.com/) for screen sharing, so the observer can see things outside the text editor like tests being run in terminal, what it looks like in the browser, etc.
+
+#### How does one get set up?
+
+To set up Atom for pair programming, do the following:
+
+1. Download and install Atom: [https://atom.io/](https://atom.io/)
+2. Open Atom -> Preferences -> Install, and search for "Teletype"
+3. Install Teletype. A Teletype icon (looks like a radio tower) should appear at the bottom of your screen.
+4. Click the Teletype icon and authorize it using your Github credentials
+5. Go back to Atom, click the Teletype icon again and you should now be able to share your workspace or join a portal by pasting in the link to another person's workspace.
