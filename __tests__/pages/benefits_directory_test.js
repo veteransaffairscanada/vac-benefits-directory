@@ -94,6 +94,7 @@ describe("BenefitsDirectory", () => {
       searchString: "",
       selectedNeeds: {},
       serviceType: "CAF",
+      sortBy: "relevance",
       patronType: "family",
       statusAndVitals: "",
       serviceHealthIssue: "",

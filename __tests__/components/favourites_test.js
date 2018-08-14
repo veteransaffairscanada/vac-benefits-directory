@@ -57,6 +57,7 @@ describe("Favourites", () => {
       needs: needsFixture,
       favouriteBenefits: ["3"],
       selectedNeeds: {},
+      sortBy: "relevance",
       eligibilityPaths: eligibilityPathsFixture,
       option: "",
       pageWidth: 1000,

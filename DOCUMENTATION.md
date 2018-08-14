@@ -2,17 +2,18 @@
 
 ### Table of Contents
 
-1.  [Next.JS and Server Side Rendering](#nextjs-and-server-side-rendering)
-2.  [AirTable](#airtable)
-3.  [Heroku](#heroku)
-4.  [CircleCI](#circleci)
-5.  [Test Driven Development](#test-driven-development)
-6.  Deployment
-7.  [Translations](#translations)
-8.  [Snyk](#snyk)
-9.  [Security review](#security-review)
-10. [Testing](#testing)
-11. [Contributing to GitHub repo](#contributing-to-github-repo)
+- [Next.JS and Server Side Rendering](#nextjs-and-server-side-rendering)
+- [AirTable](#airtable)
+- [Heroku](#heroku)
+- [CircleCI](#circleci)
+- [BrowserStack](#browserstack)
+- [Test Driven Development](#test-driven-development)
+- [Translations](#translations)
+- [Snyk](#snyk)
+- [Security review](#security-review)
+- [Testing](#testing)
+- [Contributing to GitHub repo](#contributing-to-github-repo)
+- [Pair Programming](#pair-programming)
 
 ### Next.JS and Server Side Rendering
 
@@ -149,6 +150,24 @@ This resulted in the following, recommended, process:
 
 The advantages of this process is that features get broken down and reviewed by the entire development team before work. This gives line of sight to the whole team on what is being worked on. Additionally anything being worked on is easily manageable by the person writing the code, as well as understandable by the person reviewing it. Using testing as the foundational practice allows for a high degree of confidence in the functionality of the code base. It also for allows instant feedback if a developer breaks existing functionality. Based on this high degree of confidence it allows a model of continuous delivery which ensures that stake holders and customers receive the features once they are ready vs. when they can be scheduled for release.
 
+### BrowserStack
+
+#### What is it?
+
+[BrowserStack](https://www.browserstack.com) is a cloud service that allows instant access to over 1000 real devices and browsers.
+
+#### Why and how are we using it?
+
+We use BrowserStack to test our app on other devices and browsers. In particular, since our development machines are MacBooks we need
+an easy method to test on Windows / Internet Explorer. We use BrowserStack in two ways
+
+- as a live platform to evaluate the app manually
+- as a host for automated testing (described below)
+
+#### How does one get access?
+
+Create a personal account on BrowserStack and then contact a developer to get your account associated with the CDS account.
+
 ### Translations
 
 Given the Government of Canada's mandate to support both official languages, we use `react-18next` [https://react.i18next.com](https://react.i18next.com/ "react-18next") to allow us on-the-fly translations of all the text visibile on a given page.
@@ -215,3 +234,31 @@ Click Branch in the top left corner, then new branch.
 After making your changes commit those changes in github desktop then select push changes in the top right corner.
 Navigate over to the github page https://github.com/cds-snc/vac-benefits-directory and find the branch. Then create a new pull request to better explain what changes you have implemented.
 After that the pull request will be available for reviewers to look at and make sure everything looks good before merging it into master.
+
+### Pair programming
+
+#### What is it?
+
+[Pair programming](https://en.wikipedia.org/wiki/Pair_programming) is where 2 developers work together on the same task using the same workstation.
+
+#### Why and how are we using it?
+
+- to quickly onboard developers new to the project - knowledge transfer happens quickly when pairing with a developer who knows the codebase
+- to work on difficult features where 2 brains are an advantage
+- for fun!
+
+When the 2 developers are not in the same location, we have accomplished pairing with the following:
+
+- Phone call for voice - this is the most reliable if there is a slow network connection on 1 or more end.
+- [Atom](https://atom.io/) with Teletype for writing code
+- [Slack](https://slack.com/) for screen sharing, so the observer can see things outside the text editor like tests being run in terminal, what it looks like in the browser, etc.
+
+#### How does one get set up?
+
+To set up Atom for pair programming, do the following:
+
+1. Download and install Atom: [https://atom.io/](https://atom.io/)
+2. Open Atom -> Preferences -> Install, and search for "Teletype"
+3. Install Teletype. A Teletype icon (looks like a radio tower) should appear at the bottom of your screen.
+4. Click the Teletype icon and authorize it using your Github credentials
+5. Go back to Atom, click the Teletype icon again and you should now be able to share your workspace or join a portal by pasting in the link to another person's workspace.

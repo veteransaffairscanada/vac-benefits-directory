@@ -10,6 +10,7 @@ import { Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
+import { getFavouritesUrl } from "../selectors/urls";
 
 const styles = theme => ({
   root: {
@@ -75,20 +76,6 @@ export class App extends Component {
     super();
   }
 
-  getFavouritesURL = () => {
-    let href = "/favourites?";
-    if (Object.keys(this.props.selectedNeeds).length > 0) {
-      href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
-    }
-    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
-      if (this.props[selection] !== "") {
-        href += `&${selection}=${this.props.selectedEligibility[selection]}`;
-      }
-    });
-    href += "&lng=" + this.props.t("current-language-code");
-    return href;
-  };
-
   render() {
     const { i18n, t } = this.props;
     let urlGE = "A?section=A1&lng=" + t("current-language-code");
@@ -153,7 +140,7 @@ export class App extends Component {
                   color="secondary"
                   size="large"
                   className={this.props.classes.button}
-                  href={this.getFavouritesURL()}
+                  href={this.props.favouritesUrl}
                 >
                   <Bookmark style={{ fontSize: "24px" }} />
                   &nbsp;
@@ -192,9 +179,10 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState, props) => {
   return {
     favouriteBenefits: reduxState.favouriteBenefits,
+    favouritesUrl: getFavouritesUrl(reduxState, props),
     selectedEligibility: {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
@@ -208,6 +196,7 @@ const mapStateToProps = reduxState => {
 App.propTypes = {
   classes: PropTypes.object,
   favouriteBenefits: PropTypes.array.isRequired,
+  favouritesUrl: PropTypes.string,
   i18n: PropTypes.object.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
