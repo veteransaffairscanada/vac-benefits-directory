@@ -8,49 +8,37 @@ https://cdsvacpoc.azurewebsites.net/
 
 The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [DOCUMENTATION.md](./DOCUMENTATION.md).
 
-## Quickstart
+## Environment variables
 
-- `yarn install`
-- `yarn dev`
+These need to be set on the production service for the app to function correctly.
+Some are also required for testing. You will also need some of these set for local development
+(at the very least, you should have `AIRTABLE_READ_KEY` and `GOOGLE_MAPS_KEY`).
+Contact other developers on the project for what values we're currently using.
 
-## How to get VAC Benefits Directory to work on VAC machines (May 31, 2018)
+| Variable                     | Use                                                     | Where                           |
+| ---------------------------- | ------------------------------------------------------- | ------------------------------- |
+| `AIRTABLE_READ_KEY`          | load data (benefits / translations / etc) from Airtable | production / locally            |
+| `GOOGLE_MAPS_KEY`            | do Google Maps queries on the map page                  | production / locally / CircleCI |
+| `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                    | production                      |
+| `SENTRY_DSN`                 | save browser errors to Sentry                           | production                      |
+| `GA_UA`                      | track app usage with Google Analytics                   | production                      |
+| `GITHUB_PUBLIC_ACCESS_TOKEN` | gather data from GitHub for the stats page              | production                      |
+| `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                   | locally                         |
+| `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                   | locally                         |
 
-- download Node.JS of version 9 or newer(as .zip since .msi is blocked)
-
-- following steps required tp set up the newly installed Node cmd line commands such as npm globally
-
-  > Start menu > Control Panel > User accounts > user accounts > change my environment variables >
-  > select path > Edit > Now enter the location of where you have Node installed with a ; to seperate
-  > between any other entries here.
-  > EX: C:\dev ; C:\Node
-
-- `npm install -g yarn`
-- `yarn install` (While in project main directory, takes a while, especially on building packages)
-
-- `yarn dev` (run while CD'd in project folder used to start the local server)
-
-- If you run into syntax errors chances are there are missing packages/dependencies and you may want to try
-  running a clean yarn install. Delete Node_modules folder and then re run `yarn install` in the main folder.
-
-## Configuration
-
-The application uses Sentry.io for error logging. If you would also like to use sentry, make sure your public client key is the `SENTRY_DSN` environment variable.
-
-Google Analytics is used for behaviour tracking, ex: How many people switch between languages. If you would like to include your own GA key set the `GA_UA` environment variable.
-
-The Google maps api is used to display a map of area office locations. If you would like to include your own api key set the `GOOGLE_MAPS_KEY` environment variable.
-
-Here is an example of how to add an ENV variable locally on OSX:
+### Adding a new environment locally (OS X)
 
 1.  In the terminal, run: `nano ~/.bash_profile` (or `nano ~/.zshrc` if you're using the zsh shell)
 2.  Add the following line: `export GOOGLE_MAPS_KEY="foo"`
 3.  [ctrl] + x, and type `y` to save
 4.  `source ~/.bash_profile` (or `source ~/.zshrc`)
 5.  `echo $GOOGLE_MAPS_KEY` to make sure it is set
-6.  `yarn dev` to start the dev server
-7.  Visit http://localhost:3000/map with your browser to check that the map is loading
 
-## Adding a new environment variable to the source code
+### Adding a new environment locally (Windows)
+
+To be added
+
+### Adding a new environment variable to the source code
 
 To add a new ENV variable to the source code, take the following steps:
 
@@ -70,6 +58,34 @@ To add a new ENV variable to the source code, take the following steps:
     and set the variable.
 
 7.  Add `"YOUR_VARIABLE_NAME": { "required": true }` to the `env` object in [app.json](./app.json)
+
+## Quickstart (OS X)
+
+- Set the appropriate environment variables on your machine (see above)
+- Install the development environment
+  - [Homebrew](https://brew.sh/)
+  - node (`brew install node`)
+  - yarn (`npm i yarn`)
+- Clone the repo
+  - `git clone git@github.com:cds-snc/vac-benefits-directory.git`
+- In the local repo directory:
+  - `yarn install`
+  - `yarn dev`
+
+## Quickstart (Windows)
+
+- Set appropriate environment variables on your machine (see above)
+- Download Node.JS of version 9 or newer(as .zip since .msi is blocked)
+- Following steps required tp set up the newly installed Node cmd line commands such as npm globally
+  > Start menu > Control Panel > User accounts > user accounts > change my environment variables >
+  > select path > Edit > Now enter the location of where you have Node installed with a ; to seperate
+  > between any other entries here.
+  > EX: C:\dev ; C:\Node
+- `npm install -g yarn`
+- `yarn install` (While in project main directory, takes a while, especially on building packages)
+- `yarn dev` (run while CD'd in project folder used to start the local server)
+- If you run into syntax errors chances are there are missing packages/dependencies and you may want to try
+  running a clean yarn install. Delete Node_modules folder and then re run `yarn install` in the main folder.
 
 ## Reference
 
