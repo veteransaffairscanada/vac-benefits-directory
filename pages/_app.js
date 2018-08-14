@@ -129,6 +129,19 @@ export default withRedux(initStore)(
         });
       }
 
+      if (ctx.query.sortBy && ctx.query.sortBy !== currentReduxState.sortBy) {
+        ctx.store.dispatch({
+          type: "SET_SORT_BY",
+          data: ctx.query.sortBy
+        });
+      }
+      if (!ctx.query.sortBy && currentReduxState.sortBy !== "relevance") {
+        ctx.store.dispatch({
+          type: "SET_SORT_BY",
+          data: "relevance"
+        });
+      }
+
       const pageProps = Component.getInitialProps
         ? await Component.getInitialProps(ctx)
         : {};

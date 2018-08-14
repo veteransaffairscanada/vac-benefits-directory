@@ -9,6 +9,7 @@ const getServiceFilter = state => state.serviceType;
 const getStatusFilter = state => state.statusAndVitals;
 const getClosestOffice = state => state.closestAreaOffice;
 const getSelectedOffice = state => state.selectedAreaOffice;
+const getSortBy = state => state.sortBy;
 
 export const getFavouritesUrl = createSelector(
   [
@@ -18,7 +19,8 @@ export const getFavouritesUrl = createSelector(
     getHealthIssueFilter,
     getNeedsFilter,
     getSearchStringFilter,
-    getCurrentLanguage
+    getCurrentLanguage,
+    getSortBy
   ],
   (
     patronFilter,
@@ -27,7 +29,8 @@ export const getFavouritesUrl = createSelector(
     healthIssueFilter,
     selectedNeeds,
     searchString,
-    currentLanguage
+    currentLanguage,
+    sortBy
   ) => {
     let href = "/favourites?";
     if (Object.keys(selectedNeeds).length > 0) {
@@ -49,6 +52,7 @@ export const getFavouritesUrl = createSelector(
       href += "&searchString=" + searchString;
     }
     href += "&lng=" + currentLanguage;
+    href += "&sortBy=" + sortBy;
     return href;
   }
 );
@@ -60,6 +64,7 @@ export const getPrintUrl = createSelector(
     getStatusFilter,
     getHealthIssueFilter,
     getNeedsFilter,
+    getSortBy,
     getCurrentLanguage,
     getClosestOffice,
     getSelectedOffice
@@ -71,7 +76,7 @@ export const getPrintUrl = createSelector(
     statusFilter,
     healthIssueFilter,
     selectedNeeds,
-    sortby,
+    sortBy,
     language,
     closestAreaOffice,
     selectedAreaOffice
@@ -96,7 +101,7 @@ export const getPrintUrl = createSelector(
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
     }
-    url += "&sortBy=" + sortby;
+    url += "&sortBy=" + sortBy;
     if (filteredBenefitsIDs.length > 0) {
       url += "&benefits=" + filteredBenefitsIDs.join(",");
     }

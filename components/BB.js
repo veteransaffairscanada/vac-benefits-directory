@@ -238,7 +238,7 @@ export class BB extends Component {
                 <Grid container spacing={16}>
                   <Grid item xs={12} md={6}>
                     <InputLabel
-                      for="sortBySelector"
+                      htmlFor="sortBySelector"
                       className={classes.sortByLabel}
                     >
                       {t("B3.Sort By")}

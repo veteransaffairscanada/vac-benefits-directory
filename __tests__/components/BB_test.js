@@ -69,7 +69,9 @@ describe("BB", () => {
       },
       serviceHealthIssue: "",
       setSearchString: jest.fn(),
+      setSortBy: jest.fn(),
       selectedNeeds: {},
+      sortBy: "relevance",
       option: "",
       showServiceType: true,
       showStatusAndVitals: true,
@@ -189,6 +191,23 @@ describe("BB", () => {
         .instance()
         .handleSearchChange({ target: { value: "foo" } });
       expect(reduxData.setSearchString).toBeCalledWith("foo");
+    });
+  });
+
+  describe("sort by feature", () => {
+    it("shows a sort by box", () => {
+      expect(
+        mounted_BB()
+          .find("#sortBySelector")
+          .first().length
+      ).toEqual(1);
+    });
+
+    it("handleSortByChange sets the sortBy state in redux", () => {
+      mounted_BB()
+        .instance()
+        .handleSortByChange({ target: { value: "foo" } });
+      expect(reduxData.setSortBy).toBeCalledWith("foo");
     });
   });
 
