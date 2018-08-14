@@ -182,10 +182,7 @@ export class AreaOfficeTable extends Component {
           </Table>
         </div>
 
-        <div
-          id="scrolling_div"
-          style={{ height: "400px", width: "100%", overflowY: "scroll" }}
-        >
+        <div style={{ height: "400px", width: "100%", overflowY: "scroll" }}>
           <Table>
             <TableBody>
               {this.isDefaultLocation()

@@ -17,6 +17,7 @@ import { getFilteredBenefits } from "../selectors/benefits";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
+import Link from "next/link";
 
 const styles = () => ({
   buttonBarButton: {
@@ -42,11 +43,7 @@ const styles = () => ({
     minWidth: 120
   },
   sortByBox: {
-    backgroundColor: "white",
-    padding: "6px 10px 6px 10px",
-    borderStyle: "solid",
-    borderWidth: "1px",
-    borderRadius: "1px"
+    backgroundColor: "white"
   },
   subTitle: {
     fontSize: "20px",
@@ -84,10 +81,6 @@ const styles = () => ({
     borderWidth: "0px",
     width: "100%",
     fontFamily: "Merriweather"
-  },
-  sortByLabel: {
-    color: "#434343",
-    verticalAlign: "text-top"
   },
   inputIcon: {
     paddingRight: "10px",
@@ -135,12 +128,7 @@ export class BB extends Component {
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
-    [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "serviceHealthIssue"
-    ].forEach(selection => {
+    ["patronType", "serviceType", "statusAndVitals"].forEach(selection => {
       if (this.props[selection] !== "") {
         href += `&${selection}=${this.props.selectedEligibility[selection]}`;
       }
@@ -212,20 +200,21 @@ export class BB extends Component {
           <Grid item xs={12} className={classes.topMatter}>
             <Grid container spacing={24} className={classes.container}>
               <Grid item xs={12} md={9}>
-                <Button
-                  id="Favourites Page"
-                  variant="flat"
-                  size="medium"
-                  className={classes.buttonBarButton}
-                  href={this.getFavouritesURL()}
-                >
-                  <Bookmark style={{ fontSize: "20px" }} />
-                  &nbsp;
-                  {t("B3.favouritesButtonText") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </Button>
+                <Link href={this.getFavouritesURL()}>
+                  <Button
+                    id="Favourites Page"
+                    variant="flat"
+                    size="medium"
+                    className={classes.buttonBarButton}
+                  >
+                    <Bookmark style={{ fontSize: "20px" }} />
+                    &nbsp;
+                    {t("B3.favouritesButtonText") +
+                      " (" +
+                      this.props.favouriteBenefits.length +
+                      ")"}
+                  </Button>
+                </Link>
                 <Button
                   href={printUrl}
                   variant="flat"
@@ -262,22 +251,15 @@ export class BB extends Component {
               <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid container spacing={16}>
                   <Grid item xs={12} md={6}>
-                    <InputLabel
-                      for="sortBySelector"
-                      className={classes.sortByLabel}
-                    >
-                      {t("B3.Sort By")}
-                    </InputLabel>
-                    &nbsp;&nbsp;
                     <FormControl
                       id="sortBySelector"
                       className={classes.formControl}
                     >
+                      <InputLabel>{t("B3.Sort By")}</InputLabel>
                       <Select
                         value={this.state.sortByValue}
                         onChange={this.handleSortByChange}
                         className={classnames(classes.sortByBox)}
-                        disableUnderline={true}
                       >
                         <MenuItem value={"relevance"}>
                           {t("B3.Popularity")}

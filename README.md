@@ -6,8 +6,6 @@
 This is the code for the VAC Benefits Directory being developed by VAC and CDS. The app is currently deployed at
 https://cdsvacpoc.azurewebsites.net/
 
-The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [DOCUMENTATION.md](./DOCUMENTATION.md).
-
 ## Quickstart
 
 - `yarn install`
@@ -42,13 +40,13 @@ The Google maps api is used to display a map of area office locations. If you wo
 
 Here is an example of how to add an ENV variable locally on OSX:
 
-1.  In the terminal, run: `nano ~/.bash_profile` (or `nano ~/.zshrc` if you're using the zsh shell)
+1.  In the terminal, run: `nano ~/.bash_profile`
 2.  Add the following line: `export GOOGLE_MAPS_KEY="foo"`
 3.  [ctrl] + x, and type `y` to save
-4.  `source ~/.bash_profile` (or `source ~/.zshrc`)
+4.  `source .bash_profile`
 5.  `echo $GOOGLE_MAPS_KEY` to make sure it is set
 6.  `yarn dev` to start the dev server
-7.  Visit http://localhost:3000/map with your browser to check that the map is loading
+7.  Visit http://localhost:3000/map?lng=en with your browser to check that the map is loading
 
 ## Adding a new environment variable to the source code
 

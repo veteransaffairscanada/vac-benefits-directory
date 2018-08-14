@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import ArrowForward from "@material-ui/icons/ArrowForward";
@@ -14,7 +15,7 @@ import { connect } from "react-redux";
 const styles = theme => ({
   root: {
     backgroundColor: "white",
-    margin: "58px 15px 58px 15px",
+    marginTop: "58px",
     padding: "69px 96px 100px 96px",
     [theme.breakpoints.down("xs")]: {
       padding: "35px 48px 50px 48px"
@@ -46,16 +47,13 @@ const styles = theme => ({
   },
   container: {
     margin: "0 auto",
-    maxWidth: "1200px",
+    maxWidth: "1140px",
     paddingLeft: "16px",
     paddingRight: "16px"
   },
   image: {
     margin: "40px 40px 0 40px",
-    width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      display: "none"
-    }
+    width: "100%"
   },
   prompt: {
     color: "#303232",
@@ -112,56 +110,59 @@ export class App extends Component {
                 <p className={this.props.classes.prompt}>
                   {t("index.ge_prompt")}
                 </p>
-                <Button
-                  id="heroGuidedLink"
-                  variant="raised"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  className={this.props.classes.button}
-                  href={urlGE}
-                >
-                  {t("index.guided experience")}
-                  &nbsp;&nbsp;
-                  <ArrowForward style={{ fontSize: "24px" }} />
-                </Button>
+                <Link prefetch href={urlGE}>
+                  <Button
+                    id="heroGuidedLink"
+                    variant="raised"
+                    color="primary"
+                    fullWidth
+                    size="large"
+                    className={this.props.classes.button}
+                  >
+                    {t("index.guided experience")}
+                    &nbsp;&nbsp;
+                    <ArrowForward style={{ fontSize: "24px" }} />
+                  </Button>
+                </Link>
                 <hr className={this.props.classes.break} />
                 <p className={this.props.classes.prompt}>
                   {t("index.benefits_prompt")}
                 </p>
-                <Button
-                  id="heroBenefitsLink"
-                  variant="raised"
-                  color="secondary"
-                  fullWidth
-                  size="large"
-                  className={this.props.classes.button}
-                  href={urlBD}
-                >
-                  {t("index.all benefits")}
-                  &nbsp;&nbsp;
-                  <ArrowForward style={{ fontSize: "24px" }} />
-                </Button>
+                <Link prefetch href={urlBD}>
+                  <Button
+                    id="heroBenefitsLink"
+                    variant="raised"
+                    color="secondary"
+                    fullWidth
+                    size="large"
+                    className={this.props.classes.button}
+                  >
+                    {t("index.all benefits")}
+                    &nbsp;&nbsp;
+                    <ArrowForward style={{ fontSize: "24px" }} />
+                  </Button>
+                </Link>
                 <hr className={this.props.classes.break} />
                 <p className={this.props.classes.prompt}>
                   {t("index.favourites_prompt")}
                 </p>
-                <Button
-                  id="Favourites Page"
-                  variant="raised"
-                  fullWidth
-                  color="secondary"
-                  size="large"
-                  className={this.props.classes.button}
-                  href={this.getFavouritesURL()}
-                >
-                  <Bookmark style={{ fontSize: "24px" }} />
-                  &nbsp;
-                  {t("index.your_saved_benefits") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </Button>
+                <Link href={this.getFavouritesURL()}>
+                  <Button
+                    id="Favourites Page"
+                    variant="raised"
+                    fullWidth
+                    color="secondary"
+                    size="large"
+                    className={this.props.classes.button}
+                  >
+                    <Bookmark style={{ fontSize: "24px" }} />
+                    &nbsp;
+                    {t("index.your_saved_benefits") +
+                      " (" +
+                      this.props.favouriteBenefits.length +
+                      ")"}
+                  </Button>
+                </Link>
               </Grid>
               <Grid
                 item

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Link from "next/link";
 import PropTypes from "prop-types";
 import lunr from "lunr";
 
@@ -12,6 +13,8 @@ import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
+
+import Router from "next/router";
 
 const styles = theme => ({
   container: {
@@ -95,7 +98,7 @@ export class Search extends Component {
       this.props.t("current-language-code") +
       "&searchString=" +
       this.state.value;
-    window.location.href = href;
+    Router.push(href);
   };
 
   getSuggestions = value => {
@@ -185,11 +188,7 @@ export class Search extends Component {
           />
         </div>
         <div>
-          <Button
-            id="searchButtonLink"
-            className={classes.searchButton}
-            variant="raised"
-            color="primary"
+          <Link
             href={
               "benefits-directory?lng=" +
               this.props.t("current-language-code") +
@@ -197,8 +196,15 @@ export class Search extends Component {
               this.state.value
             }
           >
-            {this.props.t("search-button")}
-          </Button>
+            <Button
+              id="searchButtonLink"
+              className={classes.searchButton}
+              variant="raised"
+              color="primary"
+            >
+              {this.props.t("search-button")}
+            </Button>
+          </Link>
         </div>
       </div>
     );

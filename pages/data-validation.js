@@ -163,8 +163,7 @@ export class DataValidation extends Component {
       >
         <Paper className={classes.root}>
           <p style={{ padding: "10px" }}>
-            {t("dv.last_cache_update")}
-            :&nbsp;
+            {t("dv.last_cache_update")}:&nbsp;
             <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
           </p>
         </Paper>
