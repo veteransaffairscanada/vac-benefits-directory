@@ -177,13 +177,14 @@ Snyk is integrated with our Github repository and provides us with information i
 
 Talk to a developer to get access to our Synk account.
 
-### Security review
+### Biweekly code review
 
 As mentioned above we use Synk to constantly monitor our code for vulnerabilities, and respond as required to any new vulnerabilities found in our app.
 In addition to this, at the start of every two week sprint we do a security review and update. Currently this entails:
 
 - listing any new software development tools we are using, and signing up for the appropriate security bulletins.
 - reviewing and updating the packages we are using in the project as described in [SECURITY.md](/SECURITY.md)
+- running end-to-end tests on Windows (via BrowserStack) and noting any issues that arise (`yarn test:e2e_windows`)
 
 ### Contributing to GitHub repo
 
