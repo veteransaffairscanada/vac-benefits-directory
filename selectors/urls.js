@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { getFilteredBenefits } from "../selectors/benefits";
 
 const getCurrentLanguage = (state, props) => props.t("current-language-code");
 const getNeedsFilter = state => state.selectedNeeds;
@@ -10,6 +11,9 @@ const getStatusFilter = state => state.statusAndVitals;
 const getClosestOffice = state => state.closestAreaOffice;
 const getSelectedOffice = state => state.selectedAreaOffice;
 const getSortBy = state => state.sortBy;
+const getFromFavourites = (state, props, params) => params.fromFavourites;
+const getFavoriteBenefits = (state, props) => props.favouriteBenefits;
+const getBenefits = state => state.benefits;
 
 export const getFavouritesUrl = createSelector(
   [
@@ -32,7 +36,10 @@ export const getFavouritesUrl = createSelector(
     currentLanguage,
     sortBy
   ) => {
-    let href = "/favourites?";
+    let href = "/favourites";
+    href += "?lng=" + currentLanguage;
+    href += "&sortBy=" + sortBy;
+
     if (Object.keys(selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(selectedNeeds).join();
     }
@@ -51,14 +58,13 @@ export const getFavouritesUrl = createSelector(
     if (searchString !== "") {
       href += "&searchString=" + searchString;
     }
-    href += "&lng=" + currentLanguage;
-    href += "&sortBy=" + sortBy;
     return href;
   }
 );
 
 export const getPrintUrl = createSelector(
   [
+    getFilteredBenefits,
     getPatronFilter,
     getServiceFilter,
     getStatusFilter,
@@ -67,7 +73,10 @@ export const getPrintUrl = createSelector(
     getSortBy,
     getCurrentLanguage,
     getClosestOffice,
-    getSelectedOffice
+    getSelectedOffice,
+    getFromFavourites,
+    getFavoriteBenefits,
+    getBenefits
   ],
   (
     filteredBenefits,
@@ -79,12 +88,27 @@ export const getPrintUrl = createSelector(
     sortBy,
     language,
     closestAreaOffice,
-    selectedAreaOffice
+    selectedAreaOffice,
+    fromFavourites,
+    favouriteBenefits,
+    benefits
   ) => {
-    const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
+    let filteredBenefitsIDs;
+    if (fromFavourites !== undefined) {
+      filteredBenefitsIDs = benefits
+        .filter(b => favouriteBenefits.indexOf(b.id) > -1)
+        .map(b => b.id);
+    } else {
+      filteredBenefitsIDs = filteredBenefits.map(b => b.id);
+    }
     const needsIDs = Object.keys(selectedNeeds);
 
-    let url = "print";
+    let url = "/print";
+    url += "?lng=" + language;
+    url += "&sortBy=" + sortBy;
+    if (filteredBenefitsIDs.length > 0) {
+      url += "&benefits=" + filteredBenefitsIDs.join(",");
+    }
     if (patronFilter !== "") {
       url += "&patronType=" + patronFilter;
     }
@@ -97,19 +121,17 @@ export const getPrintUrl = createSelector(
     if (healthIssueFilter !== "") {
       url += "&serviceHealthIssue=" + healthIssueFilter;
     }
-    url += "?lng=" + language;
     if (needsIDs.length > 0) {
       url += "&needs=" + needsIDs.join(",");
-    }
-    url += "&sortBy=" + sortBy;
-    if (filteredBenefitsIDs.length > 0) {
-      url += "&benefits=" + filteredBenefitsIDs.join(",");
     }
     if (closestAreaOffice.id !== undefined) {
       url += "&closestAOID=" + closestAreaOffice.id;
     }
     if (selectedAreaOffice.id !== undefined) {
       url += "&selectedAOID=" + selectedAreaOffice.id;
+    }
+    if (fromFavourites !== undefined) {
+      url += "&fromFavourites=" + fromFavourites;
     }
     return url;
   }

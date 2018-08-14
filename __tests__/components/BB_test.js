@@ -214,21 +214,4 @@ describe("BB", () => {
   it("contains the print button", () => {
     expect(mounted_BB().find("#printButton").length).toEqual(5); // not sure why this is 5, should be 1
   });
-
-  it("has a correct getPrintUrl function", () => {
-    const url = mounted_BB()
-      .instance()
-      .getPrintUrl(
-        [{ id: "id1" }, { id: "id2" }],
-        { patronType: "service-person" },
-        { need1: "need1", need2: "need2" },
-        "sorting",
-        "en",
-        areaOfficesFixture[0],
-        areaOfficesFixture[1]
-      );
-    expect(url).toEqual(
-      "print?lng=en&patronType=service-person&needs=need1,need2&sortBy=sorting&benefits=id1,id2&closestAOID=0&selectedAOID=1"
-    );
-  });
 });

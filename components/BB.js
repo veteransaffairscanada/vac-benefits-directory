@@ -14,7 +14,7 @@ import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
-import { getFavouritesUrl } from "../selectors/urls";
+import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
@@ -127,55 +127,9 @@ export class BB extends Component {
     this.props.setSearchString(event.target.value);
   };
 
-  getPrintUrl = (
-    filteredBenefits,
-    selectedEligibility,
-    selectedNeeds,
-    sortby,
-    language,
-    closestAreaOffice,
-    selectedAreaOffice
-  ) => {
-    const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
-    const needsIDs = Object.keys(selectedNeeds);
-    const selectedEligibilityKeys = Object.keys(selectedEligibility);
-    let url = "print";
-    url += "?lng=" + language;
-    if (selectedEligibilityKeys.length > 0) {
-      Object.keys(selectedEligibility).forEach(k => {
-        url += "&" + k + "=" + selectedEligibility[k];
-      });
-    }
-    if (needsIDs.length > 0) {
-      url += "&needs=" + needsIDs.join(",");
-    }
-    url += "&sortBy=" + sortby;
-    if (filteredBenefitsIDs.length > 0) {
-      url += "&benefits=" + filteredBenefitsIDs.join(",");
-    }
-    if (closestAreaOffice.id !== undefined) {
-      url += "&closestAOID=" + closestAreaOffice.id;
-    }
-    if (selectedAreaOffice.id !== undefined) {
-      url += "&selectedAOID=" + selectedAreaOffice.id;
-    }
-    return url;
-  };
-
   render() {
     const { t, pageWidth, classes } = this.props; // eslint-disable-line no-unused-vars
-
     const filteredBenefits = this.props.filteredBenefits;
-
-    const printUrl = this.getPrintUrl(
-      filteredBenefits,
-      this.props.selectedEligibility,
-      this.props.selectedNeeds,
-      this.props.sortBy,
-      t("current-language-code"),
-      this.props.closestAreaOffice,
-      this.props.selectedAreaOffice
-    );
 
     return (
       <div
@@ -202,7 +156,7 @@ export class BB extends Component {
                     ")"}
                 </Button>
                 <Button
-                  href={printUrl}
+                  href={this.props.printUrl}
                   variant="flat"
                   size="medium"
                   target="print_page"
@@ -331,6 +285,7 @@ const mapStateToProps = (reduxState, props) => {
     selectedNeeds: reduxState.selectedNeeds,
     sortBy: reduxState.sortBy,
     pageWidth: reduxState.pageWidth,
+    printUrl: getPrintUrl(reduxState, props, {}),
     selectedAreaOffice: reduxState.selectedAreaOffice,
     closestAreaOffice: reduxState.closestAreaOffice
   };
@@ -345,6 +300,7 @@ BB.propTypes = {
   favouritesUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
+  printUrl: PropTypes.string,
   searchString: PropTypes.string.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,

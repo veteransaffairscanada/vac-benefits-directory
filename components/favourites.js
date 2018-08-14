@@ -6,6 +6,7 @@ import { withStyles } from "@material-ui/core/styles";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
+import { getPrintUrl } from "../selectors/urls";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
@@ -69,8 +70,7 @@ const styles = theme => ({
 export class Favourites extends Component {
   state = {
     enIdx: null,
-    frIdx: null,
-    sortByValue: "relevance"
+    frIdx: null
   };
 
   filterBenefits = (benefits, favouriteBenefits) => {
@@ -78,42 +78,6 @@ export class Favourites extends Component {
       return benefits;
     }
     return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
-  };
-
-  getPrintUrl = (
-    filteredBenefits,
-    selectedEligibility,
-    selectedNeeds,
-    sortBy,
-    language,
-    closestAreaOffice,
-    selectedAreaOffice
-  ) => {
-    const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
-    const needsIDs = Object.keys(selectedNeeds);
-    const selectedEligibilityKeys = Object.keys(selectedEligibility);
-    let url = "print";
-    url += "?lng=" + language;
-    if (selectedEligibilityKeys.length > 0) {
-      Object.keys(selectedEligibility).forEach(k => {
-        url += "&" + k + "=" + selectedEligibility[k];
-      });
-    }
-    if (needsIDs.length > 0) {
-      url += "&needs=" + needsIDs.join(",");
-    }
-    url += "&sortBy=" + sortBy;
-    if (filteredBenefitsIDs.length > 0) {
-      url += "&benefits=" + filteredBenefitsIDs.join(",");
-    }
-    if (closestAreaOffice.id !== undefined) {
-      url += "&closestAOID=" + closestAreaOffice.id;
-    }
-    if (selectedAreaOffice.id !== undefined) {
-      url += "&selectedAOID=" + selectedAreaOffice.id;
-    }
-    url += "&fromFavourites=true";
-    return url;
   };
 
   get_link = page => {
@@ -131,19 +95,10 @@ export class Favourites extends Component {
 
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
       this.props.favouriteBenefits
-    );
-
-    const printUrl = this.getPrintUrl(
-      filteredBenefits,
-      this.props.selectedEligibility,
-      this.props.selectedNeeds,
-      this.state.sortByValue,
-      t("current-language-code"),
-      this.props.closestAreaOffice,
-      this.props.selectedAreaOffice
     );
 
     return (
@@ -182,7 +137,7 @@ export class Favourites extends Component {
               <BenefitList
                 t={t}
                 filteredBenefits={filteredBenefits}
-                sortByValue={this.state.sortByValue}
+                sortByValue={this.props.sortBy}
                 showFavourites={true}
                 searchString=""
                 store={this.props.store}
@@ -201,7 +156,7 @@ export class Favourites extends Component {
           </Grid>
           <Grid item md={4} xs={12}>
             <Button
-              href={printUrl}
+              href={this.props.printUrl}
               target="_blank"
               variant="flat"
               size="large"
@@ -262,12 +217,13 @@ export class Favourites extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState, props) => {
   return {
     benefits: reduxState.benefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     needs: reduxState.needs,
     examples: reduxState.examples,
+    printUrl: getPrintUrl(reduxState, props, { fromFavourites: true }),
     selectedEligibility: {
       patronType: reduxState.patronType,
       serviceType: reduxState.serviceType,
@@ -275,6 +231,7 @@ const mapStateToProps = reduxState => {
     },
     selectedNeeds: reduxState.selectedNeeds,
     selectedAreaOffice: reduxState.selectedAreaOffice,
+    sortBy: reduxState.sortBy,
     closestAreaOffice: reduxState.closestAreaOffice
   };
 };
@@ -285,10 +242,12 @@ Favourites.propTypes = {
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
+  printUrl: PropTypes.string,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  sortBy: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   store: PropTypes.object,
   selectedAreaOffice: PropTypes.object.isRequired,

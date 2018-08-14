@@ -17,7 +17,7 @@ const initialState = {
   serviceType: "",
   statusAndVitals: "",
   serviceHealthIssue: "",
-  sortBy: "relevance",
+  sortBy: "",
   closestAreaOffice: {},
   selectedAreaOffice: {},
   userLocation: { lat: 49, lng: -104 },
