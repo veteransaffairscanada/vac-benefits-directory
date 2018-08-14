@@ -11,6 +11,7 @@
 - [Translations](#translations)
 - [Snyk](#snyk)
 - [Security review](#security-review)
+- [Testing](#testing)
 - [Contributing to GitHub repo](#contributing-to-github-repo)
 - [Pair Programming](#pair-programming)
 
@@ -206,6 +207,19 @@ In addition to this, at the start of every two week sprint we do a security revi
 - running end-to-end tests on Windows (via BrowserStack) and noting any issues that arise (`yarn test:e2e_windows`)
 
 See [SECURITY.md](/SECURITY.md) for more details
+
+### Testing
+
+We are using a combination of unit tests and end-to-end tests to validate the code base. Unit tests are written
+using [`jest`](https://jestjs.io/) and [`enzyme`](http://airbnb.io/enzyme/). We have made the decision not to test for
+correct styling, but rather focus on the logic in the components. We currently have over 200 tests that are run by CircleCI
+on every commit. PRs are not approved if code is added to the app without sufficient testing. PRs should not be merged
+if the tests do not pass.
+
+We are using [Testcafé](https://devexpress.github.io/testcafe) to write end-to-end tests. The e2e test suite can be run locally
+via `yarn test:e2e` (with `yarn dev` running). We also run our tests on Windows using the cloud service [BrowserStack](https://www.browserstack.com)
+using the command `yarn test:e2e_windows` (with `yarn dev` not running and the environment variables
+`BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` set appropriately).
 
 ### Contributing to GitHub repo
 
