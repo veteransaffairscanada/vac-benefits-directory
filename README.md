@@ -23,6 +23,7 @@ Contact other developers on the project for what values we're currently using.
 | `SENTRY_DSN`                 | save browser errors to Sentry                           | production                      |
 | `GA_UA`                      | track app usage with Google Analytics                   | production                      |
 | `GITHUB_PUBLIC_ACCESS_TOKEN` | gather data from GitHub for the stats page              | production                      |
+| `WEBHOOK_URL`                | Sends slack deployment notifications                    | production                      |
 | `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                   | locally                         |
 | `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                   | locally                         |
 
