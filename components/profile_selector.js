@@ -90,7 +90,6 @@ const mapStateToProps = reduxState => {
 
 ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
-  theme: PropTypes.object.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
   store: PropTypes.object,
   showStatusAndVitals: PropTypes.bool.isRequired,

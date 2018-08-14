@@ -14,6 +14,7 @@ import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
+import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
@@ -96,12 +97,8 @@ const styles = () => ({
 });
 
 export class BB extends Component {
-  state = {
-    sortByValue: "relevance"
-  };
-
   handleSortByChange = event => {
-    this.setState({ sortByValue: event.target.value });
+    this.props.setSortBy(event.target.value);
   };
 
   countSelection = () => {
@@ -130,77 +127,9 @@ export class BB extends Component {
     this.props.setSearchString(event.target.value);
   };
 
-  getFavouritesURL = () => {
-    let href = "/favourites?";
-    if (Object.keys(this.props.selectedNeeds).length > 0) {
-      href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
-    }
-    [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "serviceHealthIssue"
-    ].forEach(selection => {
-      if (this.props[selection] !== "") {
-        href += `&${selection}=${this.props.selectedEligibility[selection]}`;
-      }
-    });
-    href += "&lng=" + this.props.t("current-language-code");
-    if (this.props.searchString !== "") {
-      href += "&searchString=" + this.props.searchString;
-    }
-    return href;
-  };
-
-  getPrintUrl = (
-    filteredBenefits,
-    selectedEligibility,
-    selectedNeeds,
-    sortby,
-    language,
-    closestAreaOffice,
-    selectedAreaOffice
-  ) => {
-    const filteredBenefitsIDs = filteredBenefits.map(b => b.id);
-    const needsIDs = Object.keys(selectedNeeds);
-    const selectedEligibilityKeys = Object.keys(selectedEligibility);
-    let url = "print";
-    url += "?lng=" + language;
-    if (selectedEligibilityKeys.length > 0) {
-      Object.keys(selectedEligibility).forEach(k => {
-        url += "&" + k + "=" + selectedEligibility[k];
-      });
-    }
-    if (needsIDs.length > 0) {
-      url += "&needs=" + needsIDs.join(",");
-    }
-    url += "&sortBy=" + sortby;
-    if (filteredBenefitsIDs.length > 0) {
-      url += "&benefits=" + filteredBenefitsIDs.join(",");
-    }
-    if (closestAreaOffice.id !== undefined) {
-      url += "&closestAOID=" + closestAreaOffice.id;
-    }
-    if (selectedAreaOffice.id !== undefined) {
-      url += "&selectedAOID=" + selectedAreaOffice.id;
-    }
-    return url;
-  };
-
   render() {
     const { t, pageWidth, classes } = this.props; // eslint-disable-line no-unused-vars
-
     const filteredBenefits = this.props.filteredBenefits;
-
-    const printUrl = this.getPrintUrl(
-      filteredBenefits,
-      this.props.selectedEligibility,
-      this.props.selectedNeeds,
-      this.state.sortByValue,
-      t("current-language-code"),
-      this.props.closestAreaOffice,
-      this.props.selectedAreaOffice
-    );
 
     return (
       <div
@@ -217,7 +146,7 @@ export class BB extends Component {
                   variant="flat"
                   size="medium"
                   className={classes.buttonBarButton}
-                  href={this.getFavouritesURL()}
+                  href={this.props.favouritesUrl}
                 >
                   <Bookmark style={{ fontSize: "20px" }} />
                   &nbsp;
@@ -227,7 +156,7 @@ export class BB extends Component {
                     ")"}
                 </Button>
                 <Button
-                  href={printUrl}
+                  href={this.props.printUrl}
                   variant="flat"
                   size="medium"
                   target="print_page"
@@ -263,7 +192,7 @@ export class BB extends Component {
                 <Grid container spacing={16}>
                   <Grid item xs={12} md={6}>
                     <InputLabel
-                      for="sortBySelector"
+                      htmlFor="sortBySelector"
                       className={classes.sortByLabel}
                     >
                       {t("B3.Sort By")}
@@ -274,7 +203,7 @@ export class BB extends Component {
                       className={classes.formControl}
                     >
                       <Select
-                        value={this.state.sortByValue}
+                        value={this.props.sortBy}
                         onChange={this.handleSortByChange}
                         className={classnames(classes.sortByBox)}
                         disableUnderline={true}
@@ -309,7 +238,7 @@ export class BB extends Component {
                       <BenefitList
                         t={t}
                         filteredBenefits={filteredBenefits}
-                        sortByValue={this.state.sortByValue}
+                        sortByValue={this.props.sortBy}
                         searchString={this.props.searchString}
                         showFavourites={true}
                         store={this.props.store}
@@ -330,6 +259,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setSearchString: searchString => {
       dispatch({ type: "SET_SEARCH_STRING", data: searchString });
+    },
+    setSortBy: sortBy => {
+      dispatch({ type: "SET_SORT_BY", data: sortBy });
     }
   };
 };
@@ -341,6 +273,7 @@ const mapStateToProps = (reduxState, props) => {
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
     filteredBenefits: getFilteredBenefits(reduxState, props),
+    favouritesUrl: getFavouritesUrl(reduxState, props),
     needs: reduxState.needs,
     searchString: reduxState.searchString,
     selectedEligibility: {
@@ -350,7 +283,9 @@ const mapStateToProps = (reduxState, props) => {
       serviceHealthIssue: reduxState.serviceHealthIssue
     },
     selectedNeeds: reduxState.selectedNeeds,
+    sortBy: reduxState.sortBy,
     pageWidth: reduxState.pageWidth,
+    printUrl: getPrintUrl(reduxState, props, {}),
     selectedAreaOffice: reduxState.selectedAreaOffice,
     closestAreaOffice: reduxState.closestAreaOffice
   };
@@ -362,12 +297,16 @@ BB.propTypes = {
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   filteredBenefits: PropTypes.array,
+  favouritesUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
+  printUrl: PropTypes.string,
   searchString: PropTypes.string.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setSearchString: PropTypes.func.isRequired,
+  setSortBy: PropTypes.func.isRequired,
+  sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   store: PropTypes.object,

@@ -38,17 +38,58 @@ describe("Favourites Page", () => {
     };
     mockStore = configureStore();
     reduxData = {
+      option: "",
       translations: [],
       benefits: benefitsFixture,
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      enIdx: JSON.stringify({
+        version: "2.3.0",
+        fields: ["vacNameEn", "oneLineDescriptionEn"],
+        fieldVectors: [
+          ["vacNameEn/1", [0, 0.288]],
+          ["oneLineDescriptionEn/1", [1, 0.288]]
+        ],
+        invertedIndex: [
+          [
+            "biz",
+            { _index: 1, vacNameEn: {}, oneLineDescriptionEn: { "1": {} } }
+          ],
+          [
+            "fiz",
+            { _index: 0, vacNameEn: { "1": {} }, oneLineDescriptionEn: {} }
+          ]
+        ],
+        pipeline: ["stemmer"]
+      }),
+      frIdx: JSON.stringify({
+        version: "2.3.0",
+        fields: ["vacNameFr", "oneLineDescriptionFr"],
+        fieldVectors: [
+          ["vacNameFr/1", [0, 0.288]],
+          ["oneLineDescriptionFr/1", [1, 0.288]]
+        ],
+        invertedIndex: [
+          [
+            "biz",
+            { _index: 1, vacNameFr: {}, oneLineDescriptionFr: { "1": {} } }
+          ],
+          [
+            "fiz",
+            { _index: 0, vacNameFr: { "1": {} }, oneLineDescriptionFr: {} }
+          ]
+        ],
+        pipeline: ["stemmer"]
+      }),
       needs: needsFixture,
+      searchString: "",
       selectedNeeds: {},
       serviceType: "CAF",
+      sortBy: "relevance",
       patronType: "family",
       statusAndVitals: "",
+      serviceHealthIssue: "",
       favouriteBenefits: [benefitsFixture[0].id],
-      option: "",
       pageWidth: 1000,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
