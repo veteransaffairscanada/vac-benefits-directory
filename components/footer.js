@@ -39,7 +39,7 @@ class Footer extends Component {
           <Typography style={{ flex: 1, color: "#fff" }}>
             Build: {envDetails}
           </Typography>
-          <div>
+          <div style={{ height: "25px" }}>
             <WordMark width="6em" flag="#fff" text="#fff" />
           </div>
         </Toolbar>
