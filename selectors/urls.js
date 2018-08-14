@@ -43,10 +43,10 @@ export const getFavouritesUrl = createSelector(
     if (healthIssueFilter !== "") {
       href += "&serviceHealthIssue=" + healthIssueFilter;
     }
-    href += "&lng=" + currentLanguage;
     if (searchString !== "") {
       href += "&searchString=" + searchString;
     }
+    href += "&lng=" + currentLanguage;
     return href;
   }
 );
