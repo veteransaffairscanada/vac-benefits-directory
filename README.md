@@ -34,9 +34,14 @@ Contact other developers on the project for what values we're currently using.
 4.  `source ~/.bash_profile` (or `source ~/.zshrc`)
 5.  `echo $GOOGLE_MAPS_KEY` to make sure it is set
 
-### Adding a new environment locally (Windows)
+### Adding a new environment locally (Windows 7)
 
-To be added
+Start Menu > Control Panel > User Accounts > User Accounts > Change my environment variables > New...
+
+Example setup:
+Variable Name = AIRTABLE_READ_KEY
+Contact other developers on the project for what values we're currently using.
+restart Command Prompt, echo %AIRTABLE_READ_KEY% to check if value is setup properly
 
 ### Adding a new environment variable to the source code
 
