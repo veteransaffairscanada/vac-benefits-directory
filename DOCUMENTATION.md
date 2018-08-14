@@ -9,7 +9,9 @@
 5.  [Test Driven Development](#test-driven-development)
 6.  Deployment
 7.  [Translations](#translations)
-8.  [Contributing to GitHub repo](#contributing-to-github-repo)
+8.  [Snyk](#snyk)
+9.  [Security review](#security-review)
+10. [Contributing to GitHub repo](#contributing-to-github-repo)
 
 ### Next.JS and Server Side Rendering
 
