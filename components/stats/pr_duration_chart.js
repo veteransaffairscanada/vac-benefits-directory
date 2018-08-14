@@ -11,19 +11,19 @@ const Moment = extendMoment(MomentBase);
 
 const styles = () => ({});
 
-export class PrChart extends Component {
+export class PrDurationChart extends Component {
   chartConfig = () => {
     return {
       chart: {
         zoomType: "x"
       },
       title: {
-        text: "Deploys per Day"
+        text: "Average duration of PR per day"
       },
       xAxis: {
         type: "datetime",
         title: {
-          text: "Date"
+          text: "Date Merged"
         }
       },
       yAxis: {
@@ -43,10 +43,11 @@ export class PrChart extends Component {
       series: [
         {
           data: this.prData(),
-          name: "Deploys",
+          name: "Average PR Duration",
           tooltip: {
             headerFormat: "<b>{series.name}</b><br>",
-            pointFormat: "{point.x:%a %e %b}: <b>{point.y}</b>"
+            pointFormat:
+              "{point.x:%a %e %b}: <b>{point.days} d  {point.hours} h</b>"
           },
           type: "spline"
         },
@@ -70,13 +71,13 @@ export class PrChart extends Component {
   };
 
   maxValue = () => {
-    let values = this.prData().map(t => t[1]);
+    let values = this.prData().map(t => t.y);
     return Math.max.apply(null, values);
   };
 
   prData = () => {
     let filtered = this.filterMerged();
-    if (filtered.length == 0) {
+    if (filtered.length === 0) {
       return [];
     }
     let lastDate = Moment(filtered[filtered.length - 1].merged_at);
@@ -92,11 +93,40 @@ export class PrChart extends Component {
       }
       return acc;
     };
-    let dataObject = this.filterMerged().reduce(reducer, {});
+    const reducerLife = (acc, currentVal) => {
+      let date = Moment(currentVal.merged_at).format("YYYY-MM-DD");
+      let duration = Moment(currentVal.merged_at).diff(
+        Moment(currentVal.created_at),
+        "day",
+        true
+      );
+      if (acc.hasOwnProperty(date)) {
+        acc[date] = acc[date] + duration;
+      } else {
+        acc[date] = duration;
+      }
+      return acc;
+    };
+
+    const dataCounts = this.filterMerged().reduce(reducer, {});
+    const dataLifetimes = this.filterMerged().reduce(reducerLife, {});
+
+    let dataObjectLifetimes = {};
+    Object.keys(dataLifetimes).forEach(key => {
+      dataObjectLifetimes[key] = dataLifetimes[key] / dataCounts[key];
+    });
+
     return dates.map(m => {
       let key = m.format("YYYY-MM-DD");
-      let value = dataObject.hasOwnProperty(key) ? dataObject[key] : 0;
-      return [m.valueOf(), value];
+      let value = dataObjectLifetimes.hasOwnProperty(key)
+        ? dataObjectLifetimes[key]
+        : 0;
+      return {
+        x: m.valueOf(),
+        days: Math.floor(value),
+        hours: Math.round((value - Math.floor(value)) * 24),
+        y: value
+      };
     });
   };
 
@@ -133,12 +163,12 @@ const mapStateToProps = reduxState => {
   };
 };
 
-PrChart.propTypes = {
+PrDurationChart.propTypes = {
   classes: PropTypes.object.isRequired,
   githubData: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(
-  withStyles(styles, { withTheme: true })(PrChart)
+  withStyles(styles, { withTheme: true })(PrDurationChart)
 );

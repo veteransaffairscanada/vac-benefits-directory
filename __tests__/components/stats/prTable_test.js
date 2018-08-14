@@ -41,12 +41,12 @@ describe("prTable", () => {
 
   describe("filterMerged", () => {
     it("filters out non-merged PRs", () => {
-      expect(prTable().props().githubData.pullRequests.length).toEqual(3);
+      expect(prTable().props().githubData.pullRequests.length).toEqual(4);
       expect(
         prTable()
           .instance()
           .filterMerged().length
-      ).toEqual(2);
+      ).toEqual(3);
     });
 
     it("sorts merged PRs in ASC order", () => {

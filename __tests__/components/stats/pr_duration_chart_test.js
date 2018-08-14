@@ -1,5 +1,5 @@
 import React from "react";
-import { PrChart } from "../../../components/stats/prChart";
+import { PrDurationChart } from "../../../components/stats/pr_duration_chart";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 import githubFixture from "../../fixtures/github_data";
@@ -14,7 +14,7 @@ describe("prChart", () => {
 
   const prChart = () => {
     if (!mountedPrChart) {
-      mountedPrChart = mount(<PrChart {...props} />);
+      mountedPrChart = mount(<PrDurationChart {...props} />);
     }
     return mountedPrChart;
   };
@@ -72,12 +72,12 @@ describe("prChart", () => {
   });
 
   describe("maxValue", () => {
-    it("returns the maximum number of PRs per day in data set", () => {
+    it("returns the max duration of PRs per day in data set", () => {
       expect(
         prChart()
           .instance()
           .maxValue()
-      ).toEqual(2);
+      ).toEqual(0.75);
     });
   });
 
@@ -94,9 +94,9 @@ describe("prChart", () => {
       let result = prChart()
         .instance()
         .prData();
-      expect(result[0][1]).toEqual(1);
-      expect(result[1][1]).toEqual(0);
-      expect(result[2][1]).toEqual(2);
+      expect(result[0].y).toEqual(0.5);
+      expect(result[1].y).toEqual(0);
+      expect(result[2].y).toEqual(0.75);
     });
   });
 
