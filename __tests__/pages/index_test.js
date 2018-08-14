@@ -122,12 +122,4 @@ describe("Index page", () => {
     const appMounted = mount(<App {...props} {...reduxData} />);
     expect(appMounted.find("#searchComponent").length).not.toEqual(1);
   });
-
-  it("has a correct getFavouritesURL function", () => {
-    const appMounted = mount(<App {...props} {...reduxData} />);
-    const url = appMounted.instance().getFavouritesURL();
-    expect(url).toEqual(
-      "/favourites?&patronType=&serviceType=&statusAndVitals=&lng=current-language-code"
-    );
-  });
 });

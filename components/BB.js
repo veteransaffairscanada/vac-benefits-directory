@@ -14,6 +14,7 @@ import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
+import { getFavouritesUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
@@ -130,28 +131,6 @@ export class BB extends Component {
     this.props.setSearchString(event.target.value);
   };
 
-  getFavouritesURL = () => {
-    let href = "/favourites?";
-    if (Object.keys(this.props.selectedNeeds).length > 0) {
-      href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
-    }
-    [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "serviceHealthIssue"
-    ].forEach(selection => {
-      if (this.props[selection] !== "") {
-        href += `&${selection}=${this.props.selectedEligibility[selection]}`;
-      }
-    });
-    href += "&lng=" + this.props.t("current-language-code");
-    if (this.props.searchString !== "") {
-      href += "&searchString=" + this.props.searchString;
-    }
-    return href;
-  };
-
   getPrintUrl = (
     filteredBenefits,
     selectedEligibility,
@@ -217,7 +196,7 @@ export class BB extends Component {
                   variant="flat"
                   size="medium"
                   className={classes.buttonBarButton}
-                  href={this.getFavouritesURL()}
+                  href={this.props.favouritesUrl}
                 >
                   <Bookmark style={{ fontSize: "20px" }} />
                   &nbsp;
@@ -341,6 +320,7 @@ const mapStateToProps = (reduxState, props) => {
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples,
     filteredBenefits: getFilteredBenefits(reduxState, props),
+    favouritesUrl: getFavouritesUrl(reduxState, props),
     needs: reduxState.needs,
     searchString: reduxState.searchString,
     selectedEligibility: {
@@ -362,6 +342,7 @@ BB.propTypes = {
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   filteredBenefits: PropTypes.array,
+  favouritesUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
   searchString: PropTypes.string.isRequired,
