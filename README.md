@@ -61,26 +61,29 @@ To add a new ENV variable to the source code, take the following steps:
 
 ## Quickstart (OS X)
 
-- set environment variables on your machine (see below)
-- `yarn install`
-- `yarn dev`
+- Set the appropriate environment variables on your machine (see above)
+- Install the development environment
+  - [Homebrew](https://brew.sh/)
+  - node (`brew install node`)
+  - yarn (`npm i yarn`)
+- Clone the repo
+  - `git clone git@github.com:cds-snc/vac-benefits-directory.git`
+- In the local repo directory:
+  - `yarn install`
+  - `yarn dev`
 
 ## Quickstart (Windows)
 
-- download Node.JS of version 9 or newer(as .zip since .msi is blocked)
-
-- following steps required tp set up the newly installed Node cmd line commands such as npm globally
-
+- Set appropriate environment variables on your machine (see above)
+- Download Node.JS of version 9 or newer(as .zip since .msi is blocked)
+- Following steps required tp set up the newly installed Node cmd line commands such as npm globally
   > Start menu > Control Panel > User accounts > user accounts > change my environment variables >
   > select path > Edit > Now enter the location of where you have Node installed with a ; to seperate
   > between any other entries here.
   > EX: C:\dev ; C:\Node
-
 - `npm install -g yarn`
 - `yarn install` (While in project main directory, takes a while, especially on building packages)
-
 - `yarn dev` (run while CD'd in project folder used to start the local server)
-
 - If you run into syntax errors chances are there are missing packages/dependencies and you may want to try
   running a clean yarn install. Delete Node_modules folder and then re run `yarn install` in the main folder.
 
