@@ -101,14 +101,14 @@ to have review apps created for their PRs.
 
 #### Why and how are we using it?
 
-CircleCI is connected to our GitHub repositiory. For every new commit, CircleCI runs our test suite and reports any
+CircleCI is connected to our GitHub repositiory (see the project's [CircleCI page](https://circleci.com/gh/cds-snc/vac-benefits-directory)). For every new commit, CircleCI runs our test suite and reports any
 failures. If a commit to master fails testing we are notified on the CDS `vac-devs` Slack channel.
 If a commit to master passes, CircleCI builds a dockerfile from master and pushes it to DockerHub.
 CircleCI is configured via [`config.yml`](/.circleci/config.yml).
 
 #### How does one get access?
 
-You can view the test reports without having admin access to our CircleCI account, but you will need this access to
+You can view a commit's test report without having admin access to our CircleCI account, but you will need this access to
 change some parts of CircleCI configuration (in particular, to add environment variables to CircleCI). Talk to one of the
 other developers to get access.
 
