@@ -49,7 +49,9 @@ export class NeedButton extends Component {
         className={classes.main}
         style={{
           borderColor: need.colour,
-          backgroundColor: this.props.selectedNeeds[need.id] ? "blue" : "white"
+          backgroundColor: this.props.selectedNeeds[need.id]
+            ? need.colour
+            : "white"
         }}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}

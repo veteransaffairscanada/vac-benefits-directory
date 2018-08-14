@@ -31,8 +31,7 @@ const styles = theme => ({
     textDecoration: "none",
     textTransform: "unset",
     fontSize: "60%",
-    float: "right",
-    color: "blue"
+    float: "right"
   },
   clearIcon: {
     fontSize: "100%",
@@ -96,6 +95,7 @@ export class ProfileNeedsSelector extends Component {
               id="ClearFilters"
               variant="flat"
               size="small"
+              style={{ color: "blue" }}
               onClick={() => {
                 this.clearFilters();
               }}
