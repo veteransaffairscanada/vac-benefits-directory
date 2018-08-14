@@ -35,7 +35,7 @@ const styles = theme => ({
   },
   clearIcon: {
     fontSize: "100%",
-    marginLeft: theme.spacing.unit,
+    marginLeft: "5px",
     fontWeight: "bold"
   },
   filterTitle: {
