@@ -97,12 +97,8 @@ const styles = () => ({
 });
 
 export class BB extends Component {
-  state = {
-    sortByValue: "relevance"
-  };
-
   handleSortByChange = event => {
-    this.setState({ sortByValue: event.target.value });
+    this.props.setSortBy(event.target.value);
   };
 
   countSelection = () => {
@@ -175,7 +171,7 @@ export class BB extends Component {
       filteredBenefits,
       this.props.selectedEligibility,
       this.props.selectedNeeds,
-      this.state.sortByValue,
+      this.props.sortBy,
       t("current-language-code"),
       this.props.closestAreaOffice,
       this.props.selectedAreaOffice
@@ -253,7 +249,7 @@ export class BB extends Component {
                       className={classes.formControl}
                     >
                       <Select
-                        value={this.state.sortByValue}
+                        value={this.props.sortBy}
                         onChange={this.handleSortByChange}
                         className={classnames(classes.sortByBox)}
                         disableUnderline={true}
@@ -288,7 +284,7 @@ export class BB extends Component {
                       <BenefitList
                         t={t}
                         filteredBenefits={filteredBenefits}
-                        sortByValue={this.state.sortByValue}
+                        sortByValue={this.props.sortBy}
                         searchString={this.props.searchString}
                         showFavourites={true}
                         store={this.props.store}
@@ -309,6 +305,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setSearchString: searchString => {
       dispatch({ type: "SET_SEARCH_STRING", data: searchString });
+    },
+    setSortBy: sortBy => {
+      dispatch({ type: "SET_SORT_BY", data: sortBy });
     }
   };
 };
@@ -330,6 +329,7 @@ const mapStateToProps = (reduxState, props) => {
       serviceHealthIssue: reduxState.serviceHealthIssue
     },
     selectedNeeds: reduxState.selectedNeeds,
+    sortBy: reduxState.sortBy,
     pageWidth: reduxState.pageWidth,
     selectedAreaOffice: reduxState.selectedAreaOffice,
     closestAreaOffice: reduxState.closestAreaOffice
@@ -349,6 +349,8 @@ BB.propTypes = {
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setSearchString: PropTypes.func.isRequired,
+  setSortBy: PropTypes.func.isRequired,
+  sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   store: PropTypes.object,
