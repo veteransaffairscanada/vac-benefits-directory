@@ -14,7 +14,7 @@ import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 
 import classnames from "classnames";
-import { withStyles } from "@material-ui/core//styles";
+import { withStyles } from "@material-ui/core/styles";
 
 const Container = styled("div")`
   max-width: 1200px;

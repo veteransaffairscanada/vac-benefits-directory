@@ -20,7 +20,9 @@ class Footer extends Component {
 
     return (
       <Div role="navigation">
-        <Toolbar style={{ padding: 0 }}>
+        <Toolbar
+          style={{ padding: 0, marginLeft: "15px", marginRight: "15px" }}
+        >
           <Button
             id="privacy"
             style={{ color: "#fff", paddingLeft: 0, textTransform: "none" }}
@@ -29,12 +31,10 @@ class Footer extends Component {
           >
             {this.props.t("Privacy")}
           </Button>
-          <Typography style={{ flex: 1 }} />
-          Build: {envDetails}
-          <Typography style={{ flex: 1 }} />
-          <div>
-            <WordMark width="6em" flag="#fff" text="#fff" />
-          </div>
+          <Typography style={{ flex: 1, color: "#fff" }}>
+            Build: {envDetails}
+          </Typography>
+          <WordMark width="6em" flag="#fff" text="#fff" />
         </Toolbar>
       </Div>
     );

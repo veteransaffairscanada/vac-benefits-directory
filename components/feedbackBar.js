@@ -108,102 +108,104 @@ export class FeedbackBar extends Component {
 
     return (
       <FeedbackWrapper role="navigation">
-        {this.state.commentFormToggled ? (
-          <CommentBox>
-            <h2>{t("comment-help-us-improve")}</h2>
-            <p>{t("comment-privacy-disclaimer")}</p>
-            <TextHold>
-              <TextField
-                inputProps={{
-                  style: {
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    padding: "10px"
-                  }
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "white", fontSize: "18px" }
-                }}
-                id="commentWhatWereYouDoing"
-                label={t("comment-what-were-you-doing")}
-                margin="normal"
-                fullWidth={true}
-                onChange={this.handleChange("action")}
-                style={{ color: "white" }}
-                value={this.state.action}
-                autoFocus
-              />
-              <TextField
-                inputProps={{
-                  style: {
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    padding: "10px"
-                  }
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "white", fontSize: "18px" }
-                }}
-                id="commentWhatWentWrong"
-                label={t("comment-what-went-wrong")}
-                margin="normal"
-                fullWidth={true}
-                onChange={this.handleChange("failure")}
-                value={this.state.failure}
-              />
-            </TextHold>
-            <br />
-            <Button
-              id="sendComment"
-              variant="contained"
-              color="primary"
-              style={{ textTransform: "none" }}
-              onClick={() => this.sendComment()}
-            >
-              {t("send")}
-              &nbsp; &nbsp;
-              <ArrowForward />
-            </Button>
-            &nbsp; &nbsp;
-            <Button
-              id="cancelComment"
-              style={{ color: "#fff", textTransform: "none" }}
-              onClick={() => this.cancelComment()}
-            >
-              {t("cancel")}
-            </Button>
-          </CommentBox>
-        ) : null}
-        <Div>
-          {this.state.feedbackSubmitted ? (
-            <Inner>
-              <p>{t("feedback-response")}</p>
-            </Inner>
-          ) : (
-            <Inner>
-              {t("feedback-prompt")} &nbsp;
+        <div style={{ marginLeft: "15px", marginRight: "15px" }}>
+          {this.state.commentFormToggled ? (
+            <CommentBox>
+              <h2>{t("comment-help-us-improve")}</h2>
+              <p>{t("comment-privacy-disclaimer")}</p>
+              <TextHold>
+                <TextField
+                  inputProps={{
+                    style: {
+                      backgroundColor: "white",
+                      marginTop: "10px",
+                      padding: "10px"
+                    }
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                    style: { color: "white", fontSize: "18px" }
+                  }}
+                  id="commentWhatWereYouDoing"
+                  label={t("comment-what-were-you-doing")}
+                  margin="normal"
+                  fullWidth={true}
+                  onChange={this.handleChange("action")}
+                  style={{ color: "white" }}
+                  value={this.state.action}
+                  autoFocus
+                />
+                <TextField
+                  inputProps={{
+                    style: {
+                      backgroundColor: "white",
+                      marginTop: "10px",
+                      padding: "10px"
+                    }
+                  }}
+                  InputLabelProps={{
+                    shrink: true,
+                    style: { color: "white", fontSize: "18px" }
+                  }}
+                  id="commentWhatWentWrong"
+                  label={t("comment-what-went-wrong")}
+                  margin="normal"
+                  fullWidth={true}
+                  onChange={this.handleChange("failure")}
+                  value={this.state.failure}
+                />
+              </TextHold>
+              <br />
               <Button
-                variant="flat"
-                style={{ color: "#fff", textTransform: "none" }}
-                id="feedbackYes"
-                onClick={() => this.sendFeedback("Yes")}
+                id="sendComment"
+                variant="contained"
+                color="primary"
+                style={{ textTransform: "none" }}
+                onClick={() => this.sendComment()}
               >
-                {t("yes")}
+                {t("send")}
+                &nbsp; &nbsp;
+                <ArrowForward />
               </Button>
               &nbsp; &nbsp;
               <Button
-                variant="flat"
+                id="cancelComment"
                 style={{ color: "#fff", textTransform: "none" }}
-                id="feedbackNo"
-                onClick={() => this.sendFeedback("No")}
+                onClick={() => this.cancelComment()}
               >
-                {t("no")}
+                {t("cancel")}
               </Button>
-            </Inner>
-          )}
-        </Div>
+            </CommentBox>
+          ) : null}
+          <Div>
+            {this.state.feedbackSubmitted ? (
+              <Inner>
+                <p>{t("feedback-response")}</p>
+              </Inner>
+            ) : (
+              <Inner>
+                {t("feedback-prompt")} &nbsp;
+                <Button
+                  variant="flat"
+                  style={{ color: "#fff", textTransform: "none" }}
+                  id="feedbackYes"
+                  onClick={() => this.sendFeedback("Yes")}
+                >
+                  {t("yes")}
+                </Button>
+                &nbsp; &nbsp;
+                <Button
+                  variant="flat"
+                  style={{ color: "#fff", textTransform: "none" }}
+                  id="feedbackNo"
+                  onClick={() => this.sendFeedback("No")}
+                >
+                  {t("no")}
+                </Button>
+              </Inner>
+            )}
+          </Div>
+        </div>
       </FeedbackWrapper>
     );
   }
