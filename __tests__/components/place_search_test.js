@@ -9,18 +9,16 @@ const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 import { withScriptjs } from "react-google-maps";
-import configureStore from "redux-mock-store";
 
-const GOOGLE_MAPS_KEY=process.env.GOOGLE_MAPS_KEY
+const GOOGLE_MAPS_KEY = process.env.GOOGLE_MAPS_KEY;
 
 describe("PlaceSearch", () => {
   let props;
   let _mountedPlaceSearch;
-  let mockStore, reduxData;
 
   const mounted_PlaceSearch = () => {
     if (!_mountedPlaceSearch) {
-      _mountedPlaceSearch = shallow(<PlaceSearch {...props} {...reduxData} />);
+      _mountedPlaceSearch = shallow(<PlaceSearch {...props} />);
     }
     return _mountedPlaceSearch;
   };
@@ -29,7 +27,9 @@ describe("PlaceSearch", () => {
     props = {
       classes: {},
       googleMapURL:
-        "https://maps.googleapis.com/maps/api/js?key=" + GOOGLE_MAPS_KEY + "&language=en&v=3.exp&libraries=geometry,drawing,places",
+        "https://maps.googleapis.com/maps/api/js?key=" +
+        GOOGLE_MAPS_KEY +
+        "&language=en&v=3.exp&libraries=geometry,drawing,places",
       loadingElement: <div style={{ height: "100%" }} />,
       containerElement: <div style={{ height: "400px" }} />,
       mapElement: <div style={{ height: "100%" }} />,
@@ -37,14 +37,10 @@ describe("PlaceSearch", () => {
         return key == "current-language-code" ? "en" : key;
       },
       userLocation: { lat: 0, lng: 0 },
-      setUserLocation: jest.fn()
+      setUserLocation: jest.fn(),
+      setMapView: jest.fn()
     };
     _mountedPlaceSearch = undefined;
-    reduxData = {
-      setUserLocation: jest.fn()
-    };
-    mockStore = configureStore();
-    props.store = mockStore(reduxData);
   });
 
   it("passes axe tests", async () => {
@@ -71,14 +67,15 @@ describe("PlaceSearch", () => {
   });
 
   describe("setLocation", () => {
-    it("sets the Location in Redux", () => {
+    it("calls setUserLocation and setMapView when setLocation is called", () => {
       mounted_PlaceSearch().setState({
         selected: { lat: () => 0, lng: () => 0 }
       });
       mounted_PlaceSearch()
         .instance()
         .setLocation();
-      expect(reduxData.setUserLocation).toBeCalledWith({ lat: 0, lng: 0 });
+      expect(props.setUserLocation).toBeCalledWith({ lat: 0, lng: 0 });
+      expect(props.setMapView).toBeCalledWith({ lat: 0, lng: 0, zoom: 10 });
     });
   });
 });

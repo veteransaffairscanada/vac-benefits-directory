@@ -12,9 +12,6 @@ const styles = theme => ({
     flexGrow: 1,
     position: "relative"
   },
-  input: {
-    // paddingTop: "6px"
-  },
   inputIcon: {
     paddingTop: "3px",
     paddingRight: "5px",
@@ -90,6 +87,11 @@ export class PlaceSearch extends Component {
     let location = this.state.selected;
     if (location != null) {
       this.props.setUserLocation({ lat: location.lat(), lng: location.lng() });
+      this.props.setMapView({
+        lat: location.lat(),
+        lng: location.lng(),
+        zoom: 10
+      });
     }
   };
 
@@ -135,6 +137,9 @@ const mapDispatchToProps = dispatch => {
   return {
     setUserLocation: userLocation => {
       dispatch({ type: "SET_USER_LOCATION", data: userLocation });
+    },
+    setMapView: mapView => {
+      dispatch({ type: "SET_MAP_VIEW", data: mapView });
     }
   };
 };
@@ -146,6 +151,7 @@ const mapStateToProps = () => {
 PlaceSearch.propTypes = {
   classes: PropTypes.object.isRequired,
   setUserLocation: PropTypes.func.isRequired,
+  setMapView: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
 };
 
