@@ -28,7 +28,7 @@ Lastly, our initial evaluation of NextJS showed that it worked well with a numbe
 
 ### AirTable
 
-#### What is AirTable?
+#### What is it?
 
 [AirTable](https://airtable.com/) is an online spreadsheet product similar to Google Sheets but with a better API, better access controls, and a revision history. It allows spreadsheets to be created and data added or changed through the AirTable web application or through its REST API. This can be controlled by setting up user accounts and giving them read and/or write permission. You can also generate API keys that have read and/or write permission. Custom API documentation (with example calls!) is generated using the table/column names for your project, and can be viewed on airtable.com.
 
@@ -93,7 +93,7 @@ When a new string is added to `AirTable`, both an English and a French version a
 
 ### Heroku
 
-#### What is Heroku?
+#### What is it?
 
 [Heroku](https://www.heroku.com) is a "platform as a service" that enables developers to build, run,
 and operate applications entirely in the cloud. In particular, Heroku allows quick and easy deployment of apps,
@@ -135,6 +135,25 @@ To join the CDS Heroku team, create a (free) Heroku account and email vac@cds-sn
 with your account details so we can add you to the team.
 Note that our PR apps are automatically created by Heroku, so developers do not require Heroku access
 to have review apps created for their PRs.
+
+### CircleCI
+
+#### What is it?
+
+[CircleCI](https://circleci.com/) is a cloud service that performs continuous integration testing and continuous deployment.
+
+#### Why and how are we using it?
+
+CircleCI is connected to our GitHub repositiory. For every new commit, CircleCI runs our test suite and reports any
+failures. If a commit to master fails testing we are notified on the CDS `vac-devs` Slack channel.
+If a commit to master passes, CircleCI builds a dockerfile from master and pushes it to DockerHub.
+CircleCI is configured vi [`config.yml`](/.circleci/config.yml)
+
+#### How does one get access?
+
+You can view the test reports without having admin access to our CircleCI account, but you will need this access to
+change some CircleCI configuration (in particular, to add environment variables to CircleCI). Talk to one of the
+other developers to get access.
 
 ### Contributing to GitHub repo
 
