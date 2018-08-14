@@ -9,8 +9,10 @@
 5.  [Test Driven Development](#test-driven-development)
 6.  Deployment
 7.  [Translations](#translations)
-8.  [Contributing to GitHub repo](#contributing-to-github-repo)
-9.  [Pair Programming](#pair-programming)
+8.  [Snyk](#snyk)
+9.  [Security review](#security-review)
+10. [Contributing to GitHub repo](#contributing-to-github-repo)
+11. [Pair Programming](#pair-programming)
 
 ### Next.JS and Server Side Rendering
 
@@ -156,6 +158,36 @@ The default mode for `react-18next` is to pull translated `key`-`value` strings 
 Upon boot, and every hour after, the server will download and cache all the translation strings in memory (A refresh of the cache can also be requested upon demand). The strings are then stored in `redux` and made available to all `react` compoments. A `translation` function then takes the `key` of a string and looks up the matching value in the corresponding locale.
 
 When a new string is added to `AirTable`, both an English and a French version are included. If the person adding the string is not comfortable in both official languages they are encouraged to add a `[TRANSLATE]` in front of the translation that they are uncomfortable with. This allows other members of the team to see the incomplete translation both in `AirTable` and the actual application, allowing them to fix the string if they have sufficient proficiency.
+
+### Snyk
+
+#### What is it?
+
+[Snyk](https://snyk.io/) is a cloud service that analyzes code for vulnerabilities.
+
+#### Why and how are we using it?
+
+Synk gives us a real-time evaluation of the modules we are using in our app.
+Snyk is integrated with our Github repository and provides us with information in two ways:
+
+- Snyk is run on master with every merge, and the results reported on a badge at the top of [README.md](/README.md).
+  Additionally, the development team receives a weekly email from Snyk detailing any vulnerabilities found.
+- Synk runs on every pull request, and the results are reported in the PR.
+
+#### How does one get access?
+
+Talk to a developer to get access to our Synk account.
+
+### Biweekly code review
+
+As mentioned above we use Synk to constantly monitor our code for vulnerabilities, and respond as required to any new vulnerabilities found in our app.
+In addition to this, at the start of every two week sprint we do a security review and update. Currently this entails:
+
+- listing any new software development tools we are using, and signing up for the appropriate security bulletins
+- reviewing and updating the packages we are using in the project
+- running end-to-end tests on Windows (via BrowserStack) and noting any issues that arise (`yarn test:e2e_windows`)
+
+See [SECURITY.md](/SECURITY.md) for more details
 
 ### Contributing to GitHub repo
 
