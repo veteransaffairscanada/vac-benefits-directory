@@ -18,75 +18,36 @@ export default withRedux(initStore)(
           data: ctx.req.githubData
         });
       }
-      if (
-        ctx.query.patronType &&
-        ctx.query.patronType !== currentReduxState.patronType
-      ) {
-        ctx.store.dispatch({
-          type: "SET_PATRON_TYPE",
-          data: ctx.query.patronType
-        });
-      }
-      if (!ctx.query.patronType && currentReduxState.patronType !== "") {
-        ctx.store.dispatch({
-          type: "SET_PATRON_TYPE",
-          data: ""
-        });
-      }
 
-      if (
-        ctx.query.serviceType &&
-        ctx.query.serviceType !== currentReduxState.serviceType
-      ) {
-        ctx.store.dispatch({
-          type: "SET_SERVICE_TYPE",
-          data: ctx.query.serviceType
-        });
-      }
-      if (!ctx.query.serviceType && currentReduxState.serviceType !== "") {
-        ctx.store.dispatch({
-          type: "SET_SERVICE_TYPE",
-          data: ""
-        });
-      }
+      let queryParams = [
+        { key: "patronType", reducer: "SET_PATRON_TYPE", default: "" },
+        { key: "serviceType", reducer: "SET_SERVICE_TYPE", default: "" },
+        { key: "statusAndVitals", reducer: "SET_STATUS_TYPE", default: "" },
+        { key: "serviceHealthIssue", reducer: "SET_HEALTH_ISSUE", default: "" },
+        { key: "searchString", reducer: "SET_SEARCH_STRING", default: "" },
+        { key: "sortBy", reducer: "SET_SORT_BY", default: "relevance" }
+      ];
 
-      if (
-        ctx.query.statusAndVitals &&
-        ctx.query.statusAndVitals !== currentReduxState.statusAndVitals
-      ) {
-        ctx.store.dispatch({
-          type: "SET_STATUS_TYPE",
-          data: ctx.query.statusAndVitals
-        });
-      }
-      if (
-        !ctx.query.statusAndVitals &&
-        currentReduxState.statusAndVitals !== ""
-      ) {
-        ctx.store.dispatch({
-          type: "SET_STATUS_TYPE",
-          data: ""
-        });
-      }
-
-      if (
-        ctx.query.serviceHealthIssue &&
-        ctx.query.serviceHealthIssue !== currentReduxState.serviceHealthIssue
-      ) {
-        ctx.store.dispatch({
-          type: "SET_HEALTH_ISSUE",
-          data: ctx.query.serviceHealthIssue
-        });
-      }
-      if (
-        !ctx.query.serviceHealthIssue &&
-        currentReduxState.serviceHealthIssue !== ""
-      ) {
-        ctx.store.dispatch({
-          type: "SET_HEALTH_ISSUE",
-          data: ""
-        });
-      }
+      queryParams.forEach(param => {
+        if (
+          ctx.query[param.key] &&
+          ctx.query[param.key] !== currentReduxState[param.key]
+        ) {
+          ctx.store.dispatch({
+            type: param.reducer,
+            data: ctx.query[param.key]
+          });
+        }
+        if (
+          !ctx.query[param.key] &&
+          currentReduxState[param.key] !== param.default
+        ) {
+          ctx.store.dispatch({
+            type: param.reducer,
+            data: param.default
+          });
+        }
+      });
 
       if (ctx.query.selectedNeeds) {
         let selectedNeeds = {};
@@ -110,38 +71,6 @@ export default withRedux(initStore)(
         ctx.store.dispatch({
           type: "SET_SELECTED_NEEDS",
           data: {}
-        });
-      }
-
-      if (
-        ctx.query.searchString &&
-        ctx.query.searchString !== currentReduxState.searchString
-      ) {
-        ctx.store.dispatch({
-          type: "SET_SEARCH_STRING",
-          data: ctx.query.searchString
-        });
-      }
-      if (!ctx.query.searchString && currentReduxState.searchString !== "") {
-        ctx.store.dispatch({
-          type: "SET_SEARCH_STRING",
-          data: ""
-        });
-      }
-      if (ctx.query.sortBy && ctx.query.sortBy !== currentReduxState.sortBy) {
-        ctx.store.dispatch({
-          type: "SET_SORT_BY",
-          data: ctx.query.sortBy
-        });
-      }
-      if (
-        !ctx.query.sortBy &&
-        (currentReduxState.sortBy !== "relevance" &&
-          currentReduxState.sortBy !== "alphabetical")
-      ) {
-        ctx.store.dispatch({
-          type: "SET_SORT_BY",
-          data: "relevance"
         });
       }
 

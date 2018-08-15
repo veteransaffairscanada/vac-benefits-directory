@@ -36,29 +36,23 @@ export const getFavouritesUrl = createSelector(
     currentLanguage,
     sortBy
   ) => {
-    let href = "/favourites";
-    href += "?lng=" + currentLanguage;
-    href += "&sortBy=" + sortBy;
-
-    if (Object.keys(selectedNeeds).length > 0) {
-      href += "&selectedNeeds=" + Object.keys(selectedNeeds).join();
-    }
-    if (patronFilter !== "") {
-      href += "&patronType=" + patronFilter;
-    }
-    if (serviceFilter !== "") {
-      href += "&serviceType=" + serviceFilter;
-    }
-    if (statusFilter !== "") {
-      href += "&statusAndVitals=" + statusFilter;
-    }
-    if (healthIssueFilter !== "") {
-      href += "&serviceHealthIssue=" + healthIssueFilter;
-    }
-    if (searchString !== "") {
-      href += "&searchString=" + searchString;
-    }
-    return href;
+    let values = {
+      lng: currentLanguage,
+      sortBy: sortBy,
+      selectedNeeds: Object.keys(selectedNeeds).join(),
+      patronType: patronFilter,
+      serviceType: serviceFilter,
+      statusAndVitals: statusFilter,
+      serviceHealthIssue: healthIssueFilter,
+      searchString: searchString
+    };
+    let params = [];
+    Object.keys(values).forEach(key => {
+      if (values[key] !== "") {
+        params.push(key + "=" + values[key]);
+      }
+    });
+    return "/favourites?" + params.join("&");
   }
 );
 
@@ -86,7 +80,7 @@ export const getPrintUrl = createSelector(
     healthIssueFilter,
     selectedNeeds,
     sortBy,
-    language,
+    currentLanguage,
     closestAreaOffice,
     selectedAreaOffice,
     fromFavourites,
@@ -101,38 +95,27 @@ export const getPrintUrl = createSelector(
     } else {
       filteredBenefitsIDs = filteredBenefits.map(b => b.id);
     }
-    const needsIDs = Object.keys(selectedNeeds);
-
-    let url = "/print";
-    url += "?lng=" + language;
-    url += "&sortBy=" + sortBy;
-    if (filteredBenefitsIDs.length > 0) {
-      url += "&benefits=" + filteredBenefitsIDs.join(",");
-    }
-    if (patronFilter !== "") {
-      url += "&patronType=" + patronFilter;
-    }
-    if (serviceFilter !== "") {
-      url += "&serviceType=" + serviceFilter;
-    }
-    if (statusFilter !== "") {
-      url += "&statusAndVitals=" + statusFilter;
-    }
-    if (healthIssueFilter !== "") {
-      url += "&serviceHealthIssue=" + healthIssueFilter;
-    }
-    if (needsIDs.length > 0) {
-      url += "&needs=" + needsIDs.join(",");
-    }
-    if (closestAreaOffice.id !== undefined) {
-      url += "&closestAOID=" + closestAreaOffice.id;
-    }
-    if (selectedAreaOffice.id !== undefined) {
-      url += "&selectedAOID=" + selectedAreaOffice.id;
-    }
-    if (fromFavourites !== undefined) {
-      url += "&fromFavourites=" + fromFavourites;
-    }
-    return url;
+    let values = {
+      lng: currentLanguage,
+      sortBy: sortBy,
+      benefits: filteredBenefitsIDs.join(","),
+      patronType: patronFilter,
+      serviceType: serviceFilter,
+      statusAndVitals: statusFilter,
+      serviceHealthIssue: healthIssueFilter,
+      needs: Object.keys(selectedNeeds).join(),
+      closestAOID:
+        closestAreaOffice.id !== undefined ? closestAreaOffice.id : "",
+      selectedAOID:
+        selectedAreaOffice.id !== undefined ? selectedAreaOffice.id : "",
+      fromFavourites: fromFavourites !== undefined ? fromFavourites : ""
+    };
+    let params = [];
+    Object.keys(values).forEach(key => {
+      if (values[key] !== "") {
+        params.push(key + "=" + values[key]);
+      }
+    });
+    return "/print?" + params.join("&");
   }
 );
