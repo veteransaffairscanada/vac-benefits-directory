@@ -44,7 +44,7 @@ describe("Favourites Page", () => {
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       enIdx: JSON.stringify({
-        version: "2.3.0",
+        version: "2.3.1",
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
           ["vacNameEn/1", [0, 0.288]],
@@ -63,7 +63,7 @@ describe("Favourites Page", () => {
         pipeline: ["stemmer"]
       }),
       frIdx: JSON.stringify({
-        version: "2.3.0",
+        version: "2.3.1",
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
           ["vacNameFr/1", [0, 0.288]],
