@@ -30,7 +30,7 @@ describe("Search", () => {
     reduxData = {
       benefits: benefitsFixture,
       enIdx: JSON.stringify({
-        version: "2.3.0",
+        version: "2.3.1",
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
           ["vacNameEn/1", [0, 0.288]],
@@ -49,7 +49,7 @@ describe("Search", () => {
         pipeline: ["stemmer"]
       }),
       frIdx: JSON.stringify({
-        version: "2.3.0",
+        version: "2.3.1",
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
           ["vacNameFr/1", [0, 0.288]],
