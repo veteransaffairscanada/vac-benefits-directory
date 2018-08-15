@@ -69,6 +69,7 @@ export class PlaceSearch extends Component {
         const places = refs.searchBox.getPlaces();
         if (places.length > 0) {
           this.setState({ selected: places[0].geometry.location });
+          this.setLocation();
         }
       },
       places: [],
