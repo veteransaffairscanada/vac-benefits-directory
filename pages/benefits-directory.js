@@ -50,6 +50,9 @@ export class BenefitsDirectory extends Component {
     if (this.props.searchString !== "") {
       href += `&searchString=${encodeURIComponent(this.props.searchString)}`;
     }
+    if (this.props.sortBy !== "") {
+      href += `&sortBy=${encodeURIComponent(this.props.sortBy)}`;
+    }
     Router.replace(href);
   };
 
@@ -88,7 +91,8 @@ const mapStateToProps = reduxState => {
     serviceType: reduxState.serviceType,
     statusAndVitals: reduxState.statusAndVitals,
     serviceHealthIssue: reduxState.serviceHealthIssue,
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    sortBy: reduxState.sortBy
   };
 };
 
@@ -96,6 +100,7 @@ BenefitsDirectory.propTypes = {
   url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  sortBy: PropTypes.string.isRequired,
   store: PropTypes.object,
   patronType: PropTypes.string.isRequired,
   searchString: PropTypes.string.isRequired,
