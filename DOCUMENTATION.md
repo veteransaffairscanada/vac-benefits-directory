@@ -14,10 +14,17 @@
 - [Testing](#testing)
 - [Contributing to GitHub repo](#contributing-to-github-repo)
 - [Pair Programming](#pair-programming)
+- [Deployment notifications](#deployment-notifications)
 
 ### Next.JS and Server Side Rendering
 
-The user facing application is built using the [Next.JS](https://github.com/zeit/next.js/ "Next.JS") framework for server-rendered React applications. The rational behind choosing Next.JS stems from the following criteria:
+#### What is it?
+
+[Next.JS](https://github.com/zeit/next.js/ "Next.JS") is a javascript framework for server-rendered React applications.
+
+#### Why are we using it?
+
+The rational behind choosing Next.JS stems from the following criteria:
 
 - Use of both Javascript on the front-end and back-end
 - Ability to render pages completely in HTML and CSS on the server
@@ -30,6 +37,10 @@ Next.JS differs in this approach in that it can pre-render or "server render" th
 The advantages here are significant: for one the loading experience is faster as the HTML and CSS coming from the server display right away vs. awaiting the Javascript file to unbundle and render the HTML and CSS. Additionally in case the browser is unable to execute the javascript bundle because of an incompatibility (ex. using legacy browsers such as IE 10), we were able to create fallback solutions using the already rendered HTML and CSS. Most important, however, is that using Next.JS allows developer to use the same code base they use on the front-end of their application to also run on the back-end, significantly reducing the amount of complexity.
 
 Lastly, our initial evaluation of NextJS showed that it worked well with a number of other Javascript components such as user interface libraries, search, and translation.
+
+#### How can I get started?
+
+Check out the Quickstart documentation in our README.md. You can also look at the [Next.JS](https://nextjs.org/learn/ "Next.JS") tutorial site to learn more.
 
 ### AirTable
 
@@ -118,11 +129,15 @@ other developers to get access.
 
 ### Test Driven Development
 
-Developers on this project follow a process that is loosely based on [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development "Test Driven Developement") and other practices associated with "small a" [Agile](https://en.wikipedia.org/wiki/Agile_software_development "Agile") development. Without following strict guidelines, developers agreed that an iterative and continous approach is preferable to segmented release cycles.
+#### What is it?
 
-To facilitate this process, we have chosen to use a [Continous Integration](https://en.wikipedia.org/wiki/Continuous_integration "Continous Integration") and [Continous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery "Continous Delivery") process whereby new features and code are added to the product frequenty, reviewed and verified, and shipped as soon as they are done. We are currently using [https://circleci.com/](https://circleci.com/ "Circle CI") as our platform for running all our unit tests before deploying. Alongside that we are also using [https://heroku.com](https://heroku.com "Heroku") to create staging versions of our application for manual review.
+[Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development "Test Driven Developement") and other practices associated with "small a" [Agile](https://en.wikipedia.org/wiki/Agile_software_development "Agile") are a set of frameworks and tools to manage development of a software product.
 
-This resulted in the following, recommended, process:
+#### Why are we using it?
+
+Test driven development allows for an iterative and continous approach that is preferable to segmented release cycles. To facilitate this process, we have chosen to use a [Continous Integration](https://en.wikipedia.org/wiki/Continuous_integration "Continous Integration") and [Continous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery "Continous Delivery") process whereby new features and code are added to the product frequenty, reviewed and verified, and shipped as soon as they are done. We are currently using [https://circleci.com/](https://circleci.com/ "Circle CI") as our platform for running all our unit tests before deploying. Alongside that we are also using [https://heroku.com](https://heroku.com "Heroku") to create staging versions of our application for manual review.
+
+#### What is our development process?
 
 1. Development sprints are given two week spans of time
 2. At the beginning of a sprint, the development team meets with the other members of the larger team to discuss development priorities for new features.
@@ -148,6 +163,8 @@ This resulted in the following, recommended, process:
 7. This process is repeated iteratively until all issues for a sprint are resolved and new set of issues can be created or until a new sprint starts.
 8. At the end of a sprint the development team reviews the issues completed and suggest improvements on for the next sprint.
 
+#### What are the advantages
+
 The advantages of this process is that features get broken down and reviewed by the entire development team before work. This gives line of sight to the whole team on what is being worked on. Additionally anything being worked on is easily manageable by the person writing the code, as well as understandable by the person reviewing it. Using testing as the foundational practice allows for a high degree of confidence in the functionality of the code base. It also for allows instant feedback if a developer breaks existing functionality. Based on this high degree of confidence it allows a model of continuous delivery which ensures that stake holders and customers receive the features once they are ready vs. when they can be scheduled for release.
 
 ### BrowserStack
@@ -170,7 +187,11 @@ Create a personal account on BrowserStack and then contact a developer to get yo
 
 ### Translations
 
+#### Why are we translating our content?
+
 Given the Government of Canada's mandate to support both official languages, we use `react-18next` [https://react.i18next.com](https://react.i18next.com/ "react-18next") to allow us on-the-fly translations of all the text visibile on a given page.
+
+#### How does it work?
 
 The default mode for `react-18next` is to pull translated `key`-`value` strings out of static JSON files that correspond with the locale set for the browser, or a `lng` GET param set in the URL. This requires any modification or addition of translation strings to go through a `commit` cycle in Git, limiting accessibility to business owners and other non-technical users. Instead we are storing all translatable strings in `AirTable` where they can be easily modified using a user interface similar to Excel.
 
@@ -262,3 +283,17 @@ To set up Atom for pair programming, do the following:
 3. Install Teletype. A Teletype icon (looks like a radio tower) should appear at the bottom of your screen.
 4. Click the Teletype icon and authorize it using your Github credentials
 5. Go back to Atom, click the Teletype icon again and you should now be able to share your workspace or join a portal by pasting in the link to another person's workspace.
+
+### Deployment notifications
+
+#### What is it?
+
+Deployment notifications are automated messages that we send to our internal Slack channel to notify us when the application has been deployed.
+
+#### How do they work?
+
+Upon server start the the application will send a JSON payload to a [Slack incoming webhook](https://api.slack.com/incoming-webhooks "Incoming Webhook"). The webhook then translates the information into a nicely formatted slack message that all developers can see. You can learn more about how they exactly work [here](https://github.com/cds-snc/vac-benefits-directory/blob/master/utils/deploy_notification.js). Important is that you set a `WEBHOOK_URL` environmental variable which is the URL of your Slack Webhook.
+
+#### What do we use them for?
+
+We primarily use the deploy notification to ensure that our production release are making it onto the production server. Each notification includes a link to the pull request that was merged into `master` as well as a timestamp of when the server finished starting up. This allows us to determine how long a production deploy takes after we kick off a production build. Currently from starting the build to deployment takes ~8 minutes.
