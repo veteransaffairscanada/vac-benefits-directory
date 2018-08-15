@@ -296,4 +296,4 @@ Upon server start the the application will send a JSON payload to a [Slack incom
 
 #### What do we use them for?
 
-We primarily use the deploy notification to ensure that our production release are making it onto the production server. Each notification includes a link to the pull request that was merged into `master` as well as a timestamp of when the server finished starting up. This allows us to determin how long a production deploy takes after we kick off a production build. Currently from starting the build to deployment takes ~8 minutes.
+We primarily use the deploy notification to ensure that our production release are making it onto the production server. Each notification includes a link to the pull request that was merged into `master` as well as a timestamp of when the server finished starting up. This allows us to determine how long a production deploy takes after we kick off a production build. Currently from starting the build to deployment takes ~8 minutes.
