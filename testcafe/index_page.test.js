@@ -48,7 +48,7 @@ test("Can click to the favourites page", async t => {
     .ok();
 });
 
-test("clicking search button goes to benefits directory", async t => {
+test("Clicking search button goes to benefits directory", async t => {
   await t
     .typeText(searchField, "disability")
     .click(searchButton)
@@ -58,7 +58,7 @@ test("clicking search button goes to benefits directory", async t => {
     .eql("disability");
 });
 
-test("hitting return in search box goes to benefits directory", async t => {
+test("Hitting return in search box goes to benefits directory", async t => {
   await t
     .typeText(searchField, "disability")
     .pressKey("enter")
