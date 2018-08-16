@@ -57,6 +57,7 @@ const mapStateToProps = reduxState => {
 };
 
 AllBenefits.propTypes = {
+  benefits: PropTypes.array.isRequired,
   searchString: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
