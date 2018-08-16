@@ -239,7 +239,7 @@ if the tests do not pass.
 
 We are using [Testcafé](https://devexpress.github.io/testcafe) to write end-to-end tests. The e2e test suite can be run locally
 via `yarn test:e2e` (with `yarn dev` running). We also run our tests on Windows using the cloud service [BrowserStack](https://www.browserstack.com)
-using the command `yarn test:e2e_windows` (with `yarn dev` not running and the environment variables
+using the command `yarn test:e2e_windows` (with `yarn dev` running and the environment variables
 `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` set appropriately).
 
 ### Contributing to GitHub repo
