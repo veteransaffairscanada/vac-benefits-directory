@@ -4,6 +4,7 @@ const path = require("path");
 const next = require("next");
 const Cookies = require("universal-cookie");
 const helmet = require("helmet");
+const compression = require("compression");
 
 const { parseUserAgent } = require("detect-browser");
 
@@ -53,6 +54,7 @@ Promise.resolve(getAllData()).then(allData => {
         // loaded translations we can bootstrap our routes
         app.prepare().then(() => {
           const server = express();
+          server.use(compression());
           server.use(bodyParser.json());
           server.use(helmet());
           // enable middleware for i18next
