@@ -11,7 +11,7 @@ import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 
-export class A extends Component {
+export class Guided extends Component {
   constructor() {
     super();
     this.cookies = new Cookies();
@@ -45,7 +45,7 @@ export class A extends Component {
   }
 
   setURL = (state = this.state) => {
-    let href = "/A?section=" + state.section;
+    let href = "/guided?section=" + state.section;
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
@@ -104,13 +104,13 @@ export class A extends Component {
       selectedNeeds
     } = this.props;
 
-    let previousSectionneedsQuestion = "serviceHealthIssueQuestion";
+    let previousSectionNeedsQuestion = "serviceHealthIssueQuestion";
     if (patronType === "") {
-      previousSectionneedsQuestion = "patronTypeQuestion";
+      previousSectionNeedsQuestion = "patronTypeQuestion";
     } else if (serviceType === "") {
-      previousSectionneedsQuestion = "serviceTypeQuestion";
+      previousSectionNeedsQuestion = "serviceTypeQuestion";
     } else if (statusAndVitals === "" && serviceType != "WSV (WWII or Korea)") {
-      previousSectionneedsQuestion = "statusAndVitalsQuestion";
+      previousSectionNeedsQuestion = "statusAndVitalsQuestion";
     }
 
     let indexURL = "/index?lng=" + t("current-language-code");
@@ -256,7 +256,7 @@ export class A extends Component {
             t={t}
             nextSection="benefits-directory"
             benefitsDirectoryUrl={benefitsDirectoryUrl}
-            prevSection={previousSectionneedsQuestion}
+            prevSection={previousSectionNeedsQuestion}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
             store={this.props.store}
@@ -316,7 +316,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-A.propTypes = {
+Guided.propTypes = {
   benefits: PropTypes.array.isRequired,
   dispatch: PropTypes.func,
   eligibilityPaths: PropTypes.array.isRequired,
@@ -341,4 +341,4 @@ A.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withI18next()(A));
+)(withI18next()(Guided));
