@@ -8,16 +8,18 @@ import { connect } from "react-redux";
 import { Grid, Button, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
+import { css } from "react-emotion";
+
+const root = css`
+  padding: 25px;
+  padding-top: 20px;
+  background-color: #f5f5f5;
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+`;
 
 const styles = theme => ({
-  root: {
-    padding: "25px",
-    paddingTop: "20px",
-    backgroundColor: "#f5f5f5",
-    [theme.breakpoints.down(600)]: {
-      display: "none"
-    }
-  },
   summary: {
     opacity: "1 !important",
     userSelect: "inherit"
@@ -85,7 +87,7 @@ export class ProfileNeedsSelector extends Component {
   render() {
     const { t, pageWidth, store, classes } = this.props;
     return (
-      <Paper className={classes.root}>
+      <Paper className={root}>
         <Typography variant="title" className={classnames(classes.filterTitle)}>
           {t("filters")}{" "}
           {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
