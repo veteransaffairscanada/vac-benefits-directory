@@ -65,6 +65,13 @@ export class A extends Component {
 
   setSection = section => {
     this.setState({ section: section });
+    let sectionMap = {
+      patronTypeQuestion: 1,
+      serviceTypeQuestion: 2,
+      statusAndVitalsQuestion: 3,
+      serviceHealthIssueQuestion: 4,
+      needsQuestion: 5
+    };
     const {
       setPatronType,
       setServiceType,
@@ -79,25 +86,12 @@ export class A extends Component {
       () => setServiceHealthIssue(""),
       () => setSelectedNeeds({})
     ];
-    const current_section_index = section[1];
+    const current_section_index = sectionMap[section];
     setters.forEach((setter, i) => {
       if (i >= current_section_index) {
         setter();
       }
     });
-  };
-
-  toggleFavourite = id => {
-    let favouriteBenefits = this.cookies.get("favouriteBenefits")
-      ? this.cookies.get("favouriteBenefits")
-      : [];
-    if (favouriteBenefits.indexOf(id) > -1) {
-      favouriteBenefits.splice(favouriteBenefits.indexOf(id), 1);
-    } else {
-      favouriteBenefits.push(id);
-    }
-    this.cookies.set("favouriteBenefits", favouriteBenefits, { path: "/" });
-    this.setState({ favouriteBenefits: favouriteBenefits });
   };
 
   sectionToDisplay = section => {

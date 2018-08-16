@@ -93,11 +93,16 @@ describe("A", () => {
   });
 
   it("componentWillMount sets state correctly from empty url", () => {
-    expect(mountedA().state().section).toEqual("A1");
+    expect(mountedA().state().section).toEqual("patronTypeQuestion");
   });
 
   it("sectionToDisplay returns correct section", () => {
-    ["A1", "A2", "A3", "A4"].forEach(section => {
+    [
+      "patronTypeQuestion",
+      "serviceTypeQuestion",
+      "statusAndVitalsQuestion",
+      "serviceHealthIssueQuestion"
+    ].forEach(section => {
       let AInstance = mountedA().instance();
       expect(AInstance.sectionToDisplay(section).props.id).toEqual(section);
     });
@@ -111,7 +116,7 @@ describe("A", () => {
 
   it("clears redux data for future questions", () => {
     let AInstance = mountedA().instance();
-    AInstance.setSection("A2");
+    AInstance.setSection("serviceTypeQuestion");
     expect(props.setStatusAndVitals).toBeCalledWith("");
     expect(props.setSelectedNeeds).toBeCalledWith({});
   });
