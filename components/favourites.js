@@ -14,7 +14,7 @@ import Link from "next/link";
 
 const styles = theme => ({
   root: {
-    maxWidth: theme.maxWidth,
+    maxWidth: "1200px",
     margin: "0 auto",
     paddingLeft: "16px",
     paddingRight: "16px"

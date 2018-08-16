@@ -42,7 +42,7 @@ const styles = theme => ({
   },
   container: {
     margin: "0 auto",
-    maxWidth: theme.maxWidth,
+    maxWidth: "1200px",
     paddingLeft: "16px",
     paddingRight: "16px"
   },

@@ -46,7 +46,7 @@ const styles = theme => ({
     }
   },
   container: {
-    maxWidth: theme.maxWidth,
+    maxWidth: "1200px",
     margin: "0 auto",
     paddingLeft: "16px",
     paddingRight: "16px"

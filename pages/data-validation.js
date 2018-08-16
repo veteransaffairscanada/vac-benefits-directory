@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 
 const styles = theme => ({
   root: {
-    maxWidth: theme.maxWidth,
+    maxWidth: "1200px",
     marginBottom: theme.spacing.unit * 3,
     marginTop: theme.spacing.unit * 3,
     overflowX: "auto",
