@@ -104,15 +104,13 @@ const styles = () => ({
     paddingRight: "10px"
   },
   parentIcon: {
-    flexGrow: 1,
     marginRight: 15,
     fontSize: 40,
     transform: "scale(.9)",
     color: "#434343"
   },
   headerDesc: {
-    width: "auto",
-    flexGrow: 3,
+    flexGrow: 1,
     color: "#434343"
   },
   headerUrl: {
