@@ -18,7 +18,7 @@ import NeedTag from "./need_tag";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
 import { css } from "react-emotion";
 
-const thing = css`
+const cardTop = css`
   background-color: #f1f7fc;
   border-radius: 0px;
   border-bottom: 1px solid #8b8b8b;
@@ -58,15 +58,6 @@ const styles = () => ({
     marginBottom: "0px",
     marginTop: "0px",
     "& $cardBottom": { backgroundColor: "#f5f5f5" }
-  },
-  cardTop: {
-    backgroundColor: "#f1f7fc",
-    borderRadius: "0px",
-    borderBottom: "1px solid #8b8b8b",
-    padding: "15px 15px 15px 10px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
   },
   cardBody: {
     padding: "25px",
@@ -253,7 +244,7 @@ export class BenefitCard extends Component {
         <div className={classes.root}>
           {parentBenefits.length > 0 &&
           benefit.availableIndependently === "Requires Gateway Benefit" ? (
-            <Paper className={thing}>
+            <Paper className={cardTop}>
               <ErrorOutlineIcon className={classes.parentIcon} />
               <span className={classes.headerDesc}>
                 <span>{t("benefits_b.card_header_1") + " "}</span>
