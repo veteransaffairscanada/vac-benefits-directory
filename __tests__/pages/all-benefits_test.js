@@ -6,6 +6,9 @@ import React from "react";
 import { AllBenefits } from "../../pages/all-benefits";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import examplesFixture from "../fixtures/examples";
+import needsFixture from "../fixtures/needs";
+
 import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -27,6 +30,7 @@ describe("AllBenefits", () => {
 
   beforeEach(() => {
     props = {
+      classes: {},
       translations: [],
       t: key => key,
       i18n: {
@@ -41,11 +45,14 @@ describe("AllBenefits", () => {
     _mountedAllBenefits = undefined;
     mockStore = configureStore();
     reduxData = {
-      needs: [],
-      selectedNeeds: {},
       benefits: benefitsFixture,
-      examples: [],
-      eligibilityPaths: eligibilityPathsFixture
+      eligibilityPaths: eligibilityPathsFixture,
+      examples: examplesFixture,
+      needs: needsFixture,
+      searchString: "",
+      selectedNeeds: {},
+      sortBy: "relevance",
+      favouriteBenefits: [benefitsFixture[0].id]
     };
     props.store = mockStore(reduxData);
   });
@@ -56,7 +63,6 @@ describe("AllBenefits", () => {
   });
 
   it("shows the list of all benefits available", () => {
-    expect(mountedAllBenefits().find(".benefitCard").length).toEqual(3);
     mountedAllBenefits()
       .find("BenefitCard")
       .map((bc, i) => {
