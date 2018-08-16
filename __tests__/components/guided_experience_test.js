@@ -83,11 +83,11 @@ describe("GuidedExperience", () => {
     mounted_GuidedExperience()
       .find("#jumpButton0")
       .simulate("click");
-    expect(props.setSection).toBeCalledWith("A1");
+    expect(props.setSection).toBeCalledWith("patronTypeQuestion");
   });
 
   it("the Next button does not contain an href if nextSection != benefits-directory", () => {
-    props.nextSection = "A2";
+    props.nextSection = "serviceTypeQuestion";
     expect(
       mounted_GuidedExperience()
         .find("Button")
