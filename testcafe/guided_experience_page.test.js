@@ -21,7 +21,7 @@ const benefitsDirectoryScreen = Selector("#BB");
 const needsScreen = ReactSelector("GuidedExperienceNeeds");
 
 fixture("Guided Experience")
-  .page("http://localhost:3000/A")
+  .page("http://localhost:3000/guided")
   .beforeEach(async () => {
     await waitForReact();
   });
