@@ -13,6 +13,12 @@ import Print from "@material-ui/icons/Print";
 import Link from "next/link";
 
 const styles = theme => ({
+  root: {
+    maxWidth: theme.maxWidth,
+    margin: "0 auto",
+    paddingLeft: "16px",
+    paddingRight: "16px"
+  },
   backLink: {
     fontSize: "20px",
     fontWeight: "100",
@@ -102,15 +108,7 @@ export class Favourites extends Component {
     );
 
     return (
-      <div
-        id="favourites"
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          paddingLeft: "16px",
-          paddingRight: "16px"
-        }}
-      >
+      <div id="favourites" className={classes.root}>
         <Grid
           container
           spacing={24}

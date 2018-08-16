@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import Router from "next/router";
 
 import React from "react";
-import { A } from "../../pages/A";
+import { Guided } from "../../pages/guided";
 import benefitsFixture from "../fixtures/benefits";
 
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
@@ -18,18 +18,18 @@ expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
-describe("A", () => {
+describe("Guided", () => {
   Router.replace = jest.fn();
 
   let props;
-  let _mountedA;
+  let _mountedGuided;
   let mockStore, reduxData;
 
-  const mountedA = () => {
-    if (!_mountedA) {
-      _mountedA = shallow(<A {...props} {...reduxData} />);
+  const mountedGuided = () => {
+    if (!_mountedGuided) {
+      _mountedGuided = shallow(<Guided {...props} {...reduxData} />);
     }
-    return _mountedA;
+    return _mountedGuided;
   };
 
   beforeEach(() => {
@@ -57,7 +57,7 @@ describe("A", () => {
       setServiceHealthIssue: jest.fn(),
       favouriteBenefits: []
     };
-    _mountedA = undefined;
+    _mountedGuided = undefined;
     mockStore = configureStore();
     reduxData = {
       benefits: benefitsFixture,
@@ -75,43 +75,48 @@ describe("A", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mountedA().html();
+    let html = mountedGuided().html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has a correct setURL function", () => {
     reduxData.selectedNeeds = { health: "health", financial: "financial" };
-    let AInstance = mountedA().instance();
+    let AInstance = mountedGuided().instance();
     const state = {
       section: "S"
     };
     const expectedURL =
-      "/A?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF&lng=en";
+      "/guided?section=S&selectedNeeds=health,financial&patronType=family&serviceType=CAF&lng=en";
     AInstance.setState(state);
     AInstance.setURL(state);
     expect(Router.replace).toBeCalledWith(expectedURL);
   });
 
   it("componentWillMount sets state correctly from empty url", () => {
-    expect(mountedA().state().section).toEqual("A1");
+    expect(mountedGuided().state().section).toEqual("patronTypeQuestion");
   });
 
   it("sectionToDisplay returns correct section", () => {
-    ["A1", "A2", "A3", "A4"].forEach(section => {
-      let AInstance = mountedA().instance();
+    [
+      "patronTypeQuestion",
+      "serviceTypeQuestion",
+      "statusAndVitalsQuestion",
+      "serviceHealthIssueQuestion"
+    ].forEach(section => {
+      let AInstance = mountedGuided().instance();
       expect(AInstance.sectionToDisplay(section).props.id).toEqual(section);
     });
   });
 
   it("setSection sets the state in section", () => {
-    let AInstance = mountedA().instance();
+    let AInstance = mountedGuided().instance();
     AInstance.setSection("AA");
-    expect(mountedA().state("section")).toEqual("AA");
+    expect(mountedGuided().state("section")).toEqual("AA");
   });
 
   it("clears redux data for future questions", () => {
-    let AInstance = mountedA().instance();
-    AInstance.setSection("A2");
+    let AInstance = mountedGuided().instance();
+    AInstance.setSection("serviceTypeQuestion");
     expect(props.setStatusAndVitals).toBeCalledWith("");
     expect(props.setSelectedNeeds).toBeCalledWith({});
   });

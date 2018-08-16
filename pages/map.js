@@ -12,7 +12,6 @@ import { Grid, Button } from "@material-ui/core";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper/index";
 import Link from "next/link";
-import "../utils/polyfills";
 
 const styles = theme => ({
   paper: {
@@ -33,7 +32,7 @@ const styles = theme => ({
     marginTop: "30px"
   },
   container: {
-    maxWidth: "1200px",
+    maxWidth: theme.maxWidth,
     margin: "0 auto",
     paddingLeft: "16px",
     paddingRight: "16px"
