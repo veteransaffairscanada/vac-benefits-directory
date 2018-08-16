@@ -108,7 +108,7 @@ export class Favourites extends Component {
     );
 
     return (
-      <div className={classes.root}>
+      <div id="favourites" className={classes.root}>
         <Grid
           container
           spacing={24}

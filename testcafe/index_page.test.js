@@ -1,38 +1,69 @@
 import { Selector } from "testcafe";
-import { waitForReact } from "testcafe-react-selectors";
+import { waitForReact, ReactSelector } from "testcafe-react-selectors";
 
-const BDSelector = Selector("#BB");
-const serviceMemberSelector = Selector("input").withAttribute(
-  "value",
-  "service-person"
-);
-const CAFSelector = Selector("input").withAttribute("value", "CAF");
-const releasedSelector = Selector("input").withAttribute(
-  "value",
-  "releasedAlive"
-);
-const healthIssueSelector = Selector("input").withAttribute("value", "true");
-const firstNeedSelector = Selector("button").nth(4);
+const languageButton = Selector("#changeLanguage");
+const guidedExperienceButton = Selector("#heroGuidedLink");
+const benefitsDirectoryButton = Selector("#heroBenefitsLink");
+const favouritesPageButton = Selector("#FavouritesPage");
+const searchButton = Selector("#searchButtonLink");
+const searchField = Selector("#inputField");
+const guidedExperience = Selector("#guidedExperience");
+const benefitsDirectory = Selector("#BB");
+const benefitsDirectorySearchField = Selector("#bbSearchField");
+const favouritesPage = Selector("#favourites");
 
-fixture("Guided Experience")
+fixture("Index page")
   .page("http://localhost:3000/")
   .beforeEach(async () => {
     await waitForReact();
   });
 
-test("Can click throught GE and get to BD", async t => {
+test("French button changes i18n language", async t => {
+  const initialI18nState = await ReactSelector("I18n").getReact();
+  const initialLanguage = initialI18nState.props.i18n.language;
+
+  await t.click(languageButton);
+  const i18nState = await ReactSelector("I18n").getReact();
+  await t.expect(i18nState.props.i18n.language).notEql(initialLanguage);
+});
+
+test("Can click to the guided experience", async t => {
   await t
-    .click("#heroGuidedLink")
-    .click(serviceMemberSelector)
-    .click("#nextButton")
-    .click(CAFSelector)
-    .click("#nextButton")
-    .click(releasedSelector)
-    .click("#nextButton")
-    .click(healthIssueSelector)
-    .click("#nextButton")
-    .click(firstNeedSelector)
-    .click("#nextButton")
-    .expect(BDSelector.exists)
+    .click(guidedExperienceButton)
+    .expect(guidedExperience.exists)
     .ok();
+});
+
+test("Can click to the benefits directory", async t => {
+  await t
+    .click(benefitsDirectoryButton)
+    .expect(benefitsDirectory.exists)
+    .ok();
+});
+
+test("Can click to the favourites page", async t => {
+  await t
+    .click(favouritesPageButton)
+    .expect(favouritesPage.exists)
+    .ok();
+});
+
+test("Clicking search button goes to benefits directory", async t => {
+  await t
+    .typeText(searchField, "disability")
+    .click(searchButton)
+    .expect(benefitsDirectory.exists)
+    .ok()
+    .expect(benefitsDirectorySearchField.value)
+    .eql("disability");
+});
+
+test("Hitting return in search box goes to benefits directory", async t => {
+  await t
+    .typeText(searchField, "disability")
+    .pressKey("enter")
+    .expect(benefitsDirectory.exists)
+    .ok()
+    .expect(benefitsDirectorySearchField.value)
+    .eql("disability");
 });

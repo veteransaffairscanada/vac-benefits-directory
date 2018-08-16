@@ -135,7 +135,7 @@ export class App extends Component {
                   {t("index.favourites_prompt")}
                 </p>
                 <Button
-                  id="Favourites Page"
+                  id="FavouritesPage"
                   variant="raised"
                   fullWidth
                   color="secondary"
