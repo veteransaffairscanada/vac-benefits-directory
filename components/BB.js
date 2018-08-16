@@ -19,7 +19,7 @@ import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
 
-const styles = () => ({
+const styles = theme => ({
   buttonBarButton: {
     fontWeight: "100",
     marginRight: "20px",
@@ -35,7 +35,7 @@ const styles = () => ({
     marginTop: "34px"
   },
   container: {
-    maxWidth: "1200px",
+    maxWidth: theme.maxWidth,
     margin: "0 auto",
     width: "100%"
   },

@@ -15,7 +15,7 @@ import "../utils/polyfills";
 
 const styles = theme => ({
   root: {
-    maxWidth: "1200px",
+    maxWidth: theme.maxWidth,
     marginBottom: theme.spacing.unit * 3,
     marginTop: theme.spacing.unit * 3,
     overflowX: "auto",
