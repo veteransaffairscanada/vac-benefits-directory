@@ -48,6 +48,7 @@ const container = css`
 const prevButton = css`
   margin-top: 20px !important;
   margin-left: 15px !important;
+  text-transform: none;
 `;
 
 const nextButton = css`
@@ -55,6 +56,7 @@ const nextButton = css`
   color: white;
   margin-top: 0 !important;
   margin: 25px !important;
+  text-transform: none;
   &:hover {
     background: #606060 !important;
   }
@@ -94,7 +96,6 @@ export class GuidedExperience extends Component {
         <div id="guidedExperience" className={container}>
           <Button
             size="medium"
-            style={{ textTransform: "none" }}
             href={
               this.props.prevSection === "index"
                 ? this.props.indexURL
@@ -168,7 +169,6 @@ export class GuidedExperience extends Component {
             <Button
               id="nextButton"
               size="medium"
-              style={{ textTransform: "none" }}
               href={
                 this.props.nextSection === "benefits-directory"
                   ? this.props.benefitsDirectoryUrl
