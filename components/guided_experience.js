@@ -88,7 +88,7 @@ export class GuidedExperience extends Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <div className={classes.container}>
+        <div id="guidedExperience" className={classes.container}>
           <Button
             size="medium"
             style={{ textTransform: "none" }}

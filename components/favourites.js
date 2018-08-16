@@ -103,6 +103,7 @@ export class Favourites extends Component {
 
     return (
       <div
+        id="favourites"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
