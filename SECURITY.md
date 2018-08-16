@@ -10,12 +10,9 @@ and inform CDS Security.
 
 Checkout master.
 
-- First run testcafe locally to ensure that all tests still pass.
-  - ensure that `yarn dev` is running
-  - `yarn test:e2e`
-- Assuming tests pass locally, run on BrowserStack
-  - ensure that `yarn dev` is _not_ running
-  - `yarn test:e2e_windows`
+- ensure that `yarn dev` is running and you have `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` set appropriately
+- `yarn test:e2e` to run testcafe locally
+- `yarn test:e2e_windows` to run on BrowserStack
 
 If any tests fail locally or on Windows, file the appropriate issues and add to the
 current sprint.
