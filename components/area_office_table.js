@@ -108,7 +108,8 @@ export class AreaOfficeTable extends Component {
           return 0;
       }
     });
-    if (Object.values(officeDistance)[0]) {
+
+    if (Object.keys(officeDistance).length > 0) {
       this.props.setClosestAreaOffice(sortedOffices[0]);
     }
     return sortedOffices;
