@@ -3,81 +3,68 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 
 import { withI18next } from "../lib/withI18next";
+import { withStyles } from "@material-ui/core/styles";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import BenefitCard from "../components/benefit_cards";
+import BenefitList from "../components/benefit_list";
+
+const styles = theme => ({
+  container: {
+    maxWidth: theme.maxWidth,
+    margin: "0 auto",
+    paddingLeft: "16px",
+    paddingRight: "16px"
+  },
+  root: {
+    marginLeft: "15px",
+    marginRight: "15px"
+  }
+});
 
 export class AllBenefits extends Component {
   render() {
-    let veteranBenefitIds = [];
-    let familyBenefitIds = [];
-
-    this.props.eligibilityPaths.forEach(ep => {
-      if (ep.patronType === "service-person") {
-        veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
-      }
-      if (ep.patronType === "family") {
-        familyBenefitIds = familyBenefitIds.concat(ep.benefits);
-      }
-    });
-
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true} showRefreshCache={false}>
-        <div
-          style={{ padding: 12, maxWidth: "1200px", margin: "0 auto" }}
-          className="allBenefitsList"
-        >
-          <h1>{t("all-benefits.List of all benefits")}</h1>
-          <Grid container spacing={24}>
+        <div className={this.props.classes.container}>
+          <div className={this.props.classes.root}>
+            <h1>{t("all-benefits.List of all benefits")}</h1>
             <Grid item xs={12}>
               <Grid container spacing={24}>
-                {this.props.benefits.map((benefit, i) => (
-                  <BenefitCard
-                    className="benefitCard"
-                    id={"bc" + i}
-                    benefit={benefit}
-                    allBenefits={this.props.benefits}
-                    veteranBenefitIds={veteranBenefitIds}
-                    familyBenefitIds={familyBenefitIds}
-                    t={this.props.t}
-                    key={i}
-                    onRef={foo => foo}
-                    searchString=""
-                    store={this.props.store}
-                    examples={this.props.examples}
-                    showFavourite={false}
-                  />
-                ))}
+                <BenefitList
+                  t={t}
+                  filteredBenefits={this.props.benefits}
+                  sortByValue={this.props.sortBy}
+                  searchString={this.props.searchString}
+                  showFavourites={true}
+                  store={this.props.store}
+                />
               </Grid>
             </Grid>
-          </Grid>
+          </div>
         </div>
       </Layout>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    benefits: state.benefits,
-    examples: state.examples,
-    eligibilityPaths: state.eligibilityPaths,
-    favouriteBenefits: state.favouriteBenefits,
-    needs: state.needs,
-    selectedNeeds: state.selectedNeeds
+    benefits: reduxState.benefits,
+    searchString: reduxState.searchString,
+    sortBy: reduxState.sortBy
   };
 };
 
 AllBenefits.propTypes = {
-  benefits: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
+  searchString: PropTypes.string.isRequired,
+  classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  store: PropTypes.object,
-  needs: PropTypes.array.isRequired,
-  selectedNeeds: PropTypes.object.isRequired
+  sortBy: PropTypes.string.isRequired,
+  store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withI18next()(AllBenefits));
+export default withStyles(styles)(
+  connect(mapStateToProps)(withI18next()(AllBenefits))
+);
