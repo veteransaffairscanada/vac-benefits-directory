@@ -11,7 +11,6 @@ import ReactMoment from "react-moment";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import "../utils/polyfills";
 
 const styles = theme => ({
   root: {
