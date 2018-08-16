@@ -78,7 +78,8 @@ export class App extends Component {
 
   render() {
     const { i18n, t } = this.props;
-    let urlGE = "A?section=A1&lng=" + t("current-language-code");
+    let urlGE =
+      "A?section=patronTypeQuestion&lng=" + t("current-language-code");
     let urlBD = "benefits-directory?lng=" + t("current-language-code");
     return (
       <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
