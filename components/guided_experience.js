@@ -30,7 +30,7 @@ const BlueBar = styled("div")`
   margin-bottom: 40px;
 `;
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     border: "solid 1px grey",
     backgroundColor: "white",
