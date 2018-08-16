@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import styled, { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
 const theme = createMuiTheme({
   palette: {
@@ -40,7 +41,7 @@ const box = css`
 
 const container = css`
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: ${globalTheme.maxWidth};
   padding-left: 16px;
   padding-right: 16px;
 `;
