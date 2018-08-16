@@ -46,8 +46,8 @@ const styles = theme => ({
     }
   },
   container: {
+    maxWidth: theme.maxWidth,
     margin: "0 auto",
-    maxWidth: "1200px",
     paddingLeft: "16px",
     paddingRight: "16px"
   },
@@ -78,7 +78,8 @@ export class App extends Component {
 
   render() {
     const { i18n, t } = this.props;
-    let urlGE = "A?section=A1&lng=" + t("current-language-code");
+    let urlGE =
+      "guided?section=patronTypeQuestion&lng=" + t("current-language-code");
     let urlBD = "benefits-directory?lng=" + t("current-language-code");
     return (
       <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
@@ -134,7 +135,7 @@ export class App extends Component {
                   {t("index.favourites_prompt")}
                 </p>
                 <Button
-                  id="Favourites Page"
+                  id="FavouritesPage"
                   variant="raised"
                   fullWidth
                   color="secondary"

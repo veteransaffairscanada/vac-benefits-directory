@@ -59,10 +59,16 @@ describe("PlaceSearch", () => {
   describe("onPlacesChanged", () => {
     it("sets selectedState to first result of getPlaces", () => {
       mounted_PlaceSearch().state("onSearchBoxMounted")({
-        getPlaces: () => [{ geometry: { location: "foo" } }]
+        getPlaces: () => [
+          { geometry: { location: { lat: () => 0, lng: () => 0 } } }
+        ]
       });
       mounted_PlaceSearch().state("onPlacesChanged")();
-      expect(mounted_PlaceSearch().state("selected")).toEqual("foo");
+      expect(
+        mounted_PlaceSearch()
+          .state("selected")
+          .lat()
+      ).toEqual(0);
     });
   });
 

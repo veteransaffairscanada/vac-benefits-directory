@@ -13,7 +13,7 @@ import { withStyles } from "@material-ui/core/styles/index";
 
 const styles = theme => ({
   root: {
-    maxWidth: "1200px",
+    maxWidth: theme.maxWidth,
     marginTop: theme.spacing.unit * 3,
     margin: "0 auto"
   },

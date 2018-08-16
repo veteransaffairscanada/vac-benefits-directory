@@ -30,7 +30,7 @@ const BlueBar = styled("div")`
   margin-bottom: 40px;
 `;
 
-const styles = () => ({
+const styles = theme => ({
   root: {
     border: "solid 1px grey",
     backgroundColor: "white",
@@ -42,7 +42,7 @@ const styles = () => ({
   },
   container: {
     margin: "0 auto",
-    maxWidth: "1200px",
+    maxWidth: theme.maxWidth,
     paddingLeft: "16px",
     paddingRight: "16px"
   },
@@ -76,10 +76,10 @@ const styles = () => ({
 
 export class GuidedExperience extends Component {
   sectionMap = {
-    patronType: "A1",
-    serviceType: "A2",
-    statusAndVitals: "A3",
-    serviceHealthIssue: "A4"
+    patronType: "patronTypeQuestion",
+    serviceType: "serviceTypeQuestion",
+    statusAndVitals: "statusAndVitalsQuestion",
+    serviceHealthIssue: "serviceHealthIssueQuestion"
   };
 
   render() {
@@ -88,7 +88,7 @@ export class GuidedExperience extends Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <div className={classes.container}>
+        <div id="guidedExperience" className={classes.container}>
           <Button
             size="medium"
             style={{ textTransform: "none" }}
@@ -217,6 +217,4 @@ GuidedExperience.propTypes = {
   indexURL: PropTypes.string
 };
 
-export default connect(mapStateToProps)(
-  withStyles(styles, { withTheme: true })(GuidedExperience)
-);
+export default connect(mapStateToProps)(withStyles(styles)(GuidedExperience));

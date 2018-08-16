@@ -45,12 +45,12 @@ const theme = createMuiTheme({
       ripplePulsate: { opacity: 0 }
     }
   },
-
+  maxWidth: "1200px",
   palette: {
     secondary: {
       light: "#f1f7fc",
       main: "#f1f7fc",
-      dark: "#d8dee2", // '#002884',
+      dark: "#d8dee2",
       contrastText: "#006cc9"
     }
   },
