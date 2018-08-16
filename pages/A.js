@@ -18,7 +18,7 @@ export class A extends Component {
     this.cookies = new Cookies();
     this.state = {
       favouriteBenefits: [],
-      section: "A1"
+      section: "patronTypeQuestion"
     };
   }
 
@@ -26,14 +26,14 @@ export class A extends Component {
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
       const newState = {
-        section: matches[1] || "A1"
+        section: matches[1] || "patronTypeQuestion"
       };
       this.setState(newState);
     };
 
     const newState = {
       favouriteBenefits: this.props.favouriteBenefits,
-      section: this.props.url.query.section || "A1"
+      section: this.props.url.query.section || "patronTypeQuestion"
     };
 
     this.setState(newState);
@@ -111,13 +111,13 @@ export class A extends Component {
       selectedNeeds
     } = this.props;
 
-    let previousSectionA5 = "A4";
+    let previousSectionneedsQuestion = "serviceHealthIssueQuestion";
     if (patronType === "") {
-      previousSectionA5 = "A1";
+      previousSectionneedsQuestion = "patronTypeQuestion";
     } else if (serviceType === "") {
-      previousSectionA5 = "A2";
+      previousSectionneedsQuestion = "serviceTypeQuestion";
     } else if (statusAndVitals === "" && serviceType != "WSV (WWII or Korea)") {
-      previousSectionA5 = "A3";
+      previousSectionneedsQuestion = "statusAndVitalsQuestion";
     }
 
     let indexURL = "/index?lng=" + t("current-language-code");
@@ -140,17 +140,17 @@ export class A extends Component {
     });
 
     switch (true) {
-      case section === "A1":
+      case section === "patronTypeQuestion":
         return (
           <GuidedExperience
-            id="A1"
+            id="patronTypeQuestion"
             stepNumber={0}
             nextSection={
               patronType === "organization"
                 ? "benefits-directory"
                 : patronType === ""
-                  ? "A5"
-                  : "A2"
+                  ? "needsQuestion"
+                  : "serviceTypeQuestion"
             }
             prevSection="index"
             benefitsDirectoryUrl={benefitsDirectoryUrl}
@@ -167,20 +167,20 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case section === "A2":
+      case section === "serviceTypeQuestion":
         return (
           <GuidedExperience
-            id="A2"
+            id="serviceTypeQuestion"
             stepNumber={1}
             nextSection={
               serviceType === "WSV (WWII or Korea)" &&
               patronType === "service-person"
-                ? "A4"
+                ? "serviceHealthIssueQuestion"
                 : serviceType === ""
-                  ? "A5"
-                  : "A3"
+                  ? "needsQuestion"
+                  : "statusAndVitalsQuestion"
             }
-            prevSection="A1"
+            prevSection="patronTypeQuestion"
             setSection={this.setSection}
             subtitle={t("GE.serviceType")}
             t={t}
@@ -193,7 +193,7 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case section === "A3":
+      case section === "statusAndVitalsQuestion":
         question = "statusAndVitals";
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
@@ -206,10 +206,14 @@ export class A extends Component {
         }
         return (
           <GuidedExperience
-            id="A3"
+            id="statusAndVitalsQuestion"
             stepNumber={2}
-            nextSection={statusAndVitals === "" ? "A5" : "A4"}
-            prevSection="A2"
+            nextSection={
+              statusAndVitals === ""
+                ? "needsQuestion"
+                : "serviceHealthIssueQuestion"
+            }
+            prevSection="serviceTypeQuestion"
             setSection={this.setSection}
             subtitle={t("GE." + question)}
             t={t}
@@ -223,13 +227,17 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case section === "A4":
+      case section === "serviceHealthIssueQuestion":
         return (
           <GuidedExperience
-            id="A4"
+            id="serviceHealthIssueQuestion"
             stepNumber={3}
-            nextSection="A5"
-            prevSection={serviceType === "WSV (WWII or Korea)" ? "A2" : "A3"}
+            nextSection="needsQuestion"
+            prevSection={
+              serviceType === "WSV (WWII or Korea)"
+                ? "serviceTypeQuestion"
+                : "statusAndVitalsQuestion"
+            }
             setSection={this.setSection}
             subtitle={t(
               this.props.statusAndVitals === "deceased"
@@ -247,15 +255,15 @@ export class A extends Component {
             />
           </GuidedExperience>
         );
-      case section === "A5":
+      case section === "needsQuestion":
         return (
           <GuidedExperience
-            id="A5"
+            id="needsQuestion"
             stepNumber={4}
             t={t}
             nextSection="benefits-directory"
             benefitsDirectoryUrl={benefitsDirectoryUrl}
-            prevSection={previousSectionA5}
+            prevSection={previousSectionneedsQuestion}
             subtitle={t("B3.What do you need help with?")}
             setSection={this.setSection}
             store={this.props.store}

@@ -76,10 +76,10 @@ const styles = () => ({
 
 export class GuidedExperience extends Component {
   sectionMap = {
-    patronType: "A1",
-    serviceType: "A2",
-    statusAndVitals: "A3",
-    serviceHealthIssue: "A4"
+    patronType: "patronTypeQuestion",
+    serviceType: "serviceTypeQuestion",
+    statusAndVitals: "statusAndVitalsQuestion",
+    serviceHealthIssue: "serviceHealthIssueQuestion"
   };
 
   render() {
