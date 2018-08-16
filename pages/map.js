@@ -32,7 +32,7 @@ const styles = theme => ({
     marginTop: "30px"
   },
   container: {
-    maxWidth: "1200px",
+    maxWidth: theme.maxWidth,
     margin: "0 auto",
     paddingLeft: "16px",
     paddingRight: "16px"
