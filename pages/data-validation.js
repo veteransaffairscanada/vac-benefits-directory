@@ -119,7 +119,8 @@ export class DataValidation extends Component {
             });
           }
           return resp;
-        });
+        })
+        .catch(error => error);
     };
     this.props.benefits.map(await checkUrls);
     this.setState({

@@ -9,7 +9,7 @@ var checkURL = (exports.checkURL = async function checkURL(
 ) {
   // Find the benefit that needs its URLs checked
   let benefit = data.benefits.find(b => b.id === payload.id);
-  if (benefit) {
+  if (typeof benefit !== "undefined") {
     // Check if benefit ID is in cache and has not yet expired
     if (urlCache[benefit.id] && urlCache[benefit.id].timestamp > Date.now()) {
       return urlCache;

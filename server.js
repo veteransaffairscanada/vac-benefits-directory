@@ -111,6 +111,7 @@ Promise.resolve(getAllData()).then(allData => {
             } else if (req.url.includes("refresh")) {
               console.log("Refreshing Cache ...");
               let referrer = req.header("Referer") || "/";
+              urlCache = {};
               Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
                 data = newData;
                 res.redirect(referrer);

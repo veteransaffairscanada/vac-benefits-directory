@@ -10,7 +10,8 @@ module.exports = {
     "pages/*.js",
     "components/*.js",
     "components/stats/*.js",
-    "selectors/*"
+    "selectors/*.js",
+    "utils/url_check.js"
   ],
   coveragePathIgnorePatterns: ["pages/_app.js", "pages/_document.js"],
   coverageThreshold: {
