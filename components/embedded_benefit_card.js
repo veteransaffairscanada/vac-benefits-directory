@@ -62,6 +62,7 @@ export class EmbeddedBenefitCard extends Component {
       <Paper className={classes.root}>
         <Button
           target="_blank"
+          rel="noopener noreferrer"
           className={classes.heading}
           onClick={() =>
             this.logExit(
