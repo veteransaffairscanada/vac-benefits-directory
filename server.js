@@ -34,6 +34,7 @@ const copyValidTables = (oldData, newData) => {
     .forEach(tableName => {
       oldData[tableName] = newData[tableName];
     });
+  oldData.timestamp = newData.timestamp;
 };
 
 Promise.resolve(getAllData()).then(allData => {
