@@ -145,7 +145,6 @@ export class DataValidation extends Component {
       this.createData(
         "Size of Benefits Table",
         benefits.length,
-
         benefits.length > 0 ? true : false
       ),
       this.createData(

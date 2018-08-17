@@ -29,14 +29,12 @@ var checkURL = (exports.checkURL = async function checkURL(
 });
 
 var fetchUrl = async function fetchURL(url) {
-  return await fetch(url)
-    .then(res => res)
-    .then(
-      () => {
-        return true;
-      },
-      () => {
-        return false;
-      }
-    );
+  return await fetch(url).then(
+    () => {
+      return true;
+    },
+    () => {
+      return false;
+    }
+  );
 };
