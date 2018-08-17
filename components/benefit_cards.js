@@ -324,6 +324,7 @@ export class BenefitCard extends Component {
                   ? benefit.benefitPageEn
                   : benefit.benefitPageFr
               }
+              rel="noopener noreferrer"
             >
               {this.props.t("Find out more")}
               <KeyboardBackspace className={classes.rightArrowIcon} />
