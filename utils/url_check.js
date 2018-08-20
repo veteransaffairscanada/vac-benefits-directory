@@ -30,8 +30,8 @@ var checkURL = (exports.checkURL = async function checkURL(
 
 var fetchUrl = async function fetchURL(url) {
   return await fetch(url).then(
-    () => {
-      return true;
+    resp => {
+      return resp.url !== url ? false : true;
     },
     () => {
       return false;
