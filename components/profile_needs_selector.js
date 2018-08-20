@@ -79,11 +79,6 @@ export class ProfileNeedsSelector extends Component {
     this.props.setSelectedNeeds({});
   };
 
-  toggleOpenState = () => {
-    let newState = !this.state.open;
-    this.setState({ open: newState });
-  };
-
   render() {
     const { t, pageWidth, store, classes } = this.props;
     return (

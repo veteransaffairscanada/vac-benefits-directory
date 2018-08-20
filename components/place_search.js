@@ -113,8 +113,7 @@ export class PlaceSearch extends Component {
               type="text"
               placeholder={this.props.t("map.search-location-prompt")}
               className={this.props.classes.searchInputField}
-              onKeyDown={this.onKeyPress}
-              onKeyUp={this.onKeyDown}
+              onKeyDown={() => this.onKeyPress()}
             />
           </div>
           <div>

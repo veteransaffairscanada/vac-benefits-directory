@@ -33,6 +33,7 @@ class Footer extends Component {
             style={{ color: "#fff", paddingLeft: 0, textTransform: "none" }}
             href={this.props.t("privacy-link")}
             target="_blank"
+            rel="noopener noreferrer"
           >
             {this.props.t("Privacy")}
           </Button>

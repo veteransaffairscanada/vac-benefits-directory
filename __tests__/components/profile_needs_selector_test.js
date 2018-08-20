@@ -98,4 +98,25 @@ describe("ProfileNeedsSelector", () => {
     expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
     expect(reduxData.setSelectedNeeds).toBeCalledWith({});
   });
+
+  it("clicking #ClearFilters toggles the clearFilters function", () => {
+    reduxData.selectedNeeds = { foo: "bar" };
+    const mounted = mount(<ProfileNeedsSelector {...props} {...reduxData} />);
+    mounted.instance().clearFilters = jest.fn();
+    mounted
+      .find("#ClearFilters")
+      .first()
+      .simulate("click");
+    expect(mounted.instance().clearFilters).toBeCalled();
+  });
+
+  it("returns 1 if a profile is selected", () => {
+    reduxData.selectedPatronType = "organization";
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
+        .instance()
+        .countSelected()
+    ).toEqual(1);
+  });
 });

@@ -8,68 +8,72 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
-import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
 import { getFavouritesUrl } from "../selectors/urls";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  root: {
-    backgroundColor: "white",
-    margin: "58px 15px 58px 15px",
-    padding: "69px 96px 100px 96px",
-    [theme.breakpoints.down("xs")]: {
-      padding: "35px 48px 50px 48px"
+
+const root = css`
+    background-color: white;
+    margin: 58px 15px 58px 15px;
+    padding: 69px 96px 100px 96px;
+      @media only screen and (max-width: ${globalTheme.max.xs}) {
+        padding: 35px 48px 50px 48px;
+      }
+`;
+
+  const line = css`
+    background: #dfdfdf;
+    border: none;
+    height: 1px;
+    margin: 30px 0;
+  `;
+
+  const button = css`
+    font-size: 24px !important;
+    text-transform: none !important;
+`;
+
+  const columnLeft = css`
+        @media only screen and (min-width: ${globalTheme.min.sm}) {
+      padding-right: 50px !important;
     }
-  },
-  box: {
-    padding: "10px"
-  },
-  break: {
-    background: "#dfdfdf",
-    border: "none",
-    height: "1px",
-    margin: "30px 0"
-  },
-  button: {
-    fontSize: "24px",
-    textDecoration: "none",
-    textTransform: "none"
-  },
-  columnLeft: {
-    [theme.breakpoints.up("md")]: {
-      paddingRight: "50px !important"
+  `;
+
+  const columnRight = css`
+    @media only screen and (min-width: ${globalTheme.min.sm}) {
+      padding-left: 50px !important;
     }
-  },
-  columnRight: {
-    [theme.breakpoints.up("md")]: {
-      paddingLeft: "50px !important"
+  `;
+
+  const container = css`
+    margin: 0 auto;
+    max-width: ${globalTheme.maxWidth};
+    padding-left: 16px;
+    padding-right: 16px;
+`;
+
+const image = css`
+    margin: 40px 40px 0 40px;
+    width: 100%;
+      @media only screen and (max-width: ${globalTheme.max.sm}) {
+      display: none;
     }
-  },
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    paddingLeft: "16px",
-    paddingRight: "16px"
-  },
-  image: {
-    margin: "40px 40px 0 40px",
-    width: "100%",
-    [theme.breakpoints.down("sm")]: {
-      display: "none"
-    }
-  },
-  prompt: {
-    color: "#303232",
-    fontSize: "18px",
-    lineHeight: "1.5",
-    margin: "0 0 25px 0"
-  },
-  title: {
-    color: "#434343",
-    fontSize: "36px",
-    marginBottom: "46px"
-  }
-});
+`;
+
+const prompt = css`
+    color: #303232;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 0 25px 0;
+`;
+
+const title = css`
+    color: #434343;
+    font-size: 36px;
+    margin-bottom: 46px;
+`;
 
 export class App extends Component {
   constructor() {
@@ -83,11 +87,11 @@ export class App extends Component {
     let urlBD = "benefits-directory?lng=" + t("current-language-code");
     return (
       <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
-        <div className={this.props.classes.container}>
-          <Paper className={this.props.classes.root}>
+        <div className={container}>
+          <Paper className={root}>
             <Grid container spacing={24}>
               <Grid item xs={12}>
-                <div id="heroTitle" className={this.props.classes.title}>
+                <div id="heroTitle" className={title}>
                   {t("index.title")}
                 </div>
               </Grid>
@@ -95,9 +99,9 @@ export class App extends Component {
                 item
                 xs={12}
                 md={6}
-                className={this.props.classes.columnLeft}
+                className={columnLeft}
               >
-                <p className={this.props.classes.prompt}>
+                <p className={prompt}>
                   {t("index.ge_prompt")}
                 </p>
                 <Button
@@ -106,15 +110,15 @@ export class App extends Component {
                   color="primary"
                   fullWidth
                   size="large"
-                  className={this.props.classes.button}
+                  className={button}
                   href={urlGE}
                 >
                   {t("index.guided experience")}
                   &nbsp;&nbsp;
                   <ArrowForward style={{ fontSize: "24px" }} />
                 </Button>
-                <hr className={this.props.classes.break} />
-                <p className={this.props.classes.prompt}>
+                <hr className={line} />
+                <p className={prompt}>
                   {t("index.benefits_prompt")}
                 </p>
                 <Button
@@ -123,15 +127,15 @@ export class App extends Component {
                   color="secondary"
                   fullWidth
                   size="large"
-                  className={this.props.classes.button}
+                  className={button}
                   href={urlBD}
                 >
                   {t("index.all benefits")}
                   &nbsp;&nbsp;
                   <ArrowForward style={{ fontSize: "24px" }} />
                 </Button>
-                <hr className={this.props.classes.break} />
-                <p className={this.props.classes.prompt}>
+                <hr className={line} />
+                <p className={prompt}>
                   {t("index.favourites_prompt")}
                 </p>
                 <Button
@@ -140,7 +144,7 @@ export class App extends Component {
                   fullWidth
                   color="secondary"
                   size="large"
-                  className={this.props.classes.button}
+                  className={button}
                   href={this.props.favouritesUrl}
                 >
                   <Bookmark style={{ fontSize: "24px" }} />
@@ -155,9 +159,9 @@ export class App extends Component {
                 item
                 xs={12}
                 md={6}
-                className={this.props.classes.columnRight}
+                className={columnRight}
               >
-                <p className={this.props.classes.prompt}>
+                <p className={prompt}>
                   {t("index.search_prompt")}
                 </p>
                 <SearchComponent
@@ -169,7 +173,7 @@ export class App extends Component {
                 <img
                   src="../static/icon-hand-scrolling-list.svg"
                   alt="icon-hand-scrolling-list"
-                  className={this.props.classes.image}
+                  className={image}
                 />
               </Grid>
             </Grid>
@@ -195,7 +199,6 @@ const mapStateToProps = (reduxState, props) => {
 };
 
 App.propTypes = {
-  classes: PropTypes.object,
   favouriteBenefits: PropTypes.array.isRequired,
   favouritesUrl: PropTypes.string,
   i18n: PropTypes.object.isRequired,
@@ -205,4 +208,4 @@ App.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withI18next()(connect(mapStateToProps)(withStyles(styles)(App)));
+export default withI18next()(connect(mapStateToProps)(App));
