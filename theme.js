@@ -1,5 +1,10 @@
 const theme = {
   maxWidth: "1200px",
+  margin: "0 auto",
+  paddingLeft: "16px",
+  paddingRight: "16px",
+  marginTop: "20px", //used in place of theme.spacing.unit *3
+
   max: {
     xs: "599.5px",
     sm: "959.5px",

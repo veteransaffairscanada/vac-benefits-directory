@@ -48,10 +48,10 @@ const root = css`
   `;
 
   const container = css`
-    margin: 0 auto;
+    margin: ${globalTheme.margin};
     max-width: ${globalTheme.maxWidth};
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: ${globalTheme.paddingLeft};
+    padding-right: ${globalTheme.paddingRight};
 `;
 
 const image = css`
