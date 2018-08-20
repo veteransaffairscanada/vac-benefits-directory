@@ -196,7 +196,6 @@ export class Guided extends Component {
         options = Array.from(
           new Set(this.props.eligibilityPaths.map(ep => ep[question]))
         ).filter(st => st !== "na");
-        console.log(options);
         if (patronType === "service-person") {
           options.splice(options.indexOf("deceased"), 1);
         }
