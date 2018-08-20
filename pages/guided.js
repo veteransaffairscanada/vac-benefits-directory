@@ -86,7 +86,12 @@ export class Guided extends Component {
       () => setServiceHealthIssue(""),
       () => setSelectedNeeds({})
     ];
-    const current_section_index = sectionMap[section];
+    let current_section_index;
+    if (sectionMap[section]) {
+      current_section_index = sectionMap[section];
+    } else {
+      current_section_index = 0;
+    }
     setters.forEach((setter, i) => {
       if (i >= current_section_index) {
         setter();

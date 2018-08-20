@@ -132,7 +132,7 @@ export class ProfileNeedsSelectorMobile extends Component {
   }
 }
 
-const mapDispatchToProps1 = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     setPatronType: patronType => {
       dispatch({ type: "SET_PATRON_TYPE", data: patronType });
@@ -184,5 +184,5 @@ ProfileNeedsSelectorMobile.propTypes = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps1
+  mapDispatchToProps
 )(withStyles(styles)(ProfileNeedsSelectorMobile));

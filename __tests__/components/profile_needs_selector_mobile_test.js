@@ -100,4 +100,48 @@ describe("ProfileNeedsSelectorMobile", () => {
     expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
     expect(reduxData.setSelectedNeeds).toBeCalledWith({});
   });
+
+  it("clicking #ClearFiltersMobile toggles the clearFilters function", () => {
+    reduxData.selectedNeeds = { foo: "bar" };
+    const mounted = mount(
+      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
+    );
+    mounted.instance().clearFilters = jest.fn();
+    mounted
+      .find("#ClearFiltersMobile")
+      .first()
+      .simulate("click");
+    expect(mounted.instance().clearFilters).toBeCalled();
+  });
+
+  it("clicking ExpansionPanelSummary toggles the toggleOpenState function", () => {
+    const mounted = mount(
+      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
+    );
+    mounted.instance().toggleOpenState = jest.fn();
+    mounted
+      .find("ExpansionPanelSummary")
+      .first()
+      .simulate("click");
+    expect(mounted.instance().toggleOpenState).toBeCalled();
+  });
+
+  it("returns 1 if a profile is selected", () => {
+    reduxData.selectedPatronType = "organization";
+    props.store = mockStore(reduxData);
+    expect(
+      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
+        .instance()
+        .countSelected()
+    ).toEqual(1);
+  });
+
+  it("toggles the state with toggleOpenState", () => {
+    const mounted = mount(
+      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
+    );
+    mounted.setState({ open: true });
+    mounted.instance().toggleOpenState();
+    expect(mounted.state("open")).toEqual(false);
+  });
 });
