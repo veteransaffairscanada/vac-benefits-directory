@@ -94,7 +94,24 @@ describe("getFilteredBenefits", () => {
         ],
         pipeline: ["stemmer"]
       }),
-      needs: [],
+      needs: [
+        {
+          id: "0",
+          nameEn: "Need 0",
+          nameFr: "Fr Need 0",
+          benefits: ["0"]
+        },
+        {
+          id: "1",
+          nameEn: "Need 1",
+          nameFr: "Fr Need 1"
+        },
+        {
+          id: "2",
+          nameEn: "Need 2",
+          nameFr: "Fr Need 2"
+        }
+      ],
       selectedNeeds: {},
       patronType: "",
       searchString: "",
@@ -109,12 +126,30 @@ describe("getFilteredBenefits", () => {
     expect(returnValue).toEqual(["0", "1", "2", "3", "4"]);
   });
 
+  it("returns an empty array if there are no benefits", () => {
+    state.benefits = [];
+    let returnValue = getFilteredBenefits(state, props);
+    expect(returnValue).toEqual([]);
+  });
+
   it("displays benefits 0, 2, 4 if patronType p1", () => {
     state.patronType = "p1";
     expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
       "0",
       "2",
       "4"
+    ]);
+  });
+
+  it("returns benefits based on selectedNeeds", () => {
+    state.selectedNeeds = { "0": "0", "1": "1", "2": "2" };
+    let returnValue = getFilteredBenefits(state, props);
+    expect(returnValue).toEqual([
+      {
+        availableIndependently: "Requires Gateway Benefit",
+        childBenefits: [],
+        id: "0"
+      }
     ]);
   });
 

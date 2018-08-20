@@ -73,4 +73,12 @@ describe("GuidedExperienceNeeds", () => {
       .simulate("click");
     expect(props.setSelectedNeeds).toBeCalled();
   });
+
+  it("removes a selectedNeed if it already selected", () => {
+    props.selectedNeeds[needsFixture[1].id] = "selected";
+    shallow_GuidedExperienceNeeds()
+      .instance()
+      .handleClick(needsFixture[1].id);
+    expect(props.setSelectedNeeds).toBeCalledWith({});
+  });
 });

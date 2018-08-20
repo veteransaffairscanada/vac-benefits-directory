@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import Router from "next/router";
 
 import React from "react";
@@ -110,6 +110,14 @@ describe("BenefitsDirectory", () => {
   it("passes axe tests", async () => {
     let html = mountedBenefitsDirectory().html();
     expect(await axe(html)).toHaveNoViolations();
+  });
+
+  it("calls window.removeEventListener when it unmounts", () => {
+    window.removeEventListener = jest.fn();
+    const mounted = mount(<BenefitsDirectory {...props} {...reduxData} />);
+    mounted.setProps({ foo: "bar" });
+    mounted.unmount();
+    expect(window.removeEventListener).toBeCalled();
   });
 
   it("has a correct setURL function", () => {

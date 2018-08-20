@@ -25,17 +25,15 @@ describe("Map", () => {
         return key == "current-language-code" ? "en" : key;
       },
       classes: {},
+      setMapView: jest.fn(),
+      setUserLocation: jest.fn(),
       url: { query: {} }
     };
     reduxData = {
       areaOffices: areaOfficesFixture,
       userLocation: { lat: 0, lng: 0 },
-      setUserLocation: jest.fn(),
-      setClosestAreaOffice: jest.fn(),
-      setSelectedAreaOffice: jest.fn(),
       closestAreaOffice: areaOfficesFixture[0],
-      selectedAreaOffice: areaOfficesFixture[0],
-      setMapView: jest.fn()
+      selectedAreaOffice: areaOfficesFixture[0]
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
@@ -68,5 +66,51 @@ describe("Map", () => {
     expect(
       shallow(<Map {...props} {...reduxData} />).find("#contactInfo").length
     ).toEqual(1);
+  });
+
+  describe("getLocation", () => {
+    it("calls setUserLocation if the navigator does not exist", () => {
+      global.navigator = {};
+      const map = shallow(<Map {...props} {...reduxData} />);
+      map.instance().getLocation();
+      expect(props.setUserLocation).toBeCalledWith({
+        lat: undefined,
+        lng: undefined
+      });
+    });
+
+    it("calls setUserLocation if the navigator exists", () => {
+      const map = shallow(<Map {...props} {...reduxData} />);
+      map.instance().getLocation();
+      expect(props.setUserLocation).toBeCalledWith({
+        lat: 10,
+        lng: 10
+      });
+    });
+
+    it("calls setMapView if the navigator exists", () => {
+      const map = shallow(<Map {...props} {...reduxData} />);
+      map.instance().getLocation();
+      expect(props.setMapView).toBeCalledWith({ lat: 10, lng: 10, zoom: 10 });
+    });
+  });
+
+  describe("get_link", () => {
+    it("generates a link using the existing page passed to it", () => {
+      const map = shallow(<Map {...props} {...reduxData} />);
+      expect(map.instance().get_link("foo")).toEqual("foo?");
+    });
+
+    it("generates a link using with the existing query params in props", () => {
+      props.url.query = { fiz: "biz" };
+      const map = shallow(<Map {...props} {...reduxData} />);
+      expect(map.instance().get_link("foo")).toEqual("foo?fiz=biz");
+    });
+
+    it("generates a link using with the existing query params in props and ignore empties", () => {
+      props.url.query = { fiz: "biz", biz: "" };
+      const map = shallow(<Map {...props} {...reduxData} />);
+      expect(map.instance().get_link("foo")).toEqual("foo?fiz=biz");
+    });
   });
 });

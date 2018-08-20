@@ -12,19 +12,16 @@ import ReactMoment from "react-moment";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
+import { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
-const styles = theme => ({
-  root: {
-    maxWidth: "1200px",
-    marginBottom: theme.spacing.unit * 3,
-    marginTop: theme.spacing.unit * 3,
-    overflowX: "auto",
-    margin: "0 auto"
-  },
-  table: {
-    width: "100%"
-  }
-});
+const root = css`
+  max-width: ${globalTheme.maxWidth};
+  overflow-x: auto;
+  margin-bottom: 25px !important;
+  margin-top: 25px !important;
+  margin: 0 auto;
+`;
 
 export class DataValidation extends Component {
   constructor(props) {
@@ -132,7 +129,6 @@ export class DataValidation extends Component {
     const {
       i18n,
       t,
-      classes,
       benefits,
       eligibilityPaths,
       needs,
@@ -224,15 +220,15 @@ export class DataValidation extends Component {
         hideNoscript={true}
         showRefreshCache={true}
       >
-        <Paper className={classes.root}>
+        <Paper className={root}>
           <p style={{ padding: "10px" }}>
             {t("dv.last_cache_update")}
             :&nbsp;
             <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
           </p>
         </Paper>
-        <Paper className={classes.root}>
-          <Table className={classes.table}>
+        <Paper className={root}>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell>{t("dv.status")}</TableCell>
@@ -294,12 +290,9 @@ DataValidation.propTypes = {
   examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  timestamp: PropTypes.object,
-  classes: PropTypes.object.isRequired,
+  timestamp: PropTypes.number.isRequired,
   translations: PropTypes.array.isRequired,
   areaOffices: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(
-  connect(mapStateToProps)(withI18next()(DataValidation))
-);
+export default connect(mapStateToProps)(withI18next()(DataValidation));

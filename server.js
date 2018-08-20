@@ -23,14 +23,21 @@ const airTable = require("./utils/airtable_es2015");
 const { getGithubData } = require("./utils/statistics");
 const { checkURL } = require("./utils/url_check");
 
-getAllData = async function() {
+const getAllData = async function() {
   const githubData = await getGithubData();
   const airtableData = await airTable.hydrateFromAirtable();
-
   return { githubData: githubData, airtableData: airtableData };
 };
 
-// Promise.resolve(airTable.hydrateFromAirtable()).then(data => {
+const copyValidTables = (oldData, newData) => {
+  Object.keys(newData)
+    .filter(tableName => newData[tableName].length > 0)
+    .forEach(tableName => {
+      oldData[tableName] = newData[tableName];
+    });
+  oldData.timestamp = newData.timestamp;
+};
+
 Promise.resolve(getAllData()).then(allData => {
   let data = allData.airtableData;
   const githubData = allData.githubData;
@@ -88,7 +95,7 @@ Promise.resolve(getAllData()).then(allData => {
 
             setTimeout(function() {
               Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
-                data = newData;
+                copyValidTables(data, newData);
               });
             }, 1000 * 60 * 60);
 
@@ -113,7 +120,7 @@ Promise.resolve(getAllData()).then(allData => {
               let referrer = req.header("Referer") || "/";
               urlCache = {};
               Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
-                data = newData;
+                copyValidTables(data, newData);
                 res.redirect(referrer);
                 console.log("Cache refreshed @ " + data.timestamp);
               });
