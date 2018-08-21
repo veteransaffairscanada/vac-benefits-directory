@@ -38,9 +38,10 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     dataStore[tableName] = [];
   });
 
-  airtableConstants.tableNames.forEach(async function(tableName) {
+  let promises = airtableConstants.tableNames.map(async function(tableName) {
     dataStore[tableName] = await fetchTableFromAirtable(tableName);
   });
+  await Promise.all(promises);
   dataStore.timestamp = await Date.now();
   return dataStore;
 });
