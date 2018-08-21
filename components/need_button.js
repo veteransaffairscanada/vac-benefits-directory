@@ -5,7 +5,7 @@ import { Checkbox, FormControlLabel } from "@material-ui/core";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 
-const styles = theme => ({
+const styles = () => ({
   main: {
     fontSize: "24px"
   }

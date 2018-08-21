@@ -1,6 +1,6 @@
 /* eslint-env jest */
 
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import React from "react";
 import { Checkbox } from "@material-ui/core";
 import { GuidedExperienceNeeds } from "../../components/guided_experience_needs";
@@ -14,7 +14,6 @@ jest.mock("react-ga");
 describe("GuidedExperienceNeeds", () => {
   let props;
   let _mountedGuidedExperienceNeeds;
-  let _shallowGuidedExperienceNeeds;
 
   const mounted_GuidedExperienceNeeds = () => {
     if (!_mountedGuidedExperienceNeeds) {
@@ -33,7 +32,6 @@ describe("GuidedExperienceNeeds", () => {
       setSelectedNeeds: jest.fn(),
       classes: {}
     };
-    _shallowGuidedExperienceNeeds = undefined;
     _mountedGuidedExperienceNeeds = undefined;
   });
 
