@@ -8,6 +8,8 @@
 - [CircleCI](#circleci)
 - [BrowserStack](#browserstack)
 - [Test Driven Development](#test-driven-development)
+- [Browserstack](#browserstack)
+- [Deployment](#deployment)
 - [Translations](#translations)
 - [Snyk](#snyk)
 - [Security review](#security-review)
@@ -184,6 +186,24 @@ an easy method to test on Windows / Internet Explorer. We use BrowserStack in tw
 #### How does one get access?
 
 Create a personal account on BrowserStack and then contact a developer to get your account associated with the CDS account.
+
+### Deployment
+
+#### How are we deploying the application?
+
+To standardize the environments between testing and production we are using [Docker](https://www.docker.com/), which allows us to create the same software conditions throughout our release pipeline. Docker allows us to create a specific environment from which the application should run in, defined through the [Dockerfile](https://github.com/cds-snc/vac-benefits-directory/blob/master/Dockerfile) inside our main repository. Docker executes this file and builds a container image, which then can be deployed on any infrastructure that supports container images (Azure, AWS, Google Cloud, etc.)
+
+#### What is the current deployment workflow?
+
+When a pull request is approved the developer merges the branch into `master`. CircleCI receives a notification and starts running all the tests for the application. If all test pass, CircleCI then uses the Docker executable to build a Docker image. It then pushes the Docker image to a container registry. A container registry is simply a collection of images available to a specific organization or user. Once the registry has received the image it notifies the deployment platform (Azure in this case), that a new image is available. Azure then downloads the image from the container registry and deploys it to the its own container service. The container service has already been configured to accept certain DNS requests and to route the requests appropriately (this is usually outside of the scope of this applications deployment configuration).
+
+#### How is this different to the testing workflow?
+
+This of the two flows as different actions initiated by a developer through actions on GitHub. When a developer creates a new bug / feature branch it notifies CircleCI to run the tests on the code contained inside the branch. It also triggers a Heroku build so that other developers can see the changes in action without having to run the branch locally. In the other scenario, the developer merges a branch into `master`. This also notifies CircleCI, but because it is `master` triggers the Docker build process if all tests pass. The result of the Docker build process is what then gets deployed to the production server.
+
+The following diagram demonstrates both flows:
+
+![Test and deploy workflow](https://user-images.githubusercontent.com/867334/44407480-31f3b780-a52c-11e8-97d7-6cf8ad046019.png "Test and deploy workflows")
 
 ### Translations
 
