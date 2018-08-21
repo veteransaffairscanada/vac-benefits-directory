@@ -53,13 +53,13 @@ const prevButton = css`
 `;
 
 const nextButton = css`
-  background-color: black !important;
-  color: white;
+  background-color: #39824d !important;
+  color: #ffffff !important;
   margin-top: 0 !important;
   margin: 25px !important;
-  text-transform: none;
+  text-transform: none !important;
   &:hover {
-    background: #606060 !important;
+    background: #295f38 !important;
   }
 `;
 
