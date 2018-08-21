@@ -91,7 +91,6 @@ export class GuidedExperience extends Component {
   render() {
     const { t, selectedEligibility } = this.props;
     const eligibilityKeys = Object.keys(selectedEligibility);
-
     return (
       <MuiThemeProvider theme={theme}>
         <div id="guidedExperience" className={container}>
@@ -182,7 +181,10 @@ export class GuidedExperience extends Component {
               }
               className={nextButton}
             >
-              {t("next")} &nbsp; &nbsp;
+              {this.props.id === "needsQuestion"
+                ? t("ge.show_results")
+                : t("next")}{" "}
+              &nbsp; &nbsp;
               <ArrowForward />
             </Button>
           </div>
