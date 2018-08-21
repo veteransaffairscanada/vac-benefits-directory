@@ -3,31 +3,30 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 
 import { withI18next } from "../lib/withI18next";
-import { withStyles } from "@material-ui/core/styles";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
+import { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
-const styles = () => ({
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    paddingLeft: "16px",
-    paddingRight: "16px"
-  },
-  root: {
-    marginLeft: "15px",
-    marginRight: "15px"
-  }
-});
+const container = css`
+    max-width: ${globalTheme.maxWidth};
+    margin: ${globalTheme.margin};
+    padding-left: ${globalTheme.paddingLeft};
+    padding-right: ${globalTheme.paddingRight};
+`;
+const root = css`
+    margin-left: 15px;
+    margin-right: 15px;
+`;
 
 export class AllBenefits extends Component {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout i18n={i18n} t={t} hideNoscript={true} showRefreshCache={false}>
-        <div className={this.props.classes.container}>
-          <div className={this.props.classes.root}>
+        <div className={container}>
+          <div className={root}>
             <h1>{t("all-benefits.List of all benefits")}</h1>
             <Grid item xs={12}>
               <Grid container spacing={24}>
@@ -59,13 +58,10 @@ const mapStateToProps = reduxState => {
 AllBenefits.propTypes = {
   benefits: PropTypes.array.isRequired,
   searchString: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 
-export default withStyles(styles)(
-  connect(mapStateToProps)(withI18next()(AllBenefits))
-);
+export default connect(mapStateToProps)(withI18next()(AllBenefits));
