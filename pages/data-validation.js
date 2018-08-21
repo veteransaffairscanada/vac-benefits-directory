@@ -6,24 +6,24 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { withStyles } from "@material-ui/core/styles";
 import ReactMoment from "react-moment";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  root: {
-    maxWidth: "1200px",
-    marginBottom: theme.spacing.unit * 3,
-    marginTop: theme.spacing.unit * 3,
-    overflowX: "auto",
-    margin: "0 auto"
-  },
-  table: {
-    width: "100%"
-  }
-});
+const root = css`
+    margin: ${globalTheme.margin};
+    max-width: ${globalTheme.maxWidth};
+    margin-bottom: ${globalTheme.marginTop};
+    margin-top: ${globalTheme.marginTop};
+    overflow-x: auto;
+
+`;
+const table = css`
+    width: 100%;
+  `;
 
 export class DataValidation extends Component {
   createData = (name, value, status) => {
@@ -82,7 +82,6 @@ export class DataValidation extends Component {
     const {
       i18n,
       t,
-      classes,
       benefits,
       eligibilityPaths,
       needs,
@@ -161,15 +160,15 @@ export class DataValidation extends Component {
         hideNoscript={true}
         showRefreshCache={true}
       >
-        <Paper className={classes.root}>
+        <Paper className={root}>
           <p style={{ padding: "10px" }}>
             {t("dv.last_cache_update")}
             :&nbsp;
             <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
           </p>
         </Paper>
-        <Paper className={classes.root}>
-          <Table className={classes.table}>
+        <Paper className={root}>
+          <Table className={table}>
             <TableHead>
               <TableRow>
                 <TableCell>{t("dv.status")}</TableCell>
@@ -222,11 +221,8 @@ DataValidation.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   timestamp: PropTypes.object,
-  classes: PropTypes.object.isRequired,
   translations: PropTypes.array.isRequired,
   areaOffices: PropTypes.array.isRequired
 };
 
-export default withStyles(styles)(
-  connect(mapStateToProps)(withI18next()(DataValidation))
-);
+export default connect(mapStateToProps)(withI18next()(DataValidation));

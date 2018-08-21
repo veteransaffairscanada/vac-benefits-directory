@@ -49,6 +49,10 @@ const mapTitle = css`
 
 export class Map extends Component {
   getLocation() {
+    this.props.setUserLocation({
+      lat: undefined,
+      lng: undefined
+    });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         let coords = {
@@ -57,12 +61,6 @@ export class Map extends Component {
         };
         this.props.setUserLocation(coords);
         this.props.setMapView({ lat: coords.lat, lng: coords.lng, zoom: 10 });
-      });
-    } else {
-      //browser doesn't support geolocation
-      this.props.setUserLocation({
-        lat: undefined,
-        lng: undefined
       });
     }
   }

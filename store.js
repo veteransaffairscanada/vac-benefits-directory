@@ -69,7 +69,6 @@ export const reducer = (state = initialState, action) => {
 
     case "LOAD_DATA":
       newState = {
-        storeHydrated: action.data.storeHydrated || state.storeHydrated,
         favouriteBenefits:
           action.data.favouriteBenefits || state.favouriteBenefits,
         timestamp: action.data.timestamp || state.timestamp
