@@ -10,16 +10,20 @@ import ReactMoment from "react-moment";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { css } from "react-emotion";
 import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
 const root = css`
-  max-width: ${globalTheme.maxWidth};
-  overflow-x: auto;
-  margin-bottom: 25px !important;
-  margin-top: 25px !important;
-  margin: 0 auto;
+    margin: ${globalTheme.margin};
+    max-width: ${globalTheme.maxWidth};
+    margin-bottom: ${globalTheme.marginTop};
+    margin-top: ${globalTheme.marginTop};
+    overflow-x: auto;
+
 `;
+const table = css`
+    width: 100%;
+  `;
 
 export class DataValidation extends Component {
   createData = (name, value, status) => {
@@ -164,7 +168,7 @@ export class DataValidation extends Component {
           </p>
         </Paper>
         <Paper className={root}>
-          <Table>
+          <Table className={table}>
             <TableHead>
               <TableRow>
                 <TableCell>{t("dv.status")}</TableCell>
@@ -216,7 +220,7 @@ DataValidation.propTypes = {
   examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  timestamp: PropTypes.number.isRequired,
+  timestamp: PropTypes.object,
   translations: PropTypes.array.isRequired,
   areaOffices: PropTypes.array.isRequired
 };
