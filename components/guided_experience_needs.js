@@ -47,6 +47,7 @@ export class GuidedExperienceNeeds extends Component {
                       checked={this.props.selectedNeeds.hasOwnProperty(need.id)}
                       onChange={() => this.handleClick(need.id)}
                       value={need.id}
+                      color="primary"
                     />
                   }
                   label={

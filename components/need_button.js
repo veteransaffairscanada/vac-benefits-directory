@@ -1,25 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Checkbox, FormControlLabel } from "@material-ui/core";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 
 const styles = theme => ({
   main: {
-    marginRight: 1.5 * theme.spacing.unit,
-    marginBottom: 1.5 * theme.spacing.unit,
-    textTransform: "none",
-    textAlign: "left",
-    borderStyle: "solid",
-    borderWidth: "2px",
-    borderRadius: "5px",
-    "&:focus": {
-      borderWidth: "4px"
-    },
-    "&:hover": {
-      opacity: "0.5"
-    }
+    fontSize: "24px"
   }
 });
 
@@ -41,21 +29,18 @@ export class NeedButton extends Component {
   render() {
     const { t, need, classes } = this.props;
     return (
-      <Button
-        size="small"
-        disableRipple={true}
-        onClick={() => this.handleClick(need.id)}
-        value={need.id}
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={this.props.selectedNeeds[need.id]}
+            onChange={() => this.handleClick(need.id)}
+            value={need.id}
+            color="primary"
+          />
+        }
+        label={t("current-language-code") === "en" ? need.nameEn : need.nameFr}
         className={classes.main}
-        style={{
-          borderColor: need.colour,
-          backgroundColor: this.props.selectedNeeds[need.id]
-            ? need.colour
-            : "white"
-        }}
-      >
-        {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
-      </Button>
+      />
     );
   }
 }
