@@ -6,7 +6,6 @@ import { withStyles } from "@material-ui/core/styles";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { Grid, Button, Paper } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
 import CloseIcon from "@material-ui/icons/Close";
 import { css } from "react-emotion";
 
@@ -83,7 +82,7 @@ export class ProfileNeedsSelector extends Component {
     const { t, pageWidth, store, classes } = this.props;
     return (
       <Paper className={root}>
-        <Typography variant="title" className={classnames(classes.filterTitle)}>
+        <h2 variant="title" className={classnames(classes.filterTitle)}>
           {t("filters")}{" "}
           {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
           this.props.patronType !== "" ? (
@@ -103,7 +102,7 @@ export class ProfileNeedsSelector extends Component {
           ) : (
             ""
           )}
-        </Typography>
+        </h2>
 
         <Grid container>
           <Grid item sm={12} className={classnames(classes.profileSelector)}>

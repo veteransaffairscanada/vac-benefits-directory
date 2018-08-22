@@ -4,7 +4,6 @@ import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
-import Typography from "@material-ui/core/Typography";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import styled, { css } from "react-emotion";
@@ -106,9 +105,7 @@ export class GuidedExperience extends Component {
           <div className={root}>
             <Grid container spacing={24} className={box}>
               <Grid item xs={12} md={3}>
-                <Typography className={title}>
-                  {t("B3.Filter by eligibility")}
-                </Typography>
+                <h2 className={title}>{t("B3.Filter by eligibility")}</h2>
               </Grid>
               <Grid item xs={12} md={9}>
                 {eligibilityKeys.map((k, i) => {
@@ -148,9 +145,7 @@ export class GuidedExperience extends Component {
 
               <Grid item xs={12}>
                 <BlueBar />
-                <Typography className={subTitle}>
-                  {this.props.subtitle}
-                </Typography>
+                <h3 className={subTitle}>{this.props.subtitle}</h3>
               </Grid>
 
               <Grid item xs={12}>

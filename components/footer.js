@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { WordMark } from "@cdssnc/gcui";
-import { Button, Toolbar, Typography } from "@material-ui/core";
+import { Button, Toolbar } from "@material-ui/core";
 import styled from "react-emotion";
 
 const Div = styled("div")`
@@ -37,9 +37,7 @@ class Footer extends Component {
           >
             {this.props.t("Privacy")}
           </Button>
-          <Typography style={{ flex: 1, color: "#fff" }}>
-            Build: {envDetails}
-          </Typography>
+          <h6 style={{ flex: 1, color: "#fff" }}>Build: {envDetails}</h6>
           <div style={{ height: "25px" }}>
             <WordMark width="6em" flag="#fff" text="#fff" />
           </div>
