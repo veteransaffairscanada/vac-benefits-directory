@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout";
 import { mount } from "enzyme";
+import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -25,9 +26,7 @@ describe("Layout", () => {
       hideNoscript: true,
       i18n: {},
       showRefreshCache: false,
-      t: key => {
-        return key === "current-language-code" ? "en" : key;
-      }
+      t: translate
     };
     _mountedLayout = undefined;
   });

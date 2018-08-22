@@ -10,6 +10,7 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import examplesFixture from "../fixtures/examples";
 import areaOfficesFixture from "../fixtures/area_offices";
+import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -28,7 +29,7 @@ describe("DataValidation", () => {
   beforeEach(() => {
     props = {
       translations: translationsFixture,
-      t: key => key,
+      t: translate,
       i18n: {
         addResourceBundle: jest.fn()
       },

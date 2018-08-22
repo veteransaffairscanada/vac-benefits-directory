@@ -12,8 +12,8 @@ describe("checkURL", () => {
       benefits: [
         {
           id: "foo",
-          benefitPageEn: "http://localhost",
-          benefitPageFr: "http://localhost"
+          benefitPageEn: "http://xyz",
+          benefitPageFr: "http://xyz"
         }
       ]
     };

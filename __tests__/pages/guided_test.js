@@ -6,7 +6,7 @@ import Router from "next/router";
 import React from "react";
 import { Guided } from "../../pages/guided";
 import benefitsFixture from "../fixtures/benefits";
-
+import translate from "../fixtures/translate";
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
@@ -39,9 +39,7 @@ describe("Guided", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: key => {
-        return key == "current-language-code" ? "en" : key;
-      },
+      t: translate,
       storeHydrated: true,
       dispatch: jest.fn(),
       benefits: benefitsFixture,
