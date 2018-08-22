@@ -105,4 +105,23 @@ describe("GuidedExperience", () => {
         .props().href
     ).toEqual(props.benefitsDirectoryUrl);
   });
+
+  it("the Next buttons says 'Next' if the section is not the needsQuestion", () => {
+    expect(
+      mounted_GuidedExperience()
+        .find("Button")
+        .last()
+        .text()
+    ).toContain("next");
+  });
+
+  it("the Next buttons says 'Show Results' if the section is the needsQuestion", () => {
+    props.id = "needsQuestion";
+    expect(
+      mounted_GuidedExperience()
+        .find("Button")
+        .last()
+        .text()
+    ).toContain("ge.show_results");
+  });
 });
