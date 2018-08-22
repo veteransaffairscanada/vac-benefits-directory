@@ -8,7 +8,7 @@ import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import examplesFixture from "../fixtures/examples";
 import needsFixture from "../fixtures/needs";
-
+import translate from "../fixtures/translate";
 import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -32,7 +32,7 @@ describe("AllBenefits", () => {
     props = {
       classes: {},
       translations: [],
-      t: key => key,
+      t: translate,
       i18n: {
         addResourceBundle: jest.fn()
       },

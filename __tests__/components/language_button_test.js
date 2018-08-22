@@ -2,7 +2,7 @@ import React from "react";
 import LanguageButton from "../../components/language_button";
 import { mount } from "enzyme";
 import Router from "next/router";
-
+import translate from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -30,9 +30,7 @@ describe("LanguageButton", () => {
       i18n: {
         changeLanguage: () => {}
       },
-      t: key => {
-        return key === "current-language-code" ? "en" : key;
-      }
+      t: translate
     };
     _mountedLanguageButton = undefined;
   });

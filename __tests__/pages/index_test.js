@@ -6,6 +6,7 @@ import Router from "next/router";
 import { App } from "../../pages/index";
 import benefitsFixture from "../fixtures/benefits";
 import configureStore from "redux-mock-store";
+import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -26,7 +27,7 @@ describe("Index page", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: key => key,
+      t: translate,
       translations: []
     };
     mockStore = configureStore();

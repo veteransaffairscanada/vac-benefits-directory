@@ -1,6 +1,7 @@
 import React from "react";
 import FederalBanner from "../../components/federal_banner";
 import { mount } from "enzyme";
+import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -22,9 +23,7 @@ describe("FederalBanner", () => {
       i18n: {
         changeLanguage: () => {}
       },
-      t: key => {
-        return key == "current-language-code" ? "en" : key;
-      },
+      t: translate,
       showRefreshCache: false
     };
     _mountedFederalBanner = undefined;

@@ -5,6 +5,7 @@ import React from "react";
 import { Map } from "../../pages/map";
 import areaOfficesFixture from "../fixtures/area_offices";
 import configureStore from "redux-mock-store";
+import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -21,9 +22,7 @@ describe("Map", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: key => {
-        return key == "current-language-code" ? "en" : key;
-      },
+      t: translate,
       classes: {},
       setMapView: jest.fn(),
       setUserLocation: jest.fn(),

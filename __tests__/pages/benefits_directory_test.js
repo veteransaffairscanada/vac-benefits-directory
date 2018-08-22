@@ -11,6 +11,7 @@ import configureStore from "redux-mock-store";
 import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
+import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -38,9 +39,7 @@ describe("BenefitsDirectory", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: key => {
-        return key === "current-language-code" ? "en" : key;
-      },
+      t: translate,
       url: { query: {} },
       setPageWidth: jest.fn()
     };

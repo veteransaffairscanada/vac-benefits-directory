@@ -5,6 +5,7 @@ import React from "react";
 import { Stats } from "../../pages/stats";
 import githubFixture from "../fixtures/github_data";
 import configureStore from "redux-mock-store";
+import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -21,9 +22,7 @@ describe("Stats", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: key => {
-        return key == "current-language-code" ? "en" : key;
-      },
+      t: translate,
       classes: {}
     };
     reduxData = {
