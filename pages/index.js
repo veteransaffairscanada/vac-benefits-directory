@@ -153,7 +153,7 @@ export class App extends Component {
                 />
                 <img
                   src="../static/icon-hand-scrolling-list.svg"
-                  alt="hand scrolling a list"
+                  alt={t("index.alt_text_1")}
                   className={image}
                 />
               </Grid>
