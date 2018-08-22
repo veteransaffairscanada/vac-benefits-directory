@@ -53,13 +53,13 @@ const prevButton = css`
 `;
 
 const nextButton = css`
-  background-color: black !important;
-  color: white;
+  background-color: #39824d !important;
+  color: #ffffff !important;
   margin-top: 0 !important;
   margin: 25px !important;
-  text-transform: none;
+  text-transform: none !important;
   &:hover {
-    background: #606060 !important;
+    background: #295f38 !important;
   }
 `;
 
@@ -91,7 +91,6 @@ export class GuidedExperience extends Component {
   render() {
     const { t, selectedEligibility } = this.props;
     const eligibilityKeys = Object.keys(selectedEligibility);
-
     return (
       <MuiThemeProvider theme={theme}>
         <div id="guidedExperience" className={container}>
@@ -182,7 +181,10 @@ export class GuidedExperience extends Component {
               }
               className={nextButton}
             >
-              {t("next")} &nbsp; &nbsp;
+              {this.props.id === "needsQuestion"
+                ? t("ge.show_results")
+                : t("next")}{" "}
+              &nbsp; &nbsp;
               <ArrowForward />
             </Button>
           </div>

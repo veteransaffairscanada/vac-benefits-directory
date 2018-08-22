@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import { withI18next } from "../lib/withI18next";
 import Typography from "@material-ui/core/Typography";
 import Layout from "../components/layout";
@@ -12,41 +11,47 @@ import { Grid, Button } from "@material-ui/core";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import Paper from "@material-ui/core/Paper/index";
 import Link from "next/link";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  paper: {
-    marginTop: theme.spacing.unit * 3
-  },
-  mapTitle: {
-    fontSize: "36px"
-  },
-  backLink: {
-    fontSize: "20px",
-    fontWeight: "100",
-    marginBottom: "15px",
-    paddingLeft: "0px",
-    textDecoration: "none",
-    textTransform: "none"
-  },
-  topMatter: {
-    marginTop: "30px"
-  },
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    paddingLeft: "16px",
-    paddingRight: "16px"
-  },
-  root: {
-    marginLeft: "15px",
-    marginRight: "15px"
-  }
-});
+const paper = css`
+  margin-top: ${globalTheme.marginTop};
+`;
+
+const mapTitle = css`
+  font-size: 36px !important;
+`;
+
+const backLink = css`
+  font-size: 20px !important;
+  font-weight: 100 !important;
+  margin-bottom: 15px !important;
+  padding-left: 0px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+`;
+
+const topMatter = css`
+  margin-top: 30px !important;
+`;
+
+const container = css`
+  margin: ${globalTheme.margin};
+  max-width: ${globalTheme.maxWidth};
+  padding-left: ${globalTheme.paddingLeft};
+  padding-right: ${globalTheme.paddingRight};
+`;
+
+const root = css`
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+
 export class Map extends Component {
   getLocation() {
     this.props.setUserLocation({
-      lat: undefined,
-      lng: undefined
+      lat: 49,
+      lng: -104
     });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -78,7 +83,7 @@ export class Map extends Component {
   };
 
   render() {
-    const { i18n, t, classes } = this.props;
+    const { i18n, t } = this.props;
     return (
       <Layout
         title={"Map"}
@@ -87,15 +92,15 @@ export class Map extends Component {
         hideNoscript={true}
         showRefreshCache={false}
       >
-        <div className={classes.container}>
-          <div className={classes.root}>
+        <div className={container}>
+          <div className={root}>
             <Grid container spacing={24}>
-              <Grid item xs={12} md={8} className={classes.topMatter}>
+              <Grid item xs={12} md={8} className={topMatter}>
                 <Link href={this.get_link("favourites")}>
                   <Button
                     variant="flat"
                     size="large"
-                    className={classes.backLink}
+                    className={backLink}
                     id="backButton"
                   >
                     <ArrowBack />
@@ -103,17 +108,11 @@ export class Map extends Component {
                     {t("back")}
                   </Button>
                 </Link>
-                <Typography className={"MapTitle " + classes.mapTitle}>
+                <Typography className={mapTitle}>
                   {t("map.vacOffices")}
                 </Typography>
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                className={classes.topMatter}
-                id="contactInfo"
-              >
+              <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
                 <Typography>
                   <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
                 </Typography>
@@ -123,7 +122,7 @@ export class Map extends Component {
                 item
                 xs={12}
                 md={5}
-                className={classes.placeSearch}
+                className={this.placeSearch}
                 id="placeSearchHold"
               >
                 <PlaceSearch
@@ -138,7 +137,7 @@ export class Map extends Component {
               </Grid>
             </Grid>
 
-            <Paper className={classes.paper}>
+            <Paper className={paper}>
               <Grid container>
                 <Grid item xs={12} md={8}>
                   <AreaOfficeMap
@@ -184,7 +183,6 @@ const mapStateToProps = state => {
 Map.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
   areaOffices: PropTypes.array.isRequired,
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
@@ -192,9 +190,7 @@ Map.propTypes = {
   store: PropTypes.object
 };
 
-export default withStyles(styles)(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withI18next()(Map))
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withI18next()(Map));
