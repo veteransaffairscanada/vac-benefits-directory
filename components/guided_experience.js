@@ -145,7 +145,7 @@ export class GuidedExperience extends Component {
 
               <Grid item xs={12}>
                 <BlueBar />
-                <h3 className={subTitle}>{this.props.subtitle}</h3>
+                <p className={subTitle}>{this.props.subtitle}</p>
               </Grid>
 
               <Grid item xs={12}>

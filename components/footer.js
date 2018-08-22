@@ -37,7 +37,7 @@ class Footer extends Component {
           >
             {this.props.t("Privacy")}
           </Button>
-          <h6 style={{ flex: 1, color: "#fff" }}>Build: {envDetails}</h6>
+          <p style={{ flex: 1, color: "#fff" }}>Build: {envDetails}</p>
           <div style={{ height: "25px" }}>
             <WordMark width="6em" flag="#fff" text="#fff" />
           </div>
