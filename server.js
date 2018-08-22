@@ -21,6 +21,7 @@ const deploy = require("./utils/deploy_notification");
 const airTable = require("./utils/airtable_es2015");
 
 const { getGithubData } = require("./utils/statistics");
+const { checkURL } = require("./utils/url_check");
 
 const getAllData = async function() {
   const githubData = await getGithubData();
@@ -74,6 +75,18 @@ Promise.resolve(getAllData()).then(allData => {
             res.sendStatus(200);
           });
 
+          // handle URL validation
+          let urlCache = {};
+          server.post("/checkURL", (req, res) => {
+            Promise.resolve(checkURL(req.body, urlCache, data)).then(
+              newUrls => {
+                urlCache = newUrls;
+                res.setHeader("Content-Type", "application/json");
+                res.send(JSON.stringify(urlCache[req.body.id]));
+              }
+            );
+          });
+
           // use next.js
           server.get("*", (req, res) => {
             // Check if browse is less than IE 11
@@ -105,6 +118,7 @@ Promise.resolve(getAllData()).then(allData => {
             } else if (req.url.includes("refresh")) {
               console.log("Refreshing Cache ...");
               let referrer = req.header("Referer") || "/";
+              urlCache = {};
               Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
                 copyValidTables(data, newData);
                 res.redirect(referrer);

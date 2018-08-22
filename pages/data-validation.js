@@ -6,6 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 import ReactMoment from "react-moment";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
@@ -26,6 +27,14 @@ const table = css`
   `;
 
 export class DataValidation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      invalidUrls: [],
+      urlState: undefined
+    };
+  }
+
   createData = (name, value, status) => {
     return { name, value, status };
   };
@@ -77,6 +86,47 @@ export class DataValidation extends Component {
       return " " + b.id + " (" + (i + 1) + "),";
     }
   }
+
+  checkBenefitUrls = async () => {
+    this.setState({
+      invalidUrls: []
+    });
+
+    let checkUrls = async b => {
+      await fetch("/checkURL", {
+        body: JSON.stringify({ id: b.id }),
+        cache: "no-cache",
+        headers: {
+          "content-type": "application/json"
+        },
+        method: "POST"
+      })
+        .then(resp => resp.json())
+        .then(resp => {
+          let invalidUrls = this.state.invalidUrls;
+          if (!resp.passEn) {
+            invalidUrls.push(b.benefitPageEn);
+          }
+          if (!resp.passFr) {
+            invalidUrls.push(b.benefitPageFr);
+          }
+          this.setState({
+            invalidUrls: invalidUrls
+          });
+          if (invalidUrls.length > 0) {
+            this.setState({
+              urlState: false
+            });
+          }
+          return resp;
+        })
+        .catch(error => error);
+    };
+    this.props.benefits.map(await checkUrls);
+    this.setState({
+      urlState: true
+    });
+  };
 
   render() {
     const {
@@ -149,6 +199,19 @@ export class DataValidation extends Component {
         translations.filter(this.checkTranslationsFields).length == 0
           ? true
           : false
+      ),
+      this.createData(
+        "validateURLs",
+        this.state.invalidUrls.map((url, i) => {
+          return (
+            <div key={i}>
+              <a target="_blank" rel="noopener noreferrer" href={url}>
+                {url}
+              </a>
+            </div>
+          );
+        }),
+        this.state.urlState
       )
     ];
 
@@ -186,7 +249,17 @@ export class DataValidation extends Component {
                         fontWeight: "bold"
                       }}
                     >
-                      {t("dv." + (n.status ? "Pass" : "Fail"))}
+                      {n.status !== undefined ? (
+                        t("dv." + (n.status ? "Pass" : "Fail"))
+                      ) : (
+                        <Button
+                          color="primary"
+                          variant="raised"
+                          onClick={() => this.checkBenefitUrls()}
+                        >
+                          {t("dv.validate")}
+                        </Button>
+                      )}
                     </TableCell>
                     <TableCell>{t("dv." + n.name)}</TableCell>
                     <TableCell>{n.value}</TableCell>

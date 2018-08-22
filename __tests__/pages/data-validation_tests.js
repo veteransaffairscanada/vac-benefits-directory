@@ -14,8 +14,6 @@ import areaOfficesFixture from "../fixtures/area_offices";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
-jest.mock("react-ga");
-
 describe("DataValidation", () => {
   let props;
   let _mountedDataValidation;
@@ -150,5 +148,41 @@ describe("DataValidation", () => {
     expect(instance.checkAreaOfficesFields(props.areaOffices[0], 0)).toContain(
       props.areaOffices[0].id
     );
+  });
+
+  describe("checkBenefitUrls", () => {
+    it("it resets the invalidUrls state", () => {
+      mountedDataValidation().setState({
+        invalidUrls: ["foo"]
+      });
+      mountedDataValidation()
+        .instance()
+        .checkBenefitUrls();
+      expect(mountedDataValidation().state("invalidUrls")).toEqual([]);
+    });
+
+    it("it sets urlState state to true from undefined", done => {
+      expect(mountedDataValidation().state("urlState")).toEqual(undefined);
+      Promise.resolve(
+        mountedDataValidation()
+          .instance()
+          .checkBenefitUrls()
+      ).then(() => {
+        expect(mountedDataValidation().state("urlState")).toEqual(true);
+        done();
+      });
+    });
+
+    it("loops through benefits and sends the benefit ID to the /checkURL endpoint", done => {
+      global.fetch = jest.fn();
+      Promise.resolve(
+        mountedDataValidation()
+          .instance()
+          .checkBenefitUrls()
+      ).then(() => {
+        expect(fetch.mock.calls.length).toEqual(3);
+        done();
+      });
+    });
   });
 });
