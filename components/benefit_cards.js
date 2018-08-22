@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
@@ -272,9 +272,7 @@ export class BenefitCard extends Component {
               />
             </div>
 
-            <Typography
-              className={"cardDescription " + classes.cardDescriptionText}
-            >
+            <h2 className={"cardDescription " + classes.cardDescriptionText}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
@@ -284,7 +282,7 @@ export class BenefitCard extends Component {
                     : benefit.oneLineDescriptionFr
                 }
               />
-            </Typography>
+            </h2>
             <div>
               {needsMet.map(need => (
                 <NeedTag
