@@ -42,11 +42,12 @@ class LanguageButton extends Component {
     const { t, classes } = this.props;
 
     return (
-      <div>
+      <div title={t("other-language-in-current-language")}>
         <Button
           id="changeLanguage"
           onClick={this.changeLanguage}
           className={classes.desktopButton}
+          lang={t("other-language-code")}
         >
           {t("other-language")}
         </Button>
@@ -55,6 +56,7 @@ class LanguageButton extends Component {
           id="changeLanguageMobile"
           onClick={this.changeLanguage}
           className={classes.mobileButton}
+          lang={t("other-language-code")}
         >
           {this.titleCase(t("other-language-code"))}
         </Button>
