@@ -28,6 +28,7 @@ export class NeedButton extends Component {
 
   render() {
     const { t, need, classes } = this.props;
+    const id = need.nameEn.replace(/ /g, "-") + "-checkbox";
     return (
       <FormControlLabel
         control={
@@ -36,10 +37,12 @@ export class NeedButton extends Component {
             onChange={() => this.handleClick(need.id)}
             value={need.id}
             color="primary"
+            id={id}
           />
         }
         label={t("current-language-code") === "en" ? need.nameEn : need.nameFr}
         className={classes.main}
+        htmlFor={id}
       />
     );
   }
