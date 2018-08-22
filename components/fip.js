@@ -21,6 +21,8 @@ class FIP extends Component {
           x="0px"
           y="0px"
           viewBox="0 0 608 45"
+          role="img"
+          ariaLabel={t("svg.vac_logo")}
         >
           <polygon
             fill={this.props.fillColor}
