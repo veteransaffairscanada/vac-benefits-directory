@@ -69,13 +69,13 @@ describe("Map", () => {
   });
 
   describe("getLocation", () => {
-    it("calls setUserLocation if the navigator does not exist", () => {
+    it("calls setUserLocation with default values if the navigator does not exist", () => {
       global.navigator = {};
       const map = shallow(<Map {...props} {...reduxData} />);
       map.instance().getLocation();
       expect(props.setUserLocation).toBeCalledWith({
-        lat: undefined,
-        lng: undefined
+        lat: 49,
+        lng: -104
       });
     });
 
