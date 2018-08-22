@@ -13,66 +13,65 @@ import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
-
 const root = css`
-    background-color: white;
-    margin: 58px 15px 58px 15px;
-    padding: 69px 96px 100px 96px;
-      @media only screen and (max-width: ${globalTheme.max.xs}) {
-        padding: 35px 48px 50px 48px;
-      }
+  background-color: white;
+  margin: 58px 15px 58px 15px;
+  padding: 69px 96px 100px 96px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    padding: 35px 48px 50px 48px;
+  }
 `;
 
-  const line = css`
-    background: #dfdfdf;
-    border: none;
-    height: 1px;
-    margin: 30px 0;
-  `;
-
-  const button = css`
-    font-size: 24px !important;
-    text-transform: none !important;
+const line = css`
+  background: #dfdfdf;
+  border: none;
+  height: 1px;
+  margin: 30px 0;
 `;
 
-  const columnLeft = css`
-        @media only screen and (min-width: ${globalTheme.min.sm}) {
-      padding-right: 50px !important;
-    }
-  `;
+const button = css`
+  font-size: 24px !important;
+  text-transform: none !important;
+`;
 
-  const columnRight = css`
-    @media only screen and (min-width: ${globalTheme.min.sm}) {
-      padding-left: 50px !important;
-    }
-  `;
+const columnLeft = css`
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
+    padding-right: 50px !important;
+  }
+`;
 
-  const container = css`
-    margin: ${globalTheme.margin};
-    max-width: ${globalTheme.maxWidth};
-    padding-left: ${globalTheme.paddingLeft};
-    padding-right: ${globalTheme.paddingRight};
+const columnRight = css`
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
+    padding-left: 50px !important;
+  }
+`;
+
+const container = css`
+  margin: ${globalTheme.margin};
+  max-width: ${globalTheme.maxWidth};
+  padding-left: ${globalTheme.paddingLeft};
+  padding-right: ${globalTheme.paddingRight};
 `;
 
 const image = css`
-    margin: 40px 40px 0 40px;
-    width: 100%;
-      @media only screen and (max-width: ${globalTheme.max.sm}) {
-      display: none;
-    }
+  margin: 40px 40px 0 40px;
+  width: 100%;
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    display: none;
+  }
 `;
 
 const prompt = css`
-    color: #303232;
-    font-size: 18px;
-    line-height: 1.5;
-    margin: 0 0 25px 0;
+  color: #303232;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0 0 25px 0;
 `;
 
 const title = css`
-    color: #434343;
-    font-size: 36px;
-    margin-bottom: 46px;
+  color: #434343;
+  font-size: 36px;
+  margin-bottom: 46px;
 `;
 
 export class App extends Component {
@@ -86,7 +85,13 @@ export class App extends Component {
       "guided?section=patronTypeQuestion&lng=" + t("current-language-code");
     let urlBD = "benefits-directory?lng=" + t("current-language-code");
     return (
-      <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
+      <Layout
+        i18n={i18n}
+        t={t}
+        hideNoscript={false}
+        showRefreshCache={false}
+        title={t("titles.index")}
+      >
         <div className={container}>
           <Paper className={root}>
             <Grid container spacing={24}>
@@ -95,15 +100,8 @@ export class App extends Component {
                   {t("index.title")}
                 </div>
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                className={columnLeft}
-              >
-                <p className={prompt}>
-                  {t("index.ge_prompt")}
-                </p>
+              <Grid item xs={12} md={6} className={columnLeft}>
+                <p className={prompt}>{t("index.ge_prompt")}</p>
                 <Button
                   id="heroGuidedLink"
                   variant="raised"
@@ -118,9 +116,7 @@ export class App extends Component {
                   <ArrowForward style={{ fontSize: "24px" }} />
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>
-                  {t("index.benefits_prompt")}
-                </p>
+                <p className={prompt}>{t("index.benefits_prompt")}</p>
                 <Button
                   id="heroBenefitsLink"
                   variant="raised"
@@ -135,9 +131,7 @@ export class App extends Component {
                   <ArrowForward style={{ fontSize: "24px" }} />
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>
-                  {t("index.favourites_prompt")}
-                </p>
+                <p className={prompt}>{t("index.favourites_prompt")}</p>
                 <Button
                   id="FavouritesPage"
                   variant="raised"
@@ -155,15 +149,8 @@ export class App extends Component {
                     ")"}
                 </Button>
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={6}
-                className={columnRight}
-              >
-                <p className={prompt}>
-                  {t("index.search_prompt")}
-                </p>
+              <Grid item xs={12} md={6} className={columnRight}>
+                <p className={prompt}>{t("index.search_prompt")}</p>
                 <SearchComponent
                   id="searchComponent"
                   i18n={this.props.i18n}

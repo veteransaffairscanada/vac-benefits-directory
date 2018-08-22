@@ -15,6 +15,7 @@ export class FavouritesPage extends Component {
         t={this.props.t}
         hideNoscript={false}
         showRefreshCache={false}
+        title={t("titles.favourites")}
       >
         <Favourites
           id="favourites"

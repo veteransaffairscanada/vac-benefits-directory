@@ -279,6 +279,7 @@ export class Guided extends Component {
         t={this.props.t}
         hideNoscript={false}
         showRefreshCache={false}
+        title={this.props.t("titles.guided_experience")}
       >
         {this.sectionToDisplay(this.state.section)}
       </Layout>

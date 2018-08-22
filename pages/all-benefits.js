@@ -10,21 +10,27 @@ import { css } from "react-emotion";
 import { globalTheme } from "../theme";
 
 const container = css`
-    max-width: ${globalTheme.maxWidth};
-    margin: ${globalTheme.margin};
-    padding-left: ${globalTheme.paddingLeft};
-    padding-right: ${globalTheme.paddingRight};
+  max-width: ${globalTheme.maxWidth};
+  margin: ${globalTheme.margin};
+  padding-left: ${globalTheme.paddingLeft};
+  padding-right: ${globalTheme.paddingRight};
 `;
 const root = css`
-    margin-left: 15px;
-    margin-right: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
 `;
 
 export class AllBenefits extends Component {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <Layout i18n={i18n} t={t} hideNoscript={true} showRefreshCache={false}>
+      <Layout
+        i18n={i18n}
+        t={t}
+        hideNoscript={true}
+        showRefreshCache={false}
+        title={t("titles.all_benefits")}
+      >
         <div className={container}>
           <div className={root}>
             <h1>{t("all-benefits.List of all benefits")}</h1>
