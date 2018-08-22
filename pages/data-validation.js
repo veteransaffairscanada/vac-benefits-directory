@@ -158,7 +158,6 @@ export class DataValidation extends Component {
         t={t}
         hideNoscript={true}
         showRefreshCache={true}
-        title={t("titles.data_validation")}
       >
         <Paper className={root}>
           <p style={{ padding: "10px" }}>

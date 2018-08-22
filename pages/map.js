@@ -86,7 +86,6 @@ export class Map extends Component {
     const { i18n, t } = this.props;
     return (
       <Layout
-        title={"Map"}
         i18n={i18n}
         t={t}
         hideNoscript={true}
