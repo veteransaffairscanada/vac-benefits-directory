@@ -11,14 +11,6 @@ import styled, { css } from "react-emotion";
 import { globalTheme } from "../theme";
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: "#1A237E",
-      main: "#E8EAF6",
-      dark: "#0000FF",
-      contrastText: "#fff"
-    }
-  },
   typography: { fontFamily: ["Merriweather", "serif"] }
 });
 

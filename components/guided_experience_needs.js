@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core/";
+import { Checkbox, FormControlLabel, Grid } from "@material-ui/core/";
 import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
@@ -10,17 +10,20 @@ const styles = theme => ({
     padding: "15px 15px 30px 15px"
   },
   need: {
-    margin: theme.spacing.unit,
-    backgroundColor: "#F5F5F5",
-    textTransform: "none",
-    textAlign: "left"
+    fontSize: "24px"
   },
-  needSelected: {
-    margin: theme.spacing.unit,
-    backgroundColor: "#364150",
-    color: "white",
-    textTransform: "none",
-    textAlign: "left"
+  needsList: {
+    listStyle: "none",
+    columns: 2,
+    "-webkit-columns": 2,
+    "-moz-columns": 2,
+    maxWidth: "100%",
+    paddingLeft: 0,
+    [theme.breakpoints.down(600)]: {
+      columns: 1,
+      "-webkit-columns": 1,
+      "-moz-columns": 1
+    }
   }
 });
 
@@ -42,25 +45,27 @@ export class GuidedExperienceNeeds extends Component {
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
-          {this.props.needs.map(need => (
-            <Button
-              disableRipple={true}
-              key={need.id}
-              variant="raised"
-              onClick={() => this.handleClick(need.id)}
-              value={need.id}
-              isdownstatus={
-                this.props.selectedNeeds.hasOwnProperty(need.id) ? "down" : "up"
-              }
-              className={
-                this.props.selectedNeeds.hasOwnProperty(need.id)
-                  ? classes.needSelected
-                  : classes.need
-              }
-            >
-              {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
-            </Button>
-          ))}
+          <ul className={classes.needsList}>
+            {this.props.needs.map(need => (
+              <li key={need.id} className={classes.need}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={this.props.selectedNeeds.hasOwnProperty(need.id)}
+                      onChange={() => this.handleClick(need.id)}
+                      value={need.id}
+                      color="primary"
+                    />
+                  }
+                  label={
+                    t("current-language-code") === "en"
+                      ? need.nameEn
+                      : need.nameFr
+                  }
+                />
+              </li>
+            ))}
+          </ul>
         </Grid>
       </div>
     );
@@ -90,6 +95,7 @@ GuidedExperienceNeeds.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withStyles(styles)(GuidedExperienceNeeds)
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(GuidedExperienceNeeds));

@@ -1,8 +1,8 @@
 /* eslint-env jest */
 
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import React from "react";
-import { Button } from "@material-ui/core";
+import { Checkbox } from "@material-ui/core";
 import { GuidedExperienceNeeds } from "../../components/guided_experience_needs";
 import needsFixture from "../fixtures/needs";
 
@@ -14,7 +14,6 @@ jest.mock("react-ga");
 describe("GuidedExperienceNeeds", () => {
   let props;
   let _mountedGuidedExperienceNeeds;
-  let _shallowGuidedExperienceNeeds;
 
   const mounted_GuidedExperienceNeeds = () => {
     if (!_mountedGuidedExperienceNeeds) {
@@ -25,15 +24,6 @@ describe("GuidedExperienceNeeds", () => {
     return _mountedGuidedExperienceNeeds;
   };
 
-  const shallow_GuidedExperienceNeeds = () => {
-    if (!_shallowGuidedExperienceNeeds) {
-      _shallowGuidedExperienceNeeds = shallow(
-        <GuidedExperienceNeeds {...props} />
-      );
-    }
-    return _shallowGuidedExperienceNeeds;
-  };
-
   beforeEach(() => {
     props = {
       t: key => key,
@@ -42,7 +32,6 @@ describe("GuidedExperienceNeeds", () => {
       setSelectedNeeds: jest.fn(),
       classes: {}
     };
-    _shallowGuidedExperienceNeeds = undefined;
     _mountedGuidedExperienceNeeds = undefined;
   });
 
@@ -52,31 +41,24 @@ describe("GuidedExperienceNeeds", () => {
   });
 
   it("contains the needs buttons", () => {
-    expect(shallow_GuidedExperienceNeeds().find(Button).length).toEqual(
+    expect(mounted_GuidedExperienceNeeds().find(Checkbox).length).toEqual(
       needsFixture.length
     );
   });
 
-  it("has the correct button down", () => {
-    props.selectedNeeds[needsFixture[1].id] = "selected";
-    expect(
-      shallow_GuidedExperienceNeeds()
-        .find(Button)
-        .map(b => b.props().isdownstatus)
-    ).toEqual(["up", "down", "up"]);
-  });
-
   it("calls setSelectedNeeds when option pressed", () => {
-    shallow_GuidedExperienceNeeds()
-      .find(Button)
+    mounted_GuidedExperienceNeeds()
+      .find(Checkbox)
       .first()
-      .simulate("click");
+      .find("input")
+      .first()
+      .simulate("change", { target: { checked: true } });
     expect(props.setSelectedNeeds).toBeCalled();
   });
 
   it("removes a selectedNeed if it already selected", () => {
     props.selectedNeeds[needsFixture[1].id] = "selected";
-    shallow_GuidedExperienceNeeds()
+    mounted_GuidedExperienceNeeds()
       .instance()
       .handleClick(needsFixture[1].id);
     expect(props.setSelectedNeeds).toBeCalledWith({});

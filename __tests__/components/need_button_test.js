@@ -30,9 +30,11 @@ describe("NeedButton", () => {
 
   it("fires the the setSelectedNeeds function when a need is selected", () => {
     mount(<NeedButton {...props} />)
-      .find("Button")
+      .find("FormControlLabel")
       .at(0)
-      .simulate("click");
+      .find("input")
+      .at(0)
+      .simulate("change");
     expect(props.setSelectedNeeds).toHaveBeenCalled();
   });
 
