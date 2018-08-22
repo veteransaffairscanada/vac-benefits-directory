@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 
-const styles = () => ({
+const styles = theme => ({
   root: {
     padding: "15px 15px 30px 15px"
   },
@@ -16,7 +16,12 @@ const styles = () => ({
     listStyle: "none",
     columns: 2,
     "-webkit-columns": 2,
-    "-moz-columns": 2
+    "-moz-columns": 2,
+    [theme.breakpoints.down(600)]: {
+      columns: 1,
+      "-webkit-columns": 1,
+      "-moz-columns": 1
+    }
   }
 });
 
