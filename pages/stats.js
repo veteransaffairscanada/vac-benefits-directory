@@ -32,6 +32,7 @@ export class Stats extends Component {
         t={this.props.t}
         hideNoscript={false}
         showRefreshCache={false}
+        title={t("titles.stats")}
       >
         <div className={classes.root}>
           <h1>{t("stats.title")}</h1>

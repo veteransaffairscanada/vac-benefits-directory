@@ -85,7 +85,13 @@ export class App extends Component {
       "guided?section=patronTypeQuestion&lng=" + t("current-language-code");
     let urlBD = "benefits-directory?lng=" + t("current-language-code");
     return (
-      <Layout i18n={i18n} t={t} hideNoscript={false} showRefreshCache={false}>
+      <Layout
+        i18n={i18n}
+        t={t}
+        hideNoscript={false}
+        showRefreshCache={false}
+        title={t("titles.index")}
+      >
         <div className={container}>
           <Paper className={root}>
             <Grid container spacing={24}>

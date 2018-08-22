@@ -15,16 +15,15 @@ import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
 const root = css`
-    margin: ${globalTheme.margin};
-    max-width: ${globalTheme.maxWidth};
-    margin-bottom: ${globalTheme.marginTop};
-    margin-top: ${globalTheme.marginTop};
-    overflow-x: auto;
-
+  margin: ${globalTheme.margin};
+  max-width: ${globalTheme.maxWidth};
+  margin-bottom: ${globalTheme.marginTop};
+  margin-top: ${globalTheme.marginTop};
+  overflow-x: auto;
 `;
 const table = css`
-    width: 100%;
-  `;
+  width: 100%;
+`;
 
 export class DataValidation extends Component {
   constructor(props) {
