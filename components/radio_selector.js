@@ -147,8 +147,8 @@ export class RadioSelector extends React.Component {
                   <FormControlLabel
                     key={filter_id}
                     value={filter_id}
-                    htmlFor={filter_id}
-                    control={<Radio id={filter_id} />}
+                    htmlFor={filter_id + this.props.parent}
+                    control={<Radio id={filter_id + this.props.parent} />}
                     label={t(filter_id)}
                     disabled={this.isDisabled(
                       filter_id,
@@ -198,6 +198,7 @@ const mapStateToProps = reduxState => {
 RadioSelector.propTypes = {
   classes: PropTypes.object.isRequired,
   legend: PropTypes.string.isRequired,
+  parent: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   selectedPatronType: PropTypes.string.isRequired,
   selectedServiceType: PropTypes.string.isRequired,

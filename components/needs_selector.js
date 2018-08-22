@@ -32,12 +32,7 @@ export class NeedsSelector extends Component {
               {t("Select all that apply")}
             </Typography>
           </Grid>
-          <Grid
-            // id="needs_buttons"
-            item
-            xs={12}
-            className={classes.needsButtons}
-          >
+          <Grid item xs={12} className={classes.needsButtons}>
             {needs.map(need => (
               <NeedButton
                 key={need.id}
@@ -45,6 +40,7 @@ export class NeedsSelector extends Component {
                 t={t}
                 pageWidth={pageWidth}
                 store={store}
+                parent={this.props.parent}
               />
             ))}
           </Grid>
@@ -62,6 +58,7 @@ const mapStateToProps = reduxState => {
 
 NeedsSelector.propTypes = {
   classes: PropTypes.object.isRequired,
+  parent: PropTypes.string.isRequired,
   needs: PropTypes.array.isRequired,
   pageWidth: PropTypes.number.isRequired,
   t: PropTypes.func.isRequired,

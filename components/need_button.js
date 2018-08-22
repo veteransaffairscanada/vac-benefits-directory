@@ -28,7 +28,8 @@ export class NeedButton extends Component {
 
   render() {
     const { t, need, classes } = this.props;
-    const id = need.nameEn.replace(/ /g, "-") + "-checkbox";
+    const id =
+      need.nameEn.replace(/ /g, "-") + "-checkbox-" + this.props.parent;
     return (
       <FormControlLabel
         control={
@@ -65,6 +66,7 @@ const mapStateToProps = reduxState => {
 
 NeedButton.propTypes = {
   classes: PropTypes.object.isRequired,
+  parent: PropTypes.string.isRequired,
   need: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,

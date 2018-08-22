@@ -27,6 +27,7 @@ export class ProfileSelector extends Component {
               legend={t("B3.Filter by eligibility")}
               selectorType={"patronType"}
               store={this.props.store}
+              parent={this.props.parent}
             />
           </Grid>
 
@@ -37,6 +38,7 @@ export class ProfileSelector extends Component {
                 legend={t("B3.ServiceType")}
                 selectorType={"serviceType"}
                 store={this.props.store}
+                parent={this.props.parent}
               />
             </Grid>
           ) : (
@@ -50,6 +52,7 @@ export class ProfileSelector extends Component {
                 legend={t("B3.serviceStatus")}
                 selectorType={"statusAndVitals"}
                 store={this.props.store}
+                parent={this.props.parent}
               />
             </Grid>
           ) : (
@@ -67,6 +70,7 @@ export class ProfileSelector extends Component {
                 )}
                 selectorType={"serviceHealthIssue"}
                 options={["true", "false"]}
+                parent={this.props.parent}
                 store={this.props.store}
               />
             </Grid>
@@ -91,6 +95,7 @@ const mapStateToProps = reduxState => {
 ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
+  parent: PropTypes.string.isRequired,
   store: PropTypes.object,
   showStatusAndVitals: PropTypes.bool.isRequired,
   showServiceHealthIssue: PropTypes.bool.isRequired,
