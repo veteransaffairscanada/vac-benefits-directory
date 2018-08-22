@@ -17,6 +17,8 @@ const styles = theme => ({
     columns: 2,
     "-webkit-columns": 2,
     "-moz-columns": 2,
+    maxWidth: "100%",
+    marginLeft: 0,
     [theme.breakpoints.down(600)]: {
       columns: 1,
       "-webkit-columns": 1,
