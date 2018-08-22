@@ -15,43 +15,43 @@ import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
 const paper = css`
-    margin-top: ${globalTheme.marginTop};
+  margin-top: ${globalTheme.marginTop};
 `;
 
 const mapTitle = css`
-    font-size: 36px !important;
+  font-size: 36px !important;
 `;
 
-  const backLink = css`
-    font-size: 20px !important;
-    font-weight: 100 !important;
-    margin-bottom: 15px !important;
-    padding-left: 0px !important;
-    text-decoration: none !important;
-    text-transform: none !important;
-  `;
+const backLink = css`
+  font-size: 20px !important;
+  font-weight: 100 !important;
+  margin-bottom: 15px !important;
+  padding-left: 0px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+`;
 
-  const topMatter = css`
-    margin-top: 30px !important;
-  `;
+const topMatter = css`
+  margin-top: 30px !important;
+`;
 
-  const container = css`
+const container = css`
   margin: ${globalTheme.margin};
   max-width: ${globalTheme.maxWidth};
   padding-left: ${globalTheme.paddingLeft};
   padding-right: ${globalTheme.paddingRight};
-  `;
+`;
 
-  const root = css`
-    margin-left: 15px;
-    margin-right: 15px;
-  `;
+const root = css`
+  margin-left: 15px;
+  margin-right: 15px;
+`;
 
 export class Map extends Component {
   getLocation() {
     this.props.setUserLocation({
-      lat: undefined,
-      lng: undefined
+      lat: 49,
+      lng: -104
     });
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -112,13 +112,7 @@ export class Map extends Component {
                   {t("map.vacOffices")}
                 </Typography>
               </Grid>
-              <Grid
-                item
-                xs={12}
-                md={4}
-                className={topMatter}
-                id="contactInfo"
-              >
+              <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
                 <Typography>
                   <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
                 </Typography>
@@ -143,7 +137,7 @@ export class Map extends Component {
               </Grid>
             </Grid>
 
-            <Paper className={paper} >
+            <Paper className={paper}>
               <Grid container>
                 <Grid item xs={12} md={8}>
                   <AreaOfficeMap
@@ -196,4 +190,7 @@ Map.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(withI18next()(Map));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withI18next()(Map));
