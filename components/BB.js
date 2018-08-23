@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core";
 import classnames from "classnames";
-import { withStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -17,83 +16,83 @@ import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const styles = () => ({
-  buttonBarButton: {
-    fontWeight: "100",
-    marginRight: "20px",
-    paddingLeft: "0px",
-    paddingRight: "0px",
-    textDecoration: "none",
-    textTransform: "none",
-    color: "#3e57e2"
-  },
-  collapse: {
-    textAlign: "right",
-    textDecoration: "underline",
-    marginTop: "34px"
-  },
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    width: "100%"
-  },
-  formControl: {
-    minWidth: 120
-  },
-  sortByBox: {
-    backgroundColor: "white",
-    padding: "6px 10px 6px 10px",
-    borderStyle: "solid",
-    borderWidth: "1px",
-    borderRadius: "1px"
-  },
-  subTitle: {
-    fontSize: "20px",
-    fontWeight: "100"
-  },
-  title: {
-    fontSize: "36px",
-    paddingBottom: "15px"
-  },
-  topMatter: {
-    backgroundColor: "#fff",
-    borderBottom: "solid 1px lightgrey"
-  },
-  searchWrap: {
-    width: "100%",
-    display: "inline-flex",
-    borderStyle: "solid",
-    borderWidth: "1px",
-    borderRadius: "1px",
-    backgroundColor: "white"
-  },
-  searchBox: {
-    display: "inline-flex",
-    padding: "10px",
-    fontSize: "15px",
-    flex: 1,
-    borderWidth: "0px",
-    width: "100%",
-    fontFamily: "Merriweather"
-  },
-  searchInputField: {
-    display: "inline-flex",
-    fontSize: "15px",
-    flex: 1,
-    borderWidth: "0px",
-    width: "100%",
-    fontFamily: "Merriweather"
-  },
-  sortByLabel: {
-    color: "#434343",
-    verticalAlign: "text-top"
-  },
-  inputIcon: {
-    paddingRight: "10px",
-    marginLeft: "5px"
-  }
-});
+const buttonBarButton = css`
+    font-weight: 100 !important;
+    margin-right: 20px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    color: #3e57e2 !important;
+`;
+  const collapse = css`
+    text-align: right;
+    text-decoration: underline;
+    margin-top: 34px;
+`;
+  const container = css`
+    max-width: ${globalTheme.maxWidth}; !important;
+    margin: ${globalTheme.margin} !important;
+    width: 100% !imporant;
+`;
+  const formControl = css`
+    min-width: 120
+`;
+  const sortByBox = css`
+    background-color: white;
+    padding: 6px 10px 6px 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+`;
+  const subTitle = css`
+    font-size: 20px;
+    font-weight: 100;
+  `;
+  const title = css`
+    font-size: 36px;
+    padding-bottom: 15px;
+`;
+  const topMatter = css`
+    background-color: #fff;
+    border-bottom: solid 1px lightgrey;
+`;
+  const searchWrap = css`
+    width: 100%;
+    display: inline-flex;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1px;
+    background-color: white;
+`;
+  const searchBox = css`
+    display: inline-flex;
+    padding: 10px;
+    fontSize: 15px;
+    flex: 1;
+    border-width: 0px;
+    width: 100%;
+    font-family: Merriweather;
+`;
+  const searchInputField = css`
+    display: inline-flex;
+    font-size: 15px;
+    flex: 1;
+    border-width: 0px;
+    width: 100%;
+    font-family: Merriweather;
+`;
+  const sortByLabel = css`
+    color: #434343 !important;
+    vertical-align: text-top;
+`;
+  const inputIcon = css`
+    padding-right: 10px;
+    margin-left: 5px;
+`;
 
 export class BB extends Component {
   handleSortByChange = event => {
@@ -137,14 +136,14 @@ export class BB extends Component {
         ref={el => (this.componentRef = el)}
       >
         <Grid container spacing={32}>
-          <Grid item xs={12} className={classes.topMatter}>
-            <Grid container spacing={24} className={classes.container}>
+          <Grid item xs={12} className={topMatter}>
+            <Grid container spacing={24} className={container}>
               <Grid item xs={12} md={9}>
                 <Button
                   id="Favourites Page"
                   variant="flat"
                   size="medium"
-                  className={classes.buttonBarButton}
+                  className={buttonBarButton}
                   href={this.props.favouritesUrl}
                 >
                   <Bookmark style={{ fontSize: "20px" }} />
@@ -159,7 +158,7 @@ export class BB extends Component {
                   variant="flat"
                   size="medium"
                   target="print_page"
-                  className={classes.buttonBarButton}
+                  className={buttonBarButton}
                   id="printButton"
                 >
                   <Print style={{ fontSize: "20px" }} />
@@ -168,11 +167,11 @@ export class BB extends Component {
                 </Button>
               </Grid>
               <Grid item xs={12}>
-                <h1 className={"BenefitsCounter " + classes.title}>
+                <h1 className={"BenefitsCounter " + title}>
                   {this.countString(filteredBenefits.length, t)}
                 </h1>
                 {filteredBenefits.length > 0 ? (
-                  <h2 className={classes.subTitle}>
+                  <h2 className={subTitle}>
                     {t("B3.check eligibility")}
                   </h2>
                 ) : (
@@ -182,7 +181,7 @@ export class BB extends Component {
             </Grid>
           </Grid>
           <Grid item xs={12}>
-            <Grid container spacing={32} className={classes.container}>
+            <Grid container spacing={32} className={container}>
               <Grid item lg={4} md={4} sm={5} xs={12}>
                 <ProfileNeedsSelectorMobile t={t} store={this.props.store} />
                 <ProfileNeedsSelector t={t} store={this.props.store} />
@@ -192,19 +191,19 @@ export class BB extends Component {
                   <Grid item xs={12} md={6}>
                     <InputLabel
                       htmlFor="sortBySelector"
-                      className={classes.sortByLabel}
+                      className={sortByLabel}
                     >
                       {t("B3.Sort By")}
                     </InputLabel>
                     &nbsp;&nbsp;
                     <FormControl
                       id="sortBySelector"
-                      className={classes.formControl}
+                      className={formControl}
                     >
                       <Select
                         value={this.props.sortBy}
                         onChange={this.handleSortByChange}
-                        className={classnames(classes.sortByBox)}
+                        className={classnames(sortByBox)}
                         disableUnderline={true}
                       >
                         <MenuItem value={"relevance"}>
@@ -217,15 +216,15 @@ export class BB extends Component {
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <div className={classes.searchWrap}>
-                      <div className={classes.searchBox}>
-                        <SearchIcon className={classes.inputIcon} />
+                    <div className={searchWrap}>
+                      <div className={searchBox}>
+                        <SearchIcon className={inputIcon} />
                         <input
                           id="bbSearchField"
                           aria-label="search"
                           type="text"
                           placeholder={this.props.t("search")}
-                          className={classes.searchInputField}
+                          className={searchInputField}
                           value={this.props.searchString}
                           onChange={this.handleSearchChange}
                         />
@@ -317,4 +316,4 @@ BB.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(BB));
+)(BB);
