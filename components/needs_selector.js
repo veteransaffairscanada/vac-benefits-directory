@@ -29,12 +29,7 @@ export class NeedsSelector extends Component {
           <Grid item xs={9}>
             <h3 variant="body2">{t("Select all that apply")}</h3>
           </Grid>
-          <Grid
-            // id="needs_buttons"
-            item
-            xs={12}
-            className={classes.needsButtons}
-          >
+          <Grid item xs={12} className={classes.needsButtons}>
             {needs.map(need => (
               <NeedButton
                 key={need.id}

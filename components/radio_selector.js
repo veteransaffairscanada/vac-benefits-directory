@@ -7,6 +7,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { uuidv4 } from "../utils/common";
 
 const theme = createMuiTheme({
   typography: { fontFamily: ["Merriweather", "serif"] },
@@ -30,13 +31,6 @@ const styles = theme => ({
 });
 
 export class RadioSelector extends React.Component {
-  setters = {
-    patronType: this.props.setPatronType,
-    serviceType: this.props.setServiceType,
-    statusAndVitals: this.props.setStatusAndVitals,
-    serviceHealthIssue: this.props.setServiceHealthIssue
-  };
-
   isDisabled = (filter_id, patronType, serviceType) => {
     if (serviceType === "WSV (WWII or Korea)" && filter_id === "stillServing") {
       return true;
@@ -114,6 +108,8 @@ export class RadioSelector extends React.Component {
   };
 
   render() {
+    const guid = uuidv4();
+
     const allFilterIds = this.props.options
       ? this.props.options
       : Array.from(
@@ -147,7 +143,8 @@ export class RadioSelector extends React.Component {
                   <FormControlLabel
                     key={filter_id}
                     value={filter_id}
-                    control={<Radio />}
+                    htmlFor={filter_id + guid}
+                    control={<Radio id={filter_id + guid} />}
                     label={t(filter_id)}
                     disabled={this.isDisabled(
                       filter_id,

@@ -41,7 +41,6 @@ export class GuidedExperienceNeeds extends Component {
 
   render() {
     const { t, classes } = this.props; // eslint-disable-line no-unused-vars
-
     return (
       <div className={classes.root}>
         <Grid container spacing={24}>
@@ -55,6 +54,7 @@ export class GuidedExperienceNeeds extends Component {
                       onChange={() => this.handleClick(need.id)}
                       value={need.id}
                       color="primary"
+                      id={need.nameEn.replace(/ /g, "-") + "-checkbox"}
                     />
                   }
                   label={
@@ -62,6 +62,7 @@ export class GuidedExperienceNeeds extends Component {
                       ? need.nameEn
                       : need.nameFr
                   }
+                  htmlFor={need.nameEn.replace(/ /g, "-") + "-checkbox"}
                 />
               </li>
             ))}
