@@ -12,6 +12,9 @@
 /dist
 /.next
 
+# performance testing
+/report
+
 # misc
 .DS_Store
 .env
