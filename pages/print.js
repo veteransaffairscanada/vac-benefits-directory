@@ -23,18 +23,18 @@ const box = css`
   padding: 1.5em;
 `;
 const checkboxes = css`
-  disabled: true;
-  ripple: disabled;
-  height: 30px;
-  width: 20px;
-  margin-right: 6px;
-  margin-left: 12px;
+  disabled: true !important;
+  ripple: disabled !important;
+  height: 30px !important;
+  width: 20px !important;
+  margin-right: 6px !important;
+  margin-left: 12px !important;
 `;
 const checkbox = css`
   margin-right: 0px;
 `;
 const gridstyle = css`
-  margin-top: 12px;
+  margin-top: 12px !important;
 `;
 const bigTitle = css`
   font-size: 32px;
