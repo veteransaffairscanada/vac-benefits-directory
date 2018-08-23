@@ -126,8 +126,9 @@ export class AreaOfficeTable extends Component {
     const language = this.props.t("current-language-code");
     const distances = this.officeDistance();
     return (
+      <Table key={ae.id}>
+      <TableBody>
       <TableRow
-        key={ae.id}
         id={"tableRow" + ae.id}
         className={
           ae.id === this.props.selectedAreaOffice.id
@@ -160,6 +161,8 @@ export class AreaOfficeTable extends Component {
           )}
         </TableCell>
       </TableRow>
+      </TableBody>
+      </Table>
     );
   };
 
@@ -193,9 +196,7 @@ export class AreaOfficeTable extends Component {
                 ? this.sortProvinces(Object.keys(defaultOffices)).map(
                     (name, index) => {
                       return (
-                        <div key={index}>
-                          <TableHead>
-                            <TableRow>
+                        <TableRow key={index}>
                               <TableCell
                                 className={classes.provinceCell}
                                 colSpan="2"
@@ -205,10 +206,8 @@ export class AreaOfficeTable extends Component {
                                   : name.split(",")[1]}{" "}
                                 ({defaultOffices[name].length})
                               </TableCell>
+                              {defaultOffices[name].map(ae => this.tableRow(ae))}
                             </TableRow>
-                          </TableHead>
-                          {defaultOffices[name].map(ae => this.tableRow(ae))}
-                        </div>
                       );
                     }
                   )
