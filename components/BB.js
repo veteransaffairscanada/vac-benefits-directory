@@ -28,11 +28,6 @@ const buttonBarButton = css`
     text-transform: none !important;
     color: #3e57e2 !important;
 `;
-  const collapse = css`
-    text-align: right;
-    text-decoration: underline;
-    margin-top: 34px;
-`;
   const container = css`
     max-width: ${globalTheme.maxWidth}; !important;
     margin: ${globalTheme.margin} !important;
