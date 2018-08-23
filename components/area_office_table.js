@@ -6,10 +6,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Pin from "@material-ui/icons/Place";
-import { globalTheme } from "../theme";
 import { css } from "react-emotion";
-
-import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
 
 const root = css`
