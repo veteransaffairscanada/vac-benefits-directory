@@ -12,9 +12,6 @@
 /dist
 /.next
 
-# performance testing
-/report
-
 # misc
 .DS_Store
 .env
@@ -25,6 +22,6 @@ yarn-error.log*
 *.swp
 locales/en/common.missing.json
 
-#Eclipse specific 
+#Eclipse specific
 .project
 .settings/*

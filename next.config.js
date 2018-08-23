@@ -5,10 +5,7 @@ module.exports = {
         .BundleAnalyzerPlugin;
       config.plugins.push(
         new BundleAnalyzerPlugin({
-          analyzerMode: "static",
-          generateStatsFile: true,
-          reportFilename: "../../reports/sourceReport.html",
-          statsFilename: "../../reports/sourceStats.json"
+          analyzerMode: "static"
         })
       );
     }
