@@ -5,6 +5,10 @@
   "engines": {
     "node": "10"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cds-snc/vac-benefits-directory"
+  },
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
@@ -14,7 +18,9 @@
     "test:e2e": "testcafe chrome testcafe/",
     "test:e2e_windows": "testcafe 'browserstack:ie@11:Windows 10' testcafe/*.js",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged",
+    "docs": "styleguidist server",
+    "docs:build": "styleguidist build"
   },
   "dependencies": {
     "@cdssnc/gcui": "^0.0.30",
@@ -86,6 +92,7 @@
     "jest": "^23.5.0",
     "prettier": "^1.14.2",
     "pretty-quick": "^1.6.0",
+    "react-styleguidist": "^7.2.5",
     "react-test-renderer": "^16.4.2",
     "testcafe": "^0.21.1",
     "testcafe-browser-provider-browserstack": "^1.5.0",

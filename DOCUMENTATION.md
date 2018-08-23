@@ -14,6 +14,7 @@
 - [Snyk](#snyk)
 - [Security review](#security-review)
 - [Testing](#testing)
+- [Code Documentation](#code-documentation)
 - [Contributing to GitHub repo](#contributing-to-github-repo)
 - [Pair Programming](#pair-programming)
 - [Deployment notifications](#deployment-notifications)
@@ -261,6 +262,10 @@ We are using [Testcafé](https://devexpress.github.io/testcafe) to write end-to-
 via `yarn test:e2e` (with `yarn dev` running). We also run our tests on Windows using the cloud service [BrowserStack](https://www.browserstack.com)
 using the command `yarn test:e2e_windows` (with `yarn dev` running and the environment variables
 `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` set appropriately).
+
+### Code documentation
+
+We are currently using [React Styleguidist](https://react-styleguidist.js.org/) to create easily accessible HTML output of our React components code comments. This documentation can be found in the `documentation` directory. To interactively generate the documentation you can run `yarn docs`, which will start a web server from which you can view the generated output. The output will update as you adjust comments inside the react components. To generate the static HTML output, please run `yarn docs:build`.
 
 ### Contributing to GitHub repo
 

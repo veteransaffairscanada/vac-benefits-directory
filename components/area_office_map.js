@@ -33,13 +33,24 @@ const styles = () => ({
   }
 });
 
+/**
+ * Determins if the browser is an iOS device
+ */
 const isIOS =
   typeof navigator !== "undefined" &&
   (navigator.platform.indexOf("iPhone") !== -1 ||
     navigator.platform.indexOf("iPod") !== -1 ||
     navigator.platform.indexOf("iPad") !== -1);
 
+/**
+ * Renders a Google Map component with all the area offices marked as pins.
+ * Depending on geolocation - will center the map and show the closest offices.
+ */
 export class AreaOfficeMap extends Component {
+  /**
+   * Sets the default map view and sets up the callback methods for the
+   * react-google-map component
+   */
   constructor(props) {
     super(props);
     this.props.setMapView({ lat: 51, lng: -104, zoom: 3 });
@@ -59,6 +70,10 @@ export class AreaOfficeMap extends Component {
     };
   }
 
+  /**
+   * Sets the selected office
+   * @public
+   */
   selectOffice(selected_office) {
     return () => {
       this.props.setSelectedAreaOffice(selected_office);
@@ -162,12 +177,33 @@ const mapStateToProps = reduxState => {
 };
 
 AreaOfficeMap.propTypes = {
+  /**
+   * List of area offices
+   */
   areaOffices: PropTypes.array.isRequired,
+  /**
+   * Sets a selected area office in redux
+   */
   setSelectedAreaOffice: PropTypes.func.isRequired,
+  /**
+   * Sets properties of the map view (Lat, Lng, Zoom)
+   */
   setMapView: PropTypes.func.isRequired,
+  /**
+   * The selected area office
+   */
   selectedAreaOffice: PropTypes.object.isRequired,
+  /**
+   * Properties of the map view (Lat, Lng, Zoom)
+   */
   mapView: PropTypes.object.isRequired,
+  /**
+   * Object that contains CSS classes
+   */
   classes: PropTypes.object.isRequired,
+  /**
+   * Universal translation function
+   */
   t: PropTypes.func.isRequired
 };
 

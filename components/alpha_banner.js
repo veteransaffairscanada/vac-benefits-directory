@@ -20,7 +20,9 @@ const Banner = styled("aside")`
 const Text = styled("div")`
   margin-left: 10px;
 `;
-
+/**
+ * Renders an alpha banner and renders passed children in the `Text` container
+ */
 export const AlphaBanner = ({ children, ...rest }) => (
   <Banner {...rest}>
     <PhaseBadge phase="alpha" />
@@ -29,5 +31,8 @@ export const AlphaBanner = ({ children, ...rest }) => (
 );
 
 AlphaBanner.propTypes = {
+  /**
+   * Heirarchy of child components to render within thr `Text` container
+   */
   children: PropTypes.any
 };
