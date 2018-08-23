@@ -98,19 +98,10 @@ export class ProfileNeedsSelectorMobile extends Component {
         <ExpansionPanelDetails>
           <Grid container>
             <Grid item sm={12} className={classnames(classes.profileSelector)}>
-              <ProfileSelector
-                t={t}
-                store={store}
-                parent="ProfileNeedsSelectorMobile"
-              />
+              <ProfileSelector t={t} store={store} />
             </Grid>
             <Grid item sm={12}>
-              <NeedsSelector
-                t={t}
-                pageWidth={pageWidth}
-                store={store}
-                parent="ProfileNeedsSelectorMobile"
-              />
+              <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
 
               {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
               this.props.patronType !== "" ? (

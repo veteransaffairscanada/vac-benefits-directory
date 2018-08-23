@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
+import { uuidv4 } from "../utils/common";
 
 const styles = () => ({
   main: {
@@ -12,6 +13,8 @@ const styles = () => ({
 });
 
 export class NeedButton extends Component {
+  guid = uuidv4();
+
   handleClick = id => {
     let newSelectedNeeds = JSON.parse(JSON.stringify(this.props.selectedNeeds));
     if (newSelectedNeeds.hasOwnProperty(id)) {
@@ -28,8 +31,7 @@ export class NeedButton extends Component {
 
   render() {
     const { t, need, classes } = this.props;
-    const id =
-      need.nameEn.replace(/ /g, "-") + "-checkbox-" + this.props.parent;
+    const id = need.nameEn.replace(/ /g, "-") + "-checkbox-" + this.guid;
     return (
       <FormControlLabel
         control={
@@ -66,7 +68,6 @@ const mapStateToProps = reduxState => {
 
 NeedButton.propTypes = {
   classes: PropTypes.object.isRequired,
-  parent: PropTypes.string.isRequired,
   need: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,

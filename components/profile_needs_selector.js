@@ -107,19 +107,10 @@ export class ProfileNeedsSelector extends Component {
 
         <Grid container>
           <Grid item sm={12} className={classnames(classes.profileSelector)}>
-            <ProfileSelector
-              t={t}
-              store={store}
-              parent="ProfileNeedsSelector"
-            />
+            <ProfileSelector t={t} store={store} />
           </Grid>
           <Grid item sm={12}>
-            <NeedsSelector
-              t={t}
-              pageWidth={pageWidth}
-              store={store}
-              parent="ProfileNeedsSelector"
-            />
+            <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
           </Grid>
         </Grid>
       </Paper>
