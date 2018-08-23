@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Typography, Button, Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import classnames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import { KeyboardBackspace } from "@material-ui/icons";
@@ -79,14 +79,14 @@ export class EmbeddedBenefitCard extends Component {
 
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <Typography
+            <h2
               variant="title"
               className={classnames(classes.cardDescriptionText)}
             >
               {language === "en"
                 ? benefit.oneLineDescriptionEn
                 : benefit.oneLineDescriptionFr}
-            </Typography>
+            </h2>
           </Grid>
         </Grid>
       </Paper>

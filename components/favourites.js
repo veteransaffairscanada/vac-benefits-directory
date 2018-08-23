@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
@@ -127,9 +126,9 @@ export class Favourites extends Component {
               {t("favourites.back_link")}
             </Button>
 
-            <Typography className={"BenefitsCounter " + classes.benefitsCount}>
+            <h1 className={"BenefitsCounter " + classes.benefitsCount}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
-            </Typography>
+            </h1>
           </Grid>
           <Grid item md={8} xs={12}>
             <Grid container spacing={24}>
@@ -166,38 +165,40 @@ export class Favourites extends Component {
               &nbsp;
               {t("Print")}
             </Button>
-            <Typography className={classes.contactUsTitle}>
+            <h2 className={classes.contactUsTitle}>
               {t("favourites.contact_us")}
-            </Typography>
-            <Typography>
+            </h2>
+            <p>
               <Link href={this.get_link("map")}>
                 <a>{t("favourites.visit_prompt")}</a>
               </Link>
-            </Typography>
-            <br />
-            <Typography>{t("favourites.print_instructions")}</Typography>
-            <br />
+            </p>
+
+            <p>{t("favourites.print_instructions")}</p>
+
             <hr />
-            <br />
-            <Typography>
+
+            <p>
               <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
-            </Typography>
-            <br />
-            <Typography>{t("favourites.call_time")}</Typography>
-            <br />
+            </p>
+
+            <p>{t("favourites.call_time")}</p>
+
             <hr />
-            <br />
-            <Typography>
+
+            <p>
               <a href={"mailto:" + t("contact.email")}>{t("contact.email")}</a>
-            </Typography>
-            <br />
-            <Typography>{t("favourites.email_disclaimer")}</Typography>
-            <br />
+            </p>
+
+            <p>{t("favourites.email_disclaimer")}</p>
+
             <hr />
-            <Typography className={classes.contactUsTitle}>
+
+            <h2 className={classes.contactUsTitle}>
               {t("favourites.apply_prompt")}
-            </Typography>
-            <Typography>
+            </h2>
+
+            <p>
               <a
                 href={t("contact.my_vac_link")}
                 target="_blank"
@@ -207,8 +208,7 @@ export class Favourites extends Component {
               </a>
               &nbsp;
               {t("favourites.login_prompt")}
-            </Typography>
-            <br />
+            </p>
           </Grid>
         </Grid>
       </div>

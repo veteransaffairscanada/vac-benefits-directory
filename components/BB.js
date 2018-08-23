@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core";
 import classnames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -169,13 +168,13 @@ export class BB extends Component {
                 </Button>
               </Grid>
               <Grid item xs={12}>
-                <Typography className={"BenefitsCounter " + classes.title}>
+                <h1 className={"BenefitsCounter " + classes.title}>
                   {this.countString(filteredBenefits.length, t)}
-                </Typography>
+                </h1>
                 {filteredBenefits.length > 0 ? (
-                  <Typography className={classes.subTitle}>
+                  <h2 className={classes.subTitle}>
                     {t("B3.check eligibility")}
-                  </Typography>
+                  </h2>
                 ) : (
                   ""
                 )}

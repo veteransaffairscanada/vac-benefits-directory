@@ -10,7 +10,6 @@ import { withStyles } from "@material-ui/core/styles";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   root: {
@@ -87,12 +86,9 @@ export class ProfileNeedsSelectorMobile extends Component {
           expandIcon={<ExpandMoreIcon />}
           onClick={() => this.toggleOpenState()}
         >
-          <Typography
-            variant="title"
-            className={classnames(classes.filterTitle)}
-          >
+          <h2 variant="title" className={classnames(classes.filterTitle)}>
             {t("filters")}{" "}
-          </Typography>
+          </h2>
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>
@@ -105,10 +101,7 @@ export class ProfileNeedsSelectorMobile extends Component {
 
               {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
               this.props.patronType !== "" ? (
-                <Typography
-                  variant="title"
-                  className={classnames(classes.filterTitle)}
-                >
+                <h3 variant="title" className={classnames(classes.filterTitle)}>
                   <Button
                     className={classnames(classes.clearButton)}
                     id="ClearFiltersMobile"
@@ -120,7 +113,7 @@ export class ProfileNeedsSelectorMobile extends Component {
                   >
                     {t("reset filters")} {"(" + this.countSelected() + ")"}
                   </Button>
-                </Typography>
+                </h3>
               ) : (
                 ""
               )}
