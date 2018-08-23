@@ -105,7 +105,7 @@ export class GuidedExperience extends Component {
           <div className={root}>
             <Grid container spacing={24} className={box}>
               <Grid item xs={12} md={3}>
-                <h2 className={title}>{t("B3.Filter by eligibility")}</h2>
+                <h1 className={title}>{t("B3.Filter by eligibility")}</h1>
               </Grid>
               <Grid item xs={12} md={9}>
                 {eligibilityKeys.map((k, i) => {

@@ -168,9 +168,9 @@ export class BB extends Component {
                 </Button>
               </Grid>
               <Grid item xs={12}>
-                <h2 className={"BenefitsCounter " + classes.title}>
+                <h1 className={"BenefitsCounter " + classes.title}>
                   {this.countString(filteredBenefits.length, t)}
-                </h2>
+                </h1>
                 {filteredBenefits.length > 0 ? (
                   <h2 className={classes.subTitle}>
                     {t("B3.check eligibility")}
