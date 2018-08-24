@@ -15,7 +15,7 @@ import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
-import { css } from "react-emotion";
+import { cx, css } from "react-emotion";
 
 const cardTop = css`
   background-color: #f1f7fc;
@@ -31,9 +31,10 @@ const button = css`
   background-color: #3e57e2 !important;
   color: white !important;
   text-align: right !important;
+  text-transform: none !important;
+  float: right !important;
 `;
-const cardBottom = css`
-  background-color: #f1f7fc !important;
+const ExpansionPanelSummaryCss = css`
   padding-left: 9px !important;
   border-radius: 0px;
   border-top: 1px solid #f5f5f5 !important;
@@ -52,12 +53,15 @@ const cardBottomFamilyTitle = css`
   justify-content: center;
   align-items: center;
 `;
-const CardBottomOpen = css`
+const ExpansionPanelCss = css`
   margin-bottom: 0px !important;
   margin-top: 0px !important;
-  "& $cardBottom": {
-    backgroundcolor: "#f5f5f5";
-  }
+`;
+const ExpansionPanelOpen = css`
+  background-color: #f5f5f5 !important;
+`;
+const ExpansionPanelClosed = css`
+  background-color: #f1f7fc !important;
 `;
 const cardBody = css`
   padding: 25px !important;
@@ -86,13 +90,13 @@ const benefitName = css`
   padding: 10px 0;
 `;
 const returnIcon = css`
-  "-moz-transform":scaleX(-1) ;
-  "-o-transform":scaleX(-1) ;
-  "-webkit-transform":scaleX(-1) ;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   float: left;
   filter: FlipH;
-  "-ms-filter":fliph ;
+  -ms-filter: fliph;
   padding-left: 10px;
 `;
 const rightArrowIcon = css`
@@ -306,7 +310,6 @@ export class BenefitCard extends Component {
               className={button}
               target="_blank"
               variant="raised"
-              style={{ textTransform: "none", float: "right" }}
               onClick={() =>
                 this.logExit(
                   this.props.t("current-language-code") === "en"
@@ -329,10 +332,14 @@ export class BenefitCard extends Component {
           {childBenefits.length > 0 ? (
             <ExpansionPanel
               expanded={this.state.open}
-              className={this.state.open ? CardBottomOpen : ""}
+              className={
+                this.state.open
+                  ? cx(ExpansionPanelCss, ExpansionPanelOpen)
+                  : cx(ExpansionPanelCss, ExpansionPanelClosed)
+              }
             >
               <ExpansionPanelSummary
-                className={cardBottom}
+                className={ExpansionPanelSummaryCss}
                 expandIcon={<ExpandMoreIcon />}
                 onClick={() => this.toggleOpenState()}
               >
