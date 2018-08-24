@@ -13,7 +13,6 @@ const tableHeaderDiv = css`
   width: 100% !important;
   margin-top: ${globalTheme.marginTop};
   border-bottom: 1px solid #e0e0e0;
-  font-weight: 300 !important;
 `;
 const distanceCell = css`
   text-align: right;
@@ -28,6 +27,10 @@ const officeRow = css`
   td {
     border-bottom: 0.5px solid #e0e0e0;
   }
+`;
+const officeCellHeader = css`
+  padding-left: 60px;
+  text-align: left;
 `;
 const officeCell = css`
   padding-right: 10px !important;
@@ -54,6 +57,9 @@ const provinceCell = css`
 `;
 const selectedRow = css`
   background-color: #e4e8fe;
+`;
+const mainTable = css`
+  border-spacing: 0px;
 `;
 
 export class AreaOfficeTable extends Component {
@@ -177,10 +183,10 @@ export class AreaOfficeTable extends Component {
     return (
       <div className={root}>
         <div className={tableHeaderDiv}>
-          <table>
+          <table style={{ width: "100%" }}>
             <tbody>
               <tr id="tableHeader">
-                <th className={officeCell}>{t("map.office")}</th>
+                <th className={officeCellHeader}>{t("map.office")}</th>
                 {this.isDefaultLocation() ? null : (
                   <th className={distanceCellTitle}>{t("map.distance")}</th>
                 )}
@@ -193,7 +199,7 @@ export class AreaOfficeTable extends Component {
           id="scrolling_div"
           style={{ height: "400px", width: "100%", overflowY: "scroll" }}
         >
-          <table>
+          <table className={mainTable}>
             <tbody>
               {this.isDefaultLocation()
                 ? this.sortProvinces(Object.keys(defaultOffices)).map(
