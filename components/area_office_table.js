@@ -55,11 +55,6 @@ const provinceCell = css`
 const selectedRow = css`
   background-color: #e4e8fe;
 `;
-const scrolling_div = css`
-  height: 400px !important;
-  width: 100%;
-  overflowy: scroll !important;
-`;
 
 export class AreaOfficeTable extends Component {
   computeDistanceKm = (lat1, long1, lat2, long2) => {
@@ -196,7 +191,6 @@ export class AreaOfficeTable extends Component {
 
         <div
           id="scrolling_div"
-          // className={scrolling_div}
           style={{ height: "400px", width: "100%", overflowY: "scroll" }}
         >
           <table>
