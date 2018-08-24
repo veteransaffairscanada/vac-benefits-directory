@@ -18,6 +18,9 @@ import SearchIcon from "@material-ui/icons/Search";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
+const outerDiv = css`
+  padding: 16px !important;
+`;
 const buttonBarButton = css`
   font-weight: 100 !important;
   margin-right: 20px !important;
@@ -126,7 +129,7 @@ export class BB extends Component {
     return (
       <div
         id={this.props.id}
-        style={{ padding: "16px" }}
+        className={outerDiv}
         ref={el => (this.componentRef = el)}
       >
         <Grid container spacing={32}>
