@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core";
-import classnames from "classnames";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -29,7 +28,7 @@ const buttonBarButton = css`
     color: #3e57e2 !important;
 `;
   const container = css`
-    max-width: ${globalTheme.maxWidth}; !important;
+    max-width: ${globalTheme.maxWidth} !important;
     margin: ${globalTheme.margin} !important;
     width: 100% !imporant;
 `;
@@ -198,7 +197,7 @@ export class BB extends Component {
                       <Select
                         value={this.props.sortBy}
                         onChange={this.handleSortByChange}
-                        className={classnames(sortByBox)}
+                        className={sortByBox}
                         disableUnderline={true}
                       >
                         <MenuItem value={"relevance"}>
