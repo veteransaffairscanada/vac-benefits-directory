@@ -6,45 +6,41 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Pin from "@material-ui/icons/Place";
-
-import { withStyles } from "@material-ui/core/styles/index";
+import { css } from "react-emotion";
 import { connect } from "react-redux";
 
-const styles = theme => ({
-  root: {
-    width: "100%",
-    marginTop: theme.spacing.unit * 3
-  },
-  distanceCell: {
-    textAlign: "right",
-    verticalAlign: "top",
-    width: "20px"
-  },
-  distanceCellTitle: {
-    textAlign: "right",
-    width: "20px"
-  },
-  officeCell: {
-    paddingRight: "10px"
-  },
-  officeTitle: {
-    fontWeight: "bold"
-  },
-  pin: {
-    color: "#ea4335",
-    float: "left",
-    fontSize: "60px",
-    marginBottom: "30px",
-    paddingTop: "10px"
-  },
-  provinceCell: {
-    color: "#000",
-    fontSize: "18px"
-  },
-  selectedRow: {
-    backgroundColor: "#e4e8fe"
-  }
-});
+const root = css`
+    width: 100% !important;
+`;
+  const distanceCell = css`
+    text-align: right;
+    vertical-align: top;
+    width: 20px;
+`;
+  const distanceCellTitle = css`
+    text-align: right;
+    width: 20px;
+  `;
+  const officeCell = css`
+    padding-right: 10px !important;
+  `;
+  const officeTitle = css`
+    font-weight: bold;
+  `;
+  const pin = css`
+    color: #ea4335;
+    float: left;
+    font-size: 60px !important;
+    margin-bottom: 30px;
+    padding-top: 10px;
+`;
+  const provinceCell = css`
+    color: #000;
+    font-size: 18px;
+  `;
+  const selectedRow = css`
+    background-color: #e4e8fe;
+  `;
 
 export class AreaOfficeTable extends Component {
   computeDistanceKm = (lat1, long1, lat2, long2) => {
@@ -132,7 +128,7 @@ export class AreaOfficeTable extends Component {
         id={"tableRow" + ae.id}
         className={
           ae.id === this.props.selectedAreaOffice.id
-            ? this.props.classes.selectedRow
+            ? selectedRow
             : ""
         }
         onClick={() => {
@@ -144,18 +140,18 @@ export class AreaOfficeTable extends Component {
           this.props.setSelectedAreaOffice(ae);
         }}
       >
-        <TableCell className={this.props.classes.officeCell}>
-          <Pin className={this.props.classes.pin} />
-          <p className={this.props.classes.officeTitle}>
+        <TableCell className={officeCell}>
+          <Pin className={pin} />
+          <p className={officeTitle}>
             {language === "en" ? ae.name_en : ae.name_fr}
           </p>
           {language === "en" ? ae.address_en : ae.address_fr}
         </TableCell>
-        <TableCell className={this.props.classes.distanceCell}>
+        <TableCell className={distanceCell}>
           {this.isDefaultLocation() ? (
             ""
           ) : (
-            <p className={this.props.classes.officeTitle}>
+            <p className={officeTitle}>
               {Math.round(distances[ae.id]) + " km"}
             </p>
           )}
@@ -167,18 +163,18 @@ export class AreaOfficeTable extends Component {
   };
 
   render() {
-    const { t, classes } = this.props;
+    const { t } = this.props;
     const defaultOffices = this.defaultAreaOffices();
     return (
       <div>
-        <div style={{ width: "100%" }}>
+        <div className={root}>
           <Table>
             <TableHead>
               <TableRow id="tableHeader">
-                <TableCell className={classes.officeCell}>
+                <TableCell className={officeCell}>
                   {t("map.office")}
                 </TableCell>
-                <TableCell className={classes.distanceCellTitle}>
+                <TableCell className={distanceCellTitle}>
                   {this.isDefaultLocation() ? "" : t("map.distance")}
                 </TableCell>
               </TableRow>
@@ -198,7 +194,7 @@ export class AreaOfficeTable extends Component {
                       return (
                         <TableRow key={index}>
                               <TableCell
-                                className={classes.provinceCell}
+                                className={provinceCell}
                                 colSpan="2"
                               >
                                 {t("current-language-code") == "en"
@@ -248,7 +244,6 @@ AreaOfficeTable.propTypes = {
   setClosestAreaOffice: PropTypes.func.isRequired,
   setSelectedAreaOffice: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired,
   userLocation: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
@@ -256,4 +251,4 @@ AreaOfficeTable.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles, { withTheme: true })(AreaOfficeTable));
+)(AreaOfficeTable);
