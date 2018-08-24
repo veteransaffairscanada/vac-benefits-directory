@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { KeyboardBackspace } from "@material-ui/icons";
@@ -29,93 +28,95 @@ const cardTop = css`
 `;
 
 const button = css`
-    background-color: #3e57e2 !important;
-    color: white !important;
-    text-align: right !important;
+  background-color: #3e57e2 !important;
+  color: white !important;
+  text-align: right !important;
 `;
 const cardBottom = css`
-    background-color: #f1f7fc !important;
-    padding-left: 9px !important;
-    border-radius: 0px;
-    border-top: 1px solid #f5f5f5 !important;
-    position: relative !important;
+  background-color: #f1f7fc !important;
+  padding-left: 9px !important;
+  border-radius: 0px;
+  border-top: 1px solid #f5f5f5 !important;
+  position: relative !important;
 `;
 const cardBottomTitle = css`
-    padding-left: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  padding-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const cardBottomFamilyTitle = css`
-    margin-left: 9px;
-    margin-bottom: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-left: 9px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
-const  CardBottomOpen = css`
-    margin-bottom: 0px !important;
-    margin-top: 0px !important;
-    "& $cardBottom": { backgroundColor: "#f5f5f5" };
+const CardBottomOpen = css`
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  "& $cardBottom": {
+    backgroundcolor: "#f5f5f5";
+  }
 `;
 const cardBody = css`
-    padding: 25px !important;
-    padding-top: 15px !important;
+  padding: 25px !important;
+  padding-top: 15px !important;
 `;
 const cardDescriptionText = css`
-    font-size: 18px;
-    padding: 10px 0px;
-    padding-bottom: 15px;
+  font-size: 18px;
+  padding: 10px 0px;
+  padding-bottom: 15px;
 `;
-const  collapse = css`
-    padding-top: 25px;
-    padding-left: 15px;
-    background-color: #f5f5f5;
+const collapse = css`
+  padding-top: 25px !important;
+  padding-left: 15px !important;
+  background-color: #f5f5f5 !important;
 `;
 const root = css`
-    width: 100%;
+  width: 100%;
 `;
-  const children = css`
-    width: 100%;
+const children = css`
+  width: 100%;
 `;
 
 const benefitName = css`
-    font-size: 24px;
-    font-weight: 600;
-    padding: 10px 0;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 10px 0;
 `;
-  const returnIcon = css`
-    "-moz-transform": scaleX(-1);
-    "-o-transform": scaleX(-1);
-    "-webkit-transform": scaleX(-1);
-    transform: scaleX(-1);
-    float: left;
-    filter: FlipH;
-    "-ms-filter": FlipH;
-    padding-left: 10px;
+const returnIcon = css`
+  "-moz-transform":scaleX(-1) ;
+  "-o-transform":scaleX(-1) ;
+  "-webkit-transform":scaleX(-1) ;
+  transform: scaleX(-1);
+  float: left;
+  filter: FlipH;
+  "-ms-filter":fliph ;
+  padding-left: 10px;
 `;
-  const rightArrowIcon = css`
-    "-moz-transform": scaleX(-1);
-    "-o-transform": scaleX(-1);
-    "-webkit-transform": scaleX(-1);
-    transform: scaleX(-1);
-    float: left;
-    filter: FlipH;
-    "-ms-filter": FlipH;
-    padding-right: 10px
+const rightArrowIcon = css`
+  "-moz-transform":scaleX(-1) ;
+  "-o-transform":scaleX(-1) ;
+  "-webkit-transform":scaleX(-1) ;
+  transform: scaleX(-1);
+  float: left;
+  filter: FlipH;
+  "-ms-filter":fliph ;
+  padding-right: 10px;
 `;
 const parentIcon = css`
-    margin-right: 15;
-    font-size: 40;
-    transform: scale(.9);
-    color: #434343;
+  margin-right: 15;
+  font-size: 40;
+  transform: scale(0.9);
+  color: #434343;
 `;
 const headerDesc = css`
-    flex-grow: 1;
-    color: #434343;
+  flex-grow: 1;
+  color: #434343;
 `;
 const headerUrl = css`
-    color: #006CC9;
+  color: #006cc9;
 `;
 
 export class BenefitCard extends Component {
@@ -208,7 +209,7 @@ export class BenefitCard extends Component {
 
   render() {
     const benefit = this.props.benefit;
-    const { t, classes } = this.props;
+    const { t } = this.props;
 
     const parentBenefits = this.props.allBenefits.filter(
       b => b.childBenefits && b.childBenefits.includes(benefit.id)
@@ -328,11 +329,7 @@ export class BenefitCard extends Component {
           {childBenefits.length > 0 ? (
             <ExpansionPanel
               expanded={this.state.open}
-              className={
-                this.state.open
-                  ? CardBottomOpen
-                  : ""
-              }
+              className={this.state.open ? CardBottomOpen : ""}
             >
               <ExpansionPanelSummary
                 className={cardBottom}
@@ -353,10 +350,7 @@ export class BenefitCard extends Component {
                 </div>
               </ExpansionPanelSummary>
 
-              <ExpansionPanelDetails
-                timeout="auto"
-                className={collapse}
-              >
+              <ExpansionPanelDetails timeout="auto" className={collapse}>
                 <Grid item xs={12}>
                   {veteranBenefits.length > 0 ? (
                     <div className={children}>
@@ -430,7 +424,6 @@ BenefitCard.propTypes = {
   veteranBenefitIds: PropTypes.array.isRequired,
   familyBenefitIds: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
