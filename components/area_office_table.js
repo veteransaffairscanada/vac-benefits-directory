@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Pin from "@material-ui/icons/Place";
-import { css } from "react-emotion";
+import { cx, css } from "react-emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 
 const root = css`
+  margin-right: 10px;
+  margin-left: 10px;
+`;
+const tableHeaderDiv = css`
   width: 100% !important;
   margin-top: ${globalTheme.marginTop};
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: 300 !important;
 `;
 const distanceCell = css`
   text-align: right;
@@ -17,6 +23,11 @@ const distanceCell = css`
 const distanceCellTitle = css`
   text-align: right;
   width: 20px;
+`;
+const officeRow = css`
+  td {
+    border-bottom: 0.5px solid #e0e0e0;
+  }
 `;
 const officeCell = css`
   padding-right: 10px !important;
@@ -31,9 +42,15 @@ const pin = css`
   margin-bottom: 30px;
   padding-top: 10px;
 `;
+const provinceRow = css`
+  height: 50px;
+  vertical-align: bottom;
+`;
 const provinceCell = css`
   color: #000;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid #e0e0e0;
 `;
 const selectedRow = css`
   background-color: #e4e8fe;
@@ -126,9 +143,11 @@ export class AreaOfficeTable extends Component {
     return (
       <tr
         key={key}
-        id={"tr" + ae.id}
+        id={"tableRow" + ae.id}
         className={
-          ae.id === this.props.selectedAreaOffice.id ? selectedRow : ""
+          ae.id === this.props.selectedAreaOffice.id
+            ? cx(officeRow, selectedRow)
+            : officeRow
         }
         onClick={() => {
           this.props.setMapView({
@@ -146,15 +165,13 @@ export class AreaOfficeTable extends Component {
           </p>
           {language === "en" ? ae.address_en : ae.address_fr}
         </td>
-        <td className={distanceCell}>
-          {this.isDefaultLocation() ? (
-            ""
-          ) : (
+        {this.isDefaultLocation() ? null : (
+          <td className={distanceCell}>
             <p className={officeTitle}>
               {Math.round(distances[ae.id]) + " km"}
             </p>
-          )}
-        </td>
+          </td>
+        )}
       </tr>
     );
   };
@@ -163,15 +180,15 @@ export class AreaOfficeTable extends Component {
     const { t } = this.props;
     const defaultOffices = this.defaultAreaOffices();
     return (
-      <div>
-        <div className={root} style={{ width: "100%", marginTop: "25px" }}>
+      <div className={root}>
+        <div className={tableHeaderDiv}>
           <table>
             <tbody>
               <tr id="tableHeader">
                 <th className={officeCell}>{t("map.office")}</th>
-                <th className={distanceCellTitle}>
-                  {this.isDefaultLocation() ? "" : t("map.distance")}
-                </th>
+                {this.isDefaultLocation() ? null : (
+                  <th className={distanceCellTitle}>{t("map.distance")}</th>
+                )}
               </tr>
             </tbody>
           </table>
@@ -189,7 +206,7 @@ export class AreaOfficeTable extends Component {
                     (name, i1) => {
                       return (
                         <React.Fragment key={i1}>
-                          <tr key={i1}>
+                          <tr key={i1} className={provinceRow}>
                             <td className={provinceCell}>
                               {t("current-language-code") == "en"
                                 ? name.split(",")[0]
