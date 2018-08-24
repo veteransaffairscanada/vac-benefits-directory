@@ -19,73 +19,73 @@ import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
 const buttonBarButton = css`
-    font-weight: 100 !important;
-    margin-right: 20px !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    text-decoration: none !important;
-    text-transform: none !important;
-    color: #3e57e2 !important;
+  font-weight: 100 !important;
+  margin-right: 20px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  color: #3e57e2 !important;
 `;
-  const container = css`
-    max-width: ${globalTheme.maxWidth} !important;
-    margin: ${globalTheme.margin} !important;
-    width: 100% !imporant;
+const container = css`
+  max-width: ${globalTheme.maxWidth} !important;
+  margin: ${globalTheme.margin} !important;
+  width: 100% !imporant;
 `;
-  const formControl = css`
-    min-width: 120
+const formControl = css`
+  min-width: 120;
 `;
-  const sortByBox = css`
-    background-color: white;
-    padding: 6px 10px 6px 10px;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1px;
+const sortByBox = css`
+  background-color: white;
+  padding: 6px 10px 6px 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 1px;
 `;
-  const subTitle = css`
-    font-size: 20px;
-    font-weight: 100;
-  `;
-  const title = css`
-    font-size: 36px;
-    padding-bottom: 15px;
+const subTitle = css`
+  font-size: 20px;
+  font-weight: 100;
 `;
-  const topMatter = css`
-    background-color: #fff;
-    border-bottom: solid 1px lightgrey;
+const title = css`
+  font-size: 36px;
+  padding-bottom: 15px;
 `;
-  const searchWrap = css`
-    width: 100%;
-    display: inline-flex;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1px;
-    background-color: white;
+const topMatter = css`
+  background-color: #fff;
+  border-bottom: solid 1px lightgrey;
 `;
-  const searchBox = css`
-    display: inline-flex;
-    padding: 10px;
-    fontSize: 15px;
-    flex: 1;
-    border-width: 0px;
-    width: 100%;
-    font-family: Merriweather;
+const searchWrap = css`
+  width: 100%;
+  display: inline-flex;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 1px;
+  background-color: white;
 `;
-  const searchInputField = css`
-    display: inline-flex;
-    font-size: 15px;
-    flex: 1;
-    border-width: 0px;
-    width: 100%;
-    font-family: Merriweather;
+const searchBox = css`
+  display: inline-flex;
+  padding: 10px;
+  fontsize: 15px;
+  flex: 1;
+  border-width: 0px;
+  width: 100%;
+  font-family: Merriweather;
 `;
-  const sortByLabel = css`
-    color: #434343 !important;
-    vertical-align: text-top;
+const searchInputField = css`
+  display: inline-flex;
+  font-size: 15px;
+  flex: 1;
+  border-width: 0px;
+  width: 100%;
+  font-family: Merriweather;
 `;
-  const inputIcon = css`
-    padding-right: 10px;
-    margin-left: 5px;
+const sortByLabel = css`
+  color: #434343 !important;
+  vertical-align: text-top;
+`;
+const inputIcon = css`
+  padding-right: 10px;
+  margin-left: 5px;
 `;
 
 export class BB extends Component {
@@ -120,7 +120,7 @@ export class BB extends Component {
   };
 
   render() {
-    const { t, pageWidth, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { t, pageWidth } = this.props; // eslint-disable-line no-unused-vars
     const filteredBenefits = this.props.filteredBenefits;
 
     return (
@@ -165,9 +165,7 @@ export class BB extends Component {
                   {this.countString(filteredBenefits.length, t)}
                 </h1>
                 {filteredBenefits.length > 0 ? (
-                  <h2 className={subTitle}>
-                    {t("B3.check eligibility")}
-                  </h2>
+                  <h2 className={subTitle}>{t("B3.check eligibility")}</h2>
                 ) : (
                   ""
                 )}
@@ -190,10 +188,7 @@ export class BB extends Component {
                       {t("B3.Sort By")}
                     </InputLabel>
                     &nbsp;&nbsp;
-                    <FormControl
-                      id="sortBySelector"
-                      className={formControl}
-                    >
+                    <FormControl id="sortBySelector" className={formControl}>
                       <Select
                         value={this.props.sortBy}
                         onChange={this.handleSortByChange}
@@ -285,7 +280,6 @@ const mapStateToProps = (reduxState, props) => {
 
 BB.propTypes = {
   benefits: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   filteredBenefits: PropTypes.array,
