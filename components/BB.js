@@ -33,7 +33,12 @@ const buttonBarButton = css`
 const container = css`
   max-width: ${globalTheme.maxWidth} !important;
   margin: ${globalTheme.margin} !important;
-  width: 100% !imporant;
+  padding-left: ${globalTheme.paddingLeft};
+  padding-right: ${globalTheme.paddingRight};
+`;
+const container2 = css`
+  margin-right: 15px;
+  margin-left: 15px;
 `;
 const formControl = css`
   min-width: 120;
@@ -134,110 +139,124 @@ export class BB extends Component {
       >
         <Grid container spacing={32}>
           <Grid item xs={12} className={topMatter}>
-            <Grid container spacing={24} className={container}>
-              <Grid item xs={12} md={9}>
-                <Button
-                  id="Favourites Page"
-                  variant="flat"
-                  size="medium"
-                  className={buttonBarButton}
-                  href={this.props.favouritesUrl}
-                >
-                  <Bookmark style={{ fontSize: "20px" }} />
-                  &nbsp;
-                  {t("B3.favouritesButtonText") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </Button>
-                <Button
-                  href={this.props.printUrl}
-                  variant="flat"
-                  size="medium"
-                  target="print_page"
-                  className={buttonBarButton}
-                  id="printButton"
-                >
-                  <Print style={{ fontSize: "20px" }} />
-                  &nbsp;
-                  {pageWidth > 600 ? t("Print") : ""}
-                </Button>
-              </Grid>
-              <Grid item xs={12}>
-                <h1 className={"BenefitsCounter " + title}>
-                  {this.countString(filteredBenefits.length, t)}
-                </h1>
-                {filteredBenefits.length > 0 ? (
-                  <h2 className={subTitle}>{t("B3.check eligibility")}</h2>
-                ) : (
-                  ""
-                )}
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container spacing={32} className={container}>
-              <Grid item lg={4} md={4} sm={5} xs={12}>
-                <ProfileNeedsSelectorMobile t={t} store={this.props.store} />
-                <ProfileNeedsSelector t={t} store={this.props.store} />
-              </Grid>
-              <Grid item lg={8} md={8} sm={7} xs={12}>
-                <Grid container spacing={16}>
-                  <Grid item xs={12} md={6}>
-                    <InputLabel
-                      htmlFor="sortBySelector"
-                      className={sortByLabel}
+            <div className={container}>
+              <div className={container2}>
+                <Grid container spacing={24}>
+                  <Grid item xs={12} md={9}>
+                    <Button
+                      id="Favourites Page"
+                      variant="flat"
+                      size="medium"
+                      className={buttonBarButton}
+                      href={this.props.favouritesUrl}
                     >
-                      {t("B3.Sort By")}
-                    </InputLabel>
-                    &nbsp;&nbsp;
-                    <FormControl id="sortBySelector" className={formControl}>
-                      <Select
-                        value={this.props.sortBy}
-                        onChange={this.handleSortByChange}
-                        className={sortByBox}
-                        disableUnderline={true}
-                      >
-                        <MenuItem value={"relevance"}>
-                          {t("B3.Popularity")}
-                        </MenuItem>
-                        <MenuItem value={"alphabetical"}>
-                          {t("B3.Alphabetical")}
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <div className={searchWrap}>
-                      <div className={searchBox}>
-                        <SearchIcon className={inputIcon} />
-                        <input
-                          id="bbSearchField"
-                          aria-label="search"
-                          type="text"
-                          placeholder={this.props.t("search")}
-                          className={searchInputField}
-                          value={this.props.searchString}
-                          onChange={this.handleSearchChange}
-                        />
-                      </div>
-                    </div>
+                      <Bookmark style={{ fontSize: "20px" }} />
+                      &nbsp;
+                      {t("B3.favouritesButtonText") +
+                        " (" +
+                        this.props.favouriteBenefits.length +
+                        ")"}
+                    </Button>
+                    <Button
+                      href={this.props.printUrl}
+                      variant="flat"
+                      size="medium"
+                      target="print_page"
+                      className={buttonBarButton}
+                      id="printButton"
+                    >
+                      <Print style={{ fontSize: "20px" }} />
+                      &nbsp;
+                      {pageWidth > 600 ? t("Print") : ""}
+                    </Button>
                   </Grid>
                   <Grid item xs={12}>
-                    <Grid container spacing={24}>
-                      <BenefitList
-                        t={t}
-                        filteredBenefits={filteredBenefits}
-                        sortByValue={this.props.sortBy}
-                        searchString={this.props.searchString}
-                        showFavourites={true}
-                        store={this.props.store}
-                      />
+                    <h1 className={"BenefitsCounter " + title}>
+                      {this.countString(filteredBenefits.length, t)}
+                    </h1>
+                    {filteredBenefits.length > 0 ? (
+                      <h2 className={subTitle}>{t("B3.check eligibility")}</h2>
+                    ) : (
+                      ""
+                    )}
+                  </Grid>
+                </Grid>
+              </div>
+            </div>
+          </Grid>
+          <Grid item xs={12}>
+            <div className={container}>
+              <div className={container2}>
+                <Grid container spacing={32}>
+                  <Grid item lg={4} md={4} sm={5} xs={12}>
+                    <ProfileNeedsSelectorMobile
+                      t={t}
+                      store={this.props.store}
+                    />
+                    <ProfileNeedsSelector t={t} store={this.props.store} />
+                  </Grid>
+                  <Grid item lg={8} md={8} sm={7} xs={12}>
+                    <Grid container spacing={16}>
+                      <Grid item xs={12} md={6}>
+                        <InputLabel
+                          htmlFor="sortBySelector"
+                          className={sortByLabel}
+                        >
+                          {t("B3.Sort By")}
+                        </InputLabel>
+                        &nbsp;&nbsp;
+                        <FormControl
+                          id="sortBySelector"
+                          className={formControl}
+                        >
+                          <Select
+                            value={this.props.sortBy}
+                            onChange={this.handleSortByChange}
+                            className={sortByBox}
+                            disableUnderline={true}
+                          >
+                            <MenuItem value={"relevance"}>
+                              {t("B3.Popularity")}
+                            </MenuItem>
+                            <MenuItem value={"alphabetical"}>
+                              {t("B3.Alphabetical")}
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                      <Grid item xs={12} md={6}>
+                        <div className={searchWrap}>
+                          <div className={searchBox}>
+                            <SearchIcon className={inputIcon} />
+                            <input
+                              id="bbSearchField"
+                              aria-label="search"
+                              type="text"
+                              placeholder={this.props.t("search")}
+                              className={searchInputField}
+                              value={this.props.searchString}
+                              onChange={this.handleSearchChange}
+                            />
+                          </div>
+                        </div>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Grid container spacing={24}>
+                          <BenefitList
+                            t={t}
+                            filteredBenefits={filteredBenefits}
+                            sortByValue={this.props.sortBy}
+                            searchString={this.props.searchString}
+                            showFavourites={true}
+                            store={this.props.store}
+                          />
+                        </Grid>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            </Grid>
+              </div>
+            </div>
           </Grid>
         </Grid>
       </div>
