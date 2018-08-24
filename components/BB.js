@@ -19,7 +19,8 @@ import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
 const outerDiv = css`
-  padding: 16px !important;
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
 `;
 const buttonBarButton = css`
   font-weight: 100 !important;
