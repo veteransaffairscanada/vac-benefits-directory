@@ -18,7 +18,7 @@ import { css } from "react-emotion";
     -moz-columns: 2;
     max-width: 100%;
     padding-left: 0;
-    [breakpoints.down(600)]: {
+    @media (max-width: 599px) {
       columns: 1;
       -webkit-columns: 1;
       -moz-columns: 1;
