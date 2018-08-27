@@ -12,43 +12,43 @@ import Link from "next/link";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
-  const root = css`
-    margin: ${globalTheme.margin};
-    max-width: ${globalTheme.maxWidth};
-    padding-left: ${globalTheme.paddingLeft};
-    padding-right: ${globalTheme.paddingRight};
+const root = css`
+  margin: ${globalTheme.margin};
+  max-width: ${globalTheme.maxWidth};
+  padding-left: ${globalTheme.paddingLeft};
+  padding-right: ${globalTheme.paddingRight};
 `;
-  const backLink = css`
-    font-size: 20px !important;
-    font-weight: 100 !important;
-    margin-bottom: 15px !important;
-    padding-left: 0px !important;
-    text-decoration: none !important;
-    text-transform: none !important;
+const backLink = css`
+  font-size: 20px !important;
+  font-weight: 100 !important;
+  margin-bottom: 15px !important;
+  padding-left: 0px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
 `;
-  const benefitsCount = css`
-    font-size: 36px;
+const benefitsCount = css`
+  font-size: 36px;
 `;
-  const buttonBarButton = css`
-    color: #3e57e2 !important;
-    font-size: 20px !important;
-    font-weight: 100 !important;
-    padding-left: 0px !important;
-    text-decoration: none !important;
-    text-transform: none !important;
+const buttonBarButton = css`
+  color: #3e57e2 !important;
+  font-size: 20px !important;
+  font-weight: 100 !important;
+  padding-left: 0px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
 `;
-  const contactUsTitle = css`
-    font-size: 22px;
-    font-weight: bold;
-    margin: 20px 0;
+const contactUsTitle = css`
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
 `;
-  const emptyList = css`
-    margin-top: 20px;
-    text-align: center;
+const emptyList = css`
+  margin-top: 20px;
+  text-align: center;
 `;
-  const topMatter = css`
-    margin-bottom: 25px !important;
-    margin-top: 30px !important;
+const topMatter = css`
+  margin-bottom: 25px !important;
+  margin-top: 30px !important;
 `;
 
 export class Favourites extends Component {
@@ -93,18 +93,18 @@ export class Favourites extends Component {
           style={{ paddingLeft: "16px", paddingRight: "16px" }}
         >
           <Grid item xs={12} className={topMatter}>
-            <Button
-              variant="flat"
-              size="large"
-              className={backLink}
-              id="backButton"
-              href={this.get_link("benefits-directory")}
-            >
-              <ArrowBack />
-              &nbsp; &nbsp;
-              {t("favourites.back_link")}
-            </Button>
-
+            <Link href={this.get_link("benefits-directory")}>
+              <Button
+                variant="flat"
+                size="large"
+                className={backLink}
+                id="backButton"
+              >
+                <ArrowBack />
+                &nbsp; &nbsp;
+                {t("favourites.back_link")}
+              </Button>
+            </Link>
             <h1 className={"BenefitsCounter " + benefitsCount}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
             </h1>
@@ -132,21 +132,20 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Button
-              href={this.props.printUrl}
-              target="_blank"
-              variant="flat"
-              size="large"
-              className={buttonBarButton}
-              id="printButton"
-            >
-              <Print style={{ fontSize: "48px" }} />
-              &nbsp;
-              {t("Print")}
-            </Button>
-            <h2 className={contactUsTitle}>
-              {t("favourites.contact_us")}
-            </h2>
+            <Link href={this.props.printUrl}>
+              <Button
+                target="_blank"
+                variant="flat"
+                size="large"
+                className={buttonBarButton}
+                id="printButton"
+              >
+                <Print style={{ fontSize: "48px" }} />
+                &nbsp;
+                {t("Print")}
+              </Button>
+            </Link>
+            <h2 className={contactUsTitle}>{t("favourites.contact_us")}</h2>
             <p>
               <Link href={this.get_link("map")}>
                 <a>{t("favourites.visit_prompt")}</a>
@@ -173,9 +172,7 @@ export class Favourites extends Component {
 
             <hr />
 
-            <h2 className={contactUsTitle}>
-              {t("favourites.apply_prompt")}
-            </h2>
+            <h2 className={contactUsTitle}>{t("favourites.apply_prompt")}</h2>
 
             <p>
               <a

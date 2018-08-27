@@ -15,6 +15,7 @@ import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
+import Link from "next/link";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
@@ -148,32 +149,34 @@ export class BB extends Component {
             <div className={container2}>
               <Grid container spacing={24}>
                 <Grid item xs={12} md={9}>
-                  <Button
-                    id="Favourites Page"
-                    variant="flat"
-                    size="medium"
-                    className={buttonBarButton}
-                    href={this.props.favouritesUrl}
-                  >
-                    <Bookmark className={iconStyle} />
-                    &nbsp;
-                    {t("B3.favouritesButtonText") +
-                      " (" +
-                      this.props.favouriteBenefits.length +
-                      ")"}
-                  </Button>
-                  <Button
-                    href={this.props.printUrl}
-                    variant="flat"
-                    size="medium"
-                    target="print_page"
-                    className={buttonBarButton}
-                    id="printButton"
-                  >
-                    <Print className={iconStyle} />
-                    &nbsp;
-                    {pageWidth > 600 ? t("Print") : ""}
-                  </Button>
+                  <Link href={this.props.favouritesUrl}>
+                    <Button
+                      id="Favourites Page"
+                      variant="flat"
+                      size="medium"
+                      className={buttonBarButton}
+                    >
+                      <Bookmark className={iconStyle} />
+                      &nbsp;
+                      {t("B3.favouritesButtonText") +
+                        " (" +
+                        this.props.favouriteBenefits.length +
+                        ")"}
+                    </Button>
+                  </Link>
+                  <Link href={this.props.printUrl}>
+                    <Button
+                      variant="flat"
+                      size="medium"
+                      target="print_page"
+                      className={buttonBarButton}
+                      id="printButton"
+                    >
+                      <Print className={iconStyle} />
+                      &nbsp;
+                      {pageWidth > 600 ? t("Print") : ""}
+                    </Button>
+                  </Link>
                 </Grid>
                 <Grid item xs={12}>
                   <h1 className={"BenefitsCounter " + title}>

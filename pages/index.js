@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import Link from "next/link";
 
 const root = css`
   background-color: white;
@@ -102,52 +103,55 @@ export class App extends Component {
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
                 <p className={prompt}>{t("index.ge_prompt")}</p>
-                <Button
-                  id="heroGuidedLink"
-                  variant="raised"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  className={button}
-                  href={urlGE}
-                >
-                  {t("index.guided experience")}
-                  &nbsp;&nbsp;
-                  <ArrowForward style={{ fontSize: "24px" }} />
-                </Button>
+                <Link href={urlGE}>
+                  <Button
+                    id="heroGuidedLink"
+                    variant="raised"
+                    color="primary"
+                    fullWidth
+                    size="large"
+                    className={button}
+                  >
+                    {t("index.guided experience")}
+                    &nbsp;&nbsp;
+                    <ArrowForward style={{ fontSize: "24px" }} />
+                  </Button>
+                </Link>
                 <hr className={line} />
                 <p className={prompt}>{t("index.benefits_prompt")}</p>
-                <Button
-                  id="heroBenefitsLink"
-                  variant="raised"
-                  color="secondary"
-                  fullWidth
-                  size="large"
-                  className={button}
-                  href={urlBD}
-                >
-                  {t("index.all benefits")}
-                  &nbsp;&nbsp;
-                  <ArrowForward style={{ fontSize: "24px" }} />
-                </Button>
+                <Link href={urlBD}>
+                  <Button
+                    id="heroBenefitsLink"
+                    variant="raised"
+                    color="secondary"
+                    fullWidth
+                    size="large"
+                    className={button}
+                  >
+                    {t("index.all benefits")}
+                    &nbsp;&nbsp;
+                    <ArrowForward style={{ fontSize: "24px" }} />
+                  </Button>
+                </Link>
                 <hr className={line} />
                 <p className={prompt}>{t("index.favourites_prompt")}</p>
-                <Button
-                  id="FavouritesPage"
-                  variant="raised"
-                  fullWidth
-                  color="secondary"
-                  size="large"
-                  className={button}
-                  href={this.props.favouritesUrl}
-                >
-                  <Bookmark style={{ fontSize: "24px" }} />
-                  &nbsp;
-                  {t("index.your_saved_benefits") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </Button>
+                <Link href={this.props.favouritesUrl}>
+                  <Button
+                    id="FavouritesPage"
+                    variant="raised"
+                    fullWidth
+                    color="secondary"
+                    size="large"
+                    className={button}
+                  >
+                    <Bookmark style={{ fontSize: "24px" }} />
+                    &nbsp;
+                    {t("index.your_saved_benefits") +
+                      " (" +
+                      this.props.favouriteBenefits.length +
+                      ")"}
+                  </Button>
+                </Link>
               </Grid>
               <Grid item xs={12} md={6} className={columnRight}>
                 <p className={prompt}>{t("index.search_prompt")}</p>
