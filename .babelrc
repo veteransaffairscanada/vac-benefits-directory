@@ -23,7 +23,25 @@
             "hoist": true
           }
         ],
-        "transform-inline-environment-variables"
+        "transform-inline-environment-variables",
+        [
+          "babel-plugin-import",
+          {
+             "libraryName": "@material-ui/core",
+             "libraryDirectory": "",
+             "camel2DashComponentName": false
+          },
+          "tree-shaking-mui-core"
+        ],
+        [
+           "babel-plugin-import",
+           {
+              "libraryName": "@material-ui/icons",
+              "libraryDirectory": "",
+              "camel2DashComponentName": false
+           },
+           "tree-shaking-mui-icons"
+        ]
       ],
       "presets": [
         "next/babel"
