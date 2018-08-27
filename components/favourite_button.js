@@ -6,19 +6,18 @@ import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
 import { withStyles } from "@material-ui/core/styles/index";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  hideSmall: {
-    [theme.breakpoints.down(700)]: {
+ const hideSmall = css`
+    @media (max-width: 700px): {
+      display: none;
+    }
+`;
+  const hideBig = css`
+    @media (min-width: 400px): {
       display: "none"
     }
-  },
-  hideBig: {
-    [theme.breakpoints.up(700)]: {
-      display: "none"
-    }
-  }
-});
+`;
 
 export class FavouriteButton extends Component {
   constructor() {
@@ -41,7 +40,7 @@ export class FavouriteButton extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { } = this.props;
     return (
       <Button
         style={{ color: "#3e57e2", marginLeft: "-20px", textTransform: "none" }}
@@ -53,10 +52,10 @@ export class FavouriteButton extends Component {
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
-        <div className={classes.hideSmall}>
+        <div className={hideSmall}>
           {this.props.t("B3.favouritesButtonBText")}
         </div>
-        <div className={classes.hideBig}>
+        <div className={hideBig}>
           {this.props.t("B3.favouritesButtonBTextMobile")}
         </div>
       </Button>
@@ -88,10 +87,9 @@ FavouriteButton.propTypes = {
   toggleOpenState: PropTypes.func.isRequired,
   store: PropTypes.object,
   t: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(FavouriteButton));
+)(FavouriteButton);
