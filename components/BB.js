@@ -98,6 +98,9 @@ const inputIcon = css`
   padding-right: 10px;
   margin-left: 5px;
 `;
+const iconStyle = css`
+  font-size: 20px !important;
+`;
 
 export class BB extends Component {
   handleSortByChange = event => {
@@ -152,7 +155,7 @@ export class BB extends Component {
                     className={buttonBarButton}
                     href={this.props.favouritesUrl}
                   >
-                    <Bookmark style={{ fontSize: "20px" }} />
+                    <Bookmark className={iconStyle} />
                     &nbsp;
                     {t("B3.favouritesButtonText") +
                       " (" +
@@ -167,7 +170,7 @@ export class BB extends Component {
                     className={buttonBarButton}
                     id="printButton"
                   >
-                    <Print style={{ fontSize: "20px" }} />
+                    <Print className={iconStyle} />
                     &nbsp;
                     {pageWidth > 600 ? t("Print") : ""}
                   </Button>
@@ -186,7 +189,7 @@ export class BB extends Component {
             </div>
           </div>
         </div>
-        <div className={container} style={{ paddingTop: "30px" }}>
+        <div className={container}>
           <div className={container2}>
             <Grid container spacing={32}>
               <Grid item lg={4} md={4} sm={5} xs={12}>
