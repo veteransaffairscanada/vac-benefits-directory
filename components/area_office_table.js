@@ -16,12 +16,14 @@ const tableHeaderDiv = css`
 `;
 const distanceCell = css`
   text-align: right;
-  vertical-align: top;
+  vertical-align: text-top;
   width: 20px;
+  padding-right: 20px;
 `;
 const distanceCellTitle = css`
   text-align: right;
   width: 20px;
+  padding-right: 20px;
 `;
 const officeRow = css`
   td {
@@ -29,25 +31,26 @@ const officeRow = css`
   }
 `;
 const officeCellHeader = css`
-  padding-left: 60px;
+  padding-left: 70px;
   text-align: left;
 `;
-const officeCell = css`
+const pinCell = css`
   padding-right: 10px !important;
 `;
-const officeTitle = css`
+const officeCell = css`
+  padding-bottom: 10px;
+`;
+const bold = css`
   font-weight: bold;
 `;
 const pin = css`
   color: #ea4335;
-  float: left;
   font-size: 60px !important;
-  margin-bottom: 30px;
   padding-top: 10px;
 `;
 const provinceRow = css`
   height: 50px;
-  vertical-align: bottom;
+  vertical-align: text-top;
 `;
 const provinceCell = css`
   color: #000;
@@ -89,11 +92,12 @@ export class AreaOfficeTable extends Component {
   };
 
   isDefaultLocation = () => {
-    const defaultLocation = { lat: 49, lng: -104 };
-    return (
-      JSON.stringify(defaultLocation) ===
-      JSON.stringify(this.props.userLocation)
-    );
+    // const defaultLocation = { lat: 49, lng: -104 };
+    // return (
+    //   JSON.stringify(defaultLocation) ===
+    //   JSON.stringify(this.props.userLocation)
+    // );
+    return false;
   };
 
   officeDistance = () => {
@@ -159,18 +163,16 @@ export class AreaOfficeTable extends Component {
           this.props.setSelectedAreaOffice(ae);
         }}
       >
-        <td className={officeCell}>
+        <td className={pinCell}>
           <Pin className={pin} />
-          <p className={officeTitle}>
-            {language === "en" ? ae.name_en : ae.name_fr}
-          </p>
+        </td>
+        <td className={officeCell}>
+          <p className={bold}>{language === "en" ? ae.name_en : ae.name_fr}</p>
           {language === "en" ? ae.address_en : ae.address_fr}
         </td>
         {this.isDefaultLocation() ? null : (
           <td className={distanceCell}>
-            <p className={officeTitle}>
-              {Math.round(distances[ae.id]) + " km"}
-            </p>
+            <p className={bold}>{Math.round(distances[ae.id]) + " km"}</p>
           </td>
         )}
       </tr>
@@ -194,20 +196,33 @@ export class AreaOfficeTable extends Component {
             </tbody>
           </table>
         </div>
-
         <div
           id="scrolling_div"
           style={{ height: "400px", width: "100%", overflowY: "scroll" }}
         >
           <table className={mainTable}>
+            <colgroup>
+              <col span="1" style={{ width: "10%" }} />
+              {this.isDefaultLocation() ? (
+                <col span="1" style={{ width: "90%" }} />
+              ) : (
+                <React.Fragment>
+                  <col span="1" style={{ width: "70%" }} />
+                  <col span="1" style={{ width: "20%" }} />
+                </React.Fragment>
+              )}
+            </colgroup>
             <tbody>
               {this.isDefaultLocation()
                 ? this.sortProvinces(Object.keys(defaultOffices)).map(
                     (name, i1) => {
                       return (
                         <React.Fragment key={i1}>
-                          <tr key={i1} className={provinceRow}>
-                            <td className={provinceCell}>
+                          <tr className={provinceRow}>
+                            <td
+                              className={provinceCell}
+                              colSpan={this.isDefaultLocation() ? "2" : "3"}
+                            >
                               {t("current-language-code") == "en"
                                 ? name.split(",")[0]
                                 : name.split(",")[1]}{" "}
@@ -266,8 +281,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(AreaOfficeTable);
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(withStyles(styles, { withTheme: true })(AreaOfficeTable));
