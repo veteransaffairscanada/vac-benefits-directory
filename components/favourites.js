@@ -93,18 +93,18 @@ export class Favourites extends Component {
           style={{ paddingLeft: "16px", paddingRight: "16px" }}
         >
           <Grid item xs={12} className={topMatter}>
-            <Button
-              variant="flat"
-              size="large"
-              className={backLink}
-              id="backButton"
-              href={this.get_link("benefits-directory")}
-            >
-              <ArrowBack />
-              &nbsp; &nbsp;
-              {t("favourites.back_link")}
-            </Button>
-
+            <Link href={this.get_link("benefits-directory")}>
+              <Button
+                variant="flat"
+                size="large"
+                className={backLink}
+                id="backButton"
+              >
+                <ArrowBack />
+                &nbsp; &nbsp;
+                {t("favourites.back_link")}
+              </Button>
+            </Link>
             <h1 className={"BenefitsCounter " + benefitsCount}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
             </h1>
@@ -132,18 +132,19 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Button
-              href={this.props.printUrl}
-              target="_blank"
-              variant="flat"
-              size="large"
-              className={buttonBarButton}
-              id="printButton"
-            >
-              <Print style={{ fontSize: "48px" }} />
-              &nbsp;
-              {t("Print")}
-            </Button>
+            <Link href={this.props.printUrl}>
+              <Button
+                target="_blank"
+                variant="flat"
+                size="large"
+                className={buttonBarButton}
+                id="printButton"
+              >
+                <Print style={{ fontSize: "48px" }} />
+                &nbsp;
+                {t("Print")}
+              </Button>
+            </Link>
             <h2 className={contactUsTitle}>{t("favourites.contact_us")}</h2>
             <p>
               <Link href={this.get_link("map")}>
