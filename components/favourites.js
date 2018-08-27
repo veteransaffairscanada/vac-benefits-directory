@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
@@ -10,67 +9,47 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
 import Link from "next/link";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  root: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    paddingLeft: "16px",
-    paddingRight: "16px"
-  },
-  backLink: {
-    fontSize: "20px",
-    fontWeight: "100",
-    marginBottom: "15px",
-    paddingLeft: "0px",
-    textDecoration: "none",
-    textTransform: "none"
-  },
-  benefitsCount: {
-    fontSize: "36px"
-  },
-  buttonBarButton: {
-    color: "#3e57e2",
-    fontSize: "20px",
-    fontWeight: "100",
-    paddingLeft: "0px",
-    textDecoration: "none",
-    textTransform: "none"
-  },
-  collapse: {
-    textAlign: "right",
-    textDecoration: "underline",
-    marginTop: "34px"
-  },
-  contactUsTitle: {
-    fontSize: "22px",
-    fontWeight: "bold",
-    margin: "20px 0"
-  },
-  emptyList: {
-    marginTop: "20px",
-    textAlign: "center"
-  },
-  formControl: {
-    margin: theme.spacing.unit,
-    minWidth: 120
-  },
-  sortBy: {
-    textAlign: "left",
-    marginLeft: "-7px"
-  },
-  sortByBox: {
-    backgroundColor: "white"
-  },
-  title: {
-    fontSize: "36px",
-    padding: "15px 0"
-  },
-  topMatter: {
-    marginBottom: "25px",
-    marginTop: "30px"
-  }
-});
+const root = css`
+  margin: ${globalTheme.margin};
+  max-width: ${globalTheme.maxWidth};
+  padding-left: ${globalTheme.paddingLeft};
+  padding-right: ${globalTheme.paddingRight};
+`;
+const backLink = css`
+  font-size: 20px !important;
+  font-weight: 100 !important;
+  margin-bottom: 15px !important;
+  padding-left: 0px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+`;
+const benefitsCount = css`
+  font-size: 36px;
+`;
+const buttonBarButton = css`
+  color: #3e57e2 !important;
+  font-size: 20px !important;
+  font-weight: 100 !important;
+  padding-left: 0px !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+`;
+const contactUsTitle = css`
+  font-size: 22px;
+  font-weight: bold;
+  margin: 20px 0;
+`;
+const emptyList = css`
+  margin-top: 20px;
+  text-align: center;
+`;
+const topMatter = css`
+  margin-bottom: 25px !important;
+  margin-top: 30px !important;
+`;
 
 export class Favourites extends Component {
   state = {
@@ -99,7 +78,7 @@ export class Favourites extends Component {
   };
 
   render() {
-    const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { t } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -107,17 +86,17 @@ export class Favourites extends Component {
     );
 
     return (
-      <div id="favourites" className={classes.root}>
+      <div id="favourites" className={root}>
         <Grid
           container
           spacing={24}
           style={{ paddingLeft: "16px", paddingRight: "16px" }}
         >
-          <Grid item xs={12} className={classes.topMatter}>
+          <Grid item xs={12} className={topMatter}>
             <Button
               variant="flat"
               size="large"
-              className={classes.backLink}
+              className={backLink}
               id="backButton"
               href={this.get_link("benefits-directory")}
             >
@@ -126,7 +105,7 @@ export class Favourites extends Component {
               {t("favourites.back_link")}
             </Button>
 
-            <h1 className={"BenefitsCounter " + classes.benefitsCount}>
+            <h1 className={"BenefitsCounter " + benefitsCount}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
             </h1>
           </Grid>
@@ -143,7 +122,7 @@ export class Favourites extends Component {
               />
             </Grid>
             {filteredBenefits.length == 0 ? (
-              <div className={classes.emptyList}>
+              <div className={emptyList}>
                 <Bookmark style={{ fontSize: "70px" }} />
                 <br />
                 {t("favourites.help")}
@@ -158,16 +137,14 @@ export class Favourites extends Component {
               target="_blank"
               variant="flat"
               size="large"
-              className={classes.buttonBarButton}
+              className={buttonBarButton}
               id="printButton"
             >
               <Print style={{ fontSize: "48px" }} />
               &nbsp;
               {t("Print")}
             </Button>
-            <h2 className={classes.contactUsTitle}>
-              {t("favourites.contact_us")}
-            </h2>
+            <h2 className={contactUsTitle}>{t("favourites.contact_us")}</h2>
             <p>
               <Link href={this.get_link("map")}>
                 <a>{t("favourites.visit_prompt")}</a>
@@ -194,9 +171,7 @@ export class Favourites extends Component {
 
             <hr />
 
-            <h2 className={classes.contactUsTitle}>
-              {t("favourites.apply_prompt")}
-            </h2>
+            <h2 className={contactUsTitle}>{t("favourites.apply_prompt")}</h2>
 
             <p>
               <a
@@ -237,7 +212,6 @@ const mapStateToProps = (reduxState, props) => {
 
 Favourites.propTypes = {
   benefits: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
@@ -253,4 +227,4 @@ Favourites.propTypes = {
   closestAreaOffice: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(Favourites));
+export default connect(mapStateToProps)(Favourites);

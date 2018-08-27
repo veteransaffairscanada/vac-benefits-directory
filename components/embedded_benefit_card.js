@@ -2,42 +2,40 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Grid } from "@material-ui/core";
 import classnames from "classnames";
-import { withStyles } from "@material-ui/core/styles";
 import { KeyboardBackspace } from "@material-ui/icons";
 import { logEvent } from "../utils/analytics";
 import Paper from "@material-ui/core/Paper";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  root: {
-    margin: "20px",
-    marginTop: "0px",
-    padding: "20px",
-    paddingTop: "5px"
-  },
-  heading: {
-    paddingLeft: "0px",
-    paddingRight: "0px",
-    textTransform: "none",
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: 500,
-    color: "#3c51e6"
-  },
-  cardDescriptionText: {
-    fontSize: "15px",
-    lineHeight: "1.6",
-    paddingTop: "0px"
-  },
-  rightArrowIcon: {
-    "-moz-transform": "scaleX(-1)",
-    "-o-transform": "scaleX(-1)",
-    "-webkit-transform": "scaleX(-1)",
-    transform: "scaleX(-1)",
-    float: "left",
-    filter: "FlipH",
-    "-ms-filter": "FlipH",
-    paddingRight: "5px"
-  }
-});
+const root = css`
+  margin: 20px;
+  margin-top: 0px;
+  padding: 20px;
+  padding-top: 5px;
+`;
+const heading = css`
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  text-transform: none !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #3c51e6 !important;
+`;
+const cardDescriptionText = css`
+  font-size: 15px;
+  line-height: 1.6;
+  padding-top: 0px;
+`;
+const rightArrowIcon = css`
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  float: left !important;
+  filter: FlipH;
+  -ms-filter: FlipH;
+  padding-right: 5px;
+`;
 
 export class EmbeddedBenefitCard extends Component {
   state = {
@@ -55,15 +53,15 @@ export class EmbeddedBenefitCard extends Component {
   };
 
   render() {
-    const { t, classes, benefit } = this.props;
+    const { t, benefit } = this.props;
     const language = t("current-language-code");
 
     return (
-      <Paper className={classes.root}>
+      <Paper className={root}>
         <Button
           target="_blank"
           rel="noopener noreferrer"
-          className={classes.heading}
+          className={heading}
           onClick={() =>
             this.logExit(
               language === "en" ? benefit.benefitPageEn : benefit.benefitPageFr
@@ -74,15 +72,12 @@ export class EmbeddedBenefitCard extends Component {
           }
         >
           {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-          <KeyboardBackspace className={classes.rightArrowIcon} />
+          <KeyboardBackspace className={rightArrowIcon} />
         </Button>
 
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <h2
-              variant="title"
-              className={classnames(classes.cardDescriptionText)}
-            >
+            <h2 variant="title" className={classnames(cardDescriptionText)}>
               {language === "en"
                 ? benefit.oneLineDescriptionEn
                 : benefit.oneLineDescriptionFr}
@@ -96,10 +91,9 @@ export class EmbeddedBenefitCard extends Component {
 
 EmbeddedBenefitCard.propTypes = {
   benefit: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   showFavourite: PropTypes.bool.isRequired,
   store: PropTypes.object
 };
 
-export default withStyles(styles)(EmbeddedBenefitCard);
+export default EmbeddedBenefitCard;

@@ -8,13 +8,14 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "postinstall": "next build",
+    "heroku-postbuild": "next build",
     "start": "NODE_ENV=production node server.js",
     "test": "NODE_ENV=test jest --coverage",
     "test:e2e": "testcafe chrome testcafe/",
     "test:e2e_windows": "testcafe 'browserstack:ie@11:Windows 10' testcafe/*.js",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged",
+    "bundle_analyzer": "BUNDLE_CHECK=true yarn build"
   },
   "dependencies": {
     "@cdssnc/gcui": "^0.0.30",
@@ -63,7 +64,8 @@
     "regenerator-runtime": "^0.12.1",
     "reselect": "^3.0.1",
     "universal-cookie": "^2.2.0",
-    "wait-on": "^2.1.0"
+    "wait-on": "^2.1.0",
+    "webpack-bundle-analyzer": "^2.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
