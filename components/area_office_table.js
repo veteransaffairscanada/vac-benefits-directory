@@ -48,15 +48,13 @@ const pin = css`
   font-size: 60px !important;
   padding-top: 10px;
 `;
-const provinceRow = css`
-  height: 50px;
-  vertical-align: text-top;
-`;
 const provinceCell = css`
   color: #000;
   font-size: 20px;
   font-weight: bold;
   border-bottom: 1px solid #e0e0e0;
+  padding-top: 15px;
+  padding-bottom: 15px;
 `;
 const selectedRow = css`
   background-color: #e4e8fe;
@@ -92,12 +90,11 @@ export class AreaOfficeTable extends Component {
   };
 
   isDefaultLocation = () => {
-    // const defaultLocation = { lat: 49, lng: -104 };
-    // return (
-    //   JSON.stringify(defaultLocation) ===
-    //   JSON.stringify(this.props.userLocation)
-    // );
-    return false;
+    const defaultLocation = { lat: 49, lng: -104 };
+    return (
+      JSON.stringify(defaultLocation) ===
+      JSON.stringify(this.props.userLocation)
+    );
   };
 
   officeDistance = () => {
@@ -218,10 +215,11 @@ export class AreaOfficeTable extends Component {
                     (name, i1) => {
                       return (
                         <React.Fragment key={i1}>
-                          <tr className={provinceRow}>
+                          <tr>
+                            <td className={provinceCell} />
                             <td
                               className={provinceCell}
-                              colSpan={this.isDefaultLocation() ? "2" : "3"}
+                              colSpan={this.isDefaultLocation() ? "1" : "2"}
                             >
                               {t("current-language-code") == "en"
                                 ? name.split(",")[0]
