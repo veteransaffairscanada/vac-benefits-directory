@@ -5,18 +5,26 @@ import Bookmark from "@material-ui/icons/Bookmark";
 import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
-import { withStyles } from "@material-ui/core/styles/index";
 import { css } from "react-emotion";
 
+const bookmarkButton = css`
+  color: #3e57e2 !important;
+  margin-left: -20px !important;
+  text-transform: none !important;
+`;
  const hideSmall = css`
-    @media (max-width: 700px): {
-      display: none;
-    }
+ @media only screen and (max-width: 600px) {
+     body {
+         display: none;
+     }
+ }
 `;
   const hideBig = css`
-    @media (min-width: 400px): {
-      display: "none"
-    }
+  @media only screen and (max-width: 600px) {
+      body {
+          display: none;
+      }
+  }
 `;
 
 export class FavouriteButton extends Component {
@@ -40,10 +48,9 @@ export class FavouriteButton extends Component {
   };
 
   render() {
-    const { } = this.props;
     return (
       <Button
-        style={{ color: "#3e57e2", marginLeft: "-20px", textTransform: "none" }}
+        className={bookmarkButton}
         aria-label={this.props.t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
       >
