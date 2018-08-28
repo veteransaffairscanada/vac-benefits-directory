@@ -5,6 +5,7 @@ import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { Grid, Button, Paper } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
 const root = css`
@@ -17,18 +18,18 @@ const root = css`
 `;
   const profileSelector = css`
     border-bottom: 1px solid black;
-    padding-bottom: 15px;
-    margin-bottom: 30px;
+    padding-bottom: 15px !important;
+    margin-bottom: 30px !important;
 `;
   const clearButton = css`
-    text-decoration: underline;
-    text-transform: unset;
-    font-size: 60%;
-    float: right;
+    text-decoration: underline !important;
+    text-transform: unset !important;
+    font-size: 60% !important;
+    float: right !important;
 `;
   const clearIcon = css`
-    font-size: 100%;
-    margin-left: theme.spacing.unit;
+    font-size: 100% !important;
+    margin-left: ${globalTheme.unit};
     font-weight: bold;
 `;
   const filterTitle = css`
