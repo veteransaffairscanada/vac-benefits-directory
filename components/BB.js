@@ -15,7 +15,6 @@ import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/Bookmark";
 import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
-import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
 
