@@ -12,7 +12,7 @@ const root = css`
   padding: 25px !important;
   padding-top: 20px !important;
   background-color: #f5f5f5;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     display: none;
   }
 `;
