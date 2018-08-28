@@ -5,9 +5,10 @@ import { connect } from "react-redux";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import styled from "react-emotion";
+import { css } from "react-emotion";
 
-const Div = styled("div")`
+
+const Div = css`
   width: 100%;
   position: fixed;
   left: 50%;
@@ -87,9 +88,9 @@ export class BenefitList extends React.Component {
       }
     });
     return loading ? (
-      <Div>
+      <div className={Div}>
         <CircularProgress size={100} />
-      </Div>
+      </div>
     ) : (
       sortedBenefits.map((benefit, i) => (
         <BenefitCard
