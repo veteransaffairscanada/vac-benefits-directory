@@ -4,18 +4,19 @@ import { Button } from "@material-ui/core";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
 import { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
   const mobileButton = css`
     color: #fff !important;
     text-transform: none !important;
-    @media only screen and (min-width: 599.5px) {
+    @media only screen and (min-width: ${globalTheme.max.xs}) {
       display: none !important;
     }
 `;
   const desktopButton = css`
     color: #fff !important;
     text-transform: none !important;
-    @media only screen and (max-width: 599.5px) {
+    @media only screen and (max-width: ${globalTheme.max.xs}) {
       display: none !important;
     }
 `;
