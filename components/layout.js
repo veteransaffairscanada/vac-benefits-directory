@@ -1,43 +1,41 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "react-emotion";
-
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-
 import { AlphaBanner } from "../components/alpha_banner";
-
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
 import Footer from "../components/footer";
 import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
+import { globalTheme } from "../theme";
 
-import classnames from "classnames";
-import { withStyles } from "@material-ui/core/styles";
-
-const Container = styled("div")`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
+const Container = css`
+  max-width: ${globalTheme.maxWidth};
+  margin: ${globalTheme.margin};
+  padding-left: ${globalTheme.paddingLeft};
+  padding-right: ${globalTheme.paddingRight};
 `;
-
 const alpha = css`
   background-color: #345075;
 `;
-
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
-
-const styles = () => ({
-  header: {
-    backgroundColor: "#555",
-    padding: "0px"
-  }
-});
-
+const header = css`
+  background-color: #555;
+  padding: 0px;
+`;
+const white = css`
+  color: white;
+`;
+const backgoundColour1 = css`
+  background-color: #505050;
+`;
+const backgoundColour2 = css`
+  background-color: #434343;
+`;
 const theme = createMuiTheme({
   overrides: {
     MuiTouchRipple: {
@@ -45,7 +43,6 @@ const theme = createMuiTheme({
       ripplePulsate: { opacity: 0 }
     }
   },
-  maxWidth: "1200px",
   palette: {
     secondary: {
       light: "#f1f7fc",
@@ -78,39 +75,39 @@ class Layout extends Component {
           <Head title={this.props.title} t={t} />
           <ErrorBoundary>
             <Content>
-              <div className={classnames(this.props.classes.header)}>
-                <Container>
+              <div className={header}>
+                <div className={Container}>
                   <FederalBanner
                     i18n={this.props.i18n}
                     t={t}
                     showRefreshCache={this.props.showRefreshCache}
                   />
-                </Container>
+                </div>
                 <div className={alpha}>
-                  <Container>
+                  <div className={Container}>
                     <AlphaBanner>
                       {t("alpha")} &nbsp;
                       <a
                         href={"mailto:" + t("contact.feedback_email")}
-                        style={{ color: "white" }}
+                        className={white}
                       >
                         {t("alpha-feedback")}
                       </a>
                     </AlphaBanner>
-                  </Container>
+                  </div>
                 </div>
               </div>
               <div role="main">{this.props.children}</div>
             </Content>
-            <div style={{ backgroundColor: "#505050" }}>
-              <Container>
+            <div className={backgoundColour1}>
+              <div className={Container}>
                 <FeedbackBar t={t} />
-              </Container>
+              </div>
             </div>
-            <div style={{ backgroundColor: "#434343" }}>
-              <Container>
+            <div className={backgoundColour2}>
+              <div className={Container}>
                 <Footer t={t} />
-              </Container>
+              </div>
             </div>
           </ErrorBoundary>
           {noScriptTag}
@@ -122,7 +119,6 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  classes: PropTypes.object.isRequired,
   hideNoscript: PropTypes.bool.isRequired,
   showRefreshCache: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
@@ -135,4 +131,4 @@ Layout.defaultProps = {
   backgroundColor: "#e3e3e3"
 };
 
-export default withStyles(styles)(Layout);
+export default Layout;
