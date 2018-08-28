@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core/";
-import styled from "react-emotion";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
 import TextField from "@material-ui/core/TextField";
 import ArrowForward from "@material-ui/icons/ArrowForward";
+import { css } from "react-emotion";
 require("isomorphic-fetch");
 
-const CommentBox = styled("div")`
+const CommentBox = css`
   height: 350px;
   background-color: #505050;
   color: #fff;
@@ -17,7 +17,7 @@ const CommentBox = styled("div")`
   padding: 5px 0 0 0;
 `;
 
-const Div = styled("div")`
+const Div = css`
   background-color: #505050;
   width: 100%;
   height: 53px;
@@ -30,11 +30,11 @@ const Div = styled("div")`
   }
 `;
 
-const FeedbackWrapper = styled("div")`
+const FeedbackWrapper = css`
   margin-top: 25px;
 `;
 
-const Inner = styled("div")`
+const Inner = css`
   color: #fff;
   font-size: 14px;
   padding-top: 10px;
@@ -46,7 +46,7 @@ const Inner = styled("div")`
   }
 `;
 
-const TextHold = styled("div")`
+const TextHold = css`
   background-color: #505050;
   padding: 10px 0;
   width: 400px;
@@ -107,13 +107,13 @@ export class FeedbackBar extends Component {
     const { t } = this.props;
 
     return (
-      <FeedbackWrapper role="navigation">
+      <div className={FeedbackWrapper} role="navigation">
         <div style={{ marginLeft: "15px", marginRight: "15px" }}>
           {this.state.commentFormToggled ? (
-            <CommentBox>
+            <div className={CommentBox}>
               <h2>{t("comment-help-us-improve")}</h2>
               <p>{t("comment-privacy-disclaimer")}</p>
-              <TextHold>
+              <div className={TextHold}>
                 <TextField
                   inputProps={{
                     style: {
@@ -154,7 +154,7 @@ export class FeedbackBar extends Component {
                   onChange={this.handleChange("failure")}
                   value={this.state.failure}
                 />
-              </TextHold>
+              </div>
               <br />
               <Button
                 id="sendComment"
@@ -175,15 +175,15 @@ export class FeedbackBar extends Component {
               >
                 {t("cancel")}
               </Button>
-            </CommentBox>
+            </div>
           ) : null}
-          <Div>
+          <div className={Div}>
             {this.state.feedbackSubmitted ? (
-              <Inner>
+              <div className={Inner}>
                 <p>{t("feedback-response")}</p>
-              </Inner>
+              </div>
             ) : (
-              <Inner>
+              <div className={Inner}>
                 {t("feedback-prompt")} &nbsp;
                 <Button
                   variant="flat"
@@ -202,11 +202,11 @@ export class FeedbackBar extends Component {
                 >
                   {t("no")}
                 </Button>
-              </Inner>
+              </div>
             )}
-          </Div>
+          </div>
         </div>
-      </FeedbackWrapper>
+      </div>
     );
   }
 }
