@@ -2,53 +2,42 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
-import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import { Grid, Button, Paper } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
 const root = css`
-  padding: 25px;
-  padding-top: 20px;
+  padding: 25px !important;
+  padding-top: 20px !important;
   background-color: #f5f5f5;
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     display: none;
   }
 `;
-
-const styles = theme => ({
-  summary: {
-    opacity: "1 !important",
-    userSelect: "inherit"
-  },
-  profileSelector: {
-    borderBottom: "1px solid black",
-    paddingBottom: "15px",
-    marginBottom: "30px"
-  },
-  clearButton: {
-    textDecoration: "underline",
-    textTransform: "unset",
-    fontSize: "60%",
-    float: "right"
-  },
-  clearIcon: {
-    fontSize: "100%",
-    marginLeft: theme.spacing.unit,
-    fontWeight: "bold"
-  },
-  filterTitle: {
-    paddingRight: "0px",
-    marginBottom: "5px",
-    fontWeight: "bold",
-    fontSize: "22px"
-  },
-  gridItemButton: {
-    textAlign: "center"
-  }
-});
+  const profileSelector = css`
+    border-bottom: 1px solid black;
+    padding-bottom: 15px !important;
+    margin-bottom: 30px !important;
+`;
+  const clearButton = css`
+    text-decoration: underline !important;
+    text-transform: unset !important;
+    font-size: 60% !important;
+    float: right !important;
+`;
+  const clearIcon = css`
+    font-size: 100% !important;
+    margin-left: ${globalTheme.unit};
+    font-weight: bold;
+`;
+  const filterTitle = css`
+    padding-right: 0px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 22px;
+`;
 
 export class ProfileNeedsSelector extends Component {
   state = {
@@ -79,15 +68,15 @@ export class ProfileNeedsSelector extends Component {
   };
 
   render() {
-    const { t, pageWidth, store, classes } = this.props;
+    const { t, pageWidth, store } = this.props;
     return (
       <Paper className={root}>
-        <h2 variant="title" className={classnames(classes.filterTitle)}>
+        <h2 variant="title" className={filterTitle}>
           {t("filters")}{" "}
           {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
           this.props.patronType !== "" ? (
             <Button
-              className={classnames(classes.clearButton)}
+              className={clearButton}
               id="ClearFilters"
               variant="flat"
               size="small"
@@ -97,7 +86,7 @@ export class ProfileNeedsSelector extends Component {
               }}
             >
               {t("reset filters")} {"(" + this.countSelected() + ")"}
-              <CloseIcon className={classnames(classes.clearIcon)} />
+              <CloseIcon className={clearIcon} />
             </Button>
           ) : (
             ""
@@ -105,7 +94,7 @@ export class ProfileNeedsSelector extends Component {
         </h2>
 
         <Grid container>
-          <Grid item sm={12} className={classnames(classes.profileSelector)}>
+          <Grid item sm={12} className={profileSelector}>
             <ProfileSelector t={t} store={store} />
           </Grid>
           <Grid item sm={12}>
@@ -150,7 +139,6 @@ const mapStateToProps = reduxState => {
 };
 
 ProfileNeedsSelector.propTypes = {
-  classes: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   patronType: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
@@ -170,4 +158,4 @@ ProfileNeedsSelector.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps1
-)(withStyles(styles)(ProfileNeedsSelector));
+)(ProfileNeedsSelector);

@@ -4,6 +4,7 @@ const theme = {
   paddingLeft: "16px",
   paddingRight: "16px",
   marginTop: "25px", //used in place of theme.spacing.unit *3
+  unit: "8px",
   max: {
     xs: "599.5px",
     sm: "959.5px",
