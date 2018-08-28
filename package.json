@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "postinstall": "next build",
+    "heroku-postbuild": "next build",
     "start": "NODE_ENV=production node server.js",
     "test": "NODE_ENV=test jest --coverage",
     "test:e2e": "testcafe chrome testcafe/",
@@ -20,7 +20,8 @@
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged",
     "docs": "styleguidist server",
-    "docs:build": "styleguidist build"
+    "docs:build": "styleguidist build",
+    "bundle_analyzer": "BUNDLE_CHECK=true yarn build"
   },
   "dependencies": {
     "@cdssnc/gcui": "^0.0.30",
@@ -30,6 +31,7 @@
     "autosuggest-highlight": "^3.1.1",
     "babel-loader": "^7.1.5",
     "babel-plugin-emotion": "^9.2.6",
+    "babel-plugin-import": "^1.8.0",
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.3",
@@ -69,7 +71,8 @@
     "regenerator-runtime": "^0.12.1",
     "reselect": "^3.0.1",
     "universal-cookie": "^2.2.0",
-    "wait-on": "^2.1.0"
+    "wait-on": "^2.1.0",
+    "webpack-bundle-analyzer": "^2.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",

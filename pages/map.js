@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withI18next } from "../lib/withI18next";
-import Typography from "@material-ui/core/Typography";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import AreaOfficeMap from "../components/area_office_map";
@@ -108,15 +107,13 @@ export class Map extends Component {
                     {t("back")}
                   </Button>
                 </Link>
-                <Typography className={mapTitle}>
-                  {t("map.vacOffices")}
-                </Typography>
+                <h1 className={mapTitle}>{t("map.vacOffices")}</h1>
               </Grid>
               <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
-                <Typography>
+                <p>
                   <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
-                </Typography>
-                <Typography>{t("favourites.call_time")}</Typography>
+                </p>
+                <p>{t("favourites.call_time")}</p>
               </Grid>
               <Grid
                 item

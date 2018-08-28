@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Typography, Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
+import { Grid, Button } from "@material-ui/core";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { KeyboardBackspace } from "@material-ui/icons";
@@ -16,7 +15,7 @@ import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
-import { css } from "react-emotion";
+import { cx, css } from "react-emotion";
 
 const cardTop = css`
   background-color: #f1f7fc;
@@ -28,97 +27,101 @@ const cardTop = css`
   align-items: center;
 `;
 
-const styles = () => ({
-  button: {
-    backgroundColor: "#3e57e2",
-    color: "white",
-    textAlign: "right"
-  },
-  cardBottom: {
-    backgroundColor: "#f1f7fc",
-    paddingLeft: "9px",
-    borderRadius: "0px",
-    borderTop: "1px solid #f5f5f5",
-    position: "relative"
-  },
-  cardBottomTitle: {
-    paddingLeft: "15px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  cardBottomFamilyTitle: {
-    marginLeft: "9px",
-    marginBottom: "25px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  CardBottomOpen: {
-    marginBottom: "0px",
-    marginTop: "0px",
-    "& $cardBottom": { backgroundColor: "#f5f5f5" }
-  },
-  cardBody: {
-    padding: "25px",
-    paddingTop: "15px"
-  },
-  cardDescriptionText: {
-    fontSize: "18px",
-    padding: "10px 0px",
-    paddingBottom: "15px"
-  },
-  collapse: {
-    paddingTop: "25px",
-    paddingLeft: "15px",
-    backgroundColor: "#f5f5f5"
-  },
-  root: {
-    width: "100%"
-  },
-  ExpansionPanelClosed: {},
-  children: {
-    width: "100%"
-  },
-  benefitName: {
-    fontSize: "24px",
-    fontWeight: 600,
-    padding: "10px 0"
-  },
-  returnIcon: {
-    "-moz-transform": "scaleX(-1)",
-    "-o-transform": "scaleX(-1)",
-    "-webkit-transform": "scaleX(-1)",
-    transform: "scaleX(-1)",
-    float: "left",
-    filter: "FlipH",
-    "-ms-filter": "FlipH",
-    paddingLeft: "10px"
-  },
-  rightArrowIcon: {
-    "-moz-transform": "scaleX(-1)",
-    "-o-transform": "scaleX(-1)",
-    "-webkit-transform": "scaleX(-1)",
-    transform: "scaleX(-1)",
-    float: "left",
-    filter: "FlipH",
-    "-ms-filter": "FlipH",
-    paddingRight: "10px"
-  },
-  parentIcon: {
-    marginRight: 15,
-    fontSize: 40,
-    transform: "scale(.9)",
-    color: "#434343"
-  },
-  headerDesc: {
-    flexGrow: 1,
-    color: "#434343"
-  },
-  headerUrl: {
-    color: "#006CC9"
-  }
-});
+const button = css`
+  background-color: #3e57e2 !important;
+  color: white !important;
+  text-align: right !important;
+  text-transform: none !important;
+  float: right !important;
+`;
+const ExpansionPanelSummaryCss = css`
+  padding-left: 9px !important;
+  border-radius: 0px;
+  border-top: 1px solid #f5f5f5 !important;
+  position: relative !important;
+`;
+const cardBottomTitle = css`
+  padding-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const cardBottomFamilyTitle = css`
+  margin-left: 9px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const ExpansionPanelCss = css`
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+`;
+const ExpansionPanelOpen = css`
+  background-color: #f5f5f5 !important;
+`;
+const ExpansionPanelClosed = css`
+  background-color: #f1f7fc !important;
+`;
+const cardBody = css`
+  padding: 25px !important;
+  padding-top: 15px !important;
+`;
+const cardDescriptionText = css`
+  font-size: 18px;
+  padding: 10px 0px;
+  padding-bottom: 15px;
+`;
+const collapse = css`
+  padding-top: 25px !important;
+  padding-left: 15px !important;
+  background-color: #f5f5f5 !important;
+`;
+const root = css`
+  width: 100%;
+`;
+const children = css`
+  width: 100%;
+`;
+
+const benefitName = css`
+  font-size: 24px;
+  font-weight: 600;
+  padding: 10px 0;
+`;
+const returnIcon = css`
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  float: left;
+  filter: FlipH;
+  -ms-filter: fliph;
+  padding-left: 10px;
+`;
+const rightArrowIcon = css`
+  "-moz-transform":scaleX(-1) ;
+  "-o-transform":scaleX(-1) ;
+  "-webkit-transform":scaleX(-1) ;
+  transform: scaleX(-1);
+  float: left;
+  filter: FlipH;
+  "-ms-filter":fliph ;
+  padding-right: 10px;
+`;
+const parentIcon = css`
+  margin-right: 15;
+  font-size: 40;
+  transform: scale(0.9);
+  color: #434343;
+`;
+const headerDesc = css`
+  flex-grow: 1;
+  color: #434343;
+`;
+const headerUrl = css`
+  color: #006cc9;
+`;
 
 export class BenefitCard extends Component {
   state = {
@@ -182,7 +185,7 @@ export class BenefitCard extends Component {
     let a_elements = parentBenefits.map((b, i) => (
       <a
         key={"a" + i}
-        className={this.props.classes.headerUrl}
+        className={headerUrl}
         href={this.benefitUrl(b)}
         target="_blank"
         rel="noopener noreferrer"
@@ -210,7 +213,7 @@ export class BenefitCard extends Component {
 
   render() {
     const benefit = this.props.benefit;
-    const { t, classes } = this.props;
+    const { t } = this.props;
 
     const parentBenefits = this.props.allBenefits.filter(
       b => b.childBenefits && b.childBenefits.includes(benefit.id)
@@ -239,12 +242,12 @@ export class BenefitCard extends Component {
 
     return (
       <Grid item xs={12}>
-        <div className={classes.root}>
+        <div className={root}>
           {parentBenefits.length > 0 &&
           benefit.availableIndependently === "Requires Gateway Benefit" ? (
             <Paper className={cardTop}>
-              <ErrorOutlineIcon className={classes.parentIcon} />
-              <span className={classes.headerDesc}>
+              <ErrorOutlineIcon className={parentIcon} />
+              <span className={headerDesc}>
                 <span>{t("benefits_b.card_header_1") + " "}</span>
                 {this.get_benefit_a_elements(parentBenefits)}{" "}
                 <span>
@@ -259,8 +262,8 @@ export class BenefitCard extends Component {
             ""
           )}
 
-          <Paper className={classes.cardBody}>
-            <div component="p" className={classes.benefitName}>
+          <Paper className={cardBody}>
+            <div component="p" className={benefitName}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
@@ -272,9 +275,7 @@ export class BenefitCard extends Component {
               />
             </div>
 
-            <Typography
-              className={"cardDescription " + classes.cardDescriptionText}
-            >
+            <h2 className={"cardDescription " + cardDescriptionText}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
@@ -284,7 +285,7 @@ export class BenefitCard extends Component {
                     : benefit.oneLineDescriptionFr
                 }
               />
-            </Typography>
+            </h2>
             <div>
               {needsMet.map(need => (
                 <NeedTag
@@ -306,10 +307,9 @@ export class BenefitCard extends Component {
               ""
             )}
             <Button
-              className={classes.button}
+              className={button}
               target="_blank"
               variant="raised"
-              style={{ textTransform: "none", float: "right" }}
               onClick={() =>
                 this.logExit(
                   this.props.t("current-language-code") === "en"
@@ -325,7 +325,7 @@ export class BenefitCard extends Component {
               rel="noopener noreferrer"
             >
               {this.props.t("Find out more")}
-              <KeyboardBackspace className={classes.rightArrowIcon} />
+              <KeyboardBackspace className={rightArrowIcon} />
             </Button>
           </Paper>
 
@@ -334,18 +334,18 @@ export class BenefitCard extends Component {
               expanded={this.state.open}
               className={
                 this.state.open
-                  ? classes.CardBottomOpen
-                  : classes.ExpansionPanelClosed
+                  ? cx(ExpansionPanelCss, ExpansionPanelOpen)
+                  : cx(ExpansionPanelCss, ExpansionPanelClosed)
               }
             >
               <ExpansionPanelSummary
-                className={classes.cardBottom}
+                className={ExpansionPanelSummaryCss}
                 expandIcon={<ExpandMoreIcon />}
                 onClick={() => this.toggleOpenState()}
               >
-                <div className={classes.cardBottomTitle}>
-                  <KeyboardReturnIcon className={classes.returnIcon} />
-                  <span className={classes.headerDesc}>
+                <div className={cardBottomTitle}>
+                  <KeyboardReturnIcon className={returnIcon} />
+                  <span className={headerDesc}>
                     <span>
                       {this.childBenefitNames(
                         benefit,
@@ -357,13 +357,10 @@ export class BenefitCard extends Component {
                 </div>
               </ExpansionPanelSummary>
 
-              <ExpansionPanelDetails
-                timeout="auto"
-                className={classes.collapse}
-              >
+              <ExpansionPanelDetails timeout="auto" className={collapse}>
                 <Grid item xs={12}>
                   {veteranBenefits.length > 0 ? (
-                    <div className={classes.children}>
+                    <div className={children}>
                       <div>
                         {veteranBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
@@ -385,13 +382,13 @@ export class BenefitCard extends Component {
 
                   {familyBenefits.length > 0 ? (
                     <div>
-                      <div className={classes.cardBottomFamilyTitle}>
-                        <KeyboardReturnIcon className={classes.returnIcon} />
-                        <span className={classes.headerDesc}>
+                      <div className={cardBottomFamilyTitle}>
+                        <KeyboardReturnIcon className={returnIcon} />
+                        <span className={headerDesc}>
                           {t("benefits_b.eligible_open_family")}
                         </span>
                       </div>
-                      <div className={classes.children}>
+                      <div className={children}>
                         {familyBenefits.map((cb, i) => (
                           <EmbeddedBenefitCard
                             id={"cb" + i}
@@ -434,7 +431,6 @@ BenefitCard.propTypes = {
   veteranBenefitIds: PropTypes.array.isRequired,
   familyBenefitIds: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
@@ -443,4 +439,4 @@ BenefitCard.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(BenefitCard));
+export default connect(mapStateToProps)(BenefitCard);

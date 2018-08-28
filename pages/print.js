@@ -3,69 +3,94 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
-import { withStyles } from "@material-ui/core/styles";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { WordMark } from "@cdssnc/gcui";
 import FIP from "../components/fip";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { css, cx } from "react-emotion";
 
-const styles = () => ({
-  root: {
-    fontFamily: "Merriweather, serif"
-  },
-  checkboxes: {
-    disabled: "true",
-    ripple: "disabled",
-    height: "30px",
-    width: "20px",
-    marginRight: "6px",
-    marginLeft: "12px"
-  },
-  bigTitle: {
-    fontSize: "32px",
-    fontWeight: "bold"
-  },
-  title: {
-    fontSize: "22px",
-    fontWeight: "bold",
-    marginBottom: "10px"
-  },
-  bold: {
-    fontWeight: "bold"
-  },
-  rules: {
-    width: "100%",
-    lineHeight: "1.5em",
-    marginTop: "0.5em",
-    marginBottom: "0.5em",
-    height: "3em",
-    backgroundImage: "linear-gradient(black 1px, transparent 0)",
-    backgroundPosition: "0px 1.2em",
-    backgroundSize: "100% 1.5em",
-    "-webkit-print-color-adjust": "exact"
-  },
-  benefitRow: {
-    "@media print": {
-      "page-break-inside": "avoid !important"
-    }
-  },
-  benefitCell: {
-    paddingBottom: "10px",
-    paddingLeft: "0px"
-  },
-  svgContainer: {
-    width: "450px",
-    height: "38px"
-  },
-  hr: {
-    color: "black",
-    backgroundColor: "black",
-    border: 0,
-    height: "2px",
-    "-webkit-print-color-adjust": "exact"
+const root = css`
+  font-family: Merriweather, serif;
+  padding: 12px;
+`;
+const table = css`
+  width: 100%;
+`;
+const box = css`
+  border-style: solid;
+  border-width: 2px;
+  padding: 1.5em;
+`;
+const checkboxes = css`
+  disabled: true !important;
+  ripple: disabled !important;
+  height: 30px !important;
+  width: 20px !important;
+  margin-right: 6px !important;
+  margin-left: 12px !important;
+`;
+const checkbox = css`
+  margin-right: 0px;
+`;
+const gridstyle = css`
+  margin-top: 12px !important;
+`;
+const bigTitle = css`
+  font-size: 32px;
+  font-weight: bold;
+`;
+const margins = css`
+  margin-top: 20px;
+  margin-bottom: 15px;
+`;
+const address = css`
+  margin-top: 0.5em;
+`;
+const title = css`
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+const bold = css`
+  font-weight: bold;
+`;
+const rules = css`
+  width: 100%;
+  line-height: 1.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  height: 3em;
+  background-image: linear-gradient(black 1px, transparent 0);
+  background-position: 0px 1.2em;
+  background-size: 100% 1.5em;
+  -webkit-print-color-adjust: exact;
+`;
+const benefitRow = css`
+  "@media print": {
+    page-break-inside: avoid !important;
   }
-});
+`;
+const benefitCell = css`
+  padding-bottom: 10px;
+  padding-left: 0px;
+`;
+const svgContainer = css`
+  width: 450px;
+  height: 38px;
+`;
+const hr = css`
+  color: black;
+  background-color: black;
+  border: 0;
+  height: 2px;
+  -webkit-print-color-adjust: exact;
+`;
+const wordmark = css`
+  text-align: right;
+  width: 100%;
+  margin-top: 20px;
+`;
 
 const theme = createMuiTheme({
   typography: {
@@ -131,7 +156,7 @@ export class Print extends Component {
   };
 
   render() {
-    const { i18n, t, benefits, needs, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, benefits, needs } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const printingFromFavourites = query.fromFavourites !== undefined;
@@ -183,10 +208,10 @@ export class Print extends Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <div style={{ padding: 12 }} className={classes.root}>
+        <div className={root}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <div className={classes.svgContainer}>
+              <div className={svgContainer}>
                 <FIP fillColor="black" t={this.props.t} />
               </div>
             </Grid>
@@ -195,17 +220,9 @@ export class Print extends Component {
               ""
             ) : (
               <Grid item xs={12}>
-                <div
-                  style={{
-                    borderStyle: "solid",
-                    borderWidth: "2px",
-                    padding: "1.5em"
-                  }}
-                >
-                  <div className={classes.bold}>
-                    {t("print.who_is_receiving")}
-                  </div>
-                  <div className={"profile_section " + classes.rules}>
+                <div className={box}>
+                  <div className={bold}>{t("print.who_is_receiving")}</div>
+                  <div className={"profile_section " + rules}>
                     {profile_text}
                   </div>
 
@@ -216,7 +233,7 @@ export class Print extends Component {
                           <FormControlLabel
                             control={
                               <Checkbox
-                                className={classes.checkboxes}
+                                className={checkboxes}
                                 color="default"
                                 disableRipple={true}
                                 key={need.id}
@@ -229,7 +246,7 @@ export class Print extends Component {
                                 ? need.nameEn
                                 : need.nameFr
                             }
-                            style={{ marginRight: "0px" }}
+                            className={checkbox}
                           />
                         </Grid>
                       ))}
@@ -240,10 +257,7 @@ export class Print extends Component {
             )}
           </Grid>
 
-          <div
-            className={classes.bigTitle}
-            style={{ marginTop: "20px", marginBottom: "15px" }}
-          >
+          <div className={cx(bigTitle, margins)}>
             {this.countString(
               sortedFilteredBenefits,
               benefits,
@@ -251,12 +265,12 @@ export class Print extends Component {
               printingFromFavourites
             )}
           </div>
-          <table style={{ width: "100%" }}>
+          <table className={table}>
             <tbody>
               {sortedFilteredBenefits.map((b, i) => {
                 return (
-                  <tr key={i} className={classes.benefitRow}>
-                    <td className={classes.benefitCell}>
+                  <tr key={i} className={benefitRow}>
+                    <td className={benefitCell}>
                       <div className="benefitsListItem">
                         <div>
                           <b>
@@ -277,34 +291,32 @@ export class Print extends Component {
               })}
             </tbody>
           </table>
-          <Grid container spacing={24} style={{ marginTop: "12px" }}>
+          <Grid container spacing={24} className={gridstyle}>
             <Grid item xs={12}>
-              <hr className={classes.hr} />
+              <hr className={hr} />
             </Grid>
             <Grid item xs={12}>
-              <div className={classes.bigTitle}>
-                {t("print.have_any_questions")}
-              </div>
+              <div className={bigTitle}>{t("print.have_any_questions")}</div>
             </Grid>
             <Grid item xs={6}>
-              <div className={classes.title}>{t("favourites.contact_us")}</div>
-              <div className={classes.bold}>{t("contact.phone")}</div>
+              <div className={title}>{t("favourites.contact_us")}</div>
+              <div className={bold}>{t("contact.phone")}</div>
               <div>{t("favourites.call_time")}</div>
               <br />
-              <div className={classes.bold}>{t("contact.email")}</div>
+              <div className={bold}>{t("contact.email")}</div>
               <div>{t("favourites.email_disclaimer")}</div>
               <br />
-              <div className={classes.title}>{t("print.apply_online")}</div>
-              <div className={classes.bold}>{t("contact.my_vac_link")}</div>
+              <div className={title}>{t("print.apply_online")}</div>
+              <div className={bold}>{t("contact.my_vac_link")}</div>
               <div>{t("print.sign_up_for_my_vac")}</div>
             </Grid>
             <Grid item xs={6} id="closest_office_info">
-              <div className={classes.title}>{t("print.closest_office")}</div>
+              <div className={title}>{t("print.closest_office")}</div>
 
-              <div className={classes.bold}>{t("print.map_link")}</div>
+              <div className={bold}>{t("print.map_link")}</div>
               <div>{t("print.visit_office_prompt")}</div>
 
-              <div style={{ marginTop: "0.5em" }}>
+              <div className={address}>
                 {t("current-language-code") == "en"
                   ? printAreaOffice.name_en
                   : printAreaOffice.name_fr}
@@ -315,7 +327,7 @@ export class Print extends Component {
               </div>
             </Grid>
           </Grid>
-          <div style={{ textAlign: "right", width: "100%", marginTop: "20px" }}>
+          <div className={wordmark}>
             <WordMark width="6em" flag="#000" />
           </div>
         </div>
@@ -339,13 +351,10 @@ Print.propTypes = {
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   areaOffices: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps)(
-  withI18next()(withStyles(styles)(Print))
-);
+export default connect(mapStateToProps)(withI18next()(Print));

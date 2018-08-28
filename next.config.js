@@ -1,5 +1,14 @@
 module.exports = {
   webpack: (config, { dev }) => {
+    if (process.env.BUNDLE_CHECK) {
+      const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+        .BundleAnalyzerPlugin;
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: "static"
+        })
+      );
+    }
     const originalEntry = config.entry;
 
     config.entry = async () => {
