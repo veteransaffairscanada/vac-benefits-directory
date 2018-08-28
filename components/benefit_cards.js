@@ -100,18 +100,18 @@ const returnIcon = css`
   padding-left: 10px;
 `;
 const rightArrowIcon = css`
-  "-moz-transform":scaleX(-1) ;
-  "-o-transform":scaleX(-1) ;
-  "-webkit-transform":scaleX(-1) ;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   float: left;
   filter: FlipH;
-  "-ms-filter":fliph ;
+  -ms-filter: fliph;
   padding-right: 10px;
 `;
 const parentIcon = css`
-  margin-right: 15;
-  font-size: 40;
+  margin-right: 15px;
+  font-size: 40px !important;
   transform: scale(0.9);
   color: #434343;
 `;
