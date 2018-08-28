@@ -4,16 +4,12 @@ import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import styled, { css } from "react-emotion";
 import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const theme = createMuiTheme({
-  typography: { fontFamily: ["Merriweather", "serif"] }
-});
 
-const BlueBar = styled("div")`
+const BlueBar = css`
   background-color: blue;
   height: 5px;
   width: 100px;
@@ -83,7 +79,6 @@ export class GuidedExperience extends Component {
     const { t, selectedEligibility } = this.props;
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
-      <MuiThemeProvider theme={theme}>
         <div id="guidedExperience" className={container}>
           <Button
             size="medium"
@@ -144,7 +139,7 @@ export class GuidedExperience extends Component {
               </Grid>
 
               <Grid item xs={12}>
-                <BlueBar />
+                <div className={BlueBar} />
                 <p className={subTitle}>{this.props.subtitle}</p>
               </Grid>
 
@@ -176,7 +171,6 @@ export class GuidedExperience extends Component {
             </Button>
           </div>
         </div>
-      </MuiThemeProvider>
     );
   }
 }
