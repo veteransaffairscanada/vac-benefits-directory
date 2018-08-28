@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "react-emotion";
-
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-
 import { AlphaBanner } from "../components/alpha_banner";
-
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
 import Footer from "../components/footer";
 import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
+import { globalTheme } from "../theme";
 
 const Container = css`
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
+  max-width: ${globalTheme.maxWidth};
+  margin: ${globalTheme.margin};
+  padding-left: ${globalTheme.paddingLeft};
+  padding-right: ${globalTheme.paddingRight};
 `;
 const alpha = css`
   background-color: #345075;
