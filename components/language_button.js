@@ -1,26 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
-import { withStyles } from "@material-ui/core/styles";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  mobileButton: {
-    color: "#fff",
-    textTransform: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "none"
+  const mobileButton = css`
+    color: #fff !important;
+    text-transform: none !important;
+    @media only screen and (min-width: 599.5px) {
+      display: none !important;
     }
-  },
-  desktopButton: {
-    color: "#fff",
-    textTransform: "none",
-    [theme.breakpoints.down("xs")]: {
-      display: "none"
+`;
+  const desktopButton = css`
+    color: #fff !important;
+    text-transform: none !important;
+    @media only screen and (max-width: 599.5px) {
+      display: none !important;
     }
-  }
-});
+`;
 
 class LanguageButton extends Component {
   changeLanguage = () => {
@@ -39,14 +37,14 @@ class LanguageButton extends Component {
   };
 
   render() {
-    const { t, classes } = this.props;
+    const { t } = this.props;
 
     return (
       <div title={t("other-language-in-current-language")}>
         <Button
           id="changeLanguage"
           onClick={this.changeLanguage}
-          className={classes.desktopButton}
+          className={desktopButton}
           lang={t("other-language-code")}
         >
           {t("other-language")}
@@ -55,7 +53,7 @@ class LanguageButton extends Component {
         <Button
           id="changeLanguageMobile"
           onClick={this.changeLanguage}
-          className={classes.mobileButton}
+          className={mobileButton}
           lang={t("other-language-code")}
         >
           {this.titleCase(t("other-language-code"))}
@@ -67,8 +65,7 @@ class LanguageButton extends Component {
 
 LanguageButton.propTypes = {
   i18n: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
+  t: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(LanguageButton);
+export default (LanguageButton);
