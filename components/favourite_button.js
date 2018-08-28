@@ -5,20 +5,23 @@ import Bookmark from "@material-ui/icons/Bookmark";
 import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
-import { withStyles } from "@material-ui/core/styles/index";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  hideSmall: {
-    [theme.breakpoints.down(700)]: {
-      display: "none"
-    }
-  },
-  hideBig: {
-    [theme.breakpoints.up(700)]: {
-      display: "none"
-    }
+const bookmarkButton = css`
+  color: #3e57e2 !important;
+  margin-left: -20px !important;
+  text-transform: none !important;
+`;
+ const hideSmall = css`
+ @media only screen and (max-width: 599.5px) {
+   display: none !important;
+ }
+`;
+  const hideBig = css`
+  @media only screen and (min-width: 599.5px) {
+    display: none !important;
   }
-});
+`;
 
 export class FavouriteButton extends Component {
   constructor() {
@@ -41,10 +44,9 @@ export class FavouriteButton extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     return (
       <Button
-        style={{ color: "#3e57e2", marginLeft: "-20px", textTransform: "none" }}
+        className={bookmarkButton}
         aria-label={this.props.t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
       >
@@ -53,10 +55,10 @@ export class FavouriteButton extends Component {
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
-        <div className={classes.hideSmall}>
+        <div className={hideSmall}>
           {this.props.t("B3.favouritesButtonBText")}
         </div>
-        <div className={classes.hideBig}>
+        <div className={hideBig}>
           {this.props.t("B3.favouritesButtonBTextMobile")}
         </div>
       </Button>
@@ -88,10 +90,9 @@ FavouriteButton.propTypes = {
   toggleOpenState: PropTypes.func.isRequired,
   store: PropTypes.object,
   t: PropTypes.func.isRequired,
-  classes: PropTypes.object.isRequired
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(FavouriteButton));
+)(FavouriteButton);
