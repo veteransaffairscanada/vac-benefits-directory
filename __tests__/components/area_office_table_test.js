@@ -105,7 +105,7 @@ describe("AreaOfficeTable", () => {
 
   it("selects an area office when a row is clicked", () => {
     mount(<AreaOfficeTable {...props} />)
-      .find("TableRow")
+      .find("tr")
       .at(2)
       .simulate("click");
     expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
@@ -113,7 +113,7 @@ describe("AreaOfficeTable", () => {
 
   it("sets the map view when a row is clicked", () => {
     mount(<AreaOfficeTable {...props} />)
-      .find("TableRow")
+      .find("tr")
       .at(2)
       .simulate("click");
     expect(props.setMapView).toBeCalledWith({

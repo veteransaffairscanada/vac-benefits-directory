@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import classnames from "classnames";
 import { connect } from "react-redux";
 import NeedButton from "./need_button";
@@ -23,21 +22,14 @@ export class NeedsSelector extends Component {
     const { needs, classes, t, store, pageWidth } = this.props;
     return (
       <div>
-        <Typography variant="subheading" className={classnames(classes.title)}>
+        <h2 variant="subheading" className={classnames(classes.title)}>
           {t("filter by category")}
-        </Typography>
+        </h2>
         <Grid container spacing={16}>
           <Grid item xs={9}>
-            <Typography variant="body2">
-              {t("Select all that apply")}
-            </Typography>
+            <h3 variant="body2">{t("Select all that apply")}</h3>
           </Grid>
-          <Grid
-            // id="needs_buttons"
-            item
-            xs={12}
-            className={classes.needsButtons}
-          >
+          <Grid item xs={12} className={classes.needsButtons}>
             {needs.map(need => (
               <NeedButton
                 key={need.id}
