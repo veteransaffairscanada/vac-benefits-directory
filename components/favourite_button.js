@@ -13,17 +13,13 @@ const bookmarkButton = css`
   text-transform: none !important;
 `;
  const hideSmall = css`
- @media only screen and (max-width: 600px) {
-     body {
-         display: none;
-     }
+ @media only screen and (max-width: 599.5px) {
+   display: none !important;
  }
 `;
   const hideBig = css`
-  @media only screen and (max-width: 600px) {
-      body {
-          display: none;
-      }
+  @media only screen and (min-width: 599.5px) {
+    display: none !important;
   }
 `;
 
