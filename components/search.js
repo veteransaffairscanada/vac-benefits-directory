@@ -11,71 +11,70 @@ import AutoSuggest from "react-autosuggest";
 import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  container: {
-    flexGrow: 1,
-    position: "relative"
-  },
-  inputIcon: {
-    paddingTop: "3px",
-    paddingRight: "5px"
-  },
-  suggestionsContainerOpen: {
-    position: "absolute",
-    zIndex: 1,
-    marginTop: theme.spacing.unit,
-    left: 0,
-    right: 0,
-    overflow: "auto",
-    maxHeight: "300px"
-  },
-  searchWrap: {
-    display: "inline-flex",
-    width: "100%",
-    borderStyle: "solid",
-    borderWidth: "1px",
-    borderRadius: "0px",
-    paddingLeft: "5px"
-  },
-  searchBox: {
-    display: "inline-flex",
-    padding: "10px",
-    fontSize: "15px",
-    flex: 1,
-    marginRight: "10px",
-    borderWidth: "0px",
-    width: "100%",
-    fontFamily: "Merriweather"
-  },
-  searchInputField: {
-    display: "inline-flex",
-    fontSize: "15px",
-    flex: 1,
-    borderWidth: "0px",
-    width: "100%",
-    fontFamily: "Merriweather"
-  },
-  suggestion: {
-    display: "block"
-  },
-  suggestionsList: {
-    margin: 0,
-    padding: 0,
-    listStyleType: "none"
-  },
-  searchButton: {
-    padding: "15px",
-    paddingLeft: "50px",
-    paddingRight: "50px",
-    textTransform: "none",
-    borderRadius: "0px",
-    [theme.breakpoints.down("xs")]: {
-      display: "none"
+  const container = css`
+    flex-grow: 1;
+    position: relative;
+`;
+  const inputIcon = css`
+    padding-top: 3px;
+    padding-right: 5px;
+`;
+  const suggestionsContainerOpen = css`
+    position: absolute;
+    zIndex: 1;
+    margin-top: ${globalTheme.unit};
+    left: 0;
+    right: 0;
+    overflow: auto;
+    max-height: 300px;
+`;
+  const searchWrap = css`
+    display: inline-flex;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0px;
+    padding-left: 5px !important;
+`;
+  const searchBox = css`
+    display: inline-flex;
+    padding: 10px;
+    font-size: 15px;
+    flex: 1;
+    margin-right: 10px;
+    border-width: 0px;
+    width: 100%;
+    font-family: Merriweather;
+`;
+  const searchInputField = css`
+    display: inline-flex;
+    font-size: 15px;
+    flex: 1;
+    border-width: 0px;
+    width: 100%;
+    font-family: Merriweather;
+`;
+  const suggestion = css`
+    display: block;
+`;
+  const suggestionsList = css`
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+`;
+  const searchButton = css`
+    padding: 15px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+    text-transform: none !important;
+    border-radius: 0px !important;
+    @media only screen and (max-width: ${globalTheme.max.xs}) {
+      display: none;
     }
-  }
-});
+`;
 
 export class Search extends Component {
   constructor(props) {
@@ -168,17 +167,17 @@ export class Search extends Component {
   };
 
   renderInput = inputProps => {
-    const { classes, ...other } = inputProps;
+    const { ...other } = inputProps;
     return (
-      <div id={this.props.id} className={this.props.classes.searchWrap}>
-        <div className={classes.searchBox}>
-          <SearchIcon className={this.props.classes.inputIcon} />
+      <div id={this.props.id} className={searchWrap}>
+        <div className={searchBox}>
+          <SearchIcon className={inputIcon} />
           <input
             id="inputField"
             aria-label="search"
             type="text"
             placeholder={this.props.t("search")}
-            className={classes.searchInputField}
+            className={searchInputField}
             onKeyDown={this.onKeyDown}
             onKeyUp={this.onKeyUp}
             {...other}
@@ -187,7 +186,7 @@ export class Search extends Component {
         <div>
           <Button
             id="searchButtonLink"
-            className={classes.searchButton}
+            className={searchButton}
             variant="raised"
             color="primary"
             href={
@@ -238,10 +237,8 @@ export class Search extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { value, suggestions } = this.state;
     const inputProps = {
-      classes,
       value,
       onChange: this.onChange
     };
@@ -249,10 +246,10 @@ export class Search extends Component {
     return (
       <AutoSuggest
         theme={{
-          container: classes.container,
-          suggestionsContainerOpen: classes.suggestionsContainerOpen,
-          suggestionsList: classes.suggestionsList,
-          suggestion: classes.suggestion
+          container: container,
+          suggestionsContainerOpen: suggestionsContainerOpen,
+          suggestionsList: suggestionsList,
+          suggestion: suggestion
         }}
         renderInputComponent={this.renderInput}
         suggestions={suggestions}
@@ -277,7 +274,6 @@ const mapStateToProps = reduxState => {
 
 Search.propTypes = {
   benefits: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired,
   enIdx: PropTypes.string.isRequired,
   i18n: PropTypes.object.isRequired,
   id: PropTypes.string,
@@ -286,4 +282,4 @@ Search.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(Search));
+export default connect(mapStateToProps)(Search);
