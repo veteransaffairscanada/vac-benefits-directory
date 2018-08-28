@@ -21,9 +21,6 @@ describe("AlphaBanner", () => {
       i18n: {
         changeLanguage: () => {}
       },
-      t: key => {
-        return key == "current-language-code" ? "en" : key;
-      }
     };
     _mountedAlphaBanner = undefined;
   });
