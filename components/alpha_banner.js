@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
 import { PhaseBadge } from "@cdssnc/gcui";
+import { css } from "react-emotion";
 
-const Banner = styled("aside")`
+const Banner = css`
   display: flex;
   display: -ms-flexbox;
   align-items: center;
@@ -17,15 +17,15 @@ const Banner = styled("aside")`
   }
 `;
 
-const Text = styled("div")`
+const Text = css`
   margin-left: 10px;
 `;
 
 export const AlphaBanner = ({ children, ...rest }) => (
-  <Banner {...rest}>
+  <aside {...rest} className={Banner}>
     <PhaseBadge phase="alpha" />
-    <Text>{children}</Text>
-  </Banner>
+    <div className={Text}>{children}</div>
+  </aside>
 );
 
 AlphaBanner.propTypes = {
