@@ -17,6 +17,7 @@ import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import Container from "../components/container";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -30,11 +31,7 @@ const buttonBarButton = css`
   text-transform: none !important;
   color: #3e57e2 !important;
 `;
-const container = css`
-  max-width: ${globalTheme.maxWidth} !important;
-  margin: ${globalTheme.margin} !important;
-  padding-left: ${globalTheme.paddingLeft};
-  padding-right: ${globalTheme.paddingRight};
+const topPadding = css`
   padding-top: 30px;
 `;
 const container2 = css`
@@ -144,7 +141,7 @@ export class BB extends Component {
         ref={el => (this.componentRef = el)}
       >
         <div className={topMatter}>
-          <div className={container}>
+          <Container className={topPadding}>
             <div className={container2}>
               <Grid container spacing={24}>
                 <Grid item xs={12} md={9}>
@@ -187,9 +184,9 @@ export class BB extends Component {
                 </Grid>
               </Grid>
             </div>
-          </div>
+          </Container>
         </div>
-        <div className={container}>
+        <Container className={topPadding}>
           <div className={container2}>
             <Grid container spacing={32}>
               <Grid item lg={4} md={4} sm={5} xs={12}>
@@ -254,7 +251,7 @@ export class BB extends Component {
               </Grid>
             </Grid>
           </div>
-        </div>
+        </Container>
       </div>
     );
   }

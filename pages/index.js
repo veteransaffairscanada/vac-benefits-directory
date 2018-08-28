@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import Container from "../components/container";
 
 const root = css`
   background-color: white;
@@ -44,13 +45,6 @@ const columnRight = css`
   @media only screen and (min-width: ${globalTheme.min.sm}) {
     padding-left: 50px !important;
   }
-`;
-
-const container = css`
-  margin: ${globalTheme.margin};
-  max-width: ${globalTheme.maxWidth};
-  padding-left: ${globalTheme.paddingLeft};
-  padding-right: ${globalTheme.paddingRight};
 `;
 
 const image = css`
@@ -92,7 +86,7 @@ export class App extends Component {
         showRefreshCache={false}
         title={t("titles.index")}
       >
-        <div className={container}>
+        <Container>
           <Paper className={root}>
             <Grid container spacing={24}>
               <Grid item xs={12}>
@@ -165,7 +159,7 @@ export class App extends Component {
               </Grid>
             </Grid>
           </Paper>
-        </div>
+        </Container>
       </Layout>
     );
   }

@@ -5,9 +5,8 @@ import Button from "@material-ui/core/Button";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 import { connect } from "react-redux";
-import { globalTheme } from "../theme";
 import { css } from "react-emotion";
-
+import Container from "../components/container";
 
 const BlueBar = css`
   background-color: blue;
@@ -24,13 +23,6 @@ const root = css`
 
 const box = css`
   padding: 20px;
-`;
-
-const container = css`
-  margin: 0 auto;
-  max-width: ${globalTheme.maxWidth};
-  padding-left: 16px;
-  padding-right: 16px;
 `;
 
 const prevButton = css`
@@ -79,98 +71,96 @@ export class GuidedExperience extends Component {
     const { t, selectedEligibility } = this.props;
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
-        <div id="guidedExperience" className={container}>
+      <Container id="guidedExperience">
+        <Button
+          size="medium"
+          href={
+            this.props.prevSection === "index" ? this.props.indexURL : undefined
+          }
+          onClick={
+            this.props.prevSection === "index"
+              ? undefined
+              : () => this.props.setSection(this.props.prevSection)
+          }
+          className={prevButton}
+        >
+          <ArrowBack />
+          &nbsp; &nbsp; {t("back")}
+        </Button>
+        <div className={root}>
+          <Grid container spacing={24} className={box}>
+            <Grid item xs={12} md={3}>
+              <h1 className={title}>{t("B3.Filter by eligibility")}</h1>
+            </Grid>
+            <Grid item xs={12} md={9}>
+              {eligibilityKeys.map((k, i) => {
+                if (
+                  selectedEligibility[k] === "" ||
+                  this.sectionMap[k] === this.props.id
+                ) {
+                  return "";
+                } else {
+                  let translation_key = "";
+                  if (k === "serviceHealthIssue") {
+                    translation_key = JSON.parse(selectedEligibility[k])
+                      ? "GE.has service related health issue"
+                      : "GE.no service related health issue";
+                  } else {
+                    translation_key = selectedEligibility[k];
+                  }
+
+                  return (
+                    <span key={i}>
+                      <span className={comma}>{i === 0 ? "" : ","}</span>
+                      <a
+                        id={"jumpButton" + i}
+                        className={jumpButton}
+                        href="#"
+                        onClick={() =>
+                          this.props.setSection(this.sectionMap[k])
+                        }
+                      >
+                        {t(translation_key)}
+                      </a>
+                    </span>
+                  );
+                }
+              })}
+            </Grid>
+
+            <Grid item xs={12}>
+              <div className={BlueBar} />
+              <p className={subTitle}>{this.props.subtitle}</p>
+            </Grid>
+
+            <Grid item xs={12}>
+              {this.props.children}
+            </Grid>
+          </Grid>
+
           <Button
+            id="nextButton"
             size="medium"
             href={
-              this.props.prevSection === "index"
-                ? this.props.indexURL
+              this.props.nextSection === "benefits-directory"
+                ? this.props.benefitsDirectoryUrl
                 : undefined
             }
             onClick={
-              this.props.prevSection === "index"
+              this.props.nextSection === "benefits-directory"
                 ? undefined
-                : () => this.props.setSection(this.props.prevSection)
+                : () => this.props.setSection(this.props.nextSection)
             }
-            className={prevButton}
+            className={nextButton}
           >
-            <ArrowBack />
-            &nbsp; &nbsp; {t("back")}
+            {this.props.id === "needsQuestion"
+              ? t("ge.show_results")
+              : t("next")}{" "}
+            &nbsp; &nbsp;
+            <ArrowForward />
           </Button>
-          <div className={root}>
-            <Grid container spacing={24} className={box}>
-              <Grid item xs={12} md={3}>
-                <h1 className={title}>{t("B3.Filter by eligibility")}</h1>
-              </Grid>
-              <Grid item xs={12} md={9}>
-                {eligibilityKeys.map((k, i) => {
-                  if (
-                    selectedEligibility[k] === "" ||
-                    this.sectionMap[k] === this.props.id
-                  ) {
-                    return "";
-                  } else {
-                    let translation_key = "";
-                    if (k === "serviceHealthIssue") {
-                      translation_key = JSON.parse(selectedEligibility[k])
-                        ? "GE.has service related health issue"
-                        : "GE.no service related health issue";
-                    } else {
-                      translation_key = selectedEligibility[k];
-                    }
-
-                    return (
-                      <span key={i}>
-                        <span className={comma}>{i === 0 ? "" : ","}</span>
-                        <a
-                          id={"jumpButton" + i}
-                          className={jumpButton}
-                          href="#"
-                          onClick={() =>
-                            this.props.setSection(this.sectionMap[k])
-                          }
-                        >
-                          {t(translation_key)}
-                        </a>
-                      </span>
-                    );
-                  }
-                })}
-              </Grid>
-
-              <Grid item xs={12}>
-                <div className={BlueBar} />
-                <p className={subTitle}>{this.props.subtitle}</p>
-              </Grid>
-
-              <Grid item xs={12}>
-                {this.props.children}
-              </Grid>
-            </Grid>
-
-            <Button
-              id="nextButton"
-              size="medium"
-              href={
-                this.props.nextSection === "benefits-directory"
-                  ? this.props.benefitsDirectoryUrl
-                  : undefined
-              }
-              onClick={
-                this.props.nextSection === "benefits-directory"
-                  ? undefined
-                  : () => this.props.setSection(this.props.nextSection)
-              }
-              className={nextButton}
-            >
-              {this.props.id === "needsQuestion"
-                ? t("ge.show_results")
-                : t("next")}{" "}
-              &nbsp; &nbsp;
-              <ArrowForward />
-            </Button>
-          </div>
         </div>
+      </Container>
     );
   }
 }

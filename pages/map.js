@@ -12,6 +12,7 @@ import Paper from "@material-ui/core/Paper/index";
 import Link from "next/link";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import Container from "../components/container";
 
 const paper = css`
   margin-top: ${globalTheme.marginTop};
@@ -32,13 +33,6 @@ const backLink = css`
 
 const topMatter = css`
   margin-top: 30px !important;
-`;
-
-const container = css`
-  margin: ${globalTheme.margin};
-  max-width: ${globalTheme.maxWidth};
-  padding-left: ${globalTheme.paddingLeft};
-  padding-right: ${globalTheme.paddingRight};
 `;
 
 const root = css`
@@ -91,7 +85,7 @@ export class Map extends Component {
         showRefreshCache={false}
         title={t("titles.map")}
       >
-        <div className={container}>
+        <Container>
           <div className={root}>
             <Grid container spacing={24}>
               <Grid item xs={12} md={8} className={topMatter}>
@@ -155,7 +149,7 @@ export class Map extends Component {
               </Grid>
             </Paper>
           </div>
-        </div>
+        </Container>
       </Layout>
     );
   }

@@ -7,14 +7,8 @@ import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
 import { css } from "react-emotion";
-import { globalTheme } from "../theme";
+import Container from "../components/container";
 
-const container = css`
-  max-width: ${globalTheme.maxWidth};
-  margin: ${globalTheme.margin};
-  padding-left: ${globalTheme.paddingLeft};
-  padding-right: ${globalTheme.paddingRight};
-`;
 const root = css`
   margin-left: 15px;
   margin-right: 15px;
@@ -31,7 +25,7 @@ export class AllBenefits extends Component {
         showRefreshCache={false}
         title={t("titles.all_benefits")}
       >
-        <div className={container}>
+        <Container>
           <div className={root}>
             <h1>{t("all-benefits.List of all benefits")}</h1>
             <Grid item xs={12}>
@@ -47,7 +41,7 @@ export class AllBenefits extends Component {
               </Grid>
             </Grid>
           </div>
-        </div>
+        </Container>
       </Layout>
     );
   }

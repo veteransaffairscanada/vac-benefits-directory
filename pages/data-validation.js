@@ -11,14 +11,10 @@ import ReactMoment from "react-moment";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import Container from "../components/container";
 
 const root = css`
-  margin: ${globalTheme.margin};
-  max-width: ${globalTheme.maxWidth};
-  margin-bottom: ${globalTheme.marginTop};
-  margin-top: ${globalTheme.marginTop};
   overflow-x: auto;
 `;
 const table = css`
@@ -222,52 +218,54 @@ export class DataValidation extends Component {
         hideNoscript={true}
         showRefreshCache={true}
       >
-        <Paper className={root}>
-          <p style={{ padding: "10px" }}>
-            {t("dv.last_cache_update")}
-            :&nbsp;
-            <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
-          </p>
-        </Paper>
-        <Paper className={root}>
-          <Table className={table}>
-            <TableHead>
-              <TableRow>
-                <TableCell>{t("dv.status")}</TableCell>
-                <TableCell>{t("dv.name")}</TableCell>
-                <TableCell>{t("dv.value")}</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((n, i) => {
-                return (
-                  <TableRow key={i}>
-                    <TableCell
-                      style={{
-                        color: n.status ? "green" : "red",
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {n.status !== undefined ? (
-                        t("dv." + (n.status ? "Pass" : "Fail"))
-                      ) : (
-                        <Button
-                          color="primary"
-                          variant="raised"
-                          onClick={() => this.checkBenefitUrls()}
-                        >
-                          {t("dv.validate")}
-                        </Button>
-                      )}
-                    </TableCell>
-                    <TableCell>{t("dv." + n.name)}</TableCell>
-                    <TableCell>{n.value}</TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
-        </Paper>
+        <Container>
+          <Paper className={root}>
+            <p style={{ padding: "10px" }}>
+              {t("dv.last_cache_update")}
+              :&nbsp;
+              <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
+            </p>
+          </Paper>
+          <Paper className={root}>
+            <Table className={table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell>{t("dv.status")}</TableCell>
+                  <TableCell>{t("dv.name")}</TableCell>
+                  <TableCell>{t("dv.value")}</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map((n, i) => {
+                  return (
+                    <TableRow key={i}>
+                      <TableCell
+                        style={{
+                          color: n.status ? "green" : "red",
+                          fontWeight: "bold"
+                        }}
+                      >
+                        {n.status !== undefined ? (
+                          t("dv." + (n.status ? "Pass" : "Fail"))
+                        ) : (
+                          <Button
+                            color="primary"
+                            variant="raised"
+                            onClick={() => this.checkBenefitUrls()}
+                          >
+                            {t("dv.validate")}
+                          </Button>
+                        )}
+                      </TableCell>
+                      <TableCell>{t("dv." + n.name)}</TableCell>
+                      <TableCell>{n.value}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </Paper>
+        </Container>
       </Layout>
     );
   }

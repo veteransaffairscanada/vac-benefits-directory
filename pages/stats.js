@@ -10,12 +10,11 @@ import PrChart from "../components/stats/prChart";
 import PrDurationChart from "../components/stats/pr_duration_chart";
 
 import { withStyles } from "@material-ui/core/styles/index";
+import Container from "../components/container";
 
 const styles = theme => ({
-  root: {
-    maxWidth: "1200px",
-    marginTop: theme.spacing.unit * 3,
-    margin: "0 auto"
+  marginTop: {
+    marginTop: theme.spacing.unit * 3
   },
   table: {
     // width: 1000
@@ -34,7 +33,7 @@ export class Stats extends Component {
         showRefreshCache={false}
         title={t("titles.stats")}
       >
-        <div className={classes.root}>
+        <Container className={classes.marginTop}>
           <h1>{t("stats.title")}</h1>
           <Grid container spacing={16}>
             <Grid item xs={12}>
@@ -56,7 +55,7 @@ export class Stats extends Component {
               </Paper>
             </Grid>
           </Grid>
-        </div>
+        </Container>
       </Layout>
     );
   }
