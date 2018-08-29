@@ -132,7 +132,9 @@ export class RadioSelector extends React.Component {
                     key={filter_id}
                     value={filter_id}
                     htmlFor={filter_id + guid}
-                    control={<Radio id={filter_id + guid} />}
+                    control={
+                      <Radio color="primary" id={filter_id + guid} />
+                    }
                     label={t(filter_id)}
                     disabled={this.isDisabled(
                       filter_id,
