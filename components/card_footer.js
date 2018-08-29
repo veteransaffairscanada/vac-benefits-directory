@@ -66,6 +66,7 @@ export class CardFooter extends Component {
   state = {
     open: false
   };
+
   benefitTitle = benefit => {
     return this.props.t("current-language-code") === "en"
       ? benefit.vacNameEn
