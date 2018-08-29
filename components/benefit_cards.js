@@ -32,7 +32,6 @@ const button = css`
   color: white !important;
   text-align: right !important;
   text-transform: none !important;
-  // float: right !important;
 `;
 const ExpansionPanelSummaryCss = css`
   padding-left: 9px !important;
