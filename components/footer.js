@@ -2,14 +2,35 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { WordMark } from "@cdssnc/gcui";
 import { Button, Toolbar } from "@material-ui/core";
-import styled from "react-emotion";
+import { css } from "react-emotion";
 
-const Div = styled("div")`
+const root = css`
   width: 100%;
   background-color: #434343;
   height: 65px;
-  color: #fff;
   text-align: center;
+`;
+
+const toolbar = css`
+  padding: 0 !important;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 100%;
+`;
+
+const privacyButton = css`
+  color: #fff !important;
+  padding-left: 0 !important;
+  text-transform: none !important;
+`;
+
+const envDetailsStyling = css`
+  flex: 1;
+  color: #fff;
+`;
+
+const wordMark = css`
+  height: 25px;
 `;
 
 class Footer extends Component {
@@ -19,30 +40,23 @@ class Footer extends Component {
       : process.env.NODE_ENV;
 
     return (
-      <Div role="navigation">
-        <Toolbar
-          style={{
-            padding: 0,
-            marginLeft: "15px",
-            marginRight: "15px",
-            height: "100%"
-          }}
-        >
+      <div className={root} role="navigation">
+        <Toolbar className={toolbar}>
           <Button
             id="privacy"
-            style={{ color: "#fff", paddingLeft: 0, textTransform: "none" }}
+            className={privacyButton}
             href={this.props.t("privacy-link")}
             target="_blank"
             rel="noopener noreferrer"
           >
             {this.props.t("Privacy")}
           </Button>
-          <p style={{ flex: 1, color: "#fff" }}>Build: {envDetails}</p>
-          <div style={{ height: "25px" }}>
+          <p className={envDetailsStyling}>Build: {envDetails}</p>
+          <div className={wordMark}>
             <WordMark width="6em" flag="#fff" text="#fff" />
           </div>
         </Toolbar>
-      </Div>
+      </div>
     );
   }
 }
