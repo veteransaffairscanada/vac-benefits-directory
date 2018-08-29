@@ -1,59 +1,53 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
 
 import Button from "@material-ui/core/Button";
 import SearchIcon from "@material-ui/icons/Search";
 import { StandaloneSearchBox } from "react-google-maps/lib/components/places/StandaloneSearchBox";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  container: {
-    flexGrow: 1,
-    position: "relative"
-  },
-  inputIcon: {
-    paddingTop: "3px",
-    paddingRight: "5px",
-    paddingLeft: "5px"
-  },
-  searchWrap: {
-    display: "inline-flex",
-    width: "100%",
-    borderStyle: "solid",
-    borderWidth: "1px",
-    borderRadius: "0px",
-    backgroundColor: "white"
-  },
-  searchBox: {
-    display: "inline-flex",
-    padding: "10px",
-    fontSize: "15px",
-    flex: 1,
-    marginRight: "10px",
-    borderWidth: "0px",
-    width: "100%",
-    fontFamily: "Merriweather"
-  },
-  searchButton: {
-    [theme.breakpoints.down("750")]: {
-      display: "none"
-    },
-    padding: "15px",
-    paddingLeft: "50px",
-    paddingRight: "50px",
-    textTransform: "none",
-    borderRadius: "0px"
-  },
-  searchInputField: {
-    display: "inline-flex",
-    fontSize: "15px",
-    flex: 1,
-    borderWidth: "0px",
-    width: "100%",
-    fontFamily: "Merriweather"
-  }
-});
+  const inputIcon = css`
+    padding-top: 3px;
+    padding-right: 5px;
+    padding-left: 5px;
+`;
+  const searchWrap = css`
+    display: inline-flex;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0px;
+    background-color: white;
+`;
+  const searchBox = css`
+    display: inline-flex;
+    padding: 10px;
+    font-size: 15px;
+    flex: 1;
+    margin-right: 10px;
+    border-width: 0px;
+    width: 100%;
+    font-family: Merriweather;
+`;
+  const searchButton = css`
+  @media only screen and (max-width: 750px) {
+    display: none !important;
+  };
+    padding: 15px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+    text-transform: none !important;
+    border-radius: 0px !important;
+`;
+  const searchInputField = css`
+    display: inline-flex;
+    font-size: 15px;
+    flex: 1;
+    border-width: 0px;
+    width: 100%;
+    font-family: Merriweather
+`;
 
 export class PlaceSearch extends Component {
   constructor() {
@@ -102,24 +96,23 @@ export class PlaceSearch extends Component {
         ref={this.state.onSearchBoxMounted}
         bounds={this.state.bounds}
         onPlacesChanged={this.state.onPlacesChanged}
-        className={this.props.classes.inputWrapper}
       >
-        <div className={this.props.classes.searchWrap}>
-          <div className={this.props.classes.searchBox}>
-            <SearchIcon className={this.props.classes.inputIcon} />
+        <div className={searchWrap}>
+          <div className={searchBox}>
+            <SearchIcon className={inputIcon} />
             <input
               id="inputField"
               aria-label={this.props.t("map.search-locations")}
               type="text"
               placeholder={this.props.t("map.search-location-prompt")}
-              className={this.props.classes.searchInputField}
+              className={searchInputField}
               onKeyDown={() => this.onKeyPress()}
             />
           </div>
           <div>
             <Button
               id="searchButtonLink"
-              className={this.props.classes.searchButton}
+              className={searchButton}
               variant="raised"
               color="primary"
               onClick={() => this.setLocation()}
@@ -158,4 +151,4 @@ PlaceSearch.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(PlaceSearch));
+)(PlaceSearch);
