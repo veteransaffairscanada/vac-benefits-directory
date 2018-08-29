@@ -6,19 +6,22 @@ import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
 import { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
 const bookmarkButton = css`
   color: #3e57e2 !important;
-  margin-left: -20px !important;
+  margin-left: -5px !important;
   text-transform: none !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 `;
- const hideSmall = css`
- @media only screen and (max-width: 599.5px) {
-   display: none !important;
- }
+const hideSmall = css`
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    display: none !important;
+  }
 `;
-  const hideBig = css`
-  @media only screen and (min-width: 599.5px) {
+const hideBig = css`
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
     display: none !important;
   }
 `;
@@ -89,7 +92,7 @@ FavouriteButton.propTypes = {
   benefit: PropTypes.object.isRequired,
   toggleOpenState: PropTypes.func.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default connect(

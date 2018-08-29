@@ -32,7 +32,6 @@ const button = css`
   color: white !important;
   text-align: right !important;
   text-transform: none !important;
-  float: right !important;
 `;
 const ExpansionPanelSummaryCss = css`
   padding-left: 9px !important;
@@ -100,18 +99,18 @@ const returnIcon = css`
   padding-left: 10px;
 `;
 const rightArrowIcon = css`
-  "-moz-transform":scaleX(-1) ;
-  "-o-transform":scaleX(-1) ;
-  "-webkit-transform":scaleX(-1) ;
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   float: left;
   filter: FlipH;
-  "-ms-filter":fliph ;
+  -ms-filter: fliph;
   padding-right: 10px;
 `;
 const parentIcon = css`
-  margin-right: 15;
-  font-size: 40;
+  margin-right: 15px;
+  font-size: 40px !important;
   transform: scale(0.9);
   color: #434343;
 `;
@@ -122,7 +121,9 @@ const headerDesc = css`
 const headerUrl = css`
   color: #006cc9;
 `;
-
+const alignRight = css`
+  text-align: right;
+`;
 export class BenefitCard extends Component {
   state = {
     open: false
@@ -258,9 +259,7 @@ export class BenefitCard extends Component {
                 </span>
               </span>
             </Paper>
-          ) : (
-            ""
-          )}
+          ) : null}
 
           <Paper className={cardBody}>
             <div component="p" className={benefitName}>
@@ -296,37 +295,41 @@ export class BenefitCard extends Component {
               ))}
             </div>
 
-            {this.props.showFavourite ? (
-              <FavouriteButton
-                benefit={benefit}
-                toggleOpenState={() => {}}
-                store={this.props.store}
-                t={this.props.t}
-              />
-            ) : (
-              ""
-            )}
-            <Button
-              className={button}
-              target="_blank"
-              variant="raised"
-              onClick={() =>
-                this.logExit(
-                  this.props.t("current-language-code") === "en"
-                    ? benefit.benefitPageEn
-                    : benefit.benefitPageFr
-                )
-              }
-              href={
-                this.props.t("current-language-code") === "en"
-                  ? benefit.benefitPageEn
-                  : benefit.benefitPageFr
-              }
-              rel="noopener noreferrer"
-            >
-              {this.props.t("Find out more")}
-              <KeyboardBackspace className={rightArrowIcon} />
-            </Button>
+            <Grid container>
+              {this.props.showFavourite ? (
+                <Grid item xs={4}>
+                  <FavouriteButton
+                    benefit={benefit}
+                    toggleOpenState={() => {}}
+                    store={this.props.store}
+                    t={this.props.t}
+                  />
+                </Grid>
+              ) : null}
+              <Grid item xs={8} className={alignRight}>
+                <Button
+                  className={button}
+                  target="_blank"
+                  variant="raised"
+                  onClick={() =>
+                    this.logExit(
+                      this.props.t("current-language-code") === "en"
+                        ? benefit.benefitPageEn
+                        : benefit.benefitPageFr
+                    )
+                  }
+                  href={
+                    this.props.t("current-language-code") === "en"
+                      ? benefit.benefitPageEn
+                      : benefit.benefitPageFr
+                  }
+                  rel="noopener noreferrer"
+                >
+                  {this.props.t("Find out more")}
+                  <KeyboardBackspace className={rightArrowIcon} />
+                </Button>
+              </Grid>
+            </Grid>
           </Paper>
 
           {childBenefits.length > 0 ? (
@@ -376,9 +379,7 @@ export class BenefitCard extends Component {
                         <br />
                       </div>
                     </div>
-                  ) : (
-                    ""
-                  )}
+                  ) : null}
 
                   {familyBenefits.length > 0 ? (
                     <div>
@@ -402,15 +403,11 @@ export class BenefitCard extends Component {
                         ))}
                       </div>
                     </div>
-                  ) : (
-                    ""
-                  )}
+                  ) : null}
                 </Grid>
               </ExpansionPanelDetails>
             </ExpansionPanel>
-          ) : (
-            ""
-          )}
+          ) : null}
         </div>
       </Grid>
     );
