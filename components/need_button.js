@@ -1,16 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { uuidv4 } from "../utils/common";
-
-const styles = () => ({
-  main: {
-    fontSize: "24px"
-  }
-});
 
 export class NeedButton extends Component {
   guid = uuidv4();
@@ -30,7 +23,7 @@ export class NeedButton extends Component {
   };
 
   render() {
-    const { t, need, classes } = this.props;
+    const { t, need } = this.props;
     const id = need.nameEn.replace(/ /g, "-") + "-checkbox-" + this.guid;
     return (
       <FormControlLabel
@@ -44,7 +37,6 @@ export class NeedButton extends Component {
           />
         }
         label={t("current-language-code") === "en" ? need.nameEn : need.nameFr}
-        className={classes.main}
         htmlFor={id}
       />
     );
@@ -79,4 +71,4 @@ NeedButton.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles, { withTheme: true })(NeedButton));
+)(NeedButton);
