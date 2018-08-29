@@ -8,9 +8,10 @@ import Layout from "../components/layout";
 import PrChart from "../components/stats/prChart";
 import PrDurationChart from "../components/stats/pr_duration_chart";
 import Container from "../components/container";
+import { globalTheme } from "../theme";
 
 const marginTop = css`
-  margin-top: 24px;
+  margin-top: ${globalTheme.marginTop};
 `;
 
 export class Stats extends Component {
