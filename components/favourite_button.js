@@ -10,8 +10,10 @@ import { globalTheme } from "../theme";
 
 const bookmarkButton = css`
   color: #3e57e2 !important;
-  margin-left: -20px !important;
+  margin-left: -5px !important;
   text-transform: none !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 `;
 const hideSmall = css`
   @media only screen and (max-width: ${globalTheme.max.sm}) {
