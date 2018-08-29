@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "react-emotion";
+import { cx, css } from "react-emotion";
 
 const style = css`
   max-width: 1200px;
@@ -11,12 +11,21 @@ const style = css`
 
 class Container extends Component {
   render() {
-    return <div className={style}>{this.props.children}</div>;
+    return (
+      <div
+        className={
+          this.props.className ? cx(style, this.props.className) : style
+        }
+      >
+        {this.props.children}
+      </div>
+    );
   }
 }
 
 Container.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  className: PropTypes.string
 };
 
 export default Container;
