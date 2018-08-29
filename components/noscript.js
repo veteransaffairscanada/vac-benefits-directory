@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
+import { css } from "react-emotion";
 
-const Modal = styled("div")`
+const Modal = css`
   left: 50%;
   margin: -250px 0 0 -32%;
   opacity: 1;
@@ -17,7 +17,7 @@ const Modal = styled("div")`
   -webkit-transition: all 0.4s ease-in-out;
 `;
 
-const ModalContent = styled("div")`
+const ModalContent = css`
   background: #ff6961;
   position: relative;
   z-index: 20;
@@ -26,31 +26,20 @@ const ModalContent = styled("div")`
   padding: 30px;
 `;
 
-const Overlay = styled("div")`
-  background-color: #000;
-  background: rgba(0, 0, 0, 0.8);
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-`;
-
 class Noscript extends Component {
   render() {
     const { t } = this.props;
 
     return (
       <noscript role="complementary">
-        <Modal>
-          <ModalContent>
+        <div className={Modal}>
+          <div className={ModalContent}>
             <div className="copy">
               <p dangerouslySetInnerHTML={{ __html: t("noscript") }} />
             </div>
-          </ModalContent>
-          <Overlay />
-        </Modal>
+          </div>
+
+        </div>
       </noscript>
     );
   }
