@@ -2,20 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { KeyboardBackspace } from "@material-ui/icons";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Highlighter from "react-highlight-words";
 import FavouriteButton from "./favourite_button";
 import Paper from "@material-ui/core/Paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
-import EmbeddedBenefitCard from "./embedded_benefit_card";
-import { cx, css } from "react-emotion";
+import { css } from "react-emotion";
+import CardFooter from "./card_footer";
 
 const cardTop = css`
   background-color: #f1f7fc;
@@ -33,35 +28,6 @@ const button = css`
   text-align: right !important;
   text-transform: none !important;
 `;
-const ExpansionPanelSummaryCss = css`
-  padding-left: 9px !important;
-  border-radius: 0px;
-  border-top: 1px solid #f5f5f5 !important;
-  position: relative !important;
-`;
-const cardBottomTitle = css`
-  padding-left: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const cardBottomFamilyTitle = css`
-  margin-left: 9px;
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const ExpansionPanelCss = css`
-  margin-bottom: 0px !important;
-  margin-top: 0px !important;
-`;
-const ExpansionPanelOpen = css`
-  background-color: #f5f5f5 !important;
-`;
-const ExpansionPanelClosed = css`
-  background-color: #f1f7fc !important;
-`;
 const cardBody = css`
   padding: 25px !important;
   padding-top: 15px !important;
@@ -71,32 +37,13 @@ const cardDescriptionText = css`
   padding: 10px 0px;
   padding-bottom: 15px;
 `;
-const collapse = css`
-  padding-top: 25px !important;
-  padding-left: 15px !important;
-  background-color: #f5f5f5 !important;
-`;
 const root = css`
   width: 100%;
 `;
-const children = css`
-  width: 100%;
-`;
-
 const benefitName = css`
   font-size: 24px;
   font-weight: 600;
   padding: 10px 0;
-`;
-const returnIcon = css`
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  float: left;
-  filter: FlipH;
-  -ms-filter: fliph;
-  padding-left: 10px;
 `;
 const rightArrowIcon = css`
   -moz-transform: scaleX(-1);
@@ -213,24 +160,10 @@ export class BenefitCard extends Component {
   };
 
   render() {
-    const benefit = this.props.benefit;
-    const { t } = this.props;
+    const { t, benefit } = this.props;
 
     const parentBenefits = this.props.allBenefits.filter(
       b => b.childBenefits && b.childBenefits.includes(benefit.id)
-    );
-
-    const childBenefits = benefit.childBenefits
-      ? this.props.allBenefits.filter(
-          ab => benefit.childBenefits.indexOf(ab.id) > -1
-        )
-      : [];
-
-    const veteranBenefits = childBenefits.filter(
-      ab => this.props.veteranBenefitIds.indexOf(ab.id) > -1
-    );
-    const familyBenefits = childBenefits.filter(
-      ab => this.props.familyBenefitIds.indexOf(ab.id) > -1
     );
 
     const needsMet = benefit.needs
@@ -331,83 +264,7 @@ export class BenefitCard extends Component {
               </Grid>
             </Grid>
           </Paper>
-
-          {childBenefits.length > 0 ? (
-            <ExpansionPanel
-              expanded={this.state.open}
-              className={
-                this.state.open
-                  ? cx(ExpansionPanelCss, ExpansionPanelOpen)
-                  : cx(ExpansionPanelCss, ExpansionPanelClosed)
-              }
-            >
-              <ExpansionPanelSummary
-                className={ExpansionPanelSummaryCss}
-                expandIcon={<ExpandMoreIcon />}
-                onClick={() => this.toggleOpenState()}
-              >
-                <div className={cardBottomTitle}>
-                  <KeyboardReturnIcon className={returnIcon} />
-                  <span className={headerDesc}>
-                    <span>
-                      {this.childBenefitNames(
-                        benefit,
-                        childBenefits,
-                        this.state.open
-                      )}
-                    </span>
-                  </span>
-                </div>
-              </ExpansionPanelSummary>
-
-              <ExpansionPanelDetails timeout="auto" className={collapse}>
-                <Grid item xs={12}>
-                  {veteranBenefits.length > 0 ? (
-                    <div className={children}>
-                      <div>
-                        {veteranBenefits.map((cb, i) => (
-                          <EmbeddedBenefitCard
-                            id={"cb" + i}
-                            benefit={cb}
-                            t={this.props.t}
-                            key={cb.id}
-                            showFavourite={this.props.showFavourite}
-                            store={this.props.store}
-                          />
-                        ))}
-                        <br />
-                        <br />
-                      </div>
-                    </div>
-                  ) : null}
-
-                  {familyBenefits.length > 0 ? (
-                    <div>
-                      <div className={cardBottomFamilyTitle}>
-                        <KeyboardReturnIcon className={returnIcon} />
-                        <span className={headerDesc}>
-                          {t("benefits_b.eligible_open_family")}
-                        </span>
-                      </div>
-                      <div className={children}>
-                        {familyBenefits.map((cb, i) => (
-                          <EmbeddedBenefitCard
-                            id={"cb" + i}
-                            className="BenefitCards"
-                            benefit={cb}
-                            t={this.props.t}
-                            key={cb.id}
-                            showFavourite={this.props.showFavourite}
-                            store={this.props.store}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </Grid>
-              </ExpansionPanelDetails>
-            </ExpansionPanel>
-          ) : null}
+          <CardFooter benefit={benefit} store={this.props.store} />
         </div>
       </Grid>
     );
@@ -425,7 +282,6 @@ const mapStateToProps = reduxState => {
 BenefitCard.propTypes = {
   benefits: PropTypes.array.isRequired,
   allBenefits: PropTypes.array.isRequired,
-  veteranBenefitIds: PropTypes.array.isRequired,
   familyBenefitIds: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
   needs: PropTypes.array.isRequired,
