@@ -9,15 +9,9 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
 import Link from "next/link";
-import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import Container from "../components/container";
 
-const root = css`
-  margin: ${globalTheme.margin};
-  max-width: ${globalTheme.maxWidth};
-  padding-left: ${globalTheme.paddingLeft};
-  padding-right: ${globalTheme.paddingRight};
-`;
 const backLink = css`
   font-size: 20px !important;
   font-weight: 100 !important;
@@ -86,7 +80,7 @@ export class Favourites extends Component {
     );
 
     return (
-      <div id="favourites" className={root}>
+      <Container id="favourites">
         <Grid
           container
           spacing={24}
@@ -186,7 +180,7 @@ export class Favourites extends Component {
             </p>
           </Grid>
         </Grid>
-      </div>
+      </Container>
     );
   }
 }

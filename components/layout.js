@@ -9,14 +9,8 @@ import FeedbackBar from "../components/feedbackBar";
 import Footer from "../components/footer";
 import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
-import { globalTheme } from "../theme";
+import Container from "../components/container";
 
-const Container = css`
-  max-width: ${globalTheme.maxWidth};
-  margin: ${globalTheme.margin};
-  padding-left: ${globalTheme.paddingLeft};
-  padding-right: ${globalTheme.paddingRight};
-`;
 const alpha = css`
   background-color: #345075;
 `;
@@ -76,15 +70,15 @@ class Layout extends Component {
           <ErrorBoundary>
             <Content>
               <div className={header}>
-                <div className={Container}>
+                <Container>
                   <FederalBanner
                     i18n={this.props.i18n}
                     t={t}
                     showRefreshCache={this.props.showRefreshCache}
                   />
-                </div>
+                </Container>
                 <div className={alpha}>
-                  <div className={Container}>
+                  <Container>
                     <AlphaBanner>
                       {t("alpha")} &nbsp;
                       <a
@@ -94,20 +88,20 @@ class Layout extends Component {
                         {t("alpha-feedback")}
                       </a>
                     </AlphaBanner>
-                  </div>
+                  </Container>
                 </div>
               </div>
               <div role="main">{this.props.children}</div>
             </Content>
             <div className={backgoundColour1}>
-              <div className={Container}>
+              <Container>
                 <FeedbackBar t={t} />
-              </div>
+              </Container>
             </div>
             <div className={backgoundColour2}>
-              <div className={Container}>
+              <Container>
                 <Footer t={t} />
-              </div>
+              </Container>
             </div>
           </ErrorBoundary>
           {noScriptTag}
