@@ -14,7 +14,6 @@ describe("NeedButton", () => {
   beforeEach(() => {
     window.scrollTo = jest.fn();
     props = {
-      classes: {},
       need: needsFixture[0],
       t: key => key,
       setSelectedNeeds: jest.fn(),
