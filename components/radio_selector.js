@@ -1,34 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import { FormControl, FormControlLabel, FormLabel } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { uuidv4 } from "../utils/common";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const theme = createMuiTheme({
-  typography: { fontFamily: ["Merriweather", "serif"] },
-  palette: {
-    secondary: {
-      main: "#3e57e2"
-    }
-  }
-});
-
-const styles = theme => ({
-  formControl: {
-    marginTop: theme.spacing.unit
-  },
-  formLabel: {
-    lineHeight: "1.5em",
-    marginBottom: "10px",
-    color: "black !important",
-    fontWeight: "bold"
-  }
-});
+  const formControl = css`
+    margin-top: ${globalTheme.unit} !important;
+`;
+  const formLabel = css`
+    line-height: 1.5em !important;
+    margin-bottom: 10px;
+    color: black !important;
+    font-weight: bold;
+`;
 
 export class RadioSelector extends React.Component {
   isDisabled = (filter_id, patronType, serviceType) => {
@@ -118,7 +107,7 @@ export class RadioSelector extends React.Component {
           )
         ).filter(st => st !== "na");
 
-    const { classes, t, selectorType } = this.props;
+    const {t, selectorType } = this.props;
     const selected = {
       patronType: this.props.selectedPatronType,
       serviceType: this.props.selectedServiceType,
@@ -128,9 +117,8 @@ export class RadioSelector extends React.Component {
 
     if (Object.keys(allFilterIds).length != 0) {
       return (
-        <MuiThemeProvider theme={theme}>
-          <FormControl className={classes.formControl}>
-            <FormLabel className={classes.formLabel}>
+          <FormControl className={formControl}>
+            <FormLabel className={formLabel}>
               {this.props.legend}
             </FormLabel>
             <RadioGroup
@@ -144,7 +132,9 @@ export class RadioSelector extends React.Component {
                     key={filter_id}
                     value={filter_id}
                     htmlFor={filter_id + guid}
-                    control={<Radio id={filter_id + guid} />}
+                    control={
+                      <Radio color="primary" id={filter_id + guid} />
+                    }
                     label={t(filter_id)}
                     disabled={this.isDisabled(
                       filter_id,
@@ -156,7 +146,6 @@ export class RadioSelector extends React.Component {
               })}
             </RadioGroup>
           </FormControl>
-        </MuiThemeProvider>
       );
     } else {
       return null;
@@ -192,7 +181,6 @@ const mapStateToProps = reduxState => {
 };
 
 RadioSelector.propTypes = {
-  classes: PropTypes.object.isRequired,
   legend: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   selectedPatronType: PropTypes.string.isRequired,
@@ -212,4 +200,4 @@ RadioSelector.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(RadioSelector));
+)(RadioSelector);
