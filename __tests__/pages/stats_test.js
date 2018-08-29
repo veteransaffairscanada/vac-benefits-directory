@@ -22,8 +22,7 @@ describe("Stats", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: translate,
-      classes: {}
+      t: translate
     };
     reduxData = {
       githubData: githubFixture
