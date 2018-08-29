@@ -6,39 +6,34 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
-import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  root: {
-    backgroundColor: "#f5f5f5",
-    [theme.breakpoints.up(600)]: {
-      display: "none"
+  const root = css`
+    background-color: #f5f5f5 !important;
+    @media only screen and (min-width: ${globalTheme.max.xs}) {
+      display: none;
     }
-  },
-  summary: {
-    opacity: "1 !important",
-    userSelect: "inherit"
-  },
-  profileSelector: {
-    borderBottom: "1px solid black",
-    paddingBottom: "15px",
-    marginBottom: "30px"
-  },
-  clearButton: {
-    textDecoration: "underline",
-    textTransform: "unset",
-    fontSize: "16px"
-  },
-  filterTitle: {
-    paddingRight: "0px"
-  },
-  gridItemButton: {
-    textAlign: "center"
-  }
-});
+`;
+  const summary = css`
+    opacity: 1 !important;
+    user-select: inherit;
+`;
+  const profileSelector = css`
+    border-bottom: 1px solid black;
+    padding-bottom: 15px;
+    margin-bottom: 30px !important;
+`;
+  const clearButton = css`
+    text-decoration: underline !important;
+    text-transform: unset !important;
+    font-size: 16px !important;
+`;
+  const filterTitle = css`
+    padding-right: 0px;
+`;
 
 export class ProfileNeedsSelectorMobile extends Component {
   state = {
@@ -74,26 +69,26 @@ export class ProfileNeedsSelectorMobile extends Component {
   };
 
   render() {
-    const { t, pageWidth, store, classes } = this.props;
+    const { t, pageWidth, store } = this.props;
     return (
       <ExpansionPanel
-        className={classnames(classes.root)}
+        className={root}
         defaultExpanded
         expanded={this.state.open}
       >
         <ExpansionPanelSummary
-          className={classnames(classes.summary)}
+          className={summary}
           expandIcon={<ExpandMoreIcon />}
           onClick={() => this.toggleOpenState()}
         >
-          <h2 variant="title" className={classnames(classes.filterTitle)}>
+          <h2 variant="title" className={filterTitle}>
             {t("filters")}{" "}
           </h2>
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>
           <Grid container>
-            <Grid item sm={12} className={classnames(classes.profileSelector)}>
+            <Grid item sm={12} className={profileSelector}>
               <ProfileSelector t={t} store={store} />
             </Grid>
             <Grid item sm={12}>
@@ -101,9 +96,9 @@ export class ProfileNeedsSelectorMobile extends Component {
 
               {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
               this.props.patronType !== "" ? (
-                <h3 variant="title" className={classnames(classes.filterTitle)}>
+                <h3 variant="title" className={filterTitle}>
                   <Button
-                    className={classnames(classes.clearButton)}
+                    className={clearButton}
                     id="ClearFiltersMobile"
                     variant="flat"
                     size="small"
@@ -158,7 +153,6 @@ const mapStateToProps = reduxState => {
 };
 
 ProfileNeedsSelectorMobile.propTypes = {
-  classes: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   patronType: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
@@ -178,4 +172,4 @@ ProfileNeedsSelectorMobile.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(ProfileNeedsSelectorMobile));
+)(ProfileNeedsSelectorMobile);
