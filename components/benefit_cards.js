@@ -80,12 +80,6 @@ export class BenefitCard extends Component {
     logEvent("Exit", url);
   };
 
-  toggleOpenState = () => {
-    this.setState(previousState => {
-      return { ...previousState, open: !previousState.open };
-    });
-  };
-
   componentDidMount() {
     this.forceUpdate();
   }
@@ -100,33 +94,6 @@ export class BenefitCard extends Component {
     return this.props.t("current-language-code") === "en"
       ? benefit.benefitPageEn
       : benefit.benefitPageFr;
-  };
-
-  childBenefitNames = (benefit, childBenefits, open) => {
-    const length = childBenefits.length;
-    if (open) {
-      return this.props.t("benefits_b.eligible_open_veteran", {
-        x: this.benefitTitle(benefit)
-      });
-    } else {
-      if (length === 1) {
-        return (
-          this.benefitTitle(benefit) +
-          " " +
-          this.props.t("benefits_b.eligible_for_single", {
-            x: this.benefitTitle(childBenefits[0])
-          })
-        );
-      } else {
-        return (
-          this.benefitTitle(benefit) +
-          " " +
-          this.props.t("benefits_b.eligible_for_multi", {
-            x: length
-          })
-        );
-      }
-    }
   };
 
   get_benefit_a_elements = parentBenefits => {
@@ -162,7 +129,7 @@ export class BenefitCard extends Component {
   render() {
     const { t, benefit } = this.props;
 
-    const parentBenefits = this.props.allBenefits.filter(
+    const parentBenefits = this.props.benefits.filter(
       b => b.childBenefits && b.childBenefits.includes(benefit.id)
     );
 
@@ -264,7 +231,12 @@ export class BenefitCard extends Component {
               </Grid>
             </Grid>
           </Paper>
-          <CardFooter benefit={benefit} store={this.props.store} />
+          <CardFooter
+            showFavourite={this.props.showFavourite}
+            benefit={benefit}
+            t={t}
+            store={this.props.store}
+          />
         </div>
       </Grid>
     );
@@ -281,8 +253,6 @@ const mapStateToProps = reduxState => {
 
 BenefitCard.propTypes = {
   benefits: PropTypes.array.isRequired,
-  allBenefits: PropTypes.array.isRequired,
-  familyBenefitIds: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,

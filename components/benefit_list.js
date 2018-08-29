@@ -7,7 +7,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { css } from "react-emotion";
 
-
 const Div = css`
   width: 100%;
   position: fixed;
@@ -76,17 +75,6 @@ export class BenefitList extends React.Component {
       this.props.sortByValue
     );
 
-    let veteranBenefitIds = [];
-    let familyBenefitIds = [];
-
-    this.props.eligibilityPaths.forEach(ep => {
-      if (ep.patronType === "service-person") {
-        veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
-      }
-      if (ep.patronType === "family") {
-        familyBenefitIds = familyBenefitIds.concat(ep.benefits);
-      }
-    });
     return loading ? (
       <div className={Div}>
         <CircularProgress size={100} />
@@ -97,9 +85,6 @@ export class BenefitList extends React.Component {
           id={"bc" + i}
           benefit={benefit}
           examples={this.props.examples}
-          allBenefits={this.props.benefits}
-          veteranBenefitIds={veteranBenefitIds}
-          familyBenefitIds={familyBenefitIds}
           t={this.props.t}
           key={benefit.id}
           favouriteBenefits={this.props.favouriteBenefits}
@@ -114,7 +99,6 @@ export class BenefitList extends React.Component {
 
 const mapStateToProps = reduxState => {
   return {
-    benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     examples: reduxState.examples
@@ -125,7 +109,6 @@ BenefitList.propTypes = {
   t: PropTypes.func.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
-  benefits: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   sortByValue: PropTypes.string.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
