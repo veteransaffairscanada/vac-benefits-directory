@@ -1,35 +1,32 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import NeedButton from "./need_button";
 import "babel-polyfill/dist/polyfill";
 import { Grid } from "@material-ui/core";
+import { css } from "react-emotion";
 
-const styles = () => ({
-  title: {
-    color: "black !important"
-  },
-  needsButtons: {
-    display: "flex",
-    flexWrap: "wrap"
-  }
-});
+  const title = css`
+    color: black !important;
+`;
+  const needsButtons = css`
+    display: flex;
+    flex-wrap: wrap;
+`;
 
 export class NeedsSelector extends Component {
   render() {
-    const { needs, classes, t, store, pageWidth } = this.props;
+    const { needs, t, store, pageWidth } = this.props;
     return (
       <div>
-        <h2 variant="subheading" className={classnames(classes.title)}>
+        <h2 variant="subheading" className={title}>
           {t("filter by category")}
         </h2>
         <Grid container spacing={16}>
           <Grid item xs={9}>
             <h3 variant="body2">{t("Select all that apply")}</h3>
           </Grid>
-          <Grid item xs={12} className={classes.needsButtons}>
+          <Grid item xs={12} className={needsButtons}>
             {needs.map(need => (
               <NeedButton
                 key={need.id}
@@ -53,11 +50,10 @@ const mapStateToProps = reduxState => {
 };
 
 NeedsSelector.propTypes = {
-  classes: PropTypes.object.isRequired,
   needs: PropTypes.array.isRequired,
   pageWidth: PropTypes.number.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(NeedsSelector));
+export default connect(mapStateToProps)(NeedsSelector);
