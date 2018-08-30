@@ -27,8 +27,7 @@ describe("NeedsSelector", () => {
     props = {
       theme: {},
       classes: {},
-      t: key => key,
-      pageWidth: 1000
+      t: key => key
     };
     reduxData = {
       needs: needsFixture,

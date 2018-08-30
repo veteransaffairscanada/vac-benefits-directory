@@ -54,12 +54,12 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    pageWidth: reduxState.pageWidth
   };
 };
 
 NeedButton.propTypes = {
-  classes: PropTypes.object.isRequired,
   need: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
