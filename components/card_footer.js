@@ -72,6 +72,7 @@ export class CardFooter extends Component {
       ? benefit.vacNameEn
       : benefit.vacNameFr;
   };
+
   childBenefitNames = (benefit, childBenefits, open) => {
     const length = childBenefits.length;
     if (open) {
@@ -98,19 +99,23 @@ export class CardFooter extends Component {
       }
     }
   };
+
   toggleOpenState = () => {
     this.setState(previousState => {
       return { ...previousState, open: !previousState.open };
     });
   };
 
-  render() {
-    const { t, benefit, benefits } = this.props;
+  getMatchingBenefits = (benefits, ids) => {
+    const matchingBenefits = benefits.filter(ab => ids.indexOf(ab.id) > -1);
+    return matchingBenefits;
+  };
 
+  getBenefitIds = eligibilityPaths => {
     let veteranBenefitIds = [];
     let familyBenefitIds = [];
 
-    this.props.eligibilityPaths.forEach(ep => {
+    eligibilityPaths.forEach(ep => {
       if (ep.patronType === "service-person") {
         veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
       }
@@ -118,14 +123,27 @@ export class CardFooter extends Component {
         familyBenefitIds = familyBenefitIds.concat(ep.benefits);
       }
     });
+    return {
+      veteran: veteranBenefitIds,
+      family: familyBenefitIds
+    };
+  };
+
+  render() {
+    const { t, benefit, benefits } = this.props;
+
     const childBenefits = benefit.childBenefits
       ? benefits.filter(ab => benefit.childBenefits.indexOf(ab.id) > -1)
       : [];
-    const veteranBenefits = childBenefits.filter(
-      ab => veteranBenefitIds.indexOf(ab.id) > -1
+
+    const benefitIds = this.getBenefitIds(this.props.eligibilityPaths);
+    const veteranBenefits = this.getMatchingBenefits(
+      childBenefits,
+      benefitIds.veteran
     );
-    const familyBenefits = childBenefits.filter(
-      ab => familyBenefitIds.indexOf(ab.id) > -1
+    const familyBenefits = this.getMatchingBenefits(
+      childBenefits,
+      benefitIds.family
     );
 
     if (childBenefits.length > 0) {
