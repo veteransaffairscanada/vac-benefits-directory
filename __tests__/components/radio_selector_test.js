@@ -10,7 +10,6 @@ describe("RadioSelector", () => {
 
   beforeEach(() => {
     props = {
-      classes: {},
       legend: "",
       setPatronType: jest.fn(),
       setServiceType: jest.fn(),

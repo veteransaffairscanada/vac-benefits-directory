@@ -32,7 +32,6 @@ describe("BenefitCard", () => {
       benefit: benefitsFixture[0],
       veteranBenefitIds: [],
       familyBenefitIds: [],
-      classes: {},
       onRef: foo => foo,
       searchString: "",
       favouriteBenefits: [],

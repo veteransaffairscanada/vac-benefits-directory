@@ -59,7 +59,6 @@ const mapStateToProps = reduxState => {
 };
 
 NeedButton.propTypes = {
-  classes: PropTypes.object.isRequired,
   need: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
