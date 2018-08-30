@@ -17,6 +17,7 @@ import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import { globalTheme } from "../theme";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -97,6 +98,11 @@ const inputIcon = css`
 const iconStyle = css`
   font-size: 20px !important;
 `;
+const nonMobile = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none;
+  }
+`;
 
 export class BB extends Component {
   handleSortByChange = event => {
@@ -130,7 +136,7 @@ export class BB extends Component {
   };
 
   render() {
-    const { t, pageWidth } = this.props; // eslint-disable-line no-unused-vars
+    const { t } = this.props; // eslint-disable-line no-unused-vars
     const filteredBenefits = this.props.filteredBenefits;
 
     return (
@@ -168,7 +174,7 @@ export class BB extends Component {
                   >
                     <Print className={iconStyle} />
                     &nbsp;
-                    {pageWidth > 600 ? t("Print") : ""}
+                    <span className={nonMobile}> {t("Print")} </span>
                   </Button>
                 </Grid>
                 <Grid item xs={12}>
@@ -285,7 +291,6 @@ const mapStateToProps = (reduxState, props) => {
     },
     selectedNeeds: reduxState.selectedNeeds,
     sortBy: reduxState.sortBy,
-    pageWidth: reduxState.pageWidth,
     printUrl: getPrintUrl(reduxState, props, {}),
     selectedAreaOffice: reduxState.selectedAreaOffice,
     closestAreaOffice: reduxState.closestAreaOffice
@@ -310,7 +315,6 @@ BB.propTypes = {
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   store: PropTypes.object,
-  pageWidth: PropTypes.number.isRequired,
   selectedAreaOffice: PropTypes.object.isRequired,
   closestAreaOffice: PropTypes.object.isRequired
 };

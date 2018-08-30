@@ -43,7 +43,6 @@ describe("BB", () => {
       clearNeeds: () => true,
       id: "BB",
       filteredBenefits: [],
-      pageWidth: 42,
       setSelectedNeeds: () => true,
       favouriteBenefits: [],
       classes: {},
@@ -76,7 +75,6 @@ describe("BB", () => {
       showServiceType: true,
       showStatusAndVitals: true,
       showServiceHealthIssue: true,
-      pageWidth: 1000,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
       closestAreaOffice: areaOfficesFixture[0]
