@@ -7,6 +7,7 @@ import { App } from "../../pages/index";
 import benefitsFixture from "../fixtures/benefits";
 import configureStore from "redux-mock-store";
 import translate from "../fixtures/translate";
+import lunr from "lunr";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -34,7 +35,7 @@ describe("Index page", () => {
       translations: [],
       benefits: benefitsFixture,
       enIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
           ["vacNameEn/1", [0, 0.288]],
@@ -54,7 +55,7 @@ describe("Index page", () => {
       }),
       favouriteBenefits: [],
       frIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
           ["vacNameFr/1", [0, 0.288]],

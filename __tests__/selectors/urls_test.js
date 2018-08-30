@@ -1,4 +1,5 @@
 import { getFavouritesUrl, getPrintUrl } from "../../selectors/urls";
+import lunr from "lunr";
 
 describe("getFavouritesUrl", () => {
   let props;
@@ -163,7 +164,7 @@ describe("getPrintUrl", () => {
         }
       ],
       enIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
           ["vacNameEn/1", [0, 0.288]],
@@ -182,7 +183,7 @@ describe("getPrintUrl", () => {
         pipeline: ["stemmer"]
       }),
       frIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
           ["vacNameFr/1", [0, 0.288]],
