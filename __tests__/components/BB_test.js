@@ -75,6 +75,7 @@ describe("BB", () => {
       showServiceType: true,
       showStatusAndVitals: true,
       showServiceHealthIssue: true,
+      pageWidth: 1000,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
       closestAreaOffice: areaOfficesFixture[0]

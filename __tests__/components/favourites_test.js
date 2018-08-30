@@ -60,7 +60,6 @@ describe("Favourites", () => {
       sortBy: "relevance",
       eligibilityPaths: eligibilityPathsFixture,
       option: "",
-      pageWidth: 1000,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
       closestAreaOffice: areaOfficesFixture[0]

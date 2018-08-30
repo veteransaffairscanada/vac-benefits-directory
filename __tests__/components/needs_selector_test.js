@@ -32,7 +32,8 @@ describe("NeedsSelector", () => {
     reduxData = {
       needs: needsFixture,
       selectedNeeds: {},
-      setSelectedNeeds: jest.fn()
+      setSelectedNeeds: jest.fn(),
+      pageWidth: 1000
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
