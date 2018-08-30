@@ -90,4 +90,20 @@ describe("CardFooter", () => {
       .simulate("click");
     expect(mounted.state().open).toEqual(true);
   });
+
+  it("has a correct getBenefitIds function", () => {
+    expect(
+      mount(<CardFooter {...props} {...reduxData} />)
+        .instance()
+        .getBenefitIds(reduxData.eligibilityPaths)
+    ).toEqual({ veteran: new Set(["0", "1"]), family: new Set([]) });
+  });
+
+  it("has a correct getMatchingBenefits function", () => {
+    expect(
+      mount(<CardFooter {...props} {...reduxData} />)
+        .instance()
+        .getMatchingBenefits(reduxData.benefits, new Set(["1", "2"]))
+    ).toEqual([reduxData.benefits[1]]);
+  });
 });

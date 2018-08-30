@@ -107,7 +107,7 @@ export class CardFooter extends Component {
   };
 
   getMatchingBenefits = (benefits, ids) => {
-    const matchingBenefits = benefits.filter(ab => ids.indexOf(ab.id) > -1);
+    const matchingBenefits = benefits.filter(ab => ids.has(ab.id));
     return matchingBenefits;
   };
 
@@ -124,18 +124,16 @@ export class CardFooter extends Component {
       }
     });
     return {
-      veteran: veteranBenefitIds,
-      family: familyBenefitIds
+      veteran: new Set(veteranBenefitIds),
+      family: new Set(familyBenefitIds)
     };
   };
 
   render() {
     const { t, benefit, benefits } = this.props;
-
     const childBenefits = benefit.childBenefits
       ? benefits.filter(ab => benefit.childBenefits.indexOf(ab.id) > -1)
       : [];
-
     const benefitIds = this.getBenefitIds(this.props.eligibilityPaths);
     const veteranBenefits = this.getMatchingBenefits(
       childBenefits,
