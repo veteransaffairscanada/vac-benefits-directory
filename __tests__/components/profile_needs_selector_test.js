@@ -13,8 +13,7 @@ describe("ProfileNeedsSelector", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
-      classes: {}
+      t: key => key
     };
     reduxData = {
       patronType: "",

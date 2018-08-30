@@ -30,7 +30,6 @@ describe("GuidedExperience", () => {
     props = {
       t: key => key,
       setSection: jest.fn(),
-      classes: {},
       id: "YY",
       nextSection: "ZZ",
       benefitsDirectoryUrl: "/benefits-directory",

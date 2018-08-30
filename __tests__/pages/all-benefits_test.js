@@ -30,7 +30,6 @@ describe("AllBenefits", () => {
 
   beforeEach(() => {
     props = {
-      classes: {},
       translations: [],
       t: translate,
       i18n: {
