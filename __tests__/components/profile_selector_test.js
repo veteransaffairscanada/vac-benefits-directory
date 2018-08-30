@@ -14,7 +14,6 @@ describe("ProfileSelector", () => {
     props = {
       t: key => key,
       pageWidth: 1000,
-      classes: {},
       theme: {}
     };
     reduxData = {

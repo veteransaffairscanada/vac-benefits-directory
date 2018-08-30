@@ -46,7 +46,6 @@ describe("BB", () => {
       pageWidth: 42,
       setSelectedNeeds: () => true,
       favouriteBenefits: [],
-      classes: {},
       url: { query: {} }
     };
     _shallowBB = undefined;

@@ -21,7 +21,6 @@ describe("prChart", () => {
 
   beforeEach(() => {
     props = {
-      classes: {},
       githubData: githubFixture,
       t: key => key
     };

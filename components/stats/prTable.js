@@ -7,15 +7,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-
-import { withStyles } from "@material-ui/core/styles/index";
 import { connect } from "react-redux";
-
-const styles = () => ({
-  table: {
-    // width: 1000
-  }
-});
 
 export class PrTable extends Component {
   filterMerged = () => {
@@ -35,10 +27,10 @@ export class PrTable extends Component {
   };
 
   render() {
-    const { classes, t } = this.props; // eslint-disable-line no-unused-vars
+    const { t } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <Table className={classes.table}>
+      <Table>
         <colgroup>
           <col style={{ width: "50%" }} />
           <col style={{ width: "50%" }} />
@@ -73,11 +65,8 @@ const mapStateToProps = reduxState => {
 };
 
 PrTable.propTypes = {
-  classes: PropTypes.object.isRequired,
   githubData: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(
-  withStyles(styles, { withTheme: true })(PrTable)
-);
+export default connect(mapStateToProps)(PrTable);

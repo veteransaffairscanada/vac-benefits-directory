@@ -20,7 +20,6 @@ describe("EmbeddedBenefitCard", () => {
     props = {
       t: () => "en",
       benefit: benefitsFixture[0],
-      classes: {},
       onRef: foo => foo,
       showFavourite: false
     };

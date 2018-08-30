@@ -26,7 +26,6 @@ describe("NeedsSelector", () => {
     window.scrollTo = jest.fn();
     props = {
       theme: {},
-      classes: {},
       t: key => key,
       pageWidth: 1000
     };

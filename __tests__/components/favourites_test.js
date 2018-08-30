@@ -39,7 +39,6 @@ describe("Favourites", () => {
   beforeEach(() => {
     props = {
       t: key => key,
-      classes: {},
       selectedEligibility: {
         serviceType: "",
         patronType: "",
