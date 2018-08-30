@@ -6,17 +6,17 @@ import "babel-polyfill/dist/polyfill";
 import { Grid } from "@material-ui/core";
 import { css } from "react-emotion";
 
-  const title = css`
-    color: black !important;
+const title = css`
+  color: black !important;
 `;
-  const needsButtons = css`
-    display: flex;
-    flex-wrap: wrap;
+const needsButtons = css`
+  display: flex;
+  flex-wrap: wrap;
 `;
 
 export class NeedsSelector extends Component {
   render() {
-    const { needs, t, store, pageWidth } = this.props;
+    const { needs, t, store } = this.props;
     return (
       <div>
         <h2 variant="subheading" className={title}>
@@ -28,13 +28,7 @@ export class NeedsSelector extends Component {
           </Grid>
           <Grid item xs={12} className={needsButtons}>
             {needs.map(need => (
-              <NeedButton
-                key={need.id}
-                need={need}
-                t={t}
-                pageWidth={pageWidth}
-                store={store}
-              />
+              <NeedButton key={need.id} need={need} t={t} store={store} />
             ))}
           </Grid>
         </Grid>
@@ -51,7 +45,6 @@ const mapStateToProps = reduxState => {
 
 NeedsSelector.propTypes = {
   needs: PropTypes.array.isRequired,
-  pageWidth: PropTypes.number.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object
 };

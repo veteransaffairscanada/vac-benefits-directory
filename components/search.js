@@ -14,66 +14,66 @@ import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
-  const container = css`
-    flex-grow: 1;
-    position: relative;
+const container = css`
+  flex-grow: 1;
+  position: relative;
 `;
-  const inputIcon = css`
-    padding-top: 3px;
-    padding-right: 5px;
+const inputIcon = css`
+  padding-top: 3px;
+  padding-right: 5px;
 `;
-  const suggestionsContainerOpen = css`
-    position: absolute;
-    zIndex: 1;
-    margin-top: ${globalTheme.unit};
-    left: 0;
-    right: 0;
-    overflow: auto;
-    max-height: 300px;
+const suggestionsContainerOpen = css`
+  position: absolute;
+  z-index: 1;
+  margin-top: ${globalTheme.unit};
+  left: 0;
+  right: 0;
+  overflow: auto;
+  max-height: 300px;
 `;
-  const searchWrap = css`
-    display: inline-flex;
-    width: 100%;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0px;
-    padding-left: 5px !important;
+const searchWrap = css`
+  display: inline-flex;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0px;
+  padding-left: 5px !important;
 `;
-  const searchBox = css`
-    display: inline-flex;
-    padding: 10px;
-    font-size: 15px;
-    flex: 1;
-    margin-right: 10px;
-    border-width: 0px;
-    width: 100%;
-    font-family: Merriweather;
+const searchBox = css`
+  display: inline-flex;
+  padding: 10px;
+  font-size: 15px;
+  flex: 1;
+  margin-right: 10px;
+  border-width: 0px;
+  width: 100%;
+  font-family: Merriweather;
 `;
-  const searchInputField = css`
-    display: inline-flex;
-    font-size: 15px;
-    flex: 1;
-    border-width: 0px;
-    width: 100%;
-    font-family: Merriweather;
+const searchInputField = css`
+  display: inline-flex;
+  font-size: 15px;
+  flex: 1;
+  border-width: 0px;
+  width: 100%;
+  font-family: Merriweather;
 `;
-  const suggestion = css`
-    display: block;
+const suggestion = css`
+  display: block;
 `;
-  const suggestionsList = css`
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+const suggestionsList = css`
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 `;
-  const searchButton = css`
-    padding: 15px !important;
-    padding-left: 50px !important;
-    padding-right: 50px !important;
-    text-transform: none !important;
-    border-radius: 0px !important;
-    @media only screen and (max-width: ${globalTheme.max.xs}) {
-      display: none;
-    }
+const searchButton = css`
+  padding: 15px !important;
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+  text-transform: none !important;
+  border-radius: 0px !important;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none !important;
+  }
 `;
 const spanCSS = css`
 font-weight: 500;

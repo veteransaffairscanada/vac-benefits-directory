@@ -40,8 +40,7 @@ describe("DataValidation", () => {
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
       examples: examplesFixture,
-      areaOffices: areaOfficesFixture,
-      classes: {}
+      areaOffices: areaOfficesFixture
     };
     _mountedDataValidation = undefined;
   });

@@ -11,28 +11,28 @@ import { Grid, Button } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 
-  const root = css`
-    background-color: #f5f5f5 !important;
-    @media only screen and (min-width: ${globalTheme.max.xs}) {
-      display: none;
-    }
+const root = css`
+  background-color: #f5f5f5 !important;
+  @media only screen and (min-width: ${globalTheme.max.xs}) {
+    display: none;
+  }
 `;
-  const summary = css`
-    opacity: 1 !important;
-    user-select: inherit;
+const summary = css`
+  opacity: 1 !important;
+  user-select: inherit;
 `;
-  const profileSelector = css`
-    border-bottom: 1px solid black;
-    padding-bottom: 15px;
-    margin-bottom: 30px !important;
+const profileSelector = css`
+  border-bottom: 1px solid black;
+  padding-bottom: 15px;
+  margin-bottom: 30px !important;
 `;
-  const clearButton = css`
-    text-decoration: underline !important;
-    text-transform: unset !important;
-    font-size: 16px !important;
+const clearButton = css`
+  text-decoration: underline !important;
+  text-transform: unset !important;
+  font-size: 16px !important;
 `;
-  const filterTitle = css`
-    padding-right: 0px;
+const filterTitle = css`
+  padding-right: 0px;
 `;
 
 export class ProfileNeedsSelectorMobile extends Component {
@@ -69,7 +69,7 @@ export class ProfileNeedsSelectorMobile extends Component {
   };
 
   render() {
-    const { t, pageWidth, store } = this.props;
+    const { t, store } = this.props;
     return (
       <ExpansionPanel
         className={root}
@@ -92,7 +92,7 @@ export class ProfileNeedsSelectorMobile extends Component {
               <ProfileSelector t={t} store={store} />
             </Grid>
             <Grid item sm={12}>
-              <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
+              <NeedsSelector t={t} store={store} />
 
               {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
               this.props.patronType !== "" ? (
@@ -147,8 +147,7 @@ const mapStateToProps = reduxState => {
     selectedServiceType: reduxState.serviceType,
     selectedStatusAndVitals: reduxState.statusAndVitals,
     selectedServiceHealthIssue: reduxState.serviceHealthIssue,
-    patronType: reduxState.patronType,
-    pageWidth: reduxState.pageWidth
+    patronType: reduxState.patronType
   };
 };
 
@@ -156,7 +155,6 @@ ProfileNeedsSelectorMobile.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   patronType: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  pageWidth: PropTypes.number.isRequired,
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,

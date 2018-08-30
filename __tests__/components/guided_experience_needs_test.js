@@ -29,8 +29,7 @@ describe("GuidedExperienceNeeds", () => {
       t: key => key,
       needs: needsFixture,
       selectedNeeds: {},
-      setSelectedNeeds: jest.fn(),
-      classes: {}
+      setSelectedNeeds: jest.fn()
     };
     _mountedGuidedExperienceNeeds = undefined;
   });

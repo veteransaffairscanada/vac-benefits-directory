@@ -89,7 +89,6 @@ describe("Favourites Page", () => {
       statusAndVitals: "",
       serviceHealthIssue: "",
       favouriteBenefits: [benefitsFixture[0].id],
-      pageWidth: 1000,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
       closestAreaOffice: areaOfficesFixture[0]

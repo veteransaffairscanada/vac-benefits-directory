@@ -152,7 +152,7 @@ export class PrDurationChart extends Component {
   };
 
   render() {
-    const { classes, t } = this.props; // eslint-disable-line no-unused-vars
+    const { t } = this.props; // eslint-disable-line no-unused-vars
     return <ReactHighcharts config={this.chartConfig()} />;
   }
 }
@@ -164,7 +164,6 @@ const mapStateToProps = reduxState => {
 };
 
 PrDurationChart.propTypes = {
-  classes: PropTypes.object.isRequired,
   githubData: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };

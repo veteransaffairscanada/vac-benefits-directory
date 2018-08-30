@@ -23,7 +23,6 @@ describe("Map", () => {
         addResourceBundle: jest.fn()
       },
       t: translate,
-      classes: {},
       setMapView: jest.fn(),
       setUserLocation: jest.fn(),
       url: { query: {} }

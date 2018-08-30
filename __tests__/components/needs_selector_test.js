@@ -26,14 +26,13 @@ describe("NeedsSelector", () => {
     window.scrollTo = jest.fn();
     props = {
       theme: {},
-      classes: {},
-      t: key => key,
-      pageWidth: 1000
+      t: key => key
     };
     reduxData = {
       needs: needsFixture,
       selectedNeeds: {},
-      setSelectedNeeds: jest.fn()
+      setSelectedNeeds: jest.fn(),
+      pageWidth: 1000
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

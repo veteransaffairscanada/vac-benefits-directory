@@ -13,8 +13,6 @@ describe("ProfileSelector", () => {
   beforeEach(() => {
     props = {
       t: key => key,
-      pageWidth: 1000,
-      classes: {},
       theme: {}
     };
     reduxData = {

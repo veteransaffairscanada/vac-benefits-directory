@@ -26,7 +26,6 @@ describe("LanguageButton", () => {
 
   beforeEach(() => {
     props = {
-      classes: {},
       i18n: {
         changeLanguage: () => {}
       },
