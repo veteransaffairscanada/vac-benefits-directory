@@ -38,7 +38,7 @@ export class GuidedExperienceNeeds extends Component {
   };
 
   render() {
-    const { t, classes } = this.props; // eslint-disable-line no-unused-vars
+    const { t } = this.props; // eslint-disable-line no-unused-vars
     return (
       <div className={root}>
         <Grid container spacing={24}>
@@ -87,7 +87,6 @@ const mapStateToProps = reduxState => {
 };
 
 GuidedExperienceNeeds.propTypes = {
-  classes: PropTypes.object.isRequired,
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,

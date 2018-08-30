@@ -22,7 +22,6 @@ describe("Index page", () => {
 
   beforeEach(() => {
     props = {
-      classes: {},
       favouriteBenefits: [],
       i18n: {
         addResourceBundle: jest.fn()

@@ -7,46 +7,46 @@ import SearchIcon from "@material-ui/icons/Search";
 import { StandaloneSearchBox } from "react-google-maps/lib/components/places/StandaloneSearchBox";
 import { css } from "react-emotion";
 
-  const inputIcon = css`
-    padding-top: 3px;
-    padding-right: 5px;
-    padding-left: 5px;
+const inputIcon = css`
+  padding-top: 3px;
+  padding-right: 5px;
+  padding-left: 5px;
 `;
-  const searchWrap = css`
-    display: inline-flex;
-    width: 100%;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0px;
-    background-color: white;
+const searchWrap = css`
+  display: inline-flex;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0px;
+  background-color: white;
 `;
-  const searchBox = css`
-    display: inline-flex;
-    padding: 10px;
-    font-size: 15px;
-    flex: 1;
-    margin-right: 10px;
-    border-width: 0px;
-    width: 100%;
-    font-family: Merriweather;
+const searchBox = css`
+  display: inline-flex;
+  padding: 10px;
+  font-size: 15px;
+  flex: 1;
+  margin-right: 10px;
+  border-width: 0px;
+  width: 100%;
+  font-family: Merriweather;
 `;
-  const searchButton = css`
+const searchButton = css`
   @media only screen and (max-width: 750px) {
     display: none !important;
-  };
-    padding: 15px !important;
-    padding-left: 50px !important;
-    padding-right: 50px !important;
-    text-transform: none !important;
-    border-radius: 0px !important;
+  }
+  padding: 15px !important;
+  padding-left: 50px !important;
+  padding-right: 50px !important;
+  text-transform: none !important;
+  border-radius: 0px !important;
 `;
-  const searchInputField = css`
-    display: inline-flex;
-    font-size: 15px;
-    flex: 1;
-    border-width: 0px;
-    width: 100%;
-    font-family: Merriweather
+const searchInputField = css`
+  display: inline-flex;
+  font-size: 15px;
+  flex: 1;
+  border-width: 0px;
+  width: 100%;
+  font-family: Merriweather;
 `;
 
 export class PlaceSearch extends Component {
@@ -142,7 +142,6 @@ const mapStateToProps = () => {
 };
 
 PlaceSearch.propTypes = {
-  classes: PropTypes.object.isRequired,
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
