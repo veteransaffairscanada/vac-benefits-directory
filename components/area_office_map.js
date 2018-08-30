@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Button } from "@material-ui/core/";
-import { withStyles } from "@material-ui/core/styles";
 import { KeyboardBackspace } from "@material-ui/icons";
+import { css } from "react-emotion";
 
 import {
   InfoWindow,
@@ -12,29 +12,28 @@ import {
   Marker
 } from "react-google-maps";
 
-const styles = () => ({
-  button: {
-    backgroundColor: "#3e57e2",
-    color: "white",
-    textAlign: "right",
-    textTransform: "none",
-    fontSize: "12px",
-    padding: "6px"
-  },
-  rightArrowIcon: {
-    "-moz-transform": "scaleX(-1)",
-    "-o-transform": "scaleX(-1)",
-    "-webkit-transform": "scaleX(-1)",
-    transform: "scaleX(-1)",
-    float: "left",
-    filter: "FlipH",
-    "-ms-filter": "FlipH",
-    paddingRight: "10px"
-  }
-});
+const button = css`
+  background-color: #3e57e2 !important;
+  color: white !important;
+  text-align: right;
+  text-transform: none !important;
+  font-size: 12px !important;
+  padding: 6px !important;
+`;
+
+const rightArrowIcon = css`
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  float: left;
+  filter: FlipH;
+  -ms-filter: Flip;
+  padding-right: 10px;
+`;
 
 /**
- * Determins if the browser is an iOS device
+ * Determines if the browser is an iOS device
  */
 const isIOS =
   typeof navigator !== "undefined" &&
@@ -86,7 +85,7 @@ export class AreaOfficeMap extends Component {
   }
 
   render() {
-    const { t, mapView, classes } = this.props;
+    const { t, mapView } = this.props;
     return (
       <GoogleMap
         ref={this.state.onMapMounted}
@@ -131,7 +130,7 @@ export class AreaOfficeMap extends Component {
                     <br />
                     <Button
                       id="getDirectionsButton"
-                      className={classes.button}
+                      className={button}
                       target="_blank"
                       variant="raised"
                       href={
@@ -142,7 +141,7 @@ export class AreaOfficeMap extends Component {
                       }
                     >
                       {t("map.get_directions")}
-                      <KeyboardBackspace className={classes.rightArrowIcon} />
+                      <KeyboardBackspace className={rightArrowIcon} />
                     </Button>
                   </div>
                 </InfoWindow>
@@ -198,10 +197,6 @@ AreaOfficeMap.propTypes = {
    */
   mapView: PropTypes.object.isRequired,
   /**
-   * Object that contains CSS classes
-   */
-  classes: PropTypes.object.isRequired,
-  /**
    * Universal translation function
    */
   t: PropTypes.func.isRequired
@@ -211,5 +206,5 @@ export default withGoogleMap(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(withStyles(styles)(AreaOfficeMap))
+  )(AreaOfficeMap)
 );

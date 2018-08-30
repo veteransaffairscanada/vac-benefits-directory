@@ -35,8 +35,7 @@ describe("AreaOfficeMap", () => {
       setSelectedAreaOffice: jest.fn(),
       setMapView: jest.fn(),
       selectedAreaOffice: areaOfficesFixture[0],
-      mapView: { lat: 49, lng: -100, zoom: 10 },
-      classes: {}
+      mapView: { lat: 49, lng: -100, zoom: 10 }
     };
   });
 
