@@ -1,7 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import configureStore from "redux-mock-store";
-
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
@@ -30,7 +30,6 @@ describe("BenefitCard", () => {
     props = {
       t: () => "en",
       benefit: benefitsFixture[0],
-      allBenefits: benefitsFixture,
       veteranBenefitIds: [],
       familyBenefitIds: [],
       classes: {},
@@ -45,7 +44,7 @@ describe("BenefitCard", () => {
       selectedNeeds: {},
       benefits: benefitsFixture,
       favouriteBenefits: [],
-      pageWidth: 1000
+      eligibilityPaths: eligibilityPathsFixture
     };
     props.store = mockStore(reduxData);
 
@@ -99,15 +98,6 @@ describe("BenefitCard", () => {
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
   });
 
-  it("shows a child benefit title if the benefit has a child", () => {
-    expect(
-      mountedBenefitCard()
-        .find("Paper")
-        .first()
-        .text()
-    ).toContain("en");
-  });
-
   describe(".benefitTitle", () => {
     it("returns the title of a card in english", () => {
       expect(
@@ -144,24 +134,6 @@ describe("BenefitCard", () => {
         .first()
         .text()
     ).toContain(benefitsFixture[0].vacNameEn);
-  });
-
-  describe(".childBenefitNames", () => {
-    it("returns the title of a benefit if there is one benefit", () => {
-      expect(
-        mountedBenefitCard()
-          .instance()
-          .childBenefitNames(benefitsFixture[0], benefitsFixture[0], false)
-      ).toContain("en");
-    });
-
-    it("returns the count of benefits if there is more than one", () => {
-      expect(
-        mountedBenefitCard()
-          .instance()
-          .childBenefitNames(benefitsFixture[0], [benefitsFixture], false)
-      ).toContain("en");
-    });
   });
 
   describe("when language is French", () => {
@@ -203,15 +175,6 @@ describe("BenefitCard", () => {
   it("has a needs tag", () => {
     reduxData.selectedNeeds["0"] = "0";
     expect(mountedBenefitCard().text()).toContain("Need 0");
-  });
-
-  it("changes open state when somebody clicks on it", () => {
-    expect(mountedBenefitCard().state().open).toEqual(false);
-    mountedBenefitCard()
-      .find("ExpansionPanelSummary")
-      .at(0)
-      .simulate("click");
-    expect(mountedBenefitCard().state().open).toEqual(true);
   });
 
   it("Clicking the link logs an exit event", () => {
