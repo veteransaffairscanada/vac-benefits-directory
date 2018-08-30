@@ -24,7 +24,7 @@ const inputIcon = css`
 `;
 const suggestionsContainerOpen = css`
   position: absolute;
-  zindex: 1;
+  z-index: 1;
   margin-top: ${globalTheme.unit};
   left: 0;
   right: 0;
