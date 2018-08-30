@@ -16,7 +16,6 @@ const CommentBox = css`
   font-size: 14px;
   padding: 5px 0 0 0;
 `;
-
 const Div = css`
   background-color: #505050;
   width: 100%;
@@ -29,11 +28,9 @@ const Div = css`
     height: 100px;
   }
 `;
-
 const FeedbackWrapper = css`
   margin-top: 25px;
 `;
-
 const Inner = css`
   color: #fff;
   font-size: 14px;
@@ -45,13 +42,21 @@ const Inner = css`
     }
   }
 `;
-
 const TextHold = css`
   background-color: #505050;
   padding: 10px 0;
-  width: 400px;
 `;
-
+const buttonStyle = css`
+  color: #fff !important;
+  text-transform: none !important;
+`;
+const container2 = css`
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+const white = css`
+  color: white;
+`;
 export class FeedbackBar extends Component {
   state = {
     action: "",
@@ -108,7 +113,7 @@ export class FeedbackBar extends Component {
 
     return (
       <div className={FeedbackWrapper} role="navigation">
-        <div style={{ marginLeft: "15px", marginRight: "15px" }}>
+        <div className={container2}>
           {this.state.commentFormToggled ? (
             <div className={CommentBox}>
               <h2>{t("comment-help-us-improve")}</h2>
@@ -131,7 +136,7 @@ export class FeedbackBar extends Component {
                   margin="normal"
                   fullWidth={true}
                   onChange={this.handleChange("action")}
-                  style={{ color: "white" }}
+                  className={white}
                   value={this.state.action}
                   autoFocus
                 />
@@ -160,7 +165,7 @@ export class FeedbackBar extends Component {
                 id="sendComment"
                 variant="contained"
                 color="primary"
-                style={{ textTransform: "none" }}
+                className={buttonStyle}
                 onClick={() => this.sendComment()}
               >
                 {t("send")}
@@ -170,7 +175,7 @@ export class FeedbackBar extends Component {
               &nbsp; &nbsp;
               <Button
                 id="cancelComment"
-                style={{ color: "#fff", textTransform: "none" }}
+                className={buttonStyle}
                 onClick={() => this.cancelComment()}
               >
                 {t("cancel")}
@@ -187,7 +192,7 @@ export class FeedbackBar extends Component {
                 {t("feedback-prompt")} &nbsp;
                 <Button
                   variant="flat"
-                  style={{ color: "#fff", textTransform: "none" }}
+                  className={buttonStyle}
                   id="feedbackYes"
                   onClick={() => this.sendFeedback("Yes")}
                 >
@@ -195,8 +200,8 @@ export class FeedbackBar extends Component {
                 </Button>
                 &nbsp; &nbsp;
                 <Button
+                  className={buttonStyle}
                   variant="flat"
-                  style={{ color: "#fff", textTransform: "none" }}
                   id="feedbackNo"
                   onClick={() => this.sendFeedback("No")}
                 >
