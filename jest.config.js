@@ -21,10 +21,5 @@ module.exports = {
       lines: 75,
       statements: 75
     }
-  },
-  testEnvironmentOptions: {
-    beforeParse(window) {
-      window.scrollTo = () => {};
-    }
   }
 };
