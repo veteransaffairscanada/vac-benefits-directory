@@ -33,8 +33,7 @@ describe("BenefitList", () => {
       eligibilityPaths: eligibilityPathsFixture,
       examples: examplesFixture,
       needs: needsFixture,
-      selectedNeeds: {},
-      pageWidth: 1000
+      selectedNeeds: {}
     };
     props.store = mockStore(reduxData);
   });

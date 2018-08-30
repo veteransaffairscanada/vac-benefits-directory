@@ -13,8 +13,7 @@ describe("ProfileNeedsSelector", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
-      pageWidth: 1000
+      t: key => key
     };
     reduxData = {
       patronType: "",
@@ -35,7 +34,8 @@ describe("ProfileNeedsSelector", () => {
       eligibilityPaths: eligibilityPathsFixture,
       showServiceType: true,
       showStatusAndVitals: true,
-      showServiceHealthIssue: true
+      showServiceHealthIssue: true,
+      pageWidth: 1000
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

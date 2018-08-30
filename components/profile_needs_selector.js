@@ -16,27 +16,27 @@ const root = css`
     display: none;
   }
 `;
-  const profileSelector = css`
-    border-bottom: 1px solid black;
-    padding-bottom: 15px !important;
-    margin-bottom: 30px !important;
+const profileSelector = css`
+  border-bottom: 1px solid black;
+  padding-bottom: 15px !important;
+  margin-bottom: 30px !important;
 `;
-  const clearButton = css`
-    text-decoration: underline !important;
-    text-transform: unset !important;
-    font-size: 60% !important;
-    float: right !important;
+const clearButton = css`
+  text-decoration: underline !important;
+  text-transform: unset !important;
+  font-size: 60% !important;
+  float: right !important;
 `;
-  const clearIcon = css`
-    font-size: 100% !important;
-    margin-left: ${globalTheme.unit};
-    font-weight: bold;
+const clearIcon = css`
+  font-size: 100% !important;
+  margin-left: ${globalTheme.unit};
+  font-weight: bold;
 `;
-  const filterTitle = css`
-    padding-right: 0px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 22px;
+const filterTitle = css`
+  padding-right: 0px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 22px;
 `;
 
 export class ProfileNeedsSelector extends Component {
@@ -68,7 +68,7 @@ export class ProfileNeedsSelector extends Component {
   };
 
   render() {
-    const { t, pageWidth, store } = this.props;
+    const { t, store } = this.props;
     return (
       <Paper className={root}>
         <h2 variant="title" className={filterTitle}>
@@ -98,7 +98,7 @@ export class ProfileNeedsSelector extends Component {
             <ProfileSelector t={t} store={store} />
           </Grid>
           <Grid item sm={12}>
-            <NeedsSelector t={t} pageWidth={pageWidth} store={store} />
+            <NeedsSelector t={t} store={store} />
           </Grid>
         </Grid>
       </Paper>
@@ -133,8 +133,7 @@ const mapStateToProps = reduxState => {
     selectedServiceType: reduxState.serviceType,
     selectedStatusAndVitals: reduxState.statusAndVitals,
     selectedServiceHealthIssue: reduxState.serviceHealthIssue,
-    patronType: reduxState.patronType,
-    pageWidth: reduxState.pageWidth
+    patronType: reduxState.patronType
   };
 };
 
@@ -142,7 +141,6 @@ ProfileNeedsSelector.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   patronType: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  pageWidth: PropTypes.number.isRequired,
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,
   setStatusAndVitals: PropTypes.func.isRequired,

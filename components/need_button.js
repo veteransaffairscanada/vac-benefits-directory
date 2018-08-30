@@ -54,7 +54,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    pageWidth: reduxState.pageWidth
   };
 };
 
