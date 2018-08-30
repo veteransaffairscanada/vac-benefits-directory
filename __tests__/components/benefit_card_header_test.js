@@ -1,5 +1,5 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import { BenefitCardHeader } from "../../components/benefit_card_header";
 import benefitsFixture from "../fixtures/benefits";
 const { axe, toHaveNoViolations } = require("jest-axe");
