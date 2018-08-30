@@ -58,6 +58,7 @@ export class BenefitCardHeader extends Component {
         href={this.benefitUrl(b)}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => this.logExit(this.benefitUrl(b))}
       >
         {this.benefitTitle(b)}
       </a>

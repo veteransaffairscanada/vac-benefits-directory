@@ -57,18 +57,6 @@ export class BenefitCard extends Component {
     this.forceUpdate();
   }
 
-  benefitTitle = benefit => {
-    return this.props.t("current-language-code") === "en"
-      ? benefit.vacNameEn
-      : benefit.vacNameFr;
-  };
-
-  benefitUrl = benefit => {
-    return this.props.t("current-language-code") === "en"
-      ? benefit.benefitPageEn
-      : benefit.benefitPageFr;
-  };
-
   render() {
     const { t, benefit } = this.props;
 

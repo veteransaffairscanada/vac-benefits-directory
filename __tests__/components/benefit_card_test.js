@@ -32,7 +32,6 @@ describe("BenefitCard", () => {
       benefit: benefitsFixture[0],
       veteranBenefitIds: [],
       familyBenefitIds: [],
-      onRef: foo => foo,
       searchString: "",
       favouriteBenefits: [],
       showFavourite: true
@@ -95,44 +94,6 @@ describe("BenefitCard", () => {
   it("hides the Favourite Button if showFavourite is false", () => {
     props.showFavourite = false;
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
-  });
-
-  describe(".benefitTitle", () => {
-    it("returns the title of a card in english", () => {
-      expect(
-        mountedBenefitCard()
-          .instance()
-          .benefitTitle(benefitsFixture[0])
-      ).toEqual(benefitsFixture[0].vacNameEn);
-    });
-
-    it("returns the title of a card in french", () => {
-      props.t = () => "fr";
-      expect(
-        mountedBenefitCard()
-          .instance()
-          .benefitTitle(benefitsFixture[0])
-      ).toEqual(benefitsFixture[0].vacNameFr);
-    });
-  });
-
-  it("no header is present if there are no parent benefits", () => {
-    expect(
-      mountedBenefitCard()
-        .find("Paper")
-        .first()
-        .text()
-    ).not.toContain(benefitsFixture[1].vacNameEn);
-  });
-
-  it("header is present if benefit has parents and requires gateway", () => {
-    props.benefit = benefitsFixture[1];
-    expect(
-      mountedBenefitCard()
-        .find("Paper")
-        .first()
-        .text()
-    ).toContain(benefitsFixture[0].vacNameEn);
   });
 
   describe("when language is French", () => {
