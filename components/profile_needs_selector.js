@@ -21,11 +21,12 @@ const profileSelector = css`
   padding-bottom: 15px !important;
   margin-bottom: 30px !important;
 `;
-const clearButton = css`
-  text-decoration: underline !important;
-  text-transform: unset !important;
-  font-size: 60% !important;
-  float: right !important;
+  const clearButton = css`
+    text-decoration: underline !important;
+    text-transform: unset !important;
+    font-size: 60% !important;
+    float: right !important;
+    color: blue !important;
 `;
 const clearIcon = css`
   font-size: 100% !important;
@@ -80,7 +81,6 @@ export class ProfileNeedsSelector extends Component {
               id="ClearFilters"
               variant="flat"
               size="small"
-              style={{ color: "blue" }}
               onClick={() => {
                 this.clearFilters();
               }}

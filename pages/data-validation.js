@@ -11,14 +11,26 @@ import ReactMoment from "react-moment";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { css } from "react-emotion";
+import { css, cx } from "react-emotion";
 import Container from "../components/container";
 
+const pCSS = css`
+padding: 10px;
+`;
 const root = css`
   overflow-x: auto;
 `;
 const table = css`
   width: 100%;
+`;
+const tableCellCSS = css`
+font-weight: bold !important;
+`;
+const tableCellGreen = css`
+color: green !important;
+`;
+const tableCellRed = css`
+color: red !important;
 `;
 
 export class DataValidation extends Component {
@@ -220,7 +232,7 @@ export class DataValidation extends Component {
       >
         <Container>
           <Paper className={root}>
-            <p style={{ padding: "10px" }}>
+            <p className={pCSS}>
               {t("dv.last_cache_update")}
               :&nbsp;
               <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
@@ -240,10 +252,7 @@ export class DataValidation extends Component {
                   return (
                     <TableRow key={i}>
                       <TableCell
-                        style={{
-                          color: n.status ? "green" : "red",
-                          fontWeight: "bold"
-                        }}
+                      className={ cx(tableCellCSS, n.status ? tableCellGreen : tableCellRed)}
                       >
                         {n.status !== undefined ? (
                           t("dv." + (n.status ? "Pass" : "Fail"))
