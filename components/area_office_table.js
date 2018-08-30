@@ -139,12 +139,12 @@ export class AreaOfficeTable extends Component {
     );
   };
 
-  tableRow = (ae, key) => {
+  tableRow = ae => {
     const language = this.props.t("current-language-code");
     const distances = this.officeDistance();
     return (
       <tr
-        key={key}
+        key={"tableRow" + ae.id}
         id={"tableRow" + ae.id}
         className={
           ae.id === this.props.selectedAreaOffice.id
@@ -227,9 +227,7 @@ export class AreaOfficeTable extends Component {
                               ({defaultOffices[name].length})
                             </td>
                           </tr>
-                          {defaultOffices[name].map((ae, i2) =>
-                            this.tableRow(ae, i1 + "_" + i2)
-                          )}
+                          {defaultOffices[name].map(ae => this.tableRow(ae))}
                         </React.Fragment>
                       );
                     }
