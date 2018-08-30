@@ -75,7 +75,12 @@ import { css } from "react-emotion";
       display: none;
     }
 `;
-
+const spanCSS = css`
+font-weight: 500;
+`;
+const strongCSS = css`
+font-weight: 300
+`;
 export class Search extends Component {
   constructor(props) {
     super(props);
@@ -212,11 +217,11 @@ export class Search extends Component {
         <div>
           {parts.map((part, index) => {
             return part.highlight ? (
-              <span key={String(index)} style={{ fontWeight: 500 }}>
+              <span key={String(index)} className={spanCSS}>
                 {part.text}
               </span>
             ) : (
-              <strong key={String(index)} style={{ fontWeight: 300 }}>
+              <strong key={String(index)} className={strongCSS}>
                 {part.text}
               </strong>
             );
