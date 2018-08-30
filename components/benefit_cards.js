@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid, Button } from "@material-ui/core";
-import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { KeyboardBackspace } from "@material-ui/icons";
 import Highlighter from "react-highlight-words";
 import FavouriteButton from "./favourite_button";
@@ -11,16 +10,7 @@ import { connect } from "react-redux";
 import NeedTag from "./need_tag";
 import { css } from "react-emotion";
 import CardFooter from "./card_footer";
-
-const cardTop = css`
-  background-color: #f1f7fc;
-  border-radius: 0px;
-  border-bottom: 1px solid #8b8b8b;
-  padding: 15px 15px 15px 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import BenefitCardHeader from "./benefit_card_header";
 
 const button = css`
   background-color: #3e57e2 !important;
@@ -55,27 +45,10 @@ const rightArrowIcon = css`
   -ms-filter: fliph;
   padding-right: 10px;
 `;
-const parentIcon = css`
-  margin-right: 15px;
-  font-size: 40px !important;
-  transform: scale(0.9);
-  color: #434343;
-`;
-const headerDesc = css`
-  flex-grow: 1;
-  color: #434343;
-`;
-const headerUrl = css`
-  color: #006cc9;
-`;
 const alignRight = css`
   text-align: right;
 `;
 export class BenefitCard extends Component {
-  state = {
-    open: false
-  };
-  children = [];
   logExit = url => {
     logEvent("Exit", url);
   };
@@ -96,42 +69,8 @@ export class BenefitCard extends Component {
       : benefit.benefitPageFr;
   };
 
-  get_benefit_a_elements = parentBenefits => {
-    let a_elements = parentBenefits.map((b, i) => (
-      <a
-        key={"a" + i}
-        className={headerUrl}
-        href={this.benefitUrl(b)}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {this.benefitTitle(b)}
-      </a>
-    ));
-
-    let a_elements_with_ors = [];
-    a_elements.forEach((value, index) => {
-      if (a_elements.length - 1 !== index) {
-        a_elements_with_ors = a_elements_with_ors.concat([
-          value,
-          <span key={"b" + index}> {" " + this.props.t("index.or")} </span>
-        ]);
-      } else {
-        a_elements_with_ors = a_elements_with_ors.concat([
-          value,
-          <span key={"c" + index}> </span>
-        ]);
-      }
-    });
-    return a_elements_with_ors;
-  };
-
   render() {
     const { t, benefit } = this.props;
-
-    const parentBenefits = this.props.benefits.filter(
-      b => b.childBenefits && b.childBenefits.includes(benefit.id)
-    );
 
     const needsMet = benefit.needs
       ? this.props.needs.filter(
@@ -144,30 +83,14 @@ export class BenefitCard extends Component {
     return (
       <Grid item xs={12}>
         <div className={root}>
-          {parentBenefits.length > 0 &&
-          benefit.availableIndependently === "Requires Gateway Benefit" ? (
-            <Paper className={cardTop}>
-              <ErrorOutlineIcon className={parentIcon} />
-              <span className={headerDesc}>
-                <span>{t("benefits_b.card_header_1") + " "}</span>
-                {this.get_benefit_a_elements(parentBenefits)}{" "}
-                <span>
-                  {this.props.t("benefits_b.card_header_2") +
-                    " " +
-                    this.benefitTitle(this.props.benefit) +
-                    "."}
-                </span>
-              </span>
-            </Paper>
-          ) : null}
-
+          <BenefitCardHeader benefit={benefit} t={t} store={this.props.store} />
           <Paper className={cardBody}>
             <div component="p" className={benefitName}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
                 textToHighlight={
-                  this.props.t("current-language-code") === "en"
+                  t("current-language-code") === "en"
                     ? benefit.vacNameEn
                     : benefit.vacNameFr
                 }
@@ -179,7 +102,7 @@ export class BenefitCard extends Component {
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
                 textToHighlight={
-                  this.props.t("current-language-code") === "en"
+                  t("current-language-code") === "en"
                     ? benefit.oneLineDescriptionEn
                     : benefit.oneLineDescriptionFr
                 }
@@ -187,11 +110,7 @@ export class BenefitCard extends Component {
             </h2>
             <div>
               {needsMet.map(need => (
-                <NeedTag
-                  key={benefit.id + need.id}
-                  t={this.props.t}
-                  need={need}
-                />
+                <NeedTag key={benefit.id + need.id} t={t} need={need} />
               ))}
             </div>
 
@@ -202,7 +121,7 @@ export class BenefitCard extends Component {
                     benefit={benefit}
                     toggleOpenState={() => {}}
                     store={this.props.store}
-                    t={this.props.t}
+                    t={t}
                   />
                 </Grid>
               ) : null}
@@ -213,19 +132,19 @@ export class BenefitCard extends Component {
                   variant="raised"
                   onClick={() =>
                     this.logExit(
-                      this.props.t("current-language-code") === "en"
+                      t("current-language-code") === "en"
                         ? benefit.benefitPageEn
                         : benefit.benefitPageFr
                     )
                   }
                   href={
-                    this.props.t("current-language-code") === "en"
+                    t("current-language-code") === "en"
                       ? benefit.benefitPageEn
                       : benefit.benefitPageFr
                   }
                   rel="noopener noreferrer"
                 >
-                  {this.props.t("Find out more")}
+                  {t("Find out more")}
                   <KeyboardBackspace className={rightArrowIcon} />
                 </Button>
               </Grid>
