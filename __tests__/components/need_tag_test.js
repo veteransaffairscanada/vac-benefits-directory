@@ -12,7 +12,6 @@ describe("NeedTag", () => {
   let props;
   beforeEach(() => {
     props = {
-      classes: {},
       need: needsFixture[0],
       t: key => {
         return key == "current-language-code" ? "en" : key;

@@ -1,26 +1,22 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import { globalTheme } from "../theme";
+import { css } from "react-emotion";
 
-const styles = theme => ({
-  needsTag: {
-    marginRight: theme.spacing.unit,
-    marginBottom: theme.spacing.unit,
-    color: "black",
-    borderRadius: 1,
-    display: "inline-flex",
-    padding: "4px 8px"
-  }
-});
+const needsTag = css`
+  margin-right: ${globalTheme.unit};
+  margin-bottom: ${globalTheme.unit};
+  color: #000000;
+  border-radius: 1;
+  display: inline-flex;
+  padding: 4px 8px;
+`;
 
 export class NeedTag extends Component {
   render() {
-    const { t, need, classes } = this.props;
+    const { t, need } = this.props;
     return (
-      <div
-        className={classes.needsTag}
-        style={{ backgroundColor: need.colour }}
-      >
+      <div className={needsTag} style={{ backgroundColor: need.colour }}>
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </div>
     );
@@ -28,9 +24,8 @@ export class NeedTag extends Component {
 }
 
 NeedTag.propTypes = {
-  classes: PropTypes.object.isRequired,
   need: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(NeedTag);
+export default NeedTag;
