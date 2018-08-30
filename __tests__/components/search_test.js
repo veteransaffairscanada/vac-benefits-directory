@@ -5,6 +5,7 @@ import benefitsFixture from "../fixtures/benefits";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 import configureStore from "redux-mock-store";
+import lunr from "lunr";
 
 describe("Search", () => {
   let props;
@@ -30,7 +31,7 @@ describe("Search", () => {
     reduxData = {
       benefits: benefitsFixture,
       enIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
           ["vacNameEn/1", [0, 0.288]],
@@ -49,7 +50,7 @@ describe("Search", () => {
         pipeline: ["stemmer"]
       }),
       frIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
           ["vacNameFr/1", [0, 0.288]],

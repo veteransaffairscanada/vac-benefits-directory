@@ -2,7 +2,7 @@
 
 import { shallow } from "enzyme";
 import Router from "next/router";
-
+import lunr from "lunr";
 import React from "react";
 import { FavouritesPage } from "../../pages/favourites";
 import benefitsFixture from "../fixtures/benefits";
@@ -43,7 +43,7 @@ describe("Favourites Page", () => {
       examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       enIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
           ["vacNameEn/1", [0, 0.288]],
@@ -62,7 +62,7 @@ describe("Favourites Page", () => {
         pipeline: ["stemmer"]
       }),
       frIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
           ["vacNameFr/1", [0, 0.288]],

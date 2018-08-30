@@ -1,4 +1,5 @@
 import { getFilteredBenefits } from "../../selectors/benefits";
+import lunr from "lunr";
 
 describe("getFilteredBenefits", () => {
   let props;
@@ -57,7 +58,7 @@ describe("getFilteredBenefits", () => {
         }
       ],
       enIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
           ["vacNameEn/1", [0, 0.288]],
@@ -76,7 +77,7 @@ describe("getFilteredBenefits", () => {
         pipeline: ["stemmer"]
       }),
       frIdx: JSON.stringify({
-        version: "2.3.1",
+        version: lunr.version,
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
           ["vacNameFr/1", [0, 0.288]],
