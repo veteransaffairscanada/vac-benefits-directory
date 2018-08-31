@@ -18,6 +18,11 @@ const paper = css`
   margin-top: ${globalTheme.marginTop};
 `;
 
+const divSearch = css`
+height: 0px;
+margin-right: 50px;
+`;
+
 const mapTitle = css`
   font-size: 36px !important;
 `;
@@ -119,7 +124,7 @@ export class Map extends Component {
                 <PlaceSearch
                   id="PlaceSearch"
                   containerElement={
-                    <div style={{ height: "0px", marginRight: "50px" }} />
+                    <div className={divSearch}/>
                   }
                   loadingElement={<div style={{ height: "100%" }} />}
                   store={this.props.store}

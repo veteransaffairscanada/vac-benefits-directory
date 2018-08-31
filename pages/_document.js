@@ -5,13 +5,13 @@ import JssProvider from "react-jss/lib/JssProvider";
 import flush from "styled-jsx/server";
 import getPageContext from "../lib/pageContext";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-
+import { css } from "react-emotion";
 import { withI18next } from "../lib/withI18next";
 
-const bodyStyling = {
-  fontFamily: "Merriweather, serif",
-  margin: 0
-};
+const bodyStyling = css`
+  font-family: Merriweather, serif;
+  margin: 0;
+`;
 
 class MyDocument extends Document {
   static getInitialProps(ctx) {
@@ -75,7 +75,7 @@ class MyDocument extends Document {
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <script type="text/javascript" src={googleMapURL} />
         </Head>
-        <body style={bodyStyling}>
+        <body classname={bodyStyling}>
           <Main />
           <NextScript />
         </body>

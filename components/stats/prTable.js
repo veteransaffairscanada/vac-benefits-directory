@@ -8,6 +8,11 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { connect } from "react-redux";
+import { css } from "react-emotion";
+
+const columnCSS = css`
+width: 50%;
+`;
 
 export class PrTable extends Component {
   filterMerged = () => {
@@ -32,8 +37,8 @@ export class PrTable extends Component {
     return (
       <Table>
         <colgroup>
-          <col style={{ width: "50%" }} />
-          <col style={{ width: "50%" }} />
+          <col className={columnCSS}/>
+          <col className={columnCSS}/>
         </colgroup>
         <TableHead>
           <TableRow>
