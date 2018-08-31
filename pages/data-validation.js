@@ -15,7 +15,7 @@ import { css, cx } from "react-emotion";
 import Container from "../components/container";
 
 const pCSS = css`
-padding: 10px;
+  padding: 10px;
 `;
 const root = css`
   overflow-x: auto;
@@ -24,13 +24,13 @@ const table = css`
   width: 100%;
 `;
 const tableCellCSS = css`
-font-weight: bold !important;
+  font-weight: bold !important;
 `;
 const tableCellGreen = css`
-color: green !important;
+  color: green !important;
 `;
 const tableCellRed = css`
-color: red !important;
+  color: red !important;
 `;
 
 export class DataValidation extends Component {
@@ -94,6 +94,8 @@ export class DataValidation extends Component {
     }
   }
 
+  checkForTablesWithEmptyRows() {}
+
   checkBenefitUrls = async () => {
     this.setState({
       invalidUrls: []
@@ -143,6 +145,7 @@ export class DataValidation extends Component {
       eligibilityPaths,
       needs,
       examples,
+      errors,
       translations,
       areaOffices
     } = this.props; // eslint-disable-line no-unused-vars
@@ -219,7 +222,8 @@ export class DataValidation extends Component {
           );
         }),
         this.state.urlState
-      )
+      ),
+      this.createData("errors", errors, errors.length > 0 ? false : true)
     ];
 
     return (
@@ -252,7 +256,10 @@ export class DataValidation extends Component {
                   return (
                     <TableRow key={i}>
                       <TableCell
-                      className={ cx(tableCellCSS, n.status ? tableCellGreen : tableCellRed)}
+                        className={cx(
+                          tableCellCSS,
+                          n.status ? tableCellGreen : tableCellRed
+                        )}
                       >
                         {n.status !== undefined ? (
                           t("dv." + (n.status ? "Pass" : "Fail"))
@@ -280,15 +287,16 @@ export class DataValidation extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    areaOffices: state.areaOffices,
-    benefits: state.benefits,
-    eligibilityPaths: state.eligibilityPaths,
-    examples: state.examples,
-    needs: state.needs,
-    timestamp: state.timestamp,
-    translations: state.translations
+    areaOffices: reduxState.areaOffices,
+    benefits: reduxState.benefits,
+    eligibilityPaths: reduxState.eligibilityPaths,
+    examples: reduxState.examples,
+    needs: reduxState.needs,
+    timestamp: reduxState.timestamp,
+    errors: reduxState.errors,
+    translations: reduxState.translations
   };
 };
 
@@ -296,6 +304,7 @@ DataValidation.propTypes = {
   benefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
+  errors: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,

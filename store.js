@@ -76,6 +76,7 @@ export const reducer = (state = initialState, action) => {
       airtableConstants.tableNames.forEach(tableName => {
         newState[tableName] = action.data[tableName] || state[tableName];
       });
+      newState["errors"] = action.data["errors"] || state["errors"];
       return Object.assign({}, state, newState);
 
     case "SET_PATRON_TYPE":
