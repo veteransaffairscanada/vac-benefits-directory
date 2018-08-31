@@ -22,12 +22,7 @@ const root = css`
     padding: 35px 48px 50px 48px;
   }
 `;
-const arrowCSS = css`
-font-size: 24px;
-`;
-const bookmarkCSS = css`
-font-size: 24px;
-`;
+
 const line = css`
   background: #dfdfdf;
   border: none;
@@ -112,7 +107,7 @@ export class App extends Component {
                 >
                   {t("index.guided experience")}
                   &nbsp;&nbsp;
-                  <ArrowForward className={arrowCSS}/>
+                  <ArrowForward style={{ fontSize: "24px" }} />
                 </Button>
                 <hr className={line} />
                 <p className={prompt}>{t("index.benefits_prompt")}</p>
@@ -127,7 +122,7 @@ export class App extends Component {
                 >
                   {t("index.all benefits")}
                   &nbsp;&nbsp;
-                  <ArrowForward className={arrowCSS} />
+                  <ArrowForward style={{ fontSize: "24px" }} />
                 </Button>
                 <hr className={line} />
                 <p className={prompt}>{t("index.favourites_prompt")}</p>
@@ -140,7 +135,7 @@ export class App extends Component {
                   className={button}
                   href={this.props.favouritesUrl}
                 >
-                  <Bookmark className={bookmarkCSS}/>
+                  <Bookmark style={{ fontSize: "24px" }} />
                   &nbsp;
                   {t("index.your_saved_benefits") +
                     " (" +

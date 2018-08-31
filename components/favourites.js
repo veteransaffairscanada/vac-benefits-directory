@@ -23,9 +23,6 @@ const backLink = css`
 const benefitsCount = css`
   font-size: 36px;
 `;
-const bookmarkCSS = css`
-font-size: 70px;
-`;
 const buttonBarButton = css`
   color: #3e57e2 !important;
   font-size: 20px !important;
@@ -42,13 +39,6 @@ const contactUsTitle = css`
 const emptyList = css`
   margin-top: 20px;
   text-align: center;
-`;
-const outerGrid = css`
-padding-left: 16px;
-padding-right: 16px;
-`;
-const printCSS = css`
-font-size: 48px !important;
 `;
 const topMatter = css`
   margin-bottom: 25px !important;
@@ -92,9 +82,9 @@ export class Favourites extends Component {
     return (
       <Container id="favourites">
         <Grid
-        className={outerGrid}
           container
           spacing={24}
+          style={{ paddingLeft: "16px", paddingRight: "16px" }}
         >
           <Grid item xs={12} className={topMatter}>
             <Button
@@ -127,7 +117,7 @@ export class Favourites extends Component {
             </Grid>
             {filteredBenefits.length == 0 ? (
               <div className={emptyList}>
-                <Bookmark className={bookmarkCSS} />
+                <Bookmark style={{ fontSize: "70px" }} />
                 <br />
                 {t("favourites.help")}
               </div>
@@ -144,7 +134,7 @@ export class Favourites extends Component {
               className={buttonBarButton}
               id="printButton"
             >
-              <Print className={printCSS} />
+              <Print style={{ fontSize: "48px" }} />
               &nbsp;
               {t("Print")}
             </Button>

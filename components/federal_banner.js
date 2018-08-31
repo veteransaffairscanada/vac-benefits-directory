@@ -25,10 +25,6 @@ const mediaQuery = Object.keys(breakpoints).reduce((accumulator, label) => {
   return accumulator;
 }, {});
 
-const buttonCSS = css`
-  color: #fff !important;
-`;
-
 const container = css`
   padding: 1rem 0rem 0.5rem 1rem;
   width: auto;
@@ -75,7 +71,7 @@ class FederalBanner extends Component {
         <div>
           {this.props.showRefreshCache ? (
             <a href="/refresh">
-              <Button id="refreshCache" className={buttonCSS}>
+              <Button id="refreshCache" style={{ color: "#fff" }}>
                 {t("refresh-cache")}
               </Button>
             </a>

@@ -2,17 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import RadioSelector from "./radio_selector";
-import { css } from "react-emotion";
-
-const outerDiv = css`
-padding: 12px;
-`;
 
 export class GuidedExperienceProfile extends Component {
   render() {
     const { t } = this.props;
     return (
-      <div className={outerDiv}>
+      <div style={{ padding: 12 }}>
         <Grid container spacing={24}>
           <RadioSelector
             id={"RadioSelector" + this.props.selectorType}
