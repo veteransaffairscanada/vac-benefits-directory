@@ -23,7 +23,7 @@ const officeInfo = css`
 const officeName = css`
   font-size: 14px;
   font-weight: 500;
-  font-family: [Merriweather, serif];
+  font-family: 'Merriweather', Georgia, serif;
 `;
 const button = css`
   background-color: #3e57e2 !important;
