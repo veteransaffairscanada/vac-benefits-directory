@@ -12,6 +12,19 @@ import {
   Marker
 } from "react-google-maps";
 
+const officeAddress = css`
+  font-size: 12px;
+  font-family: [Merriweather, serif];
+`;
+const officeInfo = css`
+  font-color: black;
+  background-color: white;
+`;
+const officeName = css`
+  font-size: 14px;
+  font-weight: 500;
+  font-family: [Merriweather, serif];
+`;
 const button = css`
   background-color: #3e57e2 !important;
   color: white !important;
@@ -103,28 +116,12 @@ export class AreaOfficeMap extends Component {
             >
               {this.props.selectedAreaOffice.id === d.id ? (
                 <InfoWindow options={{ maxWidth: 200 }}>
-                  <div
-                    style={{
-                      fontColor: `black`,
-                      backgroundColor: "white"
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontSize: `14px`,
-                        fontWeight: "500",
-                        fontFamily: ["Merriweather", "serif"]
-                      }}
-                    >
+                  <div className={officeInfo}>
+                    <div className={officeName}>
                       {d["name_" + t("current-language-code")]}
                     </div>
                     <br />
-                    <div
-                      style={{
-                        fontSize: `12px`,
-                        fontFamily: ["Merriweather", "serif"]
-                      }}
-                    >
+                    <div className={officeAddress}>
                       {d["address_" + t("current-language-code")]}
                     </div>
                     <br />
