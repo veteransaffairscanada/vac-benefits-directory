@@ -42,6 +42,16 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     dataStore[tableName] = await fetchTableFromAirtable(tableName);
   });
   await Promise.all(promises);
+
+  airtableConstants.tableNames.forEach(function(tableName) {
+    var array = dataStore[tableName].map(x => Object.keys(x).length);
+    var number_of_fields = Math.max(...array);
+    dataStore[tableName] = dataStore[tableName].filter(x => {
+      var fraction_of_cols_filled =
+        (Object.keys(x).length * 1) / number_of_fields;
+      return fraction_of_cols_filled < 0.5 ? false : true;
+    });
+  });
   dataStore.timestamp = await Date.now();
   return dataStore;
 });
