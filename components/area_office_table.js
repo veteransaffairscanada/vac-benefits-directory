@@ -9,6 +9,14 @@ const root = css`
   margin-right: 10px;
   margin-left: 10px;
 `;
+const tableWidth = css`
+  width: 100%;
+`;
+const scrollingDiv = css`
+height: 400px;
+width: 100%;
+overflow-y: scroll;
+`;
 const tableHeaderDiv = css`
   width: 100% !important;
   margin-top: ${globalTheme.marginTop};
@@ -182,7 +190,7 @@ export class AreaOfficeTable extends Component {
     return (
       <div className={root}>
         <div className={tableHeaderDiv}>
-          <table style={{ width: "100%" }}>
+          <table className={tableWidth}>
             <tbody>
               <tr id="tableHeader">
                 <th className={officeCellHeader}>{t("map.office")}</th>
@@ -195,8 +203,8 @@ export class AreaOfficeTable extends Component {
         </div>
         <div
           id="scrolling_div"
-          style={{ height: "400px", width: "100%", overflowY: "scroll" }}
-        >
+          className={scrollingDiv}
+          >
           <table className={mainTable}>
             <colgroup>
               <col span="1" style={{ width: "10%" }} />
