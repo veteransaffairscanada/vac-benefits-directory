@@ -14,7 +14,7 @@ import {
 
 const officeAddress = css`
   font-size: 12px;
-  font-family: [Merriweather, serif];
+  font-family: 'Merriweather', Georgia, serif;
 `;
 const officeInfo = css`
   font-color: black;
