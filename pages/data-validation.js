@@ -254,7 +254,7 @@ export class DataValidation extends Component {
               <TableBody>
                 {data.map((n, i) => {
                   return (
-                    <TableRow key={i}>
+                    <TableRow key={i} id={n.name}>
                       <TableCell
                         className={cx(
                           tableCellCSS,
