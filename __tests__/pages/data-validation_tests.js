@@ -175,6 +175,7 @@ describe("DataValidation", () => {
 
     it("loops through benefits and sends the benefit ID to the /checkURL endpoint", done => {
       global.fetch = jest.fn();
+      global.fetch.mockReturnValue(new Promise(() => {}));
       Promise.resolve(
         mountedDataValidation()
           .instance()
