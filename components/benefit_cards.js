@@ -11,11 +11,12 @@ import NeedTag from "./need_tag";
 import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
+import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
 
 const button = css`
   background-color: #3e57e2 !important;
   color: white !important;
-  text-align: right !important;
+  benefit_card_additional_infotext-align: right !important;
   text-transform: none !important;
 `;
 const cardBody = css`
@@ -72,6 +73,11 @@ export class BenefitCard extends Component {
       <Grid item xs={12}>
         <div className={root}>
           <BenefitCardHeader benefit={benefit} t={t} store={this.props.store} />
+          <BenefitCardHeaderMoreInfo
+            benefit={benefit}
+            t={t}
+            store={this.props.store}
+          />
           <Paper className={cardBody}>
             <div component="p" className={benefitName}>
               <Highlighter
