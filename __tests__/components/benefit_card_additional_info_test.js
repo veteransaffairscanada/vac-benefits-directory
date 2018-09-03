@@ -2,7 +2,6 @@ import React from "react";
 import { mount } from "enzyme";
 import { BenefitCardHeaderMoreInfo } from "../../components/benefit_card_additional_info";
 import benefitsFixture from "../fixtures/benefits";
-import BenefitDir from "../../pages/benefits-directory";
 
 describe("BenefitCardHeader", () => {
   let props;
