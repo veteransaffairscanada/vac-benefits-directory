@@ -17,7 +17,7 @@ const theme = {
     md: "1280px",
     lg: "1920px"
   },
-  color: {
+  colour: {
     paleGrey: "#eaebed",
     warmGrey: "#979797",
     brownishGrey: "#646464",
