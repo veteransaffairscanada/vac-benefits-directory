@@ -26,8 +26,8 @@ const theme = {
     cerulean: "#006cc9",
     darkGreyBlue: "#284162",
     fernGreen: "#39824d",
-    steveGreen: "#295f38",
-    steveRed: "#ea4335"
+    darkGreen: "#295f38",
+    tornadoRed: "#ea4335"
   }
 };
 
