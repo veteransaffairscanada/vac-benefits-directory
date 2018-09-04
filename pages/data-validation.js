@@ -94,8 +94,6 @@ export class DataValidation extends Component {
     }
   }
 
-  checkForTablesWithEmptyRows() {}
-
   checkBenefitUrls = async () => {
     this.setState({
       invalidUrls: []
