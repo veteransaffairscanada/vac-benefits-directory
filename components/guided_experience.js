@@ -41,10 +41,6 @@ const title = css`
   color: black;
 `;
 
-const subTitle = css`
-  font-size: 1em !important;
-`;
-
 const jumpButton = css`
   font-size: 1.5em;
 `;
