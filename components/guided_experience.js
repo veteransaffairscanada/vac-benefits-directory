@@ -7,6 +7,7 @@ import ArrowForward from "@material-ui/icons/ArrowForward";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Header2 from "../components/header2";
 
 const root = css`
   border: solid 1px grey;
@@ -122,7 +123,7 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Grid item xs={12}>
-              <p className={subTitle}>{this.props.subtitle}</p>
+              <Header2>{this.props.subtitle}</Header2>
             </Grid>
 
             <Grid item xs={12}>

@@ -11,6 +11,8 @@ import Print from "@material-ui/icons/Print";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Header1 from "../components/header1";
+import Header2 from "../components/header2";
 
 const backLink = css`
   font-size: 20px !important;
@@ -20,11 +22,8 @@ const backLink = css`
   text-decoration: none !important;
   text-transform: none !important;
 `;
-const benefitsCount = css`
-  font-size: 36px;
-`;
 const bookmarkCSS = css`
-font-size: 70px;
+  font-size: 70px;
 `;
 const buttonBarButton = css`
   color: #3e57e2 !important;
@@ -35,8 +34,6 @@ const buttonBarButton = css`
   text-transform: none !important;
 `;
 const contactUsTitle = css`
-  font-size: 22px;
-  font-weight: bold;
   margin: 20px 0;
 `;
 const emptyList = css`
@@ -44,11 +41,11 @@ const emptyList = css`
   text-align: center;
 `;
 const outerGrid = css`
-padding-left: 16px;
-padding-right: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
 `;
 const printCSS = css`
-font-size: 48px !important;
+  font-size: 48px !important;
 `;
 const topMatter = css`
   margin-bottom: 25px !important;
@@ -91,11 +88,7 @@ export class Favourites extends Component {
 
     return (
       <Container id="favourites">
-        <Grid
-        className={outerGrid}
-          container
-          spacing={24}
-        >
+        <Grid className={outerGrid} container spacing={24}>
           <Grid item xs={12} className={topMatter}>
             <Button
               variant="flat"
@@ -109,9 +102,9 @@ export class Favourites extends Component {
               {t("favourites.back_link")}
             </Button>
 
-            <h1 className={"BenefitsCounter " + benefitsCount}>
+            <Header1 className={"BenefitsCounter"}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
-            </h1>
+            </Header1>
           </Grid>
           <Grid item md={8} xs={12}>
             <Grid container spacing={24}>
@@ -148,7 +141,9 @@ export class Favourites extends Component {
               &nbsp;
               {t("Print")}
             </Button>
-            <h2 className={contactUsTitle}>{t("favourites.contact_us")}</h2>
+            <Header2 className={contactUsTitle}>
+              {t("favourites.contact_us")}
+            </Header2>
             <p>
               <Link href={this.get_link("map")}>
                 <a>{t("favourites.visit_prompt")}</a>
@@ -175,7 +170,9 @@ export class Favourites extends Component {
 
             <hr />
 
-            <h2 className={contactUsTitle}>{t("favourites.apply_prompt")}</h2>
+            <Header2 className={contactUsTitle}>
+              {t("favourites.apply_prompt")}
+            </Header2>
 
             <p>
               <a

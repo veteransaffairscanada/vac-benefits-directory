@@ -1,4 +1,5 @@
 const theme = {
+  fontFamily: "Merriweather",
   maxWidth: "1200px",
   margin: "0 auto",
   paddingLeft: "16px",
