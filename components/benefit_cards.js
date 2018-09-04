@@ -24,7 +24,7 @@ const cardBody = css`
   padding-top: 15px !important;
 `;
 const cardDescriptionText = css`
-  padding: 10px 0px;
+  padding-top: 10px;
   padding-bottom: 15px;
 `;
 const root = css`
