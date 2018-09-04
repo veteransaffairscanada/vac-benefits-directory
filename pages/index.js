@@ -13,6 +13,7 @@ import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Body from "../components/body";
 
 const root = css`
   background-color: white;
@@ -23,10 +24,10 @@ const root = css`
   }
 `;
 const arrowCSS = css`
-font-size: 24px;
+  font-size: 24px;
 `;
 const bookmarkCSS = css`
-font-size: 24px;
+  font-size: 24px;
 `;
 const line = css`
   background: #dfdfdf;
@@ -58,13 +59,6 @@ const image = css`
   @media only screen and (max-width: ${globalTheme.max.sm}) {
     display: none;
   }
-`;
-
-const prompt = css`
-  color: #303232;
-  font-size: 18px;
-  line-height: 1.5;
-  margin: 0 0 25px 0;
 `;
 
 const title = css`
@@ -100,7 +94,7 @@ export class App extends Component {
                 </h1>
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
-                <p className={prompt}>{t("index.ge_prompt")}</p>
+                <Body>{t("index.ge_prompt")}</Body>
                 <Button
                   id="heroGuidedLink"
                   variant="raised"
@@ -112,10 +106,10 @@ export class App extends Component {
                 >
                   {t("index.guided experience")}
                   &nbsp;&nbsp;
-                  <ArrowForward className={arrowCSS}/>
+                  <ArrowForward className={arrowCSS} />
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>{t("index.benefits_prompt")}</p>
+                <Body>{t("index.benefits_prompt")}</Body>
                 <Button
                   id="heroBenefitsLink"
                   variant="raised"
@@ -130,7 +124,7 @@ export class App extends Component {
                   <ArrowForward className={arrowCSS} />
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>{t("index.favourites_prompt")}</p>
+                <Body>{t("index.favourites_prompt")}</Body>
                 <Button
                   id="FavouritesPage"
                   variant="raised"
@@ -140,7 +134,7 @@ export class App extends Component {
                   className={button}
                   href={this.props.favouritesUrl}
                 >
-                  <Bookmark className={bookmarkCSS}/>
+                  <Bookmark className={bookmarkCSS} />
                   &nbsp;
                   {t("index.your_saved_benefits") +
                     " (" +
@@ -149,7 +143,7 @@ export class App extends Component {
                 </Button>
               </Grid>
               <Grid item xs={12} md={6} className={columnRight}>
-                <p className={prompt}>{t("index.search_prompt")}</p>
+                <Body>{t("index.search_prompt")}</Body>
                 <SearchComponent
                   id="searchComponent"
                   i18n={this.props.i18n}

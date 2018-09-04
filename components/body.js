@@ -11,6 +11,7 @@ const root = css`
   line-height: 1.5;
   letter-spacing: normal;
   color: #434343;
+  margin-bottom: 25px;
 `;
 
 export class Body extends Component {
