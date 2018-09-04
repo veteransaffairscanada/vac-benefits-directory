@@ -16,6 +16,18 @@ const theme = {
     sm: "960px",
     md: "1280px",
     lg: "1920px"
+  },
+  color: {
+    paleGrey: "#eaebed",
+    warmGrey: "#979797",
+    brownishGrey: "#646464",
+    greyishBrownTwo: "#505050",
+    greyishBrown: "#434343",
+    cerulean: "#006cc9",
+    darkGreyBlue: "#284162",
+    fernGreen: "#39824d",
+    steveGreen: "#295f38",
+    steveRed: "#ea4335"
   }
 };
 
