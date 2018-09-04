@@ -8,13 +8,6 @@ import { connect } from "react-redux";
 import { css } from "react-emotion";
 import Container from "../components/container";
 
-const BlueBar = css`
-  background-color: blue;
-  height: 5px;
-  width: 100px;
-  margin-bottom: 40px;
-`;
-
 const root = css`
   border: solid 1px grey;
   background-color: white;
@@ -129,7 +122,6 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Grid item xs={12}>
-              <div className={BlueBar} />
               <p className={subTitle}>{this.props.subtitle}</p>
             </Grid>
 
