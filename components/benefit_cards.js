@@ -11,6 +11,7 @@ import NeedTag from "./need_tag";
 import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
+import OneLiner from "./one_liner";
 
 const button = css`
   background-color: #3e57e2 !important;
@@ -23,7 +24,6 @@ const cardBody = css`
   padding-top: 15px !important;
 `;
 const cardDescriptionText = css`
-  font-size: 18px;
   padding: 10px 0px;
   padding-bottom: 15px;
 `;
@@ -85,7 +85,7 @@ export class BenefitCard extends Component {
               />
             </div>
 
-            <h2 className={"cardDescription " + cardDescriptionText}>
+            <OneLiner className={"cardDescription " + cardDescriptionText}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
@@ -95,7 +95,7 @@ export class BenefitCard extends Component {
                     : benefit.oneLineDescriptionFr
                 }
               />
-            </h2>
+            </OneLiner>
             <div>
               {needsMet.map(need => (
                 <NeedTag key={benefit.id + need.id} t={t} need={need} />
