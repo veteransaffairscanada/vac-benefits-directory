@@ -5,7 +5,6 @@ import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
-import ArrowBack from "@material-ui/icons/ArrowBack";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
 import Link from "next/link";
@@ -13,14 +12,10 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Header1 from "../components/header1";
 import Header2 from "../components/header2";
+import HeaderAnchorLink from "../components/header_anchor_link";
 
 const backLink = css`
-  font-size: 20px !important;
-  font-weight: 100 !important;
-  margin-bottom: 15px !important;
-  padding-left: 0px !important;
-  text-decoration: none !important;
-  text-transform: none !important;
+  margin-bottom: 15px;
 `;
 const bookmarkCSS = css`
   font-size: 70px;
@@ -90,17 +85,14 @@ export class Favourites extends Component {
       <Container id="favourites">
         <Grid className={outerGrid} container spacing={24}>
           <Grid item xs={12} className={topMatter}>
-            <Button
-              variant="flat"
-              size="large"
-              className={backLink}
+            <HeaderAnchorLink
               id="backButton"
+              className={backLink}
               href={this.get_link("benefits-directory")}
+              icon="arrowBack"
             >
-              <ArrowBack />
-              &nbsp; &nbsp;
               {t("favourites.back_link")}
-            </Button>
+            </HeaderAnchorLink>
 
             <Header1 className={"BenefitsCounter"}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}

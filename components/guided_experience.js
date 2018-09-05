@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
@@ -23,10 +22,6 @@ const box = css`
 const prevButton = css`
   margin-top: 50px;
   margin-left: 15px;
-  svg {
-    margin-top: -4px;
-    vertical-align: middle;
-  }
 `;
 
 const nextButton = css`
@@ -67,7 +62,8 @@ export class GuidedExperience extends Component {
     return (
       <Container id="guidedExperience">
         <HeaderAnchorLink
-          arrow="left"
+          id="backAnchor"
+          icon="arrowBack"
           href={
             this.props.prevSection === "index" ? this.props.indexURL : undefined
           }
