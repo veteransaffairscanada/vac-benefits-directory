@@ -10,6 +10,7 @@ import Footer from "../components/footer";
 import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
+import { globalTheme } from "../theme";
 
 const alpha = css`
   background-color: #345075;
@@ -38,6 +39,9 @@ const theme = createMuiTheme({
     }
   },
   palette: {
+    primary: {
+      main: globalTheme.colour.cerulean
+    },
     secondary: {
       light: "#f1f7fc",
       main: "#f1f7fc",
