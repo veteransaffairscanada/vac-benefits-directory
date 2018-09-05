@@ -5,24 +5,24 @@ import { cx, css } from "react-emotion";
 
 const style = css`
   font-family: ${globalTheme.fontFamily};
-  font-size: 36px;
-  font-weight: 900;
+  font-size: 18px;
+  font-weight: bold;
   color: ${globalTheme.colour.greyishBrown};
   margin: 0px;
 `;
 
-class Header2 extends Component {
+class Header4 extends Component {
   render() {
     const { className, children } = this.props;
     return (
-      <h2 className={className ? cx(style, className) : style}>{children}</h2>
+      <div className={className ? cx(style, className) : style}>{children}</div>
     );
   }
 }
 
-Header2.propTypes = {
-  children: PropTypes.string.isRequired,
+Header4.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   className: PropTypes.string
 };
 
-export default Header2;
+export default Header4;
