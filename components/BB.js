@@ -50,10 +50,6 @@ const sortByBox = css`
   border-width: 1px;
   border-radius: 1px;
 `;
-const subTitle = css`
-  font-size: 20px;
-  font-weight: 100;
-`;
 const title = css`
   padding-bottom: 15px;
 `;

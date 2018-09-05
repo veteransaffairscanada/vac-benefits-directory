@@ -10,7 +10,7 @@ const root = css`
   font-stretch: normal;
   line-height: 1.5;
   letter-spacing: normal;
-  color: #434343;
+  color: ${globalTheme.colour.greyishBrown};
   margin-bottom: 25px;
 `;
 
