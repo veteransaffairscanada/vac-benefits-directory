@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import ArrowForward from "@material-ui/icons/ArrowForward";
+import Button from "../components/button";
 import Bookmark from "@material-ui/icons/Bookmark";
 import SearchComponent from "../components/search";
 import { withI18next } from "../lib/withI18next";
@@ -24,22 +23,16 @@ const root = css`
     padding: 35px 48px 50px 48px;
   }
 `;
-const arrowCSS = css`
-  font-size: 24px;
-`;
 const bookmarkCSS = css`
   font-size: 24px;
+  margin-left: -10px;
+  margin-right: 10px;
 `;
 const line = css`
   background: #dfdfdf;
   border: none;
   height: 1px;
   margin: 30px 0;
-`;
-
-const button = css`
-  font-size: 24px !important;
-  text-transform: none !important;
 `;
 
 const columnLeft = css`
@@ -96,45 +89,32 @@ export class App extends Component {
                 <Body>{t("index.ge_prompt")}</Body>
                 <Button
                   id="heroGuidedLink"
-                  variant="raised"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  className={button}
+                  big={true}
                   href={urlGE}
+                  arrow={true}
                 >
                   {t("index.guided experience")}
                   &nbsp;&nbsp;
-                  <ArrowForward className={arrowCSS} />
                 </Button>
                 <hr className={line} />
                 <Body>{t("index.benefits_prompt")}</Body>
                 <Button
                   id="heroBenefitsLink"
-                  variant="raised"
-                  color="secondary"
-                  fullWidth
-                  size="large"
-                  className={button}
+                  big={true}
+                  secondary={true}
                   href={urlBD}
                 >
                   {t("index.all benefits")}
-                  &nbsp;&nbsp;
-                  <ArrowForward className={arrowCSS} />
                 </Button>
                 <hr className={line} />
                 <Body>{t("index.favourites_prompt")}</Body>
                 <Button
                   id="FavouritesPage"
-                  variant="raised"
-                  fullWidth
-                  color="secondary"
-                  size="large"
-                  className={button}
+                  big={true}
+                  secondary={true}
                   href={this.props.favouritesUrl}
                 >
                   <Bookmark className={bookmarkCSS} />
-                  &nbsp;
                   {t("index.your_saved_benefits") +
                     " (" +
                     this.props.favouriteBenefits.length +

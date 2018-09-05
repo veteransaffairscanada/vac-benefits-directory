@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core";
-import { KeyboardBackspace } from "@material-ui/icons";
+import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
 import FavouriteButton from "./favourite_button";
 import Paper from "@material-ui/core/Paper";
@@ -12,14 +11,10 @@ import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
 import Body from "../components/body";
+import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
 import OneLiner from "./one_liner";
+import Button from "./button";
 
-const button = css`
-  background-color: #3e57e2 !important;
-  color: white !important;
-  text-align: right !important;
-  text-transform: none !important;
-`;
 const cardBody = css`
   padding: 25px !important;
   padding-top: 15px !important;
@@ -36,18 +31,9 @@ const benefitName = css`
   padding: 10px 0;
   margin-bottom: 0px;
 `;
-const rightArrowIcon = css`
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  float: left;
-  filter: FlipH;
-  -ms-filter: fliph;
-  padding-right: 10px;
-`;
+
 const alignRight = css`
-  text-align: right;
+  text-align: right !important;
 `;
 export class BenefitCard extends Component {
   logExit = url => {
@@ -73,6 +59,11 @@ export class BenefitCard extends Component {
       <Grid item xs={12}>
         <div className={root}>
           <BenefitCardHeader benefit={benefit} t={t} store={this.props.store} />
+          <BenefitCardHeaderMoreInfo
+            benefit={benefit}
+            t={t}
+            store={this.props.store}
+          />
           <Paper className={cardBody}>
             <Body className={benefitName}>
               <Highlighter
@@ -116,9 +107,9 @@ export class BenefitCard extends Component {
               ) : null}
               <Grid item xs={8} className={alignRight}>
                 <Button
-                  className={button}
                   target="_blank"
-                  variant="raised"
+                  rel="noopener noreferrer"
+                  arrow={true}
                   onClick={() =>
                     this.logExit(
                       t("current-language-code") === "en"
@@ -131,10 +122,8 @@ export class BenefitCard extends Component {
                       ? benefit.benefitPageEn
                       : benefit.benefitPageFr
                   }
-                  rel="noopener noreferrer"
                 >
                   {t("Find out more")}
-                  <KeyboardBackspace className={rightArrowIcon} />
                 </Button>
               </Grid>
             </Grid>
