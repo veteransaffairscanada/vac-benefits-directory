@@ -25,7 +25,11 @@ export class Body extends Component {
 }
 
 Body.propTypes = {
-  children: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.array
+  ]),
   className: PropTypes.string
 };
 
