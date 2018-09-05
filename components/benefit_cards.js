@@ -16,7 +16,7 @@ import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
 const button = css`
   background-color: #3e57e2 !important;
   color: white !important;
-  benefit_card_additional_infotext-align: right !important;
+  text-align: right !important;
   text-transform: none !important;
 `;
 const cardBody = css`

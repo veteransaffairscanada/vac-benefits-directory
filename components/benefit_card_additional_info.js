@@ -27,10 +27,6 @@ const headerDesc = css`
 `;
 
 export class BenefitCardHeaderMoreInfo extends Component {
-  logExit = url => {
-    logEvent("Exit", url);
-  };
-
   componentDidMount() {
     this.forceUpdate();
   }
