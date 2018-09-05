@@ -13,6 +13,7 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Header1 from "../components/header1";
 import Header2 from "../components/header2";
+import Body from "../components/body";
 
 const backLink = css`
   font-size: 20px !important;
@@ -119,11 +120,11 @@ export class Favourites extends Component {
               />
             </Grid>
             {filteredBenefits.length == 0 ? (
-              <div className={emptyList}>
+              <Body className={emptyList}>
                 <Bookmark className={bookmarkCSS} />
                 <br />
                 {t("favourites.help")}
-              </div>
+              </Body>
             ) : (
               ""
             )}
@@ -150,7 +151,7 @@ export class Favourites extends Component {
               </Link>
             </p>
 
-            <p>{t("favourites.print_instructions")}</p>
+            <Body>{t("favourites.print_instructions")}</Body>
 
             <hr />
 
@@ -158,7 +159,7 @@ export class Favourites extends Component {
               <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
             </p>
 
-            <p>{t("favourites.call_time")}</p>
+            <Body>{t("favourites.call_time")}</Body>
 
             <hr />
 
@@ -166,7 +167,7 @@ export class Favourites extends Component {
               <a href={"mailto:" + t("contact.email")}>{t("contact.email")}</a>
             </p>
 
-            <p>{t("favourites.email_disclaimer")}</p>
+            <Body>{t("favourites.email_disclaimer")}</Body>
 
             <hr />
 
@@ -174,7 +175,7 @@ export class Favourites extends Component {
               {t("favourites.apply_prompt")}
             </Header2>
 
-            <p>
+            <Body>
               <a
                 href={t("contact.my_vac_link")}
                 target="_blank"
@@ -184,7 +185,7 @@ export class Favourites extends Component {
               </a>
               &nbsp;
               {t("favourites.login_prompt")}
-            </p>
+            </Body>
           </Grid>
         </Grid>
       </Container>

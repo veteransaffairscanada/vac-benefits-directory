@@ -12,6 +12,7 @@ import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Body from "../components/body";
 import Header1 from "../components/header1";
 
 const root = css`
@@ -54,13 +55,6 @@ const image = css`
   }
 `;
 
-const prompt = css`
-  color: #303232;
-  font-size: 18px;
-  line-height: 1.5;
-  margin: 0 0 25px 0;
-`;
-
 const title = css`
   margin-bottom: 46px;
 `;
@@ -92,7 +86,7 @@ export class App extends Component {
                 </Header1>
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
-                <p className={prompt}>{t("index.ge_prompt")}</p>
+                <Body>{t("index.ge_prompt")}</Body>
                 <Button
                   id="heroGuidedLink"
                   big={true}
@@ -103,7 +97,7 @@ export class App extends Component {
                   &nbsp;&nbsp;
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>{t("index.benefits_prompt")}</p>
+                <Body>{t("index.benefits_prompt")}</Body>
                 <Button
                   id="heroBenefitsLink"
                   big={true}
@@ -113,7 +107,7 @@ export class App extends Component {
                   {t("index.all benefits")}
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>{t("index.favourites_prompt")}</p>
+                <Body>{t("index.favourites_prompt")}</Body>
                 <Button
                   id="FavouritesPage"
                   big={true}
@@ -128,7 +122,7 @@ export class App extends Component {
                 </Button>
               </Grid>
               <Grid item xs={12} md={6} className={columnRight}>
-                <p className={prompt}>{t("index.search_prompt")}</p>
+                <Body>{t("index.search_prompt")}</Body>
                 <SearchComponent
                   id="searchComponent"
                   i18n={this.props.i18n}
