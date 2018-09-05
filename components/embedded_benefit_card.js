@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Grid } from "@material-ui/core";
-import classnames from "classnames";
 import { KeyboardBackspace } from "@material-ui/icons";
 import { logEvent } from "../utils/analytics";
 import Paper from "@material-ui/core/Paper";
 import { css } from "react-emotion";
-
+import OneLiner from "./one_liner";
 const root = css`
   margin: 20px;
   margin-top: 0px;
@@ -20,11 +19,6 @@ const heading = css`
   font-size: 15px !important;
   font-weight: 500 !important;
   color: #3c51e6 !important;
-`;
-const cardDescriptionText = css`
-  font-size: 15px;
-  line-height: 1.6;
-  padding-top: 0px;
 `;
 const rightArrowIcon = css`
   -moz-transform: scaleX(-1);
@@ -77,11 +71,11 @@ export class EmbeddedBenefitCard extends Component {
 
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <h2 variant="title" className={classnames(cardDescriptionText)}>
+            <OneLiner>
               {language === "en"
                 ? benefit.oneLineDescriptionEn
                 : benefit.oneLineDescriptionFr}
-            </h2>
+            </OneLiner>
           </Grid>
         </Grid>
       </Paper>
