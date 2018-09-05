@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import Header2 from "../components/header2";
+import HeaderAnchorLink from "../components/header_anchor_link";
 
 const root = css`
   border: solid 1px grey;
@@ -20,9 +21,9 @@ const box = css`
 `;
 
 const prevButton = css`
-  margin-top: 20px !important;
+  margin-top: 100px !important;
   margin-left: 15px !important;
-  text-transform: none;
+  padding-top: 50px !important;
 `;
 
 const nextButton = css`
@@ -62,8 +63,8 @@ export class GuidedExperience extends Component {
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <Container id="guidedExperience">
-        <Button
-          size="medium"
+        <HeaderAnchorLink
+          arrow="left"
           href={
             this.props.prevSection === "index" ? this.props.indexURL : undefined
           }
@@ -74,9 +75,9 @@ export class GuidedExperience extends Component {
           }
           className={prevButton}
         >
-          <ArrowBack />
-          &nbsp; &nbsp; {t("back")}
-        </Button>
+          {t("back")}
+        </HeaderAnchorLink>
+
         <div className={root}>
           <Grid container spacing={24} className={box}>
             <Grid item xs={12} md={3}>
