@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import Paper from "@material-ui/core/Paper";
-import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 
