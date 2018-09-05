@@ -21,9 +21,12 @@ const box = css`
 `;
 
 const prevButton = css`
-  margin-top: 100px !important;
-  margin-left: 15px !important;
-  padding-top: 50px !important;
+  margin-top: 50px;
+  margin-left: 15px;
+  svg {
+    margin-top: -4px;
+    vertical-align: middle;
+  }
 `;
 
 const nextButton = css`

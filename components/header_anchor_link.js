@@ -17,8 +17,10 @@ const style = css`
 class HeaderAnchorLink extends Component {
   render() {
     const { arrow, className, children } = this.props;
+    let propsCopy = JSON.parse(JSON.stringify(this.props));
+    delete propsCopy.className;
     return (
-      <a className={cx(style, className)} {...this.props}>
+      <a className={cx(style, className)} {...propsCopy}>
         {arrow === "left" ? <ArrowBack /> : ""}
         {children}
         {arrow === "right" ? <ArrowForward /> : ""}
