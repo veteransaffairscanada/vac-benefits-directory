@@ -32,7 +32,7 @@ const root = css`
   width: 100%;
 `;
 const benefitName = css`
-  font-weight: 500;
+  font-weight: 600;
   padding: 10px 0;
   margin-bottom: 0px;
 `;
