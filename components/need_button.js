@@ -29,7 +29,7 @@ export class NeedButton extends Component {
       <FormControlLabel
         control={
           <Checkbox
-            checked={this.props.selectedNeeds[need.id]}
+            checked={this.props.selectedNeeds[need.id] !== undefined}
             onChange={() => this.handleClick(need.id)}
             value={need.id}
             color="primary"

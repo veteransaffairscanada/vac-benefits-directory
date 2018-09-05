@@ -33,13 +33,11 @@ describe("DataValidation", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      //  data-validation: {
-      //    getBrokenBenefits: jest.fn()
-      //  },
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
       examples: examplesFixture,
+      errors: [],
       areaOffices: areaOfficesFixture
     };
     _mountedDataValidation = undefined;
@@ -175,6 +173,7 @@ describe("DataValidation", () => {
 
     it("loops through benefits and sends the benefit ID to the /checkURL endpoint", done => {
       global.fetch = jest.fn();
+      global.fetch.mockReturnValue(new Promise(() => {}));
       Promise.resolve(
         mountedDataValidation()
           .instance()
@@ -183,6 +182,20 @@ describe("DataValidation", () => {
         expect(fetch.mock.calls.length).toEqual(3);
         done();
       });
+    });
+
+    it("displays a server error if one exists ", () => {
+      expect(
+        shallow(<DataValidation {...props} />)
+          .find("#errors")
+          .html()
+      ).toContain("Pass");
+      props.errors.push("veryBadError");
+      expect(
+        shallow(<DataValidation {...props} />)
+          .find("#errors")
+          .html()
+      ).toContain("Fail");
     });
   });
 });

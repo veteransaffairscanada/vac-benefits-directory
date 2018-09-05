@@ -18,6 +18,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
+import Header2 from "../components/header2";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -53,7 +54,6 @@ const subTitle = css`
   font-weight: 100;
 `;
 const title = css`
-  font-size: 36px;
   padding-bottom: 15px;
 `;
 const topMatter = css`
@@ -178,9 +178,9 @@ export class BB extends Component {
                   </Button>
                 </Grid>
                 <Grid item xs={12}>
-                  <h1 className={"BenefitsCounter " + title}>
+                  <Header2 className={"BenefitsCounter " + title}>
                     {this.countString(filteredBenefits.length, t)}
-                  </h1>
+                  </Header2>
                   {filteredBenefits.length > 0 ? (
                     <h2 className={subTitle}>{t("B3.check eligibility")}</h2>
                   ) : (
