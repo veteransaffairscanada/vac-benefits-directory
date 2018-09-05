@@ -19,6 +19,7 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
 import Header2 from "../components/header2";
+import Body from "../components/body";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -182,7 +183,7 @@ export class BB extends Component {
                     {this.countString(filteredBenefits.length, t)}
                   </Header2>
                   {filteredBenefits.length > 0 ? (
-                    <h2 className={subTitle}>{t("B3.check eligibility")}</h2>
+                    <Body>{t("B3.check eligibility")}</Body>
                   ) : (
                     ""
                   )}

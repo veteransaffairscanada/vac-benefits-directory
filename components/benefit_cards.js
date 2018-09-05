@@ -11,6 +11,7 @@ import NeedTag from "./need_tag";
 import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
+import Body from "../components/body";
 
 const button = css`
   background-color: #3e57e2 !important;
@@ -31,9 +32,9 @@ const root = css`
   width: 100%;
 `;
 const benefitName = css`
-  font-size: 24px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 10px 0;
+  margin-bottom: 0px;
 `;
 const rightArrowIcon = css`
   -moz-transform: scaleX(-1);
@@ -73,7 +74,7 @@ export class BenefitCard extends Component {
         <div className={root}>
           <BenefitCardHeader benefit={benefit} t={t} store={this.props.store} />
           <Paper className={cardBody}>
-            <div component="p" className={benefitName}>
+            <Body className={benefitName}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
@@ -83,7 +84,7 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-            </div>
+            </Body>
 
             <h2 className={"cardDescription " + cardDescriptionText}>
               <Highlighter
