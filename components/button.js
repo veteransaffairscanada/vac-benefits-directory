@@ -86,32 +86,8 @@ const StyledButton = styled("a")(
   })
 );
 
-/**
- *
- * ### Usage
- *
- * Simple
- * ```jsx
- * <Button>My button text</Button>
- * ```
- *
- * With Icon
- * ```jsx
- * import { ButtonArrow } from '@govuk-react/icons';
- *
- * <Button icon={<ButtonArrow />}>My button text</Button>
- * ```
- *
- * ### References:
- * - https://govuk-elements.herokuapp.com/buttons/
- * - https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/design-patterns/_buttons.scss
- * - https://github.com/alphagov/govuk-frontend/blob/master/src/components/button/_button.scss
- * - https://github.com/alphagov/govuk_elements/blob/master/packages/govuk-elements-sass/public/sass/elements/_buttons.scss
- *
- * ### TODO:
- * - Use constants for some of the values cssinjs values
- * - Remove cascade styling for nested elements such as `svg`
- */
+// from: https://github.com/UKHomeOffice/govuk-react/blob/master/components/button/src/index.js
+
 const Button = ({ big, secondary, arrow, children, icon, ...props }) => (
   <StyledButton
     icon={icon}
