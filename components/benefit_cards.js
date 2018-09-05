@@ -102,6 +102,7 @@ export class BenefitCard extends Component {
                 <Button
                   target="_blank"
                   rel="noopener noreferrer"
+                  arrow={true}
                   onClick={() =>
                     this.logExit(
                       t("current-language-code") === "en"

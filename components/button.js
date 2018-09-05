@@ -17,11 +17,9 @@ const StyledButton = styled("a")(
   {
     backgroundColor: globalTheme.colour.fernGreen,
     border: "none",
-    // boxShadow: `0 2px 0 ${globalTheme.colour.darkGreen}`,
     borderRadius: "3px",
     color: "white",
     cursor: "pointer",
-    //display: 'flex',
     alignItems: "center",
     justifyContent: "space-between",
     fontFamily: globalTheme.fontFamily,
@@ -30,7 +28,7 @@ const StyledButton = styled("a")(
     lineHeight: "23px",
     outlineOffset: "-1px",
     outline: "1px solid transparent",
-    padding: ".526315em .789473em", // .263157em',
+    padding: ".526315em .789473em",
     textDecoration: "none",
     WebkitAppearance: "none",
     WebkitFontSmoothing: "antialiased",
@@ -59,8 +57,7 @@ const StyledButton = styled("a")(
     " svg": {
       height: hasArrow ? "23px" : undefined,
       width: hasArrow ? "25px" : undefined,
-      marginLeft: hasArrow ? "10px" : undefined,
-      verticalAlign: hasArrow ? "middle" : undefined
+      marginLeft: hasArrow ? "10px" : undefined
     }
   }),
   ({ isBig, icon }) => ({
@@ -129,7 +126,6 @@ const Button = ({ big, secondary, arrow, children, icon, ...props }) => (
 );
 
 Button.propTypes = {
-  href: PropTypes.string.isRequired,
   /**
    * Button text
    */
@@ -145,7 +141,6 @@ Button.propTypes = {
   /**
    * Renders a disabled button and removes pointer events if set to true
    */
-  disabled: PropTypes.bool,
   secondary: PropTypes.bool,
   arrow: PropTypes.bool
 };
@@ -153,7 +148,6 @@ Button.propTypes = {
 Button.defaultProps = {
   children: "Button",
   icon: undefined,
-  disabled: false,
   big: false,
   secondary: false,
   arrow: false
