@@ -36,7 +36,7 @@ describe("GuidedExperience", () => {
       prevSection: "XX",
       stepNumber: 1,
       children: <div className="thing" />,
-      subtitle: "",
+      subtitle: "subtitle",
       selectedEligibility: {
         patronType: "family",
         serviceType: "rcmp",

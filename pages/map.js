@@ -13,13 +13,10 @@ import Link from "next/link";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Header1 from "../components/header1";
 
 const paper = css`
   margin-top: ${globalTheme.marginTop};
-`;
-
-const mapTitle = css`
-  font-size: 36px !important;
 `;
 
 const backLink = css`
@@ -101,7 +98,7 @@ export class Map extends Component {
                     {t("back")}
                   </Button>
                 </Link>
-                <h1 className={mapTitle}>{t("map.vacOffices")}</h1>
+                <Header1>{t("map.vacOffices")}</Header1>
               </Grid>
               <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
                 <p>

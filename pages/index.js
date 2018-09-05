@@ -13,6 +13,7 @@ import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Header1 from "../components/header1";
 
 const root = css`
   background-color: white;
@@ -23,10 +24,10 @@ const root = css`
   }
 `;
 const arrowCSS = css`
-font-size: 24px;
+  font-size: 24px;
 `;
 const bookmarkCSS = css`
-font-size: 24px;
+  font-size: 24px;
 `;
 const line = css`
   background: #dfdfdf;
@@ -68,8 +69,6 @@ const prompt = css`
 `;
 
 const title = css`
-  color: #434343;
-  font-size: 36px;
   margin-bottom: 46px;
 `;
 
@@ -95,9 +94,9 @@ export class App extends Component {
           <Paper className={root}>
             <Grid container spacing={24}>
               <Grid item xs={12}>
-                <h1 id="heroTitle" className={title}>
+                <Header1 id="heroTitle" className={title}>
                   {t("index.title")}
-                </h1>
+                </Header1>
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
                 <p className={prompt}>{t("index.ge_prompt")}</p>
@@ -112,7 +111,7 @@ export class App extends Component {
                 >
                   {t("index.guided experience")}
                   &nbsp;&nbsp;
-                  <ArrowForward className={arrowCSS}/>
+                  <ArrowForward className={arrowCSS} />
                 </Button>
                 <hr className={line} />
                 <p className={prompt}>{t("index.benefits_prompt")}</p>
@@ -140,7 +139,7 @@ export class App extends Component {
                   className={button}
                   href={this.props.favouritesUrl}
                 >
-                  <Bookmark className={bookmarkCSS}/>
+                  <Bookmark className={bookmarkCSS} />
                   &nbsp;
                   {t("index.your_saved_benefits") +
                     " (" +

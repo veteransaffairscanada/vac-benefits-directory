@@ -7,6 +7,7 @@ import ArrowForward from "@material-ui/icons/ArrowForward";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Header2 from "../components/header2";
 
 const root = css`
   border: solid 1px grey;
@@ -38,10 +39,6 @@ const nextButton = css`
 const title = css`
   font-size: 1.5em !important;
   color: black;
-`;
-
-const subTitle = css`
-  font-size: 1em !important;
 `;
 
 const jumpButton = css`
@@ -122,7 +119,7 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Grid item xs={12}>
-              <p className={subTitle}>{this.props.subtitle}</p>
+              <Header2>{this.props.subtitle}</Header2>
             </Grid>
 
             <Grid item xs={12}>
