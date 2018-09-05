@@ -14,6 +14,7 @@ import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import Body from "../components/body";
+import Header1 from "../components/header1";
 
 const root = css`
   background-color: white;
@@ -62,8 +63,6 @@ const image = css`
 `;
 
 const title = css`
-  color: #434343;
-  font-size: 36px;
   margin-bottom: 46px;
 `;
 
@@ -89,9 +88,9 @@ export class App extends Component {
           <Paper className={root}>
             <Grid container spacing={24}>
               <Grid item xs={12}>
-                <h1 id="heroTitle" className={title}>
+                <Header1 id="heroTitle" className={title}>
                   {t("index.title")}
-                </h1>
+                </Header1>
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
                 <Body>{t("index.ge_prompt")}</Body>

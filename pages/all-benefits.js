@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Header1 from "../components/header1";
 
 const root = css`
   margin-left: 15px;
@@ -27,7 +28,7 @@ export class AllBenefits extends Component {
       >
         <Container>
           <div className={root}>
-            <h1>{t("all-benefits.List of all benefits")}</h1>
+            <Header1>{t("all-benefits.List of all benefits")}</Header1>
             <Grid item xs={12}>
               <Grid container spacing={24}>
                 <BenefitList
