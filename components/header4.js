@@ -15,13 +15,13 @@ class Header4 extends Component {
   render() {
     const { className, children } = this.props;
     return (
-      <h4 className={className ? cx(style, className) : style}>{children}</h4>
+      <div className={className ? cx(style, className) : style}>{children}</div>
     );
   }
 }
 
 Header4.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   className: PropTypes.string
 };
 
