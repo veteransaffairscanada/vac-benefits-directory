@@ -4,6 +4,7 @@ import Pin from "@material-ui/icons/Place";
 import { cx, css } from "react-emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
+import Body from "../components/body";
 
 const root = css`
   margin-right: 10px;
@@ -13,9 +14,9 @@ const tableWidth = css`
   width: 100%;
 `;
 const scrollingDiv = css`
-height: 400px;
-width: 100%;
-overflow-y: scroll;
+  height: 400px;
+  width: 100%;
+  overflow-y: scroll;
 `;
 const tableHeaderDiv = css`
   width: 100% !important;
@@ -51,6 +52,12 @@ const officeCell = css`
 const bold = css`
   font-weight: bold;
 `;
+
+const tableText = css`
+  margin-top: 10px;
+  margin-bottom: 0px;
+`;
+
 const pin = css`
   color: #ea4335;
   font-size: 60px !important;
@@ -172,12 +179,18 @@ export class AreaOfficeTable extends Component {
           <Pin className={pin} />
         </td>
         <td className={officeCell}>
-          <p className={bold}>{language === "en" ? ae.name_en : ae.name_fr}</p>
-          {language === "en" ? ae.address_en : ae.address_fr}
+          <Body className={cx(tableText, bold)}>
+            {language === "en" ? ae.name_en : ae.name_fr}
+          </Body>
+          <Body className={tableText}>
+            {language === "en" ? ae.address_en : ae.address_fr}
+          </Body>
         </td>
         {this.isDefaultLocation() ? null : (
           <td className={distanceCell}>
-            <p className={bold}>{Math.round(distances[ae.id]) + " km"}</p>
+            <Body className={cx(tableText, bold)}>
+              {Math.round(distances[ae.id]) + " km"}
+            </Body>
           </td>
         )}
       </tr>
@@ -201,10 +214,7 @@ export class AreaOfficeTable extends Component {
             </tbody>
           </table>
         </div>
-        <div
-          id="scrolling_div"
-          className={scrollingDiv}
-          >
+        <div id="scrolling_div" className={scrollingDiv}>
           <table className={mainTable}>
             <colgroup>
               <col span="1" style={{ width: "10%" }} />
