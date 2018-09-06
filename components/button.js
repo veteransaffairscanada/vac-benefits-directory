@@ -13,7 +13,7 @@ const rightArrowIcon = css`
   -ms-filter: fliph;
 `;
 
-const StyledButton = styled("a")(
+const StyledButton = styled("button")(
   {
     backgroundColor: globalTheme.colour.fernGreen,
     border: "none",
