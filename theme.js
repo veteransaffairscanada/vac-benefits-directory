@@ -29,7 +29,8 @@ const theme = {
     fernGreen: "#39824d",
     darkGreen: "#295f38",
     tornadoRed: "#ea4335",
-    govukYellow: "#FFBF47"
+    govukYellow: "#FFBF47",
+    white: "#ffffff"
   }
 };
 
