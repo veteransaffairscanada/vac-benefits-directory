@@ -27,9 +27,13 @@ const profileSelector = css`
   margin-bottom: 30px !important;
 `;
 const clearButton = css`
-  text-decoration: underline !important;
   text-transform: unset !important;
   font-size: 16px !important;
+  color: ${globalTheme.colour.cerulean} !important;
+  :hover {
+    text-decoration: underline !important;
+    background-color: #f5f5f5 !important;
+  }
 `;
 const filterTitle = css`
   padding-right: 0px;
@@ -98,6 +102,7 @@ export class ProfileNeedsSelectorMobile extends Component {
               this.props.patronType !== "" ? (
                 <h3 variant="title" className={filterTitle}>
                   <Button
+                    disableRipple
                     className={clearButton}
                     id="ClearFiltersMobile"
                     variant="flat"

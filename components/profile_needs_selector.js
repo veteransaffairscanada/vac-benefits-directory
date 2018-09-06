@@ -22,11 +22,14 @@ const profileSelector = css`
   margin-bottom: 30px !important;
 `;
 const clearButton = css`
-  text-decoration: underline !important;
   text-transform: unset !important;
   font-size: 60% !important;
   float: right !important;
-  color: blue !important;
+  color: ${globalTheme.colour.cerulean} !important;
+  :hover {
+    text-decoration: underline !important;
+    background-color: white !important;
+  }
 `;
 const clearIcon = css`
   font-size: 100% !important;
@@ -78,6 +81,7 @@ export class ProfileNeedsSelector extends Component {
           this.props.patronType !== "" ? (
             <Button
               className={clearButton}
+              disableRipple
               id="ClearFilters"
               variant="flat"
               size="small"
