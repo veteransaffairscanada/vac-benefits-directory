@@ -22,7 +22,7 @@ const profileSelector = css`
   margin-bottom: 30px !important;
 `;
 const clearButton = css`
-  font-size: 60% !important;
+  font-size: 85% !important;
   float: right !important;
 `;
 const filterTitle = css`
