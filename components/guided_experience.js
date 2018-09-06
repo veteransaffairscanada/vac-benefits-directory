@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import oldButton from "@material-ui/core/Button";
+import OldButton from "@material-ui/core/Button";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
@@ -52,7 +52,8 @@ export class GuidedExperience extends Component {
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <Container id="guidedExperience">
-        <oldButton
+        <OldButton
+          id="old_button"
           size="medium"
           href={
             this.props.prevSection === "index" ? this.props.indexURL : undefined
@@ -62,11 +63,11 @@ export class GuidedExperience extends Component {
               ? undefined
               : () => this.props.setSection(this.props.prevSection)
           }
-          className={prevButton}
+          className={"old_button " + prevButton}
         >
           <ArrowBack />
           &nbsp; &nbsp; {t("back")}
-        </oldButton>
+        </OldButton>
         <div className={root}>
           <Grid container spacing={24} className={box}>
             <Grid item xs={12} md={3}>
