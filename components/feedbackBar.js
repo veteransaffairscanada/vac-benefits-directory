@@ -5,7 +5,6 @@ import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
 import TextField from "@material-ui/core/TextField";
-import ArrowForward from "@material-ui/icons/ArrowForward";
 import { css } from "react-emotion";
 require("isomorphic-fetch");
 
