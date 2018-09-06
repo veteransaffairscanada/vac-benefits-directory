@@ -14,6 +14,9 @@ const style = css`
   font-weight: bold;
   color: ${globalTheme.colour.cerulean};
   text-decoration: none !important;
+  :hover {
+    text-decoration: underline !important;
+  }
   svg {
     margin-top: -4px;
     vertical-align: middle;
