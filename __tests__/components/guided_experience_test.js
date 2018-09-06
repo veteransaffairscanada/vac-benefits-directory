@@ -61,13 +61,10 @@ describe("GuidedExperience", () => {
   });
 
   it("calls setSection if the Back button is pressed", () => {
-    const anchor = mounted_GuidedExperience()
-      .find("#a-backAnchor")
-      .first();
-
-    console.log(anchor.debug());
-
-    anchor.simulate("click");
+    mounted_GuidedExperience()
+      .find("Button")
+      .first()
+      .simulate("click");
     expect(props.setSection).toBeCalledWith("XX");
   });
 
