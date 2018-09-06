@@ -86,6 +86,7 @@ export class BenefitCardHeader extends Component {
     const parentBenefits = benefits.filter(
       b => b.childBenefits && b.childBenefits.includes(benefit.id)
     );
+
     if (
       parentBenefits.length > 0 &&
       benefit.availableIndependently === "Requires Gateway Benefit"

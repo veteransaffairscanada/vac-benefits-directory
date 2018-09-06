@@ -17,6 +17,7 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Header2 from "../components/header2";
 import HeaderAnchorLink from "../components/header_anchor_link";
+import Body from "../components/body";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -38,10 +39,6 @@ const sortByBox = css`
   border-style: solid;
   border-width: 1px;
   border-radius: 1px;
-`;
-const subTitle = css`
-  font-size: 20px;
-  font-weight: 100;
 `;
 const title = css`
   padding-bottom: 15px;
@@ -163,7 +160,7 @@ export class BB extends Component {
                     {this.countString(filteredBenefits.length, t)}
                   </Header2>
                   {filteredBenefits.length > 0 ? (
-                    <h2 className={subTitle}>{t("B3.check eligibility")}</h2>
+                    <Body>{t("B3.check eligibility")}</Body>
                   ) : (
                     ""
                   )}

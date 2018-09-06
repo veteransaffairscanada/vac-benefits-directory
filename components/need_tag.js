@@ -16,7 +16,10 @@ export class NeedTag extends Component {
   render() {
     const { t, need } = this.props;
     return (
-      <div className={needsTag} style={{ backgroundColor: need.colour }}>
+      <div
+        className={needsTag}
+        style={{ backgroundColor: globalTheme.colour.paleGrey }}
+      >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </div>
     );
