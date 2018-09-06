@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core/";
+import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
 import TextField from "@material-ui/core/TextField";
@@ -161,17 +162,14 @@ export class FeedbackBar extends Component {
                 />
               </div>
               <br />
-              <Button
+              <SubmitButton
                 id="sendComment"
-                variant="contained"
-                color="primary"
-                className={buttonStyle}
+                arrow={true}
+                big={true}
                 onClick={() => this.sendComment()}
               >
                 {t("send")}
-                &nbsp; &nbsp;
-                <ArrowForward />
-              </Button>
+              </SubmitButton>
               &nbsp; &nbsp;
               <Button
                 id="cancelComment"
