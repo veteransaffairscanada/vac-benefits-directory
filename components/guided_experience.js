@@ -77,6 +77,7 @@ export class GuidedExperience extends Component {
           <ArrowBack />
           &nbsp; &nbsp; {t("back")}
         </Button>
+
         <div className={root}>
           <Grid container spacing={24} className={box}>
             <Grid item xs={12} md={3}>
