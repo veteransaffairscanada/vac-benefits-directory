@@ -18,7 +18,7 @@ const backLink = css`
   margin-bottom: 15px;
 `;
 const bookmarkCSS = css`
-  font-size: 70px;
+  font-size: 70px !important;
 `;
 const contactUsTitle = css`
   margin: 20px 0;
@@ -26,6 +26,8 @@ const contactUsTitle = css`
 const emptyList = css`
   margin-top: 20px;
   text-align: center;
+  word-spacing: normal;
+}
 `;
 const outerGrid = css`
   padding-left: 16px;
@@ -103,7 +105,14 @@ export class Favourites extends Component {
               <Body className={emptyList}>
                 <Bookmark className={bookmarkCSS} />
                 <br />
-                {t("favourites.help")}
+                {t("favourites.help_msg_line1")}
+                <br />
+                <Link href={t("favourites.help_url")}>
+                  <a>{t("favourites.help_url_text")}</a>
+                </Link>
+                {" " + t("favourites.help_msg_line_connect") + " "}
+                <strong>{t("favourites.help_msg_emphasis") + " "}</strong>
+                {t("favourites.help_msg_last")}
               </Body>
             ) : (
               ""
