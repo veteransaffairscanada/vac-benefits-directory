@@ -126,7 +126,7 @@ Layout.propTypes = {
 };
 
 Layout.defaultProps = {
-  backgroundColor: "#e3e3e3"
+  backgroundColor: globalTheme.colour.paleGrey
 };
 
 export default Layout;
