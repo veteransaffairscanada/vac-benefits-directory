@@ -24,7 +24,9 @@ const benefitsFixture = [
     availableIndependently: "Requires Gateway Benefit",
     needs: ["3"],
     eligibilityPaths: ["0"],
-    examples: ["0", "1"]
+    examples: ["0", "1"],
+    noteEn: "Will be replaced by Pension for Life on April 1st 2019.",
+    noteFr: "Sera remplacé par Pension à vie le 1er avril 2019."
   },
   {
     id: "3",

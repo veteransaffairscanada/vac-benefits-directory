@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core";
-import { KeyboardBackspace } from "@material-ui/icons";
+import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
 import FavouriteButton from "./favourite_button";
 import Paper from "@material-ui/core/Paper";
@@ -11,42 +10,28 @@ import NeedTag from "./need_tag";
 import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
+import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
 import OneLiner from "./one_liner";
+import Header4 from "./header4";
+import Button from "./button";
 
-const button = css`
-  background-color: #3e57e2 !important;
-  color: white !important;
-  text-align: right !important;
-  text-transform: none !important;
-`;
 const cardBody = css`
   padding: 25px !important;
   padding-top: 15px !important;
 `;
 const cardDescriptionText = css`
-  padding-top: 10px;
-  padding-bottom: 15px;
+  padding-top: 26px;
+  padding-bottom: 30px;
 `;
 const root = css`
   width: 100%;
 `;
 const benefitName = css`
-  font-size: 24px;
-  font-weight: 600;
-  padding: 10px 0;
+  padding-top: 10px;
 `;
-const rightArrowIcon = css`
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  float: left;
-  filter: FlipH;
-  -ms-filter: fliph;
-  padding-right: 10px;
-`;
+
 const alignRight = css`
-  text-align: right;
+  text-align: right !important;
 `;
 export class BenefitCard extends Component {
   logExit = url => {
@@ -72,8 +57,13 @@ export class BenefitCard extends Component {
       <Grid item xs={12}>
         <div className={root}>
           <BenefitCardHeader benefit={benefit} t={t} store={this.props.store} />
+          <BenefitCardHeaderMoreInfo
+            benefit={benefit}
+            t={t}
+            store={this.props.store}
+          />
           <Paper className={cardBody}>
-            <div component="p" className={benefitName}>
+            <Header4 className={benefitName}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
@@ -83,7 +73,7 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-            </div>
+            </Header4>
 
             <OneLiner className={"cardDescription " + cardDescriptionText}>
               <Highlighter
@@ -115,25 +105,22 @@ export class BenefitCard extends Component {
               ) : null}
               <Grid item xs={8} className={alignRight}>
                 <Button
-                  className={button}
-                  target="_blank"
-                  variant="raised"
-                  onClick={() =>
+                  arrow={true}
+                  onClick={() => {
                     this.logExit(
                       t("current-language-code") === "en"
                         ? benefit.benefitPageEn
                         : benefit.benefitPageFr
-                    )
-                  }
-                  href={
-                    t("current-language-code") === "en"
-                      ? benefit.benefitPageEn
-                      : benefit.benefitPageFr
-                  }
-                  rel="noopener noreferrer"
+                    );
+                    const url =
+                      t("current-language-code") === "en"
+                        ? benefit.benefitPageEn
+                        : benefit.benefitPageFr;
+                    const win = window.open(url, "_blank");
+                    win.focus();
+                  }}
                 >
                   {t("Find out more")}
-                  <KeyboardBackspace className={rightArrowIcon} />
                 </Button>
               </Grid>
             </Grid>

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
-import ArrowForward from "@material-ui/icons/ArrowForward";
+import Button from "../components/button";
 import Bookmark from "@material-ui/icons/Bookmark";
 import SearchComponent from "../components/search";
 import { withI18next } from "../lib/withI18next";
@@ -13,7 +12,9 @@ import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Body from "../components/body";
 import Header1 from "../components/header1";
+import Router from "next/router";
 
 const root = css`
   background-color: white;
@@ -23,22 +24,16 @@ const root = css`
     padding: 35px 48px 50px 48px;
   }
 `;
-const arrowCSS = css`
-  font-size: 24px;
-`;
 const bookmarkCSS = css`
   font-size: 24px;
+  margin-left: -10px;
+  margin-right: 10px;
 `;
 const line = css`
   background: #dfdfdf;
   border: none;
   height: 1px;
   margin: 30px 0;
-`;
-
-const button = css`
-  font-size: 24px !important;
-  text-transform: none !important;
 `;
 
 const columnLeft = css`
@@ -61,13 +56,6 @@ const image = css`
   }
 `;
 
-const prompt = css`
-  color: #303232;
-  font-size: 18px;
-  line-height: 1.5;
-  margin: 0 0 25px 0;
-`;
-
 const title = css`
   margin-bottom: 46px;
 `;
@@ -80,8 +68,8 @@ export class App extends Component {
   render() {
     const { i18n, t } = this.props;
     let urlGE =
-      "guided?section=patronTypeQuestion&lng=" + t("current-language-code");
-    let urlBD = "benefits-directory?lng=" + t("current-language-code");
+      "/guided?section=patronTypeQuestion&lng=" + t("current-language-code");
+    let urlBD = "/benefits-directory?lng=" + t("current-language-code");
     return (
       <Layout
         i18n={i18n}
@@ -99,48 +87,35 @@ export class App extends Component {
                 </Header1>
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
-                <p className={prompt}>{t("index.ge_prompt")}</p>
+                <Body>{t("index.ge_prompt")}</Body>
                 <Button
                   id="heroGuidedLink"
-                  variant="raised"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  className={button}
-                  href={urlGE}
+                  big={true}
+                  onClick={() => Router.push(urlGE)}
+                  arrow={true}
                 >
                   {t("index.guided experience")}
                   &nbsp;&nbsp;
-                  <ArrowForward className={arrowCSS} />
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>{t("index.benefits_prompt")}</p>
+                <Body>{t("index.benefits_prompt")}</Body>
                 <Button
                   id="heroBenefitsLink"
-                  variant="raised"
-                  color="secondary"
-                  fullWidth
-                  size="large"
-                  className={button}
-                  href={urlBD}
+                  big={true}
+                  secondary={true}
+                  onClick={() => Router.push(urlBD)}
                 >
                   {t("index.all benefits")}
-                  &nbsp;&nbsp;
-                  <ArrowForward className={arrowCSS} />
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>{t("index.favourites_prompt")}</p>
+                <Body>{t("index.favourites_prompt")}</Body>
                 <Button
                   id="FavouritesPage"
-                  variant="raised"
-                  fullWidth
-                  color="secondary"
-                  size="large"
-                  className={button}
-                  href={this.props.favouritesUrl}
+                  big={true}
+                  secondary={true}
+                  onClick={() => Router.push(this.props.favouritesUrl)}
                 >
                   <Bookmark className={bookmarkCSS} />
-                  &nbsp;
                   {t("index.your_saved_benefits") +
                     " (" +
                     this.props.favouriteBenefits.length +
@@ -148,7 +123,7 @@ export class App extends Component {
                 </Button>
               </Grid>
               <Grid item xs={12} md={6} className={columnRight}>
-                <p className={prompt}>{t("index.search_prompt")}</p>
+                <Body>{t("index.search_prompt")}</Body>
                 <SearchComponent
                   id="searchComponent"
                   i18n={this.props.i18n}

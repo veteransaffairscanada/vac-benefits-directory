@@ -210,6 +210,6 @@ describe("BB", () => {
   });
 
   it("contains the print button", () => {
-    expect(mounted_BB().find("#printButton").length).toEqual(5); // not sure why this is 5, should be 1
+    expect(mounted_BB().find("#printButton").length).toEqual(1);
   });
 });

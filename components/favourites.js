@@ -1,37 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
-import ArrowBack from "@material-ui/icons/ArrowBack";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
-import Print from "@material-ui/icons/Print";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import Header1 from "../components/header1";
 import Header2 from "../components/header2";
+import HeaderAnchorLink from "../components/header_anchor_link";
+import Body from "../components/body";
 
 const backLink = css`
-  font-size: 20px !important;
-  font-weight: 100 !important;
-  margin-bottom: 15px !important;
-  padding-left: 0px !important;
-  text-decoration: none !important;
-  text-transform: none !important;
+  margin-bottom: 15px;
 `;
 const bookmarkCSS = css`
   font-size: 70px !important;
-`;
-const buttonBarButton = css`
-  color: #3e57e2 !important;
-  font-size: 20px !important;
-  font-weight: 100 !important;
-  padding-left: 0px !important;
-  text-decoration: none !important;
-  text-transform: none !important;
 `;
 const contactUsTitle = css`
   margin: 20px 0;
@@ -45,9 +32,6 @@ const emptyList = css`
 const outerGrid = css`
   padding-left: 16px;
   padding-right: 16px;
-`;
-const printCSS = css`
-  font-size: 48px !important;
 `;
 const topMatter = css`
   margin-bottom: 25px !important;
@@ -92,17 +76,14 @@ export class Favourites extends Component {
       <Container id="favourites">
         <Grid className={outerGrid} container spacing={24}>
           <Grid item xs={12} className={topMatter}>
-            <Button
-              variant="flat"
-              size="large"
-              className={backLink}
+            <HeaderAnchorLink
               id="backButton"
+              className={backLink}
               href={this.get_link("benefits-directory")}
+              icon="arrowBack"
             >
-              <ArrowBack />
-              &nbsp; &nbsp;
               {t("favourites.back_link")}
-            </Button>
+            </HeaderAnchorLink>
 
             <Header1 className={"BenefitsCounter"}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
@@ -121,7 +102,7 @@ export class Favourites extends Component {
               />
             </Grid>
             {filteredBenefits.length == 0 ? (
-              <div className={emptyList}>
+              <Body className={emptyList}>
                 <Bookmark className={bookmarkCSS} />
                 <br />
                 {t("favourites.help_msg_line1")}
@@ -132,24 +113,21 @@ export class Favourites extends Component {
                 {" " + t("favourites.help_msg_line_connect") + " "}
                 <strong>{t("favourites.help_msg_emphasis") + " "}</strong>
                 {t("favourites.help_msg_last")}
-              </div>
+              </Body>
             ) : (
               ""
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Button
+            <HeaderAnchorLink
               href={this.props.printUrl}
-              target="_blank"
-              variant="flat"
-              size="large"
-              className={buttonBarButton}
+              target="print_page"
               id="printButton"
+              icon="print"
             >
-              <Print className={printCSS} />
-              &nbsp;
-              {t("Print")}
-            </Button>
+              &nbsp; {t("Print")}
+            </HeaderAnchorLink>
+
             <Header2 className={contactUsTitle}>
               {t("favourites.contact_us")}
             </Header2>
@@ -159,7 +137,7 @@ export class Favourites extends Component {
               </Link>
             </p>
 
-            <p>{t("favourites.print_instructions")}</p>
+            <Body>{t("favourites.print_instructions")}</Body>
 
             <hr />
 
@@ -167,7 +145,7 @@ export class Favourites extends Component {
               <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
             </p>
 
-            <p>{t("favourites.call_time")}</p>
+            <Body>{t("favourites.call_time")}</Body>
 
             <hr />
 
@@ -175,7 +153,7 @@ export class Favourites extends Component {
               <a href={"mailto:" + t("contact.email")}>{t("contact.email")}</a>
             </p>
 
-            <p>{t("favourites.email_disclaimer")}</p>
+            <Body>{t("favourites.email_disclaimer")}</Body>
 
             <hr />
 
@@ -183,7 +161,7 @@ export class Favourites extends Component {
               {t("favourites.apply_prompt")}
             </Header2>
 
-            <p>
+            <Body>
               <a
                 href={t("contact.my_vac_link")}
                 target="_blank"
@@ -193,7 +171,7 @@ export class Favourites extends Component {
               </a>
               &nbsp;
               {t("favourites.login_prompt")}
-            </p>
+            </Body>
           </Grid>
         </Grid>
       </Container>

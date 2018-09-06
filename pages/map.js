@@ -14,6 +14,7 @@ import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import Header1 from "../components/header1";
+import Body from "../components/body";
 
 const paper = css`
   margin-top: ${globalTheme.marginTop};
@@ -104,7 +105,7 @@ export class Map extends Component {
                 <p>
                   <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
                 </p>
-                <p>{t("favourites.call_time")}</p>
+                <Body>{t("favourites.call_time")}</Body>
               </Grid>
               <Grid
                 item
