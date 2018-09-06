@@ -69,6 +69,7 @@ export class ProfileNeedsSelector extends Component {
           {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
           this.props.patronType !== "" ? (
             <HeaderAnchorLink
+              id={"ClearFilters"}
               className={clearButton}
               icon="close"
               onClick={() => {
