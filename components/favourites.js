@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
-import Print from "@material-ui/icons/Print";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "../components/container";
@@ -21,14 +20,6 @@ const backLink = css`
 const bookmarkCSS = css`
   font-size: 70px;
 `;
-const buttonBarButton = css`
-  color: #3e57e2 !important;
-  font-size: 20px !important;
-  font-weight: 100 !important;
-  padding-left: 0px !important;
-  text-decoration: none !important;
-  text-transform: none !important;
-`;
 const contactUsTitle = css`
   margin: 20px 0;
 `;
@@ -39,9 +30,6 @@ const emptyList = css`
 const outerGrid = css`
   padding-left: 16px;
   padding-right: 16px;
-`;
-const printCSS = css`
-  font-size: 48px !important;
 `;
 const topMatter = css`
   margin-bottom: 25px !important;
@@ -122,18 +110,15 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Button
+            <HeaderAnchorLink
               href={this.props.printUrl}
-              target="_blank"
-              variant="flat"
-              size="large"
-              className={buttonBarButton}
+              target="print_page"
               id="printButton"
+              icon="print"
             >
-              <Print className={printCSS} />
-              &nbsp;
-              {t("Print")}
-            </Button>
+              &nbsp; {t("Print")}
+            </HeaderAnchorLink>
+
             <Header2 className={contactUsTitle}>
               {t("favourites.contact_us")}
             </Header2>

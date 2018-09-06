@@ -83,7 +83,6 @@ const inputIcon = css`
   margin-left: 5px;
 `;
 const anchors = css`
-  font-size: 20px !important;
   margin-right: 20px;
 `;
 
@@ -151,9 +150,7 @@ export class BB extends Component {
                     id="printButton"
                     icon="print"
                     nonMobile={t("Print")}
-                  >
-                    {/*<span className={nonMobile}> {t("Print")} </span>*/}
-                  </HeaderAnchorLink>
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Header2 className={"BenefitsCounter " + title}>
