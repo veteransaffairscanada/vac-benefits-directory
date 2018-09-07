@@ -14,8 +14,6 @@ const root = css`
   padding-top: 5px;
 `;
 const heading = css`
-  font-size: 15px;
-  font-weight: 500;
   margin-bottom: 10px;
   margin-top: 10px;
 `;
@@ -46,6 +44,7 @@ export class EmbeddedBenefitCard extends Component {
           target="_blank"
           rel="noopener noreferrer"
           className={heading}
+          size="small"
           onClick={() =>
             this.logExit(
               language === "en" ? benefit.benefitPageEn : benefit.benefitPageFr
