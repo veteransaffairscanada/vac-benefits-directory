@@ -77,7 +77,6 @@ export class ProfileNeedsSelector extends Component {
             <HeaderAnchorLink
               id={"ClearFilters"}
               className={clearButton}
-              icon="close"
               onClick={() => {
                 this.clearFilters();
               }}

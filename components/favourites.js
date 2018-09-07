@@ -81,7 +81,7 @@ export class Favourites extends Component {
               id="backButton"
               className={backLink}
               href={this.get_link("benefits-directory")}
-              icon="arrowBack"
+              arrow="back"
             >
               {t("favourites.back_link")}
             </HeaderAnchorLink>

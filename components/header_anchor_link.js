@@ -29,7 +29,7 @@ class HeaderAnchorLink extends Component {
   render() {
     const {
       id,
-      icon,
+      arrow,
       className,
       children,
       onClick,
@@ -50,9 +50,9 @@ class HeaderAnchorLink extends Component {
         rel={rel}
         target={target}
       >
-        {icon === "arrowBack" ? <ArrowBack /> : null}
+        {arrow === "back" ? <ArrowBack /> : null}
         {children}
-        {icon === "arrowForward" ? <ArrowForward /> : null}
+        {arrow === "forward" ? <ArrowForward /> : null}
       </a>
     );
   }
@@ -71,7 +71,7 @@ HeaderAnchorLink.propTypes = {
     PropTypes.object
   ]),
   className: PropTypes.string,
-  icon: PropTypes.string,
+  arrow: PropTypes.string,
   label: PropTypes.object,
   onClick: PropTypes.func
 };
