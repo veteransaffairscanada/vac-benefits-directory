@@ -14,6 +14,8 @@ const style = css`
   font-size: 21px;
   font-weight: bold;
   color: ${globalTheme.colour.cerulean};
+  background-color: transparent;
+  border: none;
   text-decoration: none !important;
   :hover {
     text-decoration: underline !important;
@@ -52,17 +54,30 @@ class HeaderAnchorLink extends Component {
       target,
       size
     } = this.props;
+
+    let buttonOnClick;
+    if (href) {
+      buttonOnClick = () => {
+        if (target) {
+          window.open(href, target);
+        } else {
+          window.location.href = href;
+        }
+        onClick();
+      };
+    } else {
+      buttonOnClick = onClick;
+    }
+
     return (
-      <a
+      <button
         className={
           size === "small" ? cx(style, small, className) : cx(style, className)
         }
         id={"a-" + id}
         aria-label={this.props["aria-label"]}
-        href={href}
-        onClick={onClick}
+        onClick={buttonOnClick}
         rel={rel}
-        target={target}
       >
         {icon === "arrowBack" ? <ArrowBack /> : null}
         {icon === "bookmark" ? <Bookmark /> : null}
@@ -73,7 +88,7 @@ class HeaderAnchorLink extends Component {
         ) : null}
         {icon === "arrowForward" ? <ArrowForward /> : null}
         {icon === "close" ? <CloseIcon className={closeIcon} /> : null}
-      </a>
+      </button>
     );
   }
 }
