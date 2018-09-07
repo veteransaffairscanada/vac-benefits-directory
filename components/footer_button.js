@@ -19,6 +19,9 @@ const style = css`
   :hover {
     text-decoration: underline;
   }
+  :focus {
+    outline: 3px solid ${globalTheme.colour.govukYellow};
+  }
 `;
 
 class FooterButton extends Component {
