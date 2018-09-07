@@ -6,7 +6,9 @@ import ArrowBack from "@material-ui/icons/ArrowBack";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 import Container from "./container";
+import Header1 from "./header1";
 import Header2 from "./header2";
+import { globalTheme } from "../theme";
 import Button from "./button";
 import Router from "next/router";
 
@@ -18,6 +20,7 @@ const root = css`
 
 const box = css`
   padding: 20px;
+  display: inline-flex;
 `;
 
 const prevButton = css`
@@ -27,12 +30,16 @@ const prevButton = css`
 `;
 
 const title = css`
-  font-size: 1.5em !important;
-  color: black;
+  font-size: 14px !important;
+  line-height: 21px;
+  width: 100px;
+  display: inline-block;
 `;
 
 const jumpButton = css`
-  font-size: 1.5em;
+  font-size: 14px !important;
+  line-height: 21px;
+  color: ${globalTheme.colour.cerulean};
 `;
 
 const comma = css`
@@ -70,10 +77,11 @@ export class GuidedExperience extends Component {
         </OldButton>
         <div className={root}>
           <Grid container spacing={24} className={box}>
-            <Grid item xs={12} md={3}>
-              <h1 className={title}>{t("B3.Filter by eligibility")}</h1>
-            </Grid>
-            <Grid item xs={12} md={9}>
+            <Grid item xs={12} md={12}>
+              <Header1 className={title}>
+                {t("B3.Filter by eligibility")}
+              </Header1>
+
               {eligibilityKeys.map((k, i) => {
                 if (
                   selectedEligibility[k] === "" ||
