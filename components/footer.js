@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { WordMark } from "@cdssnc/gcui";
-import { Button, Toolbar } from "@material-ui/core";
+import { Toolbar } from "@material-ui/core";
 import { css } from "react-emotion";
+import FooterLink from "./footer_link";
 
 const root = css`
   width: 100%;
@@ -16,12 +17,6 @@ const toolbar = css`
   margin-left: 15px;
   margin-right: 15px;
   height: 100%;
-`;
-
-const privacyButton = css`
-  color: #fff !important;
-  padding-left: 0 !important;
-  text-transform: none !important;
 `;
 
 const envDetailsStyling = css`
@@ -42,15 +37,14 @@ class Footer extends Component {
     return (
       <div className={root} role="navigation">
         <Toolbar className={toolbar}>
-          <Button
+          <FooterLink
             id="privacy"
-            className={privacyButton}
             href={this.props.t("privacy-link")}
             target="_blank"
             rel="noopener noreferrer"
           >
             {this.props.t("Privacy")}
-          </Button>
+          </FooterLink>
           <p className={envDetailsStyling}>Build: {envDetails}</p>
           <div className={wordMark}>
             <WordMark width="6em" flag="#fff" text="#fff" />

@@ -105,21 +105,20 @@ export class BenefitCard extends Component {
               ) : null}
               <Grid item xs={8} className={alignRight}>
                 <Button
-                  target="_blank"
-                  rel="noopener noreferrer"
                   arrow={true}
-                  onClick={() =>
+                  onClick={() => {
                     this.logExit(
                       t("current-language-code") === "en"
                         ? benefit.benefitPageEn
                         : benefit.benefitPageFr
-                    )
-                  }
-                  href={
-                    t("current-language-code") === "en"
-                      ? benefit.benefitPageEn
-                      : benefit.benefitPageFr
-                  }
+                    );
+                    const url =
+                      t("current-language-code") === "en"
+                        ? benefit.benefitPageEn
+                        : benefit.benefitPageFr;
+                    const win = window.open(url, "_blank");
+                    win.focus();
+                  }}
                 >
                   {t("Find out more")}
                 </Button>
