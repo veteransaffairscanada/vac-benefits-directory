@@ -39,8 +39,7 @@ const StyledButton = styled("button")(
     },
     ":focus": {
       color: "white",
-      backgroundColor: globalTheme.colour.darkGreen,
-      outline: `3px solid ` + globalTheme.colour.govukYellow
+      backgroundColor: globalTheme.colour.darkGreen
     },
     ":active": {
       position: "relative",

@@ -51,7 +51,6 @@ const SearchButton = styled("button")({
   backgroundRepeat: "no-repeat",
   backgroundPosition: "2px 50%",
   ":focus": {
-    outline: `3px solid ` + globalTheme.colour.gdsYellow,
     outlineOffset: 0
   },
   ":hover": {
@@ -67,30 +66,33 @@ const SearchBox = ({
   onButtonClick,
   inputId,
   buttonId,
+  ariaLabel,
   otherProps
 }) => (
   <SearchBoxWrapper id={wrapperId}>
     <InputSearchBox
       type="search"
-      aria-label="search"
+      aria-label={ariaLabel}
       id={inputId}
       placeholder={placeholder}
       onKeyDown={onKeyDown}
       onKeyUp={onKeyUp}
       {...otherProps}
     />
-    <SearchButton title="Search" id={buttonId} onClick={onButtonClick}>
+    <SearchButton title={ariaLabel} id={buttonId} onClick={onButtonClick}>
       <SearchIcon />
     </SearchButton>
   </SearchBoxWrapper>
 );
 
 SearchBox.defaultProps = {
+  ariaLabel: "search",
   placeholder: undefined
 };
 
 SearchBox.propTypes = {
   placeholder: PropTypes.string,
+  ariaLabel: PropTypes.string,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
   wrapperId: PropTypes.string,
