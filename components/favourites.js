@@ -6,6 +6,7 @@ import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
+import Print from "@material-ui/icons/Print";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "./container";
@@ -123,9 +124,8 @@ export class Favourites extends Component {
               href={this.props.printUrl}
               target="print_page"
               id="printButton"
-              icon="print"
             >
-              &nbsp; {t("Print")}
+              <Print /> {t("Print")}
             </HeaderAnchorLink>
 
             <Header2 className={contactUsTitle}>

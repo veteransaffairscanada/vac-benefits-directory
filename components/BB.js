@@ -5,6 +5,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import Print from "@material-ui/icons/Print";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
@@ -153,8 +154,8 @@ export class BB extends Component {
                     href={this.props.printUrl}
                     target="print_page"
                     id="printButton"
-                    icon="print"
                   >
+                    <Print />{" "}
                     <span className={nonMobileStyle}> {t("Print")} </span>
                   </HeaderAnchorLink>
                 </Grid>
