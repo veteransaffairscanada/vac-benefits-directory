@@ -6,7 +6,7 @@ import { logEvent } from "../utils/analytics";
 import { css } from "react-emotion";
 
 const root = css`
-  padding: 15px 15px 30px 15px !important;
+  padding: 0 15px !important;
 `;
 const needCss = css`
   font-size: 24px;

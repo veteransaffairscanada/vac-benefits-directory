@@ -46,6 +46,11 @@ const comma = css`
   margin-right: 0.5em;
 `;
 
+const questions = css`
+  margin: 0;
+  padding: 0;
+`;
+
 export class GuidedExperience extends Component {
   sectionMap = {
     patronType: "patronTypeQuestion",
@@ -117,11 +122,8 @@ export class GuidedExperience extends Component {
               })}
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={12} className={questions}>
               <Header2>{this.props.subtitle}</Header2>
-            </Grid>
-
-            <Grid item xs={12}>
               {this.props.children}
             </Grid>
 
