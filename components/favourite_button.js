@@ -53,6 +53,7 @@ export class FavouriteButton extends Component {
         className={bookmarkButton}
         aria-label={this.props.t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
+        size="small"
       >
         {isBookmarked ? (
           <Bookmark className={"bookmarked"} />

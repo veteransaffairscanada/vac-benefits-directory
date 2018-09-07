@@ -24,6 +24,9 @@ const style = css`
     vertical-align: middle;
   }
 `;
+const small = css`
+  font-size: 18px;
+`;
 const closeIcon = css`
   font-size: 100% !important;
   margin-left: ${globalTheme.unit};
@@ -46,11 +49,14 @@ class HeaderAnchorLink extends Component {
       onClick,
       href,
       rel,
-      target
+      target,
+      size
     } = this.props;
     return (
       <a
-        className={cx(style, className)}
+        className={
+          size === "small" ? cx(style, small, className) : cx(style, className)
+        }
         id={"a-" + id}
         aria-label={this.props["aria-label"]}
         href={href}
@@ -74,6 +80,7 @@ class HeaderAnchorLink extends Component {
 
 HeaderAnchorLink.propTypes = {
   id: PropTypes.string,
+  size: PropTypes.string,
   "aria-label": PropTypes.string,
   href: PropTypes.string,
   rel: PropTypes.string,
