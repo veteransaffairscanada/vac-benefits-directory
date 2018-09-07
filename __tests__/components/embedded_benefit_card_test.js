@@ -24,6 +24,7 @@ describe("EmbeddedBenefitCard", () => {
       showFavourite: false
     };
     _mountedEmbeddedBenefitCard = undefined;
+    global.window.open = jest.fn();
   });
 
   it("passes axe tests", async () => {
@@ -34,7 +35,7 @@ describe("EmbeddedBenefitCard", () => {
   it("has a blank target", () => {
     expect(
       mountedEmbeddedBenefitCard()
-        .find("a")
+        .find("HeaderAnchorLink")
         .prop("target")
     ).toEqual("_blank");
   });
@@ -45,7 +46,7 @@ describe("EmbeddedBenefitCard", () => {
     );
     expect(
       mountedEmbeddedBenefitCard()
-        .find("a")
+        .find("HeaderAnchorLink")
         .prop("href")
     ).toEqual(benefitsFixture[0].benefitPageEn);
     expect(mountedEmbeddedBenefitCard().text()).toContain(
@@ -64,7 +65,7 @@ describe("EmbeddedBenefitCard", () => {
       );
       expect(
         mountedEmbeddedBenefitCard()
-          .find("a")
+          .find("HeaderAnchorLink")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
       expect(mountedEmbeddedBenefitCard().text()).toContain(
@@ -77,7 +78,7 @@ describe("EmbeddedBenefitCard", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
     mountedEmbeddedBenefitCard()
-      .find("a")
+      .find("button")
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",

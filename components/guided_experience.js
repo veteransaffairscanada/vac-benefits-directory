@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import OldButton from "@material-ui/core/Button";
-import ArrowBack from "@material-ui/icons/ArrowBack";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 import Router from "next/router";
@@ -11,6 +9,7 @@ import Container from "./container";
 import Header1 from "./header1";
 import Header2 from "./header2";
 import Button from "./button";
+import HeaderAnchorLink from "./header_anchor_link";
 
 const root = css`
   border: solid 1px grey;
@@ -24,17 +23,8 @@ const box = css`
 `;
 
 const prevButton = css`
-  margin-top: 20px !important;
-  text-transform: none !important;
-  font-family: ${globalTheme.fontFamily};
-  font-size: 21px !important;
-  font-weight: bold !important;
-  color: ${globalTheme.colour.cerulean} !important;
-  :hover {
-    text-decoration: underline !important;
-    background-color: ${globalTheme.colour.paleGrey} !important;
-    cursor: pointer;
-  }
+  margin-top: 50px !important;
+  margin-left: 5px !important;
 `;
 
 const title = css`
@@ -72,10 +62,9 @@ export class GuidedExperience extends Component {
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <Container id="guidedExperience">
-        <OldButton
+        <HeaderAnchorLink
           id="prevButton"
           disableRipple
-          size="medium"
           href={
             this.props.prevSection === "index" ? this.props.indexURL : undefined
           }
@@ -85,10 +74,10 @@ export class GuidedExperience extends Component {
               : () => this.props.setSection(this.props.prevSection)
           }
           className={prevButton}
+          arrow="back"
         >
-          <ArrowBack />
           {t("back")}
-        </OldButton>
+        </HeaderAnchorLink>
         <div className={root}>
           <Grid container spacing={24} className={box}>
             <Grid item xs={12} md={12}>
