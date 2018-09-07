@@ -9,6 +9,7 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Header1 from "../components/header1";
 import Header2 from "../components/header2";
+import { globalTheme } from "../theme";
 
 const root = css`
   border: solid 1px grey;
@@ -41,13 +42,14 @@ const nextButton = css`
 const title = css`
   font-size: 14px !important;
   line-height: 21px;
-  width: auto;
+  width: 100px;
+  display: inline-block;
 `;
 
 const jumpButton = css`
   font-size: 14px !important;
   line-height: 21px;
-  color: #006cc9;
+  color: ${globalTheme.colour.cerulean};
 `;
 
 const comma = css`
@@ -84,12 +86,11 @@ export class GuidedExperience extends Component {
         </Button>
         <div className={root}>
           <Grid container spacing={24} className={box}>
-            <Grid item xs={12} md={2}>
+            <Grid item xs={12} md={12}>
               <Header1 className={title}>
                 {t("B3.Filter by eligibility")}
               </Header1>
-            </Grid>
-            <Grid item xs={12} md={10}>
+
               {eligibilityKeys.map((k, i) => {
                 if (
                   selectedEligibility[k] === "" ||
