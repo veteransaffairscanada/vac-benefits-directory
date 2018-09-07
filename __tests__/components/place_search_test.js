@@ -84,25 +84,7 @@ describe("PlaceSearch", () => {
     });
   });
 
-  it("clicking #searchButtonLink toggles the setLocation function", () => {
-    mounted_PlaceSearch().instance().setLocation = jest.fn();
-    mounted_PlaceSearch()
-      .find("#searchButtonLink")
-      .first()
-      .simulate("click");
-    expect(mounted_PlaceSearch().instance().setLocation).toBeCalled();
-  });
-
-  it("keyDown on #inputField toggles onKeyPress", () => {
-    mounted_PlaceSearch().instance().onKeyPress = jest.fn();
-    mounted_PlaceSearch()
-      .find("#inputField")
-      .first()
-      .simulate("keydown");
-    expect(mounted_PlaceSearch().instance().onKeyPress).toBeCalled();
-  });
-
-  it("onKeyPress toggle setLocation is Enter is pressed", () => {
+  it("onKeyPress toggle setLocation if Enter is pressed", () => {
     mounted_PlaceSearch().instance().setLocation = jest.fn();
     mounted_PlaceSearch()
       .instance()

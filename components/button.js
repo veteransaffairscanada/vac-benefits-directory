@@ -39,8 +39,7 @@ const StyledButton = styled("button")(
     },
     ":focus": {
       color: "white",
-      backgroundColor: globalTheme.colour.darkGreen,
-      outline: `3px solid ` + globalTheme.colour.govukYellow
+      backgroundColor: globalTheme.colour.darkGreen
     },
     ":active": {
       position: "relative",
@@ -77,7 +76,10 @@ const StyledButton = styled("button")(
       backgroundColor: isSecondary ? globalTheme.colour.darkGreyBlue : undefined
     },
     ":focus": {
-      backgroundColor: isSecondary ? globalTheme.colour.darkGreyBlue : undefined
+      backgroundColor: isSecondary
+        ? globalTheme.colour.darkGreyBlue
+        : undefined,
+      outline: `3px solid ` + globalTheme.colour.govukYellow
     },
     ":active": {
       boxShadow: isSecondary
