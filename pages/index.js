@@ -12,8 +12,10 @@ import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
+import Body from "../components/body";
 import Header1 from "../components/header1";
 import SearchBox from "../components/search_box";
+import Router from "next/router";
 
 const root = css`
   background-color: white;
@@ -55,13 +57,6 @@ const image = css`
   }
 `;
 
-const prompt = css`
-  color: #303232;
-  font-size: 18px;
-  line-height: 1.5;
-  margin: 0 0 25px 0;
-`;
-
 const title = css`
   margin-bottom: 46px;
 `;
@@ -74,8 +69,8 @@ export class App extends Component {
   render() {
     const { i18n, t } = this.props;
     let urlGE =
-      "guided?section=patronTypeQuestion&lng=" + t("current-language-code");
-    let urlBD = "benefits-directory?lng=" + t("current-language-code");
+      "/guided?section=patronTypeQuestion&lng=" + t("current-language-code");
+    let urlBD = "/benefits-directory?lng=" + t("current-language-code");
     return (
       <Layout
         i18n={i18n}
@@ -93,33 +88,33 @@ export class App extends Component {
                 </Header1>
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
-                <p className={prompt}>{t("index.ge_prompt")}</p>
+                <Body>{t("index.ge_prompt")}</Body>
                 <Button
                   id="heroGuidedLink"
                   big={true}
-                  href={urlGE}
+                  onClick={() => Router.push(urlGE)}
                   arrow={true}
                 >
                   {t("index.guided experience")}
                   &nbsp;&nbsp;
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>{t("index.benefits_prompt")}</p>
+                <Body>{t("index.benefits_prompt")}</Body>
                 <Button
                   id="heroBenefitsLink"
                   big={true}
                   secondary={true}
-                  href={urlBD}
+                  onClick={() => Router.push(urlBD)}
                 >
                   {t("index.all benefits")}
                 </Button>
                 <hr className={line} />
-                <p className={prompt}>{t("index.favourites_prompt")}</p>
+                <Body>{t("index.favourites_prompt")}</Body>
                 <Button
                   id="FavouritesPage"
                   big={true}
                   secondary={true}
-                  href={this.props.favouritesUrl}
+                  onClick={() => Router.push(this.props.favouritesUrl)}
                 >
                   <Bookmark className={bookmarkCSS} />
                   {t("index.your_saved_benefits") +
@@ -129,7 +124,7 @@ export class App extends Component {
                 </Button>
               </Grid>
               <Grid item xs={12} md={6} className={columnRight}>
-                <p className={prompt}>{t("index.search_prompt")}</p>
+                <Body>{t("index.search_prompt")}</Body>
                 <SearchComponent
                   id="searchComponent"
                   i18n={this.props.i18n}

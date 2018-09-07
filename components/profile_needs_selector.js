@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
-import { Grid, Button, Paper } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+import { Grid, Paper } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import HeaderAnchorLink from "../components/header_anchor_link";
 
 const root = css`
   padding: 25px !important;
@@ -21,17 +21,9 @@ const profileSelector = css`
   padding-bottom: 15px !important;
   margin-bottom: 30px !important;
 `;
-  const clearButton = css`
-    text-decoration: underline !important;
-    text-transform: unset !important;
-    font-size: 60% !important;
-    float: right !important;
-    color: blue !important;
-`;
-const clearIcon = css`
-  font-size: 100% !important;
-  margin-left: ${globalTheme.unit};
-  font-weight: bold;
+const clearButton = css`
+  font-size: 85% !important;
+  float: right !important;
 `;
 const filterTitle = css`
   padding-right: 0px;
@@ -72,26 +64,24 @@ export class ProfileNeedsSelector extends Component {
     const { t, store } = this.props;
     return (
       <Paper className={root}>
-        <h2 variant="title" className={filterTitle}>
+        <div variant="title" className={filterTitle}>
           {t("filters")}{" "}
           {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
           this.props.patronType !== "" ? (
-            <Button
+            <HeaderAnchorLink
+              id={"ClearFilters"}
               className={clearButton}
-              id="ClearFilters"
-              variant="flat"
-              size="small"
+              icon="close"
               onClick={() => {
                 this.clearFilters();
               }}
             >
               {t("reset filters")} {"(" + this.countSelected() + ")"}
-              <CloseIcon className={clearIcon} />
-            </Button>
+            </HeaderAnchorLink>
           ) : (
             ""
           )}
-        </h2>
+        </div>
 
         <Grid container>
           <Grid item sm={12} className={profileSelector}>

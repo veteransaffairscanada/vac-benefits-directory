@@ -7,7 +7,7 @@ const style = css`
   font-family: ${globalTheme.fontFamily};
   font-size: 52px;
   font-weight: 900;
-  color: #434343;
+  color: ${globalTheme.colour.greyishBrown};
   margin: 0px;
 `;
 

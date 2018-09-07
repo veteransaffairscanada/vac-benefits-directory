@@ -1,5 +1,6 @@
 import { mount, shallow } from "enzyme";
 import React from "react";
+import Router from "next/router";
 
 import { GuidedExperience } from "../../components/guided_experience";
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -8,6 +9,7 @@ expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
 describe("GuidedExperience", () => {
+  Router.push = jest.fn();
   let props;
   let _mountedGuidedExperience;
   let _shallowGuidedExperience;
@@ -62,7 +64,7 @@ describe("GuidedExperience", () => {
 
   it("calls setSection if the Back button is pressed", () => {
     mounted_GuidedExperience()
-      .find("Button")
+      .find("#prevButton")
       .first()
       .simulate("click");
     expect(props.setSection).toBeCalledWith("XX");
@@ -97,12 +99,11 @@ describe("GuidedExperience", () => {
 
   it("the Next button contains an appropriate href if nextSection == benefits-directory", () => {
     props.nextSection = "benefits-directory";
-    expect(
-      mounted_GuidedExperience()
-        .find("Button")
-        .last()
-        .props().href
-    ).toEqual(props.benefitsDirectoryUrl);
+    mounted_GuidedExperience()
+      .find("Button")
+      .last()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith(props.benefitsDirectoryUrl);
   });
 
   it("the Next buttons says 'Next' if the section is not the needsQuestion", () => {

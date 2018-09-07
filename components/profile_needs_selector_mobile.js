@@ -7,9 +7,10 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import HeaderAnchorLink from "../components/header_anchor_link";
 
 const root = css`
   background-color: #f5f5f5 !important;
@@ -27,8 +28,6 @@ const profileSelector = css`
   margin-bottom: 30px !important;
 `;
 const clearButton = css`
-  text-decoration: underline !important;
-  text-transform: unset !important;
   font-size: 16px !important;
 `;
 const filterTitle = css`
@@ -97,17 +96,15 @@ export class ProfileNeedsSelectorMobile extends Component {
               {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
               this.props.patronType !== "" ? (
                 <h3 variant="title" className={filterTitle}>
-                  <Button
-                    className={clearButton}
+                  <HeaderAnchorLink
                     id="ClearFiltersMobile"
-                    variant="flat"
-                    size="small"
+                    className={clearButton}
                     onClick={() => {
                       this.clearFilters();
                     }}
                   >
                     {t("reset filters")} {"(" + this.countSelected() + ")"}
-                  </Button>
+                  </HeaderAnchorLink>
                 </h3>
               ) : (
                 ""

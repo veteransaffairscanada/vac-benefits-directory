@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormControl, FormControlLabel, FormLabel } from "@material-ui/core";
+import { FormControl, FormControlLabel } from "@material-ui/core";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import { connect } from "react-redux";
@@ -8,15 +8,13 @@ import { logEvent } from "../utils/analytics";
 import { uuidv4 } from "../utils/common";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import Header4 from "./header4";
 
-  const formControl = css`
-    margin-top: ${globalTheme.unit} !important;
+const formControl = css`
+  margin-top: ${globalTheme.unit} !important;
 `;
-  const formLabel = css`
-    line-height: 1.5em !important;
-    margin-bottom: 10px;
-    color: black !important;
-    font-weight: bold;
+const formLabel = css`
+  margin-bottom: 10px;
 `;
 
 export class RadioSelector extends React.Component {
@@ -107,7 +105,7 @@ export class RadioSelector extends React.Component {
           )
         ).filter(st => st !== "na");
 
-    const {t, selectorType } = this.props;
+    const { t, selectorType } = this.props;
     const selected = {
       patronType: this.props.selectedPatronType,
       serviceType: this.props.selectedServiceType,
@@ -117,35 +115,31 @@ export class RadioSelector extends React.Component {
 
     if (Object.keys(allFilterIds).length != 0) {
       return (
-          <FormControl className={formControl}>
-            <FormLabel className={formLabel}>
-              {this.props.legend}
-            </FormLabel>
-            <RadioGroup
-              aria-label={this.props.legend}
-              value={selected[selectorType]}
-              onChange={this.handleSelect}
-            >
-              {allFilterIds.map(filter_id => {
-                return (
-                  <FormControlLabel
-                    key={filter_id}
-                    value={filter_id}
-                    htmlFor={filter_id + guid}
-                    control={
-                      <Radio color="primary" id={filter_id + guid} />
-                    }
-                    label={t(filter_id)}
-                    disabled={this.isDisabled(
-                      filter_id,
-                      this.props.selectedPatronType,
-                      this.props.selectedServiceType
-                    )}
-                  />
-                );
-              })}
-            </RadioGroup>
-          </FormControl>
+        <FormControl className={formControl}>
+          <Header4 className={formLabel}>{this.props.legend}</Header4>
+          <RadioGroup
+            aria-label={this.props.legend}
+            value={selected[selectorType]}
+            onChange={this.handleSelect}
+          >
+            {allFilterIds.map(filter_id => {
+              return (
+                <FormControlLabel
+                  key={filter_id}
+                  value={filter_id}
+                  htmlFor={filter_id + guid}
+                  control={<Radio color="primary" id={filter_id + guid} />}
+                  label={t(filter_id)}
+                  disabled={this.isDisabled(
+                    filter_id,
+                    this.props.selectedPatronType,
+                    this.props.selectedServiceType
+                  )}
+                />
+              );
+            })}
+          </RadioGroup>
+        </FormControl>
       );
     } else {
       return null;

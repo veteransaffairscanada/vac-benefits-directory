@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button } from "@material-ui/core/";
+import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
 import TextField from "@material-ui/core/TextField";
-import ArrowForward from "@material-ui/icons/ArrowForward";
 import { css } from "react-emotion";
+import FooterButton from "./footer_button";
 require("isomorphic-fetch");
 
 const CommentBox = css`
@@ -45,10 +45,6 @@ const Inner = css`
 const TextHold = css`
   background-color: #505050;
   padding: 10px 0;
-`;
-const buttonStyle = css`
-  color: #fff !important;
-  text-transform: none !important;
 `;
 const container2 = css`
   margin-left: 15px;
@@ -161,25 +157,21 @@ export class FeedbackBar extends Component {
                 />
               </div>
               <br />
-              <Button
+              <SubmitButton
                 id="sendComment"
-                variant="contained"
-                color="primary"
-                className={buttonStyle}
+                arrow={true}
+                big={true}
                 onClick={() => this.sendComment()}
               >
                 {t("send")}
-                &nbsp; &nbsp;
-                <ArrowForward />
-              </Button>
+              </SubmitButton>
               &nbsp; &nbsp;
-              <Button
+              <FooterButton
                 id="cancelComment"
-                className={buttonStyle}
                 onClick={() => this.cancelComment()}
               >
                 {t("cancel")}
-              </Button>
+              </FooterButton>
             </div>
           ) : null}
           <div className={Div}>
@@ -190,23 +182,19 @@ export class FeedbackBar extends Component {
             ) : (
               <div className={Inner}>
                 {t("feedback-prompt")} &nbsp;
-                <Button
-                  variant="flat"
-                  className={buttonStyle}
+                <FooterButton
                   id="feedbackYes"
                   onClick={() => this.sendFeedback("Yes")}
                 >
                   {t("yes")}
-                </Button>
+                </FooterButton>
                 &nbsp; &nbsp;
-                <Button
-                  className={buttonStyle}
-                  variant="flat"
+                <FooterButton
                   id="feedbackNo"
                   onClick={() => this.sendFeedback("No")}
                 >
                   {t("no")}
-                </Button>
+                </FooterButton>
               </div>
             )}
           </div>

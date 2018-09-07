@@ -12,6 +12,7 @@ import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
 import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
 import OneLiner from "./one_liner";
+import Header4 from "./header4";
 import Button from "./button";
 
 const cardBody = css`
@@ -19,16 +20,14 @@ const cardBody = css`
   padding-top: 15px !important;
 `;
 const cardDescriptionText = css`
-  padding-top: 10px;
-  padding-bottom: 15px;
+  padding-top: 26px;
+  padding-bottom: 30px;
 `;
 const root = css`
   width: 100%;
 `;
 const benefitName = css`
-  font-size: 24px;
-  font-weight: 600;
-  padding: 10px 0;
+  padding-top: 10px;
 `;
 
 const alignRight = css`
@@ -64,7 +63,7 @@ export class BenefitCard extends Component {
             store={this.props.store}
           />
           <Paper className={cardBody}>
-            <div component="p" className={benefitName}>
+            <Header4 className={benefitName}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}
                 autoEscape={true}
@@ -74,7 +73,7 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-            </div>
+            </Header4>
 
             <OneLiner className={"cardDescription " + cardDescriptionText}>
               <Highlighter
@@ -106,21 +105,20 @@ export class BenefitCard extends Component {
               ) : null}
               <Grid item xs={8} className={alignRight}>
                 <Button
-                  target="_blank"
-                  rel="noopener noreferrer"
                   arrow={true}
-                  onClick={() =>
+                  onClick={() => {
                     this.logExit(
                       t("current-language-code") === "en"
                         ? benefit.benefitPageEn
                         : benefit.benefitPageFr
-                    )
-                  }
-                  href={
-                    t("current-language-code") === "en"
-                      ? benefit.benefitPageEn
-                      : benefit.benefitPageFr
-                  }
+                    );
+                    const url =
+                      t("current-language-code") === "en"
+                        ? benefit.benefitPageEn
+                        : benefit.benefitPageFr;
+                    const win = window.open(url, "_blank");
+                    win.focus();
+                  }}
                 >
                   {t("Find out more")}
                 </Button>

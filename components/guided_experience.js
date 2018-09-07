@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import OldButton from "@material-ui/core/Button";
 import ArrowBack from "@material-ui/icons/ArrowBack";
-import ArrowForward from "@material-ui/icons/ArrowForward";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
-import Container from "../components/container";
-import Header2 from "../components/header2";
+import Router from "next/router";
+import { globalTheme } from "../theme";
+import Container from "./container";
+import Header1 from "./header1";
+import Header2 from "./header2";
+import Button from "./button";
 
 const root = css`
   border: solid 1px grey;
@@ -17,36 +20,43 @@ const root = css`
 
 const box = css`
   padding: 20px;
+  display: inline-flex;
 `;
 
 const prevButton = css`
   margin-top: 20px !important;
-  margin-left: 15px !important;
-  text-transform: none;
-`;
-
-const nextButton = css`
-  background-color: #39824d !important;
-  color: #ffffff !important;
-  margin-top: 0 !important;
-  margin: 25px !important;
   text-transform: none !important;
-  &:hover {
-    background: #295f38 !important;
+  font-family: ${globalTheme.fontFamily};
+  font-size: 21px !important;
+  font-weight: bold !important;
+  color: ${globalTheme.colour.cerulean} !important;
+  :hover {
+    text-decoration: underline !important;
+    background-color: ${globalTheme.colour.paleGrey} !important;
+    cursor: pointer;
   }
 `;
 
 const title = css`
-  font-size: 1.5em !important;
-  color: black;
+  font-size: 14px !important;
+  line-height: 21px;
+  width: 100px;
+  display: inline-block;
 `;
 
 const jumpButton = css`
-  font-size: 1.5em;
+  font-size: 14px !important;
+  line-height: 21px;
+  color: ${globalTheme.colour.cerulean};
 `;
 
 const comma = css`
   margin-right: 0.5em;
+`;
+
+const questions = css`
+  margin: 0;
+  padding: 0;
 `;
 
 export class GuidedExperience extends Component {
@@ -62,7 +72,9 @@ export class GuidedExperience extends Component {
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <Container id="guidedExperience">
-        <Button
+        <OldButton
+          id="prevButton"
+          disableRipple
           size="medium"
           href={
             this.props.prevSection === "index" ? this.props.indexURL : undefined
@@ -75,14 +87,15 @@ export class GuidedExperience extends Component {
           className={prevButton}
         >
           <ArrowBack />
-          &nbsp; &nbsp; {t("back")}
-        </Button>
+          {t("back")}
+        </OldButton>
         <div className={root}>
           <Grid container spacing={24} className={box}>
-            <Grid item xs={12} md={3}>
-              <h1 className={title}>{t("B3.Filter by eligibility")}</h1>
-            </Grid>
-            <Grid item xs={12} md={9}>
+            <Grid item xs={12} md={12}>
+              <Header1 className={title}>
+                {t("B3.Filter by eligibility")}
+              </Header1>
+
               {eligibilityKeys.map((k, i) => {
                 if (
                   selectedEligibility[k] === "" ||
@@ -118,36 +131,27 @@ export class GuidedExperience extends Component {
               })}
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={12} className={questions}>
               <Header2>{this.props.subtitle}</Header2>
-            </Grid>
-
-            <Grid item xs={12}>
               {this.props.children}
             </Grid>
-          </Grid>
 
-          <Button
-            id="nextButton"
-            size="medium"
-            href={
-              this.props.nextSection === "benefits-directory"
-                ? this.props.benefitsDirectoryUrl
-                : undefined
-            }
-            onClick={
-              this.props.nextSection === "benefits-directory"
-                ? undefined
-                : () => this.props.setSection(this.props.nextSection)
-            }
-            className={nextButton}
-          >
-            {this.props.id === "needsQuestion"
-              ? t("ge.show_results")
-              : t("next")}{" "}
-            &nbsp; &nbsp;
-            <ArrowForward />
-          </Button>
+            <Grid item xs={12}>
+              <Button
+                id="nextButton"
+                arrow={true}
+                onClick={
+                  this.props.nextSection === "benefits-directory"
+                    ? () => Router.push(this.props.benefitsDirectoryUrl)
+                    : () => this.props.setSection(this.props.nextSection)
+                }
+              >
+                {this.props.id === "needsQuestion"
+                  ? t("ge.show_results")
+                  : t("next")}{" "}
+              </Button>
+            </Grid>
+          </Grid>
         </div>
       </Container>
     );

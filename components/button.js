@@ -13,7 +13,7 @@ const rightArrowIcon = css`
   -ms-filter: fliph;
 `;
 
-const StyledButton = styled("a")(
+const StyledButton = styled("button")(
   {
     backgroundColor: globalTheme.colour.fernGreen,
     border: "none",
@@ -32,6 +32,7 @@ const StyledButton = styled("a")(
     textDecoration: "none",
     WebkitAppearance: "none",
     WebkitFontSmoothing: "antialiased",
+    verticalAlign: "middle",
     ":hover": {
       backgroundColor: globalTheme.colour.darkGreen,
       color: "white"
@@ -39,7 +40,7 @@ const StyledButton = styled("a")(
     ":focus": {
       color: "white",
       backgroundColor: globalTheme.colour.darkGreen,
-      outline: `3px solid ` + globalTheme.colour.gdsYellow
+      outline: `3px solid ` + globalTheme.colour.govukYellow
     },
     ":active": {
       position: "relative",
@@ -60,14 +61,14 @@ const StyledButton = styled("a")(
       marginLeft: hasArrow ? "10px" : undefined
     }
   }),
-  ({ isBig, icon }) => ({
+  ({ isBig, hasArrow }) => ({
     fontSize: isBig ? "24px" : undefined,
     lineHeight: isBig ? "31px" : undefined,
     padding: isBig ? ".36842em .84211em" : undefined,
-    paddingRight: icon ? ".54211em" : ".84211em",
     " svg": {
       height: isBig ? "31px" : undefined,
-      width: isBig ? "36px" : undefined
+      width: isBig ? "36px" : undefined,
+      marginRight: isBig && hasArrow ? "-8px" : undefined
     }
   }),
   ({ isSecondary }) => ({

@@ -5,10 +5,8 @@ import NeedButton from "./need_button";
 import "babel-polyfill/dist/polyfill";
 import { Grid } from "@material-ui/core";
 import { css } from "react-emotion";
+import Header4 from "./header4";
 
-const title = css`
-  color: black !important;
-`;
 const needsButtons = css`
   display: flex;
   flex-wrap: wrap;
@@ -19,12 +17,10 @@ export class NeedsSelector extends Component {
     const { needs, t, store } = this.props;
     return (
       <div>
-        <h2 variant="subheading" className={title}>
-          {t("filter by category")}
-        </h2>
+        <Header4>{t("filter by category")}</Header4>
         <Grid container spacing={16}>
           <Grid item xs={9}>
-            <h3 variant="body2">{t("Select all that apply")}</h3>
+            <div>{t("Select all that apply")}</div>
           </Grid>
           <Grid item xs={12} className={needsButtons}>
             {needs.map(need => (
