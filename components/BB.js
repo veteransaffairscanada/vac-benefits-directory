@@ -12,17 +12,16 @@ import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
 import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
-import SearchIcon from "@material-ui/icons/Search";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import Header2 from "../components/header2";
 import HeaderAnchorLink from "../components/header_anchor_link";
 import Body from "../components/body";
+import SearchBox from "./search_box";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
-
 const topPadding = css`
   padding-top: 30px;
 `;
@@ -49,38 +48,9 @@ const topMatter = css`
   width: 100%;
   padding-bottom: 20px;
 `;
-const searchWrap = css`
-  width: 100%;
-  display: inline-flex;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 1px;
-  background-color: white;
-`;
-const searchBox = css`
-  display: inline-flex;
-  padding: 10px;
-  fontsize: 15px;
-  flex: 1;
-  border-width: 0px;
-  width: 100%;
-  font-family: Merriweather;
-`;
-const searchInputField = css`
-  display: inline-flex;
-  font-size: 15px;
-  flex: 1;
-  border-width: 0px;
-  width: 100%;
-  font-family: Merriweather;
-`;
 const sortByLabel = css`
   color: #434343 !important;
   vertical-align: text-top;
-`;
-const inputIcon = css`
-  padding-right: 10px;
-  margin-left: 5px;
 `;
 const anchors = css`
   margin-right: 20px;
@@ -200,20 +170,14 @@ export class BB extends Component {
                     </FormControl>
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <div className={searchWrap}>
-                      <div className={searchBox}>
-                        <SearchIcon className={inputIcon} />
-                        <input
-                          id="bbSearchField"
-                          aria-label="search"
-                          type="text"
-                          placeholder={this.props.t("search")}
-                          className={searchInputField}
-                          value={this.props.searchString}
-                          onChange={this.handleSearchChange}
-                        />
-                      </div>
-                    </div>
+                    <SearchBox
+                      inputId="bbSearchField"
+                      buttonId="searchButtonLink"
+                      placeholder={this.props.t("search")}
+                      value={this.props.searchString}
+                      onChange={this.handleSearchChange}
+                      disableButton={true}
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     <Grid container spacing={24}>

@@ -14,7 +14,6 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Body from "../components/body";
 import Header1 from "../components/header1";
-import SearchBox from "../components/search_box";
 import Router from "next/router";
 
 const root = css`
@@ -136,11 +135,6 @@ export class App extends Component {
                   alt={t("index.alt_text_1")}
                   className={image}
                 />
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <SearchBox placeholder="Search GOV.UK">
-                  SearchBox example
-                </SearchBox>
               </Grid>
             </Grid>
           </Paper>

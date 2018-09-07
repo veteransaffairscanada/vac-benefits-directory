@@ -58,6 +58,20 @@ const SearchButton = styled("button")({
   }
 });
 
+const DisabledSearchButton = styled("button")({
+  backgroundColor: globalTheme.colour.white,
+  display: "block",
+  color: globalTheme.colour.cerulean,
+  position: "relative",
+  padding: "10px",
+  width: "45px",
+  height: "40px",
+  border: `solid 1px ` + globalTheme.colour.warmGrey,
+  borderLeft: 0,
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "2px 50%"
+});
+
 const SearchBox = ({
   placeholder,
   onKeyDown,
@@ -67,6 +81,9 @@ const SearchBox = ({
   inputId,
   buttonId,
   ariaLabel,
+  disableButton,
+  value,
+  onChange,
   otherProps
 }) => (
   <SearchBoxWrapper id={wrapperId}>
@@ -77,11 +94,19 @@ const SearchBox = ({
       placeholder={placeholder}
       onKeyDown={onKeyDown}
       onKeyUp={onKeyUp}
+      value={value}
+      onChange={onChange}
       {...otherProps}
     />
-    <SearchButton title={ariaLabel} id={buttonId} onClick={onButtonClick}>
-      <SearchIcon />
-    </SearchButton>
+    {disableButton ? (
+      <DisabledSearchButton>
+        <SearchIcon />
+      </DisabledSearchButton>
+    ) : (
+      <SearchButton title={ariaLabel} id={buttonId} onClick={onButtonClick}>
+        <SearchIcon />
+      </SearchButton>
+    )}
   </SearchBoxWrapper>
 );
 
@@ -95,10 +120,13 @@ SearchBox.propTypes = {
   ariaLabel: PropTypes.string,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
   wrapperId: PropTypes.string,
   buttonHref: PropTypes.string,
   inputId: PropTypes.string,
   buttonId: PropTypes.string,
+  disableButton: PropTypes.bool,
   otherProps: PropTypes.object
 };
 
