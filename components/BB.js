@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Print from "@material-ui/icons/Print";
+import Bookmark from "@material-ui/icons/Bookmark";
 import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
@@ -140,9 +141,9 @@ export class BB extends Component {
                 <Grid item xs={12} md={9}>
                   <HeaderAnchorLink
                     className={anchors}
-                    icon="bookmark"
                     href={this.props.favouritesUrl}
                   >
+                    <Bookmark />
                     {t("B3.favouritesButtonText") +
                       " (" +
                       this.props.favouriteBenefits.length +

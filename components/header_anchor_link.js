@@ -4,7 +4,6 @@ import { globalTheme } from "../theme";
 import { cx, css } from "react-emotion";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
-import Bookmark from "@material-ui/icons/Bookmark";
 import CloseIcon from "@material-ui/icons/Close";
 
 const style = css`
@@ -58,7 +57,6 @@ class HeaderAnchorLink extends Component {
         target={target}
       >
         {icon === "arrowBack" ? <ArrowBack /> : null}
-        {icon === "bookmark" ? <Bookmark /> : null}
         {children}
         {icon === "arrowForward" ? <ArrowForward /> : null}
         {icon === "close" ? <CloseIcon className={closeIcon} /> : null}
