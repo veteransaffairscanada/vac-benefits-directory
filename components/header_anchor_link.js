@@ -44,7 +44,9 @@ class HeaderAnchorLink extends Component {
       children,
       nonMobile,
       onClick,
-      href
+      href,
+      rel,
+      target
     } = this.props;
     return (
       <a
@@ -53,6 +55,8 @@ class HeaderAnchorLink extends Component {
         aria-label={this.props["aria-label"]}
         href={href}
         onClick={onClick}
+        rel={rel}
+        target={target}
       >
         {icon === "arrowBack" ? <ArrowBack /> : null}
         {icon === "bookmark" ? <Bookmark /> : null}
@@ -72,6 +76,8 @@ HeaderAnchorLink.propTypes = {
   id: PropTypes.string,
   "aria-label": PropTypes.string,
   href: PropTypes.string,
+  rel: PropTypes.string,
+  target: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
