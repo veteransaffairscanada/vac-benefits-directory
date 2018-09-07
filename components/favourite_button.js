@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import Cookies from "universal-cookie";
 import { css } from "react-emotion";
 import { globalTheme } from "../theme";
-import HeaderAnchorLink from "../components/header_anchor_link";
+import HeaderAnchorLink from "./header_anchor_link";
 
 const bookmarkButton = css`
   margin-left: -5px !important;
