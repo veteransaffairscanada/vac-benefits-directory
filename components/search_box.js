@@ -99,7 +99,7 @@ const SearchBox = ({
       {...otherProps}
     />
     {disableButton ? (
-      <DisabledSearchButton>
+      <DisabledSearchButton title={ariaLabel}>
         <SearchIcon />
       </DisabledSearchButton>
     ) : (
