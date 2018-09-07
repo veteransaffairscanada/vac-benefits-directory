@@ -77,7 +77,7 @@ describe("BenefitCard", () => {
   it("has a correctly configured external link button", () => {
     mountedBenefitCard()
       .find("Button")
-      .at(1)
+      .at(0)
       .simulate("click");
     expect(window.open).toBeCalledWith(
       benefitsFixture[1].benefitPageEn,
@@ -86,7 +86,7 @@ describe("BenefitCard", () => {
     expect(
       mountedBenefitCard()
         .find("Button")
-        .at(1)
+        .at(0)
         .text()
     ).toEqual("en");
   });
@@ -110,7 +110,7 @@ describe("BenefitCard", () => {
     it("has a button with the French link", () => {
       mountedBenefitCard()
         .find("Button")
-        .at(1)
+        .at(0)
         .simulate("click");
       expect(window.open).toBeCalledWith(
         benefitsFixture[1].benefitPageFr,
@@ -119,7 +119,7 @@ describe("BenefitCard", () => {
       expect(
         mountedBenefitCard()
           .find("Button")
-          .at(1)
+          .at(0)
           .text()
       ).toEqual("fr");
     });
@@ -144,7 +144,7 @@ describe("BenefitCard", () => {
     analytics.logEvent = jest.fn();
     mountedBenefitCard()
       .find("Button")
-      .at(1)
+      .at(0)
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
