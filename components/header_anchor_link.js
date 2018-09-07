@@ -32,11 +32,6 @@ const closeIcon = css`
   margin-left: ${globalTheme.unit};
   font-weight: bold;
 `;
-const nonMobileStyle = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none;
-  }
-`;
 
 class HeaderAnchorLink extends Component {
   render() {
@@ -45,7 +40,6 @@ class HeaderAnchorLink extends Component {
       icon,
       className,
       children,
-      nonMobile,
       onClick,
       href,
       rel,
@@ -68,9 +62,6 @@ class HeaderAnchorLink extends Component {
         {icon === "bookmark" ? <Bookmark /> : null}
         {icon === "print" ? <Print /> : null}
         {children}
-        {nonMobile ? (
-          <span className={nonMobileStyle}> {nonMobile} </span>
-        ) : null}
         {icon === "arrowForward" ? <ArrowForward /> : null}
         {icon === "close" ? <CloseIcon className={closeIcon} /> : null}
       </a>
@@ -93,7 +84,6 @@ HeaderAnchorLink.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.string,
   label: PropTypes.object,
-  nonMobile: PropTypes.string,
   onClick: PropTypes.func
 };
 

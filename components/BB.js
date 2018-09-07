@@ -18,11 +18,11 @@ import Container from "../components/container";
 import Header2 from "../components/header2";
 import HeaderAnchorLink from "../components/header_anchor_link";
 import Body from "../components/body";
+import { globalTheme } from "../theme";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
-
 const topPadding = css`
   padding-top: 30px;
 `;
@@ -84,6 +84,11 @@ const inputIcon = css`
 `;
 const anchors = css`
   margin-right: 20px;
+`;
+const nonMobileStyle = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none;
+  }
 `;
 
 export class BB extends Component {
@@ -149,8 +154,9 @@ export class BB extends Component {
                     target="print_page"
                     id="printButton"
                     icon="print"
-                    nonMobile={t("Print")}
-                  />
+                  >
+                    <span className={nonMobileStyle}> {t("Print")} </span>
+                  </HeaderAnchorLink>
                 </Grid>
                 <Grid item xs={12}>
                   <Header2 className={"BenefitsCounter " + title}>
