@@ -58,8 +58,7 @@ export class PlaceSearch extends Component {
           ariaLabel={this.props.t("map.search-locations")}
           placeholder={this.props.t("map.search-location-prompt")}
           onKeyDown={this.onKeyPress}
-          // onButtonClick={() => this.setLocation()}
-          onButtonClick={this.state.onPlacesChanged}
+          onButtonClick={() => this.setLocation()}
         />
       </StandaloneSearchBox>
     );
