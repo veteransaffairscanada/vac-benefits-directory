@@ -34,7 +34,7 @@ describe("EmbeddedBenefitCard", () => {
   it("has a blank target", () => {
     expect(
       mountedEmbeddedBenefitCard()
-        .find("Button")
+        .find("a")
         .prop("target")
     ).toEqual("_blank");
   });
@@ -45,7 +45,7 @@ describe("EmbeddedBenefitCard", () => {
     );
     expect(
       mountedEmbeddedBenefitCard()
-        .find("Button")
+        .find("a")
         .prop("href")
     ).toEqual(benefitsFixture[0].benefitPageEn);
     expect(mountedEmbeddedBenefitCard().text()).toContain(
@@ -64,7 +64,7 @@ describe("EmbeddedBenefitCard", () => {
       );
       expect(
         mountedEmbeddedBenefitCard()
-          .find("Button")
+          .find("a")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
       expect(mountedEmbeddedBenefitCard().text()).toContain(
@@ -77,7 +77,7 @@ describe("EmbeddedBenefitCard", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
     mountedEmbeddedBenefitCard()
-      .find("Button")
+      .find("a")
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",

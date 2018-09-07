@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button, Grid } from "@material-ui/core";
-import { KeyboardBackspace } from "@material-ui/icons";
+import { Grid } from "@material-ui/core";
 import { logEvent } from "../utils/analytics";
 import Paper from "@material-ui/core/Paper";
 import { css } from "react-emotion";
 import OneLiner from "./one_liner";
+import HeaderAnchorLink from "../components/header_anchor_link";
+
 const root = css`
   margin: 20px;
   margin-top: 0px;
@@ -13,22 +14,10 @@ const root = css`
   padding-top: 5px;
 `;
 const heading = css`
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-  text-transform: none !important;
-  font-size: 15px !important;
-  font-weight: 500 !important;
-  color: #3c51e6 !important;
-`;
-const rightArrowIcon = css`
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  float: left !important;
-  filter: FlipH;
-  -ms-filter: FlipH;
-  padding-right: 5px;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 export class EmbeddedBenefitCard extends Component {
@@ -52,7 +41,8 @@ export class EmbeddedBenefitCard extends Component {
 
     return (
       <Paper className={root}>
-        <Button
+        <HeaderAnchorLink
+          id={"embedded-" + benefit.id}
           target="_blank"
           rel="noopener noreferrer"
           className={heading}
@@ -66,8 +56,7 @@ export class EmbeddedBenefitCard extends Component {
           }
         >
           {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-          <KeyboardBackspace className={rightArrowIcon} />
-        </Button>
+        </HeaderAnchorLink>
 
         <Grid container spacing={24}>
           <Grid item xs={12}>
