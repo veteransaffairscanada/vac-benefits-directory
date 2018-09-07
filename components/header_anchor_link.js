@@ -4,7 +4,6 @@ import { globalTheme } from "../theme";
 import { cx, css } from "react-emotion";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
-import CloseIcon from "@material-ui/icons/Close";
 
 const style = css`
   display: inline-block;
@@ -24,11 +23,6 @@ const style = css`
 `;
 const small = css`
   font-size: 18px;
-`;
-const closeIcon = css`
-  font-size: 100% !important;
-  margin-left: ${globalTheme.unit};
-  font-weight: bold;
 `;
 
 class HeaderAnchorLink extends Component {
@@ -59,7 +53,6 @@ class HeaderAnchorLink extends Component {
         {icon === "arrowBack" ? <ArrowBack /> : null}
         {children}
         {icon === "arrowForward" ? <ArrowForward /> : null}
-        {icon === "close" ? <CloseIcon className={closeIcon} /> : null}
       </a>
     );
   }

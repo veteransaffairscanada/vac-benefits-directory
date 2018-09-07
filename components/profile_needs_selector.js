@@ -7,6 +7,7 @@ import { Grid, Paper } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import HeaderAnchorLink from "../components/header_anchor_link";
+import CloseIcon from "@material-ui/icons/Close";
 
 const root = css`
   padding: 25px !important;
@@ -30,6 +31,11 @@ const filterTitle = css`
   margin-bottom: 5px;
   font-weight: bold;
   font-size: 22px;
+`;
+const closeIcon = css`
+  font-size: 100% !important;
+  margin-left: ${globalTheme.unit};
+  font-weight: bold;
 `;
 
 export class ProfileNeedsSelector extends Component {
@@ -77,6 +83,7 @@ export class ProfileNeedsSelector extends Component {
               }}
             >
               {t("reset filters")} {"(" + this.countSelected() + ")"}
+              <CloseIcon className={closeIcon} />
             </HeaderAnchorLink>
           ) : (
             ""
