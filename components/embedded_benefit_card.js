@@ -5,7 +5,7 @@ import { logEvent } from "../utils/analytics";
 import Paper from "@material-ui/core/Paper";
 import { css } from "react-emotion";
 import OneLiner from "./one_liner";
-import HeaderAnchorLink from "../components/header_anchor_link";
+import HeaderButton from "./header_button";
 
 const root = css`
   margin: 20px;
@@ -39,7 +39,7 @@ export class EmbeddedBenefitCard extends Component {
 
     return (
       <Paper className={root}>
-        <HeaderAnchorLink
+        <HeaderButton
           id={"embedded-" + benefit.id}
           target="_blank"
           rel="noopener noreferrer"
@@ -55,7 +55,7 @@ export class EmbeddedBenefitCard extends Component {
           }
         >
           {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-        </HeaderAnchorLink>
+        </HeaderButton>
 
         <Grid container spacing={24}>
           <Grid item xs={12}>

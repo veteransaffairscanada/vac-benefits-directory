@@ -18,7 +18,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import Header2 from "../components/header2";
-import HeaderAnchorLink from "../components/header_anchor_link";
+import HeaderButton from "./header_button";
 import Body from "../components/body";
 import { globalTheme } from "../theme";
 
@@ -139,7 +139,7 @@ export class BB extends Component {
             <div className={container2}>
               <Grid container spacing={24}>
                 <Grid item xs={12} md={9}>
-                  <HeaderAnchorLink
+                  <HeaderButton
                     className={anchors}
                     href={this.props.favouritesUrl}
                   >
@@ -148,9 +148,9 @@ export class BB extends Component {
                       " (" +
                       this.props.favouriteBenefits.length +
                       ")"}
-                  </HeaderAnchorLink>
+                  </HeaderButton>
 
-                  <HeaderAnchorLink
+                  <HeaderButton
                     className={anchors}
                     href={this.props.printUrl}
                     target="print_page"
@@ -158,7 +158,7 @@ export class BB extends Component {
                   >
                     <Print />{" "}
                     <span className={nonMobileStyle}> {t("Print")} </span>
-                  </HeaderAnchorLink>
+                  </HeaderButton>
                 </Grid>
                 <Grid item xs={12}>
                   <Header2 className={"BenefitsCounter " + title}>

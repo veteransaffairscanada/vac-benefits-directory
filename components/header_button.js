@@ -27,7 +27,7 @@ const small = css`
   font-size: 18px;
 `;
 
-class HeaderAnchorLink extends Component {
+class HeaderButton extends Component {
   render() {
     const {
       id,
@@ -72,7 +72,7 @@ class HeaderAnchorLink extends Component {
   }
 }
 
-HeaderAnchorLink.propTypes = {
+HeaderButton.propTypes = {
   id: PropTypes.string,
   size: PropTypes.string,
   href: PropTypes.string,
@@ -88,4 +88,4 @@ HeaderAnchorLink.propTypes = {
   onClick: PropTypes.func
 };
 
-export default HeaderAnchorLink;
+export default HeaderButton;

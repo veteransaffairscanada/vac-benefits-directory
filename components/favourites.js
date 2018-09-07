@@ -12,7 +12,7 @@ import { css } from "react-emotion";
 import Container from "./container";
 import Header1 from "./header1";
 import Header2 from "./header2";
-import HeaderAnchorLink from "./header_anchor_link";
+import HeaderButton from "./header_button";
 import Body from "./body";
 
 const backLink = css`
@@ -77,14 +77,14 @@ export class Favourites extends Component {
       <Container id="favourites">
         <Grid className={outerGrid} container spacing={24}>
           <Grid item xs={12} className={topMatter}>
-            <HeaderAnchorLink
+            <HeaderButton
               id="backButton"
               className={backLink}
               href={this.get_link("benefits-directory")}
               arrow="back"
             >
               {t("favourites.back_link")}
-            </HeaderAnchorLink>
+            </HeaderButton>
 
             <Header1 className={"BenefitsCounter"}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
@@ -120,13 +120,13 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <HeaderAnchorLink
+            <HeaderButton
               href={this.props.printUrl}
               target="print_page"
               id="printButton"
             >
               <Print /> {t("Print")}
-            </HeaderAnchorLink>
+            </HeaderButton>
 
             <Header2 className={contactUsTitle}>
               {t("favourites.contact_us")}

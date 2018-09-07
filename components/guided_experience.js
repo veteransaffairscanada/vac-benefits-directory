@@ -9,7 +9,7 @@ import Container from "./container";
 import Header1 from "./header1";
 import Header2 from "./header2";
 import Button from "./button";
-import HeaderAnchorLink from "./header_anchor_link";
+import HeaderButton from "./header_button";
 
 const root = css`
   border: solid 1px grey;
@@ -62,7 +62,7 @@ export class GuidedExperience extends Component {
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <Container id="guidedExperience">
-        <HeaderAnchorLink
+        <HeaderButton
           id="prevButton"
           disableRipple
           href={
@@ -77,7 +77,7 @@ export class GuidedExperience extends Component {
           arrow="back"
         >
           {t("back")}
-        </HeaderAnchorLink>
+        </HeaderButton>
         <div className={root}>
           <Grid container spacing={24} className={box}>
             <Grid item xs={12} md={12}>

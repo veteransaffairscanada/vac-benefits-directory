@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { Grid, Paper } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
-import HeaderAnchorLink from "../components/header_anchor_link";
+import HeaderButton from "./header_button";
 import CloseIcon from "@material-ui/icons/Close";
 
 const root = css`
@@ -74,7 +74,7 @@ export class ProfileNeedsSelector extends Component {
           {t("filters")}{" "}
           {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
           this.props.patronType !== "" ? (
-            <HeaderAnchorLink
+            <HeaderButton
               id={"ClearFilters"}
               className={clearButton}
               onClick={() => {
@@ -83,7 +83,7 @@ export class ProfileNeedsSelector extends Component {
             >
               {t("reset filters")} {"(" + this.countSelected() + ")"}
               <CloseIcon className={closeIcon} />
-            </HeaderAnchorLink>
+            </HeaderButton>
           ) : (
             ""
           )}
