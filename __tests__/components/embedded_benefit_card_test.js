@@ -35,7 +35,7 @@ describe("EmbeddedBenefitCard", () => {
   it("has a blank target", () => {
     expect(
       mountedEmbeddedBenefitCard()
-        .find("HeaderAnchorLink")
+        .find("HeaderButton")
         .prop("target")
     ).toEqual("_blank");
   });
@@ -46,7 +46,7 @@ describe("EmbeddedBenefitCard", () => {
     );
     expect(
       mountedEmbeddedBenefitCard()
-        .find("HeaderAnchorLink")
+        .find("HeaderButton")
         .prop("href")
     ).toEqual(benefitsFixture[0].benefitPageEn);
     expect(mountedEmbeddedBenefitCard().text()).toContain(
@@ -65,7 +65,7 @@ describe("EmbeddedBenefitCard", () => {
       );
       expect(
         mountedEmbeddedBenefitCard()
-          .find("HeaderAnchorLink")
+          .find("HeaderButton")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
       expect(mountedEmbeddedBenefitCard().text()).toContain(

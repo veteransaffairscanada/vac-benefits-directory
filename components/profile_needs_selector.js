@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { Grid, Paper } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
-import HeaderAnchorLink from "../components/header_anchor_link";
+import HeaderButton from "./header_button";
+import CloseIcon from "@material-ui/icons/Close";
 
 const root = css`
   padding: 25px !important;
@@ -30,6 +31,11 @@ const filterTitle = css`
   margin-bottom: 5px;
   font-weight: bold;
   font-size: 22px;
+`;
+const closeIcon = css`
+  font-size: 100% !important;
+  margin-left: ${globalTheme.unit};
+  font-weight: bold;
 `;
 
 export class ProfileNeedsSelector extends Component {
@@ -68,16 +74,16 @@ export class ProfileNeedsSelector extends Component {
           {t("filters")}{" "}
           {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
           this.props.patronType !== "" ? (
-            <HeaderAnchorLink
+            <HeaderButton
               id={"ClearFilters"}
               className={clearButton}
-              icon="close"
               onClick={() => {
                 this.clearFilters();
               }}
             >
               {t("reset filters")} {"(" + this.countSelected() + ")"}
-            </HeaderAnchorLink>
+              <CloseIcon className={closeIcon} />
+            </HeaderButton>
           ) : (
             ""
           )}

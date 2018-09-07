@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import Cookies from "universal-cookie";
 import { css } from "react-emotion";
 import { globalTheme } from "../theme";
-import HeaderAnchorLink from "./header_anchor_link";
+import HeaderButton from "./header_button";
 
 const bookmarkButton = css`
   margin-left: -5px !important;
@@ -48,7 +48,7 @@ export class FavouriteButton extends Component {
     const isBookmarked =
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     return (
-      <HeaderAnchorLink
+      <HeaderButton
         id={"favourite-" + this.props.benefit.id}
         className={bookmarkButton}
         aria-label={this.props.t("B3.favouritesButtonText")}
@@ -74,7 +74,7 @@ export class FavouriteButton extends Component {
               : "B3.favouritesButtonBTextMobile"
           )}
         </span>
-      </HeaderAnchorLink>
+      </HeaderButton>
     );
   }
 }

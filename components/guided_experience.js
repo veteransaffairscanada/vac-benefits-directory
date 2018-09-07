@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import ArrowBack from "@material-ui/icons/ArrowBack";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 import Router from "next/router";
@@ -10,7 +9,7 @@ import Container from "./container";
 import Header1 from "./header1";
 import Header2 from "./header2";
 import Button from "./button";
-import HeaderAnchorLink from "./header_anchor_link";
+import HeaderButton from "./header_button";
 
 const root = css`
   border: solid 1px grey;
@@ -25,6 +24,7 @@ const box = css`
 
 const prevButton = css`
   margin-top: 50px !important;
+  margin-left: 5px !important;
 `;
 
 const title = css`
@@ -62,7 +62,7 @@ export class GuidedExperience extends Component {
     const eligibilityKeys = Object.keys(selectedEligibility);
     return (
       <Container id="guidedExperience">
-        <HeaderAnchorLink
+        <HeaderButton
           id="prevButton"
           disableRipple
           href={
@@ -74,10 +74,10 @@ export class GuidedExperience extends Component {
               : () => this.props.setSection(this.props.prevSection)
           }
           className={prevButton}
+          arrow="back"
         >
-          <ArrowBack />
           {t("back")}
-        </HeaderAnchorLink>
+        </HeaderButton>
         <div className={root}>
           <Grid container spacing={24} className={box}>
             <Grid item xs={12} md={12}>

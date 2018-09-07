@@ -4,9 +4,6 @@ import { globalTheme } from "../theme";
 import { cx, css } from "react-emotion";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 import ArrowForward from "@material-ui/icons/ArrowForward";
-import Bookmark from "@material-ui/icons/Bookmark";
-import Print from "@material-ui/icons/Print";
-import CloseIcon from "@material-ui/icons/Close";
 
 const style = css`
   display: inline-block;
@@ -29,30 +26,19 @@ const style = css`
 const small = css`
   font-size: 18px;
 `;
-const closeIcon = css`
-  font-size: 100% !important;
-  margin-left: ${globalTheme.unit};
-  font-weight: bold;
-`;
-const nonMobileStyle = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none;
-  }
-`;
 
-class HeaderAnchorLink extends Component {
+class HeaderButton extends Component {
   render() {
     const {
       id,
-      icon,
+      arrow,
       className,
       children,
-      nonMobile,
       onClick,
       href,
-      rel,
       target,
-      size
+      size,
+      otherProps
     } = this.props;
 
     let buttonOnClick;
@@ -75,30 +61,21 @@ class HeaderAnchorLink extends Component {
           size === "small" ? cx(style, small, className) : cx(style, className)
         }
         id={"a-" + id}
-        aria-label={this.props["aria-label"]}
         onClick={buttonOnClick}
-        rel={rel}
+        {...otherProps}
       >
-        {icon === "arrowBack" ? <ArrowBack /> : null}
-        {icon === "bookmark" ? <Bookmark /> : null}
-        {icon === "print" ? <Print /> : null}
+        {arrow === "back" ? <ArrowBack /> : null}
         {children}
-        {nonMobile ? (
-          <span className={nonMobileStyle}> {nonMobile} </span>
-        ) : null}
-        {icon === "arrowForward" ? <ArrowForward /> : null}
-        {icon === "close" ? <CloseIcon className={closeIcon} /> : null}
+        {arrow === "forward" ? <ArrowForward /> : null}
       </button>
     );
   }
 }
 
-HeaderAnchorLink.propTypes = {
+HeaderButton.propTypes = {
   id: PropTypes.string,
   size: PropTypes.string,
-  "aria-label": PropTypes.string,
   href: PropTypes.string,
-  rel: PropTypes.string,
   target: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
@@ -106,10 +83,9 @@ HeaderAnchorLink.propTypes = {
     PropTypes.object
   ]),
   className: PropTypes.string,
-  icon: PropTypes.string,
+  arrow: PropTypes.string,
   label: PropTypes.object,
-  nonMobile: PropTypes.string,
   onClick: PropTypes.func
 };
 
-export default HeaderAnchorLink;
+export default HeaderButton;
