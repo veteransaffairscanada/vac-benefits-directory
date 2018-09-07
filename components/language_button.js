@@ -1,24 +1,22 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Button } from "@material-ui/core";
+import FooterButton from "./footer_button";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
 import { css } from "react-emotion";
 import { globalTheme } from "../theme";
 
-  const mobileButton = css`
-    color: #fff !important;
-    text-transform: none !important;
-    @media only screen and (min-width: ${globalTheme.max.xs}) {
-      display: none !important;
-    }
+const mobileButton = css`
+  font-size: 14px;
+  @media only screen and (min-width: ${globalTheme.max.xs}) {
+    display: none !important;
+  }
 `;
-  const desktopButton = css`
-    color: #fff !important;
-    text-transform: none !important;
-    @media only screen and (max-width: ${globalTheme.max.xs}) {
-      display: none !important;
-    }
+const desktopButton = css`
+  font-size: 14px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none !important;
+  }
 `;
 
 class LanguageButton extends Component {
@@ -42,23 +40,23 @@ class LanguageButton extends Component {
 
     return (
       <div title={t("other-language-in-current-language")}>
-        <Button
+        <FooterButton
           id="changeLanguage"
           onClick={this.changeLanguage}
           className={desktopButton}
           lang={t("other-language-code")}
         >
           {t("other-language")}
-        </Button>
+        </FooterButton>
 
-        <Button
+        <FooterButton
           id="changeLanguageMobile"
           onClick={this.changeLanguage}
           className={mobileButton}
           lang={t("other-language-code")}
         >
           {this.titleCase(t("other-language-code"))}
-        </Button>
+        </FooterButton>
       </div>
     );
   }
@@ -69,4 +67,4 @@ LanguageButton.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default (LanguageButton);
+export default LanguageButton;
