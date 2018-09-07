@@ -136,6 +136,7 @@ export class Search extends Component {
       <SearchBox
         wrapperId={this.props.id}
         inputId="inputField"
+        buttonId="searchButtonLink"
         placeholder={this.props.t("search")}
         onKeyDown={this.onKeyDown}
         onKeyUp={this.onKeyUp}

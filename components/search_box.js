@@ -1,10 +1,7 @@
-// https://govuk-static.herokuapp.com/component-guide/search
-
+// from: https://raw.githubusercontent.com/UKHomeOffice/govuk-react/master/components/search-box/src/index.js
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
-
-// import { Search } from '@govuk-react/icons';
 import SearchIcon from "@material-ui/icons/Search";
 import { globalTheme } from "../theme";
 
@@ -15,7 +12,6 @@ const SearchBoxWrapper = styled("div")({
   background: globalTheme.colour.white
 });
 
-// css normalize is hiding the input:search clear SearchButton
 const InputSearchBox = styled("input")({
   width: "100%",
   height: "40px",
@@ -70,6 +66,7 @@ const SearchBox = ({
   wrapperId,
   onButtonClick,
   inputId,
+  buttonId,
   otherProps
 }) => (
   <SearchBoxWrapper id={wrapperId}>
@@ -82,7 +79,7 @@ const SearchBox = ({
       onKeyUp={onKeyUp}
       {...otherProps}
     />
-    <SearchButton title="Search" onClick={onButtonClick}>
+    <SearchButton title="Search" id={buttonId} onClick={onButtonClick}>
       <SearchIcon />
     </SearchButton>
   </SearchBoxWrapper>
@@ -99,6 +96,7 @@ SearchBox.propTypes = {
   wrapperId: PropTypes.string,
   buttonHref: PropTypes.string,
   inputId: PropTypes.string,
+  buttonId: PropTypes.string,
   otherProps: PropTypes.object
 };
 
