@@ -39,7 +39,7 @@ const StyledButton = styled("a")(
     ":focus": {
       color: "white",
       backgroundColor: globalTheme.colour.darkGreen,
-      outline: `3px solid #FFBF47`
+      outline: `3px solid ` + globalTheme.colour.gdsYellow
     },
     ":active": {
       position: "relative",

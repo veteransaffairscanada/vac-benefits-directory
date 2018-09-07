@@ -28,7 +28,9 @@ const theme = {
     darkGreyBlue: "#284162",
     fernGreen: "#39824d",
     darkGreen: "#295f38",
-    tornadoRed: "#ea4335"
+    tornadoRed: "#ea4335",
+    white: "#ffffff",
+    gdsYellow: "#FFBF47"
   }
 };
 
