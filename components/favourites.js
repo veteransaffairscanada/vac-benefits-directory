@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import "babel-polyfill/dist/polyfill";
-import BenefitList from "../components/benefit_list";
+import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Link from "next/link";
 import { css } from "react-emotion";
-import Container from "../components/container";
-import Header1 from "../components/header1";
-import Header2 from "../components/header2";
-import HeaderAnchorLink from "../components/header_anchor_link";
-import Body from "../components/body";
+import Container from "./container";
+import Header1 from "./header1";
+import Header2 from "./header2";
+import HeaderAnchorLink from "./header_anchor_link";
+import Body from "./body";
 
 const backLink = css`
   margin-bottom: 15px;

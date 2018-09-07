@@ -1,17 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
 import Bookmark from "@material-ui/icons/Bookmark";
 import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
 import { css } from "react-emotion";
 import { globalTheme } from "../theme";
+import HeaderAnchorLink from "./header_anchor_link";
 
 const bookmarkButton = css`
-  color: #3e57e2 !important;
   margin-left: -5px !important;
-  text-transform: none !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
 `;
@@ -50,31 +48,33 @@ export class FavouriteButton extends Component {
     const isBookmarked =
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     return (
-      <Button
+      <HeaderAnchorLink
+        id={"favourite-" + this.props.benefit.id}
         className={bookmarkButton}
         aria-label={this.props.t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
+        size="small"
       >
         {isBookmarked ? (
           <Bookmark className={"bookmarked"} />
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
-        <div className={hideSmall}>
+        <span className={hideSmall}>
           {this.props.t(
             isBookmarked
               ? "B3.favouritesButtonTextRemove"
               : "B3.favouritesButtonBText"
           )}
-        </div>
-        <div className={hideBig}>
+        </span>
+        <span className={hideBig}>
           {this.props.t(
             isBookmarked
               ? "B3.favouritesButtonTextRemove"
               : "B3.favouritesButtonBTextMobile"
           )}
-        </div>
-      </Button>
+        </span>
+      </HeaderAnchorLink>
     );
   }
 }
