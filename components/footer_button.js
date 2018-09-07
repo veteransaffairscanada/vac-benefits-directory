@@ -19,17 +19,16 @@ const style = css`
   :hover {
     text-decoration: underline;
   }
-  :focus {
-    outline: 3px solid ${globalTheme.colour.govukYellow};
-  }
 `;
+
 class FooterButton extends Component {
   render() {
-    const { className, children } = this.props;
+    const { className, onClick, children, other } = this.props;
     return (
       <button
         className={className ? cx(style, className) : style}
-        {...this.props}
+        onClick={onClick}
+        {...other}
       >
         {children}
       </button>
