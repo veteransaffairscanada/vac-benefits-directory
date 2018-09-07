@@ -14,6 +14,7 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Body from "../components/body";
 import Header1 from "../components/header1";
+import Router from "next/router";
 
 const root = css`
   background-color: white;
@@ -67,8 +68,8 @@ export class App extends Component {
   render() {
     const { i18n, t } = this.props;
     let urlGE =
-      "guided?section=patronTypeQuestion&lng=" + t("current-language-code");
-    let urlBD = "benefits-directory?lng=" + t("current-language-code");
+      "/guided?section=patronTypeQuestion&lng=" + t("current-language-code");
+    let urlBD = "/benefits-directory?lng=" + t("current-language-code");
     return (
       <Layout
         i18n={i18n}
@@ -90,7 +91,7 @@ export class App extends Component {
                 <Button
                   id="heroGuidedLink"
                   big={true}
-                  href={urlGE}
+                  onClick={() => Router.push(urlGE)}
                   arrow={true}
                 >
                   {t("index.guided experience")}
@@ -102,7 +103,7 @@ export class App extends Component {
                   id="heroBenefitsLink"
                   big={true}
                   secondary={true}
-                  href={urlBD}
+                  onClick={() => Router.push(urlBD)}
                 >
                   {t("index.all benefits")}
                 </Button>
@@ -112,7 +113,7 @@ export class App extends Component {
                   id="FavouritesPage"
                   big={true}
                   secondary={true}
-                  href={this.props.favouritesUrl}
+                  onClick={() => Router.push(this.props.favouritesUrl)}
                 >
                   <Bookmark className={bookmarkCSS} />
                   {t("index.your_saved_benefits") +

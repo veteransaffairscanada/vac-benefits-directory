@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -12,27 +12,17 @@ import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
 import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
-import Bookmark from "@material-ui/icons/Bookmark";
-import Print from "@material-ui/icons/Print";
 import SearchIcon from "@material-ui/icons/Search";
 import { css } from "react-emotion";
 import Container from "../components/container";
-import { globalTheme } from "../theme";
 import Header2 from "../components/header2";
+import HeaderAnchorLink from "../components/header_anchor_link";
 import Body from "../components/body";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
-const buttonBarButton = css`
-  font-weight: 100 !important;
-  margin-right: 20px !important;
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-  text-decoration: none !important;
-  text-transform: none !important;
-  color: #3e57e2 !important;
-`;
+
 const topPadding = css`
   padding-top: 30px;
 `;
@@ -92,13 +82,8 @@ const inputIcon = css`
   padding-right: 10px;
   margin-left: 5px;
 `;
-const iconStyle = css`
-  font-size: 20px !important;
-`;
-const nonMobile = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none;
-  }
+const anchors = css`
+  margin-right: 20px;
 `;
 
 export class BB extends Component {
@@ -147,32 +132,25 @@ export class BB extends Component {
             <div className={container2}>
               <Grid container spacing={24}>
                 <Grid item xs={12} md={9}>
-                  <Button
-                    id="Favourites Page"
-                    variant="flat"
-                    size="medium"
-                    className={buttonBarButton}
+                  <HeaderAnchorLink
+                    className={anchors}
+                    icon="bookmark"
                     href={this.props.favouritesUrl}
                   >
-                    <Bookmark className={iconStyle} />
-                    &nbsp;
                     {t("B3.favouritesButtonText") +
                       " (" +
                       this.props.favouriteBenefits.length +
                       ")"}
-                  </Button>
-                  <Button
+                  </HeaderAnchorLink>
+
+                  <HeaderAnchorLink
+                    className={anchors}
                     href={this.props.printUrl}
-                    variant="flat"
-                    size="medium"
                     target="print_page"
-                    className={buttonBarButton}
                     id="printButton"
-                  >
-                    <Print className={iconStyle} />
-                    &nbsp;
-                    <span className={nonMobile}> {t("Print")} </span>
-                  </Button>
+                    icon="print"
+                    nonMobile={t("Print")}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <Header2 className={"BenefitsCounter " + title}>

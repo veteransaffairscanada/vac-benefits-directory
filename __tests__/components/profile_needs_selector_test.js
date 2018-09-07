@@ -103,7 +103,7 @@ describe("ProfileNeedsSelector", () => {
     const mounted = mount(<ProfileNeedsSelector {...props} {...reduxData} />);
     mounted.instance().clearFilters = jest.fn();
     mounted
-      .find("#ClearFilters")
+      .find("#a-ClearFilters")
       .first()
       .simulate("click");
     expect(mounted.instance().clearFilters).toBeCalled();

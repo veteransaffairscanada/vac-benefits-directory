@@ -47,22 +47,32 @@ export class FavouriteButton extends Component {
   };
 
   render() {
+    const isBookmarked =
+      this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     return (
       <Button
         className={bookmarkButton}
         aria-label={this.props.t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
       >
-        {this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1 ? (
+        {isBookmarked ? (
           <Bookmark className={"bookmarked"} />
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
         <div className={hideSmall}>
-          {this.props.t("B3.favouritesButtonBText")}
+          {this.props.t(
+            isBookmarked
+              ? "B3.favouritesButtonTextRemove"
+              : "B3.favouritesButtonBText"
+          )}
         </div>
         <div className={hideBig}>
-          {this.props.t("B3.favouritesButtonBTextMobile")}
+          {this.props.t(
+            isBookmarked
+              ? "B3.favouritesButtonTextRemove"
+              : "B3.favouritesButtonBTextMobile"
+          )}
         </div>
       </Button>
     );

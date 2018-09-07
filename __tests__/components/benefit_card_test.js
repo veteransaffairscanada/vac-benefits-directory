@@ -10,6 +10,10 @@ const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 describe("BenefitCard", () => {
+  const mocked_fn = jest.fn();
+  mocked_fn.mockReturnValue({ focus: jest.fn() });
+  window.open = mocked_fn;
+
   let props;
   let mockStore, reduxData;
   let _mountedBenefitCard, _shallowBenefitCard;
@@ -71,18 +75,14 @@ describe("BenefitCard", () => {
   });
 
   it("has a correctly configured external link button", () => {
-    expect(
-      mountedBenefitCard()
-        .find("Button")
-        .at(1)
-        .prop("target")
-    ).toEqual("_blank");
-    expect(
-      mountedBenefitCard()
-        .find("Button")
-        .at(1)
-        .prop("href")
-    ).toEqual(benefitsFixture[1].benefitPageEn);
+    mountedBenefitCard()
+      .find("Button")
+      .at(1)
+      .simulate("click");
+    expect(window.open).toBeCalledWith(
+      benefitsFixture[1].benefitPageEn,
+      "_blank"
+    );
     expect(
       mountedBenefitCard()
         .find("Button")
@@ -108,12 +108,14 @@ describe("BenefitCard", () => {
     });
 
     it("has a button with the French link", () => {
-      expect(
-        mountedBenefitCard()
-          .find("Button")
-          .at(1)
-          .prop("href")
-      ).toEqual(benefitsFixture[1].benefitPageFr);
+      mountedBenefitCard()
+        .find("Button")
+        .at(1)
+        .simulate("click");
+      expect(window.open).toBeCalledWith(
+        benefitsFixture[1].benefitPageFr,
+        "_blank"
+      );
       expect(
         mountedBenefitCard()
           .find("Button")
