@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import lunr from "lunr";
 
-import Button from "@material-ui/core/Button";
-import SearchIcon from "@material-ui/icons/Search";
 import Paper from "@material-ui/core/Paper";
 import MenuItem from "@material-ui/core/MenuItem";
 
@@ -13,14 +11,11 @@ import parse from "autosuggest-highlight/parse";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import SearchBox from "./search_box";
 
 const container = css`
   flex-grow: 1;
   position: relative;
-`;
-const inputIcon = css`
-  padding-top: 3px;
-  padding-right: 5px;
 `;
 const suggestionsContainerOpen = css`
   position: absolute;
@@ -31,32 +26,6 @@ const suggestionsContainerOpen = css`
   overflow: auto;
   max-height: 300px;
 `;
-const searchWrap = css`
-  display: inline-flex;
-  width: 100%;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 0px;
-  padding-left: 5px !important;
-`;
-const searchBox = css`
-  display: inline-flex;
-  padding: 10px;
-  font-size: 15px;
-  flex: 1;
-  margin-right: 10px;
-  border-width: 0px;
-  width: 100%;
-  font-family: Merriweather;
-`;
-const searchInputField = css`
-  display: inline-flex;
-  font-size: 15px;
-  flex: 1;
-  border-width: 0px;
-  width: 100%;
-  font-family: Merriweather;
-`;
 const suggestion = css`
   display: block;
 `;
@@ -65,21 +34,11 @@ const suggestionsList = css`
   padding: 0;
   list-style-type: none;
 `;
-const searchButton = css`
-  padding: 15px !important;
-  padding-left: 50px !important;
-  padding-right: 50px !important;
-  text-transform: none !important;
-  border-radius: 0px !important;
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none !important;
-  }
-`;
 const spanCSS = css`
-font-weight: 500;
+  font-weight: 500;
 `;
 const strongCSS = css`
-font-weight: 300
+  font-weight: 300;
 `;
 export class Search extends Component {
   constructor(props) {
@@ -174,37 +133,16 @@ export class Search extends Component {
   renderInput = inputProps => {
     const { ...other } = inputProps;
     return (
-      <div id={this.props.id} className={searchWrap}>
-        <div className={searchBox}>
-          <SearchIcon className={inputIcon} />
-          <input
-            id="inputField"
-            aria-label="search"
-            type="text"
-            placeholder={this.props.t("search")}
-            className={searchInputField}
-            onKeyDown={this.onKeyDown}
-            onKeyUp={this.onKeyUp}
-            {...other}
-          />
-        </div>
-        <div>
-          <Button
-            id="searchButtonLink"
-            className={searchButton}
-            variant="raised"
-            color="primary"
-            href={
-              "benefits-directory?lng=" +
-              this.props.t("current-language-code") +
-              "&searchString=" +
-              this.state.value
-            }
-          >
-            {this.props.t("search-button")}
-          </Button>
-        </div>
-      </div>
+      <SearchBox
+        wrapperId={this.props.id}
+        inputId="inputField"
+        buttonId="searchButtonLink"
+        placeholder={this.props.t("search")}
+        onKeyDown={this.onKeyDown}
+        onKeyUp={this.onKeyUp}
+        onButtonClick={this.doSearch}
+        otherProps={other}
+      />
     );
   };
 
