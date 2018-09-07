@@ -24,6 +24,9 @@ const style = css`
     vertical-align: middle;
   }
 `;
+const small = css`
+  font-size: 18px;
+`;
 const closeIcon = css`
   font-size: 100% !important;
   margin-left: ${globalTheme.unit};
@@ -37,20 +40,29 @@ const nonMobileStyle = css`
 
 class HeaderAnchorLink extends Component {
   render() {
-    const { id, icon, className, children, nonMobile, onClick } = this.props;
-    let propsCopy = JSON.parse(JSON.stringify(this.props));
-    delete propsCopy.className;
-    delete propsCopy.children;
-    delete propsCopy.icon;
-    delete propsCopy.nonMobile;
-    delete propsCopy.id;
-    delete propsCopy.onClick;
+    const {
+      id,
+      icon,
+      className,
+      children,
+      nonMobile,
+      onClick,
+      href,
+      rel,
+      target,
+      size
+    } = this.props;
     return (
       <a
-        className={cx(style, className)}
+        className={
+          size === "small" ? cx(style, small, className) : cx(style, className)
+        }
         id={"a-" + id}
+        aria-label={this.props["aria-label"]}
+        href={href}
         onClick={onClick}
-        {...propsCopy}
+        rel={rel}
+        target={target}
       >
         {icon === "arrowBack" ? <ArrowBack /> : null}
         {icon === "bookmark" ? <Bookmark /> : null}
@@ -67,6 +79,12 @@ class HeaderAnchorLink extends Component {
 }
 
 HeaderAnchorLink.propTypes = {
+  id: PropTypes.string,
+  size: PropTypes.string,
+  "aria-label": PropTypes.string,
+  href: PropTypes.string,
+  rel: PropTypes.string,
+  target: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
