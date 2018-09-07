@@ -36,9 +36,9 @@ class HeaderAnchorLink extends Component {
       children,
       onClick,
       href,
-      rel,
       target,
-      size
+      size,
+      otherProps
     } = this.props;
 
     let buttonOnClick;
@@ -61,9 +61,8 @@ class HeaderAnchorLink extends Component {
           size === "small" ? cx(style, small, className) : cx(style, className)
         }
         id={"a-" + id}
-        aria-label={this.props["aria-label"]}
         onClick={buttonOnClick}
-        rel={rel}
+        {...otherProps}
       >
         {arrow === "back" ? <ArrowBack /> : null}
         {children}
@@ -76,9 +75,7 @@ class HeaderAnchorLink extends Component {
 HeaderAnchorLink.propTypes = {
   id: PropTypes.string,
   size: PropTypes.string,
-  "aria-label": PropTypes.string,
   href: PropTypes.string,
-  rel: PropTypes.string,
   target: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
