@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
-import HeaderAnchorLink from "../components/header_anchor_link";
+import HeaderButton from "./header_button";
 
 const root = css`
   background-color: #f5f5f5 !important;
@@ -96,7 +96,7 @@ export class ProfileNeedsSelectorMobile extends Component {
               {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
               this.props.patronType !== "" ? (
                 <h3 variant="title" className={filterTitle}>
-                  <HeaderAnchorLink
+                  <HeaderButton
                     id="ClearFiltersMobile"
                     className={clearButton}
                     onClick={() => {
@@ -104,7 +104,7 @@ export class ProfileNeedsSelectorMobile extends Component {
                     }}
                   >
                     {t("reset filters")} {"(" + this.countSelected() + ")"}
-                  </HeaderAnchorLink>
+                  </HeaderButton>
                 </h3>
               ) : (
                 ""
