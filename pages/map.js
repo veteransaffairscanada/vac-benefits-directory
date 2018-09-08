@@ -6,8 +6,7 @@ import { connect } from "react-redux";
 import AreaOfficeMap from "../components/area_office_map";
 import AreaOfficeTable from "../components/area_office_table";
 import PlaceSearch from "../components/place_search";
-import { Grid, Button } from "@material-ui/core";
-import ArrowBack from "@material-ui/icons/ArrowBack";
+import { Grid } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper/index";
 import Link from "next/link";
 import { globalTheme } from "../theme";
@@ -15,18 +14,15 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Header1 from "../components/header1";
 import Body from "../components/body";
+import HeaderButton from "../components/header_button";
 
 const paper = css`
   margin-top: ${globalTheme.marginTop};
 `;
 
 const backLink = css`
-  font-size: 20px !important;
-  font-weight: 100 !important;
-  margin-bottom: 15px !important;
-  padding-left: 0px !important;
-  text-decoration: none !important;
-  text-transform: none !important;
+  margin-bottom: 15px;
+  margin-left: -10px;
 `;
 
 const topMatter = css`
@@ -88,16 +84,13 @@ export class Map extends Component {
             <Grid container spacing={24}>
               <Grid item xs={12} md={8} className={topMatter}>
                 <Link href={this.get_link("favourites")}>
-                  <Button
-                    variant="flat"
-                    size="large"
+                  <HeaderButton
                     className={backLink}
                     id="backButton"
+                    arrow="back"
                   >
-                    <ArrowBack />
-                    &nbsp; &nbsp;
                     {t("back")}
-                  </Button>
+                  </HeaderButton>
                 </Link>
                 <Header1>{t("map.vacOffices")}</Header1>
               </Grid>
