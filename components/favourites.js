@@ -17,6 +17,7 @@ import Body from "./body";
 
 const backLink = css`
   margin-bottom: 15px;
+  margin-left: -10px;
 `;
 const bookmarkCSS = css`
   font-size: 70px !important;
