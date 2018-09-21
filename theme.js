@@ -7,6 +7,7 @@ const theme = {
   marginTop: "25px", //used in place of theme.spacing.unit *3
   unit: "8px",
   max: {
+    mobile: "399.5px",
     xs: "599.5px",
     sm: "959.5px",
     md: "1279.5px",

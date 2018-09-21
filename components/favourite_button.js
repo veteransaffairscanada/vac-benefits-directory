@@ -12,6 +12,10 @@ const bookmarkButton = css`
   margin-left: -5px !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    width: 2em;
+    height: 2em;
+  }
 `;
 const hideSmall = css`
   @media only screen and (max-width: ${globalTheme.max.sm}) {
@@ -22,7 +26,14 @@ const hideBig = css`
   @media only screen and (min-width: ${globalTheme.min.sm}) {
     display: none !important;
   }
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    display: none !important;
+  }
 `;
+
+const hidden = css`
+ display: none !important;
+ `;
 
 export class FavouriteButton extends Component {
   constructor() {
@@ -60,7 +71,7 @@ export class FavouriteButton extends Component {
         ) : (
           <BookmarkBorder className={"notBookmarked"} />
         )}
-        <span className={hideSmall}>
+        <span className={hideSmall} >
           {this.props.t(
             isBookmarked
               ? "B3.favouritesButtonTextRemove"

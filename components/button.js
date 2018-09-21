@@ -11,6 +11,9 @@ const rightArrowIcon = css`
   transform: scaleX(-1);
   filter: FlipH;
   -ms-filter: fliph;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    display: none !important;
+  }
 `;
 
 const StyledButton = styled("button")(
