@@ -4,7 +4,7 @@ import Bookmark from "@material-ui/icons/Bookmark";
 import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
-import { css } from "react-emotion";
+import { cx, css } from "react-emotion";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 
@@ -12,10 +12,6 @@ const bookmarkButton = css`
   margin-left: -5px !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
-    width: 2em;
-    height: 2em;
-  }
 `;
 const hideSmall = css`
   @media only screen and (max-width: ${globalTheme.max.sm}) {
@@ -28,6 +24,12 @@ const hideBig = css`
   }
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     display: none !important;
+  }
+`;
+
+const bookmarkIcon = css`
+@media only screen and (max-width: ${globalTheme.max.mobile}) {
+  font-size: 45px !important;
   }
 `;
 
@@ -63,9 +65,9 @@ export class FavouriteButton extends Component {
         size="small"
       >
         {isBookmarked ? (
-          <Bookmark className={"bookmarked"} />
+          <Bookmark  className={cx("bookmarked", bookmarkIcon)}/>
         ) : (
-          <BookmarkBorder className={"notBookmarked"} />
+          <BookmarkBorder  className={cx("notBookmarked", bookmarkIcon)}/>
         )}
         <span className={hideSmall} >
           {this.props.t(
