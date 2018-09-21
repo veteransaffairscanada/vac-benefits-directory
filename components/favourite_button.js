@@ -31,10 +31,6 @@ const hideBig = css`
   }
 `;
 
-const hidden = css`
- display: none !important;
- `;
-
 export class FavouriteButton extends Component {
   constructor() {
     super();
