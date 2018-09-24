@@ -47,7 +47,6 @@
     "i18next-node-fs-backend": "^2.1.0",
     "i18next-xhr-backend": "1.5.1",
     "isomorphic-unfetch": "^3.0.0",
-    "jest-axe": "^3.1.0",
     "lunr": "^2.3.3",
     "lunr-languages": "^1.0.0",
     "moment-range": "^4.0.1",
@@ -71,8 +70,7 @@
     "regenerator-runtime": "^0.12.1",
     "reselect": "^3.0.1",
     "universal-cookie": "^3.0.4",
-    "wait-on": "^3.0.1",
-    "webpack-bundle-analyzer": "^3.0.2"
+    "wait-on": "^3.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -93,12 +91,14 @@
     "eslint-watch": "^4.0.2",
     "husky": "^1.0.0-rc.15",
     "jest": "^23.6.0",
+    "jest-axe": "^3.1.0",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.7.0",
     "react-styleguidist": "^7.3.8",
     "react-test-renderer": "^16.5.2",
     "testcafe": "^0.22.0",
     "testcafe-browser-provider-browserstack": "^1.5.0",
-    "testcafe-react-selectors": "^3.0.0"
+    "testcafe-react-selectors": "^3.0.0",
+    "webpack-bundle-analyzer": "^3.0.2"
   }
 }
