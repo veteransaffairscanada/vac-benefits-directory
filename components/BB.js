@@ -7,7 +7,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Print from "@material-ui/icons/Print";
 import Bookmark from "@material-ui/icons/Bookmark";
-import "babel-polyfill/dist/polyfill";
 import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";

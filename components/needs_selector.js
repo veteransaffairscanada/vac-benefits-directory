@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NeedButton from "./need_button";
-import "babel-polyfill/dist/polyfill";
 import { Grid } from "@material-ui/core";
 import { css } from "react-emotion";
 import Header4 from "./header4";

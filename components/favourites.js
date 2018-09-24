@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import "babel-polyfill/dist/polyfill";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
