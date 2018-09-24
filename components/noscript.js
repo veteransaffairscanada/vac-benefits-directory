@@ -31,14 +31,13 @@ class Noscript extends Component {
     const { t } = this.props;
 
     return (
-      <noscript role="complementary">
+      <noscript>
         <div className={Modal}>
           <div className={ModalContent}>
             <div className="copy">
               <p dangerouslySetInnerHTML={{ __html: t("noscript") }} />
             </div>
           </div>
-
         </div>
       </noscript>
     );
