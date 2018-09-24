@@ -80,7 +80,7 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0-rc.1",
     "babel-core": "^7.0.0-0",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "^9.0.0",
     "babel-jest": "^23.6.0",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "1.5.0",
@@ -91,14 +91,14 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-watch": "^4.0.2",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.15",
     "jest": "^23.6.0",
     "prettier": "^1.14.3",
     "pretty-quick": "^1.7.0",
     "react-styleguidist": "^7.3.8",
     "react-test-renderer": "^16.5.2",
-    "testcafe": "^0.21.1",
+    "testcafe": "^0.22.0",
     "testcafe-browser-provider-browserstack": "^1.5.0",
-    "testcafe-react-selectors": "^2.1.0"
+    "testcafe-react-selectors": "^3.0.0"
   }
 }
