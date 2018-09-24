@@ -6,4 +6,5 @@
 // FOLLOWING IS THE IMPORT NEEDED FOR IE 11, 10
 import "core-js/fn/object/assign";
 import "core-js/fn/object/entries";
+import "core-js/fn/object/values";
 import "core-js/fn/set";
