@@ -14,9 +14,9 @@ jobs:
       - checkout
 
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+      #      - restore_cache:
+      #          keys:
+      #            - v1-dependencies-{{ checksum "package.json" }}
       - run: yarn install
       - save_cache:
           paths:
