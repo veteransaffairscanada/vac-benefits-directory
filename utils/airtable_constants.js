@@ -4,5 +4,8 @@ exports.tableNames = [
   "eligibilityPaths",
   "examples",
   "needs",
-  "translations"
+  "translations",
+  "questions",
+  "multiple choice options",
+  "question display logic"
 ];
