@@ -6,6 +6,9 @@ expect.extend(toHaveNoViolations);
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
+import questionsFixture from "../fixtures/questions";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 
 describe("ProfileNeedsSelectorMobile", () => {
   let props;
@@ -16,6 +19,9 @@ describe("ProfileNeedsSelectorMobile", () => {
       t: key => key
     };
     reduxData = {
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       patronType: "",
       serviceType: "",
       statusAndVitals: "",
@@ -32,9 +38,7 @@ describe("ProfileNeedsSelectorMobile", () => {
       setServiceHealthIssue: jest.fn(),
       setSelectedNeeds: jest.fn(),
       eligibilityPaths: eligibilityPathsFixture,
-      showServiceType: true,
-      showStatusAndVitals: true,
-      showServiceHealthIssue: true,
+
       pageWidth: 1000
     };
     mockStore = configureStore();
