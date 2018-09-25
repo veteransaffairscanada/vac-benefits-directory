@@ -12,7 +12,7 @@ import Link from "next/link";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
-import Header1 from "../components/header1";
+import Header1 from "../components/typography/header1";
 import Body from "../components/body";
 import HeaderButton from "../components/header_button";
 

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import NeedButton from "./need_button";
 import { Grid } from "@material-ui/core";
 import { css } from "react-emotion";
-import Header4 from "./header4";
+import Header4 from "./typography/header4";
 
 const needsButtons = css`
   display: flex;

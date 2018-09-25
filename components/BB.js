@@ -15,7 +15,7 @@ import { getFilteredBenefits } from "../selectors/benefits";
 import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import { css } from "react-emotion";
 import Container from "../components/container";
-import Header2 from "../components/header2";
+import Header2 from "../components/typography/header2";
 import HeaderButton from "./header_button";
 import Body from "../components/body";
 import SearchBox from "./search_box";

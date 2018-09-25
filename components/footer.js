@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { WordMark } from "@cdssnc/gcui";
 import { Toolbar } from "@material-ui/core";
 import { css } from "react-emotion";
-import FooterLink from "./footer_link";
+import FooterLink from "./typography/footer_link";
 
 const root = css`
   width: 100%;

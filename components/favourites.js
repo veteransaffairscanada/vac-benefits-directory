@@ -9,8 +9,8 @@ import Print from "@material-ui/icons/Print";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "./container";
-import Header1 from "./header1";
-import Header2 from "./header2";
+import Header1 from "./typography/header1";
+import Header2 from "./typography/header2";
 import HeaderButton from "./header_button";
 import Body from "./body";
 

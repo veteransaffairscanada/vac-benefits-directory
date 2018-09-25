@@ -1,28 +1,30 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { globalTheme } from "../theme";
+import { globalTheme } from "../../theme";
 import { cx, css } from "react-emotion";
 
 const style = css`
   font-family: ${globalTheme.fontFamily};
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 14px;
+  line-height: 21px;
   color: ${globalTheme.colour.greyishBrown};
   margin: 0px;
 `;
 
-class Header4 extends Component {
+class FilterText extends Component {
   render() {
-    const { className, children } = this.props;
+    const { className, children, ...other } = this.props;
     return (
-      <div className={className ? cx(style, className) : style}>{children}</div>
+      <div className={className ? cx(style, className) : style} {...other}>
+        {children}
+      </div>
     );
   }
 }
 
-Header4.propTypes = {
+FilterText.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   className: PropTypes.string
 };
 
-export default Header4;
+export default FilterText;

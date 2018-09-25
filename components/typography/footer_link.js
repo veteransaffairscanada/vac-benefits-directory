@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { globalTheme } from "../theme";
+import { globalTheme } from "../../theme";
 import { cx, css } from "react-emotion";
 
 const style = css`
@@ -17,9 +17,9 @@ const style = css`
 
 class FooterLink extends Component {
   render() {
-    const { className, children } = this.props;
+    const { className, children, ...other } = this.props;
     return (
-      <a className={className ? cx(style, className) : style} {...this.props}>
+      <a className={className ? cx(style, className) : style} {...other}>
         {children}
       </a>
     );

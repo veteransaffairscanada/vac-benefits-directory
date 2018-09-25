@@ -4,12 +4,12 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 import Router from "next/router";
-import { globalTheme } from "../theme";
 import Container from "./container";
-import Header1 from "./header1";
-import Header2 from "./header2";
+import FilterText from "./typography/filter_text";
+import Header2 from "./typography/header2";
 import Button from "./button";
 import HeaderButton from "./header_button";
+import GuidedExperienceLink from "./typography/guided_experience_link";
 
 const root = css`
   border: solid 1px grey;
@@ -18,26 +18,13 @@ const root = css`
 `;
 
 const box = css`
-  padding: 20px;
+  padding: 25px 63px 63px 63px;
   display: inline-flex;
 `;
 
 const prevButton = css`
   margin-top: 50px !important;
   margin-left: 5px !important;
-`;
-
-const title = css`
-  font-size: 14px !important;
-  line-height: 21px;
-  width: 100px;
-  display: inline-block;
-`;
-
-const jumpButton = css`
-  font-size: 14px !important;
-  line-height: 21px;
-  color: ${globalTheme.colour.cerulean};
 `;
 
 const comma = css`
@@ -81,10 +68,9 @@ export class GuidedExperience extends Component {
         <div className={root}>
           <Grid container spacing={24} className={box}>
             <Grid item xs={12} md={12}>
-              <Header1 className={title}>
+              <FilterText style={{ display: "inline-block" }}>
                 {t("B3.Filter by eligibility")}
-              </Header1>
-
+              </FilterText>
               {eligibilityKeys.map((k, i) => {
                 if (
                   selectedEligibility[k] === "" ||
@@ -104,16 +90,15 @@ export class GuidedExperience extends Component {
                   return (
                     <span key={i}>
                       <span className={comma}>{i === 0 ? "" : ","}</span>
-                      <a
+                      <GuidedExperienceLink
                         id={"jumpButton" + i}
-                        className={jumpButton}
                         href="#"
                         onClick={() =>
                           this.props.setSection(this.sectionMap[k])
                         }
                       >
                         {t(translation_key)}
-                      </a>
+                      </GuidedExperienceLink>
                     </span>
                   );
                 }

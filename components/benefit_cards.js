@@ -11,8 +11,8 @@ import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
 import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
-import OneLiner from "./one_liner";
-import Header4 from "./header4";
+import OneLiner from "./typography/one_liner";
+import Header4 from "./typography/header4";
 import Button from "./button";
 
 const cardBody = css`
