@@ -12,7 +12,7 @@ import Container from "./container";
 import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
 import HeaderButton from "./header_button";
-import Body from "./body";
+import Body from "./typography/body";
 
 const backLink = css`
   margin-bottom: 15px;

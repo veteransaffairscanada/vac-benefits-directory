@@ -17,7 +17,7 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Header2 from "../components/typography/header2";
 import HeaderButton from "./header_button";
-import Body from "../components/body";
+import Body from "../components/typography/body";
 import SearchBox from "./search_box";
 import { globalTheme } from "../theme";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import Body from "../../components/body";
+import Body from "../../typography/components/body";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 

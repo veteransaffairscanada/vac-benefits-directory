@@ -4,7 +4,7 @@ import Pin from "@material-ui/icons/Place";
 import { cx, css } from "react-emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
-import Body from "../components/body";
+import Body from "../components/typography/body";
 
 const root = css`
   margin-right: 10px;
