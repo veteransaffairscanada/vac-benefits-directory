@@ -25,6 +25,7 @@ export class ProfileSelector extends Component {
     if (index === 0) {
       return true;
     }
+
     // show if the previous question has an answer
     const previousQuestionAnswered =
       reduxState[questions[index - 1].variable_name] !== "";
