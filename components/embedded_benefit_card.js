@@ -4,7 +4,7 @@ import { Grid } from "@material-ui/core";
 import { logEvent } from "../utils/analytics";
 import Paper from "@material-ui/core/Paper";
 import { css } from "react-emotion";
-import OneLiner from "./one_liner";
+import OneLiner from "./typography/one_liner";
 import HeaderButton from "./header_button";
 
 const root = css`

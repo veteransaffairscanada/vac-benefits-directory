@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
 import { css } from "react-emotion";
 import Container from "../components/container";
-import Header1 from "../components/header1";
+import Header1 from "../components/typography/header1";
 
 const root = css`
   margin-left: 15px;

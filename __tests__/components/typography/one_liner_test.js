@@ -1,24 +1,20 @@
 import React from "react";
 import { mount } from "enzyme";
-import FooterLink from "../../components/footer_link";
+import OneLiner from "../../../components/typography/one_liner";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
-
-describe("FooterLink", () => {
+describe("OneLiner", () => {
   let props;
   beforeEach(() => {
     props = {
-      children: "header",
-      href: "/test"
+      children: "one liner"
     };
   });
-
   it("passes axe tests", async () => {
-    let html = mount(<FooterLink {...props} />).html();
+    let html = mount(<OneLiner {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
-
   it("shows children", () => {
-    expect(mount(<FooterLink {...props} />).prop("href")).toEqual("/test");
+    expect(mount(<OneLiner {...props} />).text()).toEqual("one liner");
   });
 });

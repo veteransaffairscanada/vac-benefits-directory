@@ -12,8 +12,8 @@ import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
-import Body from "../components/body";
-import Header1 from "../components/header1";
+import Body from "../components/typography/body";
+import Header1 from "../components/typography/header1";
 import Router from "next/router";
 
 const root = css`

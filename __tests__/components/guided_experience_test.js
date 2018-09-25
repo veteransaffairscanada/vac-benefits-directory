@@ -82,7 +82,8 @@ describe("GuidedExperience", () => {
 
   it("sets the correct section if the edit answer button is pressed", () => {
     mounted_GuidedExperience()
-      .find("#jumpButton0")
+      .find("GuidedExperienceLink")
+      .first()
       .simulate("click");
     expect(props.setSection).toBeCalledWith("patronTypeQuestion");
   });

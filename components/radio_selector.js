@@ -8,7 +8,7 @@ import { logEvent } from "../utils/analytics";
 import { uuidv4 } from "../utils/common";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
-import Header4 from "./header4";
+import Header4 from "./typography/header4";
 
 const formControl = css`
   margin-top: ${globalTheme.unit} !important;

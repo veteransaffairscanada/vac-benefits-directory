@@ -1,20 +1,23 @@
 import React from "react";
 import { mount } from "enzyme";
-import OneLiner from "../../components/one_liner";
+import Body from "../../../components/typography/body";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
-describe("OneLiner", () => {
+
+describe("Container", () => {
   let props;
   beforeEach(() => {
     props = {
-      children: "one liner"
+      children: <div id="test_div">hello</div>
     };
   });
+
   it("passes axe tests", async () => {
-    let html = mount(<OneLiner {...props} />).html();
+    let html = mount(<Body {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
+
   it("shows children", () => {
-    expect(mount(<OneLiner {...props} />).text()).toEqual("one liner");
+    expect(mount(<Body {...props} />).find("#test_div")).toHaveLength(1);
   });
 });
