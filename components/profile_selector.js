@@ -5,15 +5,23 @@ import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 
 export class ProfileSelector extends Component {
-  showQuestion = (
-    question,
-    questions,
-    index,
-    reduxState,
-    questionDisplayLogic,
-    questionDict,
-    optionDict
-  ) => {
+  showQuestion = (question, index, reduxState) => {
+    const {
+      questions,
+      multipleChoiceOptions,
+      questionDisplayLogic
+    } = reduxState;
+
+    let questionDict = {};
+    questions.forEach(x => {
+      questionDict[x.id] = x.variable_name;
+    });
+
+    let optionDict = {};
+    multipleChoiceOptions.forEach(x => {
+      optionDict[x.variable_name] = x.id;
+    });
+
     if (index === 0) {
       return true;
     }
@@ -49,37 +57,13 @@ export class ProfileSelector extends Component {
   };
 
   render() {
-    const {
-      t,
-      questions,
-      questionDisplayLogic,
-      multipleChoiceOptions
-    } = this.props;
+    const { t } = this.props;
+    const { questions, multipleChoiceOptions } = this.props.reduxState;
     let jsx_array = [];
 
-    const questionDict = {};
-    questions.forEach(x => {
-      questionDict[x.id] = x.variable_name;
-    });
-
-    const optionDict = {};
-    multipleChoiceOptions.forEach(x => {
-      optionDict[x.variable_name] = x.id;
-    });
-
     questions.forEach((question, index) => {
-      if (
-        this.showQuestion(
-          question,
-          questions,
-          index,
-          this.props.reduxState,
-          questionDisplayLogic,
-          questionDict,
-          optionDict
-        )
-      ) {
-        const options = this.props.multipleChoiceOptions
+      if (this.showQuestion(question, index, this.props.reduxState)) {
+        const options = multipleChoiceOptions
           .filter(mco => question.id === mco.linked_question[0])
           .map(x => x.variable_name);
 
@@ -125,10 +109,7 @@ export class ProfileSelector extends Component {
 const mapStateToProps = reduxState => {
   return {
     reduxState: reduxState,
-    statusAndVitals: reduxState.statusAndVitals,
-    questions: reduxState.questions,
-    questionDisplayLogic: reduxState["question display logic"],
-    multipleChoiceOptions: reduxState["multiple choice options"]
+    statusAndVitals: reduxState.statusAndVitals
   };
 };
 
@@ -136,10 +117,7 @@ ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
   reduxState: PropTypes.object.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
-  store: PropTypes.object,
-  questions: PropTypes.array.isRequired,
-  questionDisplayLogic: PropTypes.array.isRequired,
-  multipleChoiceOptions: PropTypes.array.isRequired
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(ProfileSelector);
