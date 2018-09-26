@@ -91,12 +91,6 @@ export class ProfileSelector extends Component {
       }
     });
 
-    // legend={t(
-    //   this.props.statusAndVitals === "deceased"
-    //     ? "health issue question deceased"
-    //     : "health issue question"
-    // )}
-
     return (
       <div>
         <Grid container spacing={8}>

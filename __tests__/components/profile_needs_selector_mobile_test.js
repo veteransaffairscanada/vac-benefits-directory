@@ -38,7 +38,6 @@ describe("ProfileNeedsSelectorMobile", () => {
       setServiceHealthIssue: jest.fn(),
       setSelectedNeeds: jest.fn(),
       eligibilityPaths: eligibilityPathsFixture,
-
       pageWidth: 1000
     };
     mockStore = configureStore();
