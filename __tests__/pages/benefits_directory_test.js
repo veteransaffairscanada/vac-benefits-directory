@@ -13,6 +13,9 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
 import translate from "../fixtures/translate";
 import lunr from "lunr";
+import questionsFixture from "../fixtures/questions";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -46,6 +49,9 @@ describe("BenefitsDirectory", () => {
     _mountedBenefitsDirectory = undefined;
     mockStore = configureStore();
     reduxData = {
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       option: "",
       translations: [],
       benefits: benefitsFixture,

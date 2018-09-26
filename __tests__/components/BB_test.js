@@ -10,6 +10,9 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import examplesFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
+import questionsFixture from "../fixtures/questions";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -50,6 +53,9 @@ describe("BB", () => {
     _shallowBB = undefined;
     _mountedBB = undefined;
     reduxData = {
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
       favouriteBenefits: [],
       examples: examplesFixture,
@@ -71,9 +77,6 @@ describe("BB", () => {
       selectedNeeds: {},
       sortBy: "relevance",
       option: "",
-      showServiceType: true,
-      showStatusAndVitals: true,
-      showServiceHealthIssue: true,
       pageWidth: 1000,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
