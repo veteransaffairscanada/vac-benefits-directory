@@ -27,6 +27,8 @@ Contact other developers on the project for what values we're currently using.
 | `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                   | locally                         |
 | `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                   | locally                         |
 
+Note that CDS docker images are public, so you should not put any sensitive (ie write) keys in the docker image.
+
 ### Adding a new environment locally (OS X)
 
 1.  In the terminal, run: `nano ~/.bash_profile` (or `nano ~/.zshrc` if you're using the zsh shell)
