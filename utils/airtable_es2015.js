@@ -6,6 +6,27 @@ var airtableConstants = require("./airtable_constants");
 var readKey = process.env.AIRTABLE_READ_KEY;
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
 
+var replaceId = function replaceId(
+  sheet,
+  sheetColumnName,
+  linkedSheet,
+  linkedColumnName,
+  linkedIdColumnName = "id"
+) {
+  sheet.forEach(row => {
+    if (row[sheetColumnName]) {
+      row[sheetColumnName] = row[sheetColumnName].map(id => {
+        var records = linkedSheet.filter(row => row[linkedIdColumnName] === id);
+        if (records.length === 1) {
+          return records[0][linkedColumnName];
+        } else {
+          return undefined;
+        }
+      });
+    }
+  });
+};
+
 var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
   var offset = undefined;
   var jsonRecords = [];
@@ -59,6 +80,45 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
       }
     });
   });
+
+  // replace ids in linked records
+  replaceId(
+    dataStore.questions,
+    "multiple_choice_options",
+    dataStore.multipleChoiceOptions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.questionDisplayLogic,
+    "question",
+    dataStore.questions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.questionDisplayLogic,
+    "has value",
+    dataStore.multipleChoiceOptions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.questionDisplayLogic,
+    "exclude options",
+    dataStore.multipleChoiceOptions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.questionDisplayLogic,
+    "exclude questions",
+    dataStore.questions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.multipleChoiceOptions,
+    "linked_question",
+    dataStore.questions,
+    "variable_name"
+  );
+
   dataStore.timestamp = await Date.now();
   return dataStore;
 });
