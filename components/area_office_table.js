@@ -45,6 +45,7 @@ const officeCellHeader = css`
 `;
 const pinCell = css`
   padding-right: 10px !important;
+  vertical-align: top; //desktop
 `;
 const officeCell = css`
   padding-bottom: 10px;
@@ -54,14 +55,17 @@ const bold = css`
 `;
 
 const tableText = css`
-  margin-top: 10px;
+  margin-top: 4px;
   margin-bottom: 0px;
 `;
 
 const pin = css`
   color: #ea4335;
-  font-size: 60px !important;
   padding-top: 10px;
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    font-size: 60px !important;
+  }
+  font-size: 30px !important;
 `;
 const provinceCell = css`
   color: #000;
@@ -175,9 +179,9 @@ export class AreaOfficeTable extends Component {
           this.props.setSelectedAreaOffice(ae);
         }}
       >
-        <td className={pinCell}>
-          <Pin className={pin} />
-        </td>
+      <td className={pinCell}>
+        <Pin className={pin} />
+      </td>
         <td className={officeCell}>
           <Body className={cx(tableText, bold)}>
             {language === "en" ? ae.name_en : ae.name_fr}
