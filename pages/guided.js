@@ -111,8 +111,12 @@ export class Guided extends Component {
     const { t, i18n, store, reduxState } = this.props;
     const { section } = this.state;
     const stepNumber = section_order.indexOf(section);
-    const nextSection = section_order[stepNumber + 1];
-    const prevSection = section_order[stepNumber - 1];
+    const nextSection =
+      stepNumber + 1 >= section_order.length
+        ? "benefits-directory"
+        : section_order[stepNumber + 1];
+    const prevSection =
+      stepNumber === 0 ? "index" : section_order[stepNumber - 1];
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];
@@ -140,12 +144,7 @@ export class Guided extends Component {
           store={store}
         >
           {section === "needs" ? (
-            <GuidedExperienceNeeds
-              t={t}
-              selectorType={section}
-              store={store}
-              options={question["multiple_choice_options"]}
-            />
+            <GuidedExperienceNeeds t={t} selectorType={section} store={store} />
           ) : (
             <GuidedExperienceProfile
               t={t}
@@ -188,10 +187,6 @@ const mapStateToProps = reduxState => {
     examples: reduxState.examples,
     favouriteBenefits: reduxState.favouriteBenefits,
     needs: reduxState.needs,
-    patronType: reduxState.patronType,
-    serviceType: reduxState.serviceType,
-    statusAndVitals: reduxState.statusAndVitals,
-    serviceHealthIssue: reduxState.serviceHealthIssue,
     selectedNeeds: reduxState.selectedNeeds
   };
 };
@@ -207,9 +202,6 @@ Guided.propTypes = {
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  patronType: PropTypes.string.isRequired,
-  serviceType: PropTypes.string.isRequired,
-  statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setPatronType: PropTypes.func.isRequired,
   setServiceType: PropTypes.func.isRequired,

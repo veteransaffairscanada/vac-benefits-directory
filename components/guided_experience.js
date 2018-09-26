@@ -38,15 +38,37 @@ const questions = css`
 
 export class GuidedExperience extends Component {
   render() {
-    const { t, selectedEligibility } = this.props;
+    const { t, selectedEligibility, reduxState } = this.props;
     const eligibilityKeys = Object.keys(selectedEligibility);
+    let benefitsDirectoryUrl = "";
+    if (this.props.id == "needs") {
+      benefitsDirectoryUrl =
+        "/benefits-directory?lng=" + t("current-language-code");
+      if (Object.keys(reduxState.selectedNeeds).length > 0) {
+        benefitsDirectoryUrl +=
+          "&selectedNeeds=" + Object.keys(reduxState.selectedNeeds).join();
+      }
+      [
+        "patronType",
+        "serviceType",
+        "statusAndVitals",
+        "serviceHealthIssue"
+      ].forEach(selection => {
+        if (this.props[selection] !== "") {
+          benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
+        }
+      });
+    }
+
     return (
       <Container id="guidedExperience">
         <HeaderButton
           id="prevButton"
           disableRipple
           href={
-            this.props.prevSection === "index" ? this.props.indexURL : undefined
+            this.props.prevSection === "index"
+              ? "/index?lng=" + t("current-language-code")
+              : undefined
           }
           onClick={
             this.props.prevSection === "index"
@@ -104,7 +126,7 @@ export class GuidedExperience extends Component {
                 arrow={true}
                 onClick={
                   this.props.nextSection === "benefits-directory"
-                    ? () => Router.push(this.props.benefitsDirectoryUrl)
+                    ? () => Router.push(benefitsDirectoryUrl)
                     : () => this.props.setSection(this.props.nextSection)
                 }
               >
@@ -120,12 +142,7 @@ export class GuidedExperience extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals,
-      serviceHealthIssue: reduxState.serviceHealthIssue
-    }
+    reduxState: reduxState
   };
 };
 
@@ -138,10 +155,8 @@ GuidedExperience.propTypes = {
   subtitle: PropTypes.string.isRequired,
   stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
-  store: PropTypes.object,
-  benefitsDirectoryUrl: PropTypes.string,
-  indexURL: PropTypes.string
+  reduxState: PropTypes.object.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(GuidedExperience);
