@@ -59,44 +59,4 @@ describe("ProfileSelector", () => {
       .text();
     expect(text).toEqual("service-person");
   });
-
-  describe("showQuestion function", () => {
-    it("shows the first question", () => {
-      const instance = mount(
-        <ProfileSelector {...props} {...reduxState} />
-      ).instance();
-      expect(instance.showQuestion(questionsFixture[0], 0, reduxState)).toEqual(
-        true
-      );
-    });
-
-    it("hides question if previous question doesn't have an answer", () => {
-      const instance = mount(
-        <ProfileSelector {...props} {...reduxState} />
-      ).instance();
-      expect(instance.showQuestion(questionsFixture[1], 1, reduxState)).toEqual(
-        false
-      );
-    });
-
-    it("shows question if previous question has an answer", () => {
-      reduxState.patronType = "service-member";
-      const instance = mount(
-        <ProfileSelector {...props} {...reduxState} />
-      ).instance();
-      expect(instance.showQuestion(questionsFixture[1], 1, reduxState)).toEqual(
-        true
-      );
-    });
-
-    it("hides questions if organization selected", () => {
-      reduxState.patronType = "organization";
-      const instance = mount(
-        <ProfileSelector {...props} {...reduxState} />
-      ).instance();
-      expect(instance.showQuestion(questionsFixture[1], 1, reduxState)).toEqual(
-        false
-      );
-    });
-  });
 });
