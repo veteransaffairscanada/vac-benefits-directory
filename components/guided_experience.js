@@ -37,13 +37,6 @@ const questions = css`
 `;
 
 export class GuidedExperience extends Component {
-  sectionMap = {
-    patronType: "patronTypeQuestion",
-    serviceType: "serviceTypeQuestion",
-    statusAndVitals: "statusAndVitalsQuestion",
-    serviceHealthIssue: "serviceHealthIssueQuestion"
-  };
-
   render() {
     const { t, selectedEligibility } = this.props;
     const eligibilityKeys = Object.keys(selectedEligibility);
@@ -72,10 +65,7 @@ export class GuidedExperience extends Component {
                 {t("B3.Filter by eligibility")}
               </FilterText>
               {eligibilityKeys.map((k, i) => {
-                if (
-                  selectedEligibility[k] === "" ||
-                  this.sectionMap[k] === this.props.id
-                ) {
+                if (selectedEligibility[k] === "" || k === this.props.id) {
                   return "";
                 } else {
                   let translation_key = "";
@@ -93,9 +83,7 @@ export class GuidedExperience extends Component {
                       <GuidedExperienceLink
                         id={"jumpButton" + i}
                         href="#"
-                        onClick={() =>
-                          this.props.setSection(this.sectionMap[k])
-                        }
+                        onClick={() => this.props.setSection(k)}
                       >
                         {t(translation_key)}
                       </GuidedExperienceLink>
@@ -120,9 +108,7 @@ export class GuidedExperience extends Component {
                     : () => this.props.setSection(this.props.nextSection)
                 }
               >
-                {this.props.id === "needsQuestion"
-                  ? t("ge.show_results")
-                  : t("next")}{" "}
+                {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
               </Button>
             </Grid>
           </Grid>
