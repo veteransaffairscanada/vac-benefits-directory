@@ -61,7 +61,7 @@ const tableText = css`
 
 const pin = css`
   color: #ea4335;
-  padding-top: 10px;
+  margin-top: 6px;
   @media only screen and (max-width: ${globalTheme.max.sm}) {
     font-size: 60px !important;
   }
