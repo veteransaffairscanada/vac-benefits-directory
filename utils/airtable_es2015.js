@@ -14,14 +14,16 @@ var replaceId = function replaceId(
   linkedIdColumnName = "id"
 ) {
   database.forEach(row => {
-    row[dataBaseLinkColumnName] = row[dataBaseLinkColumnName].map(id => {
-      var records = database.filter(row => row[linkedIdColumnName] === id);
-      if (records.length === 1) {
-        return records[0][linkedReplaceColumnName];
-      } else {
-        return undefined;
-      }
-    });
+    if (row[dataBaseLinkColumnName]) {
+      row[dataBaseLinkColumnName] = row[dataBaseLinkColumnName].map(id => {
+        var records = database.filter(row => row[linkedIdColumnName] === id);
+        if (records.length === 1) {
+          return records[0][linkedReplaceColumnName];
+        } else {
+          return undefined;
+        }
+      });
+    }
   });
 };
 
@@ -79,7 +81,7 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     });
   });
 
-  // replace ids in linked records\
+  // replace ids in linked records
   replaceId(
     dataStore.questions,
     "multiple_choice_options",
@@ -107,6 +109,12 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
   replaceId(
     dataStore.questionDisplayLogic,
     "exclude questions",
+    dataStore.questions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.multipleChoiceOptions,
+    "linked_question",
     dataStore.questions,
     "variable_name"
   );
