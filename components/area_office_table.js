@@ -76,7 +76,7 @@ const provinceCell = css`
   padding-bottom: 15px;
 `;
 const selectedRow = css`
-  background-color: #e4e8fe;
+  background-color: #e3f2ff;
 `;
 const mainTable = css`
   border-spacing: 0px;
