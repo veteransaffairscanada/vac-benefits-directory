@@ -16,7 +16,9 @@ var replaceId = function replaceId(
   database.forEach(row => {
     if (row[dataBaseLinkColumnName]) {
       row[dataBaseLinkColumnName] = row[dataBaseLinkColumnName].map(id => {
-        var records = database.filter(row => row[linkedIdColumnName] === id);
+        var records = linkedDatabase.filter(
+          row => row[linkedIdColumnName] === id
+        );
         if (records.length === 1) {
           return records[0][linkedReplaceColumnName];
         } else {
@@ -118,6 +120,10 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     dataStore.questions,
     "variable_name"
   );
+
+  console.log(dataStore.questions);
+  // console.log(dataStore.questionDisplayLogic)
+  // console.log(dataStore.multipleChoiceOptions)
 
   dataStore.timestamp = await Date.now();
   return dataStore;
