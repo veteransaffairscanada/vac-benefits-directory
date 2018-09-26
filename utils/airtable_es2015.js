@@ -7,20 +7,18 @@ var readKey = process.env.AIRTABLE_READ_KEY;
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
 
 var replaceId = function replaceId(
-  database,
-  dataBaseLinkColumnName,
-  linkedDatabase,
-  linkedReplaceColumnName,
+  sheet,
+  sheetColumnName,
+  linkedSheet,
+  linkedColumnName,
   linkedIdColumnName = "id"
 ) {
-  database.forEach(row => {
-    if (row[dataBaseLinkColumnName]) {
-      row[dataBaseLinkColumnName] = row[dataBaseLinkColumnName].map(id => {
-        var records = linkedDatabase.filter(
-          row => row[linkedIdColumnName] === id
-        );
+  sheet.forEach(row => {
+    if (row[sheetColumnName]) {
+      row[sheetColumnName] = row[sheetColumnName].map(id => {
+        var records = linkedSheet.filter(row => row[linkedIdColumnName] === id);
         if (records.length === 1) {
-          return records[0][linkedReplaceColumnName];
+          return records[0][linkedColumnName];
         } else {
           return undefined;
         }
@@ -120,10 +118,6 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     dataStore.questions,
     "variable_name"
   );
-
-  console.log(dataStore.questions);
-  // console.log(dataStore.questionDisplayLogic)
-  // console.log(dataStore.multipleChoiceOptions)
 
   dataStore.timestamp = await Date.now();
   return dataStore;
