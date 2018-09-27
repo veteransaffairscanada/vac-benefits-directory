@@ -30,9 +30,9 @@ export class RadioSelector extends React.Component {
 
   setUserProfile = (criteria, id) => {
     logEvent("FilterClick", criteria, id);
+    this.props.saveQuestionResponse(criteria, id);
     switch (criteria) {
       case "patronType":
-        this.props.setPatronType(id);
         if (id === "organization") {
           this.props.setServiceType("");
           this.props.setStatusAndVitals("");
@@ -55,7 +55,6 @@ export class RadioSelector extends React.Component {
         }
         break;
       case "serviceType":
-        this.props.setServiceType(id);
         if (
           id === "WSV (WWII or Korea)" &&
           this.props.selectedStatusAndVitals === "stillServing"
@@ -80,10 +79,8 @@ export class RadioSelector extends React.Component {
 
         break;
       case "statusAndVitals":
-        this.props.setStatusAndVitals(id);
         break;
       case "serviceHealthIssue":
-        this.props.setServiceHealthIssue(id);
         break;
       default:
         return true;
@@ -149,31 +146,12 @@ export class RadioSelector extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPatronType: patronType => {
+    saveQuestionResponse: (question, response) => {
       dispatch({
         type: "SAVE_QUESTION_RESPONSE",
-        data: { patronType: patronType }
+        data: { [question]: response }
       });
     },
-    setServiceType: serviceType => {
-      dispatch({
-        type: "SAVE_QUESTION_RESPONSE",
-        data: { serviceType: serviceType }
-      });
-    },
-    setStatusAndVitals: statusType => {
-      dispatch({
-        type: "SAVE_QUESTION_RESPONSE",
-        data: { statusAndVitals: statusType }
-      });
-    },
-    setServiceHealthIssue: healthIssueType => {
-      dispatch({
-        type: "SAVE_QUESTION_RESPONSE",
-        data: { serviceHealthIssue: healthIssueType }
-      });
-    }
-  };
 };
 
 const mapStateToProps = reduxState => {
@@ -193,10 +171,7 @@ RadioSelector.propTypes = {
   selectedServiceType: PropTypes.string.isRequired,
   selectedStatusAndVitals: PropTypes.string.isRequired,
   selectedServiceHealthIssue: PropTypes.string.isRequired,
-  setPatronType: PropTypes.func.isRequired,
-  setServiceType: PropTypes.func.isRequired,
-  setStatusAndVitals: PropTypes.func.isRequired,
-  setServiceHealthIssue: PropTypes.func.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   options: PropTypes.array,
