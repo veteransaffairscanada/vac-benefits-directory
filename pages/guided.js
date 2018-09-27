@@ -64,7 +64,7 @@ export class Guided extends Component {
       "serviceHealthIssue"
     ].forEach(selection => {
       if (this.props[selection] !== "") {
-        href += `&${selection}=${this.props[selection]}`;
+        href += `&${selection}=${this.props.reduxState[selection]}`;
       }
     });
     href += "&lng=" + this.props.t("current-language-code");

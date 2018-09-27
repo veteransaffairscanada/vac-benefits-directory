@@ -38,8 +38,9 @@ const questions = css`
 
 export class GuidedExperience extends Component {
   render() {
-    const { t, selectedEligibility, reduxState } = this.props;
-    const eligibilityKeys = Object.keys(selectedEligibility);
+    const { t, reduxState } = this.props;
+
+    const eligibilityKeys = reduxState.questions.map(x => x.variable_name);
     let benefitsDirectoryUrl = "";
     if (this.props.id == "needs") {
       benefitsDirectoryUrl =
@@ -87,17 +88,17 @@ export class GuidedExperience extends Component {
                 {t("B3.Filter by eligibility")}
               </FilterText>
               {eligibilityKeys.map((k, i) => {
-                if (selectedEligibility[k] === "" || k === this.props.id) {
+                if (reduxState[k] || k === this.props.id) {
                   return "";
                 } else {
-                  let translation_key = "";
-                  if (k === "serviceHealthIssue") {
-                    translation_key = JSON.parse(selectedEligibility[k])
-                      ? "GE.has service related health issue"
-                      : "GE.no service related health issue";
-                  } else {
-                    translation_key = selectedEligibility[k];
-                  }
+                  // let translation_key = "";
+                  // if (k === "serviceHealthIssue") {
+                  //   translation_key = JSON.parse(reduxState[k])
+                  //     ? "GE.has service related health issue"
+                  //     : "GE.no service related health issue";
+                  // } else {
+                  //   translation_key = reduxState[k];
+                  // }
 
                   return (
                     <span key={i}>
@@ -107,7 +108,7 @@ export class GuidedExperience extends Component {
                         href="#"
                         onClick={() => this.props.setSection(k)}
                       >
-                        {t(translation_key)}
+                        {k}
                       </GuidedExperienceLink>
                     </span>
                   );
