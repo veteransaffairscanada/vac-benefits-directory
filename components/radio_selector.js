@@ -34,24 +34,24 @@ export class RadioSelector extends React.Component {
     switch (criteria) {
       case "patronType":
         if (id === "organization") {
-          this.props.setServiceType("");
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("serviceType", "");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           id === "service-person" &&
           this.props.selectedStatusAndVitals === "deceased"
         ) {
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           id === "service-person" &&
           this.props.selectedServiceType === "WSV (WWII or Korea)" &&
           this.props.selectedStatusAndVitals !== ""
         ) {
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         break;
       case "serviceType":
@@ -59,22 +59,22 @@ export class RadioSelector extends React.Component {
           id === "WSV (WWII or Korea)" &&
           this.props.selectedStatusAndVitals === "stillServing"
         ) {
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           id === "WSV (WWII or Korea)" &&
           this.props.selectedPatronType === "service-person" &&
           this.props.selectedStatusAndVitals !== ""
         ) {
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           (id === "RCMP" || id === "CAF") &&
           this.props.selectedStatusAndVitals === ""
         ) {
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
 
         break;
@@ -151,7 +151,8 @@ const mapDispatchToProps = dispatch => {
         type: "SAVE_QUESTION_RESPONSE",
         data: { [question]: response }
       });
-    },
+    }
+  };
 };
 
 const mapStateToProps = reduxState => {

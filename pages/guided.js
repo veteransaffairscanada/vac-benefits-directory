@@ -72,18 +72,12 @@ export class Guided extends Component {
       serviceHealthIssueQuestion: 4,
       needsQuestion: 5
     };
-    const {
-      setPatronType,
-      setServiceType,
-      setStatusAndVitals,
-      setServiceHealthIssue,
-      setSelectedNeeds
-    } = this.props;
+    const { saveQuestionResponse, setSelectedNeeds } = this.props;
     const setters = [
-      () => setPatronType(""),
-      () => setServiceType(""),
-      () => setStatusAndVitals(""),
-      () => setServiceHealthIssue(""),
+      () => saveQuestionResponse("patronType", ""),
+      () => saveQuestionResponse("serviceType", ""),
+      () => saveQuestionResponse("statusAndVitals", ""),
+      () => saveQuestionResponse("serviceHealthIssue", ""),
       () => setSelectedNeeds({})
     ];
     let current_section_index;
@@ -289,20 +283,14 @@ export class Guided extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPatronType: patronType => {
-      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
-    },
-    setServiceType: serviceType => {
-      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
-    },
-    setStatusAndVitals: statusType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
     },
     setSelectedNeeds: needsObject => {
       dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
-    },
-    setServiceHealthIssue: serviceHealthIssue => {
-      dispatch({ type: "SET_HEALTH_ISSUE", data: serviceHealthIssue });
     }
   };
 };
@@ -336,10 +324,7 @@ Guided.propTypes = {
   serviceType: PropTypes.string.isRequired,
   statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  setPatronType: PropTypes.func.isRequired,
-  setServiceType: PropTypes.func.isRequired,
-  setStatusAndVitals: PropTypes.func.isRequired,
-  setServiceHealthIssue: PropTypes.func.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object
 };
