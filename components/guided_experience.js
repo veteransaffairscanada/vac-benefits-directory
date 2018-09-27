@@ -37,10 +37,47 @@ const questions = css`
 `;
 
 export class GuidedExperience extends Component {
+  jumpButtons = (t, reduxState) => {
+    const getTranslationKey = questionVariableName => {
+      let translation_key = "";
+      if (questionVariableName === "serviceHealthIssue") {
+        translation_key = JSON.parse(reduxState[questionVariableName])
+          ? "GE.has service related health issue"
+          : "GE.no service related health issue";
+      } else {
+        translation_key = reduxState[questionVariableName];
+      }
+      return translation_key;
+    };
+
+    const eligibilityKeys = reduxState.questions
+      .map(x => x.variable_name)
+      .filter(x => x != "needs");
+    console.log(eligibilityKeys);
+    let jsx_array = eligibilityKeys.map((k, i) => {
+      if (!reduxState[k] || k === this.props.id) {
+        return "";
+      } else {
+        return (
+          <span key={i}>
+            <span className={comma}>{i === 0 ? "" : ","}</span>
+            <GuidedExperienceLink
+              id={"jumpButton" + i}
+              href="#"
+              onClick={() => this.props.setSection(k)}
+            >
+              {t(getTranslationKey(k))}
+            </GuidedExperienceLink>
+          </span>
+        );
+      }
+    });
+    return jsx_array;
+  };
+
   render() {
     const { t, reduxState } = this.props;
 
-    const eligibilityKeys = reduxState.questions.map(x => x.variable_name);
     let benefitsDirectoryUrl = "";
     if (this.props.id == "needs") {
       benefitsDirectoryUrl =
@@ -60,6 +97,8 @@ export class GuidedExperience extends Component {
         }
       });
     }
+
+    const jumpButtons = this.jumpButtons(t, reduxState);
 
     return (
       <Container id="guidedExperience">
@@ -87,33 +126,7 @@ export class GuidedExperience extends Component {
               <FilterText style={{ display: "inline-block" }}>
                 {t("B3.Filter by eligibility")}
               </FilterText>
-              {eligibilityKeys.map((k, i) => {
-                if (reduxState[k] || k === this.props.id) {
-                  return "";
-                } else {
-                  // let translation_key = "";
-                  // if (k === "serviceHealthIssue") {
-                  //   translation_key = JSON.parse(reduxState[k])
-                  //     ? "GE.has service related health issue"
-                  //     : "GE.no service related health issue";
-                  // } else {
-                  //   translation_key = reduxState[k];
-                  // }
-
-                  return (
-                    <span key={i}>
-                      <span className={comma}>{i === 0 ? "" : ","}</span>
-                      <GuidedExperienceLink
-                        id={"jumpButton" + i}
-                        href="#"
-                        onClick={() => this.props.setSection(k)}
-                      >
-                        {k}
-                      </GuidedExperienceLink>
-                    </span>
-                  );
-                }
-              })}
+              {jumpButtons}
             </Grid>
 
             <Grid item xs={12} className={questions}>
