@@ -57,22 +57,28 @@ export class Guided extends Component {
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
-    [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "serviceHealthIssue"
-    ].forEach(selection => {
-      if (this.props[selection] !== "") {
-        href += `&${selection}=${this.props.reduxState[selection]}`;
-      }
-    });
+    this.props.reduxState.questions
+      .filter(x => x.variable_name !== "needs")
+      .forEach(x => {
+        console.log(x.variable_name, this.props.reduxState[x.variable_name]);
+        if (this.props.reduxState[x.variable_name]) {
+          href += `&${x.variable_name}=${
+            this.props.reduxState[x.variable_name]
+          }`;
+        }
+      });
     href += "&lng=" + this.props.t("current-language-code");
     Router.replace(href);
   };
 
   setSection = section => {
     this.setState({ section: section });
+    // const current_index = section_order.indexOf(section);
+    // section_order.filter((x, i) => i > current_index)
+    //   .forEach(x => {
+    //     this.props.saveQuestionResponse({x: ""});
+    //   });
+
     let sectionMap = {
       patronType: 1,
       serviceType: 2,

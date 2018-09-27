@@ -85,16 +85,14 @@ export class GuidedExperience extends Component {
         benefitsDirectoryUrl +=
           "&selectedNeeds=" + Object.keys(reduxState.selectedNeeds).join();
       }
-      [
-        "patronType",
-        "serviceType",
-        "statusAndVitals",
-        "serviceHealthIssue"
-      ].forEach(selection => {
-        if (reduxState[selection] !== "") {
-          benefitsDirectoryUrl += `&${selection}=${reduxState[selection]}`;
-        }
-      });
+      reduxState.questions
+        .map(q => q.variable_name)
+        .filter(x => x !== "needs")
+        .forEach(selection => {
+          if (reduxState[selection] !== "") {
+            benefitsDirectoryUrl += `&${selection}=${reduxState[selection]}`;
+          }
+        });
     }
 
     const jumpButtons = this.jumpButtons(t, reduxState);
