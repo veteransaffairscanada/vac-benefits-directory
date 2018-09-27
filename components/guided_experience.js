@@ -53,7 +53,6 @@ export class GuidedExperience extends Component {
     const eligibilityKeys = reduxState.questions
       .map(x => x.variable_name)
       .filter(x => x != "needs");
-    console.log(eligibilityKeys);
     let jsx_array = eligibilityKeys.map((k, i) => {
       if (!reduxState[k] || k === this.props.id) {
         return "";
@@ -92,8 +91,8 @@ export class GuidedExperience extends Component {
         "statusAndVitals",
         "serviceHealthIssue"
       ].forEach(selection => {
-        if (this.props[selection] !== "") {
-          benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
+        if (reduxState[selection] !== "") {
+          benefitsDirectoryUrl += `&${selection}=${reduxState[selection]}`;
         }
       });
     }
