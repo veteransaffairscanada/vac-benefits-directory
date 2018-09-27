@@ -150,16 +150,28 @@ export class RadioSelector extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     setPatronType: patronType => {
-      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { patronType: patronType }
+      });
     },
     setServiceType: serviceType => {
-      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { serviceType: serviceType }
+      });
     },
     setStatusAndVitals: statusType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { statusAndVitals: statusType }
+      });
     },
     setServiceHealthIssue: healthIssueType => {
-      dispatch({ type: "SET_HEALTH_ISSUE", data: healthIssueType });
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { serviceHealthIssue: healthIssueType }
+      });
     }
   };
 };
