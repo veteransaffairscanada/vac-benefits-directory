@@ -119,7 +119,6 @@ export class Guided extends Component {
     const displayable_sections = section_order.filter((x, i) =>
       showQuestion(x, i, reduxState)
     );
-    console.log("displayable_sections", displayable_sections);
     const dynamicStepNumber = displayable_sections.indexOf(section);
 
     const nextSection =
@@ -130,8 +129,6 @@ export class Guided extends Component {
       dynamicStepNumber === 0
         ? "index"
         : displayable_sections[dynamicStepNumber - 1];
-    console.log("nextSection", nextSection);
-    console.log("prevSection", prevSection);
 
     const question = reduxState.questions.filter(
       x => x.variable_name === section
