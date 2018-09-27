@@ -12,7 +12,7 @@ export class ProfileSelector extends Component {
     let jsx_array = [];
 
     questions.forEach((question, index) => {
-      if (showQuestion(question, index, this.props.reduxState)) {
+      if (showQuestion(question.variable_name, index, this.props.reduxState)) {
         const options = multipleChoiceOptions
           .filter(mco => question.variable_name === mco.linked_question[0])
           .map(x => x.variable_name);

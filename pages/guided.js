@@ -10,6 +10,7 @@ import Cookies from "universal-cookie";
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
+import { showQuestion } from "../utils/common";
 
 const section_order = [
   "patronType",
@@ -60,7 +61,6 @@ export class Guided extends Component {
     this.props.reduxState.questions
       .filter(x => x.variable_name !== "needs")
       .forEach(x => {
-        console.log(x.variable_name, this.props.reduxState[x.variable_name]);
         if (this.props.reduxState[x.variable_name]) {
           href += `&${x.variable_name}=${
             this.props.reduxState[x.variable_name]
@@ -116,13 +116,23 @@ export class Guided extends Component {
   render() {
     const { t, i18n, store, reduxState } = this.props;
     const { section } = this.state;
-    const stepNumber = section_order.indexOf(section);
+    const displayable_sections = section_order.filter((x, i) =>
+      showQuestion(x, i, reduxState)
+    );
+    console.log("displayable_sections", displayable_sections);
+    const dynamicStepNumber = displayable_sections.indexOf(section);
+
     const nextSection =
-      stepNumber + 1 >= section_order.length
+      dynamicStepNumber + 1 >= displayable_sections.length
         ? "benefits-directory"
-        : section_order[stepNumber + 1];
+        : displayable_sections[dynamicStepNumber + 1];
     const prevSection =
-      stepNumber === 0 ? "index" : section_order[stepNumber - 1];
+      dynamicStepNumber === 0
+        ? "index"
+        : displayable_sections[dynamicStepNumber - 1];
+    console.log("nextSection", nextSection);
+    console.log("prevSection", prevSection);
+
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];

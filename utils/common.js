@@ -6,7 +6,7 @@ export const uuidv4 = () => {
   });
 };
 
-export const showQuestion = (question, index, reduxState) => {
+export const showQuestion = (question_variable_name, index, reduxState) => {
   const { questions, questionDisplayLogic } = reduxState;
 
   if (index === 0) {
@@ -16,14 +16,14 @@ export const showQuestion = (question, index, reduxState) => {
   // show if the previous question has an answer
   const previousQuestionAnswered =
     reduxState[questions[index - 1].variable_name] !== "";
-  if (!previousQuestionAnswered) {
+  if (!previousQuestionAnswered && question_variable_name !== "needs") {
     return false;
   }
 
   const relevantLogic = questionDisplayLogic.filter(x => {
     return (
       x["exclude questions"] &&
-      x["exclude questions"].indexOf(question.variable_name) > -1
+      x["exclude questions"].indexOf(question_variable_name) > -1
     );
   });
 
