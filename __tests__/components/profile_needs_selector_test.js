@@ -32,10 +32,7 @@ describe("ProfileNeedsSelector", () => {
       selectedServiceHealthIssue: "",
       selectedNeeds: {},
       needs: needsFixture,
-      setPatronType: jest.fn(),
-      setServiceType: jest.fn(),
-      setStatusAndVitals: jest.fn(),
-      setServiceHealthIssue: jest.fn(),
+      saveQuestionResponse: jest.fn(),
       setSelectedNeeds: jest.fn(),
       eligibilityPaths: eligibilityPathsFixture,
       pageWidth: 1000
@@ -94,10 +91,17 @@ describe("ProfileNeedsSelector", () => {
       <ProfileNeedsSelector {...props} {...reduxData} />
     ).instance();
     instance.clearFilters();
-    expect(reduxData.setPatronType).toBeCalledWith("");
-    expect(reduxData.setServiceType).toBeCalledWith("");
-    expect(reduxData.setStatusAndVitals).toBeCalledWith("");
-    expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
+
+    expect(reduxData.saveQuestionResponse).toBeCalledWith("patronType", "");
+    expect(reduxData.saveQuestionResponse).toBeCalledWith("serviceType", "");
+    expect(reduxData.saveQuestionResponse).toBeCalledWith(
+      "statusAndVitals",
+      ""
+    );
+    expect(reduxData.saveQuestionResponse).toBeCalledWith(
+      "serviceHealthIssue",
+      ""
+    );
     expect(reduxData.setSelectedNeeds).toBeCalledWith({});
   });
 

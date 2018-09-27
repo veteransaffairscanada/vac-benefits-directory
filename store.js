@@ -79,10 +79,9 @@ export const reducer = (state = initialState, action) => {
       newState["errors"] = action.data["errors"] || state["errors"];
       return Object.assign({}, state, newState);
 
-    case "SET_PATRON_TYPE":
-      return Object.assign({}, state, {
-        patronType: action.data
-      });
+    case "SAVE_QUESTION_RESPONSE":
+      return Object.assign({}, state, action.data);
+
     case "SET_SEARCH_STRING":
       return Object.assign({}, state, {
         searchString: action.data
@@ -94,18 +93,6 @@ export const reducer = (state = initialState, action) => {
     case "SET_SORT_BY":
       return Object.assign({}, state, {
         sortBy: action.data
-      });
-    case "SET_SERVICE_TYPE":
-      return Object.assign({}, state, {
-        serviceType: action.data
-      });
-    case "SET_STATUS_TYPE":
-      return Object.assign({}, state, {
-        statusAndVitals: action.data
-      });
-    case "SET_HEALTH_ISSUE":
-      return Object.assign({}, state, {
-        serviceHealthIssue: action.data
       });
     case "SET_CLOSEST_OFFICE":
       return Object.assign({}, state, {
