@@ -163,7 +163,7 @@ export class Guided extends Component {
               t={t}
               selectorType={section}
               store={store}
-              options={question["multiple_choice_options"]}
+              options={question["/"]}
             />
           )}
         </GuidedExperience>
