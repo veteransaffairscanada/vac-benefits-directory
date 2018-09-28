@@ -4,7 +4,6 @@ const questionsFixture = [
     multiple_choice_options: ["service-person", "family", "organization"],
     display_text_english: "My selection:",
     display_text_french: "Ma sélection:",
-    "question display logic": ["recn0zobKUhFIowAh", "rec99OzU3gXrs66zH"],
     guided_experience_english: "Select who will be receiving the benefits.",
     guided_experience_french: "Montre moi des avantages pour:",
     id: "recwwXPBszQacaMsb"
@@ -14,8 +13,6 @@ const questionsFixture = [
     multiple_choice_options: ["CAF", "RCMP", "WSV (WWII or Korea)"],
     display_text_english: "Service type:",
     display_text_french: "Type de service:",
-    "question display logic": ["reczEVuK0ipZkAIec"],
-    "question display logic 2": ["rec99OzU3gXrs66zH"],
     guided_experience_english: "Select the service type.",
     guided_experience_french: "Sélectionnez le type de service.",
     id: "recd9vxcm3gb3jkLE"
@@ -25,7 +22,6 @@ const questionsFixture = [
     multiple_choice_options: ["stillServing", "releasedAlive", "deceased"],
     display_text_english: "Veteran Service status:",
     display_text_french: "Statut du membre:",
-    "question display logic 2": ["rec99OzU3gXrs66zH"],
     guided_experience_english: "Select the service status.",
     guided_experience_french: "Sélectionnez  le statut du membre.",
     id: "recUrZvFSfHUMzii7"
@@ -35,7 +31,6 @@ const questionsFixture = [
     multiple_choice_options: ["true", "false"],
     display_text_english: "Is there a service-related health issue?",
     display_text_french: "A-t-il un problème de santé lié au service?",
-    "question display logic 2": ["rec99OzU3gXrs66zH"],
     guided_experience_english: "Is there a service-related health issue?",
     guided_experience_french: "A-t-il un problème de santé lié au service?",
     id: "reccsWjclog8m3Od1"
