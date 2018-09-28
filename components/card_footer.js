@@ -9,6 +9,7 @@ import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { cx, css } from "react-emotion";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
+import { globalTheme } from "../theme";
 
 const headerDesc = css`
   flex-grow: 1;
@@ -38,15 +39,17 @@ const ExpansionPanelCss = css`
   margin-top: 0px !important;
 `;
 const ExpansionPanelOpen = css`
-  background-color: #f5f5f5 !important;
+  background-color: ${globalTheme.colour.cardGrey} !important;
 `;
 const ExpansionPanelClosed = css`
-  background-color: #f1f7fc !important;
+  :hover {
+    background-color: ${globalTheme.colour.cardGrey} !important;
+  }
 `;
 const collapse = css`
   padding-top: 25px !important;
   padding-left: 15px !important;
-  background-color: #f5f5f5 !important;
+  background-color: ${globalTheme.colour.cardGrey} !important;
 `;
 const children = css`
   width: 100%;
