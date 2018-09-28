@@ -56,13 +56,17 @@ export class BenefitCard extends Component {
     return (
       <Grid item xs={12}>
         <div className={root}>
-          <BenefitCardHeader benefit={benefit} t={t} store={this.props.store} />
-          <BenefitCardHeaderMoreInfo
-            benefit={benefit}
-            t={t}
-            store={this.props.store}
-          />
           <Paper className={cardBody}>
+            <BenefitCardHeader
+              benefit={benefit}
+              t={t}
+              store={this.props.store}
+            />
+            <BenefitCardHeaderMoreInfo
+              benefit={benefit}
+              t={t}
+              store={this.props.store}
+            />
             <Header4 className={benefitName}>
               <Highlighter
                 searchWords={this.props.searchString.split(",")}

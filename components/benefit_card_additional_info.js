@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 
 const cardTop = css`
-  background-color: #f1f7fc;
-  border-radius: 0px;
   border-bottom: 1px solid #8b8b8b;
-  padding: 15px 15px 15px 10px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,10 +39,10 @@ export class BenefitCardHeaderMoreInfo extends Component {
 
     if (benefit.noteEn !== undefined && benefit.noteFr !== undefined) {
       return (
-        <Paper className={cardTop}>
+        <div className={cardTop}>
           <ErrorOutlineIcon className={parentIcon} />
           <span className={headerDesc}>{this.benefitNote(benefit)}</span>
-        </Paper>
+        </div>
       );
     } else {
       return null;
