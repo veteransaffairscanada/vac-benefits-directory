@@ -29,7 +29,7 @@ export class RadioSelector extends React.Component {
   };
 
   clearAppropriateResponses = (question, response) => {
-    const { questionResponse, saveQuestionResponse } = this.props;
+    const { responses, saveQuestionResponse } = this.props;
 
     switch (question) {
       case "patronType":
@@ -40,15 +40,15 @@ export class RadioSelector extends React.Component {
         }
         if (
           response === "service-person" &&
-          questionResponse("statusAndVitals") === "deceased"
+          responses.statusAndVitals === "deceased"
         ) {
           saveQuestionResponse("statusAndVitals", "");
           saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           response === "service-person" &&
-          questionResponse("serviceType") === "WSV (WWII or Korea)" &&
-          questionResponse("statusAndVitals") !== ""
+          responses.serviceType === "WSV (WWII or Korea)" &&
+          responses.statusAndVitals !== ""
         ) {
           saveQuestionResponse("statusAndVitals", "");
           saveQuestionResponse("serviceHealthIssue", "");
@@ -57,22 +57,22 @@ export class RadioSelector extends React.Component {
       case "serviceType":
         if (
           response === "WSV (WWII or Korea)" &&
-          questionResponse("statusAndVitals") === "stillServing"
+          responses.statusAndVitals === "stillServing"
         ) {
           saveQuestionResponse("statusAndVitals", "");
           saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           response === "WSV (WWII or Korea)" &&
-          questionResponse("patronType") === "service-person" &&
-          questionResponse("statusAndVitals") !== ""
+          responses.patronType === "service-person" &&
+          responses.statusAndVitals !== ""
         ) {
           saveQuestionResponse("statusAndVitals", "");
           saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           (response === "RCMP" || response === "CAF") &&
-          questionResponse("statusAndVitals") === ""
+          responses.statusAndVitals === ""
         ) {
           saveQuestionResponse("serviceHealthIssue", "");
         }
@@ -99,7 +99,7 @@ export class RadioSelector extends React.Component {
           )
         ).filter(st => st !== "na");
 
-    const { t, selectorType, questionResponse } = this.props;
+    const { t, selectorType, responses } = this.props;
 
     if (Object.keys(options).length !== 0) {
       return (
@@ -107,7 +107,7 @@ export class RadioSelector extends React.Component {
           <Header4 className={formLabel}>{this.props.legend}</Header4>
           <RadioGroup
             aria-label={this.props.legend}
-            value={questionResponse(selectorType)}
+            value={responses[selectorType]}
             onChange={this.handleSelect}
           >
             {options.map(option => {
@@ -120,8 +120,8 @@ export class RadioSelector extends React.Component {
                   label={t(option)}
                   disabled={this.isDisabled(
                     option,
-                    questionResponse("patronType"),
-                    questionResponse("serviceType")
+                    responses.patronType,
+                    responses.serviceType
                   )}
                 />
               );
@@ -148,15 +148,15 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    questionResponse: question => reduxState[question],
-    eligibilityPaths: reduxState.eligibilityPaths
+    eligibilityPaths: reduxState.eligibilityPaths,
+    responses: reduxState
   };
 };
 
 RadioSelector.propTypes = {
   legend: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  questionResponse: PropTypes.func.isRequired,
+  responses: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
