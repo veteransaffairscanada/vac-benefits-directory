@@ -12,20 +12,12 @@ import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import { showQuestion } from "../utils/common";
 
-const section_order = [
-  "patronType",
-  "serviceType",
-  "statusAndVitals",
-  "serviceHealthIssue",
-  "needs"
-];
-
 export class Guided extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.cookies = new Cookies();
     this.state = {
-      section: section_order[0]
+      section: this.props.sectionOrder[0]
     };
   }
 
@@ -33,13 +25,13 @@ export class Guided extends Component {
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
       const newState = {
-        section: matches[1] || section_order[0]
+        section: matches[1] || this.props.sectionOrder[0]
       };
       this.setState(newState);
     };
 
     const newState = {
-      section: this.props.url.query.section || section_order[0]
+      section: this.props.url.query.section || this.props.sectionOrder[0]
     };
 
     this.setState(newState);
@@ -71,8 +63,8 @@ export class Guided extends Component {
 
   setSection = section => {
     this.setState({ section: section });
-    const current_index = section_order.indexOf(section);
-    section_order.filter((x, i) => i > current_index).forEach(x => {
+    const current_index = this.props.sectionOrder.indexOf(section);
+    this.props.sectionOrder.filter((x, i) => i > current_index).forEach(x => {
       if (x === "needs") {
         this.props.saveQuestionResponse("selectedNeeds", {});
       } else {
@@ -106,9 +98,9 @@ export class Guided extends Component {
   };
 
   render() {
-    const { t, i18n, store, reduxState } = this.props;
+    const { t, i18n, store, reduxState, sectionOrder } = this.props;
     const { section } = this.state;
-    const displayable_sections = section_order.filter((x, i) =>
+    const displayable_sections = sectionOrder.filter((x, i) =>
       showQuestion(x, i, reduxState)
     );
     const dynamicStepNumber = displayable_sections.indexOf(section);
@@ -125,7 +117,7 @@ export class Guided extends Component {
       >
         <GuidedExperience
           id={section}
-          stepNumber={section_order.indexOf(section)}
+          stepNumber={sectionOrder.indexOf(section)}
           nextSection={this.getNextSection(
             displayable_sections,
             dynamicStepNumber
@@ -169,12 +161,14 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     reduxState: reduxState,
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    sectionOrder: reduxState.questions.map(x => x.variable_name)
   };
 };
 
 Guided.propTypes = {
   reduxState: PropTypes.object,
+  sectionOrder: PropTypes.array.isRequired,
   dispatch: PropTypes.func,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
