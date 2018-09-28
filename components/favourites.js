@@ -42,9 +42,14 @@ const topMatter = css`
 `;
 
 const bgWhite = css`
-padding: 12px;
+padding: 30px;
 @media only screen and (min-width: ${globalTheme.max.sm}) {
   margin-left: 11px !important;
+}
+@media only screen and (max-width: ${globalTheme.max.sm}) {
+  margin-right: -32px;
+  margin-left: -32px;
+  margin-bottom: -25px;
 }
 `;
 
