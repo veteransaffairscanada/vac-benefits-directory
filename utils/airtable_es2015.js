@@ -118,6 +118,30 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     dataStore.questions,
     "variable_name"
   );
+  replaceId(
+    dataStore.questionClearLogic,
+    "Question",
+    dataStore.questions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.questionClearLogic,
+    "Response",
+    dataStore.multipleChoiceOptions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.questionClearLogic,
+    "Previous Response",
+    dataStore.multipleChoiceOptions,
+    "variable_name"
+  );
+  replaceId(
+    dataStore.questionClearLogic,
+    "Clear Questions",
+    dataStore.questions,
+    "variable_name"
+  );
 
   dataStore.timestamp = await Date.now();
   return dataStore;

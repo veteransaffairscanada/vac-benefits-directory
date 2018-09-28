@@ -7,5 +7,6 @@ exports.tableNames = [
   "translations",
   "questions",
   "multipleChoiceOptions",
-  "questionDisplayLogic"
+  "questionDisplayLogic",
+  "questionClearLogic"
 ];

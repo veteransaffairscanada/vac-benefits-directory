@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import React from "react";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-
+import questionsFixture from "../fixtures/questions";
 import { GuidedExperienceProfile } from "../../components/guided_experience_profile";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -26,7 +26,10 @@ describe("GuidedExperienceProfile", () => {
       patronType: "",
       statusAndVitals: "",
       serviceHealthIssue: "",
-      eligibilityPaths: eligibilityPathsFixture
+      eligibilityPaths: eligibilityPathsFixture,
+      questions: questionsFixture,
+      questionDisplayLogic: [],
+      questionClearLogic: []
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

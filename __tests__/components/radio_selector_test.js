@@ -2,6 +2,9 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import { RadioSelector } from "../../components/radio_selector";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import questionsFixture from "../fixtures/questions";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import questionClearLogicFixture from "../fixtures/question_clear_logic";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -14,10 +17,15 @@ describe("RadioSelector", () => {
       saveQuestionResponse: jest.fn(),
       options: ["releasedAlive", "stillServing", "deceased"],
       selectorType: "statusAndVitals",
-      selectedPatronType: "",
-      selectedServiceType: "",
-      selectedStatusAndVitals: "releasedAlive",
-      selectedServiceHealthIssue: "",
+      responses: {
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: "releasedAlive",
+        serviceHealthIssue: ""
+      },
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionClearLogicFixture,
       t: key => key,
       eligibilityPaths: eligibilityPathsFixture
     };
@@ -43,103 +51,82 @@ describe("RadioSelector", () => {
     ).toEqual("stillServing");
   });
 
-  it("isDisabled returns false if we don't hit a condition", () => {
-    const isDisabled = shallow(<RadioSelector {...props} />).instance()
-      .isDisabled;
-    expect(isDisabled("a", "a", "")).toEqual(false);
+  describe("isDisabled function", () => {
+    it("returns false if we don't hit a condition", () => {
+      const isDisabled = shallow(<RadioSelector {...props} />).instance()
+        .isDisabled;
+      expect(
+        isDisabled("option", props.responses, props.questionDisplayLogic)
+      ).toEqual(false);
+    });
+
+    it("returns true if we do hit a condition", () => {
+      props.responses.patronType = "service-person";
+      const isDisabled = shallow(<RadioSelector {...props} />).instance()
+        .isDisabled;
+      expect(
+        isDisabled("deceased", props.responses, props.questionDisplayLogic)
+      ).toEqual(true);
+    });
   });
 
-  it("isDisabled returns true if we do hit a condition", () => {
-    const isDisabled = shallow(<RadioSelector {...props} />).instance()
-      .isDisabled;
+  describe("handleSelect function", () => {
+    it("logs an analytics event", () => {
+      let instance = shallow(<RadioSelector {...props} />).instance();
+      let analytics = require("../../utils/analytics");
+      analytics.logEvent = jest.fn();
+      instance.handleSelect({ target: { value: "x" } });
+      expect(analytics.logEvent).toBeCalledWith(
+        "FilterClick",
+        "statusAndVitals",
+        "x"
+      );
+    });
 
-    expect(isDisabled("deceased", "service-person", "")).toEqual(true);
-    expect(isDisabled("stillServing", "", "WSV (WWII or Korea)")).toEqual(true);
+    it("calls saveQuestionResponse", () => {
+      let instance = shallow(<RadioSelector {...props} />).instance();
+      instance.handleSelect({ target: { value: "x" } });
+      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "x");
+    });
+
+    it("calls clearAppropriateResponses", () => {
+      let instance = shallow(<RadioSelector {...props} />).instance();
+      instance.clearAppropriateResponses = jest.fn();
+      instance.handleSelect({ target: { value: "x" } });
+      expect(instance.clearAppropriateResponses).toBeCalledWith(
+        "statusAndVitals",
+        "x"
+      );
+    });
   });
 
-  it("handleSelect calls setUserProfile", () => {
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile = jest.fn();
-    instance.handleSelect({ target: { value: "x" } });
-    expect(instance.setUserProfile).toBeCalledWith("statusAndVitals", "x");
-  });
+  describe("clearAppropriateResponses function", () => {
+    it("clears if there are no required previous responses", () => {
+      let instance = shallow(<RadioSelector {...props} />).instance();
+      instance.clearAppropriateResponses("patronType", "organization");
+      expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
+      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
+      expect(props.saveQuestionResponse).toBeCalledWith(
+        "serviceHealthIssue",
+        ""
+      );
+    });
 
-  it("setUserProfile logs an analytics event", () => {
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    instance.setUserProfile("serviceType", "x");
-    expect(analytics.logEvent).toBeCalledWith(
-      "FilterClick",
-      "serviceType",
-      "x"
-    );
-  });
+    it("clears if no there are required previous responses", () => {
+      props.responses.statusAndVitals = "deceased";
+      let instance = shallow(<RadioSelector {...props} />).instance();
+      instance.clearAppropriateResponses("patronType", "service-person");
+      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
+      expect(props.saveQuestionResponse).toBeCalledWith(
+        "serviceHealthIssue",
+        ""
+      );
+    });
 
-  it("setUserProfile clears other filters if Organization is selected", () => {
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile("patronType", "organization");
-    expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
-    expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-  });
-
-  it("setUserProfile clears statusAndVitals filters if service-person is selected and is deceased", () => {
-    props.selectedStatusAndVitals = "deceased";
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile("patronType", "service-person");
-    expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-  });
-
-  it("setUserProfile clears statusAndVitals filters if WSV (WWII or Korea) is selected and is stillServing", () => {
-    props.selectedStatusAndVitals = "stillServing";
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile("serviceType", "WSV (WWII or Korea)");
-    expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-  });
-
-  it("setUserProfile clears statusAndVitals filters if service-person is selected, serviceType is WSV (WWII or Korea), and a statusAndVitals is set", () => {
-    props.selectedStatusAndVitals = "stillServing";
-    props.selectedServiceType = "WSV (WWII or Korea)";
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile("patronType", "service-person");
-    expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-  });
-
-  it("setUserProfile clears statusAndVitals filters if WSV (WWII or Korea) is selected, patronType is service-person, and a statusAndVitals is set", () => {
-    props.selectedStatusAndVitals = "stillServing";
-    props.selectedPatronType = "service-person";
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile("serviceType", "WSV (WWII or Korea)");
-    expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-  });
-
-  it("setUserProfile can set statusAndVitals", () => {
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile("statusAndVitals", "deceased");
-    expect(props.saveQuestionResponse).toBeCalledWith(
-      "statusAndVitals",
-      "deceased"
-    );
-  });
-
-  it("setUserProfile can set serviceHealthIssue", () => {
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile("serviceHealthIssue", "true");
-    expect(props.saveQuestionResponse).toBeCalledWith(
-      "serviceHealthIssue",
-      "true"
-    );
-  });
-
-  it("setUserProfile returns true as default", () => {
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    expect(instance.setUserProfile("foo", "bar")).toEqual(true);
-  });
-
-  it("setUserProfile clears serviceHealthIssue if RCMP is selected and a statusAndVitals is not set (b/c the serviceHealthIssue Q will be hidden)", () => {
-    props.selectedStatusAndVitals = "";
-    let instance = shallow(<RadioSelector {...props} />).instance();
-    instance.setUserProfile("serviceType", "RCMP");
-    expect(props.saveQuestionResponse).toBeCalledWith("serviceHealthIssue", "");
+    it("doesn't clear when it shouldn't", () => {
+      let instance = shallow(<RadioSelector {...props} />).instance();
+      instance.clearAppropriateResponses("patronType", "buddy");
+      expect(props.saveQuestionResponse).not.toBeCalled();
+    });
   });
 });

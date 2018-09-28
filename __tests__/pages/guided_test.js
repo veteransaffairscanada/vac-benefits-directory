@@ -65,7 +65,8 @@ describe("Guided", () => {
       serviceHealthIssue: "",
       option: "",
       questions: questionsFixture,
-      questionDisplayLogic: questionDisplayLogicFixture
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionDisplayLogicFixture
     };
     props.store = mockStore(reduxState);
     props.reduxState = reduxState;

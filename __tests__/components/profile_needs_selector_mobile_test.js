@@ -9,6 +9,7 @@ import configureStore from "redux-mock-store";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import questionClearLogicFixture from "../fixtures/question_clear_logic";
 
 describe("ProfileNeedsSelectorMobile", () => {
   let props;
@@ -21,6 +22,7 @@ describe("ProfileNeedsSelectorMobile", () => {
     reduxData = {
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       patronType: "",
       serviceType: "",
