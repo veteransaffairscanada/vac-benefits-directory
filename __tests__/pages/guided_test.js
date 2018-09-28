@@ -6,7 +6,6 @@ import React from "react";
 import { Guided } from "../../pages/guided";
 import benefitsFixture from "../fixtures/benefits";
 import translate from "../fixtures/translate";
-import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import examplesFixture from "../fixtures/examples";
@@ -44,12 +43,14 @@ describe("Guided", () => {
       storeHydrated: true,
       dispatch: jest.fn(),
       benefits: benefitsFixture,
-      eligibilityPaths: elegibilityPathsFixture,
-      needs: needsFixture,
-      examples: [],
       saveQuestionResponse: jest.fn(),
-      setSelectedNeeds: jest.fn(),
-      favouriteBenefits: []
+      sectionOrder: [
+        "patronType",
+        "serviceType",
+        "statusAndVitals",
+        "serviceHealthIssue",
+        "needs"
+      ]
     };
     _mountedGuided = undefined;
     mockStore = configureStore();
@@ -97,13 +98,7 @@ describe("Guided", () => {
 
   describe("setSection", () => {
     it("returns correct section when passed as argument", () => {
-      [
-        "patronType",
-        "serviceType",
-        "statusAndVitals",
-        "serviceHealthIssue",
-        "needs"
-      ].forEach(section => {
+      props.sectionOrder.forEach(section => {
         let guidedInstance = mountedGuided().instance();
         guidedInstance.setSection(section);
         expect(guidedInstance.state.section).toEqual(section);
@@ -115,7 +110,7 @@ describe("Guided", () => {
       guidedInstance.setSection("patronType");
       expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
       expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-      expect(props.setSelectedNeeds).toBeCalledWith({});
+      expect(props.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
     });
   });
 
