@@ -18,13 +18,9 @@ export class ProfileSelector extends Component {
           .map(x => x.variable_name);
 
         jsx_array.push(
-          <Grid
-            item
-            xs={12}
-            key={question.variable_name + "Filter"}
-            className={question.variable_name + "Filter"}
-          >
+          <Grid item xs={12} key={question.variable_name + "RadioSelector"}>
             <RadioSelector
+              id={question.variable_name + "RadioSelector"}
               t={t}
               legend={
                 t("current-language-code") === "en"
