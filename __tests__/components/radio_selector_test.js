@@ -2,7 +2,9 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import { RadioSelector } from "../../components/radio_selector";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-
+import questionsFixture from "../fixtures/questions";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import questionClearLogicFixture from "../fixtures/question_clear_logic";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -21,13 +23,9 @@ describe("RadioSelector", () => {
         statusAndVitals: "releasedAlive",
         serviceHealthIssue: ""
       },
-      questionDisplayLogic: [
-        {
-          question: ["patronType"],
-          ["has value"]: ["service-person"],
-          ["exclude options"]: ["deceased"]
-        }
-      ],
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionClearLogicFixture,
       t: key => key,
       eligibilityPaths: eligibilityPathsFixture
     };
@@ -103,51 +101,32 @@ describe("RadioSelector", () => {
   });
 
   describe("clearAppropriateResponses function", () => {
-    it("clears other filters if Organization is selected", () => {
+    it("clears if there are no required previous responses", () => {
       let instance = shallow(<RadioSelector {...props} />).instance();
       instance.clearAppropriateResponses("patronType", "organization");
       expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
       expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-    });
-
-    it("clears statusAndVitals filters if service-person is selected and is deceased", () => {
-      props.responses.statusAndVitals = "deceased";
-      let instance = shallow(<RadioSelector {...props} />).instance();
-      instance.clearAppropriateResponses("patronType", "service-person");
-      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-    });
-
-    it("clears statusAndVitals filters if WSV (WWII or Korea) is selected and is stillServing", () => {
-      props.responses.statusAndVitals = "stillServing";
-      let instance = shallow(<RadioSelector {...props} />).instance();
-      instance.clearAppropriateResponses("serviceType", "WSV (WWII or Korea)");
-      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-    });
-
-    it("clears statusAndVitals filters if service-person is selected, serviceType is WSV (WWII or Korea), and a statusAndVitals is set", () => {
-      props.responses.statusAndVitals = "stillServing";
-      props.responses.serviceType = "WSV (WWII or Korea)";
-      let instance = shallow(<RadioSelector {...props} />).instance();
-      instance.clearAppropriateResponses("patronType", "service-person");
-      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-    });
-
-    it("clears statusAndVitals filters if WSV (WWII or Korea) is selected, patronType is service-person, and a statusAndVitals is set", () => {
-      props.responses.statusAndVitals = "stillServing";
-      props.responses.patronType = "service-person";
-      let instance = shallow(<RadioSelector {...props} />).instance();
-      instance.clearAppropriateResponses("serviceType", "WSV (WWII or Korea)");
-      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
-    });
-
-    it("clears serviceHealthIssue if RCMP is selected and a statusAndVitals is not set (b/c the serviceHealthIssue Q will be hidden)", () => {
-      props.responses.statusAndVitals = "";
-      let instance = shallow(<RadioSelector {...props} />).instance();
-      instance.clearAppropriateResponses("serviceType", "RCMP");
       expect(props.saveQuestionResponse).toBeCalledWith(
         "serviceHealthIssue",
         ""
       );
+    });
+
+    it("clears if no there are required previous responses", () => {
+      props.responses.statusAndVitals = "deceased";
+      let instance = shallow(<RadioSelector {...props} />).instance();
+      instance.clearAppropriateResponses("patronType", "service-person");
+      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
+      expect(props.saveQuestionResponse).toBeCalledWith(
+        "serviceHealthIssue",
+        ""
+      );
+    });
+
+    it("doesn't clear when it shouldn't", () => {
+      let instance = shallow(<RadioSelector {...props} />).instance();
+      instance.clearAppropriateResponses("patronType", "buddy");
+      expect(props.saveQuestionResponse).not.toBeCalled();
     });
   });
 });

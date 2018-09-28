@@ -27,7 +27,8 @@ describe("GuidedExperienceProfile", () => {
       statusAndVitals: "",
       serviceHealthIssue: "",
       eligibilityPaths: eligibilityPathsFixture,
-      questionDisplayLogic: []
+      questionDisplayLogic: [],
+      questionClearLogic: []
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

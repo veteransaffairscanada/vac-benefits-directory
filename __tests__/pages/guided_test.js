@@ -63,7 +63,8 @@ describe("Guided", () => {
       statusAndVitals: "",
       serviceHealthIssue: "",
       option: "",
-      questionDisplayLogic: []
+      questionDisplayLogic: [],
+      questionClearLogic: []
     };
     props.store = mockStore(reduxData);
   });

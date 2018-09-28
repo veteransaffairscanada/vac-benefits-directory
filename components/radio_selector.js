@@ -35,55 +35,32 @@ export class RadioSelector extends React.Component {
   };
 
   clearAppropriateResponses = (question, response) => {
-    const { responses, saveQuestionResponse } = this.props;
+    const {
+      questions,
+      responses,
+      saveQuestionResponse,
+      questionClearLogic
+    } = this.props;
 
-    switch (question) {
-      case "patronType":
-        if (response === "organization") {
-          saveQuestionResponse("serviceType", "");
-          saveQuestionResponse("statusAndVitals", "");
-          saveQuestionResponse("serviceHealthIssue", "");
-        }
-        if (
-          response === "service-person" &&
-          responses.statusAndVitals === "deceased"
-        ) {
-          saveQuestionResponse("statusAndVitals", "");
-          saveQuestionResponse("serviceHealthIssue", "");
-        }
-        if (
-          response === "service-person" &&
-          responses.serviceType === "WSV (WWII or Korea)" &&
-          responses.statusAndVitals !== ""
-        ) {
-          saveQuestionResponse("statusAndVitals", "");
-          saveQuestionResponse("serviceHealthIssue", "");
-        }
-        break;
-      case "serviceType":
-        if (
-          response === "WSV (WWII or Korea)" &&
-          responses.statusAndVitals === "stillServing"
-        ) {
-          saveQuestionResponse("statusAndVitals", "");
-          saveQuestionResponse("serviceHealthIssue", "");
-        }
-        if (
-          response === "WSV (WWII or Korea)" &&
-          responses.patronType === "service-person" &&
-          responses.statusAndVitals !== ""
-        ) {
-          saveQuestionResponse("statusAndVitals", "");
-          saveQuestionResponse("serviceHealthIssue", "");
-        }
-        if (
-          (response === "RCMP" || response === "CAF") &&
-          responses.statusAndVitals === ""
-        ) {
-          saveQuestionResponse("serviceHealthIssue", "");
-        }
-        break;
-    }
+    const previousResponses = questions
+      .map(q => q.variable_name)
+      .map(v => responses[v]);
+
+    questionClearLogic.forEach(row => {
+      if (
+        row["Question"] &&
+        row["Response"] &&
+        row["Clear Questions"] &&
+        row["Question"][0] === question &&
+        row["Response"][0] === response &&
+        (!row["Previous Response"] ||
+          previousResponses.indexOf(row["Previous Response"][0]) > -1)
+      ) {
+        row["Clear Questions"].forEach(question => {
+          saveQuestionResponse(question, "");
+        });
+      }
+    });
   };
 
   handleSelect = event => {
@@ -155,7 +132,9 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     eligibilityPaths: reduxState.eligibilityPaths,
+    questions: reduxState.questions,
     questionDisplayLogic: reduxState.questionDisplayLogic,
+    questionClearLogic: reduxState.questionClearLogic,
     responses: reduxState
   };
 };
@@ -167,7 +146,9 @@ RadioSelector.propTypes = {
   saveQuestionResponse: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  questions: PropTypes.array.isRequired,
   questionDisplayLogic: PropTypes.array.isRequired,
+  questionClearLogic: PropTypes.array.isRequired,
   options: PropTypes.array,
   store: PropTypes.object
 };
