@@ -47,11 +47,8 @@ describe("Guided", () => {
       eligibilityPaths: elegibilityPathsFixture,
       needs: needsFixture,
       examples: [],
-      setPatronType: jest.fn(),
+      saveQuestionResponse: jest.fn(),
       setSelectedNeeds: jest.fn(),
-      setServiceType: jest.fn(),
-      setStatusAndVitals: jest.fn(),
-      setServiceHealthIssue: jest.fn(),
       favouriteBenefits: []
     };
     _mountedGuided = undefined;
@@ -115,8 +112,8 @@ describe("Guided", () => {
     it("clears redux data for future questions", () => {
       let guidedInstance = mountedGuided().instance();
       guidedInstance.setSection("patronType");
-      expect(props.setServiceType).toBeCalledWith("");
-      expect(props.setStatusAndVitals).toBeCalledWith("");
+      expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
+      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
       expect(props.setSelectedNeeds).toBeCalledWith({});
     });
   });

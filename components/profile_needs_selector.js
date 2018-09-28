@@ -59,10 +59,10 @@ export class ProfileNeedsSelector extends Component {
   };
 
   clearFilters = () => {
-    this.props.setPatronType("");
-    this.props.setServiceType("");
-    this.props.setStatusAndVitals("");
-    this.props.setServiceHealthIssue("");
+    this.props.saveQuestionResponse("patronType", "");
+    this.props.saveQuestionResponse("serviceType", "");
+    this.props.saveQuestionResponse("statusAndVitals", "");
+    this.props.saveQuestionResponse("serviceHealthIssue", "");
     this.props.setSelectedNeeds({});
   };
 
@@ -104,17 +104,11 @@ export class ProfileNeedsSelector extends Component {
 
 const mapDispatchToProps1 = dispatch => {
   return {
-    setPatronType: patronType => {
-      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
-    },
-    setServiceType: serviceType => {
-      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
-    },
-    setStatusAndVitals: statusType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
-    },
-    setServiceHealthIssue: serviceHealthIssue => {
-      dispatch({ type: "SET_HEALTH_ISSUE", data: serviceHealthIssue });
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
     },
     setSelectedNeeds: needsObject => {
       dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
@@ -137,10 +131,7 @@ ProfileNeedsSelector.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   patronType: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  setPatronType: PropTypes.func.isRequired,
-  setServiceType: PropTypes.func.isRequired,
-  setStatusAndVitals: PropTypes.func.isRequired,
-  setServiceHealthIssue: PropTypes.func.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object,
   selectedPatronType: PropTypes.string.isRequired,

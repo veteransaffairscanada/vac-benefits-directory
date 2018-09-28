@@ -30,60 +30,57 @@ export class RadioSelector extends React.Component {
 
   setUserProfile = (criteria, id) => {
     logEvent("FilterClick", criteria, id);
+    this.props.saveQuestionResponse(criteria, id);
     switch (criteria) {
       case "patronType":
-        this.props.setPatronType(id);
         if (id === "organization") {
-          this.props.setServiceType("");
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("serviceType", "");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           id === "service-person" &&
           this.props.selectedStatusAndVitals === "deceased"
         ) {
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           id === "service-person" &&
           this.props.selectedServiceType === "WSV (WWII or Korea)" &&
           this.props.selectedStatusAndVitals !== ""
         ) {
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         break;
       case "serviceType":
-        this.props.setServiceType(id);
         if (
           id === "WSV (WWII or Korea)" &&
           this.props.selectedStatusAndVitals === "stillServing"
         ) {
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           id === "WSV (WWII or Korea)" &&
           this.props.selectedPatronType === "service-person" &&
           this.props.selectedStatusAndVitals !== ""
         ) {
-          this.props.setStatusAndVitals("");
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("statusAndVitals", "");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
         if (
           (id === "RCMP" || id === "CAF") &&
           this.props.selectedStatusAndVitals === ""
         ) {
-          this.props.setServiceHealthIssue("");
+          this.props.saveQuestionResponse("serviceHealthIssue", "");
         }
 
         break;
       case "statusAndVitals":
-        this.props.setStatusAndVitals(id);
         break;
       case "serviceHealthIssue":
-        this.props.setServiceHealthIssue(id);
         break;
       default:
         return true;
@@ -149,17 +146,11 @@ export class RadioSelector extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPatronType: patronType => {
-      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
-    },
-    setServiceType: serviceType => {
-      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
-    },
-    setStatusAndVitals: statusType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
-    },
-    setServiceHealthIssue: healthIssueType => {
-      dispatch({ type: "SET_HEALTH_ISSUE", data: healthIssueType });
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
     }
   };
 };
@@ -181,10 +172,7 @@ RadioSelector.propTypes = {
   selectedServiceType: PropTypes.string.isRequired,
   selectedStatusAndVitals: PropTypes.string.isRequired,
   selectedServiceHealthIssue: PropTypes.string.isRequired,
-  setPatronType: PropTypes.func.isRequired,
-  setServiceType: PropTypes.func.isRequired,
-  setStatusAndVitals: PropTypes.func.isRequired,
-  setServiceHealthIssue: PropTypes.func.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   options: PropTypes.array,
