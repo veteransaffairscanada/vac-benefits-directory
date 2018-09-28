@@ -75,10 +75,10 @@ describe("RadioSelector", () => {
       let instance = shallow(<RadioSelector {...props} />).instance();
       let analytics = require("../../utils/analytics");
       analytics.logEvent = jest.fn();
-      instance.handleSelect("serviceType", "x");
+      instance.handleSelect({ target: { value: "x" } });
       expect(analytics.logEvent).toBeCalledWith(
         "FilterClick",
-        "serviceType",
+        "statusAndVitals",
         "x"
       );
     });
