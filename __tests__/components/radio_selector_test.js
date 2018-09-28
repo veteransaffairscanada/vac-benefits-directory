@@ -21,6 +21,13 @@ describe("RadioSelector", () => {
         statusAndVitals: "releasedAlive",
         serviceHealthIssue: ""
       },
+      questionDisplayLogic: [
+        {
+          question: ["patronType"],
+          ["has value"]: ["service-person"],
+          ["exclude options"]: ["deceased"]
+        }
+      ],
       t: key => key,
       eligibilityPaths: eligibilityPathsFixture
     };
@@ -50,17 +57,18 @@ describe("RadioSelector", () => {
     it("returns false if we don't hit a condition", () => {
       const isDisabled = shallow(<RadioSelector {...props} />).instance()
         .isDisabled;
-      expect(isDisabled("a", "a", "")).toEqual(false);
+      expect(
+        isDisabled("option", props.responses, props.questionDisplayLogic)
+      ).toEqual(false);
     });
 
     it("returns true if we do hit a condition", () => {
+      props.responses.patronType = "service-person";
       const isDisabled = shallow(<RadioSelector {...props} />).instance()
         .isDisabled;
-
-      expect(isDisabled("deceased", "service-person", "")).toEqual(true);
-      expect(isDisabled("stillServing", "", "WSV (WWII or Korea)")).toEqual(
-        true
-      );
+      expect(
+        isDisabled("deceased", props.responses, props.questionDisplayLogic)
+      ).toEqual(true);
     });
   });
 

@@ -26,7 +26,8 @@ describe("GuidedExperienceProfile", () => {
       patronType: "",
       statusAndVitals: "",
       serviceHealthIssue: "",
-      eligibilityPaths: eligibilityPathsFixture
+      eligibilityPaths: eligibilityPathsFixture,
+      questionDisplayLogic: []
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

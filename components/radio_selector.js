@@ -18,14 +18,20 @@ const formLabel = css`
 `;
 
 export class RadioSelector extends React.Component {
-  isDisabled = (option, patronType, serviceType) => {
-    if (option === "stillServing" && serviceType === "WSV (WWII or Korea)") {
-      return true;
-    }
-    if (option === "deceased" && patronType === "service-person") {
-      return true;
-    }
-    return false;
+  isDisabled = (option, responses, questionDisplayLogic) => {
+    let returnValue = false;
+    questionDisplayLogic.forEach(row => {
+      if (
+        responses[row.question] &&
+        row["has value"] &&
+        row["exclude options"] &&
+        responses[row.question] === row["has value"][0] &&
+        row["exclude options"].indexOf(option) > -1
+      ) {
+        returnValue = true;
+      }
+    });
+    return returnValue;
   };
 
   clearAppropriateResponses = (question, response) => {
@@ -120,8 +126,8 @@ export class RadioSelector extends React.Component {
                   label={t(option)}
                   disabled={this.isDisabled(
                     option,
-                    responses.patronType,
-                    responses.serviceType
+                    responses,
+                    this.props.questionDisplayLogic
                   )}
                 />
               );
@@ -149,6 +155,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     eligibilityPaths: reduxState.eligibilityPaths,
+    questionDisplayLogic: reduxState.questionDisplayLogic,
     responses: reduxState
   };
 };
@@ -160,6 +167,7 @@ RadioSelector.propTypes = {
   saveQuestionResponse: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  questionDisplayLogic: PropTypes.array.isRequired,
   options: PropTypes.array,
   store: PropTypes.object
 };

@@ -62,7 +62,8 @@ describe("Guided", () => {
       patronType: "family",
       statusAndVitals: "",
       serviceHealthIssue: "",
-      option: ""
+      option: "",
+      questionDisplayLogic: []
     };
     props.store = mockStore(reduxData);
   });
