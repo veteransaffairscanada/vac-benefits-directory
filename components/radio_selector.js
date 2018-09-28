@@ -18,11 +18,11 @@ const formLabel = css`
 `;
 
 export class RadioSelector extends React.Component {
-  isDisabled = (filter_id, patronType, serviceType) => {
-    if (serviceType === "WSV (WWII or Korea)" && filter_id === "stillServing") {
+  isDisabled = (option, patronType, serviceType) => {
+    if (option === "stillServing" && serviceType === "WSV (WWII or Korea)") {
       return true;
     }
-    if (patronType === "service-person" && filter_id === "deceased") {
+    if (option === "deceased" && patronType === "service-person") {
       return true;
     }
     return false;
@@ -80,20 +80,18 @@ export class RadioSelector extends React.Component {
     }
   };
 
-  setUserProfile = (question, response) => {
+  handleSelect = event => {
+    const question = this.props.selectorType;
+    const response = event.target.value;
     logEvent("FilterClick", question, response);
     this.props.saveQuestionResponse(question, response);
     this.clearAppropriateResponses(question, response);
   };
 
-  handleSelect = event => {
-    this.setUserProfile(this.props.selectorType, event.target.value);
-  };
-
   render() {
     const guid = uuidv4();
 
-    const allFilterIds = this.props.options
+    const options = this.props.options
       ? this.props.options
       : Array.from(
           new Set(
@@ -103,7 +101,7 @@ export class RadioSelector extends React.Component {
 
     const { t, selectorType, questionResponse } = this.props;
 
-    if (Object.keys(allFilterIds).length != 0) {
+    if (Object.keys(options).length !== 0) {
       return (
         <FormControl className={formControl}>
           <Header4 className={formLabel}>{this.props.legend}</Header4>
@@ -112,16 +110,16 @@ export class RadioSelector extends React.Component {
             value={questionResponse(selectorType)}
             onChange={this.handleSelect}
           >
-            {allFilterIds.map(filter_id => {
+            {options.map(option => {
               return (
                 <FormControlLabel
-                  key={filter_id}
-                  value={filter_id}
-                  htmlFor={filter_id + guid}
-                  control={<Radio color="primary" id={filter_id + guid} />}
-                  label={t(filter_id)}
+                  key={option}
+                  value={option}
+                  htmlFor={option + guid}
+                  control={<Radio color="primary" id={option + guid} />}
+                  label={t(option)}
                   disabled={this.isDisabled(
-                    filter_id,
+                    option,
                     questionResponse("patronType"),
                     questionResponse("serviceType")
                   )}
