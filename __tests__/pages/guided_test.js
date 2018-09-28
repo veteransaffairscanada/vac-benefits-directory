@@ -6,7 +6,6 @@ import React from "react";
 import { Guided } from "../../pages/guided";
 import benefitsFixture from "../fixtures/benefits";
 import translate from "../fixtures/translate";
-import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import examplesFixture from "../fixtures/examples";
