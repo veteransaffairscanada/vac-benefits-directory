@@ -16,23 +16,14 @@ describe("ProfileSelector", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
-      theme: {}
+      t: key => key
     };
     reduxState = {
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
-      serviceType: "",
-      patronType: "",
-      serviceHealthIssue: "",
-      statusAndVitals: "",
-      setPatronType: jest.fn(),
-      setServiceType: jest.fn(),
-      setStatusAndVitals: jest.fn(),
-      setServiceHealthIssue: jest.fn()
+      eligibilityPaths: eligibilityPathsFixture
     };
     mockStore = configureStore();
     props.store = mockStore(reduxState);
@@ -44,21 +35,11 @@ describe("ProfileSelector", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has a patronType filter", () => {
+  it("has a RadioSelector", () => {
     expect(
       mount(<ProfileSelector {...props} {...reduxState} />)
-        .find(".patronTypeFilter")
+        .find("#patronTypeRadioSelector")
         .first().length
     ).toEqual(1);
-  });
-
-  it("has the correct radio button text", () => {
-    const text = mount(<ProfileSelector {...props} {...reduxState} />)
-      .find(".patronTypeFilter")
-      .first()
-      .find("FormControlLabel")
-      .first()
-      .text();
-    expect(text).toEqual("service-person");
   });
 });
