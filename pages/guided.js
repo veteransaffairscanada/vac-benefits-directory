@@ -113,6 +113,30 @@ export class Guided extends Component {
     });
   };
 
+  getNextSection = (displayable_sections, dynamicStepNumber) => {
+    if (dynamicStepNumber + 1 >= displayable_sections.length) {
+      return "benefits-directory";
+    } else {
+      return displayable_sections[dynamicStepNumber + 1];
+    }
+  };
+
+  getPrevSection = (displayable_sections, dynamicStepNumber) => {
+    if (dynamicStepNumber === 0) {
+      return "index";
+    } else {
+      return displayable_sections[dynamicStepNumber - 1];
+    }
+  };
+
+  getSubtitle = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["guided_experience_english"];
+    } else {
+      return question["guided_experience_french"];
+    }
+  };
+
   render() {
     const { t, i18n, store, reduxState } = this.props;
     const { section } = this.state;
@@ -120,23 +144,9 @@ export class Guided extends Component {
       showQuestion(x, i, reduxState)
     );
     const dynamicStepNumber = displayable_sections.indexOf(section);
-
-    const nextSection =
-      dynamicStepNumber + 1 >= displayable_sections.length
-        ? "benefits-directory"
-        : displayable_sections[dynamicStepNumber + 1];
-    const prevSection =
-      dynamicStepNumber === 0
-        ? "index"
-        : displayable_sections[dynamicStepNumber - 1];
-
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];
-    const subtitle =
-      t("current-language-code") === "en"
-        ? question["guided_experience_english"]
-        : question["guided_experience_french"];
 
     return (
       <Layout
@@ -149,10 +159,16 @@ export class Guided extends Component {
         <GuidedExperience
           id={section}
           stepNumber={section_order.indexOf(section)}
-          nextSection={nextSection}
-          prevSection={prevSection}
+          nextSection={this.getNextSection(
+            displayable_sections,
+            dynamicStepNumber
+          )}
+          prevSection={this.getPrevSection(
+            displayable_sections,
+            dynamicStepNumber
+          )}
           setSection={this.setSection}
-          subtitle={subtitle}
+          subtitle={this.getSubtitle(question)}
           t={t}
           store={store}
         >

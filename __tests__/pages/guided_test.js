@@ -113,309 +113,6 @@ describe("Guided", () => {
       });
     });
 
-    describe("patronType section", () => {
-      it("sets stepNumber to 0", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("patronType");
-        expect(component.props.stepNumber).toEqual(0);
-      });
-
-      it("sets nextSection to benefits-directory if patronType is organization", () => {
-        reduxState.patronType = "organization";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("patronType");
-        expect(component.props.nextSection).toEqual("benefits-directory");
-      });
-
-      it("sets nextSection to needs if patronType is empty", () => {
-        reduxState.patronType = "";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("patronType");
-        expect(component.props.nextSection).toEqual("needs");
-      });
-
-      it("sets nextSection to serviceType if patronType is not empty and not organization", () => {
-        reduxState.patronType = "foo";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("patronType");
-        expect(component.props.nextSection).toEqual("serviceType");
-      });
-
-      it("sets prevSection to index", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("patronType");
-        expect(component.props.prevSection).toEqual("index");
-      });
-
-      it("sets subtitle to GE.patronType", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("patronType");
-        expect(component.props.subtitle).toEqual(props.t("GE.patronType"));
-      });
-
-      it("sets the selectorType on GuidedExperienceProfile to patronType", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("patronType");
-        const mountedComponent = mount(component);
-        expect(
-          mountedComponent.find("GuidedExperienceProfile").props()[
-            "selectorType"
-          ]
-        ).toEqual("patronType");
-      });
-    });
-
-    describe("serviceType section", () => {
-      it("sets stepNumber to 1", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceType");
-        expect(component.props.stepNumber).toEqual(1);
-      });
-
-      it("sets nextSection to needs if serviceType is empty", () => {
-        reduxState.serviceType = "";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceType");
-        expect(component.props.nextSection).toEqual("needs");
-      });
-
-      it("sets nextSection to serviceHealthIssue if patronType is service-person and serviceType is WSV (WWII or Korea)", () => {
-        reduxState.patronType = "service-person";
-        reduxState.serviceType = "WSV (WWII or Korea)";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceType");
-        expect(component.props.nextSection).toEqual("serviceHealthIssue");
-      });
-
-      it("sets nextSection to needs if serviceType is empty", () => {
-        reduxState.serviceType = "";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceType");
-        expect(component.props.nextSection).toEqual("needs");
-      });
-
-      it("sets nextSection to statusAndVitals if serviceType is not empty", () => {
-        reduxState.serviceType = "foo";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceType");
-        expect(component.props.nextSection).toEqual("statusAndVitals");
-      });
-
-      it("sets prevSection to patronType", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceType");
-        expect(component.props.prevSection).toEqual("patronType");
-      });
-
-      it("sets subtitle to GE.serviceType", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceType");
-        expect(component.props.subtitle).toEqual(props.t("GE.serviceType"));
-      });
-
-      it("sets the selectorType on GuidedExperienceProfile to serviceType", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceType");
-        const mountedComponent = mount(component);
-        expect(
-          mountedComponent.find("GuidedExperienceProfile").props()[
-            "selectorType"
-          ]
-        ).toEqual("serviceType");
-      });
-    });
-
-    describe("statusAndVitals section", () => {
-      it("sets stepNumber to 2", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("statusAndVitals");
-        expect(component.props.stepNumber).toEqual(2);
-      });
-
-      it("sets nextSection to needs if statusAndVitals is empty", () => {
-        reduxState.statusAndVitals = "";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("statusAndVitals");
-        expect(component.props.nextSection).toEqual("needs");
-      });
-
-      it("sets nextSection to serviceHealthIssue if statusAndVitals is not empty", () => {
-        reduxState.statusAndVitals = "foo";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("statusAndVitals");
-        expect(component.props.nextSection).toEqual("serviceHealthIssue");
-      });
-
-      it("sets prevSection to serviceType", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("statusAndVitals");
-        expect(component.props.prevSection).toEqual("serviceType");
-      });
-
-      it("sets subtitle to GE.statusAndVitals", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("statusAndVitals");
-        expect(component.props.subtitle).toEqual(props.t("GE.statusAndVitals"));
-      });
-
-      it("sets the selectorType on GuidedExperienceProfile to statusAndVitals", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("statusAndVitals");
-        const mountedComponent = mount(component);
-        expect(
-          mountedComponent.find("GuidedExperienceProfile").props()[
-            "selectorType"
-          ]
-        ).toEqual("statusAndVitals");
-      });
-
-      it("removes the deceased option if patronType is service-person", () => {
-        reduxState.patronType = "service-person";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("statusAndVitals");
-        const mountedComponent = mount(component);
-        expect(
-          mountedComponent.find("GuidedExperienceProfile").props()["options"]
-        ).toEqual(["stillServing"]);
-      });
-
-      it("removes the stillServing option if serviceType is WSV (WWII or Korea)", () => {
-        reduxState.serviceType = "WSV (WWII or Korea)";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("statusAndVitals");
-        const mountedComponent = mount(component);
-        expect(
-          mountedComponent.find("GuidedExperienceProfile").props()["options"]
-        ).toEqual(["deceased"]);
-      });
-    });
-
-    describe("serviceHealthIssue section", () => {
-      it("sets stepNumber to 3", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceHealthIssue");
-        expect(component.props.stepNumber).toEqual(3);
-      });
-
-      it("sets nextSection to needs", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceHealthIssue");
-        expect(component.props.nextSection).toEqual("needs");
-      });
-
-      it("sets prevSection to statusAndVitals if serviceType is empty", () => {
-        reduxState.serviceType = "";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceHealthIssue");
-        expect(component.props.prevSection).toEqual("statusAndVitals");
-      });
-
-      it("sets prevSection to serviceType if serviceType is WSV (WWII or Korea)", () => {
-        reduxState.serviceType = "WSV (WWII or Korea)";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceHealthIssue");
-        expect(component.props.prevSection).toEqual("serviceType");
-      });
-
-      it("sets subtitle to health issue question if statusAndVitals is not deceased", () => {
-        reduxState.statusAndVitals = "";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceHealthIssue");
-        expect(component.props.subtitle).toEqual("health issue question");
-      });
-
-      it("sets subtitle to health issue question deceased if statusAndVitals is deceased", () => {
-        reduxState.statusAndVitals = "deceased";
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceHealthIssue");
-        expect(component.props.subtitle).toEqual(
-          "health issue question deceased"
-        );
-      });
-
-      it("sets the selectorType on GuidedExperienceProfile to serviceHealthIssue", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("serviceHealthIssue");
-        const mountedComponent = mount(component);
-        expect(
-          mountedComponent.find("GuidedExperienceProfile").props()[
-            "selectorType"
-          ]
-        ).toEqual("serviceHealthIssue");
-      });
-    });
-
-    describe("needs section", () => {
-      it("sets stepNumber to 4", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("needs");
-        expect(component.props.stepNumber).toEqual(4);
-      });
-
-      it("sets nextSection to benefits-directory", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("needs");
-        expect(component.props.nextSection).toEqual("benefits-directory");
-      });
-
-      it("sets prevSection to previousSectionNeeds", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("needs");
-        expect(component.props.prevSection).toEqual("statusAndVitals");
-      });
-
-      it("sets subtitle to B3.What do you need help with?", () => {
-        const component = shallow(<Guided {...props} {...reduxState} />)
-          .instance()
-          .setSection("needs");
-        expect(component.props.subtitle).toEqual(
-          props.t("B3.What do you need help with?")
-        );
-      });
-    });
-  });
-
-  describe("setSection", () => {
-    it("sets the state in section", () => {
-      let guidedInstance = mountedGuided().instance();
-      guidedInstance.setSection("statusAndVitals");
-      expect(mountedGuided().state("section")).toEqual("statusAndVitals");
-      expect(props.setServiceHealthIssue).toBeCalledWith("");
-    });
-
     it("clears redux data for future questions", () => {
       let guidedInstance = mountedGuided().instance();
       guidedInstance.setSection("patronType");
@@ -423,5 +120,46 @@ describe("Guided", () => {
       expect(props.setStatusAndVitals).toBeCalledWith("");
       expect(props.setSelectedNeeds).toBeCalledWith({});
     });
+  });
+
+  it("getNextSection returns the correct next section", () => {
+    const displayable_sections = [
+      "patronType",
+      "serviceType",
+      "statusAndVitals",
+      "needs"
+    ];
+    let guidedInstance = mountedGuided().instance();
+
+    expect(guidedInstance.getNextSection(displayable_sections, 1)).toEqual(
+      "statusAndVitals"
+    );
+
+    expect(guidedInstance.getNextSection(displayable_sections, 3)).toEqual(
+      "benefits-directory"
+    );
+  });
+
+  it("getPrevSection returns the correct previous section", () => {
+    const displayable_sections = [
+      "patronType",
+      "serviceType",
+      "statusAndVitals"
+    ];
+    let guidedInstance = mountedGuided().instance();
+
+    expect(guidedInstance.getPrevSection(displayable_sections, 1)).toEqual(
+      "patronType"
+    );
+    expect(guidedInstance.getPrevSection(displayable_sections, 0)).toEqual(
+      "index"
+    );
+  });
+
+  it("getSubtitle returns the correct subtitle", () => {
+    let guidedInstance = mountedGuided().instance();
+    expect(guidedInstance.getSubtitle(questionsFixture[1])).toEqual(
+      "Select the service type."
+    );
   });
 });
