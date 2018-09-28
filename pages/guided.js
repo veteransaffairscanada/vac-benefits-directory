@@ -25,7 +25,6 @@ export class Guided extends Component {
     super();
     this.cookies = new Cookies();
     this.state = {
-      favouriteBenefits: [],
       section: section_order[0]
     };
   }
@@ -40,7 +39,6 @@ export class Guided extends Component {
     };
 
     const newState = {
-      favouriteBenefits: this.props.favouriteBenefits,
       section: this.props.url.query.section || section_order[0]
     };
 
@@ -73,36 +71,12 @@ export class Guided extends Component {
 
   setSection = section => {
     this.setState({ section: section });
-    // const current_index = section_order.indexOf(section);
-    // section_order.filter((x, i) => i > current_index))
-    //   .forEach(x => {
-    //     this.props.saveQuestionResponse({x: ""});
-    //   });
-
-    let sectionMap = {
-      patronType: 1,
-      serviceType: 2,
-      statusAndVitals: 3,
-      serviceHealthIssue: 4,
-      needs: 5
-    };
-    const { saveQuestionResponse, setSelectedNeeds } = this.props;
-    const setters = [
-      () => saveQuestionResponse("patronType", ""),
-      () => saveQuestionResponse("serviceType", ""),
-      () => saveQuestionResponse("statusAndVitals", ""),
-      () => saveQuestionResponse("serviceHealthIssue", ""),
-      () => setSelectedNeeds({})
-    ];
-    let current_section_index;
-    if (sectionMap[section]) {
-      current_section_index = sectionMap[section];
-    } else {
-      current_section_index = 0;
-    }
-    setters.forEach((setter, i) => {
-      if (i >= current_section_index) {
-        setter();
+    const current_index = section_order.indexOf(section);
+    section_order.filter((x, i) => i > current_index).forEach(x => {
+      if (x === "needs") {
+        this.props.saveQuestionResponse("selectedNeeds", {});
+      } else {
+        this.props.saveQuestionResponse(x, "");
       }
     });
   };
@@ -188,9 +162,6 @@ const mapDispatchToProps = dispatch => {
         type: "SAVE_QUESTION_RESPONSE",
         data: { [question]: response }
       });
-    },
-    setSelectedNeeds: needsObject => {
-      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
     }
   };
 };
@@ -198,29 +169,18 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     reduxState: reduxState,
-    benefits: reduxState.benefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples,
-    favouriteBenefits: reduxState.favouriteBenefits,
-    needs: reduxState.needs,
     selectedNeeds: reduxState.selectedNeeds
   };
 };
 
 Guided.propTypes = {
   reduxState: PropTypes.object,
-  benefits: PropTypes.array.isRequired,
   dispatch: PropTypes.func,
-  eligibilityPaths: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
-  needs: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  favouriteBenefits: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
