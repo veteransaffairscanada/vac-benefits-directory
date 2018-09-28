@@ -67,8 +67,7 @@ export class App extends Component {
 
   render() {
     const { i18n, t } = this.props;
-    let urlGE =
-      "/guided?section=patronTypeQuestion&lng=" + t("current-language-code");
+    let urlGE = "/guided?section=patronType&lng=" + t("current-language-code");
     let urlBD = "/benefits-directory?lng=" + t("current-language-code");
     return (
       <Layout
