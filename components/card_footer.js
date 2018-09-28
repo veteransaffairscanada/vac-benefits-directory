@@ -5,7 +5,6 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
-import KeyboardReturnIcon from "@material-ui/icons/KeyboardReturn";
 import { cx, css } from "react-emotion";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -53,16 +52,6 @@ const collapse = css`
 `;
 const children = css`
   width: 100%;
-`;
-const returnIcon = css`
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  float: left;
-  filter: FlipH;
-  -ms-filter: fliph;
-  padding-left: 10px;
 `;
 
 export class CardFooter extends Component {
@@ -163,7 +152,6 @@ export class CardFooter extends Component {
             onClick={() => this.toggleOpenState()}
           >
             <div className={cardBottomTitle}>
-              <KeyboardReturnIcon className={returnIcon} />
               <span className={headerDesc}>
                 <span>
                   {this.childBenefitNames(
@@ -200,7 +188,6 @@ export class CardFooter extends Component {
               {familyBenefits.length > 0 ? (
                 <div>
                   <div className={cardBottomFamilyTitle}>
-                    <KeyboardReturnIcon className={returnIcon} />
                     <span className={headerDesc}>
                       {t("benefits_b.eligible_open_family")}
                     </span>
