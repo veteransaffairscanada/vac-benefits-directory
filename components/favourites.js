@@ -39,6 +39,11 @@ const topMatter = css`
   margin-top: 30px !important;
 `;
 
+const bgWhite = css`
+padding: 12px;
+background-color: white !important;
+`;
+
 export class Favourites extends Component {
   state = {
     enIdx: null,
@@ -120,6 +125,7 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
+          <div className={bgWhite}>
             <HeaderButton
               href={this.props.printUrl}
               target="print_page"
@@ -172,6 +178,7 @@ export class Favourites extends Component {
               &nbsp;
               {t("favourites.login_prompt")}
             </Body>
+            </div>
           </Grid>
         </Grid>
       </Container>
