@@ -52,15 +52,13 @@ export class ProfileSelector extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    reduxState: reduxState,
-    statusAndVitals: reduxState.statusAndVitals
+    reduxState: reduxState
   };
 };
 
 ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
   reduxState: PropTypes.object.isRequired,
-  statusAndVitals: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 
