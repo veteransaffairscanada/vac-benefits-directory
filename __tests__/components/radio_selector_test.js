@@ -5,6 +5,7 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import responsesFixture from "../fixtures/responses";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -17,12 +18,7 @@ describe("RadioSelector", () => {
       saveQuestionResponse: jest.fn(),
       options: ["releasedAlive", "stillServing", "deceased"],
       selectorType: "statusAndVitals",
-      responses: {
-        patronType: "",
-        serviceType: "",
-        statusAndVitals: "releasedAlive",
-        serviceHealthIssue: ""
-      },
+      responses: responsesFixture,
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
