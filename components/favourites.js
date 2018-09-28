@@ -13,7 +13,6 @@ import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
 import HeaderButton from "./header_button";
 import Body from "./typography/body";
-import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
 import { globalTheme } from "../theme";
 
