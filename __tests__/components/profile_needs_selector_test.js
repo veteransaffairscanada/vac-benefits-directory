@@ -10,6 +10,7 @@ import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import responsesFixture from "../fixtures/responses";
 
 describe("ProfileNeedsSelector", () => {
   let props;
@@ -21,17 +22,13 @@ describe("ProfileNeedsSelector", () => {
     };
     reduxData = {
       questions: questionsFixture,
+      profileQuestions: questionsFixture.filter(
+        q => q.variable_name !== "needs"
+      ),
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      patronType: "",
-      serviceType: "",
-      statusAndVitals: "",
-      serviceHealthIssue: "",
-      selectedPatronType: "",
-      selectedServiceType: "",
-      selectedStatusAndVitals: "",
-      selectedServiceHealthIssue: "",
+      responses: responsesFixture,
       selectedNeeds: {},
       needs: needsFixture,
       saveQuestionResponse: jest.fn(),
@@ -48,9 +45,7 @@ describe("ProfileNeedsSelector", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has no clear button if patronType is empty", () => {
-    reduxData.patronType = "";
-    props.store = mockStore(reduxData);
+  it("has no clear button if nothing selected", () => {
     expect(
       mount(<ProfileNeedsSelector {...props} {...reduxData} />)
         .find("#ClearFilters")
@@ -58,24 +53,14 @@ describe("ProfileNeedsSelector", () => {
     ).toEqual(0);
   });
 
-  it("has a clear button if patronType is populated", () => {
-    reduxData.patronType = "organization";
+  it("has a clear button if patronType has a value", () => {
+    reduxData.responses.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
       mount(<ProfileNeedsSelector {...props} {...reduxData} />)
         .find("#ClearFilters")
         .first().length
     ).toEqual(1);
-  });
-
-  it("has no clear button if selectedNeeds is empty", () => {
-    reduxData.selectedNeeds = {};
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileNeedsSelector {...props} {...reduxData} />)
-        .find("#ClearFilters")
-        .first().length
-    ).toEqual(0);
   });
 
   it("has a clear button if selectedNeeds is populated", () => {
@@ -104,7 +89,7 @@ describe("ProfileNeedsSelector", () => {
       "serviceHealthIssue",
       ""
     );
-    expect(reduxData.setSelectedNeeds).toBeCalledWith({});
+    expect(reduxData.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
   });
 
   it("clicking #ClearFilters toggles the clearFilters function", () => {
@@ -118,8 +103,8 @@ describe("ProfileNeedsSelector", () => {
     expect(mounted.instance().clearFilters).toBeCalled();
   });
 
-  it("returns 1 if a profile is selected", () => {
-    reduxData.selectedPatronType = "organization";
+  it("countSelected returns 1 if a profile is selected", () => {
+    reduxData.responses.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
       mount(<ProfileNeedsSelector {...props} {...reduxData} />)
