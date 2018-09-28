@@ -13,6 +13,9 @@ import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
 import HeaderButton from "./header_button";
 import Body from "./typography/body";
+import Card from '@material-ui/core/Card';
+import Paper from '@material-ui/core/Paper';
+import { globalTheme } from "../theme";
 
 const backLink = css`
   margin-bottom: 15px;
@@ -41,7 +44,9 @@ const topMatter = css`
 
 const bgWhite = css`
 padding: 12px;
-background-color: white !important;
+@media only screen and (min-width: ${globalTheme.max.sm}) {
+  margin-left: 11px !important;
+}
 `;
 
 export class Favourites extends Component {
@@ -125,7 +130,7 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-          <div className={bgWhite}>
+          <Paper className={bgWhite}>
             <HeaderButton
               href={this.props.printUrl}
               target="print_page"
@@ -178,7 +183,7 @@ export class Favourites extends Component {
               &nbsp;
               {t("favourites.login_prompt")}
             </Body>
-            </div>
+          </Paper>
           </Grid>
         </Grid>
       </Container>
