@@ -74,7 +74,7 @@ export class Guided extends Component {
   setSection = section => {
     this.setState({ section: section });
     // const current_index = section_order.indexOf(section);
-    // section_order.filter((x, i) => i > current_index)
+    // section_order.filter((x, i) => i > current_index))
     //   .forEach(x => {
     //     this.props.saveQuestionResponse({x: ""});
     //   });
@@ -141,7 +141,6 @@ export class Guided extends Component {
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];
-
     return (
       <Layout
         i18n={i18n}
@@ -173,7 +172,7 @@ export class Guided extends Component {
               t={t}
               selectorType={section}
               store={store}
-              options={question["/"]}
+              options={question["multiple_choice_options"]}
             />
           )}
         </GuidedExperience>
