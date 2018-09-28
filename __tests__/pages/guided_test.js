@@ -1,8 +1,7 @@
 /* eslint-env jest */
 
-import { mount, shallow } from "enzyme";
+import { shallow } from "enzyme";
 import Router from "next/router";
-
 import React from "react";
 import { Guided } from "../../pages/guided";
 import benefitsFixture from "../fixtures/benefits";
