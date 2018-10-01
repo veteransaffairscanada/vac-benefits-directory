@@ -11,39 +11,32 @@ const Banner = css`
   color: ${globalTheme.colour.greyishBrown};
   background-color: #e3f2ff;
   border-left: 5px solid ${globalTheme.colour.cerulean};
-  padding-top: 20px;
-  padding-bottom: 1px;
   padding-left: 25px;
-  padding-right: 25px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  padding-top: 13px;
+  padding-bottom: 13px;
 `;
 const Text = css`
   flex-grow: 1;
 `;
 const CloseIcon = css`
   float: right;
-  margin-top: -14px;
+  margin-top: -10px;
 `;
 
-export const DisabledCookiesBanner = ({ t, onClose, ...rest }) => (
-  <aside {...rest} className={Banner}>
-    <Body>
-      <span className={Text}>
-        {t("B3.disabled_cookies_text")}
-        <a href={t("B3.disabled_cookies_link")}>
-          {t("B3.disabled_cookies_link_text")}
-        </a>
-      </span>
-      <IconButton
-        className={CloseIcon}
-        aria-label="Hide cookie warning"
-        onClick={onClose}
-      >
+export const DisabledCookiesBanner = ({ t, onClose }) => (
+  <Body className={Banner}>
+    <span className={Text}>
+      {t("B3.disabled_cookies_text")}
+      <a href={t("B3.disabled_cookies_link")}>
+        {t("B3.disabled_cookies_link_text")}
+      </a>
+    </span>
+    <span className={CloseIcon}>
+      <IconButton aria-label="Hide cookie warning" onClick={onClose}>
         <Close />
       </IconButton>
-    </Body>
-  </aside>
+    </span>
+  </Body>
 );
 
 DisabledCookiesBanner.propTypes = {
