@@ -70,13 +70,24 @@ export const reducer = (state = initialState, action) => {
     case "LOAD_DATA":
       newState = {
         favouriteBenefits:
-          action.data.favouriteBenefits || state.favouriteBenefits,
-        timestamp: action.data.timestamp || state.timestamp
+          action.data.favouriteBenefits !== undefined
+            ? action.data.favouriteBenefits
+            : state.favouriteBenefits,
+        timestamp:
+          action.data.timestamp !== undefined
+            ? action.data.timestamp
+            : state.timestamp
       };
       airtableConstants.tableNames.forEach(tableName => {
-        newState[tableName] = action.data[tableName] || state[tableName];
+        newState[tableName] =
+          action.data[tableName] !== undefined
+            ? action.data[tableName]
+            : state[tableName];
       });
-      newState["errors"] = action.data["errors"] || state["errors"];
+      newState["errors"] =
+        action.data["errors"] !== undefined
+          ? action.data["errors"]
+          : state["errors"];
       return Object.assign({}, state, newState);
 
     case "SAVE_QUESTION_RESPONSE":
