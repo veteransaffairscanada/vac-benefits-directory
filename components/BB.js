@@ -64,10 +64,28 @@ const nonMobileStyle = css`
   }
 `;
 
+// taken from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/cookies.js
+function checkCookie() {
+  try {
+    // Create cookie
+    document.cookie = "cookietest=1";
+    var ret = document.cookie.indexOf("cookietest=") !== -1;
+    // Delete cookie
+    document.cookie = "cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT";
+    return ret;
+  } catch (e) {
+    return false;
+  }
+}
+
 export class BB extends Component {
   state = {
-    showDisabledCookieBanner: true
+    showDisabledCookieBanner: false
   };
+
+  componentDidMount() {
+    this.setState({ showDisabledCookieBanner: !checkCookie() });
+  }
 
   handleSortByChange = event => {
     this.props.setSortBy(event.target.value);
@@ -230,12 +248,16 @@ const mapDispatchToProps = dispatch => {
     },
     setSortBy: sortBy => {
       dispatch({ type: "SET_SORT_BY", data: sortBy });
+    },
+    setCookiesDisabled: areDisabled => {
+      dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
     }
   };
 };
 
 const mapStateToProps = (reduxState, props) => {
   return {
+    cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
@@ -271,6 +293,7 @@ BB.propTypes = {
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setSearchString: PropTypes.func.isRequired,
+  setCookiesDisabled: PropTypes.func.isRequired,
   setSortBy: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,

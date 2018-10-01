@@ -123,6 +123,8 @@ export const reducer = (state = initialState, action) => {
       });
     case "SET_PAGEWIDTH":
       return Object.assign({}, state, { pageWidth: action.data });
+    case "SET_COOKIES_DISABLED":
+      return Object.assign({}, state, { cookiesDisabled: action.data });
     default:
       return state;
   }
