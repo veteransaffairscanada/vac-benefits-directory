@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { css } from "react-emotion";
 import Close from "@material-ui/icons/Close";
-import IconButton from "@material-ui/core/IconButton";
 
 import { globalTheme } from "../theme";
 import Body from "./typography/body";
@@ -20,7 +19,19 @@ const Text = css`
 `;
 const CloseIcon = css`
   float: right;
-  margin-top: -10px;
+  padding: 0;
+  margin-right: 25px;
+  border: none;
+  background: none;
+  :hover {
+    cursor: pointer;
+  }
+  :active {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+  }
 `;
 
 export const DisabledCookiesBanner = ({ t, onClose }) => (
@@ -31,11 +42,13 @@ export const DisabledCookiesBanner = ({ t, onClose }) => (
         {t("B3.disabled_cookies_link_text")}
       </a>
     </span>
-    <span className={CloseIcon}>
-      <IconButton aria-label="Hide cookie warning" onClick={onClose}>
-        <Close />
-      </IconButton>
-    </span>
+    <button
+      className={CloseIcon}
+      aria-label="Hide cookie warning"
+      onClick={onClose}
+    >
+      <Close />
+    </button>
   </Body>
 );
 
