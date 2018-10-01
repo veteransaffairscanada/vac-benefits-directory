@@ -22,7 +22,8 @@ const initialState = {
   selectedAreaOffice: {},
   userLocation: { lat: 49, lng: -104 },
   pageWidth: 1000,
-  mapView: { lat: 49, lng: -104, zoom: 1 }
+  mapView: { lat: 49, lng: -104, zoom: 1 },
+  cookiesDisabled: false
 };
 airtableConstants.tableNames.forEach(tableName => {
   initialState[tableName] = [];

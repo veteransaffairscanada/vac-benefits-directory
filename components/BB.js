@@ -79,12 +79,8 @@ function checkCookie() {
 }
 
 export class BB extends Component {
-  state = {
-    showDisabledCookieBanner: false
-  };
-
   componentDidMount() {
-    this.setState({ showDisabledCookieBanner: !checkCookie() });
+    this.props.setCookiesDisabled(!checkCookie());
   }
 
   handleSortByChange = event => {
@@ -130,7 +126,7 @@ export class BB extends Component {
         <div className={topMatter}>
           <Container className={topPadding}>
             <div className={container2}>
-              {this.state.showDisabledCookieBanner ? (
+              {this.props.cookiesDisabled ? (
                 <DisabledCookiesBanner
                   t={t}
                   onClose={() =>
@@ -281,6 +277,7 @@ const mapStateToProps = (reduxState, props) => {
 };
 
 BB.propTypes = {
+  cookiesDisabled: PropTypes.bool.isRequired,
   benefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
