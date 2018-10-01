@@ -20,6 +20,7 @@ import HeaderButton from "./header_button";
 import Body from "../components/typography/body";
 import SearchBox from "./search_box";
 import { globalTheme } from "../theme";
+import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -64,6 +65,10 @@ const nonMobileStyle = css`
 `;
 
 export class BB extends Component {
+  state = {
+    showDisabledCookieBanner: true
+  };
+
   handleSortByChange = event => {
     this.props.setSortBy(event.target.value);
   };
@@ -107,6 +112,15 @@ export class BB extends Component {
         <div className={topMatter}>
           <Container className={topPadding}>
             <div className={container2}>
+              {this.state.showDisabledCookieBanner ? (
+                <DisabledCookiesBanner
+                  t={t}
+                  onClose={() =>
+                    this.setState({ showDisabledCookieBanner: false })
+                  }
+                />
+              ) : null}
+
               <Grid container spacing={24}>
                 <Grid item xs={12} md={9}>
                   <HeaderButton
