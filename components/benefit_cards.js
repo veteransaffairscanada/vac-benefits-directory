@@ -18,6 +18,7 @@ import Button from "./button";
 const cardBody = css`
   padding: 25px !important;
   padding-top: 15px !important;
+  border-radius: 0px !important;
 `;
 const cardDescriptionText = css`
   padding-top: 26px;
