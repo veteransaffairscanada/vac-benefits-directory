@@ -21,6 +21,7 @@ import Body from "../components/typography/body";
 import SearchBox from "./search_box";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
+import { areCookiesDisabled } from "../utils/common";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -64,23 +65,12 @@ const nonMobileStyle = css`
   }
 `;
 
-// taken from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/cookies.js
-function checkCookie() {
-  try {
-    // Create cookie
-    document.cookie = "cookietest=1";
-    var ret = document.cookie.indexOf("cookietest=") !== -1;
-    // Delete cookie
-    document.cookie = "cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT";
-    return ret;
-  } catch (e) {
-    return false;
-  }
-}
-
 export class BB extends Component {
+  state = { showDisabledCookieBanner: false };
+
   componentDidMount() {
-    this.props.setCookiesDisabled(!checkCookie());
+    this.props.setCookiesDisabled(areCookiesDisabled());
+    this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
   }
 
   handleSortByChange = event => {
@@ -126,7 +116,7 @@ export class BB extends Component {
         <div className={topMatter}>
           <Container className={topPadding}>
             <div className={container2}>
-              {this.props.cookiesDisabled ? (
+              {this.state.showDisabledCookieBanner ? (
                 <DisabledCookiesBanner
                   t={t}
                   onClose={() =>
