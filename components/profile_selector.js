@@ -6,6 +6,17 @@ import { Grid } from "@material-ui/core";
 import { showQuestion } from "../utils/common";
 
 export class ProfileSelector extends Component {
+  componentDidUpdate() {
+    this.props.profileQuestions.forEach((question, index) => {
+      if (
+        this.props.reduxState[question.variable_name] &&
+        !showQuestion(question.variable_name, index, this.props.reduxState)
+      ) {
+        this.props.saveQuestionResponse(question.variable_name, "");
+      }
+    });
+  }
+
   render() {
     const { t } = this.props;
     const { questions, multipleChoiceOptions } = this.props.reduxState;
@@ -46,16 +57,35 @@ export class ProfileSelector extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
+    }
+  };
+};
+
 const mapStateToProps = reduxState => {
   return {
-    reduxState: reduxState
+    reduxState: reduxState,
+    profileQuestions: reduxState.questions.filter(
+      q => q.variable_name != "needs"
+    )
   };
 };
 
 ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
   reduxState: PropTypes.object.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  saveQuestionResponse: PropTypes.func.isRequired,
+  profileQuestions: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps)(ProfileSelector);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileSelector);
