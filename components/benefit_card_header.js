@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
-import Paper from "@material-ui/core/Paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 
 const cardTop = css`
-  background-color: #f1f7fc;
-  border-radius: 0px;
   border-bottom: 1px solid #8b8b8b;
-  padding: 15px 15px 15px 10px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -92,7 +90,7 @@ export class BenefitCardHeader extends Component {
       benefit.availableIndependently === "Requires Gateway Benefit"
     ) {
       return (
-        <Paper className={cardTop}>
+        <div className={cardTop}>
           <ErrorOutlineIcon className={parentIcon} />
           <span className={headerDesc}>
             <span>{t("benefits_b.card_header_1") + " "}</span>
@@ -104,7 +102,7 @@ export class BenefitCardHeader extends Component {
                 "."}
             </span>
           </span>
-        </Paper>
+        </div>
       );
     } else {
       return null;

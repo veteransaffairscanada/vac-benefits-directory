@@ -14,10 +14,10 @@ describe("BenefitCardHeader", () => {
     };
   });
 
-  it("contains a Paper wrapper with an icon", () => {
+  it("contains a div wrapper with an icon", () => {
     props.benefit = benefitsFixture[1];
     expect(
-      mount(<BenefitCardHeaderMoreInfo {...props} />).find("Paper").length
+      mount(<BenefitCardHeaderMoreInfo {...props} />).find("div").length
     ).toEqual(1);
     expect(
       mount(<BenefitCardHeaderMoreInfo {...props} />).find("svg").length
