@@ -130,16 +130,6 @@ export class BB extends Component {
                     <span className={nonMobileStyle}> {t("Print")} </span>
                   </HeaderButton>
                 </Grid>
-                <Grid item xs={12}>
-                  <Header2 className={"BenefitsCounter " + title}>
-                    {this.countString(filteredBenefits.length, t)}
-                  </Header2>
-                  {filteredBenefits.length > 0 ? (
-                    <Body>{t("B3.check eligibility")}</Body>
-                  ) : (
-                    ""
-                  )}
-                </Grid>
               </Grid>
             </div>
           </Container>
@@ -153,6 +143,16 @@ export class BB extends Component {
               </Grid>
               <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid container spacing={16}>
+                  <Grid item xs={12}>
+                    <Header2 className={"BenefitsCounter " + title}>
+                      {this.countString(filteredBenefits.length, t)}
+                    </Header2>
+                    {filteredBenefits.length > 0 ? (
+                      <Body>{t("B3.check eligibility")}</Body>
+                    ) : (
+                      ""
+                    )}
+                  </Grid>
                   <Grid item xs={12} md={6}>
                     <InputLabel
                       htmlFor="sortBySelector"
