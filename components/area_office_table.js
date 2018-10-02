@@ -10,18 +10,12 @@ const root = css`
   margin-right: 10px;
   margin-left: 10px;
 `;
-const tableWidth = css`
-  width: 100%;
-`;
 const scrollingDiv = css`
-  height: 400px;
+  margin-top: ${globalTheme.marginTop};
+  margin-bottom: ${globalTheme.marginTop};
+  height: 406px;
   width: 100%;
   overflow-y: scroll;
-`;
-const tableHeaderDiv = css`
-  width: 100% !important;
-  margin-top: ${globalTheme.marginTop};
-  border-bottom: 1px solid #e0e0e0;
 `;
 const distanceCell = css`
   text-align: right;
@@ -29,19 +23,10 @@ const distanceCell = css`
   width: 20px;
   padding-right: 20px;
 `;
-const distanceCellTitle = css`
-  text-align: right;
-  width: 20px;
-  padding-right: 20px;
-`;
 const officeRow = css`
   td {
     border-bottom: 0.5px solid #e0e0e0;
   }
-`;
-const officeCellHeader = css`
-  padding-left: 70px;
-  text-align: left;
 `;
 const pinCell = css`
   padding-right: 10px !important;
@@ -53,12 +38,10 @@ const officeCell = css`
 const bold = css`
   font-weight: bold;
 `;
-
 const tableText = css`
   margin-top: 4px;
   margin-bottom: 0px;
 `;
-
 const pin = css`
   color: #ea4335;
   margin-top: 6px;
@@ -179,9 +162,9 @@ export class AreaOfficeTable extends Component {
           this.props.setSelectedAreaOffice(ae);
         }}
       >
-      <td className={pinCell}>
-        <Pin className={pin} />
-      </td>
+        <td className={pinCell}>
+          <Pin className={pin} />
+        </td>
         <td className={officeCell}>
           <Body className={cx(tableText, bold)}>
             {language === "en" ? ae.name_en : ae.name_fr}
@@ -206,18 +189,6 @@ export class AreaOfficeTable extends Component {
     const defaultOffices = this.defaultAreaOffices();
     return (
       <div className={root}>
-        <div className={tableHeaderDiv}>
-          <table className={tableWidth}>
-            <tbody>
-              <tr id="tableHeader">
-                <th className={officeCellHeader}>{t("map.office")}</th>
-                {this.isDefaultLocation() ? null : (
-                  <th className={distanceCellTitle}>{t("map.distance")}</th>
-                )}
-              </tr>
-            </tbody>
-          </table>
-        </div>
         <div id="scrolling_div" className={scrollingDiv}>
           <table className={mainTable}>
             <colgroup>
