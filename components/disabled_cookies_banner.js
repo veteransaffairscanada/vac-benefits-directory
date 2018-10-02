@@ -44,9 +44,9 @@ export const DisabledCookiesBanner = ({ t, onClose }) => (
     </button>
     <span>
       {t("B3.disabled_cookies_text")}
-      <a href={t("B3.disabled_cookies_link")}>
-        {t("B3.disabled_cookies_link_text")}
-      </a>
+      {/*<a href={t("B3.disabled_cookies_link")}>*/}
+      {/*{t("B3.disabled_cookies_link_text")}*/}
+      {/*</a>*/}
     </span>
   </Body>
 );
