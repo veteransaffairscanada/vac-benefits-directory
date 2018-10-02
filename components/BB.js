@@ -268,6 +268,7 @@ const mapStateToProps = (reduxState, props) => {
 
 BB.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
+  setCookiesDisabled: PropTypes.func.isRequired,
   benefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
@@ -280,7 +281,6 @@ BB.propTypes = {
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setSearchString: PropTypes.func.isRequired,
-  setCookiesDisabled: PropTypes.func.isRequired,
   setSortBy: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
