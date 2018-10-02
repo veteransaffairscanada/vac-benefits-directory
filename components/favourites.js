@@ -85,15 +85,6 @@ export class Favourites extends Component {
       <Container id="favourites">
         <Grid className={outerGrid} container spacing={24}>
           <Grid item xs={12} className={topMatter}>
-            {this.state.showDisabledCookieBanner ? (
-              <DisabledCookiesBanner
-                t={t}
-                onClose={() =>
-                  this.setState({ showDisabledCookieBanner: false })
-                }
-              />
-            ) : null}
-
             <HeaderButton
               id="backButton"
               className={backLink}
@@ -108,6 +99,15 @@ export class Favourites extends Component {
             </Header1>
           </Grid>
           <Grid item md={8} xs={12}>
+            {this.state.showDisabledCookieBanner ? (
+              <DisabledCookiesBanner
+                t={t}
+                onClose={() =>
+                  this.setState({ showDisabledCookieBanner: false })
+                }
+              />
+            ) : null}
+
             <Grid container spacing={24}>
               <BenefitList
                 t={t}

@@ -116,15 +116,6 @@ export class BB extends Component {
         <div className={topMatter}>
           <Container className={topPadding}>
             <div className={container2}>
-              {this.state.showDisabledCookieBanner ? (
-                <DisabledCookiesBanner
-                  t={t}
-                  onClose={() =>
-                    this.setState({ showDisabledCookieBanner: false })
-                  }
-                />
-              ) : null}
-
               <Grid container spacing={24}>
                 <Grid item xs={12} md={9}>
                   <HeaderButton
@@ -162,6 +153,15 @@ export class BB extends Component {
               <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid container spacing={16}>
                   <Grid item xs={12}>
+                    {this.state.showDisabledCookieBanner ? (
+                      <DisabledCookiesBanner
+                        t={t}
+                        onClose={() =>
+                          this.setState({ showDisabledCookieBanner: false })
+                        }
+                      />
+                    ) : null}
+
                     <Header2 className={"BenefitsCounter " + title}>
                       {this.countString(filteredBenefits.length, t)}
                     </Header2>
