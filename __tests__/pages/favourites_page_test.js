@@ -37,6 +37,8 @@ describe("Favourites Page", () => {
     };
     mockStore = configureStore();
     reduxData = {
+      cookiesDisabled: false,
+      setCookiesDisabled: jest.fn(),
       option: "",
       translations: [],
       benefits: benefitsFixture,

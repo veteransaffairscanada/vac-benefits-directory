@@ -13,6 +13,8 @@ import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
 import HeaderButton from "./header_button";
 import Body from "./typography/body";
+import { DisabledCookiesBanner } from "./disabled_cookies_banner";
+import { areCookiesDisabled } from "../utils/common";
 
 const backLink = css`
   margin-bottom: 15px;
@@ -42,8 +44,14 @@ const topMatter = css`
 export class Favourites extends Component {
   state = {
     enIdx: null,
-    frIdx: null
+    frIdx: null,
+    showDisabledCookieBanner: false
   };
+
+  componentDidMount() {
+    this.props.setCookiesDisabled(areCookiesDisabled());
+    this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
+  }
 
   filterBenefits = (benefits, favouriteBenefits) => {
     if (benefits.length === 0) {
@@ -91,6 +99,15 @@ export class Favourites extends Component {
             </Header1>
           </Grid>
           <Grid item md={8} xs={12}>
+            {this.state.showDisabledCookieBanner ? (
+              <DisabledCookiesBanner
+                t={t}
+                onClose={() =>
+                  this.setState({ showDisabledCookieBanner: false })
+                }
+              />
+            ) : null}
+
             <Grid container spacing={24}>
               <BenefitList
                 t={t}
@@ -179,8 +196,17 @@ export class Favourites extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    setCookiesDisabled: areDisabled => {
+      dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
+    }
+  };
+};
+
 const mapStateToProps = (reduxState, props) => {
   return {
+    cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     eligibilityPaths: reduxState.eligibilityPaths,
     needs: reduxState.needs,
@@ -199,6 +225,8 @@ const mapStateToProps = (reduxState, props) => {
 };
 
 Favourites.propTypes = {
+  cookiesDisabled: PropTypes.bool.isRequired,
+  setCookiesDisabled: PropTypes.func.isRequired,
   benefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
@@ -215,4 +243,7 @@ Favourites.propTypes = {
   closestAreaOffice: PropTypes.object.isRequired
 };
 
-export default connect(mapStateToProps)(Favourites);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Favourites);

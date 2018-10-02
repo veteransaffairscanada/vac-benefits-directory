@@ -42,3 +42,17 @@ export const showQuestion = (question_variable_name, index, reduxState) => {
 
   return return_value;
 };
+
+// taken from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/cookies.js
+export const areCookiesDisabled = () => {
+  try {
+    // Create cookie
+    document.cookie = "cookietest=1";
+    const cookiesDisabled = document.cookie.indexOf("cookietest=") === -1;
+    // Delete cookie
+    document.cookie = "cookietest=1; expires=Thu, 01-Jan-1970 00:00:01 GMT";
+    return cookiesDisabled;
+  } catch (e) {
+    return true;
+  }
+};

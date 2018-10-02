@@ -53,6 +53,8 @@ describe("BB", () => {
     _shallowBB = undefined;
     _mountedBB = undefined;
     reduxData = {
+      cookiesDisabled: false,
+      setCookiesDisabled: jest.fn(),
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
