@@ -42,7 +42,7 @@ const tooltiptext = css`
   border-radius: 6px;
   position: absolute;
   z-index: 1;
-  bottom: 100%;
+  bottom: 140%;
   left: 50%;
   margin-left: -75px;
 `;
@@ -58,8 +58,8 @@ const tooltip = css`
       position: absolute;
       top: 100%; /* At the bottom of the tooltip */
       left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
+      margin-left: -7px;
+      border-width: 7px;
       border-style: solid;
       border-color: ${
         globalTheme.colour.paleGrey
