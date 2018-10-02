@@ -14,13 +14,12 @@ const Banner = css`
   padding-top: 13px;
   padding-bottom: 13px;
 `;
-const Text = css`
-  flex-grow: 1;
-`;
 const CloseIcon = css`
   float: right;
   padding: 0;
-  margin-right: 25px;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 40px;
   border: none;
   background: none;
   :hover {
@@ -36,12 +35,6 @@ const CloseIcon = css`
 
 export const DisabledCookiesBanner = ({ t, onClose }) => (
   <Body className={Banner}>
-    <span className={Text}>
-      {t("B3.disabled_cookies_text")}
-      <a href={t("B3.disabled_cookies_link")}>
-        {t("B3.disabled_cookies_link_text")}
-      </a>
-    </span>
     <button
       className={CloseIcon}
       aria-label="Hide cookie warning"
@@ -49,6 +42,12 @@ export const DisabledCookiesBanner = ({ t, onClose }) => (
     >
       <Close />
     </button>
+    <span>
+      {t("B3.disabled_cookies_text")}
+      <a href={t("B3.disabled_cookies_link")}>
+        {t("B3.disabled_cookies_link_text")}
+      </a>
+    </span>
   </Body>
 );
 
