@@ -33,7 +33,7 @@ const bookmarkIcon = css`
 `;
 const tooltiptext = css`
   visibility: hidden;
-  width: 150px;
+  width: 160px;
   font-size: 14px;
   background-color: ${globalTheme.colour.paleGrey};
   color: ${globalTheme.colour.greyishBrown};
@@ -44,7 +44,7 @@ const tooltiptext = css`
   z-index: 1;
   bottom: 140%;
   left: 50%;
-  margin-left: -75px;
+  margin-left: -80px;
 `;
 const tooltip = css`
   position: relative;
