@@ -93,6 +93,7 @@ export class FavouriteButton extends Component {
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     return (
       <HeaderButton
+        disabled={this.props.cookiesDisabled}
         id={"favourite-" + this.props.benefit.id}
         className={cx(bookmarkButton, tooltip)}
         aria-label={t("B3.favouritesButtonText")}
