@@ -54,6 +54,7 @@ describe("BB", () => {
     _mountedBB = undefined;
     reduxData = {
       cookiesDisabled: false,
+      setCookiesDisabled: jest.fn(),
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
@@ -76,7 +77,6 @@ describe("BB", () => {
       serviceHealthIssue: "",
       setSearchString: jest.fn(),
       setSortBy: jest.fn(),
-      setCookiesDisabled: jest.fn(),
       selectedNeeds: {},
       sortBy: "relevance",
       option: "",

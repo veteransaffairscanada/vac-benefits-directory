@@ -50,6 +50,8 @@ describe("BenefitsDirectory", () => {
     _mountedBenefitsDirectory = undefined;
     mockStore = configureStore();
     reduxData = {
+      cookiesDisabled: false,
+      setCookiesDisabled: jest.fn(),
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
