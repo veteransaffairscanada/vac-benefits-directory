@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Button } from "@material-ui/core/";
-import { KeyboardBackspace } from "@material-ui/icons";
+import Button from "./button";
 import { css } from "react-emotion";
 
 import {
@@ -14,7 +13,7 @@ import {
 
 const officeAddress = css`
   font-size: 12px;
-  font-family: 'Merriweather', Georgia, serif;
+  font-family: "Merriweather", Georgia, serif;
 `;
 const officeInfo = css`
   font-color: black;
@@ -23,26 +22,7 @@ const officeInfo = css`
 const officeName = css`
   font-size: 14px;
   font-weight: 500;
-  font-family: 'Merriweather', Georgia, serif;
-`;
-const button = css`
-  background-color: #3e57e2 !important;
-  color: white !important;
-  text-align: right;
-  text-transform: none !important;
-  font-size: 12px !important;
-  padding: 6px !important;
-`;
-
-const rightArrowIcon = css`
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  float: left;
-  filter: FlipH;
-  -ms-filter: Flip;
-  padding-right: 10px;
+  font-family: "Merriweather", Georgia, serif;
 `;
 
 /**
@@ -127,18 +107,24 @@ export class AreaOfficeMap extends Component {
                     <br />
                     <Button
                       id="getDirectionsButton"
-                      className={button}
-                      target="_blank"
-                      variant="raised"
-                      href={
-                        isIOS
+                      arrow={true}
+                      // className={button}
+                      // target="_blank"
+                      // variant="raised"
+                      onClick={() => {
+                        window.location.href = isIOS
                           ? "https://maps.apple.com/?daddr=" + d["address_en"]
                           : "https://www.google.com/maps?saddr=My+Location&daddr=" +
-                            d["address_en"]
-                      }
+                            d["address_en"];
+                      }}
+                      // href={
+                      //   isIOS
+                      //     ? "https://maps.apple.com/?daddr=" + d["address_en"]
+                      //     : "https://www.google.com/maps?saddr=My+Location&daddr=" +
+                      //       d["address_en"]
+                      // }
                     >
                       {t("map.get_directions")}
-                      <KeyboardBackspace className={rightArrowIcon} />
                     </Button>
                   </div>
                 </InfoWindow>
