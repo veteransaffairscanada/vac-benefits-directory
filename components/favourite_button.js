@@ -32,13 +32,14 @@ const bookmarkIcon = css`
   }
 `;
 const tooltiptext = css`
+  font-size: 14px;
+  font-weight: normal;
+  text-align: left;
   visibility: hidden;
   width: 160px;
-  font-size: 14px;
   background-color: ${globalTheme.colour.paleGrey};
   color: ${globalTheme.colour.greyishBrown};
-  text-align: center;
-  padding: 5px 0;
+  padding: 10px;
   border-radius: 6px;
   position: absolute;
   z-index: 1;
