@@ -26,10 +26,44 @@ const hideBig = css`
     display: none !important;
   }
 `;
-
 const bookmarkIcon = css`
-@media only screen and (max-width: ${globalTheme.max.mobile}) {
-  font-size: 45px !important;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    font-size: 45px !important;
+  }
+`;
+const tooltiptext = css`
+  visibility: hidden;
+  width: 150px;
+  font-size: 14px;
+  background-color: ${globalTheme.colour.paleGrey};
+  color: ${globalTheme.colour.greyishBrown};
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -75px;
+`;
+const tooltip = css`
+  position: relative;
+  display: inline-block;
+  :hover {
+    .${tooltiptext} {
+      visibility: visible;
+    }
+   .${tooltiptext}::after {
+      content: " ";
+      position: absolute;
+      top: 100%; /* At the bottom of the tooltip */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: ${
+        globalTheme.colour.paleGrey
+      } transparent transparent transparent;  
   }
 `;
 
@@ -54,22 +88,23 @@ export class FavouriteButton extends Component {
   };
 
   render() {
+    const { t } = this.props;
     const isBookmarked =
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     return (
       <HeaderButton
         id={"favourite-" + this.props.benefit.id}
-        className={bookmarkButton}
-        aria-label={this.props.t("B3.favouritesButtonText")}
+        className={cx(bookmarkButton, tooltip)}
+        aria-label={t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
         size="small"
       >
         {isBookmarked ? (
-          <Bookmark  className={cx("bookmarked", bookmarkIcon)}/>
+          <Bookmark className={cx("bookmarked", bookmarkIcon)} />
         ) : (
-          <BookmarkBorder  className={cx("notBookmarked", bookmarkIcon)}/>
+          <BookmarkBorder className={cx("notBookmarked", bookmarkIcon)} />
         )}
-        <span className={hideSmall} >
+        <span className={hideSmall}>
           {this.props.t(
             isBookmarked
               ? "B3.favouritesButtonTextRemove"
@@ -83,6 +118,11 @@ export class FavouriteButton extends Component {
               : "B3.favouritesButtonBTextMobile"
           )}
         </span>
+        {this.props.cookiesDisabled ? (
+          <span className={tooltiptext}>
+            {t("favourites.disabled_cookies_tooltip")}
+          </span>
+        ) : null}
       </HeaderButton>
     );
   }
@@ -101,12 +141,14 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    favouriteBenefits: reduxState.favouriteBenefits
+    favouriteBenefits: reduxState.favouriteBenefits,
+    cookiesDisabled: reduxState.cookiesDisabled
   };
 };
 
 FavouriteButton.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
+  cookiesDisabled: PropTypes.bool.isRequired,
   saveFavourites: PropTypes.func.isRequired,
   benefit: PropTypes.object.isRequired,
   toggleOpenState: PropTypes.func.isRequired,
