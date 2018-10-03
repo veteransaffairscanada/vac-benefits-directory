@@ -39,6 +39,10 @@ const bold = css`
   font-weight: bold;
 `;
 const tableText = css`
+  font-size: 18px;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    font-size: 14px;
+  }
   margin-top: 4px;
   margin-bottom: 0px;
 `;
