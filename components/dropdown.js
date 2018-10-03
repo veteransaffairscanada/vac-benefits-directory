@@ -22,10 +22,10 @@ export class Dropdown extends Component {
     const { t, sortBy, handleSortByChange } = this.props;
     return (
       <div className={wrapper}>
-        <div htmlFor="sortBySelector" className={left}>
+        <label htmlFor="sortBySelector" className={left}>
           {t("B3.Sort By")}
           &nbsp;&nbsp;
-        </div>
+        </label>
         <div className={right}>
           <Select
             value={sortBy}
