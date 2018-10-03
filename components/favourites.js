@@ -13,6 +13,8 @@ import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
 import HeaderButton from "./header_button";
 import Body from "./typography/body";
+import Paper from '@material-ui/core/Paper';
+import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 
@@ -39,6 +41,18 @@ const outerGrid = css`
 const topMatter = css`
   margin-bottom: 25px !important;
   margin-top: 30px !important;
+`;
+
+const bgWhite = css`
+padding: 30px;
+@media only screen and (min-width: ${globalTheme.max.sm}) {
+  margin-left: 11px !important;
+}
+@media only screen and (max-width: ${globalTheme.max.sm}) {
+  margin-right: -32px;
+  margin-left: -32px;
+  margin-bottom: -25px;
+}
 `;
 
 export class Favourites extends Component {
@@ -137,6 +151,7 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
+          <Paper className={bgWhite}>
             <HeaderButton
               href={this.props.printUrl}
               target="print_page"
@@ -189,6 +204,7 @@ export class Favourites extends Component {
               &nbsp;
               {t("favourites.login_prompt")}
             </Body>
+          </Paper>
           </Grid>
         </Grid>
       </Container>
