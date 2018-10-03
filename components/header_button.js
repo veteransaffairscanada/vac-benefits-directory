@@ -38,6 +38,7 @@ class HeaderButton extends Component {
       href,
       target,
       size,
+      disabled,
       otherProps
     } = this.props;
 
@@ -57,6 +58,7 @@ class HeaderButton extends Component {
 
     return (
       <button
+        disabled={disabled}
         className={
           size === "small" ? cx(style, small, className) : cx(style, className)
         }
@@ -85,7 +87,8 @@ HeaderButton.propTypes = {
   className: PropTypes.string,
   arrow: PropTypes.string,
   label: PropTypes.object,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
 export default HeaderButton;
