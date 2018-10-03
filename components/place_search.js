@@ -53,6 +53,7 @@ export class PlaceSearch extends Component {
         onPlacesChanged={this.state.onPlacesChanged}
       >
         <SearchBox
+          disableButton={true}
           inputId="inputField"
           buttonId="searchButtonLink"
           ariaLabel={this.props.t("map.search-locations")}
