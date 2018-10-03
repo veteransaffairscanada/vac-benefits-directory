@@ -32,7 +32,8 @@ const theme = {
     tornadoRed: "#ea4335",
     govukYellow: "#FFBF47",
     white: "#ffffff",
-    cardGrey: "#f3f3f3"
+    cardGrey: "#f3f3f3",
+    black: "#000000"
   }
 };
 
