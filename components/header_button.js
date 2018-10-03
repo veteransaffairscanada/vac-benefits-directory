@@ -35,7 +35,6 @@ class HeaderButton extends Component {
       className,
       children,
       onClick,
-      onMouseOver,
       href,
       target,
       size,

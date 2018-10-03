@@ -73,6 +73,12 @@ export class BB extends Component {
     this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
   }
 
+  componentDidUpdate() {
+    if (this.state.showDisabledCookieBanner && !this.props.cookiesDisabled) {
+      this.setState({ showDisabledCookieBanner: false });
+    }
+  }
+
   handleSortByChange = event => {
     this.props.setSortBy(event.target.value);
   };
