@@ -7,6 +7,7 @@ import Cookies from "universal-cookie";
 import { cx, css } from "react-emotion";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
+import { areCookiesDisabled } from "../utils/common";
 
 const bookmarkButton = css`
   margin-left: -5px !important;
@@ -99,6 +100,9 @@ export class FavouriteButton extends Component {
         className={cx(bookmarkButton, tooltip)}
         aria-label={t("B3.favouritesButtonText")}
         onClick={() => this.toggleFavourite(this.props.benefit.id)}
+        onMouseOver={() => {
+          this.props.setCookiesDisabled(areCookiesDisabled());
+        }}
         size="small"
       >
         {isBookmarked ? (
@@ -137,6 +141,9 @@ const mapDispatchToProps = dispatch => {
         type: "LOAD_DATA",
         data: { favouriteBenefits: favouriteBenefits }
       });
+    },
+    setCookiesDisabled: areDisabled => {
+      dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
     }
   };
 };
@@ -151,6 +158,7 @@ const mapStateToProps = reduxState => {
 FavouriteButton.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   cookiesDisabled: PropTypes.bool.isRequired,
+  setCookiesDisabled: PropTypes.func.isRequired,
   saveFavourites: PropTypes.func.isRequired,
   benefit: PropTypes.object.isRequired,
   toggleOpenState: PropTypes.func.isRequired,
