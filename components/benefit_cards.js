@@ -14,10 +14,11 @@ import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
 import OneLiner from "./typography/one_liner";
 import Header4 from "./typography/header4";
 import Button from "./button";
+import { globalTheme } from "../theme";
 
 const cardBody = css`
-  padding: 25px !important;
-  padding-top: 15px !important;
+  padding: ${globalTheme.cardPadding} !important;
+  padding-top: 20px !important;
   border-radius: 0px !important;
 `;
 const cardDescriptionText = css`

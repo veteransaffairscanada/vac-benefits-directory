@@ -8,7 +8,7 @@ import OneLiner from "./typography/one_liner";
 import HeaderButton from "./header_button";
 
 const root = css`
-  margin: 20px;
+  margin-bottom: 20px;
   margin-top: 0px;
   padding: 20px;
   padding-top: 5px;
