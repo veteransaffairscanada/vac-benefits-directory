@@ -10,6 +10,7 @@ import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import responsesFixture from "../fixtures/responses";
 
 describe("ProfileNeedsSelectorMobile", () => {
   let props;
@@ -17,28 +18,20 @@ describe("ProfileNeedsSelectorMobile", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key
+      t: key => key,
+      profileQuestions: questionsFixture.filter(
+        q => q.variable_name !== "needs"
+      ),
+      responses: responsesFixture,
+      saveQuestionResponse: jest.fn()
     };
     reduxData = {
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      patronType: "",
-      serviceType: "",
-      statusAndVitals: "",
-      serviceHealthIssue: "",
-      selectedPatronType: "",
-      selectedServiceType: "",
-      selectedStatusAndVitals: "",
-      selectedServiceHealthIssue: "",
       selectedNeeds: {},
       needs: needsFixture,
-      setPatronType: jest.fn(),
-      setServiceType: jest.fn(),
-      setStatusAndVitals: jest.fn(),
-      setServiceHealthIssue: jest.fn(),
-      setSelectedNeeds: jest.fn(),
       eligibilityPaths: eligibilityPathsFixture,
       pageWidth: 1000
     };
@@ -53,8 +46,7 @@ describe("ProfileNeedsSelectorMobile", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has no clear button if patronType is empty", () => {
-    reduxData.patronType = "";
+  it("has no clear button if nothing selected", () => {
     props.store = mockStore(reduxData);
     expect(
       mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
@@ -63,24 +55,14 @@ describe("ProfileNeedsSelectorMobile", () => {
     ).toEqual(0);
   });
 
-  it("has a clear button if patronType is populated", () => {
-    reduxData.patronType = "organization";
+  it("has a clear button if patronType has a value", () => {
+    props.responses.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
       mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
         .find("#ClearFiltersMobile")
         .first().length
     ).toEqual(1);
-  });
-
-  it("has no clear button if selectedNeeds is empty", () => {
-    reduxData.selectedNeeds = {};
-    props.store = mockStore(reduxData);
-    expect(
-      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
-        .find("#ClearFiltersMobile")
-        .first().length
-    ).toEqual(0);
   });
 
   it("has a clear button if selectedNeeds is populated", () => {
@@ -98,14 +80,14 @@ describe("ProfileNeedsSelectorMobile", () => {
       <ProfileNeedsSelectorMobile {...props} {...reduxData} />
     ).instance();
     instance.clearFilters();
-    expect(reduxData.setPatronType).toBeCalledWith("");
-    expect(reduxData.setServiceType).toBeCalledWith("");
-    expect(reduxData.setStatusAndVitals).toBeCalledWith("");
-    expect(reduxData.setServiceHealthIssue).toBeCalledWith("");
-    expect(reduxData.setSelectedNeeds).toBeCalledWith({});
+    expect(props.saveQuestionResponse).toBeCalledWith("patronType", "");
+    expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
+    expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
+    expect(props.saveQuestionResponse).toBeCalledWith("serviceHealthIssue", "");
+    expect(props.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
   });
 
-  it("clicking #ClearFiltersMobile toggles the clearFilters function", () => {
+  it("clicking #ClearFiltersMobile runs the clearFilters function", () => {
     reduxData.selectedNeeds = { foo: "bar" };
     const mounted = mount(
       <ProfileNeedsSelectorMobile {...props} {...reduxData} />
@@ -118,7 +100,7 @@ describe("ProfileNeedsSelectorMobile", () => {
     expect(mounted.instance().clearFilters).toBeCalled();
   });
 
-  it("clicking ExpansionPanelSummary toggles the toggleOpenState function", () => {
+  it("clicking ExpansionPanelSummary runs the toggleOpenState function", () => {
     const mounted = mount(
       <ProfileNeedsSelectorMobile {...props} {...reduxData} />
     );
@@ -130,8 +112,8 @@ describe("ProfileNeedsSelectorMobile", () => {
     expect(mounted.instance().toggleOpenState).toBeCalled();
   });
 
-  it("returns 1 if a profile is selected", () => {
-    reduxData.selectedPatronType = "organization";
+  it("returns 1 if a profile filter is selected", () => {
+    props.responses.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
       mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
