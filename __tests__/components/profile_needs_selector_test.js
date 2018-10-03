@@ -18,21 +18,20 @@ describe("ProfileNeedsSelector", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key
-    };
-    reduxData = {
-      questions: questionsFixture,
+      t: key => key,
       profileQuestions: questionsFixture.filter(
         q => q.variable_name !== "needs"
       ),
+      responses: responsesFixture,
+      saveQuestionResponse: jest.fn()
+    };
+    reduxData = {
+      questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      responses: responsesFixture,
       selectedNeeds: {},
       needs: needsFixture,
-      saveQuestionResponse: jest.fn(),
-      setSelectedNeeds: jest.fn(),
       eligibilityPaths: eligibilityPathsFixture,
       pageWidth: 1000
     };
@@ -54,7 +53,7 @@ describe("ProfileNeedsSelector", () => {
   });
 
   it("has a clear button if patronType has a value", () => {
-    reduxData.responses.patronType = "organization";
+    props.responses.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
       mount(<ProfileNeedsSelector {...props} {...reduxData} />)
@@ -79,20 +78,14 @@ describe("ProfileNeedsSelector", () => {
     ).instance();
     instance.clearFilters();
 
-    expect(reduxData.saveQuestionResponse).toBeCalledWith("patronType", "");
-    expect(reduxData.saveQuestionResponse).toBeCalledWith("serviceType", "");
-    expect(reduxData.saveQuestionResponse).toBeCalledWith(
-      "statusAndVitals",
-      ""
-    );
-    expect(reduxData.saveQuestionResponse).toBeCalledWith(
-      "serviceHealthIssue",
-      ""
-    );
-    expect(reduxData.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
+    expect(props.saveQuestionResponse).toBeCalledWith("patronType", "");
+    expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
+    expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
+    expect(props.saveQuestionResponse).toBeCalledWith("serviceHealthIssue", "");
+    expect(props.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
   });
 
-  it("clicking #ClearFilters toggles the clearFilters function", () => {
+  it("clicking #ClearFilters runs the clearFilters function", () => {
     reduxData.selectedNeeds = { foo: "bar" };
     const mounted = mount(<ProfileNeedsSelector {...props} {...reduxData} />);
     mounted.instance().clearFilters = jest.fn();
@@ -103,8 +96,8 @@ describe("ProfileNeedsSelector", () => {
     expect(mounted.instance().clearFilters).toBeCalled();
   });
 
-  it("countSelected returns 1 if a profile is selected", () => {
-    reduxData.responses.patronType = "organization";
+  it("countSelected returns 1 if a profile filter is selected", () => {
+    props.responses.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
       mount(<ProfileNeedsSelector {...props} {...reduxData} />)

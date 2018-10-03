@@ -41,25 +41,21 @@ export class ProfileNeedsSelectorMobile extends Component {
 
   countSelected = () => {
     let selectedProfileFilters = 0;
-    if (
-      this.props.selectedPatronType !== "" ||
-      this.props.selectedServiceType !== "" ||
-      this.props.selectedStatusAndVitals !== "" ||
-      this.props.selectedServiceHealthIssue !== ""
-    ) {
-      selectedProfileFilters = 1;
-    }
+    this.props.profileQuestions.forEach(question => {
+      if (this.props.responses[question.variable_name]) {
+        selectedProfileFilters = 1;
+      }
+    });
     return (
       selectedProfileFilters + Object.values(this.props.selectedNeeds).length
     );
   };
 
   clearFilters = () => {
-    this.props.setPatronType("");
-    this.props.setServiceType("");
-    this.props.setStatusAndVitals("");
-    this.props.setServiceHealthIssue("");
-    this.props.setSelectedNeeds({});
+    this.props.profileQuestions.forEach(q => {
+      this.props.saveQuestionResponse(q.variable_name, "");
+    });
+    this.props.saveQuestionResponse("selectedNeeds", {});
   };
 
   toggleOpenState = () => {
@@ -93,8 +89,7 @@ export class ProfileNeedsSelectorMobile extends Component {
             <Grid item sm={12}>
               <NeedsSelector t={t} store={store} />
 
-              {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-              this.props.patronType !== "" ? (
+              {this.countSelected() > 0 ? (
                 <h3 variant="title" className={filterTitle}>
                   <HeaderButton
                     id="ClearFiltersMobile"
@@ -119,49 +114,32 @@ export class ProfileNeedsSelectorMobile extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setPatronType: patronType => {
-      dispatch({ type: "SET_PATRON_TYPE", data: patronType });
-    },
-    setServiceType: serviceType => {
-      dispatch({ type: "SET_SERVICE_TYPE", data: serviceType });
-    },
-    setStatusAndVitals: statusType => {
-      dispatch({ type: "SET_STATUS_TYPE", data: statusType });
-    },
-    setServiceHealthIssue: serviceHealthIssue => {
-      dispatch({ type: "SET_HEALTH_ISSUE", data: serviceHealthIssue });
-    },
-    setSelectedNeeds: needsObject => {
-      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
     }
   };
 };
 
 const mapStateToProps = reduxState => {
   return {
-    selectedNeeds: reduxState.selectedNeeds,
-    selectedPatronType: reduxState.patronType,
-    selectedServiceType: reduxState.serviceType,
-    selectedStatusAndVitals: reduxState.statusAndVitals,
-    selectedServiceHealthIssue: reduxState.serviceHealthIssue,
-    patronType: reduxState.patronType
+    profileQuestions: reduxState.questions.filter(
+      q => q.variable_name !== "needs"
+    ),
+    responses: reduxState,
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
 ProfileNeedsSelectorMobile.propTypes = {
+  profileQuestions: PropTypes.array.isRequired,
+  responses: PropTypes.object.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  patronType: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  setPatronType: PropTypes.func.isRequired,
-  setServiceType: PropTypes.func.isRequired,
-  setStatusAndVitals: PropTypes.func.isRequired,
-  setServiceHealthIssue: PropTypes.func.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired,
-  store: PropTypes.object,
-  selectedPatronType: PropTypes.string.isRequired,
-  selectedServiceType: PropTypes.string.isRequired,
-  selectedStatusAndVitals: PropTypes.string.isRequired,
-  selectedServiceHealthIssue: PropTypes.string.isRequired
+  store: PropTypes.object
 };
 
 export default connect(
