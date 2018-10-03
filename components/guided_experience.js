@@ -10,6 +10,7 @@ import Header2 from "./typography/header2";
 import Button from "./button";
 import HeaderButton from "./header_button";
 import GuidedExperienceLink from "./typography/guided_experience_link";
+import { globalTheme } from "../theme";
 
 const root = css`
   border: solid 1px grey;
@@ -19,6 +20,9 @@ const root = css`
 
 const box = css`
   padding: 25px 63px 63px 63px;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    padding: 17px 26px 55px 26px;
+  }
   display: inline-flex;
 `;
 

@@ -6,6 +6,9 @@ import { cx, css } from "react-emotion";
 const style = css`
   font-family: ${globalTheme.fontFamily};
   font-size: 18px;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    font-size: 14px;
+  }
   font-weight: bold;
   color: ${globalTheme.colour.greyishBrown};
   margin: 0px;

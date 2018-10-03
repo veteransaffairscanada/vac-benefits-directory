@@ -4,6 +4,7 @@ import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
 const cardTop = css`
   border-bottom: 1px solid #8b8b8b;
@@ -22,6 +23,9 @@ const parentIcon = css`
 const headerDesc = css`
   flex-grow: 1;
   color: #434343;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    font-size: 12px;
+  }
 `;
 const headerUrl = css`
   color: #006cc9;
