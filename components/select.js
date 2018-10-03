@@ -1,149 +1,52 @@
-// https://github.com/alphagov/govuk-frontend/tree/master/src/components/select
-
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
 import { globalTheme } from "../theme";
+import { css, cx } from "react-emotion";
 
-import Label from "@govuk-react/label";
-import LabelText from "@govuk-react/label-text";
+const style = css`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-position: right 50%;
+  background-repeat: no-repeat;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDZFNDEwNjlGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDZFNDEwNkFGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0NkU0MTA2N0Y3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0NkU0MTA2OEY3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGsgwQAAAA5SURBVHjaYvz//z8DOYCJgUxAf42MQIzTk0D/M+KzkRGPoQSdykiKJrBGpOhgJFYTWNEIiEeAAAMAzNENEOH+do8AAAAASUVORK5CYII=);
+  padding: 0.5em;
+  padding-right: 1.5em;
+`;
 
-const StyledSelect = styled("select")({
-  boxSizing: "border-box",
-  fontFamily: globalTheme.fontFamily,
-  fontWeight: 400,
-  textTransform: "none",
-  fontSize: "16px",
-  lineHeight: "1.25",
-  width: "100%",
-  height: "33px",
-  padding: "5px 4px 4px",
-  border: `2px solid ${globalTheme.colour.black}`,
-  // [MEDIA_QUERIES.LARGESCREEN]: {
-  //   width: '50%',
-  //   height: '38px',
-  //   fontSize: '19px',
-  //   lineHeight: '1.31579',
-  // },
-  ":focus": {
-    outline: `3px solid ${globalTheme.colour.govukYellow}`,
-    outlineOffset: 0
+const mySelect = css`
+  background-color: white;
+  border-radius: 0;
+  box-sizing: border-box;
+  font-family: ${globalTheme.fontFamily};
+  color: ${globalTheme.colour.greyishBrown};
+  font-weight: normal;
+  text-transform: none;
+  font-size: 18px;
+  line-height: normal;
+  width: 100%;
+  height: 44px;
+  padding: 5px 4px 4px;
+  box-shadow: ${globalTheme.boxShadowMui};
+  border: 0px;
+  :focus {
+    outline: 3px solid ${globalTheme.colour.govukYellow};
+    outline-offset: 0;
   }
-});
+`;
 
-/**
- *
- * ### Usage
- *
- * Simple
- * ```jsx
- <Select name="group1" label="This is a label">
-    <option value="0">GOV.UK elements option 1</option>
-    <option value="1">GOV.UK elements option 2</option>
-    <option value="2">GOV.UK elements option 3</option>
-  </Select>
- * ```
- *
- * Select with hint text
- * ```jsx
- * <Select
- *    name="group1"
- *    label="This is a label"
- *    hint={[
- *      'This is and example of hintText/description of what we need from you.',
- *    ]}
- *  >
- *    <option value="0">GOV.UK elements option 1</option>
- *    <option value="1">GOV.UK elements option 2</option>
- *    <option value="2">GOV.UK elements option 3</option>
- *  </Select>
- * ```
- *
- * Select with hint text & error
- * ```jsx
- * const meta = {
- *   touched: true,
- *   error: 'Example',
- * };
- *
- * <Select
- *    name="group1"
- *    label="This is a label"
- *    hint={[
- *      'This is and example of hintText/description of what we need from you.',
- *    ]}
- *    meta={meta}
- *  >
- *    <option value="0">GOV.UK elements option 1</option>
- *    <option value="1">GOV.UK elements option 2</option>
- *    <option value="2">GOV.UK elements option 3</option>
- *  </Select>
- * ```
- *
- * Standalone input with inline label
- * ```jsx
- * import LabelText from '@govuk-react/label-text';
- * import { SelectInput } '@govuk-react/select';
- *
- * <label>
- *    <LabelText>Sort by:&nbsp;
- *      <SelectInput>
- *        <option value="0">People</option>
- *        <option value="1">Animals</option>
- *        <option value="2">Vegetables</option>
- *      </SelectInput>
- *    </LabelText>
- *  </label>
- * ```
- *
- * ### References:
- * - https://github.com/alphagov/govuk-frontend/tree/master/src/components/select
- *
- */
-const Select = ({ children, label, meta, input, ...props }) => (
-  <Label {...props} error={meta.touched && meta.error}>
-    <LabelText>{label}</LabelText>
-    <StyledSelect error={meta.touched && meta.error} {...input}>
-      {children}
-    </StyledSelect>
-  </Label>
-);
-
-Select.defaultProps = {
-  hint: undefined,
-  errorText: undefined,
-  input: {},
-  meta: {}
-};
+export class Select extends Component {
+  render() {
+    const { children, ...other } = this.props;
+    return (
+      <select className={cx(mySelect, style)} {...other}>
+        {children}
+      </select>
+    );
+  }
+}
 
 Select.propTypes = {
-  hint: PropTypes.string,
-  input: PropTypes.shape({
-    name: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    value: PropTypes.any
-  }),
-  meta: PropTypes.shape({
-    active: PropTypes.bool,
-    dirty: PropTypes.bool,
-    dirtySinceLastSubmit: PropTypes.bool,
-    error: PropTypes.any,
-    initial: PropTypes.any,
-    invalid: PropTypes.bool,
-    pristine: PropTypes.bool,
-    submitError: PropTypes.any,
-    submitFailed: PropTypes.bool,
-    submitSucceeded: PropTypes.bool,
-    touched: PropTypes.bool,
-    valid: PropTypes.bool,
-    visited: PropTypes.bool
-  }),
-  children: PropTypes.node.isRequired,
-  label: PropTypes.string.isRequired,
-  errorText: PropTypes.string
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object])
 };
 
 export default Select;
-export { StyledSelect as SelectInput };
