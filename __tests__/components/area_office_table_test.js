@@ -85,9 +85,6 @@ describe("AreaOfficeTable", () => {
 
   it("has a table", () => {
     expect(
-      shallow(<AreaOfficeTable {...props} />).find("#tableHeader").length
-    ).toEqual(1);
-    expect(
       shallow(<AreaOfficeTable {...props} />).find("#tableRow0").length
     ).toEqual(1);
     expect(
@@ -105,7 +102,7 @@ describe("AreaOfficeTable", () => {
   it("selects an area office when a row is clicked", () => {
     mount(<AreaOfficeTable {...props} />)
       .find("tr")
-      .at(2)
+      .at(1)
       .simulate("click");
     expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
   });
@@ -113,7 +110,7 @@ describe("AreaOfficeTable", () => {
   it("sets the map view when a row is clicked", () => {
     mount(<AreaOfficeTable {...props} />)
       .find("tr")
-      .at(2)
+      .at(1)
       .simulate("click");
     expect(props.setMapView).toBeCalledWith({
       lat: props.areaOffices[1].lat,

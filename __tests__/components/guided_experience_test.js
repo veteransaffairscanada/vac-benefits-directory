@@ -1,7 +1,7 @@
 import { mount, shallow } from "enzyme";
 import React from "react";
 import Router from "next/router";
-
+import questionsFixture from "../fixtures/questions";
 import { GuidedExperience } from "../../components/guided_experience";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -34,15 +34,17 @@ describe("GuidedExperience", () => {
       setSection: jest.fn(),
       id: "YY",
       nextSection: "ZZ",
-      benefitsDirectoryUrl: "/benefits-directory",
       prevSection: "XX",
       stepNumber: 1,
       children: <div className="thing" />,
       subtitle: "subtitle",
-      selectedEligibility: {
+      reduxState: {
         patronType: "family",
         serviceType: "rcmp",
-        statusAndVitals: "still-serving"
+        statusAndVitals: "still-serving",
+        serviceHealthIssue: "",
+        selectedNeeds: {},
+        questions: questionsFixture
       }
     };
     _shallowGuidedExperience = undefined;
@@ -85,11 +87,11 @@ describe("GuidedExperience", () => {
       .find("GuidedExperienceLink")
       .first()
       .simulate("click");
-    expect(props.setSection).toBeCalledWith("patronTypeQuestion");
+    expect(props.setSection).toBeCalledWith("patronType");
   });
 
   it("the Next button does not contain an href if nextSection != benefits-directory", () => {
-    props.nextSection = "serviceTypeQuestion";
+    props.nextSection = "serviceType";
     expect(
       mounted_GuidedExperience()
         .find("Button")
@@ -104,10 +106,12 @@ describe("GuidedExperience", () => {
       .find("Button")
       .last()
       .simulate("click");
-    expect(Router.push).toBeCalledWith(props.benefitsDirectoryUrl);
+    expect(Router.push).toBeCalledWith(
+      "/benefits-directory?lng=current-language-code&patronType=family&serviceType=rcmp&statusAndVitals=still-serving"
+    );
   });
 
-  it("the Next buttons says 'Next' if the section is not the needsQuestion", () => {
+  it("the Next buttons says 'Next' if the section is not needs", () => {
     expect(
       mounted_GuidedExperience()
         .find("Button")
@@ -116,8 +120,8 @@ describe("GuidedExperience", () => {
     ).toContain("next");
   });
 
-  it("the Next buttons says 'Show Results' if the section is the needsQuestion", () => {
-    props.id = "needsQuestion";
+  it("the Next buttons says 'Show Results' if the section is the needs", () => {
+    props.id = "needs";
     expect(
       mounted_GuidedExperience()
         .find("Button")

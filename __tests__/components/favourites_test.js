@@ -51,6 +51,8 @@ describe("Favourites", () => {
 
     mockStore = configureStore();
     reduxData = {
+      cookiesDisabled: false,
+      setCookiesDisabled: jest.fn(),
       benefits: benefitsFixture,
       examples: examplesFixture,
       needs: needsFixture,

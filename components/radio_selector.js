@@ -18,83 +18,63 @@ const formLabel = css`
 `;
 
 export class RadioSelector extends React.Component {
-  isDisabled = (filter_id, patronType, serviceType) => {
-    if (serviceType === "WSV (WWII or Korea)" && filter_id === "stillServing") {
-      return true;
-    }
-    if (patronType === "service-person" && filter_id === "deceased") {
-      return true;
-    }
-    return false;
+  isDisabled = (option, responses, questionDisplayLogic) => {
+    let returnValue = false;
+    questionDisplayLogic.forEach(row => {
+      if (
+        responses[row.question] &&
+        row["has value"] &&
+        row["exclude options"] &&
+        responses[row.question] === row["has value"][0] &&
+        row["exclude options"].indexOf(option) > -1
+      ) {
+        returnValue = true;
+      }
+    });
+    return returnValue;
   };
 
-  setUserProfile = (criteria, id) => {
-    logEvent("FilterClick", criteria, id);
-    this.props.saveQuestionResponse(criteria, id);
-    switch (criteria) {
-      case "patronType":
-        if (id === "organization") {
-          this.props.saveQuestionResponse("serviceType", "");
-          this.props.saveQuestionResponse("statusAndVitals", "");
-          this.props.saveQuestionResponse("serviceHealthIssue", "");
-        }
-        if (
-          id === "service-person" &&
-          this.props.selectedStatusAndVitals === "deceased"
-        ) {
-          this.props.saveQuestionResponse("statusAndVitals", "");
-          this.props.saveQuestionResponse("serviceHealthIssue", "");
-        }
-        if (
-          id === "service-person" &&
-          this.props.selectedServiceType === "WSV (WWII or Korea)" &&
-          this.props.selectedStatusAndVitals !== ""
-        ) {
-          this.props.saveQuestionResponse("statusAndVitals", "");
-          this.props.saveQuestionResponse("serviceHealthIssue", "");
-        }
-        break;
-      case "serviceType":
-        if (
-          id === "WSV (WWII or Korea)" &&
-          this.props.selectedStatusAndVitals === "stillServing"
-        ) {
-          this.props.saveQuestionResponse("statusAndVitals", "");
-          this.props.saveQuestionResponse("serviceHealthIssue", "");
-        }
-        if (
-          id === "WSV (WWII or Korea)" &&
-          this.props.selectedPatronType === "service-person" &&
-          this.props.selectedStatusAndVitals !== ""
-        ) {
-          this.props.saveQuestionResponse("statusAndVitals", "");
-          this.props.saveQuestionResponse("serviceHealthIssue", "");
-        }
-        if (
-          (id === "RCMP" || id === "CAF") &&
-          this.props.selectedStatusAndVitals === ""
-        ) {
-          this.props.saveQuestionResponse("serviceHealthIssue", "");
-        }
+  clearAppropriateResponses = (question, response) => {
+    const {
+      questions,
+      responses,
+      saveQuestionResponse,
+      questionClearLogic
+    } = this.props;
 
-        break;
-      case "statusAndVitals":
-        break;
-      case "serviceHealthIssue":
-        break;
-      default:
-        return true;
-    }
+    const previousResponses = questions
+      .map(q => q.variable_name)
+      .map(v => responses[v]);
+
+    questionClearLogic.forEach(row => {
+      if (
+        row["Question"] &&
+        row["Response"] &&
+        row["Clear Questions"] &&
+        row["Question"][0] === question &&
+        row["Response"][0] === response &&
+        (!row["Previous Response"] ||
+          previousResponses.indexOf(row["Previous Response"][0]) > -1)
+      ) {
+        row["Clear Questions"].forEach(question => {
+          saveQuestionResponse(question, "");
+        });
+      }
+    });
   };
 
   handleSelect = event => {
-    this.setUserProfile(this.props.selectorType, event.target.value);
+    const question = this.props.selectorType;
+    const response = event.target.value;
+    logEvent("FilterClick", question, response);
+    this.props.saveQuestionResponse(question, response);
+    this.clearAppropriateResponses(question, response);
   };
 
   render() {
     const guid = uuidv4();
 
-    const allFilterIds = this.props.options
+    const options = this.props.options
       ? this.props.options
       : Array.from(
           new Set(
@@ -102,35 +82,29 @@ export class RadioSelector extends React.Component {
           )
         ).filter(st => st !== "na");
 
-    const { t, selectorType } = this.props;
-    const selected = {
-      patronType: this.props.selectedPatronType,
-      serviceType: this.props.selectedServiceType,
-      statusAndVitals: this.props.selectedStatusAndVitals,
-      serviceHealthIssue: this.props.selectedServiceHealthIssue
-    };
+    const { t, selectorType, responses } = this.props;
 
-    if (Object.keys(allFilterIds).length != 0) {
+    if (Object.keys(options).length !== 0) {
       return (
         <FormControl className={formControl}>
           <Header4 className={formLabel}>{this.props.legend}</Header4>
           <RadioGroup
             aria-label={this.props.legend}
-            value={selected[selectorType]}
+            value={responses[selectorType]}
             onChange={this.handleSelect}
           >
-            {allFilterIds.map(filter_id => {
+            {options.map(option => {
               return (
                 <FormControlLabel
-                  key={filter_id}
-                  value={filter_id}
-                  htmlFor={filter_id + guid}
-                  control={<Radio color="primary" id={filter_id + guid} />}
-                  label={t(filter_id)}
+                  key={option}
+                  value={option}
+                  htmlFor={option + guid}
+                  control={<Radio color="primary" id={option + guid} />}
+                  label={t(option)}
                   disabled={this.isDisabled(
-                    filter_id,
-                    this.props.selectedPatronType,
-                    this.props.selectedServiceType
+                    option,
+                    responses,
+                    this.props.questionDisplayLogic
                   )}
                 />
               );
@@ -157,24 +131,24 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    selectedPatronType: reduxState.patronType,
-    selectedServiceType: reduxState.serviceType,
-    selectedStatusAndVitals: reduxState.statusAndVitals,
-    selectedServiceHealthIssue: reduxState.serviceHealthIssue,
-    eligibilityPaths: reduxState.eligibilityPaths
+    eligibilityPaths: reduxState.eligibilityPaths,
+    questions: reduxState.questions,
+    questionDisplayLogic: reduxState.questionDisplayLogic,
+    questionClearLogic: reduxState.questionClearLogic,
+    responses: reduxState
   };
 };
 
 RadioSelector.propTypes = {
   legend: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  selectedPatronType: PropTypes.string.isRequired,
-  selectedServiceType: PropTypes.string.isRequired,
-  selectedStatusAndVitals: PropTypes.string.isRequired,
-  selectedServiceHealthIssue: PropTypes.string.isRequired,
+  responses: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  questions: PropTypes.array.isRequired,
+  questionDisplayLogic: PropTypes.array.isRequired,
+  questionClearLogic: PropTypes.array.isRequired,
   options: PropTypes.array,
   store: PropTypes.object
 };

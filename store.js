@@ -22,7 +22,8 @@ const initialState = {
   selectedAreaOffice: {},
   userLocation: { lat: 49, lng: -104 },
   pageWidth: 1000,
-  mapView: { lat: 49, lng: -104, zoom: 1 }
+  mapView: { lat: 49, lng: -104, zoom: 1 },
+  cookiesDisabled: false
 };
 airtableConstants.tableNames.forEach(tableName => {
   initialState[tableName] = [];
@@ -70,13 +71,24 @@ export const reducer = (state = initialState, action) => {
     case "LOAD_DATA":
       newState = {
         favouriteBenefits:
-          action.data.favouriteBenefits || state.favouriteBenefits,
-        timestamp: action.data.timestamp || state.timestamp
+          action.data.favouriteBenefits !== undefined
+            ? action.data.favouriteBenefits
+            : state.favouriteBenefits,
+        timestamp:
+          action.data.timestamp !== undefined
+            ? action.data.timestamp
+            : state.timestamp
       };
       airtableConstants.tableNames.forEach(tableName => {
-        newState[tableName] = action.data[tableName] || state[tableName];
+        newState[tableName] =
+          action.data[tableName] !== undefined
+            ? action.data[tableName]
+            : state[tableName];
       });
-      newState["errors"] = action.data["errors"] || state["errors"];
+      newState["errors"] =
+        action.data["errors"] !== undefined
+          ? action.data["errors"]
+          : state["errors"];
       return Object.assign({}, state, newState);
 
     case "SAVE_QUESTION_RESPONSE":
@@ -112,6 +124,8 @@ export const reducer = (state = initialState, action) => {
       });
     case "SET_PAGEWIDTH":
       return Object.assign({}, state, { pageWidth: action.data });
+    case "SET_COOKIES_DISABLED":
+      return Object.assign({}, state, { cookiesDisabled: action.data });
     default:
       return state;
   }

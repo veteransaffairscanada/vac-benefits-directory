@@ -20,6 +20,8 @@ import HeaderButton from "./header_button";
 import Body from "../components/typography/body";
 import SearchBox from "./search_box";
 import { globalTheme } from "../theme";
+import { DisabledCookiesBanner } from "./disabled_cookies_banner";
+import { areCookiesDisabled } from "../utils/common";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -64,6 +66,13 @@ const nonMobileStyle = css`
 `;
 
 export class BB extends Component {
+  state = { showDisabledCookieBanner: false };
+
+  componentDidMount() {
+    this.props.setCookiesDisabled(areCookiesDisabled());
+    this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
+  }
+
   handleSortByChange = event => {
     this.props.setSortBy(event.target.value);
   };
@@ -130,16 +139,6 @@ export class BB extends Component {
                     <span className={nonMobileStyle}> {t("Print")} </span>
                   </HeaderButton>
                 </Grid>
-                <Grid item xs={12}>
-                  <Header2 className={"BenefitsCounter " + title}>
-                    {this.countString(filteredBenefits.length, t)}
-                  </Header2>
-                  {filteredBenefits.length > 0 ? (
-                    <Body>{t("B3.check eligibility")}</Body>
-                  ) : (
-                    ""
-                  )}
-                </Grid>
               </Grid>
             </div>
           </Container>
@@ -153,6 +152,25 @@ export class BB extends Component {
               </Grid>
               <Grid item lg={8} md={8} sm={7} xs={12}>
                 <Grid container spacing={16}>
+                  <Grid item xs={12}>
+                    {this.state.showDisabledCookieBanner ? (
+                      <DisabledCookiesBanner
+                        t={t}
+                        onClose={() =>
+                          this.setState({ showDisabledCookieBanner: false })
+                        }
+                      />
+                    ) : null}
+
+                    <Header2 className={"BenefitsCounter " + title}>
+                      {this.countString(filteredBenefits.length, t)}
+                    </Header2>
+                    {filteredBenefits.length > 0 ? (
+                      <Body>{t("B3.check eligibility")}</Body>
+                    ) : (
+                      ""
+                    )}
+                  </Grid>
                   <Grid item xs={12} md={6}>
                     <InputLabel
                       htmlFor="sortBySelector"
@@ -216,12 +234,16 @@ const mapDispatchToProps = dispatch => {
     },
     setSortBy: sortBy => {
       dispatch({ type: "SET_SORT_BY", data: sortBy });
+    },
+    setCookiesDisabled: areDisabled => {
+      dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
     }
   };
 };
 
 const mapStateToProps = (reduxState, props) => {
   return {
+    cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
     eligibilityPaths: reduxState.eligibilityPaths,
@@ -245,6 +267,8 @@ const mapStateToProps = (reduxState, props) => {
 };
 
 BB.propTypes = {
+  cookiesDisabled: PropTypes.bool.isRequired,
+  setCookiesDisabled: PropTypes.func.isRequired,
   benefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,

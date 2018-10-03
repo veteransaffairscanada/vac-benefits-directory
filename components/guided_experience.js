@@ -37,23 +37,72 @@ const questions = css`
 `;
 
 export class GuidedExperience extends Component {
-  sectionMap = {
-    patronType: "patronTypeQuestion",
-    serviceType: "serviceTypeQuestion",
-    statusAndVitals: "statusAndVitalsQuestion",
-    serviceHealthIssue: "serviceHealthIssueQuestion"
+  jumpButtons = (t, reduxState) => {
+    const getTranslationKey = questionVariableName => {
+      let translation_key = "";
+      if (questionVariableName === "serviceHealthIssue") {
+        translation_key = JSON.parse(reduxState[questionVariableName])
+          ? "GE.has service related health issue"
+          : "GE.no service related health issue";
+      } else {
+        translation_key = reduxState[questionVariableName];
+      }
+      return translation_key;
+    };
+
+    const eligibilityKeys = reduxState.questions
+      .map(x => x.variable_name)
+      .filter(x => x != "needs");
+    let jsx_array = eligibilityKeys.map((k, i) => {
+      if (!reduxState[k] || k === this.props.id) {
+        return "";
+      } else {
+        return (
+          <span key={i}>
+            <span className={comma}>{i === 0 ? "" : ","}</span>
+            <GuidedExperienceLink
+              id={"jumpButton" + i}
+              href="#"
+              onClick={() => this.props.setSection(k)}
+            >
+              {t(getTranslationKey(k))}
+            </GuidedExperienceLink>
+          </span>
+        );
+      }
+    });
+    return jsx_array;
   };
 
   render() {
-    const { t, selectedEligibility } = this.props;
-    const eligibilityKeys = Object.keys(selectedEligibility);
+    const { t, reduxState } = this.props;
+
+    let benefitsDirectoryUrl =
+      "/benefits-directory?lng=" + t("current-language-code");
+    if (Object.keys(reduxState.selectedNeeds).length > 0) {
+      benefitsDirectoryUrl +=
+        "&selectedNeeds=" + Object.keys(reduxState.selectedNeeds).join();
+    }
+    reduxState.questions
+      .map(q => q.variable_name)
+      .filter(x => x !== "needs")
+      .forEach(selection => {
+        if (reduxState[selection] !== "") {
+          benefitsDirectoryUrl += `&${selection}=${reduxState[selection]}`;
+        }
+      });
+
+    const jumpButtons = this.jumpButtons(t, reduxState);
+
     return (
       <Container id="guidedExperience">
         <HeaderButton
           id="prevButton"
           disableRipple
           href={
-            this.props.prevSection === "index" ? this.props.indexURL : undefined
+            this.props.prevSection === "index"
+              ? "/index?lng=" + t("current-language-code")
+              : undefined
           }
           onClick={
             this.props.prevSection === "index"
@@ -71,38 +120,7 @@ export class GuidedExperience extends Component {
               <FilterText style={{ display: "inline-block" }}>
                 {t("B3.Filter by eligibility")}
               </FilterText>
-              {eligibilityKeys.map((k, i) => {
-                if (
-                  selectedEligibility[k] === "" ||
-                  this.sectionMap[k] === this.props.id
-                ) {
-                  return "";
-                } else {
-                  let translation_key = "";
-                  if (k === "serviceHealthIssue") {
-                    translation_key = JSON.parse(selectedEligibility[k])
-                      ? "GE.has service related health issue"
-                      : "GE.no service related health issue";
-                  } else {
-                    translation_key = selectedEligibility[k];
-                  }
-
-                  return (
-                    <span key={i}>
-                      <span className={comma}>{i === 0 ? "" : ","}</span>
-                      <GuidedExperienceLink
-                        id={"jumpButton" + i}
-                        href="#"
-                        onClick={() =>
-                          this.props.setSection(this.sectionMap[k])
-                        }
-                      >
-                        {t(translation_key)}
-                      </GuidedExperienceLink>
-                    </span>
-                  );
-                }
-              })}
+              {jumpButtons}
             </Grid>
 
             <Grid item xs={12} className={questions}>
@@ -116,13 +134,11 @@ export class GuidedExperience extends Component {
                 arrow={true}
                 onClick={
                   this.props.nextSection === "benefits-directory"
-                    ? () => Router.push(this.props.benefitsDirectoryUrl)
+                    ? () => Router.push(benefitsDirectoryUrl)
                     : () => this.props.setSection(this.props.nextSection)
                 }
               >
-                {this.props.id === "needsQuestion"
-                  ? t("ge.show_results")
-                  : t("next")}{" "}
+                {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
               </Button>
             </Grid>
           </Grid>
@@ -134,12 +150,7 @@ export class GuidedExperience extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals,
-      serviceHealthIssue: reduxState.serviceHealthIssue
-    }
+    reduxState: reduxState
   };
 };
 
@@ -152,10 +163,8 @@ GuidedExperience.propTypes = {
   subtitle: PropTypes.string.isRequired,
   stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
-  store: PropTypes.object,
-  benefitsDirectoryUrl: PropTypes.string,
-  indexURL: PropTypes.string
+  reduxState: PropTypes.object.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(GuidedExperience);

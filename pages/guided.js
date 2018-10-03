@@ -10,14 +10,14 @@ import Cookies from "universal-cookie";
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
+import { showQuestion } from "../utils/common";
 
 export class Guided extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.cookies = new Cookies();
     this.state = {
-      favouriteBenefits: [],
-      section: "patronTypeQuestion"
+      section: this.props.sectionOrder[0]
     };
   }
 
@@ -25,14 +25,13 @@ export class Guided extends Component {
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
       const newState = {
-        section: matches[1] || "patronTypeQuestion"
+        section: matches[1] || this.props.sectionOrder[0]
       };
       this.setState(newState);
     };
 
     const newState = {
-      favouriteBenefits: this.props.favouriteBenefits,
-      section: this.props.url.query.section || "patronTypeQuestion"
+      section: this.props.url.query.section || this.props.sectionOrder[0]
     };
 
     this.setState(newState);
@@ -49,233 +48,100 @@ export class Guided extends Component {
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
-    [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "serviceHealthIssue"
-    ].forEach(selection => {
-      if (this.props[selection] !== "") {
-        href += `&${selection}=${this.props[selection]}`;
-      }
-    });
+    this.props.reduxState.questions
+      .filter(x => x.variable_name !== "needs")
+      .forEach(x => {
+        if (this.props.reduxState[x.variable_name]) {
+          href += `&${x.variable_name}=${
+            this.props.reduxState[x.variable_name]
+          }`;
+        }
+      });
     href += "&lng=" + this.props.t("current-language-code");
     Router.replace(href);
   };
 
   setSection = section => {
     this.setState({ section: section });
-    let sectionMap = {
-      patronTypeQuestion: 1,
-      serviceTypeQuestion: 2,
-      statusAndVitalsQuestion: 3,
-      serviceHealthIssueQuestion: 4,
-      needsQuestion: 5
-    };
-    const { saveQuestionResponse, setSelectedNeeds } = this.props;
-    const setters = [
-      () => saveQuestionResponse("patronType", ""),
-      () => saveQuestionResponse("serviceType", ""),
-      () => saveQuestionResponse("statusAndVitals", ""),
-      () => saveQuestionResponse("serviceHealthIssue", ""),
-      () => setSelectedNeeds({})
-    ];
-    let current_section_index;
-    if (sectionMap[section]) {
-      current_section_index = sectionMap[section];
-    } else {
-      current_section_index = 0;
-    }
-    setters.forEach((setter, i) => {
-      if (i >= current_section_index) {
-        setter();
+    const current_index = this.props.sectionOrder.indexOf(section);
+    this.props.sectionOrder.filter((x, i) => i > current_index).forEach(x => {
+      if (x === "needs") {
+        this.props.saveQuestionResponse("selectedNeeds", {});
+      } else {
+        this.props.saveQuestionResponse(x, "");
       }
     });
   };
 
-  sectionToDisplay = section => {
-    let question, options;
-    const {
-      t,
-      patronType,
-      serviceType,
-      statusAndVitals,
-      selectedNeeds
-    } = this.props;
-
-    let previousSectionNeedsQuestion = "serviceHealthIssueQuestion";
-    if (patronType === "") {
-      previousSectionNeedsQuestion = "patronTypeQuestion";
-    } else if (serviceType === "") {
-      previousSectionNeedsQuestion = "serviceTypeQuestion";
-    } else if (statusAndVitals === "" && serviceType != "WSV (WWII or Korea)") {
-      previousSectionNeedsQuestion = "statusAndVitalsQuestion";
+  getNextSection = (displayable_sections, dynamicStepNumber) => {
+    if (dynamicStepNumber + 1 >= displayable_sections.length) {
+      return "benefits-directory";
+    } else {
+      return displayable_sections[dynamicStepNumber + 1];
     }
+  };
 
-    let indexURL = "/index?lng=" + t("current-language-code");
-
-    let benefitsDirectoryUrl =
-      "/benefits-directory?lng=" + t("current-language-code");
-    if (Object.keys(selectedNeeds).length > 0) {
-      benefitsDirectoryUrl +=
-        "&selectedNeeds=" + Object.keys(selectedNeeds).join();
+  getPrevSection = (displayable_sections, dynamicStepNumber) => {
+    if (dynamicStepNumber === 0) {
+      return "index";
+    } else {
+      return displayable_sections[dynamicStepNumber - 1];
     }
-    [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "serviceHealthIssue"
-    ].forEach(selection => {
-      if (this.props[selection] !== "") {
-        benefitsDirectoryUrl += `&${selection}=${this.props[selection]}`;
-      }
-    });
+  };
 
-    switch (true) {
-      case section === "patronTypeQuestion":
-        return (
-          <GuidedExperience
-            id="patronTypeQuestion"
-            stepNumber={0}
-            nextSection={
-              patronType === "organization"
-                ? "benefits-directory"
-                : patronType === ""
-                  ? "needsQuestion"
-                  : "serviceTypeQuestion"
-            }
-            prevSection="index"
-            benefitsDirectoryUrl={benefitsDirectoryUrl}
-            indexURL={indexURL}
-            setSection={this.setSection}
-            subtitle={t("GE.patronType")}
-            t={t}
-            store={this.props.store}
-          >
-            <GuidedExperienceProfile
-              t={t}
-              selectorType={"patronType"}
-              store={this.props.store}
-            />
-          </GuidedExperience>
-        );
-      case section === "serviceTypeQuestion":
-        return (
-          <GuidedExperience
-            id="serviceTypeQuestion"
-            stepNumber={1}
-            nextSection={
-              serviceType === "WSV (WWII or Korea)" &&
-              patronType === "service-person"
-                ? "serviceHealthIssueQuestion"
-                : serviceType === ""
-                  ? "needsQuestion"
-                  : "statusAndVitalsQuestion"
-            }
-            prevSection="patronTypeQuestion"
-            setSection={this.setSection}
-            subtitle={t("GE.serviceType")}
-            t={t}
-            store={this.props.store}
-          >
-            <GuidedExperienceProfile
-              t={t}
-              selectorType={"serviceType"}
-              store={this.props.store}
-            />
-          </GuidedExperience>
-        );
-      case section === "statusAndVitalsQuestion":
-        question = "statusAndVitals";
-        options = Array.from(
-          new Set(this.props.eligibilityPaths.map(ep => ep[question]))
-        ).filter(st => st !== "na");
-        if (patronType === "service-person") {
-          options.splice(options.indexOf("deceased"), 1);
-        }
-        if (serviceType === "WSV (WWII or Korea)") {
-          options.splice(options.indexOf("stillServing"), 1);
-        }
-        return (
-          <GuidedExperience
-            id="statusAndVitalsQuestion"
-            stepNumber={2}
-            nextSection={
-              statusAndVitals === ""
-                ? "needsQuestion"
-                : "serviceHealthIssueQuestion"
-            }
-            prevSection="serviceTypeQuestion"
-            setSection={this.setSection}
-            subtitle={t("GE." + question)}
-            t={t}
-            store={this.props.store}
-          >
-            <GuidedExperienceProfile
-              t={t}
-              selectorType={"statusAndVitals"}
-              store={this.props.store}
-              options={options}
-            />
-          </GuidedExperience>
-        );
-      case section === "serviceHealthIssueQuestion":
-        return (
-          <GuidedExperience
-            id="serviceHealthIssueQuestion"
-            stepNumber={3}
-            nextSection="needsQuestion"
-            prevSection={
-              serviceType === "WSV (WWII or Korea)"
-                ? "serviceTypeQuestion"
-                : "statusAndVitalsQuestion"
-            }
-            setSection={this.setSection}
-            subtitle={t(
-              this.props.statusAndVitals === "deceased"
-                ? "health issue question deceased"
-                : "health issue question"
-            )}
-            t={t}
-            store={this.props.store}
-          >
-            <GuidedExperienceProfile
-              t={t}
-              selectorType={"serviceHealthIssue"}
-              store={this.props.store}
-              options={["true", "false"]}
-            />
-          </GuidedExperience>
-        );
-      case section === "needsQuestion":
-        return (
-          <GuidedExperience
-            id="needsQuestion"
-            stepNumber={4}
-            t={t}
-            nextSection="benefits-directory"
-            benefitsDirectoryUrl={benefitsDirectoryUrl}
-            prevSection={previousSectionNeedsQuestion}
-            subtitle={t("B3.What do you need help with?")}
-            setSection={this.setSection}
-            store={this.props.store}
-          >
-            <GuidedExperienceNeeds t={t} store={this.props.store} />
-          </GuidedExperience>
-        );
+  getSubtitle = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["guided_experience_english"];
+    } else {
+      return question["guided_experience_french"];
     }
   };
 
   render() {
+    const { t, i18n, store, reduxState, sectionOrder } = this.props;
+    const { section } = this.state;
+    const displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxState)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(section);
+    const question = reduxState.questions.filter(
+      x => x.variable_name === section
+    )[0];
     return (
       <Layout
-        i18n={this.props.i18n}
-        t={this.props.t}
+        i18n={i18n}
+        t={t}
         hideNoscript={false}
         showRefreshCache={false}
-        title={this.props.t("titles.guided_experience")}
+        title={t("titles.guided_experience")}
       >
-        {this.sectionToDisplay(this.state.section)}
+        <GuidedExperience
+          id={section}
+          stepNumber={sectionOrder.indexOf(section)}
+          nextSection={this.getNextSection(
+            displayable_sections,
+            dynamicStepNumber
+          )}
+          prevSection={this.getPrevSection(
+            displayable_sections,
+            dynamicStepNumber
+          )}
+          setSection={this.setSection}
+          subtitle={this.getSubtitle(question)}
+          t={t}
+          store={store}
+        >
+          {section === "needs" ? (
+            <GuidedExperienceNeeds t={t} selectorType={section} store={store} />
+          ) : (
+            <GuidedExperienceProfile
+              t={t}
+              selectorType={section}
+              store={store}
+              options={question["multiple_choice_options"]}
+            />
+          )}
+        </GuidedExperience>
       </Layout>
     );
   }
@@ -288,44 +154,27 @@ const mapDispatchToProps = dispatch => {
         type: "SAVE_QUESTION_RESPONSE",
         data: { [question]: response }
       });
-    },
-    setSelectedNeeds: needsObject => {
-      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
     }
   };
 };
 
 const mapStateToProps = reduxState => {
   return {
-    benefits: reduxState.benefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples,
-    favouriteBenefits: reduxState.favouriteBenefits,
-    needs: reduxState.needs,
-    patronType: reduxState.patronType,
-    serviceType: reduxState.serviceType,
-    statusAndVitals: reduxState.statusAndVitals,
-    serviceHealthIssue: reduxState.serviceHealthIssue,
-    selectedNeeds: reduxState.selectedNeeds
+    reduxState: reduxState,
+    selectedNeeds: reduxState.selectedNeeds,
+    sectionOrder: reduxState.questions.map(x => x.variable_name)
   };
 };
 
 Guided.propTypes = {
-  benefits: PropTypes.array.isRequired,
+  reduxState: PropTypes.object,
+  sectionOrder: PropTypes.array.isRequired,
   dispatch: PropTypes.func,
-  eligibilityPaths: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
-  needs: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  favouriteBenefits: PropTypes.array.isRequired,
-  patronType: PropTypes.string.isRequired,
-  serviceType: PropTypes.string.isRequired,
-  statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 

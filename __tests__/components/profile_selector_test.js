@@ -5,6 +5,11 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import questionClearLogicFixture from "../fixtures/question_clear_logic";
+
+jest.unmock("../../utils/common");
+const common = require.requireActual("../../utils/common");
+
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 import configureStore from "redux-mock-store";
@@ -15,22 +20,19 @@ describe("ProfileSelector", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
-      theme: {}
+      t: key => key
     };
     reduxState = {
+      patronType: "family",
+      profileQuestions: questionsFixture.filter(
+        q => q.variable_name !== "needs"
+      ),
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      serviceType: "",
-      patronType: "",
-      serviceHealthIssue: "",
-      statusAndVitals: "",
-      setPatronType: jest.fn(),
-      setServiceType: jest.fn(),
-      setStatusAndVitals: jest.fn(),
-      setServiceHealthIssue: jest.fn()
+      saveQuestionResponse: jest.fn()
     };
     mockStore = configureStore();
     props.store = mockStore(reduxState);
@@ -42,21 +44,31 @@ describe("ProfileSelector", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has a patronType filter", () => {
+  it("has a RadioSelector", () => {
     expect(
       mount(<ProfileSelector {...props} {...reduxState} />)
-        .find(".patronTypeFilter")
+        .find("#patronTypeRadioSelector")
         .first().length
     ).toEqual(1);
   });
 
-  it("has the correct radio button text", () => {
-    const text = mount(<ProfileSelector {...props} {...reduxState} />)
-      .find(".patronTypeFilter")
-      .first()
-      .find("FormControlLabel")
-      .first()
-      .text();
-    expect(text).toEqual("service-person");
+  describe("componentDidUpdate function", () => {
+    it("doesn't clear visable questions", () => {
+      common.showQuestion = jest.fn(() => true);
+      const profileSelector = mount(
+        <ProfileSelector {...props} {...reduxState} />
+      ).instance();
+      profileSelector.componentDidUpdate();
+      expect(reduxState.saveQuestionResponse).not.toBeCalled();
+    });
+
+    it("clears hidden questions", () => {
+      common.showQuestion = jest.fn(() => false);
+      const profileSelector = mount(
+        <ProfileSelector {...props} {...reduxState} />
+      ).instance();
+      profileSelector.componentDidUpdate();
+      expect(reduxState.saveQuestionResponse).toBeCalledWith("patronType", "");
+    });
   });
 });

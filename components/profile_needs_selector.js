@@ -45,25 +45,21 @@ export class ProfileNeedsSelector extends Component {
 
   countSelected = () => {
     let selectedProfileFilters = 0;
-    if (
-      this.props.selectedPatronType !== "" ||
-      this.props.selectedServiceType !== "" ||
-      this.props.selectedStatusAndVitals !== "" ||
-      this.props.selectedServiceHealthIssue !== ""
-    ) {
-      selectedProfileFilters = 1;
-    }
+    this.props.profileQuestions.forEach(question => {
+      if (this.props.responses[question.variable_name]) {
+        selectedProfileFilters = 1;
+      }
+    });
     return (
       selectedProfileFilters + Object.values(this.props.selectedNeeds).length
     );
   };
 
   clearFilters = () => {
-    this.props.saveQuestionResponse("patronType", "");
-    this.props.saveQuestionResponse("serviceType", "");
-    this.props.saveQuestionResponse("statusAndVitals", "");
-    this.props.saveQuestionResponse("serviceHealthIssue", "");
-    this.props.setSelectedNeeds({});
+    this.props.profileQuestions.forEach(q => {
+      this.props.saveQuestionResponse(q.variable_name, "");
+    });
+    this.props.saveQuestionResponse("selectedNeeds", {});
   };
 
   render() {
@@ -72,8 +68,7 @@ export class ProfileNeedsSelector extends Component {
       <Paper className={root}>
         <div variant="title" className={filterTitle}>
           {t("filters")}{" "}
-          {JSON.stringify(this.props.selectedNeeds) !== "{}" ||
-          this.props.patronType !== "" ? (
+          {this.countSelected() > 0 ? (
             <HeaderButton
               id={"ClearFilters"}
               className={clearButton}
@@ -102,45 +97,37 @@ export class ProfileNeedsSelector extends Component {
   }
 }
 
-const mapDispatchToProps1 = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
     saveQuestionResponse: (question, response) => {
       dispatch({
         type: "SAVE_QUESTION_RESPONSE",
         data: { [question]: response }
       });
-    },
-    setSelectedNeeds: needsObject => {
-      dispatch({ type: "SET_SELECTED_NEEDS", data: needsObject });
     }
   };
 };
 
 const mapStateToProps = reduxState => {
   return {
-    selectedNeeds: reduxState.selectedNeeds,
-    selectedPatronType: reduxState.patronType,
-    selectedServiceType: reduxState.serviceType,
-    selectedStatusAndVitals: reduxState.statusAndVitals,
-    selectedServiceHealthIssue: reduxState.serviceHealthIssue,
-    patronType: reduxState.patronType
+    profileQuestions: reduxState.questions.filter(
+      q => q.variable_name !== "needs"
+    ),
+    responses: reduxState,
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
 ProfileNeedsSelector.propTypes = {
-  selectedNeeds: PropTypes.object.isRequired,
-  patronType: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired,
+  profileQuestions: PropTypes.array.isRequired,
+  responses: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
-  setSelectedNeeds: PropTypes.func.isRequired,
-  store: PropTypes.object,
-  selectedPatronType: PropTypes.string.isRequired,
-  selectedServiceType: PropTypes.string.isRequired,
-  selectedStatusAndVitals: PropTypes.string.isRequired,
-  selectedServiceHealthIssue: PropTypes.string.isRequired
+  selectedNeeds: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps1
+  mapDispatchToProps
 )(ProfileNeedsSelector);
