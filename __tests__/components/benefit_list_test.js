@@ -28,6 +28,7 @@ describe("BenefitList", () => {
 
     mockStore = configureStore();
     reduxData = {
+      cookiesDisabled: false,
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,

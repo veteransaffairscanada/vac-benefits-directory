@@ -64,6 +64,7 @@ class HeaderButton extends Component {
         }
         id={"a-" + id}
         onClick={buttonOnClick}
+        onMouseOver={this.props.onMouseOver}
         {...otherProps}
       >
         {arrow === "back" ? <ArrowBack /> : null}
@@ -88,6 +89,7 @@ HeaderButton.propTypes = {
   arrow: PropTypes.string,
   label: PropTypes.object,
   onClick: PropTypes.func,
+  onMouseOver: PropTypes.func,
   disabled: PropTypes.bool
 };
 

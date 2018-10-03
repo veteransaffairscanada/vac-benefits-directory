@@ -44,6 +44,7 @@ describe("AllBenefits", () => {
     _mountedAllBenefits = undefined;
     mockStore = configureStore();
     reduxData = {
+      cookiesDisabled: false,
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       examples: examplesFixture,
