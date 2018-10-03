@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import Print from "@material-ui/icons/Print";
 import Bookmark from "@material-ui/icons/Bookmark";
 import BenefitList from "../components/benefit_list";
@@ -22,6 +18,7 @@ import SearchBox from "./search_box";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
+import Dropdown from "./dropdown";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -33,16 +30,6 @@ const container2 = css`
   margin-right: 15px;
   margin-left: 15px;
 `;
-const formControl = css`
-  min-width: 120;
-`;
-const sortByBox = css`
-  background-color: white;
-  padding: 6px 10px 6px 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 1px;
-`;
 const title = css`
   padding-bottom: 15px;
 `;
@@ -51,10 +38,6 @@ const topMatter = css`
   border-bottom: solid 1px lightgrey;
   width: 100%;
   padding-bottom: 20px;
-`;
-const sortByLabel = css`
-  color: #434343 !important;
-  vertical-align: text-top;
 `;
 const anchors = css`
   margin-right: 20px;
@@ -178,28 +161,17 @@ export class BB extends Component {
                     )}
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <InputLabel
-                      htmlFor="sortBySelector"
-                      className={sortByLabel}
+                    <Dropdown
+                      value={this.props.sortBy}
+                      onChange={this.handleSortByChange}
+                      label={t("B3.Sort By")}
+                      id="sortBySelector"
                     >
-                      {t("B3.Sort By")}
-                    </InputLabel>
-                    &nbsp;&nbsp;
-                    <FormControl id="sortBySelector" className={formControl}>
-                      <Select
-                        value={this.props.sortBy}
-                        onChange={this.handleSortByChange}
-                        className={sortByBox}
-                        disableUnderline={true}
-                      >
-                        <MenuItem value={"relevance"}>
-                          {t("B3.Popularity")}
-                        </MenuItem>
-                        <MenuItem value={"alphabetical"}>
-                          {t("B3.Alphabetical")}
-                        </MenuItem>
-                      </Select>
-                    </FormControl>
+                      <option value="relevance">{t("B3.Popularity")}</option>
+                      <option value="alphabetical">
+                        {t("B3.Alphabetical")}
+                      </option>
+                    </Dropdown>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <SearchBox

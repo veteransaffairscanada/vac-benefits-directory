@@ -95,7 +95,7 @@ describe("BB", () => {
   });
 
   it("has a sortBy selector", () => {
-    expect(shallow_BB().find("#sortBySelector").length).toEqual(1);
+    expect(mounted_BB().find("#sortBySelector").length).toEqual(2);
   });
 
   it("has the ProfileSelector component", () => {
