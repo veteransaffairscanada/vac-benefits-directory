@@ -14,6 +14,7 @@ import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
 import OneLiner from "./typography/one_liner";
 import Header4 from "./typography/header4";
 import Button from "./button";
+import { globalTheme } from "../theme";
 
 const cardBody = css`
   padding: 25px !important;
@@ -23,6 +24,10 @@ const cardBody = css`
 const cardDescriptionText = css`
   padding-top: 26px;
   padding-bottom: 30px;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    padding-top: 14px;
+    padding-bottom: 20px;
+  }
 `;
 const root = css`
   width: 100%;
