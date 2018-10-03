@@ -9,6 +9,8 @@ import needsFixture from "../fixtures/needs";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
+jest.mock("react-ga");
+
 describe("BenefitCard", () => {
   const mocked_fn = jest.fn();
   mocked_fn.mockReturnValue({ focus: jest.fn() });
@@ -42,6 +44,7 @@ describe("BenefitCard", () => {
     };
     mockStore = configureStore();
     reduxData = {
+      cookiesDisabled: false,
       needs: needsFixture,
       selectedNeeds: {},
       benefits: benefitsFixture,

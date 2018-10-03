@@ -12,6 +12,8 @@ describe("FavouriteButton", () => {
 
   beforeEach(() => {
     props = {
+      cookiesDisabled: false,
+      setCookiesDisabled: jest.fn(),
       t: key => key,
       favouriteBenefits: ["0"],
       saveFavourites: jest.fn(),
