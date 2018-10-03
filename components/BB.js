@@ -156,10 +156,16 @@ export class BB extends Component {
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <Dropdown
-                      t={t}
-                      sortBy={this.props.sortBy}
-                      handleSortByChange={this.handleSortByChange}
-                    />
+                      value={this.props.sortBy}
+                      onChange={this.handleSortByChange}
+                      label={t("B3.Sort By")}
+                      id="sortBySelector"
+                    >
+                      <option value="relevance">{t("B3.Popularity")}</option>
+                      <option value="alphabetical">
+                        {t("B3.Alphabetical")}
+                      </option>
+                    </Dropdown>
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <SearchBox
