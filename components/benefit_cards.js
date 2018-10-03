@@ -29,6 +29,9 @@ const cardDescriptionText = css`
     padding-bottom: 20px;
   }
 `;
+const buttonRow = css`
+  margin-top: 18px;
+`;
 const root = css`
   width: 100%;
 `;
@@ -102,7 +105,7 @@ export class BenefitCard extends Component {
               ))}
             </div>
 
-            <Grid container>
+            <Grid container className={buttonRow}>
               {this.props.showFavourite ? (
                 <Grid item xs={4}>
                   <FavouriteButton

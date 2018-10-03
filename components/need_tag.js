@@ -10,6 +10,9 @@ const needsTag = css`
   border-radius: 1;
   display: inline-flex;
   padding: 4px 8px;
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    font-size: 12px;
+  }
 `;
 
 export class NeedTag extends Component {
