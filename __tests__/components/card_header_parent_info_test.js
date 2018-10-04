@@ -3,13 +3,14 @@ import { mount } from "enzyme";
 import { CardHeaderParentInfo } from "../../components/card_header_parent_info";
 import benefitsFixture from "../fixtures/benefits";
 const { axe, toHaveNoViolations } = require("jest-axe");
+import translate from "../fixtures/translate";
 expect.extend(toHaveNoViolations);
 
 describe("CardHeaderParentInfo", () => {
   let props;
   beforeEach(() => {
     props = {
-      t: () => "en",
+      t: translate,
       benefit: benefitsFixture[1],
       parentBenefits: [benefitsFixture[0]]
     };
@@ -22,7 +23,7 @@ describe("CardHeaderParentInfo", () => {
 
   it("contains the name", () => {
     expect(mount(<CardHeaderParentInfo {...props} />).text()).toContain(
-      benefitsFixture[1].vacNameEn
+      benefitsFixture[0].vacNameEn
     );
   });
 

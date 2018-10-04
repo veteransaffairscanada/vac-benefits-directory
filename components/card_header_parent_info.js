@@ -59,7 +59,7 @@ export class CardHeaderParentInfo extends Component {
     const { parentBenefits, benefit, t } = this.props;
 
     return (
-      <React.Fragment>
+      <span>
         <span>{t("benefits_b.card_header_1") + " "}</span>
         {this.get_benefit_a_elements(parentBenefits)}{" "}
         <span>
@@ -68,7 +68,7 @@ export class CardHeaderParentInfo extends Component {
             this.benefitTitle(benefit) +
             "."}
         </span>
-      </React.Fragment>
+      </span>
     );
   }
 }
