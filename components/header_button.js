@@ -29,6 +29,23 @@ const small = css`
 `;
 
 class HeaderButton extends Component {
+  buttonOnClick = (e, href, target, useLink, onClick) => {
+    if (href) {
+      if (target) {
+        window.open(href, target);
+      } else {
+        if (useLink) {
+          Router.push(href);
+        } else {
+          window.location.href = href;
+        }
+      }
+    }
+    if (onClick) {
+      onClick(e);
+    }
+  };
+
   render() {
     const {
       id,
@@ -44,26 +61,6 @@ class HeaderButton extends Component {
       otherProps
     } = this.props;
 
-    let buttonOnClick;
-    if (href) {
-      buttonOnClick = () => {
-        if (target) {
-          window.open(href, target);
-        } else {
-          if (useLink) {
-            Router.push(href);
-          } else {
-            window.location.href = href;
-          }
-        }
-        if (onClick) {
-          onClick();
-        }
-      };
-    } else {
-      buttonOnClick = onClick;
-    }
-
     return (
       <button
         disabled={disabled}
@@ -71,7 +68,7 @@ class HeaderButton extends Component {
           size === "small" ? cx(style, small, className) : cx(style, className)
         }
         id={"a-" + id}
-        onClick={buttonOnClick}
+        onClick={e => this.buttonOnClick(e, href, target, useLink, onClick)}
         onMouseOver={this.props.onMouseOver}
         {...otherProps}
       >
