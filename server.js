@@ -78,11 +78,12 @@ Promise.resolve(getAllData()).then(allData => {
           // handle URL validation
           let urlCache = {};
           server.post("/checkURL", (req, res) => {
-            Promise.resolve(checkURL(req.body, urlCache, data)).then(
+            const benefitId = encodeURIComponent(req.body.id);
+            Promise.resolve(checkURL(benefitId, urlCache, data)).then(
               newUrls => {
                 urlCache = newUrls;
                 res.setHeader("Content-Type", "application/json");
-                res.send(JSON.stringify(urlCache[req.body.id]));
+                res.send(JSON.stringify(urlCache[benefitId]));
               }
             );
           });

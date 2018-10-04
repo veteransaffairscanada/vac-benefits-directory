@@ -3,12 +3,12 @@ require("isomorphic-fetch");
 exports.checkURL = undefined;
 
 var checkURL = (exports.checkURL = async function checkURL(
-  payload,
+  benefitId,
   urlCache,
   data
 ) {
   // Find the benefit that needs its URLs checked
-  let benefit = data.benefits.find(b => b.id === payload.id);
+  let benefit = data.benefits.find(b => b.id === benefitId);
   if (typeof benefit !== "undefined") {
     // Check if benefit ID is in cache and has not yet expired
     if (urlCache[benefit.id] && urlCache[benefit.id].timestamp > Date.now()) {

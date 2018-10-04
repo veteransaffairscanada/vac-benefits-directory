@@ -306,7 +306,7 @@ DataValidation.propTypes = {
   examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  timestamp: PropTypes.object,
+  timestamp: PropTypes.number,
   translations: PropTypes.array.isRequired,
   areaOffices: PropTypes.array.isRequired
 };
