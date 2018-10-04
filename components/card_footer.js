@@ -6,7 +6,6 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
 import { cx, css } from "react-emotion";
-import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 
@@ -15,27 +14,34 @@ const headerDesc = css`
   color: #434343;
 `;
 const ExpansionPanelSummaryCss = css`
-  padding-left: 9px !important;
+  padding-left: ${globalTheme.cardPadding} !important;
+  padding-right: ${globalTheme.cardPadding} !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
   border-radius: 0px;
   border-top: 1px solid #f5f5f5 !important;
   position: relative !important;
+  min-height: 0px !important;
+  div {
+    margin: 0px !important;
+  }
+  div[role="button"] {
+    padding: 0px 20px 0px 20px !important;
+  }
 `;
 const cardBottomTitle = css`
-  padding-left: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const cardBottomFamilyTitle = css`
-  margin-left: 9px;
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 const ExpansionPanelCss = css`
-  margin-bottom: 0px !important;
-  margin-top: 0px !important;
+  margin: 0px !important;
 `;
 const ExpansionPanelOpen = css`
   background-color: ${globalTheme.colour.cardGrey} !important;
@@ -46,9 +52,9 @@ const ExpansionPanelClosed = css`
   }
 `;
 const collapse = css`
-  padding-top: 25px !important;
-  padding-left: 15px !important;
   background-color: ${globalTheme.colour.cardGrey} !important;
+  padding-left: ${globalTheme.cardPadding} !important;
+  padding-right: ${globalTheme.cardPadding} !important;
 `;
 const children = css`
   width: 100%;
@@ -165,7 +171,7 @@ export class CardFooter extends Component {
           </ExpansionPanelSummary>
 
           <ExpansionPanelDetails timeout="auto" className={collapse}>
-            <Grid item xs={12}>
+            <div>
               {veteranBenefits.length > 0 ? (
                 <div className={children}>
                   <div>
@@ -179,7 +185,6 @@ export class CardFooter extends Component {
                         store={this.props.store}
                       />
                     ))}
-                    <br />
                     <br />
                   </div>
                 </div>
@@ -207,7 +212,7 @@ export class CardFooter extends Component {
                   </div>
                 </div>
               ) : null}
-            </Grid>
+            </div>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       );

@@ -13,6 +13,8 @@ const bookmarkButton = css`
   margin-left: -5px !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
+  padding-top: 0.526315em;
+  padding-bottom: 0.526315em;
 `;
 const hideSmall = css`
   @media only screen and (max-width: ${globalTheme.max.sm}) {
@@ -65,7 +67,7 @@ const tooltip = css`
       border-style: solid;
       border-color: ${
         globalTheme.colour.paleGrey
-      } transparent transparent transparent;  
+      } transparent transparent transparent;
   }
 `;
 
