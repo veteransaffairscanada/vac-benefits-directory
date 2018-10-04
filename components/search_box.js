@@ -9,22 +9,22 @@ const SearchBoxWrapper = styled("div")({
   boxSizing: "border-box",
   display: "flex",
   width: "100%",
-  background: globalTheme.colour.white
+  background: globalTheme.colour.white,
+  boxShadow: globalTheme.boxShadowMui
 });
 
 const InputSearchBox = styled("input")({
   width: "100%",
-  height: "40px",
-  padding: "6px",
+  height: "44px",
+  padding: "9px 19px 8px 19px",
   margin: 0,
-  border: `solid 1px ` + globalTheme.colour.warmGrey,
-  borderRight: 0,
+  border: 0,
   boxSizing: "border-box",
   fontFamily: globalTheme.fontFamily,
   fontWeight: 400,
   textTransform: "none",
-  fontSize: "16px",
-  lineHeight: "1.75",
+  fontSize: "18px",
+  lineHeight: "1.5",
   background: globalTheme.colour.white,
   borderRadius: 0,
   WebkitAppearance: "none",
@@ -47,7 +47,7 @@ const SearchButton = styled("button")({
   position: "relative",
   padding: "10px",
   width: "45px",
-  height: "40px",
+  height: "44px",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "2px 50%",
   ":focus": {
@@ -65,9 +65,8 @@ const DisabledSearchButton = styled("button")({
   position: "relative",
   padding: "10px",
   width: "45px",
-  height: "40px",
-  border: `solid 1px ` + globalTheme.colour.warmGrey,
-  borderLeft: 0,
+  height: "44px",
+  border: 0,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "2px 50%"
 });
@@ -99,7 +98,7 @@ const SearchBox = ({
       {...otherProps}
     />
     {disableButton ? (
-      <DisabledSearchButton title={ariaLabel}>
+      <DisabledSearchButton title={ariaLabel} tabIndex="-1">
         <SearchIcon />
       </DisabledSearchButton>
     ) : (
