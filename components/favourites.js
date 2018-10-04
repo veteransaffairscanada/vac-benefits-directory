@@ -13,7 +13,7 @@ import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
 import HeaderButton from "./header_button";
 import Body from "./typography/body";
-import Paper from '@material-ui/core/Paper';
+import Paper from "@material-ui/core/Paper";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
@@ -44,15 +44,15 @@ const topMatter = css`
 `;
 
 const bgWhite = css`
-padding: 30px;
-@media only screen and (min-width: ${globalTheme.max.sm}) {
-  margin-left: 11px !important;
-}
-@media only screen and (max-width: ${globalTheme.max.sm}) {
-  margin-right: -32px;
-  margin-left: -32px;
-  margin-bottom: -25px;
-}
+  padding: 30px;
+  @media only screen and (min-width: ${globalTheme.max.sm}) {
+    margin-left: 11px !important;
+  }
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    margin-right: -32px;
+    margin-left: -32px;
+    margin-bottom: -25px;
+  }
 `;
 
 export class Favourites extends Component {
@@ -102,7 +102,8 @@ export class Favourites extends Component {
             <HeaderButton
               id="backButton"
               className={backLink}
-              href={this.get_link("benefits-directory")}
+              useLink
+              href={this.get_link("/benefits-directory")}
               arrow="back"
             >
               {t("favourites.back_link")}
@@ -151,60 +152,62 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-          <Paper className={bgWhite}>
-            <HeaderButton
-              href={this.props.printUrl}
-              target="print_page"
-              id="printButton"
-            >
-              <Print /> {t("Print")}
-            </HeaderButton>
-
-            <Header2 className={contactUsTitle}>
-              {t("favourites.contact_us")}
-            </Header2>
-            <p>
-              <Link href={this.get_link("map")}>
-                <a>{t("favourites.visit_prompt")}</a>
-              </Link>
-            </p>
-
-            <Body>{t("favourites.print_instructions")}</Body>
-
-            <hr />
-
-            <p>
-              <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
-            </p>
-
-            <Body>{t("favourites.call_time")}</Body>
-
-            <hr />
-
-            <p>
-              <a href={"mailto:" + t("contact.email")}>{t("contact.email")}</a>
-            </p>
-
-            <Body>{t("favourites.email_disclaimer")}</Body>
-
-            <hr />
-
-            <Header2 className={contactUsTitle}>
-              {t("favourites.apply_prompt")}
-            </Header2>
-
-            <Body>
-              <a
-                href={t("contact.my_vac_link")}
-                target="_blank"
-                rel="noopener noreferrer"
+            <Paper className={bgWhite}>
+              <HeaderButton
+                href={this.props.printUrl}
+                target="print_page"
+                id="printButton"
               >
-                {t("favourites.login_link")}
-              </a>
-              &nbsp;
-              {t("favourites.login_prompt")}
-            </Body>
-          </Paper>
+                <Print /> {t("Print")}
+              </HeaderButton>
+
+              <Header2 className={contactUsTitle}>
+                {t("favourites.contact_us")}
+              </Header2>
+              <p>
+                <Link href={this.get_link("map")}>
+                  <a>{t("favourites.visit_prompt")}</a>
+                </Link>
+              </p>
+
+              <Body>{t("favourites.print_instructions")}</Body>
+
+              <hr />
+
+              <p>
+                <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
+              </p>
+
+              <Body>{t("favourites.call_time")}</Body>
+
+              <hr />
+
+              <p>
+                <a href={"mailto:" + t("contact.email")}>
+                  {t("contact.email")}
+                </a>
+              </p>
+
+              <Body>{t("favourites.email_disclaimer")}</Body>
+
+              <hr />
+
+              <Header2 className={contactUsTitle}>
+                {t("favourites.apply_prompt")}
+              </Header2>
+
+              <Body>
+                <a
+                  href={t("contact.my_vac_link")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t("favourites.login_link")}
+                </a>
+                &nbsp;
+                {t("favourites.login_prompt")}
+              </Body>
+            </Paper>
           </Grid>
         </Grid>
       </Container>
