@@ -20,73 +20,38 @@ describe("BenefitCardHeader", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("contains the name", () => {
-    expect(mount(<BenefitCardHeader {...props} />).text()).toContain(
-      benefitsFixture[1].vacNameEn
-    );
+  it("renders CardHeaderParentInfo if there are parent benefits", () => {
+    props.benefit = benefitsFixture[1];
+    expect(
+      mount(<BenefitCardHeader {...props} />).find("CardHeaderParentInfo")
+        .length
+    ).toEqual(1);
   });
 
-  it("has a correctly configured external link <a>", () => {
-    expect(
-      mount(<BenefitCardHeader {...props} />)
-        .find("a")
-        .prop("target")
-    ).toEqual("_blank");
-    expect(
-      mount(<BenefitCardHeader {...props} />)
-        .find("a")
-        .prop("href")
-    ).toEqual(benefitsFixture[0].benefitPageEn);
-    expect(
-      mount(<BenefitCardHeader {...props} />)
-        .find("a")
-        .text()
-    ).toEqual(benefitsFixture[0].vacNameEn);
-  });
-
-  it("no header is present if there are no parent benefits", () => {
+  it("does not render CardHeaderParentInfo if there are parent benefits", () => {
     props.benefit = benefitsFixture[0];
-    expect(mount(<BenefitCardHeader {...props} />).html()).toEqual(null);
+    expect(
+      mount(<BenefitCardHeader {...props} />).find("CardHeaderParentInfo")
+        .length
+    ).toEqual(0);
   });
 
-  it("header is present if benefit has parents and requires gateway", () => {
-    expect(mount(<BenefitCardHeader {...props} />).html()).not.toEqual(null);
+  it("renders CardHeaderImportantInfo if there is a note", () => {
+    props.benefit.noteEn = "noteEn";
+    props.benefit.noteFr = "noteFr";
+    expect(
+      mount(<BenefitCardHeader {...props} />).find("CardHeaderImportantInfo")
+        .length
+    ).toEqual(1);
   });
 
-  describe("when language is French", () => {
-    beforeEach(() => {
-      props.t = () => "fr";
-    });
+  it("does not render CardHeaderImportantInfo if there is no note", () => {
+    props.benefit.noteEn = undefined;
+    props.benefit.noteFr = undefined;
 
-    it("contains the French name", () => {
-      expect(mount(<BenefitCardHeader {...props} />).text()).toContain(
-        benefitsFixture[0].vacNameFr
-      );
-    });
-
-    it("has an <a> with the French link", () => {
-      expect(
-        mount(<BenefitCardHeader {...props} />)
-          .find("a")
-          .prop("href")
-      ).toEqual(benefitsFixture[0].benefitPageFr);
-      expect(
-        mount(<BenefitCardHeader {...props} />)
-          .find("a")
-          .text()
-      ).toEqual(benefitsFixture[0].vacNameFr);
-    });
-  });
-
-  it("clicking link logs an exit event", () => {
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    mount(<BenefitCardHeader {...props} />)
-      .find("a")
-      .simulate("click");
-    expect(analytics.logEvent).toBeCalledWith(
-      "Exit",
-      benefitsFixture[0].benefitPageEn
-    );
+    expect(
+      mount(<BenefitCardHeader {...props} />).find("CardHeaderImportantInfo")
+        .length
+    ).toEqual(0);
   });
 });
