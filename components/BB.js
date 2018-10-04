@@ -108,6 +108,7 @@ export class BB extends Component {
               <Grid container spacing={24}>
                 <Grid item xs={12} md={9}>
                   <HeaderButton
+                    useLink
                     className={anchors}
                     href={this.props.favouritesUrl}
                   >
