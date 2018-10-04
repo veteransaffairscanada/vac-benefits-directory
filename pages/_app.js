@@ -19,11 +19,31 @@ export default withRedux(initStore)(
         });
       }
 
+      // this has to be refactored
+      // unfortunately when this runs, currentReduxState.questions is empty
+      const profileQuestions = [
+        "patronType",
+        "serviceType",
+        "statusAndVitals",
+        "serviceHealthIssue"
+      ];
+
+      profileQuestions.forEach(q => {
+        if (ctx.query[q] && ctx.query[q] !== currentReduxState[q]) {
+          ctx.store.dispatch({
+            type: "SAVE_QUESTION_RESPONSE",
+            data: { [q]: ctx.query[q] }
+          });
+        }
+        if (!ctx.query[q] && currentReduxState[q] !== "") {
+          ctx.store.dispatch({
+            type: "SAVE_QUESTION_RESPONSE",
+            data: { [q]: "" }
+          });
+        }
+      });
+
       let queryParams = [
-        { key: "patronType", reducer: "SET_PATRON_TYPE", default: "" },
-        { key: "serviceType", reducer: "SET_SERVICE_TYPE", default: "" },
-        { key: "statusAndVitals", reducer: "SET_STATUS_TYPE", default: "" },
-        { key: "serviceHealthIssue", reducer: "SET_HEALTH_ISSUE", default: "" },
         { key: "searchString", reducer: "SET_SEARCH_STRING", default: "" },
         { key: "sortBy", reducer: "SET_SORT_BY", default: "relevance" }
       ];
