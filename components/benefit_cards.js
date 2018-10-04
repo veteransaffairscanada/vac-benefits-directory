@@ -10,7 +10,6 @@ import NeedTag from "./need_tag";
 import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
-import BenefitCardHeaderMoreInfo from "./benefit_card_additional_info";
 import OneLiner from "./typography/one_liner";
 import Header4 from "./typography/header4";
 import Button from "./button";
@@ -67,11 +66,6 @@ export class BenefitCard extends Component {
         <div className={root}>
           <Paper className={cardBody}>
             <BenefitCardHeader
-              benefit={benefit}
-              t={t}
-              store={this.props.store}
-            />
-            <BenefitCardHeaderMoreInfo
               benefit={benefit}
               t={t}
               store={this.props.store}
