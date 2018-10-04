@@ -11,9 +11,13 @@ const root = css`
   margin-left: 10px;
 `;
 const scrollingDiv = css`
+  box-sizing: border-box;
   margin-top: ${globalTheme.marginTop};
   margin-bottom: ${globalTheme.marginTop};
-  height: 406px;
+  height: 750px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    height: 400px;
+  }
   width: 100%;
   overflow-y: scroll;
 `;
