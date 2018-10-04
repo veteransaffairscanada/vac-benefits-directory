@@ -33,12 +33,10 @@ class HeaderButton extends Component {
     if (href) {
       if (target) {
         window.open(href, target);
+      } else if (useLink) {
+        Router.push(href);
       } else {
-        if (useLink) {
-          Router.push(href);
-        } else {
-          window.location.href = href;
-        }
+        window.location.assign(href);
       }
     }
     if (onClick) {
