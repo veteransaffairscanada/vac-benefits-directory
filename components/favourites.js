@@ -7,7 +7,7 @@ import { getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
 import Link from "next/link";
-import { css } from "react-emotion";
+import { css, cx } from "react-emotion";
 import Container from "./container";
 import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
@@ -18,15 +18,14 @@ import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 
-const backLink = css`
-  margin-bottom: 15px;
-  margin-left: -10px;
-`;
 const bookmarkCSS = css`
   font-size: 70px !important;
 `;
 const contactUsTitle = css`
   margin: 20px 0;
+`;
+const right = css`
+  text-align: right;
 `;
 const emptyList = css`
   margin-top: 20px;
@@ -38,11 +37,12 @@ const outerGrid = css`
   padding-left: 16px;
   padding-right: 16px;
 `;
-const topMatter = css`
-  margin-bottom: 25px !important;
+const buttons = css`
   margin-top: 30px !important;
 `;
-
+const topMatter = css`
+  margin-bottom: 25px !important;
+`;
 const bgWhite = css`
   padding: 30px;
   @media only screen and (min-width: ${globalTheme.max.sm}) {
@@ -98,17 +98,27 @@ export class Favourites extends Component {
     return (
       <Container id="favourites">
         <Grid className={outerGrid} container spacing={24}>
-          <Grid item xs={12} className={topMatter}>
+          <Grid item xs={6} className={buttons}>
             <HeaderButton
               id="backButton"
-              className={backLink}
               useLink
               href={this.get_link("/benefits-directory")}
               arrow="back"
             >
               {t("favourites.back_link")}
             </HeaderButton>
+          </Grid>
+          <Grid item xs={6} className={cx(buttons, right)}>
+            <HeaderButton
+              href={this.props.printUrl}
+              target="print_page"
+              id="printButton"
+            >
+              <Print /> {t("Print")}
+            </HeaderButton>
+          </Grid>
 
+          <Grid item xs={12} className={topMatter}>
             <Header1 className={"BenefitsCounter"}>
               {t("favourites.saved_benefits", { x: filteredBenefits.length })}
             </Header1>
@@ -153,14 +163,6 @@ export class Favourites extends Component {
           </Grid>
           <Grid item md={4} xs={12}>
             <Paper className={bgWhite}>
-              <HeaderButton
-                href={this.props.printUrl}
-                target="print_page"
-                id="printButton"
-              >
-                <Print /> {t("Print")}
-              </HeaderButton>
-
               <Header2 className={contactUsTitle}>
                 {t("favourites.contact_us")}
               </Header2>
