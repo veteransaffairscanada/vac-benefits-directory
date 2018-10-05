@@ -66,12 +66,17 @@ const StyledButton = styled("button")(
   ({ isBig, hasArrow }) => ({
     fontSize: isBig ? "24px" : undefined,
     lineHeight: isBig ? "31px" : undefined,
-    padding: isBig ? ".36842em .84211em" : undefined,
+    padding: isBig ? "14.5px 20px 12px 20px" : undefined,
     " svg": {
       height: isBig ? "31px" : undefined,
       width: isBig ? "36px" : undefined,
       marginRight: isBig && hasArrow ? "-8px" : undefined
     }
+  }),
+  ({ isSmall }) => ({
+    fontSize: isSmall ? "14px" : undefined,
+    lineHeight: isSmall ? "normal" : undefined,
+    padding: isSmall ? "6px 10px 4px 12px" : undefined
   }),
   ({ isSecondary }) => ({
     backgroundColor: isSecondary ? globalTheme.colour.cerulean : undefined,
@@ -94,10 +99,11 @@ const StyledButton = styled("button")(
 
 // from: https://github.com/UKHomeOffice/govuk-react/blob/master/components/button/src/index.js
 
-const Button = ({ big, secondary, arrow, children, icon, ...props }) => (
+const Button = ({ size, secondary, arrow, children, icon, ...props }) => (
   <StyledButton
     icon={icon}
-    isBig={big}
+    isBig={size === "big" ? true : false}
+    isSmall={size === "small" ? true : false}
     isSecondary={secondary}
     hasArrow={arrow}
     {...props}
@@ -119,7 +125,7 @@ Button.propTypes = {
   /**
    * Renders a large button if set to true
    */
-  big: PropTypes.bool,
+  size: PropTypes.string,
   /**
    * Renders a disabled button and removes pointer events if set to true
    */
@@ -130,7 +136,7 @@ Button.propTypes = {
 Button.defaultProps = {
   children: "Button",
   icon: undefined,
-  big: false,
+  size: "medium",
   secondary: false,
   arrow: false
 };

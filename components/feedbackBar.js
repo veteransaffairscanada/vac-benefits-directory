@@ -160,7 +160,7 @@ export class FeedbackBar extends Component {
               <SubmitButton
                 id="sendComment"
                 arrow={true}
-                big={true}
+                size="big"
                 onClick={() => this.sendComment()}
               >
                 {t("send")}

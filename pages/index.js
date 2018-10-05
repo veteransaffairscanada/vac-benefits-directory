@@ -89,7 +89,7 @@ export class App extends Component {
                 <Body>{t("index.ge_prompt")}</Body>
                 <Button
                   id="heroGuidedLink"
-                  big={true}
+                  size="big"
                   onClick={() => Router.push(urlGE)}
                   arrow={true}
                 >
@@ -100,7 +100,7 @@ export class App extends Component {
                 <Body>{t("index.benefits_prompt")}</Body>
                 <Button
                   id="heroBenefitsLink"
-                  big={true}
+                  size="big"
                   secondary={true}
                   onClick={() => Router.push(urlBD)}
                 >
@@ -110,7 +110,7 @@ export class App extends Component {
                 <Body>{t("index.favourites_prompt")}</Body>
                 <Button
                   id="FavouritesPage"
-                  big={true}
+                  size="big"
                   secondary={true}
                   onClick={() => Router.push(this.props.favouritesUrl)}
                 >

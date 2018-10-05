@@ -18,6 +18,7 @@ const officeAddress = css`
 const officeInfo = css`
   font-color: black;
   background-color: white;
+  margin: 2px;
 `;
 const officeName = css`
   font-size: 14px;
@@ -108,21 +109,13 @@ export class AreaOfficeMap extends Component {
                     <Button
                       id="getDirectionsButton"
                       arrow={true}
-                      // className={button}
-                      // target="_blank"
-                      // variant="raised"
+                      size="small"
                       onClick={() => {
                         window.location.href = isIOS
                           ? "https://maps.apple.com/?daddr=" + d["address_en"]
                           : "https://www.google.com/maps?saddr=My+Location&daddr=" +
                             d["address_en"];
                       }}
-                      // href={
-                      //   isIOS
-                      //     ? "https://maps.apple.com/?daddr=" + d["address_en"]
-                      //     : "https://www.google.com/maps?saddr=My+Location&daddr=" +
-                      //       d["address_en"]
-                      // }
                     >
                       {t("map.get_directions")}
                     </Button>
