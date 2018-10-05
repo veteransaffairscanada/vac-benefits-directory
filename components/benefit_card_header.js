@@ -12,7 +12,7 @@ const cardTop = css`
   padding-bottom: 15px;
   margin-bottom: 15px;
   display: flex;
-  justify-content: flex-start; //center;
+  justify-content: flex-start;
   align-items: center;
 `;
 const headerDesc = css`
