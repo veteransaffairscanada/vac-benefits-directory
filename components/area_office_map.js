@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Button } from "@material-ui/core/";
-import { KeyboardBackspace } from "@material-ui/icons";
+import Button from "./button";
 import { css } from "react-emotion";
+import Header4 from "./typography/header4";
+import Body from "./typography/body";
 
 import {
   InfoWindow,
@@ -12,37 +13,9 @@ import {
   Marker
 } from "react-google-maps";
 
-const officeAddress = css`
-  font-size: 12px;
-  font-family: 'Merriweather', Georgia, serif;
-`;
 const officeInfo = css`
-  font-color: black;
   background-color: white;
-`;
-const officeName = css`
-  font-size: 14px;
-  font-weight: 500;
-  font-family: 'Merriweather', Georgia, serif;
-`;
-const button = css`
-  background-color: #3e57e2 !important;
-  color: white !important;
-  text-align: right;
-  text-transform: none !important;
-  font-size: 12px !important;
-  padding: 6px !important;
-`;
-
-const rightArrowIcon = css`
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  float: left;
-  filter: FlipH;
-  -ms-filter: Flip;
-  padding-right: 10px;
+  margin: 2px;
 `;
 
 /**
@@ -117,28 +90,21 @@ export class AreaOfficeMap extends Component {
               {this.props.selectedAreaOffice.id === d.id ? (
                 <InfoWindow options={{ maxWidth: 200 }}>
                   <div className={officeInfo}>
-                    <div className={officeName}>
-                      {d["name_" + t("current-language-code")]}
-                    </div>
+                    <Header4>{d["name_" + t("current-language-code")]}</Header4>
                     <br />
-                    <div className={officeAddress}>
-                      {d["address_" + t("current-language-code")]}
-                    </div>
-                    <br />
+                    <Body>{d["address_" + t("current-language-code")]}</Body>
                     <Button
                       id="getDirectionsButton"
-                      className={button}
-                      target="_blank"
-                      variant="raised"
-                      href={
-                        isIOS
+                      arrow={true}
+                      size="small"
+                      onClick={() => {
+                        window.location.href = isIOS
                           ? "https://maps.apple.com/?daddr=" + d["address_en"]
                           : "https://www.google.com/maps?saddr=My+Location&daddr=" +
-                            d["address_en"]
-                      }
+                            d["address_en"];
+                      }}
                     >
                       {t("map.get_directions")}
-                      <KeyboardBackspace className={rightArrowIcon} />
                     </Button>
                   </div>
                 </InfoWindow>
