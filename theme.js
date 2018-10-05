@@ -36,7 +36,8 @@ const theme = {
     govukYellow: "#FFBF47",
     white: "#ffffff",
     cardGrey: "#f3f3f3",
-    black: "#000000"
+    black: "#000000",
+    alertYellow: "#fbb830"
   }
 };
 
