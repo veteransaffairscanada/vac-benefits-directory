@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Button from "./button";
 import { css } from "react-emotion";
+import Header4 from "./typography/header4";
+import Body from "./typography/body";
 
 import {
   InfoWindow,
@@ -11,19 +13,9 @@ import {
   Marker
 } from "react-google-maps";
 
-const officeAddress = css`
-  font-size: 12px;
-  font-family: "Merriweather", Georgia, serif;
-`;
 const officeInfo = css`
-  font-color: black;
   background-color: white;
   margin: 2px;
-`;
-const officeName = css`
-  font-size: 14px;
-  font-weight: 500;
-  font-family: "Merriweather", Georgia, serif;
 `;
 
 /**
@@ -98,14 +90,9 @@ export class AreaOfficeMap extends Component {
               {this.props.selectedAreaOffice.id === d.id ? (
                 <InfoWindow options={{ maxWidth: 200 }}>
                   <div className={officeInfo}>
-                    <div className={officeName}>
-                      {d["name_" + t("current-language-code")]}
-                    </div>
+                    <Header4>{d["name_" + t("current-language-code")]}</Header4>
                     <br />
-                    <div className={officeAddress}>
-                      {d["address_" + t("current-language-code")]}
-                    </div>
-                    <br />
+                    <Body>{d["address_" + t("current-language-code")]}</Body>
                     <Button
                       id="getDirectionsButton"
                       arrow={true}

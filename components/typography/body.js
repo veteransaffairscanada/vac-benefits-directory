@@ -4,6 +4,7 @@ import { globalTheme } from "../../theme";
 import { cx, css } from "react-emotion";
 
 const root = css`
+  font-family: ${globalTheme.fontFamily};
   font-size: 18px;
   font-weight: normal;
   font-style: normal;
