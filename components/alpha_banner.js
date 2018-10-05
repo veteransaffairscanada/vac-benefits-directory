@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { PhaseBadge } from "@cdssnc/gcui";
 import { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
 const Banner = css`
   display: flex;
   display: -ms-flexbox;
   align-items: center;
   -ms-flex-align: center;
-  padding: 0.4rem 1rem 0.4rem 1rem;
+  padding: 0.4rem 0 0.4rem 0;
+  margin: 0px ${globalTheme.rootMargin} 0px ${globalTheme.rootMargin};
   min-width: 20em;
   color: #fff;
   font: 0.694rem sans-serif;
