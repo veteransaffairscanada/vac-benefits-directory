@@ -16,7 +16,6 @@ const left = css`
 `;
 const right = css`
   flex: 1;
-  position: relative;
   max-width: 200px;
 `;
 const selectStyle = css`
