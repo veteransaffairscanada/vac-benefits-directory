@@ -16,22 +16,24 @@ import Header1 from "../components/typography/header1";
 import Body from "../components/typography/body";
 import HeaderButton from "../components/header_button";
 
-const paper = css`
+const mapPaper = css`
   margin-top: ${globalTheme.marginTop};
 `;
-
 const backLink = css`
   margin-bottom: 15px;
-  margin-left: -10px;
 `;
-
 const topMatter = css`
   margin-top: 30px !important;
 `;
-
 const root = css`
   margin-left: 15px;
   margin-right: 15px;
+`;
+const mapContainer = css`
+  height: 800px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    height: 230px;
+  }
 `;
 
 export class Map extends Component {
@@ -119,13 +121,13 @@ export class Map extends Component {
               </Grid>
             </Grid>
 
-            <Paper className={paper}>
-              <Grid container>
+            <Paper className={mapPaper}>
+              <Grid container spacing={0}>
                 <Grid item xs={12} md={8}>
                   <AreaOfficeMap
                     id="AreaOfficeMap"
                     loadingElement={<div style={{ height: "100%" }} />}
-                    containerElement={<div style={{ height: "456px" }} />}
+                    containerElement={<div className={mapContainer} />}
                     mapElement={<div style={{ height: "100%" }} />}
                     t={t}
                   />
