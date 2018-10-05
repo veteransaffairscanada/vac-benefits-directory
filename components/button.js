@@ -102,8 +102,8 @@ const StyledButton = styled("button")(
 const Button = ({ size, secondary, arrow, children, icon, ...props }) => (
   <StyledButton
     icon={icon}
-    isBig={size === "big" ? true : false}
-    isSmall={size === "small" ? true : false}
+    isBig={size === "big"}
+    isSmall={size === "small"}
     isSecondary={secondary}
     hasArrow={arrow}
     {...props}
