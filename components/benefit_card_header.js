@@ -19,11 +19,11 @@ const parentIcon = css`
   margin-right: 15px;
   font-size: 40px !important;
   transform: scale(0.9);
-  color: #434343;
+  color: ${globalTheme.colour.greyishBrown};
 `;
 const headerDesc = css`
   flex-grow: 1;
-  color: #434343;
+  color: ${globalTheme.colour.greyishBrown};
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 12px;
   }
@@ -42,8 +42,7 @@ export class BenefitCardHeader extends Component {
     const includeParentInfo =
       parentBenefits.length > 0 &&
       benefit.availableIndependently === "Requires Gateway Benefit";
-    const includeImportantInfo =
-      benefit.noteEn !== undefined && benefit.noteFr !== undefined;
+    const includeImportantInfo = benefit.noteEn && benefit.noteFr;
 
     if (includeParentInfo || includeImportantInfo) {
       return (
