@@ -15,7 +15,7 @@ const style = css`
   background-color: transparent;
   border: none;
   text-decoration: none !important;
-  padding-left: 0px !important;
+  padding: 0px !important;
   :hover {
     text-decoration: underline !important;
     cursor: pointer;
