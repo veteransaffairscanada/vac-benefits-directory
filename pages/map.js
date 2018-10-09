@@ -7,7 +7,7 @@ import AreaOfficeMap from "../components/area_office_map";
 import AreaOfficeTable from "../components/area_office_table";
 import PlaceSearch from "../components/place_search";
 import { Grid } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper/index";
+import Paper from "../components/paper";
 import Link from "next/link";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
@@ -24,10 +24,6 @@ const backLink = css`
 `;
 const topMatter = css`
   margin-top: 30px !important;
-`;
-const root = css`
-  margin-left: 15px;
-  margin-right: 15px;
 `;
 const mapContainer = css`
   height: 800px;
@@ -82,66 +78,60 @@ export class Map extends Component {
         title={t("titles.map")}
       >
         <Container>
-          <div className={root}>
-            <Grid container spacing={24}>
-              <Grid item xs={12} md={8} className={topMatter}>
-                <Link href={this.get_link("favourites")}>
-                  <HeaderButton
-                    className={backLink}
-                    id="backButton"
-                    arrow="back"
-                  >
-                    {t("back")}
-                  </HeaderButton>
-                </Link>
-                <Header1>{t("map.vacOffices")}</Header1>
-              </Grid>
-              <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
-                <p>
-                  <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
-                </p>
-                <Body>{t("favourites.call_time")}</Body>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                md={5}
-                className={this.placeSearch}
-                id="placeSearchHold"
-              >
-                <PlaceSearch
-                  id="PlaceSearch"
-                  containerElement={
-                    <div style={{ height: "0px", marginRight: "50px" }} />
-                  }
+          <Grid container spacing={24}>
+            <Grid item xs={12} md={8} className={topMatter}>
+              <Link href={this.get_link("favourites")}>
+                <HeaderButton className={backLink} id="backButton" arrow="back">
+                  {t("back")}
+                </HeaderButton>
+              </Link>
+              <Header1>{t("map.vacOffices")}</Header1>
+            </Grid>
+            <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
+              <p>
+                <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
+              </p>
+              <Body>{t("favourites.call_time")}</Body>
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={5}
+              className={this.placeSearch}
+              id="placeSearchHold"
+            >
+              <PlaceSearch
+                id="PlaceSearch"
+                containerElement={
+                  <div style={{ height: "0px", marginRight: "50px" }} />
+                }
+                loadingElement={<div style={{ height: "100%" }} />}
+                store={this.props.store}
+                t={t}
+              />
+            </Grid>
+          </Grid>
+
+          <Paper className={mapPaper}>
+            <Grid container spacing={0}>
+              <Grid item xs={12} md={8}>
+                <AreaOfficeMap
+                  id="AreaOfficeMap"
                   loadingElement={<div style={{ height: "100%" }} />}
+                  containerElement={<div className={mapContainer} />}
+                  mapElement={<div style={{ height: "100%" }} />}
+                  t={t}
+                />
+              </Grid>
+              <Grid item xs={12} md={4}>
+                <AreaOfficeTable
+                  id="AreaOfficeTable"
                   store={this.props.store}
                   t={t}
                 />
               </Grid>
             </Grid>
-
-            <Paper className={mapPaper}>
-              <Grid container spacing={0}>
-                <Grid item xs={12} md={8}>
-                  <AreaOfficeMap
-                    id="AreaOfficeMap"
-                    loadingElement={<div style={{ height: "100%" }} />}
-                    containerElement={<div className={mapContainer} />}
-                    mapElement={<div style={{ height: "100%" }} />}
-                    t={t}
-                  />
-                </Grid>
-                <Grid item xs={12} md={4}>
-                  <AreaOfficeTable
-                    id="AreaOfficeTable"
-                    store={this.props.store}
-                    t={t}
-                  />
-                </Grid>
-              </Grid>
-            </Paper>
-          </div>
+          </Paper>
         </Container>
       </Layout>
     );

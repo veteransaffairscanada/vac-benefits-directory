@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { logEvent } from "../utils/analytics";
-import Paper from "@material-ui/core/Paper";
+import Paper from "./paper";
 import { css } from "react-emotion";
 import OneLiner from "./typography/one_liner";
 import HeaderButton from "./header_button";
@@ -10,12 +10,9 @@ import HeaderButton from "./header_button";
 const root = css`
   margin-bottom: 20px;
   margin-top: 0px;
-  padding: 20px;
-  padding-top: 5px;
 `;
 const heading = css`
   margin-bottom: 10px;
-  margin-top: 10px;
 `;
 
 export class EmbeddedBenefitCard extends Component {
@@ -38,7 +35,7 @@ export class EmbeddedBenefitCard extends Component {
     const language = t("current-language-code");
 
     return (
-      <Paper className={root}>
+      <Paper padding="sm" className={root}>
         <HeaderButton
           id={"embedded-" + benefit.id}
           target="_blank"

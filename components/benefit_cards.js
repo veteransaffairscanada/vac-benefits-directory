@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
 import FavouriteButton from "./favourite_button";
-import Paper from "@material-ui/core/Paper";
+import Paper from "./paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
@@ -16,9 +16,7 @@ import Button from "./button";
 import { globalTheme } from "../theme";
 
 const cardBody = css`
-  padding: ${globalTheme.cardPadding} !important;
-  padding-top: 20px !important;
-  border-radius: 0px !important;
+  padding-top: 20px;
 `;
 const cardDescriptionText = css`
   padding-top: 26px;
@@ -64,7 +62,7 @@ export class BenefitCard extends Component {
     return (
       <Grid item xs={12}>
         <div className={root}>
-          <Paper className={cardBody}>
+          <Paper padding="md" className={cardBody}>
             <BenefitCardHeader
               benefit={benefit}
               t={t}

@@ -11,12 +11,7 @@ import Button from "./button";
 import HeaderButton from "./header_button";
 import GuidedExperienceLink from "./typography/guided_experience_link";
 import { globalTheme } from "../theme";
-
-const root = css`
-  border: solid 1px grey;
-  background-color: white;
-  margin: 15px;
-`;
+import Paper from "./paper";
 
 const box = css`
   padding: 25px 63px 63px 63px;
@@ -27,8 +22,8 @@ const box = css`
 `;
 
 const prevButton = css`
-  margin-top: 50px !important;
-  margin-left: 5px !important;
+  margin-top: 50px;
+  margin-bottom: 15px;
 `;
 
 const comma = css`
@@ -118,8 +113,8 @@ export class GuidedExperience extends Component {
         >
           {t("back")}
         </HeaderButton>
-        <div className={root}>
-          <Grid container spacing={24} className={box}>
+        <Paper padding="md" className={box}>
+          <Grid container spacing={24}>
             <Grid item xs={12} md={12}>
               <FilterText style={{ display: "inline-block" }}>
                 {t("B3.Filter by eligibility")}
@@ -146,7 +141,7 @@ export class GuidedExperience extends Component {
               </Button>
             </Grid>
           </Grid>
-        </div>
+        </Paper>
       </Container>
     );
   }

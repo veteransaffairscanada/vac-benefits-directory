@@ -6,7 +6,7 @@ import SearchComponent from "../components/search";
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { Grid } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
+import Paper from "../components/paper";
 import { connect } from "react-redux";
 import { getFavouritesUrl } from "../selectors/urls";
 import { globalTheme } from "../theme";
@@ -16,9 +16,9 @@ import Body from "../components/typography/body";
 import Header1 from "../components/typography/header1";
 import Router from "next/router";
 
-const root = css`
-  background-color: white;
-  margin: 58px 15px 58px 15px;
+const paper = css`
+  margin-top: 58px;
+  margin-bottom: 58px;
   padding: 69px 96px 100px 96px;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     padding: 35px 48px 50px 48px;
@@ -78,7 +78,7 @@ export class App extends Component {
         title={t("titles.index")}
       >
         <Container>
-          <Paper className={root}>
+          <Paper className={paper}>
             <Grid container spacing={24}>
               <Grid item xs={12}>
                 <Header1 id="heroTitle" className={title}>
