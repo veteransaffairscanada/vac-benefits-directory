@@ -6,6 +6,10 @@ import { globalTheme } from "../../theme";
 const alertYellow = globalTheme.colour.alertYellow.replace("#", "%23");
 
 export class AlertIcon extends Component {
+  outer = css`
+    height: ${this.props.height};
+    width: ${this.props.height};
+  `;
   style = css`
     height: ${this.props.height};
     width: ${this.props.height} !important;
@@ -19,7 +23,11 @@ export class AlertIcon extends Component {
   `;
 
   render() {
-    return <div className={this.style} />;
+    return (
+      <div className={this.outer}>
+        <div className={this.style} />
+      </div>
+    );
   }
 }
 
