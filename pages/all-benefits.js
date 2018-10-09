@@ -6,7 +6,6 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
-import { css } from "react-emotion";
 import Container from "../components/container";
 import Header1 from "../components/typography/header1";
 

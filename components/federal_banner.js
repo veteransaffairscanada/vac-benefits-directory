@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import LanguageButton from "./language_button";
 import FIP from "./fip";
-import { globalTheme } from "../theme";
 
 export const breakpoints = {
   xs: 481,
