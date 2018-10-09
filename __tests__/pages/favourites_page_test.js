@@ -11,6 +11,7 @@ import configureStore from "redux-mock-store";
 import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
+import questionsFixture from "../fixtures/questions";
 import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -37,6 +38,7 @@ describe("Favourites Page", () => {
     };
     mockStore = configureStore();
     reduxData = {
+      questions: questionsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       option: "",
