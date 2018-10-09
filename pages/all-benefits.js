@@ -10,11 +10,6 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Header1 from "../components/typography/header1";
 
-const root = css`
-  margin-left: 15px;
-  margin-right: 15px;
-`;
-
 export class AllBenefits extends Component {
   render() {
     const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
@@ -27,21 +22,19 @@ export class AllBenefits extends Component {
         title={t("titles.all_benefits")}
       >
         <Container>
-          <div className={root}>
-            <Header1>{t("all-benefits.List of all benefits")}</Header1>
-            <Grid item xs={12}>
-              <Grid container spacing={24}>
-                <BenefitList
-                  t={t}
-                  filteredBenefits={this.props.benefits}
-                  sortByValue={this.props.sortBy}
-                  searchString={this.props.searchString}
-                  showFavourites={true}
-                  store={this.props.store}
-                />
-              </Grid>
+          <Header1>{t("all-benefits.List of all benefits")}</Header1>
+          <Grid item xs={12}>
+            <Grid container spacing={24}>
+              <BenefitList
+                t={t}
+                filteredBenefits={this.props.benefits}
+                sortByValue={this.props.sortBy}
+                searchString={this.props.searchString}
+                showFavourites={true}
+                store={this.props.store}
+              />
             </Grid>
-          </div>
+          </Grid>
         </Container>
       </Layout>
     );

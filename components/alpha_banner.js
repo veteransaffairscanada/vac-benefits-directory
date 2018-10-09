@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { PhaseBadge } from "@cdssnc/gcui";
 import { css } from "react-emotion";
-import { globalTheme } from "../theme";
 
 const Banner = css`
   display: flex;
@@ -10,7 +9,7 @@ const Banner = css`
   align-items: center;
   -ms-flex-align: center;
   padding: 0.4rem 0 0.4rem 0;
-  margin: 0px ${globalTheme.rootMargin} 0px ${globalTheme.rootMargin};
+  margin: 0px;
   min-width: 20em;
   color: #fff;
   font: 0.694rem sans-serif;

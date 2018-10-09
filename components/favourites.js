@@ -13,8 +13,7 @@ import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
 import HeaderButton from "./header_button";
 import Body from "./typography/body";
-import Paper from "@material-ui/core/Paper";
-import { globalTheme } from "../theme";
+import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 
@@ -43,16 +42,8 @@ const buttons = css`
 const topMatter = css`
   margin-bottom: 25px !important;
 `;
-const bgWhite = css`
-  padding: 30px;
-  @media only screen and (min-width: ${globalTheme.max.sm}) {
-    margin-left: 11px !important;
-  }
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    margin-right: -32px;
-    margin-left: -32px;
-    margin-bottom: -25px;
-  }
+const noBottomMargin = css`
+  margin-bottom: 0px;
 `;
 
 export class Favourites extends Component {
@@ -162,10 +153,8 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Paper className={bgWhite}>
-              <Header2 className={contactUsTitle}>
-                {t("favourites.contact_us")}
-              </Header2>
+            <Paper padding="sm">
+              <Header2>{t("favourites.contact_us")}</Header2>
               <p>
                 <Link href={this.get_link("map")}>
                   <a>{t("favourites.visit_prompt")}</a>
@@ -198,7 +187,7 @@ export class Favourites extends Component {
                 {t("favourites.apply_prompt")}
               </Header2>
 
-              <Body>
+              <Body className={noBottomMargin}>
                 <a
                   href={t("contact.my_vac_link")}
                   target="_blank"
