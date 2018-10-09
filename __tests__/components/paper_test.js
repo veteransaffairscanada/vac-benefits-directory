@@ -4,7 +4,7 @@ import Paper from "../../components/paper";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
-describe("Container", () => {
+describe("Paper", () => {
   let props;
   beforeEach(() => {
     props = {
