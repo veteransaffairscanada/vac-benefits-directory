@@ -1,13 +1,9 @@
 import { createSelector } from "reselect";
-import { getFilteredBenefits } from "../selectors/benefits";
+import { getFilteredBenefits, getProfileFilters } from "../selectors/benefits";
 
 const getCurrentLanguage = (state, props) => props.t("current-language-code");
 const getNeedsFilter = state => state.selectedNeeds;
-const getPatronFilter = state => state.patronType;
-const getHealthIssueFilter = state => state.serviceHealthIssue;
 const getSearchStringFilter = state => state.searchString;
-const getServiceFilter = state => state.serviceType;
-const getStatusFilter = state => state.statusAndVitals;
 const getClosestOffice = state => state.closestAreaOffice;
 const getSelectedOffice = state => state.selectedAreaOffice;
 const getSortBy = state => state.sortBy;
@@ -17,35 +13,20 @@ const getBenefits = state => state.benefits;
 
 export const getFavouritesUrl = createSelector(
   [
-    getPatronFilter,
-    getServiceFilter,
-    getStatusFilter,
-    getHealthIssueFilter,
+    getProfileFilters,
     getNeedsFilter,
     getSearchStringFilter,
     getCurrentLanguage,
     getSortBy
   ],
-  (
-    patronFilter,
-    serviceFilter,
-    statusFilter,
-    healthIssueFilter,
-    selectedNeeds,
-    searchString,
-    currentLanguage,
-    sortBy
-  ) => {
+  (profileFilters, selectedNeeds, searchString, currentLanguage, sortBy) => {
     let values = {
       lng: currentLanguage,
       sortBy: sortBy,
       selectedNeeds: Object.keys(selectedNeeds).join(),
-      patronType: patronFilter,
-      serviceType: serviceFilter,
-      statusAndVitals: statusFilter,
-      serviceHealthIssue: healthIssueFilter,
       searchString: searchString
     };
+    Object.assign(values, profileFilters);
     let params = [];
     Object.keys(values).forEach(key => {
       if (values[key] !== "") {
@@ -59,10 +40,7 @@ export const getFavouritesUrl = createSelector(
 export const getPrintUrl = createSelector(
   [
     getFilteredBenefits,
-    getPatronFilter,
-    getServiceFilter,
-    getStatusFilter,
-    getHealthIssueFilter,
+    getProfileFilters,
     getNeedsFilter,
     getSortBy,
     getCurrentLanguage,
@@ -74,10 +52,7 @@ export const getPrintUrl = createSelector(
   ],
   (
     filteredBenefits,
-    patronFilter,
-    serviceFilter,
-    statusFilter,
-    healthIssueFilter,
+    profileFilters,
     selectedNeeds,
     sortBy,
     currentLanguage,
@@ -99,10 +74,6 @@ export const getPrintUrl = createSelector(
       lng: currentLanguage,
       sortBy: sortBy,
       benefits: filteredBenefitsIDs.join(","),
-      patronType: patronFilter,
-      serviceType: serviceFilter,
-      statusAndVitals: statusFilter,
-      serviceHealthIssue: healthIssueFilter,
       needs: Object.keys(selectedNeeds).join(),
       closestAOID:
         closestAreaOffice.id !== undefined ? closestAreaOffice.id : "",
@@ -110,6 +81,7 @@ export const getPrintUrl = createSelector(
         selectedAreaOffice.id !== undefined ? selectedAreaOffice.id : "",
       fromFavourites: fromFavourites !== undefined ? fromFavourites : ""
     };
+    Object.assign(values, profileFilters);
     let params = [];
     Object.keys(values).forEach(key => {
       if (values[key] !== "") {

@@ -14,7 +14,6 @@ const SearchBoxWrapper = styled("div")({
 });
 
 const InputSearchBox = styled("input")({
-  type: "search",
   width: "100%",
   height: "44px",
   padding: "9px 19px 8px 19px",

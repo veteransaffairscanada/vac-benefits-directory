@@ -1,9 +1,10 @@
+import lunr from "lunr";
 import {
   getProfileFilters,
   getFilteredBenefits
 } from "../../selectors/benefits";
-import lunr from "lunr";
 import questionsFixture from "../fixtures/questions";
+
 describe("Benefits Selectors", () => {
   let props;
   let state;
