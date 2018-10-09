@@ -14,8 +14,6 @@ const root = css`
 
 const toolbar = css`
   padding: 0 !important;
-  margin-left: 15px;
-  margin-right: 15px;
   height: 100%;
 `;
 
