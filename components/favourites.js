@@ -16,7 +16,13 @@ import Body from "./typography/body";
 import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
+import { globalTheme } from "../theme";
 
+const contactUs = css`
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
+    margin-left: 11px !important;
+  }
+`;
 const bookmarkCSS = css`
   font-size: 70px !important;
 `;
@@ -153,7 +159,7 @@ export class Favourites extends Component {
             )}
           </Grid>
           <Grid item md={4} xs={12}>
-            <Paper padding="sm">
+            <Paper padding="sm" className={contactUs}>
               <Header2>{t("favourites.contact_us")}</Header2>
               <p>
                 <Link href={this.get_link("map")}>
