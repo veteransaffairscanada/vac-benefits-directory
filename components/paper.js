@@ -3,12 +3,6 @@ import PropTypes from "prop-types";
 import { cx, css } from "react-emotion";
 import { globalTheme } from "../theme";
 
-// padding in index = 96px
-// padding in GE = 63px
-// ben-dir cards = 35px
-// ben-dir filter = 24px
-// favourites contact us = 24px
-
 class Paper extends Component {
   padding = { sm: "24px", md: "35px", lg: "63px", xl: "96px" };
   style = css`
