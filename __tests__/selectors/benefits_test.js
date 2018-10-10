@@ -1,6 +1,7 @@
 import lunr from "lunr";
 import {
   getProfileFilters,
+  getFilteredBenefitsWithoutSearch,
   getFilteredBenefits
 } from "../../selectors/benefits";
 import questionsFixture from "../fixtures/questions";
@@ -144,6 +145,41 @@ describe("Benefits Selectors", () => {
       expect(returnValue.serviceType).toEqual("st");
       expect(returnValue.statusAndVitals).toEqual("sv");
       expect(returnValue.serviceHealthIssue).toEqual(undefined);
+    });
+  });
+
+  describe("getFilteredBenefitsWithoutSearch", () => {
+    it("displays all benefits if nothing selected", () => {
+      let returnValue = getFilteredBenefitsWithoutSearch(state, props).map(
+        b => b.id
+      );
+      returnValue.sort();
+      expect(returnValue).toEqual(["0", "1", "2", "3", "4"]);
+    });
+
+    it("returns an empty array if there are no benefits", () => {
+      state.benefits = [];
+      let returnValue = getFilteredBenefitsWithoutSearch(state, props);
+      expect(returnValue).toEqual([]);
+    });
+
+    it("displays benefits 0, 2, 4 if patronType p1", () => {
+      state.patronType = "p1";
+      expect(
+        getFilteredBenefitsWithoutSearch(state, props).map(b => b.id)
+      ).toEqual(["0", "2", "4"]);
+    });
+
+    it("returns benefits based on selectedNeeds", () => {
+      state.selectedNeeds = { "0": "0", "1": "1", "2": "2" };
+      let returnValue = getFilteredBenefitsWithoutSearch(state, props);
+      expect(returnValue).toEqual([
+        {
+          availableIndependently: "Requires Gateway Benefit",
+          childBenefits: [],
+          id: "0"
+        }
+      ]);
     });
   });
 
