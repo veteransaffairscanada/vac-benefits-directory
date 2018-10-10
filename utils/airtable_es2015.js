@@ -1,5 +1,7 @@
 require("isomorphic-fetch");
 
+const Logger = require("./logger").default;
+
 exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 
 var airtableConstants = require("./airtable_constants");
@@ -30,23 +32,30 @@ var replaceId = function replaceId(
 var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
   var offset = undefined;
   var jsonRecords = [];
-  do {
-    var url =
-      "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/" +
-      table +
-      "?view=Grid%20view";
-    if (offset) {
-      url = url + "&offset=" + offset;
-    }
-    var resp = await fetch(url, {
-      headers: {
-        Authorization: "Bearer " + readKey
+  try {
+    do {
+      var url =
+        "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/" +
+        table +
+        "?view=Grid%20view";
+      if (offset) {
+        url = url + "&offset=" + offset;
       }
+      var resp = await fetch(url, {
+        headers: {
+          Authorization: "Bearer " + readKey
+        }
+      });
+      var json = await resp.json();
+      jsonRecords = jsonRecords.concat(json.records);
+      offset = json.offset;
+    } while (offset);
+  } catch (e) {
+    Logger.error(e, {
+      contentType: "application/json",
+      source: "/utils/airtable_es2015.js"
     });
-    var json = await resp.json();
-    jsonRecords = jsonRecords.concat(json.records);
-    offset = json.offset;
-  } while (offset);
+  }
 
   return jsonRecords.map(function(item) {
     return item.fields;

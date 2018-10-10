@@ -15,6 +15,8 @@ const questionsFixture = [
     display_text_french: "Type de service:",
     guided_experience_english: "Select the service type.",
     guided_experience_french: "Sélectionnez le type de service.",
+    tooltip_english: "tooltip english",
+    tooltip_french: "tooltip french",
     id: "recd9vxcm3gb3jkLE"
   },
   {
