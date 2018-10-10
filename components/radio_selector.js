@@ -82,14 +82,14 @@ export class RadioSelector extends React.Component {
           )
         ).filter(st => st !== "na");
 
-    const { t, selectorType, responses } = this.props;
+    const { t, selectorType, responses, legend } = this.props;
 
     if (Object.keys(options).length !== 0) {
       return (
         <FormControl className={formControl}>
-          <Header4 className={formLabel}>{this.props.legend}</Header4>
+          <Header4 className={formLabel}>{legend}</Header4>
           <RadioGroup
-            aria-label={this.props.legend}
+            aria-label={legend}
             value={responses[selectorType]}
             onChange={this.handleSelect}
           >
