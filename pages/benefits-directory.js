@@ -66,12 +66,7 @@ export class BenefitsDirectory extends Component {
         showRefreshCache={false}
         title={t("titles.benefits_directory")}
       >
-        <BB
-          id="BB"
-          t={t}
-          store={this.props.store}
-          setSection={this.setSection}
-        />
+        <BB id="BB" t={t} store={this.props.store} />
       </Layout>
     );
   }

@@ -6,7 +6,6 @@ import Bookmark from "@material-ui/icons/Bookmark";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
-import { getFilteredBenefits } from "../selectors/benefits";
 import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import { css } from "react-emotion";
 import Container from "../components/container";
@@ -120,12 +119,6 @@ export class BB extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setSearchString: searchString => {
-      dispatch({ type: "SET_SEARCH_STRING", data: searchString });
-    },
-    setSortBy: sortBy => {
-      dispatch({ type: "SET_SORT_BY", data: sortBy });
-    },
     setCookiesDisabled: areDisabled => {
       dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
     }
@@ -135,50 +128,21 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (reduxState, props) => {
   return {
     cookiesDisabled: reduxState.cookiesDisabled,
-    benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples,
-    filteredBenefits: getFilteredBenefits(reduxState, props),
     favouritesUrl: getFavouritesUrl(reduxState, props),
-    needs: reduxState.needs,
-    searchString: reduxState.searchString,
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals,
-      serviceHealthIssue: reduxState.serviceHealthIssue
-    },
-    selectedNeeds: reduxState.selectedNeeds,
-    sortBy: reduxState.sortBy,
-    printUrl: getPrintUrl(reduxState, props, {}),
-    selectedAreaOffice: reduxState.selectedAreaOffice,
-    closestAreaOffice: reduxState.closestAreaOffice
+    printUrl: getPrintUrl(reduxState, props, {})
   };
 };
 
 BB.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
-  benefits: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
-  filteredBenefits: PropTypes.array,
   favouritesUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
-  needs: PropTypes.array.isRequired,
   printUrl: PropTypes.string,
-  searchString: PropTypes.string.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
-  selectedNeeds: PropTypes.object.isRequired,
-  setSearchString: PropTypes.func.isRequired,
-  setSortBy: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  store: PropTypes.object,
-  selectedAreaOffice: PropTypes.object.isRequired,
-  closestAreaOffice: PropTypes.object.isRequired
+  store: PropTypes.object
 };
 
 export default connect(

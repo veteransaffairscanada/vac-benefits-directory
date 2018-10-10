@@ -8,7 +8,6 @@ import { BB } from "../../components/BB";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
-import examplesFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
@@ -61,7 +60,6 @@ describe("BB", () => {
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
       favouriteBenefits: [],
-      examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
