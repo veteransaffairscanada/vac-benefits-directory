@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { cx, css } from "react-emotion";
 
 const style = css`
-  max-width: 1200px;
+  max-width: 1170px;
   margin: 0 auto;
   padding-left: 30px;
   padding-right: 30px;
