@@ -154,4 +154,11 @@ describe("Guided", () => {
       "Select the service type."
     );
   });
+
+  it("getTooltip returns the correct tooltip", () => {
+    let guidedInstance = mountedGuided().instance();
+    expect(guidedInstance.getTooltip(questionsFixture[1])).toEqual(
+      "tooltip english"
+    );
+  });
 });

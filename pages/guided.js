@@ -96,6 +96,13 @@ export class Guided extends Component {
       return question["guided_experience_french"];
     }
   };
+  getTooltip = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["tooltip_english"];
+    } else {
+      return question["tooltip_french"];
+    }
+  };
 
   render() {
     const { t, i18n, store, reduxState, sectionOrder } = this.props;
@@ -128,6 +135,7 @@ export class Guided extends Component {
           )}
           setSection={this.setSection}
           subtitle={this.getSubtitle(question)}
+          helperText={this.getTooltip(question)}
           t={t}
           store={store}
         >
