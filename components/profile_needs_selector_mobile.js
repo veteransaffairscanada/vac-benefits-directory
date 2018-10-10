@@ -13,7 +13,7 @@ import { css } from "react-emotion";
 import HeaderButton from "./header_button";
 
 const root = css`
-  background-color: #f5f5f5 !important;
+  background-color: ${globalTheme.colour.white} !important;
   @media only screen and (min-width: ${globalTheme.max.xs}) {
     display: none;
   }

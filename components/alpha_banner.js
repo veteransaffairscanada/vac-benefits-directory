@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { PhaseBadge } from "@cdssnc/gcui";
 import { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
 const Banner = css`
   display: flex;
@@ -11,10 +12,10 @@ const Banner = css`
   padding: 0.4rem 0 0.4rem 0;
   margin: 0px;
   min-width: 20em;
-  color: #fff;
+  color: ${globalTheme.colour.white};
   font: 0.694rem sans-serif;
   span:first-child {
-    background-color: #d42dc9;
+    background-color: ${globalTheme.colour.alphaPink};
   }
 `;
 

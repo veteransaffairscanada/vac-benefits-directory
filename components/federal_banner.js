@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import LanguageButton from "./language_button";
 import FIP from "./fip";
+import { globalTheme } from "../theme";
 
 export const breakpoints = {
   xs: 481,
@@ -26,7 +27,7 @@ const mediaQuery = Object.keys(breakpoints).reduce((accumulator, label) => {
 }, {});
 
 const buttonCSS = css`
-  color: #fff !important;
+  color: ${globalTheme.colour.white} !important;
 `;
 
 const container = css`
@@ -34,7 +35,7 @@ const container = css`
   padding: 1rem 0rem 0.5rem 0rem;
   width: auto;
   justify-content: space-between;
-  background-color: #555;
+  background-color: ${globalTheme.colour.greyishBrownTwo};
   display: -webkit-flex;
   display: -webkit-box;
   display: -ms-flexbox;

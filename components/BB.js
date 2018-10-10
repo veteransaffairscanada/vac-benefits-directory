@@ -30,7 +30,7 @@ const title = css`
   padding-bottom: 15px;
 `;
 const topMatter = css`
-  background-color: #fff;
+  background-color: ${globalTheme.colour.white};
   border-bottom: solid 1px lightgrey;
   width: 100%;
   padding-bottom: 20px;

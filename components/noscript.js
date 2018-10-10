@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { css } from "react-emotion";
+import { globalTheme } from "../theme";
 
 const Modal = css`
   left: 50%;
@@ -18,11 +19,11 @@ const Modal = css`
 `;
 
 const ModalContent = css`
-  background: #ff6961;
+  background: ${globalTheme.colour.salmon};
   position: relative;
   z-index: 20;
   border-radius: 5px;
-  color: #fff;
+  color: ${globalTheme.colour.white};
   padding: 30px;
 `;
 

@@ -1,5 +1,9 @@
 const theme = {
   fontFamily: "Merriweather",
+  maxWidth: "1200px",
+  margin: "0 auto",
+  paddingLeft: "16px",
+  paddingRight: "16px",
   marginTop: "25px", //used in place of theme.spacing.unit *3
   unit: "8px",
   cardPadding: "35px",
@@ -26,6 +30,7 @@ const theme = {
     greyishBrown: "#434343",
     cerulean: "#006cc9",
     darkGreyBlue: "#284162",
+    paleBlue: "#e3f2ff",
     fernGreen: "#39824d",
     darkGreen: "#295f38",
     tornadoRed: "#ea4335",
@@ -33,7 +38,13 @@ const theme = {
     white: "#ffffff",
     cardGrey: "#f3f3f3",
     black: "#000000",
-    alertYellow: "#fbb830"
+    alertYellow: "#fbb830",
+    alphaPink: "#d42dc9",
+    alphaBlue: "#345075",
+    salmon: "#ff6961",
+    paleBlueGrey: "#f1f7fc",
+    darkBlueGrey: "#d8dee2",
+    lineGrey: "#dfdfdf"
   }
 };
 

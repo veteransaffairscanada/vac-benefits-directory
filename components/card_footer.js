@@ -11,7 +11,7 @@ import { globalTheme } from "../theme";
 
 const headerDesc = css`
   flex-grow: 1;
-  color: #434343;
+  color: ${globalTheme.colour.greyishBrown};
 `;
 const ExpansionPanelSummaryCss = css`
   padding-left: ${globalTheme.cardPadding} !important;
@@ -19,7 +19,7 @@ const ExpansionPanelSummaryCss = css`
   padding-top: 20px !important;
   padding-bottom: 20px !important;
   border-radius: 0px;
-  border-top: 1px solid #f5f5f5 !important;
+  border-top: 1px solid ${globalTheme.colour.paleGrey} !important;
   position: relative !important;
   min-height: 0px !important;
   div {

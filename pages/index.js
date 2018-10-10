@@ -30,7 +30,7 @@ const bookmarkCSS = css`
   margin-right: 10px;
 `;
 const line = css`
-  background: #dfdfdf;
+  background: ${globalTheme.colour.lineGrey};
   border: none;
   height: 1px;
   margin: 30px 0;
