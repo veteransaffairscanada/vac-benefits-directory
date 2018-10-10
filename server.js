@@ -44,6 +44,15 @@ Promise.resolve(getAllData()).then(allData => {
   let data = allData.airtableData;
   const githubData = allData.githubData;
 
+  setInterval(function() {
+    Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
+      copyValidTables(data, newData);
+      Logger.info("Cache refreshed automatically @ " + data.timestamp, {
+        source: "/server.js"
+      });
+    });
+  }, 1000 * 60 * 60);
+
   // init i18next with serverside settings
   // using i18next-express-middleware
   i18nInstance
@@ -98,18 +107,6 @@ Promise.resolve(getAllData()).then(allData => {
             // Check if browse is less than IE 11
             const ua = req.headers["user-agent"];
             const browser = parseUserAgent(ua);
-
-            setTimeout(function() {
-              Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
-                copyValidTables(data, newData);
-                Logger.info(
-                  "Cache refreshed automatically @ " + data.timestamp,
-                  {
-                    source: "/server.js"
-                  }
-                );
-              });
-            }, 1000 * 60 * 60);
 
             req.data = data;
             if (req.url.includes("stats")) {
