@@ -76,17 +76,20 @@ export class Favourites extends Component {
     return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
   };
 
-  get_link = page => {
-    return (
+  get_link = (page, referrer) => {
+    let link =
       page +
       "?" +
       Object.entries(this.props.url.query)
-        .filter(x => x[0] !== "" && x[1] !== "")
+        .filter(x => x[0] !== "" && x[1] !== "" && x[0] !== "referrer")
         .map(x => {
           return x[0] + "=" + x[1];
         })
-        .join("&")
-    );
+        .join("&");
+    if (referrer) {
+      link += "&referrer=" + referrer;
+    }
+    return link;
   };
 
   render() {
@@ -174,7 +177,7 @@ export class Favourites extends Component {
               <Paper padding="sm" className={contactUs}>
                 <Header2>{t("favourites.contact_us")}</Header2>
                 <p>
-                  <Link href={this.get_link("map")}>
+                  <Link href={this.get_link("map", "favourites")}>
                     <a>{t("favourites.visit_prompt")}</a>
                   </Link>
                 </p>
