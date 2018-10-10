@@ -7,7 +7,7 @@ import { getPrintUrl } from "../selectors/urls";
 import Bookmark from "@material-ui/icons/BookmarkBorder";
 import Print from "@material-ui/icons/Print";
 import Link from "next/link";
-import { css, cx } from "react-emotion";
+import { css } from "react-emotion";
 import Container from "./container";
 import Header1 from "./typography/header1";
 import Header2 from "./typography/header2";
@@ -37,9 +37,6 @@ const outerGrid = css`
   padding-left: 16px;
   padding-right: 16px;
 `;
-const buttons = css`
-  margin-top: 30px !important;
-`;
 const topMatter = css`
   margin-bottom: 25px !important;
 `;
@@ -64,11 +61,12 @@ const container2 = css`
   margin-right: 15px;
   margin-left: 15px;
 `;
-const topMatter2 = css`
+const whiteBanner = css`
   background-color: #fff;
   border-bottom: solid 1px lightgrey;
   width: 100%;
   padding-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 export class Favourites extends Component {
@@ -113,11 +111,11 @@ export class Favourites extends Component {
 
     return (
       <div className={outerDiv}>
-        <div className={topMatter2}>
+        <div className={whiteBanner}>
           <Container className={topPadding}>
             <div className={container2}>
               <Grid container spacing={24}>
-                <Grid item xs={6} className={buttons}>
+                <Grid item xs={6}>
                   <HeaderButton
                     id="backButton"
                     useLink
@@ -128,7 +126,7 @@ export class Favourites extends Component {
                   </HeaderButton>
                 </Grid>
 
-                <Grid item xs={6} className={cx(buttons, right)}>
+                <Grid item xs={6} className={right}>
                   <HeaderButton
                     href={this.props.printUrl}
                     target="print_page"
@@ -144,26 +142,6 @@ export class Favourites extends Component {
 
         <Container id="favourites">
           <Grid className={outerGrid} container spacing={24}>
-            <Grid item xs={6} className={buttons}>
-              <HeaderButton
-                id="backButton"
-                useLink
-                href={this.get_link("/benefits-directory")}
-                arrow="back"
-              >
-                {t("favourites.back_link")}
-              </HeaderButton>
-            </Grid>
-            <Grid item xs={6} className={cx(buttons, right)}>
-              <HeaderButton
-                href={this.props.printUrl}
-                target="print_page"
-                id="printButton"
-              >
-                <Print /> {t("Print")}
-              </HeaderButton>
-            </Grid>
-
             <Grid item xs={12} className={topMatter}>
               <Header1 className={"BenefitsCounter"}>
                 {t("favourites.saved_benefits", { x: filteredBenefits.length })}
