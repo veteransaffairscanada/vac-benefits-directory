@@ -23,6 +23,8 @@ const airTable = require("./utils/airtable_es2015");
 const { getGithubData } = require("./utils/statistics");
 const { checkURL } = require("./utils/url_check");
 
+const Logger = require("./utils/logger").default;
+
 const getAllData = async function() {
   const githubData = await getGithubData();
   const airtableData = await airTable.hydrateFromAirtable();
@@ -70,7 +72,7 @@ Promise.resolve(getAllData()).then(allData => {
 
           // submitting Feedback
           server.post("/submitComment", (req, res) => {
-            console.log("Submitting comments");
+            Logger.info("Submitting comments", { source: "/server.js" });
             airTable.writeFeedback(req.body);
             res.sendStatus(200);
           });
@@ -79,6 +81,9 @@ Promise.resolve(getAllData()).then(allData => {
           let urlCache = {};
           server.post("/checkURL", (req, res) => {
             const benefitId = encodeURIComponent(req.body.id);
+            Logger.info(`Checking URL for: ${req.body.id}`, {
+              source: "/server.js"
+            });
             Promise.resolve(checkURL(benefitId, urlCache, data)).then(
               newUrls => {
                 urlCache = newUrls;
@@ -117,13 +122,15 @@ Promise.resolve(getAllData()).then(allData => {
                 root: __dirname
               });
             } else if (req.url.includes("refresh")) {
-              console.log("Refreshing Cache ...");
+              Logger.info("Refreshing Cache ...", { source: "/server.js" });
               let referrer = req.header("Referer") || "/";
               urlCache = {};
               Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
                 copyValidTables(data, newData);
                 res.redirect(referrer);
-                console.log("Cache refreshed @ " + data.timestamp);
+                Logger.info("Cache refreshed @ " + data.timestamp, {
+                  source: "/server.js"
+                });
               });
             } else {
               req.data.favouriteBenefits = new Cookies(req.headers.cookie).get(
@@ -136,7 +143,9 @@ Promise.resolve(getAllData()).then(allData => {
           const port = process.env.PORT || 3000;
           server.listen(port, err => {
             if (err) throw err;
-            console.log("> Ready on http://localhost:" + port);
+            Logger.debug(`> Ready on http://localhost: ${port}`, {
+              source: "/server.js"
+            });
             deploy.notify();
           });
         });

@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import Logger from "../../utils/logger";
 
 describe("generatePaylod", () => {
