@@ -19,7 +19,6 @@ import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 import Dropdown from "./dropdown";
-import BenefitsPane from "./benefits_pane";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -45,7 +44,7 @@ const nonMobileStyle = css`
   }
 `;
 
-export class BB extends Component {
+export class BenefitsPane extends Component {
   state = { showDisabledCookieBanner: false };
 
   componentDidMount() {
@@ -94,65 +93,54 @@ export class BB extends Component {
     const filteredBenefits = this.props.filteredBenefits;
 
     return (
-      <div
-        id={this.props.id}
-        className={outerDiv}
-        ref={el => (this.componentRef = el)}
-      >
-        <div className={topMatter}>
-          <Container className={topPadding}>
-            <Grid container spacing={24}>
-              <Grid item xs={12} md={9}>
-                <HeaderButton
-                  useLink
-                  className={anchors}
-                  href={this.props.favouritesUrl}
-                >
-                  <Bookmark />
-                  {t("B3.favouritesButtonText") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </HeaderButton>
+      <Grid container spacing={16}>
+        <Grid item xs={12}>
+          <Header2 className={"BenefitsCounter " + title}>
+            {this.countString(filteredBenefits.length, t)}
+          </Header2>
+          {filteredBenefits.length > 0 ? (
+            <Body>{t("B3.check eligibility")}</Body>
+          ) : (
+            ""
+          )}
+        </Grid>
 
-                <HeaderButton
-                  className={anchors}
-                  href={this.props.printUrl}
-                  target="print_page"
-                  id="printButton"
-                >
-                  <Print />{" "}
-                  <span className={nonMobileStyle}> {t("Print")} </span>
-                </HeaderButton>
-              </Grid>
-            </Grid>
-          </Container>
-        </div>
-        <Container className={topPadding}>
-          <Grid container spacing={32}>
-            <Grid item lg={4} md={4} sm={5} xs={12}>
-              <ProfileNeedsSelectorMobile t={t} store={this.props.store} />
-              <ProfileNeedsSelector t={t} store={this.props.store} />
-            </Grid>
-            <Grid item lg={8} md={8} sm={7} xs={12}>
-              <Grid container spacing={16}>
-                <Grid item xs={12}>
-                  {this.state.showDisabledCookieBanner ? (
-                    <DisabledCookiesBanner
-                      t={t}
-                      onClose={() =>
-                        this.setState({ showDisabledCookieBanner: false })
-                      }
-                    />
-                  ) : null}
-                </Grid>
-              </Grid>
+        <Grid item xs={12} md={6}>
+          <Dropdown
+            value={this.props.sortBy}
+            onChange={this.handleSortByChange}
+            label={t("B3.Sort By")}
+            id="sortBySelector"
+          >
+            <option value="relevance">{t("B3.Popularity")}</option>
+            <option value="alphabetical">{t("B3.Alphabetical")}</option>
+          </Dropdown>
+        </Grid>
 
-              <BenefitsPane id="BenefitPane" t={t} store={this.props.store} />
-            </Grid>
+        <Grid item xs={12} md={6}>
+          <SearchBox
+            inputId="bbSearchField"
+            buttonId="searchButtonLink"
+            placeholder={this.props.t("search")}
+            value={this.props.searchString}
+            onChange={this.handleSearchChange}
+            disableButton={true}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Grid container spacing={24}>
+            <BenefitList
+              t={t}
+              filteredBenefits={filteredBenefits}
+              sortByValue={this.props.sortBy}
+              searchString={this.props.searchString}
+              showFavourites={true}
+              store={this.props.store}
+            />
           </Grid>
-        </Container>
-      </div>
+        </Grid>
+      </Grid>
     );
   }
 }
@@ -196,7 +184,7 @@ const mapStateToProps = (reduxState, props) => {
   };
 };
 
-BB.propTypes = {
+BenefitsPane.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
   benefits: PropTypes.array.isRequired,
@@ -223,4 +211,4 @@ BB.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BB);
+)(BenefitsPane);
