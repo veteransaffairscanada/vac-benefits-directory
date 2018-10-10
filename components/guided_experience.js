@@ -169,7 +169,7 @@ GuidedExperience.propTypes = {
   t: PropTypes.func.isRequired,
   setSection: PropTypes.func.isRequired,
   subtitle: PropTypes.string.isRequired,
-  helperText: PropTypes.string.isRequired,
+  helperText: PropTypes.string,
   stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,

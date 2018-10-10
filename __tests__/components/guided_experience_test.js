@@ -129,4 +129,18 @@ describe("GuidedExperience", () => {
         .text()
     ).toContain("ge.show_results");
   });
+
+  it("displays helper text if it exists", () => {
+    props.helperText = "helperText";
+    expect(
+      mounted_GuidedExperience()
+        .find("Body")
+        .text()
+    ).toContain("helperText");
+  });
+
+  it("does not display helper text if it does not exist", () => {
+    props.helperText = "";
+    expect(mounted_GuidedExperience().find("Body").length).toEqual(0);
+  });
 });
