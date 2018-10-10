@@ -16,6 +16,8 @@ import Button from "./button";
 
 const noBenefitsPane = css`
   text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
 `;
 const button = css`
   margin-top: 40px;
