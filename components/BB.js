@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Print from "@material-ui/icons/Print";
 import Bookmark from "@material-ui/icons/Bookmark";
-import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
@@ -11,14 +10,10 @@ import { getFilteredBenefits } from "../selectors/benefits";
 import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import { css } from "react-emotion";
 import Container from "../components/container";
-import Header2 from "../components/typography/header2";
 import HeaderButton from "./header_button";
-import Body from "../components/typography/body";
-import SearchBox from "./search_box";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
-import Dropdown from "./dropdown";
 import BenefitsPane from "./benefits_pane";
 
 const outerDiv = css`
@@ -26,9 +21,6 @@ const outerDiv = css`
 `;
 const topPadding = css`
   padding-top: 30px;
-`;
-const title = css`
-  padding-bottom: 15px;
 `;
 const topMatter = css`
   background-color: #fff;
@@ -91,7 +83,6 @@ export class BB extends Component {
 
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
-    const filteredBenefits = this.props.filteredBenefits;
 
     return (
       <div

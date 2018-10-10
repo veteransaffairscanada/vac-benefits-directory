@@ -1,63 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import Print from "@material-ui/icons/Print";
-import Bookmark from "@material-ui/icons/Bookmark";
 import BenefitList from "../components/benefit_list";
-import ProfileNeedsSelector from "./profile_needs_selector";
-import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFilteredBenefits } from "../selectors/benefits";
-import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import { css } from "react-emotion";
-import Container from "../components/container";
 import Header2 from "../components/typography/header2";
-import HeaderButton from "./header_button";
 import Body from "../components/typography/body";
 import SearchBox from "./search_box";
-import { globalTheme } from "../theme";
-import { DisabledCookiesBanner } from "./disabled_cookies_banner";
-import { areCookiesDisabled } from "../utils/common";
 import Dropdown from "./dropdown";
 
-const outerDiv = css`
-  padding-bottom: 16px !important;
-`;
-const topPadding = css`
-  padding-top: 30px;
-`;
 const title = css`
   padding-bottom: 15px;
 `;
-const topMatter = css`
-  background-color: #fff;
-  border-bottom: solid 1px lightgrey;
-  width: 100%;
-  padding-bottom: 20px;
-`;
-const anchors = css`
-  margin-right: 20px;
-`;
-const nonMobileStyle = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none;
-  }
-`;
 
 export class BenefitsPane extends Component {
-  state = { showDisabledCookieBanner: false };
-
-  componentDidMount() {
-    this.props.setCookiesDisabled(areCookiesDisabled());
-    this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
-  }
-
-  componentDidUpdate() {
-    if (this.state.showDisabledCookieBanner && !this.props.cookiesDisabled) {
-      this.setState({ showDisabledCookieBanner: false });
-    }
-  }
-
   handleSortByChange = event => {
     this.props.setSortBy(event.target.value);
   };
@@ -152,23 +109,13 @@ const mapDispatchToProps = dispatch => {
     },
     setSortBy: sortBy => {
       dispatch({ type: "SET_SORT_BY", data: sortBy });
-    },
-    setCookiesDisabled: areDisabled => {
-      dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
     }
   };
 };
 
 const mapStateToProps = (reduxState, props) => {
   return {
-    cookiesDisabled: reduxState.cookiesDisabled,
-    benefits: reduxState.benefits,
-    favouriteBenefits: reduxState.favouriteBenefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples,
     filteredBenefits: getFilteredBenefits(reduxState, props),
-    favouritesUrl: getFavouritesUrl(reduxState, props),
-    needs: reduxState.needs,
     searchString: reduxState.searchString,
     selectedEligibility: {
       patronType: reduxState.patronType,
@@ -177,23 +124,13 @@ const mapStateToProps = (reduxState, props) => {
       serviceHealthIssue: reduxState.serviceHealthIssue
     },
     selectedNeeds: reduxState.selectedNeeds,
-    sortBy: reduxState.sortBy,
-    printUrl: getPrintUrl(reduxState, props, {}),
-    selectedAreaOffice: reduxState.selectedAreaOffice,
-    closestAreaOffice: reduxState.closestAreaOffice
+    sortBy: reduxState.sortBy
   };
 };
 
 BenefitsPane.propTypes = {
-  cookiesDisabled: PropTypes.bool.isRequired,
-  setCookiesDisabled: PropTypes.func.isRequired,
-  benefits: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
   filteredBenefits: PropTypes.array,
-  favouritesUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
-  needs: PropTypes.array.isRequired,
   printUrl: PropTypes.string,
   searchString: PropTypes.string.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
@@ -202,10 +139,7 @@ BenefitsPane.propTypes = {
   setSortBy: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  favouriteBenefits: PropTypes.array.isRequired,
-  store: PropTypes.object,
-  selectedAreaOffice: PropTypes.object.isRequired,
-  closestAreaOffice: PropTypes.object.isRequired
+  store: PropTypes.object
 };
 
 export default connect(
