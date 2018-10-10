@@ -7,6 +7,7 @@ import Router from "next/router";
 import Container from "./container";
 import FilterText from "./typography/filter_text";
 import Header2 from "./typography/header2";
+import Body from "./typography/body";
 import Button from "./button";
 import HeaderButton from "./header_button";
 import GuidedExperienceLink from "./typography/guided_experience_link";
@@ -20,19 +21,20 @@ const box = css`
   }
   display: inline-flex;
 `;
-
 const prevButton = css`
   margin-top: 50px;
   margin-bottom: 15px;
 `;
-
 const comma = css`
   margin-right: 0.5em;
 `;
-
 const questions = css`
   margin: 0;
   padding: 0;
+`;
+const body = css`
+  margin-top: 5px;
+  margin-bottom: 0px;
 `;
 
 export class GuidedExperience extends Component {
@@ -74,7 +76,15 @@ export class GuidedExperience extends Component {
   };
 
   render() {
-    const { t, reduxState } = this.props;
+    const {
+      t,
+      reduxState,
+      prevSection,
+      nextSection,
+      subtitle,
+      setSection,
+      helperText
+    } = this.props;
 
     let benefitsDirectoryUrl =
       "/benefits-directory?lng=" + t("current-language-code");
@@ -99,14 +109,12 @@ export class GuidedExperience extends Component {
           id="prevButton"
           disableRipple
           href={
-            this.props.prevSection === "index"
+            prevSection === "index"
               ? "/index?lng=" + t("current-language-code")
               : undefined
           }
           onClick={
-            this.props.prevSection === "index"
-              ? undefined
-              : () => this.props.setSection(this.props.prevSection)
+            prevSection === "index" ? undefined : () => setSection(prevSection)
           }
           className={prevButton}
           arrow="back"
@@ -123,7 +131,8 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Grid item xs={12} className={questions}>
-              <Header2>{this.props.subtitle}</Header2>
+              <Header2>{subtitle}</Header2>
+              {helperText ? <Body className={body}>{helperText}</Body> : null}
               {this.props.children}
             </Grid>
 
@@ -132,9 +141,9 @@ export class GuidedExperience extends Component {
                 id="nextButton"
                 arrow={true}
                 onClick={
-                  this.props.nextSection === "benefits-directory"
+                  nextSection === "benefits-directory"
                     ? () => Router.push(benefitsDirectoryUrl)
-                    : () => this.props.setSection(this.props.nextSection)
+                    : () => setSection(nextSection)
                 }
               >
                 {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
@@ -160,6 +169,7 @@ GuidedExperience.propTypes = {
   t: PropTypes.func.isRequired,
   setSection: PropTypes.func.isRequired,
   subtitle: PropTypes.string.isRequired,
+  helperText: PropTypes.string.isRequired,
   stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
