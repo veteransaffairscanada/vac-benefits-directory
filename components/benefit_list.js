@@ -84,7 +84,6 @@ export class BenefitList extends React.Component {
         <BenefitCard
           id={"bc" + i}
           benefit={benefit}
-          examples={this.props.examples}
           t={this.props.t}
           key={benefit.id}
           favouriteBenefits={this.props.favouriteBenefits}
@@ -100,8 +99,7 @@ export class BenefitList extends React.Component {
 const mapStateToProps = reduxState => {
   return {
     favouriteBenefits: reduxState.favouriteBenefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples
+    eligibilityPaths: reduxState.eligibilityPaths
   };
 };
 
@@ -109,7 +107,6 @@ BenefitList.propTypes = {
   t: PropTypes.func.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
   sortByValue: PropTypes.string.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   showFavourites: PropTypes.bool.isRequired,

@@ -5,7 +5,6 @@ const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 import benefitsFixture from "../fixtures/benefits";
-import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 
 import configureStore from "redux-mock-store";
@@ -32,7 +31,6 @@ describe("BenefitList", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
-      examples: examplesFixture,
       needs: needsFixture,
       selectedNeeds: {}
     };
