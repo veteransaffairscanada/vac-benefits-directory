@@ -60,7 +60,6 @@ const container2 = css`
 `;
 const whiteBanner = css`
   background-color: #fff;
-  border-bottom: solid 1px lightgrey;
   width: 100%;
   padding-bottom: 20px;
   margin-bottom: 30px;
