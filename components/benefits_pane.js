@@ -3,18 +3,35 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "../components/benefit_list";
 import { connect } from "react-redux";
-import { getFilteredBenefits } from "../selectors/benefits";
+import {
+  getFilteredBenefitsWithoutSearch,
+  getFilteredBenefits
+} from "../selectors/benefits";
 import { css } from "react-emotion";
 import Header2 from "../components/typography/header2";
 import Body from "../components/typography/body";
 import SearchBox from "./search_box";
 import Dropdown from "./dropdown";
+import Button from "./button";
 
+const noBenefitsPane = css`
+  text-align: center;
+`;
+const button = css`
+  margin-top: 40px;
+`;
 const title = css`
   padding-bottom: 15px;
 `;
 
 export class BenefitsPane extends Component {
+  clearFilters = () => {
+    this.props.profileQuestions.forEach(q => {
+      this.props.saveQuestionResponse(q.variable_name, "");
+    });
+    this.props.saveQuestionResponse("selectedNeeds", {});
+  };
+
   handleSortByChange = event => {
     this.props.setSortBy(event.target.value);
   };
@@ -49,61 +66,82 @@ export class BenefitsPane extends Component {
     const { t } = this.props; // eslint-disable-line no-unused-vars
     const filteredBenefits = this.props.filteredBenefits;
 
-    return (
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <Header2 className={"BenefitsCounter " + title}>
-            {this.countString(filteredBenefits.length, t)}
-          </Header2>
-          {filteredBenefits.length > 0 ? (
-            <Body>{t("B3.check eligibility")}</Body>
-          ) : (
-            ""
-          )}
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <Dropdown
-            value={this.props.sortBy}
-            onChange={this.handleSortByChange}
-            label={t("B3.Sort By")}
-            id="sortBySelector"
+    if (this.props.filteredBenefitsWithoutSearch.length === 0) {
+      return (
+        <div className={noBenefitsPane}>
+          <Header2>{t("BenefitsPane.no_filtered_benefits")}</Header2>
+          <Button
+            className={button}
+            id="reset_filters_button"
+            onClick={() => this.clearFilters()}
           >
-            <option value="relevance">{t("B3.Popularity")}</option>
-            <option value="alphabetical">{t("B3.Alphabetical")}</option>
-          </Dropdown>
-        </Grid>
+            {t("BenefitsPane.reset_filters")}
+          </Button>
+        </div>
+      );
+    } else {
+      return (
+        <Grid container spacing={16}>
+          <Grid item xs={12}>
+            <Header2 className={"BenefitsCounter " + title}>
+              {this.countString(filteredBenefits.length, t)}
+            </Header2>
+            {filteredBenefits.length > 0 ? (
+              <Body>{t("B3.check eligibility")}</Body>
+            ) : (
+              ""
+            )}
+          </Grid>
 
-        <Grid item xs={12} md={6}>
-          <SearchBox
-            inputId="bbSearchField"
-            buttonId="searchButtonLink"
-            placeholder={this.props.t("search")}
-            value={this.props.searchString}
-            onChange={this.handleSearchChange}
-            disableButton={true}
-          />
-        </Grid>
+          <Grid item xs={12} md={6}>
+            <Dropdown
+              value={this.props.sortBy}
+              onChange={this.handleSortByChange}
+              label={t("B3.Sort By")}
+              id="sortBySelector"
+            >
+              <option value="relevance">{t("B3.Popularity")}</option>
+              <option value="alphabetical">{t("B3.Alphabetical")}</option>
+            </Dropdown>
+          </Grid>
 
-        <Grid item xs={12}>
-          <Grid container spacing={24}>
-            <BenefitList
-              t={t}
-              filteredBenefits={filteredBenefits}
-              sortByValue={this.props.sortBy}
-              searchString={this.props.searchString}
-              showFavourites={true}
-              store={this.props.store}
+          <Grid item xs={12} md={6}>
+            <SearchBox
+              inputId="bbSearchField"
+              buttonId="searchButtonLink"
+              placeholder={this.props.t("search")}
+              value={this.props.searchString}
+              onChange={this.handleSearchChange}
+              disableButton={true}
             />
           </Grid>
+
+          <Grid item xs={12}>
+            <Grid container spacing={24}>
+              <BenefitList
+                t={t}
+                filteredBenefits={filteredBenefits}
+                sortByValue={this.props.sortBy}
+                searchString={this.props.searchString}
+                showFavourites={true}
+                store={this.props.store}
+              />
+            </Grid>
+          </Grid>
         </Grid>
-      </Grid>
-    );
+      );
+    }
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
+    },
     setSearchString: searchString => {
       dispatch({ type: "SET_SEARCH_STRING", data: searchString });
     },
@@ -115,6 +153,13 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (reduxState, props) => {
   return {
+    profileQuestions: reduxState.questions.filter(
+      q => q.variable_name !== "needs"
+    ),
+    filteredBenefitsWithoutSearch: getFilteredBenefitsWithoutSearch(
+      reduxState,
+      props
+    ),
     filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
     selectedEligibility: {
@@ -129,12 +174,15 @@ const mapStateToProps = (reduxState, props) => {
 };
 
 BenefitsPane.propTypes = {
-  filteredBenefits: PropTypes.array,
+  profileQuestions: PropTypes.array.isRequired,
+  filteredBenefitsWithoutSearch: PropTypes.array.isRequired,
+  filteredBenefits: PropTypes.array.isRequired,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
   searchString: PropTypes.string.isRequired,
   selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   setSearchString: PropTypes.func.isRequired,
   setSortBy: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
