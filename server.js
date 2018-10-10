@@ -102,6 +102,12 @@ Promise.resolve(getAllData()).then(allData => {
             setTimeout(function() {
               Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
                 copyValidTables(data, newData);
+                Logger.info(
+                  "Cache refreshed automatically @ " + data.timestamp,
+                  {
+                    source: "/server.js"
+                  }
+                );
               });
             }, 1000 * 60 * 60);
 
