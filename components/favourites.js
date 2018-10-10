@@ -38,10 +38,6 @@ const emptyList = css`
   word-spacing: normal;
 }
 `;
-const outerGrid = css`
-  padding-left: 16px;
-  padding-right: 16px;
-`;
 const topMatter = css`
   margin-bottom: 25px !important;
 `;
@@ -53,10 +49,6 @@ const outerDiv = css`
 `;
 const topPadding = css`
   padding-top: 30px;
-`;
-const container2 = css`
-  margin-right: 15px;
-  margin-left: 15px;
 `;
 const whiteBanner = css`
   background-color: #fff;
@@ -109,35 +101,32 @@ export class Favourites extends Component {
       <div className={outerDiv}>
         <div className={whiteBanner}>
           <Container className={topPadding}>
-            <div className={container2}>
-              <Grid container spacing={24}>
-                <Grid item xs={6}>
-                  <HeaderButton
-                    id="backButton"
-                    useLink
-                    href={this.get_link("/benefits-directory")}
-                    arrow="back"
-                  >
-                    {t("favourites.back_link")}
-                  </HeaderButton>
-                </Grid>
-
-                <Grid item xs={6} className={right}>
-                  <HeaderButton
-                    href={this.props.printUrl}
-                    target="print_page"
-                    id="printButton"
-                  >
-                    <Print /> {t("Print")}
-                  </HeaderButton>
-                </Grid>
+            <Grid container spacing={24}>
+              <Grid item xs={6}>
+                <HeaderButton
+                  id="backButton"
+                  useLink
+                  href={this.get_link("/benefits-directory")}
+                  arrow="back"
+                >
+                  {t("favourites.back_link")}
+                </HeaderButton>
               </Grid>
-            </div>
+              <Grid item xs={6} className={right}>
+                <HeaderButton
+                  href={this.props.printUrl}
+                  target="print_page"
+                  id="printButton"
+                >
+                  <Print /> {t("Print")}
+                </HeaderButton>
+              </Grid>
+            </Grid>
           </Container>
         </div>
 
         <Container id="favourites">
-          <Grid className={outerGrid} container spacing={24}>
+          <Grid container spacing={24}>
             <Grid item xs={12} className={topMatter}>
               <Header1 className={"BenefitsCounter"}>
                 {t("favourites.saved_benefits", { x: filteredBenefits.length })}
