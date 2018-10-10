@@ -1,9 +1,9 @@
 /* eslint no-console: 0 */
 import Logger from "../../utils/logger";
 
-describe("generatePaylod", () => {
+describe("generatePayload", () => {
   it("creates a payload based on standard options", () => {
-    let result = Logger.generatePaylod("foo", "bar", {});
+    let result = Logger.generatePayload("foo", "bar", {});
     expect(result.cloudEventsVersion).toEqual("0.1");
     expect(result.contentType).toEqual("text/plain");
     expect(result.body).toEqual("bar");
@@ -17,7 +17,7 @@ describe("generatePaylod", () => {
   });
 
   it("allows you to override payload options", () => {
-    let result = Logger.generatePaylod("foo", "bar", { source: "/biz" });
+    let result = Logger.generatePayload("foo", "bar", { source: "/biz" });
     expect(result.source).toEqual("/biz");
   });
 });

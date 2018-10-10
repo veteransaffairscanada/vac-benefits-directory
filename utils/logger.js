@@ -41,7 +41,7 @@ var Logger = (function() {
             ? arguments[1]
             : {};
 
-        var payload = this.generatePaylod("debug", msg, options);
+        var payload = this.generatePayload("debug", msg, options);
         console.log(JSON.stringify(payload));
         return payload;
       }
@@ -54,7 +54,7 @@ var Logger = (function() {
             ? arguments[1]
             : {};
 
-        var payload = this.generatePaylod("error", msg, options);
+        var payload = this.generatePayload("error", msg, options);
         console.error(JSON.stringify(payload));
         return payload;
       }
@@ -67,7 +67,7 @@ var Logger = (function() {
             ? arguments[1]
             : {};
 
-        var payload = this.generatePaylod("info", msg, options);
+        var payload = this.generatePayload("info", msg, options);
         console.log(JSON.stringify(payload));
         return payload;
       }
@@ -80,14 +80,14 @@ var Logger = (function() {
             ? arguments[1]
             : {};
 
-        var payload = this.generatePaylod("warn", msg, options);
+        var payload = this.generatePayload("warn", msg, options);
         console.log(JSON.stringify(payload));
         return payload;
       }
     },
     {
-      key: "generatePaylod",
-      value: function generatePaylod(level, msg, options) {
+      key: "generatePayload",
+      value: function generatePayload(level, msg, options) {
         var envDetails = process.env.CIRCLE_SHA1
           ? process.env.CIRCLE_SHA1.substring(0, 7)
           : process.env.NODE_ENV;
