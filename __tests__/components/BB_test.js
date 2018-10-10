@@ -94,8 +94,8 @@ describe("BB", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has a sortBy selector", () => {
-    expect(mounted_BB().find("#sortBySelector").length).toEqual(2);
+  it("contains a BenefitsPane", async () => {
+    expect(mounted_BB().find("#BenefitsPane").length).not.toEqual(0);
   });
 
   it("has the ProfileSelector component", () => {
@@ -108,111 +108,6 @@ describe("BB", () => {
 
   it("has a Clear Filters button", () => {
     expect(shallow_BB().find("#ClearEligibilityFilters"));
-  });
-
-  it("has a benefits counter", () => {
-    expect(mounted_BB().find(".BenefitsCounter"));
-  });
-
-  it("shows B3.All benefits to consider when no filters are selected", () => {
-    mounted_BB().setProps({
-      selectedEligibility: {
-        patronType: "",
-        serviceType: "",
-        statusAndVitals: ""
-      }
-    });
-    mounted_BB().setProps({ selectedNeeds: {} });
-    expect(
-      mounted_BB()
-        .find(".BenefitsCounter")
-        .last()
-        .text()
-    ).toEqual("B3.All benefits to consider");
-  });
-
-  describe("countSelection", () => {
-    it("returns 0 if nothing is selected", () => {
-      expect(
-        mounted_BB()
-          .instance()
-          .countSelection()
-      ).toEqual(0);
-    });
-
-    it("returns 1 if one selectedEligibilty is selected", () => {
-      mounted_BB().setProps({
-        selectedEligibility: {
-          patronType: eligibilityPathsFixture[0].patronType
-        }
-      });
-      expect(
-        mounted_BB()
-          .instance()
-          .countSelection()
-      ).toEqual(1);
-    });
-
-    it("returns 1 if one selectedNeeds is selected", () => {
-      let needsSelection = {};
-      needsSelection[needsFixture[0].id] = needsFixture[0].id;
-      mounted_BB().setProps({ selectedNeeds: needsSelection });
-      expect(
-        mounted_BB()
-          .instance()
-          .countSelection()
-      ).toEqual(1);
-    });
-
-    it("returns 1 if one selectedNeeds is selected", () => {
-      let needsSelection = {};
-      needsSelection[needsFixture[0].id] = needsFixture[0].id;
-      mounted_BB().setProps({ selectedNeeds: needsSelection });
-      mounted_BB().setProps({
-        selectedEligibility: {
-          patronType: eligibilityPathsFixture[0].patronType
-        }
-      });
-      expect(
-        mounted_BB()
-          .instance()
-          .countSelection()
-      ).toEqual(2);
-    });
-  });
-
-  describe("search feature", () => {
-    it("shows a text search box", () => {
-      expect(
-        mounted_BB()
-          .find("#bbSearchField")
-          .first().length
-      ).toEqual(1);
-    });
-
-    it("handleSearchChange sets the searchString state in redux", () => {
-      mounted_BB()
-        .instance()
-        .handleSearchChange({ target: { value: "foo" } });
-      expect(reduxData.setSearchString).toBeCalledWith("foo");
-    });
-  });
-
-  describe("sort by feature", () => {
-    it("shows a sort by box", () => {
-      expect(
-        mounted_BB()
-          .find("#sortBySelector")
-          .first().length
-      ).toEqual(1);
-    });
-
-    it("handleSortByChange sets the sortBy state in redux", () => {
-      mounted_BB()
-        .instance()
-        .handleSortByChange({ target: { value: "foo" } });
-      expect(reduxData.setSortBy).toBeCalledWith("foo");
-    });
   });
 
   it("contains the print button", () => {

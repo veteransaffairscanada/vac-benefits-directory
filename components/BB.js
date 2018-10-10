@@ -51,36 +51,6 @@ export class BB extends Component {
     }
   }
 
-  handleSortByChange = event => {
-    this.props.setSortBy(event.target.value);
-  };
-
-  countSelection = () => {
-    const reducer = (acc, obj) => acc + (Object.values(obj)[0] == null ? 0 : 1);
-    let count = Object.values(this.props.selectedEligibility).reduce(
-      reducer,
-      0
-    );
-    return count + Object.values(this.props.selectedNeeds).length;
-  };
-
-  countString = (x, t) => {
-    switch (true) {
-      case this.countSelection() === 0 && this.props.searchString.trim() === "":
-        return t("B3.All benefits to consider");
-      case x === 0:
-        return t("B3.No benefits");
-      case x === 1:
-        return t("B3.One benefit");
-      default:
-        return t("B3.x benefits to consider", { x: x });
-    }
-  };
-
-  handleSearchChange = event => {
-    this.props.setSearchString(event.target.value);
-  };
-
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
 
@@ -139,7 +109,7 @@ export class BB extends Component {
                 </Grid>
               </Grid>
 
-              <BenefitsPane id="BenefitPane" t={t} store={this.props.store} />
+              <BenefitsPane id="BenefitsPane" t={t} store={this.props.store} />
             </Grid>
           </Grid>
         </Container>
