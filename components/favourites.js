@@ -38,10 +38,6 @@ const emptyList = css`
   word-spacing: normal;
 }
 `;
-const outerGrid = css`
-  padding-left: 16px;
-  padding-right: 16px;
-`;
 const buttons = css`
   margin-top: 30px !important;
 `;
@@ -94,7 +90,7 @@ export class Favourites extends Component {
 
     return (
       <Container id="favourites">
-        <Grid className={outerGrid} container spacing={24}>
+        <Grid container spacing={24}>
           <Grid item xs={6} className={buttons}>
             <HeaderButton
               id="backButton"

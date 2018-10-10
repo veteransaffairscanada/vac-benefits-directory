@@ -2,28 +2,22 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { cx, css } from "react-emotion";
 
-const style1 = css`
+const style = css`
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
-`;
-const style2 = css`
-  margin-left: 15px;
-  margin-right: 15px;
+  padding-left: 30px;
+  padding-right: 30px;
 `;
 
 class Container extends Component {
   render() {
     return (
-      <div className={style1}>
-        <div
-          className={
-            this.props.className ? cx(style2, this.props.className) : style2
-          }
-        >
-          {this.props.children}
-        </div>
+      <div
+        className={
+          this.props.className ? cx(style, this.props.className) : style
+        }
+      >
+        {this.props.children}
       </div>
     );
   }
