@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Paper from "@material-ui/core/Paper";
+import Paper from "../components/paper";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import { css } from "react-emotion";

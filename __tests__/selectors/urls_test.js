@@ -1,5 +1,6 @@
-import { getFavouritesUrl, getPrintUrl } from "../../selectors/urls";
 import lunr from "lunr";
+import questionsFixture from "../fixtures/questions";
+import { getFavouritesUrl, getPrintUrl } from "../../selectors/urls";
 
 describe("getFavouritesUrl", () => {
   let props;
@@ -10,6 +11,7 @@ describe("getFavouritesUrl", () => {
       t: () => "en"
     };
     state = {
+      questions: questionsFixture,
       selectedNeeds: {},
       patronType: "",
       searchString: "",
@@ -87,6 +89,7 @@ describe("getPrintUrl", () => {
       t: () => "en"
     };
     state = {
+      questions: questionsFixture,
       selectedNeeds: {},
       needs: [
         {

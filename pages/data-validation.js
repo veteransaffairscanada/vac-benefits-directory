@@ -5,7 +5,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import Paper from "../components/paper";
 import Button from "@material-ui/core/Button";
 import ReactMoment from "react-moment";
 import { withI18next } from "../lib/withI18next";

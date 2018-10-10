@@ -46,10 +46,6 @@ const TextHold = css`
   background-color: #505050;
   padding: 10px 0;
 `;
-const container2 = css`
-  margin-left: 15px;
-  margin-right: 15px;
-`;
 const white = css`
   color: white;
 `;
@@ -109,95 +105,93 @@ export class FeedbackBar extends Component {
 
     return (
       <div className={FeedbackWrapper} role="navigation">
-        <div className={container2}>
-          {this.state.commentFormToggled ? (
-            <div className={CommentBox}>
-              <h2>{t("comment-help-us-improve")}</h2>
-              <p>{t("comment-privacy-disclaimer")}</p>
-              <div className={TextHold}>
-                <TextField
-                  inputProps={{
-                    style: {
-                      backgroundColor: "white",
-                      marginTop: "10px",
-                      padding: "10px"
-                    }
-                  }}
-                  InputLabelProps={{
-                    shrink: true,
-                    style: { color: "white", fontSize: "18px" }
-                  }}
-                  id="commentWhatWereYouDoing"
-                  label={t("comment-what-were-you-doing")}
-                  margin="normal"
-                  fullWidth={true}
-                  onChange={this.handleChange("action")}
-                  className={white}
-                  value={this.state.action}
-                  autoFocus
-                />
-                <TextField
-                  inputProps={{
-                    style: {
-                      backgroundColor: "white",
-                      marginTop: "10px",
-                      padding: "10px"
-                    }
-                  }}
-                  InputLabelProps={{
-                    shrink: true,
-                    style: { color: "white", fontSize: "18px" }
-                  }}
-                  id="commentWhatWentWrong"
-                  label={t("comment-what-went-wrong")}
-                  margin="normal"
-                  fullWidth={true}
-                  onChange={this.handleChange("failure")}
-                  value={this.state.failure}
-                />
-              </div>
-              <br />
-              <SubmitButton
-                id="sendComment"
-                arrow={true}
-                size="big"
-                onClick={() => this.sendComment()}
+        {this.state.commentFormToggled ? (
+          <div className={CommentBox}>
+            <h2>{t("comment-help-us-improve")}</h2>
+            <p>{t("comment-privacy-disclaimer")}</p>
+            <div className={TextHold}>
+              <TextField
+                inputProps={{
+                  style: {
+                    backgroundColor: "white",
+                    marginTop: "10px",
+                    padding: "10px"
+                  }
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                  style: { color: "white", fontSize: "18px" }
+                }}
+                id="commentWhatWereYouDoing"
+                label={t("comment-what-were-you-doing")}
+                margin="normal"
+                fullWidth={true}
+                onChange={this.handleChange("action")}
+                className={white}
+                value={this.state.action}
+                autoFocus
+              />
+              <TextField
+                inputProps={{
+                  style: {
+                    backgroundColor: "white",
+                    marginTop: "10px",
+                    padding: "10px"
+                  }
+                }}
+                InputLabelProps={{
+                  shrink: true,
+                  style: { color: "white", fontSize: "18px" }
+                }}
+                id="commentWhatWentWrong"
+                label={t("comment-what-went-wrong")}
+                margin="normal"
+                fullWidth={true}
+                onChange={this.handleChange("failure")}
+                value={this.state.failure}
+              />
+            </div>
+            <br />
+            <SubmitButton
+              id="sendComment"
+              arrow={true}
+              size="big"
+              onClick={() => this.sendComment()}
+            >
+              {t("send")}
+            </SubmitButton>
+            &nbsp; &nbsp;
+            <FooterButton
+              id="cancelComment"
+              onClick={() => this.cancelComment()}
+            >
+              {t("cancel")}
+            </FooterButton>
+          </div>
+        ) : null}
+        <div className={Div}>
+          {this.state.feedbackSubmitted ? (
+            <div className={Inner}>
+              <p>{t("feedback-response")}</p>
+            </div>
+          ) : (
+            <div className={Inner}>
+              {t("feedback-prompt")} &nbsp;
+              <FooterButton
+                id="feedbackYes"
+                onClick={() => this.sendFeedback("Yes")}
               >
-                {t("send")}
-              </SubmitButton>
+                {t("yes")}
+              </FooterButton>
               &nbsp; &nbsp;
               <FooterButton
-                id="cancelComment"
-                onClick={() => this.cancelComment()}
+                id="feedbackNo"
+                onClick={() => this.sendFeedback("No")}
               >
-                {t("cancel")}
+                {t("no")}
               </FooterButton>
             </div>
-          ) : null}
-          <div className={Div}>
-            {this.state.feedbackSubmitted ? (
-              <div className={Inner}>
-                <p>{t("feedback-response")}</p>
-              </div>
-            ) : (
-              <div className={Inner}>
-                {t("feedback-prompt")} &nbsp;
-                <FooterButton
-                  id="feedbackYes"
-                  onClick={() => this.sendFeedback("Yes")}
-                >
-                  {t("yes")}
-                </FooterButton>
-                &nbsp; &nbsp;
-                <FooterButton
-                  id="feedbackNo"
-                  onClick={() => this.sendFeedback("No")}
-                >
-                  {t("no")}
-                </FooterButton>
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </div>
     );

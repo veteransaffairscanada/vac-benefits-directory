@@ -8,18 +8,25 @@ const getEnIdx = state => state.enIdx;
 const getFrIdx = state => state.frIdx;
 const getNeeds = state => state.needs;
 const getNeedsFilter = state => state.selectedNeeds;
-const getPatronFilter = state => state.patronType;
-const getHealthIssueFilter = state => state.serviceHealthIssue;
 const getSearchStringFilter = state => state.searchString;
-const getServiceFilter = state => state.serviceType;
-const getStatusFilter = state => state.statusAndVitals;
+
+export const getProfileFilters = createSelector(
+  [state => state.questions, state => state],
+  (questions, reduxState) => {
+    const profileQuestions = questions
+      .filter(q => q.variable_name !== "needs")
+      .map(q => q.variable_name);
+    let filters = {};
+    profileQuestions.forEach(q => {
+      filters[q] = reduxState[q];
+    });
+    return filters;
+  }
+);
 
 export const getFilteredBenefits = createSelector(
   [
-    getPatronFilter,
-    getServiceFilter,
-    getStatusFilter,
-    getHealthIssueFilter,
+    getProfileFilters,
     getNeedsFilter,
     getBenefits,
     getNeeds,
@@ -30,10 +37,7 @@ export const getFilteredBenefits = createSelector(
     getFrIdx
   ],
   (
-    patronFilter,
-    serviceFilter,
-    statusFilter,
-    healthIssueFilter,
+    selectedProfile,
     selectedNeeds,
     benefits,
     needs,
@@ -47,20 +51,9 @@ export const getFilteredBenefits = createSelector(
     enIdx = lunr.Index.load(JSON.parse(enIdx));
     frIdx = lunr.Index.load(JSON.parse(frIdx));
 
-    let selectedEligibility = {
-      patronType: patronFilter,
-      serviceType: serviceFilter,
-      statusAndVitals: statusFilter,
-      serviceHealthIssue: healthIssueFilter
-    };
     let eligibilityMatch = (path, selected) => {
       let matches = true;
-      [
-        "serviceType",
-        "patronType",
-        "statusAndVitals",
-        "serviceHealthIssue"
-      ].forEach(criteria => {
+      Object.keys(selectedProfile).forEach(criteria => {
         if (
           selected[criteria] !== "" &&
           path[criteria] !== "na" &&
@@ -79,7 +72,7 @@ export const getFilteredBenefits = createSelector(
     // find benefits that match
     let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
-      if (eligibilityMatch(ep, selectedEligibility)) {
+      if (eligibilityMatch(ep, selectedProfile)) {
         eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
     });

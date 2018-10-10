@@ -1,7 +1,11 @@
-import { getFilteredBenefits } from "../../selectors/benefits";
 import lunr from "lunr";
+import {
+  getProfileFilters,
+  getFilteredBenefits
+} from "../../selectors/benefits";
+import questionsFixture from "../fixtures/questions";
 
-describe("getFilteredBenefits", () => {
+describe("Benefits Selectors", () => {
   let props;
   let state;
 
@@ -10,6 +14,7 @@ describe("getFilteredBenefits", () => {
       t: () => "en"
     };
     state = {
+      questions: questionsFixture,
       benefits: [
         {
           id: "0",
@@ -121,47 +126,70 @@ describe("getFilteredBenefits", () => {
     };
   });
 
-  it("displays all benefits if nothing selected", () => {
-    let returnValue = getFilteredBenefits(state, props).map(b => b.id);
-    returnValue.sort();
-    expect(returnValue).toEqual(["0", "1", "2", "3", "4"]);
+  describe("getProfileFilters", () => {
+    it("returns an object with the selected profile values", () => {
+      state.patronType = "p";
+      state.serviceType = "st";
+      state.statusAndVitals = "sv";
+      let returnValue = getProfileFilters(state, props);
+      expect(Object.keys(returnValue).sort()).toEqual(
+        [
+          "patronType",
+          "serviceType",
+          "statusAndVitals",
+          "serviceHealthIssue"
+        ].sort()
+      );
+      expect(returnValue.patronType).toEqual("p");
+      expect(returnValue.serviceType).toEqual("st");
+      expect(returnValue.statusAndVitals).toEqual("sv");
+      expect(returnValue.serviceHealthIssue).toEqual(undefined);
+    });
   });
 
-  it("returns an empty array if there are no benefits", () => {
-    state.benefits = [];
-    let returnValue = getFilteredBenefits(state, props);
-    expect(returnValue).toEqual([]);
-  });
+  describe("getFilteredBenefits", () => {
+    it("displays all benefits if nothing selected", () => {
+      let returnValue = getFilteredBenefits(state, props).map(b => b.id);
+      returnValue.sort();
+      expect(returnValue).toEqual(["0", "1", "2", "3", "4"]);
+    });
 
-  it("displays benefits 0, 2, 4 if patronType p1", () => {
-    state.patronType = "p1";
-    expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
-      "0",
-      "2",
-      "4"
-    ]);
-  });
+    it("returns an empty array if there are no benefits", () => {
+      state.benefits = [];
+      let returnValue = getFilteredBenefits(state, props);
+      expect(returnValue).toEqual([]);
+    });
 
-  it("returns benefits based on selectedNeeds", () => {
-    state.selectedNeeds = { "0": "0", "1": "1", "2": "2" };
-    let returnValue = getFilteredBenefits(state, props);
-    expect(returnValue).toEqual([
-      {
-        availableIndependently: "Requires Gateway Benefit",
-        childBenefits: [],
-        id: "0"
-      }
-    ]);
-  });
+    it("displays benefits 0, 2, 4 if patronType p1", () => {
+      state.patronType = "p1";
+      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
+        "0",
+        "2",
+        "4"
+      ]);
+    });
 
-  it("runs a lunr search on the english index if searchString is set an english is used", () => {
-    state.searchString = "Fiz";
-    expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual(["1"]);
-  });
+    it("returns benefits based on selectedNeeds", () => {
+      state.selectedNeeds = { "0": "0", "1": "1", "2": "2" };
+      let returnValue = getFilteredBenefits(state, props);
+      expect(returnValue).toEqual([
+        {
+          availableIndependently: "Requires Gateway Benefit",
+          childBenefits: [],
+          id: "0"
+        }
+      ]);
+    });
 
-  it("runs a lunr search on the french index if searchString is set an french is used", () => {
-    props.t = () => "fr";
-    state.searchString = "Fiz";
-    expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual(["1"]);
+    it("runs a lunr search on the english index if searchString is set an english is used", () => {
+      state.searchString = "Fiz";
+      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual(["1"]);
+    });
+
+    it("runs a lunr search on the french index if searchString is set an french is used", () => {
+      props.t = () => "fr";
+      state.searchString = "Fiz";
+      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual(["1"]);
+    });
   });
 });
