@@ -15,7 +15,6 @@ class Tooltip extends Component {
     background-color: ${globalTheme.colour.paleGrey};
     color: ${globalTheme.colour.greyishBrown};
     padding: ${padding}px;
-    // border-radius: 6px;
     position: absolute;
     z-index: 1;
     bottom: 100%;
@@ -68,7 +67,7 @@ Tooltip.propTypes = {
 
 Tooltip.defaultProps = {
   disabled: false,
-  width: 200,
+  width: 150,
   tooltipText: "tooltip text"
 };
 
