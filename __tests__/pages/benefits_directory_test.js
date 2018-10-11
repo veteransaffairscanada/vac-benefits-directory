@@ -45,7 +45,8 @@ describe("BenefitsDirectory", () => {
       },
       t: translate,
       url: { query: {} },
-      setPageWidth: jest.fn()
+      setPageWidth: jest.fn(),
+      profileFilters: {}
     };
     _mountedBenefitsDirectory = undefined;
     mockStore = configureStore();
@@ -130,11 +131,12 @@ describe("BenefitsDirectory", () => {
   });
 
   it("has a correct setURL function", () => {
+    props.profileFilters = { patronType: "veteran", service: undefined };
     reduxData.selectedNeeds = { health: "health", financial: "financial" };
     reduxData.searchString = "foo";
     let AInstance = mountedBenefitsDirectory().instance();
     const expectedURL =
-      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=family&serviceType=CAF&searchString=foo&sortBy=relevance";
+      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=veteran&searchString=foo&sortBy=relevance";
     AInstance.setURL();
     expect(Router.replace).toBeCalledWith(expectedURL);
   });

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import Router from "next/router";
 import PropTypes from "prop-types";
-
 import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BB from "../components/BB";
-import Router from "next/router";
+import { getProfileFilters } from "../selectors/benefits";
 
 export class BenefitsDirectory extends Component {
   constructor() {
@@ -37,16 +37,13 @@ export class BenefitsDirectory extends Component {
     if (Object.keys(this.props.selectedNeeds).length > 0) {
       href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
     }
-    [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "serviceHealthIssue"
-    ].forEach(selection => {
-      if (this.props[selection] !== "") {
-        href += `&${selection}=${this.props[selection]}`;
+
+    Object.entries(this.props.profileFilters).forEach(x => {
+      if (x[1]) {
+        href += `&${x[0]}=${x[1]}`;
       }
     });
+
     if (this.props.searchString !== "") {
       href += `&searchString=${encodeURIComponent(this.props.searchString)}`;
     }
@@ -80,28 +77,30 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState, props) => {
   return {
-    patronType: reduxState.patronType,
+    profileFilters: getProfileFilters(reduxState, props),
+    // patronType: reduxState.patronType,
     searchString: reduxState.searchString,
-    serviceType: reduxState.serviceType,
-    statusAndVitals: reduxState.statusAndVitals,
-    serviceHealthIssue: reduxState.serviceHealthIssue,
+    // serviceType: reduxState.serviceType,
+    // statusAndVitals: reduxState.statusAndVitals,
+    // serviceHealthIssue: reduxState.serviceHealthIssue,
     selectedNeeds: reduxState.selectedNeeds,
     sortBy: reduxState.sortBy
   };
 };
 
 BenefitsDirectory.propTypes = {
+  profileFilters: PropTypes.object.isRequired,
   url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   store: PropTypes.object,
-  patronType: PropTypes.string.isRequired,
+  // patronType: PropTypes.string.isRequired,
   searchString: PropTypes.string.isRequired,
-  serviceType: PropTypes.string.isRequired,
-  statusAndVitals: PropTypes.string.isRequired,
+  // serviceType: PropTypes.string.isRequired,
+  // statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setPageWidth: PropTypes.func.isRequired
 };
