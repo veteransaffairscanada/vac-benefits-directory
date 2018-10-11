@@ -15,6 +15,7 @@ import Container from "../components/container";
 import Header1 from "../components/typography/header1";
 import Body from "../components/typography/body";
 import HeaderButton from "../components/header_button";
+import { getLink } from "../utils/common";
 
 const mapPaper = css`
   margin-top: ${globalTheme.marginTop};
@@ -54,21 +55,13 @@ export class Map extends Component {
     this.getLocation();
   }
 
-  get_link = page => {
-    return (
-      page +
-      "?" +
-      Object.entries(this.props.url.query)
-        .filter(x => x[0] !== "" && x[1] !== "")
-        .map(x => {
-          return x[0] + "=" + x[1];
-        })
-        .join("&")
-    );
-  };
-
   render() {
-    const { i18n, t } = this.props;
+    const { i18n, t, referrer } = this.props;
+
+    const backUrl = referrer
+      ? getLink(this.props.url, referrer)
+      : getLink(this.props.url, "favourites");
+
     return (
       <Layout
         i18n={i18n}
@@ -80,7 +73,7 @@ export class Map extends Component {
         <Container>
           <Grid container spacing={24}>
             <Grid item xs={12} md={8} className={topMatter}>
-              <Link href={this.get_link("favourites")}>
+              <Link href={backUrl}>
                 <HeaderButton className={backLink} id="backButton" arrow="back">
                   {t("back")}
                 </HeaderButton>
@@ -148,9 +141,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = reduxState => {
   return {
-    areaOffices: state.areaOffices
+    areaOffices: reduxState.areaOffices,
+    referrer: reduxState.referrer
   };
 };
 
@@ -158,6 +152,7 @@ Map.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   areaOffices: PropTypes.array.isRequired,
+  referrer: PropTypes.array,
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
