@@ -80,11 +80,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (reduxState, props) => {
   return {
     profileFilters: getProfileFilters(reduxState, props),
-    // patronType: reduxState.patronType,
     searchString: reduxState.searchString,
-    // serviceType: reduxState.serviceType,
-    // statusAndVitals: reduxState.statusAndVitals,
-    // serviceHealthIssue: reduxState.serviceHealthIssue,
     selectedNeeds: reduxState.selectedNeeds,
     sortBy: reduxState.sortBy
   };
@@ -97,10 +93,7 @@ BenefitsDirectory.propTypes = {
   t: PropTypes.func.isRequired,
   sortBy: PropTypes.string.isRequired,
   store: PropTypes.object,
-  // patronType: PropTypes.string.isRequired,
   searchString: PropTypes.string.isRequired,
-  // serviceType: PropTypes.string.isRequired,
-  // statusAndVitals: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setPageWidth: PropTypes.func.isRequired
 };
