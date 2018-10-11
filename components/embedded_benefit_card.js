@@ -13,6 +13,7 @@ const root = css`
 `;
 const heading = css`
   margin-bottom: 10px;
+  text-align: left;
 `;
 
 export class EmbeddedBenefitCard extends Component {
