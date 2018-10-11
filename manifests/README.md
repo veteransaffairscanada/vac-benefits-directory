@@ -1,4 +1,4 @@
-#Kubernetes manifests
+# Kubernetes manifests
 
 You can use the files in this directory with `kustomize` to create a
 kubernetes cluster of the app. Ex:
@@ -10,6 +10,16 @@ to start a local cluster and
 `minikube service --namespace=kube-system traefik-ingress-service`
 
 to open the service.
+
+## Secrets
+
+The app requires two secrets to be in the cluster to run properly:
+
+`kubectl create secret generic vac-benefits-directory --from-literal=airtable_write_key=YOUR_KEY`
+
+and
+
+`kubectl create secret generic datadog --from-literal=apikey=YOUR_KEY`
 
 ## Amazon EKS
 
