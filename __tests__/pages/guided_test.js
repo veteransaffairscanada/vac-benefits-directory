@@ -41,7 +41,7 @@ describe("Guided", () => {
       },
       t: translate,
       storeHydrated: true,
-      dispatch: jest.fn(),
+      // dispatch: jest.fn(),
       benefits: benefitsFixture,
       saveQuestionResponse: jest.fn(),
       sectionOrder: [

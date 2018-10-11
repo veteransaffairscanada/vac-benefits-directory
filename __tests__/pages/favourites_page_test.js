@@ -8,7 +8,6 @@ import { FavouritesPage } from "../../pages/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
-import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
@@ -44,7 +43,7 @@ describe("Favourites Page", () => {
       option: "",
       translations: [],
       benefits: benefitsFixture,
-      examples: examplesFixture,
+      // examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       enIdx: JSON.stringify({
         version: lunr.version,
@@ -87,11 +86,11 @@ describe("Favourites Page", () => {
       needs: needsFixture,
       searchString: "",
       selectedNeeds: {},
-      serviceType: "CAF",
+      // serviceType: "CAF",
       sortBy: "relevance",
-      patronType: "family",
-      statusAndVitals: "",
-      serviceHealthIssue: "",
+      // patronType: "family",
+      // statusAndVitals: "",
+      // serviceHealthIssue: "",
       favouriteBenefits: [benefitsFixture[0].id],
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],

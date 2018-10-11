@@ -148,16 +148,13 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const mapStateToProps = state => {
-  return {
-    areaOffices: state.areaOffices
-  };
+const mapStateToProps = () => {
+  return {};
 };
 
 Map.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  areaOffices: PropTypes.array.isRequired,
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,

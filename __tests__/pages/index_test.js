@@ -72,14 +72,7 @@ describe("Index page", () => {
           ]
         ],
         pipeline: ["stemmer"]
-      }),
-      option: "",
-      selectedEligibility: {
-        serviceType: "",
-        patronType: "",
-        statusAndVitals: ""
-      },
-      selectedNeeds: {}
+      })
     };
     props.store = mockStore(reduxData);
   });
