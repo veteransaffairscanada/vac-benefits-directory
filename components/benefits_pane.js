@@ -1,29 +1,46 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Router from "next/router";
 import { Grid } from "@material-ui/core";
-import BenefitList from "../components/benefit_list";
+import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import {
   getFilteredBenefitsWithoutSearch,
   getFilteredBenefits
 } from "../selectors/benefits";
 import { css } from "react-emotion";
-import Header2 from "../components/typography/header2";
-import Body from "../components/typography/body";
+import Header2 from "./typography/header2";
+import Body from "./typography/body";
 import SearchBox from "./search_box";
 import Dropdown from "./dropdown";
 import Button from "./button";
+import { getLink } from "../utils/common";
+import { globalTheme } from "../theme";
 
 const noBenefitsPane = css`
+  text-align: center;
   text-align: center;
   max-width: 500px;
   margin: 0 auto;
 `;
-const button = css`
+const buttonBar = css`
   margin-top: 40px;
+`;
+const button = css`
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    margin: 20px;
+  }
 `;
 const title = css`
   padding-bottom: 15px;
+`;
+const orText = css`
+  display: inline-block;
+  padding: 0 20px;
+  margin-bottom: 0;
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    display: none;
+  }
 `;
 
 export class BenefitsPane extends Component {
@@ -64,6 +81,11 @@ export class BenefitsPane extends Component {
     this.props.setSearchString(event.target.value);
   };
 
+  goToMap = url => {
+    const mapLink = getLink(url, "/map", "benefits-directory");
+    Router.push(mapLink);
+  };
+
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
     const filteredBenefits = this.props.filteredBenefits;
@@ -72,13 +94,27 @@ export class BenefitsPane extends Component {
       return (
         <div className={noBenefitsPane}>
           <Header2>{t("BenefitsPane.no_filtered_benefits")}</Header2>
-          <Button
-            className={button}
-            id="reset_filters_button"
-            onClick={() => this.clearFilters()}
-          >
-            {t("BenefitsPane.reset_filters")}
-          </Button>
+
+          <div className={buttonBar}>
+            <Button
+              className={button}
+              id="reset_filters_button"
+              onClick={() => this.clearFilters()}
+            >
+              {t("BenefitsPane.reset_filters")}
+            </Button>
+
+            <Body className={orText}>{t("BenefitsPane.or")}</Body>
+
+            <Button
+              className={button}
+              id="contact_us_button"
+              secondary
+              onClick={() => this.goToMap(this.props.url)}
+            >
+              {t("BenefitsPane.contact_us")}
+            </Button>
+          </div>
         </div>
       );
     } else {
@@ -176,6 +212,7 @@ const mapStateToProps = (reduxState, props) => {
 };
 
 BenefitsPane.propTypes = {
+  url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   filteredBenefitsWithoutSearch: PropTypes.array.isRequired,
   filteredBenefits: PropTypes.array.isRequired,

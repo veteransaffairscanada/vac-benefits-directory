@@ -56,3 +56,20 @@ export const areCookiesDisabled = () => {
     return true;
   }
 };
+
+export const getLink = (url, page, referrer) => {
+  // link for page, copying the query params of url except for referrer
+  let link =
+    page +
+    "?" +
+    Object.entries(url.query)
+      .filter(x => x[0] !== "" && x[1] !== "" && x[0] !== "referrer")
+      .map(x => {
+        return x[0] + "=" + x[1];
+      })
+      .join("&");
+  if (referrer) {
+    link += "&referrer=" + referrer;
+  }
+  return link;
+};

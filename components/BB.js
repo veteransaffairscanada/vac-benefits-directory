@@ -107,7 +107,12 @@ export class BB extends Component {
                 </Grid>
               </Grid>
 
-              <BenefitsPane id="BenefitsPane" t={t} store={this.props.store} />
+              <BenefitsPane
+                id="BenefitsPane"
+                t={t}
+                store={this.props.store}
+                url={this.props.url}
+              />
             </Grid>
           </Grid>
         </Container>
@@ -134,6 +139,7 @@ const mapStateToProps = (reduxState, props) => {
 };
 
 BB.propTypes = {
+  url: PropTypes.object.isRequired,
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
   favouritesUrl: PropTypes.string,

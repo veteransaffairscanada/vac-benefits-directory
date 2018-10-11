@@ -118,6 +118,10 @@ export const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         mapView: action.data
       });
+    case "SET_REFERRER":
+      return Object.assign({}, state, {
+        referrer: action.data
+      });
     case "SET_PAGEWIDTH":
       return Object.assign({}, state, { pageWidth: action.data });
     case "SET_COOKIES_DISABLED":

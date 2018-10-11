@@ -45,7 +45,8 @@ export default withRedux(initStore)(
 
       let queryParams = [
         { key: "searchString", reducer: "SET_SEARCH_STRING", default: "" },
-        { key: "sortBy", reducer: "SET_SORT_BY", default: "relevance" }
+        { key: "sortBy", reducer: "SET_SORT_BY", default: "relevance" },
+        { key: "referrer", reducer: "SET_REFERRER", default: "" }
       ];
 
       queryParams.forEach(param => {
