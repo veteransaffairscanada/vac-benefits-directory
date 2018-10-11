@@ -15,7 +15,7 @@ import HeaderButton from "./header_button";
 import Body from "./typography/body";
 import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
-import { areCookiesDisabled, get_link } from "../utils/common";
+import { areCookiesDisabled, getLink } from "../utils/common";
 import { globalTheme } from "../theme";
 
 const contactUs = css`
@@ -93,7 +93,7 @@ export class Favourites extends Component {
                 <HeaderButton
                   id="backButton"
                   useLink
-                  href={get_link(this.props.url, "/benefits-directory")}
+                  href={getLink(this.props.url, "/benefits-directory")}
                   arrow="back"
                 >
                   {t("favourites.back_link")}
@@ -161,7 +161,7 @@ export class Favourites extends Component {
               <Paper padding="sm" className={contactUs}>
                 <Header2>{t("favourites.contact_us")}</Header2>
                 <p>
-                  <Link href={get_link(this.props.url, "map", "favourites")}>
+                  <Link href={getLink(this.props.url, "map", "favourites")}>
                     <a>{t("favourites.visit_prompt")}</a>
                   </Link>
                 </p>

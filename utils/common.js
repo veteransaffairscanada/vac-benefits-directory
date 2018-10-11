@@ -57,7 +57,7 @@ export const areCookiesDisabled = () => {
   }
 };
 
-export const get_link = (url, page, referrer) => {
+export const getLink = (url, page, referrer) => {
   // link for page, copying the query params of url except for referrer
   let link =
     page +

@@ -15,7 +15,7 @@ import Container from "../components/container";
 import Header1 from "../components/typography/header1";
 import Body from "../components/typography/body";
 import HeaderButton from "../components/header_button";
-import { get_link } from "../utils/common";
+import { getLink } from "../utils/common";
 
 const mapPaper = css`
   margin-top: ${globalTheme.marginTop};
@@ -59,8 +59,8 @@ export class Map extends Component {
     const { i18n, t, referrer } = this.props;
 
     const backUrl = referrer
-      ? get_link(this.props.url, referrer)
-      : get_link(this.props.url, "favourites");
+      ? getLink(this.props.url, referrer)
+      : getLink(this.props.url, "favourites");
 
     return (
       <Layout

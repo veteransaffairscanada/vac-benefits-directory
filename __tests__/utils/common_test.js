@@ -1,4 +1,4 @@
-import { showQuestion, get_link } from "../../utils/common";
+import { showQuestion, getLink } from "../../utils/common";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
@@ -45,7 +45,7 @@ describe("showQuestion function", () => {
   });
 });
 
-describe("get_link function", () => {
+describe("getLink function", () => {
   let url, page;
   beforeEach(() => {
     url = {
@@ -55,28 +55,28 @@ describe("get_link function", () => {
   });
 
   it("creates a correct url if no referrer", () => {
-    const link = get_link(url, page);
+    const link = getLink(url, page);
     expect(link).toEqual("page1?key1=val1&key2=val2");
   });
 
   it("creates a correct url if referrer is undefined", () => {
-    const link = get_link(url, page, undefined);
+    const link = getLink(url, page, undefined);
     expect(link).toEqual("page1?key1=val1&key2=val2");
   });
 
   it("creates a correct url if referrer is empty", () => {
-    const link = get_link(url, page, "");
+    const link = getLink(url, page, "");
     expect(link).toEqual("page1?key1=val1&key2=val2");
   });
 
   it("creates a correct url if referrer is not empty", () => {
-    const link = get_link(url, page, "referrer1");
+    const link = getLink(url, page, "referrer1");
     expect(link).toEqual("page1?key1=val1&key2=val2&referrer=referrer1");
   });
 
   it("ignores empty query params", () => {
     url.query = { a: "aa", b: "" };
-    const link = get_link(url, page);
+    const link = getLink(url, page);
     expect(link).toEqual("page1?a=aa");
   });
 });

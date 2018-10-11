@@ -14,7 +14,7 @@ import Body from "./typography/body";
 import SearchBox from "./search_box";
 import Dropdown from "./dropdown";
 import Button from "./button";
-import { get_link } from "../utils/common";
+import { getLink } from "../utils/common";
 import { globalTheme } from "../theme";
 
 const noBenefitsPane = css`
@@ -82,7 +82,7 @@ export class BenefitsPane extends Component {
   };
 
   goToMap = url => {
-    const mapLink = get_link(url, "/map", "benefits-directory");
+    const mapLink = getLink(url, "/map", "benefits-directory");
     Router.push(mapLink);
   };
 
