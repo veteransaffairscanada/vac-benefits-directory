@@ -30,3 +30,12 @@ cluster you can run:
 
 You then can look in your EC2 load balancers to find out the name of load balancer
 and then add it to your DNS.
+
+To get the automatic SSL working in EKS you will need to edit:
+
+```
+- --acme.domains=vac-eks.cdssandbox.xyz
+- --acme.email=max.neuvians@cds-snc.ca
+```
+
+in `manifests\overlays\eks\traefik-ingress-controller-deployment.yaml`
