@@ -15,6 +15,7 @@ import SearchBox from "./search_box";
 import Dropdown from "./dropdown";
 import Button from "./button";
 import { get_link } from "../utils/common";
+import { globalTheme } from "../theme";
 
 const noBenefitsPane = css`
   text-align: center;
@@ -25,7 +26,11 @@ const noBenefitsPane = css`
 const buttonBar = css`
   margin-top: 40px;
 `;
-const button = css``;
+const button = css`
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    margin: 20px;
+  }
+`;
 const title = css`
   padding-bottom: 15px;
 `;
@@ -33,6 +38,9 @@ const orText = css`
   display: inline-block;
   padding: 0 20px;
   margin-bottom: 0;
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    display: none;
+  }
 `;
 
 export class BenefitsPane extends Component {
