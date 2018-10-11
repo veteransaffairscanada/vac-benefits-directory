@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluentd-cloudwatch
+  namespace: kube-system
+  labels:
+    app: fluentd-cloudwatch
+    env: system
+data:
+  AWS_REGION: us-west-2
+  CW_LOG_GROUP: kubernetes-cluster
