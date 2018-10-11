@@ -73,4 +73,10 @@ describe("get_link function", () => {
     const link = get_link(url, page, "referrer1");
     expect(link).toEqual("page1?key1=val1&key2=val2&referrer=referrer1");
   });
+
+  it("ignores empty query params", () => {
+    url.query = { a: "aa", b: "" };
+    const link = get_link(url, page);
+    expect(link).toEqual("page1?a=aa");
+  });
 });
