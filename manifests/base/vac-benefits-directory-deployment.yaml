@@ -32,6 +32,12 @@ spec:
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+          env:
+            - name: AIRTABLE_WRITE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: vay
+                  key: airtable_write_key
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
