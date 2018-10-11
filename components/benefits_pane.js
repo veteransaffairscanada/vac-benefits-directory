@@ -82,7 +82,7 @@ export class BenefitsPane extends Component {
   };
 
   goToMap = url => {
-    const mapLink = get_link(url, "map", "benefits-directory");
+    const mapLink = get_link(url, "/map", "benefits-directory");
     Router.push(mapLink);
   };
 
