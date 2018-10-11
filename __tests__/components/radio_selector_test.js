@@ -125,4 +125,10 @@ describe("RadioSelector", () => {
       expect(props.saveQuestionResponse).not.toBeCalled();
     });
   });
+
+  it("includes a tooltip component", () => {
+    expect(
+      shallow(<RadioSelector {...props} />).find("Tooltip").length
+    ).toEqual(1);
+  });
 });

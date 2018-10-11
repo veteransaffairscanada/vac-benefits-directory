@@ -95,7 +95,7 @@ export class RadioSelector extends React.Component {
           <Tooltip
             disabled={!tooltipText}
             tooltipText={tooltipText}
-            width={200}
+            width={250}
           >
             <Header4 className={formLabel}>
               <span className={tooltipText ? underline : ""}>{legend}</span>

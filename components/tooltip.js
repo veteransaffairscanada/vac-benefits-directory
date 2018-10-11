@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { css } from "react-emotion";
 import { globalTheme } from "../theme";
 
-const padding = 10;
+const padding = 16;
 
 class Tooltip extends Component {
   tooltipTextStyle = css`
@@ -15,7 +15,7 @@ class Tooltip extends Component {
     background-color: ${globalTheme.colour.paleGrey};
     color: ${globalTheme.colour.greyishBrown};
     padding: ${padding}px;
-    border-radius: 6px;
+    // border-radius: 6px;
     position: absolute;
     z-index: 1;
     bottom: 100%;
