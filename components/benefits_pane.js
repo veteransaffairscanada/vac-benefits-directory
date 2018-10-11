@@ -22,14 +22,17 @@ const noBenefitsPane = css`
   max-width: 500px;
   margin: 0 auto;
 `;
-const button = css`
+const buttonBar = css`
   margin-top: 40px;
 `;
+const button = css``;
 const title = css`
   padding-bottom: 15px;
 `;
 const orText = css`
-  display: "inline-block";
+  display: inline-block;
+  padding: 0 20px;
+  margin-bottom: 0;
 `;
 
 export class BenefitsPane extends Component {
@@ -83,23 +86,27 @@ export class BenefitsPane extends Component {
       return (
         <div className={noBenefitsPane}>
           <Header2>{t("BenefitsPane.no_filtered_benefits")}</Header2>
-          <Button
-            className={button}
-            id="reset_filters_button"
-            onClick={() => this.clearFilters()}
-          >
-            {t("BenefitsPane.reset_filters")}
-          </Button>
 
-          <Body className={orText}>{t("BenefitsPane.or")}</Body>
+          <div className={buttonBar}>
+            <Button
+              className={button}
+              id="reset_filters_button"
+              onClick={() => this.clearFilters()}
+            >
+              {t("BenefitsPane.reset_filters")}
+            </Button>
 
-          <Button
-            className={button}
-            id="contact_us_button"
-            onClick={() => this.goToMap(this.props.url)}
-          >
-            {t("BenefitsPane.contact_us")}
-          </Button>
+            <Body className={orText}>{t("BenefitsPane.or")}</Body>
+
+            <Button
+              className={button}
+              id="contact_us_button"
+              secondary
+              onClick={() => this.goToMap(this.props.url)}
+            >
+              {t("BenefitsPane.contact_us")}
+            </Button>
+          </div>
         </div>
       );
     } else {
