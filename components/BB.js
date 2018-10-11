@@ -3,31 +3,23 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Print from "@material-ui/icons/Print";
 import Bookmark from "@material-ui/icons/Bookmark";
-import BenefitList from "../components/benefit_list";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
-import { getFilteredBenefits } from "../selectors/benefits";
 import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import { css } from "react-emotion";
 import Container from "../components/container";
-import Header2 from "../components/typography/header2";
 import HeaderButton from "./header_button";
-import Body from "../components/typography/body";
-import SearchBox from "./search_box";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
-import Dropdown from "./dropdown";
+import BenefitsPane from "./benefits_pane";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
 const topPadding = css`
   padding-top: 30px;
-`;
-const title = css`
-  padding-bottom: 15px;
 `;
 const topMatter = css`
   background-color: #fff;
@@ -57,39 +49,8 @@ export class BB extends Component {
     }
   }
 
-  handleSortByChange = event => {
-    this.props.setSortBy(event.target.value);
-  };
-
-  countSelection = () => {
-    const reducer = (acc, obj) => acc + (Object.values(obj)[0] == null ? 0 : 1);
-    let count = Object.values(this.props.selectedEligibility).reduce(
-      reducer,
-      0
-    );
-    return count + Object.values(this.props.selectedNeeds).length;
-  };
-
-  countString = (x, t) => {
-    switch (true) {
-      case this.countSelection() === 0 && this.props.searchString.trim() === "":
-        return t("B3.All benefits to consider");
-      case x === 0:
-        return t("B3.No benefits");
-      case x === 1:
-        return t("B3.One benefit");
-      default:
-        return t("B3.x benefits to consider", { x: x });
-    }
-  };
-
-  handleSearchChange = event => {
-    this.props.setSearchString(event.target.value);
-  };
-
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
-    const filteredBenefits = this.props.filteredBenefits;
 
     return (
       <div
@@ -143,50 +104,10 @@ export class BB extends Component {
                       }
                     />
                   ) : null}
-
-                  <Header2 className={"BenefitsCounter " + title}>
-                    {this.countString(filteredBenefits.length, t)}
-                  </Header2>
-                  {filteredBenefits.length > 0 ? (
-                    <Body>{t("B3.check eligibility")}</Body>
-                  ) : (
-                    ""
-                  )}
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Dropdown
-                    value={this.props.sortBy}
-                    onChange={this.handleSortByChange}
-                    label={t("B3.Sort By")}
-                    id="sortBySelector"
-                  >
-                    <option value="relevance">{t("B3.Popularity")}</option>
-                    <option value="alphabetical">{t("B3.Alphabetical")}</option>
-                  </Dropdown>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <SearchBox
-                    inputId="bbSearchField"
-                    buttonId="searchButtonLink"
-                    placeholder={this.props.t("search")}
-                    value={this.props.searchString}
-                    onChange={this.handleSearchChange}
-                    disableButton={true}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Grid container spacing={24}>
-                    <BenefitList
-                      t={t}
-                      filteredBenefits={filteredBenefits}
-                      sortByValue={this.props.sortBy}
-                      searchString={this.props.searchString}
-                      showFavourites={true}
-                      store={this.props.store}
-                    />
-                  </Grid>
                 </Grid>
               </Grid>
+
+              <BenefitsPane id="BenefitsPane" t={t} store={this.props.store} />
             </Grid>
           </Grid>
         </Container>
@@ -197,12 +118,6 @@ export class BB extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    setSearchString: searchString => {
-      dispatch({ type: "SET_SEARCH_STRING", data: searchString });
-    },
-    setSortBy: sortBy => {
-      dispatch({ type: "SET_SORT_BY", data: sortBy });
-    },
     setCookiesDisabled: areDisabled => {
       dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
     }
@@ -212,50 +127,21 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (reduxState, props) => {
   return {
     cookiesDisabled: reduxState.cookiesDisabled,
-    benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples,
-    filteredBenefits: getFilteredBenefits(reduxState, props),
     favouritesUrl: getFavouritesUrl(reduxState, props),
-    needs: reduxState.needs,
-    searchString: reduxState.searchString,
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals,
-      serviceHealthIssue: reduxState.serviceHealthIssue
-    },
-    selectedNeeds: reduxState.selectedNeeds,
-    sortBy: reduxState.sortBy,
-    printUrl: getPrintUrl(reduxState, props, {}),
-    selectedAreaOffice: reduxState.selectedAreaOffice,
-    closestAreaOffice: reduxState.closestAreaOffice
+    printUrl: getPrintUrl(reduxState, props, {})
   };
 };
 
 BB.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
-  benefits: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
-  filteredBenefits: PropTypes.array,
   favouritesUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
-  needs: PropTypes.array.isRequired,
   printUrl: PropTypes.string,
-  searchString: PropTypes.string.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
-  selectedNeeds: PropTypes.object.isRequired,
-  setSearchString: PropTypes.func.isRequired,
-  setSortBy: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  store: PropTypes.object,
-  selectedAreaOffice: PropTypes.object.isRequired,
-  closestAreaOffice: PropTypes.object.isRequired
+  store: PropTypes.object
 };
 
 export default connect(

@@ -24,33 +24,15 @@ export const getProfileFilters = createSelector(
   }
 );
 
-export const getFilteredBenefits = createSelector(
+export const getFilteredBenefitsWithoutSearch = createSelector(
   [
     getProfileFilters,
     getNeedsFilter,
     getBenefits,
     getNeeds,
-    getEligibilityPaths,
-    getSearchStringFilter,
-    getCurrentLanguage,
-    getEnIdx,
-    getFrIdx
+    getEligibilityPaths
   ],
-  (
-    selectedProfile,
-    selectedNeeds,
-    benefits,
-    needs,
-    eligibilityPaths,
-    searchString,
-    currentLanguage,
-    enIdx,
-    frIdx
-  ) => {
-    // Reinitalize indexes after they are serialized by Redux
-    enIdx = lunr.Index.load(JSON.parse(enIdx));
-    frIdx = lunr.Index.load(JSON.parse(frIdx));
-
+  (selectedProfile, selectedNeeds, benefits, needs, eligibilityPaths) => {
     let eligibilityMatch = (path, selected) => {
       let matches = true;
       Object.keys(selectedProfile).forEach(criteria => {
@@ -91,12 +73,34 @@ export const getFilteredBenefits = createSelector(
     let matchingBenefitIds = eligibleBenefitIds.filter(
       id => benefitIdsForSelectedNeeds.indexOf(id) > -1
     );
-    let matchingBenefits = benefits.filter(b =>
-      matchingBenefitIds.includes(b.id)
-    );
+
+    return benefits.filter(b => matchingBenefitIds.includes(b.id));
+  }
+);
+
+export const getFilteredBenefits = createSelector(
+  [
+    getFilteredBenefitsWithoutSearch,
+    getSearchStringFilter,
+    getCurrentLanguage,
+    getEnIdx,
+    getFrIdx
+  ],
+  (
+    filteredBenefitsWithoutSearch,
+    searchString,
+    currentLanguage,
+    enIdx,
+    frIdx
+  ) => {
+    let matchingBenefits = filteredBenefitsWithoutSearch;
 
     // If there is a searchString the run another filter
     if (searchString.trim() !== "") {
+      // Reinitalize indexes after they are serialized by Redux
+      enIdx = lunr.Index.load(JSON.parse(enIdx));
+      frIdx = lunr.Index.load(JSON.parse(frIdx));
+
       searchString = searchString.toLowerCase();
       let results = [];
       if (currentLanguage === "en") {
@@ -129,7 +133,6 @@ export const getFilteredBenefits = createSelector(
       let resultIds = results.map(r => r.ref);
       matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));
     }
-
     return matchingBenefits;
   }
 );
