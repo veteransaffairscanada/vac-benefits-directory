@@ -62,7 +62,7 @@ export class FavouriteButton extends Component {
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     return (
       <Tooltip
-        showTooltip={this.props.cookiesDisabled}
+        disabled={!this.props.cookiesDisabled}
         tooltipText={t("favourites.disabled_cookies_tooltip")}
       >
         <HeaderButton

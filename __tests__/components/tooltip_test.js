@@ -9,7 +9,7 @@ describe("Tooltip", () => {
   beforeEach(() => {
     props = {
       children: <div id="test_div">hello</div>,
-      showTooltip: true,
+      disabled: false,
       tooltipText: "tooltip text"
     };
   });
@@ -23,12 +23,12 @@ describe("Tooltip", () => {
     expect(mount(<Tooltip {...props} />).find("#test_div").length).toEqual(1);
   });
 
-  it("shows tooltip if showTooltip = true", () => {
+  it("shows tooltip if disabled = false", () => {
     expect(mount(<Tooltip {...props} />).find("span").length).toEqual(1);
   });
 
-  it("does not show tooltip if showTooltip = false", () => {
-    props.showTooltip = false;
+  it("does not show tooltip if disabled = true", () => {
+    props.disabled = true;
     expect(mount(<Tooltip {...props} />).find("span").length).toEqual(0);
   });
 });
