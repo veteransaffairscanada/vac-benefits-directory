@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Router from "next/router";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
@@ -83,7 +82,7 @@ export class BenefitsPane extends Component {
 
   goToMap = url => {
     const mapLink = getLink(url, "/map", "benefits-directory");
-    Router.push(mapLink);
+    window.location.assign(mapLink);
   };
 
   render() {
