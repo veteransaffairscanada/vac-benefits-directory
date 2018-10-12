@@ -1,5 +1,5 @@
 const theme = {
-   fontFamily: "Merriweather",
+  fontFamily: "Merriweather",
   marginTop: "25px", //used in place of theme.spacing.unit *3
   unit: "8px",
   cardPadding: "35px",

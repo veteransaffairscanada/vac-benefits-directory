@@ -150,7 +150,7 @@ const mapStateToProps = reduxState => {
 Map.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  referrer: PropTypes.array,
+  referrer: PropTypes.string,
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
