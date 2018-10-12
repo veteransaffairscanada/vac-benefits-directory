@@ -22,7 +22,7 @@ const topPadding = css`
   padding-top: 30px;
 `;
 const topMatter = css`
-  background-color: #fff;
+  background-color: ${globalTheme.colour.white};
   width: 100%;
   padding-bottom: 20px;
 `;

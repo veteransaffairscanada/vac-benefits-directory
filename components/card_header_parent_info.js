@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { css } from "react-emotion";
 import { logEvent } from "../utils/analytics";
+import { globalTheme } from "../theme";
 
 const headerUrl = css`
-  color: #006cc9;
+  color: ${globalTheme.colour.cerulean};
 `;
 
 export class CardHeaderParentInfo extends Component {

@@ -29,7 +29,7 @@ const distanceCell = css`
 `;
 const officeRow = css`
   td {
-    border-bottom: 0.5px solid #e0e0e0;
+    border-bottom: 0.5px solid ${globalTheme.colour.paleGrey};
   }
 `;
 const pinCell = css`
@@ -51,7 +51,7 @@ const tableText = css`
   margin-bottom: 0px;
 `;
 const pin = css`
-  color: #ea4335;
+  color: ${globalTheme.colour.tornadoRed};
   margin-top: 6px;
   @media only screen and (max-width: ${globalTheme.max.sm}) {
     font-size: 60px !important;
@@ -59,15 +59,15 @@ const pin = css`
   font-size: 30px !important;
 `;
 const provinceCell = css`
-  color: #000;
+  color: ${globalTheme.colour.white};
   font-size: 20px;
   font-weight: bold;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid ${globalTheme.colour.black};
   padding-top: 15px;
   padding-bottom: 15px;
 `;
 const selectedRow = css`
-  background-color: #e3f2ff;
+  background-color: ${globalTheme.colour.paleBlue};
 `;
 const mainTable = css`
   border-spacing: 0px;

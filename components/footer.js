@@ -4,10 +4,11 @@ import { WordMark } from "@cdssnc/gcui";
 import { Toolbar } from "@material-ui/core";
 import { css } from "react-emotion";
 import FooterLink from "./typography/footer_link";
+import { globalTheme } from "../theme";
 
 const root = css`
   width: 100%;
-  background-color: #434343;
+  background-color: ${globalTheme.colour.greyishBrown};
   height: 65px;
   text-align: center;
 `;
@@ -19,7 +20,7 @@ const toolbar = css`
 
 const envDetailsStyling = css`
   flex: 1;
-  color: #fff;
+  color: ${globalTheme.colour.white};
 `;
 
 const wordMark = css`

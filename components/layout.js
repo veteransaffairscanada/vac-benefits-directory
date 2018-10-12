@@ -13,23 +13,23 @@ import Container from "../components/container";
 import { globalTheme } from "../theme";
 
 const alpha = css`
-  background-color: #345075;
+  background-color: ${globalTheme.colour.alphaBlue};
 `;
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
 const header = css`
-  background-color: #555;
+  background-color: ${globalTheme.colour.greyishBrownTwo};
   padding: 0px;
 `;
 const white = css`
   color: white;
 `;
 const backgoundColour1 = css`
-  background-color: #505050;
+  background-color: ${globalTheme.colour.greyishBrownTwo};
 `;
 const backgoundColour2 = css`
-  background-color: #434343;
+  background-color: ${globalTheme.colour.greyishBrown};
 `;
 const theme = createMuiTheme({
   overrides: {
@@ -43,10 +43,10 @@ const theme = createMuiTheme({
       main: globalTheme.colour.cerulean
     },
     secondary: {
-      light: "#f1f7fc",
-      main: "#f1f7fc",
-      dark: "#d8dee2",
-      contrastText: "#006cc9"
+      light: globalTheme.colour.paleBlueGrey,
+      main: globalTheme.colour.paleBlueGrey,
+      dark: globalTheme.colour.darkBlueGrey,
+      contrastText: globalTheme.colour.cerulean
     }
   },
   typography: { fontFamily: ["Merriweather", "serif"] }

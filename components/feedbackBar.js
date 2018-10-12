@@ -6,21 +6,22 @@ import Raven from "raven-js";
 import TextField from "@material-ui/core/TextField";
 import { css } from "react-emotion";
 import FooterButton from "./footer_button";
+import { globalTheme } from "../theme";
 require("isomorphic-fetch");
 
 const CommentBox = css`
   height: 350px;
-  background-color: #505050;
-  color: #fff;
+  background-color: ${globalTheme.colour.greyishBrownTwo};
+  color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
   padding: 5px 0 0 0;
 `;
 const Div = css`
-  background-color: #505050;
+  background-color: ${globalTheme.colour.greyishBrownTwo};
   width: 100%;
   height: 53px;
-  color: #fff;
+  color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
   display: table;
@@ -32,7 +33,7 @@ const FeedbackWrapper = css`
   margin-top: 25px;
 `;
 const Inner = css`
-  color: #fff;
+  color: ${globalTheme.colour.white};
   font-size: 14px;
   padding-top: 10px;
   @media (max-width: 400px) {
@@ -43,7 +44,7 @@ const Inner = css`
   }
 `;
 const TextHold = css`
-  background-color: #505050;
+  background-color: ${globalTheme.colour.greyishBrownTwo};
   padding: 10px 0;
 `;
 const white = css`

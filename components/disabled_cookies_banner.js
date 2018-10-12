@@ -8,7 +8,7 @@ import Body from "./typography/body";
 
 const Banner = css`
   color: ${globalTheme.colour.greyishBrown};
-  background-color: #e3f2ff;
+  background-color: ${globalTheme.colour.paleBlue};
   border-left: 5px solid ${globalTheme.colour.cerulean};
   padding-left: 25px;
   padding-top: 13px;

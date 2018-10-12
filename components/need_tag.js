@@ -6,7 +6,7 @@ import { css } from "react-emotion";
 const needsTag = css`
   margin-right: ${globalTheme.unit};
   margin-bottom: ${globalTheme.unit};
-  color: #000000;
+  color: ${globalTheme.colour.black};
   border-radius: 1;
   display: inline-flex;
   padding: 4px 8px;
