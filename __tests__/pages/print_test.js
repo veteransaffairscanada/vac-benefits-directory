@@ -7,6 +7,7 @@ import benefitsFixture from "../fixtures/benefits";
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
+import questionFixture from "../fixtures/questions";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -37,6 +38,7 @@ describe("Print", () => {
       t: key => {
         return key == "current-language-code" ? "en" : key;
       },
+      profileQuestions: questionFixture.filter(q => q.variable_name != "needs"),
       benefits: benefitsFixture,
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
