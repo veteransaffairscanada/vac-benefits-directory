@@ -1,9 +1,5 @@
 const theme = {
-  fontFamily: "Merriweather",
-  maxWidth: "1200px",
-  margin: "0 auto",
-  paddingLeft: "16px",
-  paddingRight: "16px",
+   fontFamily: "Merriweather",
   marginTop: "25px", //used in place of theme.spacing.unit *3
   unit: "8px",
   cardPadding: "35px",
