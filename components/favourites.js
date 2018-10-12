@@ -224,19 +224,8 @@ const mapStateToProps = (reduxState, props) => {
   return {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
-    needs: reduxState.needs,
-    examples: reduxState.examples,
     printUrl: getPrintUrl(reduxState, props, { fromFavourites: true }),
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals
-    },
-    selectedNeeds: reduxState.selectedNeeds,
-    selectedAreaOffice: reduxState.selectedAreaOffice,
-    sortBy: reduxState.sortBy,
-    closestAreaOffice: reduxState.closestAreaOffice
+    sortBy: reduxState.sortBy
   };
 };
 
@@ -244,19 +233,12 @@ Favourites.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
   benefits: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
-  needs: PropTypes.array.isRequired,
   printUrl: PropTypes.string,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
-  selectedNeeds: PropTypes.object.isRequired,
   sortBy: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
-  store: PropTypes.object,
-  selectedAreaOffice: PropTypes.object.isRequired,
-  closestAreaOffice: PropTypes.object.isRequired
+  store: PropTypes.object
 };
 
 export default connect(
