@@ -175,7 +175,6 @@ const mapStateToProps = reduxState => {
 Guided.propTypes = {
   reduxState: PropTypes.object,
   sectionOrder: PropTypes.array.isRequired,
-  // dispatch: PropTypes.func,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
