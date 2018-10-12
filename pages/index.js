@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import Button from "../components/button";
-import Bookmark from "@material-ui/icons/Bookmark";
-import SearchComponent from "../components/search";
-import { withI18next } from "../lib/withI18next";
-import Layout from "../components/layout";
-import { Grid } from "@material-ui/core";
-import Paper from "../components/paper";
+import Router from "next/router";
 import { connect } from "react-redux";
-import { getFavouritesUrl } from "../selectors/urls";
-import { globalTheme } from "../theme";
 import { css } from "react-emotion";
+import PropTypes from "prop-types";
+import Bookmark from "@material-ui/icons/Bookmark";
+import { Grid } from "@material-ui/core";
+import { withI18next } from "../lib/withI18next";
+import { globalTheme } from "../theme";
+import { getFavouritesUrl } from "../selectors/urls";
+import Layout from "../components/layout";
+import Button from "../components/button";
+import SearchComponent from "../components/search";
+import Paper from "../components/paper";
 import Container from "../components/container";
 import Body from "../components/typography/body";
 import Header1 from "../components/typography/header1";
-import Router from "next/router";
 
 const paper = css`
   margin-top: 58px;
@@ -67,7 +67,7 @@ export class App extends Component {
 
   render() {
     const { i18n, t } = this.props;
-    let urlGE = "/guided?section=patronType&lng=" + t("current-language-code");
+    let urlGE = "/guided?lng=" + t("current-language-code");
     let urlBD = "/benefits-directory?lng=" + t("current-language-code");
     return (
       <Layout
@@ -146,14 +146,7 @@ export class App extends Component {
 const mapStateToProps = (reduxState, props) => {
   return {
     favouriteBenefits: reduxState.favouriteBenefits,
-    favouritesUrl: getFavouritesUrl(reduxState, props),
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals,
-      serviceHealthIssue: reduxState.serviceHealthIssue
-    },
-    selectedNeeds: reduxState.selectedNeeds
+    favouritesUrl: getFavouritesUrl(reduxState, props)
   };
 };
 
@@ -161,8 +154,6 @@ App.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   favouritesUrl: PropTypes.string,
   i18n: PropTypes.object.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
-  selectedNeeds: PropTypes.object.isRequired,
   store: PropTypes.object,
   t: PropTypes.func.isRequired
 };

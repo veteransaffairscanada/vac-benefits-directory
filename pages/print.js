@@ -100,13 +100,6 @@ const theme = createMuiTheme({
   }
 });
 
-const profile_questions = [
-  "patronType",
-  "serviceType",
-  "statusAndVitals",
-  "serviceHealthIssue"
-];
-
 export class Print extends Component {
   componentDidMount() {
     window.print();
@@ -175,7 +168,8 @@ export class Print extends Component {
     const selectedNeedsIDs =
       Object.keys(query).indexOf("needs") > -1 ? query.needs.split(",") : [];
 
-    const profile_text = profile_questions
+    const profile_text = this.props.profileQuestions
+      .map(q => q.variable_name)
       .map(k => {
         if (k === "serviceHealthIssue" && query[k] === "true") {
           return t("GE.has service related health issue");
@@ -338,6 +332,9 @@ export class Print extends Component {
 
 const mapStateToProps = reduxState => {
   return {
+    profileQuestions: reduxState.questions.filter(
+      q => q.variable_name !== "needs"
+    ),
     benefits: reduxState.benefits,
     examples: reduxState.examples,
     eligibilityPaths: reduxState.eligibilityPaths,
@@ -347,6 +344,7 @@ const mapStateToProps = reduxState => {
 };
 
 Print.propTypes = {
+  profileQuestions: PropTypes.array.isRequired,
   benefits: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,

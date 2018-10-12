@@ -143,7 +143,6 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    areaOffices: reduxState.areaOffices,
     referrer: reduxState.referrer
   };
 };
@@ -151,7 +150,6 @@ const mapStateToProps = reduxState => {
 Map.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  areaOffices: PropTypes.array.isRequired,
   referrer: PropTypes.array,
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,

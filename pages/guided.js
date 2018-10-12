@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Router from "next/router";
+import Cookies from "universal-cookie";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
+import { showQuestion } from "../utils/common";
 import Layout from "../components/layout";
-
-import Cookies from "universal-cookie";
-
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
-import { showQuestion } from "../utils/common";
 
 export class Guided extends Component {
   constructor(props) {
@@ -177,7 +175,6 @@ const mapStateToProps = reduxState => {
 Guided.propTypes = {
   reduxState: PropTypes.object,
   sectionOrder: PropTypes.array.isRequired,
-  dispatch: PropTypes.func,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,

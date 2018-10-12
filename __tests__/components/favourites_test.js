@@ -5,7 +5,6 @@ import React from "react";
 
 import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
-import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
 import needsFixture from "../fixtures/needs";
@@ -54,13 +53,11 @@ describe("Favourites", () => {
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       benefits: benefitsFixture,
-      examples: examplesFixture,
       needs: needsFixture,
       favouriteBenefits: ["3"],
       selectedNeeds: {},
       sortBy: "relevance",
       eligibilityPaths: eligibilityPathsFixture,
-      option: "",
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
       closestAreaOffice: areaOfficesFixture[0]
