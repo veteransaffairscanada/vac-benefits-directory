@@ -40,6 +40,11 @@ export class ProfileSelector extends Component {
               }
               selectorType={question.variable_name}
               options={options}
+              tooltipText={
+                t("current-language-code") === "en"
+                  ? question.tooltip_english
+                  : question.tooltip_french
+              }
               store={this.props.store}
             />
           </Grid>

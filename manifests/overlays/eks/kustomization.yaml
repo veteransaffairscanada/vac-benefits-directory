@@ -1,0 +1,8 @@
+bases:
+  - ../../base
+resources:
+  - traefik-ingress-service.yaml
+  - certs-claim.yaml
+  - storage-class-default.yaml
+patches:
+  - traefik-ingress-controller-deployment.yaml

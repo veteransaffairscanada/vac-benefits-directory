@@ -4,7 +4,7 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/cds-snc/vac-benefits-directory/badge.svg)](https://snyk.io/test/github/cds-snc/vac-benefits-directory)
 
 This is the code for the VAC Benefits Directory being developed by VAC and CDS. The app is currently deployed at
-https://cdsvacpoc.azurewebsites.net/
+https://vac-benefits-finder.cds-snc.ca/
 
 The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [DOCUMENTATION.md](./DOCUMENTATION.md).
 

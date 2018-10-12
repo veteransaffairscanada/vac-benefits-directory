@@ -9,12 +9,17 @@ import { uuidv4 } from "../utils/common";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Header4 from "./typography/header4";
+import Tooltip from "./tooltip";
 
 const formControl = css`
   margin-top: ${globalTheme.unit} !important;
 `;
 const formLabel = css`
   margin-bottom: 10px;
+`;
+const underline = css`
+  line-height: 160%;
+  border-bottom: 2px dotted ${globalTheme.colour.greyishBrown};
 `;
 
 export class RadioSelector extends React.Component {
@@ -82,14 +87,22 @@ export class RadioSelector extends React.Component {
           )
         ).filter(st => st !== "na");
 
-    const { t, selectorType, responses } = this.props;
+    const { t, selectorType, responses, legend, tooltipText } = this.props;
 
     if (Object.keys(options).length !== 0) {
       return (
         <FormControl className={formControl}>
-          <Header4 className={formLabel}>{this.props.legend}</Header4>
+          <Tooltip
+            disabled={!tooltipText}
+            tooltipText={tooltipText}
+            width={250}
+          >
+            <Header4 className={formLabel}>
+              <span className={tooltipText ? underline : ""}>{legend}</span>
+            </Header4>
+          </Tooltip>
           <RadioGroup
-            aria-label={this.props.legend}
+            aria-label={legend}
             value={responses[selectorType]}
             onChange={this.handleSelect}
           >
@@ -150,6 +163,7 @@ RadioSelector.propTypes = {
   questionDisplayLogic: PropTypes.array.isRequired,
   questionClearLogic: PropTypes.array.isRequired,
   options: PropTypes.array,
+  tooltipText: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 

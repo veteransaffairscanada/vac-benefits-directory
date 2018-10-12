@@ -92,23 +92,4 @@ describe("Map", () => {
       expect(props.setMapView).toBeCalledWith({ lat: 10, lng: 10, zoom: 10 });
     });
   });
-
-  describe("get_link", () => {
-    it("generates a link using the existing page passed to it", () => {
-      const map = shallow(<Map {...props} {...reduxData} />);
-      expect(map.instance().get_link("foo")).toEqual("foo?");
-    });
-
-    it("generates a link using with the existing query params in props", () => {
-      props.url.query = { fiz: "biz" };
-      const map = shallow(<Map {...props} {...reduxData} />);
-      expect(map.instance().get_link("foo")).toEqual("foo?fiz=biz");
-    });
-
-    it("generates a link using with the existing query params in props and ignore empties", () => {
-      props.url.query = { fiz: "biz", biz: "" };
-      const map = shallow(<Map {...props} {...reduxData} />);
-      expect(map.instance().get_link("foo")).toEqual("foo?fiz=biz");
-    });
-  });
 });

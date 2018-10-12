@@ -29,7 +29,7 @@ describe("FavouriteButton", () => {
 
   it("calls toggleFavourite if favourite button pressed", () => {
     mount(<FavouriteButton {...props} />)
-      .first()
+      .find("HeaderButton")
       .simulate("click");
     expect(props.toggleOpenState).toBeCalled();
   });

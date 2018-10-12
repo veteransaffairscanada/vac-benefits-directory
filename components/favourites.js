@@ -15,7 +15,7 @@ import HeaderButton from "./header_button";
 import Body from "./typography/body";
 import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
-import { areCookiesDisabled } from "../utils/common";
+import { areCookiesDisabled, getLink } from "../utils/common";
 import { globalTheme } from "../theme";
 
 const contactUs = css`
@@ -76,19 +76,6 @@ export class Favourites extends Component {
     return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
   };
 
-  get_link = page => {
-    return (
-      page +
-      "?" +
-      Object.entries(this.props.url.query)
-        .filter(x => x[0] !== "" && x[1] !== "")
-        .map(x => {
-          return x[0] + "=" + x[1];
-        })
-        .join("&")
-    );
-  };
-
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
 
@@ -106,7 +93,7 @@ export class Favourites extends Component {
                 <HeaderButton
                   id="backButton"
                   useLink
-                  href={this.get_link("/benefits-directory")}
+                  href={getLink(this.props.url, "/benefits-directory")}
                   arrow="back"
                 >
                   {t("favourites.back_link")}
@@ -174,7 +161,7 @@ export class Favourites extends Component {
               <Paper padding="sm" className={contactUs}>
                 <Header2>{t("favourites.contact_us")}</Header2>
                 <p>
-                  <Link href={this.get_link("map")}>
+                  <Link href={getLink(this.props.url, "map", "favourites")}>
                     <a>{t("favourites.visit_prompt")}</a>
                   </Link>
                 </p>
