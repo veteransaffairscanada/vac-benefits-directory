@@ -39,3 +39,12 @@ To get the automatic SSL working in EKS you will need to edit:
 ```
 
 in `manifests\overlays\eks\traefik-ingress-controller-deployment.yaml`
+
+### Logging
+
+To enable logging to Cloudwatch in EKS you need to do the following:
+
+- edit `manifests/overlays/eks/fluentd-cloudwatch-configmap.yaml` to set your AWS region and Cloud watch name
+- Create a IAM user that has the correct permissions
+- `kubectl create secret generic fluentd-cloudwatch-access-id --from-literal=AWS_ACCESS_KEY_ID=YOUR_KEY --namespace=kube-system`
+- `kubectl create secret generic fluentd-cloudwatch-access-secret --from-literal=AWS_SECRET_ACCESS_KEY=YOUR_KEY --namespace=kube-system`

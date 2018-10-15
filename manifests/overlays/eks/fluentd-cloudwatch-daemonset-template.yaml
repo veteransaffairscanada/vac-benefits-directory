@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: fluentd-cloudwatch
-          image: callstats/fluentd-kubernetes-cloudwatch:v1.1.2
+          image: callstats/fluentd-kubernetes-cloudwatch:v1.0.1
           imagePullPolicy: Always
           resources:
             limits:
@@ -33,12 +33,12 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: fluentd-cloudwatch
+                  name: fluentd-cloudwatch-access-id
                   key: AWS_ACCESS_KEY_ID
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: fluentd-cloudwatch
+                  name: fluentd-cloudwatch-access-secret
                   key: AWS_SECRET_ACCESS_KEY
             - name: AWS_REGION
               valueFrom:
