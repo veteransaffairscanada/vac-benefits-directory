@@ -106,6 +106,7 @@ class SearchBox extends Component {
   };
 
   handleClear = () => {
+    document.getElementById(this.props.inputId).value = "";
     this.setState({ value: "" });
     if (this.props.onClear) {
       this.props.onClear();
@@ -131,6 +132,11 @@ class SearchBox extends Component {
       otherProps
     } = this.props;
 
+    let valueUsed;
+    try {
+      valueUsed = document.getElementById(this.props.inputId).value;
+    } catch (e) {} // eslint-disable-line no-empty
+
     return (
       <SearchBoxWrapper id={wrapperId}>
         <InputSearchBox
@@ -146,7 +152,7 @@ class SearchBox extends Component {
           value={otherProps ? otherProps.value : value}
         />
 
-        {(onClear && value) || this.state.value ? (
+        {(onClear && value) || (otherProps && otherProps.value) || valueUsed ? (
           <div style={{ position: "relative" }}>
             <ClearButton
               title={ariaLabel}
