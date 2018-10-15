@@ -31,7 +31,8 @@ describe("BenefitsPane", () => {
       clearFilters: () => true,
       clearNeeds: () => true,
       id: "BenefitsPane",
-      setSelectedNeeds: () => true
+      setSelectedNeeds: () => true,
+      url: { query: {} }
     };
     _mounted = undefined;
     reduxData = {

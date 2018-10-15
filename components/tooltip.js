@@ -59,7 +59,7 @@ class Tooltip extends Component {
 
 Tooltip.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
-  tooltipText: PropTypes.string.isRequired,
+  tooltipText: PropTypes.string,
   disabled: PropTypes.bool,
   width: PropTypes.number,
   className: PropTypes.string
