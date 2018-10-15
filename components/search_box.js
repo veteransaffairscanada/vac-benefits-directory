@@ -1,5 +1,5 @@
 // from: https://raw.githubusercontent.com/UKHomeOffice/govuk-react/master/components/search-box/src/index.js
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
 import SearchIcon from "@material-ui/icons/Search";
@@ -93,53 +93,81 @@ const DisabledSearchButton = styled("button")({
   backgroundPosition: "2px 50%"
 });
 
-const SearchBox = ({
-  placeholder,
-  onKeyDown,
-  onKeyUp,
-  wrapperId,
-  onButtonClick,
-  onClear,
-  inputId,
-  buttonId,
-  ariaLabel,
-  disableButton,
-  value,
-  onChange,
-  otherProps
-}) => (
-  <SearchBoxWrapper id={wrapperId}>
-    <InputSearchBox
-      type="search"
-      aria-label={ariaLabel}
-      id={inputId}
-      placeholder={placeholder}
-      onKeyDown={onKeyDown}
-      onKeyUp={onKeyUp}
-      value={value}
-      onChange={onChange}
-      {...otherProps}
-    />
+class SearchBox extends Component {
+  state = {
+    value: ""
+  };
 
-    {onClear && value ? (
-      <div style={{ position: "relative" }}>
-        <ClearButton title={ariaLabel} id={buttonId} onClick={onClear}>
-          <ClearIcon />
-        </ClearButton>
-      </div>
-    ) : null}
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
+  };
 
-    {disableButton ? (
-      <DisabledSearchButton title={ariaLabel} tabIndex="-1">
-        <SearchIcon />
-      </DisabledSearchButton>
-    ) : (
-      <SearchButton title={ariaLabel} id={buttonId} onClick={onButtonClick}>
-        <SearchIcon />
-      </SearchButton>
-    )}
-  </SearchBoxWrapper>
-);
+  handleClear = () => {
+    this.setState({ value: "" });
+    document.getElementById(this.props.inputId).value = ""; // doesn't clear input for some reason
+    if (this.props.onClear) {
+      this.props.onClear();
+    }
+  };
+
+  render() {
+    const {
+      placeholder,
+      onKeyDown,
+      onKeyUp,
+      wrapperId,
+      onButtonClick,
+      onClear,
+      inputId,
+      buttonId,
+      ariaLabel,
+      disableButton,
+      value,
+      otherProps
+    } = this.props;
+
+    return (
+      <SearchBoxWrapper id={wrapperId}>
+        <InputSearchBox
+          type="search"
+          aria-label={ariaLabel}
+          id={inputId}
+          placeholder={placeholder}
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
+          defaultValue={value !== undefined ? value : this.state.value}
+          onInput={this.handleChange}
+          {...otherProps}
+        />
+
+        {(onClear && value) || this.state.value ? (
+          <div style={{ position: "relative" }}>
+            <ClearButton
+              title={ariaLabel}
+              id={buttonId}
+              onClick={this.handleClear}
+            >
+              <ClearIcon />
+            </ClearButton>
+          </div>
+        ) : null}
+
+        {disableButton ? (
+          <DisabledSearchButton title={ariaLabel} tabIndex="-1">
+            <SearchIcon />
+          </DisabledSearchButton>
+        ) : (
+          <SearchButton title={ariaLabel} id={buttonId} onClick={onButtonClick}>
+            <SearchIcon />
+          </SearchButton>
+        )}
+      </SearchBoxWrapper>
+    );
+  }
+}
 
 SearchBox.defaultProps = {
   ariaLabel: "search",
