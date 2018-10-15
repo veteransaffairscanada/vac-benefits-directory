@@ -107,9 +107,11 @@ class SearchBox extends Component {
 
   handleClear = () => {
     this.setState({ value: "" });
-    document.getElementById(this.props.inputId).value = ""; // doesn't clear input for some reason
     if (this.props.onClear) {
       this.props.onClear();
+    }
+    if (this.props.otherProps) {
+      this.props.otherProps.onChange({ target: { value: "" } });
     }
   };
 
@@ -141,6 +143,7 @@ class SearchBox extends Component {
           defaultValue={value !== undefined ? value : this.state.value}
           onInput={this.handleChange}
           {...otherProps}
+          value={otherProps ? otherProps.value : value}
         />
 
         {(onClear && value) || this.state.value ? (
