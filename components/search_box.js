@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
 import SearchIcon from "@material-ui/icons/Search";
+import ClearIcon from "@material-ui/icons/Clear";
 import { globalTheme } from "../theme";
 
 const SearchBoxWrapper = styled("div")({
@@ -35,6 +36,27 @@ const InputSearchBox = styled("input")({
     " ~ button": {
       width: "46px"
     }
+  }
+});
+
+const ClearButton = styled("button")({
+  backgroundColor: globalTheme.colour.white,
+  cursor: "pointer",
+  border: 0,
+  display: "block",
+  color: globalTheme.colour.cerulean,
+  position: "absolute",
+  left: "-50px",
+  padding: "10px",
+  width: "45px",
+  height: "44px",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "2px 50%",
+  ":focus": {
+    outlineOffset: 0
+  },
+  ":hover": {
+    color: globalTheme.colour.black
   }
 });
 
@@ -77,6 +99,7 @@ const SearchBox = ({
   onKeyUp,
   wrapperId,
   onButtonClick,
+  onClear,
   inputId,
   buttonId,
   ariaLabel,
@@ -97,6 +120,15 @@ const SearchBox = ({
       onChange={onChange}
       {...otherProps}
     />
+
+    {onClear && value ? (
+      <div style={{ position: "relative" }}>
+        <ClearButton title={ariaLabel} id={buttonId} onClick={onClear}>
+          <ClearIcon />
+        </ClearButton>
+      </div>
+    ) : null}
+
     {disableButton ? (
       <DisabledSearchButton title={ariaLabel} tabIndex="-1">
         <SearchIcon />
@@ -121,6 +153,7 @@ SearchBox.propTypes = {
   onKeyUp: PropTypes.func,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  onClear: PropTypes.func,
   wrapperId: PropTypes.string,
   buttonHref: PropTypes.string,
   inputId: PropTypes.string,
