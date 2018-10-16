@@ -26,7 +26,7 @@ export const getProfileFilters = createSelector(
   }
 );
 
-const pathToDict = (ep, multipleChoiceOptions, questions) => {
+export const pathToDict = (ep, multipleChoiceOptions, questions) => {
   let dict = {};
   questions.forEach(q => {
     dict[q.variable_name] = "";

@@ -1,6 +1,7 @@
 import lunr from "lunr";
 import {
   getProfileFilters,
+  pathToDict,
   getFilteredBenefitsWithoutSearch,
   getFilteredBenefits
 } from "../../selectors/benefits";
@@ -81,6 +82,11 @@ describe("Benefits Selectors", () => {
           variable_name: "p3",
           linked_question: "patronType",
           id: "patronType: p3"
+        },
+        {
+          variable_name: "s1",
+          linked_question: "serviceType",
+          id: "serviceType: s1"
         }
       ],
       enIdx: JSON.stringify({
@@ -165,6 +171,24 @@ describe("Benefits Selectors", () => {
       expect(returnValue.serviceType).toEqual("st");
       expect(returnValue.statusAndVitals).toEqual("sv");
       expect(returnValue.serviceHealthIssue).toEqual(undefined);
+    });
+  });
+
+  describe("pathToDict function", () => {
+    it("works as expected", () => {
+      const ep = { requirements: ["patronType: p3", "serviceType: s1"] };
+      const actual = pathToDict(
+        ep,
+        state.multipleChoiceOptions,
+        state.questions
+      );
+      expect(actual).toEqual({
+        patronType: "p3",
+        serviceType: "s1",
+        statusAndVitals: "",
+        serviceHealthIssue: "",
+        needs: ""
+      });
     });
   });
 
