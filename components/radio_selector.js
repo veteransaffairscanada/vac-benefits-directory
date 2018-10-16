@@ -163,7 +163,7 @@ RadioSelector.propTypes = {
   questionDisplayLogic: PropTypes.array.isRequired,
   questionClearLogic: PropTypes.array.isRequired,
   options: PropTypes.array,
-  tooltipText: PropTypes.string.isRequired,
+  tooltipText: PropTypes.string,
   store: PropTypes.object
 };
 
