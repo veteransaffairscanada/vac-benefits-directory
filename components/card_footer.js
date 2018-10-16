@@ -181,7 +181,6 @@ export class CardFooter extends Component {
                         benefit={cb}
                         t={this.props.t}
                         key={cb.id}
-                        showFavourite={this.props.showFavourite}
                         store={this.props.store}
                       />
                     ))}
@@ -205,7 +204,6 @@ export class CardFooter extends Component {
                         benefit={cb}
                         t={t}
                         key={cb.id}
-                        showFavourite={this.props.showFavourite}
                         store={this.props.store}
                       />
                     ))}
@@ -228,7 +226,6 @@ const mapStateToProps = reduxState => {
   };
 };
 CardFooter.propTypes = {
-  showFavourite: PropTypes.bool.isRequired,
   benefit: PropTypes.object.isRequired,
   benefits: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,

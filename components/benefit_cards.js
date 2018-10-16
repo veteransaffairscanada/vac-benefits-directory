@@ -130,12 +130,7 @@ export class BenefitCard extends Component {
               </Grid>
             </Grid>
           </Paper>
-          <CardFooter
-            showFavourite={this.props.showFavourite}
-            benefit={benefit}
-            t={t}
-            store={this.props.store}
-          />
+          <CardFooter benefit={benefit} t={t} store={this.props.store} />
         </div>
       </Grid>
     );

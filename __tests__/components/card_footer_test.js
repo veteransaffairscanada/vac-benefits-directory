@@ -14,8 +14,7 @@ describe("CardFooter", () => {
   beforeEach(() => {
     props = {
       t: () => "en",
-      benefit: benefitsFixture[0],
-      showFavourite: true
+      benefit: benefitsFixture[0]
     };
     mockStore = configureStore();
     reduxData = {

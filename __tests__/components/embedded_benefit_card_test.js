@@ -20,8 +20,7 @@ describe("EmbeddedBenefitCard", () => {
     props = {
       t: () => "en",
       benefit: benefitsFixture[0],
-      onRef: foo => foo,
-      showFavourite: false
+      onRef: foo => foo
     };
     _mountedEmbeddedBenefitCard = undefined;
     global.window.open = jest.fn();

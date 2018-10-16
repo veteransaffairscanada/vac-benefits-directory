@@ -72,7 +72,6 @@ export class EmbeddedBenefitCard extends Component {
 EmbeddedBenefitCard.propTypes = {
   benefit: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  showFavourite: PropTypes.bool.isRequired,
   store: PropTypes.object
 };
 
