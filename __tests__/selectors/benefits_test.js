@@ -45,22 +45,42 @@ describe("Benefits Selectors", () => {
       ],
       eligibilityPaths: [
         {
+          requirements: ["patronType: p1"],
           patronType: "p1",
           serviceType: "na",
           statusAndVitals: "na",
           benefits: ["0", "2", "4"]
         },
         {
+          requirements: ["patronType: p2"],
           patronType: "p2",
           serviceType: "na",
           statusAndVitals: "na",
           benefits: ["2"]
         },
         {
+          requirements: ["patronType: p3"],
           patronType: "p3",
           serviceType: "na",
           statusAndVitals: "na",
           benefits: ["1", "3", "4"]
+        }
+      ],
+      multipleChoiceOptions: [
+        {
+          variable_name: "p1",
+          linked_question: "patronType",
+          id: "patronType: p1"
+        },
+        {
+          variable_name: "p2",
+          linked_question: "patronType",
+          id: "patronType: p2"
+        },
+        {
+          variable_name: "p3",
+          linked_question: "patronType",
+          id: "patronType: p3"
         }
       ],
       enIdx: JSON.stringify({

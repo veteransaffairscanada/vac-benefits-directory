@@ -2,8 +2,10 @@ import lunr from "lunr";
 import { createSelector } from "reselect";
 
 const getBenefits = state => state.benefits;
+const getQuestions = state => state.questions;
 const getCurrentLanguage = (state, props) => props.t("current-language-code");
 const getEligibilityPaths = state => state.eligibilityPaths;
+const getMultipleChoiceOptions = state => state.multipleChoiceOptions;
 const getEnIdx = state => state.enIdx;
 const getFrIdx = state => state.frIdx;
 const getNeeds = state => state.needs;
@@ -24,21 +26,46 @@ export const getProfileFilters = createSelector(
   }
 );
 
+const pathToDict = (ep, multipleChoiceOptions, questions) => {
+  let dict = {};
+  questions.forEach(q => {
+    dict[q.variable_name] = "";
+  });
+  if (ep.requirements) {
+    ep.requirements.forEach(req => {
+      const mco = multipleChoiceOptions.filter(mco => mco.id === req)[0];
+      dict[mco.linked_question] = mco.variable_name;
+    });
+  }
+  return dict;
+};
+
 export const getFilteredBenefitsWithoutSearch = createSelector(
   [
     getProfileFilters,
     getNeedsFilter,
     getBenefits,
     getNeeds,
-    getEligibilityPaths
+    getEligibilityPaths,
+    getMultipleChoiceOptions,
+    getQuestions
   ],
-  (selectedProfile, selectedNeeds, benefits, needs, eligibilityPaths) => {
-    let eligibilityMatch = (path, selected) => {
+  (
+    selectedProfile,
+    selectedNeeds,
+    benefits,
+    needs,
+    eligibilityPaths,
+    multipleChoiceOptions,
+    questions
+  ) => {
+    let eligibilityMatch = (ep, selected) => {
       let matches = true;
+      const path = pathToDict(ep, multipleChoiceOptions, questions);
       Object.keys(selectedProfile).forEach(criteria => {
         if (
           selected[criteria] !== "" &&
-          path[criteria] !== "na" &&
+          path[criteria] !== "" &&
           selected[criteria] !== path[criteria]
         ) {
           matches = false;
