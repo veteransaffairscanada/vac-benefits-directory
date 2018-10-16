@@ -113,43 +113,31 @@ class SearchBox extends Component {
   };
 
   render() {
-    const {
-      placeholder,
-      onKeyDown,
-      onKeyUp,
-      wrapperId,
-      onButtonClick,
-      onClear,
-      inputId,
-      buttonId,
-      ariaLabel,
-      disableButton,
-      value,
-      otherProps
-    } = this.props;
-
+    const { ariaLabel, otherProps } = this.props;
     let valueUsed;
     try {
       valueUsed = document.getElementById(this.props.inputId).value;
     } catch (e) {} // eslint-disable-line no-empty
 
     return (
-      <SearchBoxWrapper id={wrapperId}>
+      <SearchBoxWrapper id={this.props.wrapperId}>
         <InputSearchBox
           type="search"
           aria-label={ariaLabel}
-          id={inputId}
-          placeholder={placeholder}
-          onKeyDown={onKeyDown}
-          onKeyUp={onKeyUp}
+          id={this.props.inputId}
+          placeholder={this.props.placeholder}
+          onKeyDown={this.props.onKeyDown}
+          onKeyUp={this.props.onKeyUp}
           // defaultValue={value !== undefined ? value : this.state.value}
           onInput={this.handleChange}
           onChange={this.handleChange}
           {...otherProps}
-          value={otherProps ? otherProps.value : value}
+          value={otherProps ? otherProps.value : this.props.value}
         />
 
-        {(onClear && value) || (otherProps && otherProps.value) || valueUsed ? (
+        {(this.props.onClear && this.props.value) ||
+        (otherProps && otherProps.value) ||
+        valueUsed ? (
           <div style={{ position: "relative" }}>
             <ClearButton
               title={ariaLabel}
@@ -161,12 +149,16 @@ class SearchBox extends Component {
           </div>
         ) : null}
 
-        {disableButton ? (
+        {this.props.disableButton ? (
           <DisabledSearchButton title={ariaLabel} tabIndex="-1">
             <SearchIcon />
           </DisabledSearchButton>
         ) : (
-          <SearchButton title={ariaLabel} id={buttonId} onClick={onButtonClick}>
+          <SearchButton
+            title={ariaLabel}
+            id={this.props.buttonId}
+            onClick={this.props.onButtonClick}
+          >
             <SearchIcon />
           </SearchButton>
         )}
