@@ -7,6 +7,7 @@ exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 var airtableConstants = require("./airtable_constants");
 var readKey = process.env.AIRTABLE_READ_KEY;
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
+var baseKey = process.env.AIRTABLE_BASE_KEY || "appoFDwVvNMRSaO6o";
 
 var replaceId = function replaceId(
   sheet,
@@ -34,10 +35,7 @@ var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
   var jsonRecords = [];
   try {
     do {
-      var url =
-        "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/" +
-        table +
-        "?view=Grid%20view";
+      var url = `https://api.airtable.com/v0/${baseKey}/${table}?view=Grid%20view`;
       if (offset) {
         url = url + "&offset=" + offset;
       }
