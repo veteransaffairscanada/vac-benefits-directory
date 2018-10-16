@@ -153,7 +153,7 @@ class SearchBox extends Component {
           <div style={{ position: "relative" }}>
             <ClearButton
               title={ariaLabel}
-              id={buttonId}
+              id="clearButton"
               onClick={this.handleClear}
             >
               <ClearIcon />

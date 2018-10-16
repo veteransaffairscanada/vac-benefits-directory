@@ -8,12 +8,14 @@ describe("SearchBox", () => {
   let props;
   beforeEach(() => {
     props = {
+      inputId: "input",
       onButtonClick: jest.fn(),
       buttonId: "buttonId",
       onKeyDown: jest.fn(),
       onKeyUp: jest.fn(),
       value: "the value",
-      onChange: jest.fn()
+      onChange: jest.fn(),
+      onClear: jest.fn()
     };
   });
 
@@ -54,17 +56,10 @@ describe("SearchBox", () => {
     ).toEqual(props.value);
   });
 
-  it("the input element is getting the onChange prop", () => {
-    expect(
-      mount(<SearchBox {...props} />)
-        .find("input")
-        .props().onChange
-    ).toEqual(props.onChange);
-  });
-
   it("if disableButton is false then clicking the button will trigger onClick", () => {
     mount(<SearchBox {...props} />)
       .find("button")
+      .at(1)
       .simulate("click");
     expect(props.onButtonClick).toBeCalled();
   });
@@ -73,7 +68,48 @@ describe("SearchBox", () => {
     props.disableButton = true;
     mount(<SearchBox {...props} />)
       .find("button")
+      .at(1)
       .simulate("click");
     expect(props.onButtonClick).not.toBeCalled();
+  });
+
+  describe("handleChange function", () => {
+    let event;
+    beforeEach(() => {
+      event = { target: { value: "v" } };
+    });
+
+    it("calls onChange appropriately", () => {
+      mount(<SearchBox {...props} />)
+        .instance()
+        .handleChange(event);
+      expect(props.onChange).toBeCalledWith(event);
+    });
+
+    it("works if onChange undefined", () => {
+      props.onChange = undefined;
+      mount(<SearchBox {...props} />)
+        .instance()
+        .handleChange(event);
+    });
+  });
+
+  describe("handleClear", () => {
+    it("calls onClear appropriately", () => {
+      mount(<SearchBox {...props} />)
+        .instance()
+        .handleClear();
+      expect(props.onClear).toBeCalled();
+    });
+
+    it("calls otherProps.onChange appropriately", () => {
+      props.otherProps = { value: "v", onChange: jest.fn() };
+      mount(<SearchBox {...props} />)
+        .instance()
+        .handleClear();
+      expect(props.otherProps.onChange).toBeCalledWith({
+        target: { value: "" }
+      });
+    });
   });
 });
