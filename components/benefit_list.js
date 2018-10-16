@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "./benefit_cards";
-import { connect } from "react-redux";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -95,10 +94,6 @@ export class BenefitList extends React.Component {
   }
 }
 
-const mapStateToProps = reduxState => {
-  return {};
-};
-
 BenefitList.propTypes = {
   t: PropTypes.func.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
@@ -108,4 +103,4 @@ BenefitList.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(BenefitList);
+export default BenefitList;
