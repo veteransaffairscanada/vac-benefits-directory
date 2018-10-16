@@ -94,7 +94,12 @@ const DisabledSearchButton = styled("button")({
 });
 
 class SearchBox extends Component {
+  state = {
+    value: ""
+  };
+
   handleChange = event => {
+    this.setState({ value: event.target.value });
     if (this.props.onChange) {
       this.props.onChange(event);
     }
@@ -102,6 +107,7 @@ class SearchBox extends Component {
 
   handleClear = () => {
     document.getElementById(this.props.inputId).value = "";
+    this.setState({ value: "" });
     if (this.props.onClear) {
       this.props.onClear();
     }
@@ -140,6 +146,7 @@ class SearchBox extends Component {
           placeholder={placeholder}
           onKeyDown={onKeyDown}
           onKeyUp={onKeyUp}
+          defaultValue={value !== undefined ? value : this.state.value}
           onInput={this.handleChange}
           {...otherProps}
           value={otherProps ? otherProps.value : value}
