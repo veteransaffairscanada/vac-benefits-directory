@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
 import SearchIcon from "@material-ui/icons/Search";
-import ClearIcon from "@material-ui/icons/Clear";
+import CancelIcon from "@material-ui/icons/Cancel";
 import { globalTheme } from "../theme";
 
 const SearchBoxWrapper = styled("div")({
@@ -144,7 +144,7 @@ class SearchBox extends Component {
               id="clearButton"
               onClick={this.handleClear}
             >
-              <ClearIcon />
+              <CancelIcon />
             </ClearButton>
           </div>
         ) : null}
