@@ -79,7 +79,7 @@ export class RadioSelector extends React.Component {
   render() {
     const guid = uuidv4();
 
-    const options = this.props.options.filter(st => st !== "na");
+    const options = this.props.options;
 
     const { t, selectorType, responses, legend, tooltipText } = this.props;
 
