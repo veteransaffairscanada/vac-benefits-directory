@@ -19,14 +19,15 @@ export default withRedux(initStore)(
         });
       }
 
-      // this has to be refactored
-      // unfortunately when this runs, currentReduxState.questions is empty
-      const profileQuestions = [
-        "patronType",
-        "serviceType",
-        "statusAndVitals",
-        "serviceHealthIssue"
-      ];
+      let questions;
+      if (ctx.req) {
+        questions = ctx.req.data.questions;
+      } else {
+        questions = currentReduxState.questions;
+      }
+      const profileQuestions = questions
+        .map(q => q.variable_name)
+        .filter(s => s !== "needs");
 
       profileQuestions.forEach(q => {
         if (ctx.query[q] && ctx.query[q] !== currentReduxState[q]) {
