@@ -1,8 +1,9 @@
 // from: https://raw.githubusercontent.com/UKHomeOffice/govuk-react/master/components/search-box/src/index.js
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
 import SearchIcon from "@material-ui/icons/Search";
+import CancelIcon from "@material-ui/icons/Cancel";
 import { globalTheme } from "../theme";
 
 const SearchBoxWrapper = styled("div")({
@@ -35,6 +36,27 @@ const InputSearchBox = styled("input")({
     " ~ button": {
       width: "46px"
     }
+  }
+});
+
+const ClearButton = styled("button")({
+  backgroundColor: globalTheme.colour.white,
+  cursor: "pointer",
+  border: 0,
+  display: "block",
+  color: globalTheme.colour.cerulean,
+  position: "absolute",
+  left: "-50px",
+  padding: "10px",
+  width: "45px",
+  height: "44px",
+  backgroundRepeat: "no-repeat",
+  backgroundPosition: "2px 50%",
+  ":focus": {
+    outlineOffset: 0
+  },
+  ":hover": {
+    color: globalTheme.colour.black
   }
 });
 
@@ -71,43 +93,79 @@ const DisabledSearchButton = styled("button")({
   backgroundPosition: "2px 50%"
 });
 
-const SearchBox = ({
-  placeholder,
-  onKeyDown,
-  onKeyUp,
-  wrapperId,
-  onButtonClick,
-  inputId,
-  buttonId,
-  ariaLabel,
-  disableButton,
-  value,
-  onChange,
-  otherProps
-}) => (
-  <SearchBoxWrapper id={wrapperId}>
-    <InputSearchBox
-      type="search"
-      aria-label={ariaLabel}
-      id={inputId}
-      placeholder={placeholder}
-      onKeyDown={onKeyDown}
-      onKeyUp={onKeyUp}
-      value={value}
-      onChange={onChange}
-      {...otherProps}
-    />
-    {disableButton ? (
-      <DisabledSearchButton title={ariaLabel} tabIndex="-1">
-        <SearchIcon />
-      </DisabledSearchButton>
-    ) : (
-      <SearchButton title={ariaLabel} id={buttonId} onClick={onButtonClick}>
-        <SearchIcon />
-      </SearchButton>
-    )}
-  </SearchBoxWrapper>
-);
+class SearchBox extends Component {
+  handleChange = event => {
+    this.setState({ value: event.target.value }); // state of InputSearchBox
+    if (this.props.onChange) {
+      this.props.onChange(event);
+    }
+  };
+
+  handleClear = () => {
+    document.getElementById(this.props.inputId).value = "";
+    this.setState({ value: "" }); // state of InputSearchBox
+    if (this.props.onClear) {
+      this.props.onClear();
+    }
+    if (this.props.otherProps) {
+      this.props.otherProps.onChange({ target: { value: "" } });
+    }
+  };
+
+  render() {
+    const { ariaLabel, otherProps } = this.props;
+    let valueUsed;
+    try {
+      valueUsed = document.getElementById(this.props.inputId).value;
+    } catch (e) {} // eslint-disable-line no-empty
+
+    return (
+      <SearchBoxWrapper id={this.props.wrapperId}>
+        <InputSearchBox
+          type="search"
+          aria-label={ariaLabel}
+          id={this.props.inputId}
+          placeholder={this.props.placeholder}
+          onKeyDown={this.props.onKeyDown}
+          onKeyUp={this.props.onKeyUp}
+          // defaultValue={value !== undefined ? value : this.state.value}
+          onInput={this.handleChange}
+          onChange={this.handleChange}
+          {...otherProps}
+          value={otherProps ? otherProps.value : this.props.value}
+        />
+
+        {(this.props.onClear && this.props.value) ||
+        (otherProps && otherProps.value) ||
+        valueUsed ? (
+          <div style={{ position: "relative" }}>
+            <ClearButton
+              title={ariaLabel}
+              id="clearButton"
+              onClick={this.handleClear}
+            >
+              <CancelIcon />
+            </ClearButton>
+          </div>
+        ) : null}
+
+        {this.props.disableButton ? (
+          <DisabledSearchButton title={ariaLabel} tabIndex="-1">
+            <SearchIcon />
+          </DisabledSearchButton>
+        ) : (
+          <SearchButton
+            title={ariaLabel}
+            id={this.props.buttonId}
+            onClick={this.props.onButtonClick}
+          >
+            <SearchIcon />
+          </SearchButton>
+        )}
+      </SearchBoxWrapper>
+    );
+  }
+}
 
 SearchBox.defaultProps = {
   ariaLabel: "search",
@@ -121,6 +179,7 @@ SearchBox.propTypes = {
   onKeyUp: PropTypes.func,
   value: PropTypes.string,
   onChange: PropTypes.func,
+  onClear: PropTypes.func,
   wrapperId: PropTypes.string,
   buttonHref: PropTypes.string,
   inputId: PropTypes.string,
