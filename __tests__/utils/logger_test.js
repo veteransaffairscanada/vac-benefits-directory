@@ -6,7 +6,7 @@ describe("generatePayload", () => {
     let result = Logger.generatePayload("foo", "bar", {});
     expect(result.cloudEventsVersion).toEqual("0.1");
     expect(result.contentType).toEqual("text/plain");
-    expect(result.body).toEqual("bar");
+    expect(result.data).toEqual("bar");
     expect(result.eventID.indexOf("-")).not.toEqual(-1);
     expect(result.eventTime.indexOf("T")).not.toEqual(-1);
     expect(result.eventType).toEqual(
