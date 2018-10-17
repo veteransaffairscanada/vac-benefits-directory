@@ -94,7 +94,7 @@ var Logger = (function() {
         var standardPayload = {
           cloudEventsVersion: "0.1",
           contentType: "text/plain",
-          body: msg,
+          data: msg,
           eventID: envDetails + "-" + Date.now(),
           eventTime: new Date().toISOString(),
           eventType: "com.github.cds-snc.vac-benefits-directory." + level,
