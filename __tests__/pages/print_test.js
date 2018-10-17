@@ -8,6 +8,7 @@ import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
 import questionFixture from "../fixtures/questions";
+import multipleChoiceOptions from "../fixtures/multiple_choice_options";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -51,7 +52,8 @@ describe("Print", () => {
         serviceHealthIssue: ""
       },
       sortByValue: "",
-      areaOffices: areaOfficesFixture
+      areaOffices: areaOfficesFixture,
+      multipleChoiceOptions: multipleChoiceOptions
     };
     _mountedPrint = undefined;
   });
@@ -72,25 +74,25 @@ describe("Print", () => {
       mountedPrint()
         .find(".profile_section")
         .text()
-    ).toContain("service-person");
+    ).toContain("Veterans or serving members");
 
     expect(
       mountedPrint()
         .find(".profile_section")
         .text()
-    ).toContain("WSV (WWII or Korea)");
+    ).toContain("WWII or Korean War Veterans");
 
     expect(
       mountedPrint()
         .find(".profile_section")
         .text()
-    ).toContain("releasedAlive");
+    ).toContain("Released");
 
     expect(
       mountedPrint()
         .find(".profile_section")
         .text()
-    ).toContain("GE.has service related health issue");
+    ).toContain("Has service-related health issue");
 
     expect(mountedPrint().html()).toContain("checkbox1");
   });

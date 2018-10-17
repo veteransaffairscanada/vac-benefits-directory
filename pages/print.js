@@ -171,6 +171,9 @@ export class Print extends Component {
     const profile_text = this.props.profileQuestions
       .map(q => q.variable_name)
       .map(k => {
+        if (!query[k]) {
+          return null;
+        }
         let option = multipleChoiceOptions.filter(
           x => x["variable_name"] == query[k]
         )[0];
