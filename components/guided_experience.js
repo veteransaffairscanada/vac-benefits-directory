@@ -46,8 +46,6 @@ export class GuidedExperience extends Component {
       if (!reduxState[k] || k === this.props.id) {
         return "";
       } else {
-        // console.log(reduxState.multipleChoiceOptions)
-        // console.log(reduxState[k])
         let option = reduxState.multipleChoiceOptions.filter(
           x => x.variable_name === reduxState[k]
         )[0];
