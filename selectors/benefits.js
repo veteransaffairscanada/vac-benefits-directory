@@ -29,15 +29,36 @@ export const getProfileFilters = createSelector(
 export const pathToDict = (ep, multipleChoiceOptions, questions) => {
   let dict = {};
   questions.forEach(q => {
-    dict[q.variable_name] = "";
+    dict[q.variable_name] = [];
   });
   if (ep.requirements) {
     ep.requirements.forEach(req => {
       const mco = multipleChoiceOptions.filter(mco => mco.id === req)[0];
-      dict[mco.linked_question] = mco.variable_name;
+      dict[mco.linked_question].push(mco.variable_name);
     });
   }
   return dict;
+};
+
+export const eligibilityMatch = (
+  ep,
+  selected,
+  multipleChoiceOptions,
+  questions
+) => {
+  let matches = true;
+  const path = pathToDict(ep, multipleChoiceOptions, questions);
+  Object.keys(selected).forEach(criteria => {
+    if (
+      selected[criteria] &&
+      path[criteria] &&
+      path[criteria].length > 0 &&
+      path[criteria].indexOf(selected[criteria]) === -1
+    ) {
+      matches = false;
+    }
+  });
+  return matches;
 };
 
 export const getFilteredBenefitsWithoutSearch = createSelector(
@@ -59,21 +80,6 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     multipleChoiceOptions,
     questions
   ) => {
-    let eligibilityMatch = (ep, selected) => {
-      let matches = true;
-      const path = pathToDict(ep, multipleChoiceOptions, questions);
-      Object.keys(selectedProfile).forEach(criteria => {
-        if (
-          selected[criteria] !== "" &&
-          path[criteria] !== "" &&
-          selected[criteria] !== path[criteria]
-        ) {
-          matches = false;
-        }
-      });
-      return matches;
-    };
-
     if (benefits.length === 0) {
       return benefits;
     }
@@ -81,7 +87,9 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     // find benefits that match
     let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
-      if (eligibilityMatch(ep, selectedProfile)) {
+      if (
+        eligibilityMatch(ep, selectedProfile, multipleChoiceOptions, questions)
+      ) {
         eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
     });

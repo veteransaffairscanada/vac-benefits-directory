@@ -2,6 +2,7 @@ import lunr from "lunr";
 import {
   getProfileFilters,
   pathToDict,
+  eligibilityMatch,
   getFilteredBenefitsWithoutSearch,
   getFilteredBenefits
 } from "../../selectors/benefits";
@@ -47,23 +48,14 @@ describe("Benefits Selectors", () => {
       eligibilityPaths: [
         {
           requirements: ["patronType: p1"],
-          patronType: "p1",
-          serviceType: "na",
-          statusAndVitals: "na",
           benefits: ["0", "2", "4"]
         },
         {
           requirements: ["patronType: p2"],
-          patronType: "p2",
-          serviceType: "na",
-          statusAndVitals: "na",
           benefits: ["2"]
         },
         {
           requirements: ["patronType: p3"],
-          patronType: "p3",
-          serviceType: "na",
-          statusAndVitals: "na",
           benefits: ["1", "3", "4"]
         }
       ],
@@ -176,19 +168,147 @@ describe("Benefits Selectors", () => {
 
   describe("pathToDict function", () => {
     it("works as expected", () => {
-      const ep = { requirements: ["patronType: p3", "serviceType: s1"] };
+      const ep = {
+        requirements: ["patronType: p3", "serviceType: s1", "patronType: p1"]
+      };
       const actual = pathToDict(
         ep,
         state.multipleChoiceOptions,
         state.questions
       );
       expect(actual).toEqual({
-        patronType: "p3",
-        serviceType: "s1",
-        statusAndVitals: "",
-        serviceHealthIssue: "",
-        needs: ""
+        patronType: ["p3", "p1"],
+        serviceType: ["s1"],
+        statusAndVitals: [],
+        serviceHealthIssue: [],
+        needs: []
       });
+    });
+  });
+
+  describe("eligibilityMatch", () => {
+    it("matches if nothing selected", () => {
+      const ep = {
+        requirements: ["patronType: p3"],
+        patronType: "p3",
+        serviceType: "na",
+        statusAndVitals: "na",
+        benefits: ["1", "3", "4"]
+      };
+      const selected = {
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
+      };
+      const actual = eligibilityMatch(
+        ep,
+        selected,
+        state.multipleChoiceOptions,
+        state.questions
+      );
+      expect(actual).toEqual(true);
+    });
+
+    it("matches if requirements undefined", () => {
+      const ep = {
+        requirements: undefined,
+        patronType: "p3",
+        serviceType: "na",
+        statusAndVitals: "na",
+        benefits: ["1", "3", "4"]
+      };
+      const selected = {
+        patronType: "p3",
+        serviceType: "",
+        statusAndVitals: ""
+      };
+      const actual = eligibilityMatch(
+        ep,
+        selected,
+        state.multipleChoiceOptions,
+        state.questions
+      );
+      expect(actual).toEqual(true);
+    });
+
+    it("matches if requirements empty", () => {
+      const ep = {
+        requirements: [],
+        patronType: "p3",
+        serviceType: "na",
+        statusAndVitals: "na",
+        benefits: ["1", "3", "4"]
+      };
+      const selected = {
+        patronType: "p3",
+        serviceType: "",
+        statusAndVitals: ""
+      };
+      const actual = eligibilityMatch(
+        ep,
+        selected,
+        state.multipleChoiceOptions,
+        state.questions
+      );
+      expect(actual).toEqual(true);
+    });
+
+    it("matches if selections match", () => {
+      const ep = {
+        requirements: ["patronType: p3"],
+        patronType: "p3",
+        serviceType: "na",
+        statusAndVitals: "na",
+        benefits: ["1", "3", "4"]
+      };
+      const selected = {
+        patronType: "p3",
+        serviceType: "",
+        statusAndVitals: ""
+      };
+      const actual = eligibilityMatch(
+        ep,
+        selected,
+        state.multipleChoiceOptions,
+        state.questions
+      );
+      expect(actual).toEqual(true);
+    });
+
+    it("doesn't match if selections don't match", () => {
+      const ep = {
+        requirements: ["patronType: p3"]
+      };
+      const selected = {
+        patronType: "p2",
+        serviceType: "",
+        statusAndVitals: ""
+      };
+      const actual = eligibilityMatch(
+        ep,
+        selected,
+        state.multipleChoiceOptions,
+        state.questions
+      );
+      expect(actual).toEqual(false);
+    });
+
+    it("matches if selection included in requirements along with others", () => {
+      const ep = {
+        requirements: ["patronType: p3", "patronType: p2"]
+      };
+      const selected = {
+        patronType: "p2",
+        serviceType: "",
+        statusAndVitals: ""
+      };
+      const actual = eligibilityMatch(
+        ep,
+        selected,
+        state.multipleChoiceOptions,
+        state.questions
+      );
+      expect(actual).toEqual(true);
     });
   });
 
