@@ -71,8 +71,8 @@ const multipleChoiceOptionsFixture = [
     "questions 4": "serviceHealthIssue",
     "question display logic 2": ["reczEVuK0ipZkAIec"],
     id: "recM3T55J3Xf1qP16",
-    ge_breadcrumb_english: "en breadcrumb",
-    ge_breadcrumb_french: "fr breadcrumb"
+    ge_breadcrumb_english: "Still-serving",
+    ge_breadcrumb_french: "En service actif"
   },
   {
     variable_name: "releasedAlive",

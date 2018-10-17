@@ -4,6 +4,9 @@ import Router from "next/router";
 import questionsFixture from "../fixtures/questions";
 import { GuidedExperience } from "../../components/guided_experience";
 const { axe, toHaveNoViolations } = require("jest-axe");
+import multipleChoiceOptions from "../fixtures/multiple_choice_options";
+import translate from "../fixtures/translate";
+
 expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
@@ -30,7 +33,7 @@ describe("GuidedExperience", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
+      t: translate,
       setSection: jest.fn(),
       id: "YY",
       nextSection: "ZZ",
@@ -40,11 +43,12 @@ describe("GuidedExperience", () => {
       subtitle: "subtitle",
       reduxState: {
         patronType: "family",
-        serviceType: "rcmp",
-        statusAndVitals: "still-serving",
+        serviceType: "RCMP",
+        statusAndVitals: "stillServing",
         serviceHealthIssue: "",
         selectedNeeds: {},
-        questions: questionsFixture
+        questions: questionsFixture,
+        multipleChoiceOptions: multipleChoiceOptions
       }
     };
     _shallowGuidedExperience = undefined;
@@ -78,7 +82,7 @@ describe("GuidedExperience", () => {
 
   it("has edit answer buttons with correct text", () => {
     expect(document.getElementById("jumpButton2").textContent).toEqual(
-      "still-serving"
+      "Still-serving"
     );
   });
 
@@ -107,7 +111,7 @@ describe("GuidedExperience", () => {
       .last()
       .simulate("click");
     expect(Router.push).toBeCalledWith(
-      "/benefits-directory?lng=current-language-code&patronType=family&serviceType=rcmp&statusAndVitals=still-serving"
+      "/benefits-directory?lng=en&patronType=family&serviceType=RCMP&statusAndVitals=stillServing"
     );
   });
 
