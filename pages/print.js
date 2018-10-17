@@ -149,7 +149,7 @@ export class Print extends Component {
   };
 
   render() {
-    const { i18n, t, benefits, needs } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, benefits, needs, multipleChoiceOptions } = this.props; // eslint-disable-line no-unused-vars
 
     const query = this.props.url.query;
     const printingFromFavourites = query.fromFavourites !== undefined;
@@ -171,13 +171,14 @@ export class Print extends Component {
     const profile_text = this.props.profileQuestions
       .map(q => q.variable_name)
       .map(k => {
-        if (k === "serviceHealthIssue" && query[k] === "true") {
-          return t("GE.has service related health issue");
+        let option = multipleChoiceOptions.filter(
+          x => x["variable_name"] == query[k]
+        )[0];
+        if (t("current-language-code") === "en") {
+          return option.ge_breadcrumb_english;
+        } else {
+          return option.ge_breadcrumb_french;
         }
-        if (k === "serviceHealthIssue" && query[k] === "false") {
-          return t("GE.no service related health issue");
-        }
-        return t(query[k]);
       })
       .filter(x => (x && x.length > 0 ? true : false))
       .join(", ");
@@ -332,6 +333,7 @@ export class Print extends Component {
 
 const mapStateToProps = reduxState => {
   return {
+    multipleChoiceOptions: reduxState.multipleChoiceOptions,
     profileQuestions: reduxState.questions.filter(
       q => q.variable_name !== "needs"
     ),
@@ -344,6 +346,7 @@ const mapStateToProps = reduxState => {
 };
 
 Print.propTypes = {
+  multipleChoiceOptions: PropTypes.array.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   benefits: PropTypes.array.isRequired,
   examples: PropTypes.array.isRequired,
