@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import {
+  getProfileFilters,
   getFilteredBenefitsWithoutSearch,
   getFilteredBenefits
 } from "../selectors/benefits";
@@ -56,10 +57,7 @@ export class BenefitsPane extends Component {
 
   countSelection = () => {
     const reducer = (acc, obj) => acc + (Object.values(obj)[0] == null ? 0 : 1);
-    let count = Object.values(this.props.selectedEligibility).reduce(
-      reducer,
-      0
-    );
+    let count = Object.values(this.props.profileFilters).reduce(reducer, 0);
     return count + Object.values(this.props.selectedNeeds).length;
   };
 
@@ -194,18 +192,13 @@ const mapStateToProps = (reduxState, props) => {
     profileQuestions: reduxState.questions.filter(
       q => q.variable_name !== "needs"
     ),
+    profileFilters: getProfileFilters(reduxState, props),
     filteredBenefitsWithoutSearch: getFilteredBenefitsWithoutSearch(
       reduxState,
       props
     ),
     filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
-    selectedEligibility: {
-      patronType: reduxState.patronType,
-      serviceType: reduxState.serviceType,
-      statusAndVitals: reduxState.statusAndVitals,
-      serviceHealthIssue: reduxState.serviceHealthIssue
-    },
     selectedNeeds: reduxState.selectedNeeds,
     sortBy: reduxState.sortBy
   };
@@ -214,12 +207,12 @@ const mapStateToProps = (reduxState, props) => {
 BenefitsPane.propTypes = {
   url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
+  profileFilters: PropTypes.object.isRequired,
   filteredBenefitsWithoutSearch: PropTypes.array.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
   searchString: PropTypes.string.isRequired,
-  selectedEligibility: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   setSearchString: PropTypes.func.isRequired,

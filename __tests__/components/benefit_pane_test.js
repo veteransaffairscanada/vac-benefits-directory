@@ -32,7 +32,12 @@ describe("BenefitsPane", () => {
       clearNeeds: () => true,
       id: "BenefitsPane",
       setSelectedNeeds: () => true,
-      url: { query: {} }
+      url: { query: {} },
+      profileFilters: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      }
     };
     _mounted = undefined;
     reduxData = {
@@ -49,11 +54,6 @@ describe("BenefitsPane", () => {
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
       searchString: "",
-      selectedEligibility: {
-        serviceType: "",
-        patronType: "",
-        statusAndVitals: ""
-      },
       setSearchString: jest.fn(),
       setSortBy: jest.fn(),
       selectedNeeds: {},
@@ -94,7 +94,7 @@ describe("BenefitsPane", () => {
 
     it("shows B3.All benefits to consider when no filters are selected", () => {
       mounted().setProps({
-        selectedEligibility: {
+        profileFilters: {
           patronType: "",
           serviceType: "",
           statusAndVitals: ""
@@ -120,7 +120,7 @@ describe("BenefitsPane", () => {
 
       it("returns 1 if one selectedEligibilty is selected", () => {
         mounted().setProps({
-          selectedEligibility: {
+          profileFilters: {
             patronType: eligibilityPathsFixture[0].patronType
           }
         });
@@ -147,7 +147,7 @@ describe("BenefitsPane", () => {
         needsSelection[needsFixture[0].id] = needsFixture[0].id;
         mounted().setProps({ selectedNeeds: needsSelection });
         mounted().setProps({
-          selectedEligibility: {
+          profileFilters: {
             patronType: eligibilityPathsFixture[0].patronType
           }
         });
