@@ -2,8 +2,10 @@ import lunr from "lunr";
 import { createSelector } from "reselect";
 
 const getBenefits = state => state.benefits;
+const getQuestions = state => state.questions;
 const getCurrentLanguage = (state, props) => props.t("current-language-code");
 const getEligibilityPaths = state => state.eligibilityPaths;
+const getMultipleChoiceOptions = state => state.multipleChoiceOptions;
 const getEnIdx = state => state.enIdx;
 const getFrIdx = state => state.frIdx;
 const getNeeds = state => state.needs;
@@ -24,29 +26,60 @@ export const getProfileFilters = createSelector(
   }
 );
 
+export const pathToDict = (ep, multipleChoiceOptions, questions) => {
+  let dict = {};
+  questions.forEach(q => {
+    dict[q.variable_name] = [];
+  });
+  if (ep.requirements) {
+    ep.requirements.forEach(req => {
+      const mco = multipleChoiceOptions.filter(mco => mco.id === req)[0];
+      dict[mco.linked_question].push(mco.variable_name);
+    });
+  }
+  return dict;
+};
+
+export const eligibilityMatch = (
+  ep,
+  selected,
+  multipleChoiceOptions,
+  questions
+) => {
+  let matches = true;
+  const path = pathToDict(ep, multipleChoiceOptions, questions);
+  Object.keys(selected).forEach(criteria => {
+    if (
+      selected[criteria] &&
+      path[criteria] &&
+      path[criteria].length > 0 &&
+      path[criteria].indexOf(selected[criteria]) === -1
+    ) {
+      matches = false;
+    }
+  });
+  return matches;
+};
+
 export const getFilteredBenefitsWithoutSearch = createSelector(
   [
     getProfileFilters,
     getNeedsFilter,
     getBenefits,
     getNeeds,
-    getEligibilityPaths
+    getEligibilityPaths,
+    getMultipleChoiceOptions,
+    getQuestions
   ],
-  (selectedProfile, selectedNeeds, benefits, needs, eligibilityPaths) => {
-    let eligibilityMatch = (path, selected) => {
-      let matches = true;
-      Object.keys(selectedProfile).forEach(criteria => {
-        if (
-          selected[criteria] !== "" &&
-          path[criteria] !== "na" &&
-          selected[criteria] !== path[criteria]
-        ) {
-          matches = false;
-        }
-      });
-      return matches;
-    };
-
+  (
+    selectedProfile,
+    selectedNeeds,
+    benefits,
+    needs,
+    eligibilityPaths,
+    multipleChoiceOptions,
+    questions
+  ) => {
     if (benefits.length === 0) {
       return benefits;
     }
@@ -54,7 +87,9 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     // find benefits that match
     let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
-      if (eligibilityMatch(ep, selectedProfile)) {
+      if (
+        eligibilityMatch(ep, selectedProfile, multipleChoiceOptions, questions)
+      ) {
         eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
     });

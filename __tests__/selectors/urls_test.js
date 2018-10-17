@@ -148,22 +148,42 @@ describe("getPrintUrl", () => {
       selectedAreaOffice: "",
       eligibilityPaths: [
         {
+          requirements: ["patronType: p1"],
           patronType: "p1",
           serviceType: "na",
           statusAndVitals: "na",
           benefits: ["0", "2", "4"]
         },
         {
+          requirements: ["patronType: p2"],
           patronType: "p2",
           serviceType: "na",
           statusAndVitals: "na",
           benefits: ["2"]
         },
         {
+          requirements: ["patronType: p3"],
           patronType: "p3",
           serviceType: "na",
           statusAndVitals: "na",
           benefits: ["1", "3", "4"]
+        }
+      ],
+      multipleChoiceOptions: [
+        {
+          variable_name: "p1",
+          linked_question: "patronType",
+          id: "patronType: p1"
+        },
+        {
+          variable_name: "p2",
+          linked_question: "patronType",
+          id: "patronType: p2"
+        },
+        {
+          variable_name: "p3",
+          linked_question: "patronType",
+          id: "patronType: p3"
         }
       ],
       enIdx: JSON.stringify({
@@ -237,7 +257,7 @@ describe("getPrintUrl", () => {
   it("adds serviceHealthIssue string to the URL", () => {
     state.serviceHealthIssue = "foo";
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&serviceHealthIssue=foo"
+      "/print?lng=en&sortBy=relevance&benefits=0,1,2,3,4&serviceHealthIssue=foo"
     );
   });
 
