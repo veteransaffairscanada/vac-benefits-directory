@@ -139,7 +139,14 @@ Promise.resolve(getAllData()).then(allData => {
               req.data.favouriteBenefits = new Cookies(req.headers.cookie).get(
                 "favouriteBenefits"
               );
-              handle(req, res);
+              let startTime = new Date();
+              handle(req, res).then(() => {
+                let duration = new Date() - startTime;
+                let url = req.url;
+                Logger.info(`Rendered ${url} in ${duration} ms`, {
+                  source: "/server.js"
+                });
+              });
             }
           });
 
