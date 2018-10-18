@@ -143,9 +143,17 @@ Promise.resolve(getAllData()).then(allData => {
               handle(req, res).then(() => {
                 let duration = new Date() - startTime;
                 let url = req.url;
-                Logger.info(`Rendered ${url} in ${duration} ms`, {
-                  source: "/server.js"
-                });
+                Logger.info(
+                  {
+                    event: "Page render duration in ms",
+                    url: url,
+                    duration: duration
+                  },
+                  {
+                    contentType: "application/json",
+                    source: "/server.js"
+                  }
+                );
               });
             }
           });
