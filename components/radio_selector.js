@@ -79,18 +79,20 @@ export class RadioSelector extends React.Component {
   render() {
     const guid = uuidv4();
 
-    const options = this.props.options.filter(
-      option =>
-        !this.isDisabled(
-          option,
-          this.props.responses,
-          this.props.questionDisplayLogic
-        )
-    );
+    const options = this.props.multipleChoiceOptions
+      .filter(mco => this.props.options.indexOf(mco.id) !== -1)
+      .filter(
+        option =>
+          !this.isDisabled(
+            option.variable_name,
+            this.props.responses,
+            this.props.questionDisplayLogic
+          )
+      );
 
     const { t, selectorType, responses, legend, tooltipText } = this.props;
 
-    if (Object.keys(options).length !== 0) {
+    if (options.length !== 0) {
       return (
         <FormControl className={formControl}>
           <Tooltip
@@ -110,11 +112,17 @@ export class RadioSelector extends React.Component {
             {options.map(option => {
               return (
                 <FormControlLabel
-                  key={option}
-                  value={option}
-                  htmlFor={option + guid}
-                  control={<Radio color="primary" id={option + guid} />}
-                  label={t(option)}
+                  key={option.variable_name}
+                  value={option.variable_name}
+                  htmlFor={option.variable_name + guid}
+                  control={
+                    <Radio color="primary" id={option.variable_name + guid} />
+                  }
+                  label={
+                    t("current-language-code") === "en"
+                      ? option.display_text_english
+                      : option.display_text_french
+                  }
                 />
               );
             })}
@@ -141,6 +149,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = reduxState => {
   return {
     eligibilityPaths: reduxState.eligibilityPaths,
+    multipleChoiceOptions: reduxState.multipleChoiceOptions,
     questions: reduxState.questions,
     questionDisplayLogic: reduxState.questionDisplayLogic,
     questionClearLogic: reduxState.questionClearLogic,
@@ -155,6 +164,7 @@ RadioSelector.propTypes = {
   saveQuestionResponse: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  multipleChoiceOptions: PropTypes.array.isRequired,
   questions: PropTypes.array.isRequired,
   questionDisplayLogic: PropTypes.array.isRequired,
   questionClearLogic: PropTypes.array.isRequired,
