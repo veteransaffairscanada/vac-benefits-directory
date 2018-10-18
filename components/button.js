@@ -2,7 +2,7 @@ import styled, { css } from "react-emotion";
 import PropTypes from "prop-types";
 import React from "react";
 import { globalTheme } from "../theme";
-import { KeyboardBackspace } from "@material-ui/icons";
+import KeyboardBackspace from "./icons/KeyboardBackspace";
 
 const rightArrowIcon = css`
   -moz-transform: scaleX(-1);

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import Print from "@material-ui/icons/Print";
-import Bookmark from "@material-ui/icons/Bookmark";
+import Print from "./icons/Print";
+import Bookmark from "./icons/Bookmark";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";

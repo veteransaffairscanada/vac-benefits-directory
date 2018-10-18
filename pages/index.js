@@ -3,7 +3,7 @@ import Router from "next/router";
 import { connect } from "react-redux";
 import { css } from "react-emotion";
 import PropTypes from "prop-types";
-import Bookmark from "@material-ui/icons/Bookmark";
+import Bookmark from "../components/icons/Bookmark";
 import { Grid } from "@material-ui/core";
 import { withI18next } from "../lib/withI18next";
 import { globalTheme } from "../theme";

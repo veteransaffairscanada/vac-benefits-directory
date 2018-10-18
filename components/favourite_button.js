@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Bookmark from "@material-ui/icons/Bookmark";
-import BookmarkBorder from "@material-ui/icons/BookmarkBorder";
+import Bookmark from "./icons/Bookmark";
+import BookmarkBorder from "./icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
 import { cx, css } from "react-emotion";
