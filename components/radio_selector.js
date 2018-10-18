@@ -79,13 +79,23 @@ export class RadioSelector extends React.Component {
   render() {
     const guid = uuidv4();
 
-    const options = this.props.options
+    const options = (this.props.options
       ? this.props.options
       : Array.from(
           new Set(
             this.props.eligibilityPaths.map(ep => ep[this.props.selectorType])
           )
-        ).filter(st => st !== "na");
+        )
+    )
+      .filter(st => st !== "na")
+      .filter(
+        option =>
+          !this.isDisabled(
+            option,
+            this.props.responses,
+            this.props.questionDisplayLogic
+          )
+      );
 
     const { t, selectorType, responses, legend, tooltipText } = this.props;
 
@@ -114,11 +124,6 @@ export class RadioSelector extends React.Component {
                   htmlFor={option + guid}
                   control={<Radio color="primary" id={option + guid} />}
                   label={t(option)}
-                  disabled={this.isDisabled(
-                    option,
-                    responses,
-                    this.props.questionDisplayLogic
-                  )}
                 />
               );
             })}
