@@ -7,40 +7,38 @@ export const uuidv4 = () => {
 };
 
 export const showQuestion = (question_variable_name, index, reduxState) => {
-  const { questions, questionDisplayLogic } = reduxState;
-
   if (index === 0) {
     return true;
   }
 
-  // show if the previous question has an answer
+  const { questions, questionDisplayLogic } = reduxState;
+
+  let questionsToHide = [];
+  questionDisplayLogic.forEach(x => {
+    const questionName = x.question[0];
+    const usersAnswer = reduxState[questionName];
+    if (x["has value"].indexOf(usersAnswer) > -1) {
+      questionsToHide = questionsToHide.concat(x["exclude questions"]);
+    }
+  });
+
+  if (questionsToHide.indexOf(question_variable_name) > -1) {
+    return false;
+  }
+
+  const displayableQuestions = questions.filter(
+    q => questionsToHide.indexOf(q.variable_name) == -1
+  );
+  const new_index = displayableQuestions
+    .map(x => x.variable_name)
+    .indexOf(question_variable_name);
   const previousQuestionAnswered =
-    reduxState[questions[index - 1].variable_name] !== "";
+    reduxState[displayableQuestions[new_index - 1].variable_name] !== "";
   if (!previousQuestionAnswered && question_variable_name !== "needs") {
     return false;
   }
 
-  const relevantLogic = questionDisplayLogic.filter(x => {
-    return (
-      x["exclude questions"] &&
-      x["exclude questions"].indexOf(question_variable_name) > -1
-    );
-  });
-
-  if (!relevantLogic) {
-    return true;
-  }
-
-  let return_value = true;
-  relevantLogic.forEach(x => {
-    const questionName = x.question[0];
-    const users_answer = reduxState[questionName];
-    if (x["has value"].indexOf(users_answer) > -1) {
-      return_value = false;
-    }
-  });
-
-  return return_value;
+  return true;
 };
 
 // taken from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/cookies.js
