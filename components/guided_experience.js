@@ -49,10 +49,17 @@ export class GuidedExperience extends Component {
         let option = reduxState.multipleChoiceOptions.filter(
           x => x.variable_name === reduxState[k]
         )[0];
-        let text =
-          t("current-language-code") === "en"
+        let text;
+        if (t("current-language-code") === "en") {
+          text = option.ge_breadcrumb_english
             ? option.ge_breadcrumb_english
-            : option.ge_breadcrumb_french;
+            : option.display_text_english;
+        } else {
+          text = option.ge_breadcrumb_french
+            ? option.ge_breadcrumb_french
+            : option.display_text_french;
+        }
+
         return (
           <span key={i}>
             <span className={comma}>{i === 0 ? "" : ","}</span>

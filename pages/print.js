@@ -178,9 +178,13 @@ export class Print extends Component {
           x => x["variable_name"] == query[k]
         )[0];
         if (t("current-language-code") === "en") {
-          return option.ge_breadcrumb_english;
+          return option.ge_breadcrumb_english
+            ? option.ge_breadcrumb_english
+            : option.display_text_english;
         } else {
-          return option.ge_breadcrumb_french;
+          return option.ge_breadcrumb_french
+            ? option.ge_breadcrumb_french
+            : option.display_text_french;
         }
       })
       .filter(x => (x && x.length > 0 ? true : false))
