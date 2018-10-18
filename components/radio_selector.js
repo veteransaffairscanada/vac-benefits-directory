@@ -79,23 +79,14 @@ export class RadioSelector extends React.Component {
   render() {
     const guid = uuidv4();
 
-    const options = (this.props.options
-      ? this.props.options
-      : Array.from(
-          new Set(
-            this.props.eligibilityPaths.map(ep => ep[this.props.selectorType])
-          )
+    const options = this.props.options.filter(
+      option =>
+        !this.isDisabled(
+          option,
+          this.props.responses,
+          this.props.questionDisplayLogic
         )
-    )
-      .filter(st => st !== "na")
-      .filter(
-        option =>
-          !this.isDisabled(
-            option,
-            this.props.responses,
-            this.props.questionDisplayLogic
-          )
-      );
+    );
 
     const { t, selectorType, responses, legend, tooltipText } = this.props;
 
@@ -167,7 +158,7 @@ RadioSelector.propTypes = {
   questions: PropTypes.array.isRequired,
   questionDisplayLogic: PropTypes.array.isRequired,
   questionClearLogic: PropTypes.array.isRequired,
-  options: PropTypes.array,
+  options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
   store: PropTypes.object
 };
