@@ -39,18 +39,6 @@ const body = css`
 
 export class GuidedExperience extends Component {
   jumpButtons = (t, reduxState) => {
-    const getTranslationKey = questionVariableName => {
-      let translation_key = "";
-      if (questionVariableName === "serviceHealthIssue") {
-        translation_key = JSON.parse(reduxState[questionVariableName])
-          ? "GE.has service related health issue"
-          : "GE.no service related health issue";
-      } else {
-        translation_key = reduxState[questionVariableName];
-      }
-      return translation_key;
-    };
-
     const eligibilityKeys = reduxState.questions
       .map(x => x.variable_name)
       .filter(x => x != "needs");
@@ -58,6 +46,20 @@ export class GuidedExperience extends Component {
       if (!reduxState[k] || k === this.props.id) {
         return "";
       } else {
+        let option = reduxState.multipleChoiceOptions.filter(
+          x => x.variable_name === reduxState[k]
+        )[0];
+        let text;
+        if (t("current-language-code") === "en") {
+          text = option.ge_breadcrumb_english
+            ? option.ge_breadcrumb_english
+            : option.display_text_english;
+        } else {
+          text = option.ge_breadcrumb_french
+            ? option.ge_breadcrumb_french
+            : option.display_text_french;
+        }
+
         return (
           <span key={i}>
             <span className={comma}>{i === 0 ? "" : ","}</span>
@@ -66,7 +68,7 @@ export class GuidedExperience extends Component {
               href="#"
               onClick={() => this.props.setSection(k)}
             >
-              {t(getTranslationKey(k))}
+              {text}
             </GuidedExperienceLink>
           </span>
         );

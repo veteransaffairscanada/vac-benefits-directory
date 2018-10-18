@@ -12,6 +12,7 @@ import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import multipleChoiceOptions from "../fixtures/multiple_choice_options";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -66,7 +67,8 @@ describe("Guided", () => {
       option: "",
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
-      questionClearLogic: questionDisplayLogicFixture
+      questionClearLogic: questionDisplayLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptions
     };
     props.store = mockStore(reduxState);
     props.reduxState = reduxState;
