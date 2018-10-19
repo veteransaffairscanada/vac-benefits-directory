@@ -70,7 +70,7 @@ const multipleChoiceOptionsFixture = [
     linked_question: ["statusAndVitals"],
     "questions 4": "serviceHealthIssue",
     "question display logic 2": ["reczEVuK0ipZkAIec"],
-    id: "recM3T55J3Xf1qP16",
+    id: "mco:stillServing",
     ge_breadcrumb_english: "Still-serving",
     ge_breadcrumb_french: "En service actif"
   },
@@ -80,7 +80,7 @@ const multipleChoiceOptionsFixture = [
     display_text_french: "Libéré",
     linked_question: ["statusAndVitals"],
     "questions 4": "serviceHealthIssue",
-    id: "rec3vCJImDFrRIaFl",
+    id: "mco:releasedAlive",
     ge_breadcrumb_english: "Released",
     ge_breadcrumb_french: "Libéré"
   },
@@ -91,7 +91,7 @@ const multipleChoiceOptionsFixture = [
     linked_question: ["statusAndVitals"],
     "questions 4": "serviceHealthIssue",
     "question display logic 2": ["recn0zobKUhFIowAh"],
-    id: "recDW9csGX2ekiwXb",
+    id: "mco:deceased",
     ge_breadcrumb_english: "en breadcrumb",
     ge_breadcrumb_french: "fr breadcrumb"
   },

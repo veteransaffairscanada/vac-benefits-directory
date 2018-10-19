@@ -19,15 +19,10 @@ export class ProfileSelector extends Component {
 
   render() {
     const { t } = this.props;
-    const { questions, multipleChoiceOptions } = this.props.reduxState;
     let jsx_array = [];
 
-    questions.forEach((question, index) => {
+    this.props.profileQuestions.forEach((question, index) => {
       if (showQuestion(question.variable_name, index, this.props.reduxState)) {
-        const options = multipleChoiceOptions
-          .filter(mco => question.variable_name === mco.linked_question[0])
-          .map(x => x.variable_name);
-
         jsx_array.push(
           <Grid item xs={12} key={question.variable_name + "RadioSelector"}>
             <RadioSelector
@@ -39,7 +34,7 @@ export class ProfileSelector extends Component {
                   : question.display_text_french
               }
               selectorType={question.variable_name}
-              options={options}
+              options={question.multiple_choice_options}
               tooltipText={
                 t("current-language-code") === "en"
                   ? question.tooltip_english
@@ -75,15 +70,17 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
+    multipleChoiceOptions: reduxState.multipleChoiceOptions,
     reduxState: reduxState,
     profileQuestions: reduxState.questions.filter(
-      q => q.variable_name != "needs"
+      q => q.variable_name !== "needs"
     )
   };
 };
 
 ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
+  multipleChoiceOptions: PropTypes.array.isRequired,
   reduxState: PropTypes.object.isRequired,
   store: PropTypes.object,
   saveQuestionResponse: PropTypes.func.isRequired,

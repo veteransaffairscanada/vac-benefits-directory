@@ -5,6 +5,8 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import questionsFixture from "../fixtures/questions";
+import translateFixture from "../fixtures/translate";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import { GuidedExperienceProfile } from "../../components/guided_experience_profile";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -17,15 +19,16 @@ describe("GuidedExperienceProfile", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
-      options: ["op0", "op1"],
-      selectorType: ""
+      t: translateFixture,
+      options: ["mco:stillServing", "mco:releasedAlive"],
+      selectorType: "statusAndVitals"
     };
     reduxData = {
       serviceType: "",
       patronType: "",
       statusAndVitals: "",
       serviceHealthIssue: "",
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       questions: questionsFixture,
       questionDisplayLogic: [],
@@ -45,7 +48,7 @@ describe("GuidedExperienceProfile", () => {
   it("contains all the options", () => {
     expect(
       mount(<GuidedExperienceProfile {...props} {...reduxData} />)
-        .find("#RadioSelector")
+        .find("#RadioSelectorstatusAndVitals")
         .find("Radio").length
     ).toEqual(2);
   });

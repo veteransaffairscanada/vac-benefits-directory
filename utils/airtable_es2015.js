@@ -90,12 +90,6 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
 
   // replace ids in linked records
   replaceId(
-    dataStore.questions,
-    "multiple_choice_options",
-    dataStore.multipleChoiceOptions,
-    "variable_name"
-  );
-  replaceId(
     dataStore.questionDisplayLogic,
     "question",
     dataStore.questions,
