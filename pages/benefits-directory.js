@@ -19,7 +19,13 @@ export class BenefitsDirectory extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
+    if (
+      JSON.stringify(this.props.profileFilters) !==
+        JSON.stringify(prevProps.profileFilters) ||
+      JSON.stringify(this.props.selectedNeeds) !==
+        JSON.stringify(prevProps.selectedNeeds) ||
+      JSON.stringify(this.props.sortBy) !== JSON.stringify(prevProps.sortBy)
+    ) {
       this.setURL();
     }
   }
