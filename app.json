@@ -4,7 +4,8 @@
   "env": {
     "GITHUB_PUBLIC_ACCESS_TOKEN": { "required": true },
     "GOOGLE_MAPS_KEY": { "required": true },
-    "AIRTABLE_READ_KEY": { "required": true }
+    "AIRTABLE_READ_KEY": { "required": true },
+    "AIRTABLE_BASE_KEY": { "required": false }
   },
   "formation": {},
   "addons": [],
