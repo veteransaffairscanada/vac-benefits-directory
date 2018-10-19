@@ -28,6 +28,10 @@ const ExpansionPanelSummaryCss = css`
   div[role="button"] {
     padding: 0px 20px 0px 20px !important;
   }
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    padding-left: ${globalTheme.cardPaddingMobile} !important;
+    padding-right: ${globalTheme.cardPaddingMobile} !important;
+  }
 `;
 const cardBottomTitle = css`
   display: flex;
@@ -55,6 +59,10 @@ const collapse = css`
   background-color: ${globalTheme.colour.cardGrey} !important;
   padding-left: ${globalTheme.cardPadding} !important;
   padding-right: ${globalTheme.cardPadding} !important;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    padding-left: ${globalTheme.cardPaddingMobile} !important;
+    padding-right: ${globalTheme.cardPaddingMobile} !important;
+  }
 `;
 const children = css`
   width: 100%;
