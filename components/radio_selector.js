@@ -148,7 +148,6 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    eligibilityPaths: reduxState.eligibilityPaths,
     multipleChoiceOptions: reduxState.multipleChoiceOptions,
     questions: reduxState.questions,
     questionDisplayLogic: reduxState.questionDisplayLogic,
@@ -163,7 +162,6 @@ RadioSelector.propTypes = {
   responses: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
   multipleChoiceOptions: PropTypes.array.isRequired,
   questions: PropTypes.array.isRequired,
   questionDisplayLogic: PropTypes.array.isRequired,

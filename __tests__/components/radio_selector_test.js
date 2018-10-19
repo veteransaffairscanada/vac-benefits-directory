@@ -5,6 +5,8 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import translateFixture from "../fixtures/translate";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import responsesFixture from "../fixtures/responses";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -16,13 +18,14 @@ describe("RadioSelector", () => {
     props = {
       legend: "",
       saveQuestionResponse: jest.fn(),
-      options: ["releasedAlive", "stillServing", "deceased"],
+      options: ["mco:stillServing", "mco:releasedAlive", "mco:deceased"],
       selectorType: "statusAndVitals",
       responses: responsesFixture,
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
-      t: key => key,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      t: translateFixture,
       eligibilityPaths: eligibilityPathsFixture
     };
   });
@@ -44,7 +47,7 @@ describe("RadioSelector", () => {
         .find("FormControlLabel")
         .at(1)
         .text()
-    ).toEqual("stillServing");
+    ).toEqual("Released");
   });
 
   describe("isDisabled function", () => {
