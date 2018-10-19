@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
 import Router from "next/router";
 import { cx, css } from "react-emotion";
-import ArrowBack from "@material-ui/icons/ArrowBack";
-import ArrowForward from "@material-ui/icons/ArrowForward";
+import ArrowBack from "./icons/ArrowBack";
+import ArrowForward from "./icons/ArrowForward";
 
 const style = css`
   display: inline-block;

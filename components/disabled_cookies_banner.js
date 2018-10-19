@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { css } from "react-emotion";
-import Close from "@material-ui/icons/Close";
+import Close from "./icons/Close";
 
 import { globalTheme } from "../theme";
 import Body from "./typography/body";

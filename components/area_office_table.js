@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Pin from "@material-ui/icons/Place";
+import Pin from "./icons/Place";
 import { cx, css } from "react-emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
