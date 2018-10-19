@@ -7,7 +7,7 @@ import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import HeaderButton from "./header_button";
-import CloseIcon from "@material-ui/icons/Close";
+import CloseIcon from "./icons/Close";
 import Paper from "./paper";
 
 const root = css`

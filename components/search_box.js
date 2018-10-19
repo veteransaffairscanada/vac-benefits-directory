@@ -2,8 +2,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
-import SearchIcon from "@material-ui/icons/Search";
-import CancelIcon from "@material-ui/icons/Cancel";
+import SearchIcon from "./icons/Search";
+import CancelIcon from "./icons/Cancel";
 import { globalTheme } from "../theme";
 
 const SearchBoxWrapper = styled("div")({
