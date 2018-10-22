@@ -26,28 +26,34 @@ export const getProfileFilters = createSelector(
   }
 );
 
-export const pathToDict = (ep, multipleChoiceOptions) => {
+export const pathToDict = (ep, multipleChoiceOptions, questions) => {
   let dict = {};
+  questions.forEach(q => {
+    dict[q.variable_name] = [];
+  });
   if (ep.requirements) {
     ep.requirements.forEach(req => {
       const mco = multipleChoiceOptions.filter(mco => mco.id === req)[0];
-      dict[mco.linked_question] = dict[mco.linked_question]
-        ? dict[mco.linked_question].concat([mco.variable_name])
-        : [mco.variable_name];
+      dict[mco.linked_question].push(mco.variable_name);
     });
   }
   return dict;
 };
 
-export const eligibilityMatch = (ep, profileFilters, multipleChoiceOptions) => {
+export const eligibilityMatch = (
+  ep,
+  selected,
+  multipleChoiceOptions,
+  questions
+) => {
   let matches = true;
-  const path = pathToDict(ep, multipleChoiceOptions);
-  Object.keys(profileFilters).forEach(criteria => {
+  const path = pathToDict(ep, multipleChoiceOptions, questions);
+  Object.keys(selected).forEach(criteria => {
     if (
-      profileFilters[criteria] &&
+      selected[criteria] &&
       path[criteria] &&
       path[criteria].length > 0 &&
-      path[criteria].indexOf(profileFilters[criteria]) === -1
+      path[criteria].indexOf(selected[criteria]) === -1
     ) {
       matches = false;
     }
@@ -66,7 +72,7 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     getQuestions
   ],
   (
-    profileFilters,
+    selectedProfile,
     selectedNeeds,
     benefits,
     needs,
@@ -82,7 +88,7 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
       if (
-        eligibilityMatch(ep, profileFilters, multipleChoiceOptions, questions)
+        eligibilityMatch(ep, selectedProfile, multipleChoiceOptions, questions)
       ) {
         eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
