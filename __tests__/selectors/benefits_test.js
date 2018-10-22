@@ -171,17 +171,10 @@ describe("Benefits Selectors", () => {
       const ep = {
         requirements: ["patronType: p3", "serviceType: s1", "patronType: p1"]
       };
-      const actual = pathToDict(
-        ep,
-        state.multipleChoiceOptions,
-        state.questions
-      );
+      const actual = pathToDict(ep, state.multipleChoiceOptions);
       expect(actual).toEqual({
         patronType: ["p3", "p1"],
-        serviceType: ["s1"],
-        statusAndVitals: [],
-        serviceHealthIssue: [],
-        needs: []
+        serviceType: ["s1"]
       });
     });
   });
@@ -195,16 +188,15 @@ describe("Benefits Selectors", () => {
         statusAndVitals: "na",
         benefits: ["1", "3", "4"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -217,16 +209,15 @@ describe("Benefits Selectors", () => {
         statusAndVitals: "na",
         benefits: ["1", "3", "4"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p3",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -239,16 +230,15 @@ describe("Benefits Selectors", () => {
         statusAndVitals: "na",
         benefits: ["1", "3", "4"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p3",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -261,16 +251,15 @@ describe("Benefits Selectors", () => {
         statusAndVitals: "na",
         benefits: ["1", "3", "4"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p3",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -279,16 +268,15 @@ describe("Benefits Selectors", () => {
       const ep = {
         requirements: ["patronType: p3"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p2",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(false);
     });
@@ -297,16 +285,15 @@ describe("Benefits Selectors", () => {
       const ep = {
         requirements: ["patronType: p3", "patronType: p2"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p2",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
