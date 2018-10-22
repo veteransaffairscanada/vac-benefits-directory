@@ -264,7 +264,7 @@ export class DataValidation extends Component {
                         ) : (
                           <Button
                             color="primary"
-                            variant="raised"
+                            variant="contained"
                             onClick={() => this.checkBenefitUrls()}
                           >
                             {t("dv.validate")}
