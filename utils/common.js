@@ -1,9 +1,36 @@
+import { eligibilityMatch } from "../selectors/benefits";
+
 export const uuidv4 = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
     var r = (Math.random() * 16) | 0,
       v = c == "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
+};
+
+export const questionIsRelevant = (
+  question_variable_name,
+  profileFilters,
+  reduxState
+) => {
+  let relevantPaths = reduxState.eligibilityPaths.filter(
+    ep =>
+      ep.requirements &&
+      eligibilityMatch(ep, profileFilters, reduxState.multipleChoiceOptions)
+  );
+  let returnValue = false;
+  relevantPaths.forEach(ep => {
+    ep.requirements.forEach(mcoId => {
+      const linkedQuestion = reduxState.multipleChoiceOptions.filter(
+        mco => mco.id === mcoId
+      )[0].linked_question;
+      console.log("linked question:", linkedQuestion);
+      if (linkedQuestion === question_variable_name) {
+        returnValue = true;
+      }
+    });
+  });
+  return returnValue;
 };
 
 export const showQuestion = (question_variable_name, index, reduxState) => {
