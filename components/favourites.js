@@ -164,9 +164,10 @@ export class Favourites extends Component {
                   <HeaderButton
                     id="nearbyOffice"
                     arrow="forward"
-                    href={getLink(this.props.url, "map", "favourites")}
+                    useLink
+                    href={getLink(this.props.url, "/map", "favourites")}
                   >
-                    <a>{t("favourites.visit_prompt")}</a>
+                    {t("favourites.visit_prompt")}
                   </HeaderButton>
                 </p>
 
@@ -209,11 +210,10 @@ export class Favourites extends Component {
                     <HeaderButton
                       id="myVACButton"
                       arrow="forward"
+                      useLink
                       href={t("contact.my_vac_link")}
                     >
-                      <a target="_blank" rel="noopener noreferrer">
-                        {t("favourites.login_link")}
-                      </a>
+                      {t("favourites.login_link")}
                     </HeaderButton>
                   </p>
                   {t("favourites.login_prompt")}
