@@ -13,6 +13,7 @@ import GuidedExperienceNeeds from "../components/guided_experience_needs";
 export class Guided extends Component {
   constructor(props) {
     super(props);
+    this.rootRef = React.createRef();
     this.cookies = new Cookies();
     this.state = {
       section: this.props.sectionOrder[0]
@@ -120,34 +121,42 @@ export class Guided extends Component {
         showRefreshCache={false}
         title={t("titles.guided_experience")}
       >
-        <GuidedExperience
-          id={section}
-          stepNumber={sectionOrder.indexOf(section)}
-          nextSection={this.getNextSection(
-            displayable_sections,
-            dynamicStepNumber
-          )}
-          prevSection={this.getPrevSection(
-            displayable_sections,
-            dynamicStepNumber
-          )}
-          setSection={this.setSection}
-          subtitle={this.getSubtitle(question)}
-          helperText={this.getTooltip(question)}
-          t={t}
-          store={store}
-        >
-          {section === "needs" ? (
-            <GuidedExperienceNeeds t={t} selectorType={section} store={store} />
-          ) : (
-            <GuidedExperienceProfile
-              t={t}
-              selectorType={section}
-              store={store}
-              options={question["multiple_choice_options"]}
-            />
-          )}
-        </GuidedExperience>
+        <div ref={this.rootRef}>
+          <GuidedExperience
+            id={section}
+            stepNumber={sectionOrder.indexOf(section)}
+            nextSection={this.getNextSection(
+              displayable_sections,
+              dynamicStepNumber
+            )}
+            prevSection={this.getPrevSection(
+              displayable_sections,
+              dynamicStepNumber
+            )}
+            setSection={this.setSection}
+            subtitle={this.getSubtitle(question)}
+            helperText={this.getTooltip(question)}
+            t={t}
+            store={store}
+          >
+            {section === "needs" ? (
+              <GuidedExperienceNeeds
+                t={t}
+                selectorType={section}
+                store={store}
+                rootRef={this.rootRef}
+              />
+            ) : (
+              <GuidedExperienceProfile
+                t={t}
+                selectorType={section}
+                store={store}
+                options={question["multiple_choice_options"]}
+                rootRef={this.rootRef}
+              />
+            )}
+          </GuidedExperience>
+        </div>
       </Layout>
     );
   }

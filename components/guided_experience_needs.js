@@ -36,7 +36,9 @@ export class GuidedExperienceNeeds extends Component {
     }
     this.props.setSelectedNeeds(newSelectedNeeds);
   };
-
+  componentDidUpdate() {
+    this.props.rootRef.current.focus();
+  }
   render() {
     const { t } = this.props; // eslint-disable-line no-unused-vars
     return (
