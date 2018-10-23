@@ -10,7 +10,8 @@ const benefitsFixture = [
     needs: ["need_0", "need_1"],
     childBenefits: ["benefit_1"],
     availableIndependently: "Independent",
-    sortingPriority: "low"
+    sortingPriority: "low",
+    eligibilityPaths: ["ep_0"]
   },
   {
     id: "benefit_1",
@@ -24,7 +25,8 @@ const benefitsFixture = [
     availableIndependently: "Requires Gateway Benefit",
     noteEn: "note_1_en",
     noteFr: "note_1_fr",
-    sortingPriority: "medium"
+    sortingPriority: "medium",
+    eligibilityPaths: ["ep_2"]
   },
   {
     id: "benefit_3",
@@ -35,7 +37,8 @@ const benefitsFixture = [
     oneLineDescriptionEn: "b3_desc_en",
     oneLineDescriptionFr: "b3_desc_fr",
     needs: ["need_0", "need_1"],
-    availableIndependently: "Independent"
+    availableIndependently: "Independent",
+    eligibilityPaths: ["ep_2"]
   },
   {
     id: "benefit_2",
@@ -49,7 +52,8 @@ const benefitsFixture = [
     needs: ["need_3"],
     noteEn: "note_2_en",
     noteFr: "note_2_fr",
-    sortingPriority: "high"
+    sortingPriority: "high",
+    eligibilityPaths: ["ep_0", "ep_1"]
   }
 ];
 

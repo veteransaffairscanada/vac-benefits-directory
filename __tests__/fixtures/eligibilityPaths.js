@@ -14,7 +14,7 @@ const eligibilityPathsFixture = [
   {
     id: "ep_2",
     requirements: ["patronType: p3"],
-    benefits: ["benefit_3"],
+    benefits: ["benefit_3", "benefit_1"],
     patronType: "organization"
   }
 ];
