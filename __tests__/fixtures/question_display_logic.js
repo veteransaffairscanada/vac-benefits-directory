@@ -1,7 +1,7 @@
 const questionDisplayLogicFixture = [
   {
     question: ["serviceType"],
-    "has value": ["ssss"],
+    "has value": ["disable_value"],
     "exclude options": ["deceased"],
     Name: "patronType = service-person",
     id: "recn0zobKUhFIowAh"

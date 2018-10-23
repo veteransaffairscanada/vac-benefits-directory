@@ -142,7 +142,6 @@ export class DataValidation extends Component {
       benefits,
       eligibilityPaths,
       needs,
-      examples,
       errors,
       translations,
       areaOffices
@@ -163,11 +162,6 @@ export class DataValidation extends Component {
         "Size of Needs Table",
         needs.length,
         needs.length > 0 ? true : false
-      ),
-      this.createData(
-        "Size of Examples Table",
-        examples.length,
-        examples.length > 0 ? true : false
       ),
       this.createData(
         "nameTranslationTableSize",
@@ -290,7 +284,6 @@ const mapStateToProps = reduxState => {
     areaOffices: reduxState.areaOffices,
     benefits: reduxState.benefits,
     eligibilityPaths: reduxState.eligibilityPaths,
-    examples: reduxState.examples,
     needs: reduxState.needs,
     timestamp: reduxState.timestamp,
     errors: reduxState.errors,
@@ -303,7 +296,6 @@ DataValidation.propTypes = {
   eligibilityPaths: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   errors: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   timestamp: PropTypes.number,

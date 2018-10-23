@@ -60,7 +60,7 @@ describe("RadioSelector", () => {
     });
 
     it("returns true if we do hit a condition", () => {
-      props.responses.serviceType = "ssss";
+      props.responses.serviceType = "disable_value";
       const isDisabled = shallow(<RadioSelector {...props} />).instance()
         .isDisabled;
       expect(

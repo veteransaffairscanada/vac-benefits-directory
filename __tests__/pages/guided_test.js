@@ -8,7 +8,6 @@ import benefitsFixture from "../fixtures/benefits";
 import translate from "../fixtures/translate";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
-import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
@@ -50,7 +49,6 @@ describe("Guided", () => {
     mockStore = configureStore();
     reduxState = {
       benefits: benefitsFixture,
-      examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
       selectedNeeds: {},

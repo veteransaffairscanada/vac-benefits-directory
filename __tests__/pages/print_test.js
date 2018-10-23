@@ -44,7 +44,6 @@ describe("Print", () => {
       eligibilityPaths: elegibilityPathsFixture,
       selectedNeeds: {},
       needs: needsFixture,
-      examples: [],
       selectedEligibility: {
         serviceType: "",
         patronType: "",

@@ -8,7 +8,6 @@ import { BenefitsDirectory } from "../../pages/benefits-directory";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
-import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
 import translate from "../fixtures/translate";
@@ -60,7 +59,6 @@ describe("BenefitsDirectory", () => {
       option: "",
       translations: [],
       benefits: benefitsFixture,
-      examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       enIdx: JSON.stringify({
         version: lunr.version,

@@ -8,7 +8,6 @@ import benefitsFixture from "../fixtures/benefits";
 import translationsFixture from "../fixtures/translations";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
-import examplesFixture from "../fixtures/examples";
 import areaOfficesFixture from "../fixtures/area_offices";
 import translate from "../fixtures/translate";
 
@@ -36,7 +35,6 @@ describe("DataValidation", () => {
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
-      examples: examplesFixture,
       errors: [],
       areaOffices: areaOfficesFixture
     };
@@ -75,11 +73,6 @@ describe("DataValidation", () => {
 
   it("fails if there are no needs", () => {
     props.needs = [];
-    expect(mountedDataValidation().html()).toContain("Fail");
-  });
-
-  it("fails if there are no examples", () => {
-    props.examples = [];
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
