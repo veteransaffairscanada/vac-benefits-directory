@@ -61,7 +61,7 @@ describe("BenefitList", () => {
       BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
         b => b.id
       )
-    ).toEqual(["3", "1", "0"]);
+    ).toEqual(["benefit_2", "benefit_1", "benefit_0", "benefit_3"]);
   });
 
   it("has a correct sortBenefits function when sorting alphabetically", () => {
@@ -72,13 +72,13 @@ describe("BenefitList", () => {
       BLInstance.sortBenefits(benefitsFixture, "en", "alphabetical").map(
         b => b.id
       )
-    ).toEqual(["1", "0", "3"]);
+    ).toEqual(["benefit_0", "benefit_1", "benefit_2", "benefit_3"]);
   });
 
   it("displays the correct number of benefits cards", () => {
     expect(
       mount(<BenefitList {...props} {...reduxData} />).find("BenefitCard")
         .length
-    ).toEqual(3);
+    ).toEqual(4);
   });
 });

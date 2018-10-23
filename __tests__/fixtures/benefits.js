@@ -9,7 +9,8 @@ const benefitsFixture = [
     oneLineDescriptionFr: "b0_desc_fr",
     needs: ["need_0", "need_1"],
     childBenefits: ["benefit_1"],
-    availableIndependently: "Independent"
+    availableIndependently: "Independent",
+    sortingPriority: "low"
   },
   {
     id: "benefit_1",
@@ -20,9 +21,21 @@ const benefitsFixture = [
     oneLineDescriptionEn: "b1_desc_en",
     oneLineDescriptionFr: "b1_desc_fr",
     needs: ["need_0", "need_1"],
-    availableIndependently: "Independent",
+    availableIndependently: "Requires Gateway Benefit",
     noteEn: "note_1_en",
-    noteFr: "note_1_fr"
+    noteFr: "note_1_fr",
+    sortingPriority: "medium"
+  },
+  {
+    id: "benefit_3",
+    vacNameEn: "b3_en",
+    vacNameFr: "b3_fr",
+    benefitPageEn: "b3_link_en",
+    benefitPageFr: "b3_link_fr",
+    oneLineDescriptionEn: "b3_desc_en",
+    oneLineDescriptionFr: "b3_desc_fr",
+    needs: ["need_0", "need_1"],
+    availableIndependently: "Independent"
   },
   {
     id: "benefit_2",
@@ -35,18 +48,8 @@ const benefitsFixture = [
     availableIndependently: "Requires Gateway Benefit",
     needs: ["need_3"],
     noteEn: "note_2_en",
-    noteFr: "note_2_fr"
-  },
-  {
-    id: "benefit_3",
-    vacNameEn: "b3_en",
-    vacNameFr: "b3_fr",
-    benefitPageEn: "b3_link_en",
-    benefitPageFr: "b3_link_fr",
-    oneLineDescriptionEn: "b3_desc_en",
-    oneLineDescriptionFr: "b3_desc_fr",
-    needs: ["need_0", "need_1"],
-    availableIndependently: "Independent"
+    noteFr: "note_2_fr",
+    sortingPriority: "high"
   }
 ];
 
