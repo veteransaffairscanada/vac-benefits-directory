@@ -49,7 +49,10 @@ const theme = createMuiTheme({
       contrastText: globalTheme.colour.cerulean
     }
   },
-  typography: { fontFamily: ["Merriweather", "serif"] }
+  typography: {
+    useNextVariants: true,
+    fontFamily: ["Merriweather", "serif"]
+  }
 });
 
 class Layout extends Component {

@@ -94,6 +94,7 @@ const wordmark = css`
 
 const theme = createMuiTheme({
   typography: {
+    useNextVariants: true,
     fontFamily: ["Merriweather", "serif"],
     fontSize: "24px",
     lineHeight: "1em"
