@@ -34,17 +34,25 @@ describe("Search", () => {
         version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
-          ["vacNameEn/1", [0, 0.288]],
-          ["oneLineDescriptionEn/1", [1, 0.288]]
+          ["vacNameEn/benefit_1", [0, 0.288]],
+          ["oneLineDescriptionEn/benefit_1", [1, 0.288]]
         ],
         invertedIndex: [
           [
             "biz",
-            { _index: 1, vacNameEn: {}, oneLineDescriptionEn: { "1": {} } }
+            {
+              _index: 1,
+              vacNameEn: {},
+              oneLineDescriptionEn: { benefit_1: {} }
+            }
           ],
           [
             "fiz",
-            { _index: 0, vacNameEn: { "1": {} }, oneLineDescriptionEn: {} }
+            {
+              _index: 0,
+              vacNameEn: { benefit_1: {} },
+              oneLineDescriptionEn: {}
+            }
           ]
         ],
         pipeline: ["stemmer"]
@@ -53,17 +61,25 @@ describe("Search", () => {
         version: lunr.version,
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
-          ["vacNameFr/1", [0, 0.288]],
-          ["oneLineDescriptionFr/1", [1, 0.288]]
+          ["vacNameFr/benefit_1", [0, 0.288]],
+          ["oneLineDescriptionFr/benefit_1", [1, 0.288]]
         ],
         invertedIndex: [
           [
             "biz",
-            { _index: 1, vacNameFr: {}, oneLineDescriptionFr: { "1": {} } }
+            {
+              _index: 1,
+              vacNameFr: {},
+              oneLineDescriptionFr: { benefit_1: {} }
+            }
           ],
           [
             "fiz",
-            { _index: 0, vacNameFr: { "1": {} }, oneLineDescriptionFr: {} }
+            {
+              _index: 0,
+              vacNameFr: { benefit_1: {} },
+              oneLineDescriptionFr: {}
+            }
           ]
         ],
         pipeline: ["stemmer"]
@@ -93,7 +109,7 @@ describe("Search", () => {
         mounted_Search()
           .instance()
           .getSuggestions("fiz")
-      ).toEqual(["Disability Award"]);
+      ).toEqual(["b1_en"]);
     });
 
     it("returns an array with partial matches on vacName in French", () => {
@@ -102,7 +118,7 @@ describe("Search", () => {
         mounted_Search()
           .instance()
           .getSuggestions("fiz")
-      ).toEqual(["Prix ​​d'invalidité"]);
+      ).toEqual(["b1_fr"]);
     });
   });
 
