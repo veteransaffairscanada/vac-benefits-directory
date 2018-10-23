@@ -70,6 +70,8 @@ export class Guided extends Component {
         this.props.saveQuestionResponse(x, "");
       }
     });
+
+    document.body.focus(); // this removes focus from the next/back buttons
   };
 
   getNextSection = (displayable_sections, dynamicStepNumber) => {
@@ -121,42 +123,40 @@ export class Guided extends Component {
         showRefreshCache={false}
         title={t("titles.guided_experience")}
       >
-        <div ref={this.rootRef}>
-          <GuidedExperience
-            id={section}
-            stepNumber={sectionOrder.indexOf(section)}
-            nextSection={this.getNextSection(
-              displayable_sections,
-              dynamicStepNumber
-            )}
-            prevSection={this.getPrevSection(
-              displayable_sections,
-              dynamicStepNumber
-            )}
-            setSection={this.setSection}
-            subtitle={this.getSubtitle(question)}
-            helperText={this.getTooltip(question)}
-            t={t}
-            store={store}
-          >
-            {section === "needs" ? (
-              <GuidedExperienceNeeds
-                t={t}
-                selectorType={section}
-                store={store}
-                rootRef={this.rootRef}
-              />
-            ) : (
-              <GuidedExperienceProfile
-                t={t}
-                selectorType={section}
-                store={store}
-                options={question["multiple_choice_options"]}
-                rootRef={this.rootRef}
-              />
-            )}
-          </GuidedExperience>
-        </div>
+        <GuidedExperience
+          id={section}
+          stepNumber={sectionOrder.indexOf(section)}
+          nextSection={this.getNextSection(
+            displayable_sections,
+            dynamicStepNumber
+          )}
+          prevSection={this.getPrevSection(
+            displayable_sections,
+            dynamicStepNumber
+          )}
+          setSection={this.setSection}
+          subtitle={this.getSubtitle(question)}
+          helperText={this.getTooltip(question)}
+          t={t}
+          store={store}
+        >
+          {section === "needs" ? (
+            <GuidedExperienceNeeds
+              t={t}
+              selectorType={section}
+              store={store}
+              rootRef={this.rootRef}
+            />
+          ) : (
+            <GuidedExperienceProfile
+              t={t}
+              selectorType={section}
+              store={store}
+              options={question["multiple_choice_options"]}
+              rootRef={this.rootRef}
+            />
+          )}
+        </GuidedExperience>
       </Layout>
     );
   }

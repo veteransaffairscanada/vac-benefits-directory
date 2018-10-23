@@ -9,10 +9,6 @@ const outerDiv = css`
 `;
 
 export class GuidedExperienceProfile extends Component {
-  componentDidMount() {
-    // this.props.rootRef.current.focus();
-    console.log("componentDidUpdate: GuidedExperienceProfile ");
-  }
   render() {
     const { t } = this.props;
     return (
