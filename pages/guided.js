@@ -69,6 +69,7 @@ export class Guided extends Component {
         this.props.saveQuestionResponse(x, "");
       }
     });
+    document.body.focus(); // this removes focus from the next/back buttons
   };
 
   getNextSection = (displayable_sections, dynamicStepNumber) => {
