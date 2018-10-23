@@ -139,19 +139,13 @@ export class Guided extends Component {
           store={store}
         >
           {section === "needs" ? (
-            <GuidedExperienceNeeds
-              t={t}
-              selectorType={section}
-              store={store}
-              rootRef={this.rootRef}
-            />
+            <GuidedExperienceNeeds t={t} selectorType={section} store={store} />
           ) : (
             <GuidedExperienceProfile
               t={t}
               selectorType={section}
               store={store}
               options={question["multiple_choice_options"]}
-              rootRef={this.rootRef}
             />
           )}
         </GuidedExperience>
