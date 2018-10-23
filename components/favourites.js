@@ -161,9 +161,14 @@ export class Favourites extends Component {
               <Paper padding="sm" className={contactUs}>
                 <Header2>{t("favourites.contact_us")}</Header2>
                 <p>
-                  <Link href={getLink(this.props.url, "map", "favourites")}>
-                    <a>{t("favourites.visit_prompt")}</a>
-                  </Link>
+                  <HeaderButton
+                    id="nearbyOffice"
+                    arrow="forward"
+                    useLink
+                    href={getLink(this.props.url, "/map", "favourites")}
+                  >
+                    {t("favourites.visit_prompt")}
+                  </HeaderButton>
                 </p>
 
                 <Body>{t("favourites.print_instructions")}</Body>
@@ -171,7 +176,12 @@ export class Favourites extends Component {
                 <hr />
 
                 <p>
-                  <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
+                  <HeaderButton
+                    id="contactPhone"
+                    href={"tel:" + t("contact.phone")}
+                  >
+                    <a>{t("contact.phone")}</a>
+                  </HeaderButton>
                 </p>
 
                 <Body>{t("favourites.call_time")}</Body>
@@ -179,9 +189,12 @@ export class Favourites extends Component {
                 <hr />
 
                 <p>
-                  <a href={"mailto:" + t("contact.email")}>
-                    {t("contact.email")}
-                  </a>
+                  <HeaderButton
+                    id="contactEmail"
+                    href={"mailto:" + t("contact.email")}
+                  >
+                    <a>{t("contact.email")}</a>
+                  </HeaderButton>
                 </p>
 
                 <Body>{t("favourites.email_disclaimer")}</Body>
@@ -193,14 +206,16 @@ export class Favourites extends Component {
                 </Header2>
 
                 <Body className={noBottomMargin}>
-                  <a
-                    href={t("contact.my_vac_link")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {t("favourites.login_link")}
-                  </a>
-                  &nbsp;
+                  <p>
+                    <HeaderButton
+                      id="myVACButton"
+                      arrow="forward"
+                      useLink
+                      href={t("contact.my_vac_link")}
+                    >
+                      {t("favourites.login_link")}
+                    </HeaderButton>
+                  </p>
                   {t("favourites.login_prompt")}
                 </Body>
               </Paper>
