@@ -13,7 +13,6 @@ import GuidedExperienceNeeds from "../components/guided_experience_needs";
 export class Guided extends Component {
   constructor(props) {
     super(props);
-    this.rootRef = React.createRef();
     this.cookies = new Cookies();
     this.state = {
       section: this.props.sectionOrder[0]
@@ -70,7 +69,6 @@ export class Guided extends Component {
         this.props.saveQuestionResponse(x, "");
       }
     });
-
     document.body.focus(); // this removes focus from the next/back buttons
   };
 
