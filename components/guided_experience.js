@@ -38,10 +38,6 @@ const body = css`
 `;
 
 export class GuidedExperience extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   jumpButtons = (t, reduxState) => {
     const eligibilityKeys = reduxState.questions
       .map(x => x.variable_name)
@@ -110,58 +106,54 @@ export class GuidedExperience extends Component {
     const jumpButtons = this.jumpButtons(t, reduxState);
 
     return (
-      <div ref={this.divRef}>
-        <Container id="guidedExperience">
-          <HeaderButton
-            id="prevButton"
-            disableRipple
-            href={
-              prevSection === "index"
-                ? "/index?lng=" + t("current-language-code")
-                : undefined
-            }
-            onClick={
-              prevSection === "index"
-                ? undefined
-                : () => setSection(prevSection)
-            }
-            className={prevButton}
-            arrow="back"
-          >
-            {t("back")}
-          </HeaderButton>
-          <Paper padding="md" className={box}>
-            <Grid container spacing={24}>
-              <Grid item xs={12} md={12}>
-                <FilterText style={{ display: "inline-block" }}>
-                  {t("B3.Filter by eligibility")}
-                </FilterText>
-                {jumpButtons}
-              </Grid>
-
-              <Grid item xs={12} className={questions}>
-                <Header2>{subtitle}</Header2>
-                {helperText ? <Body className={body}>{helperText}</Body> : null}
-                {this.props.children}
-              </Grid>
-
-              <Grid item xs={12}>
-                <Button
-                  id="nextButton"
-                  arrow={true}
-                  onClick={
-                    nextSection === "benefits-directory"
-                      ? () => Router.push(benefitsDirectoryUrl)
-                      : () => setSection(nextSection)
-                  }
-                >
-                  {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
-                </Button>
-              </Grid>
+      <Container id="guidedExperience">
+        <HeaderButton
+          id="prevButton"
+          disableRipple
+          href={
+            prevSection === "index"
+              ? "/index?lng=" + t("current-language-code")
+              : undefined
+          }
+          onClick={
+            prevSection === "index" ? undefined : () => setSection(prevSection)
+          }
+          className={prevButton}
+          arrow="back"
+        >
+          {t("back")}
+        </HeaderButton>
+        <Paper padding="md" className={box}>
+          <Grid container spacing={24}>
+            <Grid item xs={12} md={12}>
+              <FilterText style={{ display: "inline-block" }}>
+                {t("B3.Filter by eligibility")}
+              </FilterText>
+              {jumpButtons}
             </Grid>
-          </Paper>
-        </Container>
-      </div>
+
+            <Grid item xs={12} className={questions}>
+              <Header2>{subtitle}</Header2>
+              {helperText ? <Body className={body}>{helperText}</Body> : null}
+              {this.props.children}
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button
+                id="nextButton"
+                arrow={true}
+                onClick={
+                  nextSection === "benefits-directory"
+                    ? () => Router.push(benefitsDirectoryUrl)
+                    : () => setSection(nextSection)
+                }
+              >
+                {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
+              </Button>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Container>
     );
   }
 }
