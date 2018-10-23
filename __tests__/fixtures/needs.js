@@ -1,17 +1,17 @@
 const needsFixture = [
   {
-    id: "0",
+    id: "need_0",
     nameEn: "Need 0",
     nameFr: "Fr Need 0",
-    benefits: ["0"]
+    benefits: ["benefit_0"]
   },
   {
-    id: "1",
+    id: "need_1",
     nameEn: "Need 1",
     nameFr: "Fr Need 1"
   },
   {
-    id: "2",
+    id: "need_2",
     nameEn: "Need 2",
     nameFr: "Fr Need 2"
   }

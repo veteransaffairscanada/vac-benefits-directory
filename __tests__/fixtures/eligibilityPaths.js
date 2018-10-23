@@ -1,27 +1,21 @@
 const eligibilityPathsFixture = [
   {
-    patronType: "service-person",
-    serviceType: "CAF",
-    statusAndVitals: "na",
-    benefits: ["0"]
+    id: "ep_0",
+    requirements: ["patronType: p1"],
+    benefits: ["benefit_0", "benefit_2"],
+    patronType: "service-person"
   },
   {
-    patronType: "service-person",
-    statusAndVitals: "na",
-    serviceType: "RCMP",
-    benefits: ["1"]
+    id: "ep_1",
+    requirements: ["patronType: p2"],
+    benefits: ["benefit_2"],
+    patronType: "family"
   },
   {
-    patronType: "service-person",
-    statusAndVitals: "deceased",
-    serviceType: "WSV (WWII or Korea)",
-    benefits: ["1"]
-  },
-  {
-    patronType: "service-person",
-    statusAndVitals: "stillServing",
-    serviceType: "WSV (WWII or Korea)",
-    benefits: ["1"]
+    id: "ep_2",
+    requirements: ["patronType: p3"],
+    benefits: ["benefit_3"],
+    patronType: "organization"
   }
 ];
 
