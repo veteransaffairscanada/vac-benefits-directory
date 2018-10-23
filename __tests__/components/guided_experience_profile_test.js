@@ -20,8 +20,8 @@ describe("GuidedExperienceProfile", () => {
   beforeEach(() => {
     props = {
       t: translateFixture,
-      options: ["mco:stillServing", "mco:releasedAlive"],
-      selectorType: "statusAndVitals"
+      options: ["mco_p1", "mco_p2"],
+      selectorType: "patronType"
     };
     reduxData = {
       serviceType: "",
@@ -48,7 +48,7 @@ describe("GuidedExperienceProfile", () => {
   it("contains all the options", () => {
     expect(
       mount(<GuidedExperienceProfile {...props} {...reduxData} />)
-        .find("#RadioSelectorstatusAndVitals")
+        .find("#RadioSelectorpatronType")
         .find("Radio").length
     ).toEqual(2);
   });

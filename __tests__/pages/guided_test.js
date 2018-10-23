@@ -44,13 +44,7 @@ describe("Guided", () => {
       storeHydrated: true,
       benefits: benefitsFixture,
       saveQuestionResponse: jest.fn(),
-      sectionOrder: [
-        "patronType",
-        "serviceType",
-        "statusAndVitals",
-        "serviceHealthIssue",
-        "needs"
-      ]
+      sectionOrder: ["patronType", "serviceType", "needs"]
     };
     _mountedGuided = undefined;
     mockStore = configureStore();
@@ -60,10 +54,8 @@ describe("Guided", () => {
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
       selectedNeeds: {},
-      serviceType: "CAF",
-      patronType: "family",
-      statusAndVitals: "",
-      serviceHealthIssue: "",
+      serviceType: "s1",
+      patronType: "p1",
       option: "",
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
@@ -81,13 +73,13 @@ describe("Guided", () => {
 
   it("has a correct setURL function", () => {
     Router.replace = jest.fn();
-    reduxState.selectedNeeds = { health: "health", financial: "financial" };
+    reduxState.selectedNeeds = { need_1: "need_1", need_2: "need_2" };
     let guidedInstance = mountedGuided().instance();
     const state = {
       section: "statusAndVitals"
     };
     const expectedURL =
-      "/guided?section=statusAndVitals&selectedNeeds=health,financial&patronType=family&serviceType=CAF&lng=en";
+      "/guided?section=statusAndVitals&selectedNeeds=need_1,need_2&patronType=p1&serviceType=s1&lng=en";
     guidedInstance.setState(state);
     guidedInstance.setURL(state);
     expect(Router.replace).toBeCalledWith(expectedURL);
@@ -110,7 +102,6 @@ describe("Guided", () => {
       let guidedInstance = mountedGuided().instance();
       guidedInstance.setSection("patronType");
       expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
-      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
       expect(props.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
     });
   });

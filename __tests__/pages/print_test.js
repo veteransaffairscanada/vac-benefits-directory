@@ -64,37 +64,23 @@ describe("Print", () => {
   });
 
   it("parses url correctly", () => {
-    props.url.query["patronType"] = "service-person";
-    props.url.query["serviceType"] = "WSV (WWII or Korea)";
-    props.url.query["statusAndVitals"] = "releasedAlive";
-    props.url.query["serviceHealthIssue"] = "true";
-    props.url.query["needs"] = "0,1";
+    props.url.query["patronType"] = "p2";
+    props.url.query["serviceType"] = "s1";
+    props.url.query["needs"] = "need_0,need_1";
 
     expect(
       mountedPrint()
         .find(".profile_section")
         .text()
-    ).toContain("Veterans or serving members");
+    ).toContain("p2_en");
 
     expect(
       mountedPrint()
         .find(".profile_section")
         .text()
-    ).toContain("WWII or Korean War Veterans");
+    ).toContain("br_s1_en");
 
-    expect(
-      mountedPrint()
-        .find(".profile_section")
-        .text()
-    ).toContain("Released");
-
-    expect(
-      mountedPrint()
-        .find(".profile_section")
-        .text()
-    ).toContain("Has service-related health issue");
-
-    expect(mountedPrint().html()).toContain("checkbox1");
+    expect(mountedPrint().html()).toContain("checkboxneed_1");
   });
 
   it("has a correct sortBenefits function when sorting by popularity", () => {
@@ -103,7 +89,7 @@ describe("Print", () => {
       BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
         b => b.id
       )
-    ).toEqual(["3", "1", "0"]);
+    ).toEqual(["benefit_2", "benefit_1", "benefit_0", "benefit_3"]);
   });
 
   it("has a correct sortBenefits function when sorting alphabetically", () => {
@@ -112,11 +98,11 @@ describe("Print", () => {
       BLInstance.sortBenefits(benefitsFixture, "en", "alphabetical").map(
         b => b.id
       )
-    ).toEqual(["1", "0", "3"]);
+    ).toEqual(["benefit_0", "benefit_1", "benefit_2", "benefit_3"]);
   });
 
   it("renders benefits correctly", () => {
-    props.url.query["benefits"] = "0,3";
+    props.url.query["benefits"] = "benefit_0,benefit_3";
     expect(mountedPrint().find(".benefitsListItem").length).toEqual(2);
   });
 
