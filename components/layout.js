@@ -62,12 +62,12 @@ class Layout extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, title } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ backgroundColor: this.props.backgroundColor }}>
-          <Head title={this.props.title} t={t} />
+          <Head title={title ? title : null} t={t} />
           <ErrorBoundary>
             <Content>
               <div className={header}>
