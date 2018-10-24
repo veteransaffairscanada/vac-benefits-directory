@@ -208,47 +208,45 @@ export class AreaOfficeTable extends Component {
     const { t } = this.props;
     const defaultOffices = this.defaultAreaOffices();
     return (
-      <div>
-        <div id="scrolling_div" className={scrollingDiv}>
-          <table className={mainTable}>
-            <colgroup>
-              <col span="1" style={{ width: "10%" }} />
-              {this.isDefaultLocation() ? (
-                <col span="1" style={{ width: "90%" }} />
-              ) : (
-                <React.Fragment>
-                  <col span="1" style={{ width: "70%" }} />
-                  <col span="1" style={{ width: "20%" }} />
-                </React.Fragment>
-              )}
-            </colgroup>
-            <tbody>
-              {this.isDefaultLocation()
-                ? this.sortProvinces(Object.keys(defaultOffices)).map(
-                    (name, i1) => {
-                      return (
-                        <React.Fragment key={i1}>
-                          <tr>
-                            <td className={provinceCell} />
-                            <td
-                              className={provinceCell}
-                              colSpan={this.isDefaultLocation() ? "1" : "2"}
-                            >
-                              {t("current-language-code") == "en"
-                                ? name.split(",")[0]
-                                : name.split(",")[1]}{" "}
-                              ({defaultOffices[name].length})
-                            </td>
-                          </tr>
-                          {defaultOffices[name].map(ae => this.tableRow(ae))}
-                        </React.Fragment>
-                      );
-                    }
-                  )
-                : this.sortedAreaOffices().map(ae => this.tableRow(ae))}
-            </tbody>
-          </table>
-        </div>
+      <div id="scrolling_div" className={scrollingDiv}>
+        <table className={mainTable}>
+          <colgroup>
+            <col span="1" style={{ width: "10%" }} />
+            {this.isDefaultLocation() ? (
+              <col span="1" style={{ width: "90%" }} />
+            ) : (
+              <React.Fragment>
+                <col span="1" style={{ width: "70%" }} />
+                <col span="1" style={{ width: "20%" }} />
+              </React.Fragment>
+            )}
+          </colgroup>
+          <tbody>
+            {this.isDefaultLocation()
+              ? this.sortProvinces(Object.keys(defaultOffices)).map(
+                  (name, i1) => {
+                    return (
+                      <React.Fragment key={i1}>
+                        <tr>
+                          <td className={provinceCell} />
+                          <td
+                            className={provinceCell}
+                            colSpan={this.isDefaultLocation() ? "1" : "2"}
+                          >
+                            {t("current-language-code") == "en"
+                              ? name.split(",")[0]
+                              : name.split(",")[1]}{" "}
+                            ({defaultOffices[name].length})
+                          </td>
+                        </tr>
+                        {defaultOffices[name].map(ae => this.tableRow(ae))}
+                      </React.Fragment>
+                    );
+                  }
+                )
+              : this.sortedAreaOffices().map(ae => this.tableRow(ae))}
+          </tbody>
+        </table>
       </div>
     );
   }

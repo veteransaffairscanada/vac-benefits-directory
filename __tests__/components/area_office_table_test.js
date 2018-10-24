@@ -112,7 +112,6 @@ describe("AreaOfficeTable", () => {
       .find("tr")
       .at(1)
       .simulate("keypress", { key: "Enter" });
-
     expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
   });
 
