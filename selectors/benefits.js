@@ -129,14 +129,14 @@ export const getFilteredBenefits = createSelector(
     frIdx
   ) => {
     let matchingBenefits = filteredBenefitsWithoutSearch;
+    searchString = searchString.toLowerCase().trim();
 
-    // If there is a searchString the run another filter
-    if (searchString.trim() !== "") {
+    // If there is a searchString then run another filter
+    if (searchString !== "") {
       // Reinitalize indexes after they are serialized by Redux
       enIdx = lunr.Index.load(JSON.parse(enIdx));
       frIdx = lunr.Index.load(JSON.parse(frIdx));
 
-      searchString = searchString.toLowerCase();
       let results = [];
       if (currentLanguage === "en") {
         results = enIdx.query(q => {
