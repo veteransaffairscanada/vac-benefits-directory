@@ -107,6 +107,14 @@ describe("AreaOfficeTable", () => {
     expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
   });
 
+  it("selects an area office when user hits enter", () => {
+    mount(<AreaOfficeTable {...props} />)
+      .find("tr")
+      .at(1)
+      .simulate("keypress", { key: "Enter" });
+    expect(props.setSelectedAreaOffice).toBeCalledWith(props.areaOffices[1]);
+  });
+
   it("sets the map view when a row is clicked", () => {
     mount(<AreaOfficeTable {...props} />)
       .find("tr")

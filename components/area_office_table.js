@@ -6,20 +6,17 @@ import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 import Body from "../components/typography/body";
 
-const root = css`
-  margin-right: 10px;
-  margin-left: 10px;
-`;
 const scrollingDiv = css`
   box-sizing: border-box;
-  margin-top: ${globalTheme.marginTop};
-  margin-bottom: ${globalTheme.marginTop};
+  margin-top: 15px;
+  margin-bottom: 15px;
   height: 750px;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     height: 400px;
   }
   width: 100%;
   overflow-y: scroll;
+  padding: 10px;
 `;
 const distanceCell = css`
   text-align: right;
@@ -30,6 +27,10 @@ const distanceCell = css`
 const officeRow = css`
   td {
     border-bottom: 0.5px solid ${globalTheme.colour.paleGrey};
+  }
+  :focus {
+    outline: 3px solid ${globalTheme.colour.govukYellow};
+    outline-offset: 0;
   }
 `;
 const pinCell = css`
@@ -156,11 +157,22 @@ export class AreaOfficeTable extends Component {
       <tr
         key={"tableRow" + ae.id}
         id={"tableRow" + ae.id}
+        tabIndex={0}
         className={
           ae.id === this.props.selectedAreaOffice.id
             ? cx(officeRow, selectedRow)
             : officeRow
         }
+        onKeyPress={e => {
+          if (e.key == "Enter") {
+            this.props.setMapView({
+              lat: ae.lat,
+              lng: ae.lng,
+              zoom: 10
+            });
+            this.props.setSelectedAreaOffice(ae);
+          }
+        }}
         onClick={() => {
           this.props.setMapView({
             lat: ae.lat,
@@ -196,47 +208,45 @@ export class AreaOfficeTable extends Component {
     const { t } = this.props;
     const defaultOffices = this.defaultAreaOffices();
     return (
-      <div className={root}>
-        <div id="scrolling_div" className={scrollingDiv}>
-          <table className={mainTable}>
-            <colgroup>
-              <col span="1" style={{ width: "10%" }} />
-              {this.isDefaultLocation() ? (
-                <col span="1" style={{ width: "90%" }} />
-              ) : (
-                <React.Fragment>
-                  <col span="1" style={{ width: "70%" }} />
-                  <col span="1" style={{ width: "20%" }} />
-                </React.Fragment>
-              )}
-            </colgroup>
-            <tbody>
-              {this.isDefaultLocation()
-                ? this.sortProvinces(Object.keys(defaultOffices)).map(
-                    (name, i1) => {
-                      return (
-                        <React.Fragment key={i1}>
-                          <tr>
-                            <td className={provinceCell} />
-                            <td
-                              className={provinceCell}
-                              colSpan={this.isDefaultLocation() ? "1" : "2"}
-                            >
-                              {t("current-language-code") == "en"
-                                ? name.split(",")[0]
-                                : name.split(",")[1]}{" "}
-                              ({defaultOffices[name].length})
-                            </td>
-                          </tr>
-                          {defaultOffices[name].map(ae => this.tableRow(ae))}
-                        </React.Fragment>
-                      );
-                    }
-                  )
-                : this.sortedAreaOffices().map(ae => this.tableRow(ae))}
-            </tbody>
-          </table>
-        </div>
+      <div id="scrolling_div" className={scrollingDiv}>
+        <table className={mainTable}>
+          <colgroup>
+            <col span="1" style={{ width: "10%" }} />
+            {this.isDefaultLocation() ? (
+              <col span="1" style={{ width: "90%" }} />
+            ) : (
+              <React.Fragment>
+                <col span="1" style={{ width: "70%" }} />
+                <col span="1" style={{ width: "20%" }} />
+              </React.Fragment>
+            )}
+          </colgroup>
+          <tbody>
+            {this.isDefaultLocation()
+              ? this.sortProvinces(Object.keys(defaultOffices)).map(
+                  (name, i1) => {
+                    return (
+                      <React.Fragment key={i1}>
+                        <tr>
+                          <td className={provinceCell} />
+                          <td
+                            className={provinceCell}
+                            colSpan={this.isDefaultLocation() ? "1" : "2"}
+                          >
+                            {t("current-language-code") == "en"
+                              ? name.split(",")[0]
+                              : name.split(",")[1]}{" "}
+                            ({defaultOffices[name].length})
+                          </td>
+                        </tr>
+                        {defaultOffices[name].map(ae => this.tableRow(ae))}
+                      </React.Fragment>
+                    );
+                  }
+                )
+              : this.sortedAreaOffices().map(ae => this.tableRow(ae))}
+          </tbody>
+        </table>
       </div>
     );
   }
