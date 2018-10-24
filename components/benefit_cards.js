@@ -59,6 +59,7 @@ export class BenefitCard extends Component {
         )
       : [];
 
+    const searchWords = this.props.searchString.split(/\s+/);
     return (
       <Grid item xs={12}>
         <div className={root}>
@@ -70,7 +71,7 @@ export class BenefitCard extends Component {
             />
             <Header4 className={benefitName}>
               <Highlighter
-                searchWords={this.props.searchString.split(",")}
+                searchWords={searchWords}
                 autoEscape={true}
                 textToHighlight={
                   t("current-language-code") === "en"
@@ -82,7 +83,7 @@ export class BenefitCard extends Component {
 
             <OneLiner className={"cardDescription " + cardDescriptionText}>
               <Highlighter
-                searchWords={this.props.searchString.split(",")}
+                searchWords={searchWords}
                 autoEscape={true}
                 textToHighlight={
                   t("current-language-code") === "en"

@@ -140,7 +140,7 @@ export const getFilteredBenefits = createSelector(
       let results = [];
       if (currentLanguage === "en") {
         results = enIdx.query(q => {
-          searchString.split(" ").forEach(term => {
+          searchString.split(/\s+/).forEach(term => {
             q.term(term, { usePipeline: true, boost: 100 });
             q.term(term, {
               usePipeline: false,
@@ -153,7 +153,7 @@ export const getFilteredBenefits = createSelector(
         });
       } else {
         results = frIdx.query(q => {
-          searchString.split(" ").forEach(term => {
+          searchString.split(/\s+/).forEach(term => {
             q.term(term, { usePipeline: true, boost: 100 });
             q.term(term, {
               usePipeline: false,
