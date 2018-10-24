@@ -32,12 +32,6 @@ const backgoundColour2 = css`
   background-color: ${globalTheme.colour.greyishBrown};
 `;
 const theme = createMuiTheme({
-  overrides: {
-    MuiTouchRipple: {
-      childPulsate: { opacity: 0 },
-      ripplePulsate: { opacity: 0 }
-    }
-  },
   palette: {
     primary: {
       main: globalTheme.colour.cerulean
