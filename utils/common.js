@@ -39,6 +39,9 @@ export const showQuestion = (question_variable_name, index, reduxState) => {
   if (index === 0) {
     return true;
   }
+  if (question_variable_name === "needs") {
+    return reduxState.patronType !== "organization";
+  }
 
   const { questions } = reduxState;
   const questionsToHide = questions
