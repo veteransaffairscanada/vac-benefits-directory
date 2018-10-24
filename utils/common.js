@@ -39,7 +39,9 @@ export const showQuestion = (question_variable_name, index, reduxState) => {
 
   const { questions } = reduxState;
 
-  let profileFilters = getProfileFilters(reduxState);
+  let profileFilters = JSON.parse(
+    JSON.stringify(getProfileFilters(reduxState))
+  );
 
   let questionsToHide = questions
     .map(q => q.variable_name)
