@@ -208,7 +208,7 @@ export class AreaOfficeTable extends Component {
     const { t } = this.props;
     const defaultOffices = this.defaultAreaOffices();
     return (
-      <div className={root}>
+      <div>
         <div id="scrolling_div" className={scrollingDiv}>
           <table className={mainTable}>
             <colgroup>
