@@ -41,6 +41,15 @@ const multipleChoiceOptionsFixture = [
     ge_breadcrumb_french: "br_s2_fr"
   },
   {
+    variable_name: "s3",
+    linked_question: ["serviceType"],
+    id: "mco_s3",
+    display_text_english: "s3_en",
+    display_text_french: "s3_fr",
+    ge_breadcrumb_english: "br_s3_en",
+    ge_breadcrumb_french: "br_s3_fr"
+  },
+  {
     variable_name: "v1",
     linked_question: ["vitals"],
     id: "mco_v1",

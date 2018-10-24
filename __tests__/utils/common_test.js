@@ -38,6 +38,11 @@ describe("showQuestion function", () => {
     reduxState.patronType = "p2";
     expect(showQuestion("serviceType", 1, reduxState)).toEqual(false);
   });
+
+  it("shows question if relevant but not in an ep after filtering", () => {
+    reduxState.serviceType = "s3";
+    expect(showQuestion("serviceType", 1, reduxState)).toEqual(true);
+  });
 });
 
 describe("questionIsRelevant function", () => {

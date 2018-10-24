@@ -38,11 +38,17 @@ export const showQuestion = (question_variable_name, index, reduxState) => {
   }
 
   const { questions } = reduxState;
-  const questionsToHide = questions
+
+  let profileFilters = getProfileFilters(reduxState);
+
+  let questionsToHide = questions
     .map(q => q.variable_name)
-    .filter(
-      q => !questionIsRelevant(q, getProfileFilters(reduxState), reduxState)
-    );
+    .filter(q => !questionIsRelevant(q, profileFilters, reduxState));
+
+  profileFilters[question_variable_name] = "";
+  questionsToHide = questions
+    .map(q => q.variable_name)
+    .filter(q => !questionIsRelevant(q, profileFilters, reduxState));
 
   if (questionsToHide.indexOf(question_variable_name) > -1) {
     return false;
