@@ -32,7 +32,6 @@ const backgoundColour2 = css`
   background-color: ${globalTheme.colour.greyishBrown};
 `;
 const theme = createMuiTheme({
-  overrides: {},
   palette: {
     primary: {
       main: globalTheme.colour.cerulean
