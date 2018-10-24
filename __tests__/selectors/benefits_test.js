@@ -251,11 +251,11 @@ describe("Benefits Selectors", () => {
       expect(returnValue).toEqual([]);
     });
 
-    it("displays benefits 0, 2 if patronType p1", () => {
-      state.patronType = "p1";
+    it("displays benefits 1, 3 if patronType p3", () => {
+      state.patronType = "p3";
       expect(
         getFilteredBenefitsWithoutSearch(state, props).map(b => b.id)
-      ).toEqual(["benefit_0", "benefit_2"]);
+      ).toEqual(["benefit_1", "benefit_3"]);
     });
 
     it("returns benefits based on selectedNeeds", () => {
@@ -283,11 +283,11 @@ describe("Benefits Selectors", () => {
       expect(returnValue).toEqual([]);
     });
 
-    it("displays benefits 0, 2 if patronType p1", () => {
-      state.patronType = "p1";
+    it("displays benefits 1, 3 if patronType p3", () => {
+      state.patronType = "p3";
       expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
-        "benefit_0",
-        "benefit_2"
+        "benefit_1",
+        "benefit_3"
       ]);
     });
 

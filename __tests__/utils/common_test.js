@@ -46,45 +46,33 @@ describe("showQuestion function", () => {
   });
 });
 
-//
-// describe("questionIsRelevant function", () => {
-//   let reduxState;
-//   beforeEach(() => {
-//     reduxState = {
-//       questions: questionsFixture,
-//       questionDisplayLogic: questionDisplayLogicFixture,
-//       multipleChoiceOptions: multipleChoiceOptionsFixture,
-//       eligibilityPaths: eligibilityPathsFixture,
-//       serviceType: "",
-//       patronType: "",
-//       serviceHealthIssue: "",
-//       statusAndVitals: ""
-//     };
-//   });
-//
-//
-//   it("hides question if previous question doesn't have an answer", () => {
-//     expect(
-//       questionIsRelevant(questionsFixture[1].variable_name, 1, reduxState)
-//     ).toEqual(false);
-//   });
-//
-//   it("shows question if previous question has an answer", () => {
-//     reduxState.patronType = "service-member";
-//
-//     expect(
-//       showQuestion(questionsFixture[1].variable_name, 1, reduxState)
-//     ).toEqual(true);
-//   });
-//
-//   it("hides questions if organization selected", () => {
-//     reduxState.patronType = "organization";
-//     expect(
-//       showQuestion(questionsFixture[1].variable_name, 1, reduxState)
-//     ).toEqual(false);
-//   });
-// });
-//
+describe("questionIsRelevant function", () => {
+  let reduxState;
+  beforeEach(() => {
+    reduxState = {
+      eligibilityPaths: eligibilityPathsFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture
+    };
+  });
+
+  it("works if question is not relevant", () => {
+    const profileFilters = {
+      patronType: "p2"
+    };
+    expect(
+      questionIsRelevant("serviceType", profileFilters, reduxState)
+    ).toEqual(false);
+  });
+
+  it("works if question is relevant", () => {
+    const profileFilters = {
+      patronType: "p1"
+    };
+    expect(
+      questionIsRelevant("serviceType", profileFilters, reduxState)
+    ).toEqual(true);
+  });
+});
 
 describe("getLink function", () => {
   let url, page;

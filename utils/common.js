@@ -24,7 +24,6 @@ export const questionIsRelevant = (
       const linkedQuestion = reduxState.multipleChoiceOptions.filter(
         mco => mco.id === mcoId
       )[0].linked_question;
-      console.log("linked question:", linkedQuestion);
       if (linkedQuestion === question_variable_name) {
         returnValue = true;
       }
