@@ -18,8 +18,8 @@ describe("RadioSelector", () => {
     props = {
       legend: "",
       saveQuestionResponse: jest.fn(),
-      options: ["mco:stillServing", "mco:releasedAlive", "mco:deceased"],
-      selectorType: "statusAndVitals",
+      options: ["mco_p1", "mco_p2", "mco_p3"],
+      selectorType: "patronType",
       responses: responsesFixture,
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
@@ -47,7 +47,7 @@ describe("RadioSelector", () => {
         .find("FormControlLabel")
         .at(1)
         .text()
-    ).toEqual("Released");
+    ).toEqual("p2_en");
   });
 
   describe("isDisabled function", () => {
@@ -60,7 +60,7 @@ describe("RadioSelector", () => {
     });
 
     it("returns true if we do hit a condition", () => {
-      props.responses.patronType = "service-person";
+      props.responses.serviceType = "disable_value";
       const isDisabled = shallow(<RadioSelector {...props} />).instance()
         .isDisabled;
       expect(
@@ -77,7 +77,7 @@ describe("RadioSelector", () => {
       instance.handleSelect({ target: { value: "x" } });
       expect(analytics.logEvent).toBeCalledWith(
         "FilterClick",
-        "statusAndVitals",
+        "patronType",
         "x"
       );
     });
@@ -85,7 +85,7 @@ describe("RadioSelector", () => {
     it("calls saveQuestionResponse", () => {
       let instance = shallow(<RadioSelector {...props} />).instance();
       instance.handleSelect({ target: { value: "x" } });
-      expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "x");
+      expect(props.saveQuestionResponse).toBeCalledWith("patronType", "x");
     });
 
     it("calls clearAppropriateResponses", () => {
@@ -93,7 +93,7 @@ describe("RadioSelector", () => {
       instance.clearAppropriateResponses = jest.fn();
       instance.handleSelect({ target: { value: "x" } });
       expect(instance.clearAppropriateResponses).toBeCalledWith(
-        "statusAndVitals",
+        "patronType",
         "x"
       );
     });

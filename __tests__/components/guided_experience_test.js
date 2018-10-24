@@ -42,9 +42,9 @@ describe("GuidedExperience", () => {
       children: <div className="thing" />,
       subtitle: "subtitle",
       reduxState: {
-        patronType: "family",
-        serviceType: "RCMP",
-        statusAndVitals: "stillServing",
+        patronType: "p1",
+        serviceType: "s1",
+        statusAndVitals: "",
         serviceHealthIssue: "",
         selectedNeeds: {},
         questions: questionsFixture,
@@ -81,8 +81,8 @@ describe("GuidedExperience", () => {
   });
 
   it("has edit answer buttons with correct text", () => {
-    expect(document.getElementById("jumpButton2").textContent).toEqual(
-      "Still-serving"
+    expect(document.getElementById("jumpButton1").textContent).toEqual(
+      "br_s1_en"
     );
   });
 
@@ -111,7 +111,7 @@ describe("GuidedExperience", () => {
       .last()
       .simulate("click");
     expect(Router.push).toBeCalledWith(
-      "/benefits-directory?lng=en&patronType=family&serviceType=RCMP&statusAndVitals=stillServing"
+      "/benefits-directory?lng=en&patronType=p1&serviceType=s1"
     );
   });
 

@@ -11,6 +11,7 @@ import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -44,21 +45,30 @@ describe("Favourites Page", () => {
       translations: [],
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       enIdx: JSON.stringify({
         version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
-          ["vacNameEn/1", [0, 0.288]],
-          ["oneLineDescriptionEn/1", [1, 0.288]]
+          ["vacNameEn/benefit_1", [0, 0.288]],
+          ["oneLineDescriptionEn/benefit_1", [1, 0.288]]
         ],
         invertedIndex: [
           [
             "biz",
-            { _index: 1, vacNameEn: {}, oneLineDescriptionEn: { "1": {} } }
+            {
+              _index: 1,
+              vacNameEn: {},
+              oneLineDescriptionEn: { benefit_1: {} }
+            }
           ],
           [
             "fiz",
-            { _index: 0, vacNameEn: { "1": {} }, oneLineDescriptionEn: {} }
+            {
+              _index: 0,
+              vacNameEn: { benefit_1: {} },
+              oneLineDescriptionEn: {}
+            }
           ]
         ],
         pipeline: ["stemmer"]
@@ -67,17 +77,25 @@ describe("Favourites Page", () => {
         version: lunr.version,
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
-          ["vacNameFr/1", [0, 0.288]],
-          ["oneLineDescriptionFr/1", [1, 0.288]]
+          ["vacNameFr/benefit_1", [0, 0.288]],
+          ["oneLineDescriptionFr/benefit_1", [1, 0.288]]
         ],
         invertedIndex: [
           [
             "biz",
-            { _index: 1, vacNameFr: {}, oneLineDescriptionFr: { "1": {} } }
+            {
+              _index: 1,
+              vacNameFr: {},
+              oneLineDescriptionFr: { benefit_1: {} }
+            }
           ],
           [
             "fiz",
-            { _index: 0, vacNameFr: { "1": {} }, oneLineDescriptionFr: {} }
+            {
+              _index: 0,
+              vacNameFr: { benefit_1: {} },
+              oneLineDescriptionFr: {}
+            }
           ]
         ],
         pipeline: ["stemmer"]

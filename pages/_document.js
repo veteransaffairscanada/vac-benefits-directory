@@ -75,7 +75,7 @@ class MyDocument extends Document {
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <script type="text/javascript" src={googleMapURL} />
         </Head>
-        <body style={bodyStyling}>
+        <body style={bodyStyling} tabIndex={1}>
           <Main />
           <NextScript />
         </body>

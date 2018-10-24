@@ -83,7 +83,7 @@ describe("BenefitCard", () => {
       .at(0)
       .simulate("click");
     expect(window.open).toBeCalledWith(
-      benefitsFixture[1].benefitPageEn,
+      benefitsFixture[0].benefitPageEn,
       "_blank"
     );
     expect(
@@ -116,7 +116,7 @@ describe("BenefitCard", () => {
         .at(0)
         .simulate("click");
       expect(window.open).toBeCalledWith(
-        benefitsFixture[1].benefitPageFr,
+        benefitsFixture[0].benefitPageFr,
         "_blank"
       );
       expect(
@@ -138,7 +138,7 @@ describe("BenefitCard", () => {
   });
 
   it("has a needs tag", () => {
-    reduxData.selectedNeeds["0"] = "0";
+    reduxData.selectedNeeds["need_0"] = "need_0";
     expect(mountedBenefitCard().text()).toContain("Need 0");
   });
 

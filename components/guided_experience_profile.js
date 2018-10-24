@@ -5,7 +5,7 @@ import RadioSelector from "./radio_selector";
 import { css } from "react-emotion";
 
 const outerDiv = css`
-padding: 12px;
+  padding: 12px;
 `;
 
 export class GuidedExperienceProfile extends Component {
