@@ -113,13 +113,17 @@ export class Guided extends Component {
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];
+    const pageTitle =
+      t("current-language-code") === "en"
+        ? question.guided_experience_page_title_english
+        : question.guided_experience_page_title_french;
     return (
       <Layout
         i18n={i18n}
         t={t}
         hideNoscript={false}
         showRefreshCache={false}
-        title={t("titles.guided_experience")}
+        title={pageTitle}
       >
         <GuidedExperience
           id={section}
