@@ -67,7 +67,7 @@ class Layout extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ backgroundColor: this.props.backgroundColor }}>
-          <Head title={title ? title : null} t={t} />
+          <Head title={title} t={t} />
           <ErrorBoundary>
             <Content>
               <div className={header}>
