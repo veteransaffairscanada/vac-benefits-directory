@@ -6,7 +6,9 @@ const questionsFixture = [
     display_text_french: "Ma sélection:",
     guided_experience_english: "Select who will be receiving the benefits.",
     guided_experience_french: "Montre moi des avantages pour:",
-    id: "recwwXPBszQacaMsb"
+    id: "recwwXPBszQacaMsb",
+    tooltip_english: "tooltip_patronType_en",
+    tooltip_french: "tooltip_patronType_fr"
   },
   {
     variable_name: "serviceType",

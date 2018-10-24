@@ -7,6 +7,10 @@ import {
   getFilteredBenefits
 } from "../../selectors/benefits";
 import questionsFixture from "../fixtures/questions";
+import benefitsFixture from "../fixtures/benefits";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import needsFixture from "../fixtures/needs";
 
 describe("Benefits Selectors", () => {
   let props;
@@ -18,84 +22,32 @@ describe("Benefits Selectors", () => {
     };
     state = {
       questions: questionsFixture,
-      benefits: [
-        {
-          id: "0",
-          childBenefits: [],
-          availableIndependently: "Requires Gateway Benefit"
-        },
-        {
-          id: "1",
-          childBenefits: [],
-          availableIndependently: "Independent"
-        },
-        {
-          id: "2",
-          childBenefits: ["0", "1", "4"],
-          availableIndependently: "Independent"
-        },
-        {
-          id: "3",
-          childBenefits: ["4"],
-          availableIndependently: "Independent"
-        },
-        {
-          id: "4",
-          childBenefits: [],
-          availableIndependently: "Requires Gateway Benefit"
-        }
-      ],
-      eligibilityPaths: [
-        {
-          requirements: ["patronType: p1"],
-          benefits: ["0", "2", "4"]
-        },
-        {
-          requirements: ["patronType: p2"],
-          benefits: ["2"]
-        },
-        {
-          requirements: ["patronType: p3"],
-          benefits: ["1", "3", "4"]
-        }
-      ],
-      multipleChoiceOptions: [
-        {
-          variable_name: "p1",
-          linked_question: "patronType",
-          id: "patronType: p1"
-        },
-        {
-          variable_name: "p2",
-          linked_question: "patronType",
-          id: "patronType: p2"
-        },
-        {
-          variable_name: "p3",
-          linked_question: "patronType",
-          id: "patronType: p3"
-        },
-        {
-          variable_name: "s1",
-          linked_question: "serviceType",
-          id: "serviceType: s1"
-        }
-      ],
+      benefits: benefitsFixture,
+      eligibilityPaths: eligibilityPathsFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       enIdx: JSON.stringify({
         version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
         fieldVectors: [
-          ["vacNameEn/1", [0, 0.288]],
-          ["oneLineDescriptionEn/1", [1, 0.288]]
+          ["vacNameEn/benefit_1", [0, 0.288]],
+          ["oneLineDescriptionEn/benefit_1", [1, 0.288]]
         ],
         invertedIndex: [
           [
             "biz",
-            { _index: 1, vacNameEn: {}, oneLineDescriptionEn: { "1": {} } }
+            {
+              _index: 1,
+              vacNameEn: {},
+              oneLineDescriptionEn: { benefit_1: {} }
+            }
           ],
           [
             "fiz",
-            { _index: 0, vacNameEn: { "1": {} }, oneLineDescriptionEn: {} }
+            {
+              _index: 0,
+              vacNameEn: { benefit_1: {} },
+              oneLineDescriptionEn: {}
+            }
           ]
         ],
         pipeline: ["stemmer"]
@@ -104,52 +56,41 @@ describe("Benefits Selectors", () => {
         version: lunr.version,
         fields: ["vacNameFr", "oneLineDescriptionFr"],
         fieldVectors: [
-          ["vacNameFr/1", [0, 0.288]],
-          ["oneLineDescriptionFr/1", [1, 0.288]]
+          ["vacNameFr/benefit_1", [0, 0.288]],
+          ["oneLineDescriptionFr/benefit_1", [1, 0.288]]
         ],
         invertedIndex: [
           [
             "biz",
-            { _index: 1, vacNameFr: {}, oneLineDescriptionFr: { "1": {} } }
+            {
+              _index: 1,
+              vacNameFr: {},
+              oneLineDescriptionFr: { benefit_1: {} }
+            }
           ],
           [
             "fiz",
-            { _index: 0, vacNameFr: { "1": {} }, oneLineDescriptionFr: {} }
+            {
+              _index: 0,
+              vacNameFr: { benefit_1: {} },
+              oneLineDescriptionFr: {}
+            }
           ]
         ],
         pipeline: ["stemmer"]
       }),
-      needs: [
-        {
-          id: "0",
-          nameEn: "Need 0",
-          nameFr: "Fr Need 0",
-          benefits: ["0"]
-        },
-        {
-          id: "1",
-          nameEn: "Need 1",
-          nameFr: "Fr Need 1"
-        },
-        {
-          id: "2",
-          nameEn: "Need 2",
-          nameFr: "Fr Need 2"
-        }
-      ],
+      needs: needsFixture,
       selectedNeeds: {},
       patronType: "",
       searchString: "",
-      serviceType: "",
-      statusAndVitals: ""
+      serviceType: ""
     };
   });
 
   describe("getProfileFilters", () => {
     it("returns an object with the selected profile values", () => {
-      state.patronType = "p";
-      state.serviceType = "st";
-      state.statusAndVitals = "sv";
+      state.patronType = "p2";
+      state.serviceType = "s1";
       let returnValue = getProfileFilters(state, props);
       expect(Object.keys(returnValue).sort()).toEqual(
         [
@@ -159,9 +100,9 @@ describe("Benefits Selectors", () => {
           "serviceHealthIssue"
         ].sort()
       );
-      expect(returnValue.patronType).toEqual("p");
-      expect(returnValue.serviceType).toEqual("st");
-      expect(returnValue.statusAndVitals).toEqual("sv");
+      expect(returnValue.patronType).toEqual("p2");
+      expect(returnValue.serviceType).toEqual("s1");
+      expect(returnValue.statusAndVitals).toEqual(undefined);
       expect(returnValue.serviceHealthIssue).toEqual(undefined);
     });
   });
@@ -169,7 +110,7 @@ describe("Benefits Selectors", () => {
   describe("pathToDict function", () => {
     it("works as expected", () => {
       const ep = {
-        requirements: ["patronType: p3", "serviceType: s1", "patronType: p1"]
+        requirements: ["mco_p3", "mco_s1", "mco_p1"]
       };
       const actual = pathToDict(
         ep,
@@ -189,16 +130,11 @@ describe("Benefits Selectors", () => {
   describe("eligibilityMatch", () => {
     it("matches if nothing selected", () => {
       const ep = {
-        requirements: ["patronType: p3"],
-        patronType: "p3",
-        serviceType: "na",
-        statusAndVitals: "na",
-        benefits: ["1", "3", "4"]
+        requirements: ["mco_p3"]
       };
       const selected = {
         patronType: "",
-        serviceType: "",
-        statusAndVitals: ""
+        serviceType: ""
       };
       const actual = eligibilityMatch(
         ep,
@@ -255,11 +191,7 @@ describe("Benefits Selectors", () => {
 
     it("matches if selections match", () => {
       const ep = {
-        requirements: ["patronType: p3"],
-        patronType: "p3",
-        serviceType: "na",
-        statusAndVitals: "na",
-        benefits: ["1", "3", "4"]
+        requirements: ["mco_p3"]
       };
       const selected = {
         patronType: "p3",
@@ -277,7 +209,7 @@ describe("Benefits Selectors", () => {
 
     it("doesn't match if selections don't match", () => {
       const ep = {
-        requirements: ["patronType: p3"]
+        requirements: ["mco_p3"]
       };
       const selected = {
         patronType: "p2",
@@ -295,7 +227,7 @@ describe("Benefits Selectors", () => {
 
     it("matches if selection included in requirements along with others", () => {
       const ep = {
-        requirements: ["patronType: p3", "patronType: p2"]
+        requirements: ["mco_p3", "mco_p2"]
       };
       const selected = {
         patronType: "p2",
@@ -318,7 +250,12 @@ describe("Benefits Selectors", () => {
         b => b.id
       );
       returnValue.sort();
-      expect(returnValue).toEqual(["0", "1", "2", "3", "4"]);
+      expect(returnValue).toEqual([
+        "benefit_0",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ]);
     });
 
     it("returns an empty array if there are no benefits", () => {
@@ -327,23 +264,17 @@ describe("Benefits Selectors", () => {
       expect(returnValue).toEqual([]);
     });
 
-    it("displays benefits 0, 2, 4 if patronType p1", () => {
+    it("displays benefits 0, 2 if patronType p1", () => {
       state.patronType = "p1";
       expect(
         getFilteredBenefitsWithoutSearch(state, props).map(b => b.id)
-      ).toEqual(["0", "2", "4"]);
+      ).toEqual(["benefit_0", "benefit_2"]);
     });
 
     it("returns benefits based on selectedNeeds", () => {
-      state.selectedNeeds = { "0": "0", "1": "1", "2": "2" };
+      state.selectedNeeds = { need_1: "need_1" };
       let returnValue = getFilteredBenefitsWithoutSearch(state, props);
-      expect(returnValue).toEqual([
-        {
-          availableIndependently: "Requires Gateway Benefit",
-          childBenefits: [],
-          id: "0"
-        }
-      ]);
+      expect(returnValue).toEqual([benefitsFixture[3]]);
     });
   });
 
@@ -351,7 +282,12 @@ describe("Benefits Selectors", () => {
     it("displays all benefits if nothing selected", () => {
       let returnValue = getFilteredBenefits(state, props).map(b => b.id);
       returnValue.sort();
-      expect(returnValue).toEqual(["0", "1", "2", "3", "4"]);
+      expect(returnValue).toEqual([
+        "benefit_0",
+        "benefit_1",
+        "benefit_2",
+        "benefit_3"
+      ]);
     });
 
     it("returns an empty array if there are no benefits", () => {
@@ -360,36 +296,33 @@ describe("Benefits Selectors", () => {
       expect(returnValue).toEqual([]);
     });
 
-    it("displays benefits 0, 2, 4 if patronType p1", () => {
+    it("displays benefits 0, 2 if patronType p1", () => {
       state.patronType = "p1";
       expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
-        "0",
-        "2",
-        "4"
+        "benefit_0",
+        "benefit_2"
       ]);
     });
 
     it("returns benefits based on selectedNeeds", () => {
-      state.selectedNeeds = { "0": "0", "1": "1", "2": "2" };
+      state.selectedNeeds = { need_1: "need_1" };
       let returnValue = getFilteredBenefits(state, props);
-      expect(returnValue).toEqual([
-        {
-          availableIndependently: "Requires Gateway Benefit",
-          childBenefits: [],
-          id: "0"
-        }
-      ]);
+      expect(returnValue).toEqual([benefitsFixture[3]]);
     });
 
     it("runs a lunr search on the english index if searchString is set an english is used", () => {
       state.searchString = "Fiz";
-      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual(["1"]);
+      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
+        "benefit_1"
+      ]);
     });
 
     it("runs a lunr search on the french index if searchString is set an french is used", () => {
       props.t = () => "fr";
       state.searchString = "Fiz";
-      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual(["1"]);
+      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
+        "benefit_1"
+      ]);
     });
   });
 });

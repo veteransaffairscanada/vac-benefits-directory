@@ -8,7 +8,6 @@ import { BenefitsDirectory } from "../../pages/benefits-directory";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
-import examplesFixture from "../fixtures/examples";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
 import translate from "../fixtures/translate";
@@ -60,7 +59,6 @@ describe("BenefitsDirectory", () => {
       option: "",
       translations: [],
       benefits: benefitsFixture,
-      examples: examplesFixture,
       eligibilityPaths: eligibilityPathsFixture,
       enIdx: JSON.stringify({
         version: lunr.version,
@@ -103,9 +101,9 @@ describe("BenefitsDirectory", () => {
       needs: needsFixture,
       searchString: "",
       selectedNeeds: {},
-      serviceType: "CAF",
+      serviceType: "s1",
       sortBy: "relevance",
-      patronType: "family",
+      patronType: "p2",
       statusAndVitals: "",
       serviceHealthIssue: "",
       favouriteBenefits: [benefitsFixture[0].id],

@@ -2,13 +2,13 @@
 
 import { mount, shallow } from "enzyme";
 import React from "react";
-
+import configureStore from "redux-mock-store";
 import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
 import needsFixture from "../fixtures/needs";
-import configureStore from "redux-mock-store";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -54,13 +54,14 @@ describe("Favourites", () => {
       setCookiesDisabled: jest.fn(),
       benefits: benefitsFixture,
       needs: needsFixture,
-      favouriteBenefits: ["3"],
+      favouriteBenefits: ["benefit_2"],
       selectedNeeds: {},
       sortBy: "relevance",
       eligibilityPaths: eligibilityPathsFixture,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0]
+      closestAreaOffice: areaOfficesFixture[0],
+      multipleChoiceOptions: multipleChoiceOptionsFixture
     };
     props.store = mockStore(reduxData);
   });
@@ -77,7 +78,7 @@ describe("Favourites", () => {
         .find("BenefitCard")
         .first()
         .props().benefit.id
-    ).toEqual("3");
+    ).toEqual("benefit_2");
   });
 
   it("renders with no favourites", async () => {
@@ -87,7 +88,7 @@ describe("Favourites", () => {
   });
 
   it("renders with 2 favourites", async () => {
-    reduxData.favouriteBenefits = ["0", "3"];
+    reduxData.favouriteBenefits = ["benefit_0", "benefit_3"];
     props.store = mockStore(reduxData);
     expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
@@ -98,10 +99,13 @@ describe("Favourites", () => {
       favouritesInstance.filterBenefits(benefitsFixture, []).length
     ).toEqual(0);
     expect(
-      favouritesInstance.filterBenefits(benefitsFixture, ["0"]).length
+      favouritesInstance.filterBenefits(benefitsFixture, ["benefit_0"]).length
     ).toEqual(1);
     expect(
-      favouritesInstance.filterBenefits(benefitsFixture, ["1", "3"]).length
+      favouritesInstance.filterBenefits(benefitsFixture, [
+        "benefit_1",
+        "benefit_3"
+      ]).length
     ).toEqual(2);
   });
 });

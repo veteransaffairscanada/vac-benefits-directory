@@ -95,14 +95,20 @@ describe("CardFooter", () => {
       mount(<CardFooter {...props} {...reduxData} />)
         .instance()
         .getBenefitIds(reduxData.eligibilityPaths)
-    ).toEqual({ veteran: new Set(["0", "1"]), family: new Set([]) });
+    ).toEqual({
+      veteran: new Set(["benefit_0", "benefit_2"]),
+      family: new Set(["benefit_2"])
+    });
   });
 
   it("has a correct getMatchingBenefits function", () => {
     expect(
       mount(<CardFooter {...props} {...reduxData} />)
         .instance()
-        .getMatchingBenefits(reduxData.benefits, new Set(["1", "2"]))
+        .getMatchingBenefits(
+          reduxData.benefits,
+          new Set(["benefit_1", "benefit_99"])
+        )
     ).toEqual([reduxData.benefits[1]]);
   });
 });

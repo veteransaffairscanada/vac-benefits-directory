@@ -6,7 +6,6 @@ import React from "react";
 import { AllBenefits } from "../../pages/all-benefits";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-import examplesFixture from "../fixtures/examples";
 import needsFixture from "../fixtures/needs";
 import translate from "../fixtures/translate";
 import configureStore from "redux-mock-store";
@@ -47,7 +46,6 @@ describe("AllBenefits", () => {
       cookiesDisabled: false,
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      examples: examplesFixture,
       needs: needsFixture,
       searchString: "",
       selectedNeeds: {},

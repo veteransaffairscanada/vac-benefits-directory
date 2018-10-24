@@ -15,7 +15,7 @@ describe("FavouriteButton", () => {
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       t: key => key,
-      favouriteBenefits: ["0"],
+      favouriteBenefits: ["benefit_0"],
       saveFavourites: jest.fn(),
       benefit: benefitsFixture[0],
       toggleOpenState: jest.fn()
@@ -47,7 +47,7 @@ describe("FavouriteButton", () => {
 
   it("has a working toggleFavourite function", async () => {
     let instance = mount(<FavouriteButton {...props} />).instance();
-    instance.toggleFavourite("0");
+    instance.toggleFavourite("benefit_0");
     instance.toggleFavourite("c0");
     instance.toggleFavourite("c1");
     expect(instance.cookies.get("favouriteBenefits")).toEqual(["c0", "c1"]);

@@ -346,7 +346,6 @@ const mapStateToProps = reduxState => {
       q => q.variable_name !== "needs"
     ),
     benefits: reduxState.benefits,
-    examples: reduxState.examples,
     eligibilityPaths: reduxState.eligibilityPaths,
     needs: reduxState.needs,
     areaOffices: reduxState.areaOffices
@@ -357,7 +356,6 @@ Print.propTypes = {
   multipleChoiceOptions: PropTypes.array.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   benefits: PropTypes.array.isRequired,
-  examples: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
