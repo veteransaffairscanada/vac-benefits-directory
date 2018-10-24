@@ -1,4 +1,4 @@
-import { eligibilityMatch } from "../selectors/benefits";
+import { eligibilityMatch, getProfileFilters } from "../selectors/benefits";
 
 export const uuidv4 = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
@@ -23,7 +23,7 @@ export const questionIsRelevant = (
     ep.requirements.forEach(mcoId => {
       const linkedQuestion = reduxState.multipleChoiceOptions.filter(
         mco => mco.id === mcoId
-      )[0].linked_question;
+      )[0].linked_question[0];
       if (linkedQuestion === question_variable_name) {
         returnValue = true;
       }
@@ -37,23 +37,19 @@ export const showQuestion = (question_variable_name, index, reduxState) => {
     return true;
   }
 
-  const { questions, questionDisplayLogic } = reduxState;
-
-  let questionsToHide = [];
-  questionDisplayLogic.forEach(x => {
-    const questionName = x.question[0];
-    const usersAnswer = reduxState[questionName];
-    if (x["has value"].indexOf(usersAnswer) > -1) {
-      questionsToHide = questionsToHide.concat(x["exclude questions"]);
-    }
-  });
+  const { questions } = reduxState;
+  const questionsToHide = questions
+    .map(q => q.variable_name)
+    .filter(
+      q => !questionIsRelevant(q, getProfileFilters(reduxState), reduxState)
+    );
 
   if (questionsToHide.indexOf(question_variable_name) > -1) {
     return false;
   }
 
   const displayableQuestions = questions.filter(
-    q => questionsToHide.indexOf(q.variable_name) == -1
+    q => questionsToHide.indexOf(q.variable_name) === -1
   );
   const new_index = displayableQuestions
     .map(x => x.variable_name)
