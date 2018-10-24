@@ -112,17 +112,10 @@ describe("Benefits Selectors", () => {
       const ep = {
         requirements: ["mco_p3", "mco_s1", "mco_p1"]
       };
-      const actual = pathToDict(
-        ep,
-        state.multipleChoiceOptions,
-        state.questions
-      );
+      const actual = pathToDict(ep, state.multipleChoiceOptions);
       expect(actual).toEqual({
         patronType: ["p3", "p1"],
-        serviceType: ["s1"],
-        statusAndVitals: [],
-        serviceHealthIssue: [],
-        needs: []
+        serviceType: ["s1"]
       });
     });
   });
@@ -132,15 +125,14 @@ describe("Benefits Selectors", () => {
       const ep = {
         requirements: ["mco_p3"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "",
         serviceType: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -153,16 +145,15 @@ describe("Benefits Selectors", () => {
         statusAndVitals: "na",
         benefits: ["1", "3", "4"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p3",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -175,16 +166,15 @@ describe("Benefits Selectors", () => {
         statusAndVitals: "na",
         benefits: ["1", "3", "4"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p3",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -193,16 +183,15 @@ describe("Benefits Selectors", () => {
       const ep = {
         requirements: ["mco_p3"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p3",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -211,16 +200,15 @@ describe("Benefits Selectors", () => {
       const ep = {
         requirements: ["mco_p3"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p2",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(false);
     });
@@ -229,16 +217,15 @@ describe("Benefits Selectors", () => {
       const ep = {
         requirements: ["mco_p3", "mco_p2"]
       };
-      const selected = {
+      const profileFilters = {
         patronType: "p2",
         serviceType: "",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
         ep,
-        selected,
-        state.multipleChoiceOptions,
-        state.questions
+        profileFilters,
+        state.multipleChoiceOptions
       );
       expect(actual).toEqual(true);
     });
@@ -264,11 +251,11 @@ describe("Benefits Selectors", () => {
       expect(returnValue).toEqual([]);
     });
 
-    it("displays benefits 0, 2 if patronType p1", () => {
-      state.patronType = "p1";
+    it("displays benefits 1, 3 if patronType p3", () => {
+      state.patronType = "p3";
       expect(
         getFilteredBenefitsWithoutSearch(state, props).map(b => b.id)
-      ).toEqual(["benefit_0", "benefit_2"]);
+      ).toEqual(["benefit_1", "benefit_3"]);
     });
 
     it("returns benefits based on selectedNeeds", () => {
@@ -296,11 +283,11 @@ describe("Benefits Selectors", () => {
       expect(returnValue).toEqual([]);
     });
 
-    it("displays benefits 0, 2 if patronType p1", () => {
-      state.patronType = "p1";
+    it("displays benefits 1, 3 if patronType p3", () => {
+      state.patronType = "p3";
       expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
-        "benefit_0",
-        "benefit_2"
+        "benefit_1",
+        "benefit_3"
       ]);
     });
 

@@ -1,3 +1,5 @@
+import { eligibilityMatch, getProfileFilters } from "../selectors/benefits";
+
 export const uuidv4 = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
     var r = (Math.random() * 16) | 0,
@@ -6,28 +8,54 @@ export const uuidv4 = () => {
   });
 };
 
+export const questionIsRelevant = (
+  question_variable_name,
+  allProfileFilters,
+  reduxState
+) => {
+  let profileFilters = JSON.parse(JSON.stringify(allProfileFilters));
+  profileFilters[question_variable_name] = "";
+
+  let relevantPaths = reduxState.eligibilityPaths.filter(
+    ep =>
+      ep.requirements &&
+      eligibilityMatch(ep, profileFilters, reduxState.multipleChoiceOptions)
+  );
+  let returnValue = false;
+  relevantPaths.forEach(ep => {
+    ep.requirements.forEach(mcoId => {
+      const linkedQuestion = reduxState.multipleChoiceOptions.filter(
+        mco => mco.id === mcoId
+      )[0].linked_question[0];
+      if (linkedQuestion === question_variable_name) {
+        returnValue = true;
+      }
+    });
+  });
+  return returnValue;
+};
+
 export const showQuestion = (question_variable_name, index, reduxState) => {
   if (index === 0) {
     return true;
   }
+  if (question_variable_name === "needs") {
+    return reduxState.patronType !== "organization";
+  }
 
-  const { questions, questionDisplayLogic } = reduxState;
-
-  let questionsToHide = [];
-  questionDisplayLogic.forEach(x => {
-    const questionName = x.question[0];
-    const usersAnswer = reduxState[questionName];
-    if (x["has value"].indexOf(usersAnswer) > -1) {
-      questionsToHide = questionsToHide.concat(x["exclude questions"]);
-    }
-  });
+  const { questions } = reduxState;
+  const questionsToHide = questions
+    .map(q => q.variable_name)
+    .filter(
+      q => !questionIsRelevant(q, getProfileFilters(reduxState), reduxState)
+    );
 
   if (questionsToHide.indexOf(question_variable_name) > -1) {
     return false;
   }
 
   const displayableQuestions = questions.filter(
-    q => questionsToHide.indexOf(q.variable_name) == -1
+    q => questionsToHide.indexOf(q.variable_name) === -1
   );
   const new_index = displayableQuestions
     .map(x => x.variable_name)
@@ -37,7 +65,6 @@ export const showQuestion = (question_variable_name, index, reduxState) => {
   if (!previousQuestionAnswered && question_variable_name !== "needs") {
     return false;
   }
-
   return true;
 };
 

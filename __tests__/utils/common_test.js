@@ -1,47 +1,80 @@
-import { showQuestion, getLink } from "../../utils/common";
+import { showQuestion, getLink, questionIsRelevant } from "../../utils/common";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+
+describe("questionIsRelevant function", () => {
+  let reduxState;
+  beforeEach(() => {
+    reduxState = {
+      eligibilityPaths: eligibilityPathsFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture
+    };
+  });
+
+  it("returns false if question is not relevant", () => {
+    const profileFilters = {
+      patronType: "p2"
+    };
+    expect(
+      questionIsRelevant("serviceType", profileFilters, reduxState)
+    ).toEqual(false);
+  });
+
+  it("returns true if question is relevant", () => {
+    const profileFilters = {
+      patronType: "p1"
+    };
+    expect(
+      questionIsRelevant("serviceType", profileFilters, reduxState)
+    ).toEqual(true);
+  });
+
+  it("returns true if question is relevant if it is cleared", () => {
+    const profileFilters = {
+      patronType: "p1",
+      serviceType: "s3"
+    };
+    expect(
+      questionIsRelevant("serviceType", profileFilters, reduxState)
+    ).toEqual(true);
+  });
+});
 
 describe("showQuestion function", () => {
   let reduxState;
   beforeEach(() => {
     reduxState = {
       questions: questionsFixture,
+      eligibilityPaths: eligibilityPathsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
+      patronType: "p1",
       serviceType: "",
-      patronType: "",
       serviceHealthIssue: "",
       statusAndVitals: ""
     };
   });
 
   it("shows the first question", () => {
-    expect(
-      showQuestion(questionsFixture[0].variable_name, 0, reduxState)
-    ).toEqual(true);
+    reduxState.patronType = "";
+    expect(showQuestion("patronType", 0, reduxState)).toEqual(true);
   });
 
   it("hides question if previous question doesn't have an answer", () => {
-    expect(
-      showQuestion(questionsFixture[1].variable_name, 1, reduxState)
-    ).toEqual(false);
+    reduxState.patronType = "";
+    expect(showQuestion("serviceType", 1, reduxState)).toEqual(false);
   });
 
   it("shows question if previous question has an answer", () => {
-    reduxState.patronType = "service-member";
-
-    expect(
-      showQuestion(questionsFixture[1].variable_name, 1, reduxState)
-    ).toEqual(true);
+    reduxState.patronType = "p1";
+    expect(showQuestion("serviceType", 1, reduxState)).toEqual(true);
   });
 
-  it("hides questions if organization selected", () => {
-    reduxState.patronType = "organization";
-    expect(
-      showQuestion(questionsFixture[1].variable_name, 1, reduxState)
-    ).toEqual(false);
+  it("hides questions if not relevant", () => {
+    reduxState.patronType = "p2";
+    expect(showQuestion("serviceType", 1, reduxState)).toEqual(false);
   });
 });
 
