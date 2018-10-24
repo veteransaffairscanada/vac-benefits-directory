@@ -4,6 +4,44 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 
+describe("questionIsRelevant function", () => {
+  let reduxState;
+  beforeEach(() => {
+    reduxState = {
+      eligibilityPaths: eligibilityPathsFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture
+    };
+  });
+
+  it("returns false if question is not relevant", () => {
+    const profileFilters = {
+      patronType: "p2"
+    };
+    expect(
+      questionIsRelevant("serviceType", profileFilters, reduxState)
+    ).toEqual(false);
+  });
+
+  it("returns true if question is relevant", () => {
+    const profileFilters = {
+      patronType: "p1"
+    };
+    expect(
+      questionIsRelevant("serviceType", profileFilters, reduxState)
+    ).toEqual(true);
+  });
+
+  it("returns true if question is relevant if it is cleared", () => {
+    const profileFilters = {
+      patronType: "p1",
+      serviceType: "s3"
+    };
+    expect(
+      questionIsRelevant("serviceType", profileFilters, reduxState)
+    ).toEqual(true);
+  });
+});
+
 describe("showQuestion function", () => {
   let reduxState;
   beforeEach(() => {
@@ -37,39 +75,6 @@ describe("showQuestion function", () => {
   it("hides questions if not relevant", () => {
     reduxState.patronType = "p2";
     expect(showQuestion("serviceType", 1, reduxState)).toEqual(false);
-  });
-
-  it("shows question if relevant but not in an ep after filtering", () => {
-    reduxState.serviceType = "s3";
-    expect(showQuestion("serviceType", 1, reduxState)).toEqual(true);
-  });
-});
-
-describe("questionIsRelevant function", () => {
-  let reduxState;
-  beforeEach(() => {
-    reduxState = {
-      eligibilityPaths: eligibilityPathsFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture
-    };
-  });
-
-  it("returns false if question is not relevant", () => {
-    const profileFilters = {
-      patronType: "p2"
-    };
-    expect(
-      questionIsRelevant("serviceType", profileFilters, reduxState)
-    ).toEqual(false);
-  });
-
-  it("returns true if question is relevant", () => {
-    const profileFilters = {
-      patronType: "p1"
-    };
-    expect(
-      questionIsRelevant("serviceType", profileFilters, reduxState)
-    ).toEqual(true);
   });
 });
 

@@ -10,9 +10,12 @@ export const uuidv4 = () => {
 
 export const questionIsRelevant = (
   question_variable_name,
-  profileFilters,
+  allProfileFilters,
   reduxState
 ) => {
+  let profileFilters = JSON.parse(JSON.stringify(allProfileFilters));
+  profileFilters[question_variable_name] = "";
+
   let relevantPaths = reduxState.eligibilityPaths.filter(
     ep =>
       ep.requirements &&
@@ -38,19 +41,11 @@ export const showQuestion = (question_variable_name, index, reduxState) => {
   }
 
   const { questions } = reduxState;
-
-  let profileFilters = JSON.parse(
-    JSON.stringify(getProfileFilters(reduxState))
-  );
-
-  let questionsToHide = questions
+  const questionsToHide = questions
     .map(q => q.variable_name)
-    .filter(q => !questionIsRelevant(q, profileFilters, reduxState));
-
-  profileFilters[question_variable_name] = "";
-  questionsToHide = questions
-    .map(q => q.variable_name)
-    .filter(q => !questionIsRelevant(q, profileFilters, reduxState));
+    .filter(
+      q => !questionIsRelevant(q, getProfileFilters(reduxState), reduxState)
+    );
 
   if (questionsToHide.indexOf(question_variable_name) > -1) {
     return false;
@@ -67,7 +62,6 @@ export const showQuestion = (question_variable_name, index, reduxState) => {
   if (!previousQuestionAnswered && question_variable_name !== "needs") {
     return false;
   }
-
   return true;
 };
 
