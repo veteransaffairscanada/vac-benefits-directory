@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 // import { Checkbox, FormControlLabel } from "@material-ui/core";
-import Checkbox from "@govuk-react/checkbox";
+import Checkbox from "./checkbox";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { uuidv4 } from "../utils/common";
 import { css } from "react-emotion";
-import { globalTheme } from "../theme";
 
 const thing = css`
-  [StyledLabel] {
-    font-family: ${globalTheme.fontFamily};
-  }
+  margin-bottom: 10px;
+  margin-right: 10px;
 `;
-
 export class NeedButton extends Component {
   guid = uuidv4();
 
@@ -36,11 +33,11 @@ export class NeedButton extends Component {
     const id = need.nameEn.replace(/ /g, "-") + "-checkbox-" + this.guid;
     return (
       <Checkbox
-        className={thing}
         checked={this.props.selectedNeeds[need.id] !== undefined}
         onChange={() => this.handleClick(need.id)}
         value={need.id}
         id={id}
+        className={thing}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </Checkbox>
