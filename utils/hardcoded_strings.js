@@ -9,3 +9,6 @@ exports.tableNames = [
   "questionDisplayLogic",
   "questionClearLogic"
 ];
+
+exports.servicePersonOptions = ["veteran", "servingMember"];
+exports.familyOptions = ["family"];

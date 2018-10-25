@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import { CardFooter } from "../../components/card_footer";
 import benefitsFixture from "../fixtures/benefits";
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -19,7 +20,8 @@ describe("CardFooter", () => {
     mockStore = configureStore();
     reduxData = {
       benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture
+      eligibilityPaths: eligibilityPathsFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture
     };
     props.store = mockStore(reduxData);
 
@@ -90,14 +92,20 @@ describe("CardFooter", () => {
     expect(mounted.state().open).toEqual(true);
   });
 
-  it("has a correct getBenefitIds function", () => {
-    expect(
-      mount(<CardFooter {...props} {...reduxData} />)
-        .instance()
-        .getBenefitIds(reduxData.eligibilityPaths)
-    ).toEqual({
-      veteran: new Set(["benefit_0", "benefit_2"]),
-      family: new Set(["benefit_2"])
+  describe("getBenefitIds", () => {
+    it("finds service person and family benefits", () => {
+      expect(
+        mount(<CardFooter {...props} {...reduxData} />)
+          .instance()
+          .getBenefitIds(
+            reduxData.eligibilityPaths,
+            ["mco_p2", "mco_p3"],
+            ["mco_p2"]
+          )
+      ).toEqual({
+        veteran: new Set(["benefit_1", "benefit_2", "benefit_3"]),
+        family: new Set(["benefit_2"])
+      });
     });
   });
 

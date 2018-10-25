@@ -4,7 +4,7 @@ const Logger = require("./logger").default;
 
 exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 
-var airtableConstants = require("./airtable_constants");
+var airtableConstants = require("./hardcoded_strings");
 var readKey = process.env.AIRTABLE_READ_KEY;
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
 var baseKey = process.env.AIRTABLE_BASE_KEY || "appoFDwVvNMRSaO6o";
