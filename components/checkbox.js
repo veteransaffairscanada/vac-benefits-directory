@@ -14,8 +14,8 @@ const StyledInput = styled("input")(
     position: "absolute",
     left: 0,
     top: 0,
-    width: "20px", // '38px',
-    height: "20px", // '38px',
+    width: "24px",
+    height: "24px",
     zIndex: 1,
     margin: 0,
     zoom: 1,
@@ -24,7 +24,7 @@ const StyledInput = styled("input")(
       opacity: 1
     },
     ":focus + span:before": {
-      boxShadow: `0 0 0 4px ${globalTheme.colour.govukYellow}`
+      boxShadow: `0 0 0 3px ${globalTheme.colour.govukYellow}`
     }
   },
   ({ disabled }) => ({

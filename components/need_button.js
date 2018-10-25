@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import { Checkbox, FormControlLabel } from "@material-ui/core";
 import Checkbox from "./checkbox";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
