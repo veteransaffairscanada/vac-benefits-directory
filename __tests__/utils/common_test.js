@@ -76,6 +76,16 @@ describe("showQuestion function", () => {
     reduxState.patronType = "p2";
     expect(showQuestion("serviceType", 1, reduxState)).toEqual(false);
   });
+
+  it("shows needs if patronType not organization", () => {
+    reduxState.patronType = "p2";
+    expect(showQuestion("needs", 1, reduxState)).toEqual(true);
+  });
+
+  it("hides needs if patronType is organization", () => {
+    reduxState.patronType = "organization";
+    expect(showQuestion("needs", 1, reduxState)).toEqual(false);
+  });
 });
 
 describe("getLink function", () => {

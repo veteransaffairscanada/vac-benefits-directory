@@ -15,11 +15,6 @@ const root = css`
     display: none;
   }
 `;
-const profileSelector = css`
-  border-bottom: 1px solid black;
-  padding-bottom: 15px !important;
-  margin-bottom: 30px !important;
-`;
 const clearButton = css`
   font-size: 85% !important;
   float: right !important;
@@ -83,7 +78,7 @@ export class ProfileNeedsSelector extends Component {
         </div>
 
         <Grid container>
-          <Grid item sm={12} className={profileSelector}>
+          <Grid item sm={12}>
             <ProfileSelector t={t} store={store} />
           </Grid>
           <Grid item sm={12}>

@@ -22,11 +22,6 @@ const summary = css`
   opacity: 1 !important;
   user-select: inherit;
 `;
-const profileSelector = css`
-  border-bottom: 1px solid black;
-  padding-bottom: 15px;
-  margin-bottom: 30px !important;
-`;
 const clearButton = css`
   font-size: 16px !important;
 `;
@@ -83,7 +78,7 @@ export class ProfileNeedsSelectorMobile extends Component {
 
         <ExpansionPanelDetails>
           <Grid container>
-            <Grid item sm={12} className={profileSelector}>
+            <Grid item sm={12}>
               <ProfileSelector t={t} store={store} />
             </Grid>
             <Grid item sm={12}>
