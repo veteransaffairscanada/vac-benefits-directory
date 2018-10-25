@@ -1,9 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Checkbox, FormControlLabel } from "@material-ui/core";
+// import { Checkbox, FormControlLabel } from "@material-ui/core";
+import Checkbox from "@govuk-react/checkbox";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { uuidv4 } from "../utils/common";
+import { css } from "react-emotion";
+import { globalTheme } from "../theme";
+
+const thing = css`
+  [StyledLabel] {
+    font-family: ${globalTheme.fontFamily};
+  }
+`;
 
 export class NeedButton extends Component {
   guid = uuidv4();
@@ -26,22 +35,32 @@ export class NeedButton extends Component {
     const { t, need } = this.props;
     const id = need.nameEn.replace(/ /g, "-") + "-checkbox-" + this.guid;
     return (
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={this.props.selectedNeeds[need.id] !== undefined}
-            onChange={() => this.handleClick(need.id)}
-            value={need.id}
-            color="primary"
-            id={id}
-          />
-        }
-        label={t("current-language-code") === "en" ? need.nameEn : need.nameFr}
-        htmlFor={id}
-      />
+      <Checkbox
+        className={thing}
+        checked={this.props.selectedNeeds[need.id] !== undefined}
+        onChange={() => this.handleClick(need.id)}
+        value={need.id}
+        id={id}
+      >
+        {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
+      </Checkbox>
     );
   }
 }
+
+// <FormControlLabel
+//   control={
+//     <Checkbox
+//       checked={this.props.selectedNeeds[need.id] !== undefined}
+//       onChange={() => this.handleClick(need.id)}
+//       value={need.id}
+//       color="primary"
+//       id={id}
+//     />
+//   }
+//   label=
+//   htmlFor={id}
+// />
 
 const mapDispatchToProps = dispatch => {
   return {
