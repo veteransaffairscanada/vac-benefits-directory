@@ -18,6 +18,15 @@ const topBorder = css`
 `;
 
 export class NeedsSelector extends Component {
+  componentDidUpdate() {
+    if (
+      Object.keys(this.props.selectedNeeds).length !== 0 &&
+      !showQuestion("needs", undefined, this.props.reduxState)
+    ) {
+      this.props.saveQuestionResponse("selectedNeeds", {});
+    }
+  }
+
   render() {
     const { needs, t, store } = this.props;
 
@@ -43,18 +52,35 @@ export class NeedsSelector extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
+    }
+  };
+};
+
 const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
+    selectedNeeds: reduxState.selectedNeeds,
     reduxState: reduxState
   };
 };
 
 NeedsSelector.propTypes = {
   needs: PropTypes.array.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(NeedsSelector);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NeedsSelector);
