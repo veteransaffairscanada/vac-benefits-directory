@@ -8,19 +8,19 @@ import Favourites from "../components/favourites";
 
 export class FavouritesPage extends Component {
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout
         i18n={this.props.i18n}
         t={this.props.t}
         hideNoscript={false}
         showRefreshCache={false}
-        title={t("titles.favourites")}
+        title={t("favourites.saved_benefits", { x: favouriteBenefits.length })}
       >
         <Favourites
           id="favourites"
           t={t}
-          favouriteBenefits={this.props.favouriteBenefits}
+          favouriteBenefits={favouriteBenefits}
           url={this.props.url}
           store={this.props.store}
         />
