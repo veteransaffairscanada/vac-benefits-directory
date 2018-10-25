@@ -9,6 +9,7 @@ import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import questionsFixture from "../fixtures/questions";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -51,6 +52,7 @@ describe("BenefitsPane", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
       searchString: "",
