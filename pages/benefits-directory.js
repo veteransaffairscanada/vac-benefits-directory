@@ -5,7 +5,7 @@ import { withI18next } from "../lib/withI18next";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BB from "../components/BB";
-import { getProfileFilters } from "../selectors/benefits";
+import { getProfileFilters, getFilteredBenefits } from "../selectors/benefits";
 
 export class BenefitsDirectory extends Component {
   constructor() {
@@ -59,15 +59,20 @@ export class BenefitsDirectory extends Component {
     Router.replace(href);
   };
 
+  countString = (x, t) => {
+    return t("B3.x benefits to consider", { x: x.length });
+  };
+
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const title = this.countString(filteredBenefits, t);
     return (
       <Layout
         i18n={this.props.i18n}
         t={this.props.t}
         hideNoscript={false}
         showRefreshCache={false}
-        title={t("titles.benefits_directory")}
+        title={title + " | " + t("titles.benefits_directory")}
       >
         <BB id="BB" t={t} store={this.props.store} url={this.props.url} />
       </Layout>
@@ -86,6 +91,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (reduxState, props) => {
   return {
     profileFilters: getProfileFilters(reduxState, props),
+    filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
     selectedNeeds: reduxState.selectedNeeds,
     sortBy: reduxState.sortBy
@@ -94,6 +100,7 @@ const mapStateToProps = (reduxState, props) => {
 
 BenefitsDirectory.propTypes = {
   profileFilters: PropTypes.object.isRequired,
+  filteredBenefits: PropTypes.array.isRequired,
   url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
@@ -104,7 +111,9 @@ BenefitsDirectory.propTypes = {
   setPageWidth: PropTypes.func.isRequired
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withI18next()(BenefitsDirectory));
+export default withI18next()(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(BenefitsDirectory)
+);

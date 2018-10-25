@@ -13,14 +13,12 @@ class Head extends Component {
   }
 
   render() {
+    const { title, description, t } = this.props;
     return (
       <NextHead>
         <meta charSet="UTF-8" />
-        <title>{this.props.title || this.props.t("title")}</title>
-        <meta
-          name="description"
-          content={this.props.description || this.props.t("description")}
-        />
+        <title>{title}</title>
+        <meta name="description" content={description || t("description")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/static/favicon.ico" />
         <link

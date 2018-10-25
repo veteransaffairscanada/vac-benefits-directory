@@ -84,8 +84,7 @@ export class BenefitsPane extends Component {
   };
 
   render() {
-    const { t } = this.props; // eslint-disable-line no-unused-vars
-    const filteredBenefits = this.props.filteredBenefits;
+    const { t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
 
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (

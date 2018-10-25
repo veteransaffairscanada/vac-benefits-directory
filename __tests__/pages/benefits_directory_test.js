@@ -107,6 +107,7 @@ describe("BenefitsDirectory", () => {
       statusAndVitals: "",
       serviceHealthIssue: "",
       favouriteBenefits: [benefitsFixture[0].id],
+      filteredBenefits: benefitsFixture,
       pageWidth: 1000,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
