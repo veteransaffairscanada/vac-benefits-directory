@@ -62,11 +62,12 @@ class HeaderButton extends Component {
     } = this.props;
 
     return (
-      <button
+      <a
         disabled={disabled}
         className={
           size === "small" ? cx(style, small, className) : cx(style, className)
         }
+        href={href}
         id={"a-" + id}
         onClick={e => this.buttonOnClick(e, href, target, useLink, onClick)}
         onMouseOver={this.props.onMouseOver}
@@ -75,7 +76,7 @@ class HeaderButton extends Component {
         {arrow === "back" ? <ArrowBack /> : null}
         {children}
         {arrow === "forward" ? <ArrowForward /> : null}
-      </button>
+      </a>
     );
   }
 }
