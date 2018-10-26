@@ -68,6 +68,7 @@ class HeaderButton extends Component {
           size === "small" ? cx(style, small, className) : cx(style, className)
         }
         href={href}
+        target={target}
         id={"a-" + id}
         onClick={e => this.buttonOnClick(e, href, target, useLink, onClick)}
         onMouseOver={this.props.onMouseOver}
