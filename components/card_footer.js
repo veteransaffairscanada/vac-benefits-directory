@@ -8,6 +8,7 @@ import EmbeddedBenefitCard from "./embedded_benefit_card";
 import { cx, css } from "react-emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
+var constants = require("../utils/hardcoded_strings");
 
 const headerDesc = css`
   flex-grow: 1;
@@ -117,17 +118,25 @@ export class CardFooter extends Component {
     return matchingBenefits;
   };
 
-  getBenefitIds = eligibilityPaths => {
+  getBenefitIds = (
+    eligibilityPaths,
+    servicePersonOptionIds,
+    familyOptionIds
+  ) => {
     let veteranBenefitIds = [];
     let familyBenefitIds = [];
 
     eligibilityPaths.forEach(ep => {
-      if (ep.patronType === "service-person") {
-        veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
-      }
-      if (ep.patronType === "family") {
-        familyBenefitIds = familyBenefitIds.concat(ep.benefits);
-      }
+      servicePersonOptionIds.forEach(id => {
+        if (ep.requirements && ep.requirements.indexOf(id) !== -1) {
+          veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
+        }
+      });
+      familyOptionIds.forEach(id => {
+        if (ep.requirements && ep.requirements.indexOf(id) !== -1) {
+          familyBenefitIds = familyBenefitIds.concat(ep.benefits);
+        }
+      });
     });
     return {
       veteran: new Set(veteranBenefitIds),
@@ -140,7 +149,22 @@ export class CardFooter extends Component {
     const childBenefits = benefit.childBenefits
       ? benefits.filter(ab => benefit.childBenefits.indexOf(ab.id) > -1)
       : [];
-    const benefitIds = this.getBenefitIds(this.props.eligibilityPaths);
+
+    const servicePersonOptionIds = this.props.multipleChoiceOptions
+      .filter(
+        mco => constants.servicePersonOptions.indexOf(mco.variable_name) !== -1
+      )
+      .map(mco => mco.id);
+
+    const familyOptionIds = this.props.multipleChoiceOptions
+      .filter(mco => constants.familyOptions.indexOf(mco.variable_name) !== -1)
+      .map(mco => mco.id);
+
+    const benefitIds = this.getBenefitIds(
+      this.props.eligibilityPaths,
+      servicePersonOptionIds,
+      familyOptionIds
+    );
     const veteranBenefits = this.getMatchingBenefits(
       childBenefits,
       benefitIds.veteran
@@ -229,15 +253,17 @@ export class CardFooter extends Component {
 }
 const mapStateToProps = reduxState => {
   return {
+    benefits: reduxState.benefits,
     eligibilityPaths: reduxState.eligibilityPaths,
-    benefits: reduxState.benefits
+    multipleChoiceOptions: reduxState.multipleChoiceOptions
   };
 };
 CardFooter.propTypes = {
-  benefit: PropTypes.object.isRequired,
   benefits: PropTypes.array.isRequired,
-  t: PropTypes.func.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
+  multipleChoiceOptions: PropTypes.array.isRequired,
+  benefit: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 

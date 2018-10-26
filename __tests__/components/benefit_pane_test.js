@@ -9,6 +9,7 @@ import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import questionsFixture from "../fixtures/questions";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -51,6 +52,7 @@ describe("BenefitsPane", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
       searchString: "",
@@ -118,10 +120,10 @@ describe("BenefitsPane", () => {
         ).toEqual(0);
       });
 
-      it("returns 1 if one selectedEligibilty is selected", () => {
+      it("returns 1 if one selectedEligibility is selected", () => {
         mounted().setProps({
           profileFilters: {
-            patronType: eligibilityPathsFixture[0].patronType
+            patronType: "p1"
           }
         });
         expect(
@@ -148,7 +150,7 @@ describe("BenefitsPane", () => {
         mounted().setProps({ selectedNeeds: needsSelection });
         mounted().setProps({
           profileFilters: {
-            patronType: eligibilityPathsFixture[0].patronType
+            patronType: "p1"
           }
         });
         expect(
