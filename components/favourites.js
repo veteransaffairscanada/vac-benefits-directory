@@ -180,7 +180,7 @@ export class Favourites extends Component {
                     id="contactPhone"
                     href={"tel:" + t("contact.phone")}
                   >
-                    <a>{t("contact.phone")}</a>
+                    {t("contact.phone")}
                   </HeaderButton>
                 </p>
 
@@ -193,7 +193,7 @@ export class Favourites extends Component {
                     id="contactEmail"
                     href={"mailto:" + t("contact.email")}
                   >
-                    <a>{t("contact.email")}</a>
+                    {t("contact.email")}
                   </HeaderButton>
                 </p>
 

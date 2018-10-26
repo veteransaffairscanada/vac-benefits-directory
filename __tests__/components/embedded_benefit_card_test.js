@@ -77,7 +77,7 @@ describe("EmbeddedBenefitCard", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
     mountedEmbeddedBenefitCard()
-      .find("button")
+      .find("a")
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
