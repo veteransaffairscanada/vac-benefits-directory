@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import Router from "next/router";
 import { cx, css } from "react-emotion";
 import ArrowBack from "./icons/ArrowBack";
 import ArrowForward from "./icons/ArrowForward";
+import Link from "next/link";
 
 const style = css`
   display: inline-block;
@@ -31,12 +31,10 @@ const small = css`
 `;
 
 class HeaderButton extends Component {
-  buttonOnClick = (e, href, target, useLink, onClick) => {
+  buttonOnClick = (e, href, target, onClick) => {
     if (href) {
       if (target) {
         window.open(href, target);
-      } else if (useLink) {
-        Router.push(href);
       } else {
         window.location.assign(href);
       }
@@ -61,7 +59,7 @@ class HeaderButton extends Component {
       otherProps
     } = this.props;
 
-    return (
+    const anchor = (
       <a
         disabled={disabled}
         className={
@@ -79,6 +77,12 @@ class HeaderButton extends Component {
         {arrow === "forward" ? <ArrowForward /> : null}
       </a>
     );
+    // If the useLink prop is specified, wrap the anchor in a next Link to preserve data in Redux
+    if (this.props.useLink) {
+      return <Link href={this.props.href}>{anchor}</Link>;
+    } else {
+      return anchor;
+    }
   }
 }
 
