@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
 import { globalTheme } from "../theme";
+import { uuidv4 } from "../utils/common";
 
 const StyledCheckbox = styled("label")({
   display: "block",
@@ -75,9 +76,11 @@ const StyledLabel = styled("span")({
   }
 });
 
+const guid = uuidv4();
+
 const Checkbox = ({ children, className, ...props }) => (
-  <StyledCheckbox className={className}>
-    <StyledInput type="checkbox" {...props} />
+  <StyledCheckbox className={className} htmlFor={guid}>
+    <StyledInput type="checkbox" {...props} id={guid} />
     <StyledLabel>{children}</StyledLabel>
   </StyledCheckbox>
 );
