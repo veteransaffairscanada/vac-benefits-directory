@@ -2,9 +2,9 @@
 
 import { mount } from "enzyme";
 import React from "react";
-import { Checkbox } from "@material-ui/core";
 import { GuidedExperienceNeeds } from "../../components/guided_experience_needs";
 import needsFixture from "../fixtures/needs";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -12,13 +12,13 @@ expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
 describe("GuidedExperienceNeeds", () => {
-  let props;
+  let props, reduxState, mockStore;
   let _mountedGuidedExperienceNeeds;
 
   const mounted_GuidedExperienceNeeds = () => {
     if (!_mountedGuidedExperienceNeeds) {
       _mountedGuidedExperienceNeeds = mount(
-        <GuidedExperienceNeeds {...props} />
+        <GuidedExperienceNeeds {...props} {...reduxState} />
       );
     }
     return _mountedGuidedExperienceNeeds;
@@ -26,11 +26,16 @@ describe("GuidedExperienceNeeds", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
+      t: key => key
+    };
+    reduxState = {
       needs: needsFixture,
       selectedNeeds: {},
       setSelectedNeeds: jest.fn()
     };
+    mockStore = configureStore();
+    props.store = mockStore(reduxState);
+
     _mountedGuidedExperienceNeeds = undefined;
   });
 
@@ -40,26 +45,24 @@ describe("GuidedExperienceNeeds", () => {
   });
 
   it("contains the needs buttons", () => {
-    expect(mounted_GuidedExperienceNeeds().find(Checkbox).length).toEqual(
+    expect(mounted_GuidedExperienceNeeds().find("NeedButton").length).toEqual(
       needsFixture.length
     );
   });
 
-  it("calls setSelectedNeeds when option pressed", () => {
+  it("adds a selectedNeed if clicked", () => {
+    const id = needsFixture[1].id;
     mounted_GuidedExperienceNeeds()
-      .find(Checkbox)
-      .first()
-      .find("input")
-      .first()
-      .simulate("change", { target: { checked: true } });
-    expect(props.setSelectedNeeds).toBeCalled();
+      .instance()
+      .handleClick(id);
+    expect(reduxState.setSelectedNeeds).toBeCalledWith({ [id]: id });
   });
 
   it("removes a selectedNeed if it already selected", () => {
-    props.selectedNeeds[needsFixture[1].id] = "selected";
+    reduxState.selectedNeeds[needsFixture[1].id] = "selected";
     mounted_GuidedExperienceNeeds()
       .instance()
       .handleClick(needsFixture[1].id);
-    expect(props.setSelectedNeeds).toBeCalledWith({});
+    expect(reduxState.setSelectedNeeds).toBeCalledWith({});
   });
 });
