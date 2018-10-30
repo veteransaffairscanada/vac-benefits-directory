@@ -26,12 +26,13 @@ export class NeedButton extends Component {
   };
 
   render() {
-    const { t, need } = this.props;
+    const { t, need, disabled } = this.props;
     return (
       <Checkbox
         checked={this.props.selectedNeeds[need.id] !== undefined}
         onChange={() => this.handleClick(need.id)}
         value={need.id}
+        disabled={disabled ? "disabled" : null}
         className={style}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
@@ -63,11 +64,13 @@ NeedButton.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   pageWidth: PropTypes.number.isRequired,
   scrollOnClick: PropTypes.bool,
+  disabled: PropTypes.bool,
   store: PropTypes.object
 };
 
 NeedButton.defaultProps = {
-  scrollOnClick: true
+  scrollOnClick: true,
+  disabled: false
 };
 
 export default connect(

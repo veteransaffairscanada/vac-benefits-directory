@@ -74,7 +74,7 @@ export const getPrintUrl = createSelector(
       lng: currentLanguage,
       sortBy: sortBy,
       benefits: filteredBenefitsIDs.join(","),
-      needs: Object.keys(selectedNeeds).join(),
+      selectedNeeds: Object.keys(selectedNeeds).join(),
       closestAOID:
         closestAreaOffice.id !== undefined ? closestAreaOffice.id : "",
       selectedAOID:

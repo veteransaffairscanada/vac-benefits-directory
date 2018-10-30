@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { withI18next } from "../lib/withI18next";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
+import NeedButton from "../components/need_button";
 import { WordMark } from "@cdssnc/gcui";
 import FIP from "../components/fip";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -21,17 +20,6 @@ const box = css`
   border-style: solid;
   border-width: 2px;
   padding: 1.5em;
-`;
-const checkboxes = css`
-  disabled: true !important;
-  ripple: disabled !important;
-  height: 30px !important;
-  width: 20px !important;
-  margin-right: 6px !important;
-  margin-left: 12px !important;
-`;
-const checkbox = css`
-  margin-right: 0px;
 `;
 const gridstyle = css`
   margin-top: 12px !important;
@@ -150,8 +138,14 @@ export class Print extends Component {
   };
 
   render() {
-    const { i18n, t, benefits, needs, multipleChoiceOptions } = this.props; // eslint-disable-line no-unused-vars
-
+    const {
+      i18n,
+      t,
+      benefits,
+      needs,
+      multipleChoiceOptions,
+      store
+    } = this.props; // eslint-disable-line no-unused-vars
     const query = this.props.url.query;
     const printingFromFavourites = query.fromFavourites !== undefined;
     const filteredBenefitsIDs =
@@ -166,8 +160,6 @@ export class Print extends Component {
       this.props.t("current-language-code"),
       query["sortBy"]
     );
-    const selectedNeedsIDs =
-      Object.keys(query).indexOf("needs") > -1 ? query.needs.split(",") : [];
 
     const profile_text = this.props.profileQuestions
       .map(q => q.variable_name)
@@ -233,23 +225,12 @@ export class Print extends Component {
                     <Grid container spacing={0}>
                       {needs.map((need, i) => (
                         <Grid item xs={4} key={i}>
-                          <FormControlLabel
-                            control={
-                              <Checkbox
-                                className={checkboxes}
-                                color="default"
-                                disableRipple={true}
-                                key={need.id}
-                                id={"checkbox" + need.id}
-                                checked={selectedNeedsIDs.includes(need.id)}
-                              />
-                            }
-                            label={
-                              t("current-language-code") == "en"
-                                ? need.nameEn
-                                : need.nameFr
-                            }
-                            className={checkbox}
+                          <NeedButton
+                            need={need}
+                            t={t}
+                            store={store}
+                            scrollOnClick={false}
+                            disabled="disabled"
                           />
                         </Grid>
                       ))}
@@ -361,7 +342,8 @@ Print.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  areaOffices: PropTypes.array.isRequired
+  areaOffices: PropTypes.array.isRequired,
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(withI18next()(Print));

@@ -73,12 +73,12 @@ export class BB extends Component {
                     this.props.favouriteBenefits.length +
                     ")"}
                 </HeaderButton>
-
                 <HeaderButton
+                  useLink
                   className={anchors}
-                  href={this.props.printUrl}
                   target="print_page"
                   id="printButton"
+                  href={this.props.printUrl}
                 >
                   <Print />{" "}
                   <span className={nonMobileStyle}> {t("Print")} </span>

@@ -31,7 +31,6 @@ const StyledInput = styled("input")(
   ({ disabled }) => ({
     cursor: disabled ? "auto" : "pointer",
     " + span": {
-      opacity: disabled ? ".4" : "1",
       pointerEvents: disabled ? "none" : "auto"
     }
   })
@@ -76,14 +75,15 @@ const StyledLabel = styled("span")({
   }
 });
 
-const guid = uuidv4();
-
-const Checkbox = ({ children, className, ...props }) => (
-  <StyledCheckbox className={className} htmlFor={guid}>
-    <StyledInput type="checkbox" {...props} id={guid} />
-    <StyledLabel>{children}</StyledLabel>
-  </StyledCheckbox>
-);
+const Checkbox = ({ children, className, ...props }) => {
+  const guid = uuidv4();
+  return (
+    <StyledCheckbox className={className} htmlFor={guid}>
+      <StyledInput type="checkbox" {...props} id={guid} />
+      <StyledLabel>{children}</StyledLabel>
+    </StyledCheckbox>
+  );
+};
 
 Checkbox.defaultProps = {
   className: undefined
