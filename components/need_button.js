@@ -64,13 +64,14 @@ NeedButton.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   pageWidth: PropTypes.number.isRequired,
   scrollOnClick: PropTypes.bool,
-  disabled: PropTypes.bool,
+  disabled: PropTypes.string,
   store: PropTypes.object
 };
 
 NeedButton.defaultProps = {
   scrollOnClick: true,
-  disabled: false
+  disabled: "",
+  pageWidth: 1000
 };
 
 export default connect(

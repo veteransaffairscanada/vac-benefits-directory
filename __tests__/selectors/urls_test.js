@@ -236,7 +236,7 @@ describe("getPrintUrl", () => {
   it("adds selectedNeeds keys to the URL", () => {
     state.selectedNeeds = [{ id: "0" }];
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&benefits=0&needs=0"
+      "/print?lng=en&sortBy=relevance&benefits=0&selectedNeeds=0"
     );
   });
 
