@@ -138,14 +138,7 @@ export class Print extends Component {
   };
 
   render() {
-    const {
-      i18n,
-      t,
-      benefits,
-      needs,
-      multipleChoiceOptions,
-      store
-    } = this.props; // eslint-disable-line no-unused-vars
+    const { t, benefits, needs, multipleChoiceOptions, store } = this.props; // eslint-disable-line no-unused-vars
     const query = this.props.url.query;
     const printingFromFavourites = query.fromFavourites !== undefined;
     const filteredBenefitsIDs =
