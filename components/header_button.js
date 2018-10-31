@@ -31,26 +31,12 @@ const small = css`
 `;
 
 class HeaderButton extends Component {
-  buttonOnClick = (e, href, target, onClick) => {
-    if (href) {
-      if (target) {
-        window.open(href, target);
-      } else {
-        window.location.assign(href);
-      }
-    }
-    if (onClick) {
-      onClick(e);
-    }
-  };
-
   render() {
     const {
       id,
       arrow,
       className,
       children,
-      onClick,
       href,
       target,
       size,
@@ -68,7 +54,6 @@ class HeaderButton extends Component {
         href={href}
         target={target}
         id={"a-" + id}
-        onClick={e => this.buttonOnClick(e, href, target, useLink, onClick)}
         onMouseOver={this.props.onMouseOver}
         {...otherProps}
       >
@@ -78,7 +63,7 @@ class HeaderButton extends Component {
       </a>
     );
     // If the useLink prop is specified, wrap the anchor in a next Link to preserve data in Redux
-    if (this.props.useLink) {
+    if (useLink) {
       return <Link href={this.props.href}>{anchor}</Link>;
     } else {
       return anchor;

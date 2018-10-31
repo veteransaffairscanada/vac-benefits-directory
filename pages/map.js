@@ -77,6 +77,7 @@ export class Map extends Component {
                 className={backLink}
                 id="backButton"
                 arrow="back"
+                useLink
               >
                 {t("back")}
               </HeaderButton>
