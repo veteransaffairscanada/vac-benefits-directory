@@ -2,7 +2,7 @@ import lunr from "lunr";
 import stemmerSupport from "lunr-languages/lunr.stemmer.support.js";
 import fr from "lunr-languages/lunr.fr.js";
 import { createStore } from "redux";
-import airtableConstants from "./utils/airtable_constants";
+import airtableConstants from "./utils/hardcoded_strings";
 
 stemmerSupport(lunr);
 fr(lunr);
