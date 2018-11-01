@@ -11,9 +11,9 @@ import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
-import Header4 from "./typography/header4";
 import Button from "./button";
 import { globalTheme } from "../theme";
+import BenefitTitle from "./typography/benefit_title";
 
 const cardBody = css`
   padding-top: 20px;
@@ -69,7 +69,7 @@ export class BenefitCard extends Component {
               t={t}
               store={this.props.store}
             />
-            <Header4 className={benefitName}>
+            <BenefitTitle className={benefitName}>
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
@@ -79,7 +79,7 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-            </Header4>
+            </BenefitTitle>
 
             <OneLiner className={"cardDescription " + cardDescriptionText}>
               <Highlighter
