@@ -29,11 +29,10 @@ describe("NeedButton", () => {
 
   it("fires the the setSelectedNeeds function when a need is selected", () => {
     mount(<NeedButton {...props} />)
-      .find("FormControlLabel")
-      .at(0)
       .find("input")
       .at(0)
-      .simulate("change");
+      .simulate("change", { target: { checked: true } });
+
     expect(props.setSelectedNeeds).toHaveBeenCalled();
   });
 

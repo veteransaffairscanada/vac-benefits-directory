@@ -9,6 +9,7 @@ import needsFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
 import questionFixture from "../fixtures/questions";
 import multipleChoiceOptions from "../fixtures/multiple_choice_options";
+import configureStore from "redux-mock-store";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -18,11 +19,11 @@ global.window = {};
 global.window.print = jest.fn();
 
 describe("Print", () => {
-  let props;
+  let props, reduxState, mockStore;
   let _mountedPrint;
   const mountedPrint = () => {
     if (!_mountedPrint) {
-      _mountedPrint = shallow(<Print {...props} />);
+      _mountedPrint = shallow(<Print {...props} {...reduxState} />);
     }
     return _mountedPrint;
   };
@@ -38,7 +39,11 @@ describe("Print", () => {
       },
       t: key => {
         return key == "current-language-code" ? "en" : key;
-      },
+      }
+    };
+    mockStore = configureStore();
+
+    reduxState = {
       profileQuestions: questionFixture.filter(q => q.variable_name != "needs"),
       benefits: benefitsFixture,
       eligibilityPaths: elegibilityPathsFixture,
@@ -54,6 +59,7 @@ describe("Print", () => {
       areaOffices: areaOfficesFixture,
       multipleChoiceOptions: multipleChoiceOptions
     };
+    props.store = mockStore(reduxState);
     _mountedPrint = undefined;
   });
 
@@ -65,7 +71,7 @@ describe("Print", () => {
   it("parses url correctly", () => {
     props.url.query["patronType"] = "p2";
     props.url.query["serviceType"] = "s1";
-    props.url.query["needs"] = "need_0,need_1";
+    props.url.query["selectedNeeds"] = "need_0,need_1";
 
     expect(
       mountedPrint()
@@ -79,7 +85,7 @@ describe("Print", () => {
         .text()
     ).toContain("br_s1_en");
 
-    expect(mountedPrint().html()).toContain("checkboxneed_1");
+    expect(mountedPrint().html()).toContain("need_0");
   });
 
   it("has a correct sortBenefits function when sorting by popularity", () => {

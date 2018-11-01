@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Checkbox, FormControlLabel, Grid } from "@material-ui/core/";
+import { Grid } from "@material-ui/core/";
+import NeedButton from "./need_button";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { css } from "react-emotion";
@@ -10,6 +11,7 @@ const root = css`
 `;
 const needCss = css`
   font-size: 24px;
+  padding-top: 5px;
 `;
 const needsList = css`
   list-style: none;
@@ -18,6 +20,7 @@ const needsList = css`
   -moz-columns: 2;
   max-width: 100%;
   padding-left: 0;
+  padding-top: 30px;
   @media (max-width: 599px) {
     columns: 1;
     -webkit-columns: 1;
@@ -38,29 +41,19 @@ export class GuidedExperienceNeeds extends Component {
   };
 
   render() {
-    const { t } = this.props; // eslint-disable-line no-unused-vars
+    const { t, store } = this.props; // eslint-disable-line no-unused-vars
     return (
       <div className={root}>
         <Grid container spacing={24}>
           <ul className={needsList}>
             {this.props.needs.map(need => (
               <li key={need.id} className={needCss}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={this.props.selectedNeeds.hasOwnProperty(need.id)}
-                      onChange={() => this.handleClick(need.id)}
-                      value={need.id}
-                      color="primary"
-                      id={need.nameEn.replace(/ /g, "-") + "-checkbox"}
-                    />
-                  }
-                  label={
-                    t("current-language-code") === "en"
-                      ? need.nameEn
-                      : need.nameFr
-                  }
-                  htmlFor={need.nameEn.replace(/ /g, "-") + "-checkbox"}
+                <NeedButton
+                  key={need.nameEn.replace(/ /g, "-") + "-checkbox"}
+                  need={need}
+                  t={t}
+                  store={store}
+                  scrollOnClick={false}
                 />
               </li>
             ))}
@@ -90,6 +83,7 @@ GuidedExperienceNeeds.propTypes = {
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
+  store: PropTypes.object,
   t: PropTypes.func.isRequired
 };
 

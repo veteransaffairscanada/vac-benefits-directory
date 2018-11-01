@@ -50,9 +50,7 @@ describe("NeedsSelector", () => {
   });
 
   it("has the exact number of children as passed", () => {
-    const select = mountedNeedsSelector()
-      // .find("#needs_buttons")
-      .find("FormControlLabel");
+    const select = mountedNeedsSelector().find("NeedButton");
     expect(select.length).toEqual(needsFixture.length);
   });
 
