@@ -2,7 +2,7 @@
 
 ## What is it?
 
-[AirTable](https://airtable.com/) is an online spreadsheet product similar to Google Sheets but with a better API, better access controls, and a revision history. It allows spreadsheets to be created and data added or changed through the AirTable web application or through its REST API. This can be controlled by setting up user accounts and giving them read and/or write permission. You can also generate API keys that have read and/or write permission. Custom API documentation (with example calls!) is generated using the table/column names for your project, and can be viewed on airtable.com.
+[AirTable](https://airtable.com/) is an online spreadsheet product similar to Google Sheets but with a better API, access controls, and revision history. It allows spreadsheets to be created and data added or changed through the AirTable web application or through its REST API. This can be controlled by setting up user accounts and giving them read and/or write permission. You can also generate API keys that have read and/or write permission. Custom API documentation (with example calls!) is generated using the table/column names for your project, and can be viewed on airtable.com.
 
 ## Why and how are we using it?
 
@@ -26,6 +26,8 @@ To do anything in AirTable, always take the following steps:
 1. Visit the [Master AirTable base](https://airtable.com/tblHt9ZuCBwsplYw2). If you don't have permission to access it, [request permission](#how-does-one-get-access)
 2. Make some changes. See the step-by-step guides below to help you with the task you want to perform.
 3. View your changes in the live app by visiting the [data validation page](https://vac-benefits-finder.cds-snc.ca/data-validation) and clicking the "refresh cache" button at the top right.
+4. Make sure no new tests have failed by looking through the rows on the data-validation page. If they have, investigate and fix the problem in Airtable.
+5. Navigate back to the page in the app where you expect your changes to have occurred. Refresh the page to see them.
 
 ## Step by step guides
 
@@ -34,15 +36,15 @@ To do anything in AirTable, always take the following steps:
 1. Locate the text you want to change in the [app](https://vac-benefits-finder.cds-snc.ca)
 2. Copy the text to the clipboard
 3. Navigate to the [translations sheet](https://airtable.com/tblJAMGWk4ZypG5uX/viwsHMCBUnwx1EC3f) in airtable
-4. Do a ctrl+f (windows) or command+f (mac) search on the page, and paste in the text you copied
+4. Do a ctrl+f (Windows) or command+f (Mac) search on the page, and paste in the text you copied
 5. Locate the row that contains the text you want to change
 6. Enter in your new text in the English and French columns
 
-### Changing text on a benefit card
+### Changing text/links on a benefit card
 
 1. Navigate to the [benefits sheet](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ) in AirTable
 2. Locate the row that corresponds to the benefit you want to change
-3. To change the title, edit the vacNameEn and vacNameFr. To change the one line description, edit oneLineDescriptionEn and oneLineDescriptionFr.
+3. To change the title, edit vacNameEn and vacNameFr. To change the one line description, edit oneLineDescriptionEn and oneLineDescriptionFr. To change the links to the VAC site, edit benefitPageEn and benefitPageFr.
 
 ### Changing the eligibility criteria for a benefit
 
