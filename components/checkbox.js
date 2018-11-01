@@ -45,6 +45,7 @@ const StyledLabel = styled("span")({
   cursor: "pointer",
   padding: "8px 0px 9px 8px",
   display: "block",
+  height: "28px",
   color: `${globalTheme.colour.greyishBrown}`,
   "::before": {
     content: "''",
