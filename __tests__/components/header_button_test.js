@@ -25,45 +25,13 @@ describe("HeaderButton", () => {
     expect(mount(<HeaderButton {...props} />).text()).toEqual("header");
   });
 
-  describe("buttonOnClick function", () => {
-    let buttonOnClick, event, href, target, useLink, onClick;
-    beforeEach(() => {
-      buttonOnClick = mount(<HeaderButton {...props} />).instance()
-        .buttonOnClick;
-      event = undefined;
-      href = undefined;
-      target = undefined;
-      useLink = false;
-      onClick = jest.fn();
-    });
-
-    describe("if href is set", () => {
-      beforeEach(() => {
-        href = "href";
-      });
-
-      it("calls window.location.assign if neither target nor useLink is set", () => {
-        buttonOnClick(event, href, target, useLink, onClick);
-        expect(window.location.assign).toBeCalledWith(href);
-      });
-
-      it("calls window.open if target is set", () => {
-        target = "target";
-        buttonOnClick(event, href, target, useLink, onClick);
-        expect(window.open).toBeCalledWith(href, target);
-      });
-
-      it("calls Router.push if useLink is set", () => {
-        useLink = true;
-        buttonOnClick(event, href, target, useLink, onClick);
-        expect(Router.push).toBeCalledWith(href);
-      });
-    });
-
-    it("calls onClick if onClick is defined", () => {
-      event = "event";
-      buttonOnClick(event, href, target, useLink, onClick);
-      expect(onClick).toBeCalledWith("event");
-    });
+  it("is not wrapped in a <Link> if useLink is not specified", () => {
+    let component = mount(<HeaderButton {...props} />);
+    expect(component.find("Link").exists()).toBeFalsy();
+  });
+  it("is wrapped in a <Link> if useLink is specified", () => {
+    props.useLink = true;
+    let component = mount(<HeaderButton {...props} />);
+    expect(component.find("Link").exists()).toBeTruthy();
   });
 });
