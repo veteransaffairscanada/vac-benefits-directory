@@ -65,6 +65,7 @@ export class BB extends Component {
                 <HeaderButton
                   useLink
                   className={anchors}
+                  id="savedBenefits"
                   href={this.props.favouritesUrl}
                 >
                   <Bookmark />
