@@ -45,29 +45,51 @@ class HeaderButton extends Component {
       otherProps
     } = this.props;
 
-    const anchor = (
-      <a
-        disabled={disabled}
-        className={
-          size === "small" ? cx(style, small, className) : cx(style, className)
-        }
-        href={href}
-        onClick={this.props.onClick}
-        target={target}
-        id={"a-" + id}
-        onMouseOver={this.props.onMouseOver}
-        {...otherProps}
-      >
-        {arrow === "back" ? <ArrowBack /> : null}
-        {children}
-        {arrow === "forward" ? <ArrowForward /> : null}
-      </a>
-    );
-    // If the useLink prop is specified, wrap the anchor in a next Link to preserve data in Redux
+    // If the useLink prop is specified, wrap an anchor in a next Link to preserve data in Redux
+    // If no useLink, it should render as a button
     if (useLink) {
-      return <Link href={this.props.href}>{anchor}</Link>;
+      return (
+        <Link href={this.props.href}>
+          <a
+            className={
+              size === "small"
+                ? cx(style, small, className)
+                : cx(style, className)
+            }
+            href={href}
+            onClick={this.props.onClick}
+            target={target}
+            id={"a-" + id}
+            onMouseOver={this.props.onMouseOver}
+            {...otherProps}
+          >
+            {arrow === "back" ? <ArrowBack /> : null}
+            {children}
+            {arrow === "forward" ? <ArrowForward /> : null}
+          </a>
+        </Link>
+      );
     } else {
-      return anchor;
+      return (
+        <button
+          disabled={disabled}
+          className={
+            size === "small"
+              ? cx(style, small, className)
+              : cx(style, className)
+          }
+          href={href}
+          onClick={this.props.onClick}
+          target={target}
+          id={"a-" + id}
+          onMouseOver={this.props.onMouseOver}
+          {...otherProps}
+        >
+          {arrow === "back" ? <ArrowBack /> : null}
+          {children}
+          {arrow === "forward" ? <ArrowForward /> : null}
+        </button>
+      );
     }
   }
 }
