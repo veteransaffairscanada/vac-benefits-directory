@@ -8,7 +8,6 @@ import AreaOfficeTable from "../components/area_office_table";
 import PlaceSearch from "../components/place_search";
 import { Grid } from "@material-ui/core";
 import Paper from "../components/paper";
-import Link from "next/link";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
@@ -73,11 +72,15 @@ export class Map extends Component {
         <Container>
           <Grid container spacing={24}>
             <Grid item xs={12} md={8} className={topMatter}>
-              <Link href={backUrl}>
-                <HeaderButton className={backLink} id="backButton" arrow="back">
-                  {t("back")}
-                </HeaderButton>
-              </Link>
+              <HeaderButton
+                href={backUrl}
+                className={backLink}
+                id="backButton"
+                arrow="back"
+                useLink
+              >
+                {t("back")}
+              </HeaderButton>
               <Header1>{t("map.vacOffices")}</Header1>
             </Grid>
             <Grid item xs={12} md={4} className={topMatter} id="contactInfo">

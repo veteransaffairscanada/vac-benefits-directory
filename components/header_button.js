@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import Router from "next/router";
 import { cx, css } from "react-emotion";
 import ArrowBack from "./icons/ArrowBack";
 import ArrowForward from "./icons/ArrowForward";
+import Link from "next/link";
 
 const style = css`
   display: inline-block;
@@ -31,28 +31,12 @@ const small = css`
 `;
 
 class HeaderButton extends Component {
-  buttonOnClick = (e, href, target, useLink, onClick) => {
-    if (href) {
-      if (target) {
-        window.open(href, target);
-      } else if (useLink) {
-        Router.push(href);
-      } else {
-        window.location.assign(href);
-      }
-    }
-    if (onClick) {
-      onClick(e);
-    }
-  };
-
   render() {
     const {
       id,
       arrow,
       className,
       children,
-      onClick,
       href,
       target,
       size,
@@ -61,22 +45,30 @@ class HeaderButton extends Component {
       otherProps
     } = this.props;
 
-    return (
-      <button
+    const anchor = (
+      <a
         disabled={disabled}
         className={
           size === "small" ? cx(style, small, className) : cx(style, className)
         }
+        href={href}
+        onClick={this.props.onClick}
+        target={target}
         id={"a-" + id}
-        onClick={e => this.buttonOnClick(e, href, target, useLink, onClick)}
         onMouseOver={this.props.onMouseOver}
         {...otherProps}
       >
         {arrow === "back" ? <ArrowBack /> : null}
         {children}
         {arrow === "forward" ? <ArrowForward /> : null}
-      </button>
+      </a>
     );
+    // If the useLink prop is specified, wrap the anchor in a next Link to preserve data in Redux
+    if (useLink) {
+      return <Link href={this.props.href}>{anchor}</Link>;
+    } else {
+      return anchor;
+    }
   }
 }
 
