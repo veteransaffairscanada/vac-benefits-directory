@@ -60,7 +60,7 @@ const pin = css`
   font-size: 30px !important;
 `;
 const provinceCell = css`
-  color: ${globalTheme.colour.white};
+  color: ${globalTheme.colour.greyishBrown};
   font-size: 20px;
   font-weight: bold;
   border-bottom: 1px solid ${globalTheme.colour.black};
