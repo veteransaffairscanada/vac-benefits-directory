@@ -43,6 +43,7 @@ export class EmbeddedBenefitCard extends Component {
           rel="noopener noreferrer"
           className={heading}
           size="small"
+          useLink
           onClick={() =>
             this.logExit(
               language === "en" ? benefit.benefitPageEn : benefit.benefitPageFr
