@@ -44,7 +44,7 @@ export class BenefitCardHeader extends Component {
     if (includeParentInfo || includeImportantInfo) {
       return (
         <div className={cardTop}>
-          <AlertIcon />
+          <AlertIcon t={t} />
           <div className={headerDesc}>
             {includeParentInfo ? (
               <CardHeaderParentInfo
