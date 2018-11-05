@@ -8,7 +8,8 @@ describe("AlertIcon", () => {
   let props;
   beforeEach(() => {
     props = {
-      height: "30px"
+      height: "30px",
+      t: x => x
     };
   });
 
