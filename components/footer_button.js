@@ -20,7 +20,7 @@ const style = css`
     text-decoration: underline;
   }
   :focus {
-    outline: 3px solid ${globalTheme.colour.govukYellow};
+    outline: 3px solid ${globalTheme.colour.focusColour};
   }
 `;
 

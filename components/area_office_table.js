@@ -29,7 +29,7 @@ const officeRow = css`
     border-bottom: 0.5px solid ${globalTheme.colour.paleGrey};
   }
   :focus {
-    outline: 3px solid ${globalTheme.colour.govukYellow};
+    outline: 3px solid ${globalTheme.colour.focusColour};
     outline-offset: 0;
   }
 `;
