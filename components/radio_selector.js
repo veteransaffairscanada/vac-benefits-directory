@@ -8,7 +8,7 @@ import { logEvent } from "../utils/analytics";
 import { uuidv4 } from "../utils/common";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
-import Header4 from "./typography/header4";
+import Header from "./typography/header";
 import Tooltip from "./tooltip";
 
 const formControl = css`
@@ -100,9 +100,9 @@ export class RadioSelector extends React.Component {
             tooltipText={tooltipText}
             width={250}
           >
-            <Header4 className={formLabel}>
+            <Header className={formLabel} size="sm">
               <span className={tooltipText ? underline : ""}>{legend}</span>
-            </Header4>
+            </Header>
           </Tooltip>
           <RadioGroup
             aria-label={legend}

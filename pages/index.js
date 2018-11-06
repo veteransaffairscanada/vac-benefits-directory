@@ -14,7 +14,7 @@ import SearchComponent from "../components/search";
 import Paper from "../components/paper";
 import Container from "../components/container";
 import Body from "../components/typography/body";
-import Header1 from "../components/typography/header1";
+import Header from "../components/typography/header";
 
 const paper = css`
   margin-top: 58px;
@@ -81,9 +81,14 @@ export class App extends Component {
           <Paper className={paper}>
             <Grid container spacing={24}>
               <Grid item xs={12}>
-                <Header1 id="heroTitle" className={title}>
+                <Header
+                  id="heroTitle"
+                  className={title}
+                  headingLevel="h1"
+                  size="xl"
+                >
                   {t("index.title")}
-                </Header1>
+                </Header>
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
                 <Body>{t("index.ge_prompt")}</Body>

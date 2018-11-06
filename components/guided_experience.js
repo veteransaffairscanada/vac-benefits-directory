@@ -6,7 +6,7 @@ import { css } from "react-emotion";
 import Router from "next/router";
 import Container from "./container";
 import FilterText from "./typography/filter_text";
-import Header2 from "./typography/header2";
+import Header from "./typography/header";
 import Body from "./typography/body";
 import Button from "./button";
 import HeaderButton from "./header_button";
@@ -36,7 +36,6 @@ const body = css`
   margin-top: 5px;
   margin-bottom: 0px;
 `;
-
 export class GuidedExperience extends Component {
   jumpButtons = (t, reduxState) => {
     const eligibilityKeys = reduxState.questions
@@ -133,7 +132,9 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Grid item xs={12} className={questions}>
-              <Header2>{subtitle}</Header2>
+              <Header size="lg" headingLevel="h1">
+                {subtitle}
+              </Header>
               {helperText ? <Body className={body}>{helperText}</Body> : null}
               {this.props.children}
             </Grid>

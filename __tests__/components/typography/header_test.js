@@ -1,23 +1,25 @@
 import React from "react";
 import { mount } from "enzyme";
-import Header2 from "../../../components/typography/header2";
+import Header from "../../../components/typography/header";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
-describe("Header2", () => {
+describe("Header", () => {
   let props;
   beforeEach(() => {
     props = {
-      children: "header"
+      children: "header",
+      size: "lg",
+      headingLevel: "h2"
     };
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<Header2 {...props} />).html();
+    let html = mount(<Header {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("shows children", () => {
-    expect(mount(<Header2 {...props} />).text()).toEqual("header");
+    expect(mount(<Header {...props} />).text()).toEqual("header");
   });
 });

@@ -11,6 +11,7 @@ import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import HeaderButton from "./header_button";
+import Header from "./typography/header";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
@@ -71,9 +72,9 @@ export class ProfileNeedsSelectorMobile extends Component {
           expandIcon={<ExpandMoreIcon />}
           onClick={() => this.toggleOpenState()}
         >
-          <h2 variant="title" className={filterTitle}>
-            {t("filters")}{" "}
-          </h2>
+          <Header headingLevel="h2" size="md" className={filterTitle}>
+            {t("filters")}
+          </Header>{" "}
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>

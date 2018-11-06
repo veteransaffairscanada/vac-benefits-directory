@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import NeedButton from "./need_button";
 import { Grid } from "@material-ui/core";
 import { css } from "react-emotion";
-import Header4 from "./typography/header4";
+import Header from "./typography/header";
 import { showQuestion } from "../utils/common";
 
 const needsButtons = css`
@@ -34,7 +34,7 @@ export class NeedsSelector extends Component {
     if (showQuestion("needs", undefined, this.props.reduxState)) {
       return (
         <div className={topBorder}>
-          <Header4>{t("filter by category")}</Header4>
+          <Header size="sm">{t("filter by category")}</Header>
           <Grid container spacing={16}>
             <Grid item xs={9}>
               <div>{t("Select all that apply")}</div>

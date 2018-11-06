@@ -9,6 +9,7 @@ import { css } from "react-emotion";
 import HeaderButton from "./header_button";
 import CloseIcon from "./icons/Close";
 import Paper from "./paper";
+import Header from "./typography/header";
 
 const root = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
@@ -60,7 +61,9 @@ export class ProfileNeedsSelector extends Component {
     return (
       <Paper padding="sm" className={root}>
         <div variant="title" className={filterTitle}>
-          {t("filters")}{" "}
+          <Header headingLevel="h2" size="md">
+            {t("filters")}
+          </Header>{" "}
           {this.countSelected() > 0 ? (
             <HeaderButton
               id={"ClearFilters"}

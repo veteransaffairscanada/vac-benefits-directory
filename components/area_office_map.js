@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Button from "./button";
 import { css } from "react-emotion";
-import Header4 from "./typography/header4";
+import Header from "./typography/header";
 import Body from "./typography/body";
 
 import {
@@ -90,7 +90,9 @@ export class AreaOfficeMap extends Component {
               {this.props.selectedAreaOffice.id === d.id ? (
                 <InfoWindow options={{ maxWidth: 200 }}>
                   <div className={officeInfo}>
-                    <Header4>{d["name_" + t("current-language-code")]}</Header4>
+                    <Header size="sm">
+                      {d["name_" + t("current-language-code")]}
+                    </Header>
                     <br />
                     <Body>{d["address_" + t("current-language-code")]}</Body>
                     <Button

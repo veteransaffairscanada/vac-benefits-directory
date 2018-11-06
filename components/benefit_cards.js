@@ -11,7 +11,7 @@ import { css } from "react-emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
-import Header4 from "./typography/header4";
+import Header from "./typography/header";
 import Button from "./button";
 import { globalTheme } from "../theme";
 
@@ -69,7 +69,7 @@ export class BenefitCard extends Component {
               t={t}
               store={this.props.store}
             />
-            <Header4 className={benefitName}>
+            <Header className={benefitName} size="sm">
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
@@ -79,7 +79,7 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-            </Header4>
+            </Header>
 
             <OneLiner className={"cardDescription " + cardDescriptionText}>
               <Highlighter
