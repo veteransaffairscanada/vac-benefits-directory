@@ -8,7 +8,9 @@ describe("Header", () => {
   let props;
   beforeEach(() => {
     props = {
-      children: "header"
+      children: "header",
+      size: "lg",
+      headingLevel: "h2"
     };
   });
 

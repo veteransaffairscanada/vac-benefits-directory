@@ -7,7 +7,7 @@ import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
 import Container from "../components/container";
-import Header1 from "../components/typography/header1";
+import Header from "../components/typography/header";
 
 export class AllBenefits extends Component {
   render() {
@@ -21,9 +21,9 @@ export class AllBenefits extends Component {
         title={t("titles.all_benefits")}
       >
         <Container>
-          <h1>
-            <Header1>{t("all-benefits.List of all benefits")}</Header1>
-          </h1>
+          <Header size="xl" headingLevel="h1">
+            {t("all-benefits.List of all benefits")}
+          </Header>
           <Grid item xs={12}>
             <Grid container spacing={24}>
               <BenefitList
