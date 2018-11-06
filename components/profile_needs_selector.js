@@ -31,9 +31,7 @@ const closeIcon = css`
   margin-left: ${globalTheme.unit};
   font-weight: bold;
 `;
-const noMargin = css`
-  margin: 0px;
-`;
+
 export class ProfileNeedsSelector extends Component {
   state = {
     open: false
