@@ -31,7 +31,9 @@ const mapContainer = css`
     height: 230px;
   }
 `;
-
+const noMargin = css`
+  margin: 0px;
+`;
 export class Map extends Component {
   getLocation() {
     this.props.setUserLocation({
@@ -81,7 +83,7 @@ export class Map extends Component {
               >
                 {t("back")}
               </HeaderButton>
-              <h1>
+              <h1 className={noMargin}>
                 <Header1>{t("map.vacOffices")}</Header1>
               </h1>
             </Grid>

@@ -56,7 +56,9 @@ const whiteBanner = css`
   padding-bottom: 20px;
   margin-bottom: 30px;
 `;
-
+const noMargin = css`
+  margin: 0px;
+`;
 export class Favourites extends Component {
   state = {
     enIdx: null,
@@ -115,7 +117,7 @@ export class Favourites extends Component {
         <Container id="favourites">
           <Grid container spacing={24}>
             <Grid item xs={12} className={topMatter}>
-              <h1>
+              <h1 className={noMargin}>
                 <Header1 className={"BenefitsCounter"}>
                   {t("favourites.saved_benefits", {
                     x: filteredBenefits.length

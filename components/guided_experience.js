@@ -36,7 +36,9 @@ const body = css`
   margin-top: 5px;
   margin-bottom: 0px;
 `;
-
+const noMargin = css`
+  margin: 0px;
+`;
 export class GuidedExperience extends Component {
   jumpButtons = (t, reduxState) => {
     const eligibilityKeys = reduxState.questions
@@ -133,7 +135,7 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Grid item xs={12} className={questions}>
-              <h1>
+              <h1 className={noMargin}>
                 <Header2>{subtitle}</Header2>
               </h1>
               {helperText ? <Body className={body}>{helperText}</Body> : null}

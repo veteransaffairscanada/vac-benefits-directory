@@ -9,6 +9,7 @@ import { css } from "react-emotion";
 import HeaderButton from "./header_button";
 import CloseIcon from "./icons/Close";
 import Paper from "./paper";
+import Header3 from "./typography/header3";
 
 const root = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
@@ -30,7 +31,9 @@ const closeIcon = css`
   margin-left: ${globalTheme.unit};
   font-weight: bold;
 `;
-
+const noMargin = css`
+  margin: 0px;
+`;
 export class ProfileNeedsSelector extends Component {
   state = {
     open: false
@@ -60,7 +63,9 @@ export class ProfileNeedsSelector extends Component {
     return (
       <Paper padding="sm" className={root}>
         <div variant="title" className={filterTitle}>
-          <h2>{t("filters")}</h2>{" "}
+          <h2 className={noMargin}>
+            <Header3>{t("filters")}</Header3>
+          </h2>{" "}
           {this.countSelected() > 0 ? (
             <HeaderButton
               id={"ClearFilters"}

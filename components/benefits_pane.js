@@ -42,6 +42,9 @@ const orText = css`
     display: none;
   }
 `;
+const noMargin = css`
+  margin: 0px;
+`;
 
 export class BenefitsPane extends Component {
   clearFilters = () => {
@@ -89,7 +92,7 @@ export class BenefitsPane extends Component {
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
-          <h1>
+          <h1 className={noMargin}>
             <Header2>{t("BenefitsPane.no_filtered_benefits")}</Header2>
           </h1>
 
@@ -119,9 +122,11 @@ export class BenefitsPane extends Component {
       return (
         <Grid container spacing={16}>
           <Grid item xs={12}>
-            <Header2 className={"BenefitsCounter " + title}>
-              {this.countString(filteredBenefits.length, t)}
-            </Header2>
+            <h1 className={noMargin}>
+              <Header2 className={"BenefitsCounter " + title}>
+                {this.countString(filteredBenefits.length, t)}
+              </Header2>
+            </h1>
             {filteredBenefits.length > 0 ? (
               <Body>{t("B3.check eligibility")}</Body>
             ) : (
