@@ -9,8 +9,7 @@ import Print from "./icons/Print";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "./container";
-import Header1 from "./typography/header1";
-import Header2 from "./typography/header2";
+import Header from "./typography/header";
 import HeaderButton from "./header_button";
 import Body from "./typography/body";
 import Paper from "./paper";
@@ -118,11 +117,15 @@ export class Favourites extends Component {
           <Grid container spacing={24}>
             <Grid item xs={12} className={topMatter}>
               <h1 className={noMargin}>
-                <Header1 className={"BenefitsCounter"}>
+                <Header
+                  className={"BenefitsCounter"}
+                  size="xl"
+                  headingLevel="h1"
+                >
                   {t("favourites.saved_benefits", {
                     x: filteredBenefits.length
                   })}
-                </Header1>
+                </Header>
               </h1>
             </Grid>
             <Grid item md={8} xs={12}>
@@ -165,9 +168,9 @@ export class Favourites extends Component {
             </Grid>
             <Grid item md={4} xs={12}>
               <Paper padding="sm" className={contactUs}>
-                <h2>
-                  <Header2>{t("favourites.contact_us")}</Header2>
-                </h2>
+                <Header headingLevel="h2" size="lg">
+                  {t("favourites.contact_us")}
+                </Header>
                 <p>
                   <HeaderButton
                     id="nearbyOffice"
@@ -209,9 +212,9 @@ export class Favourites extends Component {
 
                 <hr />
 
-                <Header2 className={contactUsTitle}>
+                <Header className={contactUsTitle} size="lg" headingLevel="h2">
                   {t("favourites.apply_prompt")}
-                </Header2>
+                </Header>
 
                 <Body className={noBottomMargin}>
                   <p>

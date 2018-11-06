@@ -11,7 +11,7 @@ import Paper from "../components/paper";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "../components/container";
-import Header1 from "../components/typography/header1";
+import Header from "../components/typography/header";
 import Body from "../components/typography/body";
 import HeaderButton from "../components/header_button";
 import { getLink } from "../utils/common";
@@ -30,9 +30,6 @@ const mapContainer = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     height: 230px;
   }
-`;
-const noMargin = css`
-  margin: 0px;
 `;
 export class Map extends Component {
   getLocation() {
@@ -83,9 +80,9 @@ export class Map extends Component {
               >
                 {t("back")}
               </HeaderButton>
-              <h1 className={noMargin}>
-                <Header1>{t("map.vacOffices")}</Header1>
-              </h1>
+              <Header size="xl" headingLevel="h1">
+                {t("map.vacOffices")}
+              </Header>
             </Grid>
             <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
               <p>

@@ -1,10 +1,10 @@
 import React from "react";
 import { mount } from "enzyme";
-import Header3 from "../../../components/typography/header3";
+import Header from "../../../components/typography/header";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
-describe("Header3", () => {
+describe("Header", () => {
   let props;
   beforeEach(() => {
     props = {
@@ -13,11 +13,11 @@ describe("Header3", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<Header3 {...props} />).html();
+    let html = mount(<Header {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("shows children", () => {
-    expect(mount(<Header3 {...props} />).text()).toEqual("header");
+    expect(mount(<Header {...props} />).text()).toEqual("header");
   });
 });

@@ -9,7 +9,7 @@ import {
   getFilteredBenefits
 } from "../selectors/benefits";
 import { css } from "react-emotion";
-import Header2 from "./typography/header2";
+import Header from "./typography/header";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
 import Dropdown from "./dropdown";
@@ -41,9 +41,6 @@ const orText = css`
   @media only screen and (max-width: ${globalTheme.max.sm}) {
     display: none;
   }
-`;
-const noMargin = css`
-  margin: 0px;
 `;
 
 export class BenefitsPane extends Component {
@@ -92,9 +89,9 @@ export class BenefitsPane extends Component {
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
-          <h1 className={noMargin}>
-            <Header2>{t("BenefitsPane.no_filtered_benefits")}</Header2>
-          </h1>
+          <Header size="lg" headingLevel="h1">
+            {t("BenefitsPane.no_filtered_benefits")}
+          </Header>
 
           <div className={buttonBar}>
             <Button
@@ -122,11 +119,13 @@ export class BenefitsPane extends Component {
       return (
         <Grid container spacing={16}>
           <Grid item xs={12}>
-            <h1 className={noMargin}>
-              <Header2 className={"BenefitsCounter " + title}>
-                {this.countString(filteredBenefits.length, t)}
-              </Header2>
-            </h1>
+            <Header
+              className={"BenefitsCounter " + title}
+              size="lg"
+              headingLevel="h1"
+            >
+              {this.countString(filteredBenefits.length, t)}
+            </Header>
             {filteredBenefits.length > 0 ? (
               <Body>{t("B3.check eligibility")}</Body>
             ) : (
