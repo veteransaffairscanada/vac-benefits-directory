@@ -57,9 +57,24 @@ export class FavouriteButton extends Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, benefit } = this.props;
     const isBookmarked =
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
+    const longButtonText = t(
+      isBookmarked
+        ? "B3.favouritesButtonTextRemove"
+        : "B3.favouritesButtonBText"
+    );
+    const shortButtonText = t(
+      isBookmarked
+        ? "B3.favouritesButtonTextRemove"
+        : "B3.favouritesButtonBTextMobile"
+    );
+    const benefitName =
+      t("current-language-code") === "en"
+        ? benefit.vacNameEn
+        : benefit.vacNameFr;
+
     return (
       <Tooltip
         disabled={!this.props.cookiesDisabled}
@@ -67,10 +82,11 @@ export class FavouriteButton extends Component {
       >
         <HeaderButton
           disabled={this.props.cookiesDisabled}
-          id={"favourite-" + this.props.benefit.id}
+          ariaLabel={longButtonText + " " + benefitName}
+          id={"favourite-" + benefit.id}
           className={bookmarkButton}
           aria-label={t("B3.favouritesButtonText")}
-          onClick={() => this.toggleFavourite(this.props.benefit.id)}
+          onClick={() => this.toggleFavourite(benefit.id)}
           onMouseOver={() => {
             this.props.setCookiesDisabled(areCookiesDisabled());
           }}
@@ -81,20 +97,8 @@ export class FavouriteButton extends Component {
           ) : (
             <BookmarkBorder className={cx("notBookmarked", bookmarkIcon)} />
           )}
-          <span className={hideSmall}>
-            {this.props.t(
-              isBookmarked
-                ? "B3.favouritesButtonTextRemove"
-                : "B3.favouritesButtonBText"
-            )}
-          </span>
-          <span className={hideBig}>
-            {this.props.t(
-              isBookmarked
-                ? "B3.favouritesButtonTextRemove"
-                : "B3.favouritesButtonBTextMobile"
-            )}
-          </span>
+          <span className={hideSmall}>{longButtonText}</span>
+          <span className={hideBig}>{shortButtonText}</span>
         </HeaderButton>
       </Tooltip>
     );

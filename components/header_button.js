@@ -72,6 +72,7 @@ class HeaderButton extends Component {
     } else {
       return (
         <button
+          aria-label={this.props.ariaLabel}
           disabled={disabled}
           className={
             size === "small"
@@ -99,6 +100,7 @@ HeaderButton.propTypes = {
   size: PropTypes.string,
   href: PropTypes.string,
   target: PropTypes.string,
+  ariaLabel: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
