@@ -133,7 +133,9 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Grid item xs={12} className={questions}>
-              <Header2>{subtitle}</Header2>
+              <h1>
+                <Header2>{subtitle}</Header2>
+              </h1>
               {helperText ? <Body className={body}>{helperText}</Body> : null}
               {this.props.children}
             </Grid>

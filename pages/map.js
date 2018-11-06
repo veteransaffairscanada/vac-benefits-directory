@@ -81,7 +81,9 @@ export class Map extends Component {
               >
                 {t("back")}
               </HeaderButton>
-              <Header1>{t("map.vacOffices")}</Header1>
+              <h1>
+                <Header1>{t("map.vacOffices")}</Header1>
+              </h1>
             </Grid>
             <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
               <p>

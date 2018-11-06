@@ -21,7 +21,9 @@ export class AllBenefits extends Component {
         title={t("titles.all_benefits")}
       >
         <Container>
-          <Header1>{t("all-benefits.List of all benefits")}</Header1>
+          <h1>
+            <Header1>{t("all-benefits.List of all benefits")}</Header1>
+          </h1>
           <Grid item xs={12}>
             <Grid container spacing={24}>
               <BenefitList

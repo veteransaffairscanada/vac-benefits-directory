@@ -60,7 +60,7 @@ export class ProfileNeedsSelector extends Component {
     return (
       <Paper padding="sm" className={root}>
         <div variant="title" className={filterTitle}>
-          {t("filters")}{" "}
+          <h2>{t("filters")}</h2>{" "}
           {this.countSelected() > 0 ? (
             <HeaderButton
               id={"ClearFilters"}

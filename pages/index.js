@@ -81,9 +81,11 @@ export class App extends Component {
           <Paper className={paper}>
             <Grid container spacing={24}>
               <Grid item xs={12}>
-                <Header1 id="heroTitle" className={title}>
-                  {t("index.title")}
-                </Header1>
+                <h1>
+                  <Header1 id="heroTitle" className={title}>
+                    {t("index.title")}
+                  </Header1>
+                </h1>
               </Grid>
               <Grid item xs={12} md={6} className={columnLeft}>
                 <Body>{t("index.ge_prompt")}</Body>

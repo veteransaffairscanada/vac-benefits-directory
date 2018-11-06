@@ -89,7 +89,9 @@ export class BenefitsPane extends Component {
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
-          <Header2>{t("BenefitsPane.no_filtered_benefits")}</Header2>
+          <h1>
+            <Header2>{t("BenefitsPane.no_filtered_benefits")}</Header2>
+          </h1>
 
           <div className={buttonBar}>
             <Button

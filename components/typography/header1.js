@@ -18,7 +18,9 @@ class Header1 extends Component {
   render() {
     const { className, children } = this.props;
     return (
-      <h1 className={className ? cx(style, className) : style}>{children}</h1>
+      <span className={className ? cx(style, className) : style}>
+        {children}
+      </span>
     );
   }
 }

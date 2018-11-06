@@ -115,9 +115,13 @@ export class Favourites extends Component {
         <Container id="favourites">
           <Grid container spacing={24}>
             <Grid item xs={12} className={topMatter}>
-              <Header1 className={"BenefitsCounter"}>
-                {t("favourites.saved_benefits", { x: filteredBenefits.length })}
-              </Header1>
+              <h1>
+                <Header1 className={"BenefitsCounter"}>
+                  {t("favourites.saved_benefits", {
+                    x: filteredBenefits.length
+                  })}
+                </Header1>
+              </h1>
             </Grid>
             <Grid item md={8} xs={12}>
               {this.state.showDisabledCookieBanner ? (
@@ -159,7 +163,9 @@ export class Favourites extends Component {
             </Grid>
             <Grid item md={4} xs={12}>
               <Paper padding="sm" className={contactUs}>
-                <Header2>{t("favourites.contact_us")}</Header2>
+                <h2>
+                  <Header2>{t("favourites.contact_us")}</Header2>
+                </h2>
                 <p>
                   <HeaderButton
                     id="nearbyOffice"
