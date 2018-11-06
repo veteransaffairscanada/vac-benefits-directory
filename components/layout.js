@@ -24,6 +24,9 @@ const header = css`
 `;
 const white = css`
   color: white;
+  :focus {
+    outline: 3px solid ${globalTheme.colour.focusColour};
+  }
 `;
 const backgoundColour1 = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};

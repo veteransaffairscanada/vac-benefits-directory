@@ -13,6 +13,9 @@ const style = css`
   :hover {
     text-decoration: underline;
   }
+  :focus {
+    outline: 3px solid ${globalTheme.colour.focusColour};
+  }
 `;
 
 class FooterLink extends Component {
