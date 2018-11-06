@@ -55,9 +55,6 @@ const whiteBanner = css`
   padding-bottom: 20px;
   margin-bottom: 30px;
 `;
-const noMargin = css`
-  margin: 0px;
-`;
 export class Favourites extends Component {
   state = {
     enIdx: null,
@@ -116,17 +113,11 @@ export class Favourites extends Component {
         <Container id="favourites">
           <Grid container spacing={24}>
             <Grid item xs={12} className={topMatter}>
-              <h1 className={noMargin}>
-                <Header
-                  className={"BenefitsCounter"}
-                  size="xl"
-                  headingLevel="h1"
-                >
-                  {t("favourites.saved_benefits", {
-                    x: filteredBenefits.length
-                  })}
-                </Header>
-              </h1>
+              <Header className={"BenefitsCounter"} size="xl" headingLevel="h1">
+                {t("favourites.saved_benefits", {
+                  x: filteredBenefits.length
+                })}
+              </Header>
             </Grid>
             <Grid item md={8} xs={12}>
               {this.state.showDisabledCookieBanner ? (
