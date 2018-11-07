@@ -53,7 +53,8 @@ const ClearButton = styled("button")({
   backgroundRepeat: "no-repeat",
   backgroundPosition: "2px 50%",
   ":focus": {
-    outlineOffset: 0
+    outlineOffset: 0,
+    outline: `3px solid ` + globalTheme.colour.focusColour
   },
   ":hover": {
     color: globalTheme.colour.black
@@ -73,7 +74,8 @@ const SearchButton = styled("button")({
   backgroundRepeat: "no-repeat",
   backgroundPosition: "2px 50%",
   ":focus": {
-    outlineOffset: 0
+    outlineOffset: 0,
+    outline: `3px solid ` + globalTheme.colour.focusColour
   },
   ":hover": {
     backgroundColor: globalTheme.colour.darkGreyBlue
@@ -150,7 +152,7 @@ class SearchBox extends Component {
         ) : null}
 
         {this.props.disableButton ? (
-          <DisabledSearchButton title={ariaLabel} tabIndex="-1">
+          <DisabledSearchButton disabled>
             <SearchIcon />
           </DisabledSearchButton>
         ) : (
