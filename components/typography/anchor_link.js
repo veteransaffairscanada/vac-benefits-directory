@@ -24,10 +24,7 @@ class AnchorLink extends Component {
     const { className, children } = this.props;
 
     return (
-      <a
-        className={className ? cx(this.style, className) : this.style}
-        {...this.props}
-      >
+      <a className={cx(this.style, className)} {...this.props}>
         {children}
       </a>
     );
