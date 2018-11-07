@@ -3,7 +3,7 @@
   "license": "MIT",
   "description": "Proof of concept for VAC benefits navigator",
   "engines": {
-    "node": "11.1.0"
+    "node": ">10"
   },
   "repository": {
     "type": "git",
