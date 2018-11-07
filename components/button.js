@@ -87,7 +87,7 @@ const StyledButton = styled("button")(
       backgroundColor: isSecondary
         ? globalTheme.colour.darkGreyBlue
         : undefined,
-      outline: `3px solid ` + globalTheme.colour.govukYellow
+      outline: `3px solid ` + globalTheme.colour.focusColour
     },
     ":active": {
       boxShadow: isSecondary

@@ -31,7 +31,7 @@ const InputSearchBox = styled("input")({
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",
-    outline: `3px solid ` + globalTheme.colour.govukYellow,
+    outline: `3px solid ` + globalTheme.colour.focusColour,
     outlineOffset: 0,
     " ~ button": {
       width: "46px"

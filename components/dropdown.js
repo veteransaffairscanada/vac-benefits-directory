@@ -42,7 +42,7 @@ const selectStyle = css`
   box-shadow: ${globalTheme.boxShadowMui};
   border: 0px;
   :focus {
-    outline: 3px solid ${globalTheme.colour.govukYellow};
+    outline: 3px solid ${globalTheme.colour.focusColour};
     outline-offset: 0;
   }
 `;

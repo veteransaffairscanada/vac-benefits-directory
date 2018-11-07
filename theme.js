@@ -1,4 +1,4 @@
-const theme = {
+let theme = {
   fontFamily: "Merriweather",
   marginTop: "25px", //used in place of theme.spacing.unit *3
   unit: "8px",
@@ -44,5 +44,7 @@ const theme = {
     lineGrey: "#dfdfdf"
   }
 };
+
+theme.colour.focusColour = theme.colour.govukYellow;
 
 export const globalTheme = { ...theme };

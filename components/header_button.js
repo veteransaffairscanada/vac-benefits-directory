@@ -25,6 +25,9 @@ const style = css`
     margin-top: -4px;
     vertical-align: middle;
   }
+  :focus {
+    outline: 3px solid ${globalTheme.colour.focusColour};
+  }
 `;
 const small = css`
   font-size: 18px;

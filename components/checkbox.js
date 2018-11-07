@@ -25,7 +25,7 @@ const StyledInput = styled("input")(
       opacity: 1
     },
     ":focus + span:before": {
-      boxShadow: `0 0 0 3px ${globalTheme.colour.govukYellow}`
+      boxShadow: `0 0 0 3px ${globalTheme.colour.focusColour}`
     }
   },
   ({ disabled }) => ({
