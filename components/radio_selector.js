@@ -1,15 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormControl, FormControlLabel } from "@material-ui/core";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
-import { uuidv4 } from "../utils/common";
 import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Header from "./typography/header";
 import Tooltip from "./tooltip";
+import Radio from "./radio";
 
 const formControl = css`
   margin-top: ${globalTheme.unit} !important;
@@ -23,6 +20,19 @@ const underline = css`
 `;
 
 export class RadioSelector extends React.Component {
+  state = {
+    selected: this.props.responses[this.props.selectorType]
+  };
+
+  // componentDidMount() {
+  //   this.setState({selected: this.props.responses[this.props.selectorType]});
+  //
+  // }
+  // constructor(props) {
+  //   super(props);
+  //   this.setState({selected: props.responses[props.selectorType]});
+  // }
+
   isDisabled = (option, responses, questionDisplayLogic) => {
     let returnValue = false;
     questionDisplayLogic.forEach(row => {
@@ -73,12 +83,13 @@ export class RadioSelector extends React.Component {
     const response = event.target.value;
     logEvent("FilterClick", question, response);
     this.props.saveQuestionResponse(question, response);
+    this.setState(response);
+
     this.clearAppropriateResponses(question, response);
+    // this.forceUpdate();
   };
 
   render() {
-    const guid = uuidv4();
-
     const options = this.props.multipleChoiceOptions
       .filter(mco => this.props.options.indexOf(mco.id) !== -1)
       .filter(
@@ -91,10 +102,10 @@ export class RadioSelector extends React.Component {
       );
 
     const { t, selectorType, responses, legend, tooltipText } = this.props;
-
+    console.log(responses[selectorType]);
     if (options.length !== 0) {
       return (
-        <FormControl className={formControl}>
+        <div className={formControl}>
           <Tooltip
             disabled={!tooltipText}
             tooltipText={tooltipText}
@@ -104,30 +115,27 @@ export class RadioSelector extends React.Component {
               <span className={tooltipText ? underline : ""}>{legend}</span>
             </Header>
           </Tooltip>
-          <RadioGroup
+          <div
             aria-label={legend}
-            value={responses[selectorType]}
-            onChange={this.handleSelect}
+            // onChange={this.handleSelect}
           >
             {options.map(option => {
               return (
-                <FormControlLabel
+                <Radio
                   key={option.variable_name}
+                  name={selectorType}
+                  checked={responses[selectorType] === option.variable_name}
+                  onChange={this.handleSelect}
                   value={option.variable_name}
-                  htmlFor={option.variable_name + guid}
-                  control={
-                    <Radio color="primary" id={option.variable_name + guid} />
-                  }
-                  label={
-                    t("current-language-code") === "en"
-                      ? option.display_text_english
-                      : option.display_text_french
-                  }
-                />
+                >
+                  {t("current-language-code") === "en"
+                    ? option.display_text_english
+                    : option.display_text_french}
+                </Radio>
               );
             })}
-          </RadioGroup>
-        </FormControl>
+          </div>
+        </div>
       );
     } else {
       return null;
@@ -153,6 +161,7 @@ const mapStateToProps = reduxState => {
     questionDisplayLogic: reduxState.questionDisplayLogic,
     questionClearLogic: reduxState.questionClearLogic,
     responses: reduxState
+    // answer: reduxState[this.props.selectorType]
   };
 };
 
@@ -168,6 +177,7 @@ RadioSelector.propTypes = {
   questionClearLogic: PropTypes.array.isRequired,
   options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
+  // answer: PropTypes.string,
   store: PropTypes.object
 };
 
