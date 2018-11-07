@@ -11,6 +11,7 @@ import { css } from "react-emotion";
 import Container from "./container";
 import Header from "./typography/header";
 import HeaderButton from "./header_button";
+import AnchorLink from "./typography/anchor_link";
 import Body from "./typography/body";
 import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
@@ -178,12 +179,13 @@ export class Favourites extends Component {
                 <hr />
 
                 <p>
-                  <HeaderButton
-                    id="contactPhone"
-                    href={"tel:" + t("contact.phone")}
+                  <AnchorLink
+                    fontSize={21}
+                    fontWeight="bold"
+                    href={"tel:+" + t("contact.phone")}
                   >
                     {t("contact.phone")}
-                  </HeaderButton>
+                  </AnchorLink>
                 </p>
 
                 <Body>{t("favourites.call_time")}</Body>
@@ -191,12 +193,14 @@ export class Favourites extends Component {
                 <hr />
 
                 <p>
-                  <HeaderButton
+                  <AnchorLink
                     id="contactEmail"
+                    fontSize={21}
+                    fontWeight="bold"
                     href={"mailto:" + t("contact.email")}
                   >
                     {t("contact.email")}
-                  </HeaderButton>
+                  </AnchorLink>
                 </p>
 
                 <Body>{t("favourites.email_disclaimer")}</Body>

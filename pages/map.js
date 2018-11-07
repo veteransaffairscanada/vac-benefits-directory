@@ -14,6 +14,7 @@ import Container from "../components/container";
 import Header from "../components/typography/header";
 import Body from "../components/typography/body";
 import HeaderButton from "../components/header_button";
+import AnchorLink from "../components/typography/anchor_link";
 import { getLink } from "../utils/common";
 
 const mapPaper = css`
@@ -70,7 +71,7 @@ export class Map extends Component {
       >
         <Container>
           <Grid container spacing={24}>
-            <Grid item xs={12} md={8} className={topMatter}>
+            <Grid item xs={12} md={12} className={topMatter}>
               <HeaderButton
                 href={backUrl}
                 className={backLink}
@@ -84,11 +85,16 @@ export class Map extends Component {
                 {t("map.vacOffices")}
               </Header>
             </Grid>
-            <Grid item xs={12} md={4} className={topMatter} id="contactInfo">
+            <Grid item xs={12} md={12} id="contactInfo">
               <p>
-                <a href={"tel:" + t("contact.phone")}>{t("contact.phone")}</a>
+                <Body>
+                  {t("map.contact_1") + " "}
+                  <AnchorLink fontSize={18} href={"tel:+" + t("contact.phone")}>
+                    {t("contact.phone")}
+                  </AnchorLink>
+                  {" " + t("map.contact_2")}
+                </Body>
               </p>
-              <Body>{t("favourites.call_time")}</Body>
             </Grid>
             <Grid
               item
