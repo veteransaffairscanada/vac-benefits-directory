@@ -152,7 +152,7 @@ class SearchBox extends Component {
         ) : null}
 
         {this.props.disableButton ? (
-          <DisabledSearchButton disabled>
+          <DisabledSearchButton title={ariaLabel} disabled>
             <SearchIcon />
           </DisabledSearchButton>
         ) : (
