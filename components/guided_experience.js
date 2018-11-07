@@ -10,7 +10,7 @@ import Header from "./typography/header";
 import Body from "./typography/body";
 import Button from "./button";
 import HeaderButton from "./header_button";
-import GuidedExperienceLink from "./typography/guided_experience_link";
+import AnchorLink from "./typography/anchor_link";
 import { globalTheme } from "../theme";
 import Paper from "./paper";
 
@@ -62,13 +62,13 @@ export class GuidedExperience extends Component {
         return (
           <span key={i}>
             <span className={comma}>{i === 0 ? "" : ","}</span>
-            <GuidedExperienceLink
+            <AnchorLink
               id={"jumpButton" + i}
               href="#"
               onClick={() => this.props.setSection(k)}
             >
               {text}
-            </GuidedExperienceLink>
+            </AnchorLink>
           </span>
         );
       }

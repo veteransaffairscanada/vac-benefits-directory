@@ -88,7 +88,7 @@ describe("GuidedExperience", () => {
 
   it("sets the correct section if the edit answer button is pressed", () => {
     mounted_GuidedExperience()
-      .find("GuidedExperienceLink")
+      .find("AnchorLink")
       .first()
       .simulate("click");
     expect(props.setSection).toBeCalledWith("patronType");
