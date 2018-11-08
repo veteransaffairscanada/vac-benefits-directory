@@ -15,7 +15,10 @@ const Banner = css`
   color: ${globalTheme.colour.white};
   font: 0.694rem sans-serif;
   span:first-child {
-    background-color: ${globalTheme.colour.alphaPink};
+    font-weight: 700 !important;
+    padding: 0.2rem 0.7rem;
+    border-radius: 5px;
+    background-color: ${globalTheme.colour.betaBlue};
   }
 `;
 
@@ -27,7 +30,7 @@ const Text = css`
  */
 export const AlphaBanner = ({ children, ...rest }) => (
   <aside {...rest} className={Banner}>
-    <PhaseBadge phase="alpha" />
+    <PhaseBadge phase="beta" />
     <div className={Text}>{children}</div>
   </aside>
 );
