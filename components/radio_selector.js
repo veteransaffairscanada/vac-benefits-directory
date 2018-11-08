@@ -83,10 +83,9 @@ export class RadioSelector extends React.Component {
     const response = event.target.value;
     logEvent("FilterClick", question, response);
     this.props.saveQuestionResponse(question, response);
-    this.setState(response);
-
+    this.setState({ selected: response });
+    console.log(response);
     this.clearAppropriateResponses(question, response);
-    // this.forceUpdate();
   };
 
   render() {
@@ -102,7 +101,7 @@ export class RadioSelector extends React.Component {
       );
 
     const { t, selectorType, responses, legend, tooltipText } = this.props;
-    console.log(responses[selectorType]);
+    // console.log(responses[selectorType]);
     if (options.length !== 0) {
       return (
         <div className={formControl}>
@@ -115,16 +114,14 @@ export class RadioSelector extends React.Component {
               <span className={tooltipText ? underline : ""}>{legend}</span>
             </Header>
           </Tooltip>
-          <div
-            aria-label={legend}
-            // onChange={this.handleSelect}
-          >
+          <div aria-label={legend}>
             {options.map(option => {
               return (
                 <Radio
                   key={option.variable_name}
                   name={selectorType}
                   checked={responses[selectorType] === option.variable_name}
+                  // checked={this.state.selected === option.variable_name}
                   onChange={this.handleSelect}
                   value={option.variable_name}
                 >
@@ -161,7 +158,6 @@ const mapStateToProps = reduxState => {
     questionDisplayLogic: reduxState.questionDisplayLogic,
     questionClearLogic: reduxState.questionClearLogic,
     responses: reduxState
-    // answer: reduxState[this.props.selectorType]
   };
 };
 
@@ -177,7 +173,6 @@ RadioSelector.propTypes = {
   questionClearLogic: PropTypes.array.isRequired,
   options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
-  // answer: PropTypes.string,
   store: PropTypes.object
 };
 
