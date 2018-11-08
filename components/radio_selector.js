@@ -95,15 +95,18 @@ export class RadioSelector extends React.Component {
     if (options.length !== 0) {
       return (
         <FormControl className={formControl}>
-          <Tooltip
-            disabled={!tooltipText}
-            tooltipText={tooltipText}
-            width={250}
-          >
-            <Header className={formLabel} size="sm" headingLevel="h3">
-              <span className={tooltipText ? underline : ""}>{legend}</span>
-            </Header>
-          </Tooltip>
+          {legend ? (
+            <Tooltip
+              disabled={!tooltipText}
+              tooltipText={tooltipText}
+              width={250}
+            >
+              <Header className={formLabel} size="sm" headingLevel="h3">
+                <span className={tooltipText ? underline : ""}>{legend}</span>
+              </Header>
+            </Tooltip>
+          ) : null}
+
           <RadioGroup
             aria-label={legend}
             value={responses[selectorType]}
