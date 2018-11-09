@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Router from "next/router";
 import Cookies from "universal-cookie";
 import { connect } from "react-redux";
-import { withI18next } from "../lib/withI18next";
+import { withI18N } from "../lib/i18n";
 import { showQuestion } from "../utils/common";
 import Layout from "../components/layout";
 import GuidedExperience from "../components/guided_experience";
@@ -191,4 +191,4 @@ Guided.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withI18next()(Guided));
+)(withI18N()(Guided));

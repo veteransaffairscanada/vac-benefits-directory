@@ -6,7 +6,7 @@ import flush from "styled-jsx/server";
 import getPageContext from "../lib/pageContext";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
-import { withI18next } from "../lib/withI18next";
+import { withI18N } from "../lib/i18n";
 
 const bodyStyling = {
   fontFamily: "Merriweather, serif",
@@ -84,4 +84,4 @@ class MyDocument extends Document {
   }
 }
 
-export default withI18next()(MyDocument);
+export default withI18N()(MyDocument);

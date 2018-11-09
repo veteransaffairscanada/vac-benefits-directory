@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 
-import { withI18next } from "../lib/withI18next";
+import { withI18N } from "../lib/i18n";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
@@ -59,4 +59,4 @@ AllBenefits.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withI18next()(AllBenefits));
+export default connect(mapStateToProps)(withI18N()(AllBenefits));

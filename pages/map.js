@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withI18next } from "../lib/withI18next";
+import { withI18N } from "../lib/i18n";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import AreaOfficeMap from "../components/area_office_map";
@@ -170,4 +170,4 @@ Map.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withI18next()(Map));
+)(withI18N()(Map));

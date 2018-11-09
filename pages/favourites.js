@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { withI18next } from "../lib/withI18next";
+import { withI18N } from "../lib/i18n";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import Favourites from "../components/favourites";
@@ -43,4 +43,4 @@ FavouritesPage.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withI18next()(FavouritesPage));
+export default connect(mapStateToProps)(withI18N()(FavouritesPage));
