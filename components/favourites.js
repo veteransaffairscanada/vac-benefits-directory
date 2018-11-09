@@ -100,6 +100,7 @@ export class Favourites extends Component {
               </Grid>
               <Grid item xs={6} className={right}>
                 <HeaderButton
+                  useLink
                   href={this.props.printUrl}
                   target="print_page"
                   id="printButton"
