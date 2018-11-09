@@ -91,6 +91,8 @@ const theme = createMuiTheme({
 
 export class Print extends Component {
   componentDidMount() {
+    const t = this.props.t;
+    document.title = t("titles.print");
     window.print();
   }
 
