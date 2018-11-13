@@ -31,20 +31,33 @@ To do anything in AirTable, always take the following steps:
 
 ## Step by step guides
 
-### Changing UI text
+### Changing text in the app
 
 1. Locate the text you want to change in the [app](https://vac-benefits-finder.cds-snc.ca)
 2. Copy the text to the clipboard
-3. Navigate to the [translations sheet](https://airtable.com/tblJAMGWk4ZypG5uX/viwsHMCBUnwx1EC3f) in airtable
-4. Do a ctrl+f (Windows) or command+f (Mac) search on the page, and paste in the text you copied
+3. Look at the table below to determine which Airtable sheet you should make your change in. Click the link in the Sheet column.
+4. In Airtable do a ctrl+f (Windows) or command+f (Mac) search on the page, and paste in the text you copied
 5. Locate the row that contains the text you want to change
 6. Enter in your new text in the English and French columns
 
-### Changing text/links on a benefit card
-
-1. Navigate to the [benefits sheet](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ) in AirTable
-2. Locate the row that corresponds to the benefit you want to change
-3. To change the title, edit vacNameEn and vacNameFr. To change the one line description, edit oneLineDescriptionEn and oneLineDescriptionFr. To change the links to the VAC site, edit benefitPageEn and benefitPageFr.
+| Text you want to change                                      | Airtable Sheet                                                                    | English Column Name                  | French Column Name                  |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------ | ----------------------------------- |
+| Benefit name                                                 | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | vacNameEn                            | vacNameFr                           |
+| one line description                                         | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | oneLineDescriptionEn                 | oneLineDescriptionFr                |
+| VAC Learn more link                                          | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | benefitPageEn                        | benefitPageFr                       |
+| important info in card header                                | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | noteEn                               | noteFr                              |
+| question text in benefits-directory                          | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | display_text_english                 | display_text_french                 |
+| question text in benefits-directory                          | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_english            | guided_experience_french            |
+| guided experience page title                                 | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_page_title_english | guided_experience_page_title_french |
+| health issue tooltip text                                    | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | tooltip_english                      | tooltip_french                      |
+| multiple choice option text                                  | [multibleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | display_text_english                 | display_text_french                 |
+| guided experience breadcrumb/link text                       | [multibleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | ge_breadcrumb_english                | ge_breadcrumb_french                |
+| area office names                                            | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | name_en                              | name_fr                             |
+| area office addresses                                        | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | address_en                           | address_fr                          |
+| area office telephone numbers                                | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | telephone_en                         | telephone_fr                        |
+| hours (all on map page)                                      | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | office_hours_en                      | office_hours_fr                     |
+| Checkbox options in guided experience and benefits-directory | [needs](https://airtable.com/tblY7TpDsGR5I3SaN/viwQOzMWARRdWFks3)                 | nameEn                               | nameFr                              |
+| All other text                                               | [translations](https://airtable.com/tblJAMGWk4ZypG5uX/viwsHMCBUnwx1EC3f)          | English                              | French                              |
 
 ### Changing the eligibility criteria for a benefit
 
