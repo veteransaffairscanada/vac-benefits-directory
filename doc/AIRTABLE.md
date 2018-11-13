@@ -31,11 +31,11 @@ To do anything in AirTable, always take the following steps:
 
 ## Step by step guides
 
-### Changing text in the app
+### Changing text and links in the app
 
-1. Locate the text you want to change in the [app](https://vac-benefits-finder.cds-snc.ca)
+1. Locate the text or hyperlink you want to change in the [app](https://vac-benefits-finder.cds-snc.ca)
 2. Copy the text to the clipboard
-3. Look at the table below to determine which Airtable sheet you should make your change in. Click the link in the Sheet column.
+3. Look at the table below to determine which Airtable sheet and column you should make your change in. Click the link to the sheet.
 4. In Airtable do a ctrl+f (Windows) or command+f (Mac) search on the page, and paste in the text you copied
 5. Locate the row that contains the text you want to change
 6. Enter in your new text in the English and French columns
