@@ -28,9 +28,9 @@ const Text = css`
 /**
  * Renders an alpha banner and renders passed children in the `Text` container
  */
-export const AlphaBanner = ({ children, ...rest }) => (
+export const AlphaBanner = ({ children, t, ...rest }) => (
   <aside {...rest} className={Banner}>
-    <PhaseBadge phase="beta" />
+    <PhaseBadge phase={t("header.beta")} />
     <div className={Text}>{children}</div>
   </aside>
 );
@@ -39,5 +39,6 @@ AlphaBanner.propTypes = {
   /**
    * Heirarchy of child components to render within thr `Text` container
    */
+  t: PropTypes.func.isRequired,
   children: PropTypes.any
 };

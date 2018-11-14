@@ -83,7 +83,7 @@ class Layout extends Component {
                 </Container>
                 <div className={alpha}>
                   <Container>
-                    <AlphaBanner>
+                    <AlphaBanner t={t}>
                       {t("alpha")} &nbsp;
                       <a
                         href={"mailto:" + t("contact.feedback_email")}
