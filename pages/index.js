@@ -5,7 +5,7 @@ import { css } from "react-emotion";
 import PropTypes from "prop-types";
 import Bookmark from "../components/icons/Bookmark";
 import { Grid } from "@material-ui/core";
-import { withI18N } from "../lib/i18n";
+import withI18N from "../lib/i18nClient";
 import { globalTheme } from "../theme";
 import { getFavouritesUrl } from "../selectors/urls";
 import Layout from "../components/layout";
@@ -163,4 +163,4 @@ App.propTypes = {
   t: PropTypes.func.isRequired
 };
 
-export default withI18N()(connect(mapStateToProps)(App));
+export default withI18N(connect(mapStateToProps)(App));

@@ -3,7 +3,7 @@ import Paper from "../components/paper";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 import { css } from "react-emotion";
-import { withI18N } from "../lib/i18n";
+import withI18N from "../lib/i18n";
 import Layout from "../components/layout";
 import PrChart from "../components/stats/prChart";
 import PrDurationChart from "../components/stats/pr_duration_chart";

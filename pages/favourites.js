@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { withI18N } from "../lib/i18n";
+import withI18N from "../lib/i18n";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import Favourites from "../components/favourites";

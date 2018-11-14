@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 
-import { withI18N } from "../lib/i18n";
+import withI18N from "../lib/i18n";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
