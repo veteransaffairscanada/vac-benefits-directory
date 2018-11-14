@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import withI18N from "../lib/i18n";
+import withI18N from "../lib/i18nClient";
 import NeedButton from "../components/need_button";
 import { WordMark } from "@cdssnc/gcui";
 import FIP from "../components/fip";
@@ -339,4 +339,4 @@ Print.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withI18N()(Print));
+export default connect(mapStateToProps)(withI18N(Print));
