@@ -21,6 +21,7 @@ describe("AlphaBanner", () => {
       i18n: {
         changeLanguage: () => {}
       },
+      t: x => x
     };
     _mountedAlphaBanner = undefined;
   });
