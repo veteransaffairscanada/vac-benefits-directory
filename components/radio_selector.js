@@ -120,7 +120,13 @@ export class RadioSelector extends React.Component {
                 <Radio
                   key={option.variable_name}
                   name={selectorType}
-                  checked={responses[selectorType] === option.variable_name}
+                  defaultChecked={
+                    responses[selectorType] === option.variable_name
+                      ? true
+                      : false
+                  }
+                  // bob="abc"//{responses[selectorType] === option.variable_name ? "checked" : null}
+                  // checked={false}
                   // checked={this.state.selected === option.variable_name}
                   onChange={this.handleSelect}
                   value={option.variable_name}

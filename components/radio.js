@@ -43,6 +43,11 @@ const Input = styled("input")(
       pointerEvents: disabled ? "none" : "auto"
     }
   })
+  // ({ checked }) => ({
+  //   "+ span::after": {
+  //     opacity: checked ? "1" : "0",
+  //   }
+  // })
 );
 
 const LabelText = styled("span")({
