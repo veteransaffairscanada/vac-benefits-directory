@@ -84,7 +84,7 @@ export class RadioSelector extends React.Component {
     logEvent("FilterClick", question, response);
     this.props.saveQuestionResponse(question, response);
     this.setState({ selected: response });
-    console.log(response);
+    // console.log(response);
     this.clearAppropriateResponses(question, response);
   };
 
@@ -101,7 +101,6 @@ export class RadioSelector extends React.Component {
       );
 
     const { t, selectorType, responses, legend, tooltipText } = this.props;
-    // console.log(responses[selectorType]);
     if (options.length !== 0) {
       return (
         <div className={formControl}>
@@ -120,20 +119,28 @@ export class RadioSelector extends React.Component {
                 <Radio
                   key={option.variable_name}
                   name={selectorType}
-                  defaultChecked={
-                    responses[selectorType] === option.variable_name
-                      ? true
-                      : false
-                  }
+                  // defaultChecked={true}
+                  // defaultChecked={
+                  //   responses[selectorType] === option.variable_name
+                  //     ? true
+                  //     : null
+                  // }
                   // bob="abc"//{responses[selectorType] === option.variable_name ? "checked" : null}
-                  // checked={false}
+                  checked={responses[selectorType] === option.variable_name}
                   // checked={this.state.selected === option.variable_name}
+                  // defaultChecked={null}
                   onChange={this.handleSelect}
                   value={option.variable_name}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
-                    : option.display_text_french}
+                    : option.display_text_french}{" "}
+                  -{" "}
+                  <pre>
+                    {JSON.stringify(
+                      responses[selectorType] === option.variable_name
+                    )}
+                  </pre>
                 </Radio>
               );
             })}
