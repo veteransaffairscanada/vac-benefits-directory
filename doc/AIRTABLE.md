@@ -70,21 +70,22 @@ To do anything in AirTable, always take the following steps:
 7. Determine if the new path you wrote down already exists. If it exists, add the benefit to the benefits column for that row. If it doesn't exist, create a new row and add the benefit.
 8. Delete the benefit from the row for the incorrect eligibility path
 
-### Adding a need, associating it with a benefit
+### Adding a category (aka need or checkbox question), associating it with a benefit
 
 1. Navigate to the [needs sheet](https://airtable.com/tblY7TpDsGR5I3SaN/viwQOzMWARRdWFks3) in AirTable
-2. Add a new row at the bottom and give the need an english name and french name
+2. Add a new row at the bottom and give the category an english name and french name
 3. Select the cell under the benefits column and click +
-4. Start typing the names of the benefits you want the need to be associated with
+4. Start typing the names of the benefits you want the category to be associated with
 
-To change the benefits associated with an existing need, click the "expand" icon on the right of the cell and then you will have the option to either unlink existing records or link new ones.
+To change the benefits associated with an existing category, click the "expand" icon on the right of the cell and then you will have the option to either unlink existing records or link new ones.
 
-### How to add a question and answers
+### How to add multiple choice question and answers
 
 1. Navigate to the [questions sheet](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)
-2. Add a new row at the bottom, and give it a variable_name that describes the question
+2. Add a new row at the bottom, and give it a variable_name that describes the question (The multiple choice questions are ordered according to their order in the questions table, the needs checkbox question is always at the bottom).
 3. Fill in the following french and english content: question text that will appear in benefits-directory, question text in guided experience, and guided experience page title. The french/english column names can be found in the table above.
 4. Then navigate to the [multiple choice options sheet](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx)
 5. Add a new row for each multiple choice option you would like to appear under the new question.
 6. Give each option a variable_name that describes it, as well as the english/french text the user will see, and the blue breadcrumb text within the guided experience (see table above for column names).
 7. Select each "linked_question" cell, click +, and type/select the question variable_name you added in step 2.
+8. To see your question displayed in the app, follow the steps for adding a new eligibility path that links to your new question. A question is only displayed if its answer effects the list of eligible benefits.
