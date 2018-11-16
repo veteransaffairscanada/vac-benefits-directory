@@ -79,9 +79,9 @@ const LabelText = styled("span")({
   }
 });
 
-const Radio = ({ inline, children, className, ...input }) => (
-  <Label inline={inline} className={className}>
-    <Input type="radio" {...input} />
+const Radio = ({ inline, children, className, value, ...input }) => (
+  <Label inline={inline} className={className} htmlFor={value}>
+    <Input type="radio" {...input} id={value} />
     <LabelText>{children}</LabelText>
   </Label>
 );
@@ -94,6 +94,7 @@ Radio.defaultProps = {
 Radio.propTypes = {
   inline: PropTypes.bool,
   className: PropTypes.string,
+  value: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };
 
