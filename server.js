@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
 const next = require("next");
 const Cookies = require("universal-cookie");
 const helmet = require("helmet");
@@ -81,7 +80,9 @@ Promise.resolve(getAllData()).then(allData => {
       // Check if browse is less than IE 11
       const ua = req.headers["user-agent"];
       const browser = parseUserAgent(ua);
-      const lang = req.headers["accept-language"];
+      const lang = req.query.lng
+        ? req.query.lng
+        : req.headers["accept-language"];
 
       req.data = data;
       req.language = lang.split(",")[0];
