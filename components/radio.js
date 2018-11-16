@@ -81,7 +81,7 @@ const LabelText = styled("span")({
 
 const Radio = ({ inline, children, className, value, ...input }) => (
   <Label inline={inline} className={className} htmlFor={value}>
-    <Input type="radio" {...input} id={value} />
+    <Input type="radio" value={value} {...input} />
     <LabelText>{children}</LabelText>
   </Label>
 );
