@@ -14,25 +14,15 @@ const formControl = css`
 const formLabel = css`
   margin-bottom: 10px;
 `;
+const radioOption = css`
+  margin-bottom: 10px;
+`;
 const underline = css`
   line-height: 160%;
   border-bottom: 2px dotted ${globalTheme.colour.greyishBrown};
 `;
 
 export class RadioSelector extends React.Component {
-  state = {
-    selected: this.props.responses[this.props.selectorType]
-  };
-
-  // componentDidMount() {
-  //   this.setState({selected: this.props.responses[this.props.selectorType]});
-  //
-  // }
-  // constructor(props) {
-  //   super(props);
-  //   this.setState({selected: props.responses[props.selectorType]});
-  // }
-
   isDisabled = (option, responses, questionDisplayLogic) => {
     let returnValue = false;
     questionDisplayLogic.forEach(row => {
@@ -81,11 +71,9 @@ export class RadioSelector extends React.Component {
   handleSelect = event => {
     const question = this.props.selectorType;
     const response = event.target.value;
-    logEvent("FilterClick", question, response);
     this.props.saveQuestionResponse(question, response);
-    this.setState({ selected: response });
-    // console.log(response);
     this.clearAppropriateResponses(question, response);
+    logEvent("FilterClick", question, response);
   };
 
   render() {
@@ -118,29 +106,14 @@ export class RadioSelector extends React.Component {
               return (
                 <Radio
                   key={option.variable_name}
-                  name={selectorType}
-                  // defaultChecked={true}
-                  // defaultChecked={
-                  //   responses[selectorType] === option.variable_name
-                  //     ? true
-                  //     : null
-                  // }
-                  // bob="abc"//{responses[selectorType] === option.variable_name ? "checked" : null}
                   checked={responses[selectorType] === option.variable_name}
-                  // checked={this.state.selected === option.variable_name}
-                  // defaultChecked={null}
                   onChange={this.handleSelect}
                   value={option.variable_name}
+                  className={radioOption}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
-                    : option.display_text_french}{" "}
-                  -{" "}
-                  <pre>
-                    {JSON.stringify(
-                      responses[selectorType] === option.variable_name
-                    )}
-                  </pre>
+                    : option.display_text_french}
                 </Radio>
               );
             })}

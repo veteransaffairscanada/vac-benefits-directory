@@ -7,8 +7,8 @@ const Label = styled("label")(
   {
     display: "block",
     position: "relative",
-    padding: "0 0 0 38px",
-    marginBottop: "2px"
+    padding: "0 0 0 28px",
+    marginBottom: "2px"
   },
   ({ inline }) => ({
     float: inline ? "left" : undefined,
@@ -23,8 +23,8 @@ const Input = styled("input")(
     cursor: "pointer",
     left: 0,
     top: 0,
-    width: "38px",
-    height: "38px",
+    width: "25px",
+    height: "25px",
     zIndex: 1,
     margin: 0,
     zoom: 1,
@@ -43,11 +43,6 @@ const Input = styled("input")(
       pointerEvents: disabled ? "none" : "auto"
     }
   })
-  // ({ checked }) => ({
-  //   "+ span::after": {
-  //     opacity: checked ? "1" : "0",
-  //   }
-  // })
 );
 
 const LabelText = styled("span")({
@@ -57,7 +52,7 @@ const LabelText = styled("span")({
   fontSize: "16px",
   lineHeight: "1.25",
   cursor: "pointer",
-  padding: "8px 10px 9px 12px",
+  padding: "5px 10px 9px 12px",
   display: "block",
   ":before": {
     content: "''",
@@ -65,8 +60,8 @@ const LabelText = styled("span")({
     position: "absolute",
     top: 0,
     left: 0,
-    width: "33px",
-    height: "33px",
+    width: "28px",
+    height: "28px",
     border: "2px solid black",
     borderRadius: "50%",
     background: "transparent"
@@ -74,11 +69,11 @@ const LabelText = styled("span")({
   ":after": {
     content: "''",
     position: "absolute",
-    top: "8px",
-    left: "8px",
+    top: "7px",
+    left: "7px",
     width: 0,
     height: 0,
-    border: "8.5px solid",
+    border: "7px solid",
     borderRadius: "50%",
     opacity: 0
   }
