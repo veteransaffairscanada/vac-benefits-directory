@@ -81,8 +81,10 @@ Promise.resolve(getAllData()).then(allData => {
       // Check if browse is less than IE 11
       const ua = req.headers["user-agent"];
       const browser = parseUserAgent(ua);
+      const lang = req.headers["accept-language"];
 
       req.data = data;
+      req.language = lang.split(",")[0];
       if (req.url.includes("stats")) {
         req.githubData = githubData;
       } else {
