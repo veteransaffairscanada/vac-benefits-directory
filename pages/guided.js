@@ -22,10 +22,12 @@ export class Guided extends Component {
   componentDidMount() {
     Router.onRouteChangeStart = newUrl => {
       let matches = newUrl.match(/section=([^&]*)/);
-      const newState = {
-        section: matches[1] || this.props.sectionOrder[0]
-      };
-      this.setState(newState);
+      if (matches) {
+        const newState = {
+          section: matches[1] || this.props.sectionOrder[0]
+        };
+        this.setState(newState);
+      }
     };
 
     const newState = {
