@@ -47,11 +47,11 @@ To do anything in AirTable, always take the following steps:
 | VAC Learn more link                                          | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | benefitPageEn                        | benefitPageFr                       |
 | important info in card header                                | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | noteEn                               | noteFr                              |
 | question text in benefits-directory                          | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | display_text_english                 | display_text_french                 |
-| question text in benefits-directory                          | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_english            | guided_experience_french            |
+| question text in guided experience                           | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_english            | guided_experience_french            |
 | guided experience page title                                 | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_page_title_english | guided_experience_page_title_french |
 | health issue tooltip text                                    | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | tooltip_english                      | tooltip_french                      |
-| multiple choice option text                                  | [multibleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | display_text_english                 | display_text_french                 |
-| guided experience breadcrumb/link text                       | [multibleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | ge_breadcrumb_english                | ge_breadcrumb_french                |
+| multiple choice option text                                  | [multipleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | display_text_english                 | display_text_french                 |
+| guided experience breadcrumb/link text                       | [multipleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | ge_breadcrumb_english                | ge_breadcrumb_french                |
 | area office names                                            | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | name_en                              | name_fr                             |
 | area office addresses                                        | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | address_en                           | address_fr                          |
 | area office telephone numbers                                | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | telephone_en                         | telephone_fr                        |
@@ -69,3 +69,23 @@ To do anything in AirTable, always take the following steps:
 6. Navigate to the [eligibilityPaths](https://airtable.com/tblHt9ZuCBwsplYw2/viwWR17CgrYqiNa0B) sheet.
 7. Determine if the new path you wrote down already exists. If it exists, add the benefit to the benefits column for that row. If it doesn't exist, create a new row and add the benefit.
 8. Delete the benefit from the row for the incorrect eligibility path
+
+### Adding a category (aka need or checkbox question), associating it with a benefit
+
+1. Navigate to the [needs sheet](https://airtable.com/tblY7TpDsGR5I3SaN/viwQOzMWARRdWFks3) in AirTable
+2. Add a new row at the bottom and give the category an english name and french name
+3. Select the cell under the benefits column and click +
+4. Start typing the names of the benefits you want the category to be associated with
+
+To change the benefits associated with an existing category, click the "expand" icon on the right of the cell and then you will have the option to either unlink existing records or link new ones.
+
+### How to add multiple choice question and answers
+
+1. Navigate to the [questions sheet](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)
+2. Add a new row at the bottom, and give it a variable_name that describes the question (The multiple choice questions are ordered according to their order in the questions table, the needs checkbox question is always at the bottom).
+3. Fill in the following french and english content: question text that will appear in benefits-directory, question text in guided experience, and guided experience page title. The french/english column names can be found in the table above.
+4. Then navigate to the [multiple choice options sheet](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx)
+5. Add a new row for each multiple choice option you would like to appear under the new question.
+6. Give each option a variable_name that describes it, as well as the english/french text the user will see, and the blue breadcrumb text within the guided experience (see table above for column names).
+7. Select each "linked_question" cell, click +, and type/select the question variable_name you added in step 2.
+8. To see your question displayed in the app, follow the steps for adding a new eligibility path that links to your new question. A question is only displayed if its answer effects the list of eligible benefits.
