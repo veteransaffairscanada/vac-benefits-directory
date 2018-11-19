@@ -128,39 +128,33 @@ export const getFilteredBenefits = createSelector(
     // If there is a searchString then run another filter
     if (searchString !== "") {
       // Reinitalize indexes after they are serialized by Redux
-      enIdx = lunr.Index.load(JSON.parse(enIdx));
-      frIdx = lunr.Index.load(JSON.parse(frIdx));
+      let searchIndex =
+        currentLanguage === "en"
+          ? lunr.Index.load(JSON.parse(enIdx))
+          : lunr.Index.load(JSON.parse(frIdx));
+      let results = searchIndex.query(q => {
+        searchString.split(/\s+/).forEach(term => {
+          q.term(term, { usePipeline: true, boost: 100 });
+          q.term(term, {
+            usePipeline: false,
+            boost: 10,
+            wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+          });
+          q.term(term, { usePipeline: false, editDistance: 1 });
+        });
+      });
 
-      let results = [];
-      if (currentLanguage === "en") {
-        results = enIdx.query(q => {
-          searchString.split(/\s+/).forEach(term => {
-            q.term(term, { usePipeline: true, boost: 100 });
-            q.term(term, {
-              usePipeline: false,
-              boost: 10,
-              wildcard:
-                lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
-            });
-            q.term(term, { usePipeline: false, editDistance: 1 });
-          });
-        });
-      } else {
-        results = frIdx.query(q => {
-          searchString.split(/\s+/).forEach(term => {
-            q.term(term, { usePipeline: true, boost: 100 });
-            q.term(term, {
-              usePipeline: false,
-              boost: 10,
-              wildcard:
-                lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
-            });
-            q.term(term, { usePipeline: false, editDistance: 1 });
-          });
-        });
-      }
+      let resultDict = {};
+      results.forEach(x => {
+        resultDict[x.ref] = x;
+      });
       let resultIds = results.map(r => r.ref);
+
       matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));
+      matchingBenefits.forEach(b => {
+        b.score = resultDict[b.id].score;
+      });
+      matchingBenefits.sort((a, b) => b.score - a.score); // descending sort
     }
     return matchingBenefits;
   }
