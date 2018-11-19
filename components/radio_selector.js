@@ -101,6 +101,7 @@ export class RadioSelector extends React.Component {
               <span className={tooltipText ? underline : ""}>{legend}</span>
             </Header>
           </Tooltip>
+
           <div aria-label={legend}>
             {options.map(option => {
               return (

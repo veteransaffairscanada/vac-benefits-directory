@@ -1,51 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
+import { css, cx } from "react-emotion";
 import { globalTheme } from "../theme";
 
-const Label = styled("label")(
-  {
-    display: "block",
-    position: "relative",
-    padding: "0 0 0 28px",
-    marginBottom: "2px"
-  },
-  ({ inline }) => ({
-    float: inline ? "left" : undefined,
-    clear: inline ? "none" : undefined,
-    marginRight: inline ? "30px" : "0"
-  })
-);
+const rootStyle = css({
+  display: "block",
+  position: "relative",
+  padding: "0 0 0 28px",
+  marginBottom: "2px"
+});
 
-const Input = styled("input")(
-  {
-    position: "absolute",
-    cursor: "pointer",
-    left: 0,
-    top: 0,
-    width: "25px",
-    height: "25px",
-    zIndex: 1,
-    margin: 0,
-    zoom: 1,
-    opacity: 0,
-    ":checked + span::after": {
-      opacity: 1
-    },
-    ":focus + span::before": {
-      boxShadow: `0 0 0 3px ${globalTheme.colour.focusColour};`
-    }
+const inputStyle = css({
+  position: "absolute",
+  cursor: "pointer",
+  left: 0,
+  top: 0,
+  width: "25px",
+  height: "25px",
+  zIndex: 1,
+  margin: 0,
+  zoom: 1,
+  opacity: 0,
+  ":checked + label::after": {
+    opacity: 1
   },
-  ({ disabled }) => ({
-    cursor: disabled ? "auto" : "pointer",
-    " + span": {
-      opacity: disabled ? ".4" : "1",
-      pointerEvents: disabled ? "none" : "auto"
-    }
-  })
-);
+  ":focus + label::before": {
+    boxShadow: `0 0 0 3px ${globalTheme.colour.focusColour};`
+  }
+});
 
-const LabelText = styled("span")({
+const labelStyle = css({
   fontFamily: globalTheme.fontFamily,
   fontWeight: 400,
   textTransform: "none",
@@ -79,20 +63,26 @@ const LabelText = styled("span")({
   }
 });
 
-const Radio = ({ inline, children, className, value, ...input }) => (
-  <Label inline={inline} className={className} htmlFor={value}>
-    <Input type="radio" value={value} {...input} />
-    <LabelText>{children}</LabelText>
-  </Label>
+const Radio = ({ children, className, value, ...input }) => (
+  <div className={cx(rootStyle, className)}>
+    <input
+      type="radio"
+      className={inputStyle}
+      value={value}
+      id={value + "-0"}
+      {...input}
+    />
+    <label className={labelStyle} htmlFor={value + "-0"}>
+      {children}
+    </label>
+  </div>
 );
 
 Radio.defaultProps = {
-  inline: false,
   className: undefined
 };
 
 Radio.propTypes = {
-  inline: PropTypes.bool,
   className: PropTypes.string,
   value: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
