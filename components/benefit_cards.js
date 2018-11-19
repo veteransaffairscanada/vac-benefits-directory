@@ -69,7 +69,7 @@ export class BenefitCard extends Component {
               t={t}
               store={this.props.store}
             />
-            <Header className={benefitName} size="sm">
+            <Header className={benefitName} size="sm" headingLevel="h2">
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}

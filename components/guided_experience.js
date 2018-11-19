@@ -108,7 +108,7 @@ export class GuidedExperience extends Component {
       <Container id="guidedExperience">
         <HeaderButton
           id="prevButton"
-          disableRipple
+          useLink={prevSection === "index"}
           href={
             prevSection === "index"
               ? "/index?lng=" + t("current-language-code")

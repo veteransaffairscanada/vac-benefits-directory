@@ -15,7 +15,10 @@ const Banner = css`
   color: ${globalTheme.colour.white};
   font: 0.694rem sans-serif;
   span:first-child {
-    background-color: ${globalTheme.colour.alphaPink};
+    font-weight: 700 !important;
+    padding: 0.2rem 0.7rem;
+    border-radius: 5px;
+    background-color: ${globalTheme.colour.betaBlue};
   }
 `;
 
@@ -25,9 +28,9 @@ const Text = css`
 /**
  * Renders an alpha banner and renders passed children in the `Text` container
  */
-export const AlphaBanner = ({ children, ...rest }) => (
+export const AlphaBanner = ({ children, t, ...rest }) => (
   <aside {...rest} className={Banner}>
-    <PhaseBadge phase="alpha" />
+    <PhaseBadge phase={t("header.beta")} />
     <div className={Text}>{children}</div>
   </aside>
 );
@@ -36,5 +39,6 @@ AlphaBanner.propTypes = {
   /**
    * Heirarchy of child components to render within thr `Text` container
    */
+  t: PropTypes.func.isRequired,
   children: PropTypes.any
 };

@@ -16,7 +16,7 @@ describe("RadioSelector", () => {
 
   beforeEach(() => {
     props = {
-      legend: "",
+      legend: "abc",
       saveQuestionResponse: jest.fn(),
       options: ["mco_p1", "mco_p2", "mco_p3"],
       selectorType: "patronType",
