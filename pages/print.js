@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import withI18N from "../lib/i18nClient";
+import withI18N from "../lib/i18nHOC";
 import NeedButton from "../components/need_button";
 import { WordMark } from "@cdssnc/gcui";
 import FIP from "../components/fip";

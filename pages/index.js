@@ -5,7 +5,7 @@ import { css } from "react-emotion";
 import PropTypes from "prop-types";
 import Bookmark from "../components/icons/Bookmark";
 import { Grid } from "@material-ui/core";
-import withI18N from "../lib/i18nClient";
+import withI18N from "../lib/i18nHOC";
 import { globalTheme } from "../theme";
 import { getFavouritesUrl } from "../selectors/urls";
 import Layout from "../components/layout";

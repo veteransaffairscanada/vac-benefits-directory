@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Router from "next/router";
 import Cookies from "universal-cookie";
 import { connect } from "react-redux";
-import withI18N from "../lib/i18nClient";
+import withI18N from "../lib/i18nHOC";
 import { showQuestion } from "../utils/common";
 import Layout from "../components/layout";
 import GuidedExperience from "../components/guided_experience";

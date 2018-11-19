@@ -8,7 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "../components/paper";
 import Button from "@material-ui/core/Button";
 import ReactMoment from "react-moment";
-import withI18N from "../lib/i18nClient";
+import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import { css, cx } from "react-emotion";
