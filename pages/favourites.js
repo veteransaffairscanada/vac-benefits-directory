@@ -12,6 +12,7 @@ export class FavouritesPage extends Component {
     return (
       <Layout
         t={this.props.t}
+        i18n={this.props.i18n}
         hideNoscript={false}
         showRefreshCache={false}
         title={t("favourites.saved_benefits", { x: favouriteBenefits.length })}
@@ -38,6 +39,7 @@ FavouritesPage.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   url: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired,
   store: PropTypes.object
 };
 

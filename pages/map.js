@@ -86,15 +86,15 @@ export class Map extends Component {
               </Header>
             </Grid>
             <Grid item xs={12} md={12} id="contactInfo">
-              <p>
-                <Body>
+              <Body>
+                <p>
                   {t("map.contact_1") + " "}
                   <AnchorLink fontSize={18} href={"tel:+" + t("contact.phone")}>
                     {t("contact.phone")}
                   </AnchorLink>
                   {" " + t("map.contact_2")}
-                </Body>
-              </p>
+                </p>
+              </Body>
             </Grid>
             <Grid
               item

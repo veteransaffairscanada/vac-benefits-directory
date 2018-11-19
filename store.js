@@ -92,7 +92,7 @@ export const reducer = (state = initialState, action) => {
     case "SAVE_QUESTION_RESPONSE":
       return Object.assign({}, state, action.data);
 
-    case "SET_INITIAL_LANGUAGE":
+    case "SET_LANGUAGE":
       language = action.data;
       language = language.indexOf("fr") != -1 ? "fr" : "en";
       return Object.assign({}, state, { language: language });

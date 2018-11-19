@@ -18,7 +18,7 @@ export default withRedux(initStore)(
           data: ctx.req.githubData
         });
         ctx.store.dispatch({
-          type: "SET_INITIAL_LANGUAGE",
+          type: "SET_LANGUAGE",
           data: ctx.req.language
         });
       }
