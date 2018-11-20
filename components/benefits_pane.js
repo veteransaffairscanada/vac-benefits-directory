@@ -85,7 +85,8 @@ export class BenefitsPane extends Component {
 
   render() {
     const { t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
-
+    // console.log(JSON.stringify(this.props.reduxState.frIdx))
+    console.log(JSON.stringify(this.props.reduxState.needs));
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
@@ -205,11 +206,13 @@ const mapStateToProps = (reduxState, props) => {
     filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
     selectedNeeds: reduxState.selectedNeeds,
-    sortBy: reduxState.sortBy
+    sortBy: reduxState.sortBy,
+    reduxState: reduxState
   };
 };
 
 BenefitsPane.propTypes = {
+  reduxState: PropTypes.object,
   url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   profileFilters: PropTypes.object.isRequired,
