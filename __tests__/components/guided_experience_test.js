@@ -147,4 +147,18 @@ describe("GuidedExperience", () => {
     props.helperText = "";
     expect(mounted_GuidedExperience().find("Body").length).toEqual(0);
   });
+
+  it("my selection text appears when there are breadcrumbs", () => {
+    expect(mounted_GuidedExperience().text()).toContain(
+      "B3.Filter by eligibility"
+    );
+  });
+
+  it("my selection text doesn't appear when there are no breadcrumbs", () => {
+    props.reduxState.patronType = "";
+    props.reduxState.serviceType = "";
+    expect(mounted_GuidedExperience().text()).not.toContain(
+      "B3.Filter by eligibility"
+    );
+  });
 });
