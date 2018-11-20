@@ -2,7 +2,6 @@ import React from "react";
 import { mount } from "enzyme";
 import { Search } from "../../components/search";
 import benefitsFixture from "../fixtures/benefits";
-
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 import configureStore from "redux-mock-store";
