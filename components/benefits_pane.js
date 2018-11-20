@@ -85,8 +85,6 @@ export class BenefitsPane extends Component {
 
   render() {
     const { t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
-    // console.log(JSON.stringify(this.props.reduxState.frIdx))
-    console.log(JSON.stringify(this.props.reduxState.needs));
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
