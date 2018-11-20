@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import { css } from "react-emotion";
 import FooterButton from "./footer_button";
 import { globalTheme } from "../theme";
+import Header from "./typography/header";
 require("isomorphic-fetch");
 
 const CommentBox = css`
@@ -33,8 +34,11 @@ const FeedbackWrapper = css`
   margin-top: 25px;
 `;
 const Inner = css`
+  line-height: 1.6;
+  display: flex;
+  flex-direction: row;
   color: ${globalTheme.colour.white};
-  font-size: 14px;
+  font-size: 18px;
   padding-top: 10px;
   @media (max-width: 400px) {
     font-size: 16px;
@@ -50,6 +54,14 @@ const TextHold = css`
 const white = css`
   color: white;
 `;
+const whiteNormalFont = css`
+  color: white;
+  font-weight: normal;
+`;
+const pLabels = css`
+  font-size: 18px;
+`;
+
 export class FeedbackBar extends Component {
   state = {
     action: "",
@@ -108,8 +120,10 @@ export class FeedbackBar extends Component {
       <div className={FeedbackWrapper} role="navigation">
         {this.state.commentFormToggled ? (
           <div className={CommentBox}>
-            <h2>{t("comment-help-us-improve")}</h2>
-            <p>{t("comment-privacy-disclaimer")}</p>
+            <Header size="lg" headingLevel="h2" className={white}>
+              {t("comment-help-us-improve")}
+            </Header>
+            <p className={pLabels}>{t("comment-privacy-disclaimer")}</p>
             <div className={TextHold}>
               <TextField
                 inputProps={{
@@ -173,11 +187,13 @@ export class FeedbackBar extends Component {
         <div className={Div}>
           {this.state.feedbackSubmitted ? (
             <div className={Inner}>
-              <p>{t("feedback-response")}</p>
+              <p className={pLabels}>{t("feedback-response")}</p>
             </div>
           ) : (
             <div className={Inner}>
-              {t("feedback-prompt")} &nbsp;
+              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
+                {t("feedback-prompt")} &nbsp;
+              </Header>
               <FooterButton
                 id="feedbackYes"
                 onClick={() => this.sendFeedback("Yes")}
