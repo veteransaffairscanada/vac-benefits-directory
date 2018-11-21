@@ -61,6 +61,11 @@ const whiteNormalFont = css`
 const pStyle = css`
   font-size: 18px;
 `;
+const labelStyle = css`
+  label {
+    transform: translate(0, 0) scale(1);
+  }
+`;
 
 export class FeedbackBar extends Component {
   state = {
@@ -142,7 +147,7 @@ export class FeedbackBar extends Component {
                 margin="normal"
                 fullWidth={true}
                 onChange={this.handleChange("action")}
-                className={white}
+                className={labelStyle}
                 value={this.state.action}
                 autoFocus
               />
@@ -163,6 +168,7 @@ export class FeedbackBar extends Component {
                 margin="normal"
                 fullWidth={true}
                 onChange={this.handleChange("failure")}
+                className={labelStyle}
                 value={this.state.failure}
               />
             </div>
