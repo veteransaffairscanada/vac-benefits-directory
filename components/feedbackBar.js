@@ -58,7 +58,7 @@ const whiteNormalFont = css`
   color: white;
   font-weight: normal;
 `;
-const pLabels = css`
+const pStyle = css`
   font-size: 18px;
 `;
 
@@ -123,7 +123,7 @@ export class FeedbackBar extends Component {
             <Header size="lg" headingLevel="h2" className={white}>
               {t("comment-help-us-improve")}
             </Header>
-            <p className={pLabels}>{t("comment-privacy-disclaimer")}</p>
+            <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
             <div className={TextHold}>
               <TextField
                 inputProps={{
@@ -187,7 +187,7 @@ export class FeedbackBar extends Component {
         <div className={Div}>
           {this.state.feedbackSubmitted ? (
             <div className={Inner}>
-              <p className={pLabels}>{t("feedback-response")}</p>
+              <p className={pStyle}>{t("feedback-response")}</p>
             </div>
           ) : (
             <div className={Inner}>
