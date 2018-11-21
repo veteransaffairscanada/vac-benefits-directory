@@ -64,6 +64,7 @@ const pStyle = css`
 const labelStyle = css`
   label {
     transform: translate(0, 0) scale(1);
+    font-weight: bold;
   }
 `;
 
