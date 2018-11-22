@@ -12,7 +12,6 @@ import { css } from "react-emotion";
 import Header from "./typography/header";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
-import Dropdown from "./dropdown";
 import Button from "./button";
 import { getLink } from "../utils/common";
 import { globalTheme } from "../theme";
