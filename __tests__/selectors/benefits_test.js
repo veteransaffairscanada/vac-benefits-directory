@@ -1,4 +1,3 @@
-import lunr from "lunr";
 import {
   getProfileFilters,
   pathToDict,
@@ -6,11 +5,13 @@ import {
   getFilteredBenefitsWithoutSearch,
   getFilteredBenefits
 } from "../../selectors/benefits";
-import questionsFixture from "../fixtures/questions";
-import benefitsFixture from "../fixtures/benefits";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
-import needsFixture from "../fixtures/needs";
+import questionsFixture from "../fixtures/questions_complex";
+import benefitsFixture from "../fixtures/benefits_complex";
+import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
+import needsFixture from "../fixtures/needs_complex";
+import enIdx from "../fixtures/lunr_index_english";
+import frIdx from "../fixtures/lunr_index_french";
 
 describe("Benefits Selectors", () => {
   let props;
@@ -25,60 +26,8 @@ describe("Benefits Selectors", () => {
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      enIdx: JSON.stringify({
-        version: lunr.version,
-        fields: ["vacNameEn", "oneLineDescriptionEn"],
-        fieldVectors: [
-          ["vacNameEn/benefit_1", [0, 0.288]],
-          ["oneLineDescriptionEn/benefit_1", [1, 0.288]]
-        ],
-        invertedIndex: [
-          [
-            "biz",
-            {
-              _index: 1,
-              vacNameEn: {},
-              oneLineDescriptionEn: { benefit_1: {} }
-            }
-          ],
-          [
-            "fiz",
-            {
-              _index: 0,
-              vacNameEn: { benefit_1: {} },
-              oneLineDescriptionEn: {}
-            }
-          ]
-        ],
-        pipeline: ["stemmer"]
-      }),
-      frIdx: JSON.stringify({
-        version: lunr.version,
-        fields: ["vacNameFr", "oneLineDescriptionFr"],
-        fieldVectors: [
-          ["vacNameFr/benefit_1", [0, 0.288]],
-          ["oneLineDescriptionFr/benefit_1", [1, 0.288]]
-        ],
-        invertedIndex: [
-          [
-            "biz",
-            {
-              _index: 1,
-              vacNameFr: {},
-              oneLineDescriptionFr: { benefit_1: {} }
-            }
-          ],
-          [
-            "fiz",
-            {
-              _index: 0,
-              vacNameFr: { benefit_1: {} },
-              oneLineDescriptionFr: {}
-            }
-          ]
-        ],
-        pipeline: ["stemmer"]
-      }),
+      enIdx: enIdx,
+      frIdx: frIdx,
       needs: needsFixture,
       selectedNeeds: {},
       patronType: "",
@@ -109,28 +58,26 @@ describe("Benefits Selectors", () => {
 
   describe("pathToDict function", () => {
     it("works as expected", () => {
-      const ep = {
-        requirements: ["mco_p3", "mco_s1", "mco_p1"]
-      };
-      const actual = pathToDict(ep, state.multipleChoiceOptions);
+      const actual = pathToDict(
+        state.eligibilityPaths[5],
+        state.multipleChoiceOptions
+      );
       expect(actual).toEqual({
-        patronType: ["p3", "p1"],
-        serviceType: ["s1"]
+        patronType: ["veteran", "servingMember"],
+        serviceType: ["RCMP"],
+        serviceHealthIssue: ["hasServiceHealthIssue"]
       });
     });
   });
 
   describe("eligibilityMatch", () => {
     it("matches if nothing selected", () => {
-      const ep = {
-        requirements: ["mco_p3"]
-      };
       const profileFilters = {
         patronType: "",
         serviceType: ""
       };
       const actual = eligibilityMatch(
-        ep,
+        state.eligibilityPaths[0],
         profileFilters,
         state.multipleChoiceOptions
       );
@@ -180,16 +127,13 @@ describe("Benefits Selectors", () => {
     });
 
     it("matches if selections match", () => {
-      const ep = {
-        requirements: ["mco_p3"]
-      };
       const profileFilters = {
-        patronType: "p3",
-        serviceType: "",
+        patronType: "veteran",
+        serviceType: "CAF",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
-        ep,
+        state.eligibilityPaths[0],
         profileFilters,
         state.multipleChoiceOptions
       );
@@ -197,52 +141,28 @@ describe("Benefits Selectors", () => {
     });
 
     it("doesn't match if selections don't match", () => {
-      const ep = {
-        requirements: ["mco_p3"]
-      };
       const profileFilters = {
-        patronType: "p2",
-        serviceType: "",
+        patronType: "family",
+        serviceType: "CAF",
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
-        ep,
+        state.eligibilityPaths[0],
         profileFilters,
         state.multipleChoiceOptions
       );
       expect(actual).toEqual(false);
     });
-
-    it("matches if selection included in requirements along with others", () => {
-      const ep = {
-        requirements: ["mco_p3", "mco_p2"]
-      };
-      const profileFilters = {
-        patronType: "p2",
-        serviceType: "",
-        statusAndVitals: ""
-      };
-      const actual = eligibilityMatch(
-        ep,
-        profileFilters,
-        state.multipleChoiceOptions
-      );
-      expect(actual).toEqual(true);
-    });
   });
 
   describe("getFilteredBenefitsWithoutSearch", () => {
     it("displays all benefits if nothing selected", () => {
-      let returnValue = getFilteredBenefitsWithoutSearch(state, props).map(
-        b => b.id
+      let allBenefitNames = new Set(
+        getFilteredBenefitsWithoutSearch(state, props).map(b => b.vacNameEn)
       );
-      returnValue.sort();
-      expect(returnValue).toEqual([
-        "benefit_0",
-        "benefit_1",
-        "benefit_2",
-        "benefit_3"
-      ]);
+      expect(allBenefitNames).toEqual(
+        new Set(state.benefits.map(x => x.vacNameEn))
+      );
     });
 
     it("returns an empty array if there are no benefits", () => {
@@ -251,30 +171,43 @@ describe("Benefits Selectors", () => {
       expect(returnValue).toEqual([]);
     });
 
-    it("displays benefits 1, 3 if patronType p3", () => {
-      state.patronType = "p3";
+    it("displays appropriate benefits if patronType is organization", () => {
+      state.patronType = "organization";
+      const nameEnList = [
+        "Community War Memorial",
+        "Community Engagement",
+        "Veteran and Family Well-Being Fund",
+        "Operational Stress Injury clinics",
+        "VAC Assistance Service"
+      ];
+      const relevant_benefits = state.benefits.filter(x => {
+        return nameEnList.indexOf(x.vacNameEn) > -1;
+      });
       expect(
-        getFilteredBenefitsWithoutSearch(state, props).map(b => b.id)
-      ).toEqual(["benefit_1", "benefit_3"]);
+        getFilteredBenefitsWithoutSearch(state, props).map(x => x.vacNameEn)
+      ).toEqual(relevant_benefits.map(x => x.vacNameEn));
     });
 
     it("returns benefits based on selectedNeeds", () => {
-      state.selectedNeeds = { need_1: "need_1" };
-      let returnValue = getFilteredBenefitsWithoutSearch(state, props);
-      expect(returnValue).toEqual([benefitsFixture[3]]);
+      const selectedNeed = state.needs.filter(
+        x => x.nameEn === "Emergency funds"
+      )[0];
+      state.selectedNeeds = { [selectedNeed.id]: selectedNeed.id };
+      let returnValue = getFilteredBenefitsWithoutSearch(state, props).map(
+        x => x.vacNameEn
+      );
+      expect(returnValue).toEqual(["Veterans Emergency Fund"]);
     });
   });
 
   describe("getFilteredBenefits", () => {
     it("displays all benefits if nothing selected", () => {
-      let returnValue = getFilteredBenefits(state, props).map(b => b.id);
-      returnValue.sort();
-      expect(returnValue).toEqual([
-        "benefit_0",
-        "benefit_1",
-        "benefit_2",
-        "benefit_3"
-      ]);
+      let allBenefitNames = new Set(
+        getFilteredBenefits(state, props).map(b => b.vacNameEn)
+      );
+      expect(allBenefitNames).toEqual(
+        new Set(state.benefits.map(x => x.vacNameEn))
+      );
     });
 
     it("returns an empty array if there are no benefits", () => {
@@ -283,33 +216,52 @@ describe("Benefits Selectors", () => {
       expect(returnValue).toEqual([]);
     });
 
-    it("displays benefits 1, 3 if patronType p3", () => {
-      state.patronType = "p3";
-      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
-        "benefit_1",
-        "benefit_3"
-      ]);
+    it("displays appropriate benefits if patronType is organization", () => {
+      state.patronType = "organization";
+      const nameEnList = [
+        "Community War Memorial",
+        "Community Engagement",
+        "Veteran and Family Well-Being Fund",
+        "Operational Stress Injury clinics",
+        "VAC Assistance Service"
+      ];
+      const relevant_benefits = state.benefits.filter(x => {
+        return nameEnList.indexOf(x.vacNameEn) > -1;
+      });
+      expect(getFilteredBenefits(state, props).map(x => x.vacNameEn)).toEqual(
+        relevant_benefits.map(x => x.vacNameEn)
+      );
     });
 
     it("returns benefits based on selectedNeeds", () => {
-      state.selectedNeeds = { need_1: "need_1" };
-      let returnValue = getFilteredBenefits(state, props);
-      expect(returnValue).toEqual([benefitsFixture[3]]);
+      const selectedNeed = state.needs.filter(
+        x => x.nameEn === "Emergency funds"
+      )[0];
+      state.selectedNeeds = { [selectedNeed.id]: selectedNeed.id };
+      let returnValue = getFilteredBenefits(state, props).map(x => x.vacNameEn);
+      expect(returnValue).toEqual(["Veterans Emergency Fund"]);
     });
 
     it("runs a lunr search on the english index if searchString is set an english is used", () => {
-      state.searchString = "Fiz";
-      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
-        "benefit_1"
-      ]);
+      state.searchString = "health";
+      expect(getFilteredBenefits(state, props).length).not.toEqual(0);
     });
 
     it("runs a lunr search on the french index if searchString is set an french is used", () => {
       props.t = () => "fr";
-      state.searchString = "Fiz";
-      expect(getFilteredBenefits(state, props).map(b => b.id)).toEqual([
-        "benefit_1"
-      ]);
+      state.searchString = "avantage";
+      expect(getFilteredBenefits(state, props).length).not.toEqual(0);
+    });
+
+    it("returns a list of results sorted according to their lunr score", () => {
+      state.searchString = "benefit";
+      const rankedScores = getFilteredBenefits(state, props).map(x => x.score);
+      expect(
+        rankedScores
+          .concat()
+          .sort()
+          .reverse()
+      ).toEqual(rankedScores);
     });
   });
 });
