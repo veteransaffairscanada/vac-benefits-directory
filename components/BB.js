@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Print from "./icons/Print";
+import ShareIcon from "./icons/share_icon";
 import Bookmark from "./icons/Bookmark";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
@@ -34,6 +35,12 @@ const nonMobileStyle = css`
     display: none;
   }
 `;
+const right = css`
+  text-align: right;
+`;
+const menuChildRight = css`
+  margin-left: 2em;
+`;
 
 export class BB extends Component {
   state = { showDisabledCookieBanner: false };
@@ -61,7 +68,7 @@ export class BB extends Component {
         <div className={topMatter}>
           <Container className={topPadding}>
             <Grid container spacing={24}>
-              <Grid item xs={12} md={9}>
+              <Grid item xs={6}>
                 <HeaderButton
                   useLink
                   className={anchors}
@@ -74,15 +81,22 @@ export class BB extends Component {
                     this.props.favouriteBenefits.length +
                     ")"}
                 </HeaderButton>
+              </Grid>
+              <Grid item xs={6} className={right}>
                 <HeaderButton
                   useLink
-                  className={anchors}
+                  href={this.props.printUrl}
                   target="print_page"
                   id="printButton"
-                  href={this.props.printUrl}
                 >
                   <Print />{" "}
                   <span className={nonMobileStyle}> {t("Print")} </span>
+                </HeaderButton>
+                <HeaderButton
+                  onClick={() => this.setState({ showModal: true })}
+                >
+                  <ShareIcon className={menuChildRight} />
+                  <span className={nonMobileStyle}> Share this Page </span>
                 </HeaderButton>
               </Grid>
             </Grid>
