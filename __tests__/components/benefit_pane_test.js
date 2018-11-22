@@ -57,9 +57,7 @@ describe("BenefitsPane", () => {
       needs: needsFixture,
       searchString: "",
       setSearchString: jest.fn(),
-      setSortBy: jest.fn(),
-      selectedNeeds: {},
-      sortBy: "relevance"
+      selectedNeeds: {}
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
@@ -84,10 +82,6 @@ describe("BenefitsPane", () => {
     it("passes axe tests", async () => {
       let html = mounted().html();
       expect(await axe(html)).toHaveNoViolations();
-    });
-
-    it("has a sortBy selector", () => {
-      expect(mounted().find("#sortBySelector").length).toEqual(2);
     });
 
     it("has a benefits counter", () => {
@@ -175,23 +169,6 @@ describe("BenefitsPane", () => {
           .instance()
           .handleSearchChange({ target: { value: "foo" } });
         expect(reduxData.setSearchString).toBeCalledWith("foo");
-      });
-    });
-
-    describe("sort by feature", () => {
-      it("shows a sort by box", () => {
-        expect(
-          mounted()
-            .find("#sortBySelector")
-            .first().length
-        ).toEqual(1);
-      });
-
-      it("handleSortByChange sets the sortBy state in redux", () => {
-        mounted()
-          .instance()
-          .handleSortByChange({ target: { value: "foo" } });
-        expect(reduxData.setSortBy).toBeCalledWith("foo");
       });
     });
   });
