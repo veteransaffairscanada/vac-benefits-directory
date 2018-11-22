@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
 import Bookmark from "./icons/BookmarkBorder";
 import Print from "./icons/Print";
+import ShareIcon from "./icons/share_icon";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "./container";
@@ -32,6 +33,9 @@ const contactUsTitle = css`
 `;
 const right = css`
   text-align: right;
+`;
+const menuChildRight = css`
+  margin-left: 2em;
 `;
 const emptyList = css`
   margin-top: 20px;
@@ -117,6 +121,7 @@ export class Favourites extends Component {
                 <HeaderButton
                   onClick={() => this.setState({ showModal: true })}
                 >
+                  <ShareIcon className={menuChildRight} />
                   Share This Page
                 </HeaderButton>
               </Grid>
