@@ -117,7 +117,8 @@ class ShareModal extends Component {
   render() {
     const { isOpen, onRequestClose, closeModal } = this.props;
 
-    return (
+    // Only render modal on the client - portals are not supported on the server and fail tests
+    if (process.browser) {
       <ReactModal
         className={modalCSS}
         isOpen={isOpen}
@@ -139,8 +140,10 @@ class ShareModal extends Component {
             Copy
           </CopyButton>
         </div>
-      </ReactModal>
-    );
+      </ReactModal>;
+    } else {
+      return <div />;
+    }
   }
 }
 
@@ -150,8 +153,7 @@ ShareModal.propTypes = {
   onRequestClose: PropTypes.func,
   closeModal: PropTypes.func
 };
-
-ReactModal.setAppElement("#__next");
+if (document.getElementById("main")) ReactModal.setAppElement("#main");
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(30,30,30,0.75)";
 
 export default ShareModal;
