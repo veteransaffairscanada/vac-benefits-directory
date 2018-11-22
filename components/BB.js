@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ShareModal from "./share_modal";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Print from "./icons/Print";
@@ -43,7 +44,10 @@ const menuChildRight = css`
 `;
 
 export class BB extends Component {
-  state = { showDisabledCookieBanner: false };
+  state = {
+    showDisabledCookieBanner: false,
+    showModal: false
+  };
 
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
@@ -66,6 +70,11 @@ export class BB extends Component {
         ref={el => (this.componentRef = el)}
       >
         <div className={topMatter}>
+          <ShareModal
+            isOpen={this.state.showModal}
+            onRequestClose={() => this.setState({ showModal: false })}
+            closeModal={() => this.setState({ showModal: false })}
+          />
           <Container className={topPadding}>
             <Grid container spacing={24}>
               <Grid item xs={6}>
