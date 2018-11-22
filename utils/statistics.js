@@ -32,7 +32,7 @@ var getGithubData = (exports.getGithubData = async function getGithubData() {
     per_page: 100
   });
 
-  const releasesResp = await paginate(octokit.repos.getTags, {
+  const releasesResp = await paginate(octokit.repos.listTags, {
     owner: "cds-snc",
     repo: "vac-benefits-directory",
     per_page: 100
