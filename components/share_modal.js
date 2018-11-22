@@ -119,28 +119,30 @@ class ShareModal extends Component {
 
     // Only render modal on the client - portals are not supported on the server and fail tests
     if (process.browser) {
-      <ReactModal
-        className={modalCSS}
-        isOpen={isOpen}
-        onRequestClose={onRequestClose}
-      >
-        <div className={header}>
-          <span>Share this page</span>
-          <CloseButton onClick={closeModal}>X</CloseButton>
-        </div>
-        <div className={bodyStyle}>
-          <p>Copy the link below and paste it wherever you need.</p>
-          <URLInputBox
-            type="text"
-            id="shareTarget"
-            value={this.state.url}
-            readOnly
-          />
-          <CopyButton data-copytarget="#shareTarget" onClick={this.copyText}>
-            Copy
-          </CopyButton>
-        </div>
-      </ReactModal>;
+      return (
+        <ReactModal
+          className={modalCSS}
+          isOpen={isOpen}
+          onRequestClose={onRequestClose}
+        >
+          <div className={header}>
+            <span>Share this page</span>
+            <CloseButton onClick={closeModal}>X</CloseButton>
+          </div>
+          <div className={bodyStyle}>
+            <p>Copy the link below and paste it wherever you need.</p>
+            <URLInputBox
+              type="text"
+              id="shareTarget"
+              value={this.state.url}
+              readOnly
+            />
+            <CopyButton data-copytarget="#shareTarget" onClick={this.copyText}>
+              Copy
+            </CopyButton>
+          </div>
+        </ReactModal>
+      );
     } else {
       return <div />;
     }
@@ -153,7 +155,7 @@ ShareModal.propTypes = {
   onRequestClose: PropTypes.func,
   closeModal: PropTypes.func
 };
-if (document.getElementById("main")) ReactModal.setAppElement("#main");
+if (process.browser) ReactModal.setAppElement("#main");
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(30,30,30,0.75)";
 
 export default ShareModal;
