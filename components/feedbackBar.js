@@ -192,11 +192,11 @@ export class FeedbackBar extends Component {
           </div>
         ) : null}
         <div className={Div}>
-          {this.state.feedbackSubmitted ? (
+          {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
             <div className={Inner}>
               <p className={pStyle}>{t("feedback-response")}</p>
             </div>
-          ) : (
+          ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>
               <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
                 {t("feedback-prompt")} &nbsp;
@@ -215,7 +215,7 @@ export class FeedbackBar extends Component {
                 {t("no")}
               </FooterButton>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     );
