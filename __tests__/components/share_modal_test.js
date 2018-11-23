@@ -7,6 +7,7 @@ expect.extend(toHaveNoViolations);
 
 describe("ShareModal", () => {
   let props;
+  process.browser = true;
   // add a div with #modal-root id to the global body
   const modalRoot = global.document.createElement("div");
   modalRoot.setAttribute("id", "main");
@@ -17,12 +18,47 @@ describe("ShareModal", () => {
     Router.push = jest.fn();
     window.location.assign = jest.fn();
     props = {
-      children: "header"
+      isOpen: true,
+      closeModal: jest.fn()
     };
   });
+
+  // mock copyText function and test that it fired
 
   it("passes axe tests", async () => {
     let html = mount(<ShareModal {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
+  });
+
+  it("closes the model when the close button is clicked", () => {
+    let modal = mount(<ShareModal {...props} />);
+    modal.setState({ isOpen: true });
+    modal
+      .find("#modalCloseButton")
+      .first()
+      .simulate("click");
+    expect(props.closeModal).toBeCalled();
+  });
+
+  it("renders when isOpen is true", () => {
+    let modal = mount(<ShareModal {...props} />);
+    modal.setState({ isOpen: true });
+    expect(modal.find("#shareTarget").length).not.toEqual(0);
+  });
+
+  it("doesn't render when isOpen is false", () => {
+    let modal = mount(<ShareModal {...props} />);
+    expect(modal.find("#shareTarget").length).not.toEqual(0);
+  });
+
+  it("the copyText function is called when the copy button is clicked", () => {
+    let modal = mount(<ShareModal {...props} />);
+    modal.instance().copyText = jest.fn();
+    modal.setState({ isOpen: true });
+    modal
+      .find("#copyButton")
+      .first()
+      .simulate("click");
+    expect(modal.instance().copyText).toBeCalled();
   });
 });

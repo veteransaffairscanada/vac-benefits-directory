@@ -120,6 +120,7 @@ export class Favourites extends Component {
                 </HeaderButton>
                 <HeaderButton
                   onClick={() => this.setState({ showModal: true })}
+                  id="shareButton"
                 >
                   <ShareIcon className={menuChildRight} />
                   Share This Page

@@ -109,7 +109,8 @@ class ShareModal extends Component {
 
         // TODO - confirmation message that link has been copied
       } catch (err) {
-        alert("copy button not supported");
+        // TODO - throw error
+        //alert("copy button not supported");
       }
     }
   }
@@ -127,17 +128,27 @@ class ShareModal extends Component {
         >
           <div className={header}>
             <span>Share this page</span>
-            <CloseButton onClick={closeModal}>X</CloseButton>
+            <CloseButton onClick={closeModal} id="modalCloseButton">
+              X
+            </CloseButton>
           </div>
           <div className={bodyStyle}>
-            <p>Copy the link below and paste it wherever you need.</p>
+            <p>
+              <label htmlFor="shareTarget">
+                Copy the link below and paste it wherever you need.
+              </label>
+            </p>
             <URLInputBox
               type="text"
               id="shareTarget"
               value={this.state.url}
               readOnly
             />
-            <CopyButton data-copytarget="#shareTarget" onClick={this.copyText}>
+            <CopyButton
+              id="copyButton"
+              data-copytarget="#shareTarget"
+              onClick={this.copyText}
+            >
               Copy
             </CopyButton>
           </div>

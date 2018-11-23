@@ -103,6 +103,7 @@ export class BB extends Component {
                 </HeaderButton>
                 <HeaderButton
                   onClick={() => this.setState({ showModal: true })}
+                  id="shareButton"
                 >
                   <ShareIcon className={menuChildRight} />
                   <span className={nonMobileStyle}> Share this Page </span>
