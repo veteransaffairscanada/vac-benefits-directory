@@ -57,6 +57,7 @@
     "react-highcharts": "^16.0.2",
     "react-highlight-words": "^0.14.0",
     "react-jss": "^8.6.1",
+    "react-modal": "^3.6.1",
     "react-moment": "^0.8.4",
     "react-redux": "^5.1.1",
     "redux": "^4.0.1",

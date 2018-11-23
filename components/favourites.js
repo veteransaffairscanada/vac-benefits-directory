@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ShareModal from "./share_modal";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
@@ -6,6 +7,7 @@ import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
 import Bookmark from "./icons/BookmarkBorder";
 import Print from "./icons/Print";
+import ShareIcon from "./icons/share_icon";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "./container";
@@ -31,6 +33,9 @@ const contactUsTitle = css`
 `;
 const right = css`
   text-align: right;
+`;
+const menuChildRight = css`
+  margin-left: 2em;
 `;
 const emptyList = css`
   margin-top: 20px;
@@ -60,7 +65,8 @@ export class Favourites extends Component {
   state = {
     enIdx: null,
     frIdx: null,
-    showDisabledCookieBanner: false
+    showDisabledCookieBanner: false,
+    showModal: false
   };
 
   componentDidMount() {
@@ -86,6 +92,11 @@ export class Favourites extends Component {
     return (
       <div className={outerDiv}>
         <div className={whiteBanner}>
+          <ShareModal
+            isOpen={this.state.showModal}
+            onRequestClose={() => this.setState({ showModal: false })}
+            closeModal={() => this.setState({ showModal: false })}
+          />
           <Container className={topPadding}>
             <Grid container spacing={24}>
               <Grid item xs={6}>
@@ -106,6 +117,13 @@ export class Favourites extends Component {
                   id="printButton"
                 >
                   <Print /> {t("Print")}
+                </HeaderButton>
+                <HeaderButton
+                  onClick={() => this.setState({ showModal: true })}
+                  id="shareButton"
+                >
+                  <ShareIcon className={menuChildRight} />
+                  Share This Page
                 </HeaderButton>
               </Grid>
             </Grid>
