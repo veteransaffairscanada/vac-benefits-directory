@@ -105,7 +105,7 @@ describe("DataValidation", () => {
     props.benefits[0].vacNameEn = "";
     const instance = shallow(<DataValidation {...props} />).instance();
     expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
-      props.benefits[0].id
+      props.benefits[0].vacNameEn
     );
   });
 
@@ -113,7 +113,7 @@ describe("DataValidation", () => {
     props.translations[0].vacNameEn = "";
     const instance = shallow(<DataValidation {...props} />).instance();
     expect(instance.checkMissingNeeds(props.translations[0], 0)).toContain(
-      props.translations[0].id
+      props.translations[0].vacNameEn
     );
   });
 
@@ -121,7 +121,7 @@ describe("DataValidation", () => {
     props.benefits[0].needs = "";
     const instance = shallow(<DataValidation {...props} />).instance();
     expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
-      props.benefits[0].id
+      props.benefits[0].vacNameEn
     );
   });
 
@@ -129,7 +129,7 @@ describe("DataValidation", () => {
     props.benefits[0].eligibilityPaths = "";
     const instance = shallow(<DataValidation {...props} />).instance();
     expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
-      props.benefits[0].id
+      props.benefits[0].vacNameEn
     );
   });
 

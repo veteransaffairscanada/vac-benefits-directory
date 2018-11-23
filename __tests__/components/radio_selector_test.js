@@ -35,16 +35,14 @@ describe("RadioSelector", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has 3 FormControlLabels", () => {
-    expect(
-      mount(<RadioSelector {...props} />).find("FormControlLabel").length
-    ).toEqual(3);
+  it("has 3 Radio Components", () => {
+    expect(mount(<RadioSelector {...props} />).find("Radio").length).toEqual(3);
   });
 
-  it("2nd FormControlLabel has the correct text", () => {
+  it("2nd Radio component has the correct text", () => {
     expect(
       mount(<RadioSelector {...props} />)
-        .find("FormControlLabel")
+        .find("Radio")
         .at(1)
         .text()
     ).toEqual("p2_en");

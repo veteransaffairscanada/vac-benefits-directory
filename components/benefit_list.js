@@ -68,11 +68,21 @@ export class BenefitList extends React.Component {
 
   render() {
     let { loading } = this.state;
-    const sortedBenefits = this.sortBenefits(
-      this.props.filteredBenefits,
-      this.props.t("current-language-code"),
-      this.props.sortByValue
-    );
+    let {
+      filteredBenefits,
+      t,
+      sortByValue,
+      searchString,
+      showFavourites,
+      store
+    } = this.props;
+    const sortedBenefits = searchString
+      ? filteredBenefits
+      : this.sortBenefits(
+          filteredBenefits,
+          t("current-language-code"),
+          sortByValue
+        );
 
     return loading ? (
       <div className={Div}>
@@ -83,11 +93,11 @@ export class BenefitList extends React.Component {
         <BenefitCard
           id={"bc" + i}
           benefit={benefit}
-          t={this.props.t}
+          t={t}
           key={benefit.id}
-          showFavourite={this.props.showFavourites}
-          searchString={this.props.searchString}
-          store={this.props.store}
+          showFavourite={showFavourites}
+          searchString={searchString}
+          store={store}
         />
       ))
     );

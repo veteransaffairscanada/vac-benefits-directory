@@ -108,12 +108,12 @@ describe("Feedback bar", () => {
   });
 
   describe("clicking the no button", () => {
-    it("shows the feedback response", () => {
+    it("does not show the thank you for your feedback text", () => {
       mountedFeedbackBar()
         .find("#feedbackNo")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).toContain("feedback-response");
+      expect(mountedFeedbackBar().text()).not.toContain("feedback-response");
     });
 
     it("shows the commentBox", () => {
@@ -122,6 +122,19 @@ describe("Feedback bar", () => {
         .at(0)
         .simulate("click");
       expect(mountedFeedbackBar().text()).toContain("comment-help-us-improve");
+    });
+
+    it("shows the thank you for your feedback text after clicking submit button", () => {
+      mountedFeedbackBar()
+        .find("#feedbackNo")
+        .at(0)
+        .simulate("click");
+
+      mountedFeedbackBar()
+        .find("#sendComment")
+        .at(0)
+        .simulate("click");
+      expect(mountedFeedbackBar().text()).toContain("feedback-response");
     });
   });
 

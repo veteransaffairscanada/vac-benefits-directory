@@ -8,7 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "../components/paper";
 import Button from "@material-ui/core/Button";
 import ReactMoment from "react-moment";
-import { withI18next } from "../lib/withI18next";
+import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import { css, cx } from "react-emotion";
@@ -36,17 +36,23 @@ const tableCellRed = css`
 export class DataValidation extends Component {
   constructor(props) {
     super(props);
+    // Names in airtable are stored under "vacNameEn" and "vacNameFr"
+    let langCode = this.props.t("current-language-code");
+    langCode = "vacName" + langCode.charAt(0).toUpperCase() + langCode.slice(1);
     this.state = {
       invalidUrls: [],
-      urlState: undefined
+      urlState: undefined,
+      benefitNameKey: langCode
     };
   }
+
+  getBenefitNameCode = () => {};
 
   createData = (name, value, status) => {
     return { name, value, status };
   };
 
-  checkBenefitsFields(b, i) {
+  checkBenefitsFields = (b, i) => {
     if (
       !(b.vacNameEn && b.vacNameEn != "") ||
       !(b.vacNameFr && b.vacNameFr != "") ||
@@ -55,9 +61,9 @@ export class DataValidation extends Component {
       !(b.benefitPageEn && b.benefitPageEn != "") ||
       !(b.benefitPageFr && b.benefitPageFr != "")
     ) {
-      return " " + b.id + " (" + (i + 1) + "),";
+      return " " + b[this.state.benefitNameKey] + " (" + (i + 1) + "),";
     }
-  }
+  };
 
   checkAreaOfficesFields(a, i) {
     if (
@@ -82,17 +88,17 @@ export class DataValidation extends Component {
     }
   }
 
-  checkMissingNeeds(b, i) {
+  checkMissingNeeds = (b, i) => {
     if (!(b.needs && b.needs != "")) {
-      return " " + b.id + " (" + (i + 1) + "),";
+      return " " + b[this.state.benefitNameKey] + " (" + (i + 1) + "),";
     }
-  }
+  };
 
-  checkEligibiltyPaths(b, i) {
+  checkEligibiltyPaths = (b, i) => {
     if (!(b.eligibilityPaths && b.eligibilityPaths != "")) {
-      return " " + b.id + " (" + (i + 1) + "),";
+      return " " + b[this.state.benefitNameKey] + " (" + (i + 1) + "),";
     }
-  }
+  };
 
   checkBenefitUrls = async () => {
     this.setState({
@@ -303,4 +309,4 @@ DataValidation.propTypes = {
   areaOffices: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps)(withI18next()(DataValidation));
+export default connect(mapStateToProps)(withI18N(DataValidation));

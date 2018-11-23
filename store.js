@@ -19,7 +19,8 @@ const initialState = {
   userLocation: { lat: 49, lng: -104 },
   pageWidth: 1000,
   mapView: { lat: 49, lng: -104, zoom: 1 },
-  cookiesDisabled: false
+  cookiesDisabled: false,
+  language: ""
 };
 airtableConstants.tableNames.forEach(tableName => {
   initialState[tableName] = [];
@@ -28,6 +29,7 @@ airtableConstants.tableNames.forEach(tableName => {
 // REDUCERS
 export const reducer = (state = initialState, action) => {
   let benefits;
+  let language;
   let enIdx;
   let frIdx;
   let newState;
@@ -89,6 +91,11 @@ export const reducer = (state = initialState, action) => {
 
     case "SAVE_QUESTION_RESPONSE":
       return Object.assign({}, state, action.data);
+
+    case "SET_LANGUAGE":
+      language = action.data;
+      language = language.indexOf("fr") != -1 ? "fr" : "en";
+      return Object.assign({}, state, { language: language });
 
     case "SET_SEARCH_STRING":
       return Object.assign({}, state, {

@@ -6,8 +6,6 @@ import flush from "styled-jsx/server";
 import getPageContext from "../lib/pageContext";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
-import { withI18next } from "../lib/withI18next";
-
 const bodyStyling = {
   fontFamily: "Merriweather, serif",
   margin: 0
@@ -62,15 +60,16 @@ class MyDocument extends Document {
   }
 
   render() {
+    var initialLang = this.props.__NEXT_DATA__.props.initialState.language;
     const googleMapURL =
       "https://maps.googleapis.com/maps/api/js?key=" +
       process.env.GOOGLE_MAPS_KEY +
       "&language=" +
-      this.props.t("current-language-code") +
+      initialLang +
       "&v=3.exp&libraries=geometry,drawing,places";
 
     return (
-      <html lang={this.props.t("current-language-code")}>
+      <html lang={initialLang}>
         <Head>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <script type="text/javascript" src={googleMapURL} />
@@ -84,4 +83,4 @@ class MyDocument extends Document {
   }
 }
 
-export default withI18next()(MyDocument);
+export default MyDocument;
