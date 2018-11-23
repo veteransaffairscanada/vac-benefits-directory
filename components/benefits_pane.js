@@ -12,7 +12,6 @@ import { css } from "react-emotion";
 import Header from "./typography/header";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
-import Dropdown from "./dropdown";
 import Button from "./button";
 import { getLink } from "../utils/common";
 import { globalTheme } from "../theme";
@@ -49,10 +48,6 @@ export class BenefitsPane extends Component {
       this.props.saveQuestionResponse(q.variable_name, "");
     });
     this.props.saveQuestionResponse("selectedNeeds", {});
-  };
-
-  handleSortByChange = event => {
-    this.props.setSortBy(event.target.value);
   };
 
   countSelection = () => {
@@ -133,18 +128,6 @@ export class BenefitsPane extends Component {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Dropdown
-              value={this.props.sortBy}
-              onChange={this.handleSortByChange}
-              label={t("B3.Sort By")}
-              id="sortBySelector"
-            >
-              <option value="relevance">{t("B3.Popularity")}</option>
-              <option value="alphabetical">{t("B3.Alphabetical")}</option>
-            </Dropdown>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
             <SearchBox
               inputId="bbSearchField"
               buttonId="searchButtonLink"
@@ -161,7 +144,6 @@ export class BenefitsPane extends Component {
               <BenefitList
                 t={t}
                 filteredBenefits={filteredBenefits}
-                sortByValue={this.props.sortBy}
                 searchString={this.props.searchString}
                 showFavourites={true}
                 store={this.props.store}
@@ -184,9 +166,6 @@ const mapDispatchToProps = dispatch => {
     },
     setSearchString: searchString => {
       dispatch({ type: "SET_SEARCH_STRING", data: searchString });
-    },
-    setSortBy: sortBy => {
-      dispatch({ type: "SET_SORT_BY", data: sortBy });
     }
   };
 };
@@ -204,7 +183,6 @@ const mapStateToProps = (reduxState, props) => {
     filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
     selectedNeeds: reduxState.selectedNeeds,
-    sortBy: reduxState.sortBy,
     reduxState: reduxState
   };
 };
@@ -222,8 +200,6 @@ BenefitsPane.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   setSearchString: PropTypes.func.isRequired,
-  setSortBy: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object
 };
