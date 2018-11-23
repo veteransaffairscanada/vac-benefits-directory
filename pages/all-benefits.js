@@ -29,7 +29,6 @@ export class AllBenefits extends Component {
               <BenefitList
                 t={t}
                 filteredBenefits={this.props.benefits}
-                sortByValue={this.props.sortBy}
                 searchString={this.props.searchString}
                 showFavourites={true}
                 store={this.props.store}
@@ -45,8 +44,7 @@ export class AllBenefits extends Component {
 const mapStateToProps = reduxState => {
   return {
     benefits: reduxState.benefits,
-    searchString: reduxState.searchString,
-    sortBy: reduxState.sortBy
+    searchString: reduxState.searchString
   };
 };
 
@@ -55,7 +53,6 @@ AllBenefits.propTypes = {
   searchString: PropTypes.string.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 

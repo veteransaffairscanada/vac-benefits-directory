@@ -13,7 +13,6 @@ const initialState = {
   frIdx: {},
   searchString: "",
   selectedNeeds: {},
-  sortBy: "",
   closestAreaOffice: {},
   selectedAreaOffice: {},
   userLocation: { lat: 49, lng: -104 },
@@ -104,10 +103,6 @@ export const reducer = (state = initialState, action) => {
     case "SET_SELECTED_NEEDS":
       return Object.assign({}, state, {
         selectedNeeds: action.data
-      });
-    case "SET_SORT_BY":
-      return Object.assign({}, state, {
-        sortBy: action.data
       });
     case "SET_CLOSEST_OFFICE":
       return Object.assign({}, state, {

@@ -102,7 +102,6 @@ describe("BenefitsDirectory", () => {
       searchString: "",
       selectedNeeds: {},
       serviceType: "s1",
-      sortBy: "relevance",
       patronType: "p2",
       statusAndVitals: "",
       serviceHealthIssue: "",
@@ -135,7 +134,7 @@ describe("BenefitsDirectory", () => {
     reduxData.searchString = "foo";
     let AInstance = mountedBenefitsDirectory().instance();
     const expectedURL =
-      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=veteran&searchString=foo&sortBy=relevance";
+      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=veteran&searchString=foo";
     AInstance.setURL();
     expect(Router.replace).toBeCalledWith(expectedURL);
   });
