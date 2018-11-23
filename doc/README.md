@@ -195,7 +195,7 @@ Given the Government of Canada's mandate to support both official languages, we 
 
 #### How does it work?
 
-The default mode for `react-18next` is to pull translated `key`-`value` strings out of static JSON files that correspond with the locale set for the browser, or a `lng` GET param set in the URL. This requires any modification or addition of translation strings to go through a `commit` cycle in Git, limiting accessibility to business owners and other non-technical users. Instead we are storing all translatable strings in `AirTable` where they can be easily modified using a user interface similar to Excel.
+The process to translate text is to pull translated `key`-`value` strings out of static JSON files that correspond with the locale set for the browser, or a `lng` GET param set in the URL. This requires any modification or addition of translation strings to go through a `commit` cycle in Git, limiting accessibility to business owners and other non-technical users. Instead we are storing all translatable strings in `AirTable` where they can be easily modified using a user interface similar to Excel.
 
 Upon boot, and every hour after, the server will download and cache all the translation strings in memory (A refresh of the cache can also be requested upon demand). The strings are then stored in `redux` and made available to all `react` compoments. A `translation` function then takes the `key` of a string and looks up the matching value in the corresponding locale.
 
