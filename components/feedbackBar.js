@@ -199,7 +199,7 @@ export class FeedbackBar extends Component {
           ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>
               <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
-                {t("feedback-prompt")} &nbsp;
+                {t("feedback-prompt")}
               </Header>
               <FooterButton
                 id="feedbackYes"
