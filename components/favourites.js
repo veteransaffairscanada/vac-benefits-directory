@@ -96,6 +96,7 @@ export class Favourites extends Component {
             isOpen={this.state.showModal}
             onRequestClose={() => this.setState({ showModal: false })}
             closeModal={() => this.setState({ showModal: false })}
+            t={t}
           />
           <Container className={topPadding}>
             <Grid container spacing={24}>
@@ -123,7 +124,7 @@ export class Favourites extends Component {
                   id="shareButton"
                 >
                   <ShareIcon className={menuChildRight} />
-                  Share This Page
+                  {t("titles.share")}
                 </HeaderButton>
               </Grid>
             </Grid>

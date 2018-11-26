@@ -116,7 +116,7 @@ class ShareModal extends Component {
   }
 
   render() {
-    const { isOpen, onRequestClose, closeModal } = this.props;
+    const { isOpen, onRequestClose, closeModal, t } = this.props;
 
     // Only render modal on the client - portals are not supported on the server and fail tests
     if (process.browser) {
@@ -127,16 +127,14 @@ class ShareModal extends Component {
           onRequestClose={onRequestClose}
         >
           <div className={header}>
-            <span>Share this page</span>
+            <span>{t("titles.share")}</span>
             <CloseButton onClick={closeModal} id="modalCloseButton">
               X
             </CloseButton>
           </div>
           <div className={bodyStyle}>
             <p>
-              <label htmlFor="shareTarget">
-                Copy the link below and paste it wherever you need.
-              </label>
+              <label htmlFor="shareTarget">{t("share.copy_prompt")}</label>
             </p>
             <URLInputBox
               type="text"
@@ -149,7 +147,7 @@ class ShareModal extends Component {
               data-copytarget="#shareTarget"
               onClick={this.copyText}
             >
-              Copy
+              {t("share.copy_button")}
             </CopyButton>
           </div>
         </ReactModal>
@@ -164,7 +162,8 @@ ShareModal.propTypes = {
   className: PropTypes.string,
   isOpen: PropTypes.bool,
   onRequestClose: PropTypes.func,
-  closeModal: PropTypes.func
+  closeModal: PropTypes.func,
+  t: PropTypes.func.isRequired
 };
 if (process.browser) ReactModal.setAppElement("#main");
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(30,30,30,0.75)";

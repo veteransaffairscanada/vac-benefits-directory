@@ -74,6 +74,7 @@ export class BB extends Component {
             isOpen={this.state.showModal}
             onRequestClose={() => this.setState({ showModal: false })}
             closeModal={() => this.setState({ showModal: false })}
+            t={t}
           />
           <Container className={topPadding}>
             <Grid container spacing={24}>
@@ -106,7 +107,7 @@ export class BB extends Component {
                   id="shareButton"
                 >
                   <ShareIcon className={menuChildRight} />
-                  <span className={nonMobileStyle}> Share this Page </span>
+                  <span className={nonMobileStyle}>{t("titles.share")}</span>
                 </HeaderButton>
               </Grid>
             </Grid>

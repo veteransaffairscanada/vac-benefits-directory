@@ -19,7 +19,13 @@ describe("ShareModal", () => {
     window.location.assign = jest.fn();
     props = {
       isOpen: true,
-      closeModal: jest.fn()
+      closeModal: jest.fn(),
+      t: () => "en",
+      titles: { share: "" },
+      share: {
+        copy_prompt: "",
+        copy_button: ""
+      }
     };
   });
 
