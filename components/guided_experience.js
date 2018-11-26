@@ -123,6 +123,19 @@ export class GuidedExperience extends Component {
         >
           {t("back")}
         </HeaderButton>
+
+        {this.props.stepNumber === 0 ? (
+          <React.Fragment>
+            <Header size="lg" headingLevel="h1">
+              {t("ge.Find benefits and services")}
+            </Header>
+            <Body>
+              <p>{t("ge.intro_text_p1")}</p>
+              <p>{t("ge.intro_text_p2")}</p>
+            </Body>
+          </React.Fragment>
+        ) : null}
+
         <Paper padding="md" className={box}>
           <Grid container spacing={24}>
             <Grid item xs={12} md={12}>
@@ -135,7 +148,7 @@ export class GuidedExperience extends Component {
             </Grid>
 
             <Grid item xs={12} className={questions}>
-              <Header size="lg" headingLevel="h1">
+              <Header size="md_lg" headingLevel="h2">
                 {subtitle}
               </Header>
               {helperText ? <Body className={body}>{helperText}</Body> : null}

@@ -161,4 +161,16 @@ describe("GuidedExperience", () => {
       "B3.Filter by eligibility"
     );
   });
+
+  it("Intro text appears on step 1 of guided experience", () => {
+    props.stepNumber = 0;
+    expect(mounted_GuidedExperience().text()).toContain("ge.intro_text_p1");
+    expect(mounted_GuidedExperience().text()).toContain("ge.intro_text_p2");
+  });
+
+  it("Intro text appears does not appear on steps after step 1 of guided experience", () => {
+    props.stepNumber = 1;
+    expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p1");
+    expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p2");
+  });
 });

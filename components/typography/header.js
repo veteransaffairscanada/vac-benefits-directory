@@ -6,6 +6,7 @@ import { cx, css } from "react-emotion";
 const sizeDict = {
   xl: { fontSize: 52, fontWeight: 900 },
   lg: { fontSize: 36, fontWeight: 900 },
+  md_lg: { fontSize: 32, fontWeight: 900 },
   md: { fontSize: 24, fontWeight: "bold" },
   sm: { fontSize: 18, fontWeight: "bold" }
 };
