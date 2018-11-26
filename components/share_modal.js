@@ -9,14 +9,37 @@ import { globalTheme } from "../theme";
 const modalCSS = css`
   position: absolute;
   top: 20%;
-  left: 100px;
-  right: 100px;
+  left: 25%;
+  right: 25%;
   border: 0;
   background: rgb(255, 255, 255);
   overflow: auto;
   border-radius: 4px;
   outline: none;
   padding: 0;
+  @media only screen and (max-width: ${globalTheme.max.md}) {
+    left: 20%;
+    right: 20%;
+  }
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    left: 10%;
+    right: 10%;
+    input {
+      width: 75%;
+    }
+  }
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    left: 10px;
+    right: 10px;
+
+    input {
+      width: 100%;
+    }
+    #copyButton {
+      width: 100%;
+      margin: auto;
+    }
+  }
 `;
 
 const header = css`
@@ -57,6 +80,7 @@ const URLInputBox = styled("input")({
 const CopyButton = styled("button")({
   backgroundColor: globalTheme.colour.cerulean,
   cursor: "pointer",
+  width: "auto",
   border: 0,
   borderRadius: "3px",
   color: globalTheme.colour.white,
