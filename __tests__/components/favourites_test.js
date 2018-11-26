@@ -56,7 +56,6 @@ describe("Favourites", () => {
       needs: needsFixture,
       favouriteBenefits: ["benefit_2"],
       selectedNeeds: {},
-      sortBy: "relevance",
       eligibilityPaths: eligibilityPathsFixture,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],

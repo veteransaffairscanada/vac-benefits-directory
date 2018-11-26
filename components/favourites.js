@@ -153,7 +153,6 @@ export class Favourites extends Component {
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
-                  sortByValue={this.props.sortBy}
                   showFavourites={true}
                   searchString=""
                   store={this.props.store}
@@ -264,8 +263,7 @@ const mapStateToProps = (reduxState, props) => {
   return {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
-    printUrl: getPrintUrl(reduxState, props, { fromFavourites: true }),
-    sortBy: reduxState.sortBy
+    printUrl: getPrintUrl(reduxState, props, { fromFavourites: true })
   };
 };
 
@@ -276,7 +274,6 @@ Favourites.propTypes = {
   printUrl: PropTypes.string,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  sortBy: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   store: PropTypes.object
 };

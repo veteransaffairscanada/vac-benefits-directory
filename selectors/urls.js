@@ -6,7 +6,6 @@ const getNeedsFilter = state => state.selectedNeeds;
 const getSearchStringFilter = state => state.searchString;
 const getClosestOffice = state => state.closestAreaOffice;
 const getSelectedOffice = state => state.selectedAreaOffice;
-const getSortBy = state => state.sortBy;
 const getFromFavourites = (state, props, params) => params.fromFavourites;
 const getFavoriteBenefits = (state, props) => props.favouriteBenefits;
 const getBenefits = state => state.benefits;
@@ -16,13 +15,11 @@ export const getFavouritesUrl = createSelector(
     getProfileFilters,
     getNeedsFilter,
     getSearchStringFilter,
-    getCurrentLanguage,
-    getSortBy
+    getCurrentLanguage
   ],
-  (profileFilters, selectedNeeds, searchString, currentLanguage, sortBy) => {
+  (profileFilters, selectedNeeds, searchString, currentLanguage) => {
     let values = {
       lng: currentLanguage,
-      sortBy: sortBy,
       selectedNeeds: Object.keys(selectedNeeds).join(),
       searchString: searchString
     };
@@ -42,7 +39,6 @@ export const getPrintUrl = createSelector(
     getFilteredBenefits,
     getProfileFilters,
     getNeedsFilter,
-    getSortBy,
     getCurrentLanguage,
     getClosestOffice,
     getSelectedOffice,
@@ -54,7 +50,6 @@ export const getPrintUrl = createSelector(
     filteredBenefits,
     profileFilters,
     selectedNeeds,
-    sortBy,
     currentLanguage,
     closestAreaOffice,
     selectedAreaOffice,
@@ -72,7 +67,6 @@ export const getPrintUrl = createSelector(
     }
     let values = {
       lng: currentLanguage,
-      sortBy: sortBy,
       benefits: filteredBenefitsIDs.join(","),
       selectedNeeds: Object.keys(selectedNeeds).join(),
       closestAOID:

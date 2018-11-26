@@ -55,7 +55,6 @@ describe("Print", () => {
         statusAndVitals: "",
         serviceHealthIssue: ""
       },
-      sortByValue: "",
       areaOffices: areaOfficesFixture,
       multipleChoiceOptions: multipleChoiceOptions
     };
@@ -88,22 +87,13 @@ describe("Print", () => {
     expect(mountedPrint().html()).toContain("need_0");
   });
 
-  it("has a correct sortBenefits function when sorting by popularity", () => {
+  it("has a correct sortBenefits function", () => {
     let BLInstance = mountedPrint().instance();
     expect(
       BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
         b => b.id
       )
     ).toEqual(["benefit_2", "benefit_1", "benefit_0", "benefit_3"]);
-  });
-
-  it("has a correct sortBenefits function when sorting alphabetically", () => {
-    let BLInstance = mountedPrint().instance();
-    expect(
-      BLInstance.sortBenefits(benefitsFixture, "en", "alphabetical").map(
-        b => b.id
-      )
-    ).toEqual(["benefit_0", "benefit_1", "benefit_2", "benefit_3"]);
   });
 
   it("renders benefits correctly", () => {

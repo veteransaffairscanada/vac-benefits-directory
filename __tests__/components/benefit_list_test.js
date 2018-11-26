@@ -20,7 +20,6 @@ describe("BenefitList", () => {
       t: key => key,
       filteredBenefits: benefitsFixture,
       onRef: k => k,
-      sortByValue: "",
       searchString: "",
       showFavourites: true,
       option: ""
@@ -55,7 +54,7 @@ describe("BenefitList", () => {
     expect(BLInstance.cleanSortingPriority(undefined)).toEqual("low");
   });
 
-  it("has a correct sortBenefits function when sorting by popularity", () => {
+  it("has a correct sortBenefits function", () => {
     let BLInstance = shallow(
       <BenefitList {...props} {...reduxData} />
     ).instance();
@@ -64,17 +63,6 @@ describe("BenefitList", () => {
         b => b.id
       )
     ).toEqual(["benefit_2", "benefit_1", "benefit_0", "benefit_3"]);
-  });
-
-  it("has a correct sortBenefits function when sorting alphabetically", () => {
-    let BLInstance = shallow(
-      <BenefitList {...props} {...reduxData} />
-    ).instance();
-    expect(
-      BLInstance.sortBenefits(benefitsFixture, "en", "alphabetical").map(
-        b => b.id
-      )
-    ).toEqual(["benefit_0", "benefit_1", "benefit_2", "benefit_3"]);
   });
 
   it("displays the correct number of benefits cards", () => {

@@ -51,7 +51,6 @@ describe("AllBenefits", () => {
       needs: needsFixture,
       searchString: "",
       selectedNeeds: {},
-      sortBy: "relevance",
       favouriteBenefits: [benefitsFixture[0].id]
     };
     props.store = mockStore(reduxData);

@@ -110,7 +110,7 @@ export class Print extends Component {
     }
   };
 
-  sortBenefits = (benefits, language, sortBy) => {
+  sortBenefits = (benefits, language) => {
     benefits.forEach(b => {
       if (b.sortingPriority === undefined) {
         b.sortingPriority = "low";
@@ -119,7 +119,7 @@ export class Print extends Component {
     });
 
     let sorting_fn = (a, b) => {
-      if (sortBy === "alphabetical" || a.sortingNumber === b.sortingNumber) {
+      if (a.sortingNumber === b.sortingNumber) {
         // sort alphabetically
         let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
         let nameA = a[vacName].toUpperCase();
