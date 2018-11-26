@@ -101,7 +101,7 @@ export class BB extends Component {
                   id="shareButton"
                 >
                   <ShareIcon className={menuChildRight} />
-                  <span className={nonMobileStyle}> Share this Page </span>
+                  <span className={nonMobileStyle}>{t("titles.share")}</span>
                 </HeaderButton>
                 <ShareModal
                   isOpen={this.state.showModal}

@@ -118,7 +118,7 @@ export class Favourites extends Component {
                   id="shareButton"
                 >
                   <ShareIcon className={menuChildRight} />
-                  Share This Page
+                  {t("titles.share")}
                 </HeaderButton>
                 <ShareModal
                   isOpen={this.state.showModal}
