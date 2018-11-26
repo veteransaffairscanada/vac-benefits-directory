@@ -103,7 +103,6 @@ describe("Favourites Page", () => {
       needs: needsFixture,
       searchString: "",
       selectedNeeds: {},
-      sortBy: "relevance",
       favouriteBenefits: [benefitsFixture[0].id],
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],

@@ -17,6 +17,10 @@ export default withRedux(initStore)(
           type: "LOAD_GITHUBDATA",
           data: ctx.req.githubData
         });
+        ctx.store.dispatch({
+          type: "SET_LANGUAGE",
+          data: ctx.req.language
+        });
       }
 
       let questions;
@@ -46,7 +50,6 @@ export default withRedux(initStore)(
 
       let queryParams = [
         { key: "searchString", reducer: "SET_SEARCH_STRING", default: "" },
-        { key: "sortBy", reducer: "SET_SORT_BY", default: "relevance" },
         { key: "referrer", reducer: "SET_REFERRER", default: "" }
       ];
 

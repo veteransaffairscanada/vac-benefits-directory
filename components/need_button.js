@@ -53,7 +53,8 @@ const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
     selectedNeeds: reduxState.selectedNeeds,
-    pageWidth: reduxState.pageWidth
+    pageWidth: reduxState.pageWidth,
+    language: reduxState.language
   };
 };
 

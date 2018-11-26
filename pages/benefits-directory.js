@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Router from "next/router";
 import PropTypes from "prop-types";
-import { withI18next } from "../lib/withI18next";
+import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BB from "../components/BB";
@@ -23,8 +23,7 @@ export class BenefitsDirectory extends Component {
       JSON.stringify(this.props.profileFilters) !==
         JSON.stringify(prevProps.profileFilters) ||
       JSON.stringify(this.props.selectedNeeds) !==
-        JSON.stringify(prevProps.selectedNeeds) ||
-      JSON.stringify(this.props.sortBy) !== JSON.stringify(prevProps.sortBy)
+        JSON.stringify(prevProps.selectedNeeds)
     ) {
       this.setURL();
     }
@@ -52,9 +51,6 @@ export class BenefitsDirectory extends Component {
 
     if (this.props.searchString !== "") {
       href += `&searchString=${encodeURIComponent(this.props.searchString)}`;
-    }
-    if (this.props.sortBy !== "") {
-      href += `&sortBy=${encodeURIComponent(this.props.sortBy)}`;
     }
     Router.replace(href);
   };
@@ -93,8 +89,7 @@ const mapStateToProps = (reduxState, props) => {
     profileFilters: getProfileFilters(reduxState, props),
     filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
-    selectedNeeds: reduxState.selectedNeeds,
-    sortBy: reduxState.sortBy
+    selectedNeeds: reduxState.selectedNeeds
   };
 };
 
@@ -104,14 +99,13 @@ BenefitsDirectory.propTypes = {
   url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired,
   store: PropTypes.object,
   searchString: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setPageWidth: PropTypes.func.isRequired
 };
 
-export default withI18next()(
+export default withI18N(
   connect(
     mapStateToProps,
     mapDispatchToProps

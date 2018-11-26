@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import { withI18next } from "../lib/withI18next";
+import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import Favourites from "../components/favourites";
 
 export class FavouritesPage extends Component {
   render() {
-    const { i18n, t, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const { t, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout
-        i18n={this.props.i18n}
         t={this.props.t}
+        i18n={this.props.i18n}
         hideNoscript={false}
         showRefreshCache={false}
         title={t("favourites.saved_benefits", { x: favouriteBenefits.length })}
@@ -37,10 +37,10 @@ const mapStateToProps = state => {
 
 FavouritesPage.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
-  i18n: PropTypes.object.isRequired,
   url: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  i18n: PropTypes.object.isRequired,
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withI18next()(FavouritesPage));
+export default connect(mapStateToProps)(withI18N(FavouritesPage));

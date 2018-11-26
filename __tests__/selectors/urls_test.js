@@ -17,56 +17,53 @@ describe("getFavouritesUrl", () => {
       searchString: "",
       serviceType: "",
       serviceHealthIssue: "",
-      sortBy: "relevance",
       statusAndVitals: ""
     };
   });
 
-  it("adds the language and sortBy variables by default", () => {
-    expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&sortBy=relevance"
-    );
+  it("adds the language variable by default", () => {
+    expect(getFavouritesUrl(state, props)).toEqual("/favourites?lng=en");
   });
 
   it("adds selectedNeeds keys to the URL", () => {
     state.selectedNeeds = { a: 1, b: 2 };
     expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&sortBy=relevance&selectedNeeds=a,b"
+      "/favourites?lng=en&selectedNeeds=a,b"
     );
   });
 
   it("adds patronType string to the URL", () => {
     state.patronType = "foo";
     expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&sortBy=relevance&patronType=foo"
+      "/favourites?lng=en&patronType=foo"
     );
   });
 
   it("adds searchString string to the URL", () => {
     state.searchString = "foo";
     expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&sortBy=relevance&searchString=foo"
+      "/favourites?lng=en&searchString=foo"
     );
   });
 
   it("adds serviceType string to the URL", () => {
     state.serviceType = "foo";
     expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&sortBy=relevance&serviceType=foo"
+      "/favourites?lng=en&serviceType=foo"
     );
   });
 
   it("adds serviceHealthIssue string to the URL", () => {
     state.serviceHealthIssue = "foo";
     expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&sortBy=relevance&serviceHealthIssue=foo"
+      "/favourites?lng=en&serviceHealthIssue=foo"
     );
   });
 
   it("adds statusAndVitals string to the URL", () => {
     state.statusAndVitals = "foo";
     expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&sortBy=relevance&statusAndVitals=foo"
+      "/favourites?lng=en&statusAndVitals=foo"
     );
   });
 });
@@ -115,7 +112,6 @@ describe("getPrintUrl", () => {
       searchString: "",
       serviceType: "",
       serviceHealthIssue: "",
-      sortBy: "relevance",
       statusAndVitals: "",
       benefits: [
         {
@@ -227,65 +223,65 @@ describe("getPrintUrl", () => {
     };
   });
 
-  it("adds the language, sortBy, and benefits variables by default", () => {
+  it("adds the language, and benefits variables by default", () => {
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&benefits=0,1,2,3,4"
+      "/print?lng=en&benefits=0,1,2,3,4"
     );
   });
 
   it("adds selectedNeeds keys to the URL", () => {
     state.selectedNeeds = [{ id: "0" }];
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&benefits=0&selectedNeeds=0"
+      "/print?lng=en&benefits=0&selectedNeeds=0"
     );
   });
 
   it("adds patronType string to the URL", () => {
     state.patronType = "foo";
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&patronType=foo"
+      "/print?lng=en&patronType=foo"
     );
   });
 
   it("adds serviceType string to the URL", () => {
     state.serviceType = "foo";
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&benefits=0,1,2,3,4&serviceType=foo"
+      "/print?lng=en&benefits=0,1,2,3,4&serviceType=foo"
     );
   });
 
   it("adds serviceHealthIssue string to the URL", () => {
     state.serviceHealthIssue = "foo";
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&benefits=0,1,2,3,4&serviceHealthIssue=foo"
+      "/print?lng=en&benefits=0,1,2,3,4&serviceHealthIssue=foo"
     );
   });
 
   it("adds statusAndVitals string to the URL", () => {
     state.statusAndVitals = "foo";
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&benefits=0,1,2,3,4&statusAndVitals=foo"
+      "/print?lng=en&benefits=0,1,2,3,4&statusAndVitals=foo"
     );
   });
 
   it("adds closestAOID string to the URL", () => {
     state.closestAreaOffice = { id: "foo" };
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&benefits=0,1,2,3,4&closestAOID=foo"
+      "/print?lng=en&benefits=0,1,2,3,4&closestAOID=foo"
     );
   });
 
   it("adds selectedAOID string to the URL", () => {
     state.selectedAreaOffice = { id: "foo" };
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&benefits=0,1,2,3,4&selectedAOID=foo"
+      "/print?lng=en&benefits=0,1,2,3,4&selectedAOID=foo"
     );
   });
 
   it("adds fromFavourites string to the URL", () => {
     params["fromFavourites"] = true;
     expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&sortBy=relevance&fromFavourites=true"
+      "/print?lng=en&fromFavourites=true"
     );
   });
 });

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { withI18next } from "../lib/withI18next";
+import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import AreaOfficeMap from "../components/area_office_map";
@@ -86,15 +86,15 @@ export class Map extends Component {
               </Header>
             </Grid>
             <Grid item xs={12} md={12} id="contactInfo">
-              <p>
-                <Body>
+              <Body>
+                <p>
                   {t("map.contact_1") + " "}
                   <AnchorLink fontSize={18} href={"tel:+" + t("contact.phone")}>
                     {t("contact.phone")}
                   </AnchorLink>
                   {" " + t("map.contact_2")}
-                </Body>
-              </p>
+                </p>
+              </Body>
             </Grid>
             <Grid
               item
@@ -170,4 +170,4 @@ Map.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withI18next()(Map));
+)(withI18N(Map));

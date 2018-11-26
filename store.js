@@ -13,13 +13,13 @@ const initialState = {
   frIdx: {},
   searchString: "",
   selectedNeeds: {},
-  sortBy: "",
   closestAreaOffice: {},
   selectedAreaOffice: {},
   userLocation: { lat: 49, lng: -104 },
   pageWidth: 1000,
   mapView: { lat: 49, lng: -104, zoom: 1 },
-  cookiesDisabled: false
+  cookiesDisabled: false,
+  language: ""
 };
 airtableConstants.tableNames.forEach(tableName => {
   initialState[tableName] = [];
@@ -28,6 +28,7 @@ airtableConstants.tableNames.forEach(tableName => {
 // REDUCERS
 export const reducer = (state = initialState, action) => {
   let benefits;
+  let language;
   let enIdx;
   let frIdx;
   let newState;
@@ -90,6 +91,11 @@ export const reducer = (state = initialState, action) => {
     case "SAVE_QUESTION_RESPONSE":
       return Object.assign({}, state, action.data);
 
+    case "SET_LANGUAGE":
+      language = action.data;
+      language = language.indexOf("fr") != -1 ? "fr" : "en";
+      return Object.assign({}, state, { language: language });
+
     case "SET_SEARCH_STRING":
       return Object.assign({}, state, {
         searchString: action.data
@@ -97,10 +103,6 @@ export const reducer = (state = initialState, action) => {
     case "SET_SELECTED_NEEDS":
       return Object.assign({}, state, {
         selectedNeeds: action.data
-      });
-    case "SET_SORT_BY":
-      return Object.assign({}, state, {
-        sortBy: action.data
       });
     case "SET_CLOSEST_OFFICE":
       return Object.assign({}, state, {

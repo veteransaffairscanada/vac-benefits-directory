@@ -12,7 +12,6 @@ import { css } from "react-emotion";
 import Header from "./typography/header";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
-import Dropdown from "./dropdown";
 import Button from "./button";
 import { getLink } from "../utils/common";
 import { globalTheme } from "../theme";
@@ -51,10 +50,6 @@ export class BenefitsPane extends Component {
     this.props.saveQuestionResponse("selectedNeeds", {});
   };
 
-  handleSortByChange = event => {
-    this.props.setSortBy(event.target.value);
-  };
-
   countSelection = () => {
     const reducer = (acc, obj) => acc + (Object.values(obj)[0] == null ? 0 : 1);
     let count = Object.values(this.props.profileFilters).reduce(reducer, 0);
@@ -85,7 +80,6 @@ export class BenefitsPane extends Component {
 
   render() {
     const { t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
-
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
@@ -134,18 +128,6 @@ export class BenefitsPane extends Component {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Dropdown
-              value={this.props.sortBy}
-              onChange={this.handleSortByChange}
-              label={t("B3.Sort By")}
-              id="sortBySelector"
-            >
-              <option value="relevance">{t("B3.Popularity")}</option>
-              <option value="alphabetical">{t("B3.Alphabetical")}</option>
-            </Dropdown>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
             <SearchBox
               inputId="bbSearchField"
               buttonId="searchButtonLink"
@@ -162,7 +144,6 @@ export class BenefitsPane extends Component {
               <BenefitList
                 t={t}
                 filteredBenefits={filteredBenefits}
-                sortByValue={this.props.sortBy}
                 searchString={this.props.searchString}
                 showFavourites={true}
                 store={this.props.store}
@@ -185,9 +166,6 @@ const mapDispatchToProps = dispatch => {
     },
     setSearchString: searchString => {
       dispatch({ type: "SET_SEARCH_STRING", data: searchString });
-    },
-    setSortBy: sortBy => {
-      dispatch({ type: "SET_SORT_BY", data: sortBy });
     }
   };
 };
@@ -205,11 +183,12 @@ const mapStateToProps = (reduxState, props) => {
     filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
     selectedNeeds: reduxState.selectedNeeds,
-    sortBy: reduxState.sortBy
+    reduxState: reduxState
   };
 };
 
 BenefitsPane.propTypes = {
+  reduxState: PropTypes.object,
   url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   profileFilters: PropTypes.object.isRequired,
@@ -221,8 +200,6 @@ BenefitsPane.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   setSearchString: PropTypes.func.isRequired,
-  setSortBy: PropTypes.func.isRequired,
-  sortBy: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object
 };

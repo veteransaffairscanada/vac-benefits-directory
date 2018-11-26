@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import { css } from "react-emotion";
 import FooterButton from "./footer_button";
 import { globalTheme } from "../theme";
+import Header from "./typography/header";
 require("isomorphic-fetch");
 
 const CommentBox = css`
@@ -33,8 +34,11 @@ const FeedbackWrapper = css`
   margin-top: 25px;
 `;
 const Inner = css`
+  line-height: 1.6;
+  display: flex;
+  flex-direction: row;
   color: ${globalTheme.colour.white};
-  font-size: 14px;
+  font-size: 18px;
   padding-top: 10px;
   @media (max-width: 400px) {
     font-size: 16px;
@@ -50,6 +54,20 @@ const TextHold = css`
 const white = css`
   color: white;
 `;
+const whiteNormalFont = css`
+  color: white;
+  font-weight: normal;
+`;
+const pStyle = css`
+  font-size: 18px;
+`;
+const labelStyle = css`
+  label {
+    transform: translate(0, 0) scale(1);
+    font-weight: bold;
+  }
+`;
+
 export class FeedbackBar extends Component {
   state = {
     action: "",
@@ -108,8 +126,10 @@ export class FeedbackBar extends Component {
       <div className={FeedbackWrapper} role="navigation">
         {this.state.commentFormToggled ? (
           <div className={CommentBox}>
-            <h2>{t("comment-help-us-improve")}</h2>
-            <p>{t("comment-privacy-disclaimer")}</p>
+            <Header size="lg" headingLevel="h2" className={white}>
+              {t("comment-help-us-improve")}
+            </Header>
+            <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
             <div className={TextHold}>
               <TextField
                 inputProps={{
@@ -128,7 +148,7 @@ export class FeedbackBar extends Component {
                 margin="normal"
                 fullWidth={true}
                 onChange={this.handleChange("action")}
-                className={white}
+                className={labelStyle}
                 value={this.state.action}
                 autoFocus
               />
@@ -149,6 +169,7 @@ export class FeedbackBar extends Component {
                 margin="normal"
                 fullWidth={true}
                 onChange={this.handleChange("failure")}
+                className={labelStyle}
                 value={this.state.failure}
               />
             </div>
@@ -171,13 +192,15 @@ export class FeedbackBar extends Component {
           </div>
         ) : null}
         <div className={Div}>
-          {this.state.feedbackSubmitted ? (
+          {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
             <div className={Inner}>
-              <p>{t("feedback-response")}</p>
+              <p className={pStyle}>{t("feedback-response")}</p>
             </div>
-          ) : (
+          ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>
-              {t("feedback-prompt")} &nbsp;
+              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
+                {t("feedback-prompt")}
+              </Header>
               <FooterButton
                 id="feedbackYes"
                 onClick={() => this.sendFeedback("Yes")}
@@ -192,7 +215,7 @@ export class FeedbackBar extends Component {
                 {t("no")}
               </FooterButton>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     );

@@ -56,7 +56,6 @@ describe("Favourites", () => {
       needs: needsFixture,
       favouriteBenefits: ["benefit_2"],
       selectedNeeds: {},
-      sortBy: "relevance",
       eligibilityPaths: eligibilityPathsFixture,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
@@ -107,5 +106,18 @@ describe("Favourites", () => {
         "benefit_3"
       ]).length
     ).toEqual(2);
+  });
+
+  it("contains the share button", () => {
+    expect(mountedFavourites().find("#shareButton").length).toEqual(1);
+  });
+
+  it("clicking share button changes showModal state to true", () => {
+    let mounted = mountedFavourites();
+    mounted
+      .find("#shareButton")
+      .first()
+      .simulate("click");
+    expect(mounted.state().showModal).toEqual(true);
   });
 });

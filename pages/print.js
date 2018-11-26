@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { withI18next } from "../lib/withI18next";
+import withI18N from "../lib/i18nHOC";
 import NeedButton from "../components/need_button";
 import { WordMark } from "@cdssnc/gcui";
 import FIP from "../components/fip";
@@ -110,7 +110,7 @@ export class Print extends Component {
     }
   };
 
-  sortBenefits = (benefits, language, sortBy) => {
+  sortBenefits = (benefits, language) => {
     benefits.forEach(b => {
       if (b.sortingPriority === undefined) {
         b.sortingPriority = "low";
@@ -119,7 +119,7 @@ export class Print extends Component {
     });
 
     let sorting_fn = (a, b) => {
-      if (sortBy === "alphabetical" || a.sortingNumber === b.sortingNumber) {
+      if (a.sortingNumber === b.sortingNumber) {
         // sort alphabetically
         let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
         let nameA = a[vacName].toUpperCase();
@@ -340,4 +340,4 @@ Print.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withI18next()(Print));
+export default connect(mapStateToProps)(withI18N(Print));

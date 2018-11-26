@@ -25,14 +25,14 @@ var getGithubData = (exports.getGithubData = async function getGithubData() {
 
   let data = {};
 
-  const prResp = await paginate(octokit.pullRequests.getAll, {
+  const prResp = await paginate(octokit.pullRequests.list, {
     owner: "cds-snc",
     repo: "vac-benefits-directory",
     state: "all",
     per_page: 100
   });
 
-  const releasesResp = await paginate(octokit.repos.getTags, {
+  const releasesResp = await paginate(octokit.repos.listTags, {
     owner: "cds-snc",
     repo: "vac-benefits-directory",
     per_page: 100

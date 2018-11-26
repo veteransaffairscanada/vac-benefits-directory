@@ -270,7 +270,8 @@ const mapStateToProps = reduxState => {
   return {
     areaOffices: reduxState.areaOffices,
     selectedAreaOffice: reduxState.selectedAreaOffice,
-    userLocation: reduxState.userLocation
+    userLocation: reduxState.userLocation,
+    language: reduxState.language
   };
 };
 

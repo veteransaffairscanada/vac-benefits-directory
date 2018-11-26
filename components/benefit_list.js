@@ -36,7 +36,7 @@ export class BenefitList extends React.Component {
       : sp;
   };
 
-  sortBenefits = (filteredBenefits, language, sortByValue) => {
+  sortBenefits = (filteredBenefits, language) => {
     filteredBenefits.forEach(b => {
       b.sortingNumber = { high: 1, medium: 2, low: 3 }[
         this.cleanSortingPriority(b.sortingPriority)
@@ -44,10 +44,7 @@ export class BenefitList extends React.Component {
     });
 
     let sorting_fn = (a, b) => {
-      if (
-        sortByValue === "alphabetical" ||
-        a.sortingNumber === b.sortingNumber
-      ) {
+      if (a.sortingNumber === b.sortingNumber) {
         // sort alphabetically
         let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
         let nameA = a[vacName].toUpperCase();
@@ -68,11 +65,16 @@ export class BenefitList extends React.Component {
 
   render() {
     let { loading } = this.state;
-    const sortedBenefits = this.sortBenefits(
-      this.props.filteredBenefits,
-      this.props.t("current-language-code"),
-      this.props.sortByValue
-    );
+    let {
+      filteredBenefits,
+      t,
+      searchString,
+      showFavourites,
+      store
+    } = this.props;
+    const sortedBenefits = searchString
+      ? filteredBenefits
+      : this.sortBenefits(filteredBenefits, t("current-language-code"));
 
     return loading ? (
       <div className={Div}>
@@ -83,11 +85,11 @@ export class BenefitList extends React.Component {
         <BenefitCard
           id={"bc" + i}
           benefit={benefit}
-          t={this.props.t}
+          t={t}
           key={benefit.id}
-          showFavourite={this.props.showFavourites}
-          searchString={this.props.searchString}
-          store={this.props.store}
+          showFavourite={showFavourites}
+          searchString={searchString}
+          store={store}
         />
       ))
     );
@@ -97,7 +99,6 @@ export class BenefitList extends React.Component {
 BenefitList.propTypes = {
   t: PropTypes.func.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
-  sortByValue: PropTypes.string.isRequired,
   showFavourites: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object

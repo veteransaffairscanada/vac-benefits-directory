@@ -43,7 +43,7 @@ export class GuidedExperience extends Component {
       .filter(x => x != "needs");
     let jsx_array = eligibilityKeys.map((k, i) => {
       if (!reduxState[k] || k === this.props.id) {
-        return "";
+        return null;
       } else {
         let option = reduxState.multipleChoiceOptions.filter(
           x => x.variable_name === reduxState[k]
@@ -103,6 +103,7 @@ export class GuidedExperience extends Component {
       });
 
     const jumpButtons = this.jumpButtons(t, reduxState);
+    const nonNullBreadcrumbs = jumpButtons.filter(x => x != null);
 
     return (
       <Container id="guidedExperience">
@@ -126,7 +127,9 @@ export class GuidedExperience extends Component {
           <Grid container spacing={24}>
             <Grid item xs={12} md={12}>
               <FilterText style={{ display: "inline-block" }}>
-                {t("B3.Filter by eligibility")}
+                {nonNullBreadcrumbs.length === 0
+                  ? ""
+                  : t("B3.Filter by eligibility")}
               </FilterText>
               {jumpButtons}
             </Grid>
