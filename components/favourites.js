@@ -92,14 +92,9 @@ export class Favourites extends Component {
     return (
       <div className={outerDiv}>
         <div className={whiteBanner}>
-          <ShareModal
-            isOpen={this.state.showModal}
-            onRequestClose={() => this.setState({ showModal: false })}
-            closeModal={() => this.setState({ showModal: false })}
-          />
           <Container className={topPadding}>
             <Grid container spacing={24}>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <HeaderButton
                   id="backButton"
                   useLink
@@ -109,7 +104,7 @@ export class Favourites extends Component {
                   {t("favourites.back_link")}
                 </HeaderButton>
               </Grid>
-              <Grid item xs={6} className={right}>
+              <Grid item xs={8} className={right}>
                 <HeaderButton
                   useLink
                   href={this.props.printUrl}
@@ -125,6 +120,11 @@ export class Favourites extends Component {
                   <ShareIcon className={menuChildRight} />
                   Share This Page
                 </HeaderButton>
+                <ShareModal
+                  isOpen={this.state.showModal}
+                  onRequestClose={() => this.setState({ showModal: false })}
+                  closeModal={() => this.setState({ showModal: false })}
+                />
               </Grid>
             </Grid>
           </Container>
