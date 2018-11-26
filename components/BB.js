@@ -70,15 +70,9 @@ export class BB extends Component {
         ref={el => (this.componentRef = el)}
       >
         <div className={topMatter}>
-          <ShareModal
-            isOpen={this.state.showModal}
-            onRequestClose={() => this.setState({ showModal: false })}
-            closeModal={() => this.setState({ showModal: false })}
-            t={t}
-          />
           <Container className={topPadding}>
             <Grid container spacing={24}>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <HeaderButton
                   useLink
                   className={anchors}
@@ -92,7 +86,7 @@ export class BB extends Component {
                     ")"}
                 </HeaderButton>
               </Grid>
-              <Grid item xs={6} className={right}>
+              <Grid item xs={8} className={right}>
                 <HeaderButton
                   useLink
                   href={this.props.printUrl}
@@ -109,6 +103,12 @@ export class BB extends Component {
                   <ShareIcon className={menuChildRight} />
                   <span className={nonMobileStyle}>{t("titles.share")}</span>
                 </HeaderButton>
+                <ShareModal
+                  isOpen={this.state.showModal}
+                  onRequestClose={() => this.setState({ showModal: false })}
+                  closeModal={() => this.setState({ showModal: false })}
+                  t={t}
+                />
               </Grid>
             </Grid>
           </Container>
