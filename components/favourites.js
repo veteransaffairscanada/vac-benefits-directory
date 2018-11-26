@@ -124,6 +124,7 @@ export class Favourites extends Component {
                   isOpen={this.state.showModal}
                   onRequestClose={() => this.setState({ showModal: false })}
                   closeModal={() => this.setState({ showModal: false })}
+                  t={t}
                 />
               </Grid>
             </Grid>
