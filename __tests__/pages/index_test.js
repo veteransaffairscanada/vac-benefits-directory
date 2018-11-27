@@ -1,119 +1,154 @@
 /* eslint-env jest */
 
-import { mount } from "enzyme";
-import React from "react";
+import { shallow } from "enzyme";
 import Router from "next/router";
-import { App } from "../../pages/index";
+import React from "react";
+import { Guided } from "../../pages/index";
 import benefitsFixture from "../fixtures/benefits";
-import configureStore from "redux-mock-store";
 import translate from "../fixtures/translate";
-import lunr from "lunr";
+import needsFixture from "../fixtures/needs";
+import configureStore from "redux-mock-store";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import questionsFixture from "../fixtures/questions";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import multipleChoiceOptions from "../fixtures/multiple_choice_options";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
-const mockedRouter = { push: () => {}, prefetch: () => {} };
-Router.router = mockedRouter;
-
-describe("Index page", () => {
+describe("Guided", () => {
   let props;
-  let mockStore, reduxData;
+  let _mountedGuided;
+  let mockStore, reduxState;
+
+  const mountedGuided = () => {
+    if (!_mountedGuided) {
+      _mountedGuided = shallow(<Guided {...props} {...reduxState} />);
+    }
+    return _mountedGuided;
+  };
 
   beforeEach(() => {
     props = {
-      favouriteBenefits: [],
+      translations: [],
+      url: {
+        query: {}
+      },
       i18n: {
         addResourceBundle: jest.fn()
       },
       t: translate,
-      translations: []
-    };
-    mockStore = configureStore();
-    reduxData = {
-      translations: [],
+      storeHydrated: true,
       benefits: benefitsFixture,
-      enIdx: JSON.stringify({
-        version: lunr.version,
-        fields: ["vacNameEn", "oneLineDescriptionEn"],
-        fieldVectors: [
-          ["vacNameEn/1", [0, 0.288]],
-          ["oneLineDescriptionEn/1", [1, 0.288]]
-        ],
-        invertedIndex: [
-          [
-            "biz",
-            { _index: 1, vacNameEn: {}, oneLineDescriptionEn: { "1": {} } }
-          ],
-          [
-            "fiz",
-            { _index: 0, vacNameEn: { "1": {} }, oneLineDescriptionEn: {} }
-          ]
-        ],
-        pipeline: ["stemmer"]
-      }),
-      favouriteBenefits: [],
-      frIdx: JSON.stringify({
-        version: lunr.version,
-        fields: ["vacNameFr", "oneLineDescriptionFr"],
-        fieldVectors: [
-          ["vacNameFr/1", [0, 0.288]],
-          ["oneLineDescriptionFr/1", [1, 0.288]]
-        ],
-        invertedIndex: [
-          [
-            "biz",
-            { _index: 1, vacNameFr: {}, oneLineDescriptionFr: { "1": {} } }
-          ],
-          [
-            "fiz",
-            { _index: 0, vacNameFr: { "1": {} }, oneLineDescriptionFr: {} }
-          ]
-        ],
-        pipeline: ["stemmer"]
-      })
+      saveQuestionResponse: jest.fn(),
+      sectionOrder: ["patronType", "serviceType", "needs"]
     };
-    props.store = mockStore(reduxData);
+    _mountedGuided = undefined;
+    mockStore = configureStore();
+    reduxState = {
+      benefits: benefitsFixture,
+      eligibilityPaths: eligibilityPathsFixture,
+      needs: needsFixture,
+      selectedNeeds: {},
+      serviceType: "s1",
+      patronType: "p1",
+      option: "",
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionDisplayLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptions
+    };
+    props.store = mockStore(reduxState);
+    props.reduxState = reduxState;
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<App {...props} {...reduxData} />).html();
+    let html = mountedGuided().html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has a description", () => {
-    const appMounted = mount(<App {...props} {...reduxData} />);
-    expect(
-      appMounted
-        .find("#heroTitle")
-        .first()
-        .text()
-    ).toEqual("index.title");
+  it("has a correct setURL function", () => {
+    Router.replace = jest.fn();
+    reduxState.selectedNeeds = { need_1: "need_1", need_2: "need_2" };
+    let guidedInstance = mountedGuided().instance();
+    const state = {
+      section: "statusAndVitals"
+    };
+    const expectedURL =
+      "/index?section=statusAndVitals&selectedNeeds=need_1,need_2&patronType=p1&serviceType=s1&lng=en";
+    guidedInstance.setState(state);
+    guidedInstance.setURL(state);
+    expect(Router.replace).toBeCalledWith(expectedURL);
   });
 
-  it("has a button for the guided experience", () => {
-    const appMounted = mount(<App {...props} {...reduxData} />);
-    expect(
-      appMounted
-        .find("#heroGuidedLink")
-        .first()
-        .text()
-    ).toContain("index.guided experience");
+  it("componentWillMount sets state correctly from empty url", () => {
+    expect(mountedGuided().state().section).toEqual("patronType");
   });
 
-  it("has a Button for the directory", () => {
-    const appMounted = mount(<App {...props} {...reduxData} />);
-    expect(
-      appMounted
-        .find("#heroBenefitsLink")
-        .first()
-        .text()
-    ).toContain("index.all benefits");
+  describe("setSection", () => {
+    it("returns correct section when passed as argument", () => {
+      props.sectionOrder.forEach(section => {
+        let guidedInstance = mountedGuided().instance();
+        guidedInstance.setSection(section);
+        expect(guidedInstance.state.section).toEqual(section);
+      });
+    });
+
+    it("clears redux data for future questions", () => {
+      let guidedInstance = mountedGuided().instance();
+      guidedInstance.setSection("patronType");
+      expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
+      expect(props.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
+    });
   });
 
-  it("has a search component", () => {
-    const appMounted = mount(<App {...props} {...reduxData} />);
-    expect(appMounted.find("#searchComponent").length).not.toEqual(1);
+  it("getNextSection returns the correct next section", () => {
+    const displayable_sections = [
+      "patronType",
+      "serviceType",
+      "statusAndVitals",
+      "needs"
+    ];
+    let guidedInstance = mountedGuided().instance();
+
+    expect(guidedInstance.getNextSection(displayable_sections, 1)).toEqual(
+      "statusAndVitals"
+    );
+
+    expect(guidedInstance.getNextSection(displayable_sections, 3)).toEqual(
+      "benefits-directory"
+    );
+  });
+
+  it("getPrevSection returns the correct previous section", () => {
+    const displayable_sections = [
+      "patronType",
+      "serviceType",
+      "statusAndVitals"
+    ];
+    let guidedInstance = mountedGuided().instance();
+
+    expect(guidedInstance.getPrevSection(displayable_sections, 1)).toEqual(
+      "patronType"
+    );
+    expect(guidedInstance.getPrevSection(displayable_sections, 0)).toEqual(
+      "index"
+    );
+  });
+
+  it("getSubtitle returns the correct subtitle", () => {
+    let guidedInstance = mountedGuided().instance();
+    expect(guidedInstance.getSubtitle(questionsFixture[1])).toEqual(
+      "Select the service type."
+    );
+  });
+
+  it("getTooltip returns the correct tooltip", () => {
+    let guidedInstance = mountedGuided().instance();
+    expect(guidedInstance.getTooltip(questionsFixture[1])).toEqual(
+      "tooltip english"
+    );
   });
 });
