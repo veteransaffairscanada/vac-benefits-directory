@@ -57,7 +57,7 @@ const URLInputBox = styled("input")({
   width: "80%",
   height: "44px",
   padding: "9px 19px 8px 19px",
-  margin: 0,
+  margin: "0 0 10px 0",
   border: 0,
   boxShadow:
     "0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12)",
