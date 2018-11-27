@@ -145,7 +145,7 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
   );
   replaceId(
     dataStore.benefitExamples,
-    "linked_benefit",
+    "linked_benefits",
     dataStore.benefits,
     "vacNameEn"
   );
