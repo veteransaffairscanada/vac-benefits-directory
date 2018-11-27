@@ -110,11 +110,7 @@ export class GuidedExperience extends Component {
         <HeaderButton
           id="prevButton"
           useLink={prevSection === "index"}
-          href={
-            prevSection === "index"
-              ? "/index?lng=" + t("current-language-code")
-              : undefined
-          }
+          href={prevSection === "index" ? t("ge.home_link") : undefined}
           onClick={
             prevSection === "index" ? undefined : () => setSection(prevSection)
           }
