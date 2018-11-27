@@ -1,166 +1,198 @@
 import React, { Component } from "react";
-import Router from "next/router";
-import { connect } from "react-redux";
-import { css } from "react-emotion";
 import PropTypes from "prop-types";
-import Bookmark from "../components/icons/Bookmark";
-import { Grid } from "@material-ui/core";
+import Router from "next/router";
+import Cookies from "universal-cookie";
+import { connect } from "react-redux";
 import withI18N from "../lib/i18nHOC";
-import { globalTheme } from "../theme";
-import { getFavouritesUrl } from "../selectors/urls";
+import { showQuestion } from "../utils/common";
 import Layout from "../components/layout";
-import Button from "../components/button";
-import SearchComponent from "../components/search";
-import Paper from "../components/paper";
-import Container from "../components/container";
-import Body from "../components/typography/body";
-import Header from "../components/typography/header";
+import GuidedExperience from "../components/guided_experience";
+import GuidedExperienceProfile from "../components/guided_experience_profile";
+import GuidedExperienceNeeds from "../components/guided_experience_needs";
 
-const paper = css`
-  margin-top: 58px;
-  margin-bottom: 58px;
-  padding: 69px 96px 100px 96px;
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    padding: 35px 48px 50px 48px;
+export class Guided extends Component {
+  constructor(props) {
+    super(props);
+    this.cookies = new Cookies();
+    this.state = {
+      section: this.props.sectionOrder[0]
+    };
   }
-`;
-const bookmarkCSS = css`
-  font-size: 24px;
-  margin-left: -10px;
-  margin-right: 10px;
-`;
-const line = css`
-  background: ${globalTheme.colour.lineGrey};
-  border: none;
-  height: 1px;
-  margin: 30px 0;
-`;
 
-const columnLeft = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    padding-right: 50px !important;
+  componentDidMount() {
+    Router.onRouteChangeStart = newUrl => {
+      let matches = newUrl.match(/section=([^&]*)/);
+      if (matches) {
+        const newState = {
+          section: matches[1] || this.props.sectionOrder[0]
+        };
+        this.setState(newState);
+      }
+    };
+
+    const newState = {
+      section: this.props.url.query.section || this.props.sectionOrder[0]
+    };
+
+    this.setState(newState);
   }
-`;
 
-const columnRight = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    padding-left: 50px !important;
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props !== prevProps || this.state.section !== prevState.section) {
+      this.setURL();
+    }
   }
-`;
 
-const image = css`
-  margin: 40px 40px 0 40px;
-  width: 100%;
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    display: none;
-  }
-`;
+  setURL = (state = this.state) => {
+    let href = "/index?section=" + state.section;
+    if (Object.keys(this.props.selectedNeeds).length > 0) {
+      href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
+    }
+    this.props.reduxState.questions
+      .filter(x => x.variable_name !== "needs")
+      .forEach(x => {
+        if (this.props.reduxState[x.variable_name]) {
+          href += `&${x.variable_name}=${
+            this.props.reduxState[x.variable_name]
+          }`;
+        }
+      });
+    href += "&lng=" + this.props.t("current-language-code");
+    Router.replace(href);
+  };
 
-const title = css`
-  margin-bottom: 46px;
-`;
+  setSection = section => {
+    this.setState({ section: section });
+    const current_index = this.props.sectionOrder.indexOf(section);
+    this.props.sectionOrder
+      .filter((x, i) => i > current_index)
+      .forEach(x => {
+        if (x === "needs") {
+          this.props.saveQuestionResponse("selectedNeeds", {});
+        } else {
+          this.props.saveQuestionResponse(x, "");
+        }
+      });
+    document.body.focus(); // this removes focus from the next/back buttons
+  };
 
-export class App extends Component {
-  constructor() {
-    super();
-  }
+  getNextSection = (displayable_sections, dynamicStepNumber) => {
+    if (dynamicStepNumber + 1 >= displayable_sections.length) {
+      return "benefits-directory";
+    } else {
+      return displayable_sections[dynamicStepNumber + 1];
+    }
+  };
+
+  getPrevSection = (displayable_sections, dynamicStepNumber) => {
+    if (dynamicStepNumber === 0) {
+      return "index";
+    } else {
+      return displayable_sections[dynamicStepNumber - 1];
+    }
+  };
+
+  getSubtitle = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["guided_experience_english"];
+    } else {
+      return question["guided_experience_french"];
+    }
+  };
+  getTooltip = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["tooltip_english"];
+    } else {
+      return question["tooltip_french"];
+    }
+  };
 
   render() {
-    const { i18n, t } = this.props;
-    let urlGE = "/guided?lng=" + t("current-language-code");
-    let urlBD = "/benefits-directory?lng=" + t("current-language-code");
+    const { t, i18n, store, reduxState, sectionOrder } = this.props;
+    const { section } = this.state;
+    const displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxState)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(section);
+    const question = reduxState.questions.filter(
+      x => x.variable_name === section
+    )[0];
+    const pageTitle =
+      t("current-language-code") === "en"
+        ? question.guided_experience_page_title_english
+        : question.guided_experience_page_title_french;
     return (
       <Layout
         i18n={i18n}
         t={t}
         hideNoscript={false}
         showRefreshCache={false}
-        title={t("titles.index")}
+        title={pageTitle}
       >
-        <Container>
-          <Paper className={paper}>
-            <Grid container spacing={24}>
-              <Grid item xs={12}>
-                <Header
-                  id="heroTitle"
-                  className={title}
-                  headingLevel="h1"
-                  size="xl"
-                >
-                  {t("index.title")}
-                </Header>
-              </Grid>
-              <Grid item xs={12} md={6} className={columnLeft}>
-                <Body>{t("index.ge_prompt")}</Body>
-                <Button
-                  id="heroGuidedLink"
-                  size="big"
-                  onClick={() => Router.push(urlGE)}
-                  arrow={true}
-                >
-                  {t("index.guided experience")}
-                  &nbsp;&nbsp;
-                </Button>
-                <hr className={line} />
-                <Body>{t("index.benefits_prompt")}</Body>
-                <Button
-                  id="heroBenefitsLink"
-                  size="big"
-                  secondary={true}
-                  onClick={() => Router.push(urlBD)}
-                >
-                  {t("index.all benefits")}
-                </Button>
-                <hr className={line} />
-                <Body>{t("index.favourites_prompt")}</Body>
-                <Button
-                  id="FavouritesPage"
-                  size="big"
-                  secondary={true}
-                  onClick={() => Router.push(this.props.favouritesUrl)}
-                >
-                  <Bookmark className={bookmarkCSS} />
-                  {t("index.your_saved_benefits") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </Button>
-              </Grid>
-              <Grid item xs={12} md={6} className={columnRight}>
-                <Body>{t("index.search_prompt")}</Body>
-                <SearchComponent
-                  id="searchComponent"
-                  i18n={this.props.i18n}
-                  store={this.props.store}
-                  t={this.props.t}
-                />
-                <img
-                  src="../static/icon-hand-scrolling-list.svg"
-                  alt={t("index.alt_text_1")}
-                  className={image}
-                />
-              </Grid>
-            </Grid>
-          </Paper>
-        </Container>
+        <GuidedExperience
+          id={section}
+          stepNumber={sectionOrder.indexOf(section)}
+          nextSection={this.getNextSection(
+            displayable_sections,
+            dynamicStepNumber
+          )}
+          prevSection={this.getPrevSection(
+            displayable_sections,
+            dynamicStepNumber
+          )}
+          setSection={this.setSection}
+          subtitle={this.getSubtitle(question)}
+          helperText={this.getTooltip(question)}
+          t={t}
+          store={store}
+        >
+          {section === "needs" ? (
+            <GuidedExperienceNeeds t={t} selectorType={section} store={store} />
+          ) : (
+            <GuidedExperienceProfile
+              t={t}
+              selectorType={section}
+              store={store}
+              options={question["multiple_choice_options"]}
+            />
+          )}
+        </GuidedExperience>
       </Layout>
     );
   }
 }
 
-const mapStateToProps = (reduxState, props) => {
+const mapDispatchToProps = dispatch => {
   return {
-    favouriteBenefits: reduxState.favouriteBenefits,
-    favouritesUrl: getFavouritesUrl(reduxState, props)
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
+    }
   };
 };
 
-App.propTypes = {
-  favouriteBenefits: PropTypes.array.isRequired,
-  favouritesUrl: PropTypes.string,
-  i18n: PropTypes.object.isRequired,
-  store: PropTypes.object,
-  t: PropTypes.func.isRequired
+const mapStateToProps = reduxState => {
+  return {
+    reduxState: reduxState,
+    selectedNeeds: reduxState.selectedNeeds,
+    sectionOrder: reduxState.questions.map(x => x.variable_name)
+  };
 };
 
-export default withI18N(connect(mapStateToProps)(App));
+Guided.propTypes = {
+  reduxState: PropTypes.object,
+  sectionOrder: PropTypes.array.isRequired,
+  i18n: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
+  store: PropTypes.object
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withI18N(Guided));
