@@ -165,7 +165,9 @@ export class GuidedExperience extends Component {
                     : () => setSection(nextSection)
                 }
               >
-                {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
+                {nextSection === "benefits-directory"
+                  ? t("ge.show_results")
+                  : t("next")}{" "}
               </Button>
             </Grid>
           </Grid>
