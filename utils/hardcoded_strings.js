@@ -7,7 +7,8 @@ exports.tableNames = [
   "questions",
   "multipleChoiceOptions",
   "questionDisplayLogic",
-  "questionClearLogic"
+  "questionClearLogic",
+  "benefitExamples"
 ];
 
 exports.servicePersonOptions = ["veteran", "servingMember"];
