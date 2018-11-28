@@ -36,6 +36,7 @@ const small = css`
 const grey = css`
   font-size: 18px;
   color: ${globalTheme.colour.brownishGrey};
+  margin-left: 20px;
   text-decoration: underline !important;
   padding: 0.526315em 0.789473em !important;
 `;
