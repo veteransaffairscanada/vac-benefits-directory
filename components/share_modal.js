@@ -128,9 +128,14 @@ class ShareModal extends Component {
     if (shareInput && shareInput.select) {
       shareInput.select();
       try {
-        document.execCommand("copy");
-        shareInput.blur();
-
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(shareInput.value).then(() => {
+            // TODO - confirmation message that link has been copied
+          });
+        } else {
+          document.execCommand("copy");
+          shareInput.blur();
+        }
         // TODO - confirmation message that link has been copied
       } catch (err) {
         // TODO - throw error
