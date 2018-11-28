@@ -54,4 +54,14 @@ describe("GuidedSummary", () => {
     //console.log(text);
     expect(text).toContain("ge.summary_subtitle");
   });
+
+  it("the Next buttons says 'Show Results' if the section is the summary", () => {
+    props.id = "summary";
+    expect(
+      mount(<GuidedSummary {...props} />)
+        .find("Button")
+        .last()
+        .text()
+    ).toContain("ge.show_results");
+  });
 });
