@@ -151,7 +151,7 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
 
-            <Grid item xs={12}>
+            <Grid item xs={4}>
               <Button
                 id="nextButton"
                 arrow={true}
@@ -163,6 +163,19 @@ export class GuidedExperience extends Component {
               >
                 {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
               </Button>
+            </Grid>
+            <Grid item xs={8}>
+              <HeaderButton
+                id="skipButton"
+                altStyle="grey"
+                onClick={
+                  nextSection === "benefits-directory"
+                    ? () => Router.push(benefitsDirectoryUrl)
+                    : () => setSection(nextSection)
+                }
+              >
+                Skip question
+              </HeaderButton>
             </Grid>
           </Grid>
         </Paper>
