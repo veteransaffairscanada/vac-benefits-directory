@@ -33,6 +33,13 @@ const small = css`
   font-size: 18px;
 `;
 
+const grey = css`
+  font-size: 18px;
+  color: ${globalTheme.colour.brownishGrey};
+  text-decoration: underline !important;
+  padding: 0.526315em 0.789473em !important;
+`;
+
 class HeaderButton extends Component {
   render() {
     const {
@@ -43,6 +50,7 @@ class HeaderButton extends Component {
       href,
       target,
       size,
+      altStyle,
       disabled,
       useLink,
       otherProps
@@ -57,7 +65,9 @@ class HeaderButton extends Component {
             className={
               size === "small"
                 ? cx(style, small, className)
-                : cx(style, className)
+                : altStyle === "grey"
+                  ? cx(style, grey, className)
+                  : cx(style, className)
             }
             href={href}
             onClick={this.props.onClick}
@@ -80,7 +90,9 @@ class HeaderButton extends Component {
           className={
             size === "small"
               ? cx(style, small, className)
-              : cx(style, className)
+              : altStyle === "grey"
+                ? cx(style, grey, className)
+                : cx(style, className)
           }
           href={href}
           onClick={this.props.onClick}

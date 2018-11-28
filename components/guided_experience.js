@@ -163,6 +163,17 @@ export class GuidedExperience extends Component {
               >
                 {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
               </Button>
+              <HeaderButton
+                id="skipButton"
+                altStyle="grey"
+                onClick={
+                  nextSection === "benefits-directory"
+                    ? () => Router.push(benefitsDirectoryUrl)
+                    : () => setSection(nextSection)
+                }
+              >
+                {t("ge.skip")}
+              </HeaderButton>
             </Grid>
           </Grid>
         </Paper>
