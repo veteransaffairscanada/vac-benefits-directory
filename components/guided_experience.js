@@ -151,7 +151,7 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
 
-            <Grid item xs={4}>
+            <Grid item xs={12}>
               <Button
                 id="nextButton"
                 arrow={true}
@@ -163,8 +163,6 @@ export class GuidedExperience extends Component {
               >
                 {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
               </Button>
-            </Grid>
-            <Grid item xs={8}>
               <HeaderButton
                 id="skipButton"
                 altStyle="grey"
@@ -174,7 +172,7 @@ export class GuidedExperience extends Component {
                     : () => setSection(nextSection)
                 }
               >
-                Skip question
+                {t("ge.skip")}
               </HeaderButton>
             </Grid>
           </Grid>
