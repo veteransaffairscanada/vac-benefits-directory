@@ -4,6 +4,7 @@ import { globalTheme } from "../theme";
 import { cx, css } from "react-emotion";
 import ArrowBack from "./icons/ArrowBack";
 import ArrowForward from "./icons/ArrowForward";
+import Link from "next/link";
 
 const style = css`
   display: inline-block;
@@ -39,44 +40,45 @@ const grey = css`
   padding: 0.526315em 0.789473em !important;
 `;
 
-class HeaderButton extends Component {
+class HeaderLink extends Component {
   render() {
     const {
       id,
       arrow,
       className,
       children,
+      href,
       size,
       altStyle,
-      disabled,
       onClick,
       otherProps
     } = this.props;
 
     return (
-      <button
-        aria-label={this.props.ariaLabel}
-        disabled={disabled}
-        className={
-          size === "small"
-            ? cx(style, small, className)
-            : altStyle === "grey"
-            ? cx(style, grey, className)
-            : cx(style, className)
-        }
-        id={"a-" + id}
-        onClick={onClick}
-        {...otherProps}
-      >
-        {arrow === "back" ? <ArrowBack /> : null}
-        {children}
-        {arrow === "forward" ? <ArrowForward /> : null}
-      </button>
+      <Link href={href}>
+        <a
+          className={
+            size === "small"
+              ? cx(style, small, className)
+              : altStyle === "grey"
+              ? cx(style, grey, className)
+              : cx(style, className)
+          }
+          href={href}
+          id={"a-" + id}
+          onClick={onClick}
+          {...otherProps}
+        >
+          {arrow === "back" ? <ArrowBack /> : null}
+          {children}
+          {arrow === "forward" ? <ArrowForward /> : null}
+        </a>
+      </Link>
     );
   }
 }
 
-HeaderButton.propTypes = {
+HeaderLink.propTypes = {
   id: PropTypes.string,
   size: PropTypes.string,
   ariaLabel: PropTypes.string,
@@ -88,8 +90,8 @@ HeaderButton.propTypes = {
   className: PropTypes.string,
   arrow: PropTypes.string,
   label: PropTypes.object,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool
 };
 
-export default HeaderButton;
+export default HeaderLink;

@@ -1,10 +1,10 @@
 import React from "react";
 import { mount } from "enzyme";
-import HeaderButton from "../../components/header_button";
+import HeaderLink from "../../components/header_link";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
-describe("HeaderButton", () => {
+describe("HeaderLink", () => {
   let props;
   beforeEach(() => {
     props = {
@@ -13,11 +13,11 @@ describe("HeaderButton", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<HeaderButton {...props} />).html();
+    let html = mount(<HeaderLink {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("shows children", () => {
-    expect(mount(<HeaderButton {...props} />).text()).toEqual("header");
+    expect(mount(<HeaderLink {...props} />).text()).toEqual("header");
   });
 });

@@ -5,7 +5,7 @@ import { logEvent } from "../utils/analytics";
 import Paper from "./paper";
 import { css } from "react-emotion";
 import OneLiner from "./typography/one_liner";
-import HeaderButton from "./header_button";
+import HeaderLink from "./header_link";
 
 const root = css`
   margin-bottom: 20px;
@@ -37,24 +37,35 @@ export class EmbeddedBenefitCard extends Component {
 
     return (
       <Paper padding="sm" className={root}>
-        <HeaderButton
-          id={"embedded-" + benefit.id}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={heading}
-          size="small"
-          useLink
+        <div
+          className="exit_div"
           onClick={() =>
             this.logExit(
               language === "en" ? benefit.benefitPageEn : benefit.benefitPageFr
             )
           }
-          href={
-            language === "en" ? benefit.benefitPageEn : benefit.benefitPageFr
-          }
         >
-          {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
-        </HeaderButton>
+          <HeaderLink
+            id={"embedded-" + benefit.id}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={heading}
+            size="small"
+            href={
+              language === "en" ? benefit.benefitPageEn : benefit.benefitPageFr
+            }
+            onClick={() => {
+              this.logExit(
+                language === "en"
+                  ? benefit.benefitPageEn
+                  : benefit.benefitPageFr
+              );
+              return true;
+            }}
+          >
+            {language === "en" ? benefit.vacNameEn : benefit.vacNameFr}
+          </HeaderLink>
+        </div>
 
         <Grid container spacing={24}>
           <Grid item xs={12}>
