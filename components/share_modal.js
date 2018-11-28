@@ -125,27 +125,69 @@ class ShareModal extends Component {
   copyText(e) {
     let t = e.target.dataset.copytarget;
     let shareInput = t ? document.querySelector(t) : null;
-    if (shareInput && shareInput.select) {
-      shareInput.select();
-      try {
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(shareInput.value).then(() => {
-            // TODO - confirmation message that link has been copied
-          });
+    try {
+      if (navigator.clipboard) {
+        console.log("navigator.clipboard exists");
+        navigator.clipboard.writeText(shareInput.value).then(() => {
+          // TODO - confirmation message that link has been copied
+        });
+      } else {
+        // fix for iOS:
+        // handle iOS as a special case
+        if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+          // create a selectable range
+          var range = document.createRange();
+          range.selectNodeContents(shareInput);
+
+          // select the range
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          shareInput.setSelectionRange(0, 999999);
+
+          // restore contentEditable/readOnly to original state
         } else {
-          document.execCommand("copy");
-          shareInput.blur();
+          shareInput.select();
         }
-        // TODO - confirmation message that link has been copied
-      } catch (err) {
-        // TODO - throw error
-        //alert("copy button not supported");
+
+        document.execCommand("copy");
+        console.log("AHHH");
+        //shareInput.blur();
       }
+      // TODO - confirmation message that link has been copied
+    } catch (err) {
+      // TODO - throw error
+      console.log("error");
+      //alert("copy button not supported");
     }
   }
 
   render() {
     const { isOpen, onRequestClose, closeModal, t } = this.props;
+    let iOS = false;
+    if (global.navigator) {
+      let userAgent = navigator.userAgent;
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        iOS = true;
+      }
+    }
+    let inputBox = iOS ? (
+      <URLInputBox
+        type="text"
+        id="shareTarget"
+        defaultValue={this.state.url}
+        contentEditable="true"
+        readOnly={false}
+      />
+    ) : (
+      <URLInputBox
+        type="text"
+        id="shareTarget"
+        value={this.state.url}
+        readOnly
+      />
+    );
 
     // Only render modal on the client - portals are not supported on the server and fail tests
     if (process.browser) {
@@ -165,12 +207,7 @@ class ShareModal extends Component {
             <p>
               <label htmlFor="shareTarget">{t("share.copy_prompt")}</label>
             </p>
-            <URLInputBox
-              type="text"
-              id="shareTarget"
-              value={this.state.url}
-              readOnly
-            />
+            {inputBox}
             <CopyButton
               id="copyButton"
               data-copytarget="#shareTarget"
