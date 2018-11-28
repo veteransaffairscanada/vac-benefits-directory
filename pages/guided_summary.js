@@ -20,11 +20,6 @@ export class GuidedSummary extends Component {
           id={"summary"}
           stepNumber={6}
           nextSection={"benefits-directory"}
-          /*prevSection={this.getPrevSection(
-                        displayable_sections,
-                        dynamicStepNumber
-                    )}*/
-          //setSection={this.setSection}
           subtitle={t("ge.summary_subtitle")}
           helperText={t("ge.summary_tooltip")}
           t={t}

@@ -51,7 +51,6 @@ describe("GuidedSummary", () => {
 
   it("renders page title", async () => {
     let text = mount(<GuidedSummary {...props} />).text();
-    //console.log(text);
     expect(text).toContain("ge.summary_subtitle");
   });
 
