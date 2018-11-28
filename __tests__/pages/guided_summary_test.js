@@ -1,6 +1,14 @@
 import { GuidedSummary } from "../../pages/guided_summary";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
+import React from "react";
+import benefitsFixture from "../fixtures/benefits";
 import translate from "../fixtures/translate";
+import needsFixture from "../fixtures/needs";
+import configureStore from "redux-mock-store";
+import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import questionsFixture from "../fixtures/questions";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import multipleChoiceOptions from "../fixtures/multiple_choice_options";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -9,22 +17,7 @@ jest.mock("react-ga");
 
 describe("GuidedSummary", () => {
   let props;
-  let _mountedGuidedSummary;
-  let _shallowGuidedSummary;
-
-  const mounted_GuidedSummary = () => {
-    if (!_mountedGuidedSummary) {
-      _mountedGuidedSummary = mount(<GuidedSummary {...props} />);
-    }
-    return _mountedGuidedSummary;
-  };
-
-  const shallow_GuidedSummary = () => {
-    if (!_shallowGuidedSummary) {
-      _shallowGuidedSummary = shallow(<GuidedSummary {...props} />);
-    }
-    return _shallowGuidedSummary;
-  };
+  let mockStore, reduxState;
 
   beforeEach(() => {
     props = {
@@ -33,12 +26,32 @@ describe("GuidedSummary", () => {
       },
       t: translate
     };
-    _shallowGuidedSummary = undefined;
-    _mountedGuidedSummary = undefined;
+
+    mockStore = configureStore();
+    reduxState = {
+      benefits: benefitsFixture,
+      eligibilityPaths: eligibilityPathsFixture,
+      needs: needsFixture,
+      selectedNeeds: {},
+      serviceType: "s1",
+      patronType: "p1",
+      option: "",
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionDisplayLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptions
+    };
+    props.store = mockStore(reduxState);
   });
 
   it("passes axe tests", async () => {
-    let html = mounted_GuidedSummary().html();
+    let html = mount(<GuidedSummary {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
+  });
+
+  it("renders page title", async () => {
+    let text = mount(<GuidedSummary {...props} />).text();
+    //console.log(text);
+    expect(text).toContain("ge.summary_subtitle");
   });
 });

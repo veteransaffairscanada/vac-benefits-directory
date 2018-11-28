@@ -6,7 +6,7 @@ import GuidedExperience from "../components/guided_experience";
 
 export class GuidedSummary extends Component {
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, store } = this.props;
 
     return (
       <Layout
@@ -24,11 +24,15 @@ export class GuidedSummary extends Component {
                         displayable_sections,
                         dynamicStepNumber
                     )}*/
-          setSection={this.setSection}
+          //setSection={this.setSection}
           subtitle={t("ge.summary_subtitle")}
           helperText={t("ge.summary_tooltip")}
           t={t}
-        />
+          store={store}
+          setSection={x => x}
+        >
+          <div />
+        </GuidedExperience>
       </Layout>
     );
   }
@@ -36,7 +40,8 @@ export class GuidedSummary extends Component {
 
 GuidedSummary.propTypes = {
   i18n: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  store: PropTypes.object
 };
 
 export default withI18N(GuidedSummary);
