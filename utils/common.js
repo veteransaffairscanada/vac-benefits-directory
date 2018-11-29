@@ -118,6 +118,7 @@ export const mutateUrl = (url, route = "", query = {}) => {
   newUrl +=
     "?" +
     Object.keys(newQuery)
+      .filter(x => newQuery[x] !== "")
       .map(x => `${x}=${newQuery[x]}`)
       .join("&");
   return newUrl;

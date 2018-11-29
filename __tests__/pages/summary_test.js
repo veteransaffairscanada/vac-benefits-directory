@@ -24,7 +24,8 @@ describe("Summary", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: translate
+      t: translate,
+      url: { query: {}, route: "/summary" }
     };
 
     mockStore = configureStore();
@@ -42,22 +43,22 @@ describe("Summary", () => {
       multipleChoiceOptions: multipleChoiceOptions
     };
     props.store = mockStore(reduxState);
+    props.reduxState = reduxState;
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<Summary {...props} />).html();
+    let html = mount(<Summary {...props} {...reduxState} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("renders page title", async () => {
-    let text = mount(<Summary {...props} />).text();
+    let text = mount(<Summary {...props} {...reduxState} />).text();
     expect(text).toContain("ge.summary_subtitle");
   });
 
   it("the Next buttons says 'Show Results' if the section is the summary", () => {
-    props.id = "summary";
     expect(
-      mount(<Summary {...props} />)
+      mount(<Summary {...props} {...reduxState} />)
         .find("Button")
         .last()
         .text()

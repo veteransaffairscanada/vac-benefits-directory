@@ -89,23 +89,7 @@ export class GuidedExperience extends Component {
       url
     } = this.props;
 
-    const summaryUrl = mutateUrl(url, "/summary");
-    console.log(summaryUrl);
-    // let benefitsDirectoryUrl =
-    //   "/benefits-directory?lng=" + t("current-language-code");
-    // if (Object.keys(reduxState.selectedNeeds).length > 0) {
-    //   benefitsDirectoryUrl +=
-    //     "&selectedNeeds=" + Object.keys(reduxState.selectedNeeds).join();
-    // }
-    // reduxState.questions
-    //   .map(q => q.variable_name)
-    //   .filter(x => x !== "needs")
-    //   .forEach(selection => {
-    //     if (reduxState[selection] !== "") {
-    //       benefitsDirectoryUrl += `&${selection}=${reduxState[selection]}`;
-    //     }
-    //   });
-
+    const summaryUrl = mutateUrl(url, "/summary", { section: "" });
     const jumpButtons = this.jumpButtons(t, reduxState);
     const nonNullBreadcrumbs = jumpButtons.filter(x => x != null);
 

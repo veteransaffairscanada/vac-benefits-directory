@@ -25,7 +25,6 @@ const prevButton = css`
   margin-top: 50px;
   margin-bottom: 15px;
 `;
-
 const questions = css`
   margin: 0;
   padding: 0;
@@ -33,7 +32,7 @@ const questions = css`
 
 export class Summary extends Component {
   render() {
-    const { t, i18n, url, reduxState, store } = this.props;
+    const { t, i18n, url, reduxState } = this.props;
     const prevSection =
       reduxState.patronType === "organization" ? "patronType" : "needs";
     const backUrl = mutateUrl(url, "/index", { section: prevSection });
@@ -58,7 +57,7 @@ export class Summary extends Component {
             <Grid container spacing={24}>
               <Grid item xs={12} className={questions}>
                 <Header size="md_lg" headingLevel="h2">
-                  {"header"}
+                  {t("ge.summary_subtitle")}
                 </Header>
                 <div>content</div>
               </Grid>
@@ -89,7 +88,7 @@ const mapStateToProps = reduxState => {
 };
 
 Summary.propTypes = {
-  reduxState: PropTypes.object,
+  reduxState: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   url: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
