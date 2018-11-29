@@ -9,6 +9,7 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import multipleChoiceOptions from "../fixtures/multiple_choice_options";
+import Router from "next/router";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -18,7 +19,7 @@ jest.mock("react-ga");
 describe("Summary", () => {
   let props;
   let mockStore, reduxState;
-
+  Router.push = jest.fn();
   beforeEach(() => {
     props = {
       i18n: {
@@ -56,12 +57,28 @@ describe("Summary", () => {
     expect(text).toContain("ge.summary_subtitle");
   });
 
-  it("the Next buttons says 'Show Results' if the section is the summary", () => {
+  it("the Next button says 'Show Results'", () => {
     expect(
       mount(<Summary {...props} {...reduxState} />)
-        .find("Button")
+        .find("#nextButton")
         .last()
         .text()
     ).toContain("ge.show_results");
+  });
+
+  it("the back button goes to the correct page", () => {
+    mount(<Summary {...props} {...reduxState} />)
+      .find("#prevButton")
+      .first()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith("/index?section=needs");
+  });
+
+  it("the next button goes to the correct page", () => {
+    mount(<Summary {...props} {...reduxState} />)
+      .find("#nextButton")
+      .first()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith("/benefits-directory?");
   });
 });
