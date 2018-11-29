@@ -115,8 +115,11 @@ class ShareModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      url: "",
+      statusMessage: "",
       origin: ""
     };
+    this.copyText = this.copyText.bind(this);
   }
   componentDidMount() {
     this.setState({ origin: window.location.origin });
@@ -125,22 +128,74 @@ class ShareModal extends Component {
   copyText(e) {
     let t = e.target.dataset.copytarget;
     let shareInput = t ? document.querySelector(t) : null;
-    if (shareInput && shareInput.select) {
-      shareInput.select();
-      try {
+    try {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(shareInput.value).then(() => {
+          this.setState({ statusMessage: "Link Copied" });
+        });
+      } else {
+        // fix for iOS:
+        // handle iOS as a special case
+        if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+          // create a selectable range
+          var range = document.createRange();
+          range.selectNodeContents(shareInput);
+
+          // select the range
+          var selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          shareInput.setSelectionRange(0, 999999);
+
+          // restore contentEditable/readOnly to original state
+        } else {
+          shareInput.select();
+        }
+
         document.execCommand("copy");
+
         shareInput.blur();
 
-        // TODO - confirmation message that link has been copied
-      } catch (err) {
-        // TODO - throw error
-        //alert("copy button not supported");
+        this.setState({ statusMessage: "Link Copied" });
       }
+      // TODO - confirmation message that link has been copied
+    } catch (err) {
+      // TODO - throw error
+      this.setState({
+        statusMessage:
+          "Copy button not supported, please copy using hotkeys or your browser's copy function"
+      });
+      //alert("copy button not supported");
     }
   }
 
   render() {
     const { isOpen, onRequestClose, closeModal, t } = this.props;
+
+    let iOS = false;
+    if (global.navigator) {
+      let userAgent = navigator.userAgent;
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        iOS = true;
+      }
+    }
+    let inputBox = iOS ? (
+      <URLInputBox
+        type="text"
+        id="shareTarget"
+        defaultValue={this.state.origin + this.props.url.asPath}
+        contentEditable="true"
+        readOnly={false}
+      />
+    ) : (
+      <URLInputBox
+        type="text"
+        id="shareTarget"
+        value={this.state.origin + this.props.url.asPath}
+        readOnly
+      />
+    );
     // Only render modal on the client - portals are not supported on the server and fail tests
     if (process.browser) {
       return (
@@ -159,12 +214,7 @@ class ShareModal extends Component {
             <p>
               <label htmlFor="shareTarget">{t("share.copy_prompt")}</label>
             </p>
-            <URLInputBox
-              type="text"
-              id="shareTarget"
-              value={this.state.origin + this.props.url.asPath}
-              readOnly
-            />
+            {inputBox}
             <CopyButton
               id="copyButton"
               data-copytarget="#shareTarget"
@@ -172,6 +222,7 @@ class ShareModal extends Component {
             >
               {t("share.copy_button")}
             </CopyButton>
+            <div>{this.state.statusMessage}</div>
           </div>
         </ReactModal>
       );
