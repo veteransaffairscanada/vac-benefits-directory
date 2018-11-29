@@ -13,6 +13,7 @@ import { css } from "react-emotion";
 import Container from "./container";
 import Header from "./typography/header";
 import HeaderButton from "./header_button";
+import HeaderLink from "./header_link";
 import AnchorLink from "./typography/anchor_link";
 import Body from "./typography/body";
 import Paper from "./paper";
@@ -82,7 +83,7 @@ export class Favourites extends Component {
   };
 
   render() {
-    const { t } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -95,24 +96,22 @@ export class Favourites extends Component {
           <Container className={topPadding}>
             <Grid container spacing={24}>
               <Grid item xs={4}>
-                <HeaderButton
+                <HeaderLink
                   id="backButton"
-                  useLink
                   href={getLink(this.props.url, "/benefits-directory")}
                   arrow="back"
                 >
                   {t("favourites.back_link")}
-                </HeaderButton>
+                </HeaderLink>
               </Grid>
               <Grid item xs={8} className={right}>
-                <HeaderButton
-                  useLink
+                <HeaderLink
                   href={this.props.printUrl}
                   target="print_page"
                   id="printButton"
                 >
                   <Print /> {t("Print")}
-                </HeaderButton>
+                </HeaderLink>
                 <HeaderButton
                   onClick={() => this.setState({ showModal: true })}
                   id="shareButton"
@@ -125,6 +124,7 @@ export class Favourites extends Component {
                   onRequestClose={() => this.setState({ showModal: false })}
                   closeModal={() => this.setState({ showModal: false })}
                   t={t}
+                  url={url}
                 />
               </Grid>
             </Grid>
@@ -183,14 +183,13 @@ export class Favourites extends Component {
                   {t("favourites.contact_us")}
                 </Header>
                 <p>
-                  <HeaderButton
+                  <HeaderLink
                     id="nearbyOffice"
                     arrow="forward"
-                    useLink
                     href={getLink(this.props.url, "/map", "favourites")}
                   >
                     {t("favourites.visit_prompt")}
-                  </HeaderButton>
+                  </HeaderLink>
                 </p>
 
                 <Body>{t("favourites.print_instructions")}</Body>
@@ -232,14 +231,13 @@ export class Favourites extends Component {
 
                 <Body className={noBottomMargin}>
                   <p>
-                    <HeaderButton
+                    <HeaderLink
                       id="myVACButton"
                       arrow="forward"
-                      useLink
                       href={t("contact.my_vac_link")}
                     >
                       {t("favourites.login_link")}
-                    </HeaderButton>
+                    </HeaderLink>
                   </p>
                   {t("favourites.login_prompt")}
                 </Body>

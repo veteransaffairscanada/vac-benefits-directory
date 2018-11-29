@@ -124,16 +124,6 @@ describe("GuidedExperience", () => {
     ).toContain("next");
   });
 
-  it("the Next buttons says 'Show Results' if the section is the needs", () => {
-    props.id = "needs";
-    expect(
-      mounted_GuidedExperience()
-        .find("Button")
-        .last()
-        .text()
-    ).toContain("ge.show_results");
-  });
-
   it("displays helper text if it exists", () => {
     props.helperText = "helperText";
     expect(

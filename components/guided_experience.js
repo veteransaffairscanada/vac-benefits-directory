@@ -10,6 +10,7 @@ import Header from "./typography/header";
 import Body from "./typography/body";
 import Button from "./button";
 import HeaderButton from "./header_button";
+import HeaderLink from "./header_link";
 import AnchorLink from "./typography/anchor_link";
 import { globalTheme } from "../theme";
 import Paper from "./paper";
@@ -107,18 +108,27 @@ export class GuidedExperience extends Component {
 
     return (
       <Container id="guidedExperience">
-        <HeaderButton
-          id="prevButton"
-          useLink={prevSection === "index"}
-          href={prevSection === "index" ? t("ge.home_link") : undefined}
-          onClick={
-            prevSection === "index" ? undefined : () => setSection(prevSection)
-          }
-          className={prevButton}
-          arrow="back"
-        >
-          {t("back")}
-        </HeaderButton>
+        {prevSection === "index" ? (
+          <HeaderLink
+            id="prevButton"
+            href={t("ge.home_link")}
+            className={prevButton}
+            arrow="back"
+          >
+            {t("back")}
+          </HeaderLink>
+        ) : (
+          <HeaderButton
+            id="prevButton"
+            onClick={() => {
+              setSection(prevSection);
+            }}
+            className={prevButton}
+            arrow="back"
+          >
+            {t("back")}
+          </HeaderButton>
+        )}
 
         {this.props.stepNumber === 0 ? (
           <React.Fragment>
@@ -161,7 +171,9 @@ export class GuidedExperience extends Component {
                     : () => setSection(nextSection)
                 }
               >
-                {this.props.id === "needs" ? t("ge.show_results") : t("next")}{" "}
+                {nextSection === "benefits-directory"
+                  ? t("ge.show_results")
+                  : t("next")}{" "}
               </Button>
               <HeaderButton
                 id="skipButton"

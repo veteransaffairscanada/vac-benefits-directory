@@ -12,6 +12,7 @@ import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
+import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
@@ -61,7 +62,7 @@ export class BB extends Component {
   }
 
   render() {
-    const { t } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, store } = this.props; // eslint-disable-line no-unused-vars
 
     return (
       <div
@@ -73,8 +74,7 @@ export class BB extends Component {
           <Container className={topPadding}>
             <Grid container spacing={24}>
               <Grid item xs={4}>
-                <HeaderButton
-                  useLink
+                <HeaderLink
                   className={anchors}
                   id="savedBenefits"
                   href={this.props.favouritesUrl}
@@ -84,18 +84,17 @@ export class BB extends Component {
                     " (" +
                     this.props.favouriteBenefits.length +
                     ")"}
-                </HeaderButton>
+                </HeaderLink>
               </Grid>
               <Grid item xs={8} className={right}>
-                <HeaderButton
-                  useLink
+                <HeaderLink
                   href={this.props.printUrl}
                   target="print_page"
                   id="printButton"
                 >
                   <Print />{" "}
                   <span className={nonMobileStyle}> {t("Print")} </span>
-                </HeaderButton>
+                </HeaderLink>
                 <HeaderButton
                   onClick={() => this.setState({ showModal: true })}
                   id="shareButton"
@@ -107,6 +106,7 @@ export class BB extends Component {
                   isOpen={this.state.showModal}
                   onRequestClose={() => this.setState({ showModal: false })}
                   closeModal={() => this.setState({ showModal: false })}
+                  url={url}
                   t={t}
                 />
               </Grid>
@@ -116,8 +116,8 @@ export class BB extends Component {
         <Container className={topPadding}>
           <Grid container spacing={32}>
             <Grid item lg={4} md={4} sm={5} xs={12}>
-              <ProfileNeedsSelectorMobile t={t} store={this.props.store} />
-              <ProfileNeedsSelector t={t} store={this.props.store} />
+              <ProfileNeedsSelectorMobile t={t} store={store} />
+              <ProfileNeedsSelector t={t} store={store} />
             </Grid>
             <Grid item lg={8} md={8} sm={7} xs={12}>
               <Grid container spacing={16}>
@@ -133,12 +133,7 @@ export class BB extends Component {
                 </Grid>
               </Grid>
 
-              <BenefitsPane
-                id="BenefitsPane"
-                t={t}
-                store={this.props.store}
-                url={this.props.url}
-              />
+              <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
             </Grid>
           </Grid>
         </Container>
