@@ -83,7 +83,7 @@ export class Favourites extends Component {
   };
 
   render() {
-    const { t } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -124,6 +124,7 @@ export class Favourites extends Component {
                   onRequestClose={() => this.setState({ showModal: false })}
                   closeModal={() => this.setState({ showModal: false })}
                   t={t}
+                  url={url}
                 />
               </Grid>
             </Grid>
