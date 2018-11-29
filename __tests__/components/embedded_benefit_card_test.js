@@ -9,6 +9,7 @@ expect.extend(toHaveNoViolations);
 describe("EmbeddedBenefitCard", () => {
   let props;
   let _mountedEmbeddedBenefitCard;
+
   const mountedEmbeddedBenefitCard = () => {
     if (!_mountedEmbeddedBenefitCard) {
       _mountedEmbeddedBenefitCard = mount(<EmbeddedBenefitCard {...props} />);
@@ -34,7 +35,7 @@ describe("EmbeddedBenefitCard", () => {
   it("has a blank target", () => {
     expect(
       mountedEmbeddedBenefitCard()
-        .find("HeaderButton")
+        .find("HeaderLink")
         .prop("target")
     ).toEqual("_blank");
   });
@@ -45,7 +46,7 @@ describe("EmbeddedBenefitCard", () => {
     );
     expect(
       mountedEmbeddedBenefitCard()
-        .find("HeaderButton")
+        .find("HeaderLink")
         .prop("href")
     ).toEqual(benefitsFixture[0].benefitPageEn);
     expect(mountedEmbeddedBenefitCard().text()).toContain(
@@ -64,7 +65,7 @@ describe("EmbeddedBenefitCard", () => {
       );
       expect(
         mountedEmbeddedBenefitCard()
-          .find("HeaderButton")
+          .find("HeaderLink")
           .prop("href")
       ).toEqual(benefitsFixture[0].benefitPageFr);
       expect(mountedEmbeddedBenefitCard().text()).toContain(
@@ -76,8 +77,10 @@ describe("EmbeddedBenefitCard", () => {
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
+
     mountedEmbeddedBenefitCard()
-      .find("a")
+      .find(".exit_div")
+      .first()
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
