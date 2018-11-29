@@ -115,8 +115,10 @@ class ShareModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: ""
+      url: "",
+      statusMessage: ""
     };
+    this.copyText = this.copyText.bind(this);
   }
   componentDidMount() {
     this.setState({ url: window.location.href });
@@ -127,9 +129,8 @@ class ShareModal extends Component {
     let shareInput = t ? document.querySelector(t) : null;
     try {
       if (navigator.clipboard) {
-        console.log("navigator.clipboard exists");
         navigator.clipboard.writeText(shareInput.value).then(() => {
-          // TODO - confirmation message that link has been copied
+          this.setState({ statusMessage: "Link Copied" });
         });
       } else {
         // fix for iOS:
@@ -151,13 +152,18 @@ class ShareModal extends Component {
         }
 
         document.execCommand("copy");
-        console.log("AHHH");
-        //shareInput.blur();
+
+        shareInput.blur();
+
+        this.setState({ statusMessage: "Link Copied" });
       }
       // TODO - confirmation message that link has been copied
     } catch (err) {
       // TODO - throw error
-      console.log("error");
+      this.setState({
+        statusMessage:
+          "Copy button not supported, please copy using hotkeys or your browser's copy function"
+      });
       //alert("copy button not supported");
     }
   }
@@ -215,6 +221,7 @@ class ShareModal extends Component {
             >
               {t("share.copy_button")}
             </CopyButton>
+            <div>{this.state.statusMessage}</div>
           </div>
         </ReactModal>
       );
