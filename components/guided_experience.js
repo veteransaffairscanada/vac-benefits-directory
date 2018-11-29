@@ -13,6 +13,7 @@ import HeaderButton from "./header_button";
 import AnchorLink from "./typography/anchor_link";
 import { globalTheme } from "../theme";
 import Paper from "./paper";
+import { mutateUrl } from "../utils/common";
 
 const box = css`
   padding: 25px 63px 63px 63px;
@@ -84,23 +85,26 @@ export class GuidedExperience extends Component {
       nextSection,
       subtitle,
       setSection,
-      helperText
+      helperText,
+      url
     } = this.props;
 
-    let benefitsDirectoryUrl =
-      "/benefits-directory?lng=" + t("current-language-code");
-    if (Object.keys(reduxState.selectedNeeds).length > 0) {
-      benefitsDirectoryUrl +=
-        "&selectedNeeds=" + Object.keys(reduxState.selectedNeeds).join();
-    }
-    reduxState.questions
-      .map(q => q.variable_name)
-      .filter(x => x !== "needs")
-      .forEach(selection => {
-        if (reduxState[selection] !== "") {
-          benefitsDirectoryUrl += `&${selection}=${reduxState[selection]}`;
-        }
-      });
+    const summaryUrl = mutateUrl(url, "/summary");
+    console.log(summaryUrl);
+    // let benefitsDirectoryUrl =
+    //   "/benefits-directory?lng=" + t("current-language-code");
+    // if (Object.keys(reduxState.selectedNeeds).length > 0) {
+    //   benefitsDirectoryUrl +=
+    //     "&selectedNeeds=" + Object.keys(reduxState.selectedNeeds).join();
+    // }
+    // reduxState.questions
+    //   .map(q => q.variable_name)
+    //   .filter(x => x !== "needs")
+    //   .forEach(selection => {
+    //     if (reduxState[selection] !== "") {
+    //       benefitsDirectoryUrl += `&${selection}=${reduxState[selection]}`;
+    //     }
+    //   });
 
     const jumpButtons = this.jumpButtons(t, reduxState);
     const nonNullBreadcrumbs = jumpButtons.filter(x => x != null);
@@ -156,21 +160,19 @@ export class GuidedExperience extends Component {
                 id="nextButton"
                 arrow={true}
                 onClick={
-                  nextSection === "benefits-directory"
-                    ? () => Router.push(benefitsDirectoryUrl)
+                  nextSection === "summary"
+                    ? () => Router.push(summaryUrl)
                     : () => setSection(nextSection)
                 }
               >
-                {nextSection === "benefits-directory"
-                  ? t("ge.show_results")
-                  : t("next")}{" "}
+                {t("next")}{" "}
               </Button>
               <HeaderButton
                 id="skipButton"
                 altStyle="grey"
                 onClick={
-                  nextSection === "benefits-directory"
-                    ? () => Router.push(benefitsDirectoryUrl)
+                  nextSection === "summary"
+                    ? () => Router.push(summaryUrl)
                     : () => setSection(nextSection)
                 }
               >
@@ -192,6 +194,7 @@ const mapStateToProps = reduxState => {
 
 GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
+  url: PropTypes.object.isRequired,
   nextSection: PropTypes.string.isRequired,
   prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,

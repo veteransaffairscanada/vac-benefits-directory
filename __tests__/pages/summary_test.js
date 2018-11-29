@@ -1,4 +1,4 @@
-import { GuidedSummary } from "../../pages/guided_summary";
+import { Summary } from "../../pages/summary";
 import { mount } from "enzyme";
 import React from "react";
 import benefitsFixture from "../fixtures/benefits";
@@ -15,7 +15,7 @@ expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
-describe("GuidedSummary", () => {
+describe("Summary", () => {
   let props;
   let mockStore, reduxState;
 
@@ -45,19 +45,19 @@ describe("GuidedSummary", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<GuidedSummary {...props} />).html();
+    let html = mount(<Summary {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("renders page title", async () => {
-    let text = mount(<GuidedSummary {...props} />).text();
+    let text = mount(<Summary {...props} />).text();
     expect(text).toContain("ge.summary_subtitle");
   });
 
   it("the Next buttons says 'Show Results' if the section is the summary", () => {
     props.id = "summary";
     expect(
-      mount(<GuidedSummary {...props} />)
+      mount(<Summary {...props} />)
         .find("Button")
         .last()
         .text()
