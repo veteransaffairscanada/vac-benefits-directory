@@ -116,7 +116,7 @@ class ShareModal extends Component {
     super(props);
     this.state = {
       url: "",
-      statusMessage: ""
+      statusMessage: "",
       origin: ""
     };
     this.copyText = this.copyText.bind(this);
