@@ -21,6 +21,7 @@ describe("ShareModal", () => {
       isOpen: true,
       closeModal: jest.fn(),
       t: () => "en",
+      url: "test_url",
       titles: { share: "" },
       share: {
         copy_prompt: "",

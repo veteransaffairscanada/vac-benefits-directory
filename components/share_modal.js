@@ -115,11 +115,11 @@ class ShareModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      url: ""
+      origin: ""
     };
   }
   componentDidMount() {
-    this.setState({ url: window.location.href });
+    this.setState({ origin: window.location.origin });
   }
 
   copyText(e) {
@@ -141,7 +141,6 @@ class ShareModal extends Component {
 
   render() {
     const { isOpen, onRequestClose, closeModal, t } = this.props;
-
     // Only render modal on the client - portals are not supported on the server and fail tests
     if (process.browser) {
       return (
@@ -163,7 +162,7 @@ class ShareModal extends Component {
             <URLInputBox
               type="text"
               id="shareTarget"
-              value={this.state.url}
+              value={this.state.origin + this.props.url.asPath}
               readOnly
             />
             <CopyButton
@@ -187,6 +186,7 @@ ShareModal.propTypes = {
   isOpen: PropTypes.bool,
   onRequestClose: PropTypes.func,
   closeModal: PropTypes.func,
+  url: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 if (process.browser) ReactModal.setAppElement("#main");
