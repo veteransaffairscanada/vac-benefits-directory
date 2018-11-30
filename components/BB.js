@@ -96,10 +96,11 @@ export class BB extends Component {
                   <span className={nonMobileStyle}> {t("Print")} </span>
                 </HeaderLink>
                 <HeaderButton
+                  className={menuChildRight}
                   onClick={() => this.setState({ showModal: true })}
                   id="shareButton"
                 >
-                  <ShareIcon className={menuChildRight} />
+                  <ShareIcon />
                   <span className={nonMobileStyle}>{t("titles.share")}</span>
                 </HeaderButton>
                 <ShareModal
