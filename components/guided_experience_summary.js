@@ -27,7 +27,6 @@ const breadcrumbList = css`
 
 export class GuidedExperienceSummary extends Component {
   render() {
-    const { t } = this.props;
     return (
       <div className={outerDiv}>
         <Grid container spacing={24}>
@@ -70,7 +69,6 @@ export class GuidedExperienceSummary extends Component {
 }
 
 GuidedExperienceSummary.propTypes = {
-  t: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
