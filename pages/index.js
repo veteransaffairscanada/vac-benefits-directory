@@ -82,7 +82,7 @@ export class Guided extends Component {
 
   getNextSection = (displayable_sections, dynamicStepNumber) => {
     if (dynamicStepNumber + 1 >= displayable_sections.length) {
-      return "benefits-directory";
+      return "summary";
     } else {
       return displayable_sections[dynamicStepNumber + 1];
     }
@@ -112,7 +112,7 @@ export class Guided extends Component {
   };
 
   render() {
-    const { t, i18n, store, reduxState, sectionOrder } = this.props;
+    const { t, i18n, store, reduxState, sectionOrder, url } = this.props;
     const { section } = this.state;
     const displayable_sections = sectionOrder.filter((x, i) =>
       showQuestion(x, i, reduxState)
@@ -148,6 +148,7 @@ export class Guided extends Component {
           subtitle={this.getSubtitle(question)}
           helperText={this.getTooltip(question)}
           t={t}
+          url={url}
           store={store}
         >
           {section === "needs" ? (

@@ -118,7 +118,7 @@ describe("Guided", () => {
     );
 
     expect(guidedInstance.getNextSection(displayable_sections, 3)).toEqual(
-      "benefits-directory"
+      "summary"
     );
   });
 

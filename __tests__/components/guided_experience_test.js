@@ -41,6 +41,10 @@ describe("GuidedExperience", () => {
       stepNumber: 1,
       children: <div className="thing" />,
       subtitle: "subtitle",
+      url: {
+        query: { lng: "en", patronType: "p1", serviceType: "s1" },
+        route: "/summary"
+      },
       reduxState: {
         patronType: "p1",
         serviceType: "s1",
@@ -104,14 +108,14 @@ describe("GuidedExperience", () => {
     ).toEqual(undefined);
   });
 
-  it("the Next button contains an appropriate href if nextSection == benefits-directory", () => {
-    props.nextSection = "benefits-directory";
+  it("the Next button contains an appropriate href if nextSection == summary", () => {
+    props.nextSection = "summary";
     mounted_GuidedExperience()
       .find("Button")
       .last()
       .simulate("click");
     expect(Router.push).toBeCalledWith(
-      "/benefits-directory?lng=en&patronType=p1&serviceType=s1"
+      "/summary?lng=en&patronType=p1&serviceType=s1"
     );
   });
 

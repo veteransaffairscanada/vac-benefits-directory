@@ -98,3 +98,28 @@ export const getLink = (url, page, referrer) => {
   }
   return link;
 };
+
+export const mutateUrl = (url, route = "", query = {}) => {
+  let newUrl = "";
+  if (route) {
+    newUrl += route;
+  } else {
+    newUrl += url.route;
+  }
+
+  let newQuery = {};
+  Object.keys(url.query).forEach(x => {
+    newQuery[x] = url.query[x];
+  });
+  Object.keys(query).forEach(x => {
+    newQuery[x] = query[x];
+  });
+
+  newUrl +=
+    "?" +
+    Object.keys(newQuery)
+      .filter(x => newQuery[x] !== "")
+      .map(x => `${x}=${newQuery[x]}`)
+      .join("&");
+  return newUrl;
+};

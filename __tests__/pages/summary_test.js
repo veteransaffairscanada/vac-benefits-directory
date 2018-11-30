@@ -1,4 +1,4 @@
-import { GuidedSummary } from "../../pages/guided_summary";
+import { Summary } from "../../pages/summary";
 import { mount } from "enzyme";
 import React from "react";
 import benefitsFixture from "../fixtures/benefits";
@@ -9,22 +9,24 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import multipleChoiceOptions from "../fixtures/multiple_choice_options";
+import Router from "next/router";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
-describe("GuidedSummary", () => {
+describe("Summary", () => {
   let props;
   let mockStore, reduxState;
-
+  Router.push = jest.fn();
   beforeEach(() => {
     props = {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: translate
+      t: translate,
+      url: { query: {}, route: "/summary" }
     };
 
     mockStore = configureStore();
@@ -42,25 +44,41 @@ describe("GuidedSummary", () => {
       multipleChoiceOptions: multipleChoiceOptions
     };
     props.store = mockStore(reduxState);
+    props.reduxState = reduxState;
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<GuidedSummary {...props} />).html();
+    let html = mount(<Summary {...props} {...reduxState} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("renders page title", async () => {
-    let text = mount(<GuidedSummary {...props} />).text();
+    let text = mount(<Summary {...props} {...reduxState} />).text();
     expect(text).toContain("ge.summary_subtitle");
   });
 
-  it("the Next buttons says 'Show Results' if the section is the summary", () => {
-    props.id = "summary";
+  it("the Next button says 'Show Results'", () => {
     expect(
-      mount(<GuidedSummary {...props} />)
-        .find("Button")
+      mount(<Summary {...props} {...reduxState} />)
+        .find("#nextButton")
         .last()
         .text()
     ).toContain("ge.show_results");
+  });
+
+  it("the back button goes to the correct page", () => {
+    mount(<Summary {...props} {...reduxState} />)
+      .find("#prevButton")
+      .first()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith("/index?section=needs");
+  });
+
+  it("the next button goes to the correct page", () => {
+    mount(<Summary {...props} {...reduxState} />)
+      .find("#nextButton")
+      .first()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith("/benefits-directory?");
   });
 });
