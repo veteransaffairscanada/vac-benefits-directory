@@ -13,6 +13,8 @@ import { css } from "react-emotion";
 import { globalTheme } from "../theme";
 import { mutateUrl } from "../utils/common";
 import { connect } from "react-redux";
+import { GuidedExperienceSummary } from "../components/guided_experience_summary";
+import Body from "../components/typography/body";
 
 const box = css`
   padding: 25px 63px 63px 63px;
@@ -32,7 +34,7 @@ const questions = css`
 
 export class Summary extends Component {
   render() {
-    const { t, i18n, url, reduxState } = this.props;
+    const { t, i18n, url, reduxState, store } = this.props;
     const prevSection =
       reduxState.patronType === "organization" ? "patronType" : "needs";
     const backUrl = mutateUrl(url, "/index", { section: prevSection });
@@ -56,10 +58,21 @@ export class Summary extends Component {
           <Paper padding="md" className={box}>
             <Grid container spacing={24}>
               <Grid item xs={12} className={questions}>
-                <Header size="md_lg" headingLevel="h2">
+                <Header size="md_lg" headingLevel="h2" paddingTop="30">
                   {t("ge.summary_subtitle")}
                 </Header>
-                <div>content</div>
+                <Body>
+                  <p>{t("ge.summary_tooltip")}</p>
+                </Body>
+                <div>
+                  <GuidedExperienceSummary t={t} store={store} />
+                  <Header size="md_lg" headingLevel="h3" paddingTop="40">
+                    {"Benefits to consider PL"}
+                  </Header>
+                  <Body>
+                    <p>{t("B3.check eligibility")}</p>
+                  </Body>
+                </div>
               </Grid>
               <Grid item xs={12}>
                 <Button

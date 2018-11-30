@@ -21,6 +21,7 @@ class Header extends Component {
     font-weight: ${sizeDict[this.props.size].fontWeight};
     color: ${globalTheme.colour.greyishBrown};
     margin: 0px;
+    padding-top: ${this.props.paddingTop}px;
   `;
 
   render() {
@@ -45,11 +46,13 @@ Header.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   className: PropTypes.string,
   headingLevel: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
+  paddingTop: PropTypes.string
 };
 
 Header.defaultProps = {
-  headingLevel: ""
+  headingLevel: "",
+  paddingTop: "0"
 };
 
 export default Header;
