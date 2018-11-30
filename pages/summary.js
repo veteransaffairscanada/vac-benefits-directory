@@ -35,6 +35,7 @@ const questions = css`
 export class Summary extends Component {
   render() {
     const { t, i18n, url, reduxState, store } = this.props;
+    console.log(reduxState);
     const prevSection =
       reduxState.patronType === "organization" ? "patronType" : "needs";
     const backUrl = mutateUrl(url, "/index", { section: prevSection });
