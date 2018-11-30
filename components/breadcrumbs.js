@@ -38,7 +38,7 @@ export class Breadcrumbs extends Component {
         <Container>
           <div className={breadCrumbStyle}>
             <a href={this.props.url} className={urlStyle}>
-              <HomeIcon className={iconStyle} /> Home{" "}
+              <HomeIcon className={iconStyle} /> Home
             </a>
             <span className={separator}> / </span>
             <span>{this.props.pageTitle}</span>
