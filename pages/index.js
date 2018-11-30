@@ -14,9 +14,13 @@ export class Guided extends Component {
   constructor(props) {
     super(props);
     this.cookies = new Cookies();
-    this.state = {
-      section: this.props.sectionOrder[0]
-    };
+    let urlSection = props.url.query.section;
+    if (urlSection && props.sectionOrder.indexOf(urlSection) > -1) {
+      this.state = { section: urlSection };
+    } else {
+      this.state = { section: props.sectionOrder[0] };
+      props.url.query.section = props.sectionOrder[0];
+    }
   }
 
   componentDidMount() {
