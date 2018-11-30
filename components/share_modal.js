@@ -131,7 +131,7 @@ class ShareModal extends Component {
     try {
       if (navigator.clipboard) {
         navigator.clipboard.writeText(shareInput.value).then(() => {
-          this.setState({ statusMessage: "Link Copied" });
+          this.setState({ statusMessage: this.props.t("share.link_copied") });
         });
       } else {
         // fix for iOS:
@@ -156,17 +156,15 @@ class ShareModal extends Component {
 
         shareInput.blur();
 
-        this.setState({ statusMessage: "Link Copied" });
+        this.setState({ statusMessage: this.props.t("share.link_copied") });
       }
-      // TODO - confirmation message that link has been copied
     } catch (err) {
-      // TODO - throw error
-      this.setState({
-        statusMessage:
-          "Copy button not supported, please copy using hotkeys or your browser's copy function"
-      });
-      //alert("copy button not supported");
+      this.setState({ statusMessage: this.props.t("share.not_supported") });
     }
+  }
+  close(closeModalFn) {
+    this.setState({ statusMessage: "" });
+    closeModalFn();
   }
 
   render() {
@@ -202,11 +200,14 @@ class ShareModal extends Component {
         <ReactModal
           className={modalCSS}
           isOpen={isOpen}
-          onRequestClose={onRequestClose}
+          onRequestClose={() => this.close(onRequestClose)}
         >
           <div className={header}>
             <span>{t("titles.share")}</span>
-            <CloseButton onClick={closeModal} id="modalCloseButton">
+            <CloseButton
+              onClick={() => this.close(closeModal)}
+              id="modalCloseButton"
+            >
               X
             </CloseButton>
           </div>
