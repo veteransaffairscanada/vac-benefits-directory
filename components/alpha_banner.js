@@ -9,7 +9,7 @@ const Banner = css`
   display: -ms-flexbox;
   align-items: center;
   -ms-flex-align: center;
-  padding: 0.4rem 0 0.4rem 0;
+  padding: 1rem 0 1rem 0;
   margin: 0px;
   min-width: 20em;
   color: ${globalTheme.colour.white};
@@ -24,6 +24,8 @@ const Banner = css`
 
 const Text = css`
   margin-left: 10px;
+  font-family: ${globalTheme.fontFamily};
+  font-size: 12px;
 `;
 /**
  * Renders an alpha banner and renders passed children in the `Text` container
