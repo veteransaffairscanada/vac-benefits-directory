@@ -27,49 +27,50 @@ const breadcrumbList = css`
 `;
 
 export class GuidedExperienceSummary extends Component {
-  // breadcrumbs = (reduxState) => {
-  //   console.log(this.props)
-  //   const questionVariableNames = reduxState.questions
-  //     .map(x => x.variable_name)
-  //     .filter(x => x != "needs");
-  //   let jsx_array = questionVariableNames.map((k, i) => {
-  //     if (!reduxState[k]) {
-  //       return (
-  //         <li className={breadcrumbCss}>
-  //           Not answered
-  //         </li>
-  //       );
-  //     } else {
-  //       let option = reduxState.multipleChoiceOptions.filter(
-  //         x => x.variable_name === reduxState[k]
-  //       )[0];
-  //       let text;
-  //       if (t("current-language-code") === "en") {
-  //         text = option.ge_breadcrumb_english
-  //           ? option.ge_breadcrumb_english
-  //           : option.display_text_english;
-  //       } else {
-  //         text = option.ge_breadcrumb_french
-  //           ? option.ge_breadcrumb_french
-  //           : option.display_text_french;
-  //       }
-  //
-  //       return (
-  //         <li className={breadcrumbCss}>
-  //           <AnchorLink
-  //             id={"breadcrumbs" + i}
-  //             href="#"
-  //             // onClick={() => this.props.setSection(k)}
-  //           >
-  //             {text}
-  //           </AnchorLink>
-  //         </li>
-  //
-  //       );
-  //     }
-  //   });
-  //   return jsx_array;
-  // };
+  breadcrumbs = () => {
+    const { t, reduxState } = this.props;
+    // console.log(this.props)
+    const questionVariableNames = reduxState.questions
+      .map(x => x.variable_name)
+      .filter(x => x != "needs");
+    let jsx_array = questionVariableNames.map((k, i) => {
+      if (!reduxState[k]) {
+        return (
+          <li className={breadcrumbCss} key={i}>
+            Not answered
+          </li>
+        );
+      } else {
+        let option = reduxState.multipleChoiceOptions.filter(
+          x => x.variable_name === reduxState[k]
+        )[0];
+        let text;
+        if (t("current-language-code") === "en") {
+          text = option.ge_breadcrumb_english
+            ? option.ge_breadcrumb_english
+            : option.display_text_english;
+        } else {
+          text = option.ge_breadcrumb_french
+            ? option.ge_breadcrumb_french
+            : option.display_text_french;
+        }
+
+        return (
+          <li className={breadcrumbCss} key={i}>
+            <AnchorLink
+              id={"breadcrumbs" + i}
+              href="#"
+              fontSize={24}
+              // onClick={() => this.props.setSection(k)}
+            >
+              {text}
+            </AnchorLink>
+          </li>
+        );
+      }
+    });
+    return jsx_array;
+  };
 
   // <li className={breadcrumbCss}>
   //   <AnchorLink
@@ -108,7 +109,7 @@ export class GuidedExperienceSummary extends Component {
     return (
       <div className={outerDiv}>
         <Grid container spacing={24}>
-          <ul className={breadcrumbList}>"abc"</ul>
+          <ul className={breadcrumbList}>{this.breadcrumbs()}</ul>
         </Grid>
       </div>
     );
