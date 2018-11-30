@@ -66,7 +66,6 @@ describe("ShareModal", () => {
       .find("#copyButton")
       .first()
       .simulate("click");
-    console.log(modal.instance().state);
     expect(modal.instance().state.statusMessage).not.toEqual("");
   });
 
