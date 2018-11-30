@@ -89,7 +89,6 @@ export class GuidedExperience extends Component {
       url
     } = this.props;
 
-    const summaryUrl = mutateUrl(url, "/summary", { section: "" });
     const jumpButtons = this.jumpButtons(t, reduxState);
     const nonNullBreadcrumbs = jumpButtons.filter(x => x != null);
 
@@ -145,7 +144,8 @@ export class GuidedExperience extends Component {
                 arrow={true}
                 onClick={
                   nextSection === "summary"
-                    ? () => Router.push(summaryUrl)
+                    ? () =>
+                        Router.push(mutateUrl(url, "/summary", { section: "" }))
                     : () => setSection(nextSection)
                 }
               >
@@ -156,7 +156,8 @@ export class GuidedExperience extends Component {
                 altStyle="grey"
                 onClick={
                   nextSection === "summary"
-                    ? () => Router.push(summaryUrl)
+                    ? () =>
+                        Router.push(mutateUrl(url, "/summary", { section: "" }))
                     : () => setSection(nextSection)
                 }
               >
