@@ -40,11 +40,12 @@ describe("ShareModal", () => {
   it("closes the model when the close button is clicked", () => {
     let modal = mount(<ShareModal {...props} />);
     modal.setState({ isOpen: true });
+    modal.instance().close = jest.fn();
     modal
       .find("#modalCloseButton")
       .first()
       .simulate("click");
-    expect(props.closeModal).toBeCalled();
+    expect(modal.instance().close).toBeCalled();
   });
 
   it("renders when isOpen is true", () => {
@@ -58,14 +59,28 @@ describe("ShareModal", () => {
     expect(modal.find("#shareTarget").length).not.toEqual(0);
   });
 
-  it("the copyText function is called when the copy button is clicked", () => {
+  it("the link to be copied when the copy button is clicked", () => {
     let modal = mount(<ShareModal {...props} />);
-    modal.instance().copyText = jest.fn();
     modal.setState({ isOpen: true });
     modal
       .find("#copyButton")
       .first()
       .simulate("click");
-    expect(modal.instance().copyText).toBeCalled();
+    console.log(modal.instance().state);
+    expect(modal.instance().state.statusMessage).not.toEqual("");
+  });
+
+  it("the link copied text is cleared when the modal is closed", () => {
+    let modal = mount(<ShareModal {...props} />);
+    modal.setState({ isOpen: true });
+    modal
+      .find("#copyButton")
+      .first()
+      .simulate("click");
+    modal
+      .find("#modalCloseButton")
+      .first()
+      .simulate("click");
+    expect(modal.instance().state.statusMessage).toEqual("");
   });
 });
