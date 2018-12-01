@@ -32,6 +32,7 @@ describe("Summary", () => {
     mockStore = configureStore();
     reduxState = {
       benefits: benefitsFixture,
+      filteredBenefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       needs: needsFixture,
       selectedNeeds: {},
