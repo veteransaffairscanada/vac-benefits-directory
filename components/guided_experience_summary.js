@@ -52,18 +52,42 @@ export class GuidedExperienceSummary extends Component {
     }
   };
 
+  getLiElement = (content, section, key) => {
+    return (
+      <li className={breadcrumbCss} key={key}>
+        <Grid container>
+          <Grid item xs={9}>
+            {content}
+          </Grid>
+          <Grid item xs={3} className={rightAlign}>
+            <AnchorLink
+              href={mutateUrl(this.props.url, "/index", { section: section })}
+              fontSize={24}
+            >
+              edit
+            </AnchorLink>
+          </Grid>
+        </Grid>
+      </li>
+    );
+  };
+
   breadcrumbs = () => {
     const { t, reduxState, url } = this.props;
-    const questionVariableNames = reduxState.questions
-      .map(x => x.variable_name)
-      .filter(x => x != "needs");
+    const questionVariableNames = reduxState.questions.map(
+      x => x.variable_name
+    );
+    // .filter(x => x != "needs");
     let jsx_array = questionVariableNames.map((k, i) => {
       const question = reduxState.questions.filter(
         x => x.variable_name === k
       )[0];
-      let content;
-      if (!reduxState[k]) {
-        content = (
+      let crumb;
+      if (
+        !reduxState[k] ||
+        (k === "needs" && Object.keys(reduxState.selectedNeeds).length == 0)
+      ) {
+        crumb = (
           <div>
             {this.getQuestionBreadcrumbText(question) +
               " " +
@@ -71,41 +95,37 @@ export class GuidedExperienceSummary extends Component {
           </div>
         );
       } else {
-        let option = reduxState.multipleChoiceOptions.filter(
-          x => x.variable_name === reduxState[k]
-        )[0];
-        content = (
+        let breadcrumbText;
+        if (k === "needs") {
+          const selectedNeeds = reduxState.needs
+            .filter(
+              x => Object.keys(reduxState.selectedNeeds).indexOf(x.id) > -1
+            )
+            .map(x => {
+              return t("current-language-code") === "en" ? x.nameEn : x.nameFr;
+            });
+          breadcrumbText = selectedNeeds.join(", ");
+        } else {
+          let option = reduxState.multipleChoiceOptions.filter(
+            x => x.variable_name === reduxState[k]
+          )[0];
+          breadcrumbText = this.getOptionBreadcrumbText(option);
+        }
+        crumb = (
           <AnchorLink
             href={mutateUrl(url, "/index", { section: k })}
             fontSize={24}
           >
-            {this.getOptionBreadcrumbText(option)}
+            {breadcrumbText}
           </AnchorLink>
         );
       }
-      return (
-        <li className={breadcrumbCss} key={i}>
-          <Grid container>
-            <Grid item xs={9}>
-              {content}
-            </Grid>
-            <Grid item xs={3} className={rightAlign}>
-              <AnchorLink
-                href={mutateUrl(url, "/index", { section: k })}
-                fontSize={24}
-              >
-                edit
-              </AnchorLink>
-            </Grid>
-          </Grid>
-        </li>
-      );
+      return this.getLiElement(crumb, k, i);
     });
     return jsx_array;
   };
 
   render() {
-    // const { t, reduxState } = this.props;
     return (
       <div className={outerDiv}>
         <ul className={breadcrumbList}>{this.breadcrumbs()}</ul>
