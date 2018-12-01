@@ -71,7 +71,7 @@ export class Summary extends Component {
                   <p>{t("ge.summary_tooltip")}</p>
                 </Body>
                 <div>
-                  <GuidedExperienceSummary t={t} store={store} />
+                  <GuidedExperienceSummary t={t} url={url} store={store} />
                   <Header size="md_lg" headingLevel="h3" paddingTop="40">
                     {benefitsToConsider}
                   </Header>
