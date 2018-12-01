@@ -5,7 +5,7 @@ import { css } from "react-emotion";
 import { globalTheme } from "../theme";
 import AnchorLink from "./typography/anchor_link";
 import { connect } from "react-redux";
-import { mutateUrl } from "../utils/common";
+import { mutateUrl, showQuestion } from "../utils/common";
 
 const outerDiv = css`
   padding: 12px;
@@ -74,10 +74,10 @@ export class GuidedExperienceSummary extends Component {
 
   breadcrumbs = () => {
     const { t, reduxState, url } = this.props;
-    const questionVariableNames = reduxState.questions.map(
-      x => x.variable_name
-    );
-    // .filter(x => x != "needs");
+    reduxState.questions.map(x => x.variable_name);
+    const questionVariableNames = reduxState.questions
+      .map(x => x.variable_name)
+      .filter((x, i) => showQuestion(x, i, reduxState));
     let jsx_array = questionVariableNames.map((k, i) => {
       const question = reduxState.questions.filter(
         x => x.variable_name === k
