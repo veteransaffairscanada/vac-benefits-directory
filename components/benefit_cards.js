@@ -34,6 +34,10 @@ const root = css`
 const benefitName = css`
   padding-top: 10px;
 `;
+const alignRight = css`
+  text-align: right;
+`;
+
 export class BenefitCard extends Component {
   state = {
     expanded: false
@@ -103,9 +107,15 @@ export class BenefitCard extends Component {
                 store={this.props.store}
               />
             ) : null}
+
             <Grid container className={buttonRow}>
+              <Grid item xs={4}>
+                <HeaderButton onClick={this.toggleExpanded}>
+                  {this.state.expanded ? "See Less" : "See More"}
+                </HeaderButton>
+              </Grid>
               {this.props.showFavourite ? (
-                <Grid item xs={4}>
+                <Grid item xs={8} className={alignRight}>
                   <FavouriteButton
                     benefit={benefit}
                     toggleOpenState={() => {}}
@@ -114,9 +124,6 @@ export class BenefitCard extends Component {
                   />
                 </Grid>
               ) : null}
-              <HeaderButton onClick={this.toggleExpanded}>
-                See More
-              </HeaderButton>
             </Grid>
           </Paper>
         </div>

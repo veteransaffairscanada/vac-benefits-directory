@@ -27,6 +27,14 @@ const heading = css`
   text-align: left;
 `;
 
+const fullWidth = css`
+  width: 100%;
+`;
+const topBorder = css`
+  border-top: thin dashed ${globalTheme.colour.lineGrey};
+  padding-top: 1em;
+`;
+
 export class RelatedBenefits extends Component {
   state = {
     open: false
@@ -39,14 +47,6 @@ export class RelatedBenefits extends Component {
     return this.props.t("current-language-code") === "en"
       ? benefit.vacNameEn
       : benefit.vacNameFr;
-  };
-
-  childBenefitNames = (benefit, childBenefits, open) => {
-    if (open) {
-      return "See Less";
-    } else {
-      return "See More";
-    }
   };
 
   getMatchingBenefits = (benefits, ids) => {
@@ -110,6 +110,28 @@ export class RelatedBenefits extends Component {
       childBenefits,
       benefitIds.family
     );
+
+    const learnMore = (
+      <Button
+        className={fullWidth}
+        arrow={true}
+        onClick={() => {
+          this.logExit(
+            t("current-language-code") === "en"
+              ? benefit.benefitPageEn
+              : benefit.benefitPageFr
+          );
+          const url =
+            t("current-language-code") === "en"
+              ? benefit.benefitPageEn
+              : benefit.benefitPageFr;
+          const win = window.open(url, "_blank");
+          win.focus();
+        }}
+      >
+        {t("Find out more")}
+      </Button>
+    );
     let otherBenefits = "";
     if (childBenefits.length > 0) {
       if (veteranBenefits.length > 0) {
@@ -132,7 +154,7 @@ export class RelatedBenefits extends Component {
         }
       }
       return (
-        <div>
+        <div className={topBorder}>
           {veteranBenefits.length > 0 ? (
             <div>
               <div className={cardBottomFamilyTitle}>
@@ -212,28 +234,11 @@ export class RelatedBenefits extends Component {
               </div>
             </div>
           ) : null}
-          <Button
-            arrow={true}
-            onClick={() => {
-              this.logExit(
-                t("current-language-code") === "en"
-                  ? benefit.benefitPageEn
-                  : benefit.benefitPageFr
-              );
-              const url =
-                t("current-language-code") === "en"
-                  ? benefit.benefitPageEn
-                  : benefit.benefitPageFr;
-              const win = window.open(url, "_blank");
-              win.focus();
-            }}
-          >
-            {t("Find out more")}
-          </Button>
+          {learnMore}
         </div>
       );
     } else {
-      return null;
+      return <div>{learnMore}</div>;
     }
   }
 }
