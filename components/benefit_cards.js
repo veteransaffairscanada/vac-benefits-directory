@@ -7,7 +7,7 @@ import Paper from "./paper";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
 import { css } from "react-emotion";
-import CardFooter from "./card_footer";
+import RelatedBenefits from "./related_benefits_list";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
 import Header from "./typography/header";
@@ -97,7 +97,11 @@ export class BenefitCard extends Component {
               ))}
             </div>
             {this.state.expanded ? (
-              <CardFooter benefit={benefit} t={t} store={this.props.store} />
+              <RelatedBenefits
+                benefit={benefit}
+                t={t}
+                store={this.props.store}
+              />
             ) : null}
             <Grid container className={buttonRow}>
               {this.props.showFavourite ? (

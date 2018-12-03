@@ -12,61 +12,13 @@ const headerDesc = css`
   flex-grow: 1;
   color: ${globalTheme.colour.greyishBrown};
 `;
-/*
-const ExpansionPanelSummaryCss = css`
-  padding-left: ${globalTheme.cardPadding} !important;
-  padding-right: ${globalTheme.cardPadding} !important;
-  padding-top: 20px !important;
-  padding-bottom: 20px !important;
-  border-radius: 0px;
-  border-top: 1px solid ${globalTheme.colour.paleGrey} !important;
-  position: relative !important;
-  min-height: 0px !important;
-  div {
-    margin: 0px !important;
-  }
-  div[role="button"] {
-    padding: 0px 20px 0px 20px !important;
-  }
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    padding-left: ${globalTheme.cardPaddingMobile} !important;
-    padding-right: ${globalTheme.cardPaddingMobile} !important;
-  }
-`;
-const cardBottomTitle = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-*/
 const cardBottomFamilyTitle = css`
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-/*
-const ExpansionPanelCss = css`
-  margin: 0px !important;
-`;
-const ExpansionPanelOpen = css`
-  background-color: ${globalTheme.colour.cardGrey} !important;
-`;
-const ExpansionPanelClosed = css`
-  :hover {
-    background-color: ${globalTheme.colour.cardGrey} !important;
-  }
-`;
-const collapse = css`
-  background-color: ${globalTheme.colour.cardGrey} !important;
-  padding-left: ${globalTheme.cardPadding} !important;
-  padding-right: ${globalTheme.cardPadding} !important;
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    padding-left: ${globalTheme.cardPaddingMobile} !important;
-    padding-right: ${globalTheme.cardPaddingMobile} !important;
-  }
-`;
-*/
+
 const children = css`
   width: 100%;
 `;
@@ -75,7 +27,7 @@ const heading = css`
   text-align: left;
 `;
 
-export class CardFooter extends Component {
+export class RelatedBenefits extends Component {
   state = {
     open: false
   };
@@ -95,12 +47,6 @@ export class CardFooter extends Component {
     } else {
       return "See More";
     }
-  };
-
-  toggleOpenState = () => {
-    this.setState(previousState => {
-      return { ...previousState, open: !previousState.open };
-    });
   };
 
   getMatchingBenefits = (benefits, ids) => {
@@ -298,7 +244,7 @@ const mapStateToProps = reduxState => {
     multipleChoiceOptions: reduxState.multipleChoiceOptions
   };
 };
-CardFooter.propTypes = {
+RelatedBenefits.propTypes = {
   benefits: PropTypes.array.isRequired,
   eligibilityPaths: PropTypes.array.isRequired,
   multipleChoiceOptions: PropTypes.array.isRequired,
@@ -307,4 +253,4 @@ CardFooter.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(CardFooter);
+export default connect(mapStateToProps)(RelatedBenefits);
