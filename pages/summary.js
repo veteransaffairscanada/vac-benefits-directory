@@ -13,8 +13,9 @@ import { css } from "react-emotion";
 import { globalTheme } from "../theme";
 import { mutateUrl } from "../utils/common";
 import { connect } from "react-redux";
-import { GuidedExperienceSummary } from "../components/guided_experience_summary";
+import GuidedExperienceSummary from "../components/guided_experience_summary";
 import Body from "../components/typography/body";
+import { getFilteredBenefits } from "../selectors/benefits";
 
 const box = css`
   padding: 25px 63px 63px 63px;
@@ -33,11 +34,16 @@ const questions = css`
 `;
 
 export class Summary extends Component {
+  countString = (x, t) => {
+    return t("B3.x benefits to consider", { x: x.length });
+  };
+
   render() {
-    const { t, i18n, url, reduxState, store } = this.props;
+    const { t, i18n, url, reduxState, store, filteredBenefits } = this.props;
     const prevSection =
       reduxState.patronType === "organization" ? "patronType" : "needs";
     const backUrl = mutateUrl(url, "/index", { section: prevSection });
+    const benefitsToConsider = this.countString(filteredBenefits, t);
     return (
       <Layout
         i18n={i18n}
@@ -65,9 +71,9 @@ export class Summary extends Component {
                   <p>{t("ge.summary_tooltip")}</p>
                 </Body>
                 <div>
-                  <GuidedExperienceSummary t={t} store={store} />
+                  <GuidedExperienceSummary t={t} url={url} store={store} />
                   <Header size="md_lg" headingLevel="h3" paddingTop="40">
-                    {"Benefits to consider PL"}
+                    {benefitsToConsider}
                   </Header>
                   <Body>
                     <p>{t("B3.check eligibility")}</p>
@@ -94,13 +100,15 @@ export class Summary extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState, props) => {
   return {
-    reduxState: reduxState
+    reduxState: reduxState,
+    filteredBenefits: getFilteredBenefits(reduxState, props)
   };
 };
 
 Summary.propTypes = {
+  filteredBenefits: PropTypes.array.isRequired,
   reduxState: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   url: PropTypes.object.isRequired,
