@@ -6,6 +6,7 @@ import { globalTheme } from "../theme";
 import AnchorLink from "./typography/anchor_link";
 import { connect } from "react-redux";
 import { mutateUrl, showQuestion } from "../utils/common";
+import EditIcon from "./icons/Edit";
 
 const outerDiv = css`
   padding: 12px;
@@ -28,7 +29,7 @@ const breadcrumbList = css`
 `;
 
 const rightAlign = css`
-  text-align: right;
+  text-align: right !important;
 `;
 
 export class GuidedExperienceSummary extends Component {
@@ -64,7 +65,7 @@ export class GuidedExperienceSummary extends Component {
               href={mutateUrl(this.props.url, "/index", { section: section })}
               fontSize={24}
             >
-              edit
+              <EditIcon t={this.props.t} />
             </AnchorLink>
           </Grid>
         </Grid>
