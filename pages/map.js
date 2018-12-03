@@ -13,15 +13,11 @@ import { css } from "react-emotion";
 import Container from "../components/container";
 import Header from "../components/typography/header";
 import Body from "../components/typography/body";
-import HeaderButton from "../components/header_button";
 import AnchorLink from "../components/typography/anchor_link";
-import { getLink } from "../utils/common";
+import BreadCrumbs from "../components/breadcrumbs";
 
 const mapPaper = css`
   margin-top: ${globalTheme.marginTop};
-`;
-const backLink = css`
-  margin-bottom: 15px;
 `;
 const topMatter = css`
   margin-top: 30px !important;
@@ -55,11 +51,7 @@ export class Map extends Component {
   }
 
   render() {
-    const { i18n, t, referrer } = this.props;
-
-    const backUrl = referrer
-      ? getLink(this.props.url, referrer)
-      : getLink(this.props.url, "favourites");
+    const { i18n, t } = this.props;
 
     return (
       <Layout
@@ -69,18 +61,10 @@ export class Map extends Component {
         showRefreshCache={false}
         title={t("titles.map")}
       >
+        <BreadCrumbs t={t} url={"/"} pageTitle={t("map.vacOffices")} />
         <Container>
           <Grid container spacing={24}>
             <Grid item xs={12} md={12} className={topMatter}>
-              <HeaderButton
-                href={backUrl}
-                className={backLink}
-                id="backButton"
-                arrow="back"
-                useLink
-              >
-                {t("back")}
-              </HeaderButton>
               <Header size="xl" headingLevel="h1">
                 {t("map.vacOffices")}
               </Header>

@@ -6,6 +6,7 @@ import { Map } from "../../pages/map";
 import areaOfficesFixture from "../fixtures/area_offices";
 import configureStore from "redux-mock-store";
 import translate from "../fixtures/translate";
+import Breadcrumbs from "../../components/breadcrumbs";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -54,9 +55,9 @@ describe("Map", () => {
     ).toEqual(1);
   });
 
-  it("has a back button", () => {
+  it("has breadcrumbs", () => {
     expect(
-      shallow(<Map {...props} {...reduxData} />).find("#backButton").length
+      shallow(<Map {...props} {...reduxData} />).find(Breadcrumbs).length
     ).toEqual(1);
   });
 
