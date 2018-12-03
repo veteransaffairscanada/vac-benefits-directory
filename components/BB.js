@@ -23,6 +23,7 @@ const outerDiv = css`
 `;
 const topPadding = css`
   padding-top: 30px;
+  background-color: ${globalTheme.colour.white};
 `;
 const topMatter = css`
   background-color: ${globalTheme.colour.white};

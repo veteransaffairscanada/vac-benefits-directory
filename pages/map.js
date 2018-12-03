@@ -68,6 +68,7 @@ export class Map extends Component {
         hideNoscript={true}
         showRefreshCache={false}
         title={t("titles.map")}
+        backgroundColor={globalTheme.colour.white}
       >
         <Container>
           <Grid container spacing={24}>

@@ -23,6 +23,7 @@ let theme = {
     paleGrey: "#eaebed",
     warmGrey: "#979797",
     brownishGrey: "#646464",
+    paleGreyishBrown: "#f8f8f8",
     greyishBrownTwo: "#505050",
     greyishBrown: "#434343",
     cerulean: "#006cc9",
