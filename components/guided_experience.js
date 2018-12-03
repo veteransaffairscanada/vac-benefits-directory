@@ -14,7 +14,7 @@ import Paper from "./paper";
 import { mutateUrl } from "../utils/common";
 
 const box = css`
-  padding: 25px 63px 63px 63px;
+  padding: 63px 63px 63px 63px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding: 17px 26px 55px 26px;
   }
