@@ -143,17 +143,4 @@ describe("BenefitCard", () => {
     reduxData.selectedNeeds["need_0"] = "need_0";
     expect(mountedBenefitCard().text()).toContain("Need 0");
   });
-
-  it("Clicking the link logs an exit event", () => {
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    mountedBenefitCard()
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(analytics.logEvent).toBeCalledWith(
-      "Exit",
-      benefitsFixture[0].benefitPageEn
-    );
-  });
 });

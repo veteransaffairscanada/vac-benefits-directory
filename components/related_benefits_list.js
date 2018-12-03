@@ -155,6 +155,7 @@ export class RelatedBenefits extends Component {
       }
       return (
         <div className={topBorder}>
+          {JSON.stringify(childBenefits)}
           {veteranBenefits.length > 0 ? (
             <div>
               <div className={cardBottomFamilyTitle}>

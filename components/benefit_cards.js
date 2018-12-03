@@ -110,7 +110,10 @@ export class BenefitCard extends Component {
 
             <Grid container className={buttonRow}>
               <Grid item xs={4}>
-                <HeaderButton onClick={this.toggleExpanded}>
+                <HeaderButton
+                  id={"see-more-less" + benefit.id}
+                  onClick={this.toggleExpanded}
+                >
                   {this.state.expanded ? "See Less" : "See More"}
                 </HeaderButton>
               </Grid>

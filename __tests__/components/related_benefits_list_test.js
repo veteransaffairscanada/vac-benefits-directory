@@ -11,6 +11,9 @@ expect.extend(toHaveNoViolations);
 describe("CardFooter", () => {
   let props;
   let mockStore, reduxData;
+  const mocked_fn = jest.fn();
+  mocked_fn.mockReturnValue({ focus: jest.fn() });
+  window.open = mocked_fn;
 
   beforeEach(() => {
     props = {
@@ -35,14 +38,30 @@ describe("CardFooter", () => {
   });
 
   it("shows a child benefit title if the benefit has a child", () => {
+    let related = mount(<RelatedBenefits {...props} {...reduxData} />);
+    console.log(props.benefit.childBenefits);
+    console.log(related.html());
     expect(
-      mount(<RelatedBenefits {...props} {...reduxData} />)
-        .find("Paper")
-        .first()
+      related
+        .find("ul")
+        .childAt(0)
         .text()
     ).toContain("en");
   });
 
+  it("Clicking the link logs an exit event", () => {
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
+    mount(<RelatedBenefits {...props} {...reduxData} />)
+      .find("Button")
+      .at(0)
+      .simulate("click");
+    expect(analytics.logEvent).toBeCalledWith(
+      "Exit",
+      benefitsFixture[0].benefitPageEn
+    );
+  });
+  /*
   describe(".childBenefitNames", () => {
     it("returns the title of a benefit if there is one benefit", () => {
       expect(
@@ -60,28 +79,23 @@ describe("CardFooter", () => {
       ).toContain("en");
     });
   });
-
+*/
   describe("when language is French", () => {
     beforeEach(() => {
       props.t = () => "fr";
     });
 
-    it("contains the French name", () => {
-      expect(
-        mount(<RelatedBenefits {...props} {...reduxData} />).text()
-      ).toContain(benefitsFixture[0].vacNameFr);
-    });
-
     it("shows a child benefit title if the benefit has a child", () => {
       expect(
         mount(<RelatedBenefits {...props} {...reduxData} />)
-          .find("Paper")
+          .find("li")
           .first()
           .text()
       ).toContain("fr");
     });
   });
 
+  /* MOVE TO BENEFIT CARDS
   it("changes open state when somebody clicks on it", () => {
     let mounted = mount(<RelatedBenefits {...props} {...reduxData} />);
     expect(mounted.state().open).toEqual(false);
@@ -91,6 +105,7 @@ describe("CardFooter", () => {
       .simulate("click");
     expect(mounted.state().open).toEqual(true);
   });
+  */
 
   describe("getBenefitIds", () => {
     it("finds service person and family benefits", () => {
