@@ -6,6 +6,7 @@ import Layout from "../components/layout";
 import { connect } from "react-redux";
 import BB from "../components/BB";
 import { getProfileFilters, getFilteredBenefits } from "../selectors/benefits";
+import { globalTheme } from "../theme";
 
 export class BenefitsDirectory extends Component {
   constructor() {
@@ -69,6 +70,7 @@ export class BenefitsDirectory extends Component {
         hideNoscript={false}
         showRefreshCache={false}
         title={title + " | " + t("titles.benefits_directory")}
+        backgroundColor={globalTheme.colour.white}
       >
         <BB id="BB" t={t} store={this.props.store} url={this.props.url} />
       </Layout>

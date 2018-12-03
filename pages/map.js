@@ -60,6 +60,7 @@ export class Map extends Component {
         hideNoscript={true}
         showRefreshCache={false}
         title={t("titles.map")}
+        backgroundColor={globalTheme.colour.white}
       >
         <BreadCrumbs t={t} url={"/"} pageTitle={t("map.vacOffices")} />
         <Container>

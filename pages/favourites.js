@@ -5,6 +5,7 @@ import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import Favourites from "../components/favourites";
+import { globalTheme } from "../theme";
 
 export class FavouritesPage extends Component {
   render() {
@@ -16,6 +17,7 @@ export class FavouritesPage extends Component {
         hideNoscript={false}
         showRefreshCache={false}
         title={t("favourites.saved_benefits", { x: favouriteBenefits.length })}
+        backgroundColor={globalTheme.colour.white}
       >
         <Favourites
           id="favourites"
