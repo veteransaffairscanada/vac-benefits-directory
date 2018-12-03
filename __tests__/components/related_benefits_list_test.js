@@ -30,13 +30,13 @@ describe("CardFooter", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<CardFooter {...props} {...reduxData} />).html();
+    let html = mount(<RelatedBenefits {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("shows a child benefit title if the benefit has a child", () => {
     expect(
-      mount(<CardFooter {...props} {...reduxData} />)
+      mount(<RelatedBenefits {...props} {...reduxData} />)
         .find("Paper")
         .first()
         .text()
@@ -46,7 +46,7 @@ describe("CardFooter", () => {
   describe(".childBenefitNames", () => {
     it("returns the title of a benefit if there is one benefit", () => {
       expect(
-        mount(<CardFooter {...props} {...reduxData} />)
+        mount(<RelatedBenefits {...props} {...reduxData} />)
           .instance()
           .childBenefitNames(benefitsFixture[0], benefitsFixture[0], false)
       ).toContain("en");
@@ -54,7 +54,7 @@ describe("CardFooter", () => {
 
     it("returns the count of benefits if there is more than one", () => {
       expect(
-        mount(<CardFooter {...props} {...reduxData} />)
+        mount(<RelatedBenefits {...props} {...reduxData} />)
           .instance()
           .childBenefitNames(benefitsFixture[0], [benefitsFixture], false)
       ).toContain("en");
@@ -67,14 +67,14 @@ describe("CardFooter", () => {
     });
 
     it("contains the French name", () => {
-      expect(mount(<CardFooter {...props} {...reduxData} />).text()).toContain(
-        benefitsFixture[0].vacNameFr
-      );
+      expect(
+        mount(<RelatedBenefits {...props} {...reduxData} />).text()
+      ).toContain(benefitsFixture[0].vacNameFr);
     });
 
     it("shows a child benefit title if the benefit has a child", () => {
       expect(
-        mount(<CardFooter {...props} {...reduxData} />)
+        mount(<RelatedBenefits {...props} {...reduxData} />)
           .find("Paper")
           .first()
           .text()
@@ -83,7 +83,7 @@ describe("CardFooter", () => {
   });
 
   it("changes open state when somebody clicks on it", () => {
-    let mounted = mount(<CardFooter {...props} {...reduxData} />);
+    let mounted = mount(<RelatedBenefits {...props} {...reduxData} />);
     expect(mounted.state().open).toEqual(false);
     mounted
       .find("ExpansionPanelSummary")
@@ -95,7 +95,7 @@ describe("CardFooter", () => {
   describe("getBenefitIds", () => {
     it("finds service person and family benefits", () => {
       expect(
-        mount(<CardFooter {...props} {...reduxData} />)
+        mount(<RelatedBenefits {...props} {...reduxData} />)
           .instance()
           .getBenefitIds(
             reduxData.eligibilityPaths,
@@ -111,7 +111,7 @@ describe("CardFooter", () => {
 
   it("has a correct getMatchingBenefits function", () => {
     expect(
-      mount(<CardFooter {...props} {...reduxData} />)
+      mount(<RelatedBenefits {...props} {...reduxData} />)
         .instance()
         .getMatchingBenefits(
           reduxData.benefits,
