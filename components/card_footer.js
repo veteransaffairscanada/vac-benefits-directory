@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ExpandMoreIcon from "./icons/ExpandMore";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import { cx, css } from "react-emotion";
+import { css } from "react-emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 import HeaderLink from "./header_link";
+import Button from "./button";
+import { logEvent } from "../utils/analytics";
 var constants = require("../utils/hardcoded_strings");
 
 const headerDesc = css`
   flex-grow: 1;
   color: ${globalTheme.colour.greyishBrown};
 `;
+/*
 const ExpansionPanelSummaryCss = css`
   padding-left: ${globalTheme.cardPadding} !important;
   padding-right: ${globalTheme.cardPadding} !important;
@@ -39,12 +38,14 @@ const cardBottomTitle = css`
   justify-content: center;
   align-items: center;
 `;
+*/
 const cardBottomFamilyTitle = css`
   margin-bottom: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
+/*
 const ExpansionPanelCss = css`
   margin: 0px !important;
 `;
@@ -65,6 +66,7 @@ const collapse = css`
     padding-right: ${globalTheme.cardPaddingMobile} !important;
   }
 `;
+*/
 const children = css`
   width: 100%;
 `;
@@ -76,6 +78,9 @@ const heading = css`
 export class CardFooter extends Component {
   state = {
     open: false
+  };
+  logExit = url => {
+    logEvent("Exit", url);
   };
 
   benefitTitle = benefit => {
@@ -90,31 +95,6 @@ export class CardFooter extends Component {
     } else {
       return "See More";
     }
-    /*
-    if (open) {
-      return this.props.t("benefits_b.eligible_open_veteran", {
-        x: this.benefitTitle(benefit)
-      });
-    } else {
-      if (length === 1) {
-        return (
-          this.benefitTitle(benefit) +
-          " " +
-          this.props.t("benefits_b.eligible_for_single", {
-            x: this.benefitTitle(childBenefits[0])
-          })
-        );
-      } else {
-        return (
-          this.benefitTitle(benefit) +
-          " " +
-          this.props.t("benefits_b.eligible_for_multi", {
-            x: length
-          })
-        );
-      }
-    }
-    */
   };
 
   toggleOpenState = () => {
@@ -193,126 +173,118 @@ export class CardFooter extends Component {
             " " +
             t("benefits_b.eligible_for_single", {
               x: this.benefitTitle(childBenefits[0])
-            });
+            }) +
+            ":";
         } else {
           otherBenefits =
             this.benefitTitle(benefit) +
             " " +
             t("benefits_b.eligible_for_multi", {
               x: childBenefits.length
-            });
+            }) +
+            ":";
         }
       }
       return (
-        <ExpansionPanel
-          expanded={this.state.open}
-          className={
-            this.state.open
-              ? cx(ExpansionPanelCss, ExpansionPanelOpen)
-              : cx(ExpansionPanelCss, ExpansionPanelClosed)
-          }
-        >
-          <ExpansionPanelDetails timeout="auto" className={collapse}>
+        <div>
+          {veteranBenefits.length > 0 ? (
             <div>
-              {veteranBenefits.length > 0 ? (
+              <div className={cardBottomFamilyTitle}>
+                <span className={headerDesc}>{otherBenefits}</span>
+              </div>
+              <div className={children}>
                 <div>
-                  <div className={cardBottomFamilyTitle}>
-                    <span className={headerDesc}>{otherBenefits}</span>
-                  </div>
-                  <div className={children}>
-                    <div>
-                      <ul>
-                        {veteranBenefits.map((cb, i) => (
-                          <li key={cb.id}>
-                            <HeaderLink
-                              id={"embedded-" + cb.id + i}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={heading}
-                              size="small"
-                              href={
-                                language === "en"
-                                  ? cb.benefitPageEn
-                                  : cb.benefitPageFr
-                              }
-                              onClick={() => {
-                                this.logExit(
-                                  language === "en"
-                                    ? cb.benefitPageEn
-                                    : cb.benefitPageFr
-                                );
-                                return true;
-                              }}
-                            >
-                              {language === "en" ? cb.vacNameEn : cb.vacNameFr}
-                            </HeaderLink>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              ) : null}
-
-              {familyBenefits.length > 0 ? (
-                <div>
-                  <div className={cardBottomFamilyTitle}>
-                    <span className={headerDesc}>
-                      {t("benefits_b.eligible_open_family")}
-                    </span>
-                  </div>
-                  <div className={children}>
-                    <ul>
-                      {familyBenefits.map((cb, i) => (
-                        <li key={cb.id}>
-                          <HeaderLink
-                            id={"embedded-" + cb.id + i}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={heading}
-                            size="small"
-                            href={
+                  <ul>
+                    {veteranBenefits.map((cb, i) => (
+                      <li key={cb.id}>
+                        <HeaderLink
+                          id={"embedded-" + cb.id + i}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={heading}
+                          size="small"
+                          href={
+                            language === "en"
+                              ? cb.benefitPageEn
+                              : cb.benefitPageFr
+                          }
+                          onClick={() => {
+                            this.logExit(
                               language === "en"
                                 ? cb.benefitPageEn
                                 : cb.benefitPageFr
-                            }
-                            onClick={() => {
-                              this.logExit(
-                                language === "en"
-                                  ? cb.benefitPageEn
-                                  : cb.benefitPageFr
-                              );
-                              return true;
-                            }}
-                          >
-                            {language === "en" ? cb.vacNameEn : cb.vacNameFr}
-                          </HeaderLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                            );
+                            return true;
+                          }}
+                        >
+                          {language === "en" ? cb.vacNameEn : cb.vacNameFr}
+                        </HeaderLink>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ) : null}
+              </div>
             </div>
-          </ExpansionPanelDetails>
-          <ExpansionPanelSummary
-            className={ExpansionPanelSummaryCss}
-            expandIcon={<ExpandMoreIcon />}
-            onClick={() => this.toggleOpenState()}
-          >
-            <div className={cardBottomTitle}>
-              <span className={headerDesc}>
-                <span>
-                  {this.childBenefitNames(
-                    benefit,
-                    childBenefits,
-                    this.state.open
-                  )}
+          ) : null}
+
+          {familyBenefits.length > 0 ? (
+            <div>
+              <div className={cardBottomFamilyTitle}>
+                <span className={headerDesc}>
+                  {t("benefits_b.eligible_open_family")}
                 </span>
-              </span>
+              </div>
+              <div className={children}>
+                <ul>
+                  {familyBenefits.map((cb, i) => (
+                    <li key={cb.id}>
+                      <HeaderLink
+                        id={"embedded-" + cb.id + i}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={heading}
+                        size="small"
+                        href={
+                          language === "en"
+                            ? cb.benefitPageEn
+                            : cb.benefitPageFr
+                        }
+                        onClick={() => {
+                          this.logExit(
+                            language === "en"
+                              ? cb.benefitPageEn
+                              : cb.benefitPageFr
+                          );
+                          return true;
+                        }}
+                      >
+                        {language === "en" ? cb.vacNameEn : cb.vacNameFr}
+                      </HeaderLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </ExpansionPanelSummary>
-        </ExpansionPanel>
+          ) : null}
+          <Button
+            arrow={true}
+            onClick={() => {
+              this.logExit(
+                t("current-language-code") === "en"
+                  ? benefit.benefitPageEn
+                  : benefit.benefitPageFr
+              );
+              const url =
+                t("current-language-code") === "en"
+                  ? benefit.benefitPageEn
+                  : benefit.benefitPageFr;
+              const win = window.open(url, "_blank");
+              win.focus();
+            }}
+          >
+            {t("Find out more")}
+          </Button>
+        </div>
       );
     } else {
       return null;

@@ -4,7 +4,6 @@ import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
 import FavouriteButton from "./favourite_button";
 import Paper from "./paper";
-import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
 import { css } from "react-emotion";
@@ -12,7 +11,7 @@ import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
 import Header from "./typography/header";
-import Button from "./button";
+import HeaderButton from "./header_button";
 import { globalTheme } from "../theme";
 
 const cardBody = css`
@@ -35,18 +34,18 @@ const root = css`
 const benefitName = css`
   padding-top: 10px;
 `;
-
-const alignRight = css`
-  text-align: right !important;
-`;
 export class BenefitCard extends Component {
-  logExit = url => {
-    logEvent("Exit", url);
+  state = {
+    expanded: false
   };
 
   componentDidMount() {
     this.forceUpdate();
   }
+
+  toggleExpanded = () => {
+    this.setState({ expanded: !this.state.expanded });
+  };
 
   render() {
     const { t, benefit } = this.props;
@@ -97,7 +96,9 @@ export class BenefitCard extends Component {
                 <NeedTag key={benefit.id + need.id} t={t} need={need} />
               ))}
             </div>
-
+            {this.state.expanded ? (
+              <CardFooter benefit={benefit} t={t} store={this.props.store} />
+            ) : null}
             <Grid container className={buttonRow}>
               {this.props.showFavourite ? (
                 <Grid item xs={4}>
@@ -109,29 +110,11 @@ export class BenefitCard extends Component {
                   />
                 </Grid>
               ) : null}
-              <Grid item xs={8} className={alignRight}>
-                <Button
-                  arrow={true}
-                  onClick={() => {
-                    this.logExit(
-                      t("current-language-code") === "en"
-                        ? benefit.benefitPageEn
-                        : benefit.benefitPageFr
-                    );
-                    const url =
-                      t("current-language-code") === "en"
-                        ? benefit.benefitPageEn
-                        : benefit.benefitPageFr;
-                    const win = window.open(url, "_blank");
-                    win.focus();
-                  }}
-                >
-                  {t("Find out more")}
-                </Button>
-              </Grid>
+              <HeaderButton onClick={this.toggleExpanded}>
+                See More
+              </HeaderButton>
             </Grid>
           </Paper>
-          <CardFooter benefit={benefit} t={t} store={this.props.store} />
         </div>
       </Grid>
     );
