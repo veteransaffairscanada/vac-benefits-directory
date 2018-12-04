@@ -15,7 +15,7 @@ describe("questionIsRelevant function", () => {
 
   it("returns false if question is not relevant", () => {
     const profileFilters = {
-      patronType: "p2"
+      patronType: "servingMember"
     };
     expect(
       questionIsRelevant("serviceType", profileFilters, reduxState)
@@ -24,7 +24,7 @@ describe("questionIsRelevant function", () => {
 
   it("returns true if question is relevant", () => {
     const profileFilters = {
-      patronType: "p1"
+      patronType: "veteran"
     };
     expect(
       questionIsRelevant("serviceType", profileFilters, reduxState)
@@ -33,7 +33,7 @@ describe("questionIsRelevant function", () => {
 
   it("returns true if question is relevant if it is cleared", () => {
     const profileFilters = {
-      patronType: "p1",
+      patronType: "veteran",
       serviceType: "s3"
     };
     expect(
@@ -50,7 +50,7 @@ describe("showQuestion function", () => {
       eligibilityPaths: eligibilityPathsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      patronType: "p1",
+      patronType: "veteran",
       serviceType: "",
       serviceHealthIssue: "",
       statusAndVitals: ""
@@ -68,17 +68,17 @@ describe("showQuestion function", () => {
   });
 
   it("shows question if previous question has an answer", () => {
-    reduxState.patronType = "p1";
+    reduxState.patronType = "veteran";
     expect(showQuestion("serviceType", 1, reduxState)).toEqual(true);
   });
 
   it("hides questions if not relevant", () => {
-    reduxState.patronType = "p2";
+    reduxState.patronType = "servingMember";
     expect(showQuestion("serviceType", 1, reduxState)).toEqual(false);
   });
 
   it("shows needs if patronType not organization", () => {
-    reduxState.patronType = "p2";
+    reduxState.patronType = "servingMember";
     expect(showQuestion("needs", 1, reduxState)).toEqual(true);
   });
 

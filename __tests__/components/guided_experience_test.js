@@ -42,11 +42,11 @@ describe("GuidedExperience", () => {
       children: <div className="thing" />,
       subtitle: "subtitle",
       url: {
-        query: { lng: "en", patronType: "p1", serviceType: "s1" },
+        query: { lng: "en", patronType: "veteran", serviceType: "s1" },
         route: "/summary"
       },
       reduxState: {
-        patronType: "p1",
+        patronType: "veteran",
         serviceType: "s1",
         statusAndVitals: "",
         serviceHealthIssue: "",
@@ -115,7 +115,7 @@ describe("GuidedExperience", () => {
       .last()
       .simulate("click");
     expect(Router.push).toBeCalledWith(
-      "/summary?lng=en&patronType=p1&serviceType=s1"
+      "/summary?lng=en&patronType=veteran&serviceType=s1"
     );
   });
 

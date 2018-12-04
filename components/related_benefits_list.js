@@ -166,7 +166,7 @@ export class RelatedBenefits extends Component {
                     {veteranBenefits.map((cb, i) => (
                       <li key={cb.id}>
                         <HeaderLink
-                          id={"embedded-" + cb.id + i}
+                          id={"embedded-" + cb.id + "-" + i}
                           target="_blank"
                           rel="noopener noreferrer"
                           className={heading}
