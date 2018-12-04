@@ -39,11 +39,10 @@ describe("CardFooter", () => {
 
   it("shows a child benefit title if the benefit has a child", () => {
     let related = mount(<RelatedBenefits {...props} {...reduxData} />);
-    console.log(props.benefit.childBenefits);
-    console.log(related.html());
     expect(
       related
         .find("ul")
+        .first()
         .childAt(0)
         .text()
     ).toContain("en");
