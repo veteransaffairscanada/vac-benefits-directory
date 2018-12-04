@@ -79,26 +79,13 @@ describe("BenefitCard", () => {
     ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
   });
 
-  it("has a correctly configured external link button", () => {
-    mountedBenefitCard()
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(window.open).toBeCalledWith(
-      benefitsFixture[0].benefitPageEn,
-      "_blank"
-    );
-    expect(
-      mountedBenefitCard()
-        .find("Button")
-        .at(0)
-        .text()
-    ).toEqual("en");
-  });
-
   it("hides the Favourite Button if showFavourite is false", () => {
     props.showFavourite = false;
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
+  });
+
+  it("Clicking the See More button expands the related benefits list", () => {
+    // TODO
   });
 
   describe("when language is French", () => {
@@ -110,23 +97,6 @@ describe("BenefitCard", () => {
       expect(mountedBenefitCard().text()).toContain(
         benefitsFixture[0].vacNameFr
       );
-    });
-
-    it("has a button with the French link", () => {
-      mountedBenefitCard()
-        .find("Button")
-        .at(0)
-        .simulate("click");
-      expect(window.open).toBeCalledWith(
-        benefitsFixture[0].benefitPageFr,
-        "_blank"
-      );
-      expect(
-        mountedBenefitCard()
-          .find("Button")
-          .at(0)
-          .text()
-      ).toEqual("fr");
     });
 
     it("shows a child benefit title if the benefit has a child", () => {

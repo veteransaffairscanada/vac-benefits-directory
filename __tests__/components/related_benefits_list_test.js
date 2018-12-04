@@ -48,6 +48,23 @@ describe("CardFooter", () => {
         .text()
     ).toContain("en");
   });
+  /* TO EDIT - from benefit_card_test
+  it("has a correctly configured external link button", () => {
+    mountedBenefitCard()
+      .find("Button")
+      .at(0)
+      .simulate("click");
+    expect(window.open).toBeCalledWith(
+      benefitsFixture[0].benefitPageEn,
+      "_blank"
+    );
+    expect(
+      mountedBenefitCard()
+        .find("Button")
+        .at(0)
+        .text()
+    ).toEqual("en");
+  });*/
 
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
@@ -93,6 +110,24 @@ describe("CardFooter", () => {
           .text()
       ).toContain("fr");
     });
+    /* TO EDIT
+    it("has a button with the French link", () => {
+      mountedBenefitCard()
+        .find("Button")
+        .at(0)
+        .simulate("click");
+      expect(window.open).toBeCalledWith(
+        benefitsFixture[0].benefitPageFr,
+        "_blank"
+      );
+      expect(
+        mountedBenefitCard()
+          .find("Button")
+          .at(0)
+          .text()
+      ).toEqual("fr");
+    });
+    */
   });
 
   /* MOVE TO BENEFIT CARDS
