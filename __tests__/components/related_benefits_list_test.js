@@ -47,9 +47,9 @@ describe("CardFooter", () => {
         .text()
     ).toContain("en");
   });
-  /* TO EDIT - from benefit_card_test
   it("has a correctly configured external link button", () => {
-    mountedBenefitCard()
+    let relatedComponent = mount(<RelatedBenefits {...props} {...reduxData} />);
+    relatedComponent
       .find("Button")
       .at(0)
       .simulate("click");
@@ -58,12 +58,12 @@ describe("CardFooter", () => {
       "_blank"
     );
     expect(
-      mountedBenefitCard()
+      relatedComponent
         .find("Button")
         .at(0)
         .text()
     ).toEqual("en");
-  });*/
+  });
 
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
@@ -77,25 +77,7 @@ describe("CardFooter", () => {
       benefitsFixture[0].benefitPageEn
     );
   });
-  /*
-  describe(".childBenefitNames", () => {
-    it("returns the title of a benefit if there is one benefit", () => {
-      expect(
-        mount(<RelatedBenefits {...props} {...reduxData} />)
-          .instance()
-          .childBenefitNames(benefitsFixture[0], benefitsFixture[0], false)
-      ).toContain("en");
-    });
 
-    it("returns the count of benefits if there is more than one", () => {
-      expect(
-        mount(<RelatedBenefits {...props} {...reduxData} />)
-          .instance()
-          .childBenefitNames(benefitsFixture[0], [benefitsFixture], false)
-      ).toContain("en");
-    });
-  });
-*/
   describe("when language is French", () => {
     beforeEach(() => {
       props.t = () => "fr";
@@ -109,9 +91,11 @@ describe("CardFooter", () => {
           .text()
       ).toContain("fr");
     });
-    /* TO EDIT
     it("has a button with the French link", () => {
-      mountedBenefitCard()
+      let relatedComponent = mount(
+        <RelatedBenefits {...props} {...reduxData} />
+      );
+      relatedComponent
         .find("Button")
         .at(0)
         .simulate("click");
@@ -120,26 +104,13 @@ describe("CardFooter", () => {
         "_blank"
       );
       expect(
-        mountedBenefitCard()
+        relatedComponent
           .find("Button")
           .at(0)
           .text()
       ).toEqual("fr");
     });
-    */
   });
-
-  /* MOVE TO BENEFIT CARDS
-  it("changes open state when somebody clicks on it", () => {
-    let mounted = mount(<RelatedBenefits {...props} {...reduxData} />);
-    expect(mounted.state().open).toEqual(false);
-    mounted
-      .find("ExpansionPanelSummary")
-      .at(0)
-      .simulate("click");
-    expect(mounted.state().open).toEqual(true);
-  });
-  */
 
   describe("getBenefitIds", () => {
     it("finds service person and family benefits", () => {

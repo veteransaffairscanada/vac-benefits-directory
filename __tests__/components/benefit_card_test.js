@@ -85,7 +85,11 @@ describe("BenefitCard", () => {
   });
 
   it("Clicking the See More button expands the related benefits list", () => {
-    // TODO
+    mountedBenefitCard()
+      .find("HeaderButton")
+      .at(0)
+      .simulate("click");
+    expect(mountedBenefitCard().find("RelatedBenefits").length).toEqual(1);
   });
 
   describe("when language is French", () => {
