@@ -39,6 +39,13 @@ const body = css`
   margin-bottom: 0px;
 `;
 export class GuidedExperience extends Component {
+  getNextSection = (displayable_sections, dynamicStepNumber) => {
+    if (dynamicStepNumber + 1 >= displayable_sections.length) {
+      return "summary";
+    } else {
+      return displayable_sections[dynamicStepNumber + 1];
+    }
+  };
   jumpButtons = (t, reduxState) => {
     const eligibilityKeys = reduxState.questions
       .map(x => x.variable_name)
@@ -87,7 +94,8 @@ export class GuidedExperience extends Component {
       subtitle,
       setSection,
       helperText,
-      url
+      url,
+      id
     } = this.props;
 
     const jumpButtons = this.jumpButtons(t, reduxState);
@@ -166,9 +174,15 @@ export class GuidedExperience extends Component {
                 altStyle="grey"
                 onClick={
                   nextSection === "summary"
-                    ? () =>
-                        Router.push(mutateUrl(url, "/summary", { section: "" }))
-                    : () => setSection(nextSection)
+                    ? () => {
+                        Router.push(
+                          mutateUrl(url, "/summary", { section: "" })
+                        );
+                      }
+                    : () => {
+                        this.props.saveQuestionResponse(id, "");
+                        setSection(this.getNextSection());
+                      }
                 }
               >
                 {t("ge.skip")}
@@ -187,10 +201,21 @@ const mapStateToProps = reduxState => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
+    }
+  };
+};
+
 GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
-  nextSection: PropTypes.string.isRequired,
+  // nextSection: PropTypes.string.isRequired,
   prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
   setSection: PropTypes.func.isRequired,
@@ -202,4 +227,7 @@ GuidedExperience.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(GuidedExperience);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GuidedExperience);
