@@ -2966,14 +2966,14 @@ browserslist@^4.1.0:
     electron-to-chromium "^1.3.61"
     node-releases "^1.0.0-alpha.11"
 
-browserstack-local@^1.3.0:
-  version "1.3.4"
-  resolved "https://registry.yarnpkg.com/browserstack-local/-/browserstack-local-1.3.4.tgz#8ebe78cdd40c52d955907c01d03392a4645a4afc"
-  integrity sha512-9PFOhveA6hbPqLytFKXaHEG+2u6CZ46imIjTTFUGoYuMLlGtCR4irJ8jNjuRQMKPaqzImMFkRhsSF3+brZgKmQ==
+browserstack-local@^1.3.6:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/browserstack-local/-/browserstack-local-1.3.7.tgz#cac9fc958eaa0a352e8f1ca1dc91bb141ba5da6f"
+  integrity sha512-ilZlmiy7XYJxsztYan7XueHVr3Ix9EVh/mCiYN1G53wRPEW/hg1KMsseM6UExzVbexEqFEfwjkBLeFlSqxh+bQ==
   dependencies:
     https-proxy-agent "^2.2.1"
     is-running "^2.0.0"
-    ps-tree "^1.1.0"
+    ps-tree "=1.1.1"
     sinon "^1.17.6"
     temp-fs "^0.9.9"
 
@@ -4917,9 +4917,9 @@ event-source-polyfill@0.0.12:
   resolved "https://registry.yarnpkg.com/event-source-polyfill/-/event-source-polyfill-0.0.12.tgz#e539cd67fdef2760a16aa5262fa98134df52e3af"
   integrity sha1-5TnNZ/3vJ2ChaqUmL6mBNN9S468=
 
-event-stream@~3.3.0:
+event-stream@=3.3.4:
   version "3.3.4"
-  resolved "http://registry.npmjs.org/event-stream/-/event-stream-3.3.4.tgz#4ab4c9a0f5a54db9338b4c34d86bfce8f4b35571"
+  resolved "https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.4.tgz#4ab4c9a0f5a54db9338b4c34d86bfce8f4b35571"
   integrity sha1-SrTJoPWlTbkzi0w02Gv86PSzVXE=
   dependencies:
     duplexer "~0.1.1"
@@ -9487,10 +9487,10 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@^1.15.2:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.2.tgz#d31abe22afa4351efa14c7f8b94b58bb7452205e"
-  integrity sha512-YgPLFFA0CdKL4Eg2IHtUSjzj/BWgszDHiNQAe0VAIBse34148whfdzLagRL+QiKS+YfK5ftB6X4v/MBw8yCoug==
+prettier@^1.15.3:
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
+  integrity sha512-gAU9AGAPMaKb3NNSUUuhhFAS7SCO4ALTN4nRIn6PJ075Qd28Yn2Ig2ahEJWdJwJmlEBTUfC7mMUSFy8MwsOCfg==
 
 pretty-format@^23.5.0:
   version "23.5.0"
@@ -9613,12 +9613,12 @@ ps-node@^0.1.6:
   dependencies:
     table-parser "^0.1.3"
 
-ps-tree@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ps-tree/-/ps-tree-1.1.0.tgz#b421b24140d6203f1ed3c76996b4427b08e8c014"
-  integrity sha1-tCGyQUDWID8e08dplrRCewjowBQ=
+ps-tree@=1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/ps-tree/-/ps-tree-1.1.1.tgz#5f1ba35455b8c25eeb718d04c37de1555d96d3db"
+  integrity sha512-kef7fYYSKVqQffmzTMsVcUD1ObNJMp8sNSmHGlGKsZQyL/ht9MZKk86u0Rd1NhpTOAuhqwKCLLpktwkqz+MF8A==
   dependencies:
-    event-stream "~3.3.0"
+    event-stream "=3.3.4"
 
 pseudomap@^1.0.2:
   version "1.0.2"
@@ -9937,13 +9937,10 @@ react-event-listener@^0.6.2:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
-react-ga@^2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.3.tgz#0f447c73664c069a5fc341f6f431262e3d4c23c4"
-  integrity sha512-25wvPv1PVLDLhw1gEYP33h0V2sJHahKMfUCAxhq8JPYmNQwx1fcjJAkJk+WmSqGN93lHLhExDkxy3SQizQnx3A==
-  optionalDependencies:
-    prop-types "^15.6.0"
-    react "^15.6.2 || ^16.0"
+react-ga@^2.5.6:
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/react-ga/-/react-ga-2.5.6.tgz#5a2e2fa78ae298e5b0a4498210eeec631ef1b562"
+  integrity sha512-g04dz6zrbdHRxVaURPWT3RUbjLflh74sS6dCuhGeZupj7ii+UEt9lwTjALb2ST2w+7wAmzG1YqYlNX4yvRXe1g==
 
 react-google-maps@^9.4.5:
   version "9.4.5"
@@ -10056,10 +10053,10 @@ react-redux@^5.1.1:
     react-is "^16.6.0"
     react-lifecycles-compat "^3.0.0"
 
-react-styleguidist@^8.0.5:
-  version "8.0.5"
-  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-8.0.5.tgz#8327c4d63f22ed7ae947109e4b1974b488c7807c"
-  integrity sha512-bsvywkNv4Sgi4ZZFwW8uTN0r9KX+DndOGF5BHVvvIDBgVnv8CbaXTRSlh1QMd8P1fUoEd+0I4R3WEw31Kw4vuA==
+react-styleguidist@^8.0.6:
+  version "8.0.6"
+  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-8.0.6.tgz#367f3f9f05c7eac7ea18f17f55ff8f4252b77c45"
+  integrity sha512-hhbU0dP14boD7j09p9d1pjhB/KWptX8WmsYHFwEhuLVUj10Frkd8FeClS+4JmCiPWe6DoFKxK/iJSzel7pOWUw==
   dependencies:
     "@vxna/mini-html-webpack-template" "^0.1.7"
     acorn "^5.7.1"
@@ -10159,7 +10156,7 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-"react@^15.6.2 || ^16.0", react@^16.3.2:
+react@^16.3.2:
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.4.2.tgz#2cd90154e3a9d9dd8da2991149fdca3c260e129f"
   integrity sha512-dMv7YrbxO4y2aqnvA7f/ik9ibeLSHQJTI6TrYAenPSaQ6OXfb+Oti+oJiy8WBxgRzlKatYqtCjphTgDSCEiWFg==
@@ -11738,13 +11735,13 @@ test-exclude@^4.2.1:
     read-pkg-up "^3.0.0"
     require-main-filename "^1.0.1"
 
-testcafe-browser-provider-browserstack@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/testcafe-browser-provider-browserstack/-/testcafe-browser-provider-browserstack-1.5.0.tgz#773c570d7d49afcbcfaa0e74adf0d52716776e09"
-  integrity sha512-Q/d0yapgIVKq1jJVU7AboStCwjnz/J421xZLuyxrcaVGOh87PoG3R9jgrAFWec69LZfByNq0cUind3NRd8pgzg==
+testcafe-browser-provider-browserstack@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/testcafe-browser-provider-browserstack/-/testcafe-browser-provider-browserstack-1.5.1.tgz#ebcec3e98ac7e78d320339e728af2c46c7ec599b"
+  integrity sha512-iU2/N8HRHmovQTi0GMNhkgNXFA5trItM54I6mgqrOuPtXWa5G8pdtk/yr1t+kj4YW26sk8PuS1vOnqrL3521CA==
   dependencies:
     babel-runtime "^6.11.6"
-    browserstack-local "^1.3.0"
+    browserstack-local "^1.3.6"
     desired-capabilities "^0.1.0"
     jimp "^0.2.27"
     os-family "^1.0.0"
@@ -11816,10 +11813,10 @@ testcafe-legacy-api@3.1.8:
     pinkie "^2.0.1"
     strip-bom "^2.0.0"
 
-testcafe-react-selectors@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/testcafe-react-selectors/-/testcafe-react-selectors-3.0.0.tgz#9543c642d3fa5669d573ca0e7287cc650ffe804f"
-  integrity sha512-xIthZktkdDLva9+FRcn2wvlzrxKC1OQz8s2soSO/4Dbc2wjL1nQ0X00OuzPe37fHHmQIxFeoy8ii7rpiP/bmaw==
+testcafe-react-selectors@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/testcafe-react-selectors/-/testcafe-react-selectors-3.0.2.tgz#6f3e1295499af8eb84afa78759fb05c72bc46484"
+  integrity sha512-FbbFz+SFOkO9MKCGqb6cnFQo2X8pZ1qvzUVOaB90fXNYP2DAQGM+P9q6N1cZnBkarLlCbfZqgvNnJmWIGyyZUg==
 
 testcafe-reporter-json@^2.1.0:
   version "2.1.0"
@@ -12353,10 +12350,10 @@ unist-util-visit@^1.1.0, unist-util-visit@^1.4.0:
   dependencies:
     unist-util-visit-parents "^2.0.0"
 
-universal-cookie@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/universal-cookie/-/universal-cookie-3.0.4.tgz#22c1a0dca6bb9e72da20d9e331d9d8f93d95e9dc"
-  integrity sha512-3rhx6RAIuRmCWJttnbgzMrp2TbHhUmgQ2GrpY/US03Siv5T28iXr2qYw1m3YqmluBxEyrvZaloVemkLSId+Oyg==
+universal-cookie@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/universal-cookie/-/universal-cookie-3.0.7.tgz#722e8bc455bb33ed3c74988344fad9d9bb88278e"
+  integrity sha512-wfZRbaEzFTDbP64fzTfGDfokB3pWkDNjtsuRAZQWaiuj/Up+3/0AEvN4IhFHPK24iGNtGJ6PNIxv1GQzMSiyMw==
   dependencies:
     "@types/cookie" "^0.3.1"
     "@types/object-assign" "^4.0.30"
