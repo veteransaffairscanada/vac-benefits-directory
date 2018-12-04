@@ -84,20 +84,6 @@ describe("GuidedExperience", () => {
     expect(shallow_GuidedExperience().find(".thing").length).toEqual(1);
   });
 
-  it("has edit answer buttons with correct text", () => {
-    expect(document.getElementById("jumpButton1").textContent).toEqual(
-      "br_s1_en"
-    );
-  });
-
-  it("sets the correct section if the edit answer button is pressed", () => {
-    mounted_GuidedExperience()
-      .find("AnchorLink")
-      .first()
-      .simulate("click");
-    expect(props.setSection).toBeCalledWith("patronType");
-  });
-
   it("the Next button does not contain an href if nextSection != benefits-directory", () => {
     props.nextSection = "serviceType";
     expect(
@@ -119,7 +105,7 @@ describe("GuidedExperience", () => {
     );
   });
 
-  it("the Next buttons says 'Next' if the section is not needs", () => {
+  it("the Next buttons says 'Next'", () => {
     expect(
       mounted_GuidedExperience()
         .find("Button")
@@ -140,20 +126,6 @@ describe("GuidedExperience", () => {
   it("does not display helper text if it does not exist", () => {
     props.helperText = "";
     expect(mounted_GuidedExperience().find("Body").length).toEqual(0);
-  });
-
-  it("my selection text appears when there are breadcrumbs", () => {
-    expect(mounted_GuidedExperience().text()).toContain(
-      "B3.Filter by eligibility"
-    );
-  });
-
-  it("my selection text doesn't appear when there are no breadcrumbs", () => {
-    props.reduxState.patronType = "";
-    props.reduxState.serviceType = "";
-    expect(mounted_GuidedExperience().text()).not.toContain(
-      "B3.Filter by eligibility"
-    );
   });
 
   it("Intro text appears on step 1 of guided experience", () => {
