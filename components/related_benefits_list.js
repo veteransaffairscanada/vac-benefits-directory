@@ -135,23 +135,10 @@ export class RelatedBenefits extends Component {
     let otherBenefits = "";
     if (childBenefits.length > 0) {
       if (veteranBenefits.length > 0) {
-        if (childBenefits.length == 1) {
-          otherBenefits =
-            this.benefitTitle(benefit) +
-            " " +
-            t("benefits_b.eligible_for_single", {
-              x: this.benefitTitle(childBenefits[0])
-            }) +
-            ":";
-        } else {
-          otherBenefits =
-            this.benefitTitle(benefit) +
-            " " +
-            t("benefits_b.eligible_for_multi", {
-              x: childBenefits.length
-            }) +
-            ":";
-        }
+        let benefitName =
+          language === "en" ? benefit.vacNameEn : benefit.vacNameFr;
+        otherBenefits =
+          t("benefits_b.eligible_open_veteran", { x: benefitName }) + ":";
       }
       return (
         <div className={topBorder}>

@@ -114,7 +114,7 @@ export class BenefitCard extends Component {
                   id={"see-more-less" + benefit.id}
                   onClick={this.toggleExpanded}
                 >
-                  {this.state.expanded ? "See Less" : "See More"}
+                  {this.state.expanded ? t("B3.see_less") : t("B3.see_more")}
                 </HeaderButton>
               </Grid>
               {this.props.showFavourite ? (
