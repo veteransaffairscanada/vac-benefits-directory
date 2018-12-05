@@ -92,6 +92,10 @@ describe("Favourites", () => {
     expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
 
+  it("renders BreadCrumbs", async () => {
+    expect(mountedFavourites().find("BreadCrumbs").length).toEqual(1);
+  });
+
   it("has a working filterBenefits function", async () => {
     const favouritesInstance = shallowFavourites().instance();
     expect(
@@ -106,18 +110,5 @@ describe("Favourites", () => {
         "benefit_3"
       ]).length
     ).toEqual(2);
-  });
-
-  it("contains the share button", () => {
-    expect(mountedFavourites().find("#shareButton").length).toEqual(1);
-  });
-
-  it("clicking share button changes showModal state to true", () => {
-    let mounted = mountedFavourites();
-    mounted
-      .find("#shareButton")
-      .first()
-      .simulate("click");
-    expect(mounted.state().showModal).toEqual(true);
   });
 });

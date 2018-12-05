@@ -41,13 +41,17 @@ export class BreadCrumbs extends Component {
       <div className={greyBanner}>
         <Container>
           <div className={breadCrumbStyle}>
-            <HeaderLink href={"/"} className={urlStyle}>
+            <HeaderLink id="homeButton" href={"/"} className={urlStyle}>
               <HomeIcon className={iconStyle} /> {this.props.t("titles.home")}
             </HeaderLink>
             {breadcrumbs.map((breadcrumb, i) => (
               <span key={"breadcrumb" + i}>
                 <span className={separator}> / </span>
-                <HeaderLink href={breadcrumb.url} className={urlStyle}>
+                <HeaderLink
+                  id={"breadcrumb" + i}
+                  href={breadcrumb.url}
+                  className={urlStyle}
+                >
                   {breadcrumb.name}
                 </HeaderLink>
               </span>
