@@ -75,7 +75,7 @@ export class BB extends Component {
           <BreadCrumbs
             t={t}
             breadcrumbs={[]}
-            pageTitle={t("titles.all_benefits")}
+            pageTitle={t("ge.Find benefits and services")}
           />
           <Container>
             <Grid container spacing={24}>
