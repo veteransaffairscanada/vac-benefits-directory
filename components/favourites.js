@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ShareModal from "./share_modal";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
@@ -7,12 +6,10 @@ import { connect } from "react-redux";
 import { getPrintUrl } from "../selectors/urls";
 import Bookmark from "./icons/BookmarkBorder";
 import Print from "./icons/Print";
-import ShareIcon from "./icons/share_icon";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "./container";
 import Header from "./typography/header";
-import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
 import AnchorLink from "./typography/anchor_link";
 import Body from "./typography/body";
@@ -36,9 +33,6 @@ const contactUsTitle = css`
 const right = css`
   text-align: right;
 `;
-const menuChildRight = css`
-  margin-left: 2em;
-`;
 const emptyList = css`
   margin-top: 20px;
   text-align: center;
@@ -53,9 +47,6 @@ const noBottomMargin = css`
 `;
 const outerDiv = css`
   padding-bottom: 16px !important;
-`;
-const topPadding = css`
-  padding-top: 30px;
 `;
 const whiteBanner = css`
   background-color: #fff;
@@ -104,18 +95,9 @@ export class Favourites extends Component {
           pageTitle={t("index.your_saved_benefits")}
         />
         <div className={whiteBanner}>
-          <Container className={topPadding}>
+          <Container>
             <Grid container spacing={24}>
-              <Grid item xs={4}>
-                <HeaderLink
-                  id="backButton"
-                  href={getLink(this.props.url, "/benefits-directory")}
-                  arrow="back"
-                >
-                  {t("favourites.back_link")}
-                </HeaderLink>
-              </Grid>
-              <Grid item xs={8} className={right}>
+              <Grid item xs={12} className={right}>
                 <HeaderLink
                   href={this.props.printUrl}
                   target="print_page"
@@ -123,20 +105,6 @@ export class Favourites extends Component {
                 >
                   <Print /> {t("Print")}
                 </HeaderLink>
-                <HeaderButton
-                  onClick={() => this.setState({ showModal: true })}
-                  id="shareButton"
-                >
-                  <ShareIcon className={menuChildRight} />
-                  {t("titles.share")}
-                </HeaderButton>
-                <ShareModal
-                  isOpen={this.state.showModal}
-                  onRequestClose={() => this.setState({ showModal: false })}
-                  closeModal={() => this.setState({ showModal: false })}
-                  t={t}
-                  url={url}
-                />
               </Grid>
             </Grid>
           </Container>
