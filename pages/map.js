@@ -52,6 +52,9 @@ export class Map extends Component {
 
   render() {
     const { i18n, t } = this.props;
+    const breadcrumbs = [
+      { url: "/favourites", name: t("index.your_saved_benefits") }
+    ];
 
     return (
       <Layout
@@ -62,7 +65,11 @@ export class Map extends Component {
         title={t("titles.map")}
         backgroundColor={globalTheme.colour.white}
       >
-        <BreadCrumbs t={t} url={"/"} pageTitle={t("map.vacOffices")} />
+        <BreadCrumbs
+          t={t}
+          breadcrumbs={breadcrumbs}
+          pageTitle={t("map.vacOffices")}
+        />
         <Container>
           <Grid container spacing={24}>
             <Grid item xs={12} md={12} className={topMatter}>

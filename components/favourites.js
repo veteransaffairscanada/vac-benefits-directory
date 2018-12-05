@@ -20,6 +20,7 @@ import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled, getLink } from "../utils/common";
 import { globalTheme } from "../theme";
+import BreadCrumbs from "./breadcrumbs";
 
 const contactUs = css`
   @media only screen and (min-width: ${globalTheme.min.sm}) {
@@ -90,8 +91,18 @@ export class Favourites extends Component {
       this.props.favouriteBenefits
     );
 
+    const breadcrumbs = [
+      { url: "/benefits-directory", name: t("titles.all_benefits") }
+    ];
+
     return (
       <div className={outerDiv}>
+        <BreadCrumbs
+          t={t}
+          url={"/"}
+          breadcrumbs={breadcrumbs}
+          pageTitle={t("index.your_saved_benefits")}
+        />
         <div className={whiteBanner}>
           <Container className={topPadding}>
             <Grid container spacing={24}>

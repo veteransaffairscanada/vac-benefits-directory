@@ -4,9 +4,10 @@ import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import Container from "./container";
 import HomeIcon from "./icons/Home";
+import HeaderLink from "./header_link";
 
-const whiteBanner = css`
-  background-color: #fff;
+const greyBanner = css`
+  background-color: ${globalTheme.colour.paleGreyishBrown};
   width: 100%;
   padding-bottom: 20px;
   margin-bottom: 30px;
@@ -25,21 +26,32 @@ const separator = css`
 
 const urlStyle = css`
   color: #6d6363;
+  text-decoration: underline;
+  font-size: 16px;
 `;
 
 const iconStyle = css`
   vertical-align: bottom;
 `;
 
-export class Breadcrumbs extends Component {
+export class BreadCrumbs extends Component {
   render() {
+    const { breadcrumbs } = this.props;
     return (
-      <div className={whiteBanner}>
+      <div className={greyBanner}>
         <Container>
           <div className={breadCrumbStyle}>
-            <a href={this.props.url} className={urlStyle}>
-              <HomeIcon className={iconStyle} /> Home
-            </a>
+            <HeaderLink href={"/"} className={urlStyle}>
+              <HomeIcon className={iconStyle} /> {this.props.t("titles.home")}
+            </HeaderLink>
+            {breadcrumbs.map((breadcrumb, i) => (
+              <span key={"breadcrumb" + i}>
+                <span className={separator}> / </span>
+                <HeaderLink href={breadcrumb.url} className={urlStyle}>
+                  {breadcrumb.name}
+                </HeaderLink>
+              </span>
+            ))}
             <span className={separator}> / </span>
             <span>{this.props.pageTitle}</span>
           </div>
@@ -49,10 +61,10 @@ export class Breadcrumbs extends Component {
   }
 }
 
-Breadcrumbs.propTypes = {
+BreadCrumbs.propTypes = {
   t: PropTypes.func.isRequired,
-  url: PropTypes.string.isRequired,
+  breadcrumbs: PropTypes.array.isRequired,
   pageTitle: PropTypes.string.isRequired
 };
 
-export default Breadcrumbs;
+export default BreadCrumbs;
