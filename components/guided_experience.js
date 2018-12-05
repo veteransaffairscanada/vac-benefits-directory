@@ -38,7 +38,6 @@ export class GuidedExperience extends Component {
   returnGoToNextSection = clearCurrentQuestion => {
     let goToNextSection = () => {
       const { id, reduxState, url, saveQuestionResponse } = this.props;
-      // console.log(id);
       // modifiedReduxState exists so we are sure the redux state updates before we do Router push
       let modifiedReduxState = JSON.parse(JSON.stringify(reduxState));
       if (clearCurrentQuestion) {
