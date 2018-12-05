@@ -137,11 +137,6 @@ export class GuidedExperience extends Component {
                 id="nextButton"
                 arrow={true}
                 onClick={this.returnGoToNextSection(false)}
-                //   this.getNextSection() === "summary"
-                //     ? () =>
-                //         Router.push(mutateUrl(url, "/summary", { section: "" }))
-                //     : () => setSection(this.getNextSection())
-                // }
               >
                 {t("next")}{" "}
               </Button>
@@ -149,18 +144,6 @@ export class GuidedExperience extends Component {
                 id="skipButton"
                 altStyle="grey"
                 onClick={this.returnGoToNextSection(true)}
-                // this.getNextSection() === "summary"
-                //   ? () => {
-                //       Router.push(
-                //         mutateUrl(url, "/summary", { section: "" })
-                //       );
-                //     }
-                //   : this.getNextSection
-                // () => {
-                //     // this.props.saveQuestionResponse(id, "");
-                //     setSection(this.getNextSection());
-                //   }
-                // }
               >
                 {t("ge.skip")}
               </HeaderButton>
@@ -193,7 +176,9 @@ const mapDispatchToProps = dispatch => {
 GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
+  reduxState: PropTypes.object.isRequired,
   // nextSection: PropTypes.string.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
   setSection: PropTypes.func.isRequired,
