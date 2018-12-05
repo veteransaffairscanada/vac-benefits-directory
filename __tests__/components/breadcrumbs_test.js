@@ -11,6 +11,7 @@ describe("Breadcrumbs", () => {
     props = {
       pageTitle: "test",
       t: () => "test",
+      url: { query: {} },
       breadcrumbs: [{ url: "/", name: "test" }]
     };
   });
