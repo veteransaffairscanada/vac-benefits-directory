@@ -37,16 +37,16 @@ const body = css`
 export class GuidedExperience extends Component {
   returnGoToNextSection = clearCurrentQuestion => {
     let goToNextSection = () => {
-      const { id, reduxState, url } = this.props;
-      console.log(id);
+      const { id, reduxState, url, saveQuestionResponse } = this.props;
+      // console.log(id);
       // modifiedReduxState exists so we are sure the redux state updates before we do Router push
       let modifiedReduxState = JSON.parse(JSON.stringify(reduxState));
       if (clearCurrentQuestion) {
         if (id === "needs") {
-          this.props.saveQuestionResponse("selectedNeeds", {});
-          modifiedReduxState.selectedNeeds = {};
+          saveQuestionResponse("selectedNeeds", "");
+          modifiedReduxState.selectedNeeds = "";
         } else {
-          this.props.saveQuestionResponse(id, "");
+          saveQuestionResponse(id, "");
           modifiedReduxState[id] = "";
         }
       }
@@ -55,15 +55,20 @@ export class GuidedExperience extends Component {
         modifiedReduxState
       );
       const dynamicStepNumber = displayable_sections.indexOf(id);
-
+      console.log("displayable_sections", displayable_sections);
+      console.log("dynamicStepNumber", dynamicStepNumber);
       let nextSection;
       if (dynamicStepNumber + 1 >= displayable_sections.length) {
         nextSection = "summary";
         if (clearCurrentQuestion && id === "needs") {
+          console.log("hi clear needs");
+          // console.log(mutateUrl(url, "/summary", { section: "", selectedNeeds: "" }))
           Router.push(
-            mutateUrl(url, "/summary", { section: "", selectedNeeds: {} })
+            mutateUrl(url, "/summary", { section: "", selectedNeeds: "" })
           );
         } else {
+          console.log("hi");
+
           Router.push(mutateUrl(url, "/summary", { section: "" }));
         }
       } else {
@@ -177,7 +182,6 @@ GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
-  // nextSection: PropTypes.string.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,

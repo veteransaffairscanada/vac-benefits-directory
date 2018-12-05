@@ -12,7 +12,7 @@ const initialState = {
   favouriteBenefits: [],
   frIdx: {},
   searchString: "",
-  selectedNeeds: {},
+  selectedNeeds: "",
   closestAreaOffice: {},
   selectedAreaOffice: {},
   userLocation: { lat: 49, lng: -104 },
