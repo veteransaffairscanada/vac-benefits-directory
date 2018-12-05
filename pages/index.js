@@ -136,10 +136,6 @@ export class Guided extends Component {
         <GuidedExperience
           id={section}
           stepNumber={sectionOrder.indexOf(section)}
-          // nextSection={this.getNextSection(
-          //   displayable_sections,
-          //   dynamicStepNumber
-          // )}
           prevSection={this.getPrevSection(
             displayable_sections,
             dynamicStepNumber
