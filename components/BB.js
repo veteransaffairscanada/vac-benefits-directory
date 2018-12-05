@@ -5,7 +5,6 @@ import { Grid } from "@material-ui/core";
 import Print from "./icons/Print";
 import ShareIcon from "./icons/share_icon";
 import Bookmark from "./icons/Bookmark";
-import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
@@ -118,7 +117,6 @@ export class BB extends Component {
           <Grid container spacing={32}>
             <Grid item lg={4} md={4} sm={5} xs={12}>
               <ProfileNeedsSelectorMobile t={t} store={store} />
-              <ProfileNeedsSelector t={t} store={store} />
             </Grid>
             <Grid item lg={8} md={8} sm={7} xs={12}>
               <Grid container spacing={16}>
