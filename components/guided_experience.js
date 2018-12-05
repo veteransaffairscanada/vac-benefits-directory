@@ -43,8 +43,8 @@ export class GuidedExperience extends Component {
       let modifiedReduxState = JSON.parse(JSON.stringify(reduxState));
       if (clearCurrentQuestion) {
         if (id === "needs") {
-          saveQuestionResponse("selectedNeeds", "");
-          modifiedReduxState.selectedNeeds = "";
+          saveQuestionResponse("selectedNeeds", {});
+          modifiedReduxState.selectedNeeds = {};
         } else {
           saveQuestionResponse(id, "");
           modifiedReduxState[id] = "";
@@ -55,20 +55,16 @@ export class GuidedExperience extends Component {
         modifiedReduxState
       );
       const dynamicStepNumber = displayable_sections.indexOf(id);
-      console.log("displayable_sections", displayable_sections);
-      console.log("dynamicStepNumber", dynamicStepNumber);
       let nextSection;
       if (dynamicStepNumber + 1 >= displayable_sections.length) {
         nextSection = "summary";
         if (clearCurrentQuestion && id === "needs") {
-          console.log("hi clear needs");
-          // console.log(mutateUrl(url, "/summary", { section: "", selectedNeeds: "" }))
-          Router.push(
-            mutateUrl(url, "/summary", { section: "", selectedNeeds: "" })
-          );
+          const newUrl = mutateUrl(url, "/summary", {
+            section: "",
+            selectedNeeds: {}
+          });
+          window.location.href = newUrl;
         } else {
-          console.log("hi");
-
           Router.push(mutateUrl(url, "/summary", { section: "" }));
         }
       } else {
