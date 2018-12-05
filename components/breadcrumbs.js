@@ -5,6 +5,7 @@ import { css } from "react-emotion";
 import Container from "./container";
 import HomeIcon from "./icons/Home";
 import HeaderLink from "./header_link";
+import { mutateUrl } from "../utils/common";
 
 const greyBanner = css`
   background-color: ${globalTheme.colour.paleGreyishBrown};
@@ -36,12 +37,16 @@ const iconStyle = css`
 
 export class BreadCrumbs extends Component {
   render() {
-    const { breadcrumbs } = this.props;
+    const { breadcrumbs, url } = this.props;
     return (
       <div className={greyBanner}>
         <Container>
           <div className={breadCrumbStyle}>
-            <HeaderLink id="homeButton" href={"/"} className={urlStyle}>
+            <HeaderLink
+              id="homeButton"
+              href={mutateUrl(url, "/")}
+              className={urlStyle}
+            >
               <HomeIcon className={iconStyle} /> {this.props.t("titles.home")}
             </HeaderLink>
             {breadcrumbs.map((breadcrumb, i) => (
@@ -68,7 +73,8 @@ export class BreadCrumbs extends Component {
 BreadCrumbs.propTypes = {
   t: PropTypes.func.isRequired,
   breadcrumbs: PropTypes.array.isRequired,
-  pageTitle: PropTypes.string.isRequired
+  pageTitle: PropTypes.string.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default BreadCrumbs;

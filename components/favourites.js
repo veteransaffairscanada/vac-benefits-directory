@@ -93,7 +93,7 @@ export class Favourites extends Component {
       <div className={outerDiv}>
         <BreadCrumbs
           t={t}
-          url={"/"}
+          url={url}
           breadcrumbs={breadcrumbs}
           pageTitle={t("index.your_saved_benefits")}
         />

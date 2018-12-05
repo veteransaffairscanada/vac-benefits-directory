@@ -71,6 +71,7 @@ export class Map extends Component {
       >
         <BreadCrumbs
           t={t}
+          url={url}
           breadcrumbs={breadcrumbs}
           pageTitle={t("map.vacOffices")}
         />
