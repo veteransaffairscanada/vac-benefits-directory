@@ -118,7 +118,7 @@ export const mutateUrl = (url, route = "", query = {}) => {
   newUrl +=
     "?" +
     Object.keys(newQuery)
-      .filter(x => newQuery[x] !== "")
+      .filter(x => newQuery[x] !== "" && JSON.stringify(newQuery[x]) !== "{}")
       .map(x => `${x}=${newQuery[x]}`)
       .join("&");
   return newUrl;

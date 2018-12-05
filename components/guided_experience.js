@@ -12,6 +12,8 @@ import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
 import Paper from "./paper";
 import { mutateUrl } from "../utils/common";
+import { connect } from "react-redux";
+import { showQuestion } from "../utils/common";
 
 const box = css`
   padding: 63px 63px 63px 63px;
@@ -33,16 +35,56 @@ const body = css`
   margin-bottom: 0px;
 `;
 export class GuidedExperience extends Component {
+  returnGoToNextSection = clearCurrentQuestion => {
+    let goToNextSection = () => {
+      const { id, reduxState, url, saveQuestionResponse } = this.props;
+      // modifiedReduxState exists so we are sure the redux state updates before we do Router push
+      let modifiedReduxState = JSON.parse(JSON.stringify(reduxState));
+      if (clearCurrentQuestion) {
+        if (id === "needs") {
+          saveQuestionResponse("selectedNeeds", {});
+          modifiedReduxState.selectedNeeds = {};
+        } else {
+          saveQuestionResponse(id, "");
+          modifiedReduxState[id] = "";
+        }
+      }
+
+      const displayable_sections = this.getDisplayableSections(
+        modifiedReduxState
+      );
+      const dynamicStepNumber = displayable_sections.indexOf(id);
+      let nextSection;
+      if (dynamicStepNumber + 1 >= displayable_sections.length) {
+        nextSection = "summary";
+        if (clearCurrentQuestion && id === "needs") {
+          const newUrl = mutateUrl(url, "/summary", {
+            section: "",
+            selectedNeeds: {}
+          });
+          window.location.href = newUrl;
+        } else {
+          Router.push(mutateUrl(url, "/summary", { section: "" }));
+        }
+      } else {
+        nextSection = displayable_sections[dynamicStepNumber + 1];
+        const queryParams = clearCurrentQuestion
+          ? { section: nextSection, [id]: "" }
+          : { section: nextSection };
+        Router.push(mutateUrl(url, "/index", queryParams));
+      }
+    };
+    return goToNextSection;
+  };
+
+  getDisplayableSections = reduxState => {
+    return this.props.reduxState.questions
+      .map(x => x.variable_name)
+      .filter((x, i) => showQuestion(x, i, reduxState));
+  };
+
   render() {
-    const {
-      t,
-      prevSection,
-      nextSection,
-      subtitle,
-      setSection,
-      helperText,
-      url
-    } = this.props;
+    const { t, prevSection, subtitle, setSection, helperText } = this.props;
 
     return (
       <Container id="guidedExperience">
@@ -94,24 +136,14 @@ export class GuidedExperience extends Component {
               <Button
                 id="nextButton"
                 arrow={true}
-                onClick={
-                  nextSection === "summary"
-                    ? () =>
-                        Router.push(mutateUrl(url, "/summary", { section: "" }))
-                    : () => setSection(nextSection)
-                }
+                onClick={this.returnGoToNextSection(false)}
               >
                 {t("next")}{" "}
               </Button>
               <HeaderButton
                 id="skipButton"
                 altStyle="grey"
-                onClick={
-                  nextSection === "summary"
-                    ? () =>
-                        Router.push(mutateUrl(url, "/summary", { section: "" }))
-                    : () => setSection(nextSection)
-                }
+                onClick={this.returnGoToNextSection(true)}
               >
                 {t("ge.skip")}
               </HeaderButton>
@@ -123,10 +155,29 @@ export class GuidedExperience extends Component {
   }
 }
 
+const mapStateToProps = reduxState => {
+  return {
+    reduxState: reduxState,
+    sectionOrder: reduxState.questions.map(x => x.variable_name)
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
+    }
+  };
+};
+
 GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
-  nextSection: PropTypes.string.isRequired,
+  reduxState: PropTypes.object.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
   prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
   setSection: PropTypes.func.isRequired,
@@ -137,4 +188,7 @@ GuidedExperience.propTypes = {
   store: PropTypes.object
 };
 
-export default GuidedExperience;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GuidedExperience);
