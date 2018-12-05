@@ -17,6 +17,7 @@ import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 import BenefitsPane from "./benefits_pane";
+import BreadCrumbs from "../components/breadcrumbs";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -71,7 +72,12 @@ export class BB extends Component {
         ref={el => (this.componentRef = el)}
       >
         <div className={topMatter}>
-          <Container className={topPadding}>
+          <BreadCrumbs
+            t={t}
+            breadcrumbs={[]}
+            pageTitle={t("titles.all_benefits")}
+          />
+          <Container>
             <Grid container spacing={24}>
               <Grid item xs={4}>
                 <HeaderLink

@@ -53,7 +53,7 @@ export class Map extends Component {
   render() {
     const { i18n, t } = this.props;
     const breadcrumbs = [
-      { url: "/favourites", name: t("index.your_saved_benefits") }
+      { url: "/benefits-directory", name: t("titles.all_benefits") }
     ];
 
     return (
