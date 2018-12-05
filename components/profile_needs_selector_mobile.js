@@ -12,24 +12,33 @@ import { globalTheme } from "../theme";
 import { css } from "react-emotion";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
+import CloseIcon from "./icons/Close";
+import EditIcon from "./icons/Edit";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
-  @media only screen and (min-width: ${globalTheme.max.xs}) {
-    display: none;
-  }
 `;
 const summary = css`
   opacity: 1 !important;
   user-select: inherit;
+  color: ${globalTheme.colour.cerulean} !important;
 `;
 const clearButton = css`
   font-size: 16px !important;
 `;
 const filterTitle = css`
   padding-right: 0px;
+  padding-left: 10px;
+  color: ${globalTheme.colour.cerulean};
 `;
-
+const closeIcon = css`
+  font-size: 100% !important;
+  margin-left ${globalTheme.unit};
+  font-weight: bold;
+`;
+const cerulean = css`
+  color: ${globalTheme.colour.cerulean};
+`;
 export class ProfileNeedsSelectorMobile extends Component {
   state = {
     open: false
@@ -69,11 +78,12 @@ export class ProfileNeedsSelectorMobile extends Component {
       >
         <ExpansionPanelSummary
           className={summary}
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon className={cerulean} />}
           onClick={() => this.toggleOpenState()}
         >
-          <Header headingLevel="h2" size="md" className={filterTitle}>
-            {t("filters")}
+          <EditIcon t={t} />
+          <Header headingLevel="h2" size="sm_md" className={filterTitle}>
+            {t("directory.edit_selections")}
           </Header>{" "}
         </ExpansionPanelSummary>
 
@@ -95,6 +105,7 @@ export class ProfileNeedsSelectorMobile extends Component {
                     }}
                   >
                     {t("reset filters")} {"(" + this.countSelected() + ")"}
+                    <CloseIcon className={closeIcon} />
                   </HeaderButton>
                 </h3>
               ) : (

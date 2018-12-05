@@ -8,6 +8,7 @@ const sizeDict = {
   lg: { fontSize: 36, fontWeight: 900 },
   md_lg: { fontSize: 32, fontWeight: 900 },
   md: { fontSize: 24, fontWeight: "bold" },
+  sm_md: { fontSize: 20, fontWeight: "bold" },
   sm: { fontSize: 18, fontWeight: "bold" }
 };
 
