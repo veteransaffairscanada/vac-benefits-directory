@@ -15,6 +15,7 @@ import Header from "../components/typography/header";
 import Body from "../components/typography/body";
 import AnchorLink from "../components/typography/anchor_link";
 import BreadCrumbs from "../components/breadcrumbs";
+import { mutateUrl } from "../utils/common";
 
 const mapPaper = css`
   margin-top: ${globalTheme.marginTop};
@@ -51,9 +52,12 @@ export class Map extends Component {
   }
 
   render() {
-    const { i18n, t } = this.props;
+    const { i18n, t, url } = this.props;
     const breadcrumbs = [
-      { url: "/benefits-directory", name: t("titles.all_benefits") }
+      {
+        url: mutateUrl(url, "/benefits-directory"),
+        name: t("ge.Find benefits and services")
+      }
     ];
 
     return (

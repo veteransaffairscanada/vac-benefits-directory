@@ -15,7 +15,7 @@ import AnchorLink from "./typography/anchor_link";
 import Body from "./typography/body";
 import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
-import { areCookiesDisabled, getLink } from "../utils/common";
+import { areCookiesDisabled, getLink, mutateUrl } from "../utils/common";
 import { globalTheme } from "../theme";
 import BreadCrumbs from "./breadcrumbs";
 
@@ -83,7 +83,10 @@ export class Favourites extends Component {
     );
 
     const breadcrumbs = [
-      { url: "/benefits-directory", name: t("titles.all_benefits") }
+      {
+        url: mutateUrl(url, "/benefits-directory"),
+        name: t("ge.Find benefits and services")
+      }
     ];
 
     return (
