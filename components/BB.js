@@ -21,27 +21,33 @@ import BreadCrumbs from "../components/breadcrumbs";
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
-const topPadding = css`
-  padding-top: 30px;
-`;
 const topMatter = css`
   background-color: ${globalTheme.colour.white};
   width: 100%;
-  padding-bottom: 20px;
-`;
-const anchors = css`
-  margin-right: 20px;
 `;
 const nonMobileStyle = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none;
+    text-align: right;
   }
 `;
-const right = css`
-  text-align: right;
+const favouritesLink = css`
+  padding: 1em 24px !important;
+  border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
+  border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
+  margin-bottom: 24px;
 `;
-const menuChildRight = css`
-  margin-left: 2em;
+const shareBox = css`
+  background-color: ${globalTheme.colour.paleGreyishBrown};
+  padding: 24px;
+  margin-top: 2em;
+  button {
+    margin-bottom: 1em;
+  }
+`;
+
+const shareBoxItem = css`
+  text-decoration: underline !important;
+  color: ${globalTheme.colour.darkGreyBlue};
 `;
 
 export class BB extends Component {
@@ -77,53 +83,54 @@ export class BB extends Component {
             homeUrl={homeUrl}
             pageTitle={t("ge.Find benefits and services")}
           />
-          <Container>
-            <Grid container spacing={24}>
-              <Grid item xs={4}>
-                <HeaderLink
-                  className={anchors}
-                  id="savedBenefits"
-                  href={this.props.favouritesUrl}
-                >
+        </div>
+        <Container>
+          <Grid container spacing={32}>
+            <Grid item lg={4} md={4} sm={5} xs={12}>
+              <div className={favouritesLink}>
+                <HeaderLink id="savedBenefits" href={this.props.favouritesUrl}>
                   <Bookmark />
                   {t("B3.favouritesButtonText") +
                     " (" +
                     this.props.favouriteBenefits.length +
                     ")"}
                 </HeaderLink>
-              </Grid>
-              <Grid item xs={8} className={right}>
-                <HeaderLink
-                  href={this.props.printUrl}
-                  target="print_page"
-                  id="printButton"
-                >
-                  <Print />{" "}
-                  <span className={nonMobileStyle}> {t("Print")} </span>
-                </HeaderLink>
-                <HeaderButton
-                  className={menuChildRight}
-                  onClick={() => this.setState({ showModal: true })}
-                  id="shareButton"
-                >
-                  <ShareIcon />
-                  <span className={nonMobileStyle}>{t("titles.share")}</span>
-                </HeaderButton>
-                <ShareModal
-                  isOpen={this.state.showModal}
-                  onRequestClose={() => this.setState({ showModal: false })}
-                  closeModal={() => this.setState({ showModal: false })}
-                  url={url}
-                  t={t}
-                />
-              </Grid>
-            </Grid>
-          </Container>
-        </div>
-        <Container className={topPadding}>
-          <Grid container spacing={32}>
-            <Grid item lg={4} md={4} sm={5} xs={12}>
+              </div>
               <ProfileNeedsSelectorMobile t={t} store={store} />
+              <Container className={shareBox}>
+                <Grid container spacing={8}>
+                  <Grid item lg={12} md={12} sm={12} xs={6}>
+                    <HeaderButton
+                      className={shareBoxItem}
+                      size="small"
+                      onClick={() => this.setState({ showModal: true })}
+                      id="shareButton"
+                    >
+                      <ShareIcon />
+                      <span>{t("titles.share")}</span>
+                    </HeaderButton>
+                    <ShareModal
+                      isOpen={this.state.showModal}
+                      onRequestClose={() => this.setState({ showModal: false })}
+                      closeModal={() => this.setState({ showModal: false })}
+                      url={url}
+                      t={t}
+                    />
+                  </Grid>
+                  <Grid item lg={12} md={12} sm={12} xs={6}>
+                    <HeaderLink
+                      className={shareBoxItem}
+                      size="small"
+                      href={this.props.printUrl}
+                      target="print_page"
+                      id="printButton"
+                    >
+                      <Print />
+                      <span className={nonMobileStyle}>{t("Print")}</span>
+                    </HeaderLink>
+                  </Grid>
+                </Grid>
+              </Container>
             </Grid>
             <Grid item lg={8} md={8} sm={7} xs={12}>
               <Grid container spacing={16}>
