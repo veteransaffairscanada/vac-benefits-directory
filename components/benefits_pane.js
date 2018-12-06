@@ -15,6 +15,7 @@ import SearchBox from "./search_box";
 import Button from "./button";
 import { getLink } from "../utils/common";
 import { globalTheme } from "../theme";
+import NextSteps from "./next_steps";
 
 const noBenefitsPane = css`
   text-align: center;
@@ -127,7 +128,7 @@ export class BenefitsPane extends Component {
             )}
           </Grid>
 
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <SearchBox
               inputId="bbSearchField"
               buttonId="searchButtonLink"
@@ -148,6 +149,12 @@ export class BenefitsPane extends Component {
                 showFavourites={true}
                 store={this.props.store}
               />
+            </Grid>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Grid container spacing={24}>
+              <NextSteps t={t} store={this.props.store} />
             </Grid>
           </Grid>
         </Grid>
