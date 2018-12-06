@@ -1,10 +1,11 @@
 import { mount, shallow } from "enzyme";
 import React from "react";
 import Router from "next/router";
-import questionsFixture from "../fixtures/questions";
+import questionsFixture from "../fixtures/questions_complex";
+import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex";
 import { GuidedExperience } from "../../components/guided_experience";
 const { axe, toHaveNoViolations } = require("jest-axe");
-import multipleChoiceOptions from "../fixtures/multiple_choice_options";
+import multipleChoiceOptions from "../fixtures/multiple_choice_options_complex";
 import translate from "../fixtures/translate";
 
 expect.extend(toHaveNoViolations);
@@ -12,7 +13,6 @@ expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
 describe("GuidedExperience", () => {
-  Router.push = jest.fn();
   let props;
   let _mountedGuidedExperience;
   let _shallowGuidedExperience;
@@ -30,29 +30,30 @@ describe("GuidedExperience", () => {
     }
     return _shallowGuidedExperience;
   };
-
+  Router.push = jest.fn();
   beforeEach(() => {
     props = {
       t: translate,
       setSection: jest.fn(),
-      id: "YY",
-      nextSection: "ZZ",
-      prevSection: "XX",
+      id: "serviceType",
+      prevSection: "patronType",
       stepNumber: 1,
       children: <div className="thing" />,
       subtitle: "subtitle",
       url: {
-        query: { lng: "en", patronType: "veteran", serviceType: "s1" },
+        query: { lng: "en", patronType: "veteran", serviceType: "RCMP" },
         route: "/summary"
       },
+      saveQuestionResponse: jest.fn(),
       reduxState: {
         patronType: "veteran",
-        serviceType: "s1",
+        serviceType: "RCMP",
         statusAndVitals: "",
         serviceHealthIssue: "",
         selectedNeeds: {},
         questions: questionsFixture,
-        multipleChoiceOptions: multipleChoiceOptions
+        multipleChoiceOptions: multipleChoiceOptions,
+        eligibilityPaths: eligibilityPathsFixture
       }
     };
     _shallowGuidedExperience = undefined;
@@ -69,7 +70,7 @@ describe("GuidedExperience", () => {
       .find("Button")
       .last()
       .simulate("click");
-    expect(props.setSection).toBeCalledWith("ZZ");
+    expect(Router.push).toBeCalled();
   });
 
   it("calls setSection if the Back button is pressed", () => {
@@ -77,29 +78,14 @@ describe("GuidedExperience", () => {
       .find("#prevButton")
       .first()
       .simulate("click");
-    expect(props.setSection).toBeCalledWith("XX");
+    expect(props.setSection).toBeCalledWith("patronType");
   });
 
   it("renders children", () => {
     expect(shallow_GuidedExperience().find(".thing").length).toEqual(1);
   });
 
-  it("has edit answer buttons with correct text", () => {
-    expect(document.getElementById("jumpButton1").textContent).toEqual(
-      "br_s1_en"
-    );
-  });
-
-  it("sets the correct section if the edit answer button is pressed", () => {
-    mounted_GuidedExperience()
-      .find("AnchorLink")
-      .first()
-      .simulate("click");
-    expect(props.setSection).toBeCalledWith("patronType");
-  });
-
   it("the Next button does not contain an href if nextSection != benefits-directory", () => {
-    props.nextSection = "serviceType";
     expect(
       mounted_GuidedExperience()
         .find("Button")
@@ -108,18 +94,7 @@ describe("GuidedExperience", () => {
     ).toEqual(undefined);
   });
 
-  it("the Next button contains an appropriate href if nextSection == summary", () => {
-    props.nextSection = "summary";
-    mounted_GuidedExperience()
-      .find("Button")
-      .last()
-      .simulate("click");
-    expect(Router.push).toBeCalledWith(
-      "/summary?lng=en&patronType=veteran&serviceType=s1"
-    );
-  });
-
-  it("the Next buttons says 'Next' if the section is not needs", () => {
+  it("the Next buttons says 'Next'", () => {
     expect(
       mounted_GuidedExperience()
         .find("Button")
@@ -142,20 +117,6 @@ describe("GuidedExperience", () => {
     expect(mounted_GuidedExperience().find("Body").length).toEqual(0);
   });
 
-  it("my selection text appears when there are breadcrumbs", () => {
-    expect(mounted_GuidedExperience().text()).toContain(
-      "B3.Filter by eligibility"
-    );
-  });
-
-  it("my selection text doesn't appear when there are no breadcrumbs", () => {
-    props.reduxState.patronType = "";
-    props.reduxState.serviceType = "";
-    expect(mounted_GuidedExperience().text()).not.toContain(
-      "B3.Filter by eligibility"
-    );
-  });
-
   it("Intro text appears on step 1 of guided experience", () => {
     props.stepNumber = 0;
     expect(mounted_GuidedExperience().text()).toContain("ge.intro_text_p1");
@@ -166,5 +127,15 @@ describe("GuidedExperience", () => {
     props.stepNumber = 1;
     expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p1");
     expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p2");
+  });
+
+  it("clears redux if the skip button is pressed", () => {
+    mounted_GuidedExperience()
+      .find("#skipButton")
+      .simulate("click");
+    expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
+    expect(Router.push).toBeCalledWith(
+      "/index?lng=en&patronType=veteran&section=needs"
+    );
   });
 });

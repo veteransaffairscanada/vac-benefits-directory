@@ -18,9 +18,9 @@ import Body from "../components/typography/body";
 import { getFilteredBenefits } from "../selectors/benefits";
 
 const box = css`
-  padding: 25px 63px 63px 63px;
+  padding: 63px 63px 63px 63px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
-    padding: 17px 26px 55px 26px;
+    padding: 26px 26px 55px 26px;
   }
   display: inline-flex;
 `;
@@ -64,7 +64,7 @@ export class Summary extends Component {
           <Paper padding="md" className={box}>
             <Grid container spacing={24}>
               <Grid item xs={12} className={questions}>
-                <Header size="md_lg" headingLevel="h2" paddingTop="30">
+                <Header size="md_lg" headingLevel="h2">
                   {t("ge.summary_subtitle")}
                 </Header>
                 <Body>
