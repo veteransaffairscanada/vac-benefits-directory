@@ -38,6 +38,11 @@ export class GuidedExperience extends Component {
   returnGoToNextSection = clearCurrentQuestion => {
     let goToNextSection = () => {
       const { id, reduxState, url, saveQuestionResponse } = this.props;
+      let params = {};
+      this.queryParamsToClear().forEach(x => {
+        params[x.key] = x.value;
+      });
+
       // modifiedReduxState exists so we are sure the redux state updates before we do Router push
       let modifiedReduxState = JSON.parse(JSON.stringify(reduxState));
       if (clearCurrentQuestion) {
@@ -58,24 +63,28 @@ export class GuidedExperience extends Component {
       if (dynamicStepNumber + 1 >= displayable_sections.length) {
         nextSection = "summary";
         if (clearCurrentQuestion && id === "needs") {
-          const newUrl = mutateUrl(url, "/summary", {
-            section: "",
-            selectedNeeds: {}
-          });
+          params.section = "";
+          params.selectedNeeds = {};
+          const newUrl = mutateUrl(url, "/summary", params);
           window.location.href = newUrl;
+          document.body.focus();
         } else {
-          Router.push(mutateUrl(url, "/summary", { section: "" })).then(() =>
+          params.section = "";
+          Router.push(mutateUrl(url, "/summary", params)).then(() =>
             window.scrollTo(0, 0)
           );
+          document.body.focus();
         }
       } else {
         nextSection = displayable_sections[dynamicStepNumber + 1];
-        const queryParams = clearCurrentQuestion
-          ? { section: nextSection, [id]: "" }
-          : { section: nextSection };
-        Router.push(mutateUrl(url, "/index", queryParams)).then(() =>
+        params.section = nextSection;
+        if (clearCurrentQuestion) {
+          params[id] = "";
+        }
+        Router.push(mutateUrl(url, "/index", params)).then(() =>
           window.scrollTo(0, 0)
         );
+        document.body.focus();
       }
     };
     return goToNextSection;
@@ -87,8 +96,21 @@ export class GuidedExperience extends Component {
       .filter((x, i) => showQuestion(x, i, reduxState));
   };
 
+  queryParamsToClear() {
+    return this.props.reduxState.questions
+      .map(x => x.variable_name)
+      .filter((x, i) => !showQuestion(x, i, this.props.reduxState))
+      .map(x => {
+        if (x === "needs") {
+          return { key: "selectedNeeds", value: {} };
+        } else {
+          return { key: x, value: "" };
+        }
+      });
+  }
+
   render() {
-    const { t, prevSection, subtitle, setSection, helperText } = this.props;
+    const { t, prevSection, subtitle, helperText, url } = this.props;
 
     return (
       <Container id="guidedExperience">
@@ -105,7 +127,12 @@ export class GuidedExperience extends Component {
           <HeaderButton
             id="prevButton"
             onClick={() => {
-              setSection(prevSection);
+              let params = { section: prevSection };
+              this.queryParamsToClear().forEach(x => {
+                params[x.key] = x.value;
+              });
+              Router.push(mutateUrl(url, "/", params));
+              document.body.focus();
               window.scrollTo(0, 0);
             }}
             className={prevButton}
@@ -182,10 +209,10 @@ GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
+  sectionOrder: PropTypes.array.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
-  setSection: PropTypes.func.isRequired,
   subtitle: PropTypes.string.isRequired,
   helperText: PropTypes.string,
   stepNumber: PropTypes.number.isRequired,
