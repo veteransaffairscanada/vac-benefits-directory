@@ -122,4 +122,26 @@ describe("GuidedExperience", () => {
       "/index?lng=en&patronType=veteran&section=needs"
     );
   });
+
+  it("clears only hidden questions if the next button is pressed", () => {
+    props.statusAndVitals = "blah";
+    mounted_GuidedExperience()
+      .find("#nextButton")
+      .first()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith(
+      "/index?lng=en&patronType=veteran&serviceType=RCMP&section=serviceHealthIssue"
+    );
+  });
+
+  it("clears only hidden questions if the back button is pressed", () => {
+    props.statusAndVitals = "blah";
+    mounted_GuidedExperience()
+      .find("#prevButton")
+      .first()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith(
+      "/?lng=en&patronType=veteran&serviceType=RCMP&section=patronType"
+    );
+  });
 });
