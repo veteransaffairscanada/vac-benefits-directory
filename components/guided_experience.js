@@ -70,7 +70,9 @@ export class GuidedExperience extends Component {
           document.body.focus();
         } else {
           params.section = "";
-          Router.push(mutateUrl(url, "/summary", params));
+          Router.push(mutateUrl(url, "/summary", params)).then(() =>
+            window.scrollTo(0, 0)
+          );
           document.body.focus();
         }
       } else {
@@ -79,7 +81,9 @@ export class GuidedExperience extends Component {
         if (clearCurrentQuestion) {
           params[id] = "";
         }
-        Router.push(mutateUrl(url, "/index", params));
+        Router.push(mutateUrl(url, "/index", params)).then(() =>
+          window.scrollTo(0, 0)
+        );
         document.body.focus();
       }
     };
@@ -129,6 +133,7 @@ export class GuidedExperience extends Component {
               });
               Router.push(mutateUrl(url, "/", params));
               document.body.focus();
+              window.scrollTo(0, 0);
             }}
             className={prevButton}
             arrow="back"

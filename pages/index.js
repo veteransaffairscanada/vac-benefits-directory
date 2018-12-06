@@ -65,14 +65,6 @@ export class Guided extends Component {
     Router.replace(href);
   };
 
-  getNextSection = (displayable_sections, dynamicStepNumber) => {
-    if (dynamicStepNumber + 1 >= displayable_sections.length) {
-      return "summary";
-    } else {
-      return displayable_sections[dynamicStepNumber + 1];
-    }
-  };
-
   getPrevSection = (displayable_sections, dynamicStepNumber) => {
     if (dynamicStepNumber === 0) {
       return "index";

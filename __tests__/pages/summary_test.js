@@ -19,7 +19,7 @@ jest.mock("react-ga");
 describe("Summary", () => {
   let props;
   let mockStore, reduxState;
-  Router.push = jest.fn();
+  Router.push = jest.fn().mockImplementation(() => new Promise(() => true));
   beforeEach(() => {
     props = {
       i18n: {
