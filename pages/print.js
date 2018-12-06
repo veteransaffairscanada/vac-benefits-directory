@@ -82,10 +82,6 @@ const wordmark = css`
 export class Print extends Component {
   componentDidMount() {
     document.title = this.props.t("titles.print");
-    const emotionStyles = document.getElementById("emotion-server-side");
-    if (emotionStyles && emotionStyles.parentNode) {
-      emotionStyles.parentNode.removeChild(emotionStyles);
-    }
     window.print();
   }
 
