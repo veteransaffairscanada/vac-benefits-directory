@@ -16,7 +16,6 @@ import Body from "../components/typography/body";
 import AnchorLink from "../components/typography/anchor_link";
 import BreadCrumbs from "../components/breadcrumbs";
 import { mutateUrl } from "../utils/common";
-import { getHomeUrl } from "../selectors/urls";
 
 const mapPaper = css`
   margin-top: ${globalTheme.marginTop};
@@ -53,7 +52,7 @@ export class Map extends Component {
   }
 
   render() {
-    const { i18n, t, url, reduxState } = this.props;
+    const { i18n, t, url } = this.props;
     const breadcrumbs = [
       {
         url: mutateUrl(url, "/benefits-directory"),
@@ -72,7 +71,7 @@ export class Map extends Component {
       >
         <BreadCrumbs
           t={t}
-          homeUrl={getHomeUrl(reduxState, this.props)}
+          homeUrl={mutateUrl(url, "/")}
           breadcrumbs={breadcrumbs}
           pageTitle={t("map.vacOffices")}
         />
@@ -151,8 +150,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    referrer: reduxState.referrer,
-    reduxState: reduxState
+    referrer: reduxState.referrer
   };
 };
 
@@ -163,8 +161,7 @@ Map.propTypes = {
   setUserLocation: PropTypes.func.isRequired,
   setMapView: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  store: PropTypes.object,
-  reduxState: PropTypes.object
+  store: PropTypes.object
 };
 
 export default connect(
