@@ -20,6 +20,7 @@ let theme = {
     lg: "1920px"
   },
   colour: {
+    blackish: "#3d3d3d",
     paleGrey: "#eaebed",
     warmGrey: "#979797",
     brownishGrey: "#646464",
