@@ -113,6 +113,9 @@ describe("BB", () => {
   it("contains the share button", () => {
     expect(mounted_BB().find("#shareButton").length).toEqual(1);
   });
+  it("contains BreadCrumbs", async () => {
+    expect(mounted_BB().find("BreadCrumbs").length).toEqual(1);
+  });
 
   it("clicking share button changes showModal state to true", () => {
     let mounted = mounted_BB();

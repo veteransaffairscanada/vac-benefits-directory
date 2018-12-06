@@ -9,6 +9,7 @@ const getSelectedOffice = state => state.selectedAreaOffice;
 const getFromFavourites = (state, props, params) => params.fromFavourites;
 const getFavoriteBenefits = (state, props) => props.favouriteBenefits;
 const getBenefits = state => state.benefits;
+const getServiceHealthIssue = state => state.serviceHealthIssue;
 
 export const getFavouritesUrl = createSelector(
   [
@@ -31,6 +32,38 @@ export const getFavouritesUrl = createSelector(
       }
     });
     return "/favourites?" + params.join("&");
+  }
+);
+
+export const getHomeUrl = createSelector(
+  [
+    getProfileFilters,
+    getNeedsFilter,
+    getSearchStringFilter,
+    getServiceHealthIssue,
+    getCurrentLanguage
+  ],
+  (
+    profileFilters,
+    selectedNeeds,
+    searchString,
+    serviceHealthIssue,
+    currentLanguage
+  ) => {
+    let values = {
+      lng: currentLanguage,
+      selectedNeeds: Object.keys(selectedNeeds).join(),
+      serviceHealthIssue: serviceHealthIssue,
+      searchString: searchString
+    };
+    Object.assign(values, profileFilters);
+    let params = [];
+    Object.keys(values).forEach(key => {
+      if (values[key] !== "") {
+        params.push(key + "=" + values[key]);
+      }
+    });
+    return "/?" + params.join("&");
   }
 );
 

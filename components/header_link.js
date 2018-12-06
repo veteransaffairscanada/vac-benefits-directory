@@ -15,7 +15,7 @@ const style = css`
   color: ${globalTheme.colour.cerulean};
   background-color: transparent;
   border: none;
-  text-decoration: none !important;
+  text-decoration: none;
   padding: 0px !important;
   :hover {
     text-decoration: underline !important;

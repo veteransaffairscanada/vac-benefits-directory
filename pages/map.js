@@ -15,6 +15,7 @@ import Header from "../components/typography/header";
 import Body from "../components/typography/body";
 import AnchorLink from "../components/typography/anchor_link";
 import BreadCrumbs from "../components/breadcrumbs";
+import { mutateUrl } from "../utils/common";
 
 const mapPaper = css`
   margin-top: ${globalTheme.marginTop};
@@ -51,7 +52,13 @@ export class Map extends Component {
   }
 
   render() {
-    const { i18n, t } = this.props;
+    const { i18n, t, url } = this.props;
+    const breadcrumbs = [
+      {
+        url: mutateUrl(url, "/benefits-directory"),
+        name: t("ge.Find benefits and services")
+      }
+    ];
 
     return (
       <Layout
@@ -62,7 +69,12 @@ export class Map extends Component {
         title={t("titles.map")}
         backgroundColor={globalTheme.colour.white}
       >
-        <BreadCrumbs t={t} url={"/"} pageTitle={t("map.vacOffices")} />
+        <BreadCrumbs
+          t={t}
+          homeUrl={mutateUrl(url, "/")}
+          breadcrumbs={breadcrumbs}
+          pageTitle={t("map.vacOffices")}
+        />
         <Container>
           <Grid container spacing={24}>
             <Grid item xs={12} md={12} className={topMatter}>
