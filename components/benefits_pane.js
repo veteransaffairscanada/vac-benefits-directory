@@ -154,7 +154,7 @@ export class BenefitsPane extends Component {
 
           <Grid item xs={12}>
             <Grid container spacing={24}>
-              <NextSteps t={t} store={this.props.store} />
+              <NextSteps t={t} url={this.props.url} store={this.props.store} />
             </Grid>
           </Grid>
         </Grid>

@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import { css } from "react-emotion";
 import { globalTheme } from "../theme";
 import Header from "./typography/header";
+import HeaderLink from "./header_link";
 import { Grid } from "@material-ui/core";
+import Paper from "./paper";
+import Button from "./button";
+import { getLink } from "../utils/common";
 
 const outerDiv = css`
   margin-top: 70px;
@@ -35,6 +39,9 @@ const liItem = css`
 const header = css`
   width: 100%;
 `;
+const font21 = css`
+  font-size: 21px;
+`;
 
 export class NextSteps extends Component {
   render() {
@@ -42,23 +49,62 @@ export class NextSteps extends Component {
     return (
       <div className={outerDiv}>
         <Grid container spacing={24}>
-          <Header
-            className={header}
-            size="md"
-            headingLevel="h2"
-            paddingTop="25"
-          >
-            {t("nextSteps.whats_next")}
-          </Header>
+          <Grid item xs={12}>
+            <Header
+              className={header}
+              size="md"
+              headingLevel="h2"
+              paddingTop="25"
+            >
+              {t("nextSteps.whats_next")}
+            </Header>
 
-          <div className={innerDiv} />
+            <div className={innerDiv} />
 
-          <ul className={whatsNextList}>
-            <li className={liItem}>{t("nextSteps.bullet_1")}</li>
-            <li className={liItem}>{t("nextSteps.bullet_2")}</li>
-            <li className={liItem}>{t("nextSteps.bullet_3")}</li>
-            <li className={liItem}>{t("nextSteps.bullet_4")}</li>
-          </ul>
+            <ul className={whatsNextList}>
+              <li className={liItem}>{t("nextSteps.bullet_1")}</li>
+              <li className={liItem}>{t("nextSteps.bullet_2")}</li>
+              <li className={liItem}>{t("nextSteps.bullet_3")}</li>
+              <li className={liItem}>{t("nextSteps.bullet_4")}</li>
+            </ul>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Header
+              className={header}
+              size="md"
+              headingLevel="h2"
+              paddingTop="25"
+            >
+              {t("nextSteps.contact_us")}
+            </Header>
+
+            <div className={innerDiv} />
+          </Grid>
+
+          <Grid item sm={12} md={6}>
+            <Paper padding="sm">
+              <Header size="md" className={font21}>
+                {t("nextSteps.register_myvac")}
+              </Header>
+              <p>{t("nextSteps.box_1")}</p>
+              <Button href={t("contact.my_vac_link")}>
+                {t("nextSteps.myvac_button_text")}
+              </Button>
+            </Paper>
+          </Grid>
+          <Grid item sm={12} md={6}>
+            <Paper padding="sm">
+              <HeaderLink
+                arrow="forward"
+                href={getLink(this.props.url, "/map", "favourites")}
+              >
+                {t("favourites.visit_prompt")}
+              </HeaderLink>
+              <p>{t("nextSteps.box_2a")}</p>
+              <p>{t("nextSteps.box_2b")}</p>
+            </Paper>
+          </Grid>
         </Grid>
       </div>
     );
@@ -67,6 +113,7 @@ export class NextSteps extends Component {
 
 NextSteps.propTypes = {
   t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
   store: PropTypes.object
 };
 
