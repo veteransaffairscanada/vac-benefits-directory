@@ -80,14 +80,6 @@ export class Guided extends Component {
     document.body.focus(); // this removes focus from the next/back buttons
   };
 
-  getNextSection = (displayable_sections, dynamicStepNumber) => {
-    if (dynamicStepNumber + 1 >= displayable_sections.length) {
-      return "summary";
-    } else {
-      return displayable_sections[dynamicStepNumber + 1];
-    }
-  };
-
   getPrevSection = (displayable_sections, dynamicStepNumber) => {
     if (dynamicStepNumber === 0) {
       return "index";

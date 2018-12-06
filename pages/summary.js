@@ -86,7 +86,9 @@ export class Summary extends Component {
                   useLink
                   arrow={true}
                   onClick={() =>
-                    Router.push(mutateUrl(url, "/benefits-directory"))
+                    Router.push(mutateUrl(url, "/benefits-directory")).then(
+                      () => window.scrollTo(0, 0)
+                    )
                   }
                 >
                   {t("ge.show_results")}
