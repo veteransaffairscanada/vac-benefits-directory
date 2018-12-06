@@ -7,7 +7,9 @@ import HeaderLink from "./header_link";
 import { Grid } from "@material-ui/core";
 import Paper from "./paper";
 import Button from "./button";
-import { getLink } from "../utils/common";
+import { getMapUrl } from "../selectors/urls";
+import { connect } from "react-redux";
+import Router from "next/router";
 
 const outerDiv = css`
   margin-top: 70px;
@@ -88,17 +90,14 @@ export class NextSteps extends Component {
                 {t("nextSteps.register_myvac")}
               </Header>
               <p>{t("nextSteps.box_1")}</p>
-              <Button href={t("contact.my_vac_link")}>
+              <Button onClick={() => Router.push(t("contact.my_vac_link"))}>
                 {t("nextSteps.myvac_button_text")}
               </Button>
             </Paper>
           </Grid>
           <Grid item sm={12} md={6}>
             <Paper padding="sm">
-              <HeaderLink
-                arrow="forward"
-                href={getLink(this.props.url, "/map", "favourites")}
-              >
+              <HeaderLink arrow="forward" href={this.props.mapUrl}>
                 {t("favourites.visit_prompt")}
               </HeaderLink>
               <p>{t("nextSteps.box_2a")}</p>
@@ -111,10 +110,16 @@ export class NextSteps extends Component {
   }
 }
 
+const mapStateToProps = (reduxState, props) => {
+  return {
+    mapUrl: getMapUrl(reduxState, props, {})
+  };
+};
+
 NextSteps.propTypes = {
   t: PropTypes.func.isRequired,
-  url: PropTypes.object.isRequired,
+  mapUrl: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 
-export default NextSteps;
+export default connect(mapStateToProps)(NextSteps);
