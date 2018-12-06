@@ -63,8 +63,10 @@ export class GuidedExperience extends Component {
             selectedNeeds: {}
           });
           window.location.href = newUrl;
+          document.body.focus();
         } else {
           Router.push(mutateUrl(url, "/summary", { section: "" }));
+          document.body.focus();
         }
       } else {
         nextSection = displayable_sections[dynamicStepNumber + 1];
@@ -72,6 +74,7 @@ export class GuidedExperience extends Component {
           ? { section: nextSection, [id]: "" }
           : { section: nextSection };
         Router.push(mutateUrl(url, "/index", queryParams));
+        document.body.focus();
       }
     };
     return goToNextSection;
@@ -83,8 +86,21 @@ export class GuidedExperience extends Component {
       .filter((x, i) => showQuestion(x, i, reduxState));
   };
 
+  clearQuestionsNotDisplayable() {
+    this.props.reduxState.questions
+      .map(x => x.variable_name)
+      .filter((x, i) => !showQuestion(x, i, this.props.reduxState))
+      .forEach(x => {
+        if (x === "needs") {
+          this.props.saveQuestionResponse("selectedNeeds", {});
+        } else {
+          this.props.saveQuestionResponse(x, "");
+        }
+      });
+  }
+
   render() {
-    const { t, prevSection, subtitle, setSection, helperText } = this.props;
+    const { t, prevSection, subtitle, helperText, url } = this.props;
 
     return (
       <Container id="guidedExperience">
@@ -101,7 +117,9 @@ export class GuidedExperience extends Component {
           <HeaderButton
             id="prevButton"
             onClick={() => {
-              setSection(prevSection);
+              this.clearQuestionsNotDisplayable();
+              Router.push(mutateUrl(url, "/", { section: prevSection }));
+              document.body.focus();
             }}
             className={prevButton}
             arrow="back"
@@ -177,10 +195,11 @@ GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
+  sectionOrder: PropTypes.array.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
-  setSection: PropTypes.func.isRequired,
+  // setSection: PropTypes.func.isRequired,
   subtitle: PropTypes.string.isRequired,
   helperText: PropTypes.string,
   stepNumber: PropTypes.number.isRequired,
