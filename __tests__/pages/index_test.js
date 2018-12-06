@@ -104,24 +104,6 @@ describe("Guided", () => {
     });
   });
 
-  it("getNextSection returns the correct next section", () => {
-    const displayable_sections = [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "needs"
-    ];
-    let guidedInstance = mountedGuided().instance();
-
-    expect(guidedInstance.getNextSection(displayable_sections, 1)).toEqual(
-      "statusAndVitals"
-    );
-
-    expect(guidedInstance.getNextSection(displayable_sections, 3)).toEqual(
-      "summary"
-    );
-  });
-
   it("getPrevSection returns the correct previous section", () => {
     const displayable_sections = [
       "patronType",
