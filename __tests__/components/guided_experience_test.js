@@ -30,7 +30,8 @@ describe("GuidedExperience", () => {
     }
     return _shallowGuidedExperience;
   };
-  Router.push = jest.fn();
+  Router.push = jest.fn().mockImplementation(() => new Promise(() => true));
+  window.scrollTo = jest.fn();
   beforeEach(() => {
     props = {
       t: translate,
