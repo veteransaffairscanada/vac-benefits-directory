@@ -24,6 +24,9 @@ const style = css`
     margin-top: -4px;
     vertical-align: middle;
   }
+  span {
+    padding-left: 10px;
+  }
   :focus {
     outline: 3px solid ${globalTheme.colour.focusColour};
   }
