@@ -8,7 +8,7 @@ import Bookmark from "./icons/Bookmark";
 import ProfileNeedsSelector from "./profile_needs_selector";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
-import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
+import { getFavouritesUrl, getPrintUrl, getHomeUrl } from "../selectors/urls";
 import { css } from "react-emotion";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
@@ -63,7 +63,7 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
 
     return (
       <div
@@ -75,7 +75,7 @@ export class BB extends Component {
           <BreadCrumbs
             t={t}
             breadcrumbs={[]}
-            url={url}
+            homeUrl={homeUrl}
             pageTitle={t("ge.Find benefits and services")}
           />
           <Container>
@@ -163,6 +163,7 @@ const mapStateToProps = (reduxState, props) => {
     cookiesDisabled: reduxState.cookiesDisabled,
     favouriteBenefits: reduxState.favouriteBenefits,
     favouritesUrl: getFavouritesUrl(reduxState, props),
+    homeUrl: getHomeUrl(reduxState, props),
     printUrl: getPrintUrl(reduxState, props, {})
   };
 };
@@ -174,6 +175,7 @@ BB.propTypes = {
   favouritesUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
+  homeUrl: PropTypes.string,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   store: PropTypes.object

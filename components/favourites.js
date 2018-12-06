@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
-import { getPrintUrl } from "../selectors/urls";
+import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import Bookmark from "./icons/BookmarkBorder";
 import Print from "./icons/Print";
 import Link from "next/link";
@@ -75,7 +75,7 @@ export class Favourites extends Component {
   };
 
   render() {
-    const { t, url } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, homeUrl } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -93,7 +93,7 @@ export class Favourites extends Component {
       <div className={outerDiv}>
         <BreadCrumbs
           t={t}
-          url={url}
+          homeUrl={homeUrl}
           breadcrumbs={breadcrumbs}
           pageTitle={t("index.your_saved_benefits")}
         />
@@ -244,7 +244,8 @@ const mapStateToProps = (reduxState, props) => {
   return {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
-    printUrl: getPrintUrl(reduxState, props, { fromFavourites: true })
+    printUrl: getPrintUrl(reduxState, props, { fromFavourites: true }),
+    homeUrl: getHomeUrl(reduxState, props)
   };
 };
 
@@ -256,6 +257,7 @@ Favourites.propTypes = {
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   url: PropTypes.object.isRequired,
+  homeUrl: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 
