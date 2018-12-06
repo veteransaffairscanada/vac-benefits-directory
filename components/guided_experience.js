@@ -64,14 +64,18 @@ export class GuidedExperience extends Component {
           });
           window.location.href = newUrl;
         } else {
-          Router.push(mutateUrl(url, "/summary", { section: "" }));
+          Router.push(mutateUrl(url, "/summary", { section: "" })).then(() =>
+            window.scrollTo(0, 0)
+          );
         }
       } else {
         nextSection = displayable_sections[dynamicStepNumber + 1];
         const queryParams = clearCurrentQuestion
           ? { section: nextSection, [id]: "" }
           : { section: nextSection };
-        Router.push(mutateUrl(url, "/index", queryParams));
+        Router.push(mutateUrl(url, "/index", queryParams)).then(() =>
+          window.scrollTo(0, 0)
+        );
       }
     };
     return goToNextSection;
@@ -102,6 +106,7 @@ export class GuidedExperience extends Component {
             id="prevButton"
             onClick={() => {
               setSection(prevSection);
+              window.scrollTo(0, 0);
             }}
             className={prevButton}
             arrow="back"
