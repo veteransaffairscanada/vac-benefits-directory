@@ -39,30 +39,28 @@ class ShareBox extends Component {
     return (
       <Container className={shareBoxStyle}>
         <Grid container spacing={8}>
-          <Grid item lg={12} md={12} sm={12} xs={6}>
-            {share ? (
-              <span>
-                <HeaderButton
-                  className={shareBoxItem}
-                  size="small"
-                  onClick={() => this.setState({ showModal: true })}
-                  id="shareButton"
-                >
-                  <ShareIcon />
-                  <span>{t("titles.share")}</span>
-                </HeaderButton>
-                <ShareModal
-                  isOpen={this.state.showModal}
-                  onRequestClose={() => this.setState({ showModal: false })}
-                  closeModal={() => this.setState({ showModal: false })}
-                  url={url}
-                  t={t}
-                />
-              </span>
-            ) : (
-              ""
-            )}
-          </Grid>
+          {share ? (
+            <Grid item lg={12} md={12} sm={12} xs={6}>
+              <HeaderButton
+                className={shareBoxItem}
+                size="small"
+                onClick={() => this.setState({ showModal: true })}
+                id="shareButton"
+              >
+                <ShareIcon />
+                <span>{t("titles.share")}</span>
+              </HeaderButton>
+              <ShareModal
+                isOpen={this.state.showModal}
+                onRequestClose={() => this.setState({ showModal: false })}
+                closeModal={() => this.setState({ showModal: false })}
+                url={url}
+                t={t}
+              />
+            </Grid>
+          ) : (
+            ""
+          )}
           <Grid item lg={12} md={12} sm={12} xs={6}>
             <HeaderLink
               className={shareBoxItem}
@@ -72,7 +70,7 @@ class ShareBox extends Component {
               id="printButton"
             >
               <Print />
-              <span className={nonMobileStyle}>{t("Print")}</span>
+              <span className={share ? nonMobileStyle : ""}>{t("Print")}</span>
             </HeaderLink>
           </Grid>
         </Grid>

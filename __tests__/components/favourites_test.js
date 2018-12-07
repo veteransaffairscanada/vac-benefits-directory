@@ -7,6 +7,7 @@ import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
+import questionsFixture from "../fixtures/questions";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 
@@ -44,7 +45,8 @@ describe("Favourites", () => {
         statusAndVitals: ""
       },
       url: { query: {} },
-      homeUrl: "/"
+      homeUrl: "/",
+      nextStepsRef: React.createRef()
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
@@ -55,6 +57,7 @@ describe("Favourites", () => {
       setCookiesDisabled: jest.fn(),
       benefits: benefitsFixture,
       needs: needsFixture,
+      questions: questionsFixture,
       favouriteBenefits: ["benefit_2"],
       selectedNeeds: {},
       eligibilityPaths: eligibilityPathsFixture,
