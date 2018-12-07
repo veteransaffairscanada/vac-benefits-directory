@@ -17,6 +17,8 @@ import EditIcon from "./icons/Edit";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
+  border: thin solid ${globalTheme.colour.cerulean} !important;
+  box-shadow: none !important;
 `;
 const summary = css`
   opacity: 1 !important;

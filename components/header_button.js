@@ -23,6 +23,7 @@ const style = css`
   svg {
     margin-top: -4px;
     vertical-align: middle;
+    padding-right: 10px;
   }
   :focus {
     outline: 3px solid ${globalTheme.colour.focusColour};

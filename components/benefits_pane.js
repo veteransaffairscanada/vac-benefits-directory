@@ -42,6 +42,9 @@ const orText = css`
     display: none;
   }
 `;
+const alignLeft = css`
+  text-align: left;
+`;
 
 export class BenefitsPane extends Component {
   clearFilters = () => {
@@ -80,7 +83,7 @@ export class BenefitsPane extends Component {
   };
 
   render() {
-    const { t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const { t, filteredBenefits, nextStepsRef } = this.props; // eslint-disable-line no-unused-vars
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
@@ -108,6 +111,17 @@ export class BenefitsPane extends Component {
               {t("BenefitsPane.contact_us")}
             </Button>
           </div>
+          <Grid item xs={12}>
+            <div ref={nextStepsRef} className={alignLeft}>
+              <Grid container spacing={24}>
+                <NextSteps
+                  t={t}
+                  url={this.props.url}
+                  store={this.props.store}
+                />
+              </Grid>
+            </div>
+          </Grid>
         </div>
       );
     } else {
@@ -153,9 +167,15 @@ export class BenefitsPane extends Component {
           </Grid>
 
           <Grid item xs={12}>
-            <Grid container spacing={24}>
-              <NextSteps t={t} store={this.props.store} />
-            </Grid>
+            <div ref={nextStepsRef}>
+              <Grid container spacing={24}>
+                <NextSteps
+                  t={t}
+                  url={this.props.url}
+                  store={this.props.store}
+                />
+              </Grid>
+            </div>
           </Grid>
         </Grid>
       );
@@ -196,6 +216,7 @@ const mapStateToProps = (reduxState, props) => {
 
 BenefitsPane.propTypes = {
   reduxState: PropTypes.object,
+  nextStepsRef: PropTypes.object,
   url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   profileFilters: PropTypes.object.isRequired,
