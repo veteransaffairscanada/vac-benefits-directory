@@ -25,9 +25,6 @@ const style = css`
     vertical-align: middle;
     padding-right: 10px;
   }
-  span {
-    padding-left: 10px;
-  }
   :focus {
     outline: 3px solid ${globalTheme.colour.focusColour};
   }
