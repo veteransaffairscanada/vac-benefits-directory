@@ -45,6 +45,10 @@ const font21 = css`
   font-size: 21px;
 `;
 
+const cerulean = css`
+  color: ${globalTheme.colour.cerulean};
+`;
+
 export class NextSteps extends Component {
   render() {
     const { t } = this.props;
@@ -89,7 +93,16 @@ export class NextSteps extends Component {
               <Header size="md" className={font21}>
                 {t("nextSteps.register_myvac")}
               </Header>
-              <p>{t("nextSteps.box_1")}</p>
+              <p>
+                {t("nextSteps.box_1")}
+                <a
+                  href={t("nextSteps.myvac_register_href")}
+                  className={cerulean}
+                >
+                  {t("nextSteps.myvac_register_text")}
+                </a>
+                .
+              </p>
               <Button onClick={() => Router.push(t("contact.my_vac_link"))}>
                 {t("nextSteps.myvac_button_text")}
               </Button>
@@ -101,7 +114,13 @@ export class NextSteps extends Component {
                 {t("favourites.visit_prompt")}
               </HeaderLink>
               <p>{t("nextSteps.box_2a")}</p>
-              <p>{t("nextSteps.box_2b")}</p>
+              <p>
+                {t("nextSteps.box_2b") + " "}
+                <a href={"mailto:" + t("contact.email")} className={cerulean}>
+                  {t("contact.email")}
+                </a>
+                {t("nextSteps.box_2c")}
+              </p>
             </Paper>
           </Grid>
         </Grid>
