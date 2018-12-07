@@ -10,6 +10,8 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import questionClearLogicFixture from "../fixtures/question_clear_logic";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -38,7 +40,10 @@ describe("BenefitsPane", () => {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
-      }
+      },
+      filteredBenefits: [],
+      nextStepsRef: React.createRef(),
+      favouriteBenefits: []
     };
     _mounted = undefined;
     reduxData = {
@@ -47,18 +52,32 @@ describe("BenefitsPane", () => {
       profileQuestions: questionsFixture.filter(
         q => q.variable_name !== "needs"
       ),
-      saveQuestionResponse: jest.fn(),
-      filteredBenefitsWithoutSearch: [],
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionClearLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
+      serviceType: "",
+      patronType: "",
+      saveQuestionResponse: jest.fn(),
       searchString: "",
+      statusAndVitals: "",
+      selectedEligibility: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      },
+      serviceHealthIssue: "",
       setSearchString: jest.fn(),
-      selectedNeeds: {}
+      selectedNeeds: {},
+      option: "",
+      pageWidth: 1000
     };
+
     mockStore = configureStore();
     props.store = mockStore(reduxData);
   });

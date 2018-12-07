@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Print from "./icons/Print";
 import ShareIcon from "./icons/share_icon";
+import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import Bookmark from "./icons/Bookmark";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
@@ -56,6 +57,11 @@ export class BB extends Component {
     showModal: false
   };
 
+  constructor(props) {
+    super(props);
+    this.nextStepsRef = React.createRef(); // create a ref object
+  }
+
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
     this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
@@ -69,13 +75,8 @@ export class BB extends Component {
 
   render() {
     const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
-
     return (
-      <div
-        id={this.props.id}
-        className={outerDiv}
-        ref={el => (this.componentRef = el)}
-      >
+      <div id={this.props.id} className={outerDiv}>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}
@@ -87,15 +88,35 @@ export class BB extends Component {
         <Container>
           <Grid container spacing={32}>
             <Grid item lg={4} md={4} sm={5} xs={12}>
-              <div className={favouritesLink}>
-                <HeaderLink id="savedBenefits" href={this.props.favouritesUrl}>
-                  <Bookmark />
-                  {t("B3.favouritesButtonText") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </HeaderLink>
-              </div>
+              <Grid container spacing={16} className={favouritesLink}>
+                <Grid item xs={12}>
+                  <HeaderLink
+                    id="savedBenefits"
+                    href={this.props.favouritesUrl}
+                  >
+                    <Bookmark />
+                    {t("B3.favouritesButtonText") +
+                      " (" +
+                      this.props.favouriteBenefits.length +
+                      ")"}
+                  </HeaderLink>
+                </Grid>
+                <Grid item xs={12}>
+                  <HeaderButton
+                    id="nextSteps"
+                    onClick={() => {
+                      window.scrollTo({
+                        top: this.nextStepsRef.current.offsetTop,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
+                    <AssignmentTurnedIn />
+                    {t("nextSteps.whats_next")}
+                  </HeaderButton>
+                </Grid>
+              </Grid>
+
               <ProfileNeedsSelectorMobile t={t} store={store} />
               <Container className={shareBox}>
                 <Grid container spacing={8}>
@@ -146,7 +167,13 @@ export class BB extends Component {
                 </Grid>
               </Grid>
 
-              <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
+              <BenefitsPane
+                id="BenefitsPane"
+                t={t}
+                store={store}
+                url={url}
+                nextStepsRef={this.nextStepsRef}
+              />
             </Grid>
           </Grid>
         </Container>

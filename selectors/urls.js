@@ -118,3 +118,35 @@ export const getPrintUrl = createSelector(
     return "/print?" + params.join("&");
   }
 );
+
+export const getMapUrl = createSelector(
+  [
+    getProfileFilters,
+    getNeedsFilter,
+    getSearchStringFilter,
+    getServiceHealthIssue,
+    getCurrentLanguage
+  ],
+  (
+    profileFilters,
+    selectedNeeds,
+    searchString,
+    serviceHealthIssue,
+    currentLanguage
+  ) => {
+    let values = {
+      lng: currentLanguage,
+      selectedNeeds: Object.keys(selectedNeeds).join(),
+      serviceHealthIssue: serviceHealthIssue,
+      searchString: searchString
+    };
+    Object.assign(values, profileFilters);
+    let params = [];
+    Object.keys(values).forEach(key => {
+      if (values[key] !== "") {
+        params.push(key + "=" + values[key]);
+      }
+    });
+    return "/map?" + params.join("&");
+  }
+);
