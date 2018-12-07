@@ -5,33 +5,22 @@ import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import Bookmark from "./icons/BookmarkBorder";
-import Print from "./icons/Print";
 import Link from "next/link";
 import { css } from "react-emotion";
 import Container from "./container";
 import Header from "./typography/header";
-import HeaderLink from "./header_link";
-import AnchorLink from "./typography/anchor_link";
+import HeaderButton from "./header_button";
 import Body from "./typography/body";
-import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
-import { areCookiesDisabled, getLink, mutateUrl } from "../utils/common";
+import { areCookiesDisabled, mutateUrl } from "../utils/common";
+import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import { globalTheme } from "../theme";
 import BreadCrumbs from "./breadcrumbs";
+import ShareBox from "./share_box";
+import NextSteps from "./next_steps";
 
-const contactUs = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    margin-left: 11px !important;
-  }
-`;
 const bookmarkCSS = css`
   font-size: 70px !important;
-`;
-const contactUsTitle = css`
-  margin: 20px 0;
-`;
-const right = css`
-  text-align: right;
 `;
 const emptyList = css`
   margin-top: 20px;
@@ -39,20 +28,15 @@ const emptyList = css`
   word-spacing: normal;
 }
 `;
-const topMatter = css`
-  margin-bottom: 25px !important;
-`;
-const noBottomMargin = css`
-  margin-bottom: 0px;
-`;
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
-const whiteBanner = css`
-  background-color: #fff;
-  width: 100%;
-  padding-bottom: 20px;
-  margin-bottom: 30px;
+
+const favouritesLink = css`
+  padding: 1em 24px !important;
+  border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
+  border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
+  margin-bottom: 24px;
 `;
 export class Favourites extends Component {
   state = {
@@ -61,6 +45,11 @@ export class Favourites extends Component {
     showDisabledCookieBanner: false,
     showModal: false
   };
+
+  constructor(props) {
+    super(props);
+    this.nextStepsRef = React.createRef(); // create a ref object
+  }
 
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
@@ -97,42 +86,56 @@ export class Favourites extends Component {
           breadcrumbs={breadcrumbs}
           pageTitle={t("index.your_saved_benefits")}
         />
-        <div className={whiteBanner}>
-          <Container>
-            <Grid container spacing={24}>
-              <Grid item xs={12} className={right}>
-                <HeaderLink
-                  href={this.props.printUrl}
-                  target="print_page"
-                  id="printButton"
-                >
-                  <Print /> {t("Print")}
-                </HeaderLink>
-              </Grid>
-            </Grid>
-          </Container>
-        </div>
-
         <Container id="favourites">
-          <Grid container spacing={24}>
-            <Grid item xs={12} className={topMatter}>
-              <Header className={"BenefitsCounter"} size="xl" headingLevel="h1">
-                {t("favourites.saved_benefits", {
-                  x: filteredBenefits.length
-                })}
-              </Header>
+          <Grid container spacing={32}>
+            <Grid item lg={4} md={4} sm={5} xs={12}>
+              <Grid container spacing={16} className={favouritesLink}>
+                <Grid item xs={12}>
+                  <HeaderButton
+                    id="nextSteps"
+                    onClick={() => {
+                      window.scrollTo({
+                        top: this.nextStepsRef.current.offsetTop,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
+                    <AssignmentTurnedIn />
+                    {t("nextSteps.whats_next")}
+                  </HeaderButton>
+                </Grid>
+              </Grid>
+              <ShareBox
+                t={t}
+                printUrl={this.props.printUrl}
+                url={url}
+                share={false}
+              />
             </Grid>
-            <Grid item md={8} xs={12}>
-              {this.state.showDisabledCookieBanner ? (
-                <DisabledCookiesBanner
-                  t={t}
-                  onClose={() =>
-                    this.setState({ showDisabledCookieBanner: false })
-                  }
-                />
-              ) : null}
+            <Grid item lg={8} md={8} sm={7} xs={12}>
+              <Grid container spacing={16}>
+                <Grid item xs={12}>
+                  {this.state.showDisabledCookieBanner ? (
+                    <DisabledCookiesBanner
+                      t={t}
+                      onClose={() =>
+                        this.setState({ showDisabledCookieBanner: false })
+                      }
+                    />
+                  ) : null}
+                </Grid>
+              </Grid>
 
               <Grid container spacing={24}>
+                <Header
+                  className={"BenefitsCounter"}
+                  size="xl"
+                  headingLevel="h1"
+                >
+                  {t("favourites.saved_benefits", {
+                    x: filteredBenefits.length
+                  })}
+                </Header>
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
@@ -158,72 +161,17 @@ export class Favourites extends Component {
               ) : (
                 ""
               )}
-            </Grid>
-            <Grid item md={4} xs={12}>
-              <Paper padding="sm" className={contactUs}>
-                <Header headingLevel="h2" size="lg">
-                  {t("favourites.contact_us")}
-                </Header>
-                <p>
-                  <HeaderLink
-                    id="nearbyOffice"
-                    arrow="forward"
-                    href={getLink(this.props.url, "/map", "favourites")}
-                  >
-                    {t("favourites.visit_prompt")}
-                  </HeaderLink>
-                </p>
-
-                <Body>{t("favourites.print_instructions")}</Body>
-
-                <hr />
-
-                <p>
-                  <AnchorLink
-                    fontSize={21}
-                    fontWeight="bold"
-                    href={"tel:+" + t("contact.phone")}
-                  >
-                    {t("contact.phone")}
-                  </AnchorLink>
-                </p>
-
-                <Body>{t("favourites.call_time")}</Body>
-
-                <hr />
-
-                <p>
-                  <AnchorLink
-                    id="contactEmail"
-                    fontSize={21}
-                    fontWeight="bold"
-                    href={"mailto:" + t("contact.email")}
-                  >
-                    {t("contact.email")}
-                  </AnchorLink>
-                </p>
-
-                <Body>{t("favourites.email_disclaimer")}</Body>
-
-                <hr />
-
-                <Header className={contactUsTitle} size="lg" headingLevel="h2">
-                  {t("favourites.apply_prompt")}
-                </Header>
-
-                <Body className={noBottomMargin}>
-                  <p>
-                    <HeaderLink
-                      id="myVACButton"
-                      arrow="forward"
-                      href={t("contact.my_vac_link")}
-                    >
-                      {t("favourites.login_link")}
-                    </HeaderLink>
-                  </p>
-                  {t("favourites.login_prompt")}
-                </Body>
-              </Paper>
+              <Grid item xs={12}>
+                <div ref={this.nextStepsRef}>
+                  <Grid container spacing={24}>
+                    <NextSteps
+                      t={t}
+                      url={this.props.url}
+                      store={this.props.store}
+                    />
+                  </Grid>
+                </div>
+              </Grid>
             </Grid>
           </Grid>
         </Container>
