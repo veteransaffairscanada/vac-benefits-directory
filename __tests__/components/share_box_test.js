@@ -1,6 +1,5 @@
 import React from "react";
 import { mount } from "enzyme";
-import Router from "next/router";
 import ShareBox from "../../components/share_box";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
