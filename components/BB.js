@@ -17,6 +17,7 @@ import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 import BenefitsPane from "./benefits_pane";
 import BreadCrumbs from "../components/breadcrumbs";
+import NextSteps from "./next_steps";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -56,6 +57,11 @@ export class BB extends Component {
     showModal: false
   };
 
+  constructor(props) {
+    super(props);
+    this.nextStepsRef = React.createRef(); // create a ref object
+  }
+
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
     this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
@@ -69,13 +75,8 @@ export class BB extends Component {
 
   render() {
     const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
-
     return (
-      <div
-        id={this.props.id}
-        className={outerDiv}
-        ref={el => (this.componentRef = el)}
-      >
+      <div id={this.props.id} className={outerDiv}>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}
@@ -95,6 +96,18 @@ export class BB extends Component {
                     this.props.favouriteBenefits.length +
                     ")"}
                 </HeaderLink>
+                <HeaderButton
+                  id="nextSteps"
+                  onClick={() => {
+                    window.scrollTo({
+                      top: this.nextStepsRef.current.offsetTop,
+                      behavior: "smooth"
+                    });
+                  }}
+                >
+                  <Bookmark />
+                  {t("nextSteps.whats_next")}
+                </HeaderButton>
               </div>
               <ProfileNeedsSelectorMobile t={t} store={store} />
               <Container className={shareBox}>
@@ -146,7 +159,13 @@ export class BB extends Component {
                 </Grid>
               </Grid>
 
-              <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
+              <BenefitsPane
+                id="BenefitsPane"
+                t={t}
+                store={store}
+                url={url}
+                nextStepsRef={this.nextStepsRef}
+              />
             </Grid>
           </Grid>
         </Container>
