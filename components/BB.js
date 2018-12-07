@@ -87,7 +87,7 @@ export class BB extends Component {
         </div>
         <Container>
           <Grid container spacing={32}>
-            <Grid item lg={4} md={4} sm={5} xs={12}>
+            <Grid item lg={3} md={3} sm={4} xs={12}>
               <Grid container spacing={16} className={favouritesLink}>
                 <Grid item xs={12}>
                   <HeaderLink
@@ -116,7 +116,6 @@ export class BB extends Component {
                   </HeaderButton>
                 </Grid>
               </Grid>
-
               <ProfileNeedsSelectorMobile t={t} store={store} />
               <Container className={shareBox}>
                 <Grid container spacing={8}>
@@ -153,7 +152,7 @@ export class BB extends Component {
                 </Grid>
               </Container>
             </Grid>
-            <Grid item lg={8} md={8} sm={7} xs={12}>
+            <Grid item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
                   {this.state.showDisabledCookieBanner ? (
