@@ -42,6 +42,9 @@ const orText = css`
     display: none;
   }
 `;
+const alignLeft = css`
+  text-align: left;
+`;
 
 export class BenefitsPane extends Component {
   clearFilters = () => {
@@ -109,7 +112,7 @@ export class BenefitsPane extends Component {
             </Button>
           </div>
           <Grid item xs={12}>
-            <div ref={nextStepsRef}>
+            <div ref={nextStepsRef} className={alignLeft}>
               <Grid container spacing={24}>
                 <NextSteps
                   t={t}

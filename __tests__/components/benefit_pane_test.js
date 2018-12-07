@@ -38,7 +38,8 @@ describe("BenefitsPane", () => {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
-      }
+      },
+      nextStepsRef: React.createRef()
     };
     _mounted = undefined;
     reduxData = {
@@ -56,8 +57,7 @@ describe("BenefitsPane", () => {
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
       searchString: "",
-      setSearchString: jest.fn(),
-      selectedNeeds: {}
+      setSearchString: jest.fn()
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

@@ -51,8 +51,6 @@ const shareBoxItem = css`
   color: ${globalTheme.colour.darkGreyBlue};
 `;
 
-const topMargin = css``;
-
 export class BB extends Component {
   state = {
     showDisabledCookieBanner: false,
