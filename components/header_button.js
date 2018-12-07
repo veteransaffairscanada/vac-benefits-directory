@@ -23,6 +23,7 @@ const style = css`
   svg {
     margin-top: -4px;
     vertical-align: middle;
+    padding-right: 10px;
   }
   span {
     padding-left: 10px;
