@@ -38,6 +38,10 @@ const liItem = css`
   padding-bottom: 20px;
 `;
 
+const fullHeight = css`
+  height: 100%;
+`;
+
 const header = css`
   width: 100%;
 `;
@@ -89,7 +93,7 @@ export class NextSteps extends Component {
           </Grid>
 
           <Grid item sm={12} md={6}>
-            <Paper padding="sm">
+            <Paper className={fullHeight} padding="sm">
               <Header size="md" className={font21}>
                 {t("nextSteps.register_myvac")}
               </Header>
@@ -118,7 +122,7 @@ export class NextSteps extends Component {
             </Paper>
           </Grid>
           <Grid item sm={12} md={6}>
-            <Paper padding="sm">
+            <Paper className={fullHeight} padding="sm">
               <HeaderLink arrow="forward" href={this.props.mapUrl}>
                 {t("favourites.visit_prompt")}
               </HeaderLink>
