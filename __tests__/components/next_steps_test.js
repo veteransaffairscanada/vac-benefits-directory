@@ -1,7 +1,8 @@
 import React from "react";
-import NextSteps from "../../components/next_steps";
+import { NextSteps } from "../../components/next_steps";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
+import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
