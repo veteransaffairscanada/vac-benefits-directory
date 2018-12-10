@@ -9,7 +9,7 @@ import Paper from "./paper";
 import Button from "./button";
 import { getMapUrl } from "../selectors/urls";
 import { connect } from "react-redux";
-import Router from "next/router";
+import { logEvent } from "../utils/analytics";
 
 const outerDiv = css`
   margin-top: 70px;
@@ -97,13 +97,22 @@ export class NextSteps extends Component {
                 {t("nextSteps.box_1")}
                 <a
                   href={t("nextSteps.myvac_register_href")}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cerulean}
                 >
                   {t("nextSteps.myvac_register_text")}
                 </a>
                 .
               </p>
-              <Button onClick={() => Router.push(t("contact.my_vac_link"))}>
+              <Button
+                onClick={() => {
+                  let exitUrl = t("contact.my_vac_link");
+                  logEvent("Exit", exitUrl);
+                  const win = window.open(exitUrl, "_blank");
+                  win.focus();
+                }}
+              >
                 {t("nextSteps.myvac_button_text")}
               </Button>
             </Paper>
