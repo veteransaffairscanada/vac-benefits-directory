@@ -53,7 +53,6 @@
     "react": "^16.6.3",
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.6.3",
-    "react-emotion": "^10.0.0",
     "react-ga": "^2.5.6",
     "react-google-maps": "^9.4.5",
     "react-highcharts": "^16.0.2",
