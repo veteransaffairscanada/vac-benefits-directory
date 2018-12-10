@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { PhaseBadge } from "@cdssnc/gcui";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
 
 const Banner = css`
