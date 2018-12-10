@@ -129,7 +129,12 @@ export class RelatedBenefits extends Component {
           win.focus();
         }}
       >
-        {t("Find out more")}
+        {t("benefits_b.learn_more", {
+          x:
+            t("current-language-code") === "en"
+              ? benefit.vacNameEn
+              : benefit.vacNameFr
+        })}
       </Button>
     );
     let otherBenefits = "";
