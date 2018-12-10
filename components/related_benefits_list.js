@@ -137,8 +137,9 @@ export class RelatedBenefits extends Component {
       if (veteranBenefits.length > 0) {
         let benefitName =
           language === "en" ? benefit.vacNameEn : benefit.vacNameFr;
-        otherBenefits =
-          t("benefits_b.eligible_open_veteran", { x: benefitName }) + ":";
+        otherBenefits = t("benefits_b.eligible_open_veteran", {
+          x: benefitName
+        });
       }
       return (
         <div className={topBorder}>
