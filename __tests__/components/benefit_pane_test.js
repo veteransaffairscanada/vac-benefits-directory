@@ -174,6 +174,25 @@ describe("BenefitsPane", () => {
       });
     });
 
+    describe("filteredResultsHeader", () => {
+      it("returns a Header if there is at least one result", () => {
+        mounted().setProps({ searchString: "t" });
+        expect(
+          mounted()
+            .instance()
+            .filteredResultsHeader(1, props.t)
+        ).not.toEqual("");
+      });
+      it("returns an empty string if there are no results", () => {
+        mounted().setProps({ searchString: "t" });
+        expect(
+          mounted()
+            .instance()
+            .filteredResultsHeader(0, props.t)
+        ).toEqual("");
+      });
+    });
+
     describe("search feature", () => {
       it("shows a text search box", () => {
         expect(
