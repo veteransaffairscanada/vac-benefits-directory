@@ -32,6 +32,10 @@ const outerDiv = css`
   padding-bottom: 16px !important;
 `;
 
+const topMargin = css`
+  margin-top: 20px;
+`;
+
 const favouritesLink = css`
   padding: 1em 24px !important;
   border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
@@ -129,13 +133,14 @@ export class Favourites extends Component {
               <Grid container spacing={24}>
                 <Header
                   className={"BenefitsCounter"}
-                  size="xl"
+                  size="lg"
                   headingLevel="h1"
                 >
                   {t("favourites.saved_benefits", {
                     x: filteredBenefits.length
                   })}
                 </Header>
+                <Body className={topMargin}>{t("B3.check eligibility")}</Body>
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
