@@ -14,7 +14,7 @@ const Banner = css`
   min-width: 20em;
   color: ${globalTheme.colour.white};
   font: 0.694rem sans-serif;
-  span:first-child {
+  span:first-of-type {
     font-weight: 700 !important;
     padding: 0.2rem 0.7rem;
     border-radius: 5px;
