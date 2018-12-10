@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
 import { uuidv4 } from "../utils/common";
 

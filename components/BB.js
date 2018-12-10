@@ -9,7 +9,7 @@ import Bookmark from "./icons/Bookmark";
 import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 import { connect } from "react-redux";
 import { getFavouritesUrl, getPrintUrl, getHomeUrl } from "../selectors/urls";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";

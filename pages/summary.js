@@ -9,7 +9,7 @@ import { Grid } from "@material-ui/core";
 import Button from "../components/button";
 import Header from "../components/typography/header";
 import Router from "next/router";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
 import { mutateUrl } from "../utils/common";
 import { connect } from "react-redux";

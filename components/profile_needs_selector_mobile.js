@@ -9,7 +9,7 @@ import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
 import CloseIcon from "./icons/Close";

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Router from "next/router";
 import Container from "./container";
 import Header from "./typography/header";

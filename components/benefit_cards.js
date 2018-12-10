@@ -7,7 +7,7 @@ import Paper from "./paper";
 import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";

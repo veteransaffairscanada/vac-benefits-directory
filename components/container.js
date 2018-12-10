@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { cx, css } from "react-emotion";
+import { cx, css } from "emotion";
 import { globalTheme } from "../theme";
 
 const style = css`

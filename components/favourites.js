@@ -7,7 +7,7 @@ import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import Bookmark from "./icons/BookmarkBorder";
 import Print from "./icons/Print";
 import Link from "next/link";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Container from "./container";
 import Header from "./typography/header";
 import HeaderLink from "./header_link";

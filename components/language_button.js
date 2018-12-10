@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import FooterButton from "./footer_button";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
 
 const mobileButton = css`

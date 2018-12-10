@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { logEvent } from "../utils/analytics";
 import Paper from "./paper";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import OneLiner from "./typography/one_liner";
 import HeaderLink from "./header_link";
 

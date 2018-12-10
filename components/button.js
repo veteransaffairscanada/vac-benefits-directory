@@ -1,4 +1,5 @@
-import styled, { css } from "react-emotion";
+import { css } from "emotion";
+import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import React from "react";
 import { globalTheme } from "../theme";

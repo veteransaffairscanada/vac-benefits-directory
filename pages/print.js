@@ -6,7 +6,7 @@ import withI18N from "../lib/i18nHOC";
 import NeedButton from "../components/need_button";
 import { WordMark } from "@cdssnc/gcui";
 import FIP from "../components/fip";
-import { css, cx } from "react-emotion";
+import { cx, css } from "emotion";
 
 const root = css`
   font-family: Merriweather, serif;
