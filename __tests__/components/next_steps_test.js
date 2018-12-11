@@ -8,7 +8,7 @@ expect.extend(toHaveNoViolations);
 
 describe("NextSteps", () => {
   let props;
-  let mockStore, reduxState;
+  let reduxState;
   beforeEach(() => {
     props = {
       t: translate,
@@ -22,6 +22,19 @@ describe("NextSteps", () => {
   it("passes axe tests", async () => {
     let html = mount(<NextSteps {...props} {...reduxState} />).html();
     expect(await axe(html)).toHaveNoViolations();
+  });
+
+  it("has the MyVac card", () => {
+    expect(
+      mount(<NextSteps {...props} {...reduxState} />).find("#myVacCard").length
+    ).not.toEqual(0);
+  });
+
+  it("has the find nearby offic card", () => {
+    expect(
+      mount(<NextSteps {...props} {...reduxState} />).find("#nearbyOfficeCard")
+        .length
+    ).not.toEqual(0);
   });
 
   it("register now link has a blank target", () => {

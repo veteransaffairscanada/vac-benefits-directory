@@ -93,7 +93,7 @@ export class NextSteps extends Component {
           </Grid>
 
           <Grid item sm={12} md={6}>
-            <Paper className={fullHeight} padding="sm">
+            <Paper id="myVacCard" className={fullHeight} padding="sm">
               <Header size="md" className={font21}>
                 {t("nextSteps.register_myvac")}
               </Header>
@@ -124,7 +124,7 @@ export class NextSteps extends Component {
             </Paper>
           </Grid>
           <Grid item sm={12} md={6}>
-            <Paper className={fullHeight} padding="sm">
+            <Paper id="nearbyOfficeCard" className={fullHeight} padding="sm">
               <HeaderLink
                 id="nearbyOfficeLink"
                 arrow="forward"
