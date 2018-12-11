@@ -109,4 +109,11 @@ describe("BB", () => {
   it("contains BreadCrumbs", async () => {
     expect(mounted_BB().find("BreadCrumbs").length).toEqual(1);
   });
+
+  it("clicking next steps button triggers scroll", () => {
+    mounted_BB()
+      .find("#nextSteps")
+      .simulate("click");
+    expect(window.scrollTo).toBeCalled();
+  });
 });
