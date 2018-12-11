@@ -26,4 +26,29 @@ describe("NextSteps", () => {
     let html = mount(<NextSteps {...props} {...reduxState} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
+
+  it("register now link has a blank target", () => {
+    expect(
+      mount(<NextSteps {...props} {...reduxState} />)
+        .find("#registerNowLink")
+        .prop("target")
+    ).toEqual("_blank");
+  });
+
+  it("myVAC account button uses the expected label", () => {
+    expect(
+      mount(<NextSteps {...props} {...reduxState} />)
+        .find("#myVacAccountButton")
+        .last()
+        .text()
+    ).toContain("nextSteps.myvac_button_text");
+  });
+
+  it("find nearby office link has expected href", () => {
+    expect(
+      mount(<NextSteps {...props} {...reduxState} />)
+        .find("#nearbyOfficeLink")
+        .prop("href")
+    ).toEqual({ query: {}, route: "/map" });
+  });
 });

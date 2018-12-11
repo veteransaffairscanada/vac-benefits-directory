@@ -100,6 +100,7 @@ export class NextSteps extends Component {
               <p>
                 {t("nextSteps.box_1")}
                 <a
+                  id="registerNowLink"
                   href={t("nextSteps.myvac_register_href")}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -110,6 +111,7 @@ export class NextSteps extends Component {
                 .
               </p>
               <Button
+                id="myVacAccountButton"
                 onClick={() => {
                   let exitUrl = t("contact.my_vac_link");
                   logEvent("Exit", exitUrl);
@@ -123,7 +125,11 @@ export class NextSteps extends Component {
           </Grid>
           <Grid item sm={12} md={6}>
             <Paper className={fullHeight} padding="sm">
-              <HeaderLink arrow="forward" href={this.props.mapUrl}>
+              <HeaderLink
+                id="nearbyOfficeLink"
+                arrow="forward"
+                href={this.props.mapUrl}
+              >
                 {t("favourites.visit_prompt")}
               </HeaderLink>
               <p>{t("nextSteps.box_2a")}</p>
