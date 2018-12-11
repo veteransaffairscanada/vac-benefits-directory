@@ -91,7 +91,7 @@ describe("BB", () => {
   });
 
   it("contains a BenefitsPane", async () => {
-    expect(mounted_BB().find("#BenefitsPane").length).not.toEqual(0);
+    expect(shallow_BB().find("#BenefitsPane").length).not.toEqual(0);
   });
 
   it("has the ProfileSelector component", () => {
@@ -107,6 +107,14 @@ describe("BB", () => {
   });
 
   it("contains BreadCrumbs", async () => {
-    expect(mounted_BB().find("BreadCrumbs").length).toEqual(1);
+    expect(shallow_BB().find("BreadCrumbs").length).toEqual(1);
+  });
+
+  it("contains a favourites dot that displays the number of favourites", async () => {
+    expect(
+      shallow_BB()
+        .find("#favouritesDot")
+        .text()
+    ).toEqual("0");
   });
 });
