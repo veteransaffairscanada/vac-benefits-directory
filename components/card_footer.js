@@ -5,7 +5,7 @@ import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
-import { cx, css } from "react-emotion";
+import { cx, css } from "emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 var constants = require("../utils/hardcoded_strings");

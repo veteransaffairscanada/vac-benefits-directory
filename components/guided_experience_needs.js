@@ -4,7 +4,7 @@ import { Grid } from "@material-ui/core/";
 import NeedButton from "./need_button";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
-import { css } from "react-emotion";
+import { css } from "emotion";
 
 const root = css`
   padding: 0 15px !important;

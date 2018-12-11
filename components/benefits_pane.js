@@ -8,7 +8,7 @@ import {
   getFilteredBenefitsWithoutSearch,
   getFilteredBenefits
 } from "../selectors/benefits";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Header from "./typography/header";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
