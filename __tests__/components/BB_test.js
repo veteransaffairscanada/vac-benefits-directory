@@ -106,23 +106,7 @@ describe("BB", () => {
     expect(shallow_BB().find("#ClearEligibilityFilters"));
   });
 
-  it("contains the print button", () => {
-    expect(mounted_BB().find("#printButton").length).toEqual(1);
-  });
-
-  it("contains the share button", () => {
-    expect(mounted_BB().find("#shareButton").length).toEqual(1);
-  });
   it("contains BreadCrumbs", async () => {
     expect(mounted_BB().find("BreadCrumbs").length).toEqual(1);
-  });
-
-  it("clicking share button changes showModal state to true", () => {
-    let mounted = mounted_BB();
-    mounted
-      .find("#shareButton")
-      .first()
-      .simulate("click");
-    expect(mounted.state().showModal).toEqual(true);
   });
 });

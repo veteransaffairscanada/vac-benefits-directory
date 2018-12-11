@@ -41,7 +41,8 @@ const closeIcon = css`
 const cerulean = css`
   color: ${globalTheme.colour.cerulean};
 `;
-export class ProfileNeedsSelectorMobile extends Component {
+
+export class SelectionsEditor extends Component {
   state = {
     open: false
   };
@@ -91,28 +92,26 @@ export class ProfileNeedsSelectorMobile extends Component {
 
         <ExpansionPanelDetails>
           <Grid container>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
+              {this.countSelected() > 0 ? (
+                <HeaderButton
+                  id="ClearFilters"
+                  className={clearButton}
+                  onClick={() => {
+                    this.clearFilters();
+                  }}
+                >
+                  {t("reset filters")} {"(" + this.countSelected() + ")"}
+                  <CloseIcon className={closeIcon} />
+                </HeaderButton>
+              ) : null}
+            </Grid>
+
+            <Grid item xs={12}>
               <ProfileSelector t={t} store={store} />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <NeedsSelector t={t} store={store} />
-
-              {this.countSelected() > 0 ? (
-                <h3 variant="title" className={filterTitle}>
-                  <HeaderButton
-                    id="ClearFiltersMobile"
-                    className={clearButton}
-                    onClick={() => {
-                      this.clearFilters();
-                    }}
-                  >
-                    {t("reset filters")} {"(" + this.countSelected() + ")"}
-                    <CloseIcon className={closeIcon} />
-                  </HeaderButton>
-                </h3>
-              ) : (
-                ""
-              )}
             </Grid>
           </Grid>
         </ExpansionPanelDetails>
@@ -142,7 +141,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-ProfileNeedsSelectorMobile.propTypes = {
+SelectionsEditor.propTypes = {
   profileQuestions: PropTypes.array.isRequired,
   responses: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
@@ -154,4 +153,4 @@ ProfileNeedsSelectorMobile.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileNeedsSelectorMobile);
+)(SelectionsEditor);
