@@ -71,7 +71,7 @@ export class NextSteps extends Component {
 
             <div className={innerDiv} />
 
-            <ul className={whatsNextList}>
+            <ul id="nextStepsList" className={whatsNextList}>
               <li className={liItem}>{t("nextSteps.bullet_1")}</li>
               <li className={liItem}>{t("nextSteps.bullet_2")}</li>
               <li className={liItem}>{t("nextSteps.bullet_3")}</li>
@@ -93,13 +93,14 @@ export class NextSteps extends Component {
           </Grid>
 
           <Grid item sm={12} md={6}>
-            <Paper className={fullHeight} padding="sm">
+            <Paper id="myVacCard" className={fullHeight} padding="sm">
               <Header size="md" className={font21}>
                 {t("nextSteps.register_myvac")}
               </Header>
               <p>
                 {t("nextSteps.box_1")}
                 <a
+                  id="registerNowLink"
                   href={t("nextSteps.myvac_register_href")}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -110,6 +111,7 @@ export class NextSteps extends Component {
                 .
               </p>
               <Button
+                id="myVacAccountButton"
                 onClick={() => {
                   let exitUrl = t("contact.my_vac_link");
                   logEvent("Exit", exitUrl);
@@ -122,8 +124,12 @@ export class NextSteps extends Component {
             </Paper>
           </Grid>
           <Grid item sm={12} md={6}>
-            <Paper className={fullHeight} padding="sm">
-              <HeaderLink arrow="forward" href={this.props.mapUrl}>
+            <Paper id="nearbyOfficeCard" className={fullHeight} padding="sm">
+              <HeaderLink
+                id="nearbyOfficeLink"
+                arrow="forward"
+                href={this.props.mapUrl}
+              >
                 {t("favourites.visit_prompt")}
               </HeaderLink>
               <p>{t("nextSteps.box_2a")}</p>
