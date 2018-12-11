@@ -24,6 +24,13 @@ describe("NextSteps", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
+  it("has the next steps list", () => {
+    expect(
+      mount(<NextSteps {...props} {...reduxState} />).find("#nextStepsList")
+        .length
+    ).not.toEqual(0);
+  });
+
   it("has the MyVac card", () => {
     expect(
       mount(<NextSteps {...props} {...reduxState} />).find("#myVacCard").length

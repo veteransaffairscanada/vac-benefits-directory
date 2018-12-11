@@ -71,7 +71,7 @@ export class NextSteps extends Component {
 
             <div className={innerDiv} />
 
-            <ul className={whatsNextList}>
+            <ul id="nextStepsList" className={whatsNextList}>
               <li className={liItem}>{t("nextSteps.bullet_1")}</li>
               <li className={liItem}>{t("nextSteps.bullet_2")}</li>
               <li className={liItem}>{t("nextSteps.bullet_3")}</li>
