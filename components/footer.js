@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { WordMark } from "@cdssnc/gcui";
 import { Toolbar } from "@material-ui/core";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import FooterLink from "./typography/footer_link";
 import { globalTheme } from "../theme";
 

@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import Bookmark from "./icons/Bookmark";
-import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
+import SelectionsEditor from "./selections_editor";
 import { connect } from "react-redux";
 import { getFavouritesUrl, getPrintUrl, getHomeUrl } from "../selectors/urls";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
@@ -95,7 +95,7 @@ export class BB extends Component {
                   </HeaderButton>
                 </Grid>
               </Grid>
-              <ProfileNeedsSelectorMobile t={t} store={store} />
+              <SelectionsEditor t={t} store={store} />
               <ShareBox
                 t={t}
                 printUrl={this.props.printUrl}

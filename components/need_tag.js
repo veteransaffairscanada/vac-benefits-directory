@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+import { css } from "emotion";
 
 const needsTag = css`
   margin-right: ${globalTheme.unit};

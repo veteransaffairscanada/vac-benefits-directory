@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Pin from "./icons/Place";
-import { cx, css } from "react-emotion";
+import { cx, css } from "emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 import Body from "../components/typography/body";

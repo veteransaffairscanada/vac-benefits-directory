@@ -10,7 +10,7 @@ import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import SearchBox from "./search_box";
 
 const container = css`

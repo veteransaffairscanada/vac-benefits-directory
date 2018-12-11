@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Header from "./typography/header";
 import Tooltip from "./tooltip";
 import Radio from "./radio";

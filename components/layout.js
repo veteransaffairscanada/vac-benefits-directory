@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "react-emotion";
+import { css } from "emotion";
+import styled from "@emotion/styled";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { AlphaBanner } from "../components/alpha_banner";
 import ErrorBoundary from "../components/error_boundary";

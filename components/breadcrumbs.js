@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Container from "./container";
 import HomeIcon from "./icons/Home";
 import HeaderLink from "./header_link";

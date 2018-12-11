@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Paper from "../components/paper";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import PrChart from "../components/stats/prChart";
