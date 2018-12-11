@@ -39,6 +39,7 @@ describe("BB", () => {
   };
 
   beforeEach(() => {
+    window.scrollTo = jest.fn();
     props = {
       t: key => key,
       clearFilters: () => true,
