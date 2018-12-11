@@ -1,7 +1,7 @@
 // from: https://raw.githubusercontent.com/UKHomeOffice/govuk-react/master/components/search-box/src/index.js
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import SearchIcon from "./icons/Search";
 import CancelIcon from "./icons/Cancel";
 import { globalTheme } from "../theme";

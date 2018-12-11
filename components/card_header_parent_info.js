@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import { logEvent } from "../utils/analytics";
 import { globalTheme } from "../theme";
 

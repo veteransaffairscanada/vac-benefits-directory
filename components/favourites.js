@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import Bookmark from "./icons/BookmarkBorder";
 import Link from "next/link";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Container from "./container";
 import Header from "./typography/header";
 import HeaderButton from "./header_button";

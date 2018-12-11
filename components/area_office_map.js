@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Button from "./button";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Header from "./typography/header";
 import Body from "./typography/body";
 

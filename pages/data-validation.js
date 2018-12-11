@@ -11,7 +11,7 @@ import ReactMoment from "react-moment";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { css, cx } from "react-emotion";
+import { cx, css } from "emotion";
 import Container from "../components/container";
 
 const pCSS = css`

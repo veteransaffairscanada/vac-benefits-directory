@@ -4,7 +4,7 @@ import Bookmark from "./icons/Bookmark";
 import BookmarkBorder from "./icons/BookmarkBorder";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
-import { cx, css } from "react-emotion";
+import { cx, css } from "emotion";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import { areCookiesDisabled } from "../utils/common";

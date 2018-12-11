@@ -9,7 +9,7 @@ import PlaceSearch from "../components/place_search";
 import { Grid } from "@material-ui/core";
 import Paper from "../components/paper";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Container from "../components/container";
 import Header from "../components/typography/header";
 import Body from "../components/typography/body";

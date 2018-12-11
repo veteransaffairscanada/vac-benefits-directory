@@ -1,4 +1,4 @@
-import { css } from "react-emotion";
+import { css } from "emotion";
 
 /*This function is usually for hover events and such
   col: is the color in hex
