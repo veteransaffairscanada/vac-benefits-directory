@@ -12,7 +12,7 @@ describe("NextSteps", () => {
   beforeEach(() => {
     props = {
       t: translate,
-      mapUrl: { query: {}, route: "/map" }
+      mapUrl: "/map"
     };
 
     reduxState = {};
@@ -66,6 +66,6 @@ describe("NextSteps", () => {
       mount(<NextSteps {...props} {...reduxState} />)
         .find("#nearbyOfficeLink")
         .prop("href")
-    ).toEqual({ query: {}, route: "/map" });
+    ).toEqual("/map");
   });
 });
