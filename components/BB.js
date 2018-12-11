@@ -30,6 +30,19 @@ const favouritesLink = css`
   border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
   margin-bottom: 24px;
 `;
+const dot = css`
+  height: 23px;
+  width: 24px;
+  padding-top: 1px;
+  background-color: ${globalTheme.colour.red2};
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  margin-top: 2px;
+  float: right;
+`;
 
 export class BB extends Component {
   state = {
@@ -74,11 +87,11 @@ export class BB extends Component {
                     href={this.props.favouritesUrl}
                   >
                     <Bookmark />
-                    {t("B3.favouritesButtonText") +
-                      " (" +
-                      this.props.favouriteBenefits.length +
-                      ")"}
+                    {t("B3.favouritesButtonText")}
                   </HeaderLink>
+                  <span className={dot} id="favouritesDot">
+                    {this.props.favouriteBenefits.length}
+                  </span>
                 </Grid>
                 <Grid item xs={12}>
                   <HeaderButton
