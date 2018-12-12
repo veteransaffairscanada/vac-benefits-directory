@@ -69,6 +69,8 @@ export class BenefitsPane extends Component {
     switch (true) {
       case this.countSelection() === 0 && this.props.searchString.trim() === "":
         return t("B3.All benefits to consider");
+      case this.props.searchString.trim() === "":
+        return t("B3.x benefits to consider", { x: x });
       case x === 1:
         return t("B3.search_results_single");
       default:
