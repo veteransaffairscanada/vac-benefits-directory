@@ -1,10 +1,7 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
-import { sheet, flush } from "emotion";
+import { shallow } from "enzyme";
+import { flush } from "emotion";
 import WordMark from "../../components/word_mark";
-
-const stringify = stylesheet =>
-  stylesheet.tags.map(tag => tag.textContent || "").join("");
 
 describe("<WordMark />", () => {
   afterEach(() => flush());
