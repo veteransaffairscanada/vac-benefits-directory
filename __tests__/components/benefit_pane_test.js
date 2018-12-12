@@ -44,7 +44,8 @@ describe("BenefitsPane", () => {
       filteredBenefits: [],
       nonFilteredBenefits: [],
       nextStepsRef: React.createRef(),
-      favouriteBenefits: []
+      favouriteBenefits: [],
+      reduxState: { benefits: [] }
     };
     _mounted = undefined;
     reduxData = {
