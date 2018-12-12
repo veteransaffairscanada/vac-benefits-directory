@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
-// import { mediaQuery } from '../utils'
 
 const Badge = styled.span`
   line-height: 1.8;
