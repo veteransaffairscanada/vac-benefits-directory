@@ -4,7 +4,7 @@ import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
-import Bookmark from "./icons/BookmarkBorder";
+import SaveChecked from "./icons/SaveUnchecked";
 import Link from "next/link";
 import { css } from "emotion";
 import Container from "./container";
@@ -19,7 +19,7 @@ import BreadCrumbs from "./breadcrumbs";
 import ShareBox from "./share_box";
 import NextSteps from "./next_steps";
 
-const bookmarkCSS = css`
+const saveCSS = css`
   font-size: 70px !important;
 `;
 const emptyList = css`
@@ -152,7 +152,7 @@ export class Favourites extends Component {
               </Grid>
               {filteredBenefits.length == 0 ? (
                 <Body className={emptyList}>
-                  <Bookmark className={bookmarkCSS} />
+                  <SaveChecked className={saveCSS} />
                   <br />
                   {t("favourites.help_msg_line1")}
                   <br />

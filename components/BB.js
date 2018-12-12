@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
-import Bookmark from "./icons/Bookmark";
+import SaveChecked from "./icons/SaveChecked";
 import SelectionsEditor from "./selections_editor";
 import { connect } from "react-redux";
 import { getFavouritesUrl, getPrintUrl, getHomeUrl } from "../selectors/urls";
@@ -73,7 +73,7 @@ export class BB extends Component {
                     id="savedBenefits"
                     href={this.props.favouritesUrl}
                   >
-                    <Bookmark />
+                    <SaveChecked />
                     {t("B3.favouritesButtonText") +
                       " (" +
                       this.props.favouriteBenefits.length +
