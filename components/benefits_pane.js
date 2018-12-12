@@ -163,7 +163,10 @@ export class BenefitsPane extends Component {
               size="lg"
               headingLevel="h1"
             >
-              {this.countString(filteredBenefits.length, t)}
+              {this.countString(
+                filteredBenefits.length + nonFilteredBenefits.length,
+                t
+              )}
             </Header>
             {filteredBenefits.length > 0 ? (
               <Body>{t("B3.check eligibility")}</Body>
@@ -188,7 +191,10 @@ export class BenefitsPane extends Component {
             <Grid container spacing={24}>
               {this.resultsHeader(
                 filteredBenefits.length,
-                t("B3.results_filtered")
+                this.props.filteredBenefitsWithoutSearch.length ==
+                  this.props.reduxState.benefits.length
+                  ? t("B3.results_all_benefits")
+                  : t("B3.results_filtered")
               )}
               <BenefitList
                 t={t}
