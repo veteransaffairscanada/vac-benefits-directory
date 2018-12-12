@@ -42,6 +42,7 @@ describe("BenefitsPane", () => {
         statusAndVitals: ""
       },
       filteredBenefits: [],
+      nonFilteredBenefits: [],
       nextStepsRef: React.createRef(),
       favouriteBenefits: []
     };
@@ -174,13 +175,13 @@ describe("BenefitsPane", () => {
       });
     });
 
-    describe("filteredResultsHeader", () => {
+    describe("resultsHeader", () => {
       it("returns a Header if there is at least one result", () => {
         mounted().setProps({ searchString: "t" });
         expect(
           mounted()
             .instance()
-            .filteredResultsHeader(1, props.t)
+            .resultsHeader(1, props.t)
         ).not.toEqual("");
       });
       it("returns an empty string if there are no results", () => {
@@ -188,7 +189,7 @@ describe("BenefitsPane", () => {
         expect(
           mounted()
             .instance()
-            .filteredResultsHeader(0, props.t)
+            .resultsHeader(0, props.t)
         ).toEqual("");
       });
     });
