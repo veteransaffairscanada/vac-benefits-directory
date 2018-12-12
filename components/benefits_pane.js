@@ -6,7 +6,9 @@ import { connect } from "react-redux";
 import {
   getProfileFilters,
   getFilteredBenefitsWithoutSearch,
-  getFilteredBenefits
+  getNonFilteredBenefitsWithoutSearch,
+  getFilteredBenefits,
+  getNonFilteredBenefits
 } from "../selectors/benefits";
 import { css } from "emotion";
 import Header from "./typography/header";
@@ -48,7 +50,13 @@ const alignLeft = css`
 
 const headerPadding = css`
   padding: 0 12px;
-  margin-top: 20px;
+  margin-top: 30px;
+  margin-bottom: 7px;
+`;
+
+const spacer = css`
+  margin-top: 40px;
+  width: 100%;
 `;
 
 export class BenefitsPane extends Component {
@@ -76,11 +84,11 @@ export class BenefitsPane extends Component {
     }
   };
 
-  filteredResultsHeader = (x, t) => {
+  resultsHeader = (x, headerText) => {
     if (this.props.searchString.trim() !== "" && x > 0) {
       return (
         <Header className={headerPadding} size="sm_md" headingLevel="h2">
-          {t("B3.results_filtered")}
+          {headerText}
         </Header>
       );
     } else {
@@ -98,7 +106,12 @@ export class BenefitsPane extends Component {
   };
 
   render() {
-    const { t, filteredBenefits, nextStepsRef } = this.props; // eslint-disable-line no-unused-vars
+    const {
+      t,
+      filteredBenefits,
+      nonFilteredBenefits,
+      nextStepsRef
+    } = this.props; // eslint-disable-line no-unused-vars
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
@@ -171,10 +184,26 @@ export class BenefitsPane extends Component {
 
           <Grid item xs={12}>
             <Grid container spacing={24}>
-              {this.filteredResultsHeader(filteredBenefits.length, t)}
+              {this.resultsHeader(
+                filteredBenefits.length,
+                t("B3.results_filtered")
+              )}
               <BenefitList
                 t={t}
                 filteredBenefits={filteredBenefits}
+                searchString={this.props.searchString}
+                showFavourites={true}
+                store={this.props.store}
+              />
+              {nonFilteredBenefits.length > 0 ? <div className={spacer} /> : ""}
+
+              {this.resultsHeader(
+                nonFilteredBenefits.length,
+                t("B3.results_all_benefits")
+              )}
+              <BenefitList
+                t={t}
+                filteredBenefits={nonFilteredBenefits}
                 searchString={this.props.searchString}
                 showFavourites={true}
                 store={this.props.store}
@@ -223,7 +252,12 @@ const mapStateToProps = (reduxState, props) => {
       reduxState,
       props
     ),
+    nonFilteredBenefitsWithoutSearch: getNonFilteredBenefitsWithoutSearch(
+      reduxState,
+      props
+    ),
     filteredBenefits: getFilteredBenefits(reduxState, props),
+    nonFilteredBenefits: getNonFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
     selectedNeeds: reduxState.selectedNeeds,
     reduxState: reduxState
@@ -238,6 +272,7 @@ BenefitsPane.propTypes = {
   profileFilters: PropTypes.object.isRequired,
   filteredBenefitsWithoutSearch: PropTypes.array.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
+  nonFilteredBenefits: PropTypes.array.isRequired,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
   searchString: PropTypes.string.isRequired,
