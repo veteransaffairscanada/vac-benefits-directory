@@ -46,6 +46,11 @@ const alignLeft = css`
   text-align: left;
 `;
 
+const headerPadding = css`
+  padding: 0 12px;
+  margin-top: 20px;
+`;
+
 export class BenefitsPane extends Component {
   clearFilters = () => {
     this.props.profileQuestions.forEach(q => {
@@ -64,12 +69,24 @@ export class BenefitsPane extends Component {
     switch (true) {
       case this.countSelection() === 0 && this.props.searchString.trim() === "":
         return t("B3.All benefits to consider");
-      case x === 0:
-        return t("B3.No benefits");
-      case x === 1:
-        return t("B3.One benefit");
-      default:
+      case this.props.searchString.trim() === "":
         return t("B3.x benefits to consider", { x: x });
+      case x === 1:
+        return t("B3.search_results_single");
+      default:
+        return t("B3.search_results", { x: x });
+    }
+  };
+
+  filteredResultsHeader = (x, t) => {
+    if (this.props.searchString.trim() !== "" && x > 0) {
+      return (
+        <Header className={headerPadding} size="sm_md" headingLevel="h2">
+          {t("B3.results_filtered")}
+        </Header>
+      );
+    } else {
+      return "";
     }
   };
 
@@ -156,6 +173,7 @@ export class BenefitsPane extends Component {
 
           <Grid item xs={12}>
             <Grid container spacing={24}>
+              {this.filteredResultsHeader(filteredBenefits.length, t)}
               <BenefitList
                 t={t}
                 filteredBenefits={filteredBenefits}

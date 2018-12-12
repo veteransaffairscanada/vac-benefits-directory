@@ -17,14 +17,14 @@ var _default = (0, _createSvgIcon.default)(
     null,
     _react.default.createElement("path", {
       d:
-        "M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"
+        "M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z"
     }),
     _react.default.createElement("path", {
       fill: "none",
       d: "M0 0h24v24H0z"
     })
   ),
-  "BookmarkBorder"
+  "SaveUnchecked"
 );
 
 exports.default = _default;

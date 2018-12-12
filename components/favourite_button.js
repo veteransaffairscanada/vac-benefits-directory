@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Bookmark from "./icons/Bookmark";
-import BookmarkBorder from "./icons/BookmarkBorder";
+import SaveChecked from "./icons/SaveChecked";
+import SaveUnchecked from "./icons/SaveUnchecked";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
 import { cx, css } from "emotion";
@@ -10,7 +10,7 @@ import HeaderButton from "./header_button";
 import { areCookiesDisabled } from "../utils/common";
 import Tooltip from "./tooltip";
 
-const bookmarkButton = css`
+const saveButton = css`
   margin-left: -5px !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
@@ -30,7 +30,7 @@ const hideBig = css`
     display: none !important;
   }
 `;
-const bookmarkIcon = css`
+const saveIcon = css`
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 45px !important;
   }
@@ -58,15 +58,13 @@ export class FavouriteButton extends Component {
 
   render() {
     const { t, benefit } = this.props;
-    const isBookmarked =
+    const isSaved =
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     const longButtonText = t(
-      isBookmarked
-        ? "B3.favouritesButtonTextRemove"
-        : "B3.favouritesButtonBText"
+      isSaved ? "B3.favouritesButtonTextRemove" : "B3.favouritesButtonBText"
     );
     const shortButtonText = t(
-      isBookmarked
+      isSaved
         ? "B3.favouritesButtonTextRemove"
         : "B3.favouritesButtonBTextMobile"
     );
@@ -84,7 +82,7 @@ export class FavouriteButton extends Component {
           disabled={this.props.cookiesDisabled}
           ariaLabel={longButtonText + " " + benefitName}
           id={"favourite-" + benefit.id}
-          className={bookmarkButton}
+          className={saveButton}
           aria-label={t("B3.favouritesButtonText")}
           onClick={() => this.toggleFavourite(benefit.id)}
           onMouseOver={() => {
@@ -92,10 +90,10 @@ export class FavouriteButton extends Component {
           }}
           size="small"
         >
-          {isBookmarked ? (
-            <Bookmark className={cx("bookmarked", bookmarkIcon)} />
+          {isSaved ? (
+            <SaveChecked className={cx("saved", saveIcon)} />
           ) : (
-            <BookmarkBorder className={cx("notBookmarked", bookmarkIcon)} />
+            <SaveUnchecked className={cx("notSaved", saveIcon)} />
           )}
           <span className={hideSmall}>{longButtonText}</span>
           <span className={hideBig}>{shortButtonText}</span>

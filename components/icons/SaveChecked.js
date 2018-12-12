@@ -16,14 +16,15 @@ var _default = (0, _createSvgIcon.default)(
     _react.default.Fragment,
     null,
     _react.default.createElement("path", {
-      d: "M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"
+      d:
+        "M14 10H2v2h12v-2zm0-4H2v2h12V6zM2 16h8v-2H2v2zm19.5-4.5L23 13l-6.99 7-4.51-4.5L13 14l3.01 3 5.49-5.5z"
     }),
     _react.default.createElement("path", {
       fill: "none",
       d: "M0 0h24v24H0z"
     })
   ),
-  "Bookmark"
+  "SaveChecked"
 );
 
 exports.default = _default;
