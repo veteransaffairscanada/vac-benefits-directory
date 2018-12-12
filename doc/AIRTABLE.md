@@ -67,7 +67,7 @@ To do anything in AirTable, always take the following steps:
 4. Each path is represented by a comma separated list of answers to the questions. Decide which one you want to change.
 5. Write down the new, correct path to the benefit on paper. This should be a comma separated list of required options. If a question does not have any required options, leave them out.
 6. Navigate to the [eligibilityPaths](https://airtable.com/tblHt9ZuCBwsplYw2/viwWR17CgrYqiNa0B) sheet.
-7. Determine if the new path you wrote down already exists. If it exists, add the benefit to the benefits column for that row. If it doesn't exist, create a new row and add the benefit.
+7. Determine if the new path you wrote down already exists. If it exists, add the benefit to the benefits column for that row. If it doesn't exist, create a new row and add the benefit. Note: only include `stillServing`, `releasedAlive`, or `deceased` in a path if the path includes `family` and not `veteran`, `serving member`, or `organization`. This may mean that you need to create 2 paths for a benefit: one path for family members and another path for veterans.
 8. Delete the benefit from the row for the incorrect eligibility path
 
 ### Adding a category (aka need or checkbox question), associating it with a benefit
