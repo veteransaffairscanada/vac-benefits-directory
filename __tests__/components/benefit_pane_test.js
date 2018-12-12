@@ -194,6 +194,30 @@ describe("BenefitsPane", () => {
       });
     });
 
+    describe("countString", () => {
+      it("returns 'B3.x Benefits to consider' if there is no search string", () => {
+        expect(
+          mounted()
+            .instance()
+            .countString(2, props.t)
+        ).toEqual("B3.All benefits to consider");
+      });
+
+      it("returns search results if there is a search string", () => {
+        mounted().setProps({ searchString: "t" });
+        expect(
+          mounted()
+            .instance()
+            .countString(2, props.t)
+        ).toEqual("B3.search_results");
+        expect(
+          mounted()
+            .instance()
+            .countString(1, props.t)
+        ).toEqual("B3.search_results_single");
+      });
+    });
+
     describe("search feature", () => {
       it("shows a text search box", () => {
         expect(
