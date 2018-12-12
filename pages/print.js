@@ -4,7 +4,7 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import withI18N from "../lib/i18nHOC";
 import NeedButton from "../components/need_button";
-import { WordMark } from "@cdssnc/gcui";
+import WordMark from "../components/word_mark";
 import FIP from "../components/fip";
 import { cx, css } from "emotion";
 

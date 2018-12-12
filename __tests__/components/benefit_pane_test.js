@@ -210,5 +210,9 @@ describe("BenefitsPane", () => {
         expect(reduxData.setSearchString).toBeCalledWith("foo");
       });
     });
+
+    it("renders NextSteps component", () => {
+      expect(mounted().find("NextSteps").length).toEqual(1);
+    });
   });
 });
