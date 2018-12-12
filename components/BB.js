@@ -32,8 +32,9 @@ const favouritesLink = css`
 `;
 const dot = css`
   height: 23px;
-  width: 24px;
+  width: 22.5px;
   padding-top: 1px;
+  padding-left: 1.5px;
   background-color: ${globalTheme.colour.red2};
   border-radius: 50%;
   display: inline-block;
