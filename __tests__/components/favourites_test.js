@@ -37,6 +37,7 @@ describe("Favourites", () => {
   };
 
   beforeEach(() => {
+    window.scrollTo = jest.fn();
     props = {
       t: key => key,
       selectedEligibility: {
@@ -114,5 +115,12 @@ describe("Favourites", () => {
         "benefit_3"
       ]).length
     ).toEqual(2);
+  });
+
+  it("clicking next steps button triggers scroll", () => {
+    mountedFavourites()
+      .find("#nextSteps")
+      .simulate("click");
+    expect(window.scrollTo).toBeCalled();
   });
 });
