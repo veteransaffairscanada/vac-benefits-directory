@@ -123,3 +123,13 @@ export const mutateUrl = (url, route = "", query = {}) => {
       .join("&");
   return newUrl;
 };
+
+export const getBenefitCountString = (benefits, t) => {
+  if (benefits.length === 0) {
+    return t("BenefitsPane.no_filtered_benefits");
+  } else if (benefits.length === 1) {
+    return t("B3.One benefit");
+  } else {
+    return t("B3.x benefits to consider", { x: benefits.length });
+  }
+};
