@@ -38,7 +38,7 @@ const root = css`
   width: 100%;
 `;
 const benefitName = css`
-  padding-top: 10px;
+  padding-top: 35px;
   padding-left: 35px;
   padding-right: 35px;
 `;

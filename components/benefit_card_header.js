@@ -13,7 +13,6 @@ const cardTop = css`
   padding-bottom: 20px;
   padding-left: 35px;
   padding-right: 35px;
-  margin-bottom: 15px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
