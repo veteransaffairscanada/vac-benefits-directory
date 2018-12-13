@@ -42,10 +42,8 @@ describe("BenefitsPane", () => {
         statusAndVitals: ""
       },
       filteredBenefits: [],
-      nonFilteredBenefits: [],
       nextStepsRef: React.createRef(),
-      favouriteBenefits: [],
-      reduxState: { benefits: [] }
+      favouriteBenefits: []
     };
     _mounted = undefined;
     reduxData = {
@@ -176,13 +174,13 @@ describe("BenefitsPane", () => {
       });
     });
 
-    describe("resultsHeader", () => {
+    describe("filteredResultsHeader", () => {
       it("returns a Header if there is at least one result", () => {
         mounted().setProps({ searchString: "t" });
         expect(
           mounted()
             .instance()
-            .resultsHeader(1, props.t)
+            .filteredResultsHeader(1, props.t)
         ).not.toEqual("");
       });
       it("returns an empty string if there are no results", () => {
@@ -190,32 +188,8 @@ describe("BenefitsPane", () => {
         expect(
           mounted()
             .instance()
-            .resultsHeader(0, props.t)
+            .filteredResultsHeader(0, props.t)
         ).toEqual("");
-      });
-    });
-
-    describe("countString", () => {
-      it("returns 'B3.x Benefits to consider' if there is no search string", () => {
-        expect(
-          mounted()
-            .instance()
-            .countString(2, props.t)
-        ).toEqual("B3.All benefits to consider");
-      });
-
-      it("returns search results if there is a search string", () => {
-        mounted().setProps({ searchString: "t" });
-        expect(
-          mounted()
-            .instance()
-            .countString(2, props.t)
-        ).toEqual("B3.search_results");
-        expect(
-          mounted()
-            .instance()
-            .countString(1, props.t)
-        ).toEqual("B3.search_results_single");
       });
     });
 
