@@ -200,7 +200,7 @@ describe("BenefitsPane", () => {
         expect(
           mounted()
             .instance()
-            .countString(2, props.t)
+            .countString(["a", "b"], props.t)
         ).toEqual("B3.All benefits to consider");
       });
 
@@ -209,12 +209,12 @@ describe("BenefitsPane", () => {
         expect(
           mounted()
             .instance()
-            .countString(2, props.t)
+            .countString(["a", "b"], props.t)
         ).toEqual("B3.search_results");
         expect(
           mounted()
             .instance()
-            .countString(1, props.t)
+            .countString(["a"], props.t)
         ).toEqual("B3.search_results_single");
       });
     });
