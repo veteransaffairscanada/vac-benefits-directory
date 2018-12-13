@@ -163,7 +163,11 @@ export class BenefitsPane extends Component {
               headingLevel="h1"
             >
               {this.countString(
-                filteredBenefits.concat(nonFilteredBenefits),
+                filteredBenefits.concat(
+                  this.props.searchString.trim() === ""
+                    ? []
+                    : nonFilteredBenefits
+                ),
                 t
               )}
             </Header>
@@ -202,19 +206,24 @@ export class BenefitsPane extends Component {
                 showFavourites={true}
                 store={this.props.store}
               />
+
               {nonFilteredBenefits.length > 0 ? <div className={spacer} /> : ""}
 
               {this.resultsHeader(
                 nonFilteredBenefits.length,
                 t("B3.results_all_benefits")
               )}
-              <BenefitList
-                t={t}
-                filteredBenefits={nonFilteredBenefits}
-                searchString={this.props.searchString}
-                showFavourites={true}
-                store={this.props.store}
-              />
+              {this.props.searchString.trim() === "" ? (
+                ""
+              ) : (
+                <BenefitList
+                  t={t}
+                  filteredBenefits={nonFilteredBenefits}
+                  searchString={this.props.searchString}
+                  showFavourites={true}
+                  store={this.props.store}
+                />
+              )}
             </Grid>
           </Grid>
 
