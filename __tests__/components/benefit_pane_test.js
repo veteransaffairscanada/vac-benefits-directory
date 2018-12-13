@@ -12,6 +12,7 @@ import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import nextStepsFixture from "../fixtures/nextSteps";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -49,6 +50,7 @@ describe("BenefitsPane", () => {
     };
     _mounted = undefined;
     reduxData = {
+      nextSteps: nextStepsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       profileQuestions: questionsFixture.filter(
