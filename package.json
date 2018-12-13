@@ -54,6 +54,7 @@
     "react-dom": "^16.6.3",
     "react-ga": "^2.5.6",
     "react-google-maps": "^9.4.5",
+    "react-helmet": "^5.2.0",
     "react-highcharts": "^16.0.2",
     "react-highlight-words": "^0.14.0",
     "react-jss": "^8.6.1",

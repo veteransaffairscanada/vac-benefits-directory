@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 import FooterButton from "./footer_button";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
+import Head from "next/head";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
 
@@ -39,25 +41,30 @@ class LanguageButton extends Component {
     const { t } = this.props;
 
     return (
-      <div title={t("other-language-in-current-language")}>
-        <FooterButton
-          id="changeLanguage"
-          onClick={this.changeLanguage}
-          className={desktopButton}
-          lang={t("other-language-code")}
-        >
-          {t("other-language")}
-        </FooterButton>
+      <React.Fragment>
+        <Helmet>
+          <html lang={t("current-language-code")} />
+        </Helmet>
+        <div title={t("other-language-in-current-language")}>
+          <FooterButton
+            id="changeLanguage"
+            onClick={this.changeLanguage}
+            className={desktopButton}
+            lang={t("other-language-code")}
+          >
+            {t("other-language")}
+          </FooterButton>
 
-        <FooterButton
-          id="changeLanguageMobile"
-          onClick={this.changeLanguage}
-          className={mobileButton}
-          lang={t("other-language-code")}
-        >
-          {this.titleCase(t("other-language-code"))}
-        </FooterButton>
-      </div>
+          <FooterButton
+            id="changeLanguageMobile"
+            onClick={this.changeLanguage}
+            className={mobileButton}
+            lang={t("other-language-code")}
+          >
+            {this.titleCase(t("other-language-code"))}
+          </FooterButton>
+        </div>
+      </React.Fragment>
     );
   }
 }
