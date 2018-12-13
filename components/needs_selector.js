@@ -10,6 +10,9 @@ import { showQuestion } from "../utils/common";
 const needsButtons = css`
   display: flex;
   flex-wrap: wrap;
+  label {
+    width: 100%;
+  }
 `;
 
 const topBorder = css`
