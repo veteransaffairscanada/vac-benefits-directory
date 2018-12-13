@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import BB from "../components/BB";
 import { getProfileFilters, getFilteredBenefits } from "../selectors/benefits";
 import { globalTheme } from "../theme";
+import { getBenefitCountString } from "../utils/common";
 
 export class BenefitsDirectory extends Component {
   constructor() {
@@ -56,13 +57,9 @@ export class BenefitsDirectory extends Component {
     Router.replace(href);
   };
 
-  countString = (x, t) => {
-    return t("B3.x benefits to consider", { x: x.length });
-  };
-
   render() {
     const { i18n, t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
-    const title = this.countString(filteredBenefits, t);
+    const title = getBenefitCountString(filteredBenefits, t);
     return (
       <Layout
         i18n={this.props.i18n}

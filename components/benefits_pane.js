@@ -15,7 +15,7 @@ import Header from "./typography/header";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
 import Button from "./button";
-import { getLink } from "../utils/common";
+import { getLink, getBenefitCountString } from "../utils/common";
 import { globalTheme } from "../theme";
 import NextSteps from "./next_steps";
 
@@ -77,11 +77,11 @@ export class BenefitsPane extends Component {
       case this.countSelection() === 0 && this.props.searchString.trim() === "":
         return t("B3.All benefits to consider");
       case this.props.searchString.trim() === "":
-        return t("B3.x benefits to consider", { x: x });
-      case x === 1:
+        return getBenefitCountString(x, t);
+      case x.length === 1:
         return t("B3.search_results_single");
       default:
-        return t("B3.search_results", { x: x });
+        return t("B3.search_results", { x: x.length });
     }
   };
 
@@ -163,10 +163,11 @@ export class BenefitsPane extends Component {
               headingLevel="h1"
             >
               {this.countString(
-                filteredBenefits.length +
-                  (this.props.searchString.trim() === ""
-                    ? 0
-                    : nonFilteredBenefits.length),
+                filteredBenefits.concat(
+                  this.props.searchString.trim() === ""
+                    ? []
+                    : nonFilteredBenefits
+                ),
                 t
               )}
             </Header>
