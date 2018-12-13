@@ -107,6 +107,13 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
   }
 );
 
+export const getNonFilteredBenefitsWithoutSearch = createSelector(
+  [getFilteredBenefitsWithoutSearch, getBenefits],
+  (filteredBenefitsWithoutSearch, benefits) => {
+    return benefits.filter(b => filteredBenefitsWithoutSearch.indexOf(b) == -1);
+  }
+);
+
 export const getFilteredBenefits = createSelector(
   [
     getFilteredBenefitsWithoutSearch,
@@ -123,39 +130,81 @@ export const getFilteredBenefits = createSelector(
     frIdx
   ) => {
     let matchingBenefits = filteredBenefitsWithoutSearch;
-    searchString = searchString.toLowerCase().trim();
-
-    // If there is a searchString then run another filter
-    if (searchString !== "") {
-      // Reinitalize indexes after they are serialized by Redux
-      let searchIndex =
-        currentLanguage === "en"
-          ? lunr.Index.load(JSON.parse(enIdx))
-          : lunr.Index.load(JSON.parse(frIdx));
-      let results = searchIndex.query(q => {
-        searchString.split(/\s+/).forEach(term => {
-          q.term(term, { usePipeline: true, boost: 100 });
-          q.term(term, {
-            usePipeline: false,
-            boost: 10,
-            wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
-          });
-          q.term(term, { usePipeline: false, editDistance: 1 });
-        });
-      });
-
-      let resultDict = {};
-      results.forEach(x => {
-        resultDict[x.ref] = x;
-      });
-      let resultIds = results.map(r => r.ref);
-
-      matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));
-      matchingBenefits.forEach(b => {
-        b.score = resultDict[b.id].score;
-      });
-      matchingBenefits.sort((a, b) => b.score - a.score); // descending sort
-    }
-    return matchingBenefits;
+    return applySearchString(
+      matchingBenefits,
+      searchString,
+      currentLanguage,
+      enIdx,
+      frIdx
+    );
   }
 );
+
+export const getNonFilteredBenefits = createSelector(
+  [
+    getNonFilteredBenefitsWithoutSearch,
+    getSearchStringFilter,
+    getCurrentLanguage,
+    getEnIdx,
+    getFrIdx
+  ],
+  (
+    nonFilteredBenefitsWithoutSearch,
+    searchString,
+    currentLanguage,
+    enIdx,
+    frIdx
+  ) => {
+    let matchingBenefits = nonFilteredBenefitsWithoutSearch;
+    return applySearchString(
+      matchingBenefits,
+      searchString,
+      currentLanguage,
+      enIdx,
+      frIdx
+    );
+  }
+);
+
+export const applySearchString = (
+  matchingBenefits,
+  searchString,
+  currentLanguage,
+  enIdx,
+  frIdx
+) => {
+  searchString = searchString.toLowerCase().trim();
+
+  // If there is a searchString then run another filter
+  if (searchString !== "") {
+    // Reinitalize indexes after they are serialized by Redux
+    let searchIndex =
+      currentLanguage === "en"
+        ? lunr.Index.load(JSON.parse(enIdx))
+        : lunr.Index.load(JSON.parse(frIdx));
+    let results = searchIndex.query(q => {
+      searchString.split(/\s+/).forEach(term => {
+        q.term(term, { usePipeline: true, boost: 100 });
+        q.term(term, {
+          usePipeline: false,
+          boost: 10,
+          wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
+        });
+        q.term(term, { usePipeline: false, editDistance: 1 });
+      });
+    });
+
+    let resultDict = {};
+    results.forEach(x => {
+      resultDict[x.ref] = x;
+    });
+    let resultIds = results.map(r => r.ref);
+
+    matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));
+    matchingBenefits.forEach(b => {
+      b.score = resultDict[b.id].score;
+    });
+    matchingBenefits.sort((a, b) => b.score - a.score); // descending sort
+  }
+  return matchingBenefits;
+};
