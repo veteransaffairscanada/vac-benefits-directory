@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { PhaseBadge } from "@cdssnc/gcui";
+import { PhaseBadge } from "./phase_badge";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
 
