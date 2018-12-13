@@ -22,7 +22,6 @@ import NextSteps from "./next_steps";
 const noBenefitsPane = css`
   text-align: center;
   text-align: center;
-  max-width: 500px;
   margin: 0 auto;
 `;
 const buttonBar = css`

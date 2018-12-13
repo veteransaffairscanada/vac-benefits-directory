@@ -92,7 +92,7 @@ export class Favourites extends Component {
         />
         <Container id="favourites">
           <Grid container spacing={32}>
-            <Grid item lg={4} md={4} sm={5} xs={12}>
+            <Grid item lg={3} md={3} sm={4} xs={12}>
               <Grid container spacing={16} className={favouritesLink}>
                 <Grid item xs={12}>
                   <HeaderButton
@@ -116,31 +116,30 @@ export class Favourites extends Component {
                 share={false}
               />
             </Grid>
-            <Grid item lg={8} md={8} sm={7} xs={12}>
-              <Grid container spacing={16}>
-                <Grid item xs={12}>
-                  {this.state.showDisabledCookieBanner ? (
+            <Grid item lg={9} md={9} sm={8} xs={12}>
+              <Grid container spacing={24}>
+                {this.state.showDisabledCookieBanner ? (
+                  <Grid item xs={12}>
                     <DisabledCookiesBanner
                       t={t}
                       onClose={() =>
                         this.setState({ showDisabledCookieBanner: false })
                       }
                     />
-                  ) : null}
+                  </Grid>
+                ) : null}
+                <Grid item xs={12}>
+                  <Header
+                    className={"BenefitsCounter"}
+                    size="lg"
+                    headingLevel="h1"
+                  >
+                    {t("favourites.saved_benefits", {
+                      x: filteredBenefits.length
+                    })}
+                  </Header>
+                  <Body className={topMargin}>{t("B3.check eligibility")}</Body>
                 </Grid>
-              </Grid>
-
-              <Grid container spacing={24}>
-                <Header
-                  className={"BenefitsCounter"}
-                  size="lg"
-                  headingLevel="h1"
-                >
-                  {t("favourites.saved_benefits", {
-                    x: filteredBenefits.length
-                  })}
-                </Header>
-                <Body className={topMargin}>{t("B3.check eligibility")}</Body>
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
