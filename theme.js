@@ -33,6 +33,7 @@ let theme = {
     fernGreen: "#39824d",
     darkGreen: "#295f38",
     tornadoRed: "#ea4335",
+    red2: "#d0021b",
     govukYellow: "#FFBF47",
     white: "#ffffff",
     cardGrey: "#f3f3f3",
