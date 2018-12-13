@@ -8,8 +8,11 @@ import CardHeaderImportantInfo from "./card_header_important_info";
 import AlertIcon from "./icons/alert_icon";
 
 const cardTop = css`
-  border-bottom: 1px solid ${globalTheme.colour.warmGrey};
-  padding-bottom: 15px;
+  background-color: ${globalTheme.colour.lightYellow};
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-bottom: 15px;
   display: flex;
   justify-content: flex-start;
