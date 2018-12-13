@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import FooterButton from "./footer_button";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
-import Head from "next/head";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
 
