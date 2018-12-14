@@ -10,6 +10,8 @@ import Button from "./button";
 import { getMapUrl } from "../selectors/urls";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
+import MarkdownIt from "markdown-it";
+import JsxParser from "react-jsx-parser";
 
 const outerDiv = css`
   margin-top: 40px;
@@ -54,13 +56,21 @@ const cerulean = css`
 `;
 
 export class NextSteps extends Component {
+  md = new MarkdownIt({ breaks: true });
+
   getBullets = () => {
     const { nextSteps, t } = this.props;
     const lang = t("current-language-code") === "en" ? "english" : "french";
+
     return nextSteps.map((x, n) => {
+      let jsxString = this.md
+        .render(x[lang])
+        .replace("<p>", "<span>")
+        .replace("</p>", "</span>");
+      console.log(jsxString);
       return (
         <li key={n} className={liItem}>
-          {x[lang]}
+          <JsxParser jsx={jsxString} />
         </li>
       );
     });
@@ -68,6 +78,7 @@ export class NextSteps extends Component {
 
   render() {
     const { t } = this.props;
+
     return (
       <div className={outerDiv}>
         <Grid container spacing={24}>
