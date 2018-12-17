@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
 import FooterButton from "./footer_button";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
@@ -41,9 +40,6 @@ class LanguageButton extends Component {
 
     return (
       <React.Fragment>
-        <Helmet>
-          <html lang={t("current-language-code")} />
-        </Helmet>
         <div title={t("other-language-in-current-language")}>
           <FooterButton
             id="changeLanguage"
