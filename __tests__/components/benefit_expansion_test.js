@@ -3,12 +3,12 @@ import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
-import { RelatedBenefits } from "../../components/related_benefits_list";
+import BenefitExpansion from "../../components/benefit_expansion";
 import benefitsFixture from "../fixtures/benefits";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
-describe("CardFooter", () => {
+describe("BenefitExpansion", () => {
   let props;
   let mockStore, reduxData;
   const mocked_fn = jest.fn();
@@ -33,12 +33,12 @@ describe("CardFooter", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<RelatedBenefits {...props} {...reduxData} />).html();
+    let html = mount(<BenefitExpansion {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("shows a child benefit title if the benefit has a child", () => {
-    let related = mount(<RelatedBenefits {...props} {...reduxData} />);
+    let related = mount(<BenefitExpansion {...props} {...reduxData} />);
     expect(
       related
         .find("ul")
@@ -48,7 +48,9 @@ describe("CardFooter", () => {
     ).toContain("en");
   });
   it("has a correctly configured external link button", () => {
-    let relatedComponent = mount(<RelatedBenefits {...props} {...reduxData} />);
+    let relatedComponent = mount(
+      <BenefitExpansion {...props} {...reduxData} />
+    );
     relatedComponent
       .find("Button")
       .at(0)
@@ -68,7 +70,7 @@ describe("CardFooter", () => {
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
-    mount(<RelatedBenefits {...props} {...reduxData} />)
+    mount(<BenefitExpansion {...props} {...reduxData} />)
       .find("Button")
       .at(0)
       .simulate("click");
@@ -85,7 +87,7 @@ describe("CardFooter", () => {
 
     it("shows a child benefit title if the benefit has a child", () => {
       expect(
-        mount(<RelatedBenefits {...props} {...reduxData} />)
+        mount(<BenefitExpansion {...props} {...reduxData} />)
           .find("li")
           .first()
           .text()
@@ -93,7 +95,7 @@ describe("CardFooter", () => {
     });
     it("has a button with the French link", () => {
       let relatedComponent = mount(
-        <RelatedBenefits {...props} {...reduxData} />
+        <BenefitExpansion {...props} {...reduxData} />
       );
       relatedComponent
         .find("Button")
@@ -115,7 +117,7 @@ describe("CardFooter", () => {
   describe("getBenefitIds", () => {
     it("finds service person and family benefits", () => {
       expect(
-        mount(<RelatedBenefits {...props} {...reduxData} />)
+        mount(<BenefitExpansion {...props} {...reduxData} />)
           .instance()
           .getBenefitIds(
             reduxData.eligibilityPaths,
@@ -131,7 +133,7 @@ describe("CardFooter", () => {
 
   it("has a correct getMatchingBenefits function", () => {
     expect(
-      mount(<RelatedBenefits {...props} {...reduxData} />)
+      mount(<BenefitExpansion {...props} {...reduxData} />)
         .instance()
         .getMatchingBenefits(
           reduxData.benefits,
