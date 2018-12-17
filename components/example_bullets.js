@@ -15,6 +15,9 @@ const margin = css`
     margin-bottom: 10px;
   }
 `;
+const colour = css`
+  color: ${globalTheme.colour.greyishBrown};
+`;
 
 class ExampleBullets extends Component {
   getExampleBullets = () => {
@@ -31,7 +34,7 @@ class ExampleBullets extends Component {
     const { t } = this.props;
     const bullets = this.getExampleBullets();
     return (
-      <div>
+      <div className={colour}>
         {t("benefit_card.examples")}
         <ul className={margin}>{bullets}</ul>
       </div>
