@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
-import BenefitExpansion from "../../components/benefit_expansion";
+import { BenefitExpansion } from "../../components/benefit_expansion";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 import benefitsFixture from "../fixtures/benefits";
 const { axe, toHaveNoViolations } = require("jest-axe");
