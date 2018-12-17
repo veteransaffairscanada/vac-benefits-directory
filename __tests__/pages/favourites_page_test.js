@@ -13,6 +13,7 @@ import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import translate from "../fixtures/translate";
+import nextStepsFixture from "../fixtures/nextSteps";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -38,6 +39,7 @@ describe("Favourites Page", () => {
     };
     mockStore = configureStore();
     reduxData = {
+      nextSteps: nextStepsFixture,
       questions: questionsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),

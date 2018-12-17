@@ -1,4 +1,9 @@
-import { showQuestion, getLink, questionIsRelevant } from "../../utils/common";
+import {
+  showQuestion,
+  getLink,
+  questionIsRelevant,
+  getBenefitCountString
+} from "../../utils/common";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
@@ -121,5 +126,18 @@ describe("getLink function", () => {
     url.query = { a: "aa", b: "" };
     const link = getLink(url, page);
     expect(link).toEqual("page1?a=aa");
+  });
+});
+
+describe("getBenefitCountString function", () => {
+  let t = x => x;
+  it("returns the right string", () => {
+    expect(getBenefitCountString([], t)).toEqual(
+      "BenefitsPane.no_filtered_benefits"
+    );
+    expect(getBenefitCountString(["x"], t)).toEqual("B3.One benefit");
+    expect(getBenefitCountString(["x", "y"], t)).toEqual(
+      "B3.x benefits to consider"
+    );
   });
 });

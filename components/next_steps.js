@@ -10,6 +10,8 @@ import Button from "./button";
 import { getMapUrl } from "../selectors/urls";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
+import MarkdownIt from "markdown-it";
+import JsxParser from "react-jsx-parser";
 
 const outerDiv = css`
   margin-top: 40px;
@@ -54,8 +56,30 @@ const cerulean = css`
 `;
 
 export class NextSteps extends Component {
+  md = new MarkdownIt({ breaks: true });
+
+  getBullets = () => {
+    const { nextSteps, t } = this.props;
+    const lang = t("current-language-code") === "en" ? "english" : "french";
+
+    return nextSteps.map((x, n) => {
+      let jsxString = this.md
+        .render(x[lang])
+        .replace("<p>", "<span>")
+        .replace("</p>", "</span>");
+      return (
+        <li key={n} className={liItem}>
+          <JsxParser jsx={jsxString} />
+        </li>
+      );
+    });
+  };
+
+  bullets = this.getBullets();
+
   render() {
     const { t } = this.props;
+
     return (
       <div className={outerDiv}>
         <Grid container spacing={24}>
@@ -72,10 +96,7 @@ export class NextSteps extends Component {
             <div className={innerDiv} />
 
             <ul id="nextStepsList" className={whatsNextList}>
-              <li className={liItem}>{t("nextSteps.bullet_1")}</li>
-              <li className={liItem}>{t("nextSteps.bullet_2")}</li>
-              <li className={liItem}>{t("nextSteps.bullet_3")}</li>
-              <li className={liItem}>{t("nextSteps.bullet_4")}</li>
+              {this.bullets}
             </ul>
           </Grid>
 
@@ -150,12 +171,14 @@ export class NextSteps extends Component {
 
 const mapStateToProps = (reduxState, props) => {
   return {
-    mapUrl: getMapUrl(reduxState, props, {})
+    mapUrl: getMapUrl(reduxState, props, {}),
+    nextSteps: reduxState.nextSteps
   };
 };
 
 NextSteps.propTypes = {
   t: PropTypes.func.isRequired,
+  nextSteps: PropTypes.array.isRequired,
   mapUrl: PropTypes.string.isRequired,
   store: PropTypes.object
 };

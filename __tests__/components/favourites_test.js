@@ -10,6 +10,7 @@ import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import nextStepsFixture from "../fixtures/nextSteps";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -54,6 +55,7 @@ describe("Favourites", () => {
 
     mockStore = configureStore();
     reduxData = {
+      nextSteps: nextStepsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       benefits: benefitsFixture,
