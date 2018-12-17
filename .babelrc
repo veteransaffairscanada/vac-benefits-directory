@@ -2,27 +2,20 @@
   "env": {
     "development": {
       "plugins": [
-        [
-          "emotion",
+        "transform-inline-environment-variables"
+      ],
+      "presets": [
+        "next/babel",
+        ["@emotion/babel-preset-css-prop",
           {
             "sourceMap": true,
             "autoLabel": true
           }
-        ],
-        "transform-inline-environment-variables"
-      ],
-      "presets": [
-        "next/babel"
+        ]
       ]
     },
     "production": {
       "plugins": [
-        [
-          "emotion",
-          {
-            "hoist": true
-          }
-        ],
         "transform-inline-environment-variables",
         [
           "babel-plugin-import",
@@ -44,7 +37,12 @@
         ]
       ],
       "presets": [
-        "next/babel"
+        "next/babel",
+        ["@emotion/babel-preset-css-prop",
+          {
+            "hoist": true
+          }
+        ]
       ]
     },
     "test": {

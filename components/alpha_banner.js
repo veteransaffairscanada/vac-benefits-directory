@@ -31,9 +31,9 @@ const Text = css`
  * Renders an alpha banner and renders passed children in the `Text` container
  */
 export const AlphaBanner = ({ children, t, ...rest }) => (
-  <aside {...rest} className={Banner}>
+  <aside {...rest} css={Banner}>
     <PhaseBadge phase={t("header.beta")} />
-    <div className={Text}>{children}</div>
+    <div css={Text}>{children}</div>
   </aside>
 );
 
