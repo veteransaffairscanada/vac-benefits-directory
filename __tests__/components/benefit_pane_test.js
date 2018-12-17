@@ -10,6 +10,9 @@ import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import needsFixture from "../fixtures/needs";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import nextStepsFixture from "../fixtures/nextSteps";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -38,27 +41,47 @@ describe("BenefitsPane", () => {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
-      }
+      },
+      filteredBenefits: [],
+      nonFilteredBenefits: [],
+      nextStepsRef: React.createRef(),
+      favouriteBenefits: [],
+      reduxState: { benefits: [] }
     };
     _mounted = undefined;
     reduxData = {
+      nextSteps: nextStepsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       profileQuestions: questionsFixture.filter(
         q => q.variable_name !== "needs"
       ),
-      saveQuestionResponse: jest.fn(),
-      filteredBenefitsWithoutSearch: [],
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionClearLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
+      serviceType: "",
+      patronType: "",
+      saveQuestionResponse: jest.fn(),
       searchString: "",
+      statusAndVitals: "",
+      selectedEligibility: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      },
+      serviceHealthIssue: "",
       setSearchString: jest.fn(),
-      selectedNeeds: {}
+      selectedNeeds: {},
+      option: "",
+      pageWidth: 1000
     };
+
     mockStore = configureStore();
     props.store = mockStore(reduxData);
   });
@@ -155,6 +178,49 @@ describe("BenefitsPane", () => {
       });
     });
 
+    describe("resultsHeader", () => {
+      it("returns a Header if there is at least one result", () => {
+        mounted().setProps({ searchString: "t" });
+        expect(
+          mounted()
+            .instance()
+            .resultsHeader(1, props.t)
+        ).not.toEqual("");
+      });
+      it("returns an empty string if there are no results", () => {
+        mounted().setProps({ searchString: "t" });
+        expect(
+          mounted()
+            .instance()
+            .resultsHeader(0, props.t)
+        ).toEqual("");
+      });
+    });
+
+    describe("countString", () => {
+      it("returns 'B3.x Benefits to consider' if there is no search string", () => {
+        expect(
+          mounted()
+            .instance()
+            .countString(["a", "b"], props.t)
+        ).toEqual("B3.All benefits to consider");
+      });
+
+      it("returns search results if there is a search string", () => {
+        mounted().setProps({ searchString: "t" });
+        expect(
+          mounted()
+            .instance()
+            .countString(["a", "b"], props.t)
+        ).toEqual("B3.search_results");
+        expect(
+          mounted()
+            .instance()
+            .countString(["a"], props.t)
+        ).toEqual("B3.search_results_single");
+      });
+    });
+
     describe("search feature", () => {
       it("shows a text search box", () => {
         expect(
@@ -170,6 +236,10 @@ describe("BenefitsPane", () => {
           .handleSearchChange({ target: { value: "foo" } });
         expect(reduxData.setSearchString).toBeCalledWith("foo");
       });
+    });
+
+    it("renders NextSteps component", () => {
+      expect(mounted().find("NextSteps").length).toEqual(1);
     });
   });
 });

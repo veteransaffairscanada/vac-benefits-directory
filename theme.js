@@ -20,6 +20,7 @@ let theme = {
     lg: "1920px"
   },
   colour: {
+    blackish: "#3d3d3d",
     paleGrey: "#eaebed",
     warmGrey: "#979797",
     brownishGrey: "#646464",
@@ -32,11 +33,13 @@ let theme = {
     fernGreen: "#39824d",
     darkGreen: "#295f38",
     tornadoRed: "#ea4335",
+    red2: "#d0021b",
     govukYellow: "#FFBF47",
     white: "#ffffff",
     cardGrey: "#f3f3f3",
     black: "#000000",
     alertYellow: "#fbb830",
+    lightYellow: "#f9f4d3",
     alphaPink: "#d42dc9",
     betaBlue: "#006de4",
     alphaBlue: "#345075",

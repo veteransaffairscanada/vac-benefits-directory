@@ -9,7 +9,7 @@ import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
 import CloseIcon from "./icons/Close";
@@ -17,6 +17,8 @@ import EditIcon from "./icons/Edit";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
+  border: thin solid ${globalTheme.colour.cerulean} !important;
+  box-shadow: none !important;
 `;
 const summary = css`
   opacity: 1 !important;
@@ -39,7 +41,8 @@ const closeIcon = css`
 const cerulean = css`
   color: ${globalTheme.colour.cerulean};
 `;
-export class ProfileNeedsSelectorMobile extends Component {
+
+export class SelectionsEditor extends Component {
   state = {
     open: false
   };
@@ -89,28 +92,26 @@ export class ProfileNeedsSelectorMobile extends Component {
 
         <ExpansionPanelDetails>
           <Grid container>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
+              {this.countSelected() > 0 ? (
+                <HeaderButton
+                  id="ClearFilters"
+                  className={clearButton}
+                  onClick={() => {
+                    this.clearFilters();
+                  }}
+                >
+                  {t("reset filters")} {"(" + this.countSelected() + ")"}
+                  <CloseIcon className={closeIcon} />
+                </HeaderButton>
+              ) : null}
+            </Grid>
+
+            <Grid item xs={12}>
               <ProfileSelector t={t} store={store} />
             </Grid>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
               <NeedsSelector t={t} store={store} />
-
-              {this.countSelected() > 0 ? (
-                <h3 variant="title" className={filterTitle}>
-                  <HeaderButton
-                    id="ClearFiltersMobile"
-                    className={clearButton}
-                    onClick={() => {
-                      this.clearFilters();
-                    }}
-                  >
-                    {t("reset filters")} {"(" + this.countSelected() + ")"}
-                    <CloseIcon className={closeIcon} />
-                  </HeaderButton>
-                </h3>
-              ) : (
-                ""
-              )}
             </Grid>
           </Grid>
         </ExpansionPanelDetails>
@@ -140,7 +141,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-ProfileNeedsSelectorMobile.propTypes = {
+SelectionsEditor.propTypes = {
   profileQuestions: PropTypes.array.isRequired,
   responses: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
@@ -152,4 +153,4 @@ ProfileNeedsSelectorMobile.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileNeedsSelectorMobile);
+)(SelectionsEditor);

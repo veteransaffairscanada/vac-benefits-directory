@@ -108,12 +108,6 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     "variable_name"
   );
   replaceId(
-    dataStore.questionDisplayLogic,
-    "exclude questions",
-    dataStore.questions,
-    "variable_name"
-  );
-  replaceId(
     dataStore.multipleChoiceOptions,
     "linked_question",
     dataStore.questions,

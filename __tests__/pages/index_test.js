@@ -18,7 +18,7 @@ expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
-describe("Guided", () => {
+describe("Index", () => {
   let props;
   let _mountedGuided;
   let mockStore, reduxState;
@@ -85,41 +85,6 @@ describe("Guided", () => {
 
   it("componentWillMount sets state correctly from empty url", () => {
     expect(mountedGuided().state().section).toEqual("patronType");
-  });
-
-  describe("setSection", () => {
-    it("returns correct section when passed as argument", () => {
-      props.sectionOrder.forEach(section => {
-        let guidedInstance = mountedGuided().instance();
-        guidedInstance.setSection(section);
-        expect(guidedInstance.state.section).toEqual(section);
-      });
-    });
-
-    it("clears redux data for future questions", () => {
-      let guidedInstance = mountedGuided().instance();
-      guidedInstance.setSection("patronType");
-      expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
-      expect(props.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
-    });
-  });
-
-  it("getNextSection returns the correct next section", () => {
-    const displayable_sections = [
-      "patronType",
-      "serviceType",
-      "statusAndVitals",
-      "needs"
-    ];
-    let guidedInstance = mountedGuided().instance();
-
-    expect(guidedInstance.getNextSection(displayable_sections, 1)).toEqual(
-      "statusAndVitals"
-    );
-
-    expect(guidedInstance.getNextSection(displayable_sections, 3)).toEqual(
-      "summary"
-    );
   });
 
   it("getPrevSection returns the correct previous section", () => {

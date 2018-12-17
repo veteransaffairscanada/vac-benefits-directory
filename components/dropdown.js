@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
 
 const cerulean = globalTheme.colour.cerulean.replace("#", "%23"); //The character # is reserved in URLs as the start of a fragment identifier. You must encode this as %23 for the URL to be valid.

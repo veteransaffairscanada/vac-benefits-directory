@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import ShareModal from "./share_modal";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import Print from "./icons/Print";
-import ShareIcon from "./icons/share_icon";
-import Bookmark from "./icons/Bookmark";
-import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
+import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
+import SaveChecked from "./icons/SaveChecked";
+import SelectionsEditor from "./selections_editor";
 import { connect } from "react-redux";
-import { getFavouritesUrl, getPrintUrl } from "../selectors/urls";
-import { css } from "react-emotion";
+import { getFavouritesUrl, getPrintUrl, getHomeUrl } from "../selectors/urls";
+import { css } from "emotion";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
@@ -16,38 +14,46 @@ import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 import BenefitsPane from "./benefits_pane";
+import BreadCrumbs from "../components/breadcrumbs";
+import ShareBox from "../components/share_box";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
-const topPadding = css`
-  padding-top: 30px;
-`;
 const topMatter = css`
   background-color: ${globalTheme.colour.white};
   width: 100%;
-  padding-bottom: 20px;
 `;
-const anchors = css`
-  margin-right: 20px;
+const favouritesLink = css`
+  padding: 1em 24px !important;
+  border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
+  border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
+  margin-bottom: 24px;
 `;
-const nonMobileStyle = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none;
-  }
-`;
-const right = css`
-  text-align: right;
-`;
-const menuChildRight = css`
-  margin-left: 2em;
+const dot = css`
+  height: 23px;
+  width: 22.5px;
+  padding-top: 1px;
+  padding-left: 1.5px;
+  background-color: ${globalTheme.colour.red2};
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  margin-top: 2px;
+  float: right;
 `;
 
 export class BB extends Component {
   state = {
-    showDisabledCookieBanner: false,
-    showModal: false
+    showDisabledCookieBanner: false
   };
+
+  constructor(props) {
+    super(props);
+    this.nextStepsRef = React.createRef(); // create a ref object
+  }
 
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
@@ -61,64 +67,57 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store } = this.props; // eslint-disable-line no-unused-vars
-
+    const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <div
-        id={this.props.id}
-        className={outerDiv}
-        ref={el => (this.componentRef = el)}
-      >
+      <div id={this.props.id} className={outerDiv}>
         <div className={topMatter}>
-          <Container className={topPadding}>
-            <Grid container spacing={24}>
-              <Grid item xs={4}>
-                <HeaderLink
-                  className={anchors}
-                  id="savedBenefits"
-                  href={this.props.favouritesUrl}
-                >
-                  <Bookmark />
-                  {t("B3.favouritesButtonText") +
-                    " (" +
-                    this.props.favouriteBenefits.length +
-                    ")"}
-                </HeaderLink>
-              </Grid>
-              <Grid item xs={8} className={right}>
-                <HeaderLink
-                  href={this.props.printUrl}
-                  target="print_page"
-                  id="printButton"
-                >
-                  <Print />{" "}
-                  <span className={nonMobileStyle}> {t("Print")} </span>
-                </HeaderLink>
-                <HeaderButton
-                  className={menuChildRight}
-                  onClick={() => this.setState({ showModal: true })}
-                  id="shareButton"
-                >
-                  <ShareIcon />
-                  <span className={nonMobileStyle}>{t("titles.share")}</span>
-                </HeaderButton>
-                <ShareModal
-                  isOpen={this.state.showModal}
-                  onRequestClose={() => this.setState({ showModal: false })}
-                  closeModal={() => this.setState({ showModal: false })}
-                  url={url}
-                  t={t}
-                />
-              </Grid>
-            </Grid>
-          </Container>
+          <BreadCrumbs
+            t={t}
+            breadcrumbs={[]}
+            homeUrl={homeUrl}
+            pageTitle={t("ge.Find benefits and services")}
+          />
         </div>
-        <Container className={topPadding}>
+        <Container>
           <Grid container spacing={32}>
-            <Grid item lg={4} md={4} sm={5} xs={12}>
-              <ProfileNeedsSelectorMobile t={t} store={store} />
+            <Grid item lg={3} md={3} sm={4} xs={12}>
+              <Grid container spacing={16} className={favouritesLink}>
+                <Grid item xs={12}>
+                  <HeaderLink
+                    id="savedBenefits"
+                    href={this.props.favouritesUrl}
+                  >
+                    <SaveChecked />
+                    {t("B3.favouritesButtonText")}
+                  </HeaderLink>
+                  <span className={dot} id="favouritesDot">
+                    {this.props.favouriteBenefits.length}
+                  </span>
+                </Grid>
+                <Grid item xs={12}>
+                  <HeaderButton
+                    id="nextSteps"
+                    onClick={() => {
+                      window.scrollTo({
+                        top: this.nextStepsRef.current.offsetTop,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
+                    <AssignmentTurnedIn />
+                    {t("nextSteps.whats_next")}
+                  </HeaderButton>
+                </Grid>
+              </Grid>
+              <SelectionsEditor t={t} store={store} />
+              <ShareBox
+                t={t}
+                printUrl={this.props.printUrl}
+                url={url}
+                share={true}
+              />
             </Grid>
-            <Grid item lg={8} md={8} sm={7} xs={12}>
+            <Grid item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
                   {this.state.showDisabledCookieBanner ? (
@@ -132,7 +131,13 @@ export class BB extends Component {
                 </Grid>
               </Grid>
 
-              <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
+              <BenefitsPane
+                id="BenefitsPane"
+                t={t}
+                store={store}
+                url={url}
+                nextStepsRef={this.nextStepsRef}
+              />
             </Grid>
           </Grid>
         </Container>
@@ -154,6 +159,7 @@ const mapStateToProps = (reduxState, props) => {
     cookiesDisabled: reduxState.cookiesDisabled,
     favouriteBenefits: reduxState.favouriteBenefits,
     favouritesUrl: getFavouritesUrl(reduxState, props),
+    homeUrl: getHomeUrl(reduxState, props),
     printUrl: getPrintUrl(reduxState, props, {})
   };
 };
@@ -165,6 +171,7 @@ BB.propTypes = {
   favouritesUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
+  homeUrl: PropTypes.string,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   store: PropTypes.object

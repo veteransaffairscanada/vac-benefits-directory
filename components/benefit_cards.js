@@ -6,7 +6,7 @@ import FavouriteButton from "./favourite_button";
 import Paper from "./paper";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import RelatedBenefits from "./related_benefits_list";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
@@ -15,9 +15,11 @@ import HeaderButton from "./header_button";
 import { globalTheme } from "../theme";
 
 const cardBody = css`
-  padding-top: 20px;
+  padding-top: 0px;
 `;
 const cardDescriptionText = css`
+  padding-left: 35px;
+  padding-right: 35px;
   padding-top: 26px;
   padding-bottom: 30px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
@@ -27,12 +29,22 @@ const cardDescriptionText = css`
 `;
 const buttonRow = css`
   margin-top: 18px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 35px;
 `;
 const root = css`
   width: 100%;
 `;
 const benefitName = css`
-  padding-top: 10px;
+  padding-top: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+`;
+
+const padding = css`
+  padding-left: 35px;
+  padding-right: 35px;
 `;
 const alignRight = css`
   text-align: right;
@@ -66,7 +78,7 @@ export class BenefitCard extends Component {
     return (
       <Grid item xs={12}>
         <div className={root}>
-          <Paper padding="md" className={cardBody}>
+          <Paper className={cardBody}>
             <BenefitCardHeader
               benefit={benefit}
               t={t}
@@ -95,7 +107,7 @@ export class BenefitCard extends Component {
                 }
               />
             </OneLiner>
-            <div>
+            <div className={padding}>
               {needsMet.map(need => (
                 <NeedTag key={benefit.id + need.id} t={t} need={need} />
               ))}

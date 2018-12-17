@@ -65,29 +65,6 @@ export class Guided extends Component {
     Router.replace(href);
   };
 
-  setSection = section => {
-    this.setState({ section: section });
-    const current_index = this.props.sectionOrder.indexOf(section);
-    this.props.sectionOrder
-      .filter((x, i) => i > current_index)
-      .forEach(x => {
-        if (x === "needs") {
-          this.props.saveQuestionResponse("selectedNeeds", {});
-        } else {
-          this.props.saveQuestionResponse(x, "");
-        }
-      });
-    document.body.focus(); // this removes focus from the next/back buttons
-  };
-
-  getNextSection = (displayable_sections, dynamicStepNumber) => {
-    if (dynamicStepNumber + 1 >= displayable_sections.length) {
-      return "summary";
-    } else {
-      return displayable_sections[dynamicStepNumber + 1];
-    }
-  };
-
   getPrevSection = (displayable_sections, dynamicStepNumber) => {
     if (dynamicStepNumber === 0) {
       return "index";
@@ -140,7 +117,6 @@ export class Guided extends Component {
             displayable_sections,
             dynamicStepNumber
           )}
-          setSection={this.setSection}
           subtitle={this.getSubtitle(question)}
           helperText={this.getTooltip(question)}
           t={t}

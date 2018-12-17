@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "react-emotion";
+import { cx, css } from "emotion";
 import ArrowBack from "./icons/ArrowBack";
 import ArrowForward from "./icons/ArrowForward";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const style = css`
   color: ${globalTheme.colour.cerulean};
   background-color: transparent;
   border: none;
-  text-decoration: none !important;
+  text-decoration: none;
   padding: 0px !important;
   :hover {
     text-decoration: underline !important;
@@ -24,6 +24,7 @@ const style = css`
   svg {
     margin-top: -4px;
     vertical-align: middle;
+    padding-right: 10px;
   }
   :focus {
     outline: 3px solid ${globalTheme.colour.focusColour};

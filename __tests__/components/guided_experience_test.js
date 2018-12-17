@@ -30,11 +30,11 @@ describe("GuidedExperience", () => {
     }
     return _shallowGuidedExperience;
   };
-  Router.push = jest.fn();
+  Router.push = jest.fn().mockImplementation(() => new Promise(() => true));
+  window.scrollTo = jest.fn();
   beforeEach(() => {
     props = {
       t: translate,
-      setSection: jest.fn(),
       id: "serviceType",
       prevSection: "patronType",
       stepNumber: 1,
@@ -45,6 +45,7 @@ describe("GuidedExperience", () => {
         route: "/summary"
       },
       saveQuestionResponse: jest.fn(),
+      sectionOrder: questionsFixture.map(x => x.variable_name),
       reduxState: {
         patronType: "veteran",
         serviceType: "RCMP",
@@ -63,22 +64,6 @@ describe("GuidedExperience", () => {
   it("passes axe tests", async () => {
     let html = mounted_GuidedExperience().html();
     expect(await axe(html)).toHaveNoViolations();
-  });
-
-  it("calls setSection if the Next button is pressed", () => {
-    mounted_GuidedExperience()
-      .find("Button")
-      .last()
-      .simulate("click");
-    expect(Router.push).toBeCalled();
-  });
-
-  it("calls setSection if the Back button is pressed", () => {
-    mounted_GuidedExperience()
-      .find("#prevButton")
-      .first()
-      .simulate("click");
-    expect(props.setSection).toBeCalledWith("patronType");
   });
 
   it("renders children", () => {
@@ -136,6 +121,28 @@ describe("GuidedExperience", () => {
     expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
     expect(Router.push).toBeCalledWith(
       "/index?lng=en&patronType=veteran&section=needs"
+    );
+  });
+
+  it("clears only hidden questions if the next button is pressed", () => {
+    props.statusAndVitals = "blah";
+    mounted_GuidedExperience()
+      .find("#nextButton")
+      .first()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith(
+      "/index?lng=en&patronType=veteran&serviceType=RCMP&section=serviceHealthIssue"
+    );
+  });
+
+  it("clears only hidden questions if the back button is pressed", () => {
+    props.statusAndVitals = "blah";
+    mounted_GuidedExperience()
+      .find("#prevButton")
+      .first()
+      .simulate("click");
+    expect(Router.push).toBeCalledWith(
+      "/?lng=en&patronType=veteran&serviceType=RCMP&section=patronType"
     );
   });
 });

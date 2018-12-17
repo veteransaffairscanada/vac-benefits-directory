@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import RadioSelector from "./radio_selector";
-import { css } from "react-emotion";
+import { css } from "emotion";
 
 const outerDiv = css`
   padding: 12px;

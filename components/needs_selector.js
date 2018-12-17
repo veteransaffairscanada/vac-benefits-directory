@@ -3,13 +3,16 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NeedButton from "./need_button";
 import { Grid } from "@material-ui/core";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Header from "./typography/header";
 import { showQuestion } from "../utils/common";
 
 const needsButtons = css`
   display: flex;
   flex-wrap: wrap;
+  label {
+    width: 100%;
+  }
 `;
 
 const topBorder = css`

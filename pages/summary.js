@@ -9,9 +9,9 @@ import { Grid } from "@material-ui/core";
 import Button from "../components/button";
 import Header from "../components/typography/header";
 import Router from "next/router";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
-import { mutateUrl } from "../utils/common";
+import { mutateUrl, getBenefitCountString } from "../utils/common";
 import { connect } from "react-redux";
 import GuidedExperienceSummary from "../components/guided_experience_summary";
 import Body from "../components/typography/body";
@@ -34,16 +34,12 @@ const questions = css`
 `;
 
 export class Summary extends Component {
-  countString = (x, t) => {
-    return t("B3.x benefits to consider", { x: x.length });
-  };
-
   render() {
     const { t, i18n, url, reduxState, store, filteredBenefits } = this.props;
     const prevSection =
       reduxState.patronType === "organization" ? "patronType" : "needs";
     const backUrl = mutateUrl(url, "/index", { section: prevSection });
-    const benefitsToConsider = this.countString(filteredBenefits, t);
+    const benefitsToConsider = getBenefitCountString(filteredBenefits, t);
     return (
       <Layout
         i18n={i18n}
@@ -75,9 +71,11 @@ export class Summary extends Component {
                   <Header size="md_lg" headingLevel="h3" paddingTop="40">
                     {benefitsToConsider}
                   </Header>
-                  <Body>
-                    <p>{t("B3.check eligibility")}</p>
-                  </Body>
+                  {filteredBenefits.length > 0 ? (
+                    <Body>
+                      <p>{t("B3.check eligibility")}</p>
+                    </Body>
+                  ) : null}
                 </div>
               </Grid>
               <Grid item xs={12}>
@@ -86,7 +84,9 @@ export class Summary extends Component {
                   useLink
                   arrow={true}
                   onClick={() =>
-                    Router.push(mutateUrl(url, "/benefits-directory"))
+                    Router.push(mutateUrl(url, "/benefits-directory")).then(
+                      () => window.scrollTo(0, 0)
+                    )
                   }
                 >
                   {t("ge.show_results")}

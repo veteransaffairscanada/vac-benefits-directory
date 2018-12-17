@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { ProfileNeedsSelectorMobile } from "../../components/profile_needs_selector_mobile";
+import { SelectionsEditor } from "../../components/selections_editor";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
@@ -12,7 +12,7 @@ import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
 import responsesFixture from "../fixtures/responses";
 
-describe("ProfileNeedsSelectorMobile", () => {
+describe("SelectionsEditor", () => {
   let props;
   let mockStore, reduxData;
 
@@ -40,17 +40,15 @@ describe("ProfileNeedsSelectorMobile", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(
-      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
-    ).html();
+    let html = mount(<SelectionsEditor {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has no clear button if nothing selected", () => {
     props.store = mockStore(reduxData);
     expect(
-      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
-        .find("#ClearFiltersMobile")
+      mount(<SelectionsEditor {...props} {...reduxData} />)
+        .find("#ClearFilters")
         .first().length
     ).toEqual(0);
   });
@@ -59,8 +57,8 @@ describe("ProfileNeedsSelectorMobile", () => {
     props.responses.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
-      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
-        .find("#ClearFiltersMobile")
+      mount(<SelectionsEditor {...props} {...reduxData} />)
+        .find("#ClearFilters")
         .first().length
     ).toEqual(1);
   });
@@ -69,15 +67,15 @@ describe("ProfileNeedsSelectorMobile", () => {
     reduxData.selectedNeeds = { foo: "bar" };
     props.store = mockStore(reduxData);
     expect(
-      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
-        .find("#ClearFiltersMobile")
+      mount(<SelectionsEditor {...props} {...reduxData} />)
+        .find("#ClearFilters")
         .first().length
     ).toEqual(1);
   });
 
   it("has a correct clearFilters function", () => {
     let instance = mount(
-      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
+      <SelectionsEditor {...props} {...reduxData} />
     ).instance();
     instance.clearFilters();
     expect(props.saveQuestionResponse).toBeCalledWith("patronType", "");
@@ -87,23 +85,19 @@ describe("ProfileNeedsSelectorMobile", () => {
     expect(props.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
   });
 
-  it("clicking #ClearFiltersMobile runs the clearFilters function", () => {
+  it("clicking #ClearFilters runs the clearFilters function", () => {
     reduxData.selectedNeeds = { foo: "bar" };
-    const mounted = mount(
-      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
-    );
+    const mounted = mount(<SelectionsEditor {...props} {...reduxData} />);
     mounted.instance().clearFilters = jest.fn();
     mounted
-      .find("#ClearFiltersMobile")
+      .find("#ClearFilters")
       .first()
       .simulate("click");
     expect(mounted.instance().clearFilters).toBeCalled();
   });
 
   it("clicking ExpansionPanelSummary runs the toggleOpenState function", () => {
-    const mounted = mount(
-      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
-    );
+    const mounted = mount(<SelectionsEditor {...props} {...reduxData} />);
     mounted.instance().toggleOpenState = jest.fn();
     mounted
       .find("ExpansionPanelSummary")
@@ -116,16 +110,14 @@ describe("ProfileNeedsSelectorMobile", () => {
     props.responses.patronType = "organization";
     props.store = mockStore(reduxData);
     expect(
-      mount(<ProfileNeedsSelectorMobile {...props} {...reduxData} />)
+      mount(<SelectionsEditor {...props} {...reduxData} />)
         .instance()
         .countSelected()
     ).toEqual(1);
   });
 
   it("toggles the state with toggleOpenState", () => {
-    const mounted = mount(
-      <ProfileNeedsSelectorMobile {...props} {...reduxData} />
-    );
+    const mounted = mount(<SelectionsEditor {...props} {...reduxData} />);
     mounted.setState({ open: true });
     mounted.instance().toggleOpenState();
     expect(mounted.state("open")).toEqual(false);

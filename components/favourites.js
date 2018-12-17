@@ -1,42 +1,26 @@
 import React, { Component } from "react";
-import ShareModal from "./share_modal";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
-import { getPrintUrl } from "../selectors/urls";
-import Bookmark from "./icons/BookmarkBorder";
-import Print from "./icons/Print";
-import ShareIcon from "./icons/share_icon";
+import { getPrintUrl, getHomeUrl } from "../selectors/urls";
+import SaveChecked from "./icons/SaveUnchecked";
 import Link from "next/link";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import Container from "./container";
 import Header from "./typography/header";
 import HeaderButton from "./header_button";
-import HeaderLink from "./header_link";
-import AnchorLink from "./typography/anchor_link";
 import Body from "./typography/body";
-import Paper from "./paper";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
-import { areCookiesDisabled, getLink } from "../utils/common";
+import { areCookiesDisabled, mutateUrl } from "../utils/common";
+import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import { globalTheme } from "../theme";
+import BreadCrumbs from "./breadcrumbs";
+import ShareBox from "./share_box";
+import NextSteps from "./next_steps";
 
-const contactUs = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    margin-left: 11px !important;
-  }
-`;
-const bookmarkCSS = css`
+const saveCSS = css`
   font-size: 70px !important;
-`;
-const contactUsTitle = css`
-  margin: 20px 0;
-`;
-const right = css`
-  text-align: right;
-`;
-const menuChildRight = css`
-  margin-left: 2em;
 `;
 const emptyList = css`
   margin-top: 20px;
@@ -44,23 +28,19 @@ const emptyList = css`
   word-spacing: normal;
 }
 `;
-const topMatter = css`
-  margin-bottom: 25px !important;
-`;
-const noBottomMargin = css`
-  margin-bottom: 0px;
-`;
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
-const topPadding = css`
-  padding-top: 30px;
+
+const topMargin = css`
+  margin-top: 20px;
 `;
-const whiteBanner = css`
-  background-color: #fff;
-  width: 100%;
-  padding-bottom: 20px;
-  margin-bottom: 30px;
+
+const favouritesLink = css`
+  padding: 1em 24px !important;
+  border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
+  border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
+  margin-bottom: 24px;
 `;
 export class Favourites extends Component {
   state = {
@@ -69,6 +49,11 @@ export class Favourites extends Component {
     showDisabledCookieBanner: false,
     showModal: false
   };
+
+  constructor(props) {
+    super(props);
+    this.nextStepsRef = React.createRef(); // create a ref object
+  }
 
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
@@ -83,74 +68,78 @@ export class Favourites extends Component {
   };
 
   render() {
-    const { t, url } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, homeUrl } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
       this.props.favouriteBenefits
     );
 
+    const breadcrumbs = [
+      {
+        url: mutateUrl(url, "/benefits-directory"),
+        name: t("ge.Find benefits and services")
+      }
+    ];
+
     return (
       <div className={outerDiv}>
-        <div className={whiteBanner}>
-          <Container className={topPadding}>
-            <Grid container spacing={24}>
-              <Grid item xs={4}>
-                <HeaderLink
-                  id="backButton"
-                  href={getLink(this.props.url, "/benefits-directory")}
-                  arrow="back"
-                >
-                  {t("favourites.back_link")}
-                </HeaderLink>
-              </Grid>
-              <Grid item xs={8} className={right}>
-                <HeaderLink
-                  href={this.props.printUrl}
-                  target="print_page"
-                  id="printButton"
-                >
-                  <Print /> {t("Print")}
-                </HeaderLink>
-                <HeaderButton
-                  onClick={() => this.setState({ showModal: true })}
-                  id="shareButton"
-                >
-                  <ShareIcon className={menuChildRight} />
-                  {t("titles.share")}
-                </HeaderButton>
-                <ShareModal
-                  isOpen={this.state.showModal}
-                  onRequestClose={() => this.setState({ showModal: false })}
-                  closeModal={() => this.setState({ showModal: false })}
-                  t={t}
-                  url={url}
-                />
-              </Grid>
-            </Grid>
-          </Container>
-        </div>
-
+        <BreadCrumbs
+          t={t}
+          homeUrl={homeUrl}
+          breadcrumbs={breadcrumbs}
+          pageTitle={t("index.your_saved_benefits")}
+        />
         <Container id="favourites">
-          <Grid container spacing={24}>
-            <Grid item xs={12} className={topMatter}>
-              <Header className={"BenefitsCounter"} size="xl" headingLevel="h1">
-                {t("favourites.saved_benefits", {
-                  x: filteredBenefits.length
-                })}
-              </Header>
+          <Grid container spacing={32}>
+            <Grid item lg={3} md={3} sm={4} xs={12}>
+              <Grid container spacing={16} className={favouritesLink}>
+                <Grid item xs={12}>
+                  <HeaderButton
+                    id="nextSteps"
+                    onClick={() => {
+                      window.scrollTo({
+                        top: this.nextStepsRef.current.offsetTop,
+                        behavior: "smooth"
+                      });
+                    }}
+                  >
+                    <AssignmentTurnedIn />
+                    {t("nextSteps.whats_next")}
+                  </HeaderButton>
+                </Grid>
+              </Grid>
+              <ShareBox
+                t={t}
+                printUrl={this.props.printUrl}
+                url={url}
+                share={false}
+              />
             </Grid>
-            <Grid item md={8} xs={12}>
-              {this.state.showDisabledCookieBanner ? (
-                <DisabledCookiesBanner
-                  t={t}
-                  onClose={() =>
-                    this.setState({ showDisabledCookieBanner: false })
-                  }
-                />
-              ) : null}
-
+            <Grid item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={24}>
+                {this.state.showDisabledCookieBanner ? (
+                  <Grid item xs={12}>
+                    <DisabledCookiesBanner
+                      t={t}
+                      onClose={() =>
+                        this.setState({ showDisabledCookieBanner: false })
+                      }
+                    />
+                  </Grid>
+                ) : null}
+                <Grid item xs={12}>
+                  <Header
+                    className={"BenefitsCounter"}
+                    size="lg"
+                    headingLevel="h1"
+                  >
+                    {t("favourites.saved_benefits", {
+                      x: filteredBenefits.length
+                    })}
+                  </Header>
+                  <Body className={topMargin}>{t("B3.check eligibility")}</Body>
+                </Grid>
                 <BenefitList
                   t={t}
                   filteredBenefits={filteredBenefits}
@@ -162,7 +151,7 @@ export class Favourites extends Component {
               </Grid>
               {filteredBenefits.length == 0 ? (
                 <Body className={emptyList}>
-                  <Bookmark className={bookmarkCSS} />
+                  <SaveChecked className={saveCSS} />
                   <br />
                   {t("favourites.help_msg_line1")}
                   <br />
@@ -176,72 +165,17 @@ export class Favourites extends Component {
               ) : (
                 ""
               )}
-            </Grid>
-            <Grid item md={4} xs={12}>
-              <Paper padding="sm" className={contactUs}>
-                <Header headingLevel="h2" size="lg">
-                  {t("favourites.contact_us")}
-                </Header>
-                <p>
-                  <HeaderLink
-                    id="nearbyOffice"
-                    arrow="forward"
-                    href={getLink(this.props.url, "/map", "favourites")}
-                  >
-                    {t("favourites.visit_prompt")}
-                  </HeaderLink>
-                </p>
-
-                <Body>{t("favourites.print_instructions")}</Body>
-
-                <hr />
-
-                <p>
-                  <AnchorLink
-                    fontSize={21}
-                    fontWeight="bold"
-                    href={"tel:+" + t("contact.phone")}
-                  >
-                    {t("contact.phone")}
-                  </AnchorLink>
-                </p>
-
-                <Body>{t("favourites.call_time")}</Body>
-
-                <hr />
-
-                <p>
-                  <AnchorLink
-                    id="contactEmail"
-                    fontSize={21}
-                    fontWeight="bold"
-                    href={"mailto:" + t("contact.email")}
-                  >
-                    {t("contact.email")}
-                  </AnchorLink>
-                </p>
-
-                <Body>{t("favourites.email_disclaimer")}</Body>
-
-                <hr />
-
-                <Header className={contactUsTitle} size="lg" headingLevel="h2">
-                  {t("favourites.apply_prompt")}
-                </Header>
-
-                <Body className={noBottomMargin}>
-                  <p>
-                    <HeaderLink
-                      id="myVACButton"
-                      arrow="forward"
-                      href={t("contact.my_vac_link")}
-                    >
-                      {t("favourites.login_link")}
-                    </HeaderLink>
-                  </p>
-                  {t("favourites.login_prompt")}
-                </Body>
-              </Paper>
+              <Grid item xs={12}>
+                <div ref={this.nextStepsRef}>
+                  <Grid container spacing={24}>
+                    <NextSteps
+                      t={t}
+                      url={this.props.url}
+                      store={this.props.store}
+                    />
+                  </Grid>
+                </div>
+              </Grid>
             </Grid>
           </Grid>
         </Container>
@@ -262,7 +196,8 @@ const mapStateToProps = (reduxState, props) => {
   return {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
-    printUrl: getPrintUrl(reduxState, props, { fromFavourites: true })
+    printUrl: getPrintUrl(reduxState, props, { fromFavourites: true }),
+    homeUrl: getHomeUrl(reduxState, props)
   };
 };
 
@@ -274,6 +209,7 @@ Favourites.propTypes = {
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   url: PropTypes.object.isRequired,
+  homeUrl: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 

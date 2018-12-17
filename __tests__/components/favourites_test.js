@@ -7,8 +7,10 @@ import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import areaOfficesFixture from "../fixtures/area_offices";
+import questionsFixture from "../fixtures/questions";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import nextStepsFixture from "../fixtures/nextSteps";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -36,6 +38,7 @@ describe("Favourites", () => {
   };
 
   beforeEach(() => {
+    window.scrollTo = jest.fn();
     props = {
       t: key => key,
       selectedEligibility: {
@@ -43,17 +46,21 @@ describe("Favourites", () => {
         patronType: "",
         statusAndVitals: ""
       },
-      url: { query: {} }
+      url: { query: {} },
+      homeUrl: "/",
+      nextStepsRef: React.createRef()
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
 
     mockStore = configureStore();
     reduxData = {
+      nextSteps: nextStepsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       benefits: benefitsFixture,
       needs: needsFixture,
+      questions: questionsFixture,
       favouriteBenefits: ["benefit_2"],
       selectedNeeds: {},
       eligibilityPaths: eligibilityPathsFixture,
@@ -92,6 +99,10 @@ describe("Favourites", () => {
     expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
 
+  it("renders BreadCrumbs", async () => {
+    expect(mountedFavourites().find("BreadCrumbs").length).toEqual(1);
+  });
+
   it("has a working filterBenefits function", async () => {
     const favouritesInstance = shallowFavourites().instance();
     expect(
@@ -108,16 +119,10 @@ describe("Favourites", () => {
     ).toEqual(2);
   });
 
-  it("contains the share button", () => {
-    expect(mountedFavourites().find("#shareButton").length).toEqual(1);
-  });
-
-  it("clicking share button changes showModal state to true", () => {
-    let mounted = mountedFavourites();
-    mounted
-      .find("#shareButton")
-      .first()
+  it("clicking next steps button triggers scroll", () => {
+    mountedFavourites()
+      .find("#nextSteps")
       .simulate("click");
-    expect(mounted.state().showModal).toEqual(true);
+    expect(window.scrollTo).toBeCalled();
   });
 });

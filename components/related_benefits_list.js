@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "react-emotion";
+import { css } from "emotion";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 import HeaderLink from "./header_link";
@@ -33,6 +33,8 @@ const fullWidth = css`
 const topBorder = css`
   border-top: thin dashed ${globalTheme.colour.lineGrey};
   padding-top: 1em;
+  padding-left: 35px;
+  padding-right: 35px;
 `;
 
 export class RelatedBenefits extends Component {
@@ -231,7 +233,7 @@ export class RelatedBenefits extends Component {
         </div>
       );
     } else {
-      return <div>{learnMore}</div>;
+      return <div className={topBorder}>{learnMore}</div>;
     }
   }
 }

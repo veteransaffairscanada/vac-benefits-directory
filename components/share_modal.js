@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "react-emotion";
-import styled from "react-emotion";
+import { css } from "emotion";
+import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 
 import { globalTheme } from "../theme";
@@ -65,7 +65,7 @@ const URLInputBox = styled("input")({
   fontFamily: globalTheme.fontFamily,
   fontWeight: 400,
   textTransform: "none",
-  fontSize: "14px",
+  fontSize: "1em",
   lineHeight: "1.5",
   background: globalTheme.colour.white,
   borderRadius: 0,

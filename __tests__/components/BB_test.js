@@ -13,6 +13,7 @@ import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import nextStepsFixture from "../fixtures/nextSteps";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -39,6 +40,7 @@ describe("BB", () => {
   };
 
   beforeEach(() => {
+    window.scrollTo = jest.fn();
     props = {
       t: key => key,
       clearFilters: () => true,
@@ -52,6 +54,7 @@ describe("BB", () => {
     _shallowBB = undefined;
     _mountedBB = undefined;
     reduxData = {
+      nextSteps: nextStepsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       questions: questionsFixture,
@@ -91,7 +94,7 @@ describe("BB", () => {
   });
 
   it("contains a BenefitsPane", async () => {
-    expect(mounted_BB().find("#BenefitsPane").length).not.toEqual(0);
+    expect(shallow_BB().find("#BenefitsPane").length).not.toEqual(0);
   });
 
   it("has the ProfileSelector component", () => {
@@ -106,20 +109,22 @@ describe("BB", () => {
     expect(shallow_BB().find("#ClearEligibilityFilters"));
   });
 
-  it("contains the print button", () => {
-    expect(mounted_BB().find("#printButton").length).toEqual(1);
+  it("contains BreadCrumbs", async () => {
+    expect(shallow_BB().find("BreadCrumbs").length).toEqual(1);
   });
 
-  it("contains the share button", () => {
-    expect(mounted_BB().find("#shareButton").length).toEqual(1);
+  it("contains a favourites dot that displays the number of favourites", async () => {
+    expect(
+      shallow_BB()
+        .find("#favouritesDot")
+        .text()
+    ).toEqual("0");
   });
 
-  it("clicking share button changes showModal state to true", () => {
-    let mounted = mounted_BB();
-    mounted
-      .find("#shareButton")
-      .first()
+  it("clicking next steps button triggers scroll", () => {
+    mounted_BB()
+      .find("#nextSteps")
       .simulate("click");
-    expect(mounted.state().showModal).toEqual(true);
+    expect(window.scrollTo).toBeCalled();
   });
 });
