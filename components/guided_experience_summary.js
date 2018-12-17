@@ -75,7 +75,7 @@ export class GuidedExperienceSummary extends Component {
 
   breadcrumbs = () => {
     const { t, reduxState, url } = this.props;
-    reduxState.questions.map(x => x.variable_name);
+    //reduxState.questions.map(x => x.variable_name);
     const questionVariableNames = reduxState.questions
       .map(x => x.variable_name)
       .filter((x, i) => showQuestion(x, i, reduxState));
