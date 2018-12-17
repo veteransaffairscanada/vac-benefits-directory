@@ -75,10 +75,9 @@ export class NextSteps extends Component {
     });
   };
 
-  bullets = this.getBullets();
-
   render() {
     const { t } = this.props;
+    const bullets = this.getBullets();
 
     return (
       <div className={outerDiv}>
@@ -96,7 +95,7 @@ export class NextSteps extends Component {
             <div className={innerDiv} />
 
             <ul id="nextStepsList" className={whatsNextList}>
-              {this.bullets}
+              {bullets}
             </ul>
           </Grid>
 
