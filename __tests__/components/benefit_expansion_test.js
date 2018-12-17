@@ -4,6 +4,7 @@ import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import BenefitExpansion from "../../components/benefit_expansion";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 import benefitsFixture from "../fixtures/benefits";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -24,11 +25,9 @@ describe("BenefitExpansion", () => {
     reduxData = {
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      benefitExamples: benefitExamplesFixture
     };
-    props.store = mockStore(reduxData);
-
-    mockStore = configureStore();
     props.store = mockStore(reduxData);
   });
 
@@ -42,7 +41,7 @@ describe("BenefitExpansion", () => {
     expect(
       related
         .find("ul")
-        .first()
+        .last()
         .childAt(0)
         .text()
     ).toContain("en");
@@ -89,7 +88,7 @@ describe("BenefitExpansion", () => {
       expect(
         mount(<BenefitExpansion {...props} {...reduxData} />)
           .find("li")
-          .first()
+          .last()
           .text()
       ).toContain("fr");
     });

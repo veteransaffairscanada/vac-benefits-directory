@@ -4,6 +4,7 @@ import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 
@@ -51,7 +52,8 @@ describe("BenefitCard", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      benefitExamples: benefitExamplesFixture
     };
     props.store = mockStore(reduxData);
 
@@ -84,12 +86,12 @@ describe("BenefitCard", () => {
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
   });
 
-  it("Clicking the See More button expands the related benefits list", () => {
+  it("Clicking the See More button expands the BenefitExpansion component", () => {
     mountedBenefitCard()
       .find("HeaderButton")
       .at(0)
       .simulate("click");
-    expect(mountedBenefitCard().find("RelatedBenefits").length).toEqual(1);
+    expect(mountedBenefitCard().find("BenefitExpansion").length).toEqual(1);
   });
 
   describe("when language is French", () => {

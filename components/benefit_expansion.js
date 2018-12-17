@@ -125,10 +125,9 @@ export class BenefitExpansion extends Component {
         <div className={children}>
           <div>
             <ul className={listStyle}>
-              {benefits.map((cb, i) => (
+              {benefits.map(cb => (
                 <li key={cb.id}>
                   <HeaderLink
-                    id={"embedded-" + cb.id + "-" + i}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={heading}
@@ -155,7 +154,7 @@ export class BenefitExpansion extends Component {
   };
 
   render() {
-    const { t, benefit, benefits } = this.props;
+    const { t, benefit, benefits, store } = this.props;
     const language = t("current-language-code");
     const benefitName =
       language === "en" ? benefit.vacNameEn : benefit.vacNameFr;
@@ -194,7 +193,7 @@ export class BenefitExpansion extends Component {
 
     return (
       <div className={this.props.className}>
-        <ExampleBullets benefit={benefit} t={t} />
+        <ExampleBullets benefit={benefit} t={t} store={store} />
         <div className={topBorder}>
           {this.getBenefitList(veteranBenefits, otherBenefits)}
           {this.getBenefitList(
