@@ -27,8 +27,8 @@ class Header extends Component {
   `;
 
   render() {
-    const { children, className, headingLevel } = this.props;
-    const appliedClassname = className ? [this.style, className] : this.style;
+    const { children, css, headingLevel } = this.props;
+    const appliedClassname = css ? [this.style, css] : this.style;
     switch (headingLevel) {
       case "h1":
         return <h1 css={appliedClassname}>{children}</h1>;
@@ -46,7 +46,7 @@ class Header extends Component {
 
 Header.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string,
+  css: PropTypes.string,
   headingLevel: PropTypes.string,
   size: PropTypes.string,
   paddingTop: PropTypes.string
