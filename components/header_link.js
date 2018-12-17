@@ -44,7 +44,6 @@ const grey = css`
 class HeaderLink extends Component {
   render() {
     const {
-      id,
       arrow,
       className,
       children,
@@ -79,7 +78,6 @@ class HeaderLink extends Component {
 }
 
 HeaderLink.propTypes = {
-  id: PropTypes.string,
   size: PropTypes.string,
   ariaLabel: PropTypes.string,
   children: PropTypes.oneOfType([
