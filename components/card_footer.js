@@ -233,7 +233,7 @@ export class CardFooter extends Component {
                     {familyBenefits.map((cb, i) => (
                       <EmbeddedBenefitCard
                         id={"cb" + i}
-                        className="BenefitCards"
+                        css="BenefitCards"
                         benefit={cb}
                         t={t}
                         key={cb.id}

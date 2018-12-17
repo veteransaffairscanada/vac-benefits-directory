@@ -18,7 +18,7 @@ const style = css`
 class Container extends Component {
   render() {
     return (
-      <div css={this.props.className ? [style, this.props.className] : style}>
+      <div css={this.props.css ? [style, this.props.css] : style}>
         {this.props.children}
       </div>
     );
@@ -27,7 +27,7 @@ class Container extends Component {
 
 Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default Container;

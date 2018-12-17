@@ -235,7 +235,7 @@ class ShareModal extends Component {
 }
 
 ShareModal.propTypes = {
-  className: PropTypes.string,
+  css: PropTypes.string,
   isOpen: PropTypes.bool,
   onRequestClose: PropTypes.func,
   closeModal: PropTypes.func,

@@ -63,8 +63,8 @@ const labelStyle = css({
   }
 });
 
-const Radio = ({ children, className, value, ...input }) => (
-  <div css={[rootStyle, className]}>
+const Radio = ({ children, css, value, ...input }) => (
+  <div css={[rootStyle, css]}>
     <input
       type="radio"
       css={inputStyle}
@@ -79,11 +79,11 @@ const Radio = ({ children, className, value, ...input }) => (
 );
 
 Radio.defaultProps = {
-  className: undefined
+  css: undefined
 };
 
 Radio.propTypes = {
-  className: PropTypes.string,
+  css: PropTypes.string,
   value: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };

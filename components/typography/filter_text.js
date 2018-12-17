@@ -14,9 +14,9 @@ const style = css`
 
 class FilterText extends Component {
   render() {
-    const { className, children, ...other } = this.props;
+    const { css, children, ...other } = this.props;
     return (
-      <div css={className ? [style, className] : style} {...other}>
+      <div css={css ? [style, css] : style} {...other}>
         {children}
       </div>
     );
@@ -25,7 +25,7 @@ class FilterText extends Component {
 
 FilterText.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default FilterText;

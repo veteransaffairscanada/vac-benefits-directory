@@ -47,7 +47,7 @@ class HeaderButton extends Component {
     const {
       id,
       arrow,
-      className,
+      css,
       children,
       size,
       altStyle,
@@ -62,10 +62,10 @@ class HeaderButton extends Component {
         disabled={disabled}
         css={
           size === "small"
-            ? [style, small, className]
+            ? [style, small, css]
             : altStyle === "grey"
-            ? [style, grey, className]
-            : [style, className]
+            ? [style, grey, css]
+            : [style, css]
         }
         id={"a-" + id}
         onClick={onClick}
@@ -88,7 +88,7 @@ HeaderButton.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-  className: PropTypes.string,
+  css: PropTypes.string,
   arrow: PropTypes.string,
   label: PropTypes.object,
   disabled: PropTypes.bool,

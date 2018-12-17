@@ -72,7 +72,7 @@ class FederalBanner extends Component {
     const { t } = this.props;
     return (
       <div css={container}>
-        <div className="svg-container">
+        <div css="svg-container">
           <FIP fillColor="white" t={this.props.t} />
         </div>
         <div>

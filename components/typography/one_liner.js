@@ -17,12 +17,12 @@ const style = css`
 
 class OneLiner extends Component {
   render() {
-    const { className, children } = this.props;
-    return <div css={className ? [style, className] : style}>{children}</div>;
+    const { css, children } = this.props;
+    return <div css={css ? [style, css] : style}>{children}</div>;
   }
 }
 OneLiner.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string
+  css: PropTypes.string
 };
 export default OneLiner;

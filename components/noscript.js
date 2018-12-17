@@ -36,7 +36,7 @@ class Noscript extends Component {
       <noscript>
         <div css={Modal}>
           <div css={ModalContent}>
-            <div className="copy">
+            <div css="copy">
               <p dangerouslySetInnerHTML={{ __html: t("noscript") }} />
             </div>
           </div>

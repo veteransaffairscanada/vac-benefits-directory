@@ -21,9 +21,9 @@ const style = css`
 
 class FooterLink extends Component {
   render() {
-    const { className, children, ...other } = this.props;
+    const { css, children, ...other } = this.props;
     return (
-      <a css={className ? [style, className] : style} {...other}>
+      <a css={css ? [style, css] : style} {...other}>
         {children}
       </a>
     );
@@ -32,7 +32,7 @@ class FooterLink extends Component {
 
 FooterLink.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default FooterLink;

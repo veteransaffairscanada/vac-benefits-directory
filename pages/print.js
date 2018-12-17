@@ -203,7 +203,7 @@ export class Print extends Component {
                 <div css={bold}>{t("print.who_is_receiving")}</div>
                 <div css={"profile_section " + rules}>{profile_text}</div>
 
-                <div className="needs_section">
+                <div css="needs_section">
                   <Grid container spacing={0}>
                     {needs.map((need, i) => (
                       <Grid item xs={4} key={i}>
@@ -237,7 +237,7 @@ export class Print extends Component {
               return (
                 <tr key={i} css={benefitRow}>
                   <td css={benefitCell}>
-                    <div className="benefitsListItem">
+                    <div css="benefitsListItem">
                       <div>
                         <b>
                           {t("current-language-code") == "en"

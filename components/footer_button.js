@@ -27,13 +27,9 @@ const style = css`
 
 class FooterButton extends Component {
   render() {
-    const { className, onClick, children, other } = this.props;
+    const { css, onClick, children, other } = this.props;
     return (
-      <button
-        css={className ? [style, className] : style}
-        onClick={onClick}
-        {...other}
-      >
+      <button css={css ? [style, css] : style} onClick={onClick} {...other}>
         {children}
       </button>
     );
@@ -41,6 +37,6 @@ class FooterButton extends Component {
 }
 FooterButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string
+  css: PropTypes.string
 };
 export default FooterButton;

@@ -39,7 +39,7 @@ export class EmbeddedBenefitCard extends Component {
     return (
       <Paper padding="sm" css={root}>
         <div
-          className="exit_div"
+          css="exit_div"
           onClick={() =>
             this.logExit(
               language === "en" ? benefit.benefitPageEn : benefit.benefitPageFr

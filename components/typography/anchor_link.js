@@ -22,10 +22,10 @@ class AnchorLink extends Component {
   `;
 
   render() {
-    const { className, children } = this.props;
+    const { css, children } = this.props;
 
     return (
-      <a css={[this.style, className]} {...this.props}>
+      <a css={[this.style, css]} {...this.props}>
         {children}
       </a>
     );
@@ -40,7 +40,7 @@ AnchorLink.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   fontSize: PropTypes.number,
   fontWeight: PropTypes.string,
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default AnchorLink;

@@ -47,7 +47,7 @@ class HeaderLink extends Component {
     const {
       id,
       arrow,
-      className,
+      css,
       children,
       href,
       size,
@@ -61,10 +61,10 @@ class HeaderLink extends Component {
         <a
           css={
             size === "small"
-              ? [style, small, className]
+              ? [style, small, css]
               : altStyle === "grey"
-              ? [style, grey, className]
-              : [style, className]
+              ? [style, grey, css]
+              : [style, css]
           }
           href={href}
           id={"a-" + id}
@@ -89,7 +89,7 @@ HeaderLink.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-  className: PropTypes.string,
+  css: PropTypes.string,
   arrow: PropTypes.string,
   label: PropTypes.object,
   onClick: PropTypes.func,

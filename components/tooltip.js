@@ -63,7 +63,7 @@ Tooltip.propTypes = {
   tooltipText: PropTypes.string,
   disabled: PropTypes.bool,
   width: PropTypes.number,
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 Tooltip.defaultProps = {

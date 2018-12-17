@@ -19,11 +19,7 @@ class Paper extends Component {
   `;
   render() {
     return (
-      <div
-        css={
-          this.props.className ? [this.style, this.props.className] : this.style
-        }
-      >
+      <div css={this.props.css ? [this.style, this.props.css] : this.style}>
         {this.props.children}
       </div>
     );
@@ -33,7 +29,7 @@ class Paper extends Component {
 Paper.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   padding: PropTypes.string,
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default Paper;
