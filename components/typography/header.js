@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../../theme";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 
 const sizeDict = {
   xl: { fontSize: 52, fontWeight: 900 },
@@ -27,18 +28,18 @@ class Header extends Component {
 
   render() {
     const { children, className, headingLevel } = this.props;
-    const appliedClassname = className ? cx(this.style, className) : this.style;
+    const appliedClassname = className ? [this.style, className] : this.style;
     switch (headingLevel) {
       case "h1":
-        return <h1 className={appliedClassname}>{children}</h1>;
+        return <h1 css={appliedClassname}>{children}</h1>;
       case "h2":
-        return <h2 className={appliedClassname}>{children}</h2>;
+        return <h2 css={appliedClassname}>{children}</h2>;
       case "h3":
-        return <h3 className={appliedClassname}>{children}</h3>;
+        return <h3 css={appliedClassname}>{children}</h3>;
       case "h4":
-        return <h4 className={appliedClassname}>{children}</h4>;
+        return <h4 css={appliedClassname}>{children}</h4>;
       case "":
-        return <div className={appliedClassname}>{children}</div>;
+        return <div css={appliedClassname}>{children}</div>;
     }
   }
 }

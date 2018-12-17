@@ -1,6 +1,7 @@
-import React from "react";
+/** @jsx jsx */
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
+import { jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import { uuidv4 } from "../utils/common";
 
@@ -79,7 +80,7 @@ const StyledLabel = styled("span")({
 const Checkbox = ({ children, className, ...props }) => {
   const guid = uuidv4();
   return (
-    <StyledCheckbox className={className} htmlFor={guid}>
+    <StyledCheckbox css={className} htmlFor={guid}>
       <StyledInput type="checkbox" {...props} id={guid} />
       <StyledLabel>{children}</StyledLabel>
     </StyledCheckbox>

@@ -3,7 +3,6 @@
 import { mount, shallow } from "enzyme";
 import Router from "next/router";
 
-import React from "react";
 import { BenefitsDirectory } from "../../pages/benefits-directory";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";

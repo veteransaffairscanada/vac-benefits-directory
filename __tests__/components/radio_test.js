@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import Radio from "../../components/radio";
 const { axe, toHaveNoViolations } = require("jest-axe");

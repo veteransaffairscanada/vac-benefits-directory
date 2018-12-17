@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import FooterLink from "../../../components/typography/footer_link";
 const { axe, toHaveNoViolations } = require("jest-axe");

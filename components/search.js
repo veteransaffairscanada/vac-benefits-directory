@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import lunr from "lunr";
 
@@ -10,7 +11,7 @@ import match from "autosuggest-highlight/match";
 import parse from "autosuggest-highlight/parse";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import SearchBox from "./search_box";
 
 const container = css`
@@ -155,11 +156,11 @@ export class Search extends Component {
         <div>
           {parts.map((part, index) => {
             return part.highlight ? (
-              <span key={String(index)} className={spanCSS}>
+              <span key={String(index)} css={spanCSS}>
                 {part.text}
               </span>
             ) : (
-              <strong key={String(index)} className={strongCSS}>
+              <strong key={String(index)} css={strongCSS}>
                 {part.text}
               </strong>
             );

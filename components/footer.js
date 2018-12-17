@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import WordMark from "./word_mark";
 import { Toolbar } from "@material-ui/core";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import FooterLink from "./typography/footer_link";
 import { globalTheme } from "../theme";
 
@@ -34,8 +35,8 @@ class Footer extends Component {
       : process.env.NODE_ENV;
 
     return (
-      <div className={root} role="navigation">
-        <Toolbar className={toolbar}>
+      <div css={root} role="navigation">
+        <Toolbar css={toolbar}>
           <FooterLink
             id="privacy"
             href={this.props.t("privacy-link")}
@@ -44,8 +45,8 @@ class Footer extends Component {
           >
             {this.props.t("Privacy")}
           </FooterLink>
-          <p className={envDetailsStyling}>Build: {envDetails}</p>
-          <div className={wordMark}>
+          <p css={envDetailsStyling}>Build: {envDetails}</p>
+          <div css={wordMark}>
             <WordMark width="6em" flag="#fff" text="#fff" />
           </div>
         </Toolbar>

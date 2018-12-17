@@ -1,9 +1,10 @@
-import React from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import Tooltip from "./tooltip";
 import Radio from "./radio";
@@ -22,7 +23,7 @@ const underline = css`
   border-bottom: 2px dotted ${globalTheme.colour.greyishBrown};
 `;
 
-export class RadioSelector extends React.Component {
+export class RadioSelector extends Component {
   isDisabled = (option, responses, questionDisplayLogic) => {
     let returnValue = false;
     questionDisplayLogic.forEach(row => {
@@ -91,14 +92,14 @@ export class RadioSelector extends React.Component {
     const { t, selectorType, responses, legend, tooltipText } = this.props;
     if (options.length !== 0) {
       return (
-        <div className={formControl}>
+        <div css={formControl}>
           <Tooltip
             disabled={!tooltipText}
             tooltipText={tooltipText}
             width={250}
           >
-            <Header className={formLabel} size="sm">
-              <span className={tooltipText ? underline : ""}>{legend}</span>
+            <Header css={formLabel} size="sm">
+              <span css={tooltipText ? underline : ""}>{legend}</span>
             </Header>
           </Tooltip>
 
@@ -110,7 +111,7 @@ export class RadioSelector extends React.Component {
                   checked={responses[selectorType] === option.variable_name}
                   onChange={this.handleSelect}
                   value={option.variable_name}
-                  className={radioOption}
+                  css={radioOption}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english

@@ -2,7 +2,7 @@
 
 import { shallow } from "enzyme";
 import Router from "next/router";
-import React from "react";
+
 import { Guided } from "../../pages/index";
 import benefitsFixture from "../fixtures/benefits";
 import translate from "../fixtures/translate";

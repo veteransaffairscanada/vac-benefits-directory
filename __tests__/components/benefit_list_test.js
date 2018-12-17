@@ -1,4 +1,3 @@
-import React from "react";
 import { mount, shallow } from "enzyme";
 import { BenefitList } from "../../components/benefit_list";
 const { axe, toHaveNoViolations } = require("jest-axe");

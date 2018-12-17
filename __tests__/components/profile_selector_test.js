@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { ProfileSelector } from "../../components/profile_selector";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";

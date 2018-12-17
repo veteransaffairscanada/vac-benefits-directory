@@ -1,4 +1,3 @@
-import React from "react";
 import ErrorBoundary from "../../components/error_boundary";
 import { mount } from "enzyme";
 import Raven from "raven-js";

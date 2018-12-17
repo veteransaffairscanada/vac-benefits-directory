@@ -1,6 +1,6 @@
 import { Summary } from "../../pages/summary";
 import { mount } from "enzyme";
-import React from "react";
+
 import benefitsFixture from "../fixtures/benefits";
 import translate from "../fixtures/translate";
 import needsFixture from "../fixtures/needs";

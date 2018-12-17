@@ -1,4 +1,3 @@
-import React from "react";
 import { shallow } from "enzyme";
 import { AlphaBanner } from "../../components/alpha_banner";
 const { axe, toHaveNoViolations } = require("jest-axe");

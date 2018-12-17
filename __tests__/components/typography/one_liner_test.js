@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import OneLiner from "../../../components/typography/one_liner";
 const { axe, toHaveNoViolations } = require("jest-axe");

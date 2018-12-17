@@ -1,4 +1,3 @@
-import React from "react";
 import FederalBanner from "../../components/federal_banner";
 import { mount } from "enzyme";
 import translate from "../fixtures/translate";

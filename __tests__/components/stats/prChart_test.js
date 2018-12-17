@@ -1,4 +1,3 @@
-import React from "react";
 import { PrChart } from "../../../components/stats/prChart";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";

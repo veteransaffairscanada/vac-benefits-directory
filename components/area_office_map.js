@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Button from "./button";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import Body from "./typography/body";
 
@@ -89,7 +90,7 @@ export class AreaOfficeMap extends Component {
             >
               {this.props.selectedAreaOffice.id === d.id ? (
                 <InfoWindow options={{ maxWidth: 200 }}>
-                  <div className={officeInfo}>
+                  <div css={officeInfo}>
                     <Header size="sm">
                       {d["name_" + t("current-language-code")]}
                     </Header>

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import AnchorLink from "./typography/anchor_link";
 import { connect } from "react-redux";
@@ -55,12 +56,12 @@ export class GuidedExperienceSummary extends Component {
 
   getLiElement = (content, section, key) => {
     return (
-      <li className={breadcrumbCss} key={key}>
+      <li css={breadcrumbCss} key={key}>
         <Grid container>
           <Grid item xs={9}>
             {content}
           </Grid>
-          <Grid item xs={3} className={rightAlign}>
+          <Grid item xs={3} css={rightAlign}>
             <AnchorLink
               href={mutateUrl(this.props.url, "/index", { section: section })}
               fontSize={24}
@@ -127,8 +128,8 @@ export class GuidedExperienceSummary extends Component {
 
   render() {
     return (
-      <div className={outerDiv}>
-        <ul className={breadcrumbList}>{this.breadcrumbs()}</ul>
+      <div css={outerDiv}>
+        <ul css={breadcrumbList}>{this.breadcrumbs()}</ul>
       </div>
     );
   }

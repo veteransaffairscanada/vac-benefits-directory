@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { shallow } from "enzyme";
-import React from "react";
+
 import { Print } from "../../pages/print";
 import benefitsFixture from "../fixtures/benefits";
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";

@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { mount, shallow } from "enzyme";
-import React from "react";
+
 import { AreaOfficeTable } from "../../components/area_office_table";
 import areaOfficesFixture from "../fixtures/area_offices";
 

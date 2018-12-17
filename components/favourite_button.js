@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import SaveChecked from "./icons/SaveChecked";
 import SaveUnchecked from "./icons/SaveUnchecked";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import { areCookiesDisabled } from "../utils/common";
@@ -82,7 +83,7 @@ export class FavouriteButton extends Component {
           disabled={this.props.cookiesDisabled}
           ariaLabel={longButtonText + " " + benefitName}
           id={"favourite-" + benefit.id}
-          className={saveButton}
+          css={saveButton}
           aria-label={t("B3.favouritesButtonText")}
           onClick={() => this.toggleFavourite(benefit.id)}
           onMouseOver={() => {
@@ -91,12 +92,12 @@ export class FavouriteButton extends Component {
           size="small"
         >
           {isSaved ? (
-            <SaveChecked className={cx("saved", saveIcon)} />
+            <SaveChecked css={["saved", saveIcon]} />
           ) : (
-            <SaveUnchecked className={cx("notSaved", saveIcon)} />
+            <SaveUnchecked css={["notSaved", saveIcon]} />
           )}
-          <span className={hideSmall}>{longButtonText}</span>
-          <span className={hideBig}>{shortButtonText}</span>
+          <span css={hideSmall}>{longButtonText}</span>
+          <span css={hideBig}>{shortButtonText}</span>
         </HeaderButton>
       </Tooltip>
     );

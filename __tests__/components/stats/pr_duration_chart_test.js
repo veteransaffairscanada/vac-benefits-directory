@@ -1,4 +1,3 @@
-import React from "react";
 import { PrDurationChart } from "../../../components/stats/pr_duration_chart";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";

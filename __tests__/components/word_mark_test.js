@@ -1,4 +1,3 @@
-import React from "react";
 import { shallow } from "enzyme";
 import { flush } from "emotion";
 import WordMark from "../../components/word_mark";

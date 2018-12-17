@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import Pin from "./icons/Place";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 import Body from "../components/typography/body";
@@ -158,9 +159,9 @@ export class AreaOfficeTable extends Component {
         key={"tableRow" + ae.id}
         id={"tableRow" + ae.id}
         tabIndex={0}
-        className={
+        css={
           ae.id === this.props.selectedAreaOffice.id
-            ? cx(officeRow, selectedRow)
+            ? [officeRow, selectedRow]
             : officeRow
         }
         onKeyPress={e => {
@@ -182,20 +183,20 @@ export class AreaOfficeTable extends Component {
           this.props.setSelectedAreaOffice(ae);
         }}
       >
-        <td className={pinCell}>
-          <Pin className={pin} />
+        <td css={pinCell}>
+          <Pin css={pin} />
         </td>
-        <td className={officeCell}>
-          <Body className={cx(tableText, bold)}>
+        <td css={officeCell}>
+          <Body css={[tableText, bold]}>
             {language === "en" ? ae.name_en : ae.name_fr}
           </Body>
-          <Body className={tableText}>
+          <Body css={tableText}>
             {language === "en" ? ae.address_en : ae.address_fr}
           </Body>
         </td>
         {this.isDefaultLocation() ? null : (
-          <td className={distanceCell}>
-            <Body className={cx(tableText, bold)}>
+          <td css={distanceCell}>
+            <Body css={[tableText, bold]}>
               {Math.round(distances[ae.id]) + " km"}
             </Body>
           </td>
@@ -208,8 +209,8 @@ export class AreaOfficeTable extends Component {
     const { t } = this.props;
     const defaultOffices = this.defaultAreaOffices();
     return (
-      <div id="scrolling_div" className={scrollingDiv}>
-        <table className={mainTable}>
+      <div id="scrolling_div" css={scrollingDiv}>
+        <table css={mainTable}>
           <colgroup>
             <col span="1" style={{ width: "10%" }} />
             {this.isDefaultLocation() ? (
@@ -228,9 +229,9 @@ export class AreaOfficeTable extends Component {
                     return (
                       <React.Fragment key={i1}>
                         <tr>
-                          <td className={provinceCell} />
+                          <td css={provinceCell} />
                           <td
-                            className={provinceCell}
+                            css={provinceCell}
                             colSpan={this.isDefaultLocation() ? "1" : "2"}
                           >
                             {t("current-language-code") == "en"

@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Container from "../components/container";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
@@ -37,12 +38,12 @@ class ShareBox extends Component {
   render() {
     const { t, printUrl, url, share } = this.props;
     return (
-      <Container className={shareBoxStyle}>
+      <Container css={shareBoxStyle}>
         <Grid container spacing={8}>
           {share ? (
             <Grid item lg={12} md={12} sm={12} xs={6}>
               <HeaderButton
-                className={shareBoxItem}
+                css={shareBoxItem}
                 size="small"
                 onClick={() => this.setState({ showModal: true })}
                 id="shareButton"
@@ -63,14 +64,14 @@ class ShareBox extends Component {
           )}
           <Grid item lg={12} md={12} sm={12} xs={6}>
             <HeaderLink
-              className={shareBoxItem}
+              css={shareBoxItem}
               size="small"
               href={printUrl}
               target="print_page"
               id="printButton"
             >
               <Print />
-              <span className={share ? nonMobileStyle : ""}>{t("Print")}</span>
+              <span css={share ? nonMobileStyle : ""}>{t("Print")}</span>
             </HeaderLink>
           </Grid>
         </Grid>

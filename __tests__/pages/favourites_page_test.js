@@ -3,7 +3,7 @@
 import { shallow } from "enzyme";
 import Router from "next/router";
 import lunr from "lunr";
-import React from "react";
+
 import { FavouritesPage } from "../../pages/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";

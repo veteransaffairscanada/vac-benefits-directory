@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 
 const needsTag = css`
   margin-right: ${globalTheme.unit};
@@ -20,7 +21,7 @@ export class NeedTag extends Component {
     const { t, need } = this.props;
     return (
       <div
-        className={needsTag}
+        css={needsTag}
         style={{ backgroundColor: globalTheme.colour.paleGrey }}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}

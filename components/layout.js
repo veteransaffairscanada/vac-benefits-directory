@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { AlphaBanner } from "../components/alpha_banner";
@@ -74,7 +75,7 @@ class Layout extends Component {
           <Head title={title} t={t} />
           <ErrorBoundary>
             <Content>
-              <div className={header}>
+              <div css={header}>
                 <Container>
                   <FederalBanner
                     i18n={this.props.i18n}
@@ -82,13 +83,13 @@ class Layout extends Component {
                     showRefreshCache={this.props.showRefreshCache}
                   />
                 </Container>
-                <div className={alpha}>
+                <div css={alpha}>
                   <Container>
                     <AlphaBanner t={t}>
                       {t("alpha")} &nbsp;
                       <a
                         href={"mailto:" + t("contact.feedback_email")}
-                        className={white}
+                        css={white}
                       >
                         {t("alpha-feedback")}
                       </a>
@@ -100,12 +101,12 @@ class Layout extends Component {
                 {this.props.children}
               </div>
             </Content>
-            <div className={backgoundColour1}>
+            <div css={backgoundColour1}>
               <Container>
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div className={backgoundColour2}>
+            <div css={backgoundColour2}>
               <Container>
                 <Footer t={t} />
               </Container>

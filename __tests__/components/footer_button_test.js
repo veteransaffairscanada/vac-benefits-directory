@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import FooterButton from "../../components/button";
 const { axe, toHaveNoViolations } = require("jest-axe");

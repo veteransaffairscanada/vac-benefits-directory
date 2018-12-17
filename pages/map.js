@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
@@ -9,7 +10,7 @@ import PlaceSearch from "../components/place_search";
 import { Grid } from "@material-ui/core";
 import Paper from "../components/paper";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 import Header from "../components/typography/header";
 import Body from "../components/typography/body";
@@ -77,7 +78,7 @@ export class Map extends Component {
         />
         <Container>
           <Grid container spacing={24}>
-            <Grid item xs={12} md={12} className={topMatter}>
+            <Grid item xs={12} md={12} css={topMatter}>
               <Header size="xl" headingLevel="h1">
                 {t("map.vacOffices")}
               </Header>
@@ -97,7 +98,7 @@ export class Map extends Component {
               item
               xs={12}
               md={5}
-              className={this.placeSearch}
+              css={this.placeSearch}
               id="placeSearchHold"
             >
               <PlaceSearch
@@ -112,13 +113,13 @@ export class Map extends Component {
             </Grid>
           </Grid>
 
-          <Paper className={mapPaper}>
+          <Paper css={mapPaper}>
             <Grid container spacing={0}>
               <Grid item xs={12} md={8}>
                 <AreaOfficeMap
                   id="AreaOfficeMap"
                   loadingElement={<div style={{ height: "100%" }} />}
-                  containerElement={<div className={mapContainer} />}
+                  containerElement={<div css={mapContainer} />}
                   mapElement={<div style={{ height: "100%" }} />}
                   t={t}
                 />

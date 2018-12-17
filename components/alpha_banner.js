@@ -1,7 +1,7 @@
-import React from "react";
+/** @jsx jsx */
 import PropTypes from "prop-types";
 import { PhaseBadge } from "./phase_badge";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 
 const Banner = css`

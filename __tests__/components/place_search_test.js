@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { mount, shallow } from "enzyme";
-import React from "react";
+
 import WrappedPlaceSearch from "../../components/place_search";
 import { PlaceSearch } from "../../components/place_search";
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { SelectionsEditor } from "../../components/selections_editor";
 const { axe, toHaveNoViolations } = require("jest-axe");

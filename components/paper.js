@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 
 class Paper extends Component {
@@ -19,10 +20,8 @@ class Paper extends Component {
   render() {
     return (
       <div
-        className={
-          this.props.className
-            ? cx(this.style, this.props.className)
-            : this.style
+        css={
+          this.props.className ? [this.style, this.props.className] : this.style
         }
       >
         {this.props.children}

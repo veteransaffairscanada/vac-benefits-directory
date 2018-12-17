@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 const style = css`
   font-family: ${globalTheme.fontFamily};
   font-size: 18px;
@@ -29,7 +30,7 @@ class FooterButton extends Component {
     const { className, onClick, children, other } = this.props;
     return (
       <button
-        className={className ? cx(style, className) : style}
+        css={className ? [style, className] : style}
         onClick={onClick}
         {...other}
       >

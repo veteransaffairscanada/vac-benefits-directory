@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { NeedButton } from "../../components/need_button";
 import needsFixture from "../fixtures/needs";

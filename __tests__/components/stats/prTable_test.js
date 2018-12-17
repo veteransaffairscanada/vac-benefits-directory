@@ -1,4 +1,3 @@
-import React from "react";
 import { PrTable } from "../../../components/stats/prTable";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";

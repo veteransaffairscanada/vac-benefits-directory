@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { mount } from "enzyme";
-import React from "react";
+
 import { GuidedExperienceNeeds } from "../../components/guided_experience_needs";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";

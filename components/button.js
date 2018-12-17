@@ -1,7 +1,8 @@
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
-import React from "react";
+
 import { globalTheme } from "../theme";
 import KeyboardBackspace from "./icons/KeyboardBackspace";
 
@@ -110,7 +111,7 @@ const Button = ({ size, secondary, arrow, children, icon, ...props }) => (
     {...props}
   >
     {children}
-    {arrow ? <KeyboardBackspace className={rightArrowIcon} /> : null}
+    {arrow ? <KeyboardBackspace css={rightArrowIcon} /> : null}
   </StyledButton>
 );
 

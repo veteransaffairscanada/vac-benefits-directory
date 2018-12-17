@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";

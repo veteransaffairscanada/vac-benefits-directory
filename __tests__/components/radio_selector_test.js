@@ -1,4 +1,3 @@
-import React from "react";
 import { mount, shallow } from "enzyme";
 import { RadioSelector } from "../../components/radio_selector";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";

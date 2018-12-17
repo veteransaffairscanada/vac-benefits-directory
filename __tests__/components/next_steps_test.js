@@ -1,4 +1,3 @@
-import React from "react";
 import { NextSteps } from "../../components/next_steps";
 import { mount } from "enzyme";
 import translate from "../fixtures/translate";

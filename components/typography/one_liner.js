@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../../theme";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 
 const style = css`
   font-family: ${globalTheme.fontFamily};
@@ -17,9 +18,7 @@ const style = css`
 class OneLiner extends Component {
   render() {
     const { className, children } = this.props;
-    return (
-      <div className={className ? cx(style, className) : style}>{children}</div>
-    );
+    return <div css={className ? [style, className] : style}>{children}</div>;
   }
 }
 OneLiner.propTypes = {

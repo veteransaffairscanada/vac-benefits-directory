@@ -1,8 +1,9 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import Paper from "../components/paper";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import PrChart from "../components/stats/prChart";
@@ -26,7 +27,7 @@ export class Stats extends Component {
         showRefreshCache={false}
         title={t("titles.stats")}
       >
-        <Container className={marginTop}>
+        <Container css={marginTop}>
           <h1>{t("stats.title")}</h1>
           <Grid container spacing={16}>
             <Grid item xs={12}>

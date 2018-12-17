@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import ArrowBack from "./icons/ArrowBack";
 import ArrowForward from "./icons/ArrowForward";
 import Link from "next/link";
@@ -58,12 +59,12 @@ class HeaderLink extends Component {
     return (
       <Link href={href}>
         <a
-          className={
+          css={
             size === "small"
-              ? cx(style, small, className)
+              ? [style, small, className]
               : altStyle === "grey"
-              ? cx(style, grey, className)
-              : cx(style, className)
+              ? [style, grey, className]
+              : [style, className]
           }
           href={href}
           id={"a-" + id}

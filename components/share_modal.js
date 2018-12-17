@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 
@@ -198,11 +199,11 @@ class ShareModal extends Component {
     if (process.browser) {
       return (
         <ReactModal
-          className={modalCSS}
+          css={modalCSS}
           isOpen={isOpen}
           onRequestClose={() => this.close(onRequestClose)}
         >
-          <div className={header}>
+          <div css={header}>
             <span>{t("titles.share")}</span>
             <CloseButton
               onClick={() => this.close(closeModal)}
@@ -211,7 +212,7 @@ class ShareModal extends Component {
               X
             </CloseButton>
           </div>
-          <div className={bodyStyle}>
+          <div css={bodyStyle}>
             <p>
               <label htmlFor="shareTarget">{t("share.copy_prompt")}</label>
             </p>

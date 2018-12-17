@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
@@ -6,7 +7,7 @@ import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import SaveChecked from "./icons/SaveUnchecked";
 import Link from "next/link";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import Container from "./container";
 import Header from "./typography/header";
 import HeaderButton from "./header_button";
@@ -83,7 +84,7 @@ export class Favourites extends Component {
     ];
 
     return (
-      <div className={outerDiv}>
+      <div css={outerDiv}>
         <BreadCrumbs
           t={t}
           homeUrl={homeUrl}
@@ -93,7 +94,7 @@ export class Favourites extends Component {
         <Container id="favourites">
           <Grid container spacing={32}>
             <Grid item lg={3} md={3} sm={4} xs={12}>
-              <Grid container spacing={16} className={favouritesLink}>
+              <Grid container spacing={16} css={favouritesLink}>
                 <Grid item xs={12}>
                   <HeaderButton
                     id="nextSteps"
@@ -129,16 +130,12 @@ export class Favourites extends Component {
                   </Grid>
                 ) : null}
                 <Grid item xs={12}>
-                  <Header
-                    className={"BenefitsCounter"}
-                    size="lg"
-                    headingLevel="h1"
-                  >
+                  <Header css={"BenefitsCounter"} size="lg" headingLevel="h1">
                     {t("favourites.saved_benefits", {
                       x: filteredBenefits.length
                     })}
                   </Header>
-                  <Body className={topMargin}>{t("B3.check eligibility")}</Body>
+                  <Body css={topMargin}>{t("B3.check eligibility")}</Body>
                 </Grid>
                 <BenefitList
                   t={t}
@@ -150,8 +147,8 @@ export class Favourites extends Component {
                 />
               </Grid>
               {filteredBenefits.length == 0 ? (
-                <Body className={emptyList}>
-                  <SaveChecked className={saveCSS} />
+                <Body css={emptyList}>
+                  <SaveChecked css={saveCSS} />
                   <br />
                   {t("favourites.help_msg_line1")}
                   <br />

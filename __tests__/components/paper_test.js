@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import Paper from "../../components/paper";
 const { axe, toHaveNoViolations } = require("jest-axe");

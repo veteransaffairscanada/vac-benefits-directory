@@ -1,3 +1,4 @@
+/** @jsx jsx */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
@@ -6,7 +7,7 @@ import SaveChecked from "./icons/SaveChecked";
 import SelectionsEditor from "./selections_editor";
 import { connect } from "react-redux";
 import { getFavouritesUrl, getPrintUrl, getHomeUrl } from "../selectors/urls";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
@@ -69,8 +70,8 @@ export class BB extends Component {
   render() {
     const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <div id={this.props.id} className={outerDiv}>
-        <div className={topMatter}>
+      <div id={this.props.id} css={outerDiv}>
+        <div css={topMatter}>
           <BreadCrumbs
             t={t}
             breadcrumbs={[]}
@@ -81,7 +82,7 @@ export class BB extends Component {
         <Container>
           <Grid container spacing={32}>
             <Grid item lg={3} md={3} sm={4} xs={12}>
-              <Grid container spacing={16} className={favouritesLink}>
+              <Grid container spacing={16} css={favouritesLink}>
                 <Grid item xs={12}>
                   <HeaderLink
                     id="savedBenefits"
@@ -90,7 +91,7 @@ export class BB extends Component {
                     <SaveChecked />
                     {t("B3.favouritesButtonText")}
                   </HeaderLink>
-                  <span className={dot} id="favouritesDot">
+                  <span css={dot} id="favouritesDot">
                     {this.props.favouriteBenefits.length}
                   </span>
                 </Grid>

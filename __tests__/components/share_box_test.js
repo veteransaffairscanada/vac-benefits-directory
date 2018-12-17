@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import ShareBox from "../../components/share_box";
 const { axe, toHaveNoViolations } = require("jest-axe");

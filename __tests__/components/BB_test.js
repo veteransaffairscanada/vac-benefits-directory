@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { mount, shallow } from "enzyme";
-import React from "react";
+
 import configureStore from "redux-mock-store";
 
 import { BB } from "../../components/BB";

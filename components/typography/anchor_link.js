@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../../theme";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 
 class AnchorLink extends Component {
   style = css`
@@ -24,7 +25,7 @@ class AnchorLink extends Component {
     const { className, children } = this.props;
 
     return (
-      <a className={cx(this.style, className)} {...this.props}>
+      <a css={[this.style, className]} {...this.props}>
         {children}
       </a>
     );

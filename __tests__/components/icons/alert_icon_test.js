@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import AlertIcon from "../../../components/icons/alert_icon";
 const { axe, toHaveNoViolations } = require("jest-axe");

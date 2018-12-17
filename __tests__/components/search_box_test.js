@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import SearchBox from "../../components/search_box";
 const { axe, toHaveNoViolations } = require("jest-axe");

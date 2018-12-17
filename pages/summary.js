@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import PropTypes from "prop-types";
@@ -9,7 +10,7 @@ import { Grid } from "@material-ui/core";
 import Button from "../components/button";
 import Header from "../components/typography/header";
 import Router from "next/router";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import { mutateUrl, getBenefitCountString } from "../utils/common";
 import { connect } from "react-redux";
@@ -52,14 +53,14 @@ export class Summary extends Component {
           <HeaderButton
             id="prevButton"
             onClick={() => Router.push(backUrl)}
-            className={prevButton}
+            css={prevButton}
             arrow="back"
           >
             {t("back")}
           </HeaderButton>
-          <Paper padding="md" className={box}>
+          <Paper padding="md" css={box}>
             <Grid container spacing={24}>
-              <Grid item xs={12} className={questions}>
+              <Grid item xs={12} css={questions}>
                 <Header size="md_lg" headingLevel="h2">
                   {t("ge.summary_subtitle")}
                 </Header>

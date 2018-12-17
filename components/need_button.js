@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import Checkbox from "./checkbox";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 
 const style = css`
   margin-bottom: 10px;
@@ -33,7 +34,7 @@ export class NeedButton extends Component {
         onChange={() => this.handleClick(need.id)}
         value={need.id}
         disabled={disabled ? "disabled" : null}
-        className={style}
+        css={style}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </Checkbox>

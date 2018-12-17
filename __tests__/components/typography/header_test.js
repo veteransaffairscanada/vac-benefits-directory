@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import Header from "../../../components/typography/header";
 const { axe, toHaveNoViolations } = require("jest-axe");

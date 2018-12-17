@@ -1,4 +1,3 @@
-import React from "react";
 import Layout from "../../components/layout";
 import { mount } from "enzyme";
 import translate from "../fixtures/translate";

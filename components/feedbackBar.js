@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
 import TextField from "@material-ui/core/TextField";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import FooterButton from "./footer_button";
 import { globalTheme } from "../theme";
 import Header from "./typography/header";
@@ -123,14 +124,14 @@ export class FeedbackBar extends Component {
     const { t } = this.props;
 
     return (
-      <div className={FeedbackWrapper} role="navigation">
+      <div css={FeedbackWrapper} role="navigation">
         {this.state.commentFormToggled ? (
-          <div className={CommentBox}>
-            <Header size="lg" headingLevel="h2" className={white}>
+          <div css={CommentBox}>
+            <Header size="lg" headingLevel="h2" css={white}>
               {t("comment-help-us-improve")}
             </Header>
-            <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
-            <div className={TextHold}>
+            <p css={pStyle}>{t("comment-privacy-disclaimer")}</p>
+            <div css={TextHold}>
               <TextField
                 inputProps={{
                   style: {
@@ -148,7 +149,7 @@ export class FeedbackBar extends Component {
                 margin="normal"
                 fullWidth={true}
                 onChange={this.handleChange("action")}
-                className={labelStyle}
+                css={labelStyle}
                 value={this.state.action}
                 autoFocus
               />
@@ -169,7 +170,7 @@ export class FeedbackBar extends Component {
                 margin="normal"
                 fullWidth={true}
                 onChange={this.handleChange("failure")}
-                className={labelStyle}
+                css={labelStyle}
                 value={this.state.failure}
               />
             </div>
@@ -191,14 +192,14 @@ export class FeedbackBar extends Component {
             </FooterButton>
           </div>
         ) : null}
-        <div className={Div}>
+        <div css={Div}>
           {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
-            <div className={Inner}>
-              <p className={pStyle}>{t("feedback-response")}</p>
+            <div css={Inner}>
+              <p css={pStyle}>{t("feedback-response")}</p>
             </div>
           ) : !this.state.feedbackSubmitted ? (
-            <div className={Inner}>
-              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
+            <div css={Inner}>
+              <Header size="sm" headingLevel="h2" css={whiteNormalFont}>
                 {t("feedback-prompt")}
               </Header>
               <FooterButton

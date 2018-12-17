@@ -1,4 +1,3 @@
-import React from "react";
 import Breadcrumbs from "../../components/breadcrumbs";
 import { mount } from "enzyme";
 

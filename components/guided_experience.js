@@ -1,7 +1,8 @@
+/** @jsx jsx */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import Router from "next/router";
 import Container from "./container";
 import Header from "./typography/header";
@@ -118,7 +119,7 @@ export class GuidedExperience extends Component {
           <HeaderLink
             id="prevButton"
             href={t("ge.home_link")}
-            className={prevButton}
+            css={prevButton}
             arrow="back"
           >
             {t("back")}
@@ -135,7 +136,7 @@ export class GuidedExperience extends Component {
               document.body.focus();
               window.scrollTo(0, 0);
             }}
-            className={prevButton}
+            css={prevButton}
             arrow="back"
           >
             {t("back")}
@@ -154,13 +155,13 @@ export class GuidedExperience extends Component {
           </React.Fragment>
         ) : null}
 
-        <Paper padding="md" className={box}>
+        <Paper padding="md" css={box}>
           <Grid container spacing={24}>
-            <Grid item xs={12} className={questions}>
+            <Grid item xs={12} css={questions}>
               <Header size="md_lg" headingLevel="h2">
                 {subtitle}
               </Header>
-              {helperText ? <Body className={body}>{helperText}</Body> : null}
+              {helperText ? <Body css={body}>{helperText}</Body> : null}
               {this.props.children}
             </Grid>
 

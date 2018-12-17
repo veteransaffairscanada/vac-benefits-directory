@@ -1,4 +1,3 @@
-import React from "react";
 import LanguageButton from "../../components/language_button";
 import { mount } from "enzyme";
 import Router from "next/router";

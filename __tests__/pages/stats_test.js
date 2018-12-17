@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { shallow } from "enzyme";
-import React from "react";
+
 import { Stats } from "../../pages/stats";
 import githubFixture from "../fixtures/github_data";
 import configureStore from "redux-mock-store";

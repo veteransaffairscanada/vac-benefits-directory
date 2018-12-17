@@ -1,10 +1,11 @@
-import React from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "./benefit_cards";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 
 const Div = css`
   width: 100%;
@@ -13,7 +14,7 @@ const Div = css`
   top: 40%;
 `;
 
-export class BenefitList extends React.Component {
+export class BenefitList extends Component {
   state = {
     loading: false
   };
@@ -77,7 +78,7 @@ export class BenefitList extends React.Component {
       : this.sortBenefits(filteredBenefits, t("current-language-code"));
 
     return loading ? (
-      <div className={Div}>
+      <div css={Div}>
         <CircularProgress size={100} />
       </div>
     ) : (

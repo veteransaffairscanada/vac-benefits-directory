@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import FilterText from "../../../components/typography/filter_text";
 const { axe, toHaveNoViolations } = require("jest-axe");

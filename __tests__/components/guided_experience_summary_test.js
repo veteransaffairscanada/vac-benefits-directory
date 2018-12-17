@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { GuidedExperienceSummary } from "../../components/guided_experience_summary";
 const { axe, toHaveNoViolations } = require("jest-axe");

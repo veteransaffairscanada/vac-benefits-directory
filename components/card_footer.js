@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import ExpandMoreIcon from "./icons/ExpandMore";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import EmbeddedBenefitCard from "./embedded_benefit_card";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { connect } from "react-redux";
 import { globalTheme } from "../theme";
 var constants = require("../utils/hardcoded_strings");
@@ -178,19 +179,19 @@ export class CardFooter extends Component {
       return (
         <ExpansionPanel
           expanded={this.state.open}
-          className={
+          css={
             this.state.open
-              ? cx(ExpansionPanelCss, ExpansionPanelOpen)
-              : cx(ExpansionPanelCss, ExpansionPanelClosed)
+              ? [ExpansionPanelCss, ExpansionPanelOpen]
+              : [ExpansionPanelCss, ExpansionPanelClosed]
           }
         >
           <ExpansionPanelSummary
-            className={ExpansionPanelSummaryCss}
+            css={ExpansionPanelSummaryCss}
             expandIcon={<ExpandMoreIcon />}
             onClick={() => this.toggleOpenState()}
           >
-            <div className={cardBottomTitle}>
-              <span className={headerDesc}>
+            <div css={cardBottomTitle}>
+              <span css={headerDesc}>
                 <span>
                   {this.childBenefitNames(
                     benefit,
@@ -202,10 +203,10 @@ export class CardFooter extends Component {
             </div>
           </ExpansionPanelSummary>
 
-          <ExpansionPanelDetails timeout="auto" className={collapse}>
+          <ExpansionPanelDetails timeout="auto" css={collapse}>
             <div>
               {veteranBenefits.length > 0 ? (
-                <div className={children}>
+                <div css={children}>
                   <div>
                     {veteranBenefits.map((cb, i) => (
                       <EmbeddedBenefitCard
@@ -223,12 +224,12 @@ export class CardFooter extends Component {
 
               {familyBenefits.length > 0 ? (
                 <div>
-                  <div className={cardBottomFamilyTitle}>
-                    <span className={headerDesc}>
+                  <div css={cardBottomFamilyTitle}>
+                    <span css={headerDesc}>
                       {t("benefits_b.eligible_open_family")}
                     </span>
                   </div>
-                  <div className={children}>
+                  <div css={children}>
                     {familyBenefits.map((cb, i) => (
                       <EmbeddedBenefitCard
                         id={"cb" + i}

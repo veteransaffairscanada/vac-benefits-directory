@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { Search } from "../../components/search";
 import benefitsFixture from "../fixtures/benefits";

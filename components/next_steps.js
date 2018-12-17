@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import Header from "./typography/header";
 import HeaderLink from "./header_link";
@@ -68,7 +69,7 @@ export class NextSteps extends Component {
         .replace("<p>", "<span>")
         .replace("</p>", "</span>");
       return (
-        <li key={n} className={liItem}>
+        <li key={n} css={liItem}>
           <JsxParser jsx={jsxString} />
         </li>
       );
@@ -80,41 +81,31 @@ export class NextSteps extends Component {
     const bullets = this.getBullets();
 
     return (
-      <div className={outerDiv}>
+      <div css={outerDiv}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <Header
-              className={header}
-              size="md"
-              headingLevel="h2"
-              paddingTop="25"
-            >
+            <Header css={header} size="md" headingLevel="h2" paddingTop="25">
               {t("nextSteps.whats_next")}
             </Header>
 
-            <div className={innerDiv} />
+            <div css={innerDiv} />
 
-            <ul id="nextStepsList" className={whatsNextList}>
+            <ul id="nextStepsList" css={whatsNextList}>
               {bullets}
             </ul>
           </Grid>
 
           <Grid item xs={12}>
-            <Header
-              className={header}
-              size="md"
-              headingLevel="h2"
-              paddingTop="25"
-            >
+            <Header css={header} size="md" headingLevel="h2" paddingTop="25">
               {t("nextSteps.contact_us")}
             </Header>
 
-            <div className={innerDiv} />
+            <div css={innerDiv} />
           </Grid>
 
           <Grid item sm={12} md={6}>
-            <Paper id="myVacCard" className={fullHeight} padding="sm">
-              <Header size="md" className={font21}>
+            <Paper id="myVacCard" css={fullHeight} padding="sm">
+              <Header size="md" css={font21}>
                 {t("nextSteps.register_myvac")}
               </Header>
               <p>
@@ -124,7 +115,7 @@ export class NextSteps extends Component {
                   href={t("nextSteps.myvac_register_href")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cerulean}
+                  css={cerulean}
                 >
                   {t("nextSteps.myvac_register_text")}
                 </a>
@@ -144,7 +135,7 @@ export class NextSteps extends Component {
             </Paper>
           </Grid>
           <Grid item sm={12} md={6}>
-            <Paper id="nearbyOfficeCard" className={fullHeight} padding="sm">
+            <Paper id="nearbyOfficeCard" css={fullHeight} padding="sm">
               <HeaderLink
                 id="nearbyOfficeLink"
                 arrow="forward"
@@ -155,7 +146,7 @@ export class NextSteps extends Component {
               <p>{t("nextSteps.box_2a")}</p>
               <p>
                 {t("nextSteps.box_2b") + " "}
-                <a href={"mailto:" + t("contact.email")} className={cerulean}>
+                <a href={"mailto:" + t("contact.email")} css={cerulean}>
                   {t("contact.email")}
                 </a>
                 {t("nextSteps.box_2c")}

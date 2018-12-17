@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import CardHeaderParentInfo from "./card_header_parent_info";
 import CardHeaderImportantInfo from "./card_header_important_info";
@@ -45,9 +46,9 @@ export class BenefitCardHeader extends Component {
 
     if (includeParentInfo || includeImportantInfo) {
       return (
-        <div className={cardTop}>
+        <div css={cardTop}>
           <AlertIcon t={t} />
-          <div className={headerDesc}>
+          <div css={headerDesc}>
             {includeParentInfo ? (
               <CardHeaderParentInfo
                 t={t}

@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -9,7 +10,7 @@ import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
 import CloseIcon from "./icons/Close";
@@ -74,18 +75,14 @@ export class SelectionsEditor extends Component {
   render() {
     const { t, store } = this.props;
     return (
-      <ExpansionPanel
-        className={root}
-        defaultExpanded
-        expanded={this.state.open}
-      >
+      <ExpansionPanel css={root} defaultExpanded expanded={this.state.open}>
         <ExpansionPanelSummary
-          className={summary}
-          expandIcon={<ExpandMoreIcon className={cerulean} />}
+          css={summary}
+          expandIcon={<ExpandMoreIcon css={cerulean} />}
           onClick={() => this.toggleOpenState()}
         >
           <EditIcon t={t} />
-          <Header headingLevel="h2" size="sm_md" className={filterTitle}>
+          <Header headingLevel="h2" size="sm_md" css={filterTitle}>
             {t("directory.edit_selections")}
           </Header>{" "}
         </ExpansionPanelSummary>
@@ -96,13 +93,13 @@ export class SelectionsEditor extends Component {
               {this.countSelected() > 0 ? (
                 <HeaderButton
                   id="ClearFilters"
-                  className={clearButton}
+                  css={clearButton}
                   onClick={() => {
                     this.clearFilters();
                   }}
                 >
                   {t("reset filters")} {"(" + this.countSelected() + ")"}
-                  <CloseIcon className={closeIcon} />
+                  <CloseIcon css={closeIcon} />
                 </HeaderButton>
               ) : null}
             </Grid>

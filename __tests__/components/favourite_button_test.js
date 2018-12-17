@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { FavouriteButton } from "../../components/favourite_button";
 import benefitsFixture from "../fixtures/benefits";

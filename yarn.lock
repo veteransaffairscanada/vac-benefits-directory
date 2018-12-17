@@ -1322,7 +1322,6 @@
   version "10.0.5"
   resolved "https://registry.yarnpkg.com/@emotion/css/-/css-10.0.5.tgz#3bc6593fb98ba096a1ccd843d9f32744929b6cfd"
   integrity sha512-FKFdXjvQw+xpDxE7SW6lA0LzP5lmUqXlzejOGEDlJtQO3FsaqE+sU3q2efV/IPxSku8TyPJ0l7C3TUaOv/WO4g==
-
   dependencies:
     "@emotion/serialize" "^0.11.3"
     "@emotion/utils" "0.11.1"
@@ -4086,6 +4085,16 @@ create-emotion-server@10.0.0:
     multipipe "^1.0.2"
     through "^2.3.8"
 
+create-emotion@^10.0.5:
+  version "10.0.5"
+  resolved "https://registry.yarnpkg.com/create-emotion/-/create-emotion-10.0.5.tgz#22487f19b59a7ed10144f808289eadffebcfab06"
+  integrity sha512-MIOSeFiMtPrAULEtd2GFYGZEzeN2xnCFoiHrjvUYjxruYCJfGqUOBmh4YEN1yU+Ww5yXr+DIZibFl7FEOP57iA==
+  dependencies:
+    "@emotion/cache" "10.0.0"
+    "@emotion/serialize" "^0.11.3"
+    "@emotion/sheet" "0.9.2"
+    "@emotion/utils" "0.11.1"
+
 create-hash@^1.1.0, create-hash@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/create-hash/-/create-hash-1.2.0.tgz#889078af11a63756bcfb59bd221996be3a9ef196"
@@ -4790,7 +4799,15 @@ emotion-server@^10.0.5:
   integrity sha512-REh/Q1xnzzTUxHHR4BXhlptcAG/G+s8AKdRzvrWw1/JDpHpJ6mKxnNxYvRqes3yyWsqaZORHomEuOkqG4I5W4g==
   dependencies:
     create-emotion-server "10.0.0"
-    
+
+emotion@^10.0.5:
+  version "10.0.5"
+  resolved "https://registry.yarnpkg.com/emotion/-/emotion-10.0.5.tgz#9b22cee820de0a45bc102e4750553c1b81098b00"
+  integrity sha512-bYti4oM6k1oDm/qZ3w/AcJNJDitTt++/EWy9TqYu2Th7YEJw2H5hesihynHszsfn4TAf5TS43y+51/KWHFnuBA==
+  dependencies:
+    babel-plugin-emotion "^10.0.5"
+    create-emotion "^10.0.5"
+
 encodeurl@~1.0.1, encodeurl@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"

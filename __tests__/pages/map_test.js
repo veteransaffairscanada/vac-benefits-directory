@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { shallow } from "enzyme";
-import React from "react";
+
 import { Map } from "../../pages/map";
 import areaOfficesFixture from "../fixtures/area_offices";
 import configureStore from "redux-mock-store";

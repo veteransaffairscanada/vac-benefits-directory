@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -11,7 +12,7 @@ import ReactMoment from "react-moment";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 
 const pCSS = css`
@@ -233,15 +234,15 @@ export class DataValidation extends Component {
         showRefreshCache={true}
       >
         <Container>
-          <Paper className={root}>
-            <p className={pCSS}>
+          <Paper css={root}>
+            <p css={pCSS}>
               {t("dv.last_cache_update")}
               :&nbsp;
               <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
             </p>
           </Paper>
-          <Paper className={root}>
-            <Table className={table}>
+          <Paper css={root}>
+            <Table css={table}>
               <TableHead>
                 <TableRow>
                   <TableCell>{t("dv.status")}</TableCell>
@@ -254,10 +255,10 @@ export class DataValidation extends Component {
                   return (
                     <TableRow key={i} id={n.name}>
                       <TableCell
-                        className={cx(
+                        css={[
                           tableCellCSS,
                           n.status ? tableCellGreen : tableCellRed
-                        )}
+                        ]}
                       >
                         {n.status !== undefined ? (
                           t("dv." + (n.status ? "Pass" : "Fail"))

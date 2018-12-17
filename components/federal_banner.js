@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { css } from "emotion";
+/** @jsx jsx */
+import { Component } from "react";
+import { css, jsx } from "@emotion/core";
 import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import LanguageButton from "./language_button";
@@ -70,14 +71,14 @@ class FederalBanner extends Component {
   render() {
     const { t } = this.props;
     return (
-      <div className={container}>
+      <div css={container}>
         <div className="svg-container">
           <FIP fillColor="white" t={this.props.t} />
         </div>
         <div>
           {this.props.showRefreshCache ? (
             <a href="/refresh">
-              <Button id="refreshCache" className={buttonCSS}>
+              <Button id="refreshCache" css={buttonCSS}>
                 {t("refresh-cache")}
               </Button>
             </a>

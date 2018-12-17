@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { logEvent } from "../utils/analytics";
 import Paper from "./paper";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import OneLiner from "./typography/one_liner";
 import HeaderLink from "./header_link";
 
@@ -36,7 +37,7 @@ export class EmbeddedBenefitCard extends Component {
     const language = t("current-language-code");
 
     return (
-      <Paper padding="sm" className={root}>
+      <Paper padding="sm" css={root}>
         <div
           className="exit_div"
           onClick={() =>
@@ -49,7 +50,7 @@ export class EmbeddedBenefitCard extends Component {
             id={"embedded-" + benefit.id}
             target="_blank"
             rel="noopener noreferrer"
-            className={heading}
+            css={heading}
             size="small"
             href={
               language === "en" ? benefit.benefitPageEn : benefit.benefitPageFr

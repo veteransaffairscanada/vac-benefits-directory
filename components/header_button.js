@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import ArrowBack from "./icons/ArrowBack";
 import ArrowForward from "./icons/ArrowForward";
 
@@ -59,12 +60,12 @@ class HeaderButton extends Component {
       <button
         aria-label={this.props.ariaLabel}
         disabled={disabled}
-        className={
+        css={
           size === "small"
-            ? cx(style, small, className)
+            ? [style, small, className]
             : altStyle === "grey"
-            ? cx(style, grey, className)
-            : cx(style, className)
+            ? [style, grey, className]
+            : [style, className]
         }
         id={"a-" + id}
         onClick={onClick}

@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import AnchorLink from "../../../components/typography/anchor_link";
 const { axe, toHaveNoViolations } = require("jest-axe");

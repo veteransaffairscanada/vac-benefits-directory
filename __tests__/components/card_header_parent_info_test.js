@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import { CardHeaderParentInfo } from "../../components/card_header_parent_info";
 import benefitsFixture from "../fixtures/benefits";

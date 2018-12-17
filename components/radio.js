@@ -1,6 +1,6 @@
-import React from "react";
+/** @jsx jsx */
 import PropTypes from "prop-types";
-import { cx, css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 
 const rootStyle = css({
@@ -64,15 +64,15 @@ const labelStyle = css({
 });
 
 const Radio = ({ children, className, value, ...input }) => (
-  <div className={cx(rootStyle, className)}>
+  <div css={[rootStyle, className]}>
     <input
       type="radio"
-      className={inputStyle}
+      css={inputStyle}
       value={value}
       id={value + "-0"}
       {...input}
     />
-    <label className={labelStyle} htmlFor={value + "-0"}>
+    <label css={labelStyle} htmlFor={value + "-0"}>
       {children}
     </label>
   </div>

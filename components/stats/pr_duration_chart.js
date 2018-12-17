@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import ReactHighcharts from "react-highcharts";
 import MomentBase from "moment";
 import { extendMoment } from "moment-range";

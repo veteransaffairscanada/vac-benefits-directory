@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
@@ -10,7 +11,7 @@ import {
   getFilteredBenefits,
   getNonFilteredBenefits
 } from "../selectors/benefits";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
@@ -88,7 +89,7 @@ export class BenefitsPane extends Component {
   resultsHeader = (x, headerText) => {
     if (this.props.searchString.trim() !== "" && x > 0) {
       return (
-        <Header className={headerPadding} size="sm_md" headingLevel="h2">
+        <Header css={headerPadding} size="sm_md" headingLevel="h2">
           {headerText}
         </Header>
       );
@@ -115,24 +116,24 @@ export class BenefitsPane extends Component {
     } = this.props; // eslint-disable-line no-unused-vars
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
-        <div className={noBenefitsPane}>
+        <div css={noBenefitsPane}>
           <Header size="lg" headingLevel="h1">
             {t("BenefitsPane.no_filtered_benefits")}
           </Header>
 
-          <div className={buttonBar}>
+          <div css={buttonBar}>
             <Button
-              className={button}
+              css={button}
               id="reset_filters_button"
               onClick={() => this.clearFilters()}
             >
               {t("BenefitsPane.reset_filters")}
             </Button>
 
-            <Body className={orText}>{t("BenefitsPane.or")}</Body>
+            <Body css={orText}>{t("BenefitsPane.or")}</Body>
 
             <Button
-              className={button}
+              css={button}
               id="contact_us_button"
               secondary
               onClick={() => this.goToMap(this.props.url)}
@@ -141,7 +142,7 @@ export class BenefitsPane extends Component {
             </Button>
           </div>
           <Grid item xs={12}>
-            <div ref={nextStepsRef} className={alignLeft}>
+            <div ref={nextStepsRef} css={alignLeft}>
               <Grid container spacing={24}>
                 <NextSteps
                   t={t}
@@ -158,7 +159,7 @@ export class BenefitsPane extends Component {
         <Grid container spacing={16}>
           <Grid item xs={12}>
             <Header
-              className={"BenefitsCounter " + title}
+              css={"BenefitsCounter " + title}
               size="lg"
               headingLevel="h1"
             >
@@ -207,7 +208,7 @@ export class BenefitsPane extends Component {
                 store={this.props.store}
               />
 
-              {nonFilteredBenefits.length > 0 ? <div className={spacer} /> : ""}
+              {nonFilteredBenefits.length > 0 ? <div css={spacer} /> : ""}
 
               {this.resultsHeader(
                 nonFilteredBenefits.length,

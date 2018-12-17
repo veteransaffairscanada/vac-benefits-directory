@@ -1,5 +1,5 @@
 import { mount, shallow } from "enzyme";
-import React from "react";
+
 import Router from "next/router";
 import questionsFixture from "../fixtures/questions_complex";
 import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex";

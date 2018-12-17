@@ -1,4 +1,3 @@
-import React from "react";
 import { FeedbackBar } from "../../components/feedbackBar";
 import { mount } from "enzyme";
 

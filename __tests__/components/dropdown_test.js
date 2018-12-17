@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import Dropdown from "../../components/dropdown";
 const { axe, toHaveNoViolations } = require("jest-axe");

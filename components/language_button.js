@@ -1,10 +1,11 @@
+/** @jsx jsx */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import FooterButton from "./footer_button";
 import { logEvent } from "../utils/analytics";
 import Router from "next/router";
-import { css } from "emotion";
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 
 const mobileButton = css`
@@ -48,7 +49,7 @@ class LanguageButton extends Component {
           <FooterButton
             id="changeLanguage"
             onClick={this.changeLanguage}
-            className={desktopButton}
+            css={desktopButton}
             lang={t("other-language-code")}
           >
             {t("other-language")}
@@ -57,7 +58,7 @@ class LanguageButton extends Component {
           <FooterButton
             id="changeLanguageMobile"
             onClick={this.changeLanguage}
-            className={mobileButton}
+            css={mobileButton}
             lang={t("other-language-code")}
           >
             {this.titleCase(t("other-language-code"))}

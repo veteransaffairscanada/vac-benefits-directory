@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+/** @jsx jsx */
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
@@ -8,6 +9,7 @@ import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
 import { css } from "emotion";
+import { jsx } from "@emotion/core";
 import CardFooter from "./card_footer";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
@@ -74,14 +76,14 @@ export class BenefitCard extends Component {
     const searchWords = this.props.searchString.split(/\s+/);
     return (
       <Grid item xs={12}>
-        <div className={root}>
-          <Paper className={cardBody}>
+        <div css={root}>
+          <Paper css={cardBody}>
             <BenefitCardHeader
               benefit={benefit}
               t={t}
               store={this.props.store}
             />
-            <Header className={benefitName} size="sm" headingLevel="h2">
+            <Header css={benefitName} size="sm" headingLevel="h2">
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
@@ -93,7 +95,7 @@ export class BenefitCard extends Component {
               />
             </Header>
 
-            <OneLiner className={"cardDescription " + cardDescriptionText}>
+            <OneLiner css={"cardDescription " + cardDescriptionText}>
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
@@ -104,13 +106,13 @@ export class BenefitCard extends Component {
                 }
               />
             </OneLiner>
-            <div className={padding}>
+            <div css={padding}>
               {needsMet.map(need => (
                 <NeedTag key={benefit.id + need.id} t={t} need={need} />
               ))}
             </div>
 
-            <Grid container className={buttonRow}>
+            <Grid container css={buttonRow}>
               {this.props.showFavourite ? (
                 <Grid item xs={4}>
                   <FavouriteButton
@@ -121,7 +123,7 @@ export class BenefitCard extends Component {
                   />
                 </Grid>
               ) : null}
-              <Grid item xs={8} className={alignRight}>
+              <Grid item xs={8} css={alignRight}>
                 <Button
                   arrow={true}
                   onClick={() => {

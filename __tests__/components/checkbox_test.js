@@ -1,4 +1,3 @@
-import React from "react";
 import { mount } from "enzyme";
 import Checkbox from "../../components/checkbox";
 const { axe, toHaveNoViolations } = require("jest-axe");

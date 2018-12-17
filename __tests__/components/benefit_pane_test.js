@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import { mount } from "enzyme";
-import React from "react";
+
 import configureStore from "redux-mock-store";
 
 import { BenefitsPane } from "../../components/benefits_pane";
