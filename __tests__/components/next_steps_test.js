@@ -70,4 +70,12 @@ describe("NextSteps", () => {
       props.nextSteps.length
     );
   });
+
+  it("renders an anchor tag if a markdown link is included", () => {
+    expect(
+      mount(<NextSteps {...props} />)
+        .find("li")
+        .find("a").length
+    ).toEqual(1);
+  });
 });
