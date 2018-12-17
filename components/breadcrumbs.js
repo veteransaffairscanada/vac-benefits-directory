@@ -5,7 +5,6 @@ import { css } from "emotion";
 import Container from "./container";
 import HomeIcon from "./icons/Home";
 import HeaderLink from "./header_link";
-//import { mutateUrl } from "../utils/common";
 
 const greyBanner = css`
   background-color: ${globalTheme.colour.paleGreyishBrown};
