@@ -15,10 +15,10 @@ const margin = css`
     margin-bottom: 10px;
   }
 `;
-const colour = css`
+const root = css`
+  border-bottom: thin dashed ${globalTheme.colour.lineGrey};
   color: ${globalTheme.colour.greyishBrown};
 `;
-
 class ExampleBullets extends Component {
   getExampleBullets = () => {
     const { benefitExamples, benefit, t } = this.props;
@@ -33,8 +33,11 @@ class ExampleBullets extends Component {
   render() {
     const { t } = this.props;
     const bullets = this.getExampleBullets();
+    if (bullets.length === 0) {
+      return null;
+    }
     return (
-      <div className={colour}>
+      <div className={root}>
         {t("benefit_card.examples")}
         <ul className={margin}>{bullets}</ul>
       </div>

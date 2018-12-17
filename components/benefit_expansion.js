@@ -34,7 +34,6 @@ const fullWidth = css`
   width: 100%;
 `;
 const topBorder = css`
-  border-top: thin dashed ${globalTheme.colour.lineGrey};
   padding-top: 1em;
 `;
 const listStyle = css`
