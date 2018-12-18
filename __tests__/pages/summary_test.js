@@ -37,7 +37,7 @@ describe("Summary", () => {
       needs: needsFixture,
       selectedNeeds: {},
       serviceType: "s1",
-      patronType: "p1",
+      patronType: "veteran",
       option: "",
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,

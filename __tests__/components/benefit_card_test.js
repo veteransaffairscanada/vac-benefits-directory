@@ -4,6 +4,7 @@ import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 
@@ -51,7 +52,8 @@ describe("BenefitCard", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      benefitExamples: benefitExamplesFixture
     };
     props.store = mockStore(reduxData);
 
@@ -79,26 +81,17 @@ describe("BenefitCard", () => {
     ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
   });
 
-  it("has a correctly configured external link button", () => {
-    mountedBenefitCard()
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(window.open).toBeCalledWith(
-      benefitsFixture[0].benefitPageEn,
-      "_blank"
-    );
-    expect(
-      mountedBenefitCard()
-        .find("Button")
-        .at(0)
-        .text()
-    ).toEqual("en");
-  });
-
   it("hides the Favourite Button if showFavourite is false", () => {
     props.showFavourite = false;
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
+  });
+
+  it("Clicking the See More button expands the BenefitExpansion component", () => {
+    mountedBenefitCard()
+      .find("HeaderButton")
+      .at(0)
+      .simulate("click");
+    expect(mountedBenefitCard().find("BenefitExpansion").length).toEqual(1);
   });
 
   describe("when language is French", () => {
@@ -110,23 +103,6 @@ describe("BenefitCard", () => {
       expect(mountedBenefitCard().text()).toContain(
         benefitsFixture[0].vacNameFr
       );
-    });
-
-    it("has a button with the French link", () => {
-      mountedBenefitCard()
-        .find("Button")
-        .at(0)
-        .simulate("click");
-      expect(window.open).toBeCalledWith(
-        benefitsFixture[0].benefitPageFr,
-        "_blank"
-      );
-      expect(
-        mountedBenefitCard()
-          .find("Button")
-          .at(0)
-          .text()
-      ).toEqual("fr");
     });
 
     it("shows a child benefit title if the benefit has a child", () => {
@@ -142,18 +118,5 @@ describe("BenefitCard", () => {
   it("has a needs tag", () => {
     reduxData.selectedNeeds["need_0"] = "need_0";
     expect(mountedBenefitCard().text()).toContain("Need 0");
-  });
-
-  it("Clicking the link logs an exit event", () => {
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    mountedBenefitCard()
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(analytics.logEvent).toBeCalledWith(
-      "Exit",
-      benefitsFixture[0].benefitPageEn
-    );
   });
 });

@@ -68,7 +68,7 @@ describe("Print", () => {
   });
 
   it("parses url correctly", () => {
-    props.url.query["patronType"] = "p2";
+    props.url.query["patronType"] = "servingMember";
     props.url.query["serviceType"] = "s1";
     props.url.query["selectedNeeds"] = "need_0,need_1";
 

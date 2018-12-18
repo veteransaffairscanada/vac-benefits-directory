@@ -1,20 +1,20 @@
 const multipleChoiceOptionsFixture = [
   {
-    variable_name: "p1",
+    variable_name: "veteran",
     linked_question: ["patronType"],
     id: "mco_p1",
     display_text_english: "p1_en",
     display_text_french: "p1_fr"
   },
   {
-    variable_name: "p2",
+    variable_name: "servingMember",
     linked_question: ["patronType"],
     id: "mco_p2",
     display_text_english: "p2_en",
     display_text_french: "p2_fr"
   },
   {
-    variable_name: "p3",
+    variable_name: "family",
     linked_question: ["patronType"],
     id: "mco_p3",
     display_text_english: "p3_en",
