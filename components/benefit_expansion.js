@@ -35,6 +35,7 @@ const fullWidth = css`
 `;
 const topBorder = css`
   padding-top: 1em;
+  padding-bottom: 18px;
 `;
 const listStyle = css`
   padding-left: 20px;
