@@ -231,8 +231,9 @@ export class DataValidation extends Component {
         t={t}
         hideNoscript={true}
         showRefreshCache={true}
+        skipLink="#mainContent"
       >
-        <Container>
+        <Container id="mainContent">
           <Paper className={root}>
             <p className={pCSS}>
               {t("dv.last_cache_update")}

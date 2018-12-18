@@ -109,6 +109,7 @@ export class Guided extends Component {
         hideNoscript={false}
         showRefreshCache={false}
         title={pageTitle}
+        skipLink="#mainContent"
       >
         <GuidedExperience
           id={section}

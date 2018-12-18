@@ -66,7 +66,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { t, title } = this.props;
+    const { t, title, skipLink } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <MuiThemeProvider theme={theme}>
@@ -80,6 +80,7 @@ class Layout extends Component {
                     i18n={this.props.i18n}
                     t={t}
                     showRefreshCache={this.props.showRefreshCache}
+                    skipLink={skipLink}
                   />
                 </Container>
                 <div className={alpha}>
@@ -124,6 +125,7 @@ Layout.propTypes = {
   showRefreshCache: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  skipLink: PropTypes.string.isRequired,
   title: PropTypes.string,
   backgroundColor: PropTypes.string
 };

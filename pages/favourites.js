@@ -18,6 +18,7 @@ export class FavouritesPage extends Component {
         showRefreshCache={false}
         title={t("favourites.saved_benefits", { x: favouriteBenefits.length })}
         backgroundColor={globalTheme.colour.white}
+        skipLink="#mainContent"
       >
         <Favourites
           id="favourites"

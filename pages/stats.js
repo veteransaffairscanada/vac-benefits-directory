@@ -25,8 +25,9 @@ export class Stats extends Component {
         hideNoscript={false}
         showRefreshCache={false}
         title={t("titles.stats")}
+        skipLink="mainContent"
       >
-        <Container className={marginTop}>
+        <Container className={marginTop} id="mainContent">
           <h1>{t("stats.title")}</h1>
           <Grid container spacing={16}>
             <Grid item xs={12}>

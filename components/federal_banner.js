@@ -86,13 +86,13 @@ const skipLinkStyle = css`
 
 class FederalBanner extends Component {
   render() {
-    const { t } = this.props;
+    const { t, skipLink } = this.props;
     return (
       <div className={container}>
         <div className="svg-container">
           <FIP fillColor="white" t={this.props.t} />
         </div>
-        <a className={skipLinkStyle} href="#mainContent" id="skipLink">
+        <a className={skipLinkStyle} href={skipLink} id="skipLink">
           {t("skipLink")}
         </a>
         <div>
@@ -115,6 +115,7 @@ class FederalBanner extends Component {
 FederalBanner.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  skipLink: PropTypes.string.isRequired,
   showRefreshCache: PropTypes.bool.isRequired
 };
 

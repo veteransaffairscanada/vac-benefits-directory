@@ -68,6 +68,7 @@ export class Map extends Component {
         showRefreshCache={false}
         title={t("titles.map")}
         backgroundColor={globalTheme.colour.white}
+        skipLink="#mainContent"
       >
         <BreadCrumbs
           t={t}

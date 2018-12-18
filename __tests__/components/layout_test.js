@@ -26,7 +26,8 @@ describe("Layout", () => {
       hideNoscript: true,
       i18n: {},
       showRefreshCache: false,
-      t: translate
+      t: translate,
+      skipLink: ""
     };
     _mountedLayout = undefined;
   });
