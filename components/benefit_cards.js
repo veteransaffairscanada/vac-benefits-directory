@@ -126,6 +126,7 @@ export class BenefitCard extends Component {
                 <HeaderButton
                   id={"see-more-less" + benefit.id}
                   onClick={this.toggleExpanded}
+                  size="small"
                 >
                   {this.state.expanded ? t("B3.see_less") : t("B3.see_more")}
                 </HeaderButton>
