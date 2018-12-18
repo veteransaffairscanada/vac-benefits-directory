@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
 import { connect } from "react-redux";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
 
 const margin = css`
@@ -19,7 +19,7 @@ const root = css`
   border-bottom: thin dashed ${globalTheme.colour.lineGrey};
   color: ${globalTheme.colour.greyishBrown};
 `;
-class ExampleBullets extends Component {
+export class ExampleBullets extends React.Component {
   getExampleBullets = () => {
     const { benefitExamples, benefit, t } = this.props;
     const lang = t("current-language-code") === "en" ? "english" : "french";
@@ -33,6 +33,7 @@ class ExampleBullets extends Component {
   render() {
     const { t } = this.props;
     const bullets = this.getExampleBullets();
+
     if (bullets.length === 0) {
       return null;
     }
@@ -54,8 +55,7 @@ const mapStateToProps = reduxState => {
 ExampleBullets.propTypes = {
   benefit: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  benefitExamples: PropTypes.array.isRequired,
-  className: PropTypes.string
+  benefitExamples: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(ExampleBullets);
