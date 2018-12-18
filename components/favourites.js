@@ -155,7 +155,7 @@ export class Favourites extends Component {
                   <br />
                   {t("favourites.help_msg_line1")}
                   <br />
-                  <Link href={t("favourites.help_url")}>
+                  <Link href={mutateUrl(url, "/benefits-directory")}>
                     <a>{t("favourites.help_url_text")}</a>
                   </Link>
                   {" " + t("favourites.help_msg_line_connect") + " "}
