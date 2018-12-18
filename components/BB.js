@@ -98,10 +98,7 @@ export class BB extends Component {
                   <HeaderButton
                     id="nextSteps"
                     onClick={() => {
-                      window.scrollTo({
-                        top: this.nextStepsRef.current.offsetTop,
-                        behavior: "smooth"
-                      });
+                      window.location = "#next-steps";
                     }}
                   >
                     <AssignmentTurnedIn />

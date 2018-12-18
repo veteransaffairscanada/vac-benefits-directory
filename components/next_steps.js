@@ -81,6 +81,7 @@ export class NextSteps extends Component {
 
     return (
       <div className={outerDiv}>
+        <a href="next-steps" id="next-steps" />
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Header
