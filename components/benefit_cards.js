@@ -28,7 +28,6 @@ const cardDescriptionText = css`
   }
 `;
 const buttonRow = css`
-  margin-top: 18px;
   padding-left: 35px;
   padding-right: 35px;
   padding-bottom: 35px;
