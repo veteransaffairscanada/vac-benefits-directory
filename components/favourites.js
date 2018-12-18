@@ -116,7 +116,7 @@ export class Favourites extends Component {
                 share={false}
               />
             </Grid>
-            <Grid item lg={9} md={9} sm={8} xs={12}>
+            <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={24}>
                 {this.state.showDisabledCookieBanner ? (
                   <Grid item xs={12}>

@@ -76,7 +76,7 @@ export class Map extends Component {
           pageTitle={t("map.vacOffices")}
         />
         <Container>
-          <Grid container spacing={24}>
+          <Grid container id="mainContent" spacing={24}>
             <Grid item xs={12} md={12} className={topMatter}>
               <Header size="xl" headingLevel="h1">
                 {t("map.vacOffices")}

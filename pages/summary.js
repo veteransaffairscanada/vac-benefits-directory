@@ -48,7 +48,7 @@ export class Summary extends Component {
         showRefreshCache={false}
         title={t("titles.ge_summary")}
       >
-        <Container>
+        <Container id="mainContent">
           <HeaderButton
             id="prevButton"
             onClick={() => Router.push(backUrl)}

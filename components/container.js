@@ -21,6 +21,7 @@ class Container extends Component {
         className={
           this.props.className ? cx(style, this.props.className) : style
         }
+        id={this.props.id ? this.props.id : ""}
       >
         {this.props.children}
       </div>
@@ -30,6 +31,7 @@ class Container extends Component {
 
 Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  id: PropTypes.string,
   className: PropTypes.string
 };
 
