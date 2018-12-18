@@ -93,7 +93,7 @@ class FederalBanner extends Component {
           <FIP fillColor="white" t={this.props.t} />
         </div>
         <a className={skipLinkStyle} href="#mainContent" id="skipLink">
-          Skip to Main Content
+          {t("skipLink")}
         </a>
         <div>
           {this.props.showRefreshCache ? (
