@@ -1,45 +1,30 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { css } from "emotion";
-import { globalTheme } from "../../theme";
+"use strict";
 
-export class EditIcon extends Component {
-  inner = css`
-    height: ${this.props.height};
-    width: ${this.props.width} !important;
-  `;
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-  render() {
-    return (
-      <svg
-        role="img"
-        aria-label={this.props.t("alt_text.edit")}
-        width={this.props.width}
-        height={this.props.height}
-        xmlns="http://www.w3.org/2000/svg"
-        className={this.inner}
-      >
-        <path
-          d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
-          fill={this.props.colour}
-        />
-        <path d="M0 0h24v24H0z" fill="none" />
-      </svg>
-    );
-  }
-}
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-EditIcon.propTypes = {
-  height: PropTypes.string,
-  width: PropTypes.string,
-  colour: PropTypes.string,
-  t: PropTypes.func.isRequired
-};
+var _react = _interopRequireDefault(require("react"));
 
-EditIcon.defaultProps = {
-  height: "22px",
-  width: "26px",
-  colour: globalTheme.colour.cerulean
-};
+var _createSvgIcon = _interopRequireDefault(require("./utils/createSvgIcon"));
 
-export default EditIcon;
+var _default = (0, _createSvgIcon.default)(
+  _react.default.createElement(
+    _react.default.Fragment,
+    null,
+    _react.default.createElement("path", {
+      d:
+        "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+    }),
+    _react.default.createElement("path", {
+      fill: "none",
+      d: "M0 0h24v24H0z"
+    })
+  ),
+  "Edit"
+);
+
+exports.default = _default;
