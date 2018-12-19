@@ -65,6 +65,9 @@ export class BB extends Component {
       this.setState({ showDisabledCookieBanner: false });
     }
   }
+  scrollToNextSteps() {
+    window.location = "#next-steps";
+  }
 
   render() {
     const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
@@ -97,9 +100,7 @@ export class BB extends Component {
                 <Grid item xs={12}>
                   <HeaderButton
                     id="nextSteps"
-                    onClick={() => {
-                      window.location = "#next-steps";
-                    }}
+                    onClick={() => this.scrollToNextSteps()}
                   >
                     <AssignmentTurnedIn />
                     {t("nextSteps.whats_next")}
