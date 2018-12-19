@@ -3,6 +3,7 @@ import {
   pathToDict,
   eligibilityMatch,
   getFilteredBenefitsWithoutSearch,
+  getFilteredNextSteps,
   getFilteredBenefits
 } from "../../selectors/benefits";
 import questionsFixture from "../fixtures/questions_complex";
@@ -12,6 +13,7 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_co
 import needsFixture from "../fixtures/needs_complex";
 import enIdx from "../fixtures/lunr_index_english";
 import frIdx from "../fixtures/lunr_index_french";
+import nextStepsFixture from "../fixtures/nextSteps_complex";
 
 describe("Benefits Selectors", () => {
   let props;
@@ -32,7 +34,8 @@ describe("Benefits Selectors", () => {
       selectedNeeds: {},
       patronType: "",
       searchString: "",
-      serviceType: ""
+      serviceType: "",
+      nextSteps: nextStepsFixture
     };
   });
 
@@ -262,6 +265,19 @@ describe("Benefits Selectors", () => {
           .sort()
           .reverse()
       ).toEqual(rankedScores);
+    });
+  });
+
+  describe("getFilteredNextSteps", () => {
+    it("displays all next steps if no eligibility paths are selected", () => {
+      expect(getFilteredNextSteps(state, props).length).toEqual(
+        nextStepsFixture.length
+      );
+    });
+
+    it("displays expected next step if the eligibility path is ep_1", () => {
+      state.patronType = "organization";
+      expect(getFilteredNextSteps(state, props).length).toEqual(3);
     });
   });
 });
