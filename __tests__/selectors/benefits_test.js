@@ -180,8 +180,7 @@ describe("Benefits Selectors", () => {
         "Community War Memorial",
         "Community Engagement",
         "Veteran and Family Well-Being Fund",
-        "Operational Stress Injury clinics",
-        "VAC Assistance Service"
+        "Operational Stress Injury clinics"
       ];
       const relevant_benefits = state.benefits.filter(x => {
         return nameEnList.indexOf(x.vacNameEn) > -1;
@@ -225,8 +224,7 @@ describe("Benefits Selectors", () => {
         "Community War Memorial",
         "Community Engagement",
         "Veteran and Family Well-Being Fund",
-        "Operational Stress Injury clinics",
-        "VAC Assistance Service"
+        "Operational Stress Injury clinics"
       ];
       const relevant_benefits = state.benefits.filter(x => {
         return nameEnList.indexOf(x.vacNameEn) > -1;
@@ -275,7 +273,7 @@ describe("Benefits Selectors", () => {
       );
     });
 
-    it("displays expected next step if the eligibility path is ep_1", () => {
+    it("displays expected next steps if the patronType is organization", () => {
       state.patronType = "organization";
       expect(getFilteredNextSteps(state, props).length).toEqual(3);
     });
