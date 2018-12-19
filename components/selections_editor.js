@@ -84,7 +84,7 @@ export class SelectionsEditor extends Component {
           expandIcon={<ExpandMoreIcon className={cerulean} />}
           onClick={() => this.toggleOpenState()}
         >
-          <EditIcon t={t} />
+          <EditIcon />
           <Header headingLevel="h2" size="sm_md" className={filterTitle}>
             {t("directory.edit_selections")}
           </Header>{" "}

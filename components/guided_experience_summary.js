@@ -65,7 +65,12 @@ export class GuidedExperienceSummary extends Component {
               href={mutateUrl(this.props.url, "/index", { section: section })}
               fontSize={24}
             >
-              <EditIcon t={this.props.t} />
+              <EditIcon
+                focusable="true"
+                aria-hidden="false"
+                role="img"
+                aria-label={this.props.t("alt_text.edit")}
+              />
             </AnchorLink>
           </Grid>
         </Grid>
