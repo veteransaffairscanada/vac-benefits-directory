@@ -88,6 +88,7 @@ export class NextSteps extends Component {
               size="md"
               headingLevel="h2"
               paddingTop="25"
+              id="next-steps"
             >
               {t("nextSteps.whats_next")}
             </Header>

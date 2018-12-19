@@ -119,10 +119,11 @@ describe("Favourites", () => {
     ).toEqual(2);
   });
 
-  it("clicking next steps button triggers scroll", () => {
+  it("clicking next steps button changes window location", () => {
+    mountedFavourites().instance().scrollToNextSteps = jest.fn();
     mountedFavourites()
       .find("#nextSteps")
       .simulate("click");
-    expect(window.scrollTo).toBeCalled();
+    expect(mountedFavourites().instance().scrollToNextSteps).toBeCalled();
   });
 });

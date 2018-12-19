@@ -121,10 +121,11 @@ describe("BB", () => {
     ).toEqual("0");
   });
 
-  it("clicking next steps button triggers scroll", () => {
+  it("clicking next steps button changes window location", () => {
+    mounted_BB().instance().scrollToNextSteps = jest.fn();
     mounted_BB()
       .find("#nextSteps")
       .simulate("click");
-    expect(window.scrollTo).toBeCalled();
+    expect(mounted_BB().instance().scrollToNextSteps).toBeCalled();
   });
 });
