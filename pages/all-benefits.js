@@ -19,8 +19,9 @@ export class AllBenefits extends Component {
         hideNoscript={true}
         showRefreshCache={false}
         title={t("titles.all_benefits")}
+        skipLink="#mainContent"
       >
-        <Container>
+        <Container id="mainContent">
           <Header size="xl" headingLevel="h1">
             {t("all-benefits.List of all benefits")}
           </Header>

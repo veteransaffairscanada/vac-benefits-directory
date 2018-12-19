@@ -66,14 +66,35 @@ const container = css`
     }
   `)};
 `;
+
+const skipLinkStyle = css`
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-family: ${globalTheme.fontFamily};
+
+  :focus {
+    width: auto !important;
+    height: auto !important;
+    outline: 3px solid #ffbf47;
+    outline-offset: 0;
+  }
+`;
+
 class FederalBanner extends Component {
   render() {
-    const { t } = this.props;
+    const { t, skipLink } = this.props;
     return (
       <div className={container}>
         <div className="svg-container">
           <FIP fillColor="white" t={this.props.t} />
         </div>
+        <a className={skipLinkStyle} href={skipLink} id="skipLink">
+          {t("skipLink")}
+        </a>
         <div>
           {this.props.showRefreshCache ? (
             <a href="/refresh">
@@ -94,6 +115,7 @@ class FederalBanner extends Component {
 FederalBanner.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  skipLink: PropTypes.string.isRequired,
   showRefreshCache: PropTypes.bool.isRequired
 };
 

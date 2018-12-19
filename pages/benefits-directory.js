@@ -68,6 +68,7 @@ export class BenefitsDirectory extends Component {
         showRefreshCache={false}
         title={title + " | " + t("titles.benefits_directory")}
         backgroundColor={globalTheme.colour.white}
+        skipLink="#mainContent"
       >
         <BB id="BB" t={t} store={this.props.store} url={this.props.url} />
       </Layout>

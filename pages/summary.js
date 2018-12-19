@@ -47,8 +47,9 @@ export class Summary extends Component {
         hideNoscript={false}
         showRefreshCache={false}
         title={t("titles.ge_summary")}
+        skipLink="mainContent"
       >
-        <Container>
+        <Container id="mainContent">
           <HeaderButton
             id="prevButton"
             onClick={() => Router.push(backUrl)}

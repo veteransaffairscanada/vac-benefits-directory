@@ -117,7 +117,7 @@ export class BB extends Component {
                 share={true}
               />
             </Grid>
-            <Grid item lg={9} md={9} sm={8} xs={12}>
+            <Grid id="mainContent" item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
                   {this.state.showDisabledCookieBanner ? (

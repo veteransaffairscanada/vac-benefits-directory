@@ -113,7 +113,7 @@ export class GuidedExperience extends Component {
     const { t, prevSection, subtitle, helperText, url } = this.props;
 
     return (
-      <Container id="guidedExperience">
+      <Container id="mainContent">
         {prevSection === "index" ? (
           <HeaderLink
             id="prevButton"
