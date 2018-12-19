@@ -26,19 +26,39 @@ class Header extends Component {
   `;
 
   render() {
-    const { children, className, headingLevel } = this.props;
+    const { children, className, headingLevel, id } = this.props;
     const appliedClassname = className ? cx(this.style, className) : this.style;
     switch (headingLevel) {
       case "h1":
-        return <h1 className={appliedClassname}>{children}</h1>;
+        return (
+          <h1 id={id} className={appliedClassname}>
+            {children}
+          </h1>
+        );
       case "h2":
-        return <h2 className={appliedClassname}>{children}</h2>;
+        return (
+          <h2 id={id} className={appliedClassname}>
+            {children}
+          </h2>
+        );
       case "h3":
-        return <h3 className={appliedClassname}>{children}</h3>;
+        return (
+          <h3 id={id} className={appliedClassname}>
+            {children}
+          </h3>
+        );
       case "h4":
-        return <h4 className={appliedClassname}>{children}</h4>;
+        return (
+          <h4 id={id} className={appliedClassname}>
+            {children}
+          </h4>
+        );
       case "":
-        return <div className={appliedClassname}>{children}</div>;
+        return (
+          <div id={id} className={appliedClassname}>
+            {children}
+          </div>
+        );
     }
   }
 }
@@ -48,6 +68,7 @@ Header.propTypes = {
   className: PropTypes.string,
   headingLevel: PropTypes.string,
   size: PropTypes.string,
+  id: PropTypes.string,
   paddingTop: PropTypes.string
 };
 

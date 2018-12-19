@@ -81,11 +81,6 @@ export class NextSteps extends Component {
 
     return (
       <div className={outerDiv}>
-        <a
-          href="next-steps"
-          id="next-steps"
-          aria-label={t("nextSteps.whats_next")}
-        />
         <Grid container spacing={24}>
           <Grid item xs={12}>
             <Header
@@ -93,6 +88,7 @@ export class NextSteps extends Component {
               size="md"
               headingLevel="h2"
               paddingTop="25"
+              id="next-steps"
             >
               {t("nextSteps.whats_next")}
             </Header>
