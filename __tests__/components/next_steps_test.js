@@ -13,7 +13,7 @@ describe("NextSteps", () => {
     props = {
       t: translate,
       mapUrl: "/map",
-      nextSteps: nextStepsFixture
+      filteredNextSteps: nextStepsFixture
     };
   });
 
@@ -67,7 +67,7 @@ describe("NextSteps", () => {
 
   it("renders the correct number of next steps", () => {
     expect(mount(<NextSteps {...props} />).find("li").length).toEqual(
-      props.nextSteps.length
+      props.filteredNextSteps.length
     );
   });
 
