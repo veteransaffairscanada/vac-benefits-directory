@@ -44,6 +44,7 @@ const grey = css`
 class HeaderLink extends Component {
   render() {
     const {
+      target,
       arrow,
       className,
       children,
@@ -64,6 +65,7 @@ class HeaderLink extends Component {
               ? cx(style, grey, className)
               : cx(style, className)
           }
+          target={target}
           href={href}
           onClick={onClick}
           {...otherProps}
@@ -78,6 +80,7 @@ class HeaderLink extends Component {
 }
 
 HeaderLink.propTypes = {
+  target: PropTypes.string,
   size: PropTypes.string,
   ariaLabel: PropTypes.string,
   children: PropTypes.oneOfType([
@@ -90,6 +93,10 @@ HeaderLink.propTypes = {
   label: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool
+};
+
+HeaderLink.defaultProps = {
+  target: ""
 };
 
 export default HeaderLink;

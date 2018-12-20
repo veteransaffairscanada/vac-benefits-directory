@@ -66,7 +66,7 @@ class ShareBox extends Component {
               className={shareBoxItem}
               size="small"
               href={printUrl}
-              target="print_page"
+              target="_blank"
               id="printButton"
             >
               <Print />
