@@ -82,9 +82,7 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     // find benefits that match
     let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
-      if (
-        eligibilityMatch(ep, profileFilters, multipleChoiceOptions, questions)
-      ) {
+      if (eligibilityMatch(ep, profileFilters, multipleChoiceOptions)) {
         eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
     });
@@ -159,9 +157,7 @@ export const getFilteredNextSteps = createSelector(
     // find next steps that match
     let eligibleNextStepIds = [];
     eligibilityPaths.forEach(ep => {
-      if (
-        eligibilityMatch(ep, profileFilters, multipleChoiceOptions, questions)
-      ) {
+      if (eligibilityMatch(ep, profileFilters, multipleChoiceOptions)) {
         eligibleNextStepIds = eligibleNextStepIds.concat(ep.nextSteps);
       }
     });
