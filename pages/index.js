@@ -99,9 +99,12 @@ export class Guided extends Component {
       x => x.variable_name === section
     )[0];
     const pageTitle =
-      t("current-language-code") === "en"
+      dynamicStepNumber === 0
+        ? t("ge.Find benefits and services")
+        : t("current-language-code") === "en"
         ? question.guided_experience_page_title_english
         : question.guided_experience_page_title_french;
+
     return (
       <Layout
         i18n={i18n}

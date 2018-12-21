@@ -58,8 +58,11 @@ export class BenefitsDirectory extends Component {
   };
 
   render() {
-    const { i18n, t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
-    const title = getBenefitCountString(filteredBenefits, t);
+    const { i18n, t, filteredBenefits, benefits } = this.props; // eslint-disable-line no-unused-vars
+    const title =
+      filteredBenefits.length === benefits.length
+        ? t("B3.All benefits to consider")
+        : getBenefitCountString(filteredBenefits, t);
     return (
       <Layout
         i18n={this.props.i18n}
@@ -89,7 +92,8 @@ const mapStateToProps = (reduxState, props) => {
     profileFilters: getProfileFilters(reduxState, props),
     filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
-    selectedNeeds: reduxState.selectedNeeds
+    selectedNeeds: reduxState.selectedNeeds,
+    benefits: reduxState.benefits
   };
 };
 
@@ -102,7 +106,8 @@ BenefitsDirectory.propTypes = {
   store: PropTypes.object,
   searchString: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  setPageWidth: PropTypes.func.isRequired
+  setPageWidth: PropTypes.func.isRequired,
+  benefits: PropTypes.array.isRequired
 };
 
 export default withI18N(
