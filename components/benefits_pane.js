@@ -88,7 +88,12 @@ export class BenefitsPane extends Component {
   resultsHeader = (x, headerText) => {
     if (this.props.searchString.trim() !== "" && x > 0) {
       return (
-        <Header className={headerPadding} size="sm_md" headingLevel="h2">
+        <Header
+          className={headerPadding}
+          size="sm_md"
+          headingLevel="h2"
+          autoFocus={true}
+        >
           {headerText}
         </Header>
       );
@@ -116,10 +121,9 @@ export class BenefitsPane extends Component {
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
-          <Header size="lg" headingLevel="h1">
+          <Header size="lg" headingLevel="h1" autoFocus={true}>
             {t("BenefitsPane.no_filtered_benefits")}
           </Header>
-
           <div className={buttonBar}>
             <Button
               className={button}
@@ -161,6 +165,7 @@ export class BenefitsPane extends Component {
               className={"BenefitsCounter " + title}
               size="lg"
               headingLevel="h1"
+              autoFocus={true}
             >
               {this.countString(
                 filteredBenefits.concat(

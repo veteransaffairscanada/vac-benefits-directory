@@ -23,42 +23,44 @@ class Header extends Component {
     color: ${globalTheme.colour.greyishBrown};
     margin: 0px;
     padding-top: ${this.props.paddingTop}px;
+    outline: 0;
   `;
 
+  constructor(props) {
+    super(props);
+    this.focusEl = React.createRef();
+  }
+
+  componentDidMount() {
+    if (this.props.autoFocus) {
+      const node = this.focusEl.current;
+      node.focus();
+    }
+  }
+
   render() {
-    const { children, className, headingLevel, id } = this.props;
-    const appliedClassname = className ? cx(this.style, className) : this.style;
+    const { children, className, headingLevel, id, autoFocus } = this.props;
+    const props = {
+      className: className ? cx(this.style, className) : this.style,
+      id: id
+    };
+
+    if (autoFocus) {
+      props["tabIndex"] = -1;
+      props["ref"] = this.focusEl;
+    }
+
     switch (headingLevel) {
       case "h1":
-        return (
-          <h1 id={id} className={appliedClassname}>
-            {children}
-          </h1>
-        );
+        return <h1 {...props}>{children}</h1>;
       case "h2":
-        return (
-          <h2 id={id} className={appliedClassname}>
-            {children}
-          </h2>
-        );
+        return <h2 {...props}>{children}</h2>;
       case "h3":
-        return (
-          <h3 id={id} className={appliedClassname}>
-            {children}
-          </h3>
-        );
+        return <h3 {...props}>{children}</h3>;
       case "h4":
-        return (
-          <h4 id={id} className={appliedClassname}>
-            {children}
-          </h4>
-        );
+        return <h4 {...props}>{children}</h4>;
       case "":
-        return (
-          <div id={id} className={appliedClassname}>
-            {children}
-          </div>
-        );
+        return <div {...props}>{children}</div>;
     }
   }
 }
@@ -74,7 +76,8 @@ Header.propTypes = {
 
 Header.defaultProps = {
   headingLevel: "",
-  paddingTop: "0"
+  paddingTop: "0",
+  autoFocus: false
 };
 
 export default Header;
