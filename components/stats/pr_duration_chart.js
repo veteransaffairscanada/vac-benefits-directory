@@ -152,6 +152,11 @@ export class PrDurationChart extends Component {
   };
 
   render() {
+    // export Average PR Duration data (in days)
+    // this.prData().forEach(p => {
+    //   console.log(Moment(p.x).format("YYYY-MM-DD"), p.y)
+    // })
+
     const { t } = this.props; // eslint-disable-line no-unused-vars
     return <ReactHighcharts config={this.chartConfig()} />;
   }
