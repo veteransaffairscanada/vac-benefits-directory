@@ -12,7 +12,6 @@ import {
 } from "../selectors/benefits";
 import { css } from "emotion";
 import Header from "./typography/header";
-import AutoFocus from "./auto_focus";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
 import Button from "./button";
@@ -89,11 +88,14 @@ export class BenefitsPane extends Component {
   resultsHeader = (x, headerText) => {
     if (this.props.searchString.trim() !== "" && x > 0) {
       return (
-        <AutoFocus>
-          <Header className={headerPadding} size="sm_md" headingLevel="h2">
-            {headerText}
-          </Header>
-        </AutoFocus>
+        <Header
+          className={headerPadding}
+          size="sm_md"
+          headingLevel="h2"
+          autoFocus={true}
+        >
+          {headerText}
+        </Header>
       );
     } else {
       return "";
@@ -119,11 +121,9 @@ export class BenefitsPane extends Component {
     if (this.props.filteredBenefitsWithoutSearch.length === 0) {
       return (
         <div className={noBenefitsPane}>
-          <AutoFocus>
-            <Header size="lg" headingLevel="h1">
-              {t("BenefitsPane.no_filtered_benefits")}
-            </Header>
-          </AutoFocus>
+          <Header size="lg" headingLevel="h1" autoFocus={true}>
+            {t("BenefitsPane.no_filtered_benefits")}
+          </Header>
           <div className={buttonBar}>
             <Button
               className={button}
@@ -161,22 +161,21 @@ export class BenefitsPane extends Component {
       return (
         <Grid container spacing={16}>
           <Grid item xs={12}>
-            <AutoFocus>
-              <Header
-                className={"BenefitsCounter " + title}
-                size="lg"
-                headingLevel="h1"
-              >
-                {this.countString(
-                  filteredBenefits.concat(
-                    this.props.searchString.trim() === ""
-                      ? []
-                      : nonFilteredBenefits
-                  ),
-                  t
-                )}
-              </Header>
-            </AutoFocus>
+            <Header
+              className={"BenefitsCounter " + title}
+              size="lg"
+              headingLevel="h1"
+              autoFocus={true}
+            >
+              {this.countString(
+                filteredBenefits.concat(
+                  this.props.searchString.trim() === ""
+                    ? []
+                    : nonFilteredBenefits
+                ),
+                t
+              )}
+            </Header>
             {filteredBenefits.length > 0 ? (
               <Body>{t("B3.check eligibility")}</Body>
             ) : (
