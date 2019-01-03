@@ -122,6 +122,11 @@ export class PrChart extends Component {
   };
 
   render() {
+    // export Deploys per Day data
+    // this.prData().forEach(p => {
+    //   console.log(Moment(p[0]).format("YYYY-MM-DD"), p[1])
+    // })
+
     const { t } = this.props; // eslint-disable-line no-unused-vars
     return <ReactHighcharts config={this.chartConfig()} />;
   }
