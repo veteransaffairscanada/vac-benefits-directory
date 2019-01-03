@@ -11,6 +11,7 @@ const getFrIdx = state => state.frIdx;
 const getNeeds = state => state.needs;
 const getNeedsFilter = state => state.selectedNeeds;
 const getSearchStringFilter = state => state.searchString;
+const getNextSteps = state => state.nextSteps;
 
 export const getProfileFilters = createSelector(
   [state => state.questions, state => state],
@@ -81,9 +82,7 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     // find benefits that match
     let eligibleBenefitIds = [];
     eligibilityPaths.forEach(ep => {
-      if (
-        eligibilityMatch(ep, profileFilters, multipleChoiceOptions, questions)
-      ) {
+      if (eligibilityMatch(ep, profileFilters, multipleChoiceOptions)) {
         eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
       }
     });
@@ -137,6 +136,33 @@ export const getFilteredBenefits = createSelector(
       enIdx,
       frIdx
     );
+  }
+);
+
+export const getFilteredNextSteps = createSelector(
+  [
+    getNextSteps,
+    getEligibilityPaths,
+    getProfileFilters,
+    getMultipleChoiceOptions,
+    getQuestions
+  ],
+  (
+    nextSteps,
+    eligibilityPaths,
+    profileFilters,
+    multipleChoiceOptions,
+    questions
+  ) => {
+    // find next steps that match
+    let eligibleNextStepIds = [];
+    eligibilityPaths.forEach(ep => {
+      if (eligibilityMatch(ep, profileFilters, multipleChoiceOptions)) {
+        eligibleNextStepIds = eligibleNextStepIds.concat(ep.nextSteps);
+      }
+    });
+
+    return nextSteps.filter(ns => eligibleNextStepIds.includes(ns.id));
   }
 );
 

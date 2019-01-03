@@ -3,6 +3,7 @@ import {
   pathToDict,
   eligibilityMatch,
   getFilteredBenefitsWithoutSearch,
+  getFilteredNextSteps,
   getFilteredBenefits
 } from "../../selectors/benefits";
 import questionsFixture from "../fixtures/questions_complex";
@@ -12,6 +13,7 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_co
 import needsFixture from "../fixtures/needs_complex";
 import enIdx from "../fixtures/lunr_index_english";
 import frIdx from "../fixtures/lunr_index_french";
+import nextStepsFixture from "../fixtures/nextSteps_complex";
 
 describe("Benefits Selectors", () => {
   let props;
@@ -32,7 +34,8 @@ describe("Benefits Selectors", () => {
       selectedNeeds: {},
       patronType: "",
       searchString: "",
-      serviceType: ""
+      serviceType: "",
+      nextSteps: nextStepsFixture
     };
   });
 
@@ -177,8 +180,7 @@ describe("Benefits Selectors", () => {
         "Community War Memorial",
         "Community Engagement",
         "Veteran and Family Well-Being Fund",
-        "Operational Stress Injury clinics",
-        "VAC Assistance Service"
+        "Operational Stress Injury clinics"
       ];
       const relevant_benefits = state.benefits.filter(x => {
         return nameEnList.indexOf(x.vacNameEn) > -1;
@@ -222,8 +224,7 @@ describe("Benefits Selectors", () => {
         "Community War Memorial",
         "Community Engagement",
         "Veteran and Family Well-Being Fund",
-        "Operational Stress Injury clinics",
-        "VAC Assistance Service"
+        "Operational Stress Injury clinics"
       ];
       const relevant_benefits = state.benefits.filter(x => {
         return nameEnList.indexOf(x.vacNameEn) > -1;
@@ -262,6 +263,19 @@ describe("Benefits Selectors", () => {
           .sort()
           .reverse()
       ).toEqual(rankedScores);
+    });
+  });
+
+  describe("getFilteredNextSteps", () => {
+    it("displays all next steps if no eligibility paths are selected", () => {
+      expect(getFilteredNextSteps(state, props).length).toEqual(
+        nextStepsFixture.length
+      );
+    });
+
+    it("displays expected next steps if the patronType is organization", () => {
+      state.patronType = "organization";
+      expect(getFilteredNextSteps(state, props).length).toEqual(3);
     });
   });
 });

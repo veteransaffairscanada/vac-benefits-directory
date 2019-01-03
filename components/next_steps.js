@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import MarkdownIt from "markdown-it";
 import JsxParser from "react-jsx-parser";
+import { getFilteredNextSteps } from "../selectors/benefits";
 
 const outerDiv = css`
   margin-top: 40px;
@@ -59,10 +60,10 @@ export class NextSteps extends Component {
   md = new MarkdownIt({ breaks: true });
 
   getBullets = () => {
-    const { nextSteps, t } = this.props;
+    const { filteredNextSteps, t } = this.props;
     const lang = t("current-language-code") === "en" ? "english" : "french";
 
-    return nextSteps.map((x, n) => {
+    return filteredNextSteps.map((x, n) => {
       let jsxString = this.md
         .render(x[lang])
         .replace("<p>", "<span>")
@@ -88,6 +89,7 @@ export class NextSteps extends Component {
               size="md"
               headingLevel="h2"
               paddingTop="25"
+              id="next-steps"
             >
               {t("nextSteps.whats_next")}
             </Header>
@@ -171,14 +173,14 @@ export class NextSteps extends Component {
 const mapStateToProps = (reduxState, props) => {
   return {
     mapUrl: getMapUrl(reduxState, props, {}),
-    nextSteps: reduxState.nextSteps
+    filteredNextSteps: getFilteredNextSteps(reduxState, props)
   };
 };
 
 NextSteps.propTypes = {
   t: PropTypes.func.isRequired,
-  nextSteps: PropTypes.array.isRequired,
   mapUrl: PropTypes.string.isRequired,
+  filteredNextSteps: PropTypes.array.isRequired,
   store: PropTypes.object
 };
 

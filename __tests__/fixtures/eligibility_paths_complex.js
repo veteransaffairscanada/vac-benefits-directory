@@ -7,12 +7,15 @@ const eligibilityPaths = [
       "recaa4nxdJnSV3NrJ"
     ],
     requirements: [
-      "rec6sKyG0dMJ7HLhY",
       "recu6xP62BL9yFbWN",
-      "recC9OodJNCqbnGy2"
+      "recC9OodJNCqbnGy2",
+      "rec6sKyG0dMJ7HLhY"
     ],
-    "key DO NOT EDIT": "CAF, veteran, servingMember",
-    id: "recxsl5L3LLGIT9rt"
+    nextSteps: ["recp2EOCHfUhGU2jq"],
+    "key DO NOT EDIT": "veteran, servingMember, CAF",
+    id: "recxsl5L3LLGIT9rt",
+    admin_display:
+      "patronType = veteran, patronType = servingMember, serviceType = CAF"
   },
   {
     benefits: [
@@ -25,13 +28,15 @@ const eligibilityPaths = [
       "recPUSdA7VeaZGUGh"
     ],
     requirements: [
-      "recxVaqj0O8BPKyeD",
-      "rec6sKyG0dMJ7HLhY",
       "recu6xP62BL9yFbWN",
-      "recC9OodJNCqbnGy2"
+      "recC9OodJNCqbnGy2",
+      "rec6sKyG0dMJ7HLhY",
+      "recxVaqj0O8BPKyeD"
     ],
-    "key DO NOT EDIT": "hasServiceHealthIssue, CAF, veteran, servingMember",
-    id: "recU1DU5vDT8h3sOX"
+    "key DO NOT EDIT": "veteran, servingMember, CAF, hasServiceHealthIssue",
+    id: "recU1DU5vDT8h3sOX",
+    admin_display:
+      "patronType = veteran, patronType = servingMember, serviceType = CAF, serviceHealthIssue = hasServiceHealthIssue"
   },
   {
     benefits: [
@@ -42,38 +47,46 @@ const eligibilityPaths = [
       "reccTUqI8ybL1aHQR",
       "recTJGH8uGpz9FIcl",
       "recqpTIM3UcQkeRh0",
-      "recL63epbxypNYRjL"
+      "recL63epbxypNYRjL",
+      "recFMnhGVbQT8de27"
     ],
-    requirements: ["rec6sKyG0dMJ7HLhY", "recu6xP62BL9yFbWN"],
-    "key DO NOT EDIT": "CAF, veteran",
-    id: "rec8azbXzu0MLVs3y"
+    requirements: ["recu6xP62BL9yFbWN", "rec6sKyG0dMJ7HLhY"],
+    "key DO NOT EDIT": "veteran, CAF",
+    id: "rec8azbXzu0MLVs3y",
+    admin_display: "patronType = veteran, serviceType = CAF"
   },
   {
     benefits: ["recOJ3P1wiacWA5jr", "recWJsoHvIkparQGd", "recPUSdA7VeaZGUGh"],
     requirements: [
-      "recxVaqj0O8BPKyeD",
+      "recu6xP62BL9yFbWN",
       "rec6sKyG0dMJ7HLhY",
-      "recu6xP62BL9yFbWN"
+      "recxVaqj0O8BPKyeD"
     ],
-    "key DO NOT EDIT": "hasServiceHealthIssue, CAF, veteran",
-    id: "recGN6WlSHpAw3tt6"
+    "key DO NOT EDIT": "veteran, CAF, hasServiceHealthIssue",
+    id: "recGN6WlSHpAw3tt6",
+    admin_display:
+      "patronType = veteran, serviceType = CAF, serviceHealthIssue = hasServiceHealthIssue"
   },
   {
     benefits: ["rec6osa4YoZNwJcNW", "recNsVtmotVHzDhAB", "recewrfxHbTWEVPig"],
-    requirements: ["recxVaqj0O8BPKyeD", "recu6xP62BL9yFbWN"],
-    "key DO NOT EDIT": "hasServiceHealthIssue, veteran",
-    id: "recQerwEMBUU3TlRO"
+    requirements: ["recu6xP62BL9yFbWN", "recxVaqj0O8BPKyeD"],
+    "key DO NOT EDIT": "veteran, hasServiceHealthIssue",
+    id: "recQerwEMBUU3TlRO",
+    admin_display:
+      "patronType = veteran, serviceHealthIssue = hasServiceHealthIssue"
   },
   {
     benefits: ["recWJsoHvIkparQGd"],
     requirements: [
-      "recxVaqj0O8BPKyeD",
-      "recIMgfjrCozH9eVW",
       "recu6xP62BL9yFbWN",
-      "recC9OodJNCqbnGy2"
+      "recC9OodJNCqbnGy2",
+      "recIMgfjrCozH9eVW",
+      "recxVaqj0O8BPKyeD"
     ],
-    "key DO NOT EDIT": "hasServiceHealthIssue, RCMP, veteran, servingMember",
-    id: "recHYNXwAm2ncw4Ov"
+    "key DO NOT EDIT": "veteran, servingMember, RCMP, hasServiceHealthIssue",
+    id: "recHYNXwAm2ncw4Ov",
+    admin_display:
+      "patronType = veteran, patronType = servingMember, serviceType = RCMP, serviceHealthIssue = hasServiceHealthIssue"
   },
   {
     benefits: [
@@ -83,19 +96,22 @@ const eligibilityPaths = [
       "reccTUqI8ybL1aHQR",
       "recDRPu2NF4UIximU"
     ],
-    requirements: ["rec3hFX4SlnBMPl7W", "recu6xP62BL9yFbWN"],
-    "key DO NOT EDIT": "WSV (WWII or Korea), veteran",
-    id: "recsOdDx7CWAftWIR"
+    requirements: ["recu6xP62BL9yFbWN", "rec3hFX4SlnBMPl7W"],
+    "key DO NOT EDIT": "veteran, WSV (WWII or Korea)",
+    id: "recsOdDx7CWAftWIR",
+    admin_display: "patronType = veteran, serviceType = WSV (WWII or Korea)"
   },
   {
     benefits: ["recWJsoHvIkparQGd"],
     requirements: [
-      "recxVaqj0O8BPKyeD",
+      "recu6xP62BL9yFbWN",
       "rec3hFX4SlnBMPl7W",
-      "recu6xP62BL9yFbWN"
+      "recxVaqj0O8BPKyeD"
     ],
-    "key DO NOT EDIT": "hasServiceHealthIssue, WSV (WWII or Korea), veteran",
-    id: "rec55z5R3yz8JMv23"
+    "key DO NOT EDIT": "veteran, WSV (WWII or Korea), hasServiceHealthIssue",
+    id: "rec55z5R3yz8JMv23",
+    admin_display:
+      "patronType = veteran, serviceType = WSV (WWII or Korea), serviceHealthIssue = hasServiceHealthIssue"
   },
   {
     benefits: [
@@ -107,25 +123,19 @@ const eligibilityPaths = [
       "reccTUqI8ybL1aHQR",
       "recDU2iSRQ300ixBt",
       "recMM2R9Dh1WUKxx6",
-      "reczzwPrtckHy81oY"
+      "reczzwPrtckHy81oY",
+      "recBSXP6pYDS8xJJH",
+      "recFMnhGVbQT8de27"
     ],
     requirements: [
-      "recDW9csGX2ekiwXb",
+      "recuWkVDSEWc1K0eU",
       "rec6sKyG0dMJ7HLhY",
-      "recuWkVDSEWc1K0eU"
+      "recDW9csGX2ekiwXb"
     ],
-    "key DO NOT EDIT": "deceased, CAF, family",
-    id: "rec1dXWxOfzFZ6zKL"
-  },
-  {
-    benefits: ["recFMnhGVbQT8de27", "recBSXP6pYDS8xJJH"],
-    requirements: [
-      "recDW9csGX2ekiwXb",
-      "rec6sKyG0dMJ7HLhY",
-      "recuWkVDSEWc1K0eU"
-    ],
-    "key DO NOT EDIT": "deceased, CAF, family",
-    id: "reckiJxHt31Ql0vAw"
+    "key DO NOT EDIT": "family, CAF, deceased",
+    id: "rec1dXWxOfzFZ6zKL",
+    admin_display:
+      "patronType = family, serviceType = CAF, statusAndVitals = deceased"
   },
   {
     benefits: [
@@ -135,75 +145,70 @@ const eligibilityPaths = [
       "recTJGH8uGpz9FIcl"
     ],
     requirements: [
-      "recxVaqj0O8BPKyeD",
-      "recDW9csGX2ekiwXb",
+      "recuWkVDSEWc1K0eU",
       "rec6sKyG0dMJ7HLhY",
-      "recuWkVDSEWc1K0eU"
+      "recDW9csGX2ekiwXb",
+      "recxVaqj0O8BPKyeD"
     ],
-    "key DO NOT EDIT": "hasServiceHealthIssue, deceased, CAF, family",
-    id: "rec6usTRT8JfBWYBC"
+    "key DO NOT EDIT": "family, CAF, deceased, hasServiceHealthIssue",
+    id: "rec6usTRT8JfBWYBC",
+    admin_display:
+      "patronType = family, serviceType = CAF, statusAndVitals = deceased, serviceHealthIssue = hasServiceHealthIssue"
   },
   {
     benefits: ["recVgcA6MDGMBFjzH"],
-    requirements: ["rec6sKyG0dMJ7HLhY", "recuWkVDSEWc1K0eU"],
-    "key DO NOT EDIT": "CAF, family",
-    id: "recEkGEXb6BiUT4Ke"
+    requirements: ["recuWkVDSEWc1K0eU", "rec6sKyG0dMJ7HLhY"],
+    "key DO NOT EDIT": "family, CAF",
+    id: "recEkGEXb6BiUT4Ke",
+    admin_display: "patronType = family, serviceType = CAF"
   },
   {
     benefits: ["recnTqWEj6jCEF8h7"],
     requirements: [
-      "recxVaqj0O8BPKyeD",
+      "recuWkVDSEWc1K0eU",
       "rec6sKyG0dMJ7HLhY",
-      "recuWkVDSEWc1K0eU"
+      "recxVaqj0O8BPKyeD"
     ],
-    "key DO NOT EDIT": "hasServiceHealthIssue, CAF, family",
-    id: "recBlSOo6diB5tkwc"
+    "key DO NOT EDIT": "family, CAF, hasServiceHealthIssue",
+    id: "recBlSOo6diB5tkwc",
+    admin_display:
+      "patronType = family, serviceType = CAF, serviceHealthIssue = hasServiceHealthIssue"
   },
   {
-    benefits: ["recL63epbxypNYRjL", "recO8NVH2tWIjNpDA"],
+    benefits: ["recL63epbxypNYRjL", "recO8NVH2tWIjNpDA", "recFMnhGVbQT8de27"],
     requirements: [
-      "rec3vCJImDFrRIaFl",
+      "recuWkVDSEWc1K0eU",
       "rec6sKyG0dMJ7HLhY",
-      "recuWkVDSEWc1K0eU"
+      "rec3vCJImDFrRIaFl"
     ],
-    "key DO NOT EDIT": "releasedAlive, CAF, family",
-    id: "recJxCbyWEnhFHJvj"
-  },
-  {
-    benefits: ["recFMnhGVbQT8de27"],
-    requirements: [
-      "rec3vCJImDFrRIaFl",
-      "rec6sKyG0dMJ7HLhY",
-      "recuWkVDSEWc1K0eU"
-    ],
-    "key DO NOT EDIT": "releasedAlive, CAF, family",
-    id: "recm2WbUjqAQPxbmB"
+    "key DO NOT EDIT": "family, CAF, releasedAlive",
+    id: "recJxCbyWEnhFHJvj",
+    admin_display:
+      "patronType = family, serviceType = CAF, statusAndVitals = releasedAlive"
   },
   {
     benefits: ["recO8NVH2tWIjNpDA"],
     requirements: [
-      "recM3T55J3Xf1qP16",
+      "recuWkVDSEWc1K0eU",
       "rec6sKyG0dMJ7HLhY",
-      "recuWkVDSEWc1K0eU"
+      "recM3T55J3Xf1qP16"
     ],
-    "key DO NOT EDIT": "stillServing, CAF, family",
-    id: "recdSQlq9CZ7DFnqH"
+    "key DO NOT EDIT": "family, CAF, stillServing",
+    id: "recdSQlq9CZ7DFnqH",
+    admin_display:
+      "patronType = family, serviceType = CAF, statusAndVitals = stillServing"
   },
   {
-    benefits: ["recBSXP6pYDS8xJJH"],
+    benefits: ["recBSXP6pYDS8xJJH", "reczzwPrtckHy81oY"],
     requirements: [
-      "recDW9csGX2ekiwXb",
+      "recuWkVDSEWc1K0eU",
       "recIMgfjrCozH9eVW",
-      "recuWkVDSEWc1K0eU"
+      "recDW9csGX2ekiwXb"
     ],
-    "key DO NOT EDIT": "deceased, RCMP, family",
-    id: "recXaPbzM7H7UoZn5"
-  },
-  {
-    benefits: ["reczzwPrtckHy81oY"],
-    requirements: ["recIMgfjrCozH9eVW", "recuWkVDSEWc1K0eU"],
-    "key DO NOT EDIT": "RCMP, family",
-    id: "recOsAgDhtvcoR4UD"
+    "key DO NOT EDIT": "family, RCMP, deceased",
+    id: "recXaPbzM7H7UoZn5",
+    admin_display:
+      "patronType = family, serviceType = RCMP, statusAndVitals = deceased"
   },
   {
     benefits: [
@@ -216,51 +221,76 @@ const eligibilityPaths = [
       "recDRPu2NF4UIximU"
     ],
     requirements: [
-      "recDW9csGX2ekiwXb",
+      "recuWkVDSEWc1K0eU",
       "rec3hFX4SlnBMPl7W",
-      "recuWkVDSEWc1K0eU"
+      "recDW9csGX2ekiwXb"
     ],
-    "key DO NOT EDIT": "deceased, WSV (WWII or Korea), family",
-    id: "rec4zJqrgvVa7Rf4c"
+    "key DO NOT EDIT": "family, WSV (WWII or Korea), deceased",
+    id: "rec4zJqrgvVa7Rf4c",
+    admin_display:
+      "patronType = family, serviceType = WSV (WWII or Korea), statusAndVitals = deceased"
   },
   {
     benefits: ["recVgcA6MDGMBFjzH", "recFMnhGVbQT8de27"],
-    requirements: ["rec3hFX4SlnBMPl7W", "recuWkVDSEWc1K0eU"],
-    "key DO NOT EDIT": "WSV (WWII or Korea), family",
-    id: "recyyiggvT1GyQj45"
+    requirements: ["recuWkVDSEWc1K0eU", "rec3hFX4SlnBMPl7W"],
+    "key DO NOT EDIT": "family, WSV (WWII or Korea)",
+    id: "recyyiggvT1GyQj45",
+    admin_display: "patronType = family, serviceType = WSV (WWII or Korea)"
   },
   {
-    benefits: ["rec8GCHaN2UirvW8H", "rechnadMxMHp86vv8", "recpq5tKJOXWZ3JCS"],
+    benefits: ["rechnadMxMHp86vv8"],
+    nextSteps: ["recdLLujXxdXQEzXC", "recEPLn1bUc5ejFVP"],
     "key DO NOT EDIT": "no eligibility requirements",
     id: "recc8tZtc94wRhgxt"
   },
   {
     benefits: ["recmFhBkztEyJtm5R", "recowlPz6lmqcbp7F", "rec8GCHaN2UirvW8H"],
     requirements: ["rec2pB1RcV3BvyjPX"],
+    nextSteps: ["recKyNwxKXQQGcokF"],
     "key DO NOT EDIT": "organization",
-    id: "rec04iKWngFVunoHt"
+    id: "rec04iKWngFVunoHt",
+    admin_display: "patronType = organization"
   },
   {
-    benefits: ["recFMnhGVbQT8de27"],
+    benefits: ["recpq5tKJOXWZ3JCS"],
     requirements: ["recu6xP62BL9yFbWN"],
     "key DO NOT EDIT": "veteran",
-    id: "recrvk509oay9Vqd2"
+    id: "recrvk509oay9Vqd2",
+    admin_display: "patronType = veteran"
   },
   {
     benefits: ["recOJ3P1wiacWA5jr"],
     requirements: [
-      "recxVaqj0O8BPKyeD",
+      "recC9OodJNCqbnGy2",
       "rec6sKyG0dMJ7HLhY",
-      "recC9OodJNCqbnGy2"
+      "recxVaqj0O8BPKyeD"
     ],
-    "key DO NOT EDIT": "hasServiceHealthIssue, CAF, servingMember",
-    id: "rec7iymBcLBwnkd20"
+    "key DO NOT EDIT": "servingMember, CAF, hasServiceHealthIssue",
+    id: "rec7iymBcLBwnkd20",
+    admin_display:
+      "patronType = servingMember, serviceType = CAF, serviceHealthIssue = hasServiceHealthIssue"
   },
   {
     benefits: ["recCkQL77l0KZ2u7Y"],
-    requirements: ["recxVaqj0O8BPKyeD", "recu6xP62BL9yFbWN"],
-    "key DO NOT EDIT": "hasServiceHealthIssue, veteran",
-    id: "recj4U5sS1GYwJJjq"
+    requirements: ["recu6xP62BL9yFbWN", "recxVaqj0O8BPKyeD"],
+    "key DO NOT EDIT": "veteran, hasServiceHealthIssue",
+    id: "recj4U5sS1GYwJJjq",
+    admin_display:
+      "patronType = veteran, serviceHealthIssue = hasServiceHealthIssue"
+  },
+  {
+    benefits: ["recVKse8WgvLYcfgP"],
+    requirements: ["recu6xP62BL9yFbWN"],
+    "key DO NOT EDIT": "veteran",
+    id: "recmKzJ6y5K1TgEiI",
+    admin_display: "patronType = veteran"
+  },
+  {
+    benefits: ["recVKse8WgvLYcfgP"],
+    requirements: ["recuWkVDSEWc1K0eU", "rec3vCJImDFrRIaFl"],
+    "key DO NOT EDIT": "family, releasedAlive",
+    id: "rec7YU77wS3rAEu3s",
+    admin_display: "patronType = family, statusAndVitals = releasedAlive"
   }
 ];
 

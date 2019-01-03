@@ -67,6 +67,10 @@ export class Favourites extends Component {
     return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
   };
 
+  scrollToNextSteps() {
+    window.location = "#next-steps";
+  }
+
   render() {
     const { t, url, homeUrl } = this.props; // eslint-disable-line no-unused-vars
 
@@ -97,12 +101,7 @@ export class Favourites extends Component {
                 <Grid item xs={12}>
                   <HeaderButton
                     id="nextSteps"
-                    onClick={() => {
-                      window.scrollTo({
-                        top: this.nextStepsRef.current.offsetTop,
-                        behavior: "smooth"
-                      });
-                    }}
+                    onClick={() => this.scrollToNextSteps()}
                   >
                     <AssignmentTurnedIn />
                     {t("nextSteps.whats_next")}

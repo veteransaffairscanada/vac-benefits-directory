@@ -39,9 +39,10 @@ class Header extends Component {
   }
 
   render() {
-    const { children, className, headingLevel, autoFocus } = this.props;
+    const { children, className, headingLevel, id, autoFocus } = this.props;
     const props = {
-      className: className ? cx(this.style, className) : this.style
+      className: className ? cx(this.style, className) : this.style,
+      id: id
     };
 
     if (autoFocus) {
@@ -69,6 +70,7 @@ Header.propTypes = {
   className: PropTypes.string,
   headingLevel: PropTypes.string,
   size: PropTypes.string,
+  id: PropTypes.string,
   paddingTop: PropTypes.string
 };
 
