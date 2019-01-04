@@ -6,7 +6,6 @@
 - [AirTable](/doc/AIRTABLE.md)
 - [Heroku](#heroku)
 - [CircleCI](#circleci)
-- [BrowserStack](#browserstack)
 - [Test Driven Development](#test-driven-development)
 - [Browserstack](#browserstack)
 - [Deployment](#deployment)
@@ -205,7 +204,7 @@ When a new string is added to `AirTable`, both an English and a French version a
 
 #### What is it?
 
-[Snyk](https://snyk.io/) is a cloud service that analyzes code for vulnerabilities.
+[Snyk](https://snyk.io/) is a cloud service that automates finding & fixing vulnerabilities in our dependencies.
 
 #### Why and how are we using it?
 
