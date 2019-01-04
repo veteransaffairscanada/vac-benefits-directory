@@ -51,7 +51,7 @@ class HeaderLink extends Component {
       size,
       altStyle,
       onClick,
-      otherProps
+      ...otherProps
     } = this.props;
 
     return (
