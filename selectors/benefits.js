@@ -72,8 +72,7 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     benefits,
     needs,
     eligibilityPaths,
-    multipleChoiceOptions,
-    questions
+    multipleChoiceOptions
   ) => {
     if (benefits.length === 0) {
       return benefits;
@@ -101,7 +100,6 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     let matchingBenefitIds = eligibleBenefitIds.filter(
       id => benefitIdsForSelectedNeeds.indexOf(id) > -1
     );
-
     return benefits.filter(b => matchingBenefitIds.includes(b.id));
   }
 );
@@ -147,13 +145,7 @@ export const getFilteredNextSteps = createSelector(
     getMultipleChoiceOptions,
     getQuestions
   ],
-  (
-    nextSteps,
-    eligibilityPaths,
-    profileFilters,
-    multipleChoiceOptions,
-    questions
-  ) => {
+  (nextSteps, eligibilityPaths, profileFilters, multipleChoiceOptions) => {
     // find next steps that match
     let eligibleNextStepIds = [];
     eligibilityPaths.forEach(ep => {

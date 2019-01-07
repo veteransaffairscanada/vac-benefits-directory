@@ -17,8 +17,7 @@ import { getFilteredNextSteps } from "../selectors/benefits";
 const outerDiv = css`
   margin-top: 40px;
   padding: 12px;
-  margin-left: 25px;
-  margin-right: 25px;
+  margin-right: 10px;
   width: 100%;
 `;
 
