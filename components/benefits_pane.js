@@ -14,85 +14,23 @@ import { css } from "emotion";
 import Header from "./typography/header";
 import Body from "./typography/body";
 import SearchBox from "./search_box";
-import Button from "./button";
 import { getLink, getBenefitCountString } from "../utils/common";
-import { globalTheme } from "../theme";
 import NextSteps from "./next_steps";
+import { NoResultsButtons } from "./no_results_buttons";
+import { ResultsHeader } from "./results_header";
 
 const noBenefitsPane = css`
   text-align: center;
   text-align: center;
   margin: 0 auto;
 `;
-const buttonBar = css`
-  margin-top: 40px;
-`;
-const button = css`
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    margin: 20px;
-  }
-`;
 const title = css`
   padding-bottom: 15px;
 `;
-const orText = css`
-  display: inline-block;
-  padding: 0 20px;
-  margin-bottom: 0;
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    display: none;
-  }
-`;
-const alignLeft = css`
-  text-align: left;
-`;
-
-const headerPadding = css`
-  padding: 0 12px;
-  margin-top: 30px;
-  margin-bottom: 7px;
-`;
-
 const spacer = css`
   margin-top: 40px;
   width: 100%;
 `;
-
-let NoResultsButtons = props => {
-  return (
-    <div className={buttonBar}>
-      <Button
-        className={button}
-        id="reset_filters_button"
-        onClick={() => props.clearFilters()}
-      >
-        {props.t("BenefitsPane.reset_filters")}
-      </Button>
-
-      <Body className={orText}>{props.t("BenefitsPane.or")}</Body>
-
-      <Button
-        className={button}
-        id="contact_us_button"
-        secondary
-        onClick={() => props.goToMap(this.props.url)}
-      >
-        {props.t("BenefitsPane.contact_us")}
-      </Button>
-    </div>
-  );
-};
-let ResultsHeader = props => {
-  if (props.searchString.trim() !== "" && props.x > 0) {
-    return (
-      <Header className={headerPadding} size="sm_md" headingLevel="h2">
-        {props.headerText}
-      </Header>
-    );
-  } else {
-    return null;
-  }
-};
 
 export class BenefitsPane extends Component {
   clearFilters = () => {
@@ -164,6 +102,7 @@ export class BenefitsPane extends Component {
           {filteredBenefitsWithoutSearch.length === 0 ? (
             <NoResultsButtons
               clearFilters={this.clearFilters}
+              url={this.props.url}
               goToMap={this.goToMap}
               t={t}
             />
@@ -189,7 +128,7 @@ export class BenefitsPane extends Component {
             <Grid item xs={12}>
               <Grid container spacing={24}>
                 <ResultsHeader
-                  x={filteredBenefits.length}
+                  benefitCount={filteredBenefits.length}
                   headerText={
                     filteredBenefitsWithoutSearch.length ==
                     reduxState.benefits.length
@@ -210,7 +149,7 @@ export class BenefitsPane extends Component {
                   <div className={spacer} />
                 ) : null}
                 <ResultsHeader
-                  x={nonFilteredBenefits.length}
+                  benefitCount={nonFilteredBenefits.length}
                   headerText={t("B3.results_all_benefits")}
                   searchString={searchString}
                 />
