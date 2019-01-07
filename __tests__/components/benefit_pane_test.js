@@ -94,6 +94,10 @@ describe("BenefitsPane", () => {
       let html = mounted().html();
       expect(await axe(html)).toHaveNoViolations();
     });
+
+    it("contains the no results buttons", () => {
+      expect(mounted().find("NoResultsButtons").length).toEqual(1);
+    });
   });
 
   describe("when filteredBenefitsWithoutSearch is not empty", () => {

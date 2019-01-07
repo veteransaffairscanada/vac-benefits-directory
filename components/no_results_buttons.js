@@ -7,6 +7,7 @@ import Body from "./typography/body";
 
 const buttonBar = css`
   margin-top: 40px;
+  text-align: center;
 `;
 const button = css`
   @media only screen and (max-width: ${globalTheme.max.sm}) {
@@ -49,7 +50,7 @@ const NoResultsButtons = props => {
 
 NoResultsButtons.propTypes = {
   clearFilters: PropTypes.func.isRequired,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.object.isRequired,
   goToMap: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
 };

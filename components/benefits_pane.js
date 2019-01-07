@@ -16,14 +16,9 @@ import Body from "./typography/body";
 import SearchBox from "./search_box";
 import { getLink, getBenefitCountString } from "../utils/common";
 import NextSteps from "./next_steps";
-import { NoResultsButtons } from "./no_results_buttons";
-import { ResultsHeader } from "./results_header";
+import NoResultsButtons from "./no_results_buttons";
+import ResultsHeader from "./results_header";
 
-const noBenefitsPane = css`
-  text-align: center;
-  text-align: center;
-  margin: 0 auto;
-`;
 const title = css`
   padding-bottom: 15px;
 `;
