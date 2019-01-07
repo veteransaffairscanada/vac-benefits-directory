@@ -58,6 +58,42 @@ const spacer = css`
   width: 100%;
 `;
 
+let NoResultsButtons = props => {
+  return (
+    <div className={buttonBar}>
+      <Button
+        className={button}
+        id="reset_filters_button"
+        onClick={() => props.clearFilters()}
+      >
+        {props.t("BenefitsPane.reset_filters")}
+      </Button>
+
+      <Body className={orText}>{props.t("BenefitsPane.or")}</Body>
+
+      <Button
+        className={button}
+        id="contact_us_button"
+        secondary
+        onClick={() => props.goToMap(this.props.url)}
+      >
+        {props.t("BenefitsPane.contact_us")}
+      </Button>
+    </div>
+  );
+};
+let ResultsHeader = props => {
+  if (props.searchString.trim() !== "" && props.x > 0) {
+    return (
+      <Header className={headerPadding} size="sm_md" headingLevel="h2">
+        {props.headerText}
+      </Header>
+    );
+  } else {
+    return null;
+  }
+};
+
 export class BenefitsPane extends Component {
   clearFilters = () => {
     this.props.profileQuestions.forEach(q => {
@@ -72,7 +108,8 @@ export class BenefitsPane extends Component {
     return count + Object.values(this.props.selectedNeeds).length;
   };
 
-  countString = (x, t) => {
+  countString = x => {
+    const t = this.props.t;
     switch (true) {
       case this.countSelection() === 0 && this.props.searchString.trim() === "":
         return t("B3.All benefits to consider");
@@ -82,23 +119,6 @@ export class BenefitsPane extends Component {
         return t("B3.search_results_single");
       default:
         return t("B3.search_results", { x: x.length });
-    }
-  };
-
-  resultsHeader = (x, headerText) => {
-    if (this.props.searchString.trim() !== "" && x > 0) {
-      return (
-        <Header
-          className={headerPadding}
-          size="sm_md"
-          headingLevel="h2"
-          autoFocus={true}
-        >
-          {headerText}
-        </Header>
-      );
-    } else {
-      return "";
     }
   };
 
@@ -115,137 +135,109 @@ export class BenefitsPane extends Component {
     const {
       t,
       filteredBenefits,
+      filteredBenefitsWithoutSearch,
       nonFilteredBenefits,
-      nextStepsRef
+      nextStepsRef,
+      searchString,
+      reduxState,
+      store,
+      setSearchString,
+      url
     } = this.props; // eslint-disable-line no-unused-vars
-    if (this.props.filteredBenefitsWithoutSearch.length === 0) {
-      return (
-        <div className={noBenefitsPane}>
-          <Header size="lg" headingLevel="h1" autoFocus={true}>
-            {t("BenefitsPane.no_filtered_benefits")}
+    return (
+      <Grid container spacing={16}>
+        <Grid item xs={12}>
+          <Header
+            className={"BenefitsCounter " + title}
+            size="lg"
+            headingLevel="h1"
+            autoFocus={true}
+          >
+            {filteredBenefitsWithoutSearch.length === 0
+              ? t("BenefitsPane.no_filtered_benefits")
+              : this.countString(
+                  filteredBenefits.concat(
+                    searchString.trim() === "" ? [] : nonFilteredBenefits
+                  )
+                )}
           </Header>
-          <div className={buttonBar}>
-            <Button
-              className={button}
-              id="reset_filters_button"
-              onClick={() => this.clearFilters()}
-            >
-              {t("BenefitsPane.reset_filters")}
-            </Button>
-
-            <Body className={orText}>{t("BenefitsPane.or")}</Body>
-
-            <Button
-              className={button}
-              id="contact_us_button"
-              secondary
-              onClick={() => this.goToMap(this.props.url)}
-            >
-              {t("BenefitsPane.contact_us")}
-            </Button>
-          </div>
-          <Grid item xs={12}>
-            <div ref={nextStepsRef} className={alignLeft}>
-              <Grid container spacing={24}>
-                <NextSteps
-                  t={t}
-                  url={this.props.url}
-                  store={this.props.store}
-                />
-              </Grid>
-            </div>
-          </Grid>
-        </div>
-      );
-    } else {
-      return (
-        <Grid container spacing={16}>
-          <Grid item xs={12}>
-            <Header
-              className={"BenefitsCounter " + title}
-              size="lg"
-              headingLevel="h1"
-              autoFocus={true}
-            >
-              {this.countString(
-                filteredBenefits.concat(
-                  this.props.searchString.trim() === ""
-                    ? []
-                    : nonFilteredBenefits
-                ),
-                t
-              )}
-            </Header>
-            {filteredBenefits.length > 0 ? (
-              <Body>{t("B3.check eligibility")}</Body>
-            ) : (
-              ""
-            )}
-          </Grid>
-
-          <Grid item xs={12}>
-            <SearchBox
-              inputId="bbSearchField"
-              buttonId="searchButtonLink"
-              placeholder={this.props.t("search")}
-              value={this.props.searchString}
-              onChange={this.handleSearchChange}
-              disableButton={true}
-              onClear={() => this.props.setSearchString("")}
+          {filteredBenefitsWithoutSearch.length === 0 ? (
+            <NoResultsButtons
+              clearFilters={this.clearFilters}
+              goToMap={this.goToMap}
+              t={t}
             />
-          </Grid>
+          ) : filteredBenefits.length > 0 ? (
+            <Body>{t("B3.check eligibility")}</Body>
+          ) : null}
+        </Grid>
 
-          <Grid item xs={12}>
-            <Grid container spacing={24}>
-              {this.resultsHeader(
-                filteredBenefits.length,
-                this.props.filteredBenefitsWithoutSearch.length ==
-                  this.props.reduxState.benefits.length
-                  ? t("B3.results_all_benefits")
-                  : t("B3.results_filtered")
-              )}
-              <BenefitList
-                t={t}
-                filteredBenefits={filteredBenefits}
-                searchString={this.props.searchString}
-                showFavourites={true}
-                store={this.props.store}
+        {filteredBenefitsWithoutSearch.length === 0 ? null : (
+          <React.Fragment>
+            <Grid item xs={12}>
+              <SearchBox
+                inputId="bbSearchField"
+                buttonId="searchButtonLink"
+                placeholder={t("search")}
+                value={searchString}
+                onChange={this.handleSearchChange}
+                disableButton={true}
+                onClear={() => setSearchString("")}
               />
+            </Grid>
 
-              {nonFilteredBenefits.length > 0 ? <div className={spacer} /> : ""}
-
-              {this.resultsHeader(
-                nonFilteredBenefits.length,
-                t("B3.results_all_benefits")
-              )}
-              {this.props.searchString.trim() === "" ? (
-                ""
-              ) : (
+            <Grid item xs={12}>
+              <Grid container spacing={24}>
+                <ResultsHeader
+                  x={filteredBenefits.length}
+                  headerText={
+                    filteredBenefitsWithoutSearch.length ==
+                    reduxState.benefits.length
+                      ? t("B3.results_all_benefits")
+                      : t("B3.results_filtered")
+                  }
+                  searchString={searchString}
+                />
                 <BenefitList
                   t={t}
-                  filteredBenefits={nonFilteredBenefits}
-                  searchString={this.props.searchString}
+                  filteredBenefits={filteredBenefits}
+                  searchString={searchString}
                   showFavourites={true}
-                  store={this.props.store}
+                  store={store}
                 />
-              )}
-            </Grid>
-          </Grid>
 
-          <Grid item xs={12}>
-            <div ref={nextStepsRef}>
-              <Grid container spacing={24}>
-                <NextSteps
-                  t={t}
-                  url={this.props.url}
-                  store={this.props.store}
+                {nonFilteredBenefits.length > 0 ? (
+                  <div className={spacer} />
+                ) : null}
+                <ResultsHeader
+                  x={nonFilteredBenefits.length}
+                  headerText={t("B3.results_all_benefits")}
+                  searchString={searchString}
                 />
+
+                {searchString.trim() === "" ? null : (
+                  <BenefitList
+                    t={t}
+                    filteredBenefits={nonFilteredBenefits}
+                    searchString={searchString}
+                    showFavourites={true}
+                    store={store}
+                  />
+                )}
               </Grid>
-            </div>
-          </Grid>
+            </Grid>
+          </React.Fragment>
+        )}
+
+        <Grid item xs={12}>
+          <div ref={nextStepsRef}>
+            <Grid container spacing={24}>
+              <NextSteps t={t} url={url} store={store} />
+            </Grid>
+          </div>
         </Grid>
-      );
-    }
+      </Grid>
+    );
   }
 }
 
