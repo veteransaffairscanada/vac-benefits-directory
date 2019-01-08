@@ -1,7 +1,10 @@
 import ReactGA from "react-ga";
 
 export const initGA = () => {
-  ReactGA.initialize(process.env.GA_UA);
+  ReactGA.initialize([
+    { trackingId: process.env.GA_UA },
+    { trackingId: process.env.GA_UA_CDS }
+  ]);
 };
 
 export const logPageView = () => {

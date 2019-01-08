@@ -21,7 +21,8 @@ Contact other developers on the project for what values we're currently using.
 | `GOOGLE_MAPS_KEY`            | do Google Maps queries on the map page                  | production / locally / CircleCI |
 | `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                    | production                      |
 | `SENTRY_DSN`                 | save browser errors to Sentry                           | production                      |
-| `GA_UA`                      | track app usage with Google Analytics                   | production                      |
+| `GA_UA`                      | track app usage with Google Analytics for VAC           | production                      |
+| `GA_UA_CDS`                  | track app usage with Google Analytics for CDS           | production                      |
 | `GITHUB_PUBLIC_ACCESS_TOKEN` | gather data from GitHub for the stats page              | production                      |
 | `WEBHOOK_URL`                | Sends slack deployment notifications                    | production                      |
 | `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                   | locally                         |
