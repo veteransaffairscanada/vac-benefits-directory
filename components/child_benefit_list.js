@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { css } from "emotion";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 // import ( getFilteredBenefitsFunction, getProfileFilters, )
 import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
@@ -17,7 +17,6 @@ const cardBottomFamilyTitle = css`
   justify-content: center;
   align-items: center;
 `;
-
 const children = css`
   width: 100%;
 `;
