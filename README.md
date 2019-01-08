@@ -1,10 +1,9 @@
-# VAC Benefits Directory
+# Find benefits and services
 
 [![CircleCI](https://circleci.com/gh/cds-snc/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-benefits-directory)
 [![Known Vulnerabilities](https://snyk.io/test/github/cds-snc/vac-benefits-directory/badge.svg)](https://snyk.io/test/github/cds-snc/vac-benefits-directory)
 
-This is the code for the VAC Benefits Directory being developed by VAC and CDS. The app is currently deployed at
-https://vac-benefits-finder.cds-snc.ca/
+This is the code for *Find benefits and services*, a product being developed by VAC and CDS. The app is currently deployed at https://vac-benefits-finder.cds-snc.ca.
 
 The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [doc](/doc/).
 
@@ -76,7 +75,7 @@ To add a new ENV variable to the source code, take the following steps:
   - node (`brew install node`)
   - yarn (`npm i yarn`)
 - Clone the repo
-  - `git clone git@github.com:cds-snc/vac-benefits-directory.git`
+  - `git clone git@github.com:veteransaffairscanada/vac-benefits-directory.git`
 - In the local repo directory:
   - `yarn install`
   - `yarn dev`
