@@ -3,7 +3,6 @@
 import { mount } from "enzyme";
 import React from "react";
 import configureStore from "redux-mock-store";
-
 import { BenefitsPane } from "../../components/benefits_pane";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
@@ -95,6 +94,10 @@ describe("BenefitsPane", () => {
       let html = mounted().html();
       expect(await axe(html)).toHaveNoViolations();
     });
+
+    it("contains the no results buttons", () => {
+      expect(mounted().find("NoResultsButtons").length).toEqual(1);
+    });
   });
 
   describe("when filteredBenefitsWithoutSearch is not empty", () => {
@@ -175,25 +178,6 @@ describe("BenefitsPane", () => {
             .instance()
             .countSelection()
         ).toEqual(2);
-      });
-    });
-
-    describe("resultsHeader", () => {
-      it("returns a Header if there is at least one result", () => {
-        mounted().setProps({ searchString: "t" });
-        expect(
-          mounted()
-            .instance()
-            .resultsHeader(1, props.t)
-        ).not.toEqual("");
-      });
-      it("returns an empty string if there are no results", () => {
-        mounted().setProps({ searchString: "t" });
-        expect(
-          mounted()
-            .instance()
-            .resultsHeader(0, props.t)
-        ).toEqual("");
       });
     });
 
