@@ -1,9 +1,9 @@
 # Find benefits and services
 
-[![CircleCI](https://circleci.com/gh/cds-snc/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-benefits-directory)
-[![Known Vulnerabilities](https://snyk.io/test/github/cds-snc/vac-benefits-directory/badge.svg)](https://snyk.io/test/github/cds-snc/vac-benefits-directory)
+[![CircleCI](https://circleci.com/gh/veteransaffairscanada/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/veteransaffairscanada/vac-benefits-directory)
+[![Known Vulnerabilities](https://snyk.io/test/github/veteransaffairscanada/vac-benefits-directory/badge.svg)](https://snyk.io/test/github/veteransaffairscanada/vac-benefits-directory)
 
-This is the code for *Find benefits and services*, a product being developed by VAC and CDS. The app is currently deployed at https://vac-benefits-finder.cds-snc.ca.
+This is the code for _Find benefits and services_, a product being developed by VAC and CDS. The app is currently deployed at https://vac-benefits-finder.cds-snc.ca.
 
 The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [doc](/doc/).
 
@@ -59,7 +59,7 @@ To add a new ENV variable to the source code, take the following steps:
     ```
 4.  Add another build argument to [config.yml](./.circleci/config.yml):
     `--build-arg YOUR_VARIABLE_NAME="${YOUR_VARIABLE_NAME}"`
-5.  Add the ENV variable to CircleCI through their web interface: https://circleci.com/gh/cds-snc/vac-benefits-directory -> Settings -> Environment Variables
+5.  Add the ENV variable to CircleCI through their web interface: https://circleci.com/gh/veteransaffairscanada/vac-benefits-directory -> Settings -> Environment Variables
 6.  Add the ENV variable to Heroku through their web interface.
     It will need to be added to any production apps as well as the app that the pull request reviews are based on, namely
     [vac-poc-staging](https://dashboard.heroku.com/apps/vac-poc-staging). Go to the apps, then the Settings tab, then "Reveal Config Vars"

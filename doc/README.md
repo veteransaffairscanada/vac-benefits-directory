@@ -99,7 +99,7 @@ to have review apps created for their PRs.
 
 #### Why and how are we using it?
 
-CircleCI is connected to our GitHub repositiory (see the project's [CircleCI page](https://circleci.com/gh/cds-snc/vac-benefits-directory)). For every new commit, CircleCI runs our test suite and reports any
+CircleCI is connected to our GitHub repositiory (see the project's [CircleCI page](https://circleci.com/gh/veteransaffairscanada/vac-benefits-directory)). For every new commit, CircleCI runs our test suite and reports any
 failures. If a commit to master fails testing we are notified on the CDS `vac-devs` Slack channel.
 If a commit to master passes, CircleCI builds a dockerfile from master and pushes it to DockerHub.
 CircleCI is configured via [`config.yml`](/.circleci/config.yml).
@@ -172,7 +172,7 @@ Create a personal account on BrowserStack and then contact a developer to get yo
 
 #### How are we deploying the application?
 
-To standardize the environments between testing and production we are using [Docker](https://www.docker.com/), which allows us to create the same software conditions throughout our release pipeline. Docker allows us to create a specific environment from which the application should run, defined through the [Dockerfile](https://github.com/cds-snc/vac-benefits-directory/blob/master/Dockerfile) inside our main repository. Docker executes this file and builds a container image, which then can be deployed on any infrastructure that supports container images (Azure, AWS, Google Cloud, etc.)
+To standardize the environments between testing and production we are using [Docker](https://www.docker.com/), which allows us to create the same software conditions throughout our release pipeline. Docker allows us to create a specific environment from which the application should run, defined through the [Dockerfile](https://github.com/veteransaffairscanada/vac-benefits-directory/blob/master/Dockerfile) inside our main repository. Docker executes this file and builds a container image, which then can be deployed on any infrastructure that supports container images (Azure, AWS, Google Cloud, etc.)
 
 #### What is the current deployment workflow?
 
@@ -250,7 +250,7 @@ We are currently using [React Styleguidist](https://react-styleguidist.js.org/) 
 ### Contributing to GitHub repo
 
 Download github desktop @ https://desktop.github.com/.
-Go to https://github.com/cds-snc/vac-benefits-directory
+Go to https://github.com/veteransaffairscanada/vac-benefits-directory
 click "Clone or download" button and select open in desktop.
 Select where you would like to save the project locally.
 
@@ -258,7 +258,7 @@ When making changes first make a new branch.
 Click Branch in the top left corner, then new branch.
 
 After making your changes commit those changes in github desktop then select push changes in the top right corner.
-Navigate over to the github page https://github.com/cds-snc/vac-benefits-directory and find the branch. Then create a new pull request to better explain what changes you have implemented.
+Navigate over to the github page https://github.com/veteransaffairscanada/vac-benefits-directory and find the branch. Then create a new pull request to better explain what changes you have implemented.
 After that the pull request will be available for reviewers to look at and make sure everything looks good before merging it into master.
 
 ### Pair programming
@@ -297,7 +297,7 @@ Deployment notifications are automated messages that we send to our internal Sla
 
 #### How do they work?
 
-Upon server start the the application will send a JSON payload to a [Slack incoming webhook](https://api.slack.com/incoming-webhooks "Incoming Webhook"). The webhook then translates the information into a nicely formatted slack message that all developers can see. You can learn more about how they exactly work [here](https://github.com/cds-snc/vac-benefits-directory/blob/master/utils/deploy_notification.js). Important is that you set a `WEBHOOK_URL` environmental variable which is the URL of your Slack Webhook.
+Upon server start the the application will send a JSON payload to a [Slack incoming webhook](https://api.slack.com/incoming-webhooks "Incoming Webhook"). The webhook then translates the information into a nicely formatted slack message that all developers can see. You can learn more about how they exactly work [here](https://github.com/veteransaffairscanada/vac-benefits-directory/blob/master/utils/deploy_notification.js). Important is that you set a `WEBHOOK_URL` environmental variable which is the URL of your Slack Webhook.
 
 #### What do we use them for?
 
