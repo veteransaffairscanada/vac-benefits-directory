@@ -24,7 +24,12 @@ export class ExampleBullets extends React.Component {
     const { benefitExamples, benefit, t } = this.props;
     const lang = t("current-language-code") === "en" ? "english" : "french";
     return benefitExamples
-      .filter(x => x.linked_benefits.indexOf(benefit.vacNameEn) > -1)
+      .filter(x => {
+        if ("linked_benefits" in x) {
+          return x.linked_benefits.indexOf(benefit.vacNameEn) > -1;
+        }
+        return false;
+      })
       .map((x, i) => {
         return <li key={i}>{x[lang]}</li>;
       });
