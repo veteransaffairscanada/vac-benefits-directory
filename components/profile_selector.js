@@ -41,6 +41,7 @@ export class ProfileSelector extends Component {
                   : question.tooltip_french
               }
               store={this.props.store}
+              name={"group" + index}
             />
           </Grid>
         );

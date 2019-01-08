@@ -88,7 +88,14 @@ export class RadioSelector extends React.Component {
           )
       );
 
-    const { t, selectorType, responses, legend, tooltipText } = this.props;
+    const {
+      t,
+      selectorType,
+      responses,
+      legend,
+      tooltipText,
+      name
+    } = this.props;
     if (options.length !== 0) {
       return (
         <div className={formControl}>
@@ -111,6 +118,7 @@ export class RadioSelector extends React.Component {
                   onChange={this.handleSelect}
                   value={option.variable_name}
                   className={radioOption}
+                  name={name}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
@@ -160,7 +168,8 @@ RadioSelector.propTypes = {
   questionClearLogic: PropTypes.array.isRequired,
   options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
-  store: PropTypes.object
+  store: PropTypes.object,
+  name: PropTypes.string
 };
 
 export default connect(
