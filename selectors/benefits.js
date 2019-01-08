@@ -13,6 +13,42 @@ const getNeedsFilter = state => state.selectedNeeds;
 const getSearchStringFilter = state => state.searchString;
 const getNextSteps = state => state.nextSteps;
 
+export const getFilteredBenefitsFunction = (
+  profileFilters,
+  selectedNeeds,
+  benefits,
+  needs,
+  eligibilityPaths,
+  multipleChoiceOptions
+) => {
+  if (benefits.length === 0) {
+    return benefits;
+  }
+  // find benefits that match
+  let eligibleBenefitIds = [];
+  eligibilityPaths.forEach(ep => {
+    if (eligibilityMatch(ep, profileFilters, multipleChoiceOptions)) {
+      eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
+    }
+  });
+
+  let benefitIdsForSelectedNeeds = [];
+  if (Object.keys(selectedNeeds).length > 0) {
+    Object.keys(selectedNeeds).forEach(id => {
+      const need = needs.filter(n => n.id === id)[0];
+      benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
+        need.benefits
+      );
+    });
+  } else {
+    benefitIdsForSelectedNeeds = benefits.map(b => b.id);
+  }
+  let matchingBenefitIds = eligibleBenefitIds.filter(
+    id => benefitIdsForSelectedNeeds.indexOf(id) > -1
+  );
+  return benefits.filter(b => matchingBenefitIds.includes(b.id));
+};
+
 export const getProfileFilters = createSelector(
   [state => state.questions, state => state],
   (questions, reduxState) => {
@@ -74,33 +110,14 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     eligibilityPaths,
     multipleChoiceOptions
   ) => {
-    if (benefits.length === 0) {
-      return benefits;
-    }
-
-    // find benefits that match
-    let eligibleBenefitIds = [];
-    eligibilityPaths.forEach(ep => {
-      if (eligibilityMatch(ep, profileFilters, multipleChoiceOptions)) {
-        eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
-      }
-    });
-
-    let benefitIdsForSelectedNeeds = [];
-    if (Object.keys(selectedNeeds).length > 0) {
-      Object.keys(selectedNeeds).forEach(id => {
-        const need = needs.filter(n => n.id === id)[0];
-        benefitIdsForSelectedNeeds = benefitIdsForSelectedNeeds.concat(
-          need.benefits
-        );
-      });
-    } else {
-      benefitIdsForSelectedNeeds = benefits.map(b => b.id);
-    }
-    let matchingBenefitIds = eligibleBenefitIds.filter(
-      id => benefitIdsForSelectedNeeds.indexOf(id) > -1
+    return getFilteredBenefitsFunction(
+      profileFilters,
+      selectedNeeds,
+      benefits,
+      needs,
+      eligibilityPaths,
+      multipleChoiceOptions
     );
-    return benefits.filter(b => matchingBenefitIds.includes(b.id));
   }
 );
 
