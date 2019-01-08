@@ -34,6 +34,10 @@ const small = css`
   font-size: 18px;
 `;
 
+const nowrap = css`
+  white-space: nowrap;
+`;
+
 const grey = css`
   font-size: 18px;
   color: ${globalTheme.colour.brownishGrey};
@@ -51,7 +55,7 @@ class HeaderLink extends Component {
       size,
       altStyle,
       onClick,
-      otherProps
+      ...otherProps
     } = this.props;
 
     return (
@@ -70,7 +74,12 @@ class HeaderLink extends Component {
         >
           {arrow === "back" ? <ArrowBack /> : null}
           {children}
-          {arrow === "forward" ? <ArrowForward /> : null}
+          {arrow === "forward" ? (
+            <span className={nowrap}>
+              &nbsp;
+              <ArrowForward />
+            </span>
+          ) : null}
         </a>
       </Link>
     );

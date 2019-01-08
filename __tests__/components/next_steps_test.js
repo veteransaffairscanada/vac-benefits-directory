@@ -61,6 +61,7 @@ describe("NextSteps", () => {
     expect(
       mount(<NextSteps {...props} />)
         .find("#nearbyOfficeLink")
+        .first()
         .prop("href")
     ).toEqual("/map");
   });

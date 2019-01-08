@@ -148,6 +148,14 @@ export class BenefitsPane extends Component {
                   headerText={t("B3.results_all_benefits")}
                   searchString={searchString}
                 />
+                {filteredBenefits.length === 0 &&
+                nonFilteredBenefits.length === 0 ? (
+                  <ResultsHeader
+                    benefitCount={1}
+                    headerText={t("B3.search_tip")}
+                    searchString={searchString}
+                  />
+                ) : null}
 
                 {searchString.trim() === "" ? null : (
                   <BenefitList
