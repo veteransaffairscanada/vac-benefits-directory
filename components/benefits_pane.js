@@ -234,9 +234,7 @@ export class BenefitsPane extends Component {
 
           {nonFilteredBenefits.length === 0 ? (
             <div>{this.resultsHeader(1, t("B3.search_tip"))}</div>
-          ) : (
-            ""
-          )}
+          ) : null}
 
           <Grid item xs={12}>
             <div ref={nextStepsRef}>
