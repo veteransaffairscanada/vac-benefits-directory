@@ -67,11 +67,21 @@ const container = css`
   `)};
 `;
 
+const skipLinkContainer = css`
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 3;
+  top: 10px;
+  left: 0px;
+  list-style: none;
+`;
+
 const skipLinkStyle = css`
   width: 1px !important;
   height: 1px !important;
   overflow: hidden !important;
-  display: block;
+  display: inline-block;
   color: white;
   text-decoration: none;
   font-family: ${globalTheme.fontFamily};
@@ -88,24 +98,30 @@ class FederalBanner extends Component {
   render() {
     const { t, skipLink } = this.props;
     return (
-      <div className={container}>
-        <div className="svg-container">
-          <FIP fillColor="white" t={this.props.t} />
-        </div>
-        <a className={skipLinkStyle} href={skipLink} id="skipLink">
-          {t("skipLink")}
-        </a>
-        <div>
-          {this.props.showRefreshCache ? (
-            <a href="/refresh">
-              <Button id="refreshCache" className={buttonCSS}>
-                {t("refresh-cache")}
-              </Button>
+      <div>
+        <ul className={skipLinkContainer}>
+          <li>
+            <a className={skipLinkStyle} href={skipLink} id="skipLink">
+              {t("skipLink")}
             </a>
-          ) : (
-            ""
-          )}
-          <LanguageButton i18n={this.props.i18n} t={this.props.t} />
+          </li>
+        </ul>
+        <div className={container}>
+          <div className="svg-container">
+            <FIP fillColor="white" t={this.props.t} />
+          </div>
+          <div>
+            {this.props.showRefreshCache ? (
+              <a href="/refresh">
+                <Button id="refreshCache" className={buttonCSS}>
+                  {t("refresh-cache")}
+                </Button>
+              </a>
+            ) : (
+              ""
+            )}
+            <LanguageButton i18n={this.props.i18n} t={this.props.t} />
+          </div>
         </div>
       </div>
     );
