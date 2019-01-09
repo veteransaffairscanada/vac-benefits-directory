@@ -36,6 +36,22 @@ describe("BenefitExpansion", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
+  it("contains the 2 ChildBenefitList components", () => {
+    expect(
+      mount(<BenefitExpansion {...props} {...reduxData} />).find(
+        "ChildBenefitList"
+      ).length
+    ).toEqual(2);
+  });
+
+  it("contains the LearnMoreButton", () => {
+    expect(
+      mount(<BenefitExpansion {...props} {...reduxData} />).find(
+        "LearnMoreButton"
+      ).length
+    ).toEqual(1);
+  });
+
   it("shows a child benefit title if the benefit has a child", () => {
     let related = mount(<BenefitExpansion {...props} {...reduxData} />);
     expect(
