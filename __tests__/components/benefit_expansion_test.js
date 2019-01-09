@@ -12,9 +12,6 @@ expect.extend(toHaveNoViolations);
 describe("BenefitExpansion", () => {
   let props;
   let mockStore, reduxData;
-  const mocked_fn = jest.fn();
-  mocked_fn.mockReturnValue({ focus: jest.fn() });
-  window.open = mocked_fn;
 
   beforeEach(() => {
     props = {
@@ -36,6 +33,22 @@ describe("BenefitExpansion", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
+  it("contains the 2 ChildBenefitList components", () => {
+    expect(
+      mount(<BenefitExpansion {...props} {...reduxData} />).find(
+        "ChildBenefitList"
+      ).length
+    ).toEqual(2);
+  });
+
+  it("contains the LearnMoreButton", () => {
+    expect(
+      mount(<BenefitExpansion {...props} {...reduxData} />).find(
+        "LearnMoreButton"
+      ).length
+    ).toEqual(1);
+  });
+
   it("shows a child benefit title if the benefit has a child", () => {
     let related = mount(<BenefitExpansion {...props} {...reduxData} />);
     expect(
@@ -45,72 +58,6 @@ describe("BenefitExpansion", () => {
         .childAt(0)
         .text()
     ).toContain("en");
-  });
-  it("has a correctly configured external link button", () => {
-    let relatedComponent = mount(
-      <BenefitExpansion {...props} {...reduxData} />
-    );
-    relatedComponent
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(window.open).toBeCalledWith(
-      benefitsFixture[0].benefitPageEn,
-      "_blank"
-    );
-    expect(
-      relatedComponent
-        .find("Button")
-        .at(0)
-        .text()
-    ).toEqual("en");
-  });
-
-  it("Clicking the link logs an exit event", () => {
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    mount(<BenefitExpansion {...props} {...reduxData} />)
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(analytics.logEvent).toBeCalledWith(
-      "Exit",
-      benefitsFixture[0].benefitPageEn
-    );
-  });
-
-  describe("when language is French", () => {
-    beforeEach(() => {
-      props.t = () => "fr";
-    });
-
-    it("shows a child benefit title if the benefit has a child", () => {
-      expect(
-        mount(<BenefitExpansion {...props} {...reduxData} />)
-          .find("li")
-          .last()
-          .text()
-      ).toContain("fr");
-    });
-    it("has a button with the French link", () => {
-      let relatedComponent = mount(
-        <BenefitExpansion {...props} {...reduxData} />
-      );
-      relatedComponent
-        .find("Button")
-        .at(0)
-        .simulate("click");
-      expect(window.open).toBeCalledWith(
-        benefitsFixture[0].benefitPageFr,
-        "_blank"
-      );
-      expect(
-        relatedComponent
-          .find("Button")
-          .at(0)
-          .text()
-      ).toEqual("fr");
-    });
   });
 
   describe("getBenefitIds", () => {
