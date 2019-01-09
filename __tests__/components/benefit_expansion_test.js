@@ -12,9 +12,6 @@ expect.extend(toHaveNoViolations);
 describe("BenefitExpansion", () => {
   let props;
   let mockStore, reduxData;
-  const mocked_fn = jest.fn();
-  mocked_fn.mockReturnValue({ focus: jest.fn() });
-  window.open = mocked_fn;
 
   beforeEach(() => {
     props = {
