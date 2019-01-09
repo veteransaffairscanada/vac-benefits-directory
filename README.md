@@ -1,10 +1,9 @@
-# VAC Benefits Directory
+# Find benefits and services
 
-[![CircleCI](https://circleci.com/gh/cds-snc/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/cds-snc/vac-benefits-directory)
-[![Known Vulnerabilities](https://snyk.io/test/github/cds-snc/vac-benefits-directory/badge.svg)](https://snyk.io/test/github/cds-snc/vac-benefits-directory)
+[![CircleCI](https://circleci.com/gh/veteransaffairscanada/vac-benefits-directory.svg?style=svg)](https://circleci.com/gh/veteransaffairscanada/vac-benefits-directory)
+[![Known Vulnerabilities](https://snyk.io/test/github/veteransaffairscanada/vac-benefits-directory/badge.svg)](https://snyk.io/test/github/veteransaffairscanada/vac-benefits-directory)
 
-This is the code for the VAC Benefits Directory being developed by VAC and CDS. The app is currently deployed at
-https://vac-benefits-finder.cds-snc.ca/
+This is the code for _Find benefits and services_, a product being developed by VAC and CDS. The app is currently deployed at https://vac-benefits-finder.cds-snc.ca.
 
 The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [doc](/doc/).
 
@@ -15,18 +14,19 @@ Some are also required for testing. You will also need some of these set for loc
 (at the very least, you should have `AIRTABLE_READ_KEY` and `GOOGLE_MAPS_KEY`).
 Contact other developers on the project for what values we're currently using.
 
-| Variable                     | Use                                                     | Where                           |
-| ---------------------------- | ------------------------------------------------------- | ------------------------------- |
-| `AIRTABLE_READ_KEY`          | load data (benefits / translations / etc) from Airtable | production / locally            |
-| `GOOGLE_MAPS_KEY`            | do Google Maps queries on the map page                  | production / locally / CircleCI |
-| `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                    | production                      |
-| `SENTRY_DSN`                 | save browser errors to Sentry                           | production                      |
-| `GA_UA`                      | track app usage with Google Analytics for VAC           | production                      |
-| `GA_UA_CDS`                  | track app usage with Google Analytics for CDS           | production                      |
-| `GITHUB_PUBLIC_ACCESS_TOKEN` | gather data from GitHub for the stats page              | production                      |
-| `WEBHOOK_URL`                | Sends slack deployment notifications                    | production                      |
-| `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                   | locally                         |
-| `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                   | locally                         |
+| Variable                     | Use                                                                                                          | Where                           |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+| `AIRTABLE_READ_KEY`          | load data (benefits / translations / etc) from Airtable                                                      | production / locally            |
+| `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                                                                         | production                      |
+| `AIRTABLE_BASE_KEY`          | This tells the app which Airtable base to pull data from. If it is not set, the CDS master base will be used | production / locally            |
+| `GOOGLE_MAPS_KEY`            | do Google Maps queries on the map page                                                                       | production / locally / CircleCI |
+| `SENTRY_DSN`                 | save browser errors to Sentry                                                                                | production                      |
+| `GA_UA`                      | track app usage with Google Analytics for VAC                                                                | production                      |
+| `GA_UA_CDS`                  | track app usage with Google Analytics for CDS                                                                | production                      |
+| `GITHUB_PUBLIC_ACCESS_TOKEN` | gather data from GitHub for the stats page                                                                   | production                      |
+| `WEBHOOK_URL`                | Sends slack deployment notifications                                                                         | production                      |
+| `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                                                                        | locally                         |
+| `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                                                                        | locally                         |
 
 Note that CDS docker images are public, so you should not put any sensitive (ie write) keys in the docker image.
 
@@ -60,7 +60,7 @@ To add a new ENV variable to the source code, take the following steps:
     ```
 4.  Add another build argument to [config.yml](./.circleci/config.yml):
     `--build-arg YOUR_VARIABLE_NAME="${YOUR_VARIABLE_NAME}"`
-5.  Add the ENV variable to CircleCI through their web interface: https://circleci.com/gh/cds-snc/vac-benefits-directory -> Settings -> Environment Variables
+5.  Add the ENV variable to CircleCI through their web interface: https://circleci.com/gh/veteransaffairscanada/vac-benefits-directory -> Settings -> Environment Variables
 6.  Add the ENV variable to Heroku through their web interface.
     It will need to be added to any production apps as well as the app that the pull request reviews are based on, namely
     [vac-poc-staging](https://dashboard.heroku.com/apps/vac-poc-staging). Go to the apps, then the Settings tab, then "Reveal Config Vars"
@@ -76,7 +76,7 @@ To add a new ENV variable to the source code, take the following steps:
   - node (`brew install node`)
   - yarn (`npm i yarn`)
 - Clone the repo
-  - `git clone git@github.com:cds-snc/vac-benefits-directory.git`
+  - `git clone git@github.com:veteransaffairscanada/vac-benefits-directory.git`
 - In the local repo directory:
   - `yarn install`
   - `yarn dev`
