@@ -3,9 +3,12 @@ import PropTypes from "prop-types";
 import { css } from "emotion";
 import { connect } from "react-redux";
 import ExampleBullets from "./example_bullets";
-var constants = require("../utils/hardcoded_strings");
 import ChildBenefitList from "./child_benefit_list";
 import LearnMoreButton from "./learn_more_button";
+import {
+  getFilteredBenefitsFunction,
+  getProfileFilters
+} from "../selectors/benefits";
 
 const topBorder = css`
   padding-top: 1em;
@@ -15,6 +18,23 @@ const topBorder = css`
 export class BenefitExpansion extends Component {
   state = {
     open: false
+  };
+
+  getAlsoEligibleBenefits = (benefits, patronType = "") => {
+    const reduxState = this.props.reduxState;
+    const profileFilters = getProfileFilters(reduxState, this.props);
+    if (patronType !== "") {
+      profileFilters["patronType"] = patronType;
+    }
+
+    return getFilteredBenefitsFunction(
+      profileFilters,
+      reduxState.selectedNeeds,
+      benefits,
+      reduxState.needs,
+      reduxState.eligibilityPaths,
+      reduxState.multipleChoiceOptions
+    );
   };
 
   benefitTitle = benefit => {
@@ -28,32 +48,6 @@ export class BenefitExpansion extends Component {
     return matchingBenefits;
   };
 
-  getBenefitIds = (
-    eligibilityPaths,
-    servicePersonOptionIds,
-    familyOptionIds
-  ) => {
-    let veteranBenefitIds = [];
-    let familyBenefitIds = [];
-
-    eligibilityPaths.forEach(ep => {
-      servicePersonOptionIds.forEach(id => {
-        if (ep.requirements && ep.requirements.indexOf(id) !== -1) {
-          veteranBenefitIds = veteranBenefitIds.concat(ep.benefits);
-        }
-      });
-      familyOptionIds.forEach(id => {
-        if (ep.requirements && ep.requirements.indexOf(id) !== -1) {
-          familyBenefitIds = familyBenefitIds.concat(ep.benefits);
-        }
-      });
-    });
-    return {
-      veteran: new Set(veteranBenefitIds),
-      family: new Set(familyBenefitIds)
-    };
-  };
-
   render() {
     const { t, benefit, benefits, store } = this.props;
     const language = t("current-language-code");
@@ -63,28 +57,21 @@ export class BenefitExpansion extends Component {
       ? benefits.filter(ab => benefit.childBenefits.indexOf(ab.id) > -1)
       : [];
 
-    const servicePersonOptionIds = this.props.multipleChoiceOptions
-      .filter(
-        mco => constants.servicePersonOptions.indexOf(mco.variable_name) !== -1
-      )
-      .map(mco => mco.id);
-
-    const familyOptionIds = this.props.multipleChoiceOptions
-      .filter(mco => constants.familyOptions.indexOf(mco.variable_name) !== -1)
-      .map(mco => mco.id);
-
-    const benefitIds = this.getBenefitIds(
-      this.props.eligibilityPaths,
-      servicePersonOptionIds,
-      familyOptionIds
-    );
-    const veteranBenefits = this.getMatchingBenefits(
+    const veteranBenefits = this.getAlsoEligibleBenefits(
       childBenefits,
-      benefitIds.veteran
+      "veteran"
     );
-    const familyBenefits = this.getMatchingBenefits(
+    const servingMemberBenefits = this.getAlsoEligibleBenefits(
       childBenefits,
-      benefitIds.family
+      "servingMember"
+    );
+    const vetServBenefits = [
+      ...new Set(veteranBenefits.concat(servingMemberBenefits))
+    ];
+
+    const familyBenefits = this.getAlsoEligibleBenefits(
+      childBenefits,
+      "family"
     );
 
     let otherBenefits = t("benefits_b.eligible_open_veteran", {
@@ -96,7 +83,7 @@ export class BenefitExpansion extends Component {
         <ExampleBullets benefit={benefit} t={t} store={store} />
         <div className={topBorder}>
           <ChildBenefitList
-            benefits={veteranBenefits}
+            benefits={vetServBenefits}
             colonText={otherBenefits}
             t={t}
           />
@@ -115,7 +102,8 @@ const mapStateToProps = reduxState => {
   return {
     benefits: reduxState.benefits,
     eligibilityPaths: reduxState.eligibilityPaths,
-    multipleChoiceOptions: reduxState.multipleChoiceOptions
+    multipleChoiceOptions: reduxState.multipleChoiceOptions,
+    reduxState: reduxState
   };
 };
 BenefitExpansion.propTypes = {
@@ -123,6 +111,7 @@ BenefitExpansion.propTypes = {
   eligibilityPaths: PropTypes.array.isRequired,
   multipleChoiceOptions: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
+  reduxState: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   className: PropTypes.string,
   store: PropTypes.object
