@@ -37,9 +37,7 @@ export class NeedsSelector extends Component {
     if (showQuestion("needs", undefined, this.props.reduxState)) {
       return (
         <div className={topBorder}>
-          <Header size="sm" headingLevel="h3">
-            {t("filter by category")}
-          </Header>
+          <Header size="sm">{t("filter by category")}</Header>
           <Grid container spacing={16}>
             <Grid item xs={9}>
               <div>{t("Select all that apply")}</div>

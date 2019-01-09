@@ -85,7 +85,7 @@ export class SelectionsEditor extends Component {
           onClick={() => this.toggleOpenState()}
         >
           <EditIcon />
-          <Header headingLevel="h2" size="sm_md" className={filterTitle}>
+          <Header size="sm_md" className={filterTitle}>
             {t("directory.edit_selections")}
           </Header>{" "}
         </ExpansionPanelSummary>
