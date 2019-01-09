@@ -38,6 +38,7 @@ describe("BenefitCard", () => {
     props = {
       t: () => "en",
       benefit: benefitsFixture[0],
+      currentLanguage: "en",
       veteranBenefitIds: [],
       familyBenefitIds: [],
       searchString: "",
@@ -97,6 +98,7 @@ describe("BenefitCard", () => {
   describe("when language is French", () => {
     beforeEach(() => {
       props.t = () => "fr";
+      props.currentLanguage = "fr";
     });
 
     it("contains the French name", () => {

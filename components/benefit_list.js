@@ -68,13 +68,14 @@ export class BenefitList extends React.Component {
     let {
       filteredBenefits,
       t,
+      currentLanguage,
       searchString,
       showFavourites,
       store
     } = this.props;
     const sortedBenefits = searchString
       ? filteredBenefits
-      : this.sortBenefits(filteredBenefits, t("current-language-code"));
+      : this.sortBenefits(filteredBenefits, currentLanguage);
 
     return loading ? (
       <div className={Div}>
@@ -86,6 +87,7 @@ export class BenefitList extends React.Component {
           id={"bc" + i}
           benefit={benefit}
           t={t}
+          currentLanguage={currentLanguage}
           key={benefit.id}
           showFavourite={showFavourites}
           searchString={searchString}
@@ -98,6 +100,7 @@ export class BenefitList extends React.Component {
 
 BenefitList.propTypes = {
   t: PropTypes.func.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
   showFavourites: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,

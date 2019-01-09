@@ -88,7 +88,7 @@ export class BenefitCard extends Component {
                 searchWords={searchWords}
                 autoEscape={true}
                 textToHighlight={
-                  t("current-language-code") === "en"
+                  this.props.currentLanguage === "en"
                     ? benefit.vacNameEn
                     : benefit.vacNameFr
                 }
@@ -100,7 +100,7 @@ export class BenefitCard extends Component {
                 searchWords={searchWords}
                 autoEscape={true}
                 textToHighlight={
-                  t("current-language-code") === "en"
+                  this.props.currentLanguage === "en"
                     ? benefit.oneLineDescriptionEn
                     : benefit.oneLineDescriptionFr
                 }
@@ -162,6 +162,7 @@ BenefitCard.propTypes = {
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
   showFavourite: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object

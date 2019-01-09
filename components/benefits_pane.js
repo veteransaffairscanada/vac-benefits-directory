@@ -134,6 +134,7 @@ export class BenefitsPane extends Component {
                 />
                 <BenefitList
                   t={t}
+                  currentLanguage={t("current-language-code")}
                   filteredBenefits={filteredBenefits}
                   searchString={searchString}
                   showFavourites={true}
@@ -160,6 +161,7 @@ export class BenefitsPane extends Component {
                 {searchString.trim() === "" ? null : (
                   <BenefitList
                     t={t}
+                    currentLanguage={t("current-language-code")}
                     filteredBenefits={nonFilteredBenefits}
                     searchString={searchString}
                     showFavourites={true}
