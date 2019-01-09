@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { css } from "emotion";
-// import { connect } from "react-redux";
-// import ( getFilteredBenefitsFunction, getProfileFilters, )
 import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
 import { logEvent } from "../utils/analytics";
@@ -77,8 +75,7 @@ const ChildBenefitList = props => {
 ChildBenefitList.propTypes = {
   benefits: PropTypes.array.isRequired,
   colonText: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired,
-  store: PropTypes.object
+  t: PropTypes.func.isRequired
 };
 
 export default ChildBenefitList;

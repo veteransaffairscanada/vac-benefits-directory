@@ -46,38 +46,6 @@ describe("BenefitExpansion", () => {
         .text()
     ).toContain("en");
   });
-  it("has a correctly configured external link button", () => {
-    let relatedComponent = mount(
-      <BenefitExpansion {...props} {...reduxData} />
-    );
-    relatedComponent
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(window.open).toBeCalledWith(
-      benefitsFixture[0].benefitPageEn,
-      "_blank"
-    );
-    expect(
-      relatedComponent
-        .find("Button")
-        .at(0)
-        .text()
-    ).toEqual("en");
-  });
-
-  it("Clicking the link logs an exit event", () => {
-    let analytics = require("../../utils/analytics");
-    analytics.logEvent = jest.fn();
-    mount(<BenefitExpansion {...props} {...reduxData} />)
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(analytics.logEvent).toBeCalledWith(
-      "Exit",
-      benefitsFixture[0].benefitPageEn
-    );
-  });
 
   describe("when language is French", () => {
     beforeEach(() => {
