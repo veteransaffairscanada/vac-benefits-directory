@@ -38,6 +38,26 @@ describe("LearnMoreButton", () => {
     ).toEqual("en");
   });
 
+  it("has a button with the French link", () => {
+    props.t = () => "fr";
+
+    let relatedComponent = mount(<LearnMoreButton {...props} />);
+    relatedComponent
+      .find("Button")
+      .at(0)
+      .simulate("click");
+    expect(window.open).toBeCalledWith(
+      benefitsFixture[0].benefitPageFr,
+      "_blank"
+    );
+    expect(
+      relatedComponent
+        .find("Button")
+        .at(0)
+        .text()
+    ).toEqual("fr");
+  });
+
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();

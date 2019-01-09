@@ -47,40 +47,6 @@ describe("BenefitExpansion", () => {
     ).toContain("en");
   });
 
-  describe("when language is French", () => {
-    beforeEach(() => {
-      props.t = () => "fr";
-    });
-
-    it("shows a child benefit title if the benefit has a child", () => {
-      expect(
-        mount(<BenefitExpansion {...props} {...reduxData} />)
-          .find("li")
-          .last()
-          .text()
-      ).toContain("fr");
-    });
-    it("has a button with the French link", () => {
-      let relatedComponent = mount(
-        <BenefitExpansion {...props} {...reduxData} />
-      );
-      relatedComponent
-        .find("Button")
-        .at(0)
-        .simulate("click");
-      expect(window.open).toBeCalledWith(
-        benefitsFixture[0].benefitPageFr,
-        "_blank"
-      );
-      expect(
-        relatedComponent
-          .find("Button")
-          .at(0)
-          .text()
-      ).toEqual("fr");
-    });
-  });
-
   describe("getBenefitIds", () => {
     it("finds service person and family benefits", () => {
       expect(

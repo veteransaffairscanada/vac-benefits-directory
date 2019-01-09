@@ -25,4 +25,19 @@ describe("ChildBenefitList", () => {
       mount(<ChildBenefitList {...props} />).find("HeaderLink").length
     ).toEqual(props.benefits.length);
   });
+
+  describe("when language is French", () => {
+    beforeEach(() => {
+      props.t = () => "fr";
+    });
+
+    it("shows a child benefit title if the benefit has a child", () => {
+      expect(
+        mount(<ChildBenefitList {...props} />)
+          .find("li")
+          .last()
+          .text()
+      ).toContain("fr");
+    });
+  });
 });
