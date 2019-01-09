@@ -4,11 +4,11 @@ export const initGA = () => {
   ReactGA.initialize([
     {
       trackingId: process.env.GA_UA,
-      gaOptions: { name: "tracker1" }
+      gaOptions: { name: "tracker_1" }
     },
     {
       trackingId: process.env.GA_UA_CDS,
-      gaOptions: { name: "tracker2" }
+      gaOptions: { name: "tracker_2" }
     }
   ]);
 };
