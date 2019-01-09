@@ -141,6 +141,7 @@ export class Favourites extends Component {
                 </Grid>
                 <BenefitList
                   t={t}
+                  currentLanguage={t("current-language-code")}
                   filteredBenefits={filteredBenefits}
                   showFavourites={true}
                   searchString=""

@@ -29,6 +29,7 @@ export class AllBenefits extends Component {
             <Grid container spacing={24}>
               <BenefitList
                 t={t}
+                currentLanguage={t("current-language-code")}
                 filteredBenefits={this.props.benefits}
                 searchString={this.props.searchString}
                 showFavourites={true}
