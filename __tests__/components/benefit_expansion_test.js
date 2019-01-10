@@ -1,11 +1,13 @@
 import React from "react";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex"; //eligibilityPaths";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
 import { BenefitExpansion } from "../../components/benefit_expansion";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
-import benefitsFixture from "../fixtures/benefits";
+import needsFixture from "../fixtures/needs_complex";
+import benefitsFixture from "../fixtures/benefits_complex";
+import questionsFixture from "../fixtures/questions_complex";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -16,15 +18,23 @@ describe("BenefitExpansion", () => {
   beforeEach(() => {
     props = {
       t: () => "en",
-      benefit: benefitsFixture[0]
+      benefit: benefitsFixture.filter(
+        x => x.vacNameEn === "Disability Pension"
+      )[0]
     };
     mockStore = configureStore();
     reduxData = {
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      benefitExamples: benefitExamplesFixture
+      benefitExamples: benefitExamplesFixture,
+      needs: needsFixture,
+      selectedNeeds: [],
+      questions: questionsFixture,
+      patronType: "veteran",
+      serviceType: "CAF"
     };
+    props.reduxState = reduxData;
     props.store = mockStore(reduxData);
   });
 
@@ -51,40 +61,49 @@ describe("BenefitExpansion", () => {
 
   it("shows a child benefit title if the benefit has a child", () => {
     let related = mount(<BenefitExpansion {...props} {...reduxData} />);
+    const childBenefits = props.benefit.childBenefits;
+    // console.log(childBenefits)
     expect(
       related
         .find("ul")
         .last()
         .childAt(0)
         .text()
-    ).toContain("en");
+    ).toContain(childBenefits[childBenefits.length].vacNameEn);
   });
 
-  describe("getBenefitIds", () => {
-    it("finds service person and family benefits", () => {
-      expect(
-        mount(<BenefitExpansion {...props} {...reduxData} />)
-          .instance()
-          .getBenefitIds(
-            reduxData.eligibilityPaths,
-            ["mco_p2", "mco_p3"],
-            ["mco_p2"]
-          )
-      ).toEqual({
-        veteran: new Set(["benefit_1", "benefit_2", "benefit_3"]),
-        family: new Set(["benefit_2"])
-      });
-    });
-  });
+  // describe("getAlsoEligibleBenefits", () => {
+  //   it("the function returns the correct filtered child benefits", () => {
+  //
+  //     expect(
+  //       mount(<BenefitExpansion {...props} {...reduxData} />)
+  //         .instance()
+  //         .getAlsoEligibleBenefits(
+  //           props.benefit.childBenefits,
+  //           "veteran"
+  //         )
+  //     ).toEqual(props.benefit.childBenefits);
+  //
+  //     expect(
+  //       mount(<BenefitExpansion {...props} {...reduxData} />)
+  //         .instance()
+  //         .getAlsoEligibleBenefits(
+  //           props.benefit.childBenefits,
+  //           "family"
+  //         )
+  //     ).toEqual([]);
+  //
+  //   });
+  // });
 
-  it("has a correct getMatchingBenefits function", () => {
-    expect(
-      mount(<BenefitExpansion {...props} {...reduxData} />)
-        .instance()
-        .getMatchingBenefits(
-          reduxData.benefits,
-          new Set(["benefit_1", "benefit_99"])
-        )
-    ).toEqual([reduxData.benefits[1]]);
-  });
+  // it("has a correct getMatchingBenefits function", () => {
+  //   expect(
+  //     mount(<BenefitExpansion {...props} {...reduxData} />)
+  //       .instance()
+  //       .getMatchingBenefits(
+  //         reduxData.benefits,
+  //         new Set(["benefit_1", "benefit_99"])
+  //       )
+  //   ).toEqual([reduxData.benefits[1]]);
+  // });
 });
