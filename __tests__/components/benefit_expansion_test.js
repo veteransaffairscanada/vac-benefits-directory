@@ -59,51 +59,19 @@ describe("BenefitExpansion", () => {
     ).toEqual(1);
   });
 
-  it("shows a child benefit title if the benefit has a child", () => {
-    let related = mount(<BenefitExpansion {...props} {...reduxData} />);
-    const childBenefits = props.benefit.childBenefits;
-    // console.log(childBenefits)
-    expect(
-      related
-        .find("ul")
-        .last()
-        .childAt(0)
-        .text()
-    ).toContain(childBenefits[childBenefits.length].vacNameEn);
+  describe("getAlsoEligibleBenefits", () => {
+    it("the function returns the correct filtered child benefits", () => {
+      expect(
+        mount(<BenefitExpansion {...props} {...reduxData} />)
+          .instance()
+          .getAlsoEligibleBenefits(props.benefit.childBenefits, "veteran")
+      ).toEqual(props.benefit.childBenefits);
+
+      expect(
+        mount(<BenefitExpansion {...props} {...reduxData} />)
+          .instance()
+          .getAlsoEligibleBenefits(props.benefit.childBenefits, "family")
+      ).toEqual([]);
+    });
   });
-
-  // describe("getAlsoEligibleBenefits", () => {
-  //   it("the function returns the correct filtered child benefits", () => {
-  //
-  //     expect(
-  //       mount(<BenefitExpansion {...props} {...reduxData} />)
-  //         .instance()
-  //         .getAlsoEligibleBenefits(
-  //           props.benefit.childBenefits,
-  //           "veteran"
-  //         )
-  //     ).toEqual(props.benefit.childBenefits);
-  //
-  //     expect(
-  //       mount(<BenefitExpansion {...props} {...reduxData} />)
-  //         .instance()
-  //         .getAlsoEligibleBenefits(
-  //           props.benefit.childBenefits,
-  //           "family"
-  //         )
-  //     ).toEqual([]);
-  //
-  //   });
-  // });
-
-  // it("has a correct getMatchingBenefits function", () => {
-  //   expect(
-  //     mount(<BenefitExpansion {...props} {...reduxData} />)
-  //       .instance()
-  //       .getMatchingBenefits(
-  //         reduxData.benefits,
-  //         new Set(["benefit_1", "benefit_99"])
-  //       )
-  //   ).toEqual([reduxData.benefits[1]]);
-  // });
 });

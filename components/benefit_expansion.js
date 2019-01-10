@@ -16,10 +16,6 @@ const topBorder = css`
 `;
 
 export class BenefitExpansion extends Component {
-  state = {
-    open: false
-  };
-
   getAlsoEligibleBenefits = (benefits, patronType = "") => {
     const reduxState = this.props.reduxState;
     const profileFilters = getProfileFilters(reduxState, this.props);
@@ -36,17 +32,6 @@ export class BenefitExpansion extends Component {
       reduxState.eligibilityPaths,
       reduxState.multipleChoiceOptions
     );
-  };
-
-  benefitTitle = benefit => {
-    return this.props.t("current-language-code") === "en"
-      ? benefit.vacNameEn
-      : benefit.vacNameFr;
-  };
-
-  getMatchingBenefits = (benefits, ids) => {
-    const matchingBenefits = benefits.filter(ab => ids.has(ab.id));
-    return matchingBenefits;
   };
 
   render() {
