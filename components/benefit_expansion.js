@@ -23,13 +23,14 @@ export class BenefitExpansion extends Component {
   getAlsoEligibleBenefits = (benefits, patronType = "") => {
     const reduxState = this.props.reduxState;
     const profileFilters = getProfileFilters(reduxState, this.props);
+    const selectedNeeds = []; // we don't want to filter by need here
     if (patronType !== "") {
       profileFilters["patronType"] = patronType;
     }
 
     return getFilteredBenefitsFunction(
       profileFilters,
-      reduxState.selectedNeeds,
+      selectedNeeds,
       benefits,
       reduxState.needs,
       reduxState.eligibilityPaths,
