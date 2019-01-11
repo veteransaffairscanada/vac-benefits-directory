@@ -159,17 +159,10 @@ export const getFilteredNextSteps = createSelector(
     getNextSteps,
     getEligibilityPaths,
     getProfileFilters,
-    getNeedsFilter,
     getMultipleChoiceOptions,
     getQuestions
   ],
-  (
-    nextSteps,
-    eligibilityPaths,
-    profileFilters,
-    selectedNeeds,
-    multipleChoiceOptions
-  ) => {
+  (nextSteps, eligibilityPaths, profileFilters, multipleChoiceOptions) => {
     // find next steps that match
     let eligibleNextStepIds = [];
     eligibilityPaths.forEach(ep => {
