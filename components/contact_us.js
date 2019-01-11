@@ -12,8 +12,7 @@ import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 
 const outerDiv = css`
-  margin-top: 40px;
-  padding: 12px;
+  padding: 0px 12px 12px;
   margin-right: 10px;
   width: 100%;
 `;
