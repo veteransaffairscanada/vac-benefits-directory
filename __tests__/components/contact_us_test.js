@@ -26,7 +26,7 @@ describe("ContactUs", () => {
     ).not.toEqual(0);
   });
 
-  it("has the find nearby offic card", () => {
+  it("has the find nearby office card", () => {
     expect(
       mount(<ContactUs {...props} />).find("#nearbyOfficeCard").length
     ).not.toEqual(0);
