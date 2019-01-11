@@ -5,6 +5,7 @@ const getBenefits = state => state.benefits;
 const getQuestions = state => state.questions;
 const getCurrentLanguage = (state, props) => props.t("current-language-code");
 const getEligibilityPaths = state => state.eligibilityPaths;
+const getBenefitEligibility = state => state.benefitEligibility;
 const getMultipleChoiceOptions = state => state.multipleChoiceOptions;
 const getEnIdx = state => state.enIdx;
 const getFrIdx = state => state.frIdx;
@@ -18,7 +19,7 @@ export const getFilteredBenefitsFunction = (
   selectedNeeds,
   benefits,
   needs,
-  eligibilityPaths,
+  benefitEligibility,
   multipleChoiceOptions
 ) => {
   if (benefits.length === 0) {
@@ -26,9 +27,11 @@ export const getFilteredBenefitsFunction = (
   }
   // find benefits that match
   let eligibleBenefitIds = [];
-  eligibilityPaths.forEach(ep => {
-    if (eligibilityMatch(ep, profileFilters, multipleChoiceOptions)) {
-      eligibleBenefitIds = eligibleBenefitIds.concat(ep.benefits);
+
+  // iterate through benefitEligibility table and any benefit that matches, add to the list (but don't add more than once!)
+  benefitEligibility.forEach(be => {
+    if (benefitEligibilityMatch(be, profileFilters, multipleChoiceOptions)) {
+      eligibleBenefitIds.push(be.benefit[0]);
     }
   });
 
@@ -76,6 +79,32 @@ export const pathToDict = (ep, multipleChoiceOptions) => {
   return dict;
 };
 
+export const benefitEligibilityMatch = (
+  be,
+  profileFilters,
+  multipleChoiceOptions
+) => {
+  let matches = true;
+  Object.keys(profileFilters).forEach(criteria => {
+    if (profileFilters[criteria] && be[criteria] && be[criteria].length > 0) {
+      // convert benefitEligibility ids to match profileFilter names
+      const mco = multipleChoiceOptions.filter(
+        mco => be[criteria].indexOf(mco.id) !== -1
+      );
+      let names = [];
+      mco.forEach(m => {
+        names.push(m.variable_name);
+      });
+
+      if (names.indexOf(profileFilters[criteria]) === -1) {
+        matches = false;
+      }
+    }
+  });
+
+  return matches;
+};
+
 export const eligibilityMatch = (ep, profileFilters, multipleChoiceOptions) => {
   let matches = true;
   const path = pathToDict(ep, multipleChoiceOptions);
@@ -99,6 +128,7 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     getBenefits,
     getNeeds,
     getEligibilityPaths,
+    getBenefitEligibility,
     getMultipleChoiceOptions,
     getQuestions
   ],
@@ -108,6 +138,7 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     benefits,
     needs,
     eligibilityPaths,
+    benefitEligibility,
     multipleChoiceOptions
   ) => {
     return getFilteredBenefitsFunction(
@@ -116,6 +147,7 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
       benefits,
       needs,
       eligibilityPaths,
+      benefitEligibility,
       multipleChoiceOptions
     );
   }

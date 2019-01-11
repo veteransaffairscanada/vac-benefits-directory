@@ -2,6 +2,7 @@ exports.tableNames = [
   "areaOffices",
   "benefits",
   "eligibilityPaths",
+  "benefitEligibility",
   "needs",
   "translations",
   "questions",
