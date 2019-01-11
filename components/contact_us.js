@@ -9,6 +9,7 @@ import Paper from "./paper";
 import Button from "./button";
 import { getMapUrl } from "../selectors/urls";
 import { connect } from "react-redux";
+import { logEvent } from "../utils/analytics";
 
 const outerDiv = css`
   margin-top: 40px;
