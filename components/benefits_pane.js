@@ -177,7 +177,7 @@ export class BenefitsPane extends Component {
         <Grid item xs={12}>
           <div ref={nextStepsRef}>
             <Grid container spacing={24}>
-              <NextSteps t={t} url={url} store={store} />
+              <NextSteps t={t} store={store} />
               <ContactUs t={t} url={url} store={store} />
             </Grid>
           </div>
