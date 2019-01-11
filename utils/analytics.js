@@ -13,6 +13,7 @@ export const initGA = () => {
     ]
     // , { debug: true }
   );
+  ReactGA.set({ anonymizeIp: true });
 };
 
 export const logPageView = () => {
