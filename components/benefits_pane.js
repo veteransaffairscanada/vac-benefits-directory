@@ -18,6 +18,7 @@ import { getLink, getBenefitCountString } from "../utils/common";
 import NextSteps from "./next_steps";
 import NoResultsButtons from "./no_results_buttons";
 import ResultsHeader from "./results_header";
+import ContactUs from "./contact_us";
 
 const title = css`
   padding-bottom: 15px;
@@ -177,6 +178,7 @@ export class BenefitsPane extends Component {
           <div ref={nextStepsRef}>
             <Grid container spacing={24}>
               <NextSteps t={t} url={url} store={store} />
+              <ContactUs t={t} url={url} store={store} />
             </Grid>
           </div>
         </Grid>
