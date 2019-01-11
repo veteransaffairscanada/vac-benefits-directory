@@ -31,8 +31,6 @@ export class BenefitExpansion extends Component {
         case "servingMember":
           profileFilters["statusAndVitals"] = "stillServing";
           break;
-        default:
-          break;
       }
     }
     const selectedNeeds = {}; // we don't want to filter by need here
