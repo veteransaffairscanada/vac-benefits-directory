@@ -8,6 +8,7 @@ import benefitExamplesFixture from "../fixtures/benefitExamples";
 import needsFixture from "../fixtures/needs_complex";
 import benefitsFixture from "../fixtures/benefits_complex";
 import questionsFixture from "../fixtures/questions_complex";
+
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -29,10 +30,12 @@ describe("BenefitExpansion", () => {
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefitExamples: benefitExamplesFixture,
       needs: needsFixture,
-      selectedNeeds: [],
+      selectedNeeds: {},
       questions: questionsFixture,
       patronType: "veteran",
-      serviceType: "CAF"
+      serviceType: "CAF",
+      statusAndVitals: "",
+      serviceHealthIssue: ""
     };
     props.reduxState = reduxData;
     props.store = mockStore(reduxData);
@@ -60,18 +63,37 @@ describe("BenefitExpansion", () => {
   });
 
   describe("getAlsoEligibleBenefits", () => {
-    it("the function returns the correct filtered child benefits", () => {
+    it("returns the correct veteran benefits", () => {
+      const childBenefits = props.benefit.childBenefits
+        ? reduxData.benefits.filter(
+            ab => props.benefit.childBenefits.indexOf(ab.id) > -1
+          )
+        : [];
       expect(
         mount(<BenefitExpansion {...props} {...reduxData} />)
           .instance()
-          .getAlsoEligibleBenefits(props.benefit.childBenefits, "veteran")
-      ).toEqual(props.benefit.childBenefits);
+          .getAlsoEligibleBenefits(childBenefits, "veteran")
+          .map(x => x.vacNameEn)
+      ).toEqual([
+        "Attendance Allowance",
+        "Clothing Allowance",
+        "Exceptional Incapacity Allowance",
+        "Health Care Benefits"
+      ]);
+    });
 
+    it("returns the correct family benefits", () => {
+      const childBenefits = props.benefit.childBenefits
+        ? reduxData.benefits.filter(
+            ab => props.benefit.childBenefits.indexOf(ab.id) > -1
+          )
+        : [];
       expect(
         mount(<BenefitExpansion {...props} {...reduxData} />)
           .instance()
-          .getAlsoEligibleBenefits(props.benefit.childBenefits, "family")
-      ).toEqual([]);
+          .getAlsoEligibleBenefits(childBenefits, "family")
+          .map(x => x.vacNameEn)
+      ).toEqual(["Funeral and Burial Assistance", "Survivor's Pension"]);
     });
   });
 });

@@ -63,6 +63,7 @@ export class BenefitExpansion extends Component {
     let otherBenefits = t("benefits_b.eligible_open_veteran", {
       x: benefitName
     });
+    // console.log(this.props.reduxState)
 
     return (
       <div className={this.props.className}>
