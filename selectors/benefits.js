@@ -127,7 +127,6 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     getNeedsFilter,
     getBenefits,
     getNeeds,
-    getEligibilityPaths,
     getBenefitEligibility,
     getMultipleChoiceOptions,
     getQuestions
@@ -137,7 +136,6 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
     selectedNeeds,
     benefits,
     needs,
-    eligibilityPaths,
     benefitEligibility,
     multipleChoiceOptions
   ) => {
@@ -146,7 +144,6 @@ export const getFilteredBenefitsWithoutSearch = createSelector(
       selectedNeeds,
       benefits,
       needs,
-      eligibilityPaths,
       benefitEligibility,
       multipleChoiceOptions
     );
