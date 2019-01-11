@@ -22,7 +22,8 @@ describe("BenefitList", () => {
       onRef: k => k,
       searchString: "",
       showFavourites: true,
-      option: ""
+      option: "",
+      currentLanguage: "en"
     };
 
     mockStore = configureStore();
