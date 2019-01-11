@@ -70,7 +70,7 @@ const container = css`
 const skipLinkContainer = css`
   position: absolute;
   text-align: center;
-  width: 100%;
+  width: 90%;
   z-index: 3;
   top: 10px;
   left: 0px;
