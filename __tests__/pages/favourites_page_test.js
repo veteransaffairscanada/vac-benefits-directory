@@ -9,6 +9,7 @@ import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
@@ -47,6 +48,7 @@ describe("Favourites Page", () => {
       translations: [],
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       enIdx: JSON.stringify({
         version: lunr.version,

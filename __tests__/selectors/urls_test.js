@@ -165,6 +165,57 @@ describe("getPrintUrl", () => {
           benefits: ["1", "3", "4"]
         }
       ],
+      benefitEligibility: [
+        {
+          id: "0",
+          benefit: ["0"],
+          patronType: ["p1"],
+          serviceType: ["na"],
+          statusAndVitals: ["na"]
+        },
+        {
+          id: "1",
+          benefit: ["2"],
+          patronType: ["p1"],
+          serviceType: ["na"],
+          statusAndVitals: ["na"]
+        },
+        {
+          id: "2",
+          benefit: ["4"],
+          patronType: ["p1"],
+          serviceType: ["na"],
+          statusAndVitals: ["na"]
+        },
+        {
+          id: "3",
+          benefit: ["2"],
+          patronType: ["p2"],
+          serviceType: ["na"],
+          statusAndVitals: ["na"]
+        },
+        {
+          id: "4",
+          benefit: ["1"],
+          patronType: ["p3"],
+          serviceType: ["na"],
+          statusAndVitals: ["na"]
+        },
+        {
+          id: "5",
+          benefit: ["3"],
+          patronType: ["p3"],
+          serviceType: ["na"],
+          statusAndVitals: ["na"]
+        },
+        {
+          id: "6",
+          benefit: ["4"],
+          patronType: ["p3"],
+          serviceType: ["na"],
+          statusAndVitals: ["na"]
+        }
+      ],
       multipleChoiceOptions: [
         {
           variable_name: "p1",

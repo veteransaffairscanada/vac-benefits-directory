@@ -9,6 +9,7 @@ import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import areaOfficesFixture from "../fixtures/area_offices";
 import translate from "../fixtures/translate";
 import lunr from "lunr";
@@ -62,6 +63,7 @@ describe("BenefitsDirectory", () => {
       translations: [],
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       enIdx: JSON.stringify({
         version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
