@@ -21,6 +21,18 @@ export class BenefitExpansion extends Component {
     const profileFilters = JSON.parse(
       JSON.stringify(getProfileFilters(reduxState, this.props))
     );
+
+    if (patronType === "family") {
+      // the following code exists because we don't ask veterans/servingMembers the statusAndVitals question
+      switch (profileFilters["patronType"]) {
+        case "veteran":
+          profileFilters["statusAndVitals"] = "releasedAlive";
+          break;
+        case "servingMember":
+          profileFilters["statusAndVitals"] = "stillServing";
+          break;
+      }
+    }
     const selectedNeeds = {}; // we don't want to filter by need here
     if (patronType !== "") {
       profileFilters["patronType"] = patronType;
@@ -56,7 +68,6 @@ export class BenefitExpansion extends Component {
     const vetServBenefits = [
       ...new Set(veteranBenefits.concat(servingMemberBenefits))
     ];
-
     const familyBenefits = this.getAlsoEligibleBenefits(
       childBenefits,
       "family"

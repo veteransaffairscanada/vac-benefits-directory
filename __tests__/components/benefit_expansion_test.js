@@ -93,7 +93,7 @@ describe("BenefitExpansion", () => {
           .instance()
           .getAlsoEligibleBenefits(childBenefits, "family")
           .map(x => x.vacNameEn)
-      ).toEqual(["Funeral and Burial Assistance", "Survivor's Pension"]);
+      ).toEqual([]);
     });
   });
 });
