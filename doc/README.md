@@ -233,7 +233,7 @@ See [SECURITY.md](/SECURITY.md) for more details
 ### Testing
 
 We are using a combination of unit tests and end-to-end tests to validate the code base. Unit tests are written
-using [`jest`](https://jestjs.io/) and [`enzyme`](http://airbnb.io/enzyme/). We have made the decision not to test for
+using [`jest`](https://jestjs.io/) and [`enzyme`](https://airbnb.io/enzyme/). We have made the decision not to test for
 correct styling, but rather focus on the logic in the components. We currently have over 200 tests that are run by CircleCI
 on every commit. PRs are not approved if code is added to the app without sufficient testing. PRs should not be merged
 if the tests do not pass.
