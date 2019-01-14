@@ -74,7 +74,7 @@ class Layout extends Component {
           <Head title={title} t={t} />
           <ErrorBoundary>
             <Content>
-              <div className={header}>
+              <header className={header}>
                 <Container>
                   <FederalBanner
                     i18n={this.props.i18n}
@@ -96,7 +96,7 @@ class Layout extends Component {
                     </AlphaBanner>
                   </Container>
                 </div>
-              </div>
+              </header>
               <div role="main" id="main">
                 {this.props.children}
               </div>
