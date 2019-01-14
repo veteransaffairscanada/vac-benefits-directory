@@ -20,7 +20,7 @@ const skipLinkStyle = css`
   :focus {
     width: auto !important;
     height: auto !important;
-    outline: 3px solid #ffbf47;
+    outline: 3px solid ${globalTheme.colour.focusColour};
     outline-offset: 0;
   }
 `;
