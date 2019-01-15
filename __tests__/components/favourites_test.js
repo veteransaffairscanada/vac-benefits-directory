@@ -67,7 +67,8 @@ describe("Favourites", () => {
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
       closestAreaOffice: areaOfficesFixture[0],
-      multipleChoiceOptions: multipleChoiceOptionsFixture
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      searchString: ""
     };
     props.store = mockStore(reduxData);
   });

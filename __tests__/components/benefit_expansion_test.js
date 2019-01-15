@@ -35,7 +35,8 @@ describe("BenefitExpansion", () => {
       patronType: "veteran",
       serviceType: "CAF",
       statusAndVitals: "",
-      serviceHealthIssue: ""
+      serviceHealthIssue: "",
+      searchString: ""
     };
     props.reduxState = reduxData;
     props.store = mockStore(reduxData);
