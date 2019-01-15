@@ -17,7 +17,6 @@ export class AllBenefits extends Component {
         i18n={i18n}
         t={t}
         hideNoscript={true}
-        showRefreshCache={false}
         title={t("titles.all_benefits")}
         skipLink="#mainContent"
       >

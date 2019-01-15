@@ -45,7 +45,6 @@ export class Summary extends Component {
         i18n={i18n}
         t={t}
         hideNoscript={false}
-        showRefreshCache={false}
         title={t("titles.ge_summary")}
         skipLink="mainContent"
       >

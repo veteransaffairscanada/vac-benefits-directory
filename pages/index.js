@@ -110,7 +110,6 @@ export class Guided extends Component {
         i18n={i18n}
         t={t}
         hideNoscript={false}
-        showRefreshCache={false}
         title={pageTitle}
         skipLink="#mainContent"
       >
