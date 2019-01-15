@@ -3,9 +3,15 @@ import PropTypes from "prop-types";
 import { css } from "emotion";
 import Button from "./button";
 import { logEvent } from "../utils/analytics";
+import { globalTheme } from "../theme";
 
 const fullWidth = css`
   width: 100%;
+`;
+const anchorFocus = css`
+  :focus {
+    outline: 3px solid ${globalTheme.colour.focusColour};
+  }
 `;
 
 const logExit = url => {
@@ -22,14 +28,16 @@ const LearnMoreButton = props => {
     t("current-language-code") === "en" ? benefit.vacNameEn : benefit.vacNameFr;
 
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer">
-      <Button
-        className={fullWidth}
-        arrow={true}
-        onClick={() => {
-          logExit(url);
-        }}
-      >
+    <a
+      className={anchorFocus}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => {
+        logExit(url);
+      }}
+    >
+      <Button className={fullWidth} arrow={true} tabIndex="-1">
         {t("benefits_b.learn_more", { x: vacName })}
       </Button>
     </a>
