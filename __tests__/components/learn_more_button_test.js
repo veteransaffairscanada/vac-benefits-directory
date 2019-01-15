@@ -7,9 +7,6 @@ expect.extend(toHaveNoViolations);
 
 describe("LearnMoreButton", () => {
   let props;
-  const mocked_fn = jest.fn();
-  mocked_fn.mockReturnValue({ focus: jest.fn() });
-  window.open = mocked_fn;
 
   beforeEach(() => {
     props = {

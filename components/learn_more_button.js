@@ -22,7 +22,7 @@ const LearnMoreButton = props => {
     t("current-language-code") === "en" ? benefit.vacNameEn : benefit.vacNameFr;
 
   return (
-    <a href={url} target="_blank">
+    <a href={url} target="_blank" rel="noopener noreferrer">
       <Button
         className={fullWidth}
         arrow={true}
