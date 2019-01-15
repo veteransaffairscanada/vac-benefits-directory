@@ -64,7 +64,7 @@ describe("Benefits Selectors", () => {
   describe("pathToDict function", () => {
     it("works as expected", () => {
       const actual = pathToDict(
-        state.eligibilityPaths[5],
+        state.eligibilityPaths[11],
         state.multipleChoiceOptions
       );
       expect(actual).toEqual({
@@ -138,7 +138,7 @@ describe("Benefits Selectors", () => {
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
-        state.eligibilityPaths[0],
+        state.eligibilityPaths[2],
         profileFilters,
         state.multipleChoiceOptions
       );
@@ -152,7 +152,7 @@ describe("Benefits Selectors", () => {
         statusAndVitals: ""
       };
       const actual = eligibilityMatch(
-        state.eligibilityPaths[0],
+        state.eligibilityPaths[2],
         profileFilters,
         state.multipleChoiceOptions
       );
@@ -179,10 +179,10 @@ describe("Benefits Selectors", () => {
     it("displays appropriate benefits if patronType is organization", () => {
       state.patronType = "organization";
       const nameEnList = [
-        "Community War Memorial",
-        "Community Engagement",
-        "Veteran and Family Well-Being Fund",
-        "Operational Stress Injury clinics"
+        "Community Engagement Fund",
+        "Community War Memorial Fund",
+        "Grave Marker Maintenance",
+        "Veteran and Family Well-Being Fund"
       ];
       const relevant_benefits = state.benefits.filter(x => {
         return nameEnList.indexOf(x.vacNameEn) > -1;
@@ -223,10 +223,10 @@ describe("Benefits Selectors", () => {
     it("displays appropriate benefits if patronType is organization", () => {
       state.patronType = "organization";
       const nameEnList = [
-        "Community War Memorial",
-        "Community Engagement",
-        "Veteran and Family Well-Being Fund",
-        "Operational Stress Injury clinics"
+        "Community Engagement Fund",
+        "Community War Memorial Fund",
+        "Grave Marker Maintenance",
+        "Veteran and Family Well-Being Fund"
       ];
       const relevant_benefits = state.benefits.filter(x => {
         return nameEnList.indexOf(x.vacNameEn) > -1;

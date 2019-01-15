@@ -18,6 +18,7 @@ import { globalTheme } from "../theme";
 import BreadCrumbs from "./breadcrumbs";
 import ShareBox from "./share_box";
 import NextSteps from "./next_steps";
+import ContactUs from "./contact_us";
 
 const saveCSS = css`
   font-size: 70px !important;
@@ -168,7 +169,8 @@ export class Favourites extends Component {
               <Grid item xs={12}>
                 <div ref={this.nextStepsRef}>
                   <Grid container spacing={24}>
-                    <NextSteps
+                    <NextSteps t={t} store={this.props.store} />
+                    <ContactUs
                       t={t}
                       url={this.props.url}
                       store={this.props.store}

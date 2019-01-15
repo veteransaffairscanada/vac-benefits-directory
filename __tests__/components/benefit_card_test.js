@@ -7,6 +7,7 @@ import benefitsFixture from "../fixtures/benefits";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import questionsFixture from "../fixtures/questions_complex";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -54,7 +55,8 @@ describe("BenefitCard", () => {
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      benefitExamples: benefitExamplesFixture
+      benefitExamples: benefitExamplesFixture,
+      questions: questionsFixture
     };
     props.store = mockStore(reduxData);
 

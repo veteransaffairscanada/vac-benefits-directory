@@ -1,11 +1,14 @@
 import React from "react";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex";
+import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
 import { BenefitExpansion } from "../../components/benefit_expansion";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
-import benefitsFixture from "../fixtures/benefits";
+import needsFixture from "../fixtures/needs_complex";
+import benefitsFixture from "../fixtures/benefits_complex";
+import questionsFixture from "../fixtures/questions_complex";
+
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -16,15 +19,25 @@ describe("BenefitExpansion", () => {
   beforeEach(() => {
     props = {
       t: () => "en",
-      benefit: benefitsFixture[0]
+      benefit: benefitsFixture.filter(
+        x => x.vacNameEn === "Disability Benefits"
+      )[0]
     };
     mockStore = configureStore();
     reduxData = {
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      benefitExamples: benefitExamplesFixture
+      benefitExamples: benefitExamplesFixture,
+      needs: needsFixture,
+      selectedNeeds: {},
+      questions: questionsFixture,
+      patronType: "veteran",
+      serviceType: "CAF",
+      statusAndVitals: "",
+      serviceHealthIssue: ""
     };
+    props.reduxState = reduxData;
     props.store = mockStore(reduxData);
   });
 
@@ -49,42 +62,40 @@ describe("BenefitExpansion", () => {
     ).toEqual(1);
   });
 
-  it("shows a child benefit title if the benefit has a child", () => {
-    let related = mount(<BenefitExpansion {...props} {...reduxData} />);
-    expect(
-      related
-        .find("ul")
-        .last()
-        .childAt(0)
-        .text()
-    ).toContain("en");
-  });
-
-  describe("getBenefitIds", () => {
-    it("finds service person and family benefits", () => {
+  describe("getAlsoEligibleBenefits", () => {
+    it("returns the correct veteran benefits", () => {
+      const childBenefits = props.benefit.childBenefits
+        ? reduxData.benefits.filter(
+            ab => props.benefit.childBenefits.indexOf(ab.id) > -1
+          )
+        : [];
       expect(
         mount(<BenefitExpansion {...props} {...reduxData} />)
           .instance()
-          .getBenefitIds(
-            reduxData.eligibilityPaths,
-            ["mco_p2", "mco_p3"],
-            ["mco_p2"]
-          )
-      ).toEqual({
-        veteran: new Set(["benefit_1", "benefit_2", "benefit_3"]),
-        family: new Set(["benefit_2"])
-      });
+          .getAlsoEligibleBenefits(childBenefits, "veteran")
+          .map(x => x.vacNameEn)
+      ).toEqual([
+        "Attendance Allowance",
+        "Career Impact Allowance",
+        "Clothing Allowance",
+        "Exceptional Incapacity Allowance",
+        "Treatment Benefits",
+        "Veterans Independence Program"
+      ]);
     });
-  });
 
-  it("has a correct getMatchingBenefits function", () => {
-    expect(
-      mount(<BenefitExpansion {...props} {...reduxData} />)
-        .instance()
-        .getMatchingBenefits(
-          reduxData.benefits,
-          new Set(["benefit_1", "benefit_99"])
-        )
-    ).toEqual([reduxData.benefits[1]]);
+    it("returns the correct family benefits", () => {
+      const childBenefits = props.benefit.childBenefits
+        ? reduxData.benefits.filter(
+            ab => props.benefit.childBenefits.indexOf(ab.id) > -1
+          )
+        : [];
+      expect(
+        mount(<BenefitExpansion {...props} {...reduxData} />)
+          .instance()
+          .getAlsoEligibleBenefits(childBenefits, "family")
+          .map(x => x.vacNameEn)
+      ).toEqual([]);
+    });
   });
 });

@@ -199,8 +199,25 @@ export const getFilteredNextSteps = createSelector(
         eligibleNextStepIds = eligibleNextStepIds.concat(ep.nextSteps);
       }
     });
+    let hasSelections = false;
 
-    return nextSteps.filter(ns => eligibleNextStepIds.includes(ns.id));
+    Object.keys(profileFilters).forEach(criteria => {
+      if (profileFilters[criteria] !== "") hasSelections = true;
+    });
+
+    if (hasSelections)
+      return nextSteps.filter(ns => eligibleNextStepIds.includes(ns.id));
+
+    let noRequirementsNextStepIds = [];
+
+    eligibilityPaths.forEach(ep => {
+      if (!ep.requirements)
+        noRequirementsNextStepIds = noRequirementsNextStepIds.concat(
+          ep.nextSteps
+        );
+    });
+
+    return nextSteps.filter(ns => noRequirementsNextStepIds.includes(ns.id));
   }
 );
 

@@ -4,17 +4,17 @@ const nextSteps = [
     english:
       "Have you scheduled your [Transition Interview](http://www.veterans.gc.ca/eng/services/transition/interview) yet? Every currently serving member is eligible to talk to a VAC person to make transitioning out of the military as seamless as possible. ",
     french:
-      "[TRANS] Avez-vous déjà planifié votre [Entrevue de transition](http://www.veterans.gc.ca/fra/services/transition/interview)? Tous les membres en service actif sont admissibles à parler à une personne d'ACC afin de rendre la transition à la vie militaire aussi transparente que possible. ",
-    eligibilityPath: ["rec04iKWngFVunoHt"],
+      "Avez-vous planifi\u00e9 votre [entrevue de transition](http://www.veterans.gc.ca/fra/services/transition/interview)? Tout membre actif a droit \u00e0 un entretien avec un agent d\u2019ACC afin de s\u2019assurer que la transition de la vie militaire \u00e0 la vie civile se passe le mieux possible.",
+    eligibilityPath: ["recR03cJel83BGYSD"],
     id: "recKyNwxKXQQGcokF"
   },
   {
     bullet_name: "doctorsNote",
     english:
-      "Make sure you have a doctor’s note for your service-related health issue. This will make applying for these benefits go a lot smoother.",
+      "Make sure you have a doctor\u2019s note for your service-related health issue. This will make applying for these benefits go a lot smoother.",
     french:
-      "[TRANS] Assurez-vous d'avoir une note du médecin pour votre problème de santé lié au service. Cela facilitera grandement la présentation d'une demande de prestations.",
-    eligibilityPath: ["recxsl5L3LLGIT9rt"],
+      "Assurez-vous d\u2019avoir en main un billet du m\u00e9decin attestant de votre probl\u00e8me de sant\u00e9 reli\u00e9 au service. Votre processus de demande d\u2019avantages en sera grandement facilit\u00e9.",
+    eligibilityPath: ["recBlSOo6diB5tkwc"],
     id: "recp2EOCHfUhGU2jq"
   },
   {
@@ -22,18 +22,33 @@ const nextSteps = [
     english:
       "Attend a SCAN session to learn more about what VAC can do for you.",
     french:
-      "[TRANS] Assistez à une séance de SCAN pour en apprendre davantage sur ce qu'ACC peut faire pour vous.",
-    eligibilityPath: ["recc8tZtc94wRhgxt"],
+      "Assistez \u00e0 une s\u00e9ance du SPSC pour en apprendre davantage sur ce que l\u2019ACC peut faire pour vous.",
+    eligibilityPath: ["recR03cJel83BGYSD"],
     id: "recdLLujXxdXQEzXC"
   },
   {
-    bullet_name: "photoId",
+    bullet_name: "firstStep",
     english:
-      "Make sure you include a photo of a government-approved identification in your application. Check this list to see what documents are approved. ",
+      "If you are looking for more information please look at _See more_.",
+    french: "(fra)If you are looking for more information look at See more.",
+    eligibilityPath: ["recDABExyenzg5QNw"],
+    id: "recDGuWEo84Pie18s"
+  },
+  {
+    bullet_name: "secondStep",
+    english:
+      "If you wish to complete an application please see _Register for My VAC Account_.",
     french:
-      "[TRANS] Assurez-vous d'inclure une photo d'une pièce d'identité approuvée par le gouvernement dans votre demande. Consultez cette liste pour voir quels documents sont approuvés. ",
-    eligibilityPath: ["recc8tZtc94wRhgxt"],
-    id: "recEPLn1bUc5ejFVP"
+      "(fra)If you wish to complete an application please see _Register for My VAC Account_",
+    eligibilityPath: ["recDABExyenzg5QNw"],
+    id: "recg5X7mEmlm4Qb2C"
+  },
+  {
+    bullet_name: "thirdStep",
+    english: "If you saved a card to your list please look at _Saved list_.",
+    french: "(fra)If you saved a card to your list please look at Saved list.",
+    eligibilityPath: ["recDABExyenzg5QNw"],
+    id: "recyxzgPs14QzD8uS"
   }
 ];
 
