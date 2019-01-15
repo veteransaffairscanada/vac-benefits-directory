@@ -433,6 +433,58 @@ const benefitEligibilityFixture = [
     serviceType: ["rec3hFX4SlnBMPl7W"],
     Name: "recqM9VdRHwdy35Xf",
     path: "veteran + WSV (WWII or Korea)"
+  },
+  {
+    path: "veteran, servingMember + CAF, RCMP + hasServiceHealthIssue",
+    Name: "recu4sFexY13tk9En",
+    benefit: ["rec0jzif5VceIWKh3"],
+    patronType: ["recu6xP62BL9yFbWN", "recC9OodJNCqbnGy2"],
+    serviceHealthIssue: ["recxVaqj0O8BPKyeD"],
+    serviceType: ["rec6sKyG0dMJ7HLhY", "recIMgfjrCozH9eVW"]
+  },
+  {
+    path: "veteran + WSV (WWII or Korea) + hasServiceHealthIssue",
+    Name: "reccSZsLXT8Xond4j",
+    benefit: ["rec0jzif5VceIWKh3"],
+    patronType: ["recu6xP62BL9yFbWN"],
+    serviceType: ["rec3hFX4SlnBMPl7W"],
+    serviceHealthIssue: ["recxVaqj0O8BPKyeD"]
+  },
+  {
+    path: "organization",
+    Name: "recPFXxlCxvWwpgJo",
+    benefit: ["recZv71nHMgCoX93h"],
+    patronType: ["rec2pB1RcV3BvyjPX"]
+  },
+  {
+    path: "family + CAF + deceased + hasServiceHealthIssue",
+    Name: "rec20oclQcDExORJ8",
+    benefit: ["recXrrmxgZ66BoiK3"],
+    patronType: ["recuWkVDSEWc1K0eU"],
+    serviceType: ["rec6sKyG0dMJ7HLhY"],
+    statusAndVitals: ["recDW9csGX2ekiwXb"],
+    serviceHealthIssue: ["recxVaqj0O8BPKyeD"]
+  },
+  {
+    path: "servingMember",
+    Name: "recCwYo9TbCnPBa7y",
+    benefit: ["recoqXJ7Tx3XaDdFE"],
+    patronType: ["recC9OodJNCqbnGy2"]
+  },
+  {
+    path: "organization",
+    Name: "recckWh09Jtsuk3YK",
+    benefit: ["rec8GCHaN2UirvW8H"],
+    patronType: ["rec2pB1RcV3BvyjPX"]
+  },
+  {
+    path: "veteran + CAF + hasServiceHealthIssue",
+    Name: "recTh0JLYM6omz07j",
+    benefit: ["recR3CLbZSRlbGQJV"],
+    patronType: ["recu6xP62BL9yFbWN"],
+    serviceType: ["rec6sKyG0dMJ7HLhY"],
+    serviceHealthIssue: ["recxVaqj0O8BPKyeD"]
   }
 ];
+
 export default benefitEligibilityFixture;

@@ -29,7 +29,6 @@ export const getFilteredBenefitsFunction = (
   let eligibleBenefitIds = [];
 
   // iterate through benefitEligibility table and any benefit that matches, add to the list (but don't add more than once!)
-  console.log(JSON.stringify(benefits));
   benefitEligibility.forEach(be => {
     if (benefitEligibilityMatch(be, profileFilters, multipleChoiceOptions)) {
       eligibleBenefitIds.push(be.benefit[0]);

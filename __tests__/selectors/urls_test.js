@@ -169,51 +169,37 @@ describe("getPrintUrl", () => {
         {
           id: "0",
           benefit: ["0"],
-          patronType: ["p1"],
-          serviceType: ["na"],
-          statusAndVitals: ["na"]
+          patronType: ["p1"]
         },
         {
           id: "1",
           benefit: ["2"],
-          patronType: ["p1"],
-          serviceType: ["na"],
-          statusAndVitals: ["na"]
+          patronType: ["p1"]
         },
         {
           id: "2",
           benefit: ["4"],
-          patronType: ["p1"],
-          serviceType: ["na"],
-          statusAndVitals: ["na"]
+          patronType: ["p1"]
         },
         {
           id: "3",
           benefit: ["2"],
-          patronType: ["p2"],
-          serviceType: ["na"],
-          statusAndVitals: ["na"]
+          patronType: ["p2"]
         },
         {
           id: "4",
           benefit: ["1"],
-          patronType: ["p3"],
-          serviceType: ["na"],
-          statusAndVitals: ["na"]
+          patronType: ["p3"]
         },
         {
           id: "5",
           benefit: ["3"],
-          patronType: ["p3"],
-          serviceType: ["na"],
-          statusAndVitals: ["na"]
+          patronType: ["p3"]
         },
         {
           id: "6",
           benefit: ["4"],
-          patronType: ["p3"],
-          serviceType: ["na"],
-          statusAndVitals: ["na"]
+          patronType: ["p3"]
         }
       ],
       multipleChoiceOptions: [
