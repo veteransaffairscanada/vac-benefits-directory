@@ -24,8 +24,10 @@ describe("FederalBanner", () => {
         changeLanguage: () => {}
       },
       t: translate,
-      showRefreshCache: false
+      showRefreshCache: false,
+      skipLink: ".svg-container"
     };
+
     _mountedFederalBanner = undefined;
   });
 
@@ -42,23 +44,5 @@ describe("FederalBanner", () => {
         .at(0)
         .text()
     ).toEqual("other-language");
-  });
-
-  it("refresh cache button shown if showRefreshCache is true", () => {
-    props.showRefreshCache = true;
-    expect(
-      mountedFederalBanner()
-        .find("#refreshCache")
-        .first().length
-    ).toEqual(1);
-  });
-
-  it("refresh cache button not shown if showRefreshCache is false", () => {
-    props.showRefreshCache = false;
-    expect(
-      mountedFederalBanner()
-        .find("#refreshCache")
-        .first().length
-    ).toEqual(0);
   });
 });

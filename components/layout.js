@@ -79,7 +79,6 @@ class Layout extends Component {
                   <FederalBanner
                     i18n={this.props.i18n}
                     t={t}
-                    showRefreshCache={this.props.showRefreshCache}
                     skipLink={skipLink}
                   />
                 </Container>
@@ -122,7 +121,6 @@ class Layout extends Component {
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   hideNoscript: PropTypes.bool.isRequired,
-  showRefreshCache: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   skipLink: PropTypes.string.isRequired,

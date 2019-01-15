@@ -65,7 +65,6 @@ export class Map extends Component {
         i18n={i18n}
         t={t}
         hideNoscript={true}
-        showRefreshCache={false}
         title={t("titles.map")}
         backgroundColor={globalTheme.colour.white}
         skipLink="#mainContent"

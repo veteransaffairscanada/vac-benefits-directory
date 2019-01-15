@@ -56,6 +56,14 @@ describe("DataValidation", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
+  it("shows the refresh cache button", () => {
+    expect(
+      mountedDataValidation()
+        .find("#refreshCache")
+        .first().length
+    ).toEqual(1);
+  });
+
   it("passes all tests using the default fixtures", () => {
     expect(mountedDataValidation().html()).toContain("Pass");
     expect(mountedDataValidation().html()).not.toContain("Fail");

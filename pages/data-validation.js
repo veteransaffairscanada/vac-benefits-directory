@@ -6,19 +6,20 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "../components/paper";
-import Button from "@material-ui/core/Button";
 import ReactMoment from "react-moment";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import { cx, css } from "emotion";
 import Container from "../components/container";
+import Button from "../components/button";
 
-const pCSS = css`
-  padding: 10px;
-`;
 const root = css`
   overflow-x: auto;
+  margin-top: 20px;
+`;
+const top = css`
+  padding: 20px;
 `;
 const table = css`
   width: 100%;
@@ -230,16 +231,18 @@ export class DataValidation extends Component {
         i18n={i18n}
         t={t}
         hideNoscript={true}
-        showRefreshCache={true}
         skipLink="#mainContent"
       >
         <Container id="mainContent">
-          <Paper className={root}>
-            <p className={pCSS}>
+          <Paper className={cx(root, top)}>
+            <p>
               {t("dv.last_cache_update")}
               :&nbsp;
               <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
             </p>
+            <a href="/refresh">
+              <Button id="refreshCache">{t("refresh-cache")}</Button>
+            </a>
           </Paper>
           <Paper className={root}>
             <Table className={table}>
@@ -263,11 +266,7 @@ export class DataValidation extends Component {
                         {n.status !== undefined ? (
                           t("dv." + (n.status ? "Pass" : "Fail"))
                         ) : (
-                          <Button
-                            color="primary"
-                            variant="contained"
-                            onClick={() => this.checkBenefitUrls()}
-                          >
+                          <Button onClick={() => this.checkBenefitUrls()}>
                             {t("dv.validate")}
                           </Button>
                         )}

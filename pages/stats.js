@@ -23,7 +23,6 @@ export class Stats extends Component {
         i18n={i18n}
         t={t}
         hideNoscript={false}
-        showRefreshCache={false}
         title={t("titles.stats")}
         skipLink="mainContent"
       >

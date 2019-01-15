@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { css } from "emotion";
 import PropTypes from "prop-types";
-import { Button } from "@material-ui/core";
 import LanguageButton from "./language_button";
 import FIP from "./fip";
 import { globalTheme } from "../theme";
@@ -26,10 +25,6 @@ const mediaQuery = Object.keys(breakpoints).reduce((accumulator, label) => {
     `;
   return accumulator;
 }, {});
-
-const buttonCSS = css`
-  color: ${globalTheme.colour.white} !important;
-`;
 
 const container = css`
   margin: 0px;
@@ -70,25 +65,16 @@ const container = css`
 
 class FederalBanner extends Component {
   render() {
-    const { t, skipLink } = this.props;
+    const { t, skipLink, i18n } = this.props;
     return (
       <div>
         <SkipToMainContent skipLink={skipLink} t={t} />
         <div className={container}>
           <div className="svg-container">
-            <FIP fillColor="white" t={this.props.t} />
+            <FIP fillColor="white" t={t} />
           </div>
           <div>
-            {this.props.showRefreshCache ? (
-              <a href="/refresh">
-                <Button id="refreshCache" className={buttonCSS}>
-                  {t("refresh-cache")}
-                </Button>
-              </a>
-            ) : (
-              ""
-            )}
-            <LanguageButton i18n={this.props.i18n} t={this.props.t} />
+            <LanguageButton i18n={i18n} t={t} />
           </div>
         </div>
       </div>
@@ -99,8 +85,7 @@ class FederalBanner extends Component {
 FederalBanner.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  skipLink: PropTypes.string.isRequired,
-  showRefreshCache: PropTypes.bool.isRequired
+  skipLink: PropTypes.string.isRequired
 };
 
 export default FederalBanner;

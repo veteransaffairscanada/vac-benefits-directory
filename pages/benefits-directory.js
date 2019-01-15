@@ -68,7 +68,6 @@ export class BenefitsDirectory extends Component {
         i18n={this.props.i18n}
         t={this.props.t}
         hideNoscript={false}
-        showRefreshCache={false}
         title={title + " | " + t("titles.benefits_directory")}
         backgroundColor={globalTheme.colour.white}
         skipLink="#mainContent"
