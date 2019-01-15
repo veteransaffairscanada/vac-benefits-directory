@@ -14,6 +14,7 @@ import needsFixture from "../fixtures/needs_complex";
 import enIdx from "../fixtures/lunr_index_english";
 import frIdx from "../fixtures/lunr_index_french";
 import nextStepsFixture from "../fixtures/nextSteps_complex";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 describe("Benefits Selectors", () => {
   let props;
@@ -35,6 +36,7 @@ describe("Benefits Selectors", () => {
       patronType: "",
       searchString: "",
       serviceType: "",
+      benefitExamples: benefitExamplesFixture,
       nextSteps: nextStepsFixture
     };
   });
@@ -263,6 +265,13 @@ describe("Benefits Selectors", () => {
           .sort()
           .reverse()
       ).toEqual(rankedScores);
+    });
+
+    it("returns a results if user searches see more content", () => {
+      state.searchString = "inpatient";
+      expect(getFilteredBenefits(state, props).map(x => x.vacNameEn)).toEqual([
+        "Disability Benefits"
+      ]);
     });
   });
 
