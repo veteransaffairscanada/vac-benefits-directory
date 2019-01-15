@@ -22,17 +22,17 @@ const LearnMoreButton = props => {
     t("current-language-code") === "en" ? benefit.vacNameEn : benefit.vacNameFr;
 
   return (
-    <Button
-      className={fullWidth}
-      arrow={true}
-      onClick={() => {
-        logExit(url);
-        const win = window.open(url, "_blank");
-        win.focus();
-      }}
-    >
-      {t("benefits_b.learn_more", { x: vacName })}
-    </Button>
+    <a href={url} target="_blank">
+      <Button
+        className={fullWidth}
+        arrow={true}
+        onClick={() => {
+          logExit(url);
+        }}
+      >
+        {t("benefits_b.learn_more", { x: vacName })}
+      </Button>
+    </a>
   );
 };
 

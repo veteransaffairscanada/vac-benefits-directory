@@ -23,35 +23,19 @@ describe("LearnMoreButton", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("has a correctly configured external link button", () => {
-    let relatedComponent = mount(<LearnMoreButton {...props} />);
-    relatedComponent
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(window.open).toBeCalledWith(props.benefit.benefitPageEn, "_blank");
+  it("has correct English text", () => {
     expect(
-      relatedComponent
+      mount(<LearnMoreButton {...props} />)
         .find("Button")
         .at(0)
         .text()
     ).toEqual("en");
   });
 
-  it("has a button with the French link", () => {
+  it("has correct French text", () => {
     props.t = () => "fr";
-
-    let relatedComponent = mount(<LearnMoreButton {...props} />);
-    relatedComponent
-      .find("Button")
-      .at(0)
-      .simulate("click");
-    expect(window.open).toBeCalledWith(
-      benefitsFixture[0].benefitPageFr,
-      "_blank"
-    );
     expect(
-      relatedComponent
+      mount(<LearnMoreButton {...props} />)
         .find("Button")
         .at(0)
         .text()
