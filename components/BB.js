@@ -30,6 +30,11 @@ const favouritesLink = css`
   border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
   margin-bottom: 24px;
 `;
+const sidebar = css`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+`;
 const dot = css`
   height: 23px;
   width: 22.5px;
@@ -84,36 +89,38 @@ export class BB extends Component {
         <Container>
           <Grid container spacing={32}>
             <Grid item lg={3} md={3} sm={4} xs={12}>
-              <Grid container spacing={16} className={favouritesLink}>
-                <Grid item xs={12}>
-                  <HeaderLink
-                    id="savedBenefits"
-                    href={this.props.favouritesUrl}
-                  >
-                    <SaveChecked />
-                    {t("B3.favouritesButtonText")}
-                  </HeaderLink>
-                  <span className={dot} id="favouritesDot">
-                    {this.props.favouriteBenefits.length}
-                  </span>
+              <div className={sidebar}>
+                <Grid container spacing={16} className={favouritesLink}>
+                  <Grid item xs={12}>
+                    <HeaderLink
+                      id="savedBenefits"
+                      href={this.props.favouritesUrl}
+                    >
+                      <SaveChecked />
+                      {t("B3.favouritesButtonText")}
+                    </HeaderLink>
+                    <span className={dot} id="favouritesDot">
+                      {this.props.favouriteBenefits.length}
+                    </span>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <HeaderButton
+                      id="nextSteps"
+                      onClick={() => this.scrollToNextSteps()}
+                    >
+                      <AssignmentTurnedIn />
+                      {t("nextSteps.whats_next")}
+                    </HeaderButton>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <HeaderButton
-                    id="nextSteps"
-                    onClick={() => this.scrollToNextSteps()}
-                  >
-                    <AssignmentTurnedIn />
-                    {t("nextSteps.whats_next")}
-                  </HeaderButton>
-                </Grid>
-              </Grid>
-              <SelectionsEditor t={t} store={store} />
-              <ShareBox
-                t={t}
-                printUrl={this.props.printUrl}
-                url={url}
-                share={true}
-              />
+                <SelectionsEditor t={t} store={store} />
+                <ShareBox
+                  t={t}
+                  printUrl={this.props.printUrl}
+                  url={url}
+                  share={true}
+                />
+              </div>
             </Grid>
             <Grid id="mainContent" item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={16}>

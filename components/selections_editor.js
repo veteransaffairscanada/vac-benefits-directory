@@ -25,6 +25,10 @@ const summary = css`
   user-select: inherit;
   color: ${globalTheme.colour.cerulean} !important;
 `;
+const detail = css`
+  overflow: scroll;
+  height: 300px;
+`;
 const clearButton = css`
   font-size: 16px !important;
 `;
@@ -91,7 +95,7 @@ export class SelectionsEditor extends Component {
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>
-          <Grid container>
+          <Grid container className={detail}>
             <Grid item xs={12}>
               {this.countSelected() > 0 ? (
                 <HeaderButton
