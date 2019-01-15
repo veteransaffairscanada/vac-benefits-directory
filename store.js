@@ -27,19 +27,26 @@ airtableConstants.tableNames.forEach(tableName => {
 
 // REDUCERS
 export const reducer = (state = initialState, action) => {
-  let benefits;
-  let language;
-  let enIdx;
-  let frIdx;
-  let newState;
+  let benefits, benefitExamples, language, enIdx, frIdx, newState;
 
   switch (action.type) {
     case "INDEX_BENEFITS":
       benefits = state.benefits;
+      benefitExamples = state.benefitExamples;
+      benefits.forEach(x => {
+        if (x.benefitExamples) {
+          const releventExamples = benefitExamples.filter(
+            y => x.benefitExamples.indexOf(y.id) > -1
+          );
+          x.benefitExamplesEn = releventExamples.map(y => y.english).join(" ");
+          x.benefitExamplesFr = releventExamples.map(y => y.french).join(" ");
+        }
+      });
       enIdx = lunr(function() {
         this.ref("id");
         this.field("vacNameEn");
         this.field("oneLineDescriptionEn");
+        this.field("benefitExamplesEn");
         benefits.forEach(function(doc) {
           this.add(doc);
         }, this);
@@ -50,6 +57,7 @@ export const reducer = (state = initialState, action) => {
         this.use(lunr.fr);
         this.field("vacNameFr");
         this.field("oneLineDescriptionFr");
+        this.field("benefitExamplesFr");
         benefits.forEach(function(doc) {
           this.add(doc);
         }, this);

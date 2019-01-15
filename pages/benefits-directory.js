@@ -63,6 +63,7 @@ export class BenefitsDirectory extends Component {
       filteredBenefits.length === benefits.length
         ? t("B3.All benefits to consider")
         : getBenefitCountString(filteredBenefits, t);
+
     return (
       <Layout
         i18n={this.props.i18n}
