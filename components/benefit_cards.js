@@ -152,6 +152,7 @@ const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
     selectedNeeds: reduxState.selectedNeeds,
+    searchString: reduxState.searchString,
     benefits: reduxState.benefits
   };
 };

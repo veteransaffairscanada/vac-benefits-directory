@@ -12,7 +12,8 @@ describe("ExampleBullets", () => {
     props = {
       t: x => x,
       benefit: benefitsFixture[0],
-      benefitExamples: benefitExamplesFixture
+      benefitExamples: benefitExamplesFixture,
+      searchString: ""
     };
   });
 

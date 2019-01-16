@@ -90,7 +90,6 @@ export class BenefitList extends React.Component {
           currentLanguage={currentLanguage}
           key={benefit.id}
           showFavourite={showFavourites}
-          searchString={searchString}
           store={store}
         />
       ))

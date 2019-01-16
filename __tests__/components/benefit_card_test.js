@@ -43,7 +43,6 @@ describe("BenefitCard", () => {
       currentLanguage: "en",
       veteranBenefitIds: [],
       familyBenefitIds: [],
-      searchString: "",
       favouriteBenefits: [],
       showFavourite: true
     };
@@ -58,7 +57,8 @@ describe("BenefitCard", () => {
       benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefitExamples: benefitExamplesFixture,
-      questions: questionsFixture
+      questions: questionsFixture,
+      searchString: ""
     };
     props.store = mockStore(reduxData);
 

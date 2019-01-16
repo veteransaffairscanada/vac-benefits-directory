@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
+import Highlighter from "react-highlight-words";
 
 const margin = css`
   padding-left: 20px;
@@ -21,7 +22,8 @@ const root = css`
 `;
 export class ExampleBullets extends React.Component {
   getExampleBullets = () => {
-    const { benefitExamples, benefit, t } = this.props;
+    const { benefitExamples, benefit, t, searchString } = this.props;
+    const searchWords = searchString.split(/\s+/);
     const lang = t("current-language-code") === "en" ? "english" : "french";
     return benefitExamples
       .filter(x => {
@@ -31,7 +33,15 @@ export class ExampleBullets extends React.Component {
         return false;
       })
       .map((x, i) => {
-        return <li key={i}>{x[lang]}</li>;
+        return (
+          <li key={i}>
+            <Highlighter
+              searchWords={searchWords}
+              autoEscape={true}
+              textToHighlight={x[lang]}
+            />
+          </li>
+        );
       });
   };
 
@@ -53,13 +63,15 @@ export class ExampleBullets extends React.Component {
 
 const mapStateToProps = reduxState => {
   return {
-    benefitExamples: reduxState.benefitExamples
+    benefitExamples: reduxState.benefitExamples,
+    searchString: reduxState.searchString
   };
 };
 
 ExampleBullets.propTypes = {
   benefit: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  searchString: PropTypes.string.isRequired,
   benefitExamples: PropTypes.array.isRequired
 };
 
