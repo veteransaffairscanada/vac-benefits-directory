@@ -102,10 +102,7 @@ export class DataValidation extends Component {
   };
 
   checkBenefitEligibility = (b, i) => {
-    console.log(b.vacNameEn + ", " + b.benefitEligibility);
-
     if (!b.benefitEligibility) {
-      console.log("testtstststs");
       return " " + b[this.state.benefitNameKey] + " (" + (i + 1) + "),";
     }
   };
