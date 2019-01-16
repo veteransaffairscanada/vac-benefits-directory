@@ -49,7 +49,7 @@ export class BenefitExpansion extends Component {
   };
 
   render() {
-    const { t, benefit, benefits, store } = this.props;
+    const { t, benefit, benefits, store, reduxState } = this.props;
     const language = t("current-language-code");
     const benefitName =
       language === "en" ? benefit.vacNameEn : benefit.vacNameFr;
@@ -65,16 +65,13 @@ export class BenefitExpansion extends Component {
       childBenefits,
       "servingMember"
     );
-    const vetServBenefits = [
-      ...new Set(veteranBenefits.concat(servingMemberBenefits))
-    ];
+    const vetServBenefits =
+      reduxState.statusAndVitals !== "deceased"
+        ? [...new Set(veteranBenefits.concat(servingMemberBenefits))]
+        : [];
     const familyBenefits = this.getAlsoEligibleBenefits(
       childBenefits,
       "family"
-    );
-    const reduxState = this.props.reduxState;
-    const profileFilters = JSON.parse(
-      JSON.stringify(getProfileFilters(reduxState, this.props))
     );
 
     let otherBenefits = t("benefits_b.eligible_open_veteran", {
@@ -85,15 +82,11 @@ export class BenefitExpansion extends Component {
       <div className={this.props.className}>
         <ExampleBullets benefit={benefit} t={t} store={store} />
         <div className={topBorder}>
-          {profileFilters["statusAndVitals"] !== "deceased" ? (
-            <ChildBenefitList
-              benefits={vetServBenefits}
-              colonText={otherBenefits}
-              t={t}
-            />
-          ) : (
-            ""
-          )}
+          <ChildBenefitList
+            benefits={vetServBenefits}
+            colonText={otherBenefits}
+            t={t}
+          />
           <ChildBenefitList
             benefits={familyBenefits}
             colonText={t("benefits_b.eligible_open_family")}
