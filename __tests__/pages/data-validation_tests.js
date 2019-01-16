@@ -7,6 +7,7 @@ import { DataValidation } from "../../pages/data-validation";
 import benefitsFixture from "../fixtures/benefits";
 import translationsFixture from "../fixtures/translations";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
 import translate from "../fixtures/translate";
@@ -34,6 +35,7 @@ describe("DataValidation", () => {
       },
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       needs: needsFixture,
       errors: [],
       areaOffices: areaOfficesFixture
@@ -78,6 +80,10 @@ describe("DataValidation", () => {
     props.eligibilityPaths = [];
     expect(mountedDataValidation().html()).toContain("Fail");
   });
+  it("fails if there is no benefitEligibility", () => {
+    props.benefitEligibility = [];
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
 
   it("fails if there are no needs", () => {
     props.needs = [];
@@ -106,6 +112,10 @@ describe("DataValidation", () => {
 
   it("fails if a benefit is not connected to any Eligibility Paths", () => {
     props.benefits[0].eligibilityPaths = "";
+    expect(mountedDataValidation().html()).toContain("Fail");
+  });
+  it("fails if a benefit is not listed in Benefit Eligibility", () => {
+    props.benefitEligibility[0].benefit = "";
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
