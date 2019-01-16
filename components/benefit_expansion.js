@@ -72,12 +72,29 @@ export class BenefitExpansion extends Component {
       childBenefits,
       "family"
     );
+    const reduxState = this.props.reduxState;
+    const profileFilters = JSON.parse(
+      JSON.stringify(getProfileFilters(reduxState, this.props))
+    );
 
     let otherBenefits = t("benefits_b.eligible_open_veteran", {
       x: benefitName
     });
 
-    return (
+    console.log(profileFilters["statusAndVitals"]);
+    return profileFilters["statusAndVitals"] === "deceased" ? (
+      <div className={this.props.className}>
+        <ExampleBullets benefit={benefit} t={t} store={store} />
+        <div className={topBorder}>
+          <ChildBenefitList
+            benefits={familyBenefits}
+            colonText={t("benefits_b.eligible_open_family")}
+            t={t}
+          />
+          <LearnMoreButton benefit={benefit} t={t} />
+        </div>
+      </div>
+    ) : (
       <div className={this.props.className}>
         <ExampleBullets benefit={benefit} t={t} store={store} />
         <div className={topBorder}>
