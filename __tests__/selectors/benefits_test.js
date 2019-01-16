@@ -9,6 +9,7 @@ import {
 import questionsFixture from "../fixtures/questions_complex";
 import benefitsFixture from "../fixtures/benefits_complex";
 import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
 import needsFixture from "../fixtures/needs_complex";
 import enIdx from "../fixtures/lunr_index_english";
@@ -27,6 +28,7 @@ describe("Benefits Selectors", () => {
       questions: questionsFixture,
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       enIdx: enIdx,
       frIdx: frIdx,

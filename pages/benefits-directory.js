@@ -92,7 +92,8 @@ const mapStateToProps = (reduxState, props) => {
     filteredBenefits: getFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
     selectedNeeds: reduxState.selectedNeeds,
-    benefits: reduxState.benefits
+    benefits: reduxState.benefits,
+    benefitEligibility: reduxState.benefitEligibility
   };
 };
 
@@ -106,7 +107,8 @@ BenefitsDirectory.propTypes = {
   searchString: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   setPageWidth: PropTypes.func.isRequired,
-  benefits: PropTypes.array.isRequired
+  benefits: PropTypes.array.isRequired,
+  benefitEligibility: PropTypes.array
 };
 
 export default withI18N(

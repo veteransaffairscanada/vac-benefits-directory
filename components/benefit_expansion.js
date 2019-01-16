@@ -43,7 +43,7 @@ export class BenefitExpansion extends Component {
       selectedNeeds,
       benefits,
       reduxState.needs,
-      reduxState.eligibilityPaths,
+      reduxState.benefitEligibility,
       reduxState.multipleChoiceOptions
     );
   };
