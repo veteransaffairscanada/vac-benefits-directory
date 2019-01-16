@@ -81,7 +81,6 @@ export class BenefitExpansion extends Component {
       x: benefitName
     });
 
-    console.log(profileFilters["statusAndVitals"]);
     return profileFilters["statusAndVitals"] === "deceased" ? (
       <div className={this.props.className}>
         <ExampleBullets benefit={benefit} t={t} store={store} />
