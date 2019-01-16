@@ -81,27 +81,19 @@ export class BenefitExpansion extends Component {
       x: benefitName
     });
 
-    return profileFilters["statusAndVitals"] === "deceased" ? (
+    return (
       <div className={this.props.className}>
         <ExampleBullets benefit={benefit} t={t} store={store} />
         <div className={topBorder}>
-          <ChildBenefitList
-            benefits={familyBenefits}
-            colonText={t("benefits_b.eligible_open_family")}
-            t={t}
-          />
-          <LearnMoreButton benefit={benefit} t={t} />
-        </div>
-      </div>
-    ) : (
-      <div className={this.props.className}>
-        <ExampleBullets benefit={benefit} t={t} store={store} />
-        <div className={topBorder}>
-          <ChildBenefitList
-            benefits={vetServBenefits}
-            colonText={otherBenefits}
-            t={t}
-          />
+          {profileFilters["statusAndVitals"] !== "deceased" ? (
+            <ChildBenefitList
+              benefits={vetServBenefits}
+              colonText={otherBenefits}
+              t={t}
+            />
+          ) : (
+            ""
+          )}
           <ChildBenefitList
             benefits={familyBenefits}
             colonText={t("benefits_b.eligible_open_family")}
