@@ -109,9 +109,6 @@ class SearchBox extends Component {
     if (this.props.onClear) {
       this.props.onClear();
     }
-    if (this.props.otherProps) {
-      this.props.otherProps.onChange({ target: { value: "" } });
-    }
   };
 
   render() {
@@ -184,7 +181,6 @@ SearchBox.propTypes = {
   inputId: PropTypes.string,
   buttonId: PropTypes.string,
   disableButton: PropTypes.bool,
-  otherProps: PropTypes.object,
   onButtonClick: PropTypes.func
 };
 
