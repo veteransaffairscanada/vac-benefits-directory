@@ -4,7 +4,6 @@ import { createSelector } from "reselect";
 const getBenefits = state => state.benefits;
 const getQuestions = state => state.questions;
 const getCurrentLanguage = (state, props) => props.t("current-language-code");
-const getEligibilityPaths = state => state.eligibilityPaths;
 const getBenefitEligibility = state => state.benefitEligibility;
 const getMultipleChoiceOptions = state => state.multipleChoiceOptions;
 const getEnIdx = state => state.enIdx;
@@ -27,7 +26,6 @@ export const getFilteredBenefitsFunction = (
   }
   // find benefits that match
   let eligibleBenefitIds = [];
-
   // iterate through benefitEligibility table and any benefit that matches, add to the list (but don't add more than once!)
   benefitEligibility.forEach(be => {
     if (benefitEligibilityMatch(be, profileFilters, multipleChoiceOptions)) {
@@ -183,40 +181,35 @@ export const getFilteredBenefits = createSelector(
 );
 
 export const getFilteredNextSteps = createSelector(
-  [
-    getNextSteps,
-    getEligibilityPaths,
-    getProfileFilters,
-    getMultipleChoiceOptions,
-    getQuestions
-  ],
-  (nextSteps, eligibilityPaths, profileFilters, multipleChoiceOptions) => {
-    // find next steps that match
-    let eligibleNextStepIds = [];
-    eligibilityPaths.forEach(ep => {
-      if (eligibilityMatch(ep, profileFilters, multipleChoiceOptions)) {
-        eligibleNextStepIds = eligibleNextStepIds.concat(ep.nextSteps);
-      }
-    });
+  [getNextSteps, getProfileFilters, getMultipleChoiceOptions, getQuestions],
+  (nextSteps, profileFilters, multipleChoiceOptions) => {
     let hasSelections = false;
 
     Object.keys(profileFilters).forEach(criteria => {
       if (profileFilters[criteria] !== "") hasSelections = true;
     });
 
-    if (hasSelections)
+    if (hasSelections) {
+      // only check eligible nextSteps if we know we have selections
+      let eligibleNextStepIds = [];
+      nextSteps.forEach(ns => {
+        if (
+          benefitEligibilityMatch(ns, profileFilters, multipleChoiceOptions)
+        ) {
+          eligibleNextStepIds.push(ns.id);
+        }
+      });
       return nextSteps.filter(ns => eligibleNextStepIds.includes(ns.id));
+    }
 
-    let noRequirementsNextStepIds = [];
-
-    eligibilityPaths.forEach(ep => {
-      if (!ep.requirements)
-        noRequirementsNextStepIds = noRequirementsNextStepIds.concat(
-          ep.nextSteps
-        );
-    });
-
-    return nextSteps.filter(ns => noRequirementsNextStepIds.includes(ns.id));
+    // if no selection, just return next steps with no requirements
+    return nextSteps.filter(
+      ns =>
+        !ns.patronType &&
+        !ns.serviceType &&
+        !ns.statusAndVitals &&
+        !ns.serviceHealthIssue
+    );
   }
 );
 
