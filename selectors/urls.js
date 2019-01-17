@@ -9,7 +9,6 @@ const getSelectedOffice = state => state.selectedAreaOffice;
 const getFromFavourites = (state, props, params) => params.fromFavourites;
 const getFavoriteBenefits = (state, props) => props.favouriteBenefits;
 const getBenefits = state => state.benefits;
-const getServiceHealthIssue = state => state.serviceHealthIssue;
 
 export const getSelectionParams = (
   profileFilters,

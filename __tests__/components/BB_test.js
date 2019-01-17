@@ -97,14 +97,6 @@ describe("BB", () => {
     expect(shallow_BB().find("#BenefitsPane").length).not.toEqual(0);
   });
 
-  it("has the ProfileSelector component", () => {
-    expect(mounted_BB().find("ProfileSelector").length).not.toEqual(0);
-  });
-
-  it("has the NeedsSelector component", () => {
-    expect(mounted_BB().find("NeedsSelector").length).not.toEqual(0);
-  });
-
   it("has a Clear Filters button", () => {
     expect(shallow_BB().find("#ClearEligibilityFilters"));
   });
