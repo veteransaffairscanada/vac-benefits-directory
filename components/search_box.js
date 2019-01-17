@@ -115,7 +115,7 @@ class SearchBox extends Component {
   };
 
   render() {
-    const { ariaLabel, otherProps } = this.props;
+    const { ariaLabel, value, onButtonClick } = this.props;
     let valueUsed;
     try {
       valueUsed = document.getElementById(this.props.inputId).value;
@@ -130,16 +130,12 @@ class SearchBox extends Component {
           placeholder={this.props.placeholder}
           onKeyDown={this.props.onKeyDown}
           onKeyUp={this.props.onKeyUp}
-          // defaultValue={value !== undefined ? value : this.state.value}
           onInput={this.handleChange}
           onChange={this.handleChange}
-          {...otherProps}
-          value={otherProps ? otherProps.value : this.props.value}
+          value={value}
         />
 
-        {(this.props.onClear && this.props.value) ||
-        (otherProps && otherProps.value) ||
-        valueUsed ? (
+        {(this.props.onClear && value) || valueUsed ? (
           <div style={{ position: "relative" }}>
             <ClearButton
               title={ariaLabel}
@@ -159,7 +155,7 @@ class SearchBox extends Component {
           <SearchButton
             title={ariaLabel}
             id={this.props.buttonId}
-            onClick={this.props.onButtonClick}
+            onClick={onButtonClick}
           >
             <SearchIcon />
           </SearchButton>
@@ -171,7 +167,8 @@ class SearchBox extends Component {
 
 SearchBox.defaultProps = {
   ariaLabel: "search",
-  placeholder: undefined
+  placeholder: undefined,
+  onButtonClick: x => x
 };
 
 SearchBox.propTypes = {
@@ -187,7 +184,8 @@ SearchBox.propTypes = {
   inputId: PropTypes.string,
   buttonId: PropTypes.string,
   disableButton: PropTypes.bool,
-  otherProps: PropTypes.object
+  otherProps: PropTypes.object,
+  onButtonClick: PropTypes.func
 };
 
 export default SearchBox;
