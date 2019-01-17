@@ -11,6 +11,27 @@ const getFavoriteBenefits = (state, props) => props.favouriteBenefits;
 const getBenefits = state => state.benefits;
 const getServiceHealthIssue = state => state.serviceHealthIssue;
 
+export const getSelectionParams = (
+  profileFilters,
+  selectedNeeds,
+  searchString,
+  currentLanguage
+) => {
+  let values = {
+    lng: currentLanguage,
+    selectedNeeds: Object.keys(selectedNeeds).join(),
+    searchString: searchString
+  };
+  Object.assign(values, profileFilters);
+  let params = [];
+  Object.keys(values).forEach(key => {
+    if (values[key] !== "") {
+      params.push(key + "=" + values[key]);
+    }
+  });
+  return params.join("&");
+};
+
 export const getFavouritesUrl = createSelector(
   [
     getProfileFilters,
@@ -19,19 +40,13 @@ export const getFavouritesUrl = createSelector(
     getCurrentLanguage
   ],
   (profileFilters, selectedNeeds, searchString, currentLanguage) => {
-    let values = {
-      lng: currentLanguage,
-      selectedNeeds: Object.keys(selectedNeeds).join(),
-      searchString: searchString
-    };
-    Object.assign(values, profileFilters);
-    let params = [];
-    Object.keys(values).forEach(key => {
-      if (values[key] !== "") {
-        params.push(key + "=" + values[key]);
-      }
-    });
-    return "/favourites?" + params.join("&");
+    const params = getSelectionParams(
+      profileFilters,
+      selectedNeeds,
+      searchString,
+      currentLanguage
+    );
+    return "/favourites?" + params;
   }
 );
 
@@ -40,30 +55,16 @@ export const getHomeUrl = createSelector(
     getProfileFilters,
     getNeedsFilter,
     getSearchStringFilter,
-    getServiceHealthIssue,
     getCurrentLanguage
   ],
-  (
-    profileFilters,
-    selectedNeeds,
-    searchString,
-    serviceHealthIssue,
-    currentLanguage
-  ) => {
-    let values = {
-      lng: currentLanguage,
-      selectedNeeds: Object.keys(selectedNeeds).join(),
-      serviceHealthIssue: serviceHealthIssue,
-      searchString: searchString
-    };
-    Object.assign(values, profileFilters);
-    let params = [];
-    Object.keys(values).forEach(key => {
-      if (values[key] !== "") {
-        params.push(key + "=" + values[key]);
-      }
-    });
-    return "/?" + params.join("&");
+  (profileFilters, selectedNeeds, searchString, currentLanguage) => {
+    const params = getSelectionParams(
+      profileFilters,
+      selectedNeeds,
+      searchString,
+      currentLanguage
+    );
+    return "/?" + params;
   }
 );
 
@@ -72,30 +73,16 @@ export const getSummaryUrl = createSelector(
     getProfileFilters,
     getNeedsFilter,
     getSearchStringFilter,
-    getServiceHealthIssue,
     getCurrentLanguage
   ],
-  (
-    profileFilters,
-    selectedNeeds,
-    searchString,
-    serviceHealthIssue,
-    currentLanguage
-  ) => {
-    let values = {
-      lng: currentLanguage,
-      selectedNeeds: Object.keys(selectedNeeds).join(),
-      serviceHealthIssue: serviceHealthIssue,
-      searchString: searchString
-    };
-    Object.assign(values, profileFilters);
-    let params = [];
-    Object.keys(values).forEach(key => {
-      if (values[key] !== "") {
-        params.push(key + "=" + values[key]);
-      }
-    });
-    return "/summary?" + params.join("&");
+  (profileFilters, selectedNeeds, searchString, currentLanguage) => {
+    const params = getSelectionParams(
+      profileFilters,
+      selectedNeeds,
+      searchString,
+      currentLanguage
+    );
+    return "/summary?" + params;
   }
 );
 
@@ -156,29 +143,15 @@ export const getMapUrl = createSelector(
     getProfileFilters,
     getNeedsFilter,
     getSearchStringFilter,
-    getServiceHealthIssue,
     getCurrentLanguage
   ],
-  (
-    profileFilters,
-    selectedNeeds,
-    searchString,
-    serviceHealthIssue,
-    currentLanguage
-  ) => {
-    let values = {
-      lng: currentLanguage,
-      selectedNeeds: Object.keys(selectedNeeds).join(),
-      serviceHealthIssue: serviceHealthIssue,
-      searchString: searchString
-    };
-    Object.assign(values, profileFilters);
-    let params = [];
-    Object.keys(values).forEach(key => {
-      if (values[key] !== "") {
-        params.push(key + "=" + values[key]);
-      }
-    });
-    return "/map?" + params.join("&");
+  (profileFilters, selectedNeeds, searchString, currentLanguage) => {
+    const params = getSelectionParams(
+      profileFilters,
+      selectedNeeds,
+      searchString,
+      currentLanguage
+    );
+    return "/map?" + params;
   }
 );
