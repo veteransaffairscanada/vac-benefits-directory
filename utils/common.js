@@ -1,4 +1,7 @@
-import { eligibilityMatch, getProfileFilters } from "../selectors/benefits";
+import {
+  benefitEligibilityMatch,
+  getProfileFilters
+} from "../selectors/benefits";
 
 export const uuidv4 = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
@@ -16,21 +19,18 @@ export const questionIsRelevant = (
   let profileFilters = JSON.parse(JSON.stringify(allProfileFilters));
   profileFilters[question_variable_name] = "";
 
-  let relevantPaths = reduxState.eligibilityPaths.filter(
-    ep =>
-      ep.requirements &&
-      eligibilityMatch(ep, profileFilters, reduxState.multipleChoiceOptions)
+  let relevantPaths = reduxState.benefitEligibility.filter(ep =>
+    benefitEligibilityMatch(
+      ep,
+      profileFilters,
+      reduxState.multipleChoiceOptions
+    )
   );
   let returnValue = false;
   relevantPaths.forEach(ep => {
-    ep.requirements.forEach(mcoId => {
-      const linkedQuestion = reduxState.multipleChoiceOptions.filter(
-        mco => mco.id === mcoId
-      )[0].linked_question[0];
-      if (linkedQuestion === question_variable_name) {
-        returnValue = true;
-      }
-    });
+    if (ep[question_variable_name] != undefined) {
+      returnValue = true;
+    }
   });
   return returnValue;
 };
