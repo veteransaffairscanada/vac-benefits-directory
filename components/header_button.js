@@ -52,12 +52,13 @@ class HeaderButton extends Component {
       altStyle,
       disabled,
       onClick,
-      otherProps
+      ariaLabel,
+      ...otherProps
     } = this.props;
 
     return (
       <button
-        aria-label={this.props.ariaLabel}
+        aria-label={ariaLabel}
         disabled={disabled}
         className={
           size === "small"

@@ -26,7 +26,7 @@ const style = css`
 
 class FooterButton extends Component {
   render() {
-    const { className, onClick, children, other } = this.props;
+    const { className, onClick, children, ...other } = this.props;
     return (
       <button
         className={className ? cx(style, className) : style}

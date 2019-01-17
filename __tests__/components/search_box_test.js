@@ -101,15 +101,5 @@ describe("SearchBox", () => {
         .handleClear();
       expect(props.onClear).toBeCalled();
     });
-
-    it("calls otherProps.onChange appropriately", () => {
-      props.otherProps = { value: "v", onChange: jest.fn() };
-      mount(<SearchBox {...props} />)
-        .instance()
-        .handleClear();
-      expect(props.otherProps.onChange).toBeCalledWith({
-        target: { value: "" }
-      });
-    });
   });
 });
