@@ -188,6 +188,7 @@ BB.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
   favouritesUrl: PropTypes.string,
+  summaryUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
   homeUrl: PropTypes.string,
