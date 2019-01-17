@@ -7,6 +7,7 @@ import benefitsFixture from "../fixtures/benefits";
 import translate from "../fixtures/translate";
 import needsFixture from "../fixtures/needs";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import multipleChoiceOptions from "../fixtures/multiple_choice_options";
@@ -22,6 +23,7 @@ describe("GuidedExperienceSummary", () => {
       benefits: benefitsFixture,
       filteredBenefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       needs: needsFixture,
       selectedNeeds: {},
       serviceType: "s1",

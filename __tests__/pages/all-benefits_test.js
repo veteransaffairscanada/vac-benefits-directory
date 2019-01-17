@@ -6,6 +6,7 @@ import React from "react";
 import { AllBenefits } from "../../pages/all-benefits";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import translate from "../fixtures/translate";
@@ -47,6 +48,7 @@ describe("AllBenefits", () => {
       cookiesDisabled: false,
       benefits: benefitsFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       needs: needsFixture,
       searchString: "",

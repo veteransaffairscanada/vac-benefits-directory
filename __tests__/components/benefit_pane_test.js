@@ -6,6 +6,7 @@ import configureStore from "redux-mock-store";
 import { BenefitsPane } from "../../components/benefits_pane";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
@@ -62,6 +63,7 @@ describe("BenefitsPane", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
       serviceType: "",

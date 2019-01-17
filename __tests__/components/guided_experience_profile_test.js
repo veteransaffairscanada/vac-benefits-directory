@@ -4,6 +4,7 @@ import { mount } from "enzyme";
 import React from "react";
 import configureStore from "redux-mock-store";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import translateFixture from "../fixtures/translate";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
@@ -30,6 +31,7 @@ describe("GuidedExperienceProfile", () => {
       serviceHealthIssue: "",
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       questions: questionsFixture,
       questionDisplayLogic: [],
       questionClearLogic: []

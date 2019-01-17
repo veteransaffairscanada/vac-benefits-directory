@@ -6,6 +6,7 @@ expect.extend(toHaveNoViolations);
 
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 
 import configureStore from "redux-mock-store";
@@ -32,6 +33,7 @@ describe("BenefitList", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       needs: needsFixture,
       selectedNeeds: {},

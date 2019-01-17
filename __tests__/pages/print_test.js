@@ -5,6 +5,7 @@ import React from "react";
 import { Print } from "../../pages/print";
 import benefitsFixture from "../fixtures/benefits";
 import elegibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
 import questionFixture from "../fixtures/questions";
@@ -47,6 +48,7 @@ describe("Print", () => {
       profileQuestions: questionFixture.filter(q => q.variable_name != "needs"),
       benefits: benefitsFixture,
       eligibilityPaths: elegibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       selectedNeeds: {},
       needs: needsFixture,
       selectedEligibility: {
