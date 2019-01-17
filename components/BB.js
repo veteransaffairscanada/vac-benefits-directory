@@ -3,9 +3,13 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import SaveChecked from "./icons/SaveChecked";
-import SelectionsEditor from "./selections_editor";
 import { connect } from "react-redux";
-import { getFavouritesUrl, getPrintUrl, getHomeUrl } from "../selectors/urls";
+import {
+  getFavouritesUrl,
+  getPrintUrl,
+  getHomeUrl,
+  getSummaryUrl
+} from "../selectors/urls";
 import { css } from "emotion";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
@@ -16,6 +20,7 @@ import { areCookiesDisabled } from "../utils/common";
 import BenefitsPane from "./benefits_pane";
 import BreadCrumbs from "../components/breadcrumbs";
 import ShareBox from "../components/share_box";
+import EditIcon from "./icons/Edit";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -112,8 +117,16 @@ export class BB extends Component {
                       {t("nextSteps.whats_next")}
                     </HeaderButton>
                   </Grid>
+                  <Grid item xs={12}>
+                    <HeaderLink
+                      id="editSelections"
+                      href={this.props.summaryUrl}
+                    >
+                      <EditIcon />
+                      {t("directory.edit_selections")}
+                    </HeaderLink>
+                  </Grid>
                 </Grid>
-                <SelectionsEditor t={t} store={store} />
                 <ShareBox
                   t={t}
                   printUrl={this.props.printUrl}
@@ -165,6 +178,7 @@ const mapStateToProps = (reduxState, props) => {
     favouriteBenefits: reduxState.favouriteBenefits,
     favouritesUrl: getFavouritesUrl(reduxState, props),
     homeUrl: getHomeUrl(reduxState, props),
+    summaryUrl: getSummaryUrl(reduxState, props),
     printUrl: getPrintUrl(reduxState, props, {})
   };
 };
