@@ -6,7 +6,6 @@ import configureStore from "redux-mock-store";
 
 import { BB } from "../../components/BB";
 import benefitsFixture from "../fixtures/benefits";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
@@ -64,7 +63,6 @@ describe("BB", () => {
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
       favouriteBenefits: [],
-      eligibilityPaths: eligibilityPathsFixture,
       benefitEligibility: benefitEligibilityFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,

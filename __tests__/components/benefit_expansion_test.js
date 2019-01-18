@@ -1,7 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
-import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
 import { BenefitExpansion } from "../../components/benefit_expansion";
@@ -27,7 +26,6 @@ describe("BenefitExpansion", () => {
     mockStore = configureStore();
     reduxData = {
       benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
       benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefitExamples: benefitExamplesFixture,

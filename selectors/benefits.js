@@ -64,25 +64,14 @@ export const getProfileFilters = createSelector(
   }
 );
 
-export const pathToDict = (ep, multipleChoiceOptions) => {
-  let dict = {};
-  if (ep.requirements) {
-    ep.requirements.forEach(req => {
-      const mco = multipleChoiceOptions.filter(mco => mco.id === req)[0];
-      dict[mco.linked_question] = dict[mco.linked_question]
-        ? dict[mco.linked_question].concat([mco.variable_name])
-        : [mco.variable_name];
-    });
-  }
-  return dict;
-};
-
 export const benefitEligibilityMatch = (
   be,
   profileFilters,
   multipleChoiceOptions
 ) => {
   let matches = true;
+  console.log(be);
+  console.log(profileFilters);
   Object.keys(profileFilters).forEach(criteria => {
     if (profileFilters[criteria] && be[criteria] && be[criteria].length > 0) {
       // convert benefitEligibility ids to match profileFilter names
@@ -97,22 +86,6 @@ export const benefitEligibilityMatch = (
       if (names.indexOf(profileFilters[criteria]) === -1) {
         matches = false;
       }
-    }
-  });
-  return matches;
-};
-
-export const eligibilityMatch = (ep, profileFilters, multipleChoiceOptions) => {
-  let matches = true;
-  const path = pathToDict(ep, multipleChoiceOptions);
-  Object.keys(profileFilters).forEach(criteria => {
-    if (
-      profileFilters[criteria] &&
-      path[criteria] &&
-      path[criteria].length > 0 &&
-      path[criteria].indexOf(profileFilters[criteria]) === -1
-    ) {
-      matches = false;
     }
   });
   return matches;

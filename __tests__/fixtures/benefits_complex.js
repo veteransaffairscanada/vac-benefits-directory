@@ -6,7 +6,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/war-veterans-allowance/assistance-fund",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/war-veterans-allowance/assistance-fund",
-    eligibilityPaths: ["recsOdDx7CWAftWIR"],
     needs: ["recpN4AgAGiH3x7KZ", "recEahND3kwnUPTHx"],
     oneLineDescriptionEn:
       "Quick access to funds for urgent needs such as food, shelter or medical expenses.",
@@ -27,7 +26,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/related-allowances",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/related-allowances",
-    eligibilityPaths: ["recQerwEMBUU3TlRO"],
     needs: ["recpN4AgAGiH3x7KZ", "recXfW6phH2FFcE3T"],
     oneLineDescriptionEn:
       "Monthly payments if your health needs require personal care support.",
@@ -49,7 +47,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/cf-income-support",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/cf-income-support",
-    eligibilityPaths: ["rec8azbXzu0MLVs3y", "rec6usTRT8JfBWYBC"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly payments if you have\u00a0a low household income.",
@@ -71,7 +68,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/rehabilitation/career-impact-allowance",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/rehabilitation/career-impact-allowance",
-    eligibilityPaths: ["recU1DU5vDT8h3sOX"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly payments if your career options are limited due to your service-related injury.",
@@ -99,7 +95,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/career-transition-services",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/career-transition-services",
-    eligibilityPaths: ["recxsl5L3LLGIT9rt"],
     needs: ["recFX7O3dYwg44kpM"],
     oneLineDescriptionEn:
       "Access to a career counselor for Veterans who want to find a new job. ",
@@ -126,7 +121,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/health/caregiver-recognition-benefit",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/health/caregiver-recognition-benefit",
-    eligibilityPaths: ["recJxCbyWEnhFHJvj", "rec8azbXzu0MLVs3y"],
     needs: ["recpN4AgAGiH3x7KZ", "recXfW6phH2FFcE3T"],
     oneLineDescriptionEn:
       "Monthly payment for the unpaid caregiver of an ill or injured Veteran.",
@@ -159,7 +153,6 @@ const benefits = [
     vacNameFr: "Espace aidants",
     benefitPageEn: "https://caregiverzone.ca/",
     benefitPageFr: "https://caregiverzone.ca/",
-    eligibilityPaths: ["rec7YU77wS3rAEu3s"],
     needs: ["recmmMZPP4DI6Nq0a"],
     oneLineDescriptionEn:
       "An online community for caregivers who want to share their story, ask questions or learn more about caregiving.",
@@ -187,7 +180,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/case-management",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/case-management",
-    eligibilityPaths: ["recmKzJ6y5K1TgEiI", "rec7YU77wS3rAEu3s"],
     needs: [
       "recFX7O3dYwg44kpM",
       "recpN4AgAGiH3x7KZ",
@@ -217,7 +209,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/related-allowances",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/related-allowances",
-    eligibilityPaths: ["recQerwEMBUU3TlRO"],
     needs: ["recGvrfrW7njPwsbk", "recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly payments if you need new or specialized clothing due to your health issues.",
@@ -239,7 +230,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/remembrance/funding-programs/commemorative-partnership/engagement",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/remembrance/funding-programs/commemorative-partnership/engagement",
-    eligibilityPaths: ["rec04iKWngFVunoHt"],
     oneLineDescriptionEn:
       "A fund for community projects and events that honour Canadian Veterans.",
     oneLineDescriptionFr:
@@ -266,7 +256,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/remembrance/funding-programs/commemorative-partnership/community-war-memorial",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/remembrance/funding-programs/commemorative-partnership/community-war-memorial",
-    eligibilityPaths: ["rec04iKWngFVunoHt"],
     oneLineDescriptionEn:
       "A fund for the construction, restoration or expansion of war memorials.",
     oneLineDescriptionFr:
@@ -290,7 +279,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/after-injury/critical-injury-benefit",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/after-injury/critical-injury-benefit",
-    eligibilityPaths: ["recU1DU5vDT8h3sOX"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "A one-time payment if you are suddenly and critically injured while serving.",
@@ -313,7 +301,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/death-benefit",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/death-benefit",
-    eligibilityPaths: ["rec6usTRT8JfBWYBC"],
     needs: ["recjTEL7xK4196TE7"],
     oneLineDescriptionEn:
       "Lump-sum compensation for the family of a military member who died in service.",
@@ -335,7 +322,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/detention-benefits",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/detention-benefits",
-    eligibilityPaths: ["recxsl5L3LLGIT9rt"],
     needs: ["recjTEL7xK4196TE7", "recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Lump-sum compensation if you were detained by an enemy, opposing force or group carrying out a terrorist activity. ",
@@ -358,11 +344,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/disability-award",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/after-injury/prestations-invalidite/disability-award",
-    eligibilityPaths: [
-      "recU1DU5vDT8h3sOX",
-      "rec55z5R3yz8JMv23",
-      "recHYNXwAm2ncw4Ov"
-    ],
     needs: ["recpN4AgAGiH3x7KZ", "recGvrfrW7njPwsbk"],
     oneLineDescriptionEn:
       "Compensation for your service-related injury or illness.",
@@ -393,7 +374,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/rehabilitation/earnings-loss",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/rehabilitation/earnings-loss",
-    eligibilityPaths: ["recGN6WlSHpAw3tt6", "rec7iymBcLBwnkd20"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly payments to maintain your income while you are in the rehabilitation program.",
@@ -427,7 +407,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/earnings-loss",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/earnings-loss",
-    eligibilityPaths: ["rec6usTRT8JfBWYBC"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly payments if your spouse or parent's death was a result of their military service.",
@@ -442,7 +421,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/education-training-benefit",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/education-training-benefit",
-    eligibilityPaths: ["rec8azbXzu0MLVs3y"],
     needs: ["rec1pKJ7uJYwqVOLx", "recFX7O3dYwg44kpM"],
     oneLineDescriptionEn:
       "A grant to help you achieve your education and career goals after your military career.",
@@ -476,7 +454,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/education-assistance",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/education-assistance",
-    eligibilityPaths: ["rec1dXWxOfzFZ6zKL"],
     needs: ["rec1pKJ7uJYwqVOLx", "recjTEL7xK4196TE7"],
     oneLineDescriptionEn:
       "Monthly payments and funding for tuition and other post-secondary expenses.",
@@ -499,7 +476,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
-    eligibilityPaths: ["recj4U5sS1GYwJJjq"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly payments if your illness or injury impacts your quality of life.",
@@ -521,7 +497,6 @@ const benefits = [
       "https://www.cfmws.com/en/AboutUs/DCSM/OSISS/Pages/Families.aspx",
     benefitPageFr:
       "https://www.cfmws.com/en/AboutUs/DCSM/OSISS/Pages/Families.aspx",
-    eligibilityPaths: ["rec1dXWxOfzFZ6zKL"],
     needs: ["recmmMZPP4DI6Nq0a", "recjTEL7xK4196TE7"],
     oneLineDescriptionEn:
       "Peer support for the families of Veterans living with mental health issues.",
@@ -538,7 +513,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/funeral-burial",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/funeral-burial",
-    eligibilityPaths: ["rec1dXWxOfzFZ6zKL", "rec4zJqrgvVa7Rf4c"],
     needs: ["recjTEL7xK4196TE7"],
     oneLineDescriptionEn:
       "A reimbursement of costs to ensure Veterans have a dignified funeral and burial. ",
@@ -561,7 +535,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/grave-marker",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/grave-marker",
-    eligibilityPaths: ["rec04iKWngFVunoHt"],
     needs: ["recjTEL7xK4196TE7"],
     oneLineDescriptionEn:
       "Maintenance of all markers and grave sites that were provided by the Government of Canada.",
@@ -577,7 +550,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/health/group-health-insurance",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/health/group-health-insurance",
-    eligibilityPaths: ["recU1DU5vDT8h3sOX"],
     needs: ["recGvrfrW7njPwsbk"],
     oneLineDescriptionEn:
       "Health coverage for you and your family through the Public Service Health Care Plan. ",
@@ -600,11 +572,6 @@ const benefits = [
       "https://www.cafconnection.ca/National/Programs-Services/For-Families-of-the-Fallen/Shoulder-to-Shoulder/Peer-Support/HOPE-Program.aspx",
     benefitPageFr:
       "https://www.connexionfac.ca/Nationale/Programmes-et-Services/Pour-les-familles-endeuillees/Cote-a-cote/Soutien-par-les-pairs/ESPOIR.aspx",
-    eligibilityPaths: [
-      "rec1dXWxOfzFZ6zKL",
-      "rec4zJqrgvVa7Rf4c",
-      "recXaPbzM7H7UoZn5"
-    ],
     needs: ["recjTEL7xK4196TE7"],
     oneLineDescriptionEn:
       "Peer support program for military families who have lost a loved one.",
@@ -624,7 +591,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/ps-hiring/before-you-start",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/ps-hiring/before-you-start",
-    eligibilityPaths: ["recxsl5L3LLGIT9rt"],
     needs: ["recFX7O3dYwg44kpM"],
     oneLineDescriptionEn:
       "You get priority when applying for jobs in the federal government",
@@ -655,7 +621,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/health/long-term-care",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/health/long-term-care",
-    eligibilityPaths: ["recxsl5L3LLGIT9rt", "recsOdDx7CWAftWIR"],
     needs: ["recXfW6phH2FFcE3T", "recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly payments to cover the cost of your long-term care.",
@@ -679,11 +644,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/health/mental-health/understanding-mental-health/clinics",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/health/mental-health/understanding-mental-health/clinics",
-    eligibilityPaths: [
-      "recc8tZtc94wRhgxt",
-      "recmKzJ6y5K1TgEiI",
-      "recR03cJel83BGYSD"
-    ],
     needs: ["recmmMZPP4DI6Nq0a"],
     oneLineDescriptionEn:
       "An outpatient facility that treats mental health issues caused by your service (e.g. PTSD).",
@@ -707,12 +667,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/health/pastoral-outreach",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/health/pastoral-outreach",
-    eligibilityPaths: [
-      "rec8azbXzu0MLVs3y",
-      "recsOdDx7CWAftWIR",
-      "recEkGEXb6BiUT4Ke",
-      "recyyiggvT1GyQj45"
-    ],
     needs: ["recjTEL7xK4196TE7", "recmmMZPP4DI6Nq0a"],
     oneLineDescriptionEn: "Religious and spiritual support when you need it.",
     oneLineDescriptionFr:
@@ -728,7 +682,6 @@ const benefits = [
     vacNameFr: "Indemnit\u00e9 des prisonnier de guerre",
     benefitPageEn: "http://www.veterans.gc.ca/eng/services/financial/pow",
     benefitPageFr: "http://www.veterans.gc.ca/fra/services/financial/pow",
-    eligibilityPaths: ["recsOdDx7CWAftWIR", "recTg173gsbgdSMmx"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly compensation if you were taken prisoner or detained by enemy forces.",
@@ -752,11 +705,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/rehabilitation/services",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/rehabilitation/services",
-    eligibilityPaths: [
-      "recU1DU5vDT8h3sOX",
-      "recGN6WlSHpAw3tt6",
-      "rec6usTRT8JfBWYBC"
-    ],
     needs: [
       "rec1pKJ7uJYwqVOLx",
       "recFX7O3dYwg44kpM",
@@ -799,7 +747,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/retirement-income-security-benefit",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/retirement-income-security-benefit",
-    eligibilityPaths: ["rec8azbXzu0MLVs3y", "rec1dXWxOfzFZ6zKL"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly payments that replace the Earnings Loss Benefit at retirement (age 65).",
@@ -828,7 +775,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/rehabilitation/retirement-benefit",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/rehabilitation/retirement-benefit",
-    eligibilityPaths: ["rec6usTRT8JfBWYBC", "rec8azbXzu0MLVs3y"],
     needs: ["recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "One-time payment if you're receiving Earnings Loss Benefit at age 65 on a long-term basis.",
@@ -856,11 +802,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/disability-pension/survivor-benefits",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/disability-pension/survivor-benefits",
-    eligibilityPaths: [
-      "recXaPbzM7H7UoZn5",
-      "rec4zJqrgvVa7Rf4c",
-      "rec1dXWxOfzFZ6zKL"
-    ],
     needs: ["recjTEL7xK4196TE7", "recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Monthly income support to the survivor of a disability pensioner.",
@@ -882,7 +823,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/interview",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/interview",
-    eligibilityPaths: ["recvv3CfQZ7HTWxdA"],
     needs: ["recmmMZPP4DI6Nq0a"],
     oneLineDescriptionEn:
       "Meet with a Veterans Affairs employee before you release from the military to see what we can do for you.",
@@ -899,7 +839,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/health/treatment-benefits",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/health/treatment-benefits",
-    eligibilityPaths: ["recQerwEMBUU3TlRO"],
     needs: ["recGvrfrW7njPwsbk", "recmmMZPP4DI6Nq0a"],
     oneLineDescriptionEn: "Coverage for medical and healthcare services.",
     oneLineDescriptionFr:
@@ -935,7 +874,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/contact/vac-assistance-service",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/contact/vac-assistance-service",
-    eligibilityPaths: ["recrvk509oay9Vqd2", "recmKzJ6y5K1TgEiI"],
     needs: ["recmmMZPP4DI6Nq0a", "recjTEL7xK4196TE7", "recGvrfrW7njPwsbk"],
     oneLineDescriptionEn:
       "Get support right now from a mental health professional by calling 1-800-268-7708.",
@@ -957,7 +895,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/well-being-fund",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/well-being-fund",
-    eligibilityPaths: ["rec04iKWngFVunoHt"],
     oneLineDescriptionEn:
       "A fund for research or initiatives that improve the well-being of Veterans and their families.",
     oneLineDescriptionFr:
@@ -974,7 +911,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/veteran-family-program",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/veteran-family-program",
-    eligibilityPaths: ["recU1DU5vDT8h3sOX", "recBlSOo6diB5tkwc"],
     needs: ["recmmMZPP4DI6Nq0a"],
     oneLineDescriptionEn:
       "Continued access to services and support from Military Family Resource Centres for medically-released Veterans and families.",
@@ -994,12 +930,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/veterans-emergency-fund",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/veterans-emergency-fund",
-    eligibilityPaths: [
-      "recyyiggvT1GyQj45",
-      "rec8azbXzu0MLVs3y",
-      "rec1dXWxOfzFZ6zKL",
-      "recJxCbyWEnhFHJvj"
-    ],
     needs: ["recEahND3kwnUPTHx", "recpN4AgAGiH3x7KZ"],
     oneLineDescriptionEn:
       "Quick access to funds for urgent needs such as food, shelter or medical expenses.",
@@ -1023,7 +953,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/health/veterans-independence-program",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/health/veterans-independence-program",
-    eligibilityPaths: ["recsOdDx7CWAftWIR", "rec8azbXzu0MLVs3y"],
     needs: ["recXfW6phH2FFcE3T", "recmmMZPP4DI6Nq0a"],
     oneLineDescriptionEn:
       "Payments for home and health care services that you need to remain independent at home. ",
@@ -1063,11 +992,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/transition/rehabilitation",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/transition/rehabilitation",
-    eligibilityPaths: [
-      "recdSQlq9CZ7DFnqH",
-      "rec1dXWxOfzFZ6zKL",
-      "recJxCbyWEnhFHJvj"
-    ],
     needs: ["rec1pKJ7uJYwqVOLx", "recFX7O3dYwg44kpM", "recjTEL7xK4196TE7"],
     oneLineDescriptionEn: "Education or training to help launch your career.",
     oneLineDescriptionFr:
@@ -1092,7 +1016,6 @@ const benefits = [
     vacNameFr: "R\u00e9adaptation professionnelle",
     benefitPageEn: "http://www.cvvrs.com/",
     benefitPageFr: "http://www.cvvrs.com/",
-    eligibilityPaths: ["recGN6WlSHpAw3tt6"],
     needs: ["recFX7O3dYwg44kpM", "rec1pKJ7uJYwqVOLx"],
     oneLineDescriptionEn:
       "Coaching, support and any other training you need to return to work or find a new job after an injury.",
@@ -1116,7 +1039,6 @@ const benefits = [
       "http://www.veterans.gc.ca/eng/services/financial/war-veterans-allowance",
     benefitPageFr:
       "http://www.veterans.gc.ca/fra/services/financial/war-veterans-allowance",
-    eligibilityPaths: ["recsOdDx7CWAftWIR", "rec4zJqrgvVa7Rf4c"],
     needs: ["recpN4AgAGiH3x7KZ", "recXfW6phH2FFcE3T"],
     oneLineDescriptionEn:
       "Monthly payments if you have a low household income.",

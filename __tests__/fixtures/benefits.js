@@ -11,7 +11,6 @@ const benefitsFixture = [
     childBenefits: ["benefit_1"],
     availableIndependently: "Independent",
     sortingPriority: "low",
-    eligibilityPaths: ["ep_0"],
     benefitEligibility: ["0"]
   },
   {
@@ -27,7 +26,6 @@ const benefitsFixture = [
     noteEn: "note_1_en",
     noteFr: "note_1_fr",
     sortingPriority: "medium",
-    eligibilityPaths: ["ep_2"],
     benefitEligibility: ["3", "5"]
   },
   {
@@ -40,7 +38,6 @@ const benefitsFixture = [
     oneLineDescriptionFr: "b3_desc_fr",
     needs: ["need_2"],
     availableIndependently: "Independent",
-    eligibilityPaths: ["ep_2"],
     benefitEligibility: ["4", "6"]
   },
   {
@@ -56,7 +53,6 @@ const benefitsFixture = [
     noteEn: "note_2_en",
     noteFr: "note_2_fr",
     sortingPriority: "high",
-    eligibilityPaths: ["ep_0", "ep_1"],
     benefitEligibility: ["1"]
   }
 ];

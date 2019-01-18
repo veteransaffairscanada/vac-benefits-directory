@@ -101,14 +101,12 @@ export class BenefitExpansion extends Component {
 const mapStateToProps = reduxState => {
   return {
     benefits: reduxState.benefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
     multipleChoiceOptions: reduxState.multipleChoiceOptions,
     reduxState: reduxState
   };
 };
 BenefitExpansion.propTypes = {
   benefits: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
   multipleChoiceOptions: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
