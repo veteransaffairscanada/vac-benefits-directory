@@ -102,8 +102,8 @@ describe("Benefits Selectors", () => {
       );
       expect(actual).toEqual(false);
     });
+    */
   });
-  */
 
   describe("getFilteredBenefitsWithoutSearch", () => {
     it("displays all benefits if nothing selected", () => {
