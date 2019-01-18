@@ -3,9 +3,13 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import SaveChecked from "./icons/SaveChecked";
-import SelectionsEditor from "./selections_editor";
 import { connect } from "react-redux";
-import { getFavouritesUrl, getPrintUrl, getHomeUrl } from "../selectors/urls";
+import {
+  getFavouritesUrl,
+  getPrintUrl,
+  getHomeUrl,
+  getSummaryUrl
+} from "../selectors/urls";
 import { css } from "emotion";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
@@ -16,6 +20,7 @@ import { areCookiesDisabled } from "../utils/common";
 import BenefitsPane from "./benefits_pane";
 import BreadCrumbs from "../components/breadcrumbs";
 import ShareBox from "../components/share_box";
+import EditIcon from "./icons/Edit";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -29,6 +34,11 @@ const favouritesLink = css`
   border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
   border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
   margin-bottom: 24px;
+`;
+const sidebar = css`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 `;
 const dot = css`
   height: 23px;
@@ -84,36 +94,46 @@ export class BB extends Component {
         <Container>
           <Grid container spacing={32}>
             <Grid item lg={3} md={3} sm={4} xs={12}>
-              <Grid container spacing={16} className={favouritesLink}>
-                <Grid item xs={12}>
-                  <HeaderLink
-                    id="savedBenefits"
-                    href={this.props.favouritesUrl}
-                  >
-                    <SaveChecked />
-                    {t("B3.favouritesButtonText")}
-                  </HeaderLink>
-                  <span className={dot} id="favouritesDot">
-                    {this.props.favouriteBenefits.length}
-                  </span>
+              <div className={sidebar}>
+                <Grid container spacing={16} className={favouritesLink}>
+                  <Grid item xs={12}>
+                    <HeaderLink
+                      id="savedBenefits"
+                      href={this.props.favouritesUrl}
+                    >
+                      <SaveChecked />
+                      {t("B3.favouritesButtonText")}
+                    </HeaderLink>
+                    <span className={dot} id="favouritesDot">
+                      {this.props.favouriteBenefits.length}
+                    </span>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <HeaderButton
+                      id="nextSteps"
+                      onClick={() => this.scrollToNextSteps()}
+                    >
+                      <AssignmentTurnedIn />
+                      {t("nextSteps.whats_next")}
+                    </HeaderButton>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <HeaderLink
+                      id="editSelections"
+                      href={this.props.summaryUrl}
+                    >
+                      <EditIcon />
+                      {t("directory.edit_selections")}
+                    </HeaderLink>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                  <HeaderButton
-                    id="nextSteps"
-                    onClick={() => this.scrollToNextSteps()}
-                  >
-                    <AssignmentTurnedIn />
-                    {t("nextSteps.whats_next")}
-                  </HeaderButton>
-                </Grid>
-              </Grid>
-              <SelectionsEditor t={t} store={store} />
-              <ShareBox
-                t={t}
-                printUrl={this.props.printUrl}
-                url={url}
-                share={true}
-              />
+                <ShareBox
+                  t={t}
+                  printUrl={this.props.printUrl}
+                  url={url}
+                  share={true}
+                />
+              </div>
             </Grid>
             <Grid id="mainContent" item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={16}>
@@ -158,6 +178,7 @@ const mapStateToProps = (reduxState, props) => {
     favouriteBenefits: reduxState.favouriteBenefits,
     favouritesUrl: getFavouritesUrl(reduxState, props),
     homeUrl: getHomeUrl(reduxState, props),
+    summaryUrl: getSummaryUrl(reduxState, props),
     printUrl: getPrintUrl(reduxState, props, {})
   };
 };
@@ -167,6 +188,7 @@ BB.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
   favouritesUrl: PropTypes.string,
+  summaryUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
   homeUrl: PropTypes.string,
