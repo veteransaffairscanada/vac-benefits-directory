@@ -7,13 +7,13 @@ import {
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 
 describe("questionIsRelevant function", () => {
   let reduxState;
   beforeEach(() => {
     reduxState = {
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture
     };
   });
@@ -52,7 +52,7 @@ describe("showQuestion function", () => {
   beforeEach(() => {
     reduxState = {
       questions: questionsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       patronType: "veteran",

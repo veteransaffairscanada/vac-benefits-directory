@@ -6,6 +6,7 @@ import configureStore from "redux-mock-store";
 import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
 import needsFixture from "../fixtures/needs";
@@ -64,6 +65,7 @@ describe("Favourites", () => {
       favouriteBenefits: ["benefit_2"],
       selectedNeeds: {},
       eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
       closestAreaOffice: areaOfficesFixture[0],
