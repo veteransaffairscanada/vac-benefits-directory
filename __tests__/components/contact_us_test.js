@@ -36,6 +36,7 @@ describe("ContactUs", () => {
     expect(
       mount(<ContactUs {...props} />)
         .find("#registerNowLink")
+        .first()
         .prop("target")
     ).toEqual("_blank");
   });

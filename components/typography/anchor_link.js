@@ -21,10 +21,10 @@ class AnchorLink extends Component {
   `;
 
   render() {
-    const { className, children } = this.props;
+    const { className, children, fontSize, fontWeight, ...other } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <a className={cx(this.style, className)} {...this.props}>
+      <a className={cx(this.style, className)} {...other}>
         {children}
       </a>
     );
