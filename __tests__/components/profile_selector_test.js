@@ -1,7 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
 import { ProfileSelector } from "../../components/profile_selector";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
@@ -32,7 +31,6 @@ describe("ProfileSelector", () => {
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
       benefitEligibility: benefitEligibilityFixture,
       saveQuestionResponse: jest.fn()
     };

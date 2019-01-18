@@ -1,7 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import configureStore from "redux-mock-store";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import { BenefitCard } from "../../components/benefit_cards";
 import benefitsFixture from "../fixtures/benefits";
@@ -53,7 +52,6 @@ describe("BenefitCard", () => {
       selectedNeeds: {},
       benefits: benefitsFixture,
       favouriteBenefits: [],
-      eligibilityPaths: eligibilityPathsFixture,
       benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefitExamples: benefitExamplesFixture,

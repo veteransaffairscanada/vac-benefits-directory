@@ -6,7 +6,6 @@ import React from "react";
 import { DataValidation } from "../../pages/data-validation";
 import benefitsFixture from "../fixtures/benefits";
 import translationsFixture from "../fixtures/translations";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
 import areaOfficesFixture from "../fixtures/area_offices";
@@ -34,7 +33,6 @@ describe("DataValidation", () => {
         addResourceBundle: jest.fn()
       },
       benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
       benefitEligibility: benefitEligibilityFixture,
       needs: needsFixture,
       errors: [],
@@ -75,11 +73,6 @@ describe("DataValidation", () => {
     props.benefits = [];
     expect(mountedDataValidation().html()).toContain("Fail");
   });
-
-  it("fails if there are no eligibility paths", () => {
-    props.eligibilityPaths = [];
-    expect(mountedDataValidation().html()).toContain("Fail");
-  });
   it("fails if there is no benefitEligibility", () => {
     props.benefitEligibility = [];
     expect(mountedDataValidation().html()).toContain("Fail");
@@ -110,10 +103,6 @@ describe("DataValidation", () => {
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
-  it("fails if a benefit is not connected to any Eligibility Paths", () => {
-    props.benefits[0].eligibilityPaths = "";
-    expect(mountedDataValidation().html()).toContain("Fail");
-  });
   it("fails if a benefit is not listed in Benefit Eligibility", () => {
     props.benefitEligibility[0].benefit = "";
     expect(mountedDataValidation().html()).toContain("Fail");
@@ -137,14 +126,6 @@ describe("DataValidation", () => {
 
   it("fails if checkMissingNeeds doesn't find missing needs", () => {
     props.benefits[0].needs = "";
-    const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
-      props.benefits[0].vacNameEn
-    );
-  });
-
-  it("fails if checkEligibiltyPaths doesn't find missing needs", () => {
-    props.benefits[0].eligibilityPaths = "";
     const instance = shallow(<DataValidation {...props} />).instance();
     expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
       props.benefits[0].vacNameEn

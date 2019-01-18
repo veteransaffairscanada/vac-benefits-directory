@@ -1,7 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import { RadioSelector } from "../../components/radio_selector";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
@@ -27,7 +26,6 @@ describe("RadioSelector", () => {
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       t: translateFixture,
-      eligibilityPaths: eligibilityPathsFixture,
       benefitEligibility: benefitEligibilityFixture
     };
   });

@@ -6,18 +6,6 @@ const multipleChoiceOptions = [
     "question display logic": ["recn0zobKUhFIowAh"],
     questionClearLogic: ["recP2ZH4HWTMkutPu"],
     variable_name: "veteran",
-    eligibilityPaths: [
-      "rec8azbXzu0MLVs3y",
-      "recGN6WlSHpAw3tt6",
-      "recQerwEMBUU3TlRO",
-      "recsOdDx7CWAftWIR",
-      "rec55z5R3yz8JMv23",
-      "recj4U5sS1GYwJJjq",
-      "recmKzJ6y5K1TgEiI",
-      "recxsl5L3LLGIT9rt",
-      "recU1DU5vDT8h3sOX",
-      "recHYNXwAm2ncw4Ov"
-    ],
     benefits:
       "Assistance Fund , Attendance Allowance, Career Transition Services, Career Impact Allowance, Clothing Allowance, Critical Injury Benefit, Detention Benefits, Disability Award, Education and Training Benefit, Exceptional Incapacity Allowance, Group Health Insurance, Jobs in the federal government, Treatment Benefits, Pastoral Outreach , Veteran Family Program, Disability Pension",
     benefitEligibility:
@@ -63,14 +51,6 @@ const multipleChoiceOptions = [
     linked_question: ["patronType"],
     "question display logic": ["recdXDG6qy8fOltJr"],
     variable_name: "servingMember",
-    eligibilityPaths: [
-      "rec7iymBcLBwnkd20",
-      "recxsl5L3LLGIT9rt",
-      "recU1DU5vDT8h3sOX",
-      "recHYNXwAm2ncw4Ov",
-      "recR03cJel83BGYSD",
-      "recvv3CfQZ7HTWxdA"
-    ],
     benefits:
       "Career Transition Services, Career Impact Allowance, Critical Injury Benefit, Detention Benefits, Disability Award, Group Health Insurance, Jobs in the federal government, Veteran Family Program, Disability Pension",
     benefitEligibility:
@@ -97,21 +77,6 @@ const multipleChoiceOptions = [
     display_text_french: "Services pour membres de la famille",
     linked_question: ["patronType"],
     variable_name: "family",
-    eligibilityPaths: [
-      "recJxCbyWEnhFHJvj",
-      "rec1dXWxOfzFZ6zKL",
-      "rec6usTRT8JfBWYBC",
-      "recEkGEXb6BiUT4Ke",
-      "recBlSOo6diB5tkwc",
-      "recdSQlq9CZ7DFnqH",
-      "recXaPbzM7H7UoZn5",
-      "rec4zJqrgvVa7Rf4c",
-      "recyyiggvT1GyQj45",
-      "rec7YU77wS3rAEu3s",
-      "recc8tZtc94wRhgxt",
-      "recTg173gsbgdSMmx",
-      "recrvk509oay9Vqd2"
-    ],
     benefits:
       "Caregiver Zone, Death Benefit, Educational Assistance for children, Family Peer Support (OSISS), Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Funeral and Burial Assistance",
     benefitEligibility:
@@ -154,7 +119,6 @@ const multipleChoiceOptions = [
     linked_question: ["patronType"],
     questionClearLogic: ["rec7AIyz4BQjmGKT7"],
     variable_name: "organization",
-    eligibilityPaths: ["rec04iKWngFVunoHt"],
     benefits:
       "Community Engagement Fund, Community War Memorial Fund, Veteran and Family Well-Being Fund",
     benefitEligibility: "recgFx9UqPwqSW6hO, recbbyAFXpnjEAmZ9",
@@ -168,20 +132,6 @@ const multipleChoiceOptions = [
     display_text_french: "Forces Arm\u00e9es Canadiennes",
     linked_question: ["serviceType"],
     variable_name: "CAF",
-    eligibilityPaths: [
-      "recxsl5L3LLGIT9rt",
-      "recU1DU5vDT8h3sOX",
-      "rec8azbXzu0MLVs3y",
-      "recGN6WlSHpAw3tt6",
-      "rec1dXWxOfzFZ6zKL",
-      "rec6usTRT8JfBWYBC",
-      "recEkGEXb6BiUT4Ke",
-      "recBlSOo6diB5tkwc",
-      "recJxCbyWEnhFHJvj",
-      "recdSQlq9CZ7DFnqH",
-      "rec7iymBcLBwnkd20",
-      "recvv3CfQZ7HTWxdA"
-    ],
     "benefits 2":
       "Career Transition Services, Career Impact Allowance, Critical Injury Benefit, Death Benefit, Detention Benefits, Disability Award, Education and Training Benefit, Educational Assistance for children, Family Peer Support (OSISS), Group Health Insurance, Jobs in the federal government, Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Disability Pension, Funeral and Burial Assistance",
     benefitEligibility:
@@ -231,7 +181,6 @@ const multipleChoiceOptions = [
     display_text_french: "Gendarmerie royale du Canada",
     linked_question: ["serviceType"],
     variable_name: "RCMP",
-    eligibilityPaths: ["recHYNXwAm2ncw4Ov", "recXaPbzM7H7UoZn5"],
     "benefits 2": "Survivor's Pension, Disability Pension",
     benefitEligibility:
       "recI2JIvA0Mtvna2v, rechEoLL5pBxeHcGN, recGSaT5q7VLKIDtA",
@@ -249,13 +198,6 @@ const multipleChoiceOptions = [
     "question display logic 2": ["recdXDG6qy8fOltJr"],
     questionClearLogic: ["rec9DCmvkqeW06zqu"],
     variable_name: "WSV (WWII or Korea)",
-    eligibilityPaths: [
-      "recsOdDx7CWAftWIR",
-      "rec55z5R3yz8JMv23",
-      "rec4zJqrgvVa7Rf4c",
-      "recyyiggvT1GyQj45",
-      "recTg173gsbgdSMmx"
-    ],
     "benefits 2":
       "Assistance Fund , Pastoral Outreach , Survivor's Pension, Disability Pension, Funeral and Burial Assistance",
     benefitEligibility:
@@ -287,7 +229,6 @@ const multipleChoiceOptions = [
     "question display logic 2": ["reczEVuK0ipZkAIec"],
     "questionClearLogic 2": ["rec9DCmvkqeW06zqu"],
     variable_name: "stillServing",
-    eligibilityPaths: ["recdSQlq9CZ7DFnqH"],
     "benefits 3": "Vocational Assistance",
     benefitEligibility: "recQKuvUeQib6xDlk",
     "benefitEligibility 4": ["recQKuvUeQib6xDlk"],
@@ -300,12 +241,6 @@ const multipleChoiceOptions = [
     display_text_french: "Lib\u00e9r\u00e9",
     linked_question: ["statusAndVitals"],
     variable_name: "releasedAlive",
-    eligibilityPaths: [
-      "rec7YU77wS3rAEu3s",
-      "recJxCbyWEnhFHJvj",
-      "recc8tZtc94wRhgxt",
-      "recTg173gsbgdSMmx"
-    ],
     "benefits 3": "Caregiver Zone, Vocational Assistance",
     benefitEligibility:
       "recC1BOsrEwQQT7Tr, recXSg015decd4TOq, recWmF49cJ0evYv0F, rece3ZFiriZxO63e4, rec0AZCo8gx3HzLy1, rec6vIdu4K8xl1nxi, recQKuvUeQib6xDlk, recwtgBef5LIpUifM",
@@ -330,13 +265,6 @@ const multipleChoiceOptions = [
     "question display logic 2": ["recn0zobKUhFIowAh"],
     "questionClearLogic 2": ["recP2ZH4HWTMkutPu"],
     variable_name: "deceased",
-    eligibilityPaths: [
-      "rec1dXWxOfzFZ6zKL",
-      "rec6usTRT8JfBWYBC",
-      "recXaPbzM7H7UoZn5",
-      "rec4zJqrgvVa7Rf4c",
-      "recrvk509oay9Vqd2"
-    ],
     "benefits 3":
       "Death Benefit, Educational Assistance for children, Family Peer Support (OSISS), Survivor's Pension, Vocational Assistance, Funeral and Burial Assistance",
     benefitEligibility:
@@ -371,17 +299,6 @@ const multipleChoiceOptions = [
     display_text_french: "Oui",
     linked_question: ["serviceHealthIssue"],
     variable_name: "hasServiceHealthIssue",
-    eligibilityPaths: [
-      "recU1DU5vDT8h3sOX",
-      "recGN6WlSHpAw3tt6",
-      "recQerwEMBUU3TlRO",
-      "recHYNXwAm2ncw4Ov",
-      "rec55z5R3yz8JMv23",
-      "rec6usTRT8JfBWYBC",
-      "recBlSOo6diB5tkwc",
-      "rec7iymBcLBwnkd20",
-      "recj4U5sS1GYwJJjq"
-    ],
     ge_breadcrumb_english: "Has service-related health issue",
     ge_breadcrumb_french:
       "A un probl\u00e8me de sant\u00e9 li\u00e9 au service",

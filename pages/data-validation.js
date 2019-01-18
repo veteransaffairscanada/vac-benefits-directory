@@ -95,12 +95,6 @@ export class DataValidation extends Component {
     }
   };
 
-  checkEligibiltyPaths = (b, i) => {
-    if (!(b.eligibilityPaths && b.eligibilityPaths != "")) {
-      return " " + b[this.state.benefitNameKey] + " (" + (i + 1) + "),";
-    }
-  };
-
   checkBenefitEligibility = (b, i) => {
     if (!b.benefitEligibility) {
       return " " + b[this.state.benefitNameKey] + " (" + (i + 1) + "),";
@@ -153,7 +147,6 @@ export class DataValidation extends Component {
       i18n,
       t,
       benefits,
-      eligibilityPaths,
       benefitEligibility,
       needs,
       errors,
@@ -166,11 +159,6 @@ export class DataValidation extends Component {
         "Size of Benefits Table",
         benefits.length,
         benefits.length > 0 ? true : false
-      ),
-      this.createData(
-        "Size of Eligibility Paths Table",
-        eligibilityPaths.length,
-        eligibilityPaths.length > 0 ? true : false
       ),
       this.createData(
         "Size of Needs Table",
@@ -201,11 +189,6 @@ export class DataValidation extends Component {
         "Benefits Without Needs",
         benefits.map(this.checkMissingNeeds),
         benefits.filter(this.checkMissingNeeds).length == 0 ? true : false
-      ),
-      this.createData(
-        "Benefits not in an Eligibility Path",
-        benefits.map(this.checkEligibiltyPaths),
-        benefits.filter(this.checkEligibiltyPaths).length == 0 ? true : false
       ),
       this.createData(
         "Benefits not in the Benefit Eligibility Table",
@@ -306,7 +289,6 @@ const mapStateToProps = reduxState => {
   return {
     areaOffices: reduxState.areaOffices,
     benefits: reduxState.benefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
     benefitEligibility: reduxState.benefitEligibility,
     needs: reduxState.needs,
     timestamp: reduxState.timestamp,
@@ -317,7 +299,6 @@ const mapStateToProps = reduxState => {
 
 DataValidation.propTypes = {
   benefits: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
   benefitEligibility: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   errors: PropTypes.array.isRequired,

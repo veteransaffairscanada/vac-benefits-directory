@@ -142,29 +142,6 @@ describe("getPrintUrl", () => {
       ],
       closestAreaOffice: "",
       selectedAreaOffice: "",
-      eligibilityPaths: [
-        {
-          requirements: ["patronType: p1"],
-          patronType: "p1",
-          serviceType: "na",
-          statusAndVitals: "na",
-          benefits: ["0", "2", "4"]
-        },
-        {
-          requirements: ["patronType: p2"],
-          patronType: "p2",
-          serviceType: "na",
-          statusAndVitals: "na",
-          benefits: ["2"]
-        },
-        {
-          requirements: ["patronType: p3"],
-          patronType: "p3",
-          serviceType: "na",
-          statusAndVitals: "na",
-          benefits: ["1", "3", "4"]
-        }
-      ],
       benefitEligibility: [
         {
           id: "0",

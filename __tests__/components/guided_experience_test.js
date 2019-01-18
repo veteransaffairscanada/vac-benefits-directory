@@ -2,7 +2,6 @@ import { mount, shallow } from "enzyme";
 import React from "react";
 import Router from "next/router";
 import questionsFixture from "../fixtures/questions_complex";
-import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
 import { GuidedExperience } from "../../components/guided_experience";
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -55,7 +54,6 @@ describe("GuidedExperience", () => {
         selectedNeeds: {},
         questions: questionsFixture,
         multipleChoiceOptions: multipleChoiceOptions,
-        eligibilityPaths: eligibilityPathsFixture,
         benefitEligibility: benefitEligibilityFixture
       }
     };

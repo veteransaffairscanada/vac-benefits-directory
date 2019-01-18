@@ -3,7 +3,6 @@ import { mount } from "enzyme";
 import { SelectionsEditor } from "../../components/selections_editor";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
@@ -33,7 +32,6 @@ describe("SelectionsEditor", () => {
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       selectedNeeds: {},
       needs: needsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
       benefitEligibility: benefitEligibilityFixture,
       pageWidth: 1000
     };
