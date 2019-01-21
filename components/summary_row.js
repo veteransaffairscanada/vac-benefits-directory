@@ -21,7 +21,7 @@ const breadcrumbCss = css`
   font-size: 24px;
 `;
 
-const SummaryRow = (content, section, key, t) => {
+const SummaryRow = (content, section, key, url, t) => {
   return (
     <li className={breadcrumbCss} key={key}>
       <Grid container>
@@ -30,14 +30,14 @@ const SummaryRow = (content, section, key, t) => {
         </Grid>
         <Grid item xs={3} className={rightAlign}>
           <AnchorLink
-            href={mutateUrl(this.props.url, "/index", { section: section })}
+            // href={mutateUrl(url, "/index", { section: section })}
             fontSize={24}
           >
             <EditIcon
               focusable="true"
               aria-hidden="false"
               role="img"
-              aria-label={t("alt_text.edit")}
+              // aria-label={t("alt_text.edit")}
             />
           </AnchorLink>
         </Grid>
