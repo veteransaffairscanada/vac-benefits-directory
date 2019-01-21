@@ -34,7 +34,9 @@ export class SummaryRow extends Component {
     }
 
     if (mco && section !== "needs") {
-      return mco.display_text_english;
+      return t("current-language-code") === "en"
+        ? mco.display_text_english
+        : mco.display_text_french;
     }
 
     const selectedNeedsText = reduxState.needs
@@ -42,6 +44,7 @@ export class SummaryRow extends Component {
       .map(x => {
         return t("current-language-code") === "en" ? x.nameEn : x.nameFr;
       });
+
     if (selectedNeedsText.length === 0) {
       return "none selected";
     }
