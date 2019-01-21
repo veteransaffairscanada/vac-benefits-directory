@@ -1,35 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@material-ui/core";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
 import AnchorLink from "./typography/anchor_link";
 import { connect } from "react-redux";
 import { mutateUrl, showQuestion } from "../utils/common";
-import EditIcon from "./icons/Edit";
+import SummaryRow from "./summary_row";
 
 const outerDiv = css`
   padding: 12px;
-`;
-
-const breadcrumbCss = css`
-  border-top: 1px solid ${globalTheme.colour.warmGrey};
-  padding-bottom: 15px;
-  padding-top: 15px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  font-size: 24px;
 `;
 
 const breadcrumbList = css`
   border-bottom: 1px solid ${globalTheme.colour.warmGrey};
   padding-left: 0;
   width: 100%;
-`;
-
-const rightAlign = css`
-  text-align: right !important;
 `;
 
 export class GuidedExperienceSummary extends Component {
@@ -51,31 +36,6 @@ export class GuidedExperienceSummary extends Component {
     } else {
       return question.breadcrumb_french;
     }
-  };
-
-  getLiElement = (content, section, key) => {
-    return (
-      <li className={breadcrumbCss} key={key}>
-        <Grid container>
-          <Grid item xs={9}>
-            {content}
-          </Grid>
-          <Grid item xs={3} className={rightAlign}>
-            <AnchorLink
-              href={mutateUrl(this.props.url, "/index", { section: section })}
-              fontSize={24}
-            >
-              <EditIcon
-                focusable="true"
-                aria-hidden="false"
-                role="img"
-                aria-label={this.props.t("alt_text.edit")}
-              />
-            </AnchorLink>
-          </Grid>
-        </Grid>
-      </li>
-    );
   };
 
   breadcrumbs = () => {
@@ -125,7 +85,9 @@ export class GuidedExperienceSummary extends Component {
           </AnchorLink>
         );
       }
-      return this.getLiElement(crumb, k, i);
+      return (
+        <SummaryRow content={crumb} section={k} key={i} t={this.props.t} />
+      );
     });
     return jsx_array;
   };
