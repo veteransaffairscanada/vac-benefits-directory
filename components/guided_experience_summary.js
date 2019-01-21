@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
+import { showQuestion } from "../utils/common";
 import { connect } from "react-redux";
-
-import ComponentX from "./component_x";
+import SummaryRow from "./summary_row";
 
 const outerDiv = css`
   padding: 12px;
@@ -18,17 +18,21 @@ const breadcrumbList = css`
 
 export class GuidedExperienceSummary extends Component {
   render() {
-    const { reduxState, url, t } = this.props;
+    const { url, t, reduxState } = this.props;
     return (
       <div className={outerDiv}>
         <ul className={breadcrumbList}>
-          <ComponentX reduxState={reduxState} t={t} url={url} />
+          {reduxState.questions
+            .map(x => x.variable_name)
+            .filter((x, i) => showQuestion(x, i, reduxState))
+            .map((k, i) => {
+              return <SummaryRow section={k} key={i} url={url} t={t} />;
+            })}
         </ul>
       </div>
     );
   }
 }
-
 const mapStateToProps = reduxState => {
   return {
     reduxState: reduxState
