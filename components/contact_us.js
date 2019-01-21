@@ -10,6 +10,7 @@ import Button from "./button";
 import { getMapUrl } from "../selectors/urls";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
+import AnchorLink from "./typography/anchor_link";
 
 const outerDiv = css`
   padding: 0px 12px;
@@ -34,10 +35,6 @@ const header = css`
 
 const font21 = css`
   font-size: 21px;
-`;
-
-const cerulean = css`
-  color: ${globalTheme.colour.cerulean};
 `;
 
 export class ContactUs extends Component {
@@ -67,15 +64,14 @@ export class ContactUs extends Component {
               </Header>
               <p>
                 {t("nextSteps.box_1")}
-                <a
+                <AnchorLink
                   id="registerNowLink"
                   href={t("nextSteps.myvac_register_href")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cerulean}
                 >
                   {t("nextSteps.myvac_register_text")}
-                </a>
+                </AnchorLink>
                 .
               </p>
               <Button
@@ -103,9 +99,9 @@ export class ContactUs extends Component {
               <p>{t("nextSteps.box_2a")}</p>
               <p>
                 {t("nextSteps.box_2b") + " "}
-                <a href={"mailto:" + t("contact.email")} className={cerulean}>
+                <AnchorLink href={"mailto:" + t("contact.email")}>
                   {t("contact.email")}
-                </a>
+                </AnchorLink>
                 {t("nextSteps.box_2c")}
               </p>
             </Paper>
