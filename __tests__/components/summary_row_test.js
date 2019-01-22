@@ -72,4 +72,14 @@ describe("GuidedExperienceSummary", () => {
         .text()
     ).toEqual("p1_en");
   });
+
+  it("contains 'not selected' if nothing is selected", async () => {
+    props.reduxState.patronType = "";
+    expect(
+      mount(<SummaryRow {...props} />)
+        .find("div")
+        .at(1)
+        .text()
+    ).toEqual("ge.nothing_selected");
+  });
 });
