@@ -6,10 +6,6 @@ import { showQuestion } from "../utils/common";
 import { connect } from "react-redux";
 import SummaryRow from "./summary_row";
 
-const outerDiv = css`
-  padding: 12px;
-`;
-
 const breadcrumbList = css`
   border-bottom: 1px solid ${globalTheme.colour.warmGrey};
   padding-left: 0;
@@ -20,7 +16,7 @@ export class GuidedExperienceSummary extends Component {
   render() {
     const { url, t, reduxState } = this.props;
     return (
-      <div className={outerDiv}>
+      <div>
         <ul className={breadcrumbList}>
           {reduxState.questions
             .map(x => x.variable_name)

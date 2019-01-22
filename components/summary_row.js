@@ -5,13 +5,18 @@ import { Grid } from "@material-ui/core";
 import EditIcon from "./icons/Edit";
 import { globalTheme } from "../theme";
 import { mutateUrl } from "../utils/common";
-import AnchorLink from "./typography/anchor_link";
+// import AnchorLink from "./typography/anchor_link";
+import HeaderLink from "./header_link";
 import { connect } from "react-redux";
 
 const rightAlign = css`
   text-align: right !important;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 `;
-
 const breadcrumbCss = css`
   border-top: 1px solid ${globalTheme.colour.warmGrey};
   padding-bottom: 15px;
@@ -19,7 +24,16 @@ const breadcrumbCss = css`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 24px;
+  font-size: 14px;
+`;
+const bold = css`
+  font-weight: 900;
+`;
+const font = css`
+  font-size: 16px;
+`;
+const icon = css`
+  height: 5px;
 `;
 
 export class SummaryRow extends Component {
@@ -30,7 +44,7 @@ export class SummaryRow extends Component {
     )[0];
 
     if (!mco && section !== "needs") {
-      return "none selected";
+      return t("ge.nothing_selected");
     }
 
     if (mco && section !== "needs") {
@@ -46,7 +60,7 @@ export class SummaryRow extends Component {
       });
 
     if (selectedNeedsText.length === 0) {
-      return "none selected";
+      return t("ge.nothing_selected");
     }
     return selectedNeedsText.join(", ");
   };
@@ -61,21 +75,28 @@ export class SummaryRow extends Component {
       <li className={breadcrumbCss} key={key}>
         <Grid container>
           <Grid item xs={9}>
-            <div>{question.guided_experience_english}</div>
+            <div className={bold}>
+              {t("current-language-code") === "en"
+                ? question.guided_experience_english
+                : question.guided_experience_french}
+            </div>
             <div>{this.getAnswer()}</div>
           </Grid>
           <Grid item xs={3} className={rightAlign}>
-            <AnchorLink
+            <HeaderLink
               href={mutateUrl(url, "/index", { section: section })}
-              fontSize={24}
+              className={font}
             >
               <EditIcon
                 focusable="true"
                 aria-hidden="false"
                 role="img"
                 aria-label={t("alt_text.edit")}
+                className={icon}
+                height="5px"
               />
-            </AnchorLink>
+              {t("ge.edit")}
+            </HeaderLink>
           </Grid>
         </Grid>
       </li>
