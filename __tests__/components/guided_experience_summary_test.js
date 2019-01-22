@@ -48,19 +48,4 @@ describe("GuidedExperienceSummary", () => {
       mount(<GuidedExperienceSummary {...props} />).find("li").length
     ).toEqual(3);
   });
-
-  it("renders the correct number of edit rows", async () => {
-    expect(
-      mount(<GuidedExperienceSummary {...props} />).find("HeaderLink").length
-    ).toEqual(3);
-  });
-
-  it("clicking an edit link takes you to the correct url", async () => {
-    expect(
-      mount(<GuidedExperienceSummary {...props} />)
-        .find("HeaderLink")
-        .first()
-        .prop("href")
-    ).toEqual("/index?section=patronType");
-  });
 });
