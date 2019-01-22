@@ -29,6 +29,7 @@ export class GuidedExperienceSummary extends Component {
     );
   }
 }
+
 const mapStateToProps = reduxState => {
   return {
     reduxState: reduxState

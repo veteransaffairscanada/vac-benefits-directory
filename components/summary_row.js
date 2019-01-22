@@ -5,17 +5,11 @@ import { Grid } from "@material-ui/core";
 import EditIcon from "./icons/Edit";
 import { globalTheme } from "../theme";
 import { mutateUrl } from "../utils/common";
-// import AnchorLink from "./typography/anchor_link";
 import HeaderLink from "./header_link";
 import { connect } from "react-redux";
 
 const rightAlign = css`
   text-align: right !important;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
 `;
 const breadcrumbCss = css`
   border-top: 1px solid ${globalTheme.colour.warmGrey};
@@ -32,8 +26,10 @@ const bold = css`
 const font = css`
   font-size: 16px;
 `;
-const icon = css`
-  height: 5px;
+const hideOnMobile = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none;
+  }
 `;
 
 export class SummaryRow extends Component {
@@ -44,7 +40,7 @@ export class SummaryRow extends Component {
     )[0];
 
     if (!mco && section !== "needs") {
-      return t("ge.nothing_selected");
+      return <i>{t("ge.nothing_selected")}</i>;
     }
 
     if (mco && section !== "needs") {
@@ -60,7 +56,7 @@ export class SummaryRow extends Component {
       });
 
     if (selectedNeedsText.length === 0) {
-      return t("ge.nothing_selected");
+      return <i>{t("ge.nothing_selected")}</i>;
     }
     return selectedNeedsText.join(", ");
   };
@@ -77,8 +73,8 @@ export class SummaryRow extends Component {
           <Grid item xs={9}>
             <div className={bold}>
               {t("current-language-code") === "en"
-                ? question.guided_experience_english
-                : question.guided_experience_french}
+                ? question.summary_english
+                : question.summary_french}
             </div>
             <div>{this.getAnswer()}</div>
           </Grid>
@@ -92,10 +88,9 @@ export class SummaryRow extends Component {
                 aria-hidden="false"
                 role="img"
                 aria-label={t("alt_text.edit")}
-                className={icon}
                 height="5px"
               />
-              {t("ge.edit")}
+              <span className={hideOnMobile}>{t("ge.edit")}</span>
             </HeaderLink>
           </Grid>
         </Grid>
