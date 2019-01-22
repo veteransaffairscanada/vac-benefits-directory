@@ -1,8 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { GuidedExperienceSummary } from "../../components/guided_experience_summary";
-const { axe, toHaveNoViolations } = require("jest-axe");
-expect.extend(toHaveNoViolations);
+import { SummaryRow } from "../../components/summary_row";
 import benefitsFixture from "../fixtures/benefits";
 import translate from "../fixtures/translate";
 import needsFixture from "../fixtures/needs";
@@ -10,22 +8,22 @@ import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import multipleChoiceOptions from "../fixtures/multiple_choice_options";
-import configureStore from "redux-mock-store";
 
 describe("GuidedExperienceSummary", () => {
-  let props, reduxState, mockStore;
+  let props, reduxState;
   beforeEach(() => {
     props = {
       t: translate,
-      url: { query: {}, route: "/summary" }
+      url: { query: {}, route: "/summary" },
+      questionName: "patronType",
+      key: 0
     };
     reduxState = {
       benefits: benefitsFixture,
       filteredBenefits: benefitsFixture,
       benefitEligibility: benefitEligibilityFixture,
       needs: needsFixture,
-      selectedNeeds: {},
-      serviceType: "s1",
+      selectedNeeds: { need_0: "need_0", need_1: "need_1" },
       patronType: "veteran",
       option: "",
       questions: questionsFixture,
@@ -34,33 +32,44 @@ describe("GuidedExperienceSummary", () => {
       multipleChoiceOptions: multipleChoiceOptions
     };
     props.reduxState = reduxState;
-    mockStore = configureStore();
-    props.store = mockStore(reduxState);
   });
 
-  it("passes axe tests", async () => {
-    let html = mount(<GuidedExperienceSummary {...props} />).html();
-    expect(await axe(html)).toHaveNoViolations();
-  });
+  // not doing axe testing on this component because it contains an unavoidable
+  // violation: <li> elements not in a <ul> because the <ul> is in the parent
+  // component.
 
-  it("renders the correct number of li elements", async () => {
+  it("renders an edit button", async () => {
     expect(
-      mount(<GuidedExperienceSummary {...props} />).find("li").length
-    ).toEqual(3);
-  });
-
-  it("renders the correct number of edit rows", async () => {
-    expect(
-      mount(<GuidedExperienceSummary {...props} />).find("HeaderLink").length
-    ).toEqual(3);
+      mount(<SummaryRow {...props} />)
+        .find("HeaderLink")
+        .text()
+    ).toEqual("ge.edit");
   });
 
   it("clicking an edit link takes you to the correct url", async () => {
     expect(
-      mount(<GuidedExperienceSummary {...props} />)
+      mount(<SummaryRow {...props} />)
         .find("HeaderLink")
-        .first()
         .prop("href")
     ).toEqual("/index?section=patronType");
+  });
+
+  it("contains a comma separated list if there are selected needs", async () => {
+    props.questionName = "needs";
+    expect(
+      mount(<SummaryRow {...props} />)
+        .find("div")
+        .at(1)
+        .text()
+    ).toEqual("Need 0, Need 1");
+  });
+
+  it("contains the user's answer", async () => {
+    expect(
+      mount(<SummaryRow {...props} />)
+        .find("div")
+        .at(1)
+        .text()
+    ).toEqual("p1_en");
   });
 });

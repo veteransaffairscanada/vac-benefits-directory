@@ -23,7 +23,13 @@ export class GuidedExperienceSummary extends Component {
             .filter((x, i) => showQuestion(x, i, reduxState))
             .map((k, i) => {
               return (
-                <SummaryRow section={k} key={i} url={url} t={t} store={store} />
+                <SummaryRow
+                  questionName={k}
+                  key={i}
+                  url={url}
+                  t={t}
+                  store={store}
+                />
               );
             })}
         </ul>

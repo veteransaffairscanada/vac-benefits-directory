@@ -34,16 +34,16 @@ const hideOnMobile = css`
 
 export class SummaryRow extends Component {
   getAnswer = () => {
-    const { reduxState, t, section } = this.props;
+    const { reduxState, t, questionName } = this.props;
     const mco = reduxState.multipleChoiceOptions.filter(
-      x => x.variable_name === reduxState[section]
+      x => x.variable_name === reduxState[questionName]
     )[0];
 
-    if (!mco && section !== "needs") {
+    if (!mco && questionName !== "needs") {
       return <i>{t("ge.nothing_selected")}</i>;
     }
 
-    if (mco && section !== "needs") {
+    if (mco && questionName !== "needs") {
       return t("current-language-code") === "en"
         ? mco.display_text_english
         : mco.display_text_french;
@@ -62,13 +62,13 @@ export class SummaryRow extends Component {
   };
 
   render() {
-    const { section, key, url, t, reduxState } = this.props;
+    const { questionName, url, t, reduxState } = this.props;
     const question = reduxState.questions.filter(
-      x => x.variable_name === section
+      x => x.variable_name === questionName
     )[0];
 
     return (
-      <li className={breadcrumbCss} key={key}>
+      <li className={breadcrumbCss}>
         <Grid container>
           <Grid item xs={9}>
             <div className={bold}>
@@ -80,7 +80,7 @@ export class SummaryRow extends Component {
           </Grid>
           <Grid item xs={3} className={rightAlign}>
             <HeaderLink
-              href={mutateUrl(url, "/index", { section: section })}
+              href={mutateUrl(url, "/index", { section: questionName })}
               className={font}
             >
               <EditIcon
@@ -107,9 +107,8 @@ const mapStateToProps = reduxState => {
 SummaryRow.propTypes = {
   reduxState: PropTypes.object.isRequired,
   url: PropTypes.object.isRequired,
-  section: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired,
-  key: PropTypes.object
+  questionName: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps)(SummaryRow);
