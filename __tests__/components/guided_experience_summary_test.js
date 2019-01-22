@@ -10,9 +10,10 @@ import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import multipleChoiceOptions from "../fixtures/multiple_choice_options";
+import configureStore from "redux-mock-store";
 
 describe("GuidedExperienceSummary", () => {
-  let props, reduxState;
+  let props, reduxState, mockStore;
   beforeEach(() => {
     props = {
       t: translate,
@@ -33,6 +34,8 @@ describe("GuidedExperienceSummary", () => {
       multipleChoiceOptions: multipleChoiceOptions
     };
     props.reduxState = reduxState;
+    mockStore = configureStore();
+    props.store = mockStore(reduxState);
   });
 
   it("passes axe tests", async () => {
@@ -46,16 +49,16 @@ describe("GuidedExperienceSummary", () => {
     ).toEqual(3);
   });
 
-  it("renders the correct number of breadcrumbs", async () => {
+  it("renders the correct number of edit buttons", async () => {
     expect(
-      mount(<GuidedExperienceSummary {...props} />).find("AnchorLink").length
-    ).toEqual(5);
+      mount(<GuidedExperienceSummary {...props} />).find("HeaderLink").length
+    ).toEqual(3);
   });
 
-  it("clicking a breadcrumb takes you to the correct url", async () => {
+  it("clicking an edit link takes you to the correct url", async () => {
     expect(
       mount(<GuidedExperienceSummary {...props} />)
-        .find("AnchorLink")
+        .find("HeaderLink")
         .first()
         .prop("href")
     ).toEqual("/index?section=patronType");

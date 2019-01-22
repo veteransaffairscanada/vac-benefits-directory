@@ -14,7 +14,7 @@ const breadcrumbList = css`
 
 export class GuidedExperienceSummary extends Component {
   render() {
-    const { url, t, reduxState } = this.props;
+    const { url, t, reduxState, store } = this.props;
     return (
       <div>
         <ul className={breadcrumbList}>
@@ -22,7 +22,9 @@ export class GuidedExperienceSummary extends Component {
             .map(x => x.variable_name)
             .filter((x, i) => showQuestion(x, i, reduxState))
             .map((k, i) => {
-              return <SummaryRow section={k} key={i} url={url} t={t} />;
+              return (
+                <SummaryRow section={k} key={i} url={url} t={t} store={store} />
+              );
             })}
         </ul>
       </div>
