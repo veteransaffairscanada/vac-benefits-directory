@@ -60,6 +60,29 @@ var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
   });
 };
 
+var fillEmptyValues = table => {
+  var array = table.map(x => Object.keys(x).length);
+  var number_of_fields = Math.max(...array);
+  var completed_row = table.filter(
+    x => Object.keys(x).length === number_of_fields
+  )[0];
+  var all_columns = Object.keys(completed_row);
+
+  table.forEach(x => {
+    var x_columns = Object.keys(x);
+    all_columns.forEach(c => {
+      if (x_columns.indexOf(c) === -1 && typeof completed_row[c] === "string") {
+        x[c] = "";
+      } else if (
+        x_columns.indexOf(c) === -1 &&
+        typeof completed_row[c] === "object"
+      ) {
+        x[c] = [];
+      }
+    });
+  });
+};
+
 var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateFromAirtable() {
   let dataStore = {};
   airtableConstants.tableNames.forEach(function(tableName) {
@@ -72,29 +95,7 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
   await Promise.all(promises);
   dataStore["errors"] = [];
   airtableConstants.tableNames.forEach(function(tableName) {
-    var array = dataStore[tableName].map(x => Object.keys(x).length);
-    var number_of_fields = Math.max(...array);
-    var completed_row = dataStore[tableName].filter(
-      x => Object.keys(x).length === number_of_fields
-    )[0];
-    var all_columns = Object.keys(completed_row);
-
-    dataStore[tableName].forEach(x => {
-      var x_columns = Object.keys(x);
-      all_columns.forEach(c => {
-        if (
-          x_columns.indexOf(c) === -1 &&
-          typeof completed_row[c] === "string"
-        ) {
-          x[c] = "";
-        } else if (
-          x_columns.indexOf(c) === -1 &&
-          typeof completed_row[c] === "object"
-        ) {
-          x[c] = [];
-        }
-      });
-    });
+    fillEmptyValues(dataStore[tableName]);
   });
 
   // replace ids in linked records
