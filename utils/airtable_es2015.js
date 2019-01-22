@@ -74,17 +74,26 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
   airtableConstants.tableNames.forEach(function(tableName) {
     var array = dataStore[tableName].map(x => Object.keys(x).length);
     var number_of_fields = Math.max(...array);
-    dataStore[tableName] = dataStore[tableName].filter((x, i) => {
-      var fraction_of_cols_filled =
-        (Object.keys(x).length * 1) / number_of_fields;
-      if (fraction_of_cols_filled < 0.5) {
-        dataStore["errors"].push(
-          "missingValues." + tableName + ".row=" + (i + 1).toString()
-        );
-        return false;
-      } else {
-        return true;
-      }
+    var completed_row = dataStore[tableName].filter(
+      x => Object.keys(x).length === number_of_fields
+    )[0];
+    var all_columns = Object.keys(completed_row);
+
+    dataStore[tableName].forEach(x => {
+      var x_columns = Object.keys(x);
+      all_columns.forEach(c => {
+        if (
+          x_columns.indexOf(c) === -1 &&
+          typeof completed_row[c] === "string"
+        ) {
+          x[c] = "";
+        } else if (
+          x_columns.indexOf(c) === -1 &&
+          typeof completed_row[c] === "object"
+        ) {
+          x[c] = [];
+        }
+      });
     });
   });
 
