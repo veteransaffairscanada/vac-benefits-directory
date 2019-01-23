@@ -84,7 +84,6 @@ describe("Benefits Selectors", () => {
         profileFilters,
         state.multipleChoiceOptions
       );
-      console.log(actual);
       expect(actual).toEqual(true);
     });
 
