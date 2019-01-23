@@ -28,7 +28,10 @@ export const questionIsRelevant = (
   );
   let returnValue = false;
   relevantPaths.forEach(ep => {
-    if (ep[question_variable_name] != undefined) {
+    if (
+      ep[question_variable_name] !== undefined &&
+      ep[question_variable_name].length !== 0
+    ) {
       returnValue = true;
     }
   });
