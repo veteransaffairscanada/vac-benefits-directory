@@ -28,7 +28,7 @@ export const getFilteredBenefitsFunction = (
   let eligibleBenefitIds = [];
   // iterate through benefitEligibility table and any benefit that matches, add to the list (but don't add more than once!)
   benefitEligibility.forEach(be => {
-    if (benefitEligibilityMatch(be, profileFilters, multipleChoiceOptions)) {
+    if (eligibilityMatch(be, profileFilters, multipleChoiceOptions)) {
       eligibleBenefitIds.push(be.benefit[0]);
     }
   });
@@ -64,11 +64,7 @@ export const getProfileFilters = createSelector(
   }
 );
 
-export const benefitEligibilityMatch = (
-  be,
-  profileFilters,
-  multipleChoiceOptions
-) => {
+export const eligibilityMatch = (be, profileFilters, multipleChoiceOptions) => {
   let matches = true;
   Object.keys(profileFilters).forEach(criteria => {
     if (profileFilters[criteria] && be[criteria] && be[criteria].length > 0) {
@@ -80,8 +76,7 @@ export const benefitEligibilityMatch = (
       mco.forEach(m => {
         names.push(m.variable_name);
       });
-
-      if (names.indexOf(profileFilters[criteria]) === -1) {
+      if (names.indexOf(profileFilters[criteria].toString()) === -1) {
         matches = false;
       }
     }
@@ -164,9 +159,7 @@ export const getFilteredNextSteps = createSelector(
       // only check eligible nextSteps if we know we have selections
       let eligibleNextStepIds = [];
       nextSteps.forEach(ns => {
-        if (
-          benefitEligibilityMatch(ns, profileFilters, multipleChoiceOptions)
-        ) {
+        if (eligibilityMatch(ns, profileFilters, multipleChoiceOptions)) {
           eligibleNextStepIds.push(ns.id);
         }
       });

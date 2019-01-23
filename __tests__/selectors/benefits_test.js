@@ -1,6 +1,6 @@
 import {
   getProfileFilters,
-  benefitEligibilityMatch,
+  eligibilityMatch,
   getFilteredBenefitsWithoutSearch,
   getFilteredNextSteps,
   getFilteredBenefits
@@ -60,13 +60,13 @@ describe("Benefits Selectors", () => {
     });
   });
 
-  describe("benefitEligibilityMatch", () => {
+  describe("eligibilityMatch", () => {
     it("matches if nothing selected", () => {
       const profileFilters = {
         patronType: "",
         serviceType: ""
       };
-      const actual = benefitEligibilityMatch(
+      const actual = eligibilityMatch(
         state.benefits[0],
         profileFilters,
         state.multipleChoiceOptions
@@ -74,35 +74,32 @@ describe("Benefits Selectors", () => {
       expect(actual).toEqual(true);
     });
 
-    /*
     it("matches if selections match", () => {
       const profileFilters = {
-        patronType: "veteran",
-        serviceType: "CAF",
-        statusAndVitals: ""
+        patronType: ["veteran"],
+        serviceType: ["CAF"]
       };
-      const actual = benefitEligibilityMatch(
-        state.benefits[1],
+      const actual = eligibilityMatch(
+        state.benefitEligibility[3],
         profileFilters,
         state.multipleChoiceOptions
       );
+      console.log(actual);
       expect(actual).toEqual(true);
     });
 
     it("doesn't match if selections don't match", () => {
       const profileFilters = {
-        patronType: "family",
-        serviceType: "CAF",
-        statusAndVitals: ""
+        patronType: ["family"],
+        serviceType: ["CAF"]
       };
-      const actual = benefitEligibilityMatch(
-        state.benefits[4],
+      const actual = eligibilityMatch(
+        state.benefitEligibility[3],
         profileFilters,
         state.multipleChoiceOptions
       );
       expect(actual).toEqual(false);
     });
-    */
   });
 
   describe("getFilteredBenefitsWithoutSearch", () => {
