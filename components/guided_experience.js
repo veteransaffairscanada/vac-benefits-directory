@@ -6,7 +6,7 @@ import Router from "next/router";
 import Container from "./container";
 import Header from "./typography/header";
 import Body from "./typography/body";
-import Button from "./button";
+import NextSkipButtons from "./next_skip_buttons";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
@@ -35,64 +35,6 @@ const body = css`
   margin-bottom: 0px;
 `;
 export class GuidedExperience extends Component {
-  returnGoToNextSection = clearCurrentQuestion => {
-    let goToNextSection = () => {
-      const { id, reduxState, url, saveQuestionResponse } = this.props;
-      let params = {};
-      this.queryParamsToClear().forEach(x => {
-        params[x.key] = x.value;
-      });
-
-      // modifiedReduxState exists so we are sure the redux state updates before we do Router push
-      let modifiedReduxState = JSON.parse(JSON.stringify(reduxState));
-      if (clearCurrentQuestion) {
-        if (id === "needs") {
-          saveQuestionResponse("selectedNeeds", {});
-          modifiedReduxState.selectedNeeds = {};
-        } else {
-          saveQuestionResponse(id, "");
-          modifiedReduxState[id] = "";
-        }
-      }
-
-      const displayable_sections = this.getDisplayableSections(
-        modifiedReduxState
-      );
-      const dynamicStepNumber = displayable_sections.indexOf(id);
-      let nextSection;
-      if (dynamicStepNumber + 1 >= displayable_sections.length) {
-        nextSection = "summary";
-        if (clearCurrentQuestion && id === "needs") {
-          params.selectedNeeds = {};
-          const newUrl = mutateUrl(url, "/summary", params);
-          window.location.href = newUrl;
-          document.body.focus();
-        } else {
-          Router.push(mutateUrl(url, "/summary", params)).then(() =>
-            window.scrollTo(0, 0)
-          );
-          document.body.focus();
-        }
-      } else {
-        nextSection = displayable_sections[dynamicStepNumber + 1];
-        if (clearCurrentQuestion) {
-          params[id] = "";
-        }
-        Router.push(mutateUrl(url, "/" + nextSection, params)).then(() =>
-          window.scrollTo(0, 0)
-        );
-        document.body.focus();
-      }
-    };
-    return goToNextSection;
-  };
-
-  getDisplayableSections = reduxState => {
-    return this.props.reduxState.questions
-      .map(x => x.variable_name)
-      .filter((x, i) => showQuestion(x, i, reduxState));
-  };
-
   queryParamsToClear() {
     return this.props.reduxState.questions
       .map(x => x.variable_name)
@@ -107,7 +49,7 @@ export class GuidedExperience extends Component {
   }
 
   render() {
-    const { t, prevSection, subtitle, helperText, url } = this.props;
+    const { t, prevSection, subtitle, helperText, url, id } = this.props;
 
     return (
       <Container id="mainContent">
@@ -160,22 +102,8 @@ export class GuidedExperience extends Component {
               {helperText ? <Body className={body}>{helperText}</Body> : null}
               {this.props.children}
             </Grid>
-
             <Grid item xs={12}>
-              <Button
-                id="nextButton"
-                arrow={true}
-                onClick={this.returnGoToNextSection(false)}
-              >
-                {t("next")}{" "}
-              </Button>
-              <HeaderButton
-                id="skipButton"
-                altStyle="grey"
-                onClick={this.returnGoToNextSection(true)}
-              >
-                {t("ge.skip")}
-              </HeaderButton>
+              <NextSkipButtons t={t} id={id} url={url} />
             </Grid>
           </Grid>
         </Paper>
@@ -191,23 +119,11 @@ const mapStateToProps = reduxState => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    saveQuestionResponse: (question, response) => {
-      dispatch({
-        type: "SAVE_QUESTION_RESPONSE",
-        data: { [question]: response }
-      });
-    }
-  };
-};
-
 GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
   sectionOrder: PropTypes.array.isRequired,
-  saveQuestionResponse: PropTypes.func.isRequired,
   prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
   subtitle: PropTypes.string.isRequired,
@@ -217,7 +133,4 @@ GuidedExperience.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GuidedExperience);
+export default connect(mapStateToProps)(GuidedExperience);
