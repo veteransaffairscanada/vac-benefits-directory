@@ -63,13 +63,11 @@ export class GuidedExperience extends Component {
       if (dynamicStepNumber + 1 >= displayable_sections.length) {
         nextSection = "summary";
         if (clearCurrentQuestion && id === "needs") {
-          params.section = "";
           params.selectedNeeds = {};
           const newUrl = mutateUrl(url, "/summary", params);
           window.location.href = newUrl;
           document.body.focus();
         } else {
-          params.section = "";
           Router.push(mutateUrl(url, "/summary", params)).then(() =>
             window.scrollTo(0, 0)
           );
@@ -77,11 +75,10 @@ export class GuidedExperience extends Component {
         }
       } else {
         nextSection = displayable_sections[dynamicStepNumber + 1];
-        params.section = nextSection;
         if (clearCurrentQuestion) {
           params[id] = "";
         }
-        Router.push(mutateUrl(url, "/index", params)).then(() =>
+        Router.push(mutateUrl(url, "/" + nextSection, params)).then(() =>
           window.scrollTo(0, 0)
         );
         document.body.focus();

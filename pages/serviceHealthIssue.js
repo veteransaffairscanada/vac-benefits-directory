@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Cookies from "universal-cookie";
 import { connect } from "react-redux";
 import withI18N from "../lib/i18nHOC";
+import { showQuestion } from "../utils/common";
 import Layout from "../components/layout";
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 
-const section = "patronType";
+const section = "serviceHealthIssue";
 
-export class Index extends Component {
-  constructor(props) {
-    super(props);
-    this.cookies = new Cookies();
-  }
-
+export class HealthIssue extends Component {
   componentDidUpdate(prevProps) {
     if (this.props !== prevProps) {
       this.setURL();
@@ -33,26 +28,42 @@ export class Index extends Component {
       return question["guided_experience_french"];
     }
   };
+  getTooltip = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["tooltip_english"];
+    } else {
+      return question["tooltip_french"];
+    }
+  };
 
   render() {
     const { t, i18n, store, reduxState, sectionOrder, url } = this.props;
+    const displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxState)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(section);
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];
+    const pageTitle =
+      t("current-language-code") === "en"
+        ? question.guided_experience_page_title_english
+        : question.guided_experience_page_title_french;
 
     return (
       <Layout
         i18n={i18n}
         t={t}
         hideNoscript={false}
-        title={t("ge.Find benefits and services")}
+        title={pageTitle}
         skipLink="#mainContent"
       >
         <GuidedExperience
           id={section}
           stepNumber={sectionOrder.indexOf(section)}
-          prevSection="index"
+          prevSection={displayable_sections[dynamicStepNumber - 1]}
           subtitle={this.getSubtitle(question)}
+          helperText={this.getTooltip(question)}
           t={t}
           url={url}
           store={store}
@@ -88,7 +99,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-Index.propTypes = {
+HealthIssue.propTypes = {
   reduxState: PropTypes.object,
   sectionOrder: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
@@ -102,4 +113,4 @@ Index.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withI18N(Index));
+)(withI18N(HealthIssue));

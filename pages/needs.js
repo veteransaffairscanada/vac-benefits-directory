@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Cookies from "universal-cookie";
 import { connect } from "react-redux";
 import withI18N from "../lib/i18nHOC";
+import { showQuestion } from "../utils/common";
 import Layout from "../components/layout";
 import GuidedExperience from "../components/guided_experience";
-import GuidedExperienceProfile from "../components/guided_experience_profile";
+import GuidedExperienceNeeds from "../components/guided_experience_needs";
 
-const section = "patronType";
+const section = "needs";
 
-export class Index extends Component {
-  constructor(props) {
-    super(props);
-    this.cookies = new Cookies();
-  }
-
+export class Categories extends Component {
   componentDidUpdate(prevProps) {
     if (this.props !== prevProps) {
       this.setURL();
@@ -22,7 +17,9 @@ export class Index extends Component {
   }
 
   setURL = () => {
-    this.props.url.query[section] = this.props.reduxState[section];
+    this.props.url.query[section] = Object.keys(
+      this.props.selectedNeeds
+    ).join();
     this.props.url.query.lng = this.props.t("current-language-code");
   };
 
@@ -36,33 +33,36 @@ export class Index extends Component {
 
   render() {
     const { t, i18n, store, reduxState, sectionOrder, url } = this.props;
+    const displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxState)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(section);
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];
+    const pageTitle =
+      t("current-language-code") === "en"
+        ? question.guided_experience_page_title_english
+        : question.guided_experience_page_title_french;
 
     return (
       <Layout
         i18n={i18n}
         t={t}
         hideNoscript={false}
-        title={t("ge.Find benefits and services")}
+        title={pageTitle}
         skipLink="#mainContent"
       >
         <GuidedExperience
           id={section}
           stepNumber={sectionOrder.indexOf(section)}
-          prevSection="index"
+          prevSection={displayable_sections[dynamicStepNumber - 1]}
           subtitle={this.getSubtitle(question)}
           t={t}
           url={url}
           store={store}
         >
-          <GuidedExperienceProfile
-            t={t}
-            selectorType={section}
-            store={store}
-            options={question["multiple_choice_options"]}
-          />
+          <GuidedExperienceNeeds t={t} selectorType={section} store={store} />
         </GuidedExperience>
       </Layout>
     );
@@ -88,7 +88,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-Index.propTypes = {
+Categories.propTypes = {
   reduxState: PropTypes.object,
   sectionOrder: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
@@ -102,4 +102,4 @@ Index.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withI18N(Index));
+)(withI18N(Categories));
