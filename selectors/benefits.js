@@ -70,8 +70,6 @@ export const benefitEligibilityMatch = (
   multipleChoiceOptions
 ) => {
   let matches = true;
-  console.log(be);
-  console.log(profileFilters);
   Object.keys(profileFilters).forEach(criteria => {
     if (profileFilters[criteria] && be[criteria] && be[criteria].length > 0) {
       // convert benefitEligibility ids to match profileFilter names
