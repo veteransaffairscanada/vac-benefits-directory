@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 
 const rightAlign = css`
   text-align: right !important;
+  padding-top: 12px;
 `;
 const breadcrumbCss = css`
   border-top: 1px solid ${globalTheme.colour.warmGrey};
@@ -22,6 +23,7 @@ const breadcrumbCss = css`
 `;
 const bold = css`
   font-weight: 900;
+  padding-bottom: 7px;
 `;
 const font = css`
   font-size: 16px;
