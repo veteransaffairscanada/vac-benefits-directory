@@ -1,7 +1,4 @@
-import {
-  benefitEligibilityMatch,
-  getProfileFilters
-} from "../selectors/benefits";
+import { eligibilityMatch, getProfileFilters } from "../selectors/benefits";
 
 export const uuidv4 = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
@@ -20,11 +17,7 @@ export const questionIsRelevant = (
   profileFilters[question_variable_name] = "";
 
   let relevantPaths = reduxState.benefitEligibility.filter(ep =>
-    benefitEligibilityMatch(
-      ep,
-      profileFilters,
-      reduxState.multipleChoiceOptions
-    )
+    eligibilityMatch(ep, profileFilters, reduxState.multipleChoiceOptions)
   );
   let returnValue = false;
   relevantPaths.forEach(ep => {
