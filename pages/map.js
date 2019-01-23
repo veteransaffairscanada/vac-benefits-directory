@@ -86,7 +86,10 @@ export class Map extends Component {
               <Body>
                 <p>
                   {t("map.contact_1") + " "}
-                  <AnchorLink fontSize={18} href={"tel:+" + t("contact.phone")}>
+                  <AnchorLink
+                    fontSize="18px"
+                    href={"tel:+" + t("contact.phone")}
+                  >
                     {t("contact.phone")}
                   </AnchorLink>
                   {" " + t("map.contact_2")}
