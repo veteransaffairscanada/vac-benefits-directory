@@ -9,6 +9,14 @@ import GuidedExperienceProfile from "../components/guided_experience_profile";
 const section = "serviceHealthIssue";
 
 export class HealthIssue extends Component {
+  getTooltip = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["tooltip_english"];
+    } else {
+      return question["tooltip_french"];
+    }
+  };
+
   render() {
     const { t, i18n, store, reduxState, url } = this.props;
     const question = reduxState.questions.filter(

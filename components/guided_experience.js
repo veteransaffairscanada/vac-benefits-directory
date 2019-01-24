@@ -5,13 +5,15 @@ import { css } from "emotion";
 import Container from "./container";
 import Header from "./typography/header";
 import Body from "./typography/body";
-import NextSkipButtons from "./next_skip_buttons";
 import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
 import Paper from "./paper";
 import { mutateUrl } from "../utils/common";
 import { connect } from "react-redux";
-import { showQuestion } from "../utils/common";
+import { showQuestion, getPageName } from "../utils/common";
+import HeaderButton from "./header_button";
+import Button from "./button";
+import Link from "next/link";
 
 const box = css`
   padding: 63px 63px 63px 63px;
@@ -64,14 +66,34 @@ export class GuidedExperience extends Component {
     const displayable_sections = sectionOrder.filter((x, i) =>
       showQuestion(x, i, reduxState)
     );
-
     const dynamicStepNumber = displayable_sections.indexOf(id);
     const prevSection = displayable_sections[dynamicStepNumber - 1];
+    const nextSection =
+      dynamicStepNumber + 1 >= displayable_sections.length
+        ? "summary"
+        : displayable_sections[dynamicStepNumber + 1];
+
+    let nextQueryParams = this.queryParamsToClear();
+    let skipQueryParams = this.queryParamsToClear();
+    if (id === "needs") {
+      nextQueryParams.selectedNeeds = Object.keys(
+        reduxState.selectedNeeds
+      ).join();
+      skipQueryParams.selectedNeeds = {};
+    } else {
+      nextQueryParams[id] = JSON.parse(JSON.stringify(reduxState[id]));
+      skipQueryParams[id] = "";
+    }
+
     return (
       <Container id="mainContent">
         <HeaderLink
           id="prevButton"
-          href={mutateUrl(url, "/" + prevSection, this.queryParamsToClear())}
+          href={mutateUrl(
+            url,
+            "/" + getPageName(prevSection),
+            this.queryParamsToClear()
+          )}
           className={prevButton}
           arrow="back"
         >
@@ -100,7 +122,28 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
             <Grid item xs={12}>
-              <NextSkipButtons t={t} id={id} url={url} />
+              <Link
+                href={mutateUrl(
+                  url,
+                  "/" + getPageName(nextSection),
+                  nextQueryParams
+                )}
+              >
+                <Button id="nextButton" arrow={true}>
+                  {t("next")}{" "}
+                </Button>
+              </Link>
+              <Link
+                href={mutateUrl(
+                  url,
+                  "/" + getPageName(nextSection),
+                  skipQueryParams
+                )}
+              >
+                <HeaderButton id="skipButton" altStyle="grey">
+                  {t("ge.skip")}
+                </HeaderButton>
+              </Link>
             </Grid>
           </Grid>
         </Paper>
