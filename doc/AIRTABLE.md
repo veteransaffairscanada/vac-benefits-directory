@@ -46,6 +46,7 @@ To do anything in AirTable, always take the following steps:
 | one line description                                         | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | oneLineDescriptionEn                 | oneLineDescriptionFr                |
 | VAC Learn more link                                          | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | benefitPageEn                        | benefitPageFr                       |
 | important info in card header                                | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | noteEn                               | noteFr                              |
+| see more content description                                 | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | seeMoreSentenceEn                    | seeMoreSentenceFr                   |
 | question text in benefits-directory                          | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | display_text_english                 | display_text_french                 |
 | question text in guided experience                           | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_english            | guided_experience_french            |
 | guided experience page title                                 | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_page_title_english | guided_experience_page_title_french |
@@ -61,14 +62,10 @@ To do anything in AirTable, always take the following steps:
 
 ### Changing the eligibility criteria for a benefit
 
-1. Navigate to the [benefits sheet](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ) in AirTable
-2. Locate the row that corresponds to the benefit you want to change
-3. Scroll right to the eligibilityPaths column
-4. Each path is represented by a comma separated list of answers to the questions. Decide which one you want to change.
-5. Write down the new, correct path to the benefit on paper. This should be a comma separated list of required options. If a question does not have any required options, leave them out.
-6. Navigate to the [eligibilityPaths](https://airtable.com/tblHt9ZuCBwsplYw2/viwWR17CgrYqiNa0B) sheet.
-7. Determine if the new path you wrote down already exists. If it exists, add the benefit to the benefits column for that row. If it doesn't exist, create a new row and add the benefit. Note: only include `stillServing`, `releasedAlive`, or `deceased` in a path if the path includes `family` and not `veteran`, `serving member`, or `organization`. This may mean that you need to create 2 paths for a benefit: one path for family members and another path for veterans. Look at the admin_display column and description (i icon in column header) for more info.
-8. Delete the benefit from the row for the incorrect eligibility path
+1. Navigate to the [benefitEligibility sheet](https://airtable.com/tblRNTYbp9OWDSj4l/viwB7uV1iu2dCaa5P) in AirTable
+2. Each path is represented by values within columns which correspond to the questions in the [questions sheet](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s). The values which fill these columns correspond to values in the [multipleChoiceOptions sheet](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx).
+3. Determine if the new eligiblity path for the benefit already exists (has a row in the benefitEligibility sheet). If it doesn't exist, create a new row and add the benefit and the eligibility criteria. Note: only include `statusAndVitals` values in a path if the path includes `family` and not `veteran`, `serving member`, or `organization`. This may mean that you need to create 2 rows for a benefit: one path for family members and another path for veterans.
+4. If you wish to remove an eligibility path from a benefit, delete the corresponding row in the table.
 
 ### Adding a category (aka need or checkbox question), associating it with a benefit
 
