@@ -63,8 +63,6 @@ export class Index extends Component {
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];
-    const id = section;
-    const subtitle = this.getSubtitle(question);
 
     return (
       <Layout
@@ -95,7 +93,7 @@ export class Index extends Component {
             <Grid container spacing={24}>
               <Grid item xs={12} className={questions}>
                 <Header size="md_lg" headingLevel="h2">
-                  {subtitle}
+                  {this.getSubtitle(question)}
                 </Header>
                 <GuidedExperienceProfile
                   t={t}
@@ -105,7 +103,7 @@ export class Index extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <NextSkipButtons t={t} id={id} url={url} />
+                <NextSkipButtons t={t} id={section} url={url} />
               </Grid>
             </Grid>
           </Paper>
@@ -114,17 +112,6 @@ export class Index extends Component {
     );
   }
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    saveQuestionResponse: (question, response) => {
-      dispatch({
-        type: "SAVE_QUESTION_RESPONSE",
-        data: { [question]: response }
-      });
-    }
-  };
-};
 
 const mapStateToProps = reduxState => {
   return {
@@ -141,11 +128,7 @@ Index.propTypes = {
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  saveQuestionResponse: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withI18N(Index));
+export default connect(mapStateToProps)(withI18N(Index));

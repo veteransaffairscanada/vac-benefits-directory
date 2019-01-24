@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { css } from "emotion";
-import Router from "next/router";
 import Container from "./container";
 import Header from "./typography/header";
 import Body from "./typography/body";
 import NextSkipButtons from "./next_skip_buttons";
-import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
 import Paper from "./paper";
@@ -35,53 +33,52 @@ const body = css`
   margin-bottom: 0px;
 `;
 export class GuidedExperience extends Component {
+  getSubtitle = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["guided_experience_english"];
+    } else {
+      return question["guided_experience_french"];
+    }
+  };
+
   queryParamsToClear() {
-    return this.props.reduxState.questions
+    let queryObj = {};
+    this.props.reduxState.questions
       .map(x => x.variable_name)
       .filter((x, i) => !showQuestion(x, i, this.props.reduxState))
-      .map(x => {
+      .forEach(x => {
         if (x === "needs") {
-          return { key: "selectedNeeds", value: {} };
+          queryObj["selectedNeeds"] = {};
         } else {
-          return { key: x, value: "" };
+          queryObj[x] = "";
         }
       });
+    return queryObj;
   }
 
   render() {
-    const { t, prevSection, subtitle, helperText, url, id } = this.props;
+    const { t, helperText, url, id, reduxState, sectionOrder } = this.props;
+    const question = reduxState.questions.filter(
+      x => x.variable_name === id
+    )[0];
+    const displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxState)
+    );
 
+    const dynamicStepNumber = displayable_sections.indexOf(id);
+    const prevSection = displayable_sections[dynamicStepNumber - 1];
     return (
       <Container id="mainContent">
-        {prevSection === "index" ? (
-          <HeaderLink
-            id="prevButton"
-            href={t("ge.home_link")}
-            className={prevButton}
-            arrow="back"
-          >
-            {t("back")}
-          </HeaderLink>
-        ) : (
-          <HeaderButton
-            id="prevButton"
-            onClick={() => {
-              let params = { section: prevSection };
-              this.queryParamsToClear().forEach(x => {
-                params[x.key] = x.value;
-              });
-              Router.push(mutateUrl(url, "/", params));
-              document.body.focus();
-              window.scrollTo(0, 0);
-            }}
-            className={prevButton}
-            arrow="back"
-          >
-            {t("back")}
-          </HeaderButton>
-        )}
+        <HeaderLink
+          id="prevButton"
+          href={mutateUrl(url, "/" + prevSection, this.queryParamsToClear())}
+          className={prevButton}
+          arrow="back"
+        >
+          {t("back")}
+        </HeaderLink>
 
-        {this.props.stepNumber === 0 ? (
+        {id === "patronType" ? (
           <React.Fragment>
             <Header size="lg" headingLevel="h1">
               {t("ge.Find benefits and services")}
@@ -97,7 +94,7 @@ export class GuidedExperience extends Component {
           <Grid container spacing={24}>
             <Grid item xs={12} className={questions}>
               <Header size="md_lg" headingLevel="h2">
-                {subtitle}
+                {this.getSubtitle(question)}
               </Header>
               {helperText ? <Body className={body}>{helperText}</Body> : null}
               {this.props.children}
@@ -124,11 +121,8 @@ GuidedExperience.propTypes = {
   url: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
   sectionOrder: PropTypes.array.isRequired,
-  prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
-  subtitle: PropTypes.string.isRequired,
   helperText: PropTypes.string,
-  stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
   store: PropTypes.object
 };

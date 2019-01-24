@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import withI18N from "../lib/i18nHOC";
-import { showQuestion } from "../utils/common";
 import Layout from "../components/layout";
 import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
@@ -10,33 +9,8 @@ import GuidedExperienceNeeds from "../components/guided_experience_needs";
 const section = "needs";
 
 export class Categories extends Component {
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
-      this.setURL();
-    }
-  }
-
-  setURL = () => {
-    this.props.url.query[section] = Object.keys(
-      this.props.selectedNeeds
-    ).join();
-    this.props.url.query.lng = this.props.t("current-language-code");
-  };
-
-  getSubtitle = question => {
-    if (this.props.t("current-language-code") === "en") {
-      return question["guided_experience_english"];
-    } else {
-      return question["guided_experience_french"];
-    }
-  };
-
   render() {
-    const { t, i18n, store, reduxState, sectionOrder, url } = this.props;
-    const displayable_sections = sectionOrder.filter((x, i) =>
-      showQuestion(x, i, reduxState)
-    );
-    const dynamicStepNumber = displayable_sections.indexOf(section);
+    const { t, i18n, store, reduxState, url } = this.props;
     const question = reduxState.questions.filter(
       x => x.variable_name === section
     )[0];
@@ -53,32 +27,13 @@ export class Categories extends Component {
         title={pageTitle}
         skipLink="#mainContent"
       >
-        <GuidedExperience
-          id={section}
-          stepNumber={sectionOrder.indexOf(section)}
-          prevSection={displayable_sections[dynamicStepNumber - 1]}
-          subtitle={this.getSubtitle(question)}
-          t={t}
-          url={url}
-          store={store}
-        >
+        <GuidedExperience id={section} t={t} url={url} store={store}>
           <GuidedExperienceNeeds t={t} selectorType={section} store={store} />
         </GuidedExperience>
       </Layout>
     );
   }
 }
-
-const mapDispatchToProps = dispatch => {
-  return {
-    saveQuestionResponse: (question, response) => {
-      dispatch({
-        type: "SAVE_QUESTION_RESPONSE",
-        data: { [question]: response }
-      });
-    }
-  };
-};
 
 const mapStateToProps = reduxState => {
   return {
@@ -95,11 +50,7 @@ Categories.propTypes = {
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  saveQuestionResponse: PropTypes.func.isRequired,
   store: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withI18N(Categories));
+export default connect(mapStateToProps)(withI18N(Categories));
