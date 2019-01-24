@@ -110,7 +110,7 @@ export class BB extends Component {
             <Grid item lg={3} md={3} sm={4} xs={12}>
               <div className={sidebar}>
                 <Grid container spacing={16} className={sidebarLinks}>
-                  <Grid item xs={12}>
+                  <Grid item xs={4} sm={12}>
                     <HeaderLink
                       id="savedBenefits"
                       href={this.props.favouritesUrl}
@@ -120,7 +120,7 @@ export class BB extends Component {
                       <span className={hideBig}>{shortFavouritesText}</span>
                     </HeaderLink>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={4} sm={12}>
                     <HeaderButton
                       id="nextSteps"
                       onClick={() => this.scrollToNextSteps()}
@@ -129,7 +129,7 @@ export class BB extends Component {
                       {t("nextSteps.whats_next")}
                     </HeaderButton>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={4} sm={12}>
                     <HeaderLink
                       id="editSelections"
                       href={this.props.summaryUrl}
