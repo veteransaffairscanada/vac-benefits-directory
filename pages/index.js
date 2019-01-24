@@ -9,7 +9,7 @@ import Cookies from "universal-cookie";
 
 const section = "patronType";
 
-export class ServiceType extends Component {
+export class Index extends Component {
   constructor(props) {
     super(props);
     this.cookies = new Cookies();
@@ -50,7 +50,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-ServiceType.propTypes = {
+Index.propTypes = {
   reduxState: PropTypes.object,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
@@ -58,4 +58,4 @@ ServiceType.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(mapStateToProps)(withI18N(ServiceType));
+export default connect(mapStateToProps)(withI18N(Index));
