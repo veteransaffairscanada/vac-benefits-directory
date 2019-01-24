@@ -29,7 +29,7 @@ const topMatter = css`
   background-color: ${globalTheme.colour.white};
   width: 100%;
 `;
-const favouritesLink = css`
+const sidebarLinks = css`
   padding: 1em 24px !important;
   border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
   border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
@@ -39,20 +39,25 @@ const sidebar = css`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
 `;
-const dot = css`
-  height: 23px;
-  width: 22.5px;
-  padding-top: 1px;
-  padding-left: 1.5px;
-  background-color: ${globalTheme.colour.red2};
-  border-radius: 50%;
-  display: inline-block;
-  text-align: center;
-  color: white;
-  font-size: 16px;
-  margin-top: 2px;
-  float: right;
+
+const hideSmall = css`
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    display: none !important;
+  }
+`;
+const hideBig = css`
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
+    display: none !important;
+  }
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    display: none !important;
+  }
 `;
 
 export class BB extends Component {
@@ -80,7 +85,16 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, store, homeUrl, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const longFavouritesText = t("favourites.saved_benefits", {
+      x: favouriteBenefits.length
+    });
+    const shortFavouritesText = t("favourites.saved_benefits_mobile", {
+      x: favouriteBenefits.length
+    });
+    const longEditText = t("directory.edit_selections");
+    const shortEditText = t("directory.edit_selections_mobile");
+
     return (
       <div id={this.props.id} className={outerDiv}>
         <div className={topMatter}>
@@ -95,18 +109,16 @@ export class BB extends Component {
           <Grid container spacing={32}>
             <Grid item lg={3} md={3} sm={4} xs={12}>
               <div className={sidebar}>
-                <Grid container spacing={16} className={favouritesLink}>
+                <Grid container spacing={16} className={sidebarLinks}>
                   <Grid item xs={12}>
                     <HeaderLink
                       id="savedBenefits"
                       href={this.props.favouritesUrl}
                     >
                       <SaveChecked />
-                      {t("B3.favouritesButtonText")}
+                      <span className={hideSmall}>{longFavouritesText}</span>
+                      <span className={hideBig}>{shortFavouritesText}</span>
                     </HeaderLink>
-                    <span className={dot} id="favouritesDot">
-                      {this.props.favouriteBenefits.length}
-                    </span>
                   </Grid>
                   <Grid item xs={12}>
                     <HeaderButton
@@ -123,7 +135,8 @@ export class BB extends Component {
                       href={this.props.summaryUrl}
                     >
                       <EditIcon />
-                      {t("directory.edit_selections")}
+                      <span className={hideSmall}>{longEditText}</span>
+                      <span className={hideBig}>{shortEditText}</span>
                     </HeaderLink>
                   </Grid>
                 </Grid>
