@@ -38,7 +38,9 @@ const benefits = [
     benefitPolicyFR:
       "http://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57065",
     benefitEligibility: ["rec6ejmokDXrYAUqT"],
-    id: "recNsVtmotVHzDhAB"
+    id: "recNsVtmotVHzDhAB",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Canadian Forces Income Support",
@@ -86,7 +88,9 @@ const benefits = [
       "recsKq5LuDw0TcjWa"
     ],
     benefitEligibility: ["recR4crMdLtxDz0cf"],
-    id: "rece4vwRrORpYznkw"
+    id: "rece4vwRrORpYznkw",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Career Transition Services",
@@ -112,7 +116,9 @@ const benefits = [
       "recmmMpVXLmP914l3"
     ],
     benefitEligibility: ["recl8EQBaoPvkUs1y"],
-    id: "rec45xfsf1ijZzXqM"
+    id: "rec45xfsf1ijZzXqM",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Caregiver Recognition Benefit",
@@ -146,7 +152,9 @@ const benefits = [
     ],
     benefitEligibility: ["rec3LMYRHMRfFdc2E", "recC1BOsrEwQQT7Tr"],
     id: "recL63epbxypNYRjL",
-    sortingNumber: 2
+    sortingNumber: 2,
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Caregiver Zone",
@@ -171,7 +179,9 @@ const benefits = [
     ],
     benefitEligibility: ["recXSg015decd4TOq"],
     id: "recEHxSnVLcMvYnbS",
-    sortingNumber: 3
+    sortingNumber: 3,
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Case management",
@@ -200,7 +210,9 @@ const benefits = [
     ],
     benefitEligibility: ["recWmF49cJ0evYv0F", "recxyzl32f531NaOr"],
     id: "recVKse8WgvLYcfgP",
-    sortingNumber: 2
+    sortingNumber: 2,
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Clothing Allowance",
@@ -247,7 +259,9 @@ const benefits = [
       "recApHjwONYCPf2E8"
     ],
     benefitEligibility: ["recgFx9UqPwqSW6hO"],
-    id: "recowlPz6lmqcbp7F"
+    id: "recowlPz6lmqcbp7F",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Community War Memorial Fund",
@@ -270,7 +284,9 @@ const benefits = [
       "rec9a51tKgrjFth1A"
     ],
     benefitEligibility: ["recbbyAFXpnjEAmZ9"],
-    id: "recmFhBkztEyJtm5R"
+    id: "recmFhBkztEyJtm5R",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Critical Injury Benefit",
@@ -292,7 +308,9 @@ const benefits = [
       "http://www.veterans.gc.ca/fra/about-us/policy/document/2231",
     sortingPriority: "medium",
     benefitEligibility: ["recoWEBTf2fHKxO8T"],
-    id: "recH5vAKgnu56IwlS"
+    id: "recH5vAKgnu56IwlS",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Death Benefit",
@@ -313,7 +331,9 @@ const benefits = [
     benefitPolicyFR:
       "http://www.veterans.gc.ca/fra/about-us/policy/category/11",
     benefitEligibility: ["reclYWjGKy8oabUkO"],
-    id: "recMM2R9Dh1WUKxx6"
+    id: "recMM2R9Dh1WUKxx6",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Detention Benefits",
@@ -397,7 +417,9 @@ const benefits = [
       "rechaKl1wJhKe0lnF",
       "recmsrOwzHKCsUNl6"
     ],
-    id: "recOJ3P1wiacWA5jr"
+    id: "recOJ3P1wiacWA5jr",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Earnings Loss Benefit for survivors or children",
@@ -445,7 +467,9 @@ const benefits = [
       "recQYymXSVw8CfLtk"
     ],
     benefitEligibility: ["recQBzCRl2D8B7lxu"],
-    id: "recukRMcsAVvBpDJi"
+    id: "recukRMcsAVvBpDJi",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Educational Assistance for children",
@@ -504,7 +528,9 @@ const benefits = [
       "(fra)Peer support for the families of Veterans living with mental health issues.",
     availableIndependently: "Independent",
     benefitEligibility: ["recdtaTP1HL6hgId7"],
-    id: "recYOyXOqqSSCUVcN"
+    id: "recYOyXOqqSSCUVcN",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Funeral and Burial Assistance",
@@ -526,7 +552,9 @@ const benefits = [
       "recp5oJKUFhNoilhw"
     ],
     benefitEligibility: ["recIKNddEHsrPobsJ", "recvSEet4Pf5xm2Ng"],
-    id: "recEW4yF4GE4V1lTS"
+    id: "recEW4yF4GE4V1lTS",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Grave Marker Maintenance",
@@ -541,7 +569,9 @@ const benefits = [
     oneLineDescriptionFr:
       "(fra)Maintenance of all markers and grave sites that were provided by the Government of Canada.",
     availableIndependently: "Independent",
-    id: "recZv71nHMgCoX93h"
+    id: "recZv71nHMgCoX93h",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Group Health Insurance",
@@ -563,7 +593,9 @@ const benefits = [
       "http://www.veterans.gc.ca/fra/about-us/policy/category/21",
     benefitExamples: ["recyHsIVPMOqmLiBx"],
     benefitEligibility: ["rec9M3lN0KwS8CJmj"],
-    id: "rec3l8XwdR85xWNJ2"
+    id: "rec3l8XwdR85xWNJ2",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "HOPE Program",
@@ -612,7 +644,9 @@ const benefits = [
       "recReJAmeTOdw6BHL"
     ],
     benefitEligibility: ["recAz6FLY6qy3GkHd"],
-    id: "recaa4nxdJnSV3NrJ"
+    id: "recaa4nxdJnSV3NrJ",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Long Term Care",
@@ -658,7 +692,9 @@ const benefits = [
     ],
     benefitEligibility: ["recg7V3k3ol4FLAMh", "rece3ZFiriZxO63e4"],
     id: "rechnadMxMHp86vv8",
-    sortingNumber: 2
+    sortingNumber: 2,
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Pastoral Outreach ",
@@ -675,7 +711,9 @@ const benefits = [
     availableIndependently: "Independent",
     benefitEligibility: ["recxq80Dbs1ijRlaE"],
     id: "recVgcA6MDGMBFjzH",
-    sortingNumber: 3
+    sortingNumber: 3,
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Prisoner of War Compensation",
@@ -738,7 +776,9 @@ const benefits = [
       "recRXSmuoya3orbZe"
     ],
     benefitEligibility: ["recBr3SAQU0GijleA", "recGkh4BgTTH4ibVq"],
-    id: "recPUSdA7VeaZGUGh"
+    id: "recPUSdA7VeaZGUGh",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Retirement Income Security Benefit",
@@ -766,7 +806,9 @@ const benefits = [
       "recQq9zXwiErrpP65"
     ],
     benefitEligibility: ["recDSeANhF5XrVRcr", "recxc6T4F7Ft3bF0t"],
-    id: "recjDkgdzzzNS6i5A"
+    id: "recjDkgdzzzNS6i5A",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Supplementary Retirement Benefit",
@@ -793,7 +835,9 @@ const benefits = [
       "recZKXMI9POi90Smo"
     ],
     benefitEligibility: ["recmRtb7mI9XaukBw", "recgsVRR5F96KoQvT"],
-    id: "recTJGH8uGpz9FIcl"
+    id: "recTJGH8uGpz9FIcl",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Survivor's Pension",
@@ -885,7 +929,9 @@ const benefits = [
       "rechN330EynEXgpLT"
     ],
     benefitEligibility: ["recs1qwbmkLwDiA7Z", "receBHaEdQ29Qid3n"],
-    id: "recpq5tKJOXWZ3JCS"
+    id: "recpq5tKJOXWZ3JCS",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Veteran and Family Well-Being Fund",
@@ -921,7 +967,9 @@ const benefits = [
     sortingPriority: "medium",
     benefitEligibility: ["recdzam05SfCt5PqJ", "recefz1kpLFu7Vkxh"],
     id: "recnTqWEj6jCEF8h7",
-    sortingNumber: 2
+    sortingNumber: 2,
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Veterans Emergency Fund",
@@ -944,7 +992,9 @@ const benefits = [
     sortingPriority: "high",
     benefitEligibility: ["rec6vIdu4K8xl1nxi", "recwtgBef5LIpUifM"],
     id: "recFMnhGVbQT8de27",
-    sortingNumber: 1
+    sortingNumber: 1,
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Veterans Independence Program",
@@ -983,7 +1033,9 @@ const benefits = [
       "recjkAt3LrkWidOhe"
     ],
     benefitEligibility: ["recnz9qP2cSNgBzE8", "rechrkjJpnl8ZEamI"],
-    id: "recqpTIM3UcQkeRh0"
+    id: "recqpTIM3UcQkeRh0",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Vocational Assistance",
@@ -1009,7 +1061,9 @@ const benefits = [
     ],
     benefitEligibility: ["recQKuvUeQib6xDlk"],
     id: "recO8NVH2tWIjNpDA",
-    sortingNumber: 3
+    sortingNumber: 3,
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "Vocational Rehabilitation",
@@ -1030,7 +1084,9 @@ const benefits = [
       "recuMqBFQf4jfvus7",
       "receSNHPSpksOUznT"
     ],
-    id: "recR3CLbZSRlbGQJV"
+    id: "recR3CLbZSRlbGQJV",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   },
   {
     vacNameEn: "War Veterans Allowance",
@@ -1064,7 +1120,9 @@ const benefits = [
       "recJclfjOkUJhJx7e"
     ],
     benefitEligibility: ["recxiPnxu1B8Xq1HX", "recqM9VdRHwdy35Xf"],
-    id: "recDRPu2NF4UIximU"
+    id: "recDRPu2NF4UIximU",
+    seeMoreSentenceEn: "Some examples of what this program may provide:",
+    seeMoreSentenceFr: "Quelques exemples de ce que ce programme peut fournir :"
   }
 ];
 

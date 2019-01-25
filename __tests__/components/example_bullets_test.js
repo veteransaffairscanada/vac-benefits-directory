@@ -31,4 +31,11 @@ describe("ExampleBullets", () => {
   it("renders the correct number of next steps", () => {
     expect(mount(<ExampleBullets {...props} />).find("li").length).toEqual(1);
   });
+
+  it("renders the correct See More Content sentence", () => {
+    // language is not set so should fall back to french
+    expect(mount(<ExampleBullets {...props} />).html()).toContain(
+      props.benefit.seeMoreSentenceFr
+    );
+  });
 });
