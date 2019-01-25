@@ -16,6 +16,14 @@ const topBorder = css`
 `;
 
 export class BenefitExpansion extends Component {
+  constructor(props) {
+    super(props);
+    this.focusEl = React.createRef();
+  }
+  componentDidMount() {
+    const node = this.focusEl.current;
+    node.focus();
+  }
   getAlsoEligibleBenefits = (benefits, patronType = "") => {
     const reduxState = this.props.reduxState;
     const profileFilters = JSON.parse(
@@ -79,7 +87,7 @@ export class BenefitExpansion extends Component {
     });
 
     return (
-      <div className={this.props.className}>
+      <div className={this.props.className} ref={this.focusEl} tabIndex="-1">
         <ExampleBullets benefit={benefit} t={t} store={store} />
         <div className={topBorder}>
           <ChildBenefitList
