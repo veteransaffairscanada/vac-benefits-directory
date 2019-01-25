@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Container from "../components/container";
-import { css } from "emotion";
+import { cx, css } from "emotion";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
@@ -35,9 +35,9 @@ class ShareBox extends Component {
     showModal: false
   };
   render() {
-    const { t, printUrl, url, share } = this.props;
+    const { t, printUrl, url, share, className } = this.props;
     return (
-      <Container className={shareBoxStyle}>
+      <Container className={cx(shareBoxStyle, className)}>
         <Grid container spacing={8}>
           {share ? (
             <Grid item lg={12} md={12} sm={12} xs={6}>
@@ -83,7 +83,8 @@ ShareBox.propTypes = {
   t: PropTypes.func.isRequired,
   printUrl: PropTypes.string,
   url: PropTypes.object.isRequired,
-  share: PropTypes.bool
+  share: PropTypes.bool,
+  className: PropTypes.string
 };
 
 export default ShareBox;

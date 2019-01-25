@@ -42,11 +42,8 @@ const sidebar = css`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-  }
+  background-color: ${globalTheme.colour.white};
+  z-index: 1;
 `;
 
 // if screen size is max.xs or smaller, hide long text
@@ -71,6 +68,12 @@ const editLink = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     //background-color: ${globalTheme.colour.black};
     //margin-left: 30px;
+  }
+`;
+const mobileShareBox = css`
+  // if screen size is max.xs or smaller
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none !important;
   }
 `;
 
@@ -121,7 +124,7 @@ export class BB extends Component {
         </div>
         <Container>
           <Grid container spacing={32}>
-            <Grid item lg={3} md={3} sm={4} xs={12}>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
               <div className={sidebar}>
                 <Grid container spacing={16} className={sidebarLinks}>
                   <Grid item xs={4} sm={12}>
@@ -157,6 +160,7 @@ export class BB extends Component {
                   </Grid>
                 </Grid>
                 <ShareBox
+                  className={mobileShareBox}
                   t={t}
                   printUrl={this.props.printUrl}
                   url={url}
