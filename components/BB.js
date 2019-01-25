@@ -30,9 +30,12 @@ const topMatter = css`
   width: 100%;
 `;
 const sidebarLinks = css`
-  padding: 1em 24px !important;
-  border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
-  border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
+  // for big screen...
+  @media only screen and (min-width: ${globalTheme.min.xs}) {
+    padding: 1em 24px !important;
+    border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
+    border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
+  }
   margin-bottom: 24px;
 `;
 const sidebar = css`
@@ -60,14 +63,14 @@ const shortText = css`
 `;
 const savedListLink = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    background-color: ${globalTheme.colour.black};
-    margin-left: 30px;
+    //background-color: ${globalTheme.colour.black};
+    //margin-left: 30px;
   }
 `;
 const editLink = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    background-color: ${globalTheme.colour.black};
-    margin-left: 30px;
+    //background-color: ${globalTheme.colour.black};
+    //margin-left: 30px;
   }
 `;
 
