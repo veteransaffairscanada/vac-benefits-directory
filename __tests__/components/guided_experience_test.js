@@ -103,7 +103,18 @@ describe("GuidedExperience", () => {
     expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p2");
   });
 
-  it("clears only hidden questions if the next button is pressed", () => {
+  it("back button has correct href, clears hidden questions", () => {
+    props.url.query.statusAndVitals = "blah";
+    props.url.query.selectedNeeds = "1,2";
+    expect(
+      mounted_GuidedExperience()
+        .find("#prevButton")
+        .first()
+        .props().href
+    ).toEqual("/?lng=en&patronType=veteran&serviceType=RCMP&selectedNeeds=1,2");
+  });
+
+  it("next button has correct href, clears hidden questions", () => {
     props.url.query.statusAndVitals = "blah";
     expect(
       mounted_GuidedExperience()
@@ -113,7 +124,7 @@ describe("GuidedExperience", () => {
     ).toEqual("/serviceHealthIssue?lng=en&patronType=veteran&serviceType=RCMP");
   });
 
-  it("clears only hidden questions if the back button is pressed, doesn't save answer for current question", () => {
+  it("skip button has the correct href, clears hidden questions and current question", () => {
     props.url.query.statusAndVitals = "blah";
     props.url.query.selectedNeeds = "1,2";
     expect(
