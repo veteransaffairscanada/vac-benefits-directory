@@ -58,7 +58,18 @@ const shortText = css`
     display: none !important;
   }
 `;
-const savedListLink = css``;
+const savedListLink = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    background-color: ${globalTheme.colour.black};
+    margin-left: 30px;
+  }
+`;
+const editLink = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    background-color: ${globalTheme.colour.black};
+    margin-left: 30px;
+  }
+`;
 
 export class BB extends Component {
   state = {
@@ -110,10 +121,11 @@ export class BB extends Component {
             <Grid item lg={3} md={3} sm={4} xs={12}>
               <div className={sidebar}>
                 <Grid container spacing={16} className={sidebarLinks}>
-                  <Grid item xs={4} sm={12} className={savedListLink}>
+                  <Grid item xs={4} sm={12}>
                     <HeaderLink
                       id="savedBenefits"
                       href={this.props.favouritesUrl}
+                      className={savedListLink}
                     >
                       <SaveChecked />
                       <span className={longText}>{longFavouritesText}</span>
@@ -133,6 +145,7 @@ export class BB extends Component {
                     <HeaderLink
                       id="editSelections"
                       href={this.props.summaryUrl}
+                      className={editLink}
                     >
                       <EditIcon />
                       <span className={longText}>{longEditText}</span>

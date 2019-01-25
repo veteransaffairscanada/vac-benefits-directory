@@ -37,11 +37,21 @@ const topMargin = css`
   margin-top: 20px;
 `;
 
-const favouritesLink = css`
+const sidebarLinks = css`
   padding: 1em 24px !important;
   border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
   border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
   margin-bottom: 24px;
+`;
+const sidebar = css`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+  }
 `;
 export class Favourites extends Component {
   state = {
@@ -98,23 +108,25 @@ export class Favourites extends Component {
         <Container id="favourites">
           <Grid container spacing={32}>
             <Grid item lg={3} md={3} sm={4} xs={12}>
-              <Grid container spacing={16} className={favouritesLink}>
-                <Grid item xs={12}>
-                  <HeaderButton
-                    id="nextSteps"
-                    onClick={() => this.scrollToNextSteps()}
-                  >
-                    <AssignmentTurnedIn />
-                    {t("nextSteps.whats_next")}
-                  </HeaderButton>
+              <div className={sidebar}>
+                <Grid container spacing={16} className={sidebarLinks}>
+                  <Grid item xs={12}>
+                    <HeaderButton
+                      id="nextSteps"
+                      onClick={() => this.scrollToNextSteps()}
+                    >
+                      <AssignmentTurnedIn />
+                      {t("nextSteps.whats_next")}
+                    </HeaderButton>
+                  </Grid>
                 </Grid>
-              </Grid>
-              <ShareBox
-                t={t}
-                printUrl={this.props.printUrl}
-                url={url}
-                share={false}
-              />
+                <ShareBox
+                  t={t}
+                  printUrl={this.props.printUrl}
+                  url={url}
+                  share={false}
+                />
+              </div>
             </Grid>
             <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={24}>
