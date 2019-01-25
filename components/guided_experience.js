@@ -72,7 +72,6 @@ export class GuidedExperience extends Component {
       dynamicStepNumber + 1 >= displayable_sections.length
         ? "summary"
         : displayable_sections[dynamicStepNumber + 1];
-    console.log(getPageName(nextSection));
     let nextQueryParams = this.queryParamsToClear();
     let skipQueryParams = this.queryParamsToClear();
     if (id === "needs") {
