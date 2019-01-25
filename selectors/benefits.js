@@ -169,10 +169,10 @@ export const getFilteredNextSteps = createSelector(
     // if no selection, just return next steps with no requirements
     return nextSteps.filter(
       ns =>
-        !ns.patronType &&
-        !ns.serviceType &&
-        !ns.statusAndVitals &&
-        !ns.serviceHealthIssue
+        (!ns.patronType || ns.patronType.length === 0) &&
+        (!ns.serviceType || ns.serviceType.length === 0) &&
+        (!ns.statusAndVitals || ns.statusAndVitals.length === 0) &&
+        (!ns.serviceHealthIssue || !ns.serviceHealthIssue.length === 0)
     );
   }
 );
