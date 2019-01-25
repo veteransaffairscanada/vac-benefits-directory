@@ -46,19 +46,19 @@ const sidebar = css`
   }
 `;
 
-const hideSmall = css`
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
+// if screen size is max.xs or smaller, hide long text
+const longText = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     display: none !important;
   }
 `;
-const hideBig = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    display: none !important;
-  }
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+// if screen size is min.xs or larger, hide short text
+const shortText = css`
+  @media only screen and (min-width: ${globalTheme.min.xs}) {
     display: none !important;
   }
 `;
+const savedListLink = css``;
 
 export class BB extends Component {
   state = {
@@ -110,14 +110,14 @@ export class BB extends Component {
             <Grid item lg={3} md={3} sm={4} xs={12}>
               <div className={sidebar}>
                 <Grid container spacing={16} className={sidebarLinks}>
-                  <Grid item xs={4} sm={12}>
+                  <Grid item xs={4} sm={12} className={savedListLink}>
                     <HeaderLink
                       id="savedBenefits"
                       href={this.props.favouritesUrl}
                     >
                       <SaveChecked />
-                      <span className={hideSmall}>{longFavouritesText}</span>
-                      <span className={hideBig}>{shortFavouritesText}</span>
+                      <span className={longText}>{longFavouritesText}</span>
+                      <span className={shortText}>{shortFavouritesText}</span>
                     </HeaderLink>
                   </Grid>
                   <Grid item xs={4} sm={12}>
@@ -135,8 +135,8 @@ export class BB extends Component {
                       href={this.props.summaryUrl}
                     >
                       <EditIcon />
-                      <span className={hideSmall}>{longEditText}</span>
-                      <span className={hideBig}>{shortEditText}</span>
+                      <span className={longText}>{longEditText}</span>
+                      <span className={shortText}>{shortEditText}</span>
                     </HeaderLink>
                   </Grid>
                 </Grid>
