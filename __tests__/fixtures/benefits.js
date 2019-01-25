@@ -11,7 +11,9 @@ const benefitsFixture = [
     childBenefits: ["benefit_1"],
     availableIndependently: "Independent",
     sortingPriority: "low",
-    benefitEligibility: ["0"]
+    benefitEligibility: ["0"],
+    seeMoreSentenceEn: "seeMoreSentenceEn",
+    seeMoreSentenceFr: "seeMoreSentenceFr"
   },
   {
     id: "benefit_1",
