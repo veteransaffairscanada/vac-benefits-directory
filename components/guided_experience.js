@@ -72,7 +72,7 @@ export class GuidedExperience extends Component {
       dynamicStepNumber + 1 >= displayable_sections.length
         ? "summary"
         : displayable_sections[dynamicStepNumber + 1];
-
+    console.log(getPageName(nextSection));
     let nextQueryParams = this.queryParamsToClear();
     let skipQueryParams = this.queryParamsToClear();
     if (id === "needs") {
@@ -123,6 +123,7 @@ export class GuidedExperience extends Component {
             </Grid>
             <Grid item xs={12}>
               <Link
+                id="nextLink"
                 href={mutateUrl(
                   url,
                   "/" + getPageName(nextSection),
@@ -134,6 +135,7 @@ export class GuidedExperience extends Component {
                 </Button>
               </Link>
               <Link
+                id="skipLink"
                 href={mutateUrl(
                   url,
                   "/" + getPageName(nextSection),
