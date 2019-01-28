@@ -45,7 +45,6 @@ class ShareBox extends Component {
                 className={shareBoxItem}
                 size="small"
                 onClick={() => this.setState({ showModal: true })}
-                id="shareButton"
               >
                 <ShareIcon />
                 <span>{t("titles.share")}</span>
@@ -67,7 +66,6 @@ class ShareBox extends Component {
               size="small"
               href={printUrl}
               target="_blank"
-              id="printButton"
             >
               <Print />
               <span className={share ? nonMobileStyle : ""}>{t("Print")}</span>
