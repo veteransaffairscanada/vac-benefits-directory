@@ -60,19 +60,21 @@ const shortText = css`
 `;
 const savedListLink = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    //background-color: ${globalTheme.colour.black};
-    //margin-left: 30px;
   }
 `;
 const editLink = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    //background-color: ${globalTheme.colour.black};
-    //margin-left: 30px;
   }
 `;
-const mobileShareBox = css`
+const hideOnMobile = css`
   // if screen size is max.xs or smaller
   @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none !important;
+  }
+`;
+const mobileSidebar = css`
+  // if screen size is min.xs or larger
+  @media only screen and (min-width: ${globalTheme.min.xs}) {
     display: none !important;
   }
 `;
@@ -160,13 +162,20 @@ export class BB extends Component {
                   </Grid>
                 </Grid>
                 <ShareBox
-                  className={mobileShareBox}
+                  className={hideOnMobile}
                   t={t}
                   printUrl={this.props.printUrl}
                   url={url}
                   share={true}
                 />
               </div>
+              <ShareBox
+                className={mobileSidebar}
+                t={t}
+                printUrl={this.props.printUrl}
+                url={url}
+                share={true}
+              />
             </Grid>
             <Grid id="mainContent" item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={16}>
