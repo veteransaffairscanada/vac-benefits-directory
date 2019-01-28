@@ -46,6 +46,7 @@ class ShareBox extends Component {
           {share ? (
             <Grid item lg={12} md={12} sm={12} xs={6}>
               <HeaderButton
+                id={this.uid}
                 className={shareBoxItem}
                 size="small"
                 onClick={() => this.setState({ showModal: true })}
