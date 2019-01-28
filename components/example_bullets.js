@@ -49,7 +49,7 @@ export class ExampleBullets extends React.Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, benefit } = this.props;
     const bullets = this.getExampleBullets();
 
     if (bullets.length === 0) {
@@ -57,7 +57,9 @@ export class ExampleBullets extends React.Component {
     }
     return (
       <div className={root}>
-        {t("benefit_card.examples")}
+        {t("current-language-code") === "en"
+          ? benefit.seeMoreSentenceEn
+          : benefit.seeMoreSentenceFr}
         <ul className={margin}>{bullets}</ul>
       </div>
     );

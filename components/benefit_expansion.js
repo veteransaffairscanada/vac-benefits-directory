@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+import { cx, css } from "emotion";
 import { connect } from "react-redux";
 import ExampleBullets from "./example_bullets";
 import ChildBenefitList from "./child_benefit_list";
@@ -15,7 +15,21 @@ const topBorder = css`
   padding-bottom: 18px;
 `;
 
+const noFocus = css`
+  :focus {
+    outline: none;
+  }
+`;
+
 export class BenefitExpansion extends Component {
+  constructor(props) {
+    super(props);
+    this.focusEl = React.createRef();
+  }
+  componentDidMount() {
+    const node = this.focusEl.current;
+    node.focus();
+  }
   getAlsoEligibleBenefits = (benefits, patronType = "") => {
     const reduxState = this.props.reduxState;
     const profileFilters = JSON.parse(
@@ -79,7 +93,11 @@ export class BenefitExpansion extends Component {
     });
 
     return (
-      <div className={this.props.className}>
+      <div
+        className={cx(this.props.className, noFocus)}
+        ref={this.focusEl}
+        tabIndex="-1"
+      >
         <ExampleBullets benefit={benefit} t={t} store={store} />
         <div className={topBorder}>
           <ChildBenefitList

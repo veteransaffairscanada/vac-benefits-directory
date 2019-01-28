@@ -37,7 +37,7 @@ AnchorLink.defaultProps = {
 };
 AnchorLink.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  fontSize: PropTypes.number,
+  fontSize: PropTypes.string,
   fontWeight: PropTypes.string,
   className: PropTypes.string
 };
