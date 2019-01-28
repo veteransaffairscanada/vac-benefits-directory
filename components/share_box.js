@@ -9,6 +9,7 @@ import HeaderLink from "./header_link";
 import ShareModal from "./share_modal";
 import Print from "./icons/Print";
 import ShareIcon from "./icons/share_icon";
+import { uuidv4 } from "../utils/common";
 
 const shareBoxStyle = css`
   background-color: ${globalTheme.colour.paleGreyishBrown};
@@ -34,6 +35,9 @@ class ShareBox extends Component {
   state = {
     showModal: false
   };
+
+  uid = uuidv4();
+
   render() {
     const { t, printUrl, url, share, className } = this.props;
     return (
@@ -50,6 +54,7 @@ class ShareBox extends Component {
                 <span>{t("titles.share")}</span>
               </HeaderButton>
               <ShareModal
+                uid={this.uid}
                 isOpen={this.state.showModal}
                 onRequestClose={() => this.setState({ showModal: false })}
                 closeModal={() => this.setState({ showModal: false })}
