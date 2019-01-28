@@ -169,8 +169,9 @@ export class BB extends Component {
                   share={true}
                 />
               </div>
+            </Grid>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={mobileSidebar}>
               <ShareBox
-                className={mobileSidebar}
                 t={t}
                 printUrl={this.props.printUrl}
                 url={url}

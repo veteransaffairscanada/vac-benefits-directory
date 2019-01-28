@@ -136,12 +136,13 @@ export class Favourites extends Component {
                   share={false}
                 />
               </div>
+            </Grid>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={mobileSidebar}>
               <ShareBox
-                className={mobileSidebar}
                 t={t}
                 printUrl={this.props.printUrl}
                 url={url}
-                share={false}
+                share={true}
               />
             </Grid>
             <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
