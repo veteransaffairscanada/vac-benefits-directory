@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 
 import { globalTheme } from "../theme";
+const modalStyles = { overlay: { zIndex: 100 } };
 
 const modalCSS = css`
   position: absolute;
@@ -198,6 +199,7 @@ class ShareModal extends Component {
     if (process.browser) {
       return (
         <ReactModal
+          style={modalStyles}
           className={modalCSS}
           isOpen={isOpen}
           onRequestClose={() => this.close(onRequestClose)}
