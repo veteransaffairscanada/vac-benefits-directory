@@ -9,7 +9,7 @@
 - [Heroku](#using-heroku)
 - [CircleCI](#using-circleci)
 - [Test Driven Development](#test-driven-development)
-- [Browserstack](#using-browserstack)
+- [BrowserStack](#using-browserstack)
 - [Deployment](#deployment)
 - [Translations](#translations)
 - [Snyk](#using-snyk)
@@ -310,20 +310,20 @@ We primarily use the deploy notification to ensure that our production release a
 
 ### Table des matières
 
-- [Next.JS et le rendu côté serveur](#nextjs-et-le-rendu-cote-serveur)
+- [Next.JS et le rendu côté serveur](#nextjs-et-le-rendu-côté-serveur)
 - [AirTable](/doc/fr/AIRTABLE.md)
 - [Heroku](#heroku)
 - [CircleCI](#circleci)
-- [Développement piloté par les tests](#developpement-pilote-par-les-tests)
-- [Browserstack](#browserstack)
-- [Déploiement](#deploiement)
+- [Développement piloté par les tests](#développement-piloté-par-les-tests)
+- [BrowserStack](#browserstack)
+- [Déploiement](#déploiement)
 - [Traductions](#traductions)
 - [Snyk](#snyk)
 - [Tests](#tests)
 - [Documentation sur le code](#documentation-sur-le-code)
-- [Contribuer au répertoire de GitHub](#contribuer-au-repertoire-de-github)
-- [Programmation en binôme](#programmation-en-binome)
-- [Notifications de déploiement](#notifications-de-deploiement)
+- [Contribuer au répertoire de GitHub](#contribuer-au-répertoire-de-github)
+- [Programmation en binôme](#programmation-en-binôme)
+- [Notifications de déploiement](#notifications-de-déploiement)
 
 ### Next.JS et le rendu côté serveur
 

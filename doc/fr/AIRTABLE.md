@@ -23,7 +23,7 @@ Pour demander l’accès en vue de modifier du contenu dans AirTable, créez un 
 
 Pour faire quoi que ce soit dans AirTable, effectuez toujours les étapes suivantes :
 
-1. Consultez [Master AirTable base](https://airtable.com/tblHt9ZuCBwsplYw2) (en anglais). Si vous n’avez pas d’autorisation pour y accéder, (demandez-la)[#comment-peut-on-y-avoir-acces] (en anglais).
+1. Consultez [Master AirTable base](https://airtable.com/tblHt9ZuCBwsplYw2) (en anglais). Si vous n’avez pas d’autorisation pour y accéder, (demandez-la)[#comment-peut-on-y-avoir-accès].
 2. Apportez quelques modifications. Consultez les guides étape par étape ci-dessous pour vous aider dans la tâche que vous voulez effectuer.
 3. Pour visualiser vos modifications dans l’application en direct, consultez la [page de validation des données](https://vac-benefits-finder.cds-snc.ca/data-validation) (en anglais) et cliquez sur le bouton « refresh cache » (rafraîchir la mémoire cache) dans le coin supérieur droit.
 4. Veillez à ce qu’aucun nouveau test n’échoue en examinant les rangées sur la page de validation des données. S’il y en a, examinez et corrigez le problème dans Airtable.
@@ -60,13 +60,6 @@ Pour faire quoi que ce soit dans AirTable, effectuez toujours les étapes suivan
 | Heures (toutes sur la page de la carte)                                      | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | office_hours_en                      | office_hours_fr                     |
 | Options de case à cocher dans l’expérience guidée et le répertoire des avantages | [needs](https://airtable.com/tblY7TpDsGR5I3SaN/viwQOzMWARRdWFks3)                 | nameEn                               | nameFr                              |
 | Tous les autres textes                                              | [translations](https://airtable.com/tblJAMGWk4ZypG5uX/viwsHMCBUnwx1EC3f)          | English                              | French                              |
-
-### Changing the eligibility criteria for a benefit
-
-1. Navigate to the [benefitEligibility sheet](https://airtable.com/tblRNTYbp9OWDSj4l/viwB7uV1iu2dCaa5P) in AirTable
-2. Each path is represented by values within columns which correspond to the questions in the [questions sheet](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s). The values which fill these columns correspond to values in the [multipleChoiceOptions sheet](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx).
-3. Determine if the new eligiblity path for the benefit already exists (has a row in the benefitEligibility sheet). If it doesn't exist, create a new row and add the benefit and the eligibility criteria. Note: only include `statusAndVitals` values in a path if the path includes `family` and not `veteran`, `serving member`, or `organization`. This may mean that you need to create 2 rows for a benefit: one path for family members and another path for veterans.
-4. If you wish to remove an eligibility path from a benefit, delete the corresponding row in the table.
 
 ### Ajouter une catégorie (c’est-à-dire le besoin ou la question à cases à cocher) et associer la catégorie à un avantage
 

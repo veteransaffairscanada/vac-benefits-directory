@@ -112,7 +112,7 @@ This application uses the following resources:
 
 Il s’agit du code pour _Rechercher des avantages et des services_, un produit mis au point par Anciens Combattants Canada (ACC) et le Service numérique canadien (SNC). L’application est actuellement déployée à https://vac-benefits-finder.cds-snc.ca/index?section=patronType&lng=fr.
 
-La documentation sur la configuration se trouve ci-dessous. Si vous voulez contribuer à la réalisation du projet, nous avons [une documentation](/doc/) plus détaillée concernant nos choix technologiques.
+La documentation sur la configuration se trouve ci-dessous. Si vous voulez contribuer à la réalisation du projet, nous avons [une documentation](/doc#---------------------------------------------------------------------) plus détaillée concernant nos choix technologiques.
 
 ## Variables d’environnement
 

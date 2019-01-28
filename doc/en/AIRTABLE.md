@@ -1,4 +1,4 @@
-# AirTable
+# Airtable
 
 ## What is it?
 
