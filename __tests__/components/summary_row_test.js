@@ -51,7 +51,7 @@ describe("GuidedExperienceSummary", () => {
       mount(<SummaryRow {...props} />)
         .find("HeaderLink")
         .prop("href")
-    ).toEqual("/index?section=patronType");
+    ).toEqual("/?");
   });
 
   it("contains a comma separated list if there are selected needs", async () => {

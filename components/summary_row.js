@@ -4,7 +4,7 @@ import { css } from "emotion";
 import { Grid } from "@material-ui/core";
 import EditIcon from "./icons/Edit";
 import { globalTheme } from "../theme";
-import { mutateUrl } from "../utils/common";
+import { mutateUrl, getPageName } from "../utils/common";
 import HeaderLink from "./header_link";
 import { connect } from "react-redux";
 
@@ -82,7 +82,7 @@ export class SummaryRow extends Component {
           </Grid>
           <Grid item xs={3} className={rightAlign}>
             <HeaderLink
-              href={mutateUrl(url, "/index", { section: questionName })}
+              href={mutateUrl(url, "/" + getPageName(questionName))}
               className={font}
             >
               <EditIcon

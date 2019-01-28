@@ -11,7 +11,7 @@ import Header from "../components/typography/header";
 import Router from "next/router";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
-import { mutateUrl, getBenefitCountString } from "../utils/common";
+import { mutateUrl, getBenefitCountString, getPageName } from "../utils/common";
 import { connect } from "react-redux";
 import GuidedExperienceSummary from "../components/guided_experience_summary";
 import Body from "../components/typography/body";
@@ -38,7 +38,7 @@ export class Summary extends Component {
     const { t, i18n, url, reduxState, store, filteredBenefits } = this.props;
     const prevSection =
       reduxState.patronType === "organization" ? "patronType" : "needs";
-    const backUrl = mutateUrl(url, "/index", { section: prevSection });
+    const backUrl = mutateUrl(url, "/" + getPageName(prevSection));
     const benefitsToConsider = getBenefitCountString(filteredBenefits, t);
     return (
       <Layout

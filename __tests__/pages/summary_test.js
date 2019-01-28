@@ -72,7 +72,7 @@ describe("Summary", () => {
       .find("#prevButton")
       .first()
       .simulate("click");
-    expect(Router.push).toBeCalledWith("/index?section=needs");
+    expect(Router.push).toBeCalledWith("/needs?");
   });
 
   it("the next button goes to the correct page", () => {
