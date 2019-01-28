@@ -47,10 +47,18 @@ const sidebar = css`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  background-color: ${globalTheme.colour.white};
+`;
+const hideOnMobile = css`
+  // if screen size is max.xs or smaller
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+    display: none !important;
+  }
+`;
+const mobileSidebar = css`
+  // if screen size is min.xs or larger
+  @media only screen and (min-width: ${globalTheme.min.xs}) {
+    display: none !important;
   }
 `;
 export class Favourites extends Component {
@@ -107,7 +115,7 @@ export class Favourites extends Component {
         />
         <Container id="favourites">
           <Grid container spacing={32}>
-            <Grid item lg={3} md={3} sm={4} xs={12}>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
               <div className={sidebar}>
                 <Grid container spacing={16} className={sidebarLinks}>
                   <Grid item xs={12}>
@@ -121,12 +129,20 @@ export class Favourites extends Component {
                   </Grid>
                 </Grid>
                 <ShareBox
+                  className={hideOnMobile}
                   t={t}
                   printUrl={this.props.printUrl}
                   url={url}
                   share={false}
                 />
               </div>
+              <ShareBox
+                className={mobileSidebar}
+                t={t}
+                printUrl={this.props.printUrl}
+                url={url}
+                share={false}
+              />
             </Grid>
             <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={24}>
