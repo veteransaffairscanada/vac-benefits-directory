@@ -23,7 +23,7 @@ Pour demander l’accès en vue de modifier du contenu dans AirTable, créez un 
 
 Pour faire quoi que ce soit dans AirTable, effectuez toujours les étapes suivantes :
 
-1. Consultez [Master AirTable base](https://airtable.com/tblHt9ZuCBwsplYw2) (en anglais). Si vous n’avez pas d’autorisation pour y accéder, (demandez-la)[#comment-peut-on-y-avoir-accès].
+1. Consultez [Master AirTable base](https://airtable.com/tblHt9ZuCBwsplYw2) (en anglais). Si vous n’avez pas d’autorisation pour y accéder, [demandez-la](#comment-peut-on-y-avoir-accès).
 2. Apportez quelques modifications. Consultez les guides étape par étape ci-dessous pour vous aider dans la tâche que vous voulez effectuer.
 3. Pour visualiser vos modifications dans l’application en direct, consultez la [page de validation des données](https://vac-benefits-finder.cds-snc.ca/data-validation) (en anglais) et cliquez sur le bouton « refresh cache » (rafraîchir la mémoire cache) dans le coin supérieur droit.
 4. Veillez à ce qu’aucun nouveau test n’échoue en examinant les rangées sur la page de validation des données. S’il y en a, examinez et corrigez le problème dans Airtable.
