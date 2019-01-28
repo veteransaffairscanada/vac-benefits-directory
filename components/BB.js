@@ -101,6 +101,7 @@ export class BB extends Component {
   }
   scrollToNextSteps() {
     window.location = "#next-steps";
+    window.scrollBy(0, -80);
   }
 
   render() {
