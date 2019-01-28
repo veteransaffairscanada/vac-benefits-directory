@@ -15,6 +15,7 @@ const margin = css`
   li {
     margin-bottom: 10px;
     margin-left: 6px; // this is so bullets appear in 2nd column in IE
+    overflow: hidden; // fixes a bug with text wrapping in IE
   }
   margin-left: -6px;
 `;
