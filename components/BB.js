@@ -43,7 +43,6 @@ const sidebar = css`
   position: sticky;
   top: 0;
   background-color: ${globalTheme.colour.white};
-  z-index: 1;
 `;
 
 // if screen size is max.xs or smaller, hide long text

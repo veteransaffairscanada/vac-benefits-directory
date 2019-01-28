@@ -46,6 +46,7 @@ class Tooltip extends Component {
 
   render() {
     const { children, disabled, tooltipText } = this.props;
+    console.log(disabled);
     return (
       <div className={this.tooltipStyle}>
         {children}
