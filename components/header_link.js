@@ -33,6 +33,9 @@ const style = css`
 const small = css`
   font-size: 18px;
 `;
+const fullWidth = css`
+  width: 100%;
+`;
 
 const nowrap = css`
   white-space: nowrap;
@@ -58,20 +61,15 @@ class HeaderLink extends Component {
       ...otherProps
     } = this.props;
 
+    let cName;
+    if (size === "small") cName = cx(style, small, className);
+    else if (size === "fullWidth") cName = cx(style, fullWidth, className);
+    else if (altStyle === "grey") cName = cx(style, grey, className);
+    else cName = cx(style, className);
+
     return (
       <Link href={href}>
-        <a
-          className={
-            size === "small"
-              ? cx(style, small, className)
-              : altStyle === "grey"
-              ? cx(style, grey, className)
-              : cx(style, className)
-          }
-          href={href}
-          onClick={onClick}
-          {...otherProps}
-        >
+        <a className={cName} href={href} onClick={onClick} {...otherProps}>
           {arrow === "back" ? <ArrowBack /> : null}
           {children}
           {arrow === "forward" ? (

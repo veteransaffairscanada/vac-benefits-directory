@@ -100,13 +100,14 @@ export class BB extends Component {
                     <HeaderLink
                       id="savedBenefits"
                       href={this.props.favouritesUrl}
+                      size="fullWidth"
                     >
                       <SaveChecked />
                       {t("B3.favouritesButtonText")}
+                      <span className={dot} id="favouritesDot">
+                        {this.props.favouriteBenefits.length}
+                      </span>
                     </HeaderLink>
-                    <span className={dot} id="favouritesDot">
-                      {this.props.favouriteBenefits.length}
-                    </span>
                   </Grid>
                   <Grid item xs={12}>
                     <HeaderButton
