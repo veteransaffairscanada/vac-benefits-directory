@@ -59,7 +59,7 @@ export class GuidedExperience extends Component {
   }
 
   render() {
-    const { t, helperText, url, id, reduxState, sectionOrder } = this.props;
+    const { t, url, id, reduxState, sectionOrder } = this.props;
     const question = reduxState.questions.filter(
       x => x.variable_name === id
     )[0];
@@ -117,7 +117,13 @@ export class GuidedExperience extends Component {
               <Header size="md_lg" headingLevel="h2">
                 {this.getSubtitle(question)}
               </Header>
-              {helperText ? <Body className={body}>{helperText}</Body> : null}
+              {id === "serviceHealthIssue" ? (
+                <Body className={body}>
+                  {t("current-language-code") === "en"
+                    ? question.tooltip_english
+                    : question.tooltip_french}
+                </Body>
+              ) : null}
               {this.props.children}
             </Grid>
             <Grid item xs={12}>
@@ -166,7 +172,6 @@ GuidedExperience.propTypes = {
   reduxState: PropTypes.object.isRequired,
   sectionOrder: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
-  helperText: PropTypes.string,
   children: PropTypes.object.isRequired,
   store: PropTypes.object
 };
