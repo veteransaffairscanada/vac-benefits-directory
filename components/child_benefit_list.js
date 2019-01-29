@@ -26,6 +26,7 @@ const heading = css`
 `;
 const listStyle = css`
   padding-left: 20px;
+  text-indent: 0.2em;
 `;
 
 const logExit = url => {
