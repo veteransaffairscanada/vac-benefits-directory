@@ -14,6 +14,7 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
 import nextStepsFixture from "../fixtures/nextSteps";
+import translateFixture from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -42,7 +43,7 @@ describe("BB", () => {
   beforeEach(() => {
     window.scrollTo = jest.fn();
     props = {
-      t: key => key,
+      t: translateFixture,
       clearFilters: () => true,
       clearNeeds: () => true,
       id: "BB",
@@ -105,12 +106,15 @@ describe("BB", () => {
     expect(shallow_BB().find("BreadCrumbs").length).toEqual(1);
   });
 
-  it("contains a favourites dot that displays the number of favourites", async () => {
+  it("contains saved list text that displays the number of saved list items", async () => {
     expect(
-      shallow_BB()
-        .find("#favouritesDot")
+      mounted_BB()
+        .find("#savedBenefits")
+        .first()
+        .find("span")
+        .first()
         .text()
-    ).toEqual("0");
+    ).toContain("0");
   });
 
   it("clicking next steps button changes window location", () => {

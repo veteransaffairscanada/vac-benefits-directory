@@ -37,11 +37,29 @@ const topMargin = css`
   margin-top: 20px;
 `;
 
-const favouritesLink = css`
+const sidebarLinks = css`
   padding: 1em 24px !important;
   border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
   border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
   margin-bottom: 24px;
+`;
+const sidebar = css`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: ${globalTheme.colour.white};
+`;
+const hideOnMobile = css`
+  // if screen size is max.xs or smaller
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none !important;
+  }
+`;
+const showOnMobile = css`
+  // if screen size is min.xs or larger
+  @media only screen and (min-width: ${globalTheme.min.xs}) {
+    display: none !important;
+  }
 `;
 export class Favourites extends Component {
   state = {
@@ -70,6 +88,8 @@ export class Favourites extends Component {
 
   scrollToNextSteps() {
     window.location = "#next-steps";
+    const maxMobile = parseFloat(globalTheme.max.xs);
+    window.screen.width < maxMobile ? window.scrollBy(0, -90) : null;
   }
 
   render() {
@@ -97,23 +117,34 @@ export class Favourites extends Component {
         />
         <Container id="favourites">
           <Grid container spacing={32}>
-            <Grid item lg={3} md={3} sm={4} xs={12}>
-              <Grid container spacing={16} className={favouritesLink}>
-                <Grid item xs={12}>
-                  <HeaderButton
-                    id="nextSteps"
-                    onClick={() => this.scrollToNextSteps()}
-                  >
-                    <AssignmentTurnedIn />
-                    {t("nextSteps.whats_next")}
-                  </HeaderButton>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
+              <div className={sidebar}>
+                <Grid container spacing={16} className={sidebarLinks}>
+                  <Grid item xs={12}>
+                    <HeaderButton
+                      id="nextSteps"
+                      onClick={() => this.scrollToNextSteps()}
+                    >
+                      <AssignmentTurnedIn />
+                      {t("nextSteps.whats_next")}
+                    </HeaderButton>
+                  </Grid>
                 </Grid>
-              </Grid>
+                <ShareBox
+                  className={hideOnMobile}
+                  t={t}
+                  printUrl={this.props.printUrl}
+                  url={url}
+                  share={false}
+                />
+              </div>
+            </Grid>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={showOnMobile}>
               <ShareBox
                 t={t}
                 printUrl={this.props.printUrl}
                 url={url}
-                share={false}
+                share={true}
               />
             </Grid>
             <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>

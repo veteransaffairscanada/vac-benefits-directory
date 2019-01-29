@@ -6,7 +6,7 @@ import { globalTheme } from "../theme";
 import Highlighter from "react-highlight-words";
 
 const margin = css`
-  padding-left: 20px;
+  padding-left: 5px;
   @media only screen and (min-width: ${globalTheme.max.sm}) {
     columns: 2;
     -webkit-columns: 2;
@@ -15,6 +15,10 @@ const margin = css`
   li {
     margin-bottom: 10px;
     margin-left: 6px; // this is so bullets appear in 2nd column in IE
+    overflow: hidden; // fixes a bug with text wrapping in IE
+    list-style: inside;
+    text-indent: -1.4em;
+    padding-left: 1.4em;
   }
   margin-left: -6px;
 `;
