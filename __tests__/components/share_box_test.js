@@ -39,7 +39,7 @@ describe("ShareBox", () => {
     props.share = true;
     let mounted = mount(<ShareBox {...props} />);
     mounted
-      .find("#shareButton")
+      .find("HeaderButton")
       .first()
       .simulate("click");
     expect(mounted.state().showModal).toEqual(true);

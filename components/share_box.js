@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Container from "../components/container";
-import { css } from "emotion";
+import { cx, css } from "emotion";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
 import ShareModal from "./share_modal";
 import Print from "./icons/Print";
 import ShareIcon from "./icons/share_icon";
+import { uuidv4 } from "../utils/common";
 
 const shareBoxStyle = css`
   background-color: ${globalTheme.colour.paleGreyishBrown};
@@ -34,23 +35,27 @@ class ShareBox extends Component {
   state = {
     showModal: false
   };
+
+  uid = uuidv4();
+
   render() {
-    const { t, printUrl, url, share } = this.props;
+    const { t, printUrl, url, share, className } = this.props;
     return (
-      <Container className={shareBoxStyle}>
+      <Container className={cx(shareBoxStyle, className)}>
         <Grid container spacing={8}>
           {share ? (
             <Grid item lg={12} md={12} sm={12} xs={6}>
               <HeaderButton
+                id={this.uid}
                 className={shareBoxItem}
                 size="small"
                 onClick={() => this.setState({ showModal: true })}
-                id="shareButton"
               >
                 <ShareIcon />
                 <span>{t("titles.share")}</span>
               </HeaderButton>
               <ShareModal
+                uid={this.uid}
                 isOpen={this.state.showModal}
                 onRequestClose={() => this.setState({ showModal: false })}
                 closeModal={() => this.setState({ showModal: false })}
@@ -67,7 +72,6 @@ class ShareBox extends Component {
               size="small"
               href={printUrl}
               target="_blank"
-              id="printButton"
             >
               <Print />
               <span className={share ? nonMobileStyle : ""}>{t("Print")}</span>
@@ -83,7 +87,8 @@ ShareBox.propTypes = {
   t: PropTypes.func.isRequired,
   printUrl: PropTypes.string,
   url: PropTypes.object.isRequired,
-  share: PropTypes.bool
+  share: PropTypes.bool,
+  className: PropTypes.string
 };
 
 export default ShareBox;

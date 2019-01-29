@@ -28,6 +28,7 @@ const listStyle = css`
   padding-left: 20px;
   list-style: disc;
   margin: 16px 0;
+  text-indent: 0.2em;
 `;
 
 const logExit = url => {
