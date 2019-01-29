@@ -117,7 +117,7 @@ export class GuidedExperience extends Component {
               <Header size="md_lg" headingLevel="h2">
                 {this.getSubtitle(question)}
               </Header>
-              {id === "serviceHealthIssue" ? (
+              {question.tooltip_english && question.tooltip_english !== "" ? (
                 <Body className={body}>
                   {t("current-language-code") === "en"
                     ? question.tooltip_english
