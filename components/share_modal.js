@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 
 import { globalTheme } from "../theme";
+const modalStyles = { overlay: { zIndex: 100 } };
 
 const modalCSS = css`
   position: absolute;
@@ -35,7 +36,7 @@ const modalCSS = css`
     input {
       width: 100%;
     }
-    #copyButton {
+    .copyButton {
       width: 100%;
       margin: auto;
     }
@@ -168,8 +169,8 @@ class ShareModal extends Component {
   }
 
   render() {
-    const { isOpen, onRequestClose, closeModal, t } = this.props;
-
+    const { uid, isOpen, onRequestClose, closeModal, t } = this.props;
+    const shareTargetId = uid + "shareTarget";
     let iOS = false;
     if (global.navigator) {
       let userAgent = navigator.userAgent;
@@ -181,7 +182,7 @@ class ShareModal extends Component {
     let inputBox = iOS ? (
       <URLInputBox
         type="text"
-        id="shareTarget"
+        id={shareTargetId}
         defaultValue={this.state.origin + this.props.url.asPath}
         contentEditable="true"
         readOnly={false}
@@ -189,7 +190,7 @@ class ShareModal extends Component {
     ) : (
       <URLInputBox
         type="text"
-        id="shareTarget"
+        id={shareTargetId}
         value={this.state.origin + this.props.url.asPath}
         readOnly
       />
@@ -198,27 +199,23 @@ class ShareModal extends Component {
     if (process.browser) {
       return (
         <ReactModal
+          style={modalStyles}
           className={modalCSS}
           isOpen={isOpen}
           onRequestClose={() => this.close(onRequestClose)}
         >
           <div className={header}>
             <span>{t("titles.share")}</span>
-            <CloseButton
-              onClick={() => this.close(closeModal)}
-              id="modalCloseButton"
-            >
-              X
-            </CloseButton>
+            <CloseButton onClick={() => this.close(closeModal)}>X</CloseButton>
           </div>
           <div className={bodyStyle}>
             <p>
-              <label htmlFor="shareTarget">{t("share.copy_prompt")}</label>
+              <label htmlFor={shareTargetId}>{t("share.copy_prompt")}</label>
             </p>
             {inputBox}
             <CopyButton
-              id="copyButton"
-              data-copytarget="#shareTarget"
+              className="copyButton"
+              data-copytarget={"#" + shareTargetId}
               onClick={this.copyText}
             >
               {t("share.copy_button")}
@@ -234,6 +231,7 @@ class ShareModal extends Component {
 }
 
 ShareModal.propTypes = {
+  uid: PropTypes.string.isRequired,
   className: PropTypes.string,
   isOpen: PropTypes.bool,
   onRequestClose: PropTypes.func,

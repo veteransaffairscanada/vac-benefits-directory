@@ -1,4 +1,4 @@
-const translate = key => {
+const translate = (key, substitution = {}) => {
   if (key === "current-language-code") {
     return "en";
   }
@@ -7,6 +7,9 @@ const translate = key => {
   }
   if (key === "other-language-in-current-language") {
     return "French";
+  }
+  if (key && Object.keys(substitution).length > 0) {
+    return key + Object.values(substitution).join();
   }
   return key;
 };

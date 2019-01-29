@@ -29,30 +29,54 @@ const topMatter = css`
   background-color: ${globalTheme.colour.white};
   width: 100%;
 `;
-const favouritesLink = css`
-  padding: 1em 24px !important;
-  border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
-  border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
+const sidebarLinks = css`
+  // for big screen...
+  @media only screen and (min-width: ${globalTheme.min.xs}) {
+    padding: 1em 24px !important;
+    border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
+    border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
+  }
   margin-bottom: 24px;
 `;
 const sidebar = css`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  background-color: ${globalTheme.colour.white};
+  z-index: 10;
 `;
-const dot = css`
-  height: 23px;
-  width: 22.5px;
-  padding-top: 1px;
-  padding-left: 1.5px;
-  background-color: ${globalTheme.colour.red2};
-  border-radius: 50%;
-  display: inline-block;
-  text-align: center;
-  color: white;
-  font-size: 16px;
-  margin-top: 2px;
-  float: right;
+
+// if screen size is max.xs or smaller, hide long text
+const longText = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none !important;
+  }
+`;
+// if screen size is min.xs or larger, hide short text
+const shortText = css`
+  @media only screen and (min-width: ${globalTheme.min.xs}) {
+    display: none !important;
+  }
+`;
+const savedListLink = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+  }
+`;
+const editLink = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+  }
+`;
+const hideOnMobile = css`
+  // if screen size is max.xs or smaller
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none !important;
+  }
+`;
+const showOnMobile = css`
+  // if screen size is min.xs or larger
+  @media only screen and (min-width: ${globalTheme.min.xs}) {
+    display: none !important;
+  }
 `;
 
 export class BB extends Component {
@@ -77,10 +101,21 @@ export class BB extends Component {
   }
   scrollToNextSteps() {
     window.location = "#next-steps";
+    const maxMobile = parseFloat(globalTheme.max.xs);
+    window.screen.width < maxMobile ? window.scrollBy(0, -90) : null;
   }
 
   render() {
-    const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, store, homeUrl, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const longFavouritesText = t("favourites.saved_benefits", {
+      x: favouriteBenefits.length
+    });
+    const shortFavouritesText = t("favourites.saved_benefits_mobile", {
+      x: favouriteBenefits.length
+    });
+    const longEditText = t("directory.edit_selections");
+    const shortEditText = t("directory.edit_selections_mobile");
+
     return (
       <div id={this.props.id} className={outerDiv}>
         <div className={topMatter}>
@@ -93,22 +128,21 @@ export class BB extends Component {
         </div>
         <Container>
           <Grid container spacing={32}>
-            <Grid item lg={3} md={3} sm={4} xs={12}>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
               <div className={sidebar}>
-                <Grid container spacing={16} className={favouritesLink}>
-                  <Grid item xs={12}>
+                <Grid container spacing={16} className={sidebarLinks}>
+                  <Grid item xs={4} sm={12}>
                     <HeaderLink
                       id="savedBenefits"
                       href={this.props.favouritesUrl}
+                      className={savedListLink}
                     >
                       <SaveChecked />
-                      {t("B3.favouritesButtonText")}
+                      <span className={longText}>{longFavouritesText}</span>
+                      <span className={shortText}>{shortFavouritesText}</span>
                     </HeaderLink>
-                    <span className={dot} id="favouritesDot">
-                      {this.props.favouriteBenefits.length}
-                    </span>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={4} sm={12}>
                     <HeaderButton
                       id="nextSteps"
                       onClick={() => this.scrollToNextSteps()}
@@ -117,23 +151,34 @@ export class BB extends Component {
                       {t("nextSteps.whats_next")}
                     </HeaderButton>
                   </Grid>
-                  <Grid item xs={12}>
+                  <Grid item xs={4} sm={12}>
                     <HeaderLink
                       id="editSelections"
                       href={this.props.summaryUrl}
+                      className={editLink}
                     >
                       <EditIcon />
-                      {t("directory.edit_selections")}
+                      <span className={longText}>{longEditText}</span>
+                      <span className={shortText}>{shortEditText}</span>
                     </HeaderLink>
                   </Grid>
                 </Grid>
                 <ShareBox
+                  className={hideOnMobile}
                   t={t}
                   printUrl={this.props.printUrl}
                   url={url}
                   share={true}
                 />
               </div>
+            </Grid>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={showOnMobile}>
+              <ShareBox
+                t={t}
+                printUrl={this.props.printUrl}
+                url={url}
+                share={true}
+              />
             </Grid>
             <Grid id="mainContent" item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={16}>

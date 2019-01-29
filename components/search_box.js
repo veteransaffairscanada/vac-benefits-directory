@@ -86,7 +86,6 @@ const DisabledSearchButton = styled("button")({
   backgroundColor: globalTheme.colour.white,
   display: "block",
   color: globalTheme.colour.cerulean,
-  position: "relative",
   padding: "10px",
   width: "45px",
   height: "44px",
