@@ -17,7 +17,7 @@ const list = css`
   list-style: none;
   padding-left: 0;
   margin-top: 0;
-  li {
+  > li {
     padding: 12px;
   }
 `;

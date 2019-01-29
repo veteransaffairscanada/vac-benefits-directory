@@ -15,8 +15,9 @@ const margin = css`
   li {
     margin-bottom: 10px;
     margin-left: 6px; // this is so bullets appear in 2nd column in IE
+    list-style: disc;
   }
-  margin-left: -6px;
+  margin: 16px 0px 16px -6px;
 `;
 
 const root = css`
