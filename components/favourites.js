@@ -55,7 +55,7 @@ const hideOnMobile = css`
     display: none !important;
   }
 `;
-const mobileSidebar = css`
+const showOnMobile = css`
   // if screen size is min.xs or larger
   @media only screen and (min-width: ${globalTheme.min.xs}) {
     display: none !important;
@@ -88,6 +88,8 @@ export class Favourites extends Component {
 
   scrollToNextSteps() {
     window.location = "#next-steps";
+    const maxMobile = parseFloat(globalTheme.max.xs);
+    window.screen.width < maxMobile ? window.scrollBy(0, -90) : null;
   }
 
   render() {
@@ -137,7 +139,7 @@ export class Favourites extends Component {
                 />
               </div>
             </Grid>
-            <Grid item lg={3} md={3} sm={4} xs={12} className={mobileSidebar}>
+            <Grid item lg={3} md={3} sm={4} xs={12} className={showOnMobile}>
               <ShareBox
                 t={t}
                 printUrl={this.props.printUrl}
