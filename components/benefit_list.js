@@ -93,15 +93,24 @@ export class BenefitList extends React.Component {
     ) : (
       <ul className={list}>
         {sortedBenefits.map((benefit, i) => (
-          <BenefitCard
-            id={"bc" + i}
-            benefit={benefit}
-            t={t}
-            currentLanguage={currentLanguage}
+          <li
             key={benefit.id}
-            showFavourite={showFavourites}
-            store={store}
-          />
+            aria-label={
+              this.props.t("current-language-code") === "en"
+                ? benefit.vacNameEn
+                : benefit.vacNameFr
+            }
+          >
+            <BenefitCard
+              id={"bc" + i}
+              benefit={benefit}
+              t={t}
+              currentLanguage={currentLanguage}
+              key={benefit.id}
+              showFavourite={showFavourites}
+              store={store}
+            />
+          </li>
         ))}
       </ul>
     );

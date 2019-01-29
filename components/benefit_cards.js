@@ -76,83 +76,75 @@ export class BenefitCard extends Component {
 
     const searchWords = this.props.searchString.split(/\s+/);
     return (
-      <li
-        aria-label={
-          this.props.t("current-language-code") === "en"
-            ? benefit.vacNameEn
-            : benefit.vacNameFr
-        }
-      >
-        <Grid item xs={12}>
-          <div className={root}>
-            <Paper className={cardBody}>
-              <BenefitCardHeader
+      <Grid item xs={12}>
+        <div className={root}>
+          <Paper className={cardBody}>
+            <BenefitCardHeader
+              benefit={benefit}
+              t={t}
+              store={this.props.store}
+            />
+            <Header className={benefitName} size="sm" headingLevel="h2">
+              <Highlighter
+                searchWords={searchWords}
+                autoEscape={true}
+                textToHighlight={
+                  this.props.currentLanguage === "en"
+                    ? benefit.vacNameEn
+                    : benefit.vacNameFr
+                }
+              />
+            </Header>
+
+            <OneLiner className={"cardDescription " + cardDescriptionText}>
+              <Highlighter
+                searchWords={searchWords}
+                autoEscape={true}
+                textToHighlight={
+                  this.props.currentLanguage === "en"
+                    ? benefit.oneLineDescriptionEn
+                    : benefit.oneLineDescriptionFr
+                }
+              />
+            </OneLiner>
+            <div className={padding}>
+              {needsMet.map(need => (
+                <NeedTag key={benefit.id + need.id} t={t} need={need} />
+              ))}
+            </div>
+            {this.state.expanded ? (
+              <BenefitExpansion
+                className={padding}
                 benefit={benefit}
                 t={t}
                 store={this.props.store}
               />
-              <Header className={benefitName} size="sm" headingLevel="h2">
-                <Highlighter
-                  searchWords={searchWords}
-                  autoEscape={true}
-                  textToHighlight={
-                    this.props.currentLanguage === "en"
-                      ? benefit.vacNameEn
-                      : benefit.vacNameFr
-                  }
-                />
-              </Header>
+            ) : null}
 
-              <OneLiner className={"cardDescription " + cardDescriptionText}>
-                <Highlighter
-                  searchWords={searchWords}
-                  autoEscape={true}
-                  textToHighlight={
-                    this.props.currentLanguage === "en"
-                      ? benefit.oneLineDescriptionEn
-                      : benefit.oneLineDescriptionFr
-                  }
-                />
-              </OneLiner>
-              <div className={padding}>
-                {needsMet.map(need => (
-                  <NeedTag key={benefit.id + need.id} t={t} need={need} />
-                ))}
-              </div>
-              {this.state.expanded ? (
-                <BenefitExpansion
-                  className={padding}
-                  benefit={benefit}
-                  t={t}
-                  store={this.props.store}
-                />
-              ) : null}
-
-              <Grid container className={buttonRow}>
-                <Grid item xs={4}>
-                  <HeaderButton
-                    id={"see-more-less" + benefit.id}
-                    onClick={this.toggleExpanded}
-                    size="small"
-                  >
-                    {this.state.expanded ? t("B3.see_less") : t("B3.see_more")}
-                  </HeaderButton>
-                </Grid>
-                {this.props.showFavourite ? (
-                  <Grid item xs={8} className={alignRight}>
-                    <FavouriteButton
-                      benefit={benefit}
-                      toggleOpenState={() => {}}
-                      store={this.props.store}
-                      t={t}
-                    />
-                  </Grid>
-                ) : null}
+            <Grid container className={buttonRow}>
+              <Grid item xs={4}>
+                <HeaderButton
+                  id={"see-more-less" + benefit.id}
+                  onClick={this.toggleExpanded}
+                  size="small"
+                >
+                  {this.state.expanded ? t("B3.see_less") : t("B3.see_more")}
+                </HeaderButton>
               </Grid>
-            </Paper>
-          </div>
-        </Grid>
-      </li>
+              {this.props.showFavourite ? (
+                <Grid item xs={8} className={alignRight}>
+                  <FavouriteButton
+                    benefit={benefit}
+                    toggleOpenState={() => {}}
+                    store={this.props.store}
+                    t={t}
+                  />
+                </Grid>
+              ) : null}
+            </Grid>
+          </Paper>
+        </div>
+      </Grid>
     );
   }
 }
