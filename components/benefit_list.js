@@ -13,6 +13,15 @@ const Div = css`
   top: 40%;
 `;
 
+const list = css`
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  > li {
+    padding: 12px;
+  }
+`;
+
 export class BenefitList extends React.Component {
   state = {
     loading: false
@@ -82,17 +91,28 @@ export class BenefitList extends React.Component {
         <CircularProgress size={100} />
       </div>
     ) : (
-      sortedBenefits.map((benefit, i) => (
-        <BenefitCard
-          id={"bc" + i}
-          benefit={benefit}
-          t={t}
-          currentLanguage={currentLanguage}
-          key={benefit.id}
-          showFavourite={showFavourites}
-          store={store}
-        />
-      ))
+      <ul className={list}>
+        {sortedBenefits.map((benefit, i) => (
+          <li
+            key={benefit.id}
+            aria-label={
+              this.props.t("current-language-code") === "en"
+                ? benefit.vacNameEn
+                : benefit.vacNameFr
+            }
+          >
+            <BenefitCard
+              id={"bc" + i}
+              benefit={benefit}
+              t={t}
+              currentLanguage={currentLanguage}
+              key={benefit.id}
+              showFavourite={showFavourites}
+              store={store}
+            />
+          </li>
+        ))}
+      </ul>
     );
   }
 }

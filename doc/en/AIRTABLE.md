@@ -1,29 +1,29 @@
-# AirTable
+# Airtable
 
 ## What is it?
 
-[AirTable](https://airtable.com/) is an online spreadsheet product similar to Google Sheets but with a better API, access controls, and revision history. It allows spreadsheets to be created and data added or changed through the AirTable web application or through its REST API. This can be controlled by setting up user accounts and giving them read and/or write permission. You can also generate API keys that have read and/or write permission. Custom API documentation (with example calls!) is generated using the table/column names for your project, and can be viewed on airtable.com.
+[Airtable](https://airtable.com/) is an online spreadsheet product similar to Google Sheets but with a better API, access controls, and revision history. It allows spreadsheets to be created and data added or changed through the Airtable web application or through its REST API. This can be controlled by setting up user accounts and giving them read and/or write permission. You can also generate API keys that have read and/or write permission. Custom API documentation (with example calls!) is generated using the table/column names for your project, and can be viewed on airtable.com.
 
 ## Why and how are we using it?
 
-We're using AirTable because it allows non-developers (and developers!) to easily edit the data used by our app. This is very useful for:
+We're using Airtable because it allows non-developers (and developers!) to easily edit the data used by our app. This is very useful for:
 
 - Translations: Content designers and translators can edit the UI text used in the app by going to the translations table, doing a ctrl+f search for the English or French UI text they want to change, and then modifying it.
 - Eligibility logic: The logic used by our app to determine who is eligible for what benefits is set in the eligibilityPaths table. Each row has a unique combination of answers to the questions. Each row also has a list of benefits that are likely available to a user who answers in this way. The list of benefits are linked to rows in the benefits table.
 - Benefits: This table contains a row for each benefit, and a column (eligibilityPaths) with a list of links to rows in the eligibilityPaths table. Updating this list will update the ids in the benefits column in the eligibilityPaths table.
-- Feedback: Content submitted from the feedback bar in the app footer is written to the feedback table on AirTable. To do this, the server has a write key set in ENV variables.
+- Feedback: Content submitted from the feedback bar in the app footer is written to the feedback table on Airtable. To do this, the server has a write key set in ENV variables.
 
-AirTable data is read by the server and injected into Redux, which is then sent to the client.
+Airtable data is read by the server and injected into Redux, which is then sent to the client.
 
 ## How does one get access?
 
-To request access to edit content in AirTable, set up an account on their website and then email vac@cds-snc.ca with your account details so we can add you to the project.
+To request access to edit content in Airtable, set up an account on their website and then email vac@cds-snc.ca with your account details so we can add you to the project.
 
-## Making changes to AirTable
+## Making changes to Airtable
 
-To do anything in AirTable, always take the following steps:
+To do anything in Airtable, always take the following steps:
 
-1. Visit the [Master AirTable base](https://airtable.com/tblHt9ZuCBwsplYw2). If you don't have permission to access it, [request permission](#how-does-one-get-access)
+1. Visit the [Master Airtable base](https://airtable.com/tblHt9ZuCBwsplYw2). If you don't have permission to access it, [request permission](#how-does-one-get-access)
 2. Make some changes. See the step-by-step guides below to help you with the task you want to perform.
 3. View your changes in the live app by visiting the [data validation page](https://vac-benefits-finder.cds-snc.ca/data-validation) and clicking the "refresh cache" button at the top right.
 4. Make sure no new tests have failed by looking through the rows on the data-validation page. If they have, investigate and fix the problem in Airtable.
@@ -62,14 +62,14 @@ To do anything in AirTable, always take the following steps:
 
 ### Changing the eligibility criteria for a benefit
 
-1. Navigate to the [benefitEligibility sheet](https://airtable.com/tblRNTYbp9OWDSj4l/viwB7uV1iu2dCaa5P) in AirTable
+1. Navigate to the [benefitEligibility sheet](https://airtable.com/tblRNTYbp9OWDSj4l/viwB7uV1iu2dCaa5P) in Airtable
 2. Each path is represented by values within columns which correspond to the questions in the [questions sheet](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s). The values which fill these columns correspond to values in the [multipleChoiceOptions sheet](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx).
-3. Determine if the new eligiblity path for the benefit already exists (has a row in the benefitEligibility sheet). If it doesn't exist, create a new row and add the benefit and the eligibility criteria. Note: only include `statusAndVitals` values in a path if the path includes `family` and not `veteran`, `serving member`, or `organization`. This may mean that you need to create 2 rows for a benefit: one path for family members and another path for veterans.
+3. Determine if the new eligibility path for the benefit already exists (has a row in the benefitEligibility sheet). If it doesn't exist, create a new row and add the benefit and the eligibility criteria. Note: only include `statusAndVitals` values in a path if the path includes `family` and not `veteran`, `serving member`, or `organization`. This may mean that you need to create 2 rows for a benefit: one path for family members and another path for veterans.
 4. If you wish to remove an eligibility path from a benefit, delete the corresponding row in the table.
 
 ### Adding a category (aka need or checkbox question), associating it with a benefit
 
-1. Navigate to the [needs sheet](https://airtable.com/tblY7TpDsGR5I3SaN/viwQOzMWARRdWFks3) in AirTable
+1. Navigate to the [needs sheet](https://airtable.com/tblY7TpDsGR5I3SaN/viwQOzMWARRdWFks3) in Airtable
 2. Add a new row at the bottom and give the category an english name and french name
 3. Select the cell under the benefits column and click +
 4. Start typing the names of the benefits you want the category to be associated with

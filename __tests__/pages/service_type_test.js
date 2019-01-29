@@ -1,10 +1,10 @@
 /* eslint-env jest */
 import React from "react";
 import { shallow } from "enzyme";
-import { Index } from "../../pages/index";
+import ServiceType from "../../pages/serviceType";
 
-describe("Index", () => {
+describe("ServiceType", () => {
   it("renders GuidedExperiencePage", async () => {
-    expect(shallow(<Index />).length).toEqual(1);
+    expect(shallow(<ServiceType />).length).toEqual(1);
   });
 });
