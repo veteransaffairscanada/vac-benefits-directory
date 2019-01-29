@@ -101,7 +101,8 @@ export class BB extends Component {
   }
   scrollToNextSteps() {
     window.location = "#next-steps";
-    window.scrollBy(0, -80);
+    const maxMobile = parseFloat(globalTheme.max.xs);
+    window.screen.width < maxMobile ? window.scrollBy(0, -90) : null;
   }
 
   render() {
