@@ -34,6 +34,7 @@ const buttonRow = css`
 `;
 const root = css`
   width: 100%;
+  display: block;
 `;
 const benefitName = css`
   padding-top: 35px;

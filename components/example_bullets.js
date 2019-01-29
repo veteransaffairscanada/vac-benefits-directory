@@ -15,12 +15,13 @@ const margin = css`
   li {
     margin-bottom: 10px;
     margin-left: 6px; // this is so bullets appear in 2nd column in IE
+    list-style: disc;
     overflow: hidden; // fixes a bug with text wrapping in IE
     list-style: inside;
     text-indent: -1.4em;
     padding-left: 1.4em;
   }
-  margin-left: -6px;
+  margin: 16px 0px 16px -6px;
 `;
 
 const root = css`
