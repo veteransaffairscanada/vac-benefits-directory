@@ -77,17 +77,12 @@ describe("GuidedExperience", () => {
     ).toContain("next");
   });
 
-  it("displays helper text if it exists", () => {
-    props.helperText = "helperText";
-    expect(
-      mounted_GuidedExperience()
-        .find("Body")
-        .text()
-    ).toContain("helperText");
+  it("displays helper text if id is serviceHealthIssue", () => {
+    props.id = "serviceHealthIssue";
+    expect(mounted_GuidedExperience().find("Body").length).toEqual(1);
   });
 
-  it("does not display helper text if it does not exist", () => {
-    props.helperText = "";
+  it("does not display helper text if id is not serviceHealthIssue", () => {
     expect(mounted_GuidedExperience().find("Body").length).toEqual(0);
   });
 
