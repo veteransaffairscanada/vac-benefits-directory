@@ -84,15 +84,20 @@ export class GuidedExperience extends Component {
       skipQueryParams[id] = "";
     }
 
+    const backUrl =
+      id === "patronType"
+        ? t("ge.home_link")
+        : mutateUrl(
+            url,
+            "/" + getPageName(prevSection),
+            this.queryParamsToClear()
+          );
+
     return (
       <Container id="mainContent">
         <HeaderLink
           id="prevButton"
-          href={mutateUrl(
-            url,
-            "/" + getPageName(prevSection),
-            this.queryParamsToClear()
-          )}
+          href={backUrl}
           className={prevButton}
           arrow="back"
         >

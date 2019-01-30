@@ -109,6 +109,16 @@ describe("GuidedExperience", () => {
     ).toEqual("/?lng=en&patronType=veteran&serviceType=RCMP&selectedNeeds=1,2");
   });
 
+  it("back button links to VAC home page if we're on the 1st page", () => {
+    props.id = "patronType";
+    expect(
+      mounted_GuidedExperience()
+        .find("#prevButton")
+        .first()
+        .props().href
+    ).toEqual("ge.home_link");
+  });
+
   it("next button has correct href, clears hidden questions", () => {
     props.url.query.statusAndVitals = "blah";
     expect(
