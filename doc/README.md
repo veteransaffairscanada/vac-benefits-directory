@@ -480,7 +480,7 @@ Le flux de production de tests est différent du déploiement, mais est aussi la
 
 Le diagramme suivant démontre les deux flux :
 
-![Test and deploy workflow](https://user-images.githubusercontent.com/867334/44407480-31f3b780-a52c-11e8-97d7-6cf8ad046019.png "Test and deploy workflows")
+![Test and deploy workflow](https://user-images.githubusercontent.com/5498428/51942805-f7008480-23e5-11e9-9039-3d563434a79d.png "Test and deploy workflows")
 
 ### Traductions
 
