@@ -8829,6 +8829,10 @@ react-modal@^3.7.1:
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
 
+react-moment@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.8.4.tgz#18eb59e1541c8b216353e23c21e9db50e42e2edb"
+
 react-redux@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.1.1.tgz#88e368682c7fa80e34e055cd7ac56f5936b0f52f"
