@@ -10,6 +10,7 @@ import ShareModal from "./share_modal";
 import Print from "./icons/Print";
 import ShareIcon from "./icons/share_icon";
 import { uuidv4 } from "../utils/common";
+import { logEvent } from "../utils/analytics";
 
 const shareBoxStyle = css`
   background-color: ${globalTheme.colour.paleGreyishBrown};
@@ -72,6 +73,9 @@ class ShareBox extends Component {
               size="small"
               href={printUrl}
               target="_blank"
+              onClick={() => {
+                logEvent("Exit", "print");
+              }}
             >
               <Print />
               <span className={share ? nonMobileStyle : ""}>{t("Print")}</span>

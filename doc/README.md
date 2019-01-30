@@ -379,12 +379,12 @@ De même, Heroku crée automatiquement une application pour chaque demande de ti
 
 Pour configurer des applications d’examen des demandes de tirage, nous utilisons un pipeline Heroku. Dans le tableau de bord :
 
--	Cliquez sur New / Create new pipeline.
--	Donnez un nom au pipeline, connectez-le à un répertoire et cliquez sur « Create pipeline ».
--	Ajoutez une application existante (ou créez-en une nouvelle) dans les sections Staging ou Production. Les applications d’examen hériteront des variables d’environnement de cette application.
--	Cliquez sur « Enable Review Apps ».
--	Cochez la case à côté de « Create new review apps for new pull requests automatically ».
--	Cliquez sur « Enable ».
+- Cliquez sur New / Create new pipeline.
+- Donnez un nom au pipeline, connectez-le à un répertoire et cliquez sur « Create pipeline ».
+- Ajoutez une application existante (ou créez-en une nouvelle) dans les sections Staging ou Production. Les applications d’examen hériteront des variables d’environnement de cette application.
+- Cliquez sur « Enable Review Apps ».
+- Cochez la case à côté de « Create new review apps for new pull requests automatically ».
+- Cliquez sur « Enable ».
 
 #### Comment peut-on y avoir accès?
 
@@ -411,33 +411,34 @@ Vous pouvez consulter le rapport de test de validation sans avoir un accès admi
 
 Le [développement piloté par les tests](https://fr.wikipedia.org/wiki/Test_driven_development) et d’autres pratiques liées à [Agile](https://fr.wikipedia.org/wiki/M%C3%A9thode_agile) avec un « petit a » constituent un ensemble de cadres et d’outils pour gérer le développement d’un produit logiciel.
 
-#### Pourquoi l’utilisons-nous?  
+#### Pourquoi l’utilisons-nous?
 
 Le développement piloté par les tests permet une approche itérative et continue qui est préférable aux cycles de lancement répartis. Pour faciliter ce processus, nous avons choisi d’utiliser un processus d’[intégration continue](https://fr.wikipedia.org/wiki/Int%C3%A9gration_continue) et de [livraison continue](https://fr.wikipedia.org/wiki/Livraison_continue) selon lequel de nouvelles fonctionnalités et de nouveaux codes sont fréquemment ajoutés au produit, examinés et vérifiés, puis expédiés dès qu’ils sont achevés. On utilise actuellement [https://circleci.com](https://circleci.com) (en anglais) comme plateforme pour exécuter tous nos tests unitaires avant le déploiement. Avec cela, nous utilisons également [https://heroku.com](https://heroku.com) (en anglais) pour créer des versions intermédiaires de notre application aux fins d’examen manuel.
 
 #### Quel est notre processus de développement?
 
-1.	On donne aux sprints de développement des périodes de deux semaines.
-2.	Au début d’un sprint, l’équipe de développement se réunit avec les autres membres de la grande équipe afin de discuter des priorités de développement des nouvelles fonctionnalités.
-3.	L’équipe de développement examine les problèmes non résolus depuis le dernier sprint et leur accorde la priorité dans les prochains objectifs de développement.
-4.	Les fonctionnalités sont réparties en problèmes sur GitHub, et les développeurs s’entendent sur le temps que chaque problème pourrait prendre.
-5.	Les développeurs s’attribuent des problèmes à partir de la liste de problèmes non résolus dans GitHub.
-6.	Pour résoudre un problème, un développeur :
-  - consulte une nouvelle branche du `master`;
-  - élabore la fonctionnalité ou résout le bogue décrit dans le problème;
-  - valide continuellement le code dans sa branche à des intervalles raisonnables;
-  - écrit des tests unitaires et d’intégration pour le code qu’il a ajouté;
-  - modifie ou supprime les tests unitaires et d’intégration pour le code qu’il a modifié;
-  - exécute une série de tests pour s’assurer que tous les tests sont réussis;
-  - utilise un outil de couverture de code pour s’assurer que toute la logique importante a été testée;
-  - valide le code final, pousse le code dans GitHub et ouvre une demande de tirage dans GitHub;
-  - attend CircleCI pour vérifier que tous nos tests seront réussis;
-  - effectue des vérifications ponctuelles à l’aide des applications d’examen d’Heroku;
-  - demande aux autres membres de l’équipe d’examiner la demande de tirage – un seul examen est requis, mais on invite tous les membres de l’équipe à examiner la demande de tirage;
-  - si d’autres membres de l’équipe ont des commentaires, ils les indiqueront dans GitHub pour que le développeur corrige des erreurs ou en discute;
-  - d’autres membres de l’équipe approuvent la demande de tirage une fois que toutes les discussions en suspens ont été résolues;
-  - les demandes de tirage sont ensuite fusionnées dans `master`;
-  - CircleCI vérifie encore une fois que tous les tests sont réussis sur le `master` à jour et déploie le code en production.
+1. On donne aux sprints de développement des périodes de deux semaines.
+2. Au début d’un sprint, l’équipe de développement se réunit avec les autres membres de la grande équipe afin de discuter des priorités de développement des nouvelles fonctionnalités.
+3. L’équipe de développement examine les problèmes non résolus depuis le dernier sprint et leur accorde la priorité dans les prochains objectifs de développement.
+4. Les fonctionnalités sont réparties en problèmes sur GitHub, et les développeurs s’entendent sur le temps que chaque problème pourrait prendre.
+5. Les développeurs s’attribuent des problèmes à partir de la liste de problèmes non résolus dans GitHub.
+6. Pour résoudre un problème, un développeur :
+
+- consulte une nouvelle branche du `master`;
+- élabore la fonctionnalité ou résout le bogue décrit dans le problème;
+- valide continuellement le code dans sa branche à des intervalles raisonnables;
+- écrit des tests unitaires et d’intégration pour le code qu’il a ajouté;
+- modifie ou supprime les tests unitaires et d’intégration pour le code qu’il a modifié;
+- exécute une série de tests pour s’assurer que tous les tests sont réussis;
+- utilise un outil de couverture de code pour s’assurer que toute la logique importante a été testée;
+- valide le code final, pousse le code dans GitHub et ouvre une demande de tirage dans GitHub;
+- attend CircleCI pour vérifier que tous nos tests seront réussis;
+- effectue des vérifications ponctuelles à l’aide des applications d’examen d’Heroku;
+- demande aux autres membres de l’équipe d’examiner la demande de tirage – un seul examen est requis, mais on invite tous les membres de l’équipe à examiner la demande de tirage;
+- si d’autres membres de l’équipe ont des commentaires, ils les indiqueront dans GitHub pour que le développeur corrige des erreurs ou en discute;
+- d’autres membres de l’équipe approuvent la demande de tirage une fois que toutes les discussions en suspens ont été résolues;
+- les demandes de tirage sont ensuite fusionnées dans `master`;
+- CircleCI vérifie encore une fois que tous les tests sont réussis sur le `master` à jour et déploie le code en production.
 
 7. Ce processus est répété de façon itérative jusqu’à ce que tous les problèmes pour un sprint soient réglés et qu’une nouvelle série de problèmes puisse être créée ou jusqu’à ce qu’un nouveau sprint démarre.
 8. À la fin d’un sprint, l’équipe de développement examine les problèmes et suggère des améliorations pour le prochain sprint.
@@ -457,8 +458,7 @@ Les avantages de ce processus sont que les fonctionnalités sont réparties et e
 Nous utilisons BrowserStack pour tester notre application sur d’autres appareils et navigateurs. En particulier, étant donné que nos machines de développement sont des MacBook, nous avons besoin d’une méthode facile pour effectuer des tests sur Windows/Internet Explorer. Nous utilisons BrowserStack de deux façons :
 
 - comme une plateforme en direct pour évaluer l’application manuellement;
--	comme un hôte pour les tests automatisés (décrits ci-dessous).
-
+- comme un hôte pour les tests automatisés (décrits ci-dessous).
 
 #### Comment peut-on y avoir accès?
 
@@ -496,7 +496,6 @@ Au démarrage, et chaque heure par la suite, le serveur téléchargera et mettra
 
 Lorsqu’une nouvelle chaîne est ajoutée à `AirTable`, une version anglaise et une version française sont incluses. Si la personne qui ajoute la chaîne n’est pas à l’aise dans les deux langues officielles, on l’encourage à ajouter un `[fra]` devant la traduction avec laquelle elle n’est pas à l’aise. Cela permet aux autres membres de l’équipe de voir la traduction incomplète dans `AirTable` et dans l’application réelle, ce qui leur permet de corriger la chaîne s’ils ont une compétence suffisante.
 
-
 ### Snyk
 
 #### De quoi s’agit-il?
@@ -508,7 +507,7 @@ Lorsqu’une nouvelle chaîne est ajoutée à `AirTable`, une version anglaise e
 Snyk nous donne une évaluation en temps réel des modules que nous utilisons dans notre application. Snyk est intégré à notre répertoire GitHub et nous fournit des renseignements de deux façons :
 
 - Snyk s’exécute sur la branche maître avec chaque fusion, et les résultats sont rapportés sur un badge dans la partie supérieure de [README.md](/README.md) (en anglais). De plus, l’équipe de développement reçoit un courriel hebdomadaire de Snyk décrivant toutes les vulnérabilités trouvées.
--	Snyk s’exécute sur chaque demande de tirage, et les résultats sont communiqués dans la demande de tirage.
+- Snyk s’exécute sur chaque demande de tirage, et les résultats sont communiqués dans la demande de tirage.
 
 #### Comment peut-on y avoir accès?
 
@@ -522,14 +521,13 @@ Comme nous l’avons mentionné plus haut, nous utilisons Snyk pour surveiller c
 - examiner et mettre à jour les progiciels que nous utilisons dans le projet;
 - exécuter des tests de bout en bout sur Windows (à l’aide de BrowserStack) et signaler tous les problèmes qui se présentent (`yarn test:e2e_windows`).
 
-
 Consultez [SECURITE.md](/fr/SECURITE.md) pour plus de renseignements.
 
 ### Tests
 
-Nous utilisons une combinaison de tests unitaires et de tests de bout en bout pour valider la base de code. Les tests unitaires sont rédigés à l’aide de  [`jest`](https://jestjs.io/) et [`enzyme`](https://airbnb.io/enzyme/). Nous avons décidé de ne pas tester le style approprié, mais plutôt de nous concentrer sur la logique dans les composantes. À l’heure actuelle, nous avons plus de 200 tests qui sont exécutés par CircleCI sur chaque validation. Les demandes de tirage ne sont pas approuvées si le code est ajouté à l’application sans assez de tests. Les demandes de tirage ne doivent pas être fusionnées si les tests ne sont pas réussis.
+Nous utilisons une combinaison de tests unitaires et de tests de bout en bout pour valider la base de code. Les tests unitaires sont rédigés à l’aide de [`jest`](https://jestjs.io/) et [`enzyme`](https://airbnb.io/enzyme/). Nous avons décidé de ne pas tester le style approprié, mais plutôt de nous concentrer sur la logique dans les composantes. À l’heure actuelle, nous avons plus de 200 tests qui sont exécutés par CircleCI sur chaque validation. Les demandes de tirage ne sont pas approuvées si le code est ajouté à l’application sans assez de tests. Les demandes de tirage ne doivent pas être fusionnées si les tests ne sont pas réussis.
 
-Nous utilisons  [Testcafé](https://devexpress.github.io/testcafe) (en anglais) pour écrire des tests de bout en bout. La série de tests e2e peut être exécutée localement au moyen de `yarn test:e2e` (avec l’exécution de `yarn dev`). Nous avons aussi exécuté nos tests dans Windows au moyen du service infonuagique [BrowserStack](https://www.browserstack.com) (en anglais) à l’aide de la commande `yarn test:e2e_windows` (avec `yarn dev` en exécution et les variables d’environnement `BROWSERSTACK_USERNAME` et `BROWSERSTACK_ACCESS_KEY` établies de façon appropriée).
+Nous utilisons [Testcafé](https://devexpress.github.io/testcafe) (en anglais) pour écrire des tests de bout en bout. La série de tests e2e peut être exécutée localement au moyen de `yarn test:e2e` (avec l’exécution de `yarn dev`). Nous avons aussi exécuté nos tests dans Windows au moyen du service infonuagique [BrowserStack](https://www.browserstack.com) (en anglais) à l’aide de la commande `yarn test:e2e_windows` (avec `yarn dev` en exécution et les variables d’environnement `BROWSERSTACK_USERNAME` et `BROWSERSTACK_ACCESS_KEY` établies de façon appropriée).
 
 ### Documentation sur le code
 
@@ -566,12 +564,11 @@ Lorsque deux développeurs ne se trouvent pas dans le même emplacement, nous av
 
 Pour configurer Atom aux fins de la programmation en binôme, effectuez ce qui suit :
 
-1.	Téléchargez et installez Atom : https://atom.io/ (en anglais)
-2.	Ouvrez Atom -> Preferences (Préférences) -> Install (Installer), et recherchez « Teletype »
-3.	Installez Teletype. Une icône Teletype (ressemble à une tour de radio) doit apparaître au bas de votre écran.
-4.	Cliquez sur l’icône Teletype et autorisez l’application à l’aide de vos justificatifs d’identité de GitHub.
-5.	Retournez à Atom, cliquez sur l’icône Teletype à nouveau, et vous devriez maintenant pouvoir partager votre espace de travail ou vous joindre à un portail en collant le lien dans l’espace de travail d’une autre personne.
-
+1. Téléchargez et installez Atom : https://atom.io/ (en anglais)
+2. Ouvrez Atom -> Preferences (Préférences) -> Install (Installer), et recherchez « Teletype »
+3. Installez Teletype. Une icône Teletype (ressemble à une tour de radio) doit apparaître au bas de votre écran.
+4. Cliquez sur l’icône Teletype et autorisez l’application à l’aide de vos justificatifs d’identité de GitHub.
+5. Retournez à Atom, cliquez sur l’icône Teletype à nouveau, et vous devriez maintenant pouvoir partager votre espace de travail ou vous joindre à un portail en collant le lien dans l’espace de travail d’une autre personne.
 
 ### Notifications de déploiement
 

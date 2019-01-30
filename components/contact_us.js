@@ -69,6 +69,9 @@ export class ContactUs extends Component {
                   href={t("nextSteps.myvac_register_href")}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => {
+                    logEvent("Exit", "register for myVAC");
+                  }}
                 >
                   {t("nextSteps.myvac_register_text")}
                 </AnchorLink>
@@ -78,7 +81,7 @@ export class ContactUs extends Component {
                 id="myVacAccountButton"
                 onClick={() => {
                   let exitUrl = t("contact.my_vac_link");
-                  logEvent("Exit", exitUrl);
+                  logEvent("Exit", "register for myVAC");
                   const win = window.open(exitUrl, "_blank");
                   win.focus();
                 }}
@@ -99,7 +102,12 @@ export class ContactUs extends Component {
               <p>{t("nextSteps.box_2a")}</p>
               <p>
                 {t("nextSteps.box_2b") + " "}
-                <AnchorLink href={"mailto:" + t("contact.email")}>
+                <AnchorLink
+                  href={"mailto:" + t("contact.email")}
+                  onClick={() => {
+                    logEvent("Exit", "email VAC");
+                  }}
+                >
                   {t("contact.email")}
                 </AnchorLink>
                 {t("nextSteps.box_2c")}

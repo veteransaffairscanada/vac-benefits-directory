@@ -31,10 +31,6 @@ const listStyle = css`
   text-indent: 0.2em;
 `;
 
-const logExit = url => {
-  logEvent("Exit", url);
-};
-
 const ChildBenefitList = props => {
   const { benefits, colonText, t } = props;
   if (benefits.length === 0) {
@@ -58,7 +54,9 @@ const ChildBenefitList = props => {
                   size="small"
                   href={language === "en" ? cb.benefitPageEn : cb.benefitPageFr}
                   onClick={() => {
-                    logExit(
+                    logEvent(
+                      "Exit",
+                      "child benefit",
                       language === "en" ? cb.benefitPageEn : cb.benefitPageFr
                     );
                     return true;

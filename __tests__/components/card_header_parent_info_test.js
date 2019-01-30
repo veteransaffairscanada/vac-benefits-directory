@@ -80,6 +80,7 @@ describe("CardHeaderParentInfo", () => {
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
+      "gateway benefit",
       benefitsFixture[0].benefitPageEn
     );
   });
