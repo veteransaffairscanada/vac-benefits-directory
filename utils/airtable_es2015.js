@@ -5,9 +5,9 @@ const Logger = require("./logger").default;
 exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 
 var airtableConstants = require("./hardcoded_strings");
-var readKey = process.env.AIRTABLE_READ_KEY;
+var readKey = "keyj9WrZiZ6OL7nfp"; //process.env.AIRTABLE_READ_KEY;
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
-var baseKey = process.env.AIRTABLE_BASE_KEY || "appoFDwVvNMRSaO6o";
+var baseKey = "appKREUCgIezNnqJF"; //process.env.AIRTABLE_BASE_KEY || "appoFDwVvNMRSaO6o";
 
 var replaceId = function replaceId(
   sheet,

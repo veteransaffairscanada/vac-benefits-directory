@@ -19,6 +19,7 @@ import BreadCrumbs from "./breadcrumbs";
 import ShareBox from "./share_box";
 import NextSteps from "./next_steps";
 import ContactUs from "./contact_us";
+import Cookies from "universal-cookie";
 
 const saveCSS = css`
   font-size: 70px !important;
@@ -72,11 +73,24 @@ export class Favourites extends Component {
   constructor(props) {
     super(props);
     this.nextStepsRef = React.createRef(); // create a ref object
+    this.cookies = new Cookies();
   }
 
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
     this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
+
+    // check for saved benefits that no longer exist
+    let result = this.props.favouriteBenefits.filter(fB => {
+      for (let i in this.props.benefits) {
+        if (this.props.benefits[i].id == fB) {
+          return true;
+        }
+      }
+      return false;
+    });
+    this.cookies.set("favouriteBenefits", result, { path: "/" });
+    this.props.saveFavourites(result);
   }
 
   filterBenefits = (benefits, favouriteBenefits) => {
@@ -221,6 +235,12 @@ const mapDispatchToProps = dispatch => {
   return {
     setCookiesDisabled: areDisabled => {
       dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
+    },
+    saveFavourites: favouriteBenefits => {
+      dispatch({
+        type: "LOAD_DATA",
+        data: { favouriteBenefits: favouriteBenefits }
+      });
     }
   };
 };
@@ -237,6 +257,7 @@ const mapStateToProps = (reduxState, props) => {
 Favourites.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
+  saveFavourites: PropTypes.func.isRequired,
   benefits: PropTypes.array.isRequired,
   printUrl: PropTypes.string,
   t: PropTypes.func.isRequired,
