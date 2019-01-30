@@ -33,6 +33,11 @@ describe("NextSteps", () => {
     );
   });
 
+  it("renders nothing if there are no next steps", () => {
+    props.filteredNextSteps = [];
+    expect(mount(<NextSteps {...props} />).html()).toEqual(null);
+  });
+
   it("renders an anchor tag if a markdown link is included", () => {
     expect(
       mount(<NextSteps {...props} />)

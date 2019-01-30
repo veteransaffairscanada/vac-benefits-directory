@@ -62,7 +62,7 @@ export class NextSteps extends Component {
     const { t } = this.props;
     const bullets = this.getBullets();
 
-    return (
+    return bullets.length > 0 ? (
       <div className={outerDiv}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
@@ -84,7 +84,7 @@ export class NextSteps extends Component {
           </Grid>
         </Grid>
       </div>
-    );
+    ) : null;
   }
 }
 
