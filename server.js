@@ -113,9 +113,16 @@ Promise.resolve(getAllData()).then(allData => {
           });
         });
       } else {
-        req.data.favouriteBenefits = new Cookies(req.headers.cookie).get(
+        const favouriteBenefits = new Cookies(req.headers.cookie).get(
           "favouriteBenefits"
         );
+        const existingBenefitIds = data.benefits.map(x => x.id);
+        const validFavouriteBenefits = favouriteBenefits.filter(
+          x => existingBenefitIds.index(x.id) > -1
+        );
+        req.data.favouriteBenefits = validFavouriteBenefits;
+        // probably have to update the cookies on the client as well...
+
         let startTime = new Date();
         handle(req, res).then(() => {
           let duration = new Date() - startTime;
