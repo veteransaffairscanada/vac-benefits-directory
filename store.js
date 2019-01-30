@@ -68,11 +68,6 @@ export const reducer = (state = initialState, action) => {
         frIdx: JSON.stringify(frIdx)
       });
 
-    case "LOAD_GITHUBDATA":
-      return Object.assign({}, state, {
-        githubData: action.data
-      });
-
     case "LOAD_DATA":
       newState = {
         favouriteBenefits:
