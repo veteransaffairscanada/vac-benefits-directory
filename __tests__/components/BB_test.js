@@ -50,7 +50,8 @@ describe("BB", () => {
       filteredBenefits: [],
       setSelectedNeeds: () => true,
       favouriteBenefits: [],
-      url: { query: {} }
+      url: { query: {} },
+      filteredNextSteps: nextStepsFixture
     };
     _shallowBB = undefined;
     _mountedBB = undefined;

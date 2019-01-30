@@ -48,7 +48,8 @@ describe("Favourites", () => {
       },
       url: { query: {} },
       homeUrl: "/",
-      nextStepsRef: React.createRef()
+      nextStepsRef: React.createRef(),
+      filteredNextSteps: nextStepsFixture
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;

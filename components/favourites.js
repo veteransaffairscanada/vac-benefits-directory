@@ -19,6 +19,7 @@ import BreadCrumbs from "./breadcrumbs";
 import ShareBox from "./share_box";
 import NextSteps from "./next_steps";
 import ContactUs from "./contact_us";
+import { getFilteredNextSteps } from "../selectors/benefits";
 
 const saveCSS = css`
   font-size: 70px !important;
@@ -93,7 +94,7 @@ export class Favourites extends Component {
   }
 
   render() {
-    const { t, url, homeUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, homeUrl, filteredNextSteps } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -119,17 +120,19 @@ export class Favourites extends Component {
           <Grid container spacing={32}>
             <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
               <div className={sidebar}>
-                <Grid container spacing={16} className={sidebarLinks}>
-                  <Grid item xs={12}>
-                    <HeaderButton
-                      id="nextSteps"
-                      onClick={() => this.scrollToNextSteps()}
-                    >
-                      <AssignmentTurnedIn />
-                      {t("nextSteps.whats_next")}
-                    </HeaderButton>
+                {filteredNextSteps.length > 0 ? (
+                  <Grid container spacing={16} className={sidebarLinks}>
+                    <Grid item xs={12}>
+                      <HeaderButton
+                        id="nextSteps"
+                        onClick={() => this.scrollToNextSteps()}
+                      >
+                        <AssignmentTurnedIn />
+                        {t("nextSteps.whats_next")}
+                      </HeaderButton>
+                    </Grid>
                   </Grid>
-                </Grid>
+                ) : null}
                 <ShareBox
                   className={hideOnMobile}
                   t={t}
@@ -230,7 +233,8 @@ const mapStateToProps = (reduxState, props) => {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     printUrl: getPrintUrl(reduxState, props, { fromFavourites: true }),
-    homeUrl: getHomeUrl(reduxState, props)
+    homeUrl: getHomeUrl(reduxState, props),
+    filteredNextSteps: getFilteredNextSteps(reduxState, props)
   };
 };
 
@@ -243,7 +247,8 @@ Favourites.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   url: PropTypes.object.isRequired,
   homeUrl: PropTypes.string.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  filteredNextSteps: PropTypes.array
 };
 
 export default connect(

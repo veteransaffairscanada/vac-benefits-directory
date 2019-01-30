@@ -10,6 +10,7 @@ import {
   getHomeUrl,
   getSummaryUrl
 } from "../selectors/urls";
+import { getFilteredNextSteps } from "../selectors/benefits";
 import { css } from "emotion";
 import Container from "../components/container";
 import HeaderButton from "./header_button";
@@ -106,7 +107,14 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store, homeUrl, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const {
+      t,
+      url,
+      store,
+      homeUrl,
+      favouriteBenefits,
+      filteredNextSteps
+    } = this.props; // eslint-disable-line no-unused-vars
     const longFavouritesText = t("favourites.saved_benefits", {
       x: favouriteBenefits.length
     });
@@ -142,15 +150,17 @@ export class BB extends Component {
                       <span className={shortText}>{shortFavouritesText}</span>
                     </HeaderLink>
                   </Grid>
-                  <Grid item xs={4} sm={12}>
-                    <HeaderButton
-                      id="nextSteps"
-                      onClick={() => this.scrollToNextSteps()}
-                    >
-                      <AssignmentTurnedIn />
-                      {t("nextSteps.whats_next")}
-                    </HeaderButton>
-                  </Grid>
+                  {filteredNextSteps.length > 0 ? (
+                    <Grid item xs={4} sm={12}>
+                      <HeaderButton
+                        id="nextSteps"
+                        onClick={() => this.scrollToNextSteps()}
+                      >
+                        <AssignmentTurnedIn />
+                        {t("nextSteps.whats_next")}
+                      </HeaderButton>
+                    </Grid>
+                  ) : null}
                   <Grid item xs={4} sm={12}>
                     <HeaderLink
                       id="editSelections"
@@ -224,7 +234,8 @@ const mapStateToProps = (reduxState, props) => {
     favouritesUrl: getFavouritesUrl(reduxState, props),
     homeUrl: getHomeUrl(reduxState, props),
     summaryUrl: getSummaryUrl(reduxState, props),
-    printUrl: getPrintUrl(reduxState, props, {})
+    printUrl: getPrintUrl(reduxState, props, {}),
+    filteredNextSteps: getFilteredNextSteps(reduxState, props)
   };
 };
 
@@ -239,7 +250,8 @@ BB.propTypes = {
   homeUrl: PropTypes.string,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  filteredNextSteps: PropTypes.array
 };
 
 export default connect(
