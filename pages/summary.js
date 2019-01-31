@@ -60,7 +60,7 @@ export class Summary extends Component {
           <Paper padding="md" className={box}>
             <Grid container spacing={24}>
               <Grid item xs={12} className={questions}>
-                <Header size="md_lg" headingLevel="h2">
+                <Header size="md_lg" headingLevel="h2" autoFocus={true}>
                   {t("ge.summary_subtitle")}
                 </Header>
                 <Body>

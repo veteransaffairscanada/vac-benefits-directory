@@ -67,6 +67,7 @@ class Header extends Component {
 
 Header.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  autoFocus: PropTypes.bool,
   className: PropTypes.string,
   headingLevel: PropTypes.string,
   size: PropTypes.string,

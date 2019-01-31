@@ -101,7 +101,7 @@ export class GuidedExperience extends Component {
 
         {id === "patronType" ? (
           <React.Fragment>
-            <Header size="lg" headingLevel="h1">
+            <Header size="lg" headingLevel="h1" autoFocus={true}>
               {t("ge.Find benefits and services")}
             </Header>
             <Body>
@@ -114,7 +114,11 @@ export class GuidedExperience extends Component {
         <Paper padding="md" className={box}>
           <Grid container spacing={24}>
             <Grid item xs={12} className={questions}>
-              <Header size="md_lg" headingLevel="h2">
+              <Header
+                size="md_lg"
+                headingLevel="h2"
+                autoFocus={id === "patronType" ? false : true}
+              >
                 {this.getSubtitle(question)}
               </Header>
               {question.tooltip_english && question.tooltip_english !== "" ? (
