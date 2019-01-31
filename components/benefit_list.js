@@ -14,6 +14,7 @@ const Div = css`
 `;
 
 const list = css`
+  width: 100%;
   list-style: none;
   padding-left: 0;
   margin-top: 0;
