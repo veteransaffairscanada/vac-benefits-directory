@@ -83,16 +83,6 @@ export class GuidedExperience extends Component {
       nextQueryParams[id] = JSON.parse(JSON.stringify(reduxState[id]));
       skipQueryParams[id] = "";
     }
-    const nextUrl = mutateUrl(
-      url,
-      "/" + getPageName(nextSection),
-      nextQueryParams
-    );
-    const skipUrl = mutateUrl(
-      url,
-      "/" + getPageName(nextSection),
-      skipQueryParams
-    );
 
     return (
       <Container id="mainContent">
@@ -137,12 +127,29 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
             <Grid item xs={12}>
-              <Link id="nextLink" href={nextUrl}>
-                <a href={nextUrl}>{t("next")} </a>
+              <Link
+                id="nextLink"
+                href={mutateUrl(
+                  url,
+                  "/" + getPageName(nextSection),
+                  nextQueryParams
+                )}
+              >
+                <Button id="nextButton" arrow={true}>
+                  {t("next")}{" "}
+                </Button>
               </Link>
-              <span> &nbsp; &nbsp; &nbsp; &nbsp;</span>
-              <Link id="skipLink" href={skipUrl}>
-                <a href={skipUrl}>{t("ge.skip")}</a>
+              <Link
+                id="skipLink"
+                href={mutateUrl(
+                  url,
+                  "/" + getPageName(nextSection),
+                  skipQueryParams
+                )}
+              >
+                <HeaderButton id="skipButton" altStyle="grey">
+                  {t("ge.skip")}
+                </HeaderButton>
               </Link>
             </Grid>
           </Grid>
