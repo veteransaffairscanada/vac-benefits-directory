@@ -80,17 +80,17 @@ export class Favourites extends Component {
     this.props.setCookiesDisabled(areCookiesDisabled());
     this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
 
-    // check for saved benefits that no longer exist
-    let result = this.props.favouriteBenefits.filter(fB => {
-      for (let i in this.props.benefits) {
-        if (this.props.benefits[i].id == fB) {
-          return true;
-        }
-      }
-      return false;
-    });
-    this.cookies.set("favouriteBenefits", result, { path: "/" });
-    this.props.saveFavourites(result);
+    // Update cookies if favourite benefits have been pruned on the server
+    let favouritesFromCookies = this.cookies.get("favouriteBenefits"),
+      favouriteBenefits = this.props.favouriteBenefits;
+
+    const invalidBenefits = favouritesFromCookies.filter(
+      b => favouriteBenefits.indexOf(b) === -1
+    );
+    if (invalidBenefits.length > 0) {
+      this.cookies.set("favouriteBenefits", favouriteBenefits, { path: "/" });
+      this.props.saveFavourites(favouriteBenefits);
+    }
   }
 
   filterBenefits = (benefits, favouriteBenefits) => {

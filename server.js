@@ -117,11 +117,11 @@ Promise.resolve(getAllData()).then(allData => {
           "favouriteBenefits"
         );
         const existingBenefitIds = data.benefits.map(x => x.id);
+        // update cookies to prune any benefits that have been removed from Airtable
         const validFavouriteBenefits = favouriteBenefits.filter(
-          x => existingBenefitIds.index(x.id) > -1
+          x => existingBenefitIds.indexOf(x) > -1
         );
         req.data.favouriteBenefits = validFavouriteBenefits;
-        // probably have to update the cookies on the client as well...
 
         let startTime = new Date();
         handle(req, res).then(() => {
