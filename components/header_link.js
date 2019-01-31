@@ -68,7 +68,7 @@ class HeaderLink extends Component {
               ? cx(style, grey, className)
               : cx(style, className)
           }
-          // href={href}
+          href={href}
           onClick={onClick}
           {...otherProps}
         >
