@@ -1,6 +1,10 @@
 import lunr from "lunr";
 import questionsFixture from "../fixtures/questions";
-import { getFavouritesUrl, getPrintUrl } from "../../selectors/urls";
+import {
+  getFavouritesUrl,
+  getPrintUrl,
+  getSummaryUrl
+} from "../../selectors/urls";
 
 describe("getFavouritesUrl", () => {
   let props;
@@ -297,5 +301,48 @@ describe("getPrintUrl", () => {
     expect(getPrintUrl(state, props, params)).toEqual(
       "/print?lng=en&fromFavourites=true"
     );
+  });
+});
+
+describe("getSummaryUrl", () => {
+  let props;
+  let state;
+
+  beforeEach(() => {
+    props = {
+      t: () => "en"
+    };
+    state = {
+      questions: questionsFixture,
+      selectedNeeds: {},
+      patronType: "",
+      searchString: "",
+      serviceType: "",
+      serviceHealthIssue: "",
+      statusAndVitals: ""
+    };
+  });
+
+  it("adds the language variable by default", () => {
+    expect(getSummaryUrl(state, props)).toEqual("/summary?lng=en");
+  });
+
+  it("adds selectedNeeds keys to the URL", () => {
+    state.selectedNeeds = { a: 1, b: 2 };
+    expect(getSummaryUrl(state, props)).toEqual(
+      "/summary?lng=en&selectedNeeds=a,b"
+    );
+  });
+
+  it("adds patronType string to the URL", () => {
+    state.patronType = "foo";
+    expect(getSummaryUrl(state, props)).toEqual(
+      "/summary?lng=en&patronType=foo"
+    );
+  });
+
+  it("doesn't add searchString string to the URL", () => {
+    state.searchString = "foo";
+    expect(getSummaryUrl(state, props)).toEqual("/summary?lng=en");
   });
 });

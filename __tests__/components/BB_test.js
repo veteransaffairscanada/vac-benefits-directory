@@ -140,6 +140,6 @@ describe("BB", () => {
         .find("#editSelections")
         .first()
         .prop("href")
-    ).toContain("/summary");
+    ).toEqual(props.summaryUrl);
   });
 });
