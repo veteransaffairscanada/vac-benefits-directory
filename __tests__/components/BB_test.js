@@ -124,4 +124,21 @@ describe("BB", () => {
       .simulate("click");
     expect(mounted_BB().instance().scrollToNextSteps).toBeCalled();
   });
+
+  it("contains edit selections link", () => {
+    expect(
+      mounted_BB()
+        .find("#editSelections")
+        .first().length
+    ).toEqual(1);
+  });
+
+  it("contains href to summary page in edit selections link", () => {
+    expect(
+      mounted_BB()
+        .find("#editSelections")
+        .first()
+        .prop("href")
+    ).toContain("/summary?");
+  });
 });
