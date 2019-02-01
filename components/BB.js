@@ -21,6 +21,7 @@ import BenefitsPane from "./benefits_pane";
 import BreadCrumbs from "../components/breadcrumbs";
 import ShareBox from "../components/share_box";
 import EditIcon from "./icons/Edit";
+import Cookies from "universal-cookie";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -87,12 +88,25 @@ export class BB extends Component {
   constructor(props) {
     super(props);
     this.nextStepsRef = React.createRef(); // create a ref object
-    //this.cookies = new Cookies();
+    this.cookies = new Cookies();
   }
 
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
     this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
+    // Update cookies if favourite benefits have been pruned on the server
+    let favouritesFromCookies = this.cookies.get("favouriteBenefits"),
+      favouriteBenefits = this.props.favouriteBenefits;
+
+    if (favouritesFromCookies && favouritesFromCookies.length > 0) {
+      const invalidBenefits = favouritesFromCookies.filter(
+        b => favouriteBenefits.indexOf(b) === -1
+      );
+      if (invalidBenefits.length > 0) {
+        this.cookies.set("favouriteBenefits", favouriteBenefits, { path: "/" });
+        this.props.saveFavourites(favouriteBenefits);
+      }
+    }
   }
 
   componentDidUpdate() {
@@ -214,6 +228,12 @@ const mapDispatchToProps = dispatch => {
   return {
     setCookiesDisabled: areDisabled => {
       dispatch({ type: "SET_COOKIES_DISABLED", data: areDisabled });
+    },
+    saveFavourites: favouriteBenefits => {
+      dispatch({
+        type: "LOAD_DATA",
+        data: { favouriteBenefits: favouriteBenefits }
+      });
     }
   };
 };
@@ -235,6 +255,7 @@ BB.propTypes = {
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
   favouritesUrl: PropTypes.string,
+  saveFavourites: PropTypes.func.isRequired,
   summaryUrl: PropTypes.string,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
