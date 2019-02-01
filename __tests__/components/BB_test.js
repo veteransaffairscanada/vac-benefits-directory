@@ -50,7 +50,8 @@ describe("BB", () => {
       filteredBenefits: [],
       setSelectedNeeds: () => true,
       favouriteBenefits: [],
-      url: { query: {} }
+      url: { query: {} },
+      summaryUrl: "/summary"
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
@@ -139,6 +140,6 @@ describe("BB", () => {
         .find("#editSelections")
         .first()
         .prop("href")
-    ).toContain("/summary?");
+    ).toContain("/summary");
   });
 });
