@@ -50,7 +50,8 @@ describe("BB", () => {
       filteredBenefits: [],
       setSelectedNeeds: () => true,
       favouriteBenefits: [],
-      url: { query: {} }
+      url: { query: {} },
+      summaryUrl: "/summary"
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
@@ -123,5 +124,22 @@ describe("BB", () => {
       .find("#nextSteps")
       .simulate("click");
     expect(mounted_BB().instance().scrollToNextSteps).toBeCalled();
+  });
+
+  it("contains edit selections link", () => {
+    expect(
+      mounted_BB()
+        .find("#editSelections")
+        .first().length
+    ).toEqual(1);
+  });
+
+  it("contains href to summary page in edit selections link", () => {
+    expect(
+      mounted_BB()
+        .find("#editSelections")
+        .first()
+        .prop("href")
+    ).toEqual(props.summaryUrl);
   });
 });
