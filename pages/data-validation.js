@@ -6,7 +6,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "../components/paper";
-import ReactMoment from "react-moment";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
@@ -238,7 +237,7 @@ export class DataValidation extends Component {
             <p>
               {t("dv.last_cache_update")}
               :&nbsp;
-              <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
+              {Date(this.props.timestamp)}
             </p>
             <a href="/refresh">
               <Button id="refreshCache">{t("refresh-cache")}</Button>
