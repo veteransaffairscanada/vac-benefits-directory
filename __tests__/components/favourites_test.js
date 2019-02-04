@@ -11,6 +11,7 @@ import questionsFixture from "../fixtures/questions";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import nextStepsFixture from "../fixtures/nextSteps";
+import Cookies from "universal-cookie";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -48,7 +49,8 @@ describe("Favourites", () => {
       },
       url: { query: {} },
       homeUrl: "/",
-      nextStepsRef: React.createRef()
+      nextStepsRef: React.createRef(),
+      saveFavourites: jest.fn()
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
@@ -126,5 +128,21 @@ describe("Favourites", () => {
       .find("#nextSteps")
       .simulate("click");
     expect(mountedFavourites().instance().scrollToNextSteps).toBeCalled();
+  });
+
+  describe("cookies tests", () => {
+    let cookiesInstance;
+    let cookies = new Cookies();
+    beforeEach(() => {
+      cookies.set("favouriteBenefits", ["benefit_2", "benefit_5"]);
+      cookiesInstance = mount(
+        <Favourites {...props} {...reduxData} />
+      ).instance();
+    });
+    it("updates cookie data when a benefit has been deleted", () => {
+      expect(cookiesInstance.cookies.get("favouriteBenefits")).toEqual([
+        "benefit_2"
+      ]);
+    });
   });
 });
