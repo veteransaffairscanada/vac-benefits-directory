@@ -17,8 +17,6 @@ export class GuidedExperiencePage extends Component {
       t("current-language-code") === "en"
         ? question.guided_experience_page_title_english
         : question.guided_experience_page_title_french;
-
-    console.log(reduxState);
     return (
       <Layout
         i18n={i18n}
