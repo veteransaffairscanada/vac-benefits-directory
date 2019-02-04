@@ -14,7 +14,6 @@ const nextSteps = [
       "Make sure you have a doctor\u2019s note for your service-related health issue. This will make applying for these benefits go a lot smoother.",
     french:
       "Assurez-vous d\u2019avoir en main un billet du m\u00e9decin attestant de votre probl\u00e8me de sant\u00e9 reli\u00e9 au service. Votre processus de demande d\u2019avantages en sera grandement facilit\u00e9.",
-    eligibilityPath: ["recBlSOo6diB5tkwc"],
     id: "recp2EOCHfUhGU2jq",
     patronType: "family",
     serviceType: "CAF"
@@ -25,7 +24,6 @@ const nextSteps = [
       "Attend a SCAN session to learn more about what VAC can do for you.",
     french:
       "Assistez \u00e0 une s\u00e9ance du SPSC pour en apprendre davantage sur ce que l\u2019ACC peut faire pour vous.",
-    eligibilityPath: ["recR03cJel83BGYSD"],
     id: "recdLLujXxdXQEzXC",
     patronType: "servingMember"
   },
@@ -34,7 +32,6 @@ const nextSteps = [
     english:
       "If you are looking for more information please look at _See more_.",
     french: "(fra)If you are looking for more information look at See more.",
-    eligibilityPath: ["recDABExyenzg5QNw"],
     id: "recDGuWEo84Pie18s"
   },
   {
@@ -43,14 +40,12 @@ const nextSteps = [
       "If you wish to complete an application please see _Register for My VAC Account_.",
     french:
       "(fra)If you wish to complete an application please see _Register for My VAC Account_",
-    eligibilityPath: ["recDABExyenzg5QNw"],
     id: "recg5X7mEmlm4Qb2C"
   },
   {
     bullet_name: "thirdStep",
     english: "If you saved a card to your list please look at _Saved list_.",
     french: "(fra)If you saved a card to your list please look at Saved list.",
-    eligibilityPath: ["recDABExyenzg5QNw"],
     id: "recyxzgPs14QzD8uS"
   }
 ];

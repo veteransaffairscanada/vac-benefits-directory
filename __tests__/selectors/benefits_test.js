@@ -218,14 +218,18 @@ describe("Benefits Selectors", () => {
 
   describe("getFilteredNextSteps", () => {
     it("displays all next steps if no eligibility paths are selected", () => {
-      expect(getFilteredNextSteps(state, props).length).toEqual(
-        nextStepsFixture.length
-      );
+      console.log(getFilteredNextSteps(state, props).length);
+      expect(getFilteredNextSteps(state, props).length).toEqual(3);
     });
 
     it("displays expected next steps if the patronType is organization", () => {
       state.patronType = "organization";
       expect(getFilteredNextSteps(state, props).length).toEqual(3);
+    });
+
+    it("displays expected next steps if the patronType is servingMember", () => {
+      state.patronType = "servingMember";
+      expect(getFilteredNextSteps(state, props).length).toEqual(5);
     });
   });
 });
