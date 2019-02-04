@@ -108,12 +108,14 @@ Promise.resolve(getAllData()).then(allData => {
         const favouriteBenefits = new Cookies(req.headers.cookie).get(
           "favouriteBenefits"
         );
-        const existingBenefitIds = data.benefits.map(x => x.id);
-        // update cookies to prune any benefits that have been removed from Airtable
-        const validFavouriteBenefits = favouriteBenefits.filter(
-          x => existingBenefitIds.indexOf(x) > -1
-        );
-        req.data.favouriteBenefits = validFavouriteBenefits;
+        if (favouriteBenefits) {
+          const existingBenefitIds = data.benefits.map(x => x.id);
+          // update cookies to prune any benefits that have been removed from Airtable
+          const validFavouriteBenefits = favouriteBenefits.filter(
+            x => existingBenefitIds.indexOf(x) > -1
+          );
+          req.data.favouriteBenefits = validFavouriteBenefits;
+        }
 
         let startTime = new Date();
         handle(req, res).then(() => {
