@@ -40,6 +40,7 @@
     "emotion": "^10.0.4",
     "emotion-server": "^10.0.4",
     "express": "^4.16.4",
+    "govuk-react": "^0.5.1",
     "helmet": "^3.15.0",
     "isomorphic-unfetch": "^3.0.0",
     "lunr": "^2.3.5",
