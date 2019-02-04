@@ -144,6 +144,7 @@ describe("BB", () => {
         .first()
         .prop("href")
     ).toEqual(props.summaryUrl);
+  });
 
   describe("cookies tests", () => {
     let cookiesInstance;
