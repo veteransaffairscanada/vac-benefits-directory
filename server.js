@@ -15,15 +15,13 @@ const deploy = require("./utils/deploy_notification");
 
 const airTable = require("./utils/airtable_es2015");
 
-const { getGithubData } = require("./utils/statistics");
 const { checkURL } = require("./utils/url_check");
 
 const Logger = require("./utils/logger").default;
 
 const getAllData = async function() {
-  const githubData = await getGithubData();
   const airtableData = await airTable.hydrateFromAirtable();
-  return { githubData: githubData, airtableData: airtableData };
+  return { airtableData: airtableData };
 };
 
 const copyValidTables = (oldData, newData) => {
@@ -37,7 +35,6 @@ const copyValidTables = (oldData, newData) => {
 
 Promise.resolve(getAllData()).then(allData => {
   let data = allData.airtableData;
-  const githubData = allData.githubData;
 
   setInterval(function() {
     Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
@@ -86,11 +83,6 @@ Promise.resolve(getAllData()).then(allData => {
 
       req.data = data;
       req.language = lang.split(",")[0];
-      if (req.url.includes("stats")) {
-        req.githubData = githubData;
-      } else {
-        req.githubData = {};
-      }
 
       if (
         browser &&

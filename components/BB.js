@@ -121,7 +121,14 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store, homeUrl, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const {
+      t,
+      url,
+      store,
+      homeUrl,
+      summaryUrl,
+      favouriteBenefits
+    } = this.props; // eslint-disable-line no-unused-vars
     const longFavouritesText = t("favourites.saved_benefits", {
       x: favouriteBenefits.length
     });
@@ -169,7 +176,7 @@ export class BB extends Component {
                   <Grid item xs={4} sm={12}>
                     <HeaderLink
                       id="editSelections"
-                      href={this.props.summaryUrl}
+                      href={summaryUrl}
                       className={editLink}
                     >
                       <EditIcon />

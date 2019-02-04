@@ -68,17 +68,12 @@ export const getHomeUrl = createSelector(
 );
 
 export const getSummaryUrl = createSelector(
-  [
-    getProfileFilters,
-    getNeedsFilter,
-    getSearchStringFilter,
-    getCurrentLanguage
-  ],
-  (profileFilters, selectedNeeds, searchString, currentLanguage) => {
+  [getProfileFilters, getNeedsFilter, getCurrentLanguage],
+  (profileFilters, selectedNeeds, currentLanguage) => {
     const params = getSelectionParams(
       profileFilters,
       selectedNeeds,
-      searchString,
+      "",
       currentLanguage
     );
     return "/summary?" + params;
