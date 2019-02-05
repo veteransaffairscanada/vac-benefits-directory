@@ -54,7 +54,9 @@ export const getProfileFilters = createSelector(
   [state => state.questions, state => state],
   (questions, reduxState) => {
     const profileQuestions = questions
-      .filter(q => q.variable_name !== "needs")
+      .filter(
+        q => q.variable_name !== "needs" && q.variable_name !== "feedback"
+      )
       .map(q => q.variable_name);
     let filters = {};
     profileQuestions.forEach(q => {
