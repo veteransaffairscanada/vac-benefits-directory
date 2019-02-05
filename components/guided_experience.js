@@ -58,20 +58,46 @@ export class GuidedExperience extends Component {
     return queryObj;
   }
 
-  render() {
-    const { t, url, id, reduxState, sectionOrder } = this.props;
-    const question = reduxState.questions.filter(
-      x => x.variable_name === id
-    )[0];
-    const displayable_sections = sectionOrder.filter((x, i) =>
-      showQuestion(x, i, reduxState)
+  getPrevSection() {
+    const displayable_sections = this.props.sectionOrder.filter((x, i) =>
+      showQuestion(x, i, this.props.reduxState)
     );
-    const dynamicStepNumber = displayable_sections.indexOf(id);
-    const prevSection = displayable_sections[dynamicStepNumber - 1];
+    const dynamicStepNumber = displayable_sections.indexOf(this.props.id);
+    return displayable_sections[dynamicStepNumber - 1];
+  }
+
+  getNextSection(buttonType) {
+    let displayable_sections;
+    if (buttonType === "next") {
+      displayable_sections = this.props.sectionOrder.filter((x, i) =>
+        showQuestion(x, i, this.props.reduxState)
+      );
+    }
+    if (buttonType === "skip") {
+      var reduxStateCopy = JSON.parse(JSON.stringify(this.props.reduxState));
+      if (this.props.id === "needs") {
+        reduxStateCopy.selectedNeeds = {};
+      } else {
+        reduxStateCopy[this.props.id] = "";
+      }
+      displayable_sections = this.props.sectionOrder.filter((x, i) =>
+        showQuestion(x, i, reduxStateCopy)
+      );
+    }
+    const dynamicStepNumber = displayable_sections.indexOf(this.props.id);
     const nextSection =
       dynamicStepNumber + 1 >= displayable_sections.length
         ? "summary"
         : displayable_sections[dynamicStepNumber + 1];
+
+    return nextSection;
+  }
+
+  render() {
+    const { t, url, id, reduxState } = this.props;
+    const question = reduxState.questions.filter(
+      x => x.variable_name === id
+    )[0];
     let nextQueryParams = this.queryParamsToClear();
     let skipQueryParams = this.queryParamsToClear();
     if (id === "needs") {
@@ -89,7 +115,7 @@ export class GuidedExperience extends Component {
         ? t("ge.home_link")
         : mutateUrl(
             url,
-            "/" + getPageName(prevSection),
+            "/" + getPageName(this.getPrevSection()),
             this.queryParamsToClear()
           );
 
@@ -136,7 +162,7 @@ export class GuidedExperience extends Component {
                 id="nextLink"
                 href={mutateUrl(
                   url,
-                  "/" + getPageName(nextSection),
+                  "/" + getPageName(this.getNextSection("next")),
                   nextQueryParams
                 )}
               >
@@ -148,7 +174,7 @@ export class GuidedExperience extends Component {
                 id="skipLink"
                 href={mutateUrl(
                   url,
-                  "/" + getPageName(nextSection),
+                  "/" + getPageName(this.getNextSection("skip")),
                   skipQueryParams
                 )}
               >
