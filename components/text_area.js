@@ -40,8 +40,30 @@ const LabelText = styled("span")(
     //     fontSize: FONT_SIZE.SIZE_19,
     //     lineHeight: LINE_HEIGHT.SIZE_19,
     //   },
-    color: `${globalTheme.colour.black}`,
-    paddingBottom: "2px"
+    color: `${globalTheme.colour.greyishBrown}`,
+    paddingBottom: "5px"
+  },
+  ({ error }) => ({
+    fontWeight: error ? 700 : undefined
+  })
+);
+
+const FooterText = styled("span")(
+  {
+    fontFamily: globalTheme.fontFamily,
+    WebkitFontSmoothing: "antialiased",
+    MozOsxFontSmoothing: "grayscale",
+    display: "block",
+    clear: "none",
+    fontWeight: 400,
+    fontSize: "10px",
+    lineHeight: "1.5",
+    //   [MEDIA_QUERIES.LARGESCREEN]: {
+    //     fontSize: FONT_SIZE.SIZE_19,
+    //     lineHeight: LINE_HEIGHT.SIZE_19,
+    //   },
+    color: `${globalTheme.colour.greyishBrown}`,
+    paddingTop: "3px"
   },
   ({ error }) => ({
     fontWeight: error ? 700 : undefined
@@ -83,7 +105,7 @@ const TextAreaField = styled("textarea")(
     // },
     width: "100%",
     padding: "5px 4px 4px",
-    border: `2px solid ${globalTheme.colour.black}`,
+    border: `1px solid ${globalTheme.colour.warmGrey}`,
     ":focus": {
       outline: `3px solid ${globalTheme.colour.focusColour}`,
       outlineOffset: 0
@@ -125,12 +147,16 @@ const TextAreaField = styled("textarea")(
  *    Description of what you saw
  *  </TextArea>
  * ```
+ * Simple
+ * ```jsx
+ * <TextArea name="group1" footer="500 characters left">Description of what you saw</TextArea>
+ * ```
  *
  * ### References:
  * - https://github.com/alphagov/govuk-frontend/tree/master/src/components/textarea
  *
  */
-const TextArea = ({ children, hint, meta, input, ...props }) => (
+const TextArea = ({ children, hint, footer, meta, input, ...props }) => (
   <Label error={meta.touched && meta.error} {...props}>
     <LabelText>{children}</LabelText>
     {hint && <HintText>{hint}</HintText>}
@@ -141,6 +167,7 @@ const TextArea = ({ children, hint, meta, input, ...props }) => (
       error={meta.touched && meta.error}
       {...input}
     />
+    <FooterText>{footer}</FooterText>
   </Label>
 );
 
@@ -151,6 +178,7 @@ TextArea.defaultProps = {
 };
 
 TextArea.propTypes = {
+  footer: PropTypes.string,
   hint: PropTypes.string,
   input: PropTypes.shape({
     name: PropTypes.string,
