@@ -137,8 +137,6 @@ describe("GuidedExperience", () => {
         .find("#skipLink")
         .first()
         .props().href
-    ).toEqual(
-      "/serviceHealthIssue?lng=en&patronType=veteran&selectedNeeds=1,2"
-    );
+    ).toEqual("/needs?lng=en&patronType=veteran&selectedNeeds=1,2");
   });
 });
