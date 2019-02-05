@@ -23,7 +23,6 @@ export class Feedback extends Component {
   render() {
     const { t, i18n, questions, store } = this.props;
     const question = questions.filter(x => x.variable_name === "feedback")[0];
-    // console.log(JSON.stringify(questions))
     return (
       <Layout
         t={t}
