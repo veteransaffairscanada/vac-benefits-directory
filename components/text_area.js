@@ -1,6 +1,6 @@
 // https://github.com/alphagov/govuk-frontend/tree/master/src/components/textarea
 
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
@@ -36,10 +36,6 @@ const LabelText = styled("span")(
     fontWeight: 400,
     fontSize: "18px",
     lineHeight: "1.5",
-    //   [MEDIA_QUERIES.LARGESCREEN]: {
-    //     fontSize: FONT_SIZE.SIZE_19,
-    //     lineHeight: LINE_HEIGHT.SIZE_19,
-    //   },
     color: `${globalTheme.colour.greyishBrown}`,
     paddingBottom: "5px"
   },
@@ -58,10 +54,6 @@ const FooterText = styled("span")(
     fontWeight: 400,
     fontSize: "10px",
     lineHeight: "1.5",
-    //   [MEDIA_QUERIES.LARGESCREEN]: {
-    //     fontSize: FONT_SIZE.SIZE_19,
-    //     lineHeight: LINE_HEIGHT.SIZE_19,
-    //   },
     color: `${globalTheme.colour.greyishBrown}`,
     paddingTop: "3px"
   },
@@ -98,11 +90,6 @@ const TextAreaField = styled("textarea")(
     textTransform: "none",
     fontSize: "18px",
     lineHeight: "1.5",
-    // [MEDIA_QUERIES.LARGESCREEN]: {
-    //   fontSize: FONT_SIZE.SIZE_19,
-    //   lineHeight: LINE_HEIGHT.SIZE_19,
-    //   width: '75%',
-    // },
     width: "100%",
     padding: "5px 4px 4px",
     border: `1px solid ${globalTheme.colour.warmGrey}`,
@@ -122,7 +109,7 @@ const TextAreaField = styled("textarea")(
  *
  * Simple
  * ```jsx
- * <TextArea name="group1" inputId="feedbackTextArea" t={t}>{t("feedback.tell_us_more")}</TextArea>
+ * <TextArea name="group1" t={t}>{t("feedback.tell_us_more")}</TextArea>
  * ```
  *
  * TextArea with hint text
@@ -172,16 +159,7 @@ export class TextArea extends React.Component {
   }
 
   render() {
-    const {
-      t,
-      children,
-      hint,
-      footer,
-      meta,
-      input,
-      inputId,
-      ...props
-    } = this.props;
+    const { t, children, hint, meta, input, ...props } = this.props;
     return (
       <Label error={meta.touched && meta.error} {...props}>
         <LabelText>{children}</LabelText>
@@ -191,13 +169,12 @@ export class TextArea extends React.Component {
           type="text"
           maxLength={t("feedback.text_area_char_limit")}
           rows="5"
-          id={this.props.inputId}
           value={this.state.value}
           onChange={this.handleChange}
           error={meta.touched && meta.error}
           {...input}
         />
-        <FooterText id={this.props.inputId + "-footer"}>
+        <FooterText>
           {t("feedback.character_limit_warning", { x: this.state.charsLeft })}
         </FooterText>
       </Label>
@@ -213,8 +190,6 @@ TextArea.defaultProps = {
 
 TextArea.propTypes = {
   t: PropTypes.func.isRequired,
-  inputId: PropTypes.string.isRequired,
-  footer: PropTypes.string,
   hint: PropTypes.string,
   input: PropTypes.shape({
     name: PropTypes.string,
