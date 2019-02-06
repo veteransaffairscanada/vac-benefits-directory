@@ -87,7 +87,6 @@ const TextAreaField = styled("textarea")({
  * <TextArea
  *    name="group1"
  *    hint={['Enter as many words as you like']}
- *    meta={meta}
  *  >
  *    Description of what you saw
  *  </TextArea>
@@ -119,7 +118,7 @@ export class TextArea extends React.Component {
   }
 
   render() {
-    const { t, children, hint, meta, input, ...props } = this.props;
+    const { t, children, hint, input, ...props } = this.props;
     return (
       <Label {...props}>
         <LabelText>{children}</LabelText>
@@ -142,8 +141,7 @@ export class TextArea extends React.Component {
 
 TextArea.defaultProps = {
   hint: undefined,
-  input: {},
-  meta: {}
+  input: {}
 };
 
 TextArea.propTypes = {
@@ -155,20 +153,6 @@ TextArea.propTypes = {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     value: PropTypes.any
-  }),
-  meta: PropTypes.shape({
-    active: PropTypes.bool,
-    dirty: PropTypes.bool,
-    dirtySinceLastSubmit: PropTypes.bool,
-    initial: PropTypes.any,
-    invalid: PropTypes.bool,
-    pristine: PropTypes.bool,
-    submitError: PropTypes.any,
-    submitFailed: PropTypes.bool,
-    submitSucceeded: PropTypes.bool,
-    touched: PropTypes.bool,
-    valid: PropTypes.bool,
-    visited: PropTypes.bool
   }),
   children: PropTypes.node.isRequired
 };
