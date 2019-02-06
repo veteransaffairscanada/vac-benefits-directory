@@ -4,10 +4,12 @@ const next = require("next");
 const Cookies = require("universal-cookie");
 const helmet = require("helmet");
 const compression = require("compression");
+const fs = require("fs");
 
 const { parseUserAgent } = require("detect-browser");
 
 const dev = process.env.NODE_ENV !== "production";
+const staging = process.env.STAGING !== undefined;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -19,8 +21,24 @@ const { checkURL } = require("./utils/url_check");
 
 const Logger = require("./utils/logger").default;
 
+const readJsonAsync = function(filename) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filename, (err, buffer) => {
+      if (err) reject(err);
+      else resolve(JSON.parse(buffer));
+    });
+  });
+};
+
 const getAllData = async function() {
-  const airtableData = await airTable.hydrateFromAirtable();
+  let airtableData;
+  if (staging) {
+    console.log("Staging environment, downloading from Airtable");
+    airtableData = await airTable.hydrateFromAirtable();
+  } else {
+    console.log("Production environment, using static file");
+    airtableData = await readJsonAsync("data/data.json");
+  }
   return { airtableData: airtableData };
 };
 
@@ -36,14 +54,16 @@ const copyValidTables = (oldData, newData) => {
 Promise.resolve(getAllData()).then(allData => {
   let data = allData.airtableData;
 
-  setInterval(function() {
-    Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
-      copyValidTables(data, newData);
-      Logger.info("Cache refreshed automatically @ " + data.timestamp, {
-        source: "/server.js"
+  if (staging) {
+    setInterval(function() {
+      Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
+        copyValidTables(data, newData);
+        Logger.info("Cache refreshed automatically @ " + data.timestamp, {
+          source: "/server.js"
+        });
       });
-    });
-  }, 1000 * 60 * 60);
+    }, 1000 * 60 * 60);
+  }
 
   app.prepare().then(() => {
     const server = express();
@@ -104,6 +124,10 @@ Promise.resolve(getAllData()).then(allData => {
             source: "/server.js"
           });
         });
+      } else if (req.url.includes("data-validation") && !staging) {
+        res
+          .status(404)
+          .send("The Data Validation page only exists on the staging app.");
       } else {
         const favouriteBenefits = new Cookies(req.headers.cookie).get(
           "favouriteBenefits"
