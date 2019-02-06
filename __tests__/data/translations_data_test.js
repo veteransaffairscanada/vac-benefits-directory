@@ -9,4 +9,17 @@ describe("Translations data", () => {
   it("is not empty", () => {
     expect(data).not.toHaveLength(0);
   });
+
+  it("has required fields in all rows", () => {
+    data.forEach(t => {
+      expect(
+        !!t.key &&
+          t.key !== "" &&
+          !!t.English &&
+          t.English !== "" &&
+          !!t.French &&
+          t.French !== ""
+      ).toBeTruthy();
+    });
+  });
 });
