@@ -71,7 +71,6 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    multipleChoiceOptions: reduxState.multipleChoiceOptions,
     reduxState: reduxState,
     profileQuestions: reduxState.questions.filter(
       q => q.variable_name !== "needs"
@@ -81,7 +80,6 @@ const mapStateToProps = reduxState => {
 
 ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
-  multipleChoiceOptions: PropTypes.array.isRequired,
   reduxState: PropTypes.object.isRequired,
   store: PropTypes.object,
   saveQuestionResponse: PropTypes.func.isRequired,
