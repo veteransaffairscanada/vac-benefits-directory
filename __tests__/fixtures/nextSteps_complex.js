@@ -1,52 +1,58 @@
 const nextSteps = [
   {
-    bullet_name: "transitionInterview",
+    id: "recRBOAZLef0VwQbH",
+    bullet_name: "TransitionInterview",
     english:
-      "Have you scheduled your [Transition Interview](http://www.veterans.gc.ca/eng/services/transition/interview) yet? Every currently serving member is eligible to talk to a VAC person to make transitioning out of the military as seamless as possible. ",
+      "Contact us to schedule a [transition interview](https://www.veterans.gc.ca/eng/services/transition/interview) before you release from the military.",
+    patronType: ["recC9OodJNCqbnGy2"],
     french:
-      "Avez-vous planifi\u00e9 votre [entrevue de transition](http://www.veterans.gc.ca/fra/services/transition/interview)? Tout membre actif a droit \u00e0 un entretien avec un agent d\u2019ACC afin de s\u2019assurer que la transition de la vie militaire \u00e0 la vie civile se passe le mieux possible.",
-    id: "recKyNwxKXQQGcokF",
-    patronType: ["recC9OodJNCqbnGy2"]
+      "(fra) Contact us to schedule a [transition interview](https://www.veterans.gc.ca/eng/services/transition/interview) before you release from the military."
   },
   {
-    bullet_name: "doctorsNote",
+    id: "recegzx7Eq221sBP5",
     english:
-      "Make sure you have a doctor\u2019s note for your service-related health issue. This will make applying for these benefits go a lot smoother.",
+      "Before you apply, remember to learn more about each benefit and service to see if you qualify.",
     french:
-      "Assurez-vous d\u2019avoir en main un billet du m\u00e9decin attestant de votre probl\u00e8me de sant\u00e9 reli\u00e9 au service. Votre processus de demande d\u2019avantages en sera grandement facilit\u00e9.",
-    id: "recp2EOCHfUhGU2jq",
-    patronType: ["recuWkVDSEWc1K0eU"],
-    serviceType: "CAF"
+      "(fra) Before you apply, remember to learn more about each benefit and service to see if you qualify.",
+    bullet_name: "LearnMore",
+    patronType: []
   },
   {
-    bullet_name: "scanSession",
+    id: "recRXz4TJ1ZKxQsC0",
+    bullet_name: "LearnMore2",
     english:
-      "Attend a SCAN session to learn more about what VAC can do for you.",
+      "Your next step is to learn more about the benefits and services you are interested in. Remember to read the “Do you qualify” section on each web page.",
     french:
-      "Assistez \u00e0 une s\u00e9ance du SPSC pour en apprendre davantage sur ce que l\u2019ACC peut faire pour vous.",
-    id: "recdLLujXxdXQEzXC",
-    patronType: ["recC9OodJNCqbnGy2"]
+      "(fra) Your next step is to learn more about the benefits and services you are interested in. Remember to read the “Do you qualify” section on each web page.",
+    patronType: []
   },
   {
-    bullet_name: "firstStep",
+    id: "reca8bB2Ze5HqMcG4",
     english:
-      "If you are looking for more information please look at _See more_.",
-    french: "(fra)If you are looking for more information look at See more.",
-    id: "recDGuWEo84Pie18s"
-  },
-  {
-    bullet_name: "secondStep",
-    english:
-      "If you wish to complete an application please see _Register for My VAC Account_.",
+      "Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms and apply online. ",
     french:
-      "(fra)If you wish to complete an application please see _Register for My VAC Account_",
-    id: "recg5X7mEmlm4Qb2C"
+      "(fra) Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms and apply online. ",
+    patronType: ["recu6xP62BL9yFbWN", "recuWkVDSEWc1K0eU", "recC9OodJNCqbnGy2"],
+    bullet_name: "MyVACAccount"
   },
   {
-    bullet_name: "thirdStep",
-    english: "If you saved a card to your list please look at _Saved list_.",
-    french: "(fra)If you saved a card to your list please look at Saved list.",
-    id: "recyxzgPs14QzD8uS"
+    id: "recWwmdjsoTSG54tz",
+    bullet_name: "ServiceHealthRecord",
+    english:
+      "We will obtain a copy of your service health records after we receive your application for disability benefits, which should contain sufficient evidence that your disability is related to your service.",
+    french:
+      "(fra) We will obtain a copy of your service health records after we receive your application for disability benefits, which should contain sufficient evidence that your disability is related to your service.",
+    serviceHealthIssue: ["recxVaqj0O8BPKyeD"],
+    patronType: []
+  },
+  {
+    id: "recPoMfyQeBv2V5D7",
+    bullet_name: "ContactUs",
+    english:
+      "If you still have questions, [contact us](https://veterans.gc.ca/eng/contact) and we will assist you. ",
+    patronType: ["recu6xP62BL9yFbWN", "recuWkVDSEWc1K0eU", "recC9OodJNCqbnGy2"],
+    french:
+      "(fra) If you still have questions, [contact us](https://veterans.gc.ca/eng/contact) and we will assist you. "
   }
 ];
 

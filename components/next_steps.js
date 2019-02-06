@@ -61,7 +61,6 @@ export class NextSteps extends Component {
   render() {
     const { t } = this.props;
     const bullets = this.getBullets();
-
     return (
       <div className={outerDiv}>
         <Grid container spacing={24}>
