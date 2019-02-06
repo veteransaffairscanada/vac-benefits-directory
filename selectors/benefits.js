@@ -94,13 +94,14 @@ export const nextStepsEligibilityMatch = (
   let matches = true;
   Object.keys(profileFilters).forEach(criteria => {
     if (
-      profileFilters[criteria].length === 0 &&
+      (!profileFilters[criteria] || profileFilters[criteria].length === 0) &&
       ne[criteria] &&
       ne[criteria].length > 0
     ) {
       matches = false;
     }
     if (
+      profileFilters[criteria] &&
       profileFilters[criteria].length > 0 &&
       ne[criteria] &&
       ne[criteria].length > 0
