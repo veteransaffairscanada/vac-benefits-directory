@@ -1,6 +1,6 @@
 // https://github.com/alphagov/govuk-frontend/tree/master/src/components/textarea
 
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
@@ -147,29 +147,68 @@ const TextAreaField = styled("textarea")(
  *    Description of what you saw
  *  </TextArea>
  * ```
- * Simple
+ *
+ * With Footer for VAC content
  * ```jsx
- * <TextArea name="group1" footer="500 characters left">Description of what you saw</TextArea>
+ * <TextArea name="group1" footer={t("feedback.character_warning", {x: t("feedback.max_char")})}>{t("feedback.tell_us_more")}</TextArea>
  * ```
  *
  * ### References:
  * - https://github.com/alphagov/govuk-frontend/tree/master/src/components/textarea
  *
  */
-const TextArea = ({ children, hint, footer, meta, input, ...props }) => (
-  <Label error={meta.touched && meta.error} {...props}>
-    <LabelText>{children}</LabelText>
-    {hint && <HintText>{hint}</HintText>}
-    {meta.touched && meta.error && <ErrorText>{meta.error}</ErrorText>}
-    <TextAreaField
-      type="text"
-      rows="5"
-      error={meta.touched && meta.error}
-      {...input}
-    />
-    <FooterText>{footer}</FooterText>
-  </Label>
-);
+
+export class TextArea extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
+    this.state = { charsLeft: this.props.t("feedback.max_char") };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+    //console.log(this.state.value);
+    const charsUsed = this.state.value ? this.state.value.length : 1;
+    const charsLeft = parseFloat(this.props.t("feedback.max_char")) - charsUsed;
+    //console.log(charsLeft);
+    this.setState({ charsLeft: charsLeft });
+  }
+
+  render() {
+    const {
+      t,
+      children,
+      hint,
+      footer,
+      meta,
+      input,
+      inputId,
+      ...props
+    } = this.props;
+    return (
+      <Label error={meta.touched && meta.error} {...props}>
+        <LabelText>{children}</LabelText>
+        {hint && <HintText>{hint}</HintText>}
+        {meta.touched && meta.error && <ErrorText>{meta.error}</ErrorText>}
+        <TextAreaField
+          type="text"
+          maxLength="10"
+          rows="5"
+          id={this.props.inputId}
+          onChange={this.handleChange}
+          value={this.state.value}
+          error={meta.touched && meta.error}
+          {...input}
+        />
+        <FooterText id={this.props.inputId + "-footer"}>
+          {t("feedback.character_warning", { x: this.state.charsLeft })}
+        </FooterText>
+      </Label>
+    );
+  }
+}
 
 TextArea.defaultProps = {
   hint: undefined,
@@ -178,6 +217,8 @@ TextArea.defaultProps = {
 };
 
 TextArea.propTypes = {
+  t: PropTypes.func.isRequired,
+  inputId: PropTypes.string,
   footer: PropTypes.string,
   hint: PropTypes.string,
   input: PropTypes.shape({
