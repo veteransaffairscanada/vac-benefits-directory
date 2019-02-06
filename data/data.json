@@ -1617,6 +1617,27 @@
       "seeMoreSentenceFr": ""
     },
     {
+      "vacNameEn": "Veterans Independence Program for survivors",
+      "vacNameFr": "Programme pour l'autonomie des anciens combattants à l'intention des survivants",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/veterans-independence-program/survivors",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/veterans-independence-program/survivors",
+      "needs": ["recjTEL7xK4196TE7"],
+      "oneLineDescriptionEn": "Payment for yard and housekeeping services to help you stay in your home.",
+      "oneLineDescriptionFr": "Paiement des services d’entretien ménager et du terrain pour vous aider à rester à la maison.",
+      "benefitEligibility": ["recIskrwtXkfLjDKu"],
+      "id": "recnFM2L5VrwSyEWZ",
+      "categories DO NOT USE": "",
+      "childBenefits": [],
+      "availableIndependently": "",
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": "",
+      "sortingPriority": "",
+      "benefitExamples": [],
+      "seeMoreSentenceEn": "",
+      "seeMoreSentenceFr": ""
+    },
+    {
       "vacNameEn": "Vocational assistance",
       "vacNameFr": "Assistance professionnelle",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation",
@@ -1726,18 +1747,18 @@
       "patronType": ["recuWkVDSEWc1K0eU"],
       "serviceType": ["rec6sKyG0dMJ7HLhY"],
       "statusAndVitals": ["recDW9csGX2ekiwXb"],
+      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
       "Name": "recOVWkhp1IfbFnRU",
-      "path": "family + CAF + deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recMguNzAXgdpEDOJ"],
       "patronType": ["recu6xP62BL9yFbWN"],
       "serviceType": ["rec6sKyG0dMJ7HLhY"],
+      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
       "Name": "recGR0KBNakgQbLG5",
-      "path": "veteran + CAF",
-      "statusAndVitals": [],
-      "serviceHealthIssue": []
+      "path": "veteran + CAF + hasServiceHealthIssue",
+      "statusAndVitals": []
     },
     {
       "benefit": ["rece4vwRrORpYznkw"],
@@ -2053,9 +2074,9 @@
       "benefit": ["reccTUqI8ybL1aHQR"],
       "patronType": ["recuWkVDSEWc1K0eU"],
       "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
+      "statusAndVitals": ["recDW9csGX2ekiwXb"],
       "Name": "rec0AZCo8gx3HzLy1",
-      "path": "family + WSV (WWII or Korea) + releasedAlive",
+      "path": "family + WSV (WWII or Korea) + deceased",
       "serviceHealthIssue": []
     },
     {
@@ -2281,6 +2302,15 @@
       "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
       "Name": "recGHjWL2HmAE4lVC",
       "path": "family + CAF, WSV (WWII or Korea) + releasedAlive + hasServiceHealthIssue"
+    },
+    {
+      "benefit": ["recnFM2L5VrwSyEWZ"],
+      "patronType": ["recuWkVDSEWc1K0eU"],
+      "serviceType": ["rec6sKyG0dMJ7HLhY"],
+      "statusAndVitals": ["recDW9csGX2ekiwXb", "rec3vCJImDFrRIaFl"],
+      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
+      "Name": "recIskrwtXkfLjDKu",
+      "path": "family + CAF + deceased, releasedAlive + hasServiceHealthIssue"
     }
   ],
   "needs": [
@@ -2409,7 +2439,8 @@
         "recEW4yF4GE4V1lTS",
         "recVKse8WgvLYcfgP",
         "recYOyXOqqSSCUVcN",
-        "recZv71nHMgCoX93h"
+        "recZv71nHMgCoX93h",
+        "recnFM2L5VrwSyEWZ"
       ],
       "nameFr": "Décès et deuil",
       "colour": "#b9c3d7",
@@ -4021,19 +4052,19 @@
     },
     {
       "section": "feedback",
-      "key": "character_warning",
+      "key": "character_limit_warning",
       "English": "{{x}} characters left",
       "French": "(fra) {{x}} characters left",
-      "id": "feedback.character_warning",
+      "id": "feedback.character_limit_warning",
       "Used by code": [],
       "Safe to Delete?": []
     },
     {
       "section": "feedback",
-      "key": "max_char",
+      "key": "text_area_char_limit",
       "English": "500",
       "French": "500",
-      "id": "feedback.max_char",
+      "id": "feedback.text_area_char_limit",
       "Used by code": [],
       "Safe to Delete?": []
     },
@@ -4230,7 +4261,7 @@
         "recqM9VdRHwdy35Xf",
         "recDqCwht7xfG2egL"
       ],
-      "nextSteps": ["recg5X7mEmlm4Qb2C"],
+      "nextSteps": ["reca8bB2Ze5HqMcG4", "recPoMfyQeBv2V5D7"],
       "key (DO NOT EDIT)": "veteran",
       "id": "recu6xP62BL9yFbWN",
       "admin_display": "patronType = veteran",
@@ -4258,7 +4289,11 @@
         "recCwYo9TbCnPBa7y",
         "recgDfxgjD31in4Qu"
       ],
-      "nextSteps": ["recdLLujXxdXQEzXC", "recg5X7mEmlm4Qb2C"],
+      "nextSteps": [
+        "recRBOAZLef0VwQbH",
+        "reca8bB2Ze5HqMcG4",
+        "recPoMfyQeBv2V5D7"
+      ],
       "key (DO NOT EDIT)": "servingMember",
       "id": "recC9OodJNCqbnGy2",
       "admin_display": "patronType = servingMember",
@@ -4300,9 +4335,10 @@
         "recB4Pu8GvLZlEDIa",
         "recZaVwvEl6tECI6q",
         "rectgNnpMlvUf515X",
-        "recGHjWL2HmAE4lVC"
+        "recGHjWL2HmAE4lVC",
+        "recIskrwtXkfLjDKu"
       ],
-      "nextSteps": ["recp2EOCHfUhGU2jq", "recg5X7mEmlm4Qb2C"],
+      "nextSteps": ["reca8bB2Ze5HqMcG4", "recPoMfyQeBv2V5D7"],
       "key (DO NOT EDIT)": "family",
       "id": "recuWkVDSEWc1K0eU",
       "admin_display": "patronType = family",
@@ -4380,9 +4416,9 @@
         "recB4Pu8GvLZlEDIa",
         "recgDfxgjD31in4Qu",
         "rectgNnpMlvUf515X",
-        "recGHjWL2HmAE4lVC"
+        "recGHjWL2HmAE4lVC",
+        "recIskrwtXkfLjDKu"
       ],
-      "nextSteps 2": ["recp2EOCHfUhGU2jq", "recdLLujXxdXQEzXC"],
       "key (DO NOT EDIT)": "CAF",
       "id": "rec6sKyG0dMJ7HLhY",
       "admin_display": "serviceType = CAF",
@@ -4469,7 +4505,6 @@
       "benefitEligibility 4": [
         "recC1BOsrEwQQT7Tr",
         "recWmF49cJ0evYv0F",
-        "rec0AZCo8gx3HzLy1",
         "recwtgBef5LIpUifM",
         "recQKuvUeQib6xDlk",
         "recJOORI4GtWCenMm",
@@ -4477,7 +4512,8 @@
         "rece3ZFiriZxO63e4",
         "recB4Pu8GvLZlEDIa",
         "recZaVwvEl6tECI6q",
-        "recGHjWL2HmAE4lVC"
+        "recGHjWL2HmAE4lVC",
+        "recIskrwtXkfLjDKu"
       ],
       "key (DO NOT EDIT)": "releasedAlive",
       "id": "rec3vCJImDFrRIaFl",
@@ -4513,7 +4549,9 @@
         "rec20oclQcDExORJ8",
         "recB4Pu8GvLZlEDIa",
         "recZaVwvEl6tECI6q",
-        "rectgNnpMlvUf515X"
+        "rectgNnpMlvUf515X",
+        "recIskrwtXkfLjDKu",
+        "rec0AZCo8gx3HzLy1"
       ],
       "key (DO NOT EDIT)": "deceased",
       "id": "recDW9csGX2ekiwXb",
@@ -4561,9 +4599,12 @@
         "recxc6T4F7Ft3bF0t",
         "recmRtb7mI9XaukBw",
         "rec6ejmokDXrYAUqT",
-        "recGHjWL2HmAE4lVC"
+        "recGHjWL2HmAE4lVC",
+        "recOVWkhp1IfbFnRU",
+        "recGR0KBNakgQbLG5",
+        "recIskrwtXkfLjDKu"
       ],
-      "nextSteps 4": ["recp2EOCHfUhGU2jq"],
+      "nextSteps 4": ["recWwmdjsoTSG54tz"],
       "key (DO NOT EDIT)": "hasServiceHealthIssue",
       "id": "recxVaqj0O8BPKyeD",
       "admin_display": "serviceHealthIssue = hasServiceHealthIssue",
@@ -5290,55 +5331,57 @@
   ],
   "nextSteps": [
     {
-      "bullet_name": "doctorsNote",
-      "english": "Make sure you have a doctor’s note for your service-related health issue. This will make applying for these benefits go a lot smoother.",
-      "french": "Assurez-vous d’avoir en main un billet du médecin attestant de votre problème de santé relié au service. Votre processus de demande d’avantages en sera grandement facilité.",
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHeathIssue": ["recxVaqj0O8BPKyeD"],
-      "id": "recp2EOCHfUhGU2jq"
-    },
-    {
-      "bullet_name": "scanSession",
-      "english": "Attend a SCAN session to learn more about what VAC can do for you.",
-      "french": "Assistez à une séance du SPSC pour en apprendre davantage sur ce que l’ACC peut faire pour vous.",
+      "bullet_name": "TransitionInterview",
+      "english": "Contact us to schedule a [transition interview](https://www.veterans.gc.ca/eng/services/transition/interview) before you release from the military.",
+      "french": "(fra) Contact us to schedule a [transition interview](https://www.veterans.gc.ca/eng/services/transition/interview) before you release from the military.",
       "patronType": ["recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "id": "recdLLujXxdXQEzXC",
-      "serviceHeathIssue": []
+      "id": "recRBOAZLef0VwQbH"
     },
     {
-      "bullet_name": "firstStep",
-      "english": "If you are looking for more information about the Benefit please look at _See more_.",
-      "french": "Si vous recherchez plus d’informations, cliquez sur En savoir plus.",
-      "id": "recDGuWEo84Pie18s",
-      "patronType": [],
-      "serviceType": [],
-      "serviceHeathIssue": []
+      "bullet_name": "LearnMore",
+      "english": "Before you apply, remember to learn more about each benefit and service to see if you qualify.",
+      "french": "(fra) Before you apply, remember to learn more about each benefit and service to see if you qualify.",
+      "id": "recegzx7Eq221sBP5",
+      "patronType": []
     },
     {
-      "bullet_name": "secondStep",
-      "english": "If you wish to complete an application please see _Register for My VAC Account_.",
-      "french": "Si vous souhaitez remplir une demande, veuillez consulter S'inscrire à Mon dossier ACC.",
+      "bullet_name": "LearnMore2",
+      "english": "Your next step is to learn more about the benefits and services you are interested in. Remember to read the “Do you qualify” section on each web page.",
+      "french": "(fra) Your next step is to learn more about the benefits and services you are interested in. Remember to read the “Do you qualify” section on each web page.",
+      "id": "recRXz4TJ1ZKxQsC0",
+      "patronType": []
+    },
+    {
+      "bullet_name": "MyVACAccount",
+      "english": "Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms and apply online. ",
+      "french": "(fra) Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms and apply online. ",
       "patronType": [
-        "recuWkVDSEWc1K0eU",
         "recu6xP62BL9yFbWN",
+        "recuWkVDSEWc1K0eU",
         "recC9OodJNCqbnGy2"
       ],
-      "id": "recg5X7mEmlm4Qb2C",
-      "serviceType": [],
-      "serviceHeathIssue": []
+      "id": "reca8bB2Ze5HqMcG4"
     },
     {
-      "bullet_name": "thirdStep",
-      "english": "If you saved a selection to your list please look at _Saved list_.",
-      "french": "Si vous avez sauvegardé une fiche dans votre liste, cliquez sur Liste sauvegardée. ",
-      "id": "recyxzgPs14QzD8uS",
-      "patronType": [],
-      "serviceType": [],
-      "serviceHeathIssue": []
+      "bullet_name": "ServiceHealthRecord",
+      "english": "We will obtain a copy of your service health records after we receive your application for disability benefits, which should contain sufficient evidence that your disability is related to your service.",
+      "french": "(fra) We will obtain a copy of your service health records after we receive your application for disability benefits, which should contain sufficient evidence that your disability is related to your service.",
+      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
+      "id": "recWwmdjsoTSG54tz",
+      "patronType": []
+    },
+    {
+      "bullet_name": "ContactUs",
+      "english": "If you still have questions, [contact us](https://veterans.gc.ca/eng/contact) and we will assist you. ",
+      "french": "(fra) If you still have questions, [contact us](https://veterans.gc.ca/eng/contact) and we will assist you. ",
+      "patronType": [
+        "recu6xP62BL9yFbWN",
+        "recuWkVDSEWc1K0eU",
+        "recC9OodJNCqbnGy2"
+      ],
+      "id": "recPoMfyQeBv2V5D7"
     }
   ],
   "errors": [],
-  "timestamp": 1549468169384
+  "timestamp": 1549485129335
 }
