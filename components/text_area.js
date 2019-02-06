@@ -150,7 +150,7 @@ const TextAreaField = styled("textarea")(
  *
  * With Footer for VAC content
  * ```jsx
- * <TextArea name="group1" footer={t("feedback.character_warning", {x: t("feedback.max_char")})}>{t("feedback.tell_us_more")}</TextArea>
+ * <TextArea name="group1">{t("feedback.tell_us_more")}</TextArea>
  * ```
  *
  * ### References:
@@ -162,7 +162,7 @@ export class TextArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
-    this.state = { charsLeft: this.props.t("feedback.max_char") };
+    this.state = { charsLeft: this.props.t("feedback.text_area_char_limit") };
 
     this.handleChange = this.handleChange.bind(this);
   }
@@ -171,7 +171,8 @@ export class TextArea extends React.Component {
     this.setState({ value: event.target.value });
     //console.log(this.state.value);
     const charsUsed = this.state.value ? this.state.value.length : 1;
-    const charsLeft = parseFloat(this.props.t("feedback.max_char")) - charsUsed;
+    const charsLeft =
+      parseFloat(this.props.t("feedback.text_area_char_limit")) - charsUsed;
     //console.log(charsLeft);
     this.setState({ charsLeft: charsLeft });
   }
@@ -203,7 +204,7 @@ export class TextArea extends React.Component {
           {...input}
         />
         <FooterText id={this.props.inputId + "-footer"}>
-          {t("feedback.character_warning", { x: this.state.charsLeft })}
+          {t("feedback.character_limit_warning", { x: this.state.charsLeft })}
         </FooterText>
       </Label>
     );
