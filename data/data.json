@@ -1597,6 +1597,7 @@
     },
     {
       "vacNameEn": "Veterans Independence Program for primary caregivers",
+      "vacNameFr": "Programme pour l'autonomie des anciens combattants à l'intention des principaux dispensateurs de soins",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/veterans-independence-program/caregivers",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/veterans-independence-program/caregivers",
       "needs": ["recmmMZPP4DI6Nq0a"],
@@ -1606,7 +1607,6 @@
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1221",
       "benefitEligibility": ["recGHjWL2HmAE4lVC"],
       "id": "recFk2YDDOAkzkCDt",
-      "vacNameFr": "Programme pour l'autonomie des anciens combattants à l'intention des principaux dispensateurs de soins",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -2276,11 +2276,11 @@
     {
       "benefit": ["recFk2YDDOAkzkCDt"],
       "patronType": ["recuWkVDSEWc1K0eU"],
+      "serviceType": ["rec6sKyG0dMJ7HLhY", "rec3hFX4SlnBMPl7W"],
+      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
       "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
       "Name": "recGHjWL2HmAE4lVC",
-      "path": "family + CAF, WSV (WWII or Korea) + releasedAlive + hasServiceHealthIssue",
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY", "rec3hFX4SlnBMPl7W"]
+      "path": "family + CAF, WSV (WWII or Korea) + releasedAlive + hasServiceHealthIssue"
     }
   ],
   "needs": [
@@ -5340,5 +5340,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1549466041952
+  "timestamp": 1549467077293
 }
