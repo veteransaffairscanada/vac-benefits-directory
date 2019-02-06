@@ -21,7 +21,8 @@
     "precommit": "pretty-quick --staged",
     "docs": "styleguidist server",
     "docs:build": "styleguidist build",
-    "bundle_analyzer": "BUNDLE_CHECK=true yarn build"
+    "bundle_analyzer": "BUNDLE_CHECK=true yarn build",
+    "download": "node scripts/download.js data/data.json"
   },
   "dependencies": {
     "@emotion/core": "^10.0.4",
