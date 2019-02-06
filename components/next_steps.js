@@ -61,7 +61,7 @@ export class NextSteps extends Component {
   render() {
     const { t } = this.props;
     const bullets = this.getBullets();
-
+    console.log(JSON.stringify(this.props.reduxState.nextSteps));
     return (
       <div className={outerDiv}>
         <Grid container spacing={24}>
@@ -90,7 +90,8 @@ export class NextSteps extends Component {
 
 const mapStateToProps = (reduxState, props) => {
   return {
-    filteredNextSteps: getFilteredNextSteps(reduxState, props)
+    filteredNextSteps: getFilteredNextSteps(reduxState, props),
+    reduxState: reduxState
   };
 };
 
