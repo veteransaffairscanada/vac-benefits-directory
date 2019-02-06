@@ -54,15 +54,6 @@ const copyValidTables = (oldData, newData) => {
 Promise.resolve(getAllData()).then(allData => {
   let data = allData.airtableData;
 
-  setInterval(function() {
-    Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
-      copyValidTables(data, newData);
-      Logger.info("Cache refreshed automatically @ " + data.timestamp, {
-        source: "/server.js"
-      });
-    });
-  }, 1000 * 60 * 60);
-
   app.prepare().then(() => {
     const server = express();
     server.use(compression());
