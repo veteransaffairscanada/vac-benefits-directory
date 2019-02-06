@@ -122,7 +122,7 @@ const TextAreaField = styled("textarea")(
  *
  * Simple
  * ```jsx
- * <TextArea name="group1">Description of what you saw</TextArea>
+ * <TextArea name="group1" inputId="feedbackTextArea" t={t}>{t("feedback.tell_us_more")}</TextArea>
  * ```
  *
  * TextArea with hint text
@@ -148,11 +148,6 @@ const TextAreaField = styled("textarea")(
  *  </TextArea>
  * ```
  *
- * With Footer for VAC content
- * ```jsx
- * <TextArea name="group1">{t("feedback.tell_us_more")}</TextArea>
- * ```
- *
  * ### References:
  * - https://github.com/alphagov/govuk-frontend/tree/master/src/components/textarea
  *
@@ -168,13 +163,12 @@ export class TextArea extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
-    //console.log(this.state.value);
-    const charsUsed = this.state.value ? this.state.value.length : 1;
-    const charsLeft =
-      parseFloat(this.props.t("feedback.text_area_char_limit")) - charsUsed;
-    //console.log(charsLeft);
-    this.setState({ charsLeft: charsLeft });
+    this.setState({ value: event.target.value }, () => {
+      const charCount = this.state.value.length;
+      const charsLeft =
+        parseFloat(this.props.t("feedback.text_area_char_limit")) - charCount;
+      this.setState({ charsLeft: charsLeft });
+    });
   }
 
   render() {
@@ -195,11 +189,11 @@ export class TextArea extends React.Component {
         {meta.touched && meta.error && <ErrorText>{meta.error}</ErrorText>}
         <TextAreaField
           type="text"
-          maxLength="10"
+          maxLength={t("feedback.text_area_char_limit")}
           rows="5"
           id={this.props.inputId}
-          onChange={this.handleChange}
           value={this.state.value}
+          onChange={this.handleChange}
           error={meta.touched && meta.error}
           {...input}
         />
@@ -219,7 +213,7 @@ TextArea.defaultProps = {
 
 TextArea.propTypes = {
   t: PropTypes.func.isRequired,
-  inputId: PropTypes.string,
+  inputId: PropTypes.string.isRequired,
   footer: PropTypes.string,
   hint: PropTypes.string,
   input: PropTypes.shape({

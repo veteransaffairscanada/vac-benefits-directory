@@ -131,7 +131,7 @@ export class FeedbackBar extends Component {
               {t("comment-help-us-improve")}
             </Header>
             <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
-            <TextArea name="group1" t={t}>
+            <TextArea name="group1" inputId="feedbackTextArea" t={t}>
               {t("feedback.tell_us_more")}
             </TextArea>
             <div className={TextHold}>
