@@ -43,7 +43,7 @@ export class GuidedExperience extends Component {
     }
   };
 
-  queryParamsToClear() {
+  queryParamsToClearHiddenQuestions() {
     let queryObj = {};
     this.props.reduxState.questions
       .map(x => x.variable_name)
@@ -66,31 +66,63 @@ export class GuidedExperience extends Component {
     return displayable_sections[dynamicStepNumber - 1];
   }
 
-  getNextSection(buttonType) {
-    let displayable_sections;
-    if (buttonType === "next") {
-      displayable_sections = this.props.sectionOrder.filter((x, i) =>
-        showQuestion(x, i, this.props.reduxState)
-      );
-    }
-    if (buttonType === "skip") {
-      var reduxStateCopy = JSON.parse(JSON.stringify(this.props.reduxState));
-      if (this.props.id === "needs") {
-        reduxStateCopy.selectedNeeds = {};
-      } else {
-        reduxStateCopy[this.props.id] = "";
-      }
-      displayable_sections = this.props.sectionOrder.filter((x, i) =>
-        showQuestion(x, i, reduxStateCopy)
-      );
-    }
-    const dynamicStepNumber = displayable_sections.indexOf(this.props.id);
+  getNextUrl() {
+    const { reduxState, sectionOrder, id, url } = this.props;
+    const displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxState)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(id);
     const nextSection =
       dynamicStepNumber + 1 >= displayable_sections.length
         ? "summary"
         : displayable_sections[dynamicStepNumber + 1];
 
-    return nextSection;
+    let nextQueryParams = this.queryParamsToClearHiddenQuestions();
+    if (id === "needs") {
+      nextQueryParams.selectedNeeds = Object.keys(
+        reduxState.selectedNeeds
+      ).join();
+    } else {
+      nextQueryParams[id] = JSON.parse(JSON.stringify(reduxState[id]));
+    }
+
+    return mutateUrl(url, "/" + getPageName(nextSection), nextQueryParams);
+  }
+
+  getSkipUrl() {
+    const { reduxState, sectionOrder, id, url } = this.props;
+
+    var reduxStateCopy = JSON.parse(JSON.stringify(reduxState));
+    if (id === "needs") {
+      reduxStateCopy.selectedNeeds = {};
+    } else {
+      reduxStateCopy[id] = "";
+    }
+    let skipQueryParams = this.queryParamsToClearHiddenQuestions();
+
+    const stepNumber = sectionOrder.indexOf(id);
+    sectionOrder.forEach((x, i) => {
+      if (i > stepNumber && x !== "needs") {
+        skipQueryParams[x] = "";
+        reduxStateCopy[x] = "";
+      }
+    });
+    let displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxStateCopy)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(id);
+    const nextSection =
+      dynamicStepNumber + 1 >= displayable_sections.length
+        ? "summary"
+        : displayable_sections[dynamicStepNumber + 1];
+
+    if (id === "needs") {
+      skipQueryParams.selectedNeeds = {};
+    } else {
+      skipQueryParams[id] = "";
+    }
+
+    return mutateUrl(url, "/" + getPageName(nextSection), skipQueryParams);
   }
 
   render() {
@@ -98,17 +130,6 @@ export class GuidedExperience extends Component {
     const question = reduxState.questions.filter(
       x => x.variable_name === id
     )[0];
-    let nextQueryParams = this.queryParamsToClear();
-    let skipQueryParams = this.queryParamsToClear();
-    if (id === "needs") {
-      nextQueryParams.selectedNeeds = Object.keys(
-        reduxState.selectedNeeds
-      ).join();
-      skipQueryParams.selectedNeeds = {};
-    } else {
-      nextQueryParams[id] = JSON.parse(JSON.stringify(reduxState[id]));
-      skipQueryParams[id] = "";
-    }
 
     const backUrl =
       id === "patronType"
@@ -116,7 +137,7 @@ export class GuidedExperience extends Component {
         : mutateUrl(
             url,
             "/" + getPageName(this.getPrevSection()),
-            this.queryParamsToClear()
+            this.queryParamsToClearHiddenQuestions()
           );
 
     return (
@@ -158,26 +179,12 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
             <Grid item xs={12}>
-              <Link
-                id="nextLink"
-                href={mutateUrl(
-                  url,
-                  "/" + getPageName(this.getNextSection("next")),
-                  nextQueryParams
-                )}
-              >
+              <Link id="nextLink" href={this.getNextUrl()}>
                 <Button id="nextButton" arrow={true}>
                   {t("next")}{" "}
                 </Button>
               </Link>
-              <Link
-                id="skipLink"
-                href={mutateUrl(
-                  url,
-                  "/" + getPageName(this.getNextSection("skip")),
-                  skipQueryParams
-                )}
-              >
+              <Link id="skipLink" href={this.getSkipUrl()}>
                 <HeaderButton id="skipButton" altStyle="grey">
                   {t("ge.skip")}
                 </HeaderButton>
