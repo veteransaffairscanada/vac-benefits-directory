@@ -3,7 +3,7 @@ const urlCheck = require("../utils/url_check");
 
 const benefits = JSON.parse(fs.readFileSync("data/data.json")).benefits;
 
-benefits.map(b => {
+const checkBenefitUrls = b => {
   Promise.resolve(urlCheck.fetchUrl(b.benefitPageEn)).then(result => {
     if (!result) {
       console.log(
@@ -18,4 +18,8 @@ benefits.map(b => {
       );
     }
   });
+};
+
+benefits.map((b, index) => {
+  setTimeout(() => checkBenefitUrls(b), index * 20);
 });
