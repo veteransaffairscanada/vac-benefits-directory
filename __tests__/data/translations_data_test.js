@@ -12,14 +12,7 @@ describe("Translations data", () => {
 
   it("has required fields in all rows", () => {
     data.forEach(t => {
-      expect(
-        !!t.key &&
-          t.key !== "" &&
-          !!t.English &&
-          t.English !== "" &&
-          !!t.French &&
-          t.French !== ""
-      ).toBeTruthy();
+      expect(!!t.key && !!t.English && !!t.French).toBeTruthy();
     });
   });
 });

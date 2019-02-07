@@ -14,17 +14,11 @@ describe("Area offices data", () => {
     data.forEach(a => {
       expect(
         !!a.address_en &&
-          a.address_en !== "" &&
           !!a.address_fr &&
-          a.address_fr !== "" &&
           !!a.lat &&
-          a.lat !== "" &&
           !!a.lng &&
-          a.lng !== "" &&
           !!a.name_en &&
-          a.name_en !== "" &&
-          !!a.name_fr &&
-          a.name_fr !== ""
+          !!a.name_fr
       ).toBeTruthy();
     });
   });

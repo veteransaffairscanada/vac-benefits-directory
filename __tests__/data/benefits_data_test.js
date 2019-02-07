@@ -14,15 +14,11 @@ describe("Benefits data", () => {
     data.forEach(b => {
       expect(
         !!b.vacNameEn &&
-          b.vacNameEn !== "" &&
           !!b.vacNameFr &&
-          b.vacNameFr !== "" &&
           !!b.oneLineDescriptionEn &&
-          b.oneLineDescriptionEn !== "" &&
-          !!b.oneLineDescriptionFr &&
-          b.oneLineDescriptionFr !== ""
-        // !!b.benefitPageEn && b.benefitPageEn !== "" && currently failing :(
-        // !!b.benefitPageFr && b.benefitPageFr !== ""
+          !!b.oneLineDescriptionFr // &&
+        // !!b.benefitPageEn &&    currently failing
+        // !!b.benefitPageFr
       ).toBeTruthy();
     });
   });
