@@ -12,14 +12,12 @@ describe("Benefits data", () => {
 
   it("has required fields in all rows", () => {
     data.forEach(b => {
-      expect(
-        !!b.vacNameEn &&
-          !!b.vacNameFr &&
-          !!b.oneLineDescriptionEn &&
-          !!b.oneLineDescriptionFr // &&
-        // !!b.benefitPageEn &&    currently failing
-        // !!b.benefitPageFr
-      ).toBeTruthy();
+      expect(b.vacNameEn).toBeTruthy();
+      expect(b.vacNameFr).toBeTruthy();
+      expect(b.oneLineDescriptionEn).toBeTruthy();
+      expect(b.oneLineDescriptionFr).toBeTruthy();
+      //expect(b.benefitPageEn).toBeTruthy()  currently failing
+      //expect(b.benefitPageFr).toBeTruthy()  currently failing
     });
   });
 

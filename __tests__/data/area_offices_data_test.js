@@ -12,14 +12,12 @@ describe("Area offices data", () => {
 
   it("has required fields in all rows", () => {
     data.forEach(a => {
-      expect(
-        !!a.address_en &&
-          !!a.address_fr &&
-          !!a.lat &&
-          !!a.lng &&
-          !!a.name_en &&
-          !!a.name_fr
-      ).toBeTruthy();
+      expect(a.address_en).toBeTruthy();
+      expect(a.address_fr).toBeTruthy();
+      expect(a.lat).toBeTruthy();
+      expect(a.lng).toBeTruthy();
+      expect(a.name_en).toBeTruthy();
+      expect(a.name_fr).toBeTruthy();
     });
   });
 });
