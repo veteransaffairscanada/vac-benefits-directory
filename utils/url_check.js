@@ -1,6 +1,7 @@
 require("isomorphic-fetch");
 
 exports.checkURL = undefined;
+exports.fetchUrl = undefined;
 
 var checkURL = (exports.checkURL = async function checkURL(
   benefitId,
@@ -28,13 +29,13 @@ var checkURL = (exports.checkURL = async function checkURL(
   }
 });
 
-var fetchUrl = async function fetchURL(url) {
+var fetchUrl = (exports.fetchUrl = async function fetchURL(url) {
   return await fetch(url).then(
     resp => {
-      return resp.url !== url ? false : true;
+      return resp.url === url;
     },
     () => {
       return false;
     }
   );
-};
+});
