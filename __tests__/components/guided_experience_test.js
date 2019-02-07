@@ -139,4 +139,19 @@ describe("GuidedExperience", () => {
         .props().href
     ).toEqual("/needs?lng=en&patronType=veteran&selectedNeeds=1,2");
   });
+
+  it("skip button has the correct href, clears future questions", () => {
+    props.url.query.patronType = "veteran";
+    props.url.query.serviceType = "CAF";
+    props.url.query.serviceHealthIssue = "false";
+    props.url.query.selectedNeeds = "1,2";
+    props.id = "patronType";
+
+    expect(
+      mounted_GuidedExperience()
+        .find("#skipLink")
+        .first()
+        .props().href
+    ).toEqual("/needs?lng=en&selectedNeeds=1,2");
+  });
 });
