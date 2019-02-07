@@ -5,15 +5,11 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
 
-const HintText = styled("span")(
-  //typography.font({ size: 19 }),
-  {
-    display: "block",
-    // NB non-responsive marginBottom here
-    marginBottom: "5px",
-    color: `${globalTheme.colour.blackish}`
-  }
-);
+const HintText = styled("span")({
+  display: "block",
+  marginBottom: "5px",
+  color: `${globalTheme.colour.blackish}`
+});
 
 const LabelText = styled("span")({
   fontFamily: globalTheme.fontFamily,
@@ -68,41 +64,12 @@ const TextAreaField = styled("textarea")({
   }
 });
 
-/**
- *
- * ### Usage
- *
- * Simple
- * ```jsx
- * <TextArea name="group1" t={t}>{t("feedback.tell_us_more")}</TextArea>
- * ```
- *
- * TextArea with hint text
- * ```jsx
- * <TextArea name="group1" hint={['Enter as many words as you like']}>
- *   Description of what you saw
- * </TextArea>
- * ```
- *
- * <TextArea
- *    name="group1"
- *    hint={['Enter as many words as you like']}
- *  >
- *    Description of what you saw
- *  </TextArea>
- * ```
- *
- * ### References:
- * - https://github.com/alphagov/govuk-frontend/tree/master/src/components/textarea
- *
- */
-
 export class TextArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       value: "",
-      charsLeft: this.props.t("feedback.text_area_char_limit")
+      charsLeft: this.props.maxLength
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -111,8 +78,7 @@ export class TextArea extends React.Component {
   handleChange(event) {
     this.setState({ value: event.target.value }, () => {
       const charCount = this.state.value.length;
-      const charsLeft =
-        parseFloat(this.props.t("feedback.text_area_char_limit")) - charCount;
+      const charsLeft = parseFloat(this.props.maxLength) - charCount;
       this.setState({ charsLeft: charsLeft });
     });
   }
@@ -158,8 +124,5 @@ TextArea.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-/** Component is not exported withWhitespace because Label
- *  is also exported withWhitespace and therefore takes precedence.
- */
 export default TextArea;
 export { TextAreaField };
