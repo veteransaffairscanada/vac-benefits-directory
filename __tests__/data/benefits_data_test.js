@@ -32,8 +32,4 @@ describe("Benefits data", () => {
       expect(b.benefitEligibility).toBeTruthy();
     });
   });
-
-  it("has valid URLs in all rows", () => {
-    // complete this
-  });
 });

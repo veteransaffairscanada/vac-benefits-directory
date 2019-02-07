@@ -22,7 +22,8 @@
     "docs": "styleguidist server",
     "docs:build": "styleguidist build",
     "bundle_analyzer": "BUNDLE_CHECK=true yarn build",
-    "download": "node scripts/download.js data/data.json"
+    "download": "node scripts/download.js data/data.json",
+    "test_urls": "node scripts/test_benefit_urls.js"
   },
   "dependencies": {
     "@emotion/core": "^10.0.4",
