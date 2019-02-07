@@ -56,7 +56,11 @@ export class Feedback extends Component {
             options={question.multiple_choice_options}
             store={store}
           />
-          <TextArea name="group1" t={t}>
+          <TextArea
+            name="group1"
+            maxLength={t("feedback.text_area_char_limit")}
+            t={t}
+          >
             {t("feedback.tell_us_more")}
           </TextArea>
           <div className={padding}>

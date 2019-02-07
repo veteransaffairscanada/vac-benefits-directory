@@ -118,14 +118,14 @@ export class TextArea extends React.Component {
   }
 
   render() {
-    const { t, children, hint, input, ...props } = this.props;
+    const { t, maxLength, children, hint, input, ...props } = this.props;
     return (
       <Label {...props}>
         <LabelText>{children}</LabelText>
         {hint && <HintText>{hint}</HintText>}
         <TextAreaField
           type="text"
-          maxLength={t("feedback.text_area_char_limit")}
+          maxLength={maxLength}
           rows="5"
           value={this.state.value}
           onChange={this.handleChange}
@@ -145,6 +145,7 @@ TextArea.defaultProps = {
 };
 
 TextArea.propTypes = {
+  maxLength: PropTypes.string,
   t: PropTypes.func.isRequired,
   hint: PropTypes.string,
   input: PropTypes.shape({
