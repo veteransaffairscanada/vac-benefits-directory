@@ -47,7 +47,7 @@ Pour faire quoi que ce soit dans AirTable, effectuez toujours les étapes suivan
 | Description en une ligne                                         | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | oneLineDescriptionEn                 | oneLineDescriptionFr                |
 | Lien Apprenez-en plus à ce sujet d’ACC                                         | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | benefitPageEn                        | benefitPageFr                       |
 | Renseignements importants dans l’en-tête de la carte                                | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | noteEn                               | noteFr                              |
-| see more content description                                 | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | seeMoreSentenceEn                    | seeMoreSentenceFr                   |
+| voir davantage de description de contenu                                 | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | seeMoreSentenceEn                    | seeMoreSentenceFr                   |
 | Texte des questions dans le répertoire des avantages                         | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | display_text_english                 | display_text_french                 |
 | Texte des questions dans l’expérience guidée                          | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_english            | guided_experience_french            |
 | Titre de la page de l’expérience guidée                                | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_page_title_english | guided_experience_page_title_french |
@@ -60,6 +60,13 @@ Pour faire quoi que ce soit dans AirTable, effectuez toujours les étapes suivan
 | Heures (toutes sur la page de la carte)                                      | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | office_hours_en                      | office_hours_fr                     |
 | Options de case à cocher dans l’expérience guidée et le répertoire des avantages | [needs](https://airtable.com/tblY7TpDsGR5I3SaN/viwQOzMWARRdWFks3)                 | nameEn                               | nameFr                              |
 | Tous les autres textes                                              | [translations](https://airtable.com/tblJAMGWk4ZypG5uX/viwsHMCBUnwx1EC3f)          | English                              | French                              |
+
+### Modifier les critères d’admissibilité à un avantage
+
+1. Repérez la feuille [benefitEligibility](https://airtable.com/tblRNTYbp9OWDSj4l/viwB7uV1iu2dCaa5P) dans AirTable.
+2. Notez que chaque chemin d’accès est représenté par des valeurs inscrites dans des colonnes correspondant aux questions figurant sur la [feuille questions](https://airtable.com/login?continue=%2FtblCynpHaryoypjMY%2Fviw1y4qaD2wp5aA2s). Les valeurs se trouvant dans les colonnes correspondent à celles qui figurent sur la feuille [multipleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx).
+3. Déterminez si le nouveau chemin d’accès d’admissibilité relatif à l’avantage en question existe déjà. (Si c’est le cas, il apparaît sur une ligne de la feuille benefitEligibility.) Sinon, insérez une ligne et indiquez-y l’avantage et les critères d’admissibilité. Note : inscrivez les valeurs `statusAndVitals` dans un chemin d’accès seulement si celui-ci inclut `family` et non `veteran`, `serving member` ou `organization`. Vous pourriez donc devoir créer deux lignes pour un même avantage, c’est-à-dire deux chemins d’accès : un pour les membres de la famille et un autre pour les anciens combattants.
+4. Si vous souhaitez éliminer un chemin d’accès d’admissibilité relatif à un avantage, supprimez la ligne en question dans le tableau.
 
 ### Ajouter une catégorie (c’est-à-dire le besoin ou la question à cases à cocher) et associer la catégorie à un avantage
 
