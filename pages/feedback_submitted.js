@@ -33,7 +33,7 @@ const headerLinkStyle = css`
 `;
 export class Feedback extends Component {
   render() {
-    const { t, i18n, store } = this.props;
+    const { t, i18n } = this.props;
     return (
       <Layout
         t={t}
@@ -64,8 +64,7 @@ export class Feedback extends Component {
 
 Feedback.propTypes = {
   t: PropTypes.func.isRequired,
-  i18n: PropTypes.object.isRequired,
-  store: PropTypes.object
+  i18n: PropTypes.object.isRequired
 };
 
 export default withI18N(connect()(Feedback));
