@@ -31,7 +31,7 @@ const headerLinkStyle = css`
   font-weight: normal;
   font-size: 20px;
 `;
-export class Feedback extends Component {
+export class FeedbackSubmitted extends Component {
   render() {
     const { t, i18n } = this.props;
     return (
@@ -62,9 +62,9 @@ export class Feedback extends Component {
   }
 }
 
-Feedback.propTypes = {
+FeedbackSubmitted.propTypes = {
   t: PropTypes.func.isRequired,
   i18n: PropTypes.object.isRequired
 };
 
-export default withI18N(connect()(Feedback));
+export default withI18N(connect()(FeedbackSubmitted));

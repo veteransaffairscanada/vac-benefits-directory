@@ -124,10 +124,10 @@ Promise.resolve(getAllData()).then(allData => {
             source: "/server.js"
           });
         });
-      } else if (req.url.includes("data-validation") && !staging) {
-        res
-          .status(404)
-          .send("The Data Validation page only exists on the staging app.");
+        // } else if (req.url.includes("data-validation") && !staging) {
+        //   res
+        //     .status(404)
+        //     .send("The Data Validation page only exists on the staging app.");
       } else {
         const favouriteBenefits = new Cookies(req.headers.cookie).get(
           "favouriteBenefits"
