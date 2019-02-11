@@ -13,7 +13,6 @@ import PropTypes from "prop-types";
 import TextArea from "../components/text_area";
 require("isomorphic-fetch");
 import Raven from "raven-js";
-import { mutateUrl } from "../utils/common";
 import Router from "next/router";
 
 const padding = css`
@@ -105,6 +104,7 @@ export class Feedback extends Component {
           </TextArea>
           <div className={padding}>
             <Button
+              id="send"
               arrow={true}
               size="big"
               onClick={() => {
