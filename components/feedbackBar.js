@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
-import TextField from "@material-ui/core/TextField";
+import TextArea from "./text_area";
 import { css } from "emotion";
 import FooterButton from "./footer_button";
 import { globalTheme } from "../theme";
@@ -11,7 +11,6 @@ import Header from "./typography/header";
 require("isomorphic-fetch");
 
 const CommentBox = css`
-  height: 350px;
   background-color: ${globalTheme.colour.greyishBrownTwo};
   color: ${globalTheme.colour.white};
   text-align: left;
@@ -51,20 +50,22 @@ const TextHold = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
   padding: 10px 0;
 `;
-const white = css`
+const topHeading = css`
   color: white;
+  padding-top: 30px;
 `;
 const whiteNormalFont = css`
   color: white;
   font-weight: normal;
 `;
 const pStyle = css`
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: normal;
+  font-family: ${globalTheme.fontFamily};
 `;
-const labelStyle = css`
-  label {
-    transform: translate(0, 0) scale(1);
-    font-weight: bold;
+const textArea = css`
+  span {
+    color: white;
   }
 `;
 
@@ -126,52 +127,19 @@ export class FeedbackBar extends Component {
       <div className={FeedbackWrapper} role="navigation">
         {this.state.commentFormToggled ? (
           <div className={CommentBox}>
-            <Header size="lg" headingLevel="h2" className={white}>
+            <Header size="lg" headingLevel="h2" className={topHeading}>
               {t("comment-help-us-improve")}
             </Header>
             <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
             <div className={TextHold}>
-              <TextField
-                inputProps={{
-                  style: {
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    padding: "10px"
-                  }
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "white", fontSize: "18px" }
-                }}
-                id="commentWhatWereYouDoing"
-                label={t("comment-what-were-you-doing")}
-                margin="normal"
-                fullWidth={true}
-                onChange={this.handleChange("action")}
-                className={labelStyle}
-                value={this.state.action}
-                autoFocus
-              />
-              <TextField
-                inputProps={{
-                  style: {
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    padding: "10px"
-                  }
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "white", fontSize: "18px" }
-                }}
-                id="commentWhatWentWrong"
-                label={t("comment-what-went-wrong")}
-                margin="normal"
-                fullWidth={true}
-                onChange={this.handleChange("failure")}
-                className={labelStyle}
-                value={this.state.failure}
-              />
+              <TextArea
+                name="bugFiling"
+                maxLength={"500"}
+                t={t}
+                className={textArea}
+              >
+                {t("comment-what-went-wrong")}
+              </TextArea>
             </div>
             <br />
             <SubmitButton
@@ -194,7 +162,9 @@ export class FeedbackBar extends Component {
         <div className={Div}>
           {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
             <div className={Inner}>
-              <p className={pStyle}>{t("feedback-response")}</p>
+              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
+                {t("feedback-response")}
+              </Header>
             </div>
           ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>
