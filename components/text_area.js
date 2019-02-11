@@ -8,7 +8,7 @@ import { globalTheme } from "../theme";
 const HintText = styled("span")({
   display: "block",
   marginBottom: "5px",
-  color: `${globalTheme.colour.blackish}`
+  color: globalTheme.colour.blackish
 });
 
 const LabelText = styled("span")({
@@ -18,9 +18,9 @@ const LabelText = styled("span")({
   display: "block",
   clear: "none",
   fontWeight: 400,
-  fontSize: "18px",
+  fontSize: "20px",
   lineHeight: "1.5",
-  color: `${globalTheme.colour.greyishBrown}`,
+  color: globalTheme.colour.greyishBrown,
   paddingBottom: "5px"
 });
 
@@ -33,7 +33,7 @@ const FooterText = styled("span")({
   fontWeight: 400,
   fontSize: "10px",
   lineHeight: "1.5",
-  color: `${globalTheme.colour.greyishBrown}`,
+  color: globalTheme.colour.greyishBrown,
   paddingTop: "3px"
 });
 
@@ -50,7 +50,7 @@ const Label = styled("label")({
 
 const TextAreaField = styled("textarea")({
   boxSizing: "border-box",
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.colour.greyishBrown,
   fontWeight: 400,
   textTransform: "none",
   fontSize: "18px",

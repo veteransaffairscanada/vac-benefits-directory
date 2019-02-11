@@ -13,6 +13,12 @@ const formControl = css`
 `;
 const formLabel = css`
   margin-bottom: 10px;
+  color: ${globalTheme.colour.greyishBrown};
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
 `;
 const radioOption = css`
   margin-bottom: 10px;

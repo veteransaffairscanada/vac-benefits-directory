@@ -20,6 +20,12 @@ const prevButton = css`
   margin-top: 50px;
   margin-bottom: 15px;
 `;
+const headerPadding = css`
+  padding-bottom: 10px;
+`;
+const textAreaPadding = css`
+  padding: 30px 0px 60px;
+`;
 export class Feedback extends Component {
   render() {
     const { t, i18n, questions, store } = this.props;
@@ -42,7 +48,7 @@ export class Feedback extends Component {
             {t("back")}
           </HeaderLink>
 
-          <Header headingLevel="h1" size="lg">
+          <Header className={headerPadding} headingLevel="h1" size="lg">
             {t("feedback.page_header")}
           </Header>
           <RadioSelector
@@ -56,7 +62,12 @@ export class Feedback extends Component {
             options={question.multiple_choice_options}
             store={store}
           />
-          <TextArea name="group1" maxLength={500} t={t}>
+          <TextArea
+            className={textAreaPadding}
+            name="group1"
+            maxLength={"500"}
+            t={t}
+          >
             {t("feedback.tell_us_more")}
           </TextArea>
           <div className={padding}>
@@ -64,7 +75,7 @@ export class Feedback extends Component {
               arrow={true}
               size="big"
               // onClick={() => {
-              //   console.log("sent!!")
+              //   console.log("sent!!") // href should be feedback_sumbitted
               // }}
             >
               {t("send")}{" "}
