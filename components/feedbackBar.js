@@ -8,6 +8,7 @@ import { css } from "emotion";
 import FooterButton from "./footer_button";
 import { globalTheme } from "../theme";
 import Header from "./typography/header";
+import { Grid } from "@material-ui/core";
 require("isomorphic-fetch");
 
 const CommentBox = css`
@@ -168,22 +169,41 @@ export class FeedbackBar extends Component {
             </div>
           ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>
-              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
-                {t("feedback-prompt")}
-              </Header>
-              <FooterButton
-                id="feedbackYes"
-                onClick={() => this.sendFeedback("Yes")}
-              >
-                {t("yes")}
-              </FooterButton>
-              &nbsp; &nbsp;
-              <FooterButton
-                id="feedbackNo"
-                onClick={() => this.sendFeedback("No")}
-              >
-                {t("no")}
-              </FooterButton>
+              <Grid container spacing={8}>
+                <Grid item sm={6} xs={12}>
+                  <Header
+                    size="sm"
+                    headingLevel="h2"
+                    className={whiteNormalFont}
+                  >
+                    {t("feedback-prompt")}
+                  </Header>
+                </Grid>
+                <Grid item sm={2} xs={12}>
+                  <FooterButton
+                    id="feedbackYes"
+                    onClick={() => this.sendFeedback("Yes")}
+                  >
+                    {t("yes")}
+                  </FooterButton>
+                  &nbsp; &nbsp;
+                  <FooterButton
+                    id="feedbackNo"
+                    onClick={() => this.sendFeedback("No")}
+                  >
+                    {t("no")}
+                  </FooterButton>
+                </Grid>
+                <Grid item sm={4} xs={12}>
+                  <Header
+                    size="sm"
+                    headingLevel="h2"
+                    className={whiteNormalFont}
+                  >
+                    {"hello"}
+                  </Header>
+                </Grid>
+              </Grid>
             </div>
           ) : null}
         </div>
