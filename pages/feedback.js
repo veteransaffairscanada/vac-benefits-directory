@@ -65,7 +65,7 @@ export class Feedback extends Component {
           <TextArea
             className={textAreaPadding}
             name="group1"
-            maxLength={500}
+            maxLength={"500"}
             t={t}
           >
             {t("feedback.tell_us_more")}
