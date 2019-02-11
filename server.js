@@ -78,6 +78,13 @@ Promise.resolve(getAllData()).then(allData => {
       res.sendStatus(200);
     });
 
+    // submitting beta Feedback
+    server.post("/submitBetaFeedback", (req, res) => {
+      Logger.info("Submitting beta feedback", { source: "/server.js" });
+      airTable.writeBetaFeedback(req.body);
+      res.sendStatus(200);
+    });
+
     // handle URL validation
     let urlCache = {};
     server.post("/checkURL", (req, res) => {
