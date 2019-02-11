@@ -1225,6 +1225,8 @@
       "oneLineDescriptionEn": "A clinic that assesses and treats mental health issues related to your service.",
       "oneLineDescriptionFr": "Clinique externe qui évalue et traite tout problème de santé mentale causé par votre service.",
       "sortingPriority": "medium",
+      "noteEn": "You need a referral from a Case Manager to visit the clinic.",
+      "noteFr": "(fra) You need a referral from a Case Manager to visit the clinic.",
       "benefitExamples": [
         "recHaX4XKETPQKhHp",
         "recqOsqicgzAjHlnQ",
@@ -1453,7 +1455,6 @@
       "sortingPriority": "high",
       "benefitExamples": [
         "rectK00K9ynNhArvX",
-        "rec3Yk0ryqvzGfx6I",
         "recN5ujktoeWAG7vI",
         "reczfqhXhc0KsOFnE",
         "reckmNpzzaTJbZIHj",
@@ -1461,8 +1462,8 @@
         "recNqoKjX7Mz1Y2U7"
       ],
       "benefitEligibility": ["recEfRVYLpvWvqISx"],
-      "seeMoreSentenceEn": "Some examples of what this program may provide:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "seeMoreSentenceEn": "Some examples of what this program may cover:",
+      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme (fra) peut fournir :",
       "id": "recewrfxHbTWEVPig",
       "childBenefits": [],
       "examples": ""
@@ -1543,7 +1544,7 @@
       "vacNameFr": "Fonds d'urgence pour les vétérans",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/veterans-emergency-fund",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/veterans-emergency-fund",
-      "needs": ["recEahND3kwnUPTHx", "recpN4AgAGiH3x7KZ"],
+      "needs": ["recEahND3kwnUPTHx"],
       "oneLineDescriptionEn": "Quick access to funds for urgent needs such as food, shelter or medical expenses.",
       "oneLineDescriptionFr": "Accès rapide à des fonds en cas de besoins urgents (nourriture, logement ou frais médicaux).",
       "categories DO NOT USE": "Financial assistance, Family support",
@@ -1703,24 +1704,41 @@
       "childBenefits": [
         "recqpTIM3UcQkeRh0",
         "recKZD7EgawQUTf98",
-        "rec7vYqDWYPQnDcRK"
+        "rec7vYqDWYPQnDcRK",
+        "recewrfxHbTWEVPig",
+        "recEW4yF4GE4V1lTS"
       ],
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/31",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/31",
       "sortingPriority": "high",
-      "benefitExamples": [
-        "reciSsalX6LLPOxSj",
-        "reckhYxwXu57HTlNB",
-        "recHEQf2NMMwiHtjk",
-        "recJclfjOkUJhJx7e",
-        "recTCnEySwYmL5jjX"
-      ],
       "benefitEligibility": ["recxiPnxu1B8Xq1HX", "recqM9VdRHwdy35Xf"],
       "seeMoreSentenceEn": "By receiving War Veterans Allowance, you may qualify for:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
       "id": "recDRPu2NF4UIximU",
-      "examples": ""
+      "examples": "",
+      "benefitExamples": []
+    },
+    {
+      "id": "rectUSRC5xL7pAc5h",
+      "vacNameEn": "",
+      "vacNameFr": "",
+      "benefitPageEn": "",
+      "benefitPageFr": "",
+      "needs": [],
+      "oneLineDescriptionEn": "",
+      "oneLineDescriptionFr": "",
+      "categories DO NOT USE": "",
+      "childBenefits": [],
+      "availableIndependently": "",
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": "",
+      "sortingPriority": "",
+      "benefitExamples": [],
+      "benefitEligibility": [],
+      "seeMoreSentenceEn": "",
+      "seeMoreSentenceFr": ""
     }
   ],
   "benefitEligibility": [
@@ -1736,11 +1754,11 @@
     {
       "benefit": ["recNsVtmotVHzDhAB"],
       "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
       "Name": "rec6ejmokDXrYAUqT",
-      "path": "veteran + hasServiceHealthIssue",
+      "path": "veteran",
       "serviceType": [],
-      "statusAndVitals": []
+      "statusAndVitals": [],
+      "serviceHealthIssue": []
     },
     {
       "benefit": ["recMguNzAXgdpEDOJ"],
@@ -2255,6 +2273,24 @@
       "serviceHealthIssue": []
     },
     {
+      "benefit": ["recFk2YDDOAkzkCDt"],
+      "patronType": ["recuWkVDSEWc1K0eU"],
+      "serviceType": ["rec6sKyG0dMJ7HLhY", "rec3hFX4SlnBMPl7W"],
+      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
+      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
+      "Name": "recGHjWL2HmAE4lVC",
+      "path": "family + CAF, WSV (WWII or Korea) + releasedAlive + hasServiceHealthIssue"
+    },
+    {
+      "benefit": ["recnFM2L5VrwSyEWZ"],
+      "patronType": ["recuWkVDSEWc1K0eU"],
+      "serviceType": ["rec6sKyG0dMJ7HLhY"],
+      "statusAndVitals": ["recDW9csGX2ekiwXb"],
+      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
+      "Name": "recIskrwtXkfLjDKu",
+      "path": "family + CAF + deceased + hasServiceHealthIssue"
+    },
+    {
       "benefit": ["recO8NVH2tWIjNpDA"],
       "patronType": ["recuWkVDSEWc1K0eU"],
       "serviceType": ["rec6sKyG0dMJ7HLhY"],
@@ -2293,24 +2329,6 @@
       "path": "veteran + WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
-    },
-    {
-      "benefit": ["recFk2YDDOAkzkCDt"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY", "rec3hFX4SlnBMPl7W"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recGHjWL2HmAE4lVC",
-      "path": "family + CAF, WSV (WWII or Korea) + releasedAlive + hasServiceHealthIssue"
-    },
-    {
-      "benefit": ["recnFM2L5VrwSyEWZ"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb", "rec3vCJImDFrRIaFl"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recIskrwtXkfLjDKu",
-      "path": "family + CAF + deceased, releasedAlive + hasServiceHealthIssue"
     }
   ],
   "needs": [
@@ -2367,7 +2385,6 @@
         "recCkQL77l0KZ2u7Y",
         "recOJ3P1wiacWA5jr",
         "recMguNzAXgdpEDOJ",
-        "recFMnhGVbQT8de27",
         "recKZD7EgawQUTf98",
         "recVKse8WgvLYcfgP",
         "rec7vYqDWYPQnDcRK",
@@ -4045,7 +4062,7 @@
       "section": "feedback",
       "key": "tell_us_more",
       "English": "Tell us in more detail what you think about this online tool.",
-      "French": "(fra) Tell us in more detail what you think about this online tool.",
+      "French": "Dites-nous plus en détail ce que vous pensez de cet outil en ligne.",
       "id": "feedback.tell_us_more",
       "Used by code": [],
       "Safe to Delete?": []
@@ -4054,17 +4071,8 @@
       "section": "feedback",
       "key": "character_limit_warning",
       "English": "{{x}} characters left",
-      "French": "(fra) {{x}} characters left",
+      "French": "{{x}} caractères restants",
       "id": "feedback.character_limit_warning",
-      "Used by code": [],
-      "Safe to Delete?": []
-    },
-    {
-      "section": "feedback",
-      "key": "text_area_char_limit",
-      "English": "500",
-      "French": "500",
-      "id": "feedback.text_area_char_limit",
       "Used by code": [],
       "Safe to Delete?": []
     },
@@ -4072,7 +4080,7 @@
       "section": "feedback",
       "key": "page_title",
       "English": "Feedback",
-      "French": "(fra) Feedback",
+      "French": "Commentaires",
       "id": "feedback.page_title",
       "Used by code": [],
       "Safe to Delete?": []
@@ -4081,8 +4089,26 @@
       "section": "feedback",
       "key": "page_header",
       "English": "Help us improve",
-      "French": "(fra) Help us improve",
+      "French": "Aidez-nous à nous améliorer",
       "id": "feedback.page_header",
+      "Used by code": [],
+      "Safe to Delete?": []
+    },
+    {
+      "section": "feedback",
+      "key": "submitted",
+      "English": "Thank you for taking the time to give us feedback. We are listening and constantly improving.",
+      "French": "Merci d’avoir pris le temps de nous faire part de vos commentaires. Nous sommes à l’écoute et nous nous améliorons constamment.",
+      "id": "feedback.submitted",
+      "Used by code": [],
+      "Safe to Delete?": []
+    },
+    {
+      "section": "feedback",
+      "key": "ben_dir_link",
+      "English": "Return to Find benefits and services",
+      "French": "Retour à la page Rechercher des avantages et des services",
+      "id": "feedback.ben_dir_link",
       "Used by code": [],
       "Safe to Delete?": []
     }
@@ -4338,7 +4364,7 @@
         "recGHjWL2HmAE4lVC",
         "recIskrwtXkfLjDKu"
       ],
-      "nextSteps": ["reca8bB2Ze5HqMcG4", "recPoMfyQeBv2V5D7"],
+      "nextSteps": ["recPoMfyQeBv2V5D7"],
       "key (DO NOT EDIT)": "family",
       "id": "recuWkVDSEWc1K0eU",
       "admin_display": "patronType = family",
@@ -4512,8 +4538,7 @@
         "rece3ZFiriZxO63e4",
         "recB4Pu8GvLZlEDIa",
         "recZaVwvEl6tECI6q",
-        "recGHjWL2HmAE4lVC",
-        "recIskrwtXkfLjDKu"
+        "recGHjWL2HmAE4lVC"
       ],
       "key (DO NOT EDIT)": "releasedAlive",
       "id": "rec3vCJImDFrRIaFl",
@@ -4598,7 +4623,6 @@
         "recg7V3k3ol4FLAMh",
         "recxc6T4F7Ft3bF0t",
         "recmRtb7mI9XaukBw",
-        "rec6ejmokDXrYAUqT",
         "recGHjWL2HmAE4lVC",
         "recOVWkhp1IfbFnRU",
         "recGR0KBNakgQbLG5",
@@ -5149,12 +5173,6 @@
       "id": "recNqoKjX7Mz1Y2U7"
     },
     {
-      "english": "reimbursements ",
-      "french": "remboursements",
-      "linked_benefits": ["Treatment benefits"],
-      "id": "rec3Yk0ryqvzGfx6I"
-    },
-    {
       "english": "wheelchairs",
       "french": "chaise roulante",
       "linked_benefits": ["Treatment benefits"],
@@ -5252,7 +5270,7 @@
     },
     {
       "english": "snow removal",
-      "french": "tonte du gazon",
+      "french": " déneigement",
       "linked_benefits": ["Veterans Independence Program"],
       "id": "rec4Mgp5NFaCcI1VU"
     },
@@ -5297,36 +5315,6 @@
         "Career Transition Services"
       ],
       "id": "rec8BPLJ05SiqJiha"
-    },
-    {
-      "english": "Assistance Fund",
-      "french": "Fonds de secours",
-      "linked_benefits": ["War Veterans Allowance"],
-      "id": "reckhYxwXu57HTlNB"
-    },
-    {
-      "english": "Funeral and Burial Assistance",
-      "french": "aide pour les funérailles et l’inhumation",
-      "linked_benefits": ["War Veterans Allowance"],
-      "id": "recTCnEySwYmL5jjX"
-    },
-    {
-      "english": "Long term care ",
-      "french": "soins de longue durée",
-      "linked_benefits": ["War Veterans Allowance"],
-      "id": "recJclfjOkUJhJx7e"
-    },
-    {
-      "english": "Treatment Benefits",
-      "french": "avantages médicaux",
-      "linked_benefits": ["War Veterans Allowance"],
-      "id": "recHEQf2NMMwiHtjk"
-    },
-    {
-      "english": "Veterans Independence Program",
-      "french": " Programme pour l’autonomie des anciens combattants",
-      "linked_benefits": ["War Veterans Allowance"],
-      "id": "reciSsalX6LLPOxSj"
     }
   ],
   "nextSteps": [
@@ -5339,27 +5327,16 @@
     },
     {
       "bullet_name": "LearnMore",
-      "english": "Before you apply, remember to learn more about each benefit and service to see if you qualify.",
-      "french": "(fra) Before you apply, remember to learn more about each benefit and service to see if you qualify.",
+      "english": "Before you apply, confirm your eligibility by reading the “Do you qualify” section of each benefit or service. ",
+      "french": "(fra) Before you apply, confirm your eligibility by reading the “Do you qualify” section of each benefit or service. ",
       "id": "recegzx7Eq221sBP5",
       "patronType": []
     },
     {
-      "bullet_name": "LearnMore2",
-      "english": "Your next step is to learn more about the benefits and services you are interested in. Remember to read the “Do you qualify” section on each web page.",
-      "french": "(fra) Your next step is to learn more about the benefits and services you are interested in. Remember to read the “Do you qualify” section on each web page.",
-      "id": "recRXz4TJ1ZKxQsC0",
-      "patronType": []
-    },
-    {
       "bullet_name": "MyVACAccount",
-      "english": "Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms and apply online. ",
-      "french": "(fra) Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms and apply online. ",
-      "patronType": [
-        "recu6xP62BL9yFbWN",
-        "recuWkVDSEWc1K0eU",
-        "recC9OodJNCqbnGy2"
-      ],
+      "english": "Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms, further check eligibility and apply online. ",
+      "french": "(fra) Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms, further check eligibility and apply online. ",
+      "patronType": ["recu6xP62BL9yFbWN", "recC9OodJNCqbnGy2"],
       "id": "reca8bB2Ze5HqMcG4"
     },
     {
@@ -5383,5 +5360,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1549485129335
+  "timestamp": 1549906438778
 }
