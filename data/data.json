@@ -1718,27 +1718,6 @@
       "id": "recDRPu2NF4UIximU",
       "examples": "",
       "benefitExamples": []
-    },
-    {
-      "id": "rectUSRC5xL7pAc5h",
-      "vacNameEn": "",
-      "vacNameFr": "",
-      "benefitPageEn": "",
-      "benefitPageFr": "",
-      "needs": [],
-      "oneLineDescriptionEn": "",
-      "oneLineDescriptionFr": "",
-      "categories DO NOT USE": "",
-      "childBenefits": [],
-      "availableIndependently": "",
-      "benefitPolicyEn": "",
-      "benefitPolicyFR": "",
-      "examples": "",
-      "sortingPriority": "",
-      "benefitExamples": [],
-      "benefitEligibility": [],
-      "seeMoreSentenceEn": "",
-      "seeMoreSentenceFr": ""
     }
   ],
   "benefitEligibility": [
@@ -5360,5 +5339,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1549906438778
+  "timestamp": 1549907642205
 }
