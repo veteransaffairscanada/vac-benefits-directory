@@ -12,8 +12,9 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "heroku-postbuild": "next build",
     "start": "NODE_ENV=production node server.js",
+    "build:start": "yarn build && yarn start",
+    "heroku-postbuild": "next build",
     "test": "NODE_ENV=test jest --coverage",
     "test:e2e": "testcafe chrome testcafe/",
     "test:e2e_windows": "testcafe 'browserstack:ie@11:Windows 10' testcafe/*.js",
@@ -24,9 +25,9 @@
     "bundle_analyzer": "BUNDLE_CHECK=true yarn build",
     "download": "node scripts/download.js data/data.json",
     "test_urls": "node scripts/test_benefit_urls.js",
-    "cypress:run": "node_modules/.bin/cypress run",
-    "cypress:wait": "wait-on http://localhost:3000",
-    "cypress:gui": "node_modules/.bin/cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:ci": "start-server-and-test build:start http://localhost:3000 cypress:run"
   },
   "dependencies": {
     "@emotion/core": "^10.0.4",
@@ -96,6 +97,7 @@
     "pretty-quick": "^1.8.0",
     "react-styleguidist": "^8.0.6",
     "react-test-renderer": "^16.6.3",
+    "start-server-and-test": "^1.7.11",
     "testcafe": "^0.23.2",
     "testcafe-browser-provider-browserstack": "^1.5.1",
     "testcafe-react-selectors": "^3.0.2",
