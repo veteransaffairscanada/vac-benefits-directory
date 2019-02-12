@@ -16,7 +16,7 @@ const CommentBox = css`
   color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
-  padding: 5px 0 0 0;
+  padding: 5px 0 50px 0;
 `;
 const Div = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
