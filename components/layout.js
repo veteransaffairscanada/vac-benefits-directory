@@ -12,6 +12,7 @@ import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
+import Link from "next/link";
 
 const alpha = css`
   background-color: ${globalTheme.colour.alphaBlue};
@@ -85,13 +86,10 @@ class Layout extends Component {
                 <div className={alpha}>
                   <Container>
                     <AlphaBanner t={t}>
-                      {t("alpha")} &nbsp;
-                      <a
-                        href={"mailto:" + t("contact.feedback_email")}
-                        className={white}
-                      >
-                        {t("alpha-feedback")}
-                      </a>
+                      {t("beta_banner.main")} &nbsp;
+                      <Link href="/feedback" className={white}>
+                        {t("beta_banner.link_text")}
+                      </Link>
                     </AlphaBanner>
                   </Container>
                 </div>
