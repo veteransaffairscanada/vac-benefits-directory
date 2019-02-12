@@ -87,7 +87,10 @@ class Layout extends Component {
                   <Container>
                     <AlphaBanner t={t}>
                       {t("beta_banner.main")} &nbsp;
-                      <Link href="/feedback" className={white}>
+                      <Link
+                        href={{ pathname: "/feedback", query: { lng: "fr" } }}
+                        className={white}
+                      >
                         {t("beta_banner.link_text")}
                       </Link>
                     </AlphaBanner>
@@ -118,6 +121,7 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  url: PropTypes.object.isRequired,
   hideNoscript: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
