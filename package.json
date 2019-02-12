@@ -24,7 +24,8 @@
     "bundle_analyzer": "BUNDLE_CHECK=true yarn build",
     "download": "node scripts/download.js data/data.json",
     "test_urls": "node scripts/test_benefit_urls.js",
-    "cypress": "node_modules/.bin/cypress run",
+    "cypress:run": "node_modules/.bin/cypress run",
+    "cypress:wait": "wait-on http://localhost:3000",
     "cypress:gui": "node_modules/.bin/cypress open"
   },
   "dependencies": {

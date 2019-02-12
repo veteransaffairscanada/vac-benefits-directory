@@ -33,6 +33,40 @@ jobs:
           command: ~/repo/.circleci/notify_failure.sh
           when: on_fail
 
+  integration:
+    docker:
+      # the Docker image with Cypress dependencies
+      - image: cypress/base:6
+        environment:
+          ## this enables colors in the output
+          TERM: xterm
+    working_directory: ~/app
+    parallelism: 1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-deps-{{ checksum "package.json" }}
+            - v1-npm-deps
+      - run: npm install
+      - save_cache:
+          key: v1-npm-deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Running E2E tests
+          command: |
+            yarn build
+            yarn start &
+            yarn cypress:wait
+            yarn cypress:run
+      - store_test_results:
+          path: cypress-results
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
+
   deploy:
     docker:
       - image: docker:17.12.1-ce-git
@@ -74,9 +108,11 @@ workflows:
   build_and_deploy:
     jobs:
       - build
+      - integration
       - deploy:
           requires:
             - build
+            - integration
           filters:
             branches:
               only:
