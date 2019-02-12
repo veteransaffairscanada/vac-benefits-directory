@@ -99,7 +99,7 @@ export class FeedbackBar extends Component {
     this.setState({ commentFormToggled: false });
     this.setState({ commentSubmitted: true });
     let payload = {
-      whatWereYouDoing: this.state.bug,
+      whatWentWrong: this.state.bug,
       howCanInfoBeMoreUseful: this.state.infoBeMoreUseful,
       url: window.location.href,
       time: new Date().toUTCString()
