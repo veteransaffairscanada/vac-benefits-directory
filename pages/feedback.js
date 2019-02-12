@@ -7,10 +7,11 @@ import Container from "../components/container";
 import { css } from "emotion";
 import RadioSelector from "../components/radio_selector";
 import { connect } from "react-redux";
-import HeaderLink from "../components/header_link";
+import HeaderButton from "../components/header_button";
 import Button from "../components/button";
 import PropTypes from "prop-types";
 import TextArea from "../components/text_area";
+import Details from "../components/details";
 require("isomorphic-fetch");
 import Raven from "raven-js";
 import Router from "next/router";
@@ -26,8 +27,12 @@ const prevButton = css`
 const headerPadding = css`
   padding-bottom: 10px;
 `;
-const textAreaPadding = css`
+const textAreaStyle = css`
   padding: 30px 0px 60px;
+  max-width: 700px;
+`;
+const bottomMargin = css`
+  margin-bottom: 30px;
 `;
 export class Feedback extends Component {
   state = {
@@ -71,13 +76,15 @@ export class Feedback extends Component {
         skipLink="#mainContent"
       >
         <Container className={padding} id="mainContent">
-          <HeaderLink
-            href={"/benefits-directory"} // will need to change
+          <HeaderButton
+            onClick={() => {
+              window.history.back();
+            }}
             className={prevButton}
             arrow="back"
           >
             {t("back")}
-          </HeaderLink>
+          </HeaderButton>
 
           <Header className={headerPadding} headingLevel="h1" size="lg">
             {t("feedback.page_header")}
@@ -94,7 +101,7 @@ export class Feedback extends Component {
             store={store}
           />
           <TextArea
-            className={textAreaPadding}
+            className={textAreaStyle}
             name="group1"
             maxLength={"500"}
             t={t}
@@ -102,6 +109,12 @@ export class Feedback extends Component {
           >
             {t("feedback.tell_us_more")}
           </TextArea>
+          <Details
+            summary={t("feedback.details_question")}
+            className={bottomMargin}
+          >
+            {t("feedback.details_expansion")}
+          </Details>
           <div className={padding}>
             <Button
               id="send"
