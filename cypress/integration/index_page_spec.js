@@ -18,16 +18,16 @@ describe("Index page", function() {
 
   it("can choose some options and get to summary and benefits directory", () => {
     cy.visit("/");
-    cy.contains(patronTypeVeteran).click();
-    cy.contains(nextButtonText).click();
-    cy.contains(serviceTypeCAF).click();
-    cy.contains(nextButtonText).click();
-    cy.contains("Yes").click();
-    cy.contains(nextButtonText).click();
-    cy.contains(nextButtonText).click();
+    cy.contains(patronTypeVeteran).click({ force: true });
+    cy.contains(nextButtonText).click({ force: true });
+    cy.contains(serviceTypeCAF).click({ force: true });
+    cy.contains(nextButtonText).click({ force: true });
+    cy.contains("Yes").click({ force: true });
+    cy.contains(nextButtonText).click({ force: true });
+    cy.contains(nextButtonText).click({ force: true });
     cy.url().should("include", "summary");
     cy.contains(patronTypeVeteran);
-    cy.contains("Show results").click();
+    cy.contains("Show results").click({ force: true });
     cy.url().should("include", "benefits-directory");
   });
 
