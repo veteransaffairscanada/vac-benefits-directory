@@ -100,7 +100,7 @@ export class FeedbackBar extends Component {
     this.setState({ commentSubmitted: true });
     let payload = {
       whatWereYouDoing: this.state.action,
-      whatWentWrong: this.state.failure,
+      howCanInfoBeMoreUseful: this.state.failure,
       url: window.location.href,
       time: new Date().toUTCString()
     };
@@ -145,6 +145,11 @@ export class FeedbackBar extends Component {
                 maxLength={"500"}
                 t={t}
                 className={textArea}
+                onChange={
+                  this.state.commentIsBug
+                    ? this.handleChange("failure")
+                    : this.handleChange("action")
+                }
               >
                 {this.state.commentIsBug
                   ? t("comment-what-went-wrong")
