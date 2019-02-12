@@ -23,7 +23,9 @@
     "docs:build": "styleguidist build",
     "bundle_analyzer": "BUNDLE_CHECK=true yarn build",
     "download": "node scripts/download.js data/data.json",
-    "test_urls": "node scripts/test_benefit_urls.js"
+    "test_urls": "node scripts/test_benefit_urls.js",
+    "cypress": "node_modules/.bin/cypress run",
+    "cypress:gui": "node_modules/.bin/cypress open"
   },
   "dependencies": {
     "@emotion/core": "^10.0.4",
@@ -75,6 +77,7 @@
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
+    "cypress": "^3.1.5",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "1.7.1",
     "eslint": "^5.10.0",
