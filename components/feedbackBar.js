@@ -73,6 +73,7 @@ const textArea = css`
 export class FeedbackBar extends Component {
   state = {
     action: "",
+    commentIsBug: false,
     commentFormToggled: false,
     commentSubmitted: false,
     failure: "",
@@ -112,8 +113,9 @@ export class FeedbackBar extends Component {
   sendFeedback = answer => {
     this.setState({ feedbackSubmitted: true });
     logEvent("Page Feedback (" + this.props.t("feedback-prompt") + ")", answer);
-    if (answer == "No") {
+    if (answer == "No" || answer == "Bug") {
       this.setState({ commentFormToggled: true });
+      if (answer == "Bug") this.setState({ commentIsBug: true });
     }
   };
 
@@ -139,7 +141,9 @@ export class FeedbackBar extends Component {
                 t={t}
                 className={textArea}
               >
-                {t("comment-what-went-wrong")}
+                {this.state.commentIsBug
+                  ? t("comment-what-went-wrong")
+                  : t("feedback.how_can_info_be_more_useful")}
               </TextArea>
             </div>
             <br />
@@ -200,7 +204,12 @@ export class FeedbackBar extends Component {
                     headingLevel="h2"
                     className={whiteNormalFont}
                   >
-                    {"hello"}
+                    <FooterButton
+                      id="feedbackBug"
+                      onClick={() => this.sendFeedback("Bug")}
+                    >
+                      {t("feedback.bug_prompt")}
+                    </FooterButton>
                   </Header>
                 </Grid>
               </Grid>
