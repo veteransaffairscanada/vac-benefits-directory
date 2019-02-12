@@ -141,6 +141,7 @@ export class FeedbackBar extends Component {
             <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
             <div className={TextHold}>
               <TextArea
+                id="commentTextArea"
                 name="bugFiling"
                 maxLength={"500"}
                 t={t}

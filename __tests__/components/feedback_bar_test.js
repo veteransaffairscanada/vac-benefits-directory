@@ -60,21 +60,21 @@ describe("Feedback bar", () => {
       .simulate("click");
 
     mountedFeedbackBar()
-      .find("#commentWhatWereYouDoing")
+      .find("#commentTextArea")
       .at(0)
       .props()
       .onChange({ target: { value: "bar" } });
     expect(mountedFeedbackBar().state().action).toEqual("bar");
   });
 
-  it("editing the what went wrong text field updates the action state", () => {
+  it("editing the what went wrong text field updates the failure state", () => {
     mountedFeedbackBar()
-      .find("#feedbackNo")
+      .find("#feedbackBug")
       .at(0)
       .simulate("click");
 
     mountedFeedbackBar()
-      .find("#commentWhatWentWrong")
+      .find("#commentTextArea")
       .at(0)
       .props()
       .onChange({ target: { value: "bar" } });
