@@ -11,6 +11,7 @@ import HeaderLink from "../components/header_link";
 import Button from "../components/button";
 import PropTypes from "prop-types";
 import TextArea from "../components/text_area";
+import Details from "../components/details";
 
 const padding = css`
   padding-top: 15px;
@@ -25,6 +26,9 @@ const headerPadding = css`
 `;
 const textAreaPadding = css`
   padding: 30px 0px 60px;
+`;
+const bottomMargin = css`
+  margin-bottom: 30px;
 `;
 export class Feedback extends Component {
   render() {
@@ -70,6 +74,10 @@ export class Feedback extends Component {
           >
             {t("feedback.tell_us_more")}
           </TextArea>
+          <Details summary="Help with nationality" className={bottomMargin}>
+            I am a paragraph of hidden details, to be revealed when summary is
+            clicked
+          </Details>
           <div className={padding}>
             <Button
               arrow={true}

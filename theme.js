@@ -50,6 +50,9 @@ let theme = {
   }
 };
 
+theme.colour.textColour = theme.colour.blackish;
 theme.colour.focusColour = theme.colour.govukYellow;
+theme.colour.linkColour = theme.colour.cerulean;
+theme.colour.linkHoverColour = theme.colour.cerulean;
 
 export const globalTheme = { ...theme };
