@@ -70,4 +70,9 @@ describe("Feedback", () => {
       query: {}
     });
   });
+  it("contains the details component", async () => {
+    expect(
+      mount(<Feedback {...props} {...reduxData} />).find("Details").length
+    ).toEqual(1);
+  });
 });
