@@ -77,11 +77,11 @@ const textArea = css`
 
 export class FeedbackBar extends Component {
   state = {
-    action: "",
+    bug: "",
     commentIsBug: false,
     commentFormToggled: false,
     commentSubmitted: false,
-    failure: "",
+    infoBeMoreUseful: "",
     feedbackSubmitted: false
   };
 
@@ -99,8 +99,8 @@ export class FeedbackBar extends Component {
     this.setState({ commentFormToggled: false });
     this.setState({ commentSubmitted: true });
     let payload = {
-      whatWereYouDoing: this.state.action,
-      howCanInfoBeMoreUseful: this.state.failure,
+      whatWereYouDoing: this.state.bug,
+      howCanInfoBeMoreUseful: this.state.infoBeMoreUseful,
       url: window.location.href,
       time: new Date().toUTCString()
     };
@@ -148,8 +148,8 @@ export class FeedbackBar extends Component {
                 className={textArea}
                 onChange={
                   this.state.commentIsBug
-                    ? this.handleChange("failure")
-                    : this.handleChange("action")
+                    ? this.handleChange("bug")
+                    : this.handleChange("infoBeMoreUseful")
                 }
               >
                 {this.state.commentIsBug
