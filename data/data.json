@@ -2449,107 +2449,83 @@
       "key": "List of all benefits",
       "English": "List of all benefits",
       "French": "La liste complète des avantages",
-      "Used by code": ["True"],
-      "id": "all-benefits.List of all benefits",
-      "Safe to Delete?": []
+      "id": "all-benefits.List of all benefits"
     },
     {
       "key": "alpha",
       "English": "This is an internal service.",
       "French": "Ceci est un service interne.",
-      "Used by code": ["True"],
       "id": "alpha",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "alpha-feedback",
       "English": "Email us with feedback.",
       "French": "Envoyez-nous vos commentaires par courriel.",
-      "Used by code": ["True"],
       "id": "alpha-feedback",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "alt_text",
       "key": "edit",
       "English": "edit",
       "French": "modifier",
-      "id": "alt_text.edit",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "alt_text.edit"
     },
     {
       "section": "alt_text",
       "key": "important",
       "English": "important information",
       "French": "renseignements importants",
-      "Used by code": ["True"],
-      "id": "alt_text.important",
-      "Safe to Delete?": []
+      "id": "alt_text.important"
     },
     {
       "section": "B3",
       "key": "All benefits to consider",
       "English": "Showing all benefits and services",
       "French": " Tous les avantages et services",
-      "Used by code": ["True"],
-      "id": "B3.All benefits to consider",
-      "Safe to Delete?": []
+      "id": "B3.All benefits to consider"
     },
     {
       "section": "B3",
       "key": "Alphabetical",
       "English": "Alphabetical",
       "French": "Alphabétique",
-      "Used by code": ["True"],
-      "id": "B3.Alphabetical",
-      "Safe to Delete?": []
+      "id": "B3.Alphabetical"
     },
     {
       "section": "B3",
       "key": "check eligibility",
       "English": "Remember to read the eligibility criteria for each benefit before applying.",
       "French": "Vérifiez les critères d’admissibilité de chaque avantage avant de faire une demande.",
-      "Used by code": ["True"],
-      "id": "B3.check eligibility",
-      "Safe to Delete?": []
+      "id": "B3.check eligibility"
     },
     {
       "section": "B3",
       "key": "disabled_cookies_link",
       "English": "https://www.whatismybrowser.com/guides/how-to-enable-cookies/auto",
       "French": "https://www.whatismybrowser.com/guides/how-to-enable-cookies/auto",
-      "Used by code": ["True"],
-      "id": "B3.disabled_cookies_link",
-      "Safe to Delete?": []
+      "id": "B3.disabled_cookies_link"
     },
     {
       "section": "B3",
       "key": "disabled_cookies_link_text",
       "English": "Find out how to enable cookies here. ",
       "French": "Découvrez comment activer les témoins (cookies) ici. ",
-      "Used by code": ["True"],
-      "id": "B3.disabled_cookies_link_text",
-      "Safe to Delete?": []
+      "id": "B3.disabled_cookies_link_text"
     },
     {
       "section": "B3",
       "key": "disabled_cookies_text",
       "English": "Cookies need to be enabled for this site to save benefits for later. ",
       "French": "Les témoins (cookies) doivent être activés pour ce site afin de sauvegarder les avantages pour plus tard.",
-      "Used by code": ["True"],
-      "id": "B3.disabled_cookies_text",
-      "Safe to Delete?": []
+      "id": "B3.disabled_cookies_text"
     },
     {
       "section": "B3",
       "key": "favouritesButtonBText",
       "English": "Save to your list",
       "French": " Ajouter à votre liste",
-      "Used by code": ["True"],
-      "Safe to Delete?": ["False"],
       "id": "B3.favouritesButtonBText"
     },
     {
@@ -2557,8 +2533,6 @@
       "key": "favouritesButtonBTextMobile",
       "English": "Save",
       "French": "Sauvegarder",
-      "Used by code": ["True"],
-      "Safe to Delete?": ["False"],
       "id": "B3.favouritesButtonBTextMobile"
     },
     {
@@ -2566,8 +2540,6 @@
       "key": "favouritesButtonText",
       "English": "Saved list",
       "French": "Liste sauvegardée",
-      "Used by code": ["True"],
-      "Safe to Delete?": ["False"],
       "id": "B3.favouritesButtonText"
     },
     {
@@ -2575,8 +2547,6 @@
       "key": "favouritesButtonTextRemove",
       "English": "Saved to your list",
       "French": "Élément ajouté à votre liste",
-      "Used by code": ["True"],
-      "Safe to Delete?": ["False"],
       "id": "B3.favouritesButtonTextRemove"
     },
     {
@@ -2584,368 +2554,286 @@
       "key": "Filter by eligibility",
       "English": "My selection:",
       "French": "Ma sélection:",
-      "Used by code": ["True"],
-      "id": "B3.Filter by eligibility",
-      "Safe to Delete?": []
+      "id": "B3.Filter by eligibility"
     },
     {
       "section": "B3",
       "key": "No benefits",
       "English": "At this time there are no benefits that match your selections",
       "French": "Pour le moment, aucun avantage ne correspond à vos sélections.",
-      "Used by code": ["True"],
-      "id": "B3.No benefits",
-      "Safe to Delete?": []
+      "id": "B3.No benefits"
     },
     {
       "section": "B3",
       "key": "One benefit",
       "English": "One benefit or service matches your selections",
       "French": "Un avantage correspond à vos sélections",
-      "Used by code": ["True"],
-      "id": "B3.One benefit",
-      "Safe to Delete?": []
+      "id": "B3.One benefit"
     },
     {
       "section": "B3",
       "key": "Popularity",
       "English": "Most popular",
       "French": "Pertinence",
-      "Used by code": ["True"],
-      "id": "B3.Popularity",
-      "Safe to Delete?": []
+      "id": "B3.Popularity"
     },
     {
       "section": "B3",
       "key": "results_all_benefits",
       "English": "Results from all benefits and services:",
       "French": "Résultats des avantages et des services",
-      "id": "B3.results_all_benefits",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "B3.results_all_benefits"
     },
     {
       "section": "B3",
       "key": "results_filtered",
       "English": "Results from your selections:",
       "French": "Résultats de la recherche effectuée dans vos sélections",
-      "id": "B3.results_filtered",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "B3.results_filtered"
     },
     {
       "section": "B3",
       "key": "search_results",
       "English": "{{x}} search results",
       "French": "{{x}} résultats",
-      "id": "B3.search_results",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "B3.search_results"
     },
     {
       "section": "B3",
       "key": "search_results_single",
       "English": "1 search result",
       "French": "1 résultat",
-      "id": "B3.search_results_single",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "B3.search_results_single"
     },
     {
       "section": "B3",
       "key": "search_tip",
       "English": "Search tips: check for spelling or try using a different word.",
       "French": "Conseils de recherche : vérifiez l’orthographe ou essayez d’utiliser un mot différent.",
-      "id": "B3.search_tip",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "B3.search_tip"
     },
     {
       "section": "B3",
       "key": "see_less",
       "English": "See less",
       "French": "Afficher moins",
-      "id": "B3.see_less",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "B3.see_less"
     },
     {
       "section": "B3",
       "key": "see_more",
       "English": "See more",
       "French": "En savoir plus",
-      "id": "B3.see_more",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "B3.see_more"
     },
     {
       "section": "B3",
       "key": "Sort By",
       "English": "Sort by",
       "French": "Trier par",
-      "Used by code": ["True"],
-      "id": "B3.Sort By",
-      "Safe to Delete?": []
+      "id": "B3.Sort By"
     },
     {
       "section": "B3",
       "key": "x benefits to consider",
       "English": "{{x}} benefits and services match your selections",
       "French": "{{x}} avantages correspondent à vos sélections",
-      "Used by code": ["True"],
-      "id": "B3.x benefits to consider",
-      "Safe to Delete?": []
+      "id": "B3.x benefits to consider"
     },
     {
       "key": "back",
       "English": "Back",
       "French": "Retour",
-      "Used by code": ["True"],
       "id": "back",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "benefit_card",
       "key": "examples",
       "English": "Some examples of what this program may provide:",
       "French": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "benefit_card.examples",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "benefit_card.examples"
     },
     {
       "section": "benefits_b",
       "key": "card_header_1",
       "English": "You need to be approved for",
       "French": "Vous devez être approuvé pour",
-      "Used by code": ["True"],
-      "id": "benefits_b.card_header_1",
-      "Safe to Delete?": []
+      "id": "benefits_b.card_header_1"
     },
     {
       "section": "benefits_b",
       "key": "card_header_2",
       "English": "before applying for",
       "French": "avant de demander",
-      "Used by code": ["True"],
-      "id": "benefits_b.card_header_2",
-      "Safe to Delete?": []
+      "id": "benefits_b.card_header_2"
     },
     {
       "section": "benefits_b",
       "key": "eligible_for_multi",
       "English": "can provide access to {{x}} other benefits",
       "French": "peut donner accès à {{x}} autres avantages",
-      "Used by code": ["True"],
-      "id": "benefits_b.eligible_for_multi",
-      "Safe to Delete?": []
+      "id": "benefits_b.eligible_for_multi"
     },
     {
       "section": "benefits_b",
       "key": "eligible_for_single",
       "English": "can provide access to {{x}}",
       "French": "peut donner accès à {{x}}",
-      "Used by code": ["True"],
-      "id": "benefits_b.eligible_for_single",
-      "Safe to Delete?": []
+      "id": "benefits_b.eligible_for_single"
     },
     {
       "section": "benefits_b",
       "key": "eligible_open_family",
       "English": "Additionally, family members may qualify for:",
       "French": "De plus, les membres de la famille peuvent être admissibles à:",
-      "Used by code": ["True"],
-      "id": "benefits_b.eligible_open_family",
-      "Safe to Delete?": []
+      "id": "benefits_b.eligible_open_family"
     },
     {
       "section": "benefits_b",
       "key": "eligible_open_veteran",
       "English": "By receiving {{x}} the service member may qualify for:",
       "French": "En recevant {{x}}, le membre en service peut se qualifier pour:",
-      "Used by code": ["True"],
-      "id": "benefits_b.eligible_open_veteran",
-      "Safe to Delete?": []
+      "id": "benefits_b.eligible_open_veteran"
     },
     {
       "section": "benefits_b",
       "key": "learn_more",
       "English": "Learn more about {{x}}",
       "French": "Obtenir plus d’information au sujet de {{x}}",
-      "id": "benefits_b.learn_more",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "benefits_b.learn_more"
     },
     {
       "section": "BenefitsPane",
       "key": "contact_us",
       "English": "Contact Us",
       "French": "Contactez-nous",
-      "Used by code": ["True"],
-      "id": "BenefitsPane.contact_us",
-      "Safe to Delete?": []
+      "id": "BenefitsPane.contact_us"
     },
     {
       "section": "BenefitsPane",
       "key": "no_filtered_benefits",
       "English": "There are no benefits that match your selections",
       "French": "Il n'y a pas d'avantages qui correspondent aux sélections",
-      "Used by code": ["True"],
-      "id": "BenefitsPane.no_filtered_benefits",
-      "Safe to Delete?": []
+      "id": "BenefitsPane.no_filtered_benefits"
     },
     {
       "section": "BenefitsPane",
       "key": "or",
       "English": "or",
       "French": "ou",
-      "Used by code": ["True"],
-      "id": "BenefitsPane.or",
-      "Safe to Delete?": []
+      "id": "BenefitsPane.or"
     },
     {
       "section": "BenefitsPane",
       "key": "reset_filters",
       "English": "Reset Selections",
       "French": "Réinitialiser les sélections",
-      "Used by code": ["True"],
-      "id": "BenefitsPane.reset_filters",
-      "Safe to Delete?": []
+      "id": "BenefitsPane.reset_filters"
     },
     {
       "key": "CAF",
       "English": "Canadian Armed Forces",
       "French": "Forces Armées Canadiennes",
-      "Used by code": ["True"],
       "id": "CAF",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "cancel",
       "English": "Cancel",
       "French": "Annuler",
-      "Used by code": ["True"],
       "id": "cancel",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "comment-help-us-improve",
       "English": "Help us improve this site",
       "French": "Aidez-nous à améliorer ce site",
-      "Used by code": ["True"],
       "id": "comment-help-us-improve",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "comment-privacy-disclaimer",
       "English": "Please do not include private information",
       "French": "Veuillez ne pas inclure d'informations privées",
-      "Used by code": ["True"],
       "id": "comment-privacy-disclaimer",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "comment-what-went-wrong",
       "English": "What went wrong?",
       "French": "Qu'est ce qui ne s'est pas bien passé?",
-      "Used by code": ["True"],
       "id": "comment-what-went-wrong",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "comment-what-were-you-doing",
       "English": "What were you doing?",
       "French": "Que faisiez-vous?",
-      "Used by code": ["True"],
       "id": "comment-what-were-you-doing",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "contact",
       "key": "email",
       "English": "vac.information.acc@canada.ca",
       "French": "vac.information.acc@canada.ca",
-      "Used by code": ["True"],
-      "id": "contact.email",
-      "Safe to Delete?": []
+      "id": "contact.email"
     },
     {
       "section": "contact",
       "key": "feedback_email",
       "English": "vac@cds-snc.ca",
       "French": "acc@cds-snc.ca",
-      "Used by code": ["True"],
-      "id": "contact.feedback_email",
-      "Safe to Delete?": []
+      "id": "contact.feedback_email"
     },
     {
       "section": "contact",
       "key": "my_vac_link",
       "English": "https://www.veterans.gc.ca/eng/e_services",
       "French": "https://www.veterans.gc.ca/fra/endirect",
-      "Used by code": ["True"],
-      "id": "contact.my_vac_link",
-      "Safe to Delete?": []
+      "id": "contact.my_vac_link"
     },
     {
       "section": "contact",
       "key": "phone",
       "English": " 1-866-522-2122",
       "French": "1-866-522-2022",
-      "Used by code": ["True"],
-      "id": "contact.phone",
-      "Safe to Delete?": []
+      "id": "contact.phone"
     },
     {
       "key": "current-language-code",
       "English": "en",
       "French": "fr",
-      "Used by code": ["True"],
       "id": "current-language-code",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "deceased",
       "English": "Deceased",
       "French": "Décédé",
-      "Used by code": ["True"],
       "id": "deceased",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "description",
       "English": "VAC Proof of Concept",
       "French": "Preuve de concept pour le projet ACC",
-      "Used by code": ["True"],
       "id": "description",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "directory",
       "key": "edit_selections",
       "English": "Edit selections",
       "French": "Modifier les sélections",
-      "id": "directory.edit_selections",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "directory.edit_selections"
     },
     {
       "section": "dv",
       "key": "Benefits not in an Eligibility Path",
       "English": "Benefits not in an eligibility path",
       "French": "Avantages non dans un chemin d'admissibilité",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Benefits not in an Eligibility Path"
     },
     {
@@ -2953,8 +2841,6 @@
       "key": "Benefits not in the Benefit Eligibility Table",
       "English": "Benefits not in the Benefit Eligibility Table",
       "French": "(fra) Benefits not in the Benefit Eligibility Table",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Benefits not in the Benefit Eligibility Table"
     },
     {
@@ -2962,8 +2848,6 @@
       "key": "Benefits with Empty Fields",
       "English": "Benefits with empty fields",
       "French": "Avantages avec des champs vides",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Benefits with Empty Fields"
     },
     {
@@ -2971,8 +2855,6 @@
       "key": "Benefits Without Needs",
       "English": "Benefits without needs",
       "French": "Avantages sans besoins",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Benefits Without Needs"
     },
     {
@@ -2980,8 +2862,6 @@
       "key": "emptyAreaOffices",
       "English": "areaOffices contains empty fields",
       "French": "La table areaOffices contient des champs vides",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.emptyAreaOffices"
     },
     {
@@ -2989,8 +2869,6 @@
       "key": "emptyTranslations",
       "English": "Translations contains empty fields",
       "French": " La table de traductions contient des champs vides",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.emptyTranslations"
     },
     {
@@ -2998,8 +2876,6 @@
       "key": "errors",
       "English": "Server Errors",
       "French": "Erreurs de Serveur",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.errors"
     },
     {
@@ -3007,8 +2883,6 @@
       "key": "Fail",
       "English": "Fail",
       "French": "Échouer",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Fail"
     },
     {
@@ -3016,26 +2890,20 @@
       "key": "last_cache_update",
       "English": "Last cache update",
       "French": "Dernière mise à jour du cache",
-      "Used by code": ["True"],
-      "id": "dv.last_cache_update",
-      "Safe to Delete?": []
+      "id": "dv.last_cache_update"
     },
     {
       "section": "dv",
       "key": "name",
       "English": "Name",
       "French": "Nom",
-      "Used by code": ["True"],
-      "id": "dv.name",
-      "Safe to Delete?": []
+      "id": "dv.name"
     },
     {
       "section": "dv",
       "key": "nameAreaOfficesSize",
       "English": "Size of areaOffices table",
       "French": "Taille de la table areaOffices",
-      "Used by code": ["used through variables", "True"],
-      "Safe to Delete?": ["False"],
       "id": "dv.nameAreaOfficesSize"
     },
     {
@@ -3043,8 +2911,6 @@
       "key": "nameTranslationTableSize",
       "English": "Size of Translations Table",
       "French": "Taille de la table de translation",
-      "Used by code": ["used through variables", "True"],
-      "Safe to Delete?": ["False"],
       "id": "dv.nameTranslationTableSize"
     },
     {
@@ -3052,17 +2918,13 @@
       "key": "pageTitle",
       "English": "Data Validation",
       "French": "Validation des Données",
-      "Used by code": ["True"],
-      "id": "dv.pageTitle",
-      "Safe to Delete?": []
+      "id": "dv.pageTitle"
     },
     {
       "section": "dv",
       "key": "Pass",
       "English": "Pass",
       "French": "Passer",
-      "Used by code": ["used through variables", "True"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Pass"
     },
     {
@@ -3070,17 +2932,13 @@
       "key": "Size of Benefit Eligibility Table",
       "English": "Size of Benefit Eligibility table",
       "French": "Taille du tableau d’admissibilité aux avantages",
-      "id": "dv.Size of Benefit Eligibility Table",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "dv.Size of Benefit Eligibility Table"
     },
     {
       "section": "dv",
       "key": "Size of Benefits Table",
       "English": "Size of benefits table",
       "French": "Taille de la table des avantages",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Size of Benefits Table"
     },
     {
@@ -3088,8 +2946,6 @@
       "key": "Size of Eligibility Paths Table",
       "English": "Size of eligibility paths table",
       "French": "Taille du tableau des chemins d'admissibilité",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Size of Eligibility Paths Table"
     },
     {
@@ -3097,8 +2953,6 @@
       "key": "Size of Needs Table",
       "English": "Size of needs table",
       "French": "Tableau de la taille des besoins",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.Size of Needs Table"
     },
     {
@@ -3106,26 +2960,20 @@
       "key": "status",
       "English": "Status",
       "French": "Statut",
-      "Used by code": ["True"],
-      "id": "dv.status",
-      "Safe to Delete?": []
+      "id": "dv.status"
     },
     {
       "section": "dv",
       "key": "validate",
       "English": "Validate",
       "French": "Valider",
-      "Used by code": ["True"],
-      "id": "dv.validate",
-      "Safe to Delete?": []
+      "id": "dv.validate"
     },
     {
       "section": "dv",
       "key": "validateURLs",
       "English": "Validate URLs",
       "French": "Valider les URLs",
-      "Used by code": ["True", "used through variables"],
-      "Safe to Delete?": ["False"],
       "id": "dv.validateURLs"
     },
     {
@@ -3133,269 +2981,209 @@
       "key": "value",
       "English": "Value",
       "French": "Valeur",
-      "Used by code": ["True"],
-      "id": "dv.value",
-      "Safe to Delete?": []
+      "id": "dv.value"
     },
     {
       "section": "favourites",
       "key": "apply_prompt",
       "English": "Apply online",
       "French": "Présenter une demande en ligne",
-      "Used by code": ["True"],
-      "id": "favourites.apply_prompt",
-      "Safe to Delete?": []
+      "id": "favourites.apply_prompt"
     },
     {
       "section": "favourites",
       "key": "back_link",
       "English": "Back",
       "French": "Retour",
-      "Used by code": ["True"],
-      "id": "favourites.back_link",
-      "Safe to Delete?": []
+      "id": "favourites.back_link"
     },
     {
       "section": "favourites",
       "key": "call_time",
       "English": "Give us a call Monday to Friday, 08:30 - 16:30 local time.",
       "French": "Appelez-nous du lundi au vendredi, entre 8 h 30 et 16 h 30, heure locale.",
-      "Used by code": ["True"],
-      "id": "favourites.call_time",
-      "Safe to Delete?": []
+      "id": "favourites.call_time"
     },
     {
       "section": "favourites",
       "key": "contact_us",
       "English": "Contact Us",
       "French": "Contactez-nous",
-      "Used by code": ["True"],
-      "id": "favourites.contact_us",
-      "Safe to Delete?": []
+      "id": "favourites.contact_us"
     },
     {
       "section": "favourites",
       "key": "disabled_cookies_tooltip",
       "English": "Cookies need to be enabled to save benefits for later.",
       "French": "Les témoins (cookies) doivent être activés pour sauvegarder les avantages pour plus tard. ",
-      "Used by code": ["True"],
-      "id": "favourites.disabled_cookies_tooltip",
-      "Safe to Delete?": []
+      "id": "favourites.disabled_cookies_tooltip"
     },
     {
       "section": "favourites",
       "key": "email_disclaimer",
       "English": "Please do not email personal or confidential information.",
       "French": "N’envoyez pas de renseignements personnels ou confidentiels par courriel.",
-      "Used by code": ["True"],
-      "id": "favourites.email_disclaimer",
-      "Safe to Delete?": []
+      "id": "favourites.email_disclaimer"
     },
     {
       "section": "favourites",
       "key": "help_msg_emphasis",
       "English": "Save to your list",
       "French": "Ajouter à votre liste",
-      "Used by code": ["True"],
-      "id": "favourites.help_msg_emphasis",
-      "Safe to Delete?": []
+      "id": "favourites.help_msg_emphasis"
     },
     {
       "section": "favourites",
       "key": "help_msg_last",
       "English": "to add benefits here.",
       "French": "pour ajouter des services à cette page.",
-      "Used by code": ["True"],
-      "id": "favourites.help_msg_last",
-      "Safe to Delete?": []
+      "id": "favourites.help_msg_last"
     },
     {
       "section": "favourites",
       "key": "help_msg_line_connect",
       "English": "and select ",
       "French": "et sélectionnez",
-      "Used by code": ["True"],
-      "id": "favourites.help_msg_line_connect",
-      "Safe to Delete?": []
+      "id": "favourites.help_msg_line_connect"
     },
     {
       "section": "favourites",
       "key": "help_msg_line1",
       "English": "You currently have no saved benefits.",
       "French": "Vous n'avez aucun service sauvegardé.",
-      "Used by code": ["True"],
-      "id": "favourites.help_msg_line1",
-      "Safe to Delete?": []
+      "id": "favourites.help_msg_line1"
     },
     {
       "section": "favourites",
       "key": "help_url",
       "English": "benefits-directory?lng=en&sortBy=relevance",
       "French": "benefits-directory?lng=fr&sortBy=relevance",
-      "Used by code": ["True"],
-      "id": "favourites.help_url",
-      "Safe to Delete?": []
+      "id": "favourites.help_url"
     },
     {
       "section": "favourites",
       "key": "help_url_text",
       "English": "Return to the benefits list",
       "French": "Retourner à la liste de services",
-      "Used by code": ["True"],
-      "id": "favourites.help_url_text",
-      "Safe to Delete?": []
+      "id": "favourites.help_url_text"
     },
     {
       "section": "favourites",
       "key": "login_link",
       "English": "MyVAC Account",
       "French": "Mon dossier ACC",
-      "Used by code": ["True"],
-      "id": "favourites.login_link",
-      "Safe to Delete?": []
+      "id": "favourites.login_link"
     },
     {
       "section": "favourites",
       "key": "login_prompt",
       "English": "Sign up to start your application to these benefits.",
       "French": "Veuillez vous inscrire pour commencer votre demande.",
-      "Used by code": ["True"],
-      "id": "favourites.login_prompt",
-      "Safe to Delete?": []
+      "id": "favourites.login_prompt"
     },
     {
       "section": "favourites",
       "key": "print_instructions",
       "English": "In-person guidance is available in one of our area offices without an appointment.",
       "French": "Nos agents sont disponibles pour vous aider dans un de nos bureaux locaux sans rendez-vous.",
-      "Used by code": ["True"],
-      "id": "favourites.print_instructions",
-      "Safe to Delete?": []
+      "id": "favourites.print_instructions"
     },
     {
       "section": "favourites",
       "key": "saved_benefits",
       "English": "Saved list ({{x}})",
       "French": "Avantages sauvegardés ({{x}})",
-      "Used by code": ["True"],
-      "id": "favourites.saved_benefits",
-      "Safe to Delete?": []
+      "id": "favourites.saved_benefits"
     },
     {
       "section": "favourites",
       "key": "visit_prompt",
       "English": "Find a nearby office",
       "French": "Trouvez un bureau près de vous",
-      "Used by code": ["True"],
-      "id": "favourites.visit_prompt",
-      "Safe to Delete?": []
+      "id": "favourites.visit_prompt"
     },
     {
       "key": "feedback-prompt",
       "English": "Did you find the information you're looking for?",
       "French": "Avez-vous trouvé l'information recherchée?",
-      "Used by code": ["True"],
       "id": "feedback-prompt",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "feedback-response",
       "English": "Thank you for your feedback.",
       "French": "Merci pour votre avis.",
-      "Used by code": ["True"],
       "id": "feedback-response",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "filter by category",
       "English": "Filter by category",
       "French": "Filtrer par sujet",
-      "Used by code": ["True"],
       "id": "filter by category",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "filters",
       "English": "Filter benefits",
       "French": "Filtres",
-      "Used by code": ["True"],
       "id": "filters",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "Find out more",
       "English": "Learn more",
       "French": "En savoir plus",
-      "Used by code": ["True"],
       "id": "Find out more",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "ge",
       "key": "Find benefits and services",
       "English": "Find benefits and services",
       "French": "Rechercher les avantages et les services",
-      "id": "ge.Find benefits and services",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.Find benefits and services"
     },
     {
       "section": "ge",
       "key": "home_link",
       "English": "https://www.veterans.gc.ca/eng",
       "French": "https://www.veterans.gc.ca/fra",
-      "id": "ge.home_link",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.home_link"
     },
     {
       "section": "ge",
       "key": "intro_text_p1",
       "English": "On the next few pages, we’ll ask you about yourself and what benefits and services you may be interested in. It usually takes about 2 minutes to answer all of the questions.",
       "French": "Dans les pages qui suivent, nous vous posons quelques questions sur vous-même et sur les avantages et les services qui pourraient vous intéresser. Répondre à toutes les questions vous prendra environ 2 minutes. ",
-      "id": "ge.intro_text_p1",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.intro_text_p1"
     },
     {
       "section": "ge",
       "key": "intro_text_p2",
       "English": "Answering all the questions is not mandatory and will have no impact your eligibility.",
       "French": "Répondre à toutes les questions n’est pas obligatoire et n’affectera pas votre admissibilité.",
-      "id": "ge.intro_text_p2",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.intro_text_p2"
     },
     {
       "section": "ge",
       "key": "not_selected",
       "English": "not selected",
       "French": "aucune sélection",
-      "id": "ge.not_selected",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.not_selected"
     },
     {
       "section": "ge",
       "key": "nothing_selected",
       "English": "- Not selected -",
       "French": "- Aucune sélection -",
-      "id": "ge.nothing_selected",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.nothing_selected"
     },
     {
       "section": "ge",
       "key": "show_results",
       "English": "Show results",
       "French": "Afficher les résultats",
-      "Used by code": ["True"],
-      "Safe to Delete?": ["False"],
       "id": "ge.show_results"
     },
     {
@@ -3403,693 +3191,581 @@
       "key": "skip",
       "English": "Skip question",
       "French": "Sauter la question",
-      "id": "ge.skip",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.skip"
     },
     {
       "section": "ge",
       "key": "summary_subtitle",
       "English": "Review your selections",
       "French": "Passer en revue vos sélections",
-      "id": "ge.summary_subtitle",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.summary_subtitle"
     },
     {
       "section": "ge",
       "key": "summary_tooltip",
       "English": "You may edit these at any time.",
       "French": "Vous pouvez modifier vos sélections en tout temps",
-      "id": "ge.summary_tooltip",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.summary_tooltip"
     },
     {
       "section": "ge",
       "key": "edit",
       "English": "Edit",
       "French": "Modifier",
-      "id": "ge.edit",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "ge.edit"
     },
     {
       "section": "header",
       "key": "beta",
       "English": "BETA",
       "French": "BÊTA",
-      "Used by code": ["True"],
-      "id": "header.beta",
-      "Safe to Delete?": []
+      "id": "header.beta"
     },
     {
       "section": "index",
       "key": "all benefits",
       "English": "View all benefits",
       "French": "Voir tous les services",
-      "Used by code": ["True"],
-      "id": "index.all benefits",
-      "Safe to Delete?": []
+      "id": "index.all benefits"
     },
     {
       "section": "index",
       "key": "alt_text_1",
       "English": "hand scrolling a list",
       "French": "défilement manuel d'une liste",
-      "Used by code": ["True"],
-      "id": "index.alt_text_1",
-      "Safe to Delete?": []
+      "id": "index.alt_text_1"
     },
     {
       "section": "index",
       "key": "benefits_prompt",
       "English": "View the full list of benefits and services offered by VAC. ",
       "French": "Consultez la liste complète des services et avantages offerts par ACC.  ",
-      "Used by code": ["True"],
-      "id": "index.benefits_prompt",
-      "Safe to Delete?": []
+      "id": "index.benefits_prompt"
     },
     {
       "section": "index",
       "key": "favourites_prompt",
       "English": "Return to the list of benefits you’ve previously saved.  ",
       "French": "Retournez à votre liste d'avantages précédemment sauvegardés.",
-      "Used by code": ["True"],
-      "id": "index.favourites_prompt",
-      "Safe to Delete?": []
+      "id": "index.favourites_prompt"
     },
     {
       "section": "index",
       "key": "ge_prompt",
       "English": "Answer a few questions for a list of benefits tailored to you.",
       "French": "Répondez à quelques questions pour obtenir une liste de services qui correspond à vos besoins. ",
-      "Used by code": ["True"],
-      "id": "index.ge_prompt",
-      "Safe to Delete?": []
+      "id": "index.ge_prompt"
     },
     {
       "section": "index",
       "key": "guided experience",
       "English": "Find benefits for me",
       "French": "Trouver des services pour moi",
-      "Used by code": ["True"],
-      "id": "index.guided experience",
-      "Safe to Delete?": []
+      "id": "index.guided experience"
     },
     {
       "section": "index",
       "key": "or",
       "English": "or",
       "French": "ou",
-      "Used by code": ["True"],
-      "id": "index.or",
-      "Safe to Delete?": []
+      "id": "index.or"
     },
     {
       "section": "index",
       "key": "search_prompt",
       "English": "Look up benefits by name or description. ",
       "French": "Rechercher un service par nom ou description. ",
-      "Used by code": ["True"],
-      "id": "index.search_prompt",
-      "Safe to Delete?": []
+      "id": "index.search_prompt"
     },
     {
       "section": "index",
       "key": "title",
       "English": "Find the services and benefits available to you.",
       "French": "Découvrez les services et avantages à votre disposition.",
-      "Used by code": ["True"],
-      "id": "index.title",
-      "Safe to Delete?": []
+      "id": "index.title"
     },
     {
       "section": "index",
       "key": "your_saved_benefits",
       "English": "Your saved benefits",
       "French": "Vos services sauvegardés",
-      "Used by code": ["True"],
-      "id": "index.your_saved_benefits",
-      "Safe to Delete?": []
+      "id": "index.your_saved_benefits"
     },
     {
       "section": "map",
       "key": "contact_1",
       "English": "Walk-ins are welcome or give us a call at",
       "French": "Les personnes sans rendez-vous sont les bienvenues ou vous pouvez nous appelez au",
-      "Used by code": ["True"],
-      "id": "map.contact_1",
-      "Safe to Delete?": []
+      "id": "map.contact_1"
     },
     {
       "section": "map",
       "key": "contact_2",
       "English": "Monday to Friday, 0830 - 1630 local time",
       "French": "du lundi au vendredi, de 8 h 30 à 16 h 30, heure locale.",
-      "Used by code": ["True"],
-      "id": "map.contact_2",
-      "Safe to Delete?": []
+      "id": "map.contact_2"
     },
     {
       "section": "map",
       "key": "get_directions",
       "English": "Get Directions",
       "French": "Obtenir l'itinéraire",
-      "Used by code": ["True"],
-      "id": "map.get_directions",
-      "Safe to Delete?": []
+      "id": "map.get_directions"
     },
     {
       "section": "map",
       "key": "search-location-prompt",
       "English": "Search by city or postal code",
       "French": "Entrez la ville ou code postal ",
-      "Used by code": ["True"],
-      "id": "map.search-location-prompt",
-      "Safe to Delete?": []
+      "id": "map.search-location-prompt"
     },
     {
       "section": "map",
       "key": "search-locations",
       "English": "Search",
       "French": "Rechercher",
-      "Used by code": ["True"],
-      "id": "map.search-locations",
-      "Safe to Delete?": []
+      "id": "map.search-locations"
     },
     {
       "section": "map",
       "key": "vacOffices",
       "English": "Find a VAC office near you",
       "French": "Trouver un bureau ACC près de vous",
-      "Used by code": ["True"],
-      "id": "map.vacOffices",
-      "Safe to Delete?": []
+      "id": "map.vacOffices"
     },
     {
       "key": "next",
       "English": "Next",
       "French": "Suivant",
-      "Used by code": ["True"],
       "id": "next",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "nextSteps",
       "key": "box_1",
       "English": "If you are registered for My VAC Account, you can submit your application online. If you aren't registered you can ",
       "French": "Si vous êtes inscrit à Mon dossier ACC, vous pouvez présenter votre demande en ligne. Si vous n’êtes pas encore inscrit, vous pouvez ",
-      "id": "nextSteps.box_1",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.box_1"
     },
     {
       "section": "nextSteps",
       "key": "box_2a",
       "English": "In-person guidance is available in one of our area offices without an appointment. ",
       "French": "Vous pouvez vous présenter sans rendez-vous à l’un de nos bureaux de secteur pour obtenir de l’aide personnalisée.",
-      "id": "nextSteps.box_2a",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.box_2a"
     },
     {
       "section": "nextSteps",
       "key": "box_2b",
       "English": "You can also give us a call at 1-866-522-2122 between Monday to Friday, 0830 - 1630 local time or email us at",
       "French": "Vous pouvez aussi nous téléphoner au 1-866-522-2022, du lundi au vendredi, de 8 h 30 à 16 h 30, heure locale, ou nous envoyer un courriel à",
-      "id": "nextSteps.box_2b",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.box_2b"
     },
     {
       "section": "nextSteps",
       "key": "box_2c",
       "English": ". Please do not email personal or confidential information and we will get back to you.",
       "French": ". N’envoyez pas d’information personnelle ou confidentielle par courriel. Nous communiquerons avec vous.",
-      "id": "nextSteps.box_2c",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.box_2c"
     },
     {
       "section": "nextSteps",
       "key": "contact_us",
       "English": "Contact us to find out more",
       "French": "Communiquez avec nous pour en savoir plus.",
-      "id": "nextSteps.contact_us",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.contact_us"
     },
     {
       "section": "nextSteps",
       "key": "myvac_button_text",
       "English": "My VAC Account",
       "French": "Mon dossier ACC",
-      "id": "nextSteps.myvac_button_text",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.myvac_button_text"
     },
     {
       "section": "nextSteps",
       "key": "myvac_register_href",
       "English": "https://www.veterans.gc.ca/eng/e_services/create-my-vac-account?utm_source=fbas",
       "French": "https://www.veterans.gc.ca/fra/e_services/create-my-vac-account?utm_source=fbas",
-      "id": "nextSteps.myvac_register_href",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.myvac_register_href"
     },
     {
       "section": "nextSteps",
       "key": "myvac_register_text",
       "English": "register now",
       "French": "le faire maintenant",
-      "id": "nextSteps.myvac_register_text",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.myvac_register_text"
     },
     {
       "section": "nextSteps",
       "key": "register_myvac",
       "English": "Register for My VAC Account",
       "French": "S’inscrire à Mon dossier ACC",
-      "id": "nextSteps.register_myvac",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.register_myvac"
     },
     {
       "section": "nextSteps",
       "key": "whats_next",
       "English": "Next steps",
       "French": "Prochaines étapes",
-      "id": "nextSteps.whats_next",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "nextSteps.whats_next"
     },
     {
       "key": "no",
       "English": "No",
       "French": "Non",
-      "Used by code": ["True"],
       "id": "no",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "noscript",
       "English": "Javascript is disabled and you may experience reduced functionality. To see a full list of benefits, click <a href='/all-benefits'>here</a>.",
       "French": "Javascript est désactivé et vous pouvez rencontrer des fonctionnalités réduites. Pour voir la liste complète des avantages, cliquez <a href='/all-benefits'>ici</a>.",
-      "Used by code": ["True"],
       "id": "noscript",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "other-language",
       "English": "Français",
       "French": "English",
-      "Used by code": ["True"],
       "id": "other-language",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "other-language-code",
       "English": "fr",
       "French": "en",
-      "Used by code": ["True"],
       "id": "other-language-code",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "other-language-in-current-language",
       "English": "French",
       "French": "Anglais",
-      "Used by code": ["True"],
       "id": "other-language-in-current-language",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "Print",
       "English": "Print this page",
       "French": "Imprimer",
-      "Used by code": ["True"],
       "id": "Print",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "print",
       "key": "apply_online",
       "English": "Apply online",
       "French": "Présenter une demande en ligne",
-      "Used by code": ["True"],
-      "id": "print.apply_online",
-      "Safe to Delete?": []
+      "id": "print.apply_online"
     },
     {
       "section": "print",
       "key": "closest_office",
       "English": "Closest VAC office:",
       "French": "Le bureau ACC le plus proche:",
-      "Used by code": ["True"],
-      "id": "print.closest_office",
-      "Safe to Delete?": []
+      "id": "print.closest_office"
     },
     {
       "section": "print",
       "key": "have_any_questions",
       "English": "Have any questions?",
       "French": "Avez-vous des questions?",
-      "Used by code": ["True"],
-      "id": "print.have_any_questions",
-      "Safe to Delete?": []
+      "id": "print.have_any_questions"
     },
     {
       "section": "print",
       "key": "map_link",
       "English": "https://vac-benefits-finder.cds-snc.ca/map?lng=en",
       "French": "https://vac-benefits-finder.cds-snc.ca/map?lng=fr",
-      "Used by code": ["True"],
-      "id": "print.map_link",
-      "Safe to Delete?": []
+      "id": "print.map_link"
     },
     {
       "section": "print",
       "key": "sign_up_for_my_vac",
       "English": "Sign up for a My VAC account once you’re ready to start applying.",
       "French": "Inscrivez-vous à Mon ACC dès que vous êtes prêt à faire une demande.",
-      "Used by code": ["True"],
-      "id": "print.sign_up_for_my_vac",
-      "Safe to Delete?": []
+      "id": "print.sign_up_for_my_vac"
     },
     {
       "section": "print",
       "key": "visit_office_prompt",
       "English": "In person help is available in all VAC offices, with and without an appointment.",
       "French": "Nos agents sont disponibles pour vous aider dans l'un de nos bureaux, avec ou sans rendez-vous. ",
-      "Used by code": ["True"],
-      "id": "print.visit_office_prompt",
-      "Safe to Delete?": []
+      "id": "print.visit_office_prompt"
     },
     {
       "section": "print",
       "key": "who_is_receiving",
       "English": "Your selections:",
       "French": "Vos sélections",
-      "Used by code": ["True"],
-      "id": "print.who_is_receiving",
-      "Safe to Delete?": []
+      "id": "print.who_is_receiving"
     },
     {
       "key": "Privacy",
       "English": "Privacy",
       "French": "Confidentialité",
-      "Used by code": ["True"],
       "id": "Privacy",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "privacy-link",
       "English": "https://digital.canada.ca/legal/privacy/",
       "French": "https://numerique.canada.ca/transparence/confidentialite/",
-      "Used by code": ["True"],
       "id": "privacy-link",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "refresh-cache",
       "English": "Refresh cache",
       "French": "Rafraîchir le cache",
-      "Used by code": ["True"],
       "id": "refresh-cache",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "reset filters",
       "English": "Reset",
       "French": "Réinitialiser",
-      "Used by code": ["True"],
       "id": "reset filters",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "search",
       "English": "Look up benefits",
       "French": "Rechercher un service",
-      "Used by code": ["True"],
       "id": "search",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "Select all that apply",
       "English": "Select all that apply",
       "French": "Sélectionez tous ceux qui s’appliquent",
-      "Used by code": ["True"],
       "id": "Select all that apply",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "key": "send",
       "English": "Send",
       "French": "Envoyer",
-      "Used by code": ["True"],
       "id": "send",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "share",
       "key": "copy_button",
       "English": "Copy",
       "French": "Copier",
-      "id": "share.copy_button",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "share.copy_button"
     },
     {
       "section": "share",
       "key": "copy_prompt",
       "English": "Copy the link below and paste it wherever you need.",
       "French": "Copiez-collez le lien ci-dessous à l’endroit voulu.",
-      "id": "share.copy_prompt",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "share.copy_prompt"
     },
     {
       "section": "share",
       "key": "link_copied",
       "English": "Link copied.",
       "French": "Le lien a été copié",
-      "id": "share.link_copied",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "share.link_copied"
     },
     {
       "section": "share",
       "key": "not_supported",
       "English": "Copy button not supported, please copy using hotkeys or your browser's copy function",
       "French": "Le bouton de copie ne fonctionne pas. Veuillez utiliser les raccourcis-clavier ou la fonction de copie de votre navigateur",
-      "id": "share.not_supported",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "share.not_supported"
     },
     {
       "key": "skipLink",
       "English": "Skip to Main Content",
       "French": "Aller au contenu principal",
       "id": "skipLink",
-      "section": "",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "stats",
       "key": "title",
       "English": "Statistics",
       "French": "Statistiques",
-      "Used by code": ["True"],
-      "id": "stats.title",
-      "Safe to Delete?": []
+      "id": "stats.title"
     },
     {
       "section": "svg",
       "key": "vac_logo",
       "English": "Symbol of Veterans Affairs Canada",
       "French": "Symbole d'Anciens Combattants Canada",
-      "Used by code": ["True"],
-      "id": "svg.vac_logo",
-      "Safe to Delete?": []
+      "id": "svg.vac_logo"
     },
     {
       "section": "titles",
       "key": "all_benefits",
       "English": "All benefits",
       "French": "Tous les avantages",
-      "Used by code": ["True"],
-      "id": "titles.all_benefits",
-      "Safe to Delete?": []
+      "id": "titles.all_benefits"
     },
     {
       "section": "titles",
       "key": "benefits_directory",
       "English": "Benefits directory",
       "French": "Répertoire des avantages",
-      "Used by code": ["True"],
-      "id": "titles.benefits_directory",
-      "Safe to Delete?": []
+      "id": "titles.benefits_directory"
     },
     {
       "section": "titles",
       "key": "ge_summary",
       "English": "Selection",
       "French": "Sélection",
-      "id": "titles.ge_summary",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "titles.ge_summary"
     },
     {
       "section": "titles",
       "key": "home",
       "English": "Home",
       "French": "Accueil",
-      "id": "titles.home",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "titles.home"
     },
     {
       "section": "titles",
       "key": "index",
       "English": "VAC Benefits Directory",
       "French": "Répertoire des avantages d'ACC",
-      "Used by code": ["True"],
-      "id": "titles.index",
-      "Safe to Delete?": []
+      "id": "titles.index"
     },
     {
       "section": "titles",
       "key": "map",
       "English": "Map",
       "French": "Carte",
-      "Used by code": ["True"],
-      "id": "titles.map",
-      "Safe to Delete?": []
+      "id": "titles.map"
     },
     {
       "section": "titles",
       "key": "print",
       "English": "Print",
       "French": "Imprimer",
-      "Used by code": ["True"],
-      "id": "titles.print",
-      "Safe to Delete?": []
+      "id": "titles.print"
     },
     {
       "section": "titles",
       "key": "share",
       "English": "Share this page",
       "French": "Partager cette page",
-      "id": "titles.share",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "titles.share"
     },
     {
       "section": "titles",
       "key": "stats",
       "English": "Statistics",
       "French": "Statistiques",
-      "Used by code": ["True"],
-      "id": "titles.stats",
-      "Safe to Delete?": []
+      "id": "titles.stats"
     },
     {
       "key": "yes",
       "English": "Yes",
       "French": "Oui",
-      "Used by code": ["True"],
       "id": "yes",
-      "section": "",
-      "Safe to Delete?": []
+      "section": ""
     },
     {
       "section": "favourites",
       "key": "saved_benefits_mobile",
       "English": "Saved ({{x}})",
       "French": "Sauvegardés ({{x}})",
-      "id": "favourites.saved_benefits_mobile",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "favourites.saved_benefits_mobile"
     },
     {
       "section": "directory",
       "key": "edit_selections_mobile",
       "English": "Edit",
       "French": "Modifier",
-      "id": "directory.edit_selections_mobile",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "directory.edit_selections_mobile"
     },
     {
       "section": "feedback",
       "key": "tell_us_more",
       "English": "Tell us in more detail what you think about this online tool.",
       "French": "Dites-nous plus en détail ce que vous pensez de cet outil en ligne.",
-      "id": "feedback.tell_us_more",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "feedback.tell_us_more"
     },
     {
       "section": "feedback",
       "key": "character_limit_warning",
       "English": "{{x}} characters left",
       "French": "{{x}} caractères restants",
-      "id": "feedback.character_limit_warning",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "feedback.character_limit_warning"
     },
     {
       "section": "feedback",
       "key": "page_title",
       "English": "Feedback",
       "French": "Commentaires",
-      "id": "feedback.page_title",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "feedback.page_title"
     },
     {
       "section": "feedback",
       "key": "page_header",
       "English": "Help us improve",
       "French": "Aidez-nous à nous améliorer",
-      "id": "feedback.page_header",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "feedback.page_header"
     },
     {
       "section": "feedback",
       "key": "submitted",
       "English": "Thank you for taking the time to give us feedback. We are listening and constantly improving.",
       "French": "Merci d’avoir pris le temps de nous faire part de vos commentaires. Nous sommes à l’écoute et nous nous améliorons constamment.",
-      "id": "feedback.submitted",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "feedback.submitted"
     },
     {
       "section": "feedback",
       "key": "ben_dir_link",
       "English": "Return to Find benefits and services",
       "French": "Retour à la page Rechercher des avantages et des services",
-      "id": "feedback.ben_dir_link",
-      "Used by code": [],
-      "Safe to Delete?": []
+      "id": "feedback.ben_dir_link"
+    },
+    {
+      "section": "feedback",
+      "key": "bug_prompt",
+      "English": "Did something go wrong?",
+      "French": "(fra) Did something go wrong?",
+      "id": "feedback.bug_prompt"
+    },
+    {
+      "section": "feedback",
+      "key": "how_can_info_be_more_useful",
+      "English": "How can we provide information that is more useful?",
+      "French": "(fra) How can we provide information that is more useful?",
+      "id": "feedback.how_can_info_be_more_useful"
+    },
+    {
+      "section": "feedback",
+      "key": "details_question",
+      "English": "Do you need help with your application?",
+      "French": "(fra) Do you need help with your application?",
+      "id": "feedback.details_question"
+    },
+    {
+      "section": "feedback",
+      "key": "details_expansion",
+      "English": "The staff at any VAC office or Transition Centre (TC) can assist you, or call us at 1-866-522-2122.",
+      "French": "(fra) The staff at any VAC office or Transition Centre (TC) can assist you, or call us at 1-866-522-2122.",
+      "id": "feedback.details_expansion"
+    },
+    {
+      "id": "beta_banner.main",
+      "section": "beta_banner",
+      "key": "main",
+      "English": "This is a new online tool.",
+      "French": "(fra) This is a new online tool."
+    },
+    {
+      "id": "beta_banner.link_text",
+      "section": "beta_banner",
+      "key": "link_text",
+      "English": "Click here to provide feedback. ",
+      "French": "(fra) Click here to provide feedback."
     }
   ],
   "questions": [
@@ -5339,5 +5015,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1549907642205
+  "timestamp": 1550002405460
 }
