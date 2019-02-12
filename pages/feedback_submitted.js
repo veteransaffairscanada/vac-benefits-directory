@@ -13,10 +13,6 @@ const padding = css`
   padding-top: 15px;
   padding-bottom: 15px;
 `;
-const prevButton = css`
-  margin-top: 50px;
-  margin-bottom: 15px;
-`;
 const textStyle = css`
   fontfamily: ${globalTheme.fontFamily};
   color: ${globalTheme.colour.greyishBrown};
@@ -43,10 +39,6 @@ export class FeedbackSubmitted extends Component {
         backgroundColor={globalTheme.colour.white}
       >
         <Container className={padding} id="mainContent">
-          <HeaderLink href={"/feedback"} className={prevButton} arrow="back">
-            {t("back")}
-          </HeaderLink>
-
           <Header headingLevel="h1" size="lg">
             {t("feedback.page_header")}
           </Header>
