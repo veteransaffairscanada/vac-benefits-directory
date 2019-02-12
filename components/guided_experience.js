@@ -151,20 +151,21 @@ export class GuidedExperience extends Component {
           {t("back")}
         </HeaderLink>
 
-        {id === "patronType" ? (
-          <React.Fragment>
-            <Header size="lg" headingLevel="h1">
-              {t("ge.Find benefits and services")}
-            </Header>
-            <Body>
-              <p>{t("ge.intro_text_p1")}</p>
-              <p>{t("ge.intro_text_p2")}</p>
-            </Body>
-          </React.Fragment>
-        ) : null}
-
         <Paper padding="md" className={box}>
           <Grid container spacing={24}>
+            {id === "patronType" ? (
+              <React.Fragment>
+                <Grid item xs={12}>
+                  <Header size="lg" headingLevel="h1">
+                    {t("ge.Find benefits and services")}
+                  </Header>
+                  <Body>
+                    <p>{t("ge.intro_text_p1")}</p>
+                    <p>{t("ge.intro_text_p2")}</p>
+                  </Body>
+                </Grid>
+              </React.Fragment>
+            ) : null}
             <Grid item xs={12} className={questions}>
               <Header size="md_lg" headingLevel="h2">
                 {this.getSubtitle(question)}

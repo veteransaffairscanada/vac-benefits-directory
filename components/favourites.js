@@ -20,6 +20,7 @@ import ShareBox from "./share_box";
 import NextSteps from "./next_steps";
 import ContactUs from "./contact_us";
 import Cookies from "universal-cookie";
+import Paper from "./paper";
 
 const saveCSS = css`
   font-size: 70px !important;
@@ -132,101 +133,105 @@ export class Favourites extends Component {
           pageTitle={t("index.your_saved_benefits")}
         />
         <Container id="favourites">
-          <Grid container spacing={32}>
-            <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
-              <div className={sidebar}>
-                <Grid container spacing={16} className={sidebarLinks}>
-                  <Grid item xs={12}>
-                    <HeaderButton
-                      id="nextSteps"
-                      onClick={() => this.scrollToNextSteps()}
-                    >
-                      <AssignmentTurnedIn />
-                      {t("nextSteps.whats_next")}
-                    </HeaderButton>
+          <Paper padding="md">
+            <Grid container spacing={32}>
+              <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
+                <div className={sidebar}>
+                  <Grid container spacing={16} className={sidebarLinks}>
+                    <Grid item xs={12}>
+                      <HeaderButton
+                        id="nextSteps"
+                        onClick={() => this.scrollToNextSteps()}
+                      >
+                        <AssignmentTurnedIn />
+                        {t("nextSteps.whats_next")}
+                      </HeaderButton>
+                    </Grid>
                   </Grid>
-                </Grid>
+                  <ShareBox
+                    className={hideOnMobile}
+                    t={t}
+                    printUrl={this.props.printUrl}
+                    url={url}
+                    share={false}
+                  />
+                </div>
+              </Grid>
+              <Grid item lg={3} md={3} sm={4} xs={12} className={showOnMobile}>
                 <ShareBox
-                  className={hideOnMobile}
                   t={t}
                   printUrl={this.props.printUrl}
                   url={url}
-                  share={false}
+                  share={true}
                 />
-              </div>
-            </Grid>
-            <Grid item lg={3} md={3} sm={4} xs={12} className={showOnMobile}>
-              <ShareBox
-                t={t}
-                printUrl={this.props.printUrl}
-                url={url}
-                share={true}
-              />
-            </Grid>
-            <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
-              <Grid container spacing={24}>
-                {this.state.showDisabledCookieBanner ? (
+              </Grid>
+              <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
+                <Grid container spacing={24}>
+                  {this.state.showDisabledCookieBanner ? (
+                    <Grid item xs={12}>
+                      <DisabledCookiesBanner
+                        t={t}
+                        onClose={() =>
+                          this.setState({ showDisabledCookieBanner: false })
+                        }
+                      />
+                    </Grid>
+                  ) : null}
                   <Grid item xs={12}>
-                    <DisabledCookiesBanner
-                      t={t}
-                      onClose={() =>
-                        this.setState({ showDisabledCookieBanner: false })
-                      }
-                    />
+                    <Header
+                      className={"BenefitsCounter"}
+                      size="lg"
+                      headingLevel="h1"
+                    >
+                      {t("favourites.saved_benefits", {
+                        x: filteredBenefits.length
+                      })}
+                    </Header>
+                    <Body className={topMargin}>
+                      {t("B3.check eligibility")}
+                    </Body>
                   </Grid>
-                ) : null}
-                <Grid item xs={12}>
-                  <Header
-                    className={"BenefitsCounter"}
-                    size="lg"
-                    headingLevel="h1"
-                  >
-                    {t("favourites.saved_benefits", {
-                      x: filteredBenefits.length
-                    })}
-                  </Header>
-                  <Body className={topMargin}>{t("B3.check eligibility")}</Body>
+                  <BenefitList
+                    t={t}
+                    currentLanguage={t("current-language-code")}
+                    filteredBenefits={filteredBenefits}
+                    showFavourites={true}
+                    searchString=""
+                    store={this.props.store}
+                    favouriteBenefits={this.props.favouriteBenefits}
+                  />
                 </Grid>
-                <BenefitList
-                  t={t}
-                  currentLanguage={t("current-language-code")}
-                  filteredBenefits={filteredBenefits}
-                  showFavourites={true}
-                  searchString=""
-                  store={this.props.store}
-                  favouriteBenefits={this.props.favouriteBenefits}
-                />
-              </Grid>
-              {filteredBenefits.length == 0 ? (
-                <Body className={emptyList}>
-                  <SaveChecked className={saveCSS} />
-                  <br />
-                  {t("favourites.help_msg_line1")}
-                  <br />
-                  <Link href={mutateUrl(url, "/benefits-directory")}>
-                    <a>{t("favourites.help_url_text")}</a>
-                  </Link>
-                  {" " + t("favourites.help_msg_line_connect") + " "}
-                  <strong>{t("favourites.help_msg_emphasis") + " "}</strong>
-                  {t("favourites.help_msg_last")}
-                </Body>
-              ) : (
-                ""
-              )}
-              <Grid item xs={12}>
-                <div ref={this.nextStepsRef}>
-                  <Grid container spacing={24}>
-                    <NextSteps t={t} store={this.props.store} />
-                    <ContactUs
-                      t={t}
-                      url={this.props.url}
-                      store={this.props.store}
-                    />
-                  </Grid>
-                </div>
+                {filteredBenefits.length == 0 ? (
+                  <Body className={emptyList}>
+                    <SaveChecked className={saveCSS} />
+                    <br />
+                    {t("favourites.help_msg_line1")}
+                    <br />
+                    <Link href={mutateUrl(url, "/benefits-directory")}>
+                      <a>{t("favourites.help_url_text")}</a>
+                    </Link>
+                    {" " + t("favourites.help_msg_line_connect") + " "}
+                    <strong>{t("favourites.help_msg_emphasis") + " "}</strong>
+                    {t("favourites.help_msg_last")}
+                  </Body>
+                ) : (
+                  ""
+                )}
+                <Grid item xs={12}>
+                  <div ref={this.nextStepsRef}>
+                    <Grid container spacing={24}>
+                      <NextSteps t={t} store={this.props.store} />
+                      <ContactUs
+                        t={t}
+                        url={this.props.url}
+                        store={this.props.store}
+                      />
+                    </Grid>
+                  </div>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
+          </Paper>
         </Container>
       </div>
     );

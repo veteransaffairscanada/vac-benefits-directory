@@ -9,8 +9,8 @@ const style = css`
   padding-left: 30px;
   padding-right: 30px;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 `;
 
