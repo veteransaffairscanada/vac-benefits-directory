@@ -21,7 +21,6 @@ const CommentBox = css`
 const Div = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
   width: 100%;
-  height: 53px;
   color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
@@ -40,6 +39,7 @@ const Inner = css`
   color: ${globalTheme.colour.white};
   font-size: 18px;
   padding-top: 10px;
+  padding-bottom: 10px;
   @media (max-width: 400px) {
     font-size: 16px;
     button {
