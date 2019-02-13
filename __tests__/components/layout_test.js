@@ -48,4 +48,12 @@ describe("Layout", () => {
     props.hideNoscript = true;
     expect(mountedLayout().find("Noscript").length).toEqual(0);
   });
+
+  it("contains a link to the feedback page", () => {
+    expect(
+      mountedLayout()
+        .find("Link")
+        .text()
+    ).toContain("beta_banner.link_text");
+  });
 });
