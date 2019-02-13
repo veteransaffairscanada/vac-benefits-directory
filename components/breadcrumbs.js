@@ -6,7 +6,6 @@ import HomeIcon from "./icons/Home";
 import HeaderLink from "./header_link";
 
 const greyBanner = css`
-  width: 100%;
   padding-bottom: 20px;
   margin-bottom: 30px;
   font-weight: bold;
