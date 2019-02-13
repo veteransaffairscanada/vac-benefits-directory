@@ -11,33 +11,33 @@ describe("Index page", function() {
 
   it("can skip through to summary", () => {
     cy.visit("/");
-    cy.contains(skipButtonText).click({ force: true });
-    cy.contains(skipButtonText).click({ force: true });
+    cy.contains(skipButtonText).click();
+    cy.url().should("include", "needs");
+    cy.contains(skipButtonText).click();
     cy.url().should("include", "summary");
   });
 
   it("can choose some options and get to summary and benefits directory", () => {
     cy.visit("/");
-    cy.contains(patronTypeVeteran).click({ force: true });
-    cy.contains(nextButtonText).click({ force: true });
-    cy.contains(serviceTypeCAF).click({ force: true });
-    cy.contains(nextButtonText).click({ force: true });
-    cy.contains("Yes").click({ force: true });
-    cy.contains(nextButtonText).click({ force: true });
-    cy.contains(nextButtonText).click({ force: true });
+    cy.contains(patronTypeVeteran).click();
+    cy.contains(nextButtonText).click();
+    cy.url().should("include", "serviceType?");
+    cy.contains(serviceTypeCAF).click();
+    cy.contains(nextButtonText).click();
+    cy.url().should("include", "serviceHealthIssue?");
+    cy.contains("Yes").click();
+    cy.contains(nextButtonText).click();
+    cy.url().should("include", "needs");
+    cy.contains(nextButtonText).click();
     cy.url().should("include", "summary");
     cy.contains(patronTypeVeteran);
-    cy.contains("Show results").click({ force: true });
+    cy.contains("Show results").click();
     cy.url().should("include", "benefits-directory");
   });
 
   it("can go back from summary and edit answer", () => {
-    cy.visit("/");
-    cy.contains(patronTypeVeteran).click({ force: true });
-    cy.contains(nextButtonText).click({ force: true });
-    cy.contains(skipButtonText).click({ force: true });
-    cy.contains(skipButtonText).click({ force: true });
-    cy.contains("Edit").click({ force: true });
+    cy.visit("summary");
+    cy.contains("Edit").click();
     cy.contains("Select who will be receiving the benefits.");
   });
 });
