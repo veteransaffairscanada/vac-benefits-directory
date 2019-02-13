@@ -22,11 +22,13 @@ let theme = {
   colour: {
     blackish: "#3d3d3d",
     paleGrey: "#eaebed",
+    paleGreyTwo: "#f4f7f9",
     warmGrey: "#979797",
     brownishGrey: "#646464",
     paleGreyishBrown: "#f8f8f8",
     greyishBrownTwo: "#505050",
     greyishBrown: "#434343",
+    slateGrey: "#656972",
     cerulean: "#006cc9",
     darkGreyBlue: "#284162",
     paleBlue: "#e3f2ff",
@@ -46,7 +48,8 @@ let theme = {
     salmon: "#ff6961",
     paleBlueGrey: "#f1f7fc",
     darkBlueGrey: "#d8dee2",
-    lineGrey: "#dfdfdf"
+    lineGrey: "#dfdfdf",
+    tea: "#57c684"
   }
 };
 

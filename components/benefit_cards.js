@@ -16,6 +16,8 @@ import { globalTheme } from "../theme";
 
 const cardBody = css`
   padding-top: 0px;
+  border-top: none;
+  border: thin solid ${globalTheme.colour.paleGrey};
 `;
 const cardDescriptionText = css`
   padding-left: 35px;
