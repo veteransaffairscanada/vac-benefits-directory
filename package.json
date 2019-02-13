@@ -68,8 +68,7 @@
     "redux-mock-store": "^1.5.3",
     "regenerator-runtime": "^0.13.1",
     "reselect": "^4.0.0",
-    "universal-cookie": "^3.0.7",
-    "wait-on": "^3.2.0"
+    "universal-cookie": "^3.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",
