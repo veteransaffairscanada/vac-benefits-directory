@@ -5,15 +5,10 @@ import {
   getFilteredNextSteps,
   getFilteredBenefits
 } from "../../selectors/benefits";
-import questionsFixture from "../fixtures/questions_complex";
-import benefitsFixture from "../fixtures/benefits_complex";
-import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
-import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
-import needsFixture from "../fixtures/needs_complex";
 import enIdx from "../fixtures/lunr_index_english";
 import frIdx from "../fixtures/lunr_index_french";
-import nextStepsFixture from "../fixtures/nextSteps_complex";
-import benefitExamplesFixture from "../fixtures/benefitExamples";
+import fs from "fs";
+const data = JSON.parse(fs.readFileSync("data/data.json"));
 
 describe("Benefits Selectors", () => {
   let props;
@@ -24,21 +19,21 @@ describe("Benefits Selectors", () => {
       t: () => "en"
     };
     state = {
-      questions: questionsFixture,
-      benefits: benefitsFixture,
-      benefitEligibility: benefitEligibilityFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      questions: data.questions,
+      benefits: data.benefits,
+      benefitEligibility: data.benefitEligibility,
+      multipleChoiceOptions: data.multipleChoiceOptions,
       enIdx: enIdx,
       frIdx: frIdx,
-      needs: needsFixture,
+      needs: data.needs,
       selectedNeeds: {},
       patronType: "",
       statusAndVitals: "",
       serviceHealthIssue: "",
       searchString: "",
       serviceType: "",
-      benefitExamples: benefitExamplesFixture,
-      nextSteps: nextStepsFixture
+      benefitExamples: data.benefitExamples,
+      nextSteps: data.nextSteps
     };
   });
 
@@ -106,10 +101,10 @@ describe("Benefits Selectors", () => {
   describe("getFilteredBenefitsWithoutSearch", () => {
     it("displays all benefits if nothing selected", () => {
       let allBenefitNames = new Set(
-        getFilteredBenefitsWithoutSearch(state, props).map(b => b.vacNameEn)
+        getFilteredBenefitsWithoutSearch(state, props).map(b => b.id)
       );
       expect(allBenefitNames).toEqual(
-        new Set(state.benefits.map(x => x.vacNameEn))
+        new Set(state.benefitEligibility.map(x => x.benefit[0]))
       );
     });
 
@@ -143,17 +138,20 @@ describe("Benefits Selectors", () => {
       let returnValue = getFilteredBenefitsWithoutSearch(state, props).map(
         x => x.vacNameEn
       );
-      expect(returnValue).toEqual(["Veterans Emergency Fund"]);
+      expect(returnValue).toEqual([
+        "Assistance Fund ",
+        "Veterans Emergency Fund"
+      ]);
     });
   });
 
   describe("getFilteredBenefits", () => {
     it("displays all benefits if nothing selected", () => {
       let allBenefitNames = new Set(
-        getFilteredBenefits(state, props).map(b => b.vacNameEn)
+        getFilteredBenefits(state, props).map(b => b.id)
       );
       expect(allBenefitNames).toEqual(
-        new Set(state.benefits.map(x => x.vacNameEn))
+        new Set(state.benefitEligibility.map(x => x.benefit[0]))
       );
     });
 
@@ -185,7 +183,10 @@ describe("Benefits Selectors", () => {
       )[0];
       state.selectedNeeds = { [selectedNeed.id]: selectedNeed.id };
       let returnValue = getFilteredBenefits(state, props).map(x => x.vacNameEn);
-      expect(returnValue).toEqual(["Veterans Emergency Fund"]);
+      expect(returnValue).toEqual([
+        "Assistance Fund ",
+        "Veterans Emergency Fund"
+      ]);
     });
 
     it("runs a lunr search on the english index if searchString is set an english is used", () => {
@@ -213,24 +214,24 @@ describe("Benefits Selectors", () => {
     it("returns a results if user searches see more content", () => {
       state.searchString = "inpatient";
       expect(getFilteredBenefits(state, props).map(x => x.vacNameEn)).toEqual([
-        "Disability Benefits"
+        "Disability benefits"
       ]);
     });
   });
 
   describe("getFilteredNextSteps", () => {
     it("displays next steps with no eligibility requirements if no eligibility paths are selected", () => {
-      expect(getFilteredNextSteps(state, props).length).toEqual(2);
+      expect(getFilteredNextSteps(state, props).length).toEqual(1);
     });
 
     it("displays expected next steps if the patronType is organization", () => {
       state.patronType = "organization";
-      expect(getFilteredNextSteps(state, props).length).toEqual(2);
+      expect(getFilteredNextSteps(state, props).length).toEqual(1);
     });
 
     it("displays expected next steps if the patronType is servingMember", () => {
       state.patronType = "servingMember";
-      expect(getFilteredNextSteps(state, props).length).toEqual(5);
+      expect(getFilteredNextSteps(state, props).length).toEqual(4);
     });
 
     it("displays expected next steps if the patronType is servingMember", () => {

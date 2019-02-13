@@ -4,14 +4,11 @@ import { mount } from "enzyme";
 import { Feedback } from "../../pages/feedback";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
-import questionsFixture from "../fixtures/questions_complex";
 import configureStore from "redux-mock-store";
-import multipleChoiceOptions from "../fixtures/multiple_choice_options_complex";
-import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
 import translate from "../fixtures/translate";
-import questionDisplayLogicFixture from "../fixtures/question_display_logic";
-import questionClearLogicFixture from "../fixtures/question_clear_logic";
 import Router from "next/router";
+import fs from "fs";
+const data = JSON.parse(fs.readFileSync("data/data.json"));
 
 jest.mock("react-ga");
 
@@ -29,12 +26,12 @@ describe("Feedback", () => {
       url: { query: {}, route: "/feedback" }
     };
     reduxData = {
-      questions: questionsFixture,
+      questions: data.questions,
       betaFeedback: "your site is awesome",
-      multipleChoiceOptions: multipleChoiceOptions,
-      benefitEligibility: benefitEligibilityFixture,
-      questionDisplayLogic: questionDisplayLogicFixture,
-      questionClearLogic: questionClearLogicFixture
+      multipleChoiceOptions: data.multipleChoiceOptions,
+      benefitEligibility: data.benefitEligibility,
+      questionDisplayLogic: data.questionDisplayLogic,
+      questionClearLogic: data.questionClearLogic
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
