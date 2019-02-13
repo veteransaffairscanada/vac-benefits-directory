@@ -1,13 +1,14 @@
 import React from "react";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
-import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
-import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
+// import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
+// import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
 import { BenefitExpansion } from "../../components/benefit_expansion";
-import benefitExamplesFixture from "../fixtures/benefitExamples";
-import needsFixture from "../fixtures/needs_complex";
-import benefitsFixture from "../fixtures/benefits_complex";
-import questionsFixture from "../fixtures/questions_complex";
+// import benefitExamplesFixture from "../fixtures/benefitExamples";
+// import needsFixture from "../fixtures/needs_complex";
+// import benefitsFixture from "../fixtures/benefits_complex";
+import fs from "fs";
+const data = JSON.parse(fs.readFileSync("data/data.json"));
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -19,19 +20,19 @@ describe("BenefitExpansion", () => {
   beforeEach(() => {
     props = {
       t: () => "en",
-      benefit: benefitsFixture.filter(
-        x => x.vacNameEn === "Disability Benefits"
+      benefit: data.benefits.filter(
+        x => x.vacNameEn === "Disability benefits"
       )[0]
     };
     mockStore = configureStore();
     reduxData = {
-      benefits: benefitsFixture,
-      benefitEligibility: benefitEligibilityFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture,
-      benefitExamples: benefitExamplesFixture,
-      needs: needsFixture,
+      benefits: data.benefits,
+      benefitEligibility: data.benefitEligibility,
+      multipleChoiceOptions: data.multipleChoiceOptions,
+      benefitExamples: data.benefitExamples,
+      needs: data.needs,
       selectedNeeds: {},
-      questions: questionsFixture,
+      questions: data.questions,
       patronType: "veteran",
       serviceType: "CAF",
       statusAndVitals: "",
@@ -78,9 +79,10 @@ describe("BenefitExpansion", () => {
       ).toEqual([
         "Attendance Allowance",
         "Career Impact Allowance",
+        "Caregiver Recognition Benefit",
         "Clothing Allowance",
         "Exceptional Incapacity Allowance",
-        "Treatment Benefits",
+        "Treatment benefits",
         "Veterans Independence Program"
       ]);
     });
@@ -96,7 +98,7 @@ describe("BenefitExpansion", () => {
           .instance()
           .getAlsoEligibleBenefits(childBenefits, "family")
           .map(x => x.vacNameEn)
-      ).toEqual([]);
+      ).toEqual(["Caregiver Recognition Benefit"]);
     });
   });
 });
