@@ -1,11 +1,10 @@
 import { mount, shallow } from "enzyme";
 import React from "react";
-import questionsFixture from "../fixtures/questions_complex";
-import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
 import { GuidedExperience } from "../../components/guided_experience";
 const { axe, toHaveNoViolations } = require("jest-axe");
-import multipleChoiceOptions from "../fixtures/multiple_choice_options_complex";
 import translate from "../fixtures/translate";
+import fs from "fs";
+const data = JSON.parse(fs.readFileSync("data/data.json"));
 
 expect.extend(toHaveNoViolations);
 
@@ -43,16 +42,16 @@ describe("GuidedExperience", () => {
         route: "/summary"
       },
       saveQuestionResponse: jest.fn(),
-      sectionOrder: questionsFixture.map(x => x.variable_name),
+      sectionOrder: data.questions.map(x => x.variable_name),
       reduxState: {
         patronType: "veteran",
         serviceType: "RCMP",
         statusAndVitals: "",
         serviceHealthIssue: "",
         selectedNeeds: {},
-        questions: questionsFixture,
-        multipleChoiceOptions: multipleChoiceOptions,
-        benefitEligibility: benefitEligibilityFixture
+        questions: data.questions,
+        multipleChoiceOptions: data.multipleChoiceOptions,
+        benefitEligibility: data.benefitEligibility
       }
     };
     _shallowGuidedExperience = undefined;
