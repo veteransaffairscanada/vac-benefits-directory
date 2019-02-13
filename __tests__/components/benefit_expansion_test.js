@@ -1,12 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
-// import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
-// import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
 import { BenefitExpansion } from "../../components/benefit_expansion";
-// import benefitExamplesFixture from "../fixtures/benefitExamples";
-// import needsFixture from "../fixtures/needs_complex";
-// import benefitsFixture from "../fixtures/benefits_complex";
 import fs from "fs";
 const data = JSON.parse(fs.readFileSync("data/data.json"));
 

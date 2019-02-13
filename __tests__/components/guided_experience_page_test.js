@@ -1,14 +1,12 @@
 import { mount } from "enzyme";
 import React from "react";
 import Router from "next/router";
-import questionsFixture from "../fixtures/questions_complex";
-import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
-import needsFixture from "../fixtures/needs";
 import { GuidedExperiencePage } from "../../components/guided_experience_page";
 const { axe, toHaveNoViolations } = require("jest-axe");
 import translate from "../fixtures/translate";
-import multipleChoiceOptions from "../fixtures/multiple_choice_options_complex";
 import configureStore from "redux-mock-store";
+import fs from "fs";
+const data = JSON.parse(fs.readFileSync("data/data.json"));
 
 expect.extend(toHaveNoViolations);
 
@@ -36,10 +34,10 @@ describe("GuidedExperiencePage", () => {
       statusAndVitals: "",
       serviceHealthIssue: "",
       selectedNeeds: {},
-      needs: needsFixture,
-      questions: questionsFixture,
-      multipleChoiceOptions: multipleChoiceOptions,
-      benefitEligibility: benefitEligibilityFixture,
+      needs: data.needs,
+      questions: data.questions,
+      multipleChoiceOptions: data.multipleChoiceOptions,
+      benefitEligibility: data.benefitEligibility,
       questionDisplayLogic: [],
       questionClearLogic: []
     };
