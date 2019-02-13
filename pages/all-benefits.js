@@ -11,7 +11,7 @@ import Header from "../components/typography/header";
 
 export class AllBenefits extends Component {
   render() {
-    const { i18n, t } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, url } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout
         i18n={i18n}
@@ -19,6 +19,7 @@ export class AllBenefits extends Component {
         hideNoscript={true}
         title={t("titles.all_benefits")}
         skipLink="#mainContent"
+        url={url}
       >
         <Container id="mainContent">
           <Header size="xl" headingLevel="h1">
@@ -53,6 +54,7 @@ AllBenefits.propTypes = {
   benefits: PropTypes.array.isRequired,
   searchString: PropTypes.string.isRequired,
   i18n: PropTypes.object.isRequired,
+  url: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object
 };

@@ -27,7 +27,8 @@ describe("Layout", () => {
       i18n: {},
       showRefreshCache: false,
       t: translate,
-      skipLink: ""
+      skipLink: "",
+      url: { query: { lng: "en" } }
     };
     _mountedLayout = undefined;
   });

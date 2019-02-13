@@ -67,7 +67,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { t, title, skipLink } = this.props;
+    const { t, title, skipLink, url } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <MuiThemeProvider theme={theme}>
@@ -87,11 +87,8 @@ class Layout extends Component {
                   <Container>
                     <AlphaBanner t={t}>
                       {t("beta_banner.main")} &nbsp;
-                      <Link
-                        href={{ pathname: "/feedback", query: { lng: "fr" } }}
-                        className={white}
-                      >
-                        {t("beta_banner.link_text")}
+                      <Link href={{ pathname: "/feedback", query: url.query }}>
+                        <a className={white}>{t("beta_banner.link_text")}</a>
                       </Link>
                     </AlphaBanner>
                   </Container>

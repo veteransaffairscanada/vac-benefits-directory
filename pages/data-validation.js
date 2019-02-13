@@ -231,6 +231,7 @@ export class DataValidation extends Component {
         t={t}
         hideNoscript={true}
         skipLink="#mainContent"
+        url={this.props.url}
       >
         <Container id="mainContent">
           <Paper className={cx(root, top)}>
@@ -305,7 +306,8 @@ DataValidation.propTypes = {
   t: PropTypes.func.isRequired,
   timestamp: PropTypes.number,
   translations: PropTypes.array.isRequired,
-  areaOffices: PropTypes.array.isRequired
+  areaOffices: PropTypes.array.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(withI18N(DataValidation));
