@@ -11,8 +11,8 @@ describe("Index page", function() {
 
   it("can skip through to summary", () => {
     cy.visit("/");
-    cy.contains(skipButtonText).click();
-    cy.contains(skipButtonText).click();
+    cy.contains(skipButtonText).click({ force: true });
+    cy.contains(skipButtonText).click({ force: true });
     cy.url().should("include", "summary");
   });
 
@@ -33,11 +33,11 @@ describe("Index page", function() {
 
   it("can go back from summary and edit answer", () => {
     cy.visit("/");
-    cy.contains(patronTypeVeteran).click();
-    cy.contains(nextButtonText).click();
-    cy.contains(skipButtonText).click();
-    cy.contains(skipButtonText).click();
-    cy.contains("Edit").click();
+    cy.contains(patronTypeVeteran).click({ force: true });
+    cy.contains(nextButtonText).click({ force: true });
+    cy.contains(skipButtonText).click({ force: true });
+    cy.contains(skipButtonText).click({ force: true });
+    cy.contains("Edit").click({ force: true });
     cy.contains("Select who will be receiving the benefits.");
   });
 });
