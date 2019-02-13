@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
 import { css } from "emotion";
-import Container from "./container";
 import HomeIcon from "./icons/Home";
 import HeaderLink from "./header_link";
 
@@ -13,6 +12,10 @@ const greyBanner = css`
   font-weight: bold;
   color: ${globalTheme.colour.greyishBrown};
   font-size: 16px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 `;
 
 const breadCrumbStyle = css`
@@ -38,27 +41,25 @@ export class BreadCrumbs extends Component {
     const { breadcrumbs, homeUrl } = this.props;
     return (
       <div className={greyBanner}>
-        <Container>
-          <div className={breadCrumbStyle}>
-            <HeaderLink id="homeButton" href={homeUrl} className={urlStyle}>
-              <HomeIcon className={iconStyle} /> {this.props.t("titles.home")}
-            </HeaderLink>
-            {breadcrumbs.map((breadcrumb, i) => (
-              <span key={"breadcrumb" + i}>
-                <span className={separator}> / </span>
-                <HeaderLink
-                  id={"breadcrumb" + i}
-                  href={breadcrumb.url}
-                  className={urlStyle}
-                >
-                  {breadcrumb.name}
-                </HeaderLink>
-              </span>
-            ))}
-            <span className={separator}> / </span>
-            <span>{this.props.pageTitle}</span>
-          </div>
-        </Container>
+        <div className={breadCrumbStyle}>
+          <HeaderLink id="homeButton" href={homeUrl} className={urlStyle}>
+            <HomeIcon className={iconStyle} /> {this.props.t("titles.home")}
+          </HeaderLink>
+          {breadcrumbs.map((breadcrumb, i) => (
+            <span key={"breadcrumb" + i}>
+              <span className={separator}> / </span>
+              <HeaderLink
+                id={"breadcrumb" + i}
+                href={breadcrumb.url}
+                className={urlStyle}
+              >
+                {breadcrumb.name}
+              </HeaderLink>
+            </span>
+          ))}
+          <span className={separator}> / </span>
+          <span>{this.props.pageTitle}</span>
+        </div>
       </div>
     );
   }

@@ -141,7 +141,7 @@ export class GuidedExperience extends Component {
           );
 
     return (
-      <Container id="mainContent">
+      <Container id="mainContent" mobileFullWidth={true}>
         <HeaderLink
           id="prevButton"
           href={backUrl}

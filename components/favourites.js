@@ -126,13 +126,13 @@ export class Favourites extends Component {
 
     return (
       <div className={outerDiv}>
-        <BreadCrumbs
-          t={t}
-          homeUrl={homeUrl}
-          breadcrumbs={breadcrumbs}
-          pageTitle={t("index.your_saved_benefits")}
-        />
-        <Container id="favourites">
+        <Container id="favourites" mobileFullWidth={true}>
+          <BreadCrumbs
+            t={t}
+            homeUrl={homeUrl}
+            breadcrumbs={breadcrumbs}
+            pageTitle={t("index.your_saved_benefits")}
+          />
           <Paper padding="md">
             <Grid container spacing={32}>
               <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>

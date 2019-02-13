@@ -140,7 +140,7 @@ export class BB extends Component {
     const shortEditText = t("directory.edit_selections_mobile");
 
     return (
-      <Container>
+      <Container mobileFullWidth={true}>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}
