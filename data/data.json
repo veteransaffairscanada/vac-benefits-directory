@@ -3754,18 +3754,18 @@
       "id": "feedback.details_expansion"
     },
     {
-      "id": "beta_banner.main",
       "section": "beta_banner",
       "key": "main",
       "English": "This is a new online tool.",
-      "French": "(fra) This is a new online tool."
+      "French": "(fra) This is a new online tool.",
+      "id": "beta_banner.main"
     },
     {
-      "id": "beta_banner.link_text",
       "section": "beta_banner",
       "key": "link_text",
       "English": "Click here to provide feedback. ",
-      "French": "(fra) Click here to provide feedback."
+      "French": "(fra) Click here to provide feedback.",
+      "id": "beta_banner.link_text"
     }
   ],
   "questions": [
@@ -5015,5 +5015,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1550002405460
+  "timestamp": 1550008345137
 }
