@@ -92,7 +92,9 @@ export class SummaryRow extends Component {
                 aria-label={t("alt_text.edit")}
                 height="5px"
               />
-              <span className={hideOnMobile}>{t("ge.edit")}</span>
+              <span id={"edit-" + questionName} className={hideOnMobile}>
+                {t("ge.edit")}
+              </span>
             </HeaderLink>
           </Grid>
         </Grid>
