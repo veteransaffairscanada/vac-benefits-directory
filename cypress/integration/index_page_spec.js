@@ -5,12 +5,15 @@ const skipButtonText = "Skip question";
 const nextButtonText = "Next";
 
 describe("Index page", function() {
-  it("successfully loads", () => {
+  beforeEach(() => {
     cy.visit("/");
   });
 
+  it("successfully loads", () => {
+    cy.contains("Select who will be receiving the benefits.");
+  });
+
   it("can skip through to summary", () => {
-    cy.visit("/");
     cy.contains(skipButtonText).click();
     cy.url().should("include", "needs");
     cy.contains(skipButtonText).click();
@@ -18,7 +21,6 @@ describe("Index page", function() {
   });
 
   it("can choose some options and get to summary and benefits directory", () => {
-    cy.visit("/");
     cy.contains(patronTypeVeteran).click();
     cy.contains(nextButtonText).click();
     cy.url().should("include", "serviceType?");
