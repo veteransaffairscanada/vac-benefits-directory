@@ -1,12 +1,12 @@
 const patronTypeVeteran = "Benefits for Veterans";
 const serviceTypeCAF = "Canadian Armed Forces";
 
-describe("Index page", function() {
+describe("Guided Experience", function() {
   beforeEach(() => {
     cy.visit("/");
   });
 
-  it("successfully loads", () => {
+  it("successfully loads start page", () => {
     cy.contains("Select who will be receiving the benefits.");
   });
 
