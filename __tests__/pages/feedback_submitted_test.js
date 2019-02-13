@@ -15,7 +15,8 @@ describe("FeedbackSubmitted", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: translate
+      t: translate,
+      url: { query: {} }
     };
   });
 

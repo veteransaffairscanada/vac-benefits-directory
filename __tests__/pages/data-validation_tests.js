@@ -36,7 +36,8 @@ describe("DataValidation", () => {
       benefitEligibility: benefitEligibilityFixture,
       needs: needsFixture,
       errors: [],
-      areaOffices: areaOfficesFixture
+      areaOffices: areaOfficesFixture,
+      url: { query: {} }
     };
     _mountedDataValidation = undefined;
   });
