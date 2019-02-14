@@ -74,6 +74,7 @@ export class Feedback extends Component {
         title={t("feedback.page_title")}
         backgroundColor={globalTheme.colour.white}
         skipLink="#mainContent"
+        url={url}
       >
         <Container className={padding} id="mainContent">
           <HeaderButton

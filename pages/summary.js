@@ -47,6 +47,7 @@ export class Summary extends Component {
         hideNoscript={false}
         title={t("titles.ge_summary")}
         skipLink="mainContent"
+        url={url}
       >
         <Container id="mainContent">
           <HeaderButton
