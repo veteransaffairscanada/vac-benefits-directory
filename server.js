@@ -78,6 +78,13 @@ Promise.resolve(getAllData()).then(allData => {
       res.sendStatus(200);
     });
 
+    // submitting beta Feedback
+    server.post("/submitBetaFeedback", (req, res) => {
+      Logger.info("Submitting beta feedback", { source: "/server.js" });
+      airTable.writeBetaFeedback(req.body);
+      res.sendStatus(200);
+    });
+
     // handle URL validation
     let urlCache = {};
     server.post("/checkURL", (req, res) => {
@@ -102,7 +109,7 @@ Promise.resolve(getAllData()).then(allData => {
         : req.headers["accept-language"];
 
       req.data = data;
-      req.language = lang.split(",")[0];
+      req.language = lang ? lang.split(",")[0] : "en";
 
       if (
         browser &&

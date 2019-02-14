@@ -24,6 +24,7 @@ export class GuidedExperiencePage extends Component {
         hideNoscript={false}
         title={pageTitle}
         skipLink="#mainContent"
+        url={url}
       >
         <GuidedExperience id={section} t={t} url={url} store={store}>
           {section === "needs" ? (

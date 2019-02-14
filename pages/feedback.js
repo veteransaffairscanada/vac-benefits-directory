@@ -7,10 +7,14 @@ import Container from "../components/container";
 import { css } from "emotion";
 import RadioSelector from "../components/radio_selector";
 import { connect } from "react-redux";
-import HeaderLink from "../components/header_link";
+import HeaderButton from "../components/header_button";
 import Button from "../components/button";
 import PropTypes from "prop-types";
 import TextArea from "../components/text_area";
+import Details from "../components/details";
+require("isomorphic-fetch");
+import Raven from "raven-js";
+import Router from "next/router";
 
 const padding = css`
   padding-top: 15px;
@@ -23,12 +27,44 @@ const prevButton = css`
 const headerPadding = css`
   padding-bottom: 10px;
 `;
-const textAreaPadding = css`
+const textAreaStyle = css`
   padding: 30px 0px 60px;
+  max-width: 700px;
+`;
+const bottomMargin = css`
+  margin-bottom: 30px;
 `;
 export class Feedback extends Component {
+  state = {
+    how_was_your_experience: "",
+    what_did_you_think: ""
+  };
+
+  handleChange = name => event => {
+    this.setState({
+      [name]: event.target.value
+    });
+  };
+
+  sendFeedback = () => {
+    let payload = {
+      how_was_your_experience: this.props.betaFeedback,
+      what_did_you_think: this.state.what_did_you_think,
+      time: new Date().toUTCString()
+    };
+
+    fetch("/submitBetaFeedback", {
+      body: JSON.stringify(payload),
+      cache: "no-cache",
+      headers: {
+        "content-type": "application/json"
+      },
+      method: "POST"
+    }).catch(err => Raven.captureException(err));
+  };
+
   render() {
-    const { t, i18n, questions, store } = this.props;
+    const { t, i18n, questions, store, url } = this.props;
     const question = questions.filter(x => x.variable_name === "feedback")[0];
     return (
       <Layout
@@ -38,15 +74,18 @@ export class Feedback extends Component {
         title={t("feedback.page_title")}
         backgroundColor={globalTheme.colour.white}
         skipLink="#mainContent"
+        url={url}
       >
         <Container className={padding} id="mainContent">
-          <HeaderLink
-            href={"/benefits-directory"} // will need to change
+          <HeaderButton
+            onClick={() => {
+              window.history.back();
+            }}
             className={prevButton}
             arrow="back"
           >
             {t("back")}
-          </HeaderLink>
+          </HeaderButton>
 
           <Header className={headerPadding} headingLevel="h1" size="lg">
             {t("feedback.page_header")}
@@ -58,25 +97,37 @@ export class Feedback extends Component {
                 : question.display_text_french
             }
             t={t}
-            selectorType="feedback"
+            selectorType="betaFeedback"
             options={question.multiple_choice_options}
             store={store}
           />
           <TextArea
-            className={textAreaPadding}
+            className={textAreaStyle}
             name="group1"
             maxLength={"500"}
             t={t}
+            onChange={this.handleChange("what_did_you_think")}
           >
             {t("feedback.tell_us_more")}
           </TextArea>
+          <Details
+            summary={t("feedback.details_question")}
+            className={bottomMargin}
+          >
+            {t("feedback.details_expansion")}
+          </Details>
           <div className={padding}>
             <Button
+              id="send"
               arrow={true}
               size="big"
-              // onClick={() => {
-              //   console.log("sent!!") // href should be feedback_sumbitted
-              // }}
+              onClick={() => {
+                this.sendFeedback();
+                Router.push({
+                  pathname: "/feedback_submitted",
+                  query: url.query
+                });
+              }}
             >
               {t("send")}{" "}
             </Button>
@@ -89,12 +140,15 @@ export class Feedback extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    questions: reduxState.questions
+    questions: reduxState.questions,
+    betaFeedback: reduxState.betaFeedback
   };
 };
 
 Feedback.propTypes = {
   t: PropTypes.func.isRequired,
+  betaFeedback: PropTypes.string.isRequired,
+  url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
   questions: PropTypes.array.isRequired,
   store: PropTypes.object

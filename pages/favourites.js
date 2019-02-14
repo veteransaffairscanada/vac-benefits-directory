@@ -9,7 +9,7 @@ import { globalTheme } from "../theme";
 
 export class FavouritesPage extends Component {
   render() {
-    const { t, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const { t, favouriteBenefits, url } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout
         t={this.props.t}
@@ -18,6 +18,7 @@ export class FavouritesPage extends Component {
         title={t("favourites.saved_benefits", { x: favouriteBenefits.length })}
         backgroundColor={globalTheme.colour.white}
         skipLink="#mainContent"
+        url={url}
       >
         <Favourites
           id="favourites"

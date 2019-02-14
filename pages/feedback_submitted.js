@@ -8,14 +8,11 @@ import { css } from "emotion";
 import { connect } from "react-redux";
 import HeaderLink from "../components/header_link";
 import PropTypes from "prop-types";
+import { mutateUrl } from "../utils/common";
 
 const padding = css`
   padding-top: 15px;
   padding-bottom: 15px;
-`;
-const prevButton = css`
-  margin-top: 50px;
-  margin-bottom: 15px;
 `;
 const textStyle = css`
   fontfamily: ${globalTheme.fontFamily};
@@ -33,7 +30,7 @@ const headerLinkStyle = css`
 `;
 export class FeedbackSubmitted extends Component {
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n, url } = this.props;
     return (
       <Layout
         t={t}
@@ -41,19 +38,19 @@ export class FeedbackSubmitted extends Component {
         hideNoscript={false}
         title={t("feedback.page_title")}
         backgroundColor={globalTheme.colour.white}
+        url={url}
       >
         <Container className={padding} id="mainContent">
-          <HeaderLink href={"/feedback"} className={prevButton} arrow="back">
-            {t("back")}
-          </HeaderLink>
-
           <Header headingLevel="h1" size="lg">
             {t("feedback.page_header")}
           </Header>
 
           <p className={textStyle}>{t("feedback.submitted")}</p>
 
-          <HeaderLink href={"/benefits-directory"} className={headerLinkStyle}>
+          <HeaderLink
+            href={mutateUrl(url, "/benefits-directory")}
+            className={headerLinkStyle}
+          >
             {t("feedback.ben_dir_link")}
           </HeaderLink>
         </Container>
@@ -64,6 +61,7 @@ export class FeedbackSubmitted extends Component {
 
 FeedbackSubmitted.propTypes = {
   t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired
 };
 

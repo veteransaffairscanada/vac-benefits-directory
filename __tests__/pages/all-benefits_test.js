@@ -39,7 +39,8 @@ describe("AllBenefits", () => {
       loadDataStore: jest.fn(),
       favouriteBenefits: [],
       showFavourites: true,
-      toggleFavourite: () => true
+      toggleFavourite: () => true,
+      url: { query: {} }
     };
     _mountedAllBenefits = undefined;
     mockStore = configureStore();

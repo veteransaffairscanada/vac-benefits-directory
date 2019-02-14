@@ -15,7 +15,8 @@ describe("FeedbackSubmitted", () => {
       i18n: {
         addResourceBundle: jest.fn()
       },
-      t: translate
+      t: translate,
+      url: { query: {} }
     };
   });
 
@@ -24,9 +25,6 @@ describe("FeedbackSubmitted", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("contains a back button", async () => {
-    expect(mount(<FeedbackSubmitted {...props} />).text()).toContain("back");
-  });
   it("contains the Return to Find benefits and services link", async () => {
     expect(mount(<FeedbackSubmitted {...props} />).text()).toContain(
       "ben_dir_link"

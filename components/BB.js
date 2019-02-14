@@ -22,6 +22,7 @@ import BreadCrumbs from "../components/breadcrumbs";
 import ShareBox from "../components/share_box";
 import EditIcon from "./icons/Edit";
 import Cookies from "universal-cookie";
+import Paper from "./paper";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -139,7 +140,7 @@ export class BB extends Component {
     const shortEditText = t("directory.edit_selections_mobile");
 
     return (
-      <div id={this.props.id} className={outerDiv}>
+      <Container mobileFullWidth={true}>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}
@@ -148,7 +149,7 @@ export class BB extends Component {
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
-        <Container>
+        <Paper id={this.props.id} className={outerDiv} padding="md">
           <Grid container spacing={32}>
             <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
               <div className={sidebar}>
@@ -225,8 +226,8 @@ export class BB extends Component {
               />
             </Grid>
           </Grid>
-        </Container>
-      </div>
+        </Paper>
+      </Container>
     );
   }
 }

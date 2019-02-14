@@ -19,7 +19,8 @@ const initialState = {
   pageWidth: 1000,
   mapView: { lat: 49, lng: -104, zoom: 1 },
   cookiesDisabled: false,
-  language: ""
+  language: "",
+  betaFeedback: ""
 };
 airtableConstants.tableNames.forEach(tableName => {
   initialState[tableName] = [];
