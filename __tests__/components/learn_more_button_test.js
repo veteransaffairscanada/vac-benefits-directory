@@ -48,6 +48,7 @@ describe("LearnMoreButton", () => {
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
+      "learn more",
       props.benefit.benefitPageEn
     );
   });

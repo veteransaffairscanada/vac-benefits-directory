@@ -129,3 +129,15 @@ export const getBenefitCountString = (benefits, t) => {
     return t("B3.x benefits to consider", { x: benefits.length });
   }
 };
+
+export const getPageName = questionName => {
+  const pageNameDict = {
+    patronType: "",
+    serviceType: "serviceType",
+    statusAndVitals: "statusAndVitals",
+    serviceHealthIssue: "serviceHealthIssue",
+    needs: "needs",
+    summary: "summary"
+  };
+  return pageNameDict[questionName];
+};

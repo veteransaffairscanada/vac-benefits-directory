@@ -98,7 +98,8 @@ HeaderLink.propTypes = {
   arrow: PropTypes.string,
   label: PropTypes.object,
   onClick: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  href: PropTypes.string
 };
 
 export default HeaderLink;

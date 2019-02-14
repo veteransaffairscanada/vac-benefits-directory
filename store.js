@@ -19,7 +19,8 @@ const initialState = {
   pageWidth: 1000,
   mapView: { lat: 49, lng: -104, zoom: 1 },
   cookiesDisabled: false,
-  language: ""
+  language: "",
+  betaFeedback: ""
 };
 airtableConstants.tableNames.forEach(tableName => {
   initialState[tableName] = [];
@@ -66,11 +67,6 @@ export const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         enIdx: JSON.stringify(enIdx),
         frIdx: JSON.stringify(frIdx)
-      });
-
-    case "LOAD_GITHUBDATA":
-      return Object.assign({}, state, {
-        githubData: action.data
       });
 
     case "LOAD_DATA":

@@ -26,11 +26,10 @@ const heading = css`
 `;
 const listStyle = css`
   padding-left: 20px;
+  list-style: disc;
+  margin: 16px 0;
+  text-indent: 0.2em;
 `;
-
-const logExit = url => {
-  logEvent("Exit", url);
-};
 
 const ChildBenefitList = props => {
   const { benefits, colonText, t } = props;
@@ -55,7 +54,9 @@ const ChildBenefitList = props => {
                   size="small"
                   href={language === "en" ? cb.benefitPageEn : cb.benefitPageFr}
                   onClick={() => {
-                    logExit(
+                    logEvent(
+                      "Exit",
+                      "child benefit",
                       language === "en" ? cb.benefitPageEn : cb.benefitPageFr
                     );
                     return true;

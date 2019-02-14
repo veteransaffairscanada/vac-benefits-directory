@@ -54,7 +54,9 @@ export const getProfileFilters = createSelector(
   [state => state.questions, state => state],
   (questions, reduxState) => {
     const profileQuestions = questions
-      .filter(q => q.variable_name !== "needs")
+      .filter(
+        q => q.variable_name !== "needs" && q.variable_name !== "feedback"
+      )
       .map(q => q.variable_name);
     let filters = {};
     profileQuestions.forEach(q => {
@@ -71,6 +73,42 @@ export const eligibilityMatch = (be, profileFilters, multipleChoiceOptions) => {
       // convert benefitEligibility ids to match profileFilter names
       const mco = multipleChoiceOptions.filter(
         mco => be[criteria].indexOf(mco.id) !== -1
+      );
+      let names = [];
+      mco.forEach(m => {
+        names.push(m.variable_name);
+      });
+      if (names.indexOf(profileFilters[criteria].toString()) === -1) {
+        matches = false;
+      }
+    }
+  });
+  return matches;
+};
+
+export const nextStepsEligibilityMatch = (
+  ne,
+  profileFilters,
+  multipleChoiceOptions
+) => {
+  let matches = true;
+  Object.keys(profileFilters).forEach(criteria => {
+    if (
+      (!profileFilters[criteria] || profileFilters[criteria].length === 0) &&
+      ne[criteria] &&
+      ne[criteria].length > 0
+    ) {
+      matches = false;
+    }
+    if (
+      profileFilters[criteria] &&
+      profileFilters[criteria].length > 0 &&
+      ne[criteria] &&
+      ne[criteria].length > 0
+    ) {
+      // convert benefitEligibility ids to match profileFilter names
+      const mco = multipleChoiceOptions.filter(
+        mco => ne[criteria].indexOf(mco.id) !== -1
       );
       let names = [];
       mco.forEach(m => {
@@ -159,7 +197,9 @@ export const getFilteredNextSteps = createSelector(
       // only check eligible nextSteps if we know we have selections
       let eligibleNextStepIds = [];
       nextSteps.forEach(ns => {
-        if (eligibilityMatch(ns, profileFilters, multipleChoiceOptions)) {
+        if (
+          nextStepsEligibilityMatch(ns, profileFilters, multipleChoiceOptions)
+        ) {
           eligibleNextStepIds.push(ns.id);
         }
       });
@@ -172,7 +212,7 @@ export const getFilteredNextSteps = createSelector(
         (!ns.patronType || ns.patronType.length === 0) &&
         (!ns.serviceType || ns.serviceType.length === 0) &&
         (!ns.statusAndVitals || ns.statusAndVitals.length === 0) &&
-        (!ns.serviceHealthIssue || !ns.serviceHealthIssue.length === 0)
+        (!ns.serviceHealthIssue || ns.serviceHealthIssue.length === 0)
     );
   }
 );

@@ -14,10 +14,6 @@ const anchorFocus = css`
   }
 `;
 
-const logExit = url => {
-  logEvent("Exit", url);
-};
-
 const LearnMoreButton = props => {
   const { t, benefit } = props;
   const url =
@@ -34,7 +30,7 @@ const LearnMoreButton = props => {
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => {
-        logExit(url);
+        logEvent("Exit", "learn more", url);
       }}
     >
       <Button className={fullWidth} arrow={true} tabIndex="-1">

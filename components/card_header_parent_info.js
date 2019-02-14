@@ -9,10 +9,6 @@ const headerUrl = css`
 `;
 
 export class CardHeaderParentInfo extends Component {
-  logExit = url => {
-    logEvent("Exit", url);
-  };
-
   benefitUrl = benefit => {
     return this.props.t("current-language-code") === "en"
       ? benefit.benefitPageEn
@@ -33,7 +29,9 @@ export class CardHeaderParentInfo extends Component {
         href={this.benefitUrl(b)}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => this.logExit(this.benefitUrl(b))}
+        onClick={() => {
+          logEvent("Exit", "gateway benefit", this.benefitUrl(b));
+        }}
       >
         {this.benefitTitle(b)}
       </a>

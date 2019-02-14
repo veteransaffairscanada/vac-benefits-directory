@@ -5,6 +5,7 @@ import Button from "./button";
 import { css } from "emotion";
 import Header from "./typography/header";
 import Body from "./typography/body";
+import { logEvent } from "../utils/analytics";
 
 import {
   InfoWindow,
@@ -100,6 +101,7 @@ export class AreaOfficeMap extends Component {
                       arrow={true}
                       size="small"
                       onClick={() => {
+                        logEvent("Exit", "get directions", d["name_en"]);
                         window.location.href = isIOS
                           ? "https://maps.apple.com/?daddr=" + d["address_en"]
                           : "https://www.google.com/maps?saddr=My+Location&daddr=" +

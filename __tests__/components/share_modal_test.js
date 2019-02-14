@@ -18,6 +18,7 @@ describe("ShareModal", () => {
     Router.push = jest.fn();
     window.location.assign = jest.fn();
     props = {
+      uid: "abc",
       isOpen: true,
       closeModal: jest.fn(),
       t: () => "en",
@@ -42,7 +43,7 @@ describe("ShareModal", () => {
     modal.setState({ isOpen: true });
     modal.instance().close = jest.fn();
     modal
-      .find("#modalCloseButton")
+      .find("button")
       .first()
       .simulate("click");
     expect(modal.instance().close).toBeCalled();
@@ -51,20 +52,20 @@ describe("ShareModal", () => {
   it("renders when isOpen is true", () => {
     let modal = mount(<ShareModal {...props} />);
     modal.setState({ isOpen: true });
-    expect(modal.find("#shareTarget").length).not.toEqual(0);
+    expect(modal.find("input").length).not.toEqual(0);
   });
 
   it("doesn't render when isOpen is false", () => {
     let modal = mount(<ShareModal {...props} />);
-    expect(modal.find("#shareTarget").length).not.toEqual(0);
+    expect(modal.find("input").length).not.toEqual(0);
   });
 
   it("the link to be copied when the copy button is clicked", () => {
     let modal = mount(<ShareModal {...props} />);
     modal.setState({ isOpen: true });
     modal
-      .find("#copyButton")
-      .first()
+      .find("button")
+      .at(1)
       .simulate("click");
     expect(modal.instance().state.statusMessage).not.toEqual("");
   });
@@ -73,11 +74,11 @@ describe("ShareModal", () => {
     let modal = mount(<ShareModal {...props} />);
     modal.setState({ isOpen: true });
     modal
-      .find("#copyButton")
-      .first()
+      .find("button")
+      .at(1)
       .simulate("click");
     modal
-      .find("#modalCloseButton")
+      .find("button")
       .first()
       .simulate("click");
     expect(modal.instance().state.statusMessage).toEqual("");

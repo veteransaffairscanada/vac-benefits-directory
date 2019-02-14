@@ -161,7 +161,23 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
 var writeFeedback = (exports.writeFeedback = async function writeFeedback(
   payload
 ) {
-  var url = "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/feedback";
+  var url = "https://api.airtable.com/v0/" + baseKey + "/feedback";
+  var resp = await fetch(url, {
+    body: JSON.stringify({ fields: payload }),
+    cache: "no-cache",
+    headers: {
+      Authorization: "Bearer " + writeKey,
+      "content-type": "application/json"
+    },
+    method: "POST"
+  });
+  return await resp.json();
+});
+
+var writeBetaFeedback = (exports.writeBetaFeedback = async function writeBetaFeedback(
+  payload
+) {
+  var url = "https://api.airtable.com/v0/" + baseKey + "/beta_feedback";
   var resp = await fetch(url, {
     body: JSON.stringify({ fields: payload }),
     cache: "no-cache",

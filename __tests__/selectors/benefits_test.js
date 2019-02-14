@@ -33,6 +33,8 @@ describe("Benefits Selectors", () => {
       needs: needsFixture,
       selectedNeeds: {},
       patronType: "",
+      statusAndVitals: "",
+      serviceHealthIssue: "",
       searchString: "",
       serviceType: "",
       benefitExamples: benefitExamplesFixture,
@@ -55,8 +57,8 @@ describe("Benefits Selectors", () => {
       );
       expect(returnValue.patronType).toEqual("p2");
       expect(returnValue.serviceType).toEqual("s1");
-      expect(returnValue.statusAndVitals).toEqual(undefined);
-      expect(returnValue.serviceHealthIssue).toEqual(undefined);
+      expect(returnValue.statusAndVitals).toEqual("");
+      expect(returnValue.serviceHealthIssue).toEqual("");
     });
   });
 
@@ -217,15 +219,25 @@ describe("Benefits Selectors", () => {
   });
 
   describe("getFilteredNextSteps", () => {
-    it("displays all next steps if no eligibility paths are selected", () => {
-      expect(getFilteredNextSteps(state, props).length).toEqual(
-        nextStepsFixture.length
-      );
+    it("displays next steps with no eligibility requirements if no eligibility paths are selected", () => {
+      expect(getFilteredNextSteps(state, props).length).toEqual(2);
     });
 
     it("displays expected next steps if the patronType is organization", () => {
       state.patronType = "organization";
-      expect(getFilteredNextSteps(state, props).length).toEqual(3);
+      expect(getFilteredNextSteps(state, props).length).toEqual(2);
+    });
+
+    it("displays expected next steps if the patronType is servingMember", () => {
+      state.patronType = "servingMember";
+      expect(getFilteredNextSteps(state, props).length).toEqual(5);
+    });
+
+    it("displays expected next steps if the patronType is servingMember", () => {
+      state.serviceHealthIssue = "hasServiceHealthIssue";
+      expect(
+        getFilteredNextSteps(state, props).map(x => x.bullet_name)
+      ).toContain("ServiceHealthRecord");
     });
   });
 });

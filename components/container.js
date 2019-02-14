@@ -14,15 +14,23 @@ const style = css`
   }
 `;
 
+const mobileFullWidth = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+`;
+
 class Container extends Component {
   render() {
+    let className = style;
+    if (this.props.className)
+      className = this.props.mobileFullWidth
+        ? cx(style, mobileFullWidth, this.props.className)
+        : cx(style, this.props.className);
+    else if (this.props.mobileFullWidth) className = cx(style, mobileFullWidth);
     return (
-      <div
-        className={
-          this.props.className ? cx(style, this.props.className) : style
-        }
-        id={this.props.id ? this.props.id : ""}
-      >
+      <div className={className} id={this.props.id ? this.props.id : ""}>
         {this.props.children}
       </div>
     );
@@ -32,6 +40,7 @@ class Container extends Component {
 Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   id: PropTypes.string,
+  mobileFullWidth: PropTypes.bool,
   className: PropTypes.string
 };
 

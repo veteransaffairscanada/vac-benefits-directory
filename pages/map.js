@@ -16,6 +16,7 @@ import Body from "../components/typography/body";
 import AnchorLink from "../components/typography/anchor_link";
 import BreadCrumbs from "../components/breadcrumbs";
 import { mutateUrl } from "../utils/common";
+import { logEvent } from "../utils/analytics";
 
 const mapPaper = css`
   margin-top: ${globalTheme.marginTop};
@@ -89,6 +90,9 @@ export class Map extends Component {
                   <AnchorLink
                     fontSize="18px"
                     href={"tel:+" + t("contact.phone")}
+                    onClick={() => {
+                      logEvent("Exit", "telephone VAC");
+                    }}
                   >
                     {t("contact.phone")}
                   </AnchorLink>

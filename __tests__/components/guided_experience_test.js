@@ -1,6 +1,5 @@
 import { mount, shallow } from "enzyme";
 import React from "react";
-import Router from "next/router";
 import questionsFixture from "../fixtures/questions_complex";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
 import { GuidedExperience } from "../../components/guided_experience";
@@ -30,8 +29,7 @@ describe("GuidedExperience", () => {
     }
     return _shallowGuidedExperience;
   };
-  Router.push = jest.fn().mockImplementation(() => new Promise(() => true));
-  window.scrollTo = jest.fn();
+
   beforeEach(() => {
     props = {
       t: translate,
@@ -70,79 +68,90 @@ describe("GuidedExperience", () => {
     expect(shallow_GuidedExperience().find(".thing").length).toEqual(1);
   });
 
-  it("the Next button does not contain an href if nextSection != benefits-directory", () => {
-    expect(
-      mounted_GuidedExperience()
-        .find("Button")
-        .last()
-        .props().href
-    ).toEqual(undefined);
-  });
-
   it("the Next buttons says 'Next'", () => {
     expect(
       mounted_GuidedExperience()
-        .find("Button")
-        .last()
+        .find("#nextButton")
+        .first()
         .text()
     ).toContain("next");
   });
 
-  it("displays helper text if it exists", () => {
-    props.helperText = "helperText";
-    expect(
-      mounted_GuidedExperience()
-        .find("Body")
-        .text()
-    ).toContain("helperText");
+  it("displays helper text if id is serviceHealthIssue", () => {
+    props.id = "serviceHealthIssue";
+    expect(mounted_GuidedExperience().find("Body").length).toEqual(1);
   });
 
-  it("does not display helper text if it does not exist", () => {
-    props.helperText = "";
+  it("does not display helper text if id is not serviceHealthIssue", () => {
     expect(mounted_GuidedExperience().find("Body").length).toEqual(0);
   });
 
-  it("Intro text appears on step 1 of guided experience", () => {
-    props.stepNumber = 0;
+  it("Intro text appears if id is patronType", () => {
+    props.id = "patronType";
     expect(mounted_GuidedExperience().text()).toContain("ge.intro_text_p1");
     expect(mounted_GuidedExperience().text()).toContain("ge.intro_text_p2");
   });
 
-  it("Intro text appears does not appear on steps after step 1 of guided experience", () => {
-    props.stepNumber = 1;
+  it("Intro text appears does not appear if id is not patronType", () => {
+    props.id = "serviceType";
     expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p1");
     expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p2");
   });
 
-  it("clears redux if the skip button is pressed", () => {
-    mounted_GuidedExperience()
-      .find("#skipButton")
-      .simulate("click");
-    expect(props.saveQuestionResponse).toBeCalledWith("serviceType", "");
-    expect(Router.push).toBeCalledWith(
-      "/index?lng=en&patronType=veteran&section=needs"
-    );
+  it("back button has correct href, clears hidden questions", () => {
+    props.url.query.statusAndVitals = "blah";
+    props.url.query.selectedNeeds = "1,2";
+    expect(
+      mounted_GuidedExperience()
+        .find("#prevButton")
+        .first()
+        .props().href
+    ).toEqual("/?lng=en&patronType=veteran&serviceType=RCMP&selectedNeeds=1,2");
   });
 
-  it("clears only hidden questions if the next button is pressed", () => {
-    props.statusAndVitals = "blah";
-    mounted_GuidedExperience()
-      .find("#nextButton")
-      .first()
-      .simulate("click");
-    expect(Router.push).toBeCalledWith(
-      "/index?lng=en&patronType=veteran&serviceType=RCMP&section=serviceHealthIssue"
-    );
+  it("back button links to VAC home page if we're on the 1st page", () => {
+    props.id = "patronType";
+    expect(
+      mounted_GuidedExperience()
+        .find("#prevButton")
+        .first()
+        .props().href
+    ).toEqual("ge.home_link");
   });
 
-  it("clears only hidden questions if the back button is pressed", () => {
-    props.statusAndVitals = "blah";
-    mounted_GuidedExperience()
-      .find("#prevButton")
-      .first()
-      .simulate("click");
-    expect(Router.push).toBeCalledWith(
-      "/?lng=en&patronType=veteran&serviceType=RCMP&section=patronType"
-    );
+  it("next button has correct href, clears hidden questions", () => {
+    props.url.query.statusAndVitals = "blah";
+    expect(
+      mounted_GuidedExperience()
+        .find("#nextLink")
+        .first()
+        .props().href
+    ).toEqual("/serviceHealthIssue?lng=en&patronType=veteran&serviceType=RCMP");
+  });
+
+  it("skip button has the correct href, clears hidden questions and current question", () => {
+    props.url.query.statusAndVitals = "blah";
+    props.url.query.selectedNeeds = "1,2";
+    expect(
+      mounted_GuidedExperience()
+        .find("#skipLink")
+        .first()
+        .props().href
+    ).toEqual("/needs?lng=en&patronType=veteran&selectedNeeds=1,2");
+  });
+
+  it("skip button has the correct href, clears future questions", () => {
+    props.url.query.patronType = "veteran";
+    props.url.query.serviceType = "CAF";
+    props.url.query.serviceHealthIssue = "false";
+    props.url.query.selectedNeeds = "1,2";
+    props.id = "patronType";
+
+    expect(
+      mounted_GuidedExperience()
+        .find("#skipLink")
+        .first()
+        .props().href
+    ).toEqual("/needs?lng=en&selectedNeeds=1,2");
   });
 });

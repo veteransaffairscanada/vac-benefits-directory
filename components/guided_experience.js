@@ -2,18 +2,18 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { css } from "emotion";
-import Router from "next/router";
 import Container from "./container";
 import Header from "./typography/header";
 import Body from "./typography/body";
-import Button from "./button";
-import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
 import Paper from "./paper";
 import { mutateUrl } from "../utils/common";
 import { connect } from "react-redux";
-import { showQuestion } from "../utils/common";
+import { showQuestion, getPageName } from "../utils/common";
+import HeaderButton from "./header_button";
+import Button from "./button";
+import Link from "next/link";
 
 const box = css`
   padding: 63px 63px 63px 63px;
@@ -35,150 +35,161 @@ const body = css`
   margin-bottom: 0px;
 `;
 export class GuidedExperience extends Component {
-  returnGoToNextSection = clearCurrentQuestion => {
-    let goToNextSection = () => {
-      const { id, reduxState, url, saveQuestionResponse } = this.props;
-      let params = {};
-      this.queryParamsToClear().forEach(x => {
-        params[x.key] = x.value;
-      });
-
-      // modifiedReduxState exists so we are sure the redux state updates before we do Router push
-      let modifiedReduxState = JSON.parse(JSON.stringify(reduxState));
-      if (clearCurrentQuestion) {
-        if (id === "needs") {
-          saveQuestionResponse("selectedNeeds", {});
-          modifiedReduxState.selectedNeeds = {};
-        } else {
-          saveQuestionResponse(id, "");
-          modifiedReduxState[id] = "";
-        }
-      }
-
-      const displayable_sections = this.getDisplayableSections(
-        modifiedReduxState
-      );
-      const dynamicStepNumber = displayable_sections.indexOf(id);
-      let nextSection;
-      if (dynamicStepNumber + 1 >= displayable_sections.length) {
-        nextSection = "summary";
-        if (clearCurrentQuestion && id === "needs") {
-          params.section = "";
-          params.selectedNeeds = {};
-          const newUrl = mutateUrl(url, "/summary", params);
-          window.location.href = newUrl;
-          document.body.focus();
-        } else {
-          params.section = "";
-          Router.push(mutateUrl(url, "/summary", params)).then(() =>
-            window.scrollTo(0, 0)
-          );
-          document.body.focus();
-        }
-      } else {
-        nextSection = displayable_sections[dynamicStepNumber + 1];
-        params.section = nextSection;
-        if (clearCurrentQuestion) {
-          params[id] = "";
-        }
-        Router.push(mutateUrl(url, "/index", params)).then(() =>
-          window.scrollTo(0, 0)
-        );
-        document.body.focus();
-      }
-    };
-    return goToNextSection;
+  getSubtitle = question => {
+    if (this.props.t("current-language-code") === "en") {
+      return question["guided_experience_english"];
+    } else {
+      return question["guided_experience_french"];
+    }
   };
 
-  getDisplayableSections = reduxState => {
-    return this.props.reduxState.questions
-      .map(x => x.variable_name)
-      .filter((x, i) => showQuestion(x, i, reduxState));
-  };
-
-  queryParamsToClear() {
-    return this.props.reduxState.questions
+  queryParamsToClearHiddenQuestions() {
+    let queryObj = {};
+    this.props.reduxState.questions
       .map(x => x.variable_name)
       .filter((x, i) => !showQuestion(x, i, this.props.reduxState))
-      .map(x => {
+      .forEach(x => {
         if (x === "needs") {
-          return { key: "selectedNeeds", value: {} };
+          queryObj["selectedNeeds"] = {};
         } else {
-          return { key: x, value: "" };
+          queryObj[x] = "";
         }
       });
+    return queryObj;
+  }
+
+  getPrevSection() {
+    const displayable_sections = this.props.sectionOrder.filter((x, i) =>
+      showQuestion(x, i, this.props.reduxState)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(this.props.id);
+    return displayable_sections[dynamicStepNumber - 1];
+  }
+
+  getNextUrl() {
+    const { reduxState, sectionOrder, id, url } = this.props;
+    const displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxState)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(id);
+    const nextSection =
+      dynamicStepNumber + 1 >= displayable_sections.length
+        ? "summary"
+        : displayable_sections[dynamicStepNumber + 1];
+
+    let nextQueryParams = this.queryParamsToClearHiddenQuestions();
+    if (id === "needs") {
+      nextQueryParams.selectedNeeds = Object.keys(
+        reduxState.selectedNeeds
+      ).join();
+    } else {
+      nextQueryParams[id] = JSON.parse(JSON.stringify(reduxState[id]));
+    }
+
+    return mutateUrl(url, "/" + getPageName(nextSection), nextQueryParams);
+  }
+
+  getSkipUrl() {
+    const { reduxState, sectionOrder, id, url } = this.props;
+
+    var reduxStateCopy = JSON.parse(JSON.stringify(reduxState));
+    if (id === "needs") {
+      reduxStateCopy.selectedNeeds = {};
+    } else {
+      reduxStateCopy[id] = "";
+    }
+    let skipQueryParams = this.queryParamsToClearHiddenQuestions();
+
+    const stepNumber = sectionOrder.indexOf(id);
+    sectionOrder.forEach((x, i) => {
+      if (i > stepNumber && x !== "needs") {
+        skipQueryParams[x] = "";
+        reduxStateCopy[x] = "";
+      }
+    });
+    let displayable_sections = sectionOrder.filter((x, i) =>
+      showQuestion(x, i, reduxStateCopy)
+    );
+    const dynamicStepNumber = displayable_sections.indexOf(id);
+    const nextSection =
+      dynamicStepNumber + 1 >= displayable_sections.length
+        ? "summary"
+        : displayable_sections[dynamicStepNumber + 1];
+
+    if (id === "needs") {
+      skipQueryParams.selectedNeeds = {};
+    } else {
+      skipQueryParams[id] = "";
+    }
+
+    return mutateUrl(url, "/" + getPageName(nextSection), skipQueryParams);
   }
 
   render() {
-    const { t, prevSection, subtitle, helperText, url } = this.props;
+    const { t, url, id, reduxState } = this.props;
+    const question = reduxState.questions.filter(
+      x => x.variable_name === id
+    )[0];
+
+    const backUrl =
+      id === "patronType"
+        ? t("ge.home_link")
+        : mutateUrl(
+            url,
+            "/" + getPageName(this.getPrevSection()),
+            this.queryParamsToClearHiddenQuestions()
+          );
 
     return (
-      <Container id="mainContent">
-        {prevSection === "index" ? (
-          <HeaderLink
-            id="prevButton"
-            href={t("ge.home_link")}
-            className={prevButton}
-            arrow="back"
-          >
-            {t("back")}
-          </HeaderLink>
-        ) : (
-          <HeaderButton
-            id="prevButton"
-            onClick={() => {
-              let params = { section: prevSection };
-              this.queryParamsToClear().forEach(x => {
-                params[x.key] = x.value;
-              });
-              Router.push(mutateUrl(url, "/", params));
-              document.body.focus();
-              window.scrollTo(0, 0);
-            }}
-            className={prevButton}
-            arrow="back"
-          >
-            {t("back")}
-          </HeaderButton>
-        )}
-
-        {this.props.stepNumber === 0 ? (
-          <React.Fragment>
-            <Header size="lg" headingLevel="h1">
-              {t("ge.Find benefits and services")}
-            </Header>
-            <Body>
-              <p>{t("ge.intro_text_p1")}</p>
-              <p>{t("ge.intro_text_p2")}</p>
-            </Body>
-          </React.Fragment>
-        ) : null}
+      <Container id="mainContent" mobileFullWidth={true}>
+        <HeaderLink
+          id="prevButton"
+          href={backUrl}
+          className={prevButton}
+          arrow="back"
+        >
+          {t("back")}
+        </HeaderLink>
 
         <Paper padding="md" className={box}>
           <Grid container spacing={24}>
+            {id === "patronType" ? (
+              <React.Fragment>
+                <Grid item xs={12}>
+                  <Header size="lg" headingLevel="h1">
+                    {t("ge.Find benefits and services")}
+                  </Header>
+                  <Body>
+                    <p>{t("ge.intro_text_p1")}</p>
+                    <p>{t("ge.intro_text_p2")}</p>
+                  </Body>
+                </Grid>
+              </React.Fragment>
+            ) : null}
             <Grid item xs={12} className={questions}>
               <Header size="md_lg" headingLevel="h2">
-                {subtitle}
+                {this.getSubtitle(question)}
               </Header>
-              {helperText ? <Body className={body}>{helperText}</Body> : null}
+              {question.tooltip_english && question.tooltip_english !== "" ? (
+                <Body className={body}>
+                  {t("current-language-code") === "en"
+                    ? question.tooltip_english
+                    : question.tooltip_french}
+                </Body>
+              ) : null}
               {this.props.children}
             </Grid>
-
             <Grid item xs={12}>
-              <Button
-                id="nextButton"
-                arrow={true}
-                onClick={this.returnGoToNextSection(false)}
-              >
-                {t("next")}{" "}
-              </Button>
-              <HeaderButton
-                id="skipButton"
-                altStyle="grey"
-                onClick={this.returnGoToNextSection(true)}
-              >
-                {t("ge.skip")}
-              </HeaderButton>
+              <Link id="nextLink" href={this.getNextUrl()}>
+                <Button id="nextButton" arrow={true}>
+                  {t("next")}{" "}
+                </Button>
+              </Link>
+              <Link id="skipLink" href={this.getSkipUrl()}>
+                <HeaderButton id="skipButton" altStyle="grey">
+                  {t("ge.skip")}
+                </HeaderButton>
+              </Link>
             </Grid>
           </Grid>
         </Paper>
@@ -194,33 +205,14 @@ const mapStateToProps = reduxState => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    saveQuestionResponse: (question, response) => {
-      dispatch({
-        type: "SAVE_QUESTION_RESPONSE",
-        data: { [question]: response }
-      });
-    }
-  };
-};
-
 GuidedExperience.propTypes = {
   id: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
   sectionOrder: PropTypes.array.isRequired,
-  saveQuestionResponse: PropTypes.func.isRequired,
-  prevSection: PropTypes.string,
   t: PropTypes.func.isRequired,
-  subtitle: PropTypes.string.isRequired,
-  helperText: PropTypes.string,
-  stepNumber: PropTypes.number.isRequired,
   children: PropTypes.object.isRequired,
   store: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GuidedExperience);
+export default connect(mapStateToProps)(GuidedExperience);
