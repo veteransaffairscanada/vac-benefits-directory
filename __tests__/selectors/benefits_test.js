@@ -209,24 +209,69 @@ describe("Benefits Selectors", () => {
 
   describe("getFilteredNextSteps", () => {
     it("displays next steps with no eligibility requirements if no eligibility paths are selected", () => {
-      expect(getFilteredNextSteps(state, props).length).toEqual(1);
-    });
-
-    it("displays expected next steps if the patronType is organization", () => {
-      state.patronType = "organization";
-      expect(getFilteredNextSteps(state, props).length).toEqual(1);
+      const nextSteps = state.nextSteps.filter(x => {
+        let noEligibility = true;
+        [
+          "patronType",
+          "serviceType",
+          "serviceHealthIssue",
+          "statusAndVitals"
+        ].forEach(y => {
+          if (Object.keys(x).indexOf(y) > -1 && x[y].length > 0) {
+            noEligibility = false;
+          }
+        });
+        return noEligibility;
+      });
+      expect(getFilteredNextSteps(state, props)).toEqual(nextSteps);
     });
 
     it("displays expected next steps if the patronType is servingMember", () => {
       state.patronType = "servingMember";
-      expect(getFilteredNextSteps(state, props).length).toEqual(4);
+      const id = state.multipleChoiceOptions.filter(
+        x => x.variable_name === "servingMember"
+      )[0].id;
+      const nextSteps = state.nextSteps
+        .filter(x => {
+          if (
+            Object.keys(x).indexOf("patronType") > -1 &&
+            x.patronType.indexOf(id) > -1
+          ) {
+            return true;
+          }
+          return false;
+        })
+        .map(x => x.bullet_name);
+
+      nextSteps.forEach(x => {
+        expect(
+          getFilteredNextSteps(state, props).map(y => y.bullet_name)
+        ).toContain(x);
+      });
     });
 
     it("displays expected next steps if the patronType is servingMember", () => {
       state.serviceHealthIssue = "hasServiceHealthIssue";
-      expect(
-        getFilteredNextSteps(state, props).map(x => x.bullet_name)
-      ).toContain("ServiceHealthRecord");
+      const id = state.multipleChoiceOptions.filter(
+        x => x.variable_name === "hasServiceHealthIssue"
+      )[0].id;
+      const nextSteps = state.nextSteps
+        .filter(x => {
+          if (
+            Object.keys(x).indexOf("serviceHealthIssue") > -1 &&
+            x.serviceHealthIssue.indexOf(id) > -1
+          ) {
+            return true;
+          }
+          return false;
+        })
+        .map(x => x.bullet_name);
+
+      nextSteps.forEach(x => {
+        expect(
+          getFilteredNextSteps(state, props).map(y => y.bullet_name)
+        ).toContain(x);
+      });
     });
   });
 });
