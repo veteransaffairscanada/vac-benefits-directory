@@ -42,47 +42,38 @@ class ShareBox extends Component {
   render() {
     const { t, printUrl, url, share, className } = this.props;
     return (
-      <Container className={cx(shareBoxStyle, className)}>
-        <Grid container spacing={8}>
-          {share ? (
-            <Grid item lg={12} md={12} sm={12} xs={6}>
-              <HeaderButton
-                id={this.uid}
-                className={shareBoxItem}
-                size="small"
-                onClick={() => this.setState({ showModal: true })}
-              >
-                <ShareIcon />
-                <span>{t("titles.share")}</span>
-              </HeaderButton>
-              <ShareModal
-                uid={this.uid}
-                isOpen={this.state.showModal}
-                onRequestClose={() => this.setState({ showModal: false })}
-                closeModal={() => this.setState({ showModal: false })}
-                url={url}
-                t={t}
-              />
-            </Grid>
-          ) : (
-            ""
-          )}
-          <Grid item lg={12} md={12} sm={12} xs={6}>
-            <HeaderLink
-              className={shareBoxItem}
-              size="small"
-              href={printUrl}
-              target="_blank"
-              onClick={() => {
-                logEvent("Exit", "print");
-              }}
-            >
-              <Print />
-              <span className={share ? nonMobileStyle : ""}>{t("Print")}</span>
-            </HeaderLink>
-          </Grid>
-        </Grid>
-      </Container>
+      <div>
+        Share On:
+        <HeaderButton
+          id={this.uid}
+          className={shareBoxItem}
+          size="small"
+          onClick={() => this.setState({ showModal: true })}
+        >
+          <ShareIcon />
+          <span>{t("titles.share")}</span>
+        </HeaderButton>
+        <ShareModal
+          uid={this.uid}
+          isOpen={this.state.showModal}
+          onRequestClose={() => this.setState({ showModal: false })}
+          closeModal={() => this.setState({ showModal: false })}
+          url={url}
+          t={t}
+        />
+        <HeaderLink
+          className={shareBoxItem}
+          size="small"
+          href={printUrl}
+          target="_blank"
+          onClick={() => {
+            logEvent("Exit", "print");
+          }}
+        >
+          <Print />
+          <span className={share ? nonMobileStyle : ""}>{t("Print")}</span>
+        </HeaderLink>
+      </div>
     );
   }
 }

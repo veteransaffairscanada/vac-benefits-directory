@@ -23,6 +23,7 @@ import ShareBox from "../components/share_box";
 import EditIcon from "./icons/Edit";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
+import Header from "./typography/header";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -31,16 +32,7 @@ const topMatter = css`
   background-color: ${globalTheme.colour.white};
   width: 100%;
 `;
-const sidebarLinks = css`
-  // for big screen...
-  @media only screen and (min-width: ${globalTheme.min.xs}) {
-    padding: 1em 24px !important;
-    border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
-    border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
-  }
-  margin-bottom: 24px;
-`;
-const sidebar = css`
+const sticky = css`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -60,25 +52,14 @@ const shortText = css`
     display: none !important;
   }
 `;
-const savedListLink = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-  }
-`;
-const editLink = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-  }
-`;
 const hideOnMobile = css`
   // if screen size is max.xs or smaller
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     display: none !important;
   }
 `;
-const showOnMobile = css`
-  // if screen size is min.xs or larger
-  @media only screen and (min-width: ${globalTheme.min.xs}) {
-    display: none !important;
-  }
+const alignRight = css`
+  text-align: right;
 `;
 
 export class BB extends Component {
@@ -151,57 +132,47 @@ export class BB extends Component {
         </div>
         <Paper id={this.props.id} className={outerDiv} padding="md">
           <Grid container spacing={32}>
-            <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
-              <div className={sidebar}>
-                <Grid container spacing={16} className={sidebarLinks}>
-                  <Grid item xs={4} sm={12}>
-                    <HeaderLink
-                      id="savedBenefits"
-                      href={this.props.favouritesUrl}
-                      className={savedListLink}
-                    >
-                      <SaveChecked />
-                      <span className={longText}>{longFavouritesText}</span>
-                      <span className={shortText}>{shortFavouritesText}</span>
-                    </HeaderLink>
-                  </Grid>
-                  <Grid item xs={4} sm={12}>
-                    <HeaderButton
-                      id="nextSteps"
-                      onClick={() => this.scrollToNextSteps()}
-                    >
-                      <AssignmentTurnedIn />
-                      {t("nextSteps.whats_next")}
-                    </HeaderButton>
-                  </Grid>
-                  <Grid item xs={4} sm={12}>
-                    <HeaderLink
-                      id="editSelections"
-                      href={summaryUrl}
-                      className={editLink}
-                    >
-                      <EditIcon />
-                      <span className={longText}>{longEditText}</span>
-                      <span className={shortText}>{shortEditText}</span>
-                    </HeaderLink>
-                  </Grid>
-                </Grid>
-                <ShareBox
-                  className={hideOnMobile}
-                  t={t}
-                  printUrl={this.props.printUrl}
-                  url={url}
-                  share={true}
-                />
-              </div>
+            <Grid item xs={12}>
+              <Header headingLevel="h1" size="lg">
+                {t("ge.Find benefits and services")}
+              </Header>
             </Grid>
-            <Grid item lg={3} md={3} sm={4} xs={12} className={showOnMobile}>
-              <ShareBox
-                t={t}
-                printUrl={this.props.printUrl}
-                url={url}
-                share={true}
-              />
+            <Grid item xs={12} className={sticky}>
+              <Grid container spacing={8}>
+                <Grid item xs={6}>
+                  <ShareBox
+                    className={hideOnMobile}
+                    t={t}
+                    printUrl={this.props.printUrl}
+                    url={url}
+                    share={true}
+                  />
+                </Grid>
+                <Grid item xs={6} className={alignRight}>
+                  <HeaderLink id="editSelections" href={summaryUrl}>
+                    <EditIcon />
+                    <span className={longText}>{longEditText}</span>
+                    <span className={shortText}>{shortEditText}</span>
+                  </HeaderLink>
+                  <HeaderLink
+                    id="savedBenefits"
+                    href={this.props.favouritesUrl}
+                  >
+                    <SaveChecked />
+                    <span className={longText}>{longFavouritesText}</span>
+                    <span className={shortText}>{shortFavouritesText}</span>
+                  </HeaderLink>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <HeaderButton
+                id="nextSteps"
+                onClick={() => this.scrollToNextSteps()}
+              >
+                <AssignmentTurnedIn />
+                {t("nextSteps.whats_next")}
+              </HeaderButton>
             </Grid>
             <Grid id="mainContent" item lg={9} md={9} sm={8} xs={12}>
               <Grid container spacing={16}>
