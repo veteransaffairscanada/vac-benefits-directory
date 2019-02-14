@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { css } from "emotion";
-import { globalTheme } from "../theme";
 import Header from "./typography/header";
 import HeaderLink from "./header_link";
 import { Grid } from "@material-ui/core";
-import Paper from "./paper";
 import Button from "./button";
 import { getMapUrl } from "../selectors/urls";
 import { connect } from "react-redux";
@@ -13,26 +11,9 @@ import { logEvent } from "../utils/analytics";
 import AnchorLink from "./typography/anchor_link";
 
 const outerDiv = css`
-  padding: 0px 12px;
   margin-right: 10px;
   width: 100%;
 `;
-
-const innerDiv = css`
-  border-top: 5px solid ${globalTheme.colour.blackish};
-  margin-top: 30px;
-  margin-bottom: 12px;
-  width: 10%;
-`;
-
-const fullHeight = css`
-  height: 100%;
-`;
-
-const header = css`
-  width: 100%;
-`;
-
 const font21 = css`
   font-size: 21px;
 `;

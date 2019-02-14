@@ -27,6 +27,10 @@ import Header from "./typography/header";
 import ContactUs from "./contact_us";
 import NextSteps from "./next_steps";
 
+const divider = css`
+  border-top: 2px solid ${globalTheme.colour.warmGrey};
+  width: 100%;
+`;
 const outerDiv = css`
   padding-bottom: 16px !important;
 `;
@@ -54,12 +58,6 @@ const shortText = css`
     display: none !important;
   }
 `;
-const hideOnMobile = css`
-  // if screen size is max.xs or smaller
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none !important;
-  }
-`;
 const alignRight = css`
   text-align: right;
 `;
@@ -71,7 +69,6 @@ export class BB extends Component {
 
   constructor(props) {
     super(props);
-    this.nextStepsRef = React.createRef(); // create a ref object
     this.cookies = new Cookies();
   }
 
@@ -98,10 +95,9 @@ export class BB extends Component {
       this.setState({ showDisabledCookieBanner: false });
     }
   }
-  scrollToNextSteps() {
-    window.location = "#next-steps";
-    const maxMobile = parseFloat(globalTheme.max.xs);
-    window.screen.width < maxMobile ? window.scrollBy(0, -90) : null;
+  scrollToId(id) {
+    window.location = id;
+    window.scrollBy(0, -90); // not ideal
   }
 
   render() {
@@ -143,7 +139,6 @@ export class BB extends Component {
               <Grid container spacing={8}>
                 <Grid item xs={6}>
                   <ShareBox
-                    className={hideOnMobile}
                     t={t}
                     printUrl={this.props.printUrl}
                     url={url}
@@ -168,18 +163,37 @@ export class BB extends Component {
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <HeaderButton
-                id="nextSteps"
-                onClick={() => this.scrollToNextSteps()}
-              >
-                <AssignmentTurnedIn />
-                {t("nextSteps.whats_next")}
-              </HeaderButton>
+              <div>
+                <HeaderButton
+                  id="benefits-and-services-button"
+                  onClick={() => this.scrollToId("#benefits-and-services")}
+                >
+                  {"Benefits and services"}
+                </HeaderButton>
+              </div>
+              <div>
+                <HeaderButton
+                  id="next-steps-button"
+                  onClick={() => this.scrollToId("#next-steps")}
+                >
+                  {t("nextSteps.whats_next")}
+                </HeaderButton>
+              </div>
+              <div>
+                <HeaderButton
+                  id="contact-button"
+                  onClick={() => this.scrollToId("#contact")}
+                >
+                  {t("nextSteps.contact_us")}
+                </HeaderButton>
+              </div>
             </Grid>
             <Grid item md={3} sm={4} xs={12}>
-              <Header headingLevel="h2" size="md_lg">
-                Benefits and services
-              </Header>
+              <div id="benefits-and-services">
+                <Header headingLevel="h2" size="md_lg">
+                  Benefits and services
+                </Header>
+              </div>
             </Grid>
             <Grid id="mainContent" item md={9} sm={8} xs={12}>
               <Grid container spacing={16}>
@@ -194,16 +208,13 @@ export class BB extends Component {
                   ) : null}
                 </Grid>
               </Grid>
-              <BenefitsPane
-                id="BenefitsPane"
-                t={t}
-                store={store}
-                url={url}
-                nextStepsRef={this.nextStepsRef}
-              />
+              <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
+            </Grid>
+            <Grid item xs={12}>
+              <div className={divider} />
             </Grid>
             <Grid item md={3} sm={4} xs={12}>
-              <div ref={this.nextStepsRef}>
+              <div id="next-steps">
                 <Header headingLevel="h2" size="md_lg">
                   {t("nextSteps.whats_next")}
                 </Header>
@@ -212,10 +223,15 @@ export class BB extends Component {
             <Grid item md={9} sm={8} xs={12}>
               <NextSteps t={t} store={store} />
             </Grid>
+            <Grid item xs={12}>
+              <div className={divider} />
+            </Grid>
             <Grid item md={3} sm={4} xs={12}>
-              <Header headingLevel="h2" size="md_lg">
-                {t("nextSteps.contact_us")}
-              </Header>
+              <div id="contact">
+                <Header headingLevel="h2" size="md_lg">
+                  {t("nextSteps.contact_us")}
+                </Header>
+              </div>
             </Grid>
             <Grid item md={9} sm={8} xs={12}>
               <ContactUs t={t} url={url} store={store} />
