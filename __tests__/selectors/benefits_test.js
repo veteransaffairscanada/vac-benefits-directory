@@ -116,18 +116,15 @@ describe("Benefits Selectors", () => {
 
     it("displays appropriate benefits if patronType is organization", () => {
       state.patronType = "organization";
-      const nameEnList = [
-        "Community Engagement Fund",
-        "Community War Memorial Fund",
-        "Grave Marker Maintenance",
-        "Veteran and Family Well-Being Fund"
-      ];
-      const relevant_benefits = state.benefits.filter(x => {
-        return nameEnList.indexOf(x.vacNameEn) > -1;
+      const orgId = state.multipleChoiceOptions.filter(
+        x => x.variable_name === "organization"
+      )[0].id;
+      const relevant_benefits = state.benefitEligibility.filter(x => {
+        return x.patronType.indexOf(orgId) > -1;
       });
       expect(
-        getFilteredBenefitsWithoutSearch(state, props).map(x => x.vacNameEn)
-      ).toEqual(relevant_benefits.map(x => x.vacNameEn));
+        getFilteredBenefitsWithoutSearch(state, props).map(x => x.id)
+      ).toEqual(relevant_benefits.map(x => x.benefit[0]));
     });
 
     it("returns benefits based on selectedNeeds", () => {
@@ -136,12 +133,9 @@ describe("Benefits Selectors", () => {
       )[0];
       state.selectedNeeds = { [selectedNeed.id]: selectedNeed.id };
       let returnValue = getFilteredBenefitsWithoutSearch(state, props).map(
-        x => x.vacNameEn
+        x => x.id
       );
-      expect(returnValue).toEqual([
-        "Assistance Fund ",
-        "Veterans Emergency Fund"
-      ]);
+      expect(new Set(returnValue)).toEqual(new Set(selectedNeed.benefits));
     });
   });
 
@@ -163,17 +157,14 @@ describe("Benefits Selectors", () => {
 
     it("displays appropriate benefits if patronType is organization", () => {
       state.patronType = "organization";
-      const nameEnList = [
-        "Community Engagement Fund",
-        "Community War Memorial Fund",
-        "Grave Marker Maintenance",
-        "Veteran and Family Well-Being Fund"
-      ];
-      const relevant_benefits = state.benefits.filter(x => {
-        return nameEnList.indexOf(x.vacNameEn) > -1;
+      const orgId = state.multipleChoiceOptions.filter(
+        x => x.variable_name === "organization"
+      )[0].id;
+      const relevant_benefits = state.benefitEligibility.filter(x => {
+        return x.patronType.indexOf(orgId) > -1;
       });
-      expect(getFilteredBenefits(state, props).map(x => x.vacNameEn)).toEqual(
-        relevant_benefits.map(x => x.vacNameEn)
+      expect(getFilteredBenefits(state, props).map(x => x.id)).toEqual(
+        relevant_benefits.map(x => x.benefit[0])
       );
     });
 
@@ -182,11 +173,8 @@ describe("Benefits Selectors", () => {
         x => x.nameEn === "Emergency funds"
       )[0];
       state.selectedNeeds = { [selectedNeed.id]: selectedNeed.id };
-      let returnValue = getFilteredBenefits(state, props).map(x => x.vacNameEn);
-      expect(returnValue).toEqual([
-        "Assistance Fund ",
-        "Veterans Emergency Fund"
-      ]);
+      let returnValue = getFilteredBenefits(state, props).map(x => x.id);
+      expect(new Set(returnValue)).toEqual(new Set(selectedNeed.benefits));
     });
 
     it("runs a lunr search on the english index if searchString is set an english is used", () => {
