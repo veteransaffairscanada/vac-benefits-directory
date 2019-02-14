@@ -24,6 +24,8 @@ import EditIcon from "./icons/Edit";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
 import Header from "./typography/header";
+import ContactUs from "./contact_us";
+import NextSteps from "./next_steps";
 
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -174,7 +176,12 @@ export class BB extends Component {
                 {t("nextSteps.whats_next")}
               </HeaderButton>
             </Grid>
-            <Grid id="mainContent" item lg={9} md={9} sm={8} xs={12}>
+            <Grid item md={3} sm={4} xs={12}>
+              <Header headingLevel="h2" size="md_lg">
+                Benefits and services
+              </Header>
+            </Grid>
+            <Grid id="mainContent" item md={9} sm={8} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
                   {this.state.showDisabledCookieBanner ? (
@@ -187,7 +194,6 @@ export class BB extends Component {
                   ) : null}
                 </Grid>
               </Grid>
-
               <BenefitsPane
                 id="BenefitsPane"
                 t={t}
@@ -195,6 +201,24 @@ export class BB extends Component {
                 url={url}
                 nextStepsRef={this.nextStepsRef}
               />
+            </Grid>
+            <Grid item md={3} sm={4} xs={12}>
+              <div ref={this.nextStepsRef}>
+                <Header headingLevel="h2" size="md_lg">
+                  {t("nextSteps.whats_next")}
+                </Header>
+              </div>
+            </Grid>
+            <Grid item md={9} sm={8} xs={12}>
+              <NextSteps t={t} store={store} />
+            </Grid>
+            <Grid item md={3} sm={4} xs={12}>
+              <Header headingLevel="h2" size="md_lg">
+                {t("nextSteps.contact_us")}
+              </Header>
+            </Grid>
+            <Grid item md={9} sm={8} xs={12}>
+              <ContactUs t={t} url={url} store={store} />
             </Grid>
           </Grid>
         </Paper>

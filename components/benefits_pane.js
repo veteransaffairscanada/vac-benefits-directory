@@ -71,19 +71,17 @@ export class BenefitsPane extends Component {
       filteredBenefits,
       filteredBenefitsWithoutSearch,
       nonFilteredBenefits,
-      nextStepsRef,
       searchString,
       reduxState,
       store,
-      setSearchString,
-      url
+      setSearchString
     } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Header
             className={"BenefitsCounter " + title}
-            size="lg"
+            size="sm_md"
             headingLevel="h1"
             autoFocus={true}
           >
@@ -173,15 +171,6 @@ export class BenefitsPane extends Component {
             </Grid>
           </React.Fragment>
         )}
-
-        <Grid item xs={12}>
-          <div ref={nextStepsRef}>
-            <Grid container spacing={24}>
-              <NextSteps t={t} store={store} />
-              <ContactUs t={t} url={url} store={store} />
-            </Grid>
-          </div>
-        </Grid>
       </Grid>
     );
   }
@@ -225,7 +214,6 @@ const mapStateToProps = (reduxState, props) => {
 
 BenefitsPane.propTypes = {
   reduxState: PropTypes.object,
-  nextStepsRef: PropTypes.object,
   url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   profileFilters: PropTypes.object.isRequired,

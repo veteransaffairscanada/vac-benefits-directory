@@ -44,21 +44,8 @@ export class ContactUs extends Component {
     return (
       <div className={outerDiv}>
         <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <Header
-              className={header}
-              size="md"
-              headingLevel="h2"
-              paddingTop="25"
-            >
-              {t("nextSteps.contact_us")}
-            </Header>
-
-            <div className={innerDiv} />
-          </Grid>
-
-          <Grid item sm={12} md={6}>
-            <Paper id="myVacCard" className={fullHeight} padding="sm">
+          <Grid item sm={12}>
+            <div id="myVacCard">
               <Header size="md" className={font21}>
                 {t("nextSteps.register_myvac")}
               </Header>
@@ -88,10 +75,10 @@ export class ContactUs extends Component {
               >
                 {t("nextSteps.myvac_button_text")}
               </Button>
-            </Paper>
+            </div>
           </Grid>
-          <Grid item sm={12} md={6}>
-            <Paper id="nearbyOfficeCard" className={fullHeight} padding="sm">
+          <Grid item sm={12}>
+            <div id="nearbyOfficeCard">
               <HeaderLink
                 id="nearbyOfficeLink"
                 arrow="forward"
@@ -112,7 +99,7 @@ export class ContactUs extends Component {
                 </AnchorLink>
                 {t("nextSteps.box_2c")}
               </p>
-            </Paper>
+            </div>
           </Grid>
         </Grid>
       </div>
