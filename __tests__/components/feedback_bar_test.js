@@ -53,32 +53,32 @@ describe("Feedback bar", () => {
     });
   });
 
-  it("editing the what were you doing text field updates the action state", () => {
+  it("editing the what were you doing text area updates the bug state", () => {
     mountedFeedbackBar()
-      .find("#feedbackNo")
+      .find("#feedbackBug")
       .at(0)
       .simulate("click");
 
     mountedFeedbackBar()
-      .find("#commentWhatWereYouDoing")
+      .find("#commentTextArea")
       .at(0)
       .props()
       .onChange({ target: { value: "bar" } });
-    expect(mountedFeedbackBar().state().action).toEqual("bar");
+    expect(mountedFeedbackBar().state().bug).toEqual("bar");
   });
 
-  it("editing the what went wrong text field updates the action state", () => {
+  it("editing the how can info be more useful text area updates the infoBeMoreUseful state", () => {
     mountedFeedbackBar()
       .find("#feedbackNo")
       .at(0)
       .simulate("click");
 
     mountedFeedbackBar()
-      .find("#commentWhatWentWrong")
+      .find("#commentTextArea")
       .at(0)
       .props()
       .onChange({ target: { value: "bar" } });
-    expect(mountedFeedbackBar().state().failure).toEqual("bar");
+    expect(mountedFeedbackBar().state().infoBeMoreUseful).toEqual("bar");
   });
 
   describe("clicking the comment cancel button", () => {

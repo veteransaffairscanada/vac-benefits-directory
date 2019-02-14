@@ -3,25 +3,24 @@ import PropTypes from "prop-types";
 import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
-import TextField from "@material-ui/core/TextField";
+import TextArea from "./text_area";
 import { css } from "emotion";
 import FooterButton from "./footer_button";
 import { globalTheme } from "../theme";
 import Header from "./typography/header";
+import { Grid } from "@material-ui/core";
 require("isomorphic-fetch");
 
 const CommentBox = css`
-  height: 350px;
   background-color: ${globalTheme.colour.greyishBrownTwo};
   color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
-  padding: 5px 0 0 0;
+  padding: 5px 0 50px 0;
 `;
 const Div = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
   width: 100%;
-  height: 53px;
   color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
@@ -40,6 +39,7 @@ const Inner = css`
   color: ${globalTheme.colour.white};
   font-size: 18px;
   padding-top: 10px;
+  padding-bottom: 10px;
   @media (max-width: 400px) {
     font-size: 16px;
     button {
@@ -51,29 +51,37 @@ const TextHold = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
   padding: 10px 0;
 `;
-const white = css`
+const topHeading = css`
   color: white;
+  padding-top: 30px;
 `;
 const whiteNormalFont = css`
   color: white;
   font-weight: normal;
 `;
-const pStyle = css`
-  font-size: 18px;
+const fileBugHeader = css`
+  color: white;
+  font-weight: normal;
+  float: right;
 `;
-const labelStyle = css`
-  label {
-    transform: translate(0, 0) scale(1);
-    font-weight: bold;
+const pStyle = css`
+  font-size: 20px;
+  font-weight: normal;
+  font-family: ${globalTheme.fontFamily};
+`;
+const textArea = css`
+  span {
+    color: white;
   }
 `;
 
 export class FeedbackBar extends Component {
   state = {
-    action: "",
+    bug: "",
+    commentIsBug: false,
     commentFormToggled: false,
     commentSubmitted: false,
-    failure: "",
+    infoBeMoreUseful: "",
     feedbackSubmitted: false
   };
 
@@ -91,8 +99,8 @@ export class FeedbackBar extends Component {
     this.setState({ commentFormToggled: false });
     this.setState({ commentSubmitted: true });
     let payload = {
-      whatWereYouDoing: this.state.action,
-      whatWentWrong: this.state.failure,
+      whatWentWrong: this.state.bug,
+      howCanInfoBeMoreUseful: this.state.infoBeMoreUseful,
       url: window.location.href,
       time: new Date().toUTCString()
     };
@@ -110,8 +118,9 @@ export class FeedbackBar extends Component {
   sendFeedback = answer => {
     this.setState({ feedbackSubmitted: true });
     logEvent("Page Feedback (" + this.props.t("feedback-prompt") + ")", answer);
-    if (answer == "No") {
+    if (answer == "No" || answer == "Bug") {
       this.setState({ commentFormToggled: true });
+      if (answer == "Bug") this.setState({ commentIsBug: true });
     }
   };
 
@@ -126,52 +135,27 @@ export class FeedbackBar extends Component {
       <div className={FeedbackWrapper} role="navigation">
         {this.state.commentFormToggled ? (
           <div className={CommentBox}>
-            <Header size="lg" headingLevel="h2" className={white}>
+            <Header size="lg" headingLevel="h2" className={topHeading}>
               {t("comment-help-us-improve")}
             </Header>
             <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
             <div className={TextHold}>
-              <TextField
-                inputProps={{
-                  style: {
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    padding: "10px"
-                  }
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "white", fontSize: "18px" }
-                }}
-                id="commentWhatWereYouDoing"
-                label={t("comment-what-were-you-doing")}
-                margin="normal"
-                fullWidth={true}
-                onChange={this.handleChange("action")}
-                className={labelStyle}
-                value={this.state.action}
-                autoFocus
-              />
-              <TextField
-                inputProps={{
-                  style: {
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    padding: "10px"
-                  }
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "white", fontSize: "18px" }
-                }}
-                id="commentWhatWentWrong"
-                label={t("comment-what-went-wrong")}
-                margin="normal"
-                fullWidth={true}
-                onChange={this.handleChange("failure")}
-                className={labelStyle}
-                value={this.state.failure}
-              />
+              <TextArea
+                id="commentTextArea"
+                name="bugFiling"
+                maxLength={"500"}
+                t={t}
+                className={textArea}
+                onChange={
+                  this.state.commentIsBug
+                    ? this.handleChange("bug")
+                    : this.handleChange("infoBeMoreUseful")
+                }
+              >
+                {this.state.commentIsBug
+                  ? t("comment-what-went-wrong")
+                  : t("feedback.how_can_info_be_more_useful")}
+              </TextArea>
             </div>
             <br />
             <SubmitButton
@@ -194,26 +178,48 @@ export class FeedbackBar extends Component {
         <div className={Div}>
           {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
             <div className={Inner}>
-              <p className={pStyle}>{t("feedback-response")}</p>
+              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
+                {t("feedback-response")}
+              </Header>
             </div>
           ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>
-              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
-                {t("feedback-prompt")}
-              </Header>
-              <FooterButton
-                id="feedbackYes"
-                onClick={() => this.sendFeedback("Yes")}
-              >
-                {t("yes")}
-              </FooterButton>
-              &nbsp; &nbsp;
-              <FooterButton
-                id="feedbackNo"
-                onClick={() => this.sendFeedback("No")}
-              >
-                {t("no")}
-              </FooterButton>
+              <Grid container spacing={8}>
+                <Grid item sm={5} xs={12}>
+                  <Header
+                    size="sm"
+                    headingLevel="h2"
+                    className={whiteNormalFont}
+                  >
+                    {t("feedback-prompt")}
+                  </Header>
+                </Grid>
+                <Grid item sm={3} xs={12}>
+                  <FooterButton
+                    id="feedbackYes"
+                    onClick={() => this.sendFeedback("Yes")}
+                  >
+                    {t("yes")}
+                  </FooterButton>
+                  &nbsp; &nbsp;
+                  <FooterButton
+                    id="feedbackNo"
+                    onClick={() => this.sendFeedback("No")}
+                  >
+                    {t("no")}
+                  </FooterButton>
+                </Grid>
+                <Grid item sm={4} xs={12}>
+                  <Header size="sm" headingLevel="h2" className={fileBugHeader}>
+                    <FooterButton
+                      id="feedbackBug"
+                      onClick={() => this.sendFeedback("Bug")}
+                    >
+                      {t("feedback.bug_prompt")}
+                    </FooterButton>
+                  </Header>
+                </Grid>
+              </Grid>
             </div>
           ) : null}
         </div>
