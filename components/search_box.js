@@ -46,7 +46,7 @@ const ClearButton = styled("button")({
   display: "block",
   color: globalTheme.colour.cerulean,
   position: "absolute",
-  left: "-50px",
+  left: "-45px",
   padding: "10px",
   width: "45px",
   height: "44px",
