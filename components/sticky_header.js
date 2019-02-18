@@ -102,6 +102,7 @@ StickyHeader.propTypes = {
   summaryUrl: PropTypes.string.isRequired,
   printUrl: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
+  store: PropTypes.object,
   favouriteBenefits: PropTypes.array.isRequired
 };
 

@@ -4,7 +4,6 @@ import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
-import SaveChecked from "./icons/SaveUnchecked";
 import Link from "next/link";
 import { css } from "emotion";
 import Container from "./container";
@@ -104,14 +103,14 @@ export class Favourites extends Component {
                   })}
                 </Header>
               </Grid>
-              <StickyHeader t={t} url={url} />
+              <StickyHeader t={t} url={url} store={store} />
               <Grid item xs={12}>
-                <QuickLinks t={t} />
+                <QuickLinks t={t} onFavourites={true} />
               </Grid>
               <Grid item sm={4} xs={12}>
-                <div id="benefits-and-services">
+                <div id="saved-list">
                   <Header headingLevel="h2" size="md_lg">
-                    Saved
+                    Saved list
                   </Header>
                 </div>
               </Grid>

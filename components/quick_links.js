@@ -32,19 +32,28 @@ class QuickLinks extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, onFavourites } = this.props;
     return (
       <div className={greyBox}>
         <Grid container>
           <Grid item xs={12} sm={4}>
             <span>Quick Links</span>
             <div className={link}>
-              <HeaderButton
-                id="benefits-and-services-button"
-                onClick={() => this.scrollToId("#benefits-and-services")}
-              >
-                {"Benefits and services"}
-              </HeaderButton>
+              {onFavourites ? (
+                <HeaderButton
+                  id="saved-list-button"
+                  onClick={() => this.scrollToId("#saved-list")}
+                >
+                  {"Saved list"}
+                </HeaderButton>
+              ) : (
+                <HeaderButton
+                  id="benefits-and-services-button"
+                  onClick={() => this.scrollToId("#benefits-and-services")}
+                >
+                  {"Benefits and services"}
+                </HeaderButton>
+              )}
             </div>
             <div className={link}>
               <HeaderButton
@@ -66,8 +75,13 @@ class QuickLinks extends Component {
   }
 }
 
+QuickLinks.defaultProps = {
+  onFavourites: false
+};
+
 QuickLinks.propTypes = {
   t: PropTypes.func.isRequired,
+  onFavourites: PropTypes.bool,
   className: PropTypes.string
 };
 

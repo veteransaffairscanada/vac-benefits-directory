@@ -83,7 +83,7 @@ export class BB extends Component {
                 {t("ge.Find benefits and services")}
               </Header>
             </Grid>
-            <StickyHeader t={t} url={url} />
+            <StickyHeader t={t} url={url} store={store} />
             <Grid item xs={12}>
               <QuickLinks t={t} />
             </Grid>

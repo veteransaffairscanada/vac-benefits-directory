@@ -19,6 +19,7 @@ const whatsNextList = css`
 
 const liItem = css`
   padding-bottom: 20px;
+  padding-right: 20px;
 `;
 
 export class NextSteps extends Component {
