@@ -12,13 +12,10 @@ import {
 } from "../selectors/benefits";
 import { css } from "emotion";
 import Header from "./typography/header";
-import Body from "./typography/body";
 import SearchBox from "./search_box";
 import { getLink, getBenefitCountString } from "../utils/common";
-import NextSteps from "./next_steps";
 import NoResultsButtons from "./no_results_buttons";
 import ResultsHeader from "./results_header";
-import ContactUs from "./contact_us";
 
 const title = css`
   padding-bottom: 15px;
@@ -81,8 +78,8 @@ export class BenefitsPane extends Component {
         <Grid item xs={12}>
           <Header
             className={"BenefitsCounter " + title}
-            size="sm_md"
-            headingLevel="h1"
+            size="md"
+            headingLevel="h3"
             autoFocus={true}
           >
             {filteredBenefitsWithoutSearch.length === 0

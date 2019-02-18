@@ -15,14 +15,22 @@ const leftBorder = css`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 20px;
+  padding-left: 30px;
 `;
 
 const text = css`
   flex: 1;
 `;
+const link = css`
+  padding-top: 10px;
+`;
 
 class QuickLinks extends Component {
+  scrollToId(id) {
+    window.location = id;
+    window.scrollBy(0, -90); // not ideal
+  }
+
   render() {
     const { t } = this.props;
     return (
@@ -30,7 +38,7 @@ class QuickLinks extends Component {
         <Grid container>
           <Grid item xs={12} sm={6}>
             <span>Quick Links</span>
-            <div>
+            <div className={link}>
               <HeaderButton
                 id="benefits-and-services-button"
                 onClick={() => this.scrollToId("#benefits-and-services")}
@@ -38,7 +46,7 @@ class QuickLinks extends Component {
                 {"Benefits and services"}
               </HeaderButton>
             </div>
-            <div>
+            <div className={link}>
               <HeaderButton
                 id="next-steps-button"
                 onClick={() => this.scrollToId("#next-steps")}
@@ -46,12 +54,12 @@ class QuickLinks extends Component {
                 {t("nextSteps.whats_next")}
               </HeaderButton>
             </div>
-            <div>
+            <div className={link}>
               <HeaderButton
                 id="contact-button"
                 onClick={() => this.scrollToId("#contact")}
               >
-                {t("nextSteps.contact_us")}
+                {t("BenefitsPane.contact_us")}
               </HeaderButton>
             </div>
           </Grid>

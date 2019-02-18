@@ -27,7 +27,8 @@ import NextSteps from "./next_steps";
 import QuickLinks from "./quick_links";
 
 const divider = css`
-  border-top: 2px solid ${globalTheme.colour.warmGrey};
+  // border-top: 2px solid ${globalTheme.colour.warmGrey};
+  border-top: 2px solid ${globalTheme.colour.duckEggBlue};
   width: 100%;
 `;
 const outerDiv = css`
@@ -96,10 +97,6 @@ export class BB extends Component {
     if (this.state.showDisabledCookieBanner && !this.props.cookiesDisabled) {
       this.setState({ showDisabledCookieBanner: false });
     }
-  }
-  scrollToId(id) {
-    window.location = id;
-    window.scrollBy(0, -90); // not ideal
   }
 
   render() {
@@ -209,7 +206,7 @@ export class BB extends Component {
             <Grid item md={3} sm={4} xs={12}>
               <div id="contact">
                 <Header headingLevel="h2" size="md_lg">
-                  {t("nextSteps.contact_us")}
+                  {t("BenefitsPane.contact_us")}
                 </Header>
               </div>
             </Grid>
