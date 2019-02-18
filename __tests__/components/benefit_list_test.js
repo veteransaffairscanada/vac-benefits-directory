@@ -60,11 +60,12 @@ describe("BenefitList", () => {
     let BLInstance = shallow(
       <BenefitList {...props} {...reduxData} />
     ).instance();
-    expect(
-      BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
-        b => b.id
-      )
-    ).toEqual(["benefit_2", "benefit_1", "benefit_0", "benefit_3"]);
+    expect(BLInstance.sortBenefits(benefitsFixture).map(b => b.id)).toEqual([
+      "benefit_2",
+      "benefit_1",
+      "benefit_0",
+      "benefit_3"
+    ]);
   });
 
   it("displays the correct number of benefits cards", () => {

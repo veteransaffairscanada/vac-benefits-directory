@@ -46,7 +46,7 @@ export class BenefitList extends React.Component {
       : sp;
   };
 
-  sortBenefits = (filteredBenefits, language) => {
+  sortBenefits = filteredBenefits => {
     filteredBenefits.forEach(b => {
       b.sortingNumber = { high: 1, medium: 2, low: 3 }[
         this.cleanSortingPriority(b.sortingPriority)
@@ -56,9 +56,8 @@ export class BenefitList extends React.Component {
     let sorting_fn = (a, b) => {
       if (a.sortingNumber === b.sortingNumber) {
         // sort alphabetically
-        let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
-        let nameA = a[vacName].toUpperCase();
-        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
+        let nameA = a.vacNameEn.toUpperCase();
+        let nameB = b.vacNameEn.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
           return -1;
         }
@@ -85,7 +84,7 @@ export class BenefitList extends React.Component {
     } = this.props;
     const sortedBenefits = searchString
       ? filteredBenefits
-      : this.sortBenefits(filteredBenefits, currentLanguage);
+      : this.sortBenefits(filteredBenefits);
 
     return loading ? (
       <div className={Div}>
