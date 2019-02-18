@@ -10,7 +10,7 @@ const greyBox = css`
   padding: 30px;
 `;
 const leftBorder = css`
-  border-left: 2px solid ${globalTheme.colour.duckEggBlue};
+  border-left: 4px solid ${globalTheme.colour.duckEggBlue};
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ class QuickLinks extends Component {
     return (
       <div className={greyBox}>
         <Grid container>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <span>Quick Links</span>
             <div className={link}>
               <HeaderButton
@@ -54,16 +54,8 @@ class QuickLinks extends Component {
                 {t("nextSteps.whats_next")}
               </HeaderButton>
             </div>
-            <div className={link}>
-              <HeaderButton
-                id="contact-button"
-                onClick={() => this.scrollToId("#contact")}
-              >
-                {t("BenefitsPane.contact_us")}
-              </HeaderButton>
-            </div>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={8}>
             <div className={leftBorder}>
               <div className={text}>{t("B3.check eligibility")}</div>
             </div>

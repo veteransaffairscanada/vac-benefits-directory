@@ -29,7 +29,7 @@ class ShareBox extends Component {
     const { t, printUrl, url, share, className } = this.props;
     return (
       <div className={className}>
-        <span className={marginRight}>Share On:</span>
+        <span className={marginRight}>Share:</span>
         <HeaderLink
           className={shareBoxItem}
           size="small"

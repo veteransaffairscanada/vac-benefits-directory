@@ -9,18 +9,16 @@ import Link from "next/link";
 import { css } from "emotion";
 import Container from "./container";
 import Header from "./typography/header";
-import HeaderButton from "./header_button";
 import Body from "./typography/body";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled, mutateUrl } from "../utils/common";
-import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import { globalTheme } from "../theme";
 import BreadCrumbs from "./breadcrumbs";
-import ShareBox from "./share_box";
 import NextSteps from "./next_steps";
 import ContactUs from "./contact_us";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
+import StickyHeader from "./sticky_header";
 
 const saveCSS = css`
   font-size: 70px !important;
@@ -35,30 +33,6 @@ const outerDiv = css`
   padding-bottom: 16px !important;
 `;
 
-const sidebarLinks = css`
-  padding: 1em 24px !important;
-  border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
-  border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
-  margin-bottom: 24px;
-`;
-const sidebar = css`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: ${globalTheme.colour.white};
-`;
-const hideOnMobile = css`
-  // if screen size is max.xs or smaller
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none !important;
-  }
-`;
-const showOnMobile = css`
-  // if screen size is min.xs or larger
-  @media only screen and (min-width: ${globalTheme.min.xs}) {
-    display: none !important;
-  }
-`;
 export class Favourites extends Component {
   state = {
     enIdx: null,
@@ -131,36 +105,18 @@ export class Favourites extends Component {
           />
           <Paper padding="md">
             <Grid container spacing={32}>
-              <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
-                <div className={sidebar}>
-                  <Grid container spacing={16} className={sidebarLinks}>
-                    <Grid item xs={12}>
-                      <HeaderButton
-                        id="nextSteps"
-                        onClick={() => this.scrollToNextSteps()}
-                      >
-                        <AssignmentTurnedIn />
-                        {t("nextSteps.whats_next")}
-                      </HeaderButton>
-                    </Grid>
-                  </Grid>
-                  <ShareBox
-                    className={hideOnMobile}
-                    t={t}
-                    printUrl={this.props.printUrl}
-                    url={url}
-                    share={false}
-                  />
-                </div>
+              <Grid item xs={12}>
+                <Header
+                  className={"BenefitsCounter"}
+                  size="lg"
+                  headingLevel="h1"
+                >
+                  {t("favourites.saved_benefits", {
+                    x: filteredBenefits.length
+                  })}
+                </Header>
               </Grid>
-              <Grid item lg={3} md={3} sm={4} xs={12} className={showOnMobile}>
-                <ShareBox
-                  t={t}
-                  printUrl={this.props.printUrl}
-                  url={url}
-                  share={true}
-                />
-              </Grid>
+              <StickyHeader t={t} url={url} />
               <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
                 <Grid container spacing={24}>
                   {this.state.showDisabledCookieBanner ? (
@@ -173,17 +129,7 @@ export class Favourites extends Component {
                       />
                     </Grid>
                   ) : null}
-                  <Grid item xs={12}>
-                    <Header
-                      className={"BenefitsCounter"}
-                      size="lg"
-                      headingLevel="h1"
-                    >
-                      {t("favourites.saved_benefits", {
-                        x: filteredBenefits.length
-                      })}
-                    </Header>
-                  </Grid>
+
                   <BenefitList
                     t={t}
                     currentLanguage={t("current-language-code")}
