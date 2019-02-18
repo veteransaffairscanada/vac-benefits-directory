@@ -9,6 +9,7 @@ import { Grid } from "@material-ui/core";
 import Button from "../components/button";
 import Header from "../components/typography/header";
 import Router from "next/router";
+import BreadCrumbs from "../components/breadcrumbs";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
 import { mutateUrl, getBenefitCountString, getPageName } from "../utils/common";
@@ -16,6 +17,7 @@ import { connect } from "react-redux";
 import GuidedExperienceSummary from "../components/guided_experience_summary";
 import Body from "../components/typography/body";
 import { getFilteredBenefits } from "../selectors/benefits";
+import { getHomeUrl } from "../selectors/urls";
 
 const box = css`
   padding: 63px 63px 63px 63px;
@@ -24,9 +26,8 @@ const box = css`
   }
   display: inline-flex;
 `;
-const prevButton = css`
-  margin-top: 50px;
-  margin-bottom: 15px;
+const alignRight = css`
+  text-align: right;
 `;
 const questions = css`
   margin: 0;
@@ -35,7 +36,15 @@ const questions = css`
 
 export class Summary extends Component {
   render() {
-    const { t, i18n, url, reduxState, store, filteredBenefits } = this.props;
+    const {
+      t,
+      i18n,
+      url,
+      reduxState,
+      store,
+      filteredBenefits,
+      homeUrl
+    } = this.props;
     const prevSection =
       reduxState.patronType === "organization" ? "patronType" : "needs";
     const backUrl = mutateUrl(url, "/" + getPageName(prevSection));
@@ -50,14 +59,14 @@ export class Summary extends Component {
         url={url}
       >
         <Container id="mainContent">
-          <HeaderButton
-            id="prevButton"
-            onClick={() => Router.push(backUrl)}
-            className={prevButton}
-            arrow="back"
-          >
-            {t("back")}
-          </HeaderButton>
+          <div>
+            <BreadCrumbs
+              t={t}
+              breadcrumbs={[]}
+              homeUrl={homeUrl}
+              pageTitle={t("ge.Find benefits and services")}
+            />
+          </div>
           <Paper padding="md" className={box}>
             <Grid container spacing={24}>
               <Grid item xs={12} className={questions}>
@@ -79,19 +88,30 @@ export class Summary extends Component {
                   ) : null}
                 </div>
               </Grid>
-              <Grid item xs={12}>
-                <Button
-                  id="nextButton"
-                  useLink
-                  arrow={true}
-                  onClick={() =>
-                    Router.push(mutateUrl(url, "/benefits-directory")).then(
-                      () => window.scrollTo(0, 0)
-                    )
-                  }
+              <Grid item xs={4} sm={6}>
+                <HeaderButton
+                  id="prevButton"
+                  onClick={() => Router.push(backUrl)}
+                  arrow="back"
                 >
-                  {t("ge.show_results")}
-                </Button>
+                  {t("back")}
+                </HeaderButton>
+              </Grid>
+              <Grid item xs={8} sm={6}>
+                <div className={alignRight}>
+                  <Button
+                    id="nextButton"
+                    useLink
+                    arrow={true}
+                    onClick={() =>
+                      Router.push(mutateUrl(url, "/benefits-directory")).then(
+                        () => window.scrollTo(0, 0)
+                      )
+                    }
+                  >
+                    {t("ge.show_results")}
+                  </Button>
+                </div>
               </Grid>
             </Grid>
           </Paper>
@@ -104,7 +124,8 @@ export class Summary extends Component {
 const mapStateToProps = (reduxState, props) => {
   return {
     reduxState: reduxState,
-    filteredBenefits: getFilteredBenefits(reduxState, props)
+    filteredBenefits: getFilteredBenefits(reduxState, props),
+    homeUrl: getHomeUrl(reduxState, props)
   };
 };
 
@@ -114,7 +135,8 @@ Summary.propTypes = {
   i18n: PropTypes.object.isRequired,
   url: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  homeUrl: PropTypes.string
 };
 
 export default withI18N(connect(mapStateToProps)(Summary));
