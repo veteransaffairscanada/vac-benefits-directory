@@ -121,14 +121,6 @@ describe("BB", () => {
     ).toContain("0");
   });
 
-  it("clicking next steps button changes window location", () => {
-    mounted_BB().instance().scrollToNextSteps = jest.fn();
-    mounted_BB()
-      .find("#nextSteps")
-      .simulate("click");
-    expect(mounted_BB().instance().scrollToNextSteps).toBeCalled();
-  });
-
   it("contains edit selections link", () => {
     expect(
       mounted_BB()
