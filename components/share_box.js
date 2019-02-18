@@ -26,7 +26,7 @@ class ShareBox extends Component {
   uid = uuidv4();
 
   render() {
-    const { t, printUrl, url, share, className } = this.props;
+    const { t, printUrl, url, showShareLink, className } = this.props;
     return (
       <div className={className}>
         <span className={marginRight}>Share:</span>
@@ -42,7 +42,7 @@ class ShareBox extends Component {
         >
           <Print />
         </HeaderLink>
-        {share ? (
+        {showShareLink ? (
           <React.Fragment>
             <HeaderButton
               id={this.uid}
@@ -72,7 +72,7 @@ ShareBox.propTypes = {
   t: PropTypes.func.isRequired,
   printUrl: PropTypes.string,
   url: PropTypes.object.isRequired,
-  share: PropTypes.bool,
+  showShareLink: PropTypes.bool.isRequired,
   className: PropTypes.string
 };
 

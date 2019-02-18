@@ -43,7 +43,7 @@ const savedListStyle = css`
 
 export class StickyHeader extends Component {
   render() {
-    const { t, url, summaryUrl, favouriteBenefits } = this.props;
+    const { t, url, summaryUrl, favouriteBenefits, showShareLink } = this.props;
 
     const longFavouritesText = t("favourites.saved_benefits", {
       x: favouriteBenefits.length
@@ -60,7 +60,7 @@ export class StickyHeader extends Component {
               t={t}
               printUrl={this.props.printUrl}
               url={url}
-              share={true}
+              showShareLink={showShareLink}
             />
           </Grid>
           <Grid item xs={8} className={alignRight}>
@@ -103,6 +103,7 @@ StickyHeader.propTypes = {
   printUrl: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
+  showShareLink: PropTypes.object,
   favouriteBenefits: PropTypes.array.isRequired
 };
 

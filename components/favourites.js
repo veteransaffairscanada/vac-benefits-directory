@@ -103,7 +103,12 @@ export class Favourites extends Component {
                   })}
                 </Header>
               </Grid>
-              <StickyHeader t={t} url={url} store={store} />
+              <StickyHeader
+                t={t}
+                url={url}
+                store={store}
+                showShareLink={false}
+              />
               <Grid item xs={12}>
                 <QuickLinks t={t} onFavourites={true} />
               </Grid>
