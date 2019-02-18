@@ -15,19 +15,14 @@ import { areCookiesDisabled, mutateUrl } from "../utils/common";
 import { globalTheme } from "../theme";
 import BreadCrumbs from "./breadcrumbs";
 import NextSteps from "./next_steps";
-import ContactUs from "./contact_us";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
 import StickyHeader from "./sticky_header";
+import QuickLinks from "./quick_links";
 
-const saveCSS = css`
-  font-size: 70px !important;
-`;
-const emptyList = css`
-  margin-top: 20px;
-  text-align: center;
-  word-spacing: normal;
-}
+const divider = css`
+  border-top: 2px solid ${globalTheme.colour.duckEggBlue};
+  width: 100%;
 `;
 const outerDiv = css`
   padding-bottom: 16px !important;
@@ -43,7 +38,6 @@ export class Favourites extends Component {
 
   constructor(props) {
     super(props);
-    this.nextStepsRef = React.createRef(); // create a ref object
     this.cookies = new Cookies();
   }
 
@@ -73,14 +67,8 @@ export class Favourites extends Component {
     return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
   };
 
-  scrollToNextSteps() {
-    window.location = "#next-steps";
-    const maxMobile = parseFloat(globalTheme.max.xs);
-    window.screen.width < maxMobile ? window.scrollBy(0, -90) : null;
-  }
-
   render() {
-    const { t, url, homeUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, homeUrl, store } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -117,7 +105,17 @@ export class Favourites extends Component {
                 </Header>
               </Grid>
               <StickyHeader t={t} url={url} />
-              <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
+              <Grid item xs={12}>
+                <QuickLinks t={t} />
+              </Grid>
+              <Grid item sm={4} xs={12}>
+                <div id="benefits-and-services">
+                  <Header headingLevel="h2" size="md_lg">
+                    Saved
+                  </Header>
+                </div>
+              </Grid>
+              <Grid id="mainContent" item sm={8} xs={12}>
                 <Grid container spacing={24}>
                   {this.state.showDisabledCookieBanner ? (
                     <Grid item xs={12}>
@@ -136,13 +134,12 @@ export class Favourites extends Component {
                     filteredBenefits={filteredBenefits}
                     showFavourites={true}
                     searchString=""
-                    store={this.props.store}
+                    store={store}
                     favouriteBenefits={this.props.favouriteBenefits}
                   />
                 </Grid>
                 {filteredBenefits.length == 0 ? (
-                  <Body className={emptyList}>
-                    <SaveChecked className={saveCSS} />
+                  <Body>
                     <br />
                     {t("favourites.help_msg_line1")}
                     <br />
@@ -153,21 +150,20 @@ export class Favourites extends Component {
                     <strong>{t("favourites.help_msg_emphasis") + " "}</strong>
                     {t("favourites.help_msg_last")}
                   </Body>
-                ) : (
-                  ""
-                )}
-                <Grid item xs={12}>
-                  <div ref={this.nextStepsRef}>
-                    <Grid container spacing={24}>
-                      <NextSteps t={t} store={this.props.store} />
-                      <ContactUs
-                        t={t}
-                        url={this.props.url}
-                        store={this.props.store}
-                      />
-                    </Grid>
-                  </div>
-                </Grid>
+                ) : null}
+              </Grid>
+              <Grid item xs={12}>
+                <div className={divider} />
+              </Grid>
+              <Grid item sm={4} xs={12}>
+                <div id="next-steps">
+                  <Header headingLevel="h2" size="md_lg">
+                    {t("nextSteps.whats_next")}
+                  </Header>
+                </div>
+              </Grid>
+              <Grid item sm={8} xs={12}>
+                <NextSteps t={t} store={store} />
               </Grid>
             </Grid>
           </Paper>
