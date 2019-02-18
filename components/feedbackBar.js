@@ -92,6 +92,7 @@ export class FeedbackBar extends Component {
   };
 
   cancelComment = () => {
+    this.setState({ feedbackSubmitted: false });
     this.setState({ commentFormToggled: false });
   };
 
