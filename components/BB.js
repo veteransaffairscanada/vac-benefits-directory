@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import SaveChecked from "./icons/SaveChecked";
 import { connect } from "react-redux";
 import {
@@ -12,7 +11,6 @@ import {
 } from "../selectors/urls";
 import { css } from "emotion";
 import Container from "../components/container";
-import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
@@ -26,6 +24,7 @@ import Paper from "./paper";
 import Header from "./typography/header";
 import ContactUs from "./contact_us";
 import NextSteps from "./next_steps";
+import QuickLinks from "./quick_links";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.warmGrey};
@@ -60,6 +59,9 @@ const shortText = css`
 `;
 const alignRight = css`
   text-align: right;
+`;
+const savedListStyle = css`
+  margin-left: 50px;
 `;
 
 export class BB extends Component {
@@ -137,7 +139,7 @@ export class BB extends Component {
             </Grid>
             <Grid item xs={12} className={sticky}>
               <Grid container spacing={8}>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                   <ShareBox
                     t={t}
                     printUrl={this.props.printUrl}
@@ -145,13 +147,14 @@ export class BB extends Component {
                     share={true}
                   />
                 </Grid>
-                <Grid item xs={6} className={alignRight}>
+                <Grid item xs={8} className={alignRight}>
                   <HeaderLink id="editSelections" href={summaryUrl}>
                     <EditIcon />
                     <span className={longText}>{longEditText}</span>
                     <span className={shortText}>{shortEditText}</span>
                   </HeaderLink>
                   <HeaderLink
+                    className={savedListStyle}
                     id="savedBenefits"
                     href={this.props.favouritesUrl}
                   >
@@ -163,30 +166,7 @@ export class BB extends Component {
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <div>
-                <HeaderButton
-                  id="benefits-and-services-button"
-                  onClick={() => this.scrollToId("#benefits-and-services")}
-                >
-                  {"Benefits and services"}
-                </HeaderButton>
-              </div>
-              <div>
-                <HeaderButton
-                  id="next-steps-button"
-                  onClick={() => this.scrollToId("#next-steps")}
-                >
-                  {t("nextSteps.whats_next")}
-                </HeaderButton>
-              </div>
-              <div>
-                <HeaderButton
-                  id="contact-button"
-                  onClick={() => this.scrollToId("#contact")}
-                >
-                  {t("nextSteps.contact_us")}
-                </HeaderButton>
-              </div>
+              <QuickLinks t={t} />
             </Grid>
             <Grid item md={3} sm={4} xs={12}>
               <div id="benefits-and-services">

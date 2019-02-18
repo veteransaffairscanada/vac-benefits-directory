@@ -187,9 +187,6 @@ export class Favourites extends Component {
                         x: filteredBenefits.length
                       })}
                     </Header>
-                    <Body className={topMargin}>
-                      {t("B3.check eligibility")}
-                    </Body>
                   </Grid>
                   <BenefitList
                     t={t}

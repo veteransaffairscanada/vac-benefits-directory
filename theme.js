@@ -49,7 +49,8 @@ let theme = {
     paleBlueGrey: "#f1f7fc",
     darkBlueGrey: "#d8dee2",
     lineGrey: "#dfdfdf",
-    tea: "#57c684"
+    tea: "#57c684",
+    duckEggBlue: "#dbe3e5"
   }
 };
 

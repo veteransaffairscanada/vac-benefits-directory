@@ -100,8 +100,6 @@ export class BenefitsPane extends Component {
               goToMap={this.goToMap}
               t={t}
             />
-          ) : filteredBenefits.length > 0 ? (
-            <Body>{t("B3.check eligibility")}</Body>
           ) : null}
         </Grid>
 

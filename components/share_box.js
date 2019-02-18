@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Grid } from "@material-ui/core";
-import Container from "../components/container";
 import { cx, css } from "emotion";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
@@ -12,24 +10,12 @@ import ShareIcon from "./icons/share_icon";
 import { uuidv4 } from "../utils/common";
 import { logEvent } from "../utils/analytics";
 
-const shareBoxStyle = css`
-  background-color: ${globalTheme.colour.paleGreyishBrown};
-  padding: 24px;
-  margin-top: 2em;
-  button {
-    margin-bottom: 1em;
-  }
-`;
-
 const shareBoxItem = css`
-  text-decoration: underline !important;
   color: ${globalTheme.colour.darkGreyBlue};
+  margin-left: 5px;
 `;
-
-const nonMobileStyle = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    text-align: right;
-  }
+const marginRight = css`
+  margin-right: 10px;
 `;
 
 class ShareBox extends Component {
@@ -42,25 +28,8 @@ class ShareBox extends Component {
   render() {
     const { t, printUrl, url, share, className } = this.props;
     return (
-      <div>
-        Share On:
-        <HeaderButton
-          id={this.uid}
-          className={shareBoxItem}
-          size="small"
-          onClick={() => this.setState({ showModal: true })}
-        >
-          <ShareIcon />
-          <span>{t("titles.share")}</span>
-        </HeaderButton>
-        <ShareModal
-          uid={this.uid}
-          isOpen={this.state.showModal}
-          onRequestClose={() => this.setState({ showModal: false })}
-          closeModal={() => this.setState({ showModal: false })}
-          url={url}
-          t={t}
-        />
+      <div className={className}>
+        <span className={marginRight}>Share On:</span>
         <HeaderLink
           className={shareBoxItem}
           size="small"
@@ -71,8 +40,27 @@ class ShareBox extends Component {
           }}
         >
           <Print />
-          <span className={share ? nonMobileStyle : ""}>{t("Print")}</span>
         </HeaderLink>
+        {share ? (
+          <React.Fragment>
+            <HeaderButton
+              id={this.uid}
+              className={shareBoxItem}
+              size="small"
+              onClick={() => this.setState({ showModal: true })}
+            >
+              <ShareIcon />
+            </HeaderButton>
+            <ShareModal
+              uid={this.uid}
+              isOpen={this.state.showModal}
+              onRequestClose={() => this.setState({ showModal: false })}
+              closeModal={() => this.setState({ showModal: false })}
+              url={url}
+              t={t}
+            />
+          </React.Fragment>
+        ) : null}
       </div>
     );
   }
