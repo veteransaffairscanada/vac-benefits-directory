@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { cx, css } from "emotion";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
@@ -35,6 +35,7 @@ class ShareBox extends Component {
           size="small"
           href={printUrl}
           target="_blank"
+          aria-label={t("Print")}
           onClick={() => {
             logEvent("Exit", "print");
           }}
@@ -47,6 +48,7 @@ class ShareBox extends Component {
               id={this.uid}
               className={shareBoxItem}
               size="small"
+              aria-label={t("titles.share")}
               onClick={() => this.setState({ showModal: true })}
             >
               <ShareIcon />

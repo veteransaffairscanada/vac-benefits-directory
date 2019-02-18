@@ -35,10 +35,6 @@ const outerDiv = css`
   padding-bottom: 16px !important;
 `;
 
-const topMargin = css`
-  margin-top: 20px;
-`;
-
 const sidebarLinks = css`
   padding: 1em 24px !important;
   border-top: thin solid ${globalTheme.colour.paleGreyishBrown};

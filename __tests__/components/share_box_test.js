@@ -10,7 +10,7 @@ describe("ShareBox", () => {
     props = {
       t: () => "en",
       url: {},
-      printUrl: "",
+      printUrl: "/print",
       share: false
     };
   });
