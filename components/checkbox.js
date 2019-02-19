@@ -41,11 +41,9 @@ const StyledLabel = styled("span")({
   fontWeight: 400,
   textTransform: "none",
   fontSize: "24px",
-  lineHeight: "16px",
   cursor: "pointer",
-  padding: "8px 0px 9px 8px",
+  padding: "0px 0px 14px 8px",
   display: "block",
-  height: "28px",
   color: `${globalTheme.colour.greyishBrown}`,
   "::before": {
     content: "''",
