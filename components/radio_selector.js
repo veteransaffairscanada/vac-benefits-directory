@@ -27,6 +27,12 @@ const underline = css`
   line-height: 160%;
   border-bottom: 2px dotted ${globalTheme.colour.greyishBrown};
 `;
+const leftIndent = css`
+  margin-left: 40px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    margin-left: 0px;
+  }
+`;
 
 export class RadioSelector extends React.Component {
   isDisabled = (option, responses, questionDisplayLogic) => {
@@ -115,7 +121,7 @@ export class RadioSelector extends React.Component {
             </Header>
           </Tooltip>
 
-          <div aria-label={legend}>
+          <div aria-label={legend} className={leftIndent}>
             {options.map(option => {
               return (
                 <Radio

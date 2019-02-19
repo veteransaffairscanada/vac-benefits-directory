@@ -6,19 +6,15 @@ import HomeIcon from "./icons/Home";
 import HeaderLink from "./header_link";
 
 const greyBanner = css`
-  padding-bottom: 20px;
-  margin-bottom: 30px;
+  margin: 30px 0;
   font-weight: bold;
   color: ${globalTheme.colour.greyishBrown};
   font-size: 16px;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     padding-left: 15px;
     padding-right: 15px;
+    margin: 11px 0;
   }
-`;
-
-const breadCrumbStyle = css`
-  padding-top: 15px;
 `;
 
 const separator = css`
@@ -40,7 +36,7 @@ export class BreadCrumbs extends Component {
     const { breadcrumbs, homeUrl } = this.props;
     return (
       <div className={greyBanner}>
-        <div className={breadCrumbStyle}>
+        <div>
           <HeaderLink id="homeButton" href={homeUrl} className={urlStyle}>
             <HomeIcon className={iconStyle} /> {this.props.t("titles.home")}
           </HeaderLink>
