@@ -90,7 +90,7 @@ export class BB extends Component {
             <Grid item sm={4} xs={12}>
               <div id="benefits-and-services">
                 <Header headingLevel="h2" size="md_lg">
-                  Benefits and services
+                  {t("titles.benefits_and_services")}
                 </Header>
               </div>
             </Grid>

@@ -48,7 +48,7 @@ class QuickLinks extends Component {
         <Grid container>
           <Grid item xs={12} sm={4}>
             <div className={leftDiv}>
-              <span>Quick Links</span>
+              <span>{t("quick_links")}</span>
               <div className={link}>
                 {onFavourites ? (
                   <HeaderButton
@@ -62,7 +62,7 @@ class QuickLinks extends Component {
                     id="benefits-and-services-button"
                     onClick={() => this.scrollToId("#benefits-and-services")}
                   >
-                    {"Benefits and services"}
+                    {t("titles.benefits_and_services")}
                   </HeaderButton>
                 )}
               </div>
