@@ -24,7 +24,8 @@ const divider = css`
   width: 100%;
 `;
 const outerDiv = css`
-  padding-bottom: 16px !important;
+  padding-top: 45px;
+  padding-bottom: 45px;
 `;
 
 export class Favourites extends Component {
