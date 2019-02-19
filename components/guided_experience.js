@@ -60,6 +60,10 @@ const questions = css`
 const body = css`
   margin-top: 5px;
   margin-bottom: 0px;
+  font-size: 24px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 14px;
+  }
 `;
 export class GuidedExperience extends Component {
   getSubtitle = question => {
