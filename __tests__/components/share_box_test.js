@@ -11,7 +11,7 @@ describe("ShareBox", () => {
       t: () => "en",
       url: {},
       printUrl: "/print",
-      share: false
+      showShareLink: false
     };
   });
 
@@ -31,12 +31,12 @@ describe("ShareBox", () => {
     expect(shareBox.find("ShareModal").length).toEqual(0);
   });
   it("renders a share button when props.share is true", async () => {
-    props.share = true;
+    props.showShareLink = true;
     let shareBox = mount(<ShareBox {...props} />);
     expect(shareBox.find("ShareModal").length).toEqual(1);
   });
   it("clicking share button changes showModal state to true", () => {
-    props.share = true;
+    props.showShareLink = true;
     let mounted = mount(<ShareBox {...props} />);
     mounted
       .find("HeaderButton")
