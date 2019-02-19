@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
 import { uuidv4 } from "../utils/common";
+import { css } from "emotion";
 
 const StyledCheckbox = styled("label")({
   display: "block",
@@ -74,12 +75,18 @@ const StyledLabel = styled("span")({
   }
 });
 
+const mobileLabelStyle = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 16px;
+  }
+`;
+
 const Checkbox = ({ children, className, ...props }) => {
   const guid = uuidv4();
   return (
     <StyledCheckbox className={className} htmlFor={guid}>
       <StyledInput type="checkbox" {...props} id={guid} />
-      <StyledLabel>{children}</StyledLabel>
+      <StyledLabel className={mobileLabelStyle}>{children}</StyledLabel>
     </StyledCheckbox>
   );
 };
