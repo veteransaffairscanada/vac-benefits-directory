@@ -21,7 +21,7 @@ const greyBox = css`
   background-color: ${globalTheme.colour.paleGreyTwo};
   margin-top: 34px;
   padding: 35px 43px;
-  p:first-child {
+  p:first-of-type {
     margin-top: 0;
   }
   p:last-child {
@@ -220,7 +220,7 @@ export class GuidedExperience extends Component {
                     </HeaderButton>
                   </Link>
                   <Link id="nextLink" href={this.getNextUrl()}>
-                    <Button id="nextButton" arrow="true">
+                    <Button id="nextButton" arrow={true}>
                       {t("next")}{" "}
                     </Button>
                   </Link>

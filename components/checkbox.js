@@ -40,7 +40,7 @@ const StyledLabel = styled("span")({
   fontFamily: globalTheme.fontFamily,
   fontWeight: 400,
   textTransform: "none",
-  fontSize: "14px",
+  fontSize: "24px",
   lineHeight: "16px",
   cursor: "pointer",
   padding: "8px 0px 9px 8px",

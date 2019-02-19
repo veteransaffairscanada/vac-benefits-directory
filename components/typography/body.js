@@ -5,7 +5,7 @@ import { cx, css } from "emotion";
 
 const root = css`
   font-family: ${globalTheme.fontFamily};
-  font-size: 18px;
+  font-size: 20px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
