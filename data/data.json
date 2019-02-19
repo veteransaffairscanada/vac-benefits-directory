@@ -1341,7 +1341,11 @@
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/26",
       "examples": "recCkWkJIklpp5ADr, reculYbazzbP3dxpA, reccED7sXf2ViIt47",
       "sortingPriority": "high",
-      "benefitExamples": ["recHcQ43RBBY7auJS"],
+      "benefitExamples": [
+        "recc8TopUzbaCrtCK",
+        "reccIoJgjbZlPUQur",
+        "rec3UvOcOCmuXcmZH"
+      ],
       "benefitEligibility": ["recESQipZSFsDNZZr", "recJL4uqpRytpMPGh"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
@@ -3766,6 +3770,27 @@
       "English": "Click here to provide feedback. ",
       "French": "Cliquez ici pour formuler des commentaires. ",
       "id": "beta_banner.link_text"
+    },
+    {
+      "id": "quick_links",
+      "key": "quick_links",
+      "English": "Quick Links",
+      "French": "(fra) Quick Links",
+      "section": ""
+    },
+    {
+      "id": "titles.benefits_and_services",
+      "English": "Benefits and services",
+      "key": "benefits_and_services",
+      "French": "(fra) Benefits and services",
+      "section": "titles"
+    },
+    {
+      "id": "share_colon",
+      "key": "share_colon",
+      "English": "Share:",
+      "French": "(fra) Share:",
+      "section": ""
     }
   ],
   "questions": [
@@ -3887,7 +3912,7 @@
         "recYbWrPdAKGLM1Gz"
       ],
       "display_text_english": "Overall, how was your experience with this online tool?",
-      "display_text_french": "(fra) Overall, how was your experience with this online tool?",
+      "display_text_french": "Dans l’ensemble, quelle a été votre expérience avec cet outil en ligne? ",
       "id": "recHWQkUTk7brewAD",
       "question display logic": [],
       "guided_experience_english": "",
@@ -3944,7 +3969,11 @@
         "rectdWl20FbZTxJI6",
         "recGRpW6C5c11wS1C"
       ],
-      "nextSteps": ["recdzY1R8cKtLgQrV", "recSPzFnZcghnpJoY"],
+      "nextSteps": [
+        "recdzY1R8cKtLgQrV",
+        "recSPzFnZcghnpJoY",
+        "recZX9D8BmyE1zIeq"
+      ],
       "key (DO NOT EDIT)": "veteran",
       "id": "recxxkfVbzqVT9PHE",
       "admin_display": "patronType = veteran",
@@ -3975,7 +4004,8 @@
       "nextSteps": [
         "recU2B0OUcUMg0uWy",
         "recdzY1R8cKtLgQrV",
-        "recSPzFnZcghnpJoY"
+        "recSPzFnZcghnpJoY",
+        "recZX9D8BmyE1zIeq"
       ],
       "key (DO NOT EDIT)": "servingMember",
       "id": "recFABO2SLhcwRkjT",
@@ -4314,7 +4344,7 @@
     },
     {
       "display_text_english": "Great",
-      "display_text_french": "(fra) Great",
+      "display_text_french": "Excellente",
       "linked_question": ["feedback"],
       "variable_name": "great",
       "key (DO NOT EDIT)": "great",
@@ -4329,7 +4359,7 @@
     },
     {
       "display_text_english": "Good",
-      "display_text_french": "(fra) Good",
+      "display_text_french": "Bonne",
       "linked_question": ["feedback"],
       "variable_name": "good",
       "key (DO NOT EDIT)": "good",
@@ -4344,7 +4374,7 @@
     },
     {
       "display_text_english": "OK",
-      "display_text_french": "(fra) OK",
+      "display_text_french": "Passable",
       "linked_question": ["feedback"],
       "variable_name": "ok",
       "key (DO NOT EDIT)": "ok",
@@ -4359,7 +4389,7 @@
     },
     {
       "display_text_english": "Bad",
-      "display_text_french": "(fra) Bad",
+      "display_text_french": "Mauvaise",
       "linked_question": ["feedback"],
       "variable_name": "bad",
       "key (DO NOT EDIT)": "bad",
@@ -4374,7 +4404,7 @@
     },
     {
       "display_text_english": "Terrible",
-      "display_text_french": "(fra) Terrible",
+      "display_text_french": "Très mauvaise",
       "linked_question": ["feedback"],
       "variable_name": "terrible",
       "key (DO NOT EDIT)": "terrible",
@@ -4776,10 +4806,22 @@
       "id": "recUZWfTxbbPve4I6"
     },
     {
-      "english": "Services to improve your health and adjust to life after service.",
-      "french": "Services visant à améliorer votre santé et à vous adapter à la vie après le service.",
+      "english": "physiotherapy",
+      "french": "physiothérapie",
       "linked_benefits": ["Rehabilitation Services"],
-      "id": "recHcQ43RBBY7auJS"
+      "id": "recc8TopUzbaCrtCK"
+    },
+    {
+      "english": "chiropractor",
+      "french": "(fra) chiropractor",
+      "linked_benefits": ["Rehabilitation Services"],
+      "id": "reccIoJgjbZlPUQur"
+    },
+    {
+      "english": "massage therapy ",
+      "french": "(fra) massage therapy ",
+      "linked_benefits": ["Rehabilitation Services"],
+      "id": "rec3UvOcOCmuXcmZH"
     },
     {
       "english": "advice on applications",
@@ -4978,31 +5020,34 @@
     {
       "bullet_name": "TransitionInterview",
       "english": "Contact us to schedule a [transition interview](https://www.veterans.gc.ca/eng/services/transition/interview) before you release from the military.",
-      "french": "Veuillez communiquer avec nous pour prévoir une [entrevue de transition](https://www.veterans.gc.ca/fra/services/transition/interview) avant votre libération des forces.",
+      "french": "Veuillez communiquer avec nous pour prévoir une [entrevue de transition](https://www.veterans.gc.ca/fra/services/transition/interview) avant votre libération des forces militaires.",
       "patronType": ["recFABO2SLhcwRkjT"],
-      "id": "recU2B0OUcUMg0uWy"
+      "id": "recU2B0OUcUMg0uWy",
+      "serviceHealthIssue": []
     },
     {
       "bullet_name": "LearnMore",
       "english": "Before you apply, confirm your eligibility by reading the “Do you qualify” section of each benefit or service. ",
-      "french": "Avant de postuler, veuillez confirmer votre admissibilité en consultant la section « Êtes-vous admissible? » de chaque avantage ou service. ",
+      "french": "Avant de faire une demande, veuillez confirmer votre admissibilité en consultant la section « Êtes-vous admissible? » de chaque avantage ou service. ",
       "id": "rechHmXWNoHOmWfAW",
-      "patronType": []
+      "patronType": [],
+      "serviceHealthIssue": []
     },
     {
       "bullet_name": "MyVACAccount",
       "english": "Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms, further check eligibility and apply online. ",
-      "french": "Inscrivez-vous ou connectez-vous à votre [Mon dossier ACC](https://www.veterans.gc.ca/fra/e_services), où vous trouverez les formulaires de demandes, pourrez vérifier votre admissibilité et postuler en ligne.",
+      "french": "Inscrivez-vous ou connectez-vous à votre [Mon dossier ACC](https://www.veterans.gc.ca/fra/e_services), où vous trouverez les formulaires de demandes, pourrez vérifier votre admissibilité et faire une demande en ligne.",
       "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
-      "id": "recdzY1R8cKtLgQrV"
+      "id": "recdzY1R8cKtLgQrV",
+      "serviceHealthIssue": []
     },
     {
       "bullet_name": "ServiceHealthRecord",
       "english": "We will obtain a copy of your service health records after we receive your application for disability benefits, which should contain sufficient evidence that your disability is related to your service.",
       "french": "Nous nous procurerons une copie de votre dossier de santé de service après avoir reçu votre demande de prestations d’invalidité, laquelle devrait démontrer adéquatement que votre invalidité est liée à votre service. ",
+      "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
       "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
-      "id": "recZX9D8BmyE1zIeq",
-      "patronType": []
+      "id": "recZX9D8BmyE1zIeq"
     },
     {
       "bullet_name": "ContactUs",
@@ -5013,9 +5058,10 @@
         "recxn7ls1CBYmeEZL",
         "recFABO2SLhcwRkjT"
       ],
-      "id": "recSPzFnZcghnpJoY"
+      "id": "recSPzFnZcghnpJoY",
+      "serviceHealthIssue": []
     }
   ],
   "errors": [],
-  "timestamp": 1550521102444
+  "timestamp": 1550595283120
 }
