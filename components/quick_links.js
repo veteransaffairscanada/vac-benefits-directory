@@ -9,13 +9,23 @@ const greyBox = css`
   background-color: ${globalTheme.colour.paleGreyTwo};
   padding: 30px;
 `;
-const leftBorder = css`
+const leftDiv = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) { {
+    padding-bottom: 30px;
+  }
+`;
+const rightDiv = css`
   border-left: 4px solid ${globalTheme.colour.duckEggBlue};
   height: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 30px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) { {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
 `;
 
 const text = css`
@@ -37,35 +47,37 @@ class QuickLinks extends Component {
       <div className={greyBox}>
         <Grid container>
           <Grid item xs={12} sm={4}>
-            <span>Quick Links</span>
-            <div className={link}>
-              {onFavourites ? (
+            <div className={leftDiv}>
+              <span>Quick Links</span>
+              <div className={link}>
+                {onFavourites ? (
+                  <HeaderButton
+                    id="saved-list-button"
+                    onClick={() => this.scrollToId("#saved-list")}
+                  >
+                    {"Saved list"}
+                  </HeaderButton>
+                ) : (
+                  <HeaderButton
+                    id="benefits-and-services-button"
+                    onClick={() => this.scrollToId("#benefits-and-services")}
+                  >
+                    {"Benefits and services"}
+                  </HeaderButton>
+                )}
+              </div>
+              <div className={link}>
                 <HeaderButton
-                  id="saved-list-button"
-                  onClick={() => this.scrollToId("#saved-list")}
+                  id="next-steps-button"
+                  onClick={() => this.scrollToId("#next-steps")}
                 >
-                  {"Saved list"}
+                  {t("nextSteps.whats_next")}
                 </HeaderButton>
-              ) : (
-                <HeaderButton
-                  id="benefits-and-services-button"
-                  onClick={() => this.scrollToId("#benefits-and-services")}
-                >
-                  {"Benefits and services"}
-                </HeaderButton>
-              )}
-            </div>
-            <div className={link}>
-              <HeaderButton
-                id="next-steps-button"
-                onClick={() => this.scrollToId("#next-steps")}
-              >
-                {t("nextSteps.whats_next")}
-              </HeaderButton>
+              </div>
             </div>
           </Grid>
           <Grid item xs={12} sm={8}>
-            <div className={leftBorder}>
+            <div className={rightDiv}>
               <div className={text}>{t("B3.check eligibility")}</div>
             </div>
           </Grid>
