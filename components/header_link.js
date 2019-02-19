@@ -8,6 +8,7 @@ import Link from "next/link";
 
 const style = css`
   display: inline-block;
+  padding: 0.526315em 0;
   text-align: left;
   font-family: ${globalTheme.fontFamily};
   font-size: 21px;
@@ -16,7 +17,6 @@ const style = css`
   background-color: transparent;
   border: none;
   text-decoration: none;
-  padding: 0px !important;
   :hover {
     text-decoration: underline !important;
     cursor: pointer;

@@ -33,10 +33,10 @@ const labelStyle = css({
   fontFamily: globalTheme.fontFamily,
   fontWeight: 400,
   textTransform: "none",
-  fontSize: "16px",
+  fontSize: "24px",
   lineHeight: "1.25",
   cursor: "pointer",
-  padding: "5px 10px 9px 12px",
+  padding: "0px 10px 15px 12px",
   display: "block",
   ":before": {
     content: "''",
@@ -63,6 +63,12 @@ const labelStyle = css({
   }
 });
 
+const mobileLabelStyle = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 16px;
+  }
+`;
+
 const Radio = ({ children, className, value, ...input }) => (
   <div className={cx(rootStyle, className)}>
     <input
@@ -72,7 +78,7 @@ const Radio = ({ children, className, value, ...input }) => (
       id={value + "-0"}
       {...input}
     />
-    <label className={labelStyle} htmlFor={value + "-0"}>
+    <label className={cx(mobileLabelStyle, labelStyle)} htmlFor={value + "-0"}>
       {children}
     </label>
   </div>
