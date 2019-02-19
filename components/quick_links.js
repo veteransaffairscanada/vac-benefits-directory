@@ -7,10 +7,14 @@ import { globalTheme } from "../theme";
 
 const greyBox = css`
   background-color: ${globalTheme.colour.paleGreyTwo};
-  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
 `;
 const leftDiv = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) { {
+  padding-right: 30px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     padding-bottom: 30px;
   }
 `;
@@ -28,9 +32,6 @@ const rightDiv = css`
   }
 `;
 
-const text = css`
-  flex: 1;
-`;
 const link = css`
   padding-top: 10px;
 `;
@@ -77,9 +78,7 @@ class QuickLinks extends Component {
             </div>
           </Grid>
           <Grid item xs={12} sm={8}>
-            <div className={rightDiv}>
-              <div className={text}>{t("B3.check eligibility")}</div>
-            </div>
+            <div className={rightDiv}>{t("B3.check eligibility")}</div>
           </Grid>
         </Grid>
       </div>
