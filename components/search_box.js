@@ -28,6 +28,7 @@ const InputSearchBox = styled("input")({
   lineHeight: "1.5",
   background: globalTheme.colour.white,
   borderRadius: 0,
+  boxShadow: "inset 0 0 0 9999px white",
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",
@@ -46,7 +47,7 @@ const ClearButton = styled("button")({
   display: "block",
   color: globalTheme.colour.cerulean,
   position: "absolute",
-  left: "-45px",
+  left: "-50px",
   padding: "10px",
   width: "45px",
   height: "44px",
