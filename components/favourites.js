@@ -30,8 +30,7 @@ const innerDiv = css`
   padding-top: 45px;
 `;
 const headerPadding = css`
-  padding: 0 12px;
-  margin-top: 23px;
+  margin-top: 7px;
   margin-bottom: 25px;
 `;
 export class Favourites extends Component {
@@ -136,18 +135,19 @@ export class Favourites extends Component {
                       />
                     </Grid>
                   ) : null}
-
-                  <Header
-                    size="sm_md"
-                    headingLevel="h3"
-                    className={headerPadding}
-                  >
-                    {filteredBenefits.length === 1
-                      ? t("titles.1_saved_benefit")
-                      : t("titles.x_saved_benefits", {
-                          x: filteredBenefits.length
-                        })}
-                  </Header>
+                  <Grid item xs={12}>
+                    <Header
+                      size="md"
+                      headingLevel="h3"
+                      className={headerPadding}
+                    >
+                      {filteredBenefits.length === 1
+                        ? t("titles.1_saved_benefit")
+                        : t("titles.x_saved_benefits", {
+                            x: filteredBenefits.length
+                          })}
+                    </Header>
+                  </Grid>
 
                   <BenefitList
                     t={t}

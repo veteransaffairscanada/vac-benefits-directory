@@ -24,6 +24,9 @@ const spacer = css`
   margin-top: 40px;
   width: 100%;
 `;
+const bottomPadding = css`
+  padding-bottom: 50px;
+`;
 
 export class BenefitsPane extends Component {
   clearFilters = () => {
@@ -103,15 +106,17 @@ export class BenefitsPane extends Component {
         {filteredBenefitsWithoutSearch.length === 0 ? null : (
           <React.Fragment>
             <Grid item xs={12}>
-              <SearchBox
-                inputId="bbSearchField"
-                buttonId="searchButtonLink"
-                placeholder={t("search")}
-                value={searchString}
-                onChange={this.handleSearchChange}
-                disableButton={true}
-                onClear={() => setSearchString("")}
-              />
+              <div className={bottomPadding}>
+                <SearchBox
+                  inputId="bbSearchField"
+                  buttonId="searchButtonLink"
+                  placeholder={t("search")}
+                  value={searchString}
+                  onChange={this.handleSearchChange}
+                  disableButton={true}
+                  onClear={() => setSearchString("")}
+                />
+              </div>
             </Grid>
 
             <Grid item xs={12}>
