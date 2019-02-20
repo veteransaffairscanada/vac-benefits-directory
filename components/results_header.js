@@ -12,7 +12,7 @@ const headerPadding = css`
 const ResultsHeader = props => {
   if (props.searchString.trim() !== "" && props.benefitCount > 0) {
     return (
-      <Header className={headerPadding} size="sm_md" headingLevel="h2">
+      <Header className={headerPadding} size="sm_md" headingLevel="h3">
         {props.headerText}
       </Header>
     );

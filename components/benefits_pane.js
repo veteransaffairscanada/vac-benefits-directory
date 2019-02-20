@@ -12,13 +12,10 @@ import {
 } from "../selectors/benefits";
 import { css } from "emotion";
 import Header from "./typography/header";
-import Body from "./typography/body";
 import SearchBox from "./search_box";
 import { getLink, getBenefitCountString } from "../utils/common";
-import NextSteps from "./next_steps";
 import NoResultsButtons from "./no_results_buttons";
 import ResultsHeader from "./results_header";
-import ContactUs from "./contact_us";
 
 const title = css`
   padding-bottom: 15px;
@@ -26,6 +23,9 @@ const title = css`
 const spacer = css`
   margin-top: 40px;
   width: 100%;
+`;
+const bottomPadding = css`
+  padding-bottom: 50px;
 `;
 
 export class BenefitsPane extends Component {
@@ -71,20 +71,18 @@ export class BenefitsPane extends Component {
       filteredBenefits,
       filteredBenefitsWithoutSearch,
       nonFilteredBenefits,
-      nextStepsRef,
       searchString,
       reduxState,
       store,
-      setSearchString,
-      url
+      setSearchString
     } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Header
             className={"BenefitsCounter " + title}
-            size="lg"
-            headingLevel="h1"
+            size="md"
+            headingLevel="h3"
             autoFocus={true}
           >
             {filteredBenefitsWithoutSearch.length === 0
@@ -102,23 +100,23 @@ export class BenefitsPane extends Component {
               goToMap={this.goToMap}
               t={t}
             />
-          ) : filteredBenefits.length > 0 ? (
-            <Body>{t("B3.check eligibility")}</Body>
           ) : null}
         </Grid>
 
         {filteredBenefitsWithoutSearch.length === 0 ? null : (
           <React.Fragment>
             <Grid item xs={12}>
-              <SearchBox
-                inputId="bbSearchField"
-                buttonId="searchButtonLink"
-                placeholder={t("search")}
-                value={searchString}
-                onChange={this.handleSearchChange}
-                disableButton={true}
-                onClear={() => setSearchString("")}
-              />
+              <div className={bottomPadding}>
+                <SearchBox
+                  inputId="bbSearchField"
+                  buttonId="searchButtonLink"
+                  placeholder={t("search")}
+                  value={searchString}
+                  onChange={this.handleSearchChange}
+                  disableButton={true}
+                  onClear={() => setSearchString("")}
+                />
+              </div>
             </Grid>
 
             <Grid item xs={12}>
@@ -173,15 +171,6 @@ export class BenefitsPane extends Component {
             </Grid>
           </React.Fragment>
         )}
-
-        <Grid item xs={12}>
-          <div ref={nextStepsRef}>
-            <Grid container spacing={24}>
-              <NextSteps t={t} store={store} />
-              <ContactUs t={t} url={url} store={store} />
-            </Grid>
-          </div>
-        </Grid>
       </Grid>
     );
   }
@@ -225,7 +214,6 @@ const mapStateToProps = (reduxState, props) => {
 
 BenefitsPane.propTypes = {
   reduxState: PropTypes.object,
-  nextStepsRef: PropTypes.object,
   url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   profileFilters: PropTypes.object.isRequired,
