@@ -7,7 +7,6 @@ const style = css`
   font-size: 18px;
   font-weight: bold;
   color: white;
-  margin-left: 10px;
   cursor: pointer;
   text-decoration: none;
   vertical-align: middle;
