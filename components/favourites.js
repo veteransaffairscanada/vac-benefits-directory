@@ -29,7 +29,11 @@ const outerDiv = css`
 const innerDiv = css`
   padding-top: 45px;
 `;
-
+const headerPadding = css`
+  padding: 0 12px;
+  margin-top: 23px;
+  margin-bottom: 25px;
+`;
 export class Favourites extends Component {
   state = {
     enIdx: null,
@@ -101,9 +105,7 @@ export class Favourites extends Component {
                   size="lg"
                   headingLevel="h1"
                 >
-                  {t("favourites.saved_benefits", {
-                    x: filteredBenefits.length
-                  })}
+                  {t("titles.saved_list")}
                 </Header>
               </Grid>
               <StickyHeader
@@ -118,7 +120,7 @@ export class Favourites extends Component {
               <Grid item sm={4} xs={12}>
                 <div id="saved-list">
                   <Header headingLevel="h2" size="md_lg">
-                    Saved list
+                    {t("titles.saved_list")}
                   </Header>
                 </div>
               </Grid>
@@ -134,6 +136,18 @@ export class Favourites extends Component {
                       />
                     </Grid>
                   ) : null}
+
+                  <Header
+                    size="sm_md"
+                    headingLevel="h3"
+                    className={headerPadding}
+                  >
+                    {filteredBenefits.length === 1
+                      ? t("titles.1_saved_benefit")
+                      : t("titles.x_saved_benefits", {
+                          x: filteredBenefits.length
+                        })}
+                  </Header>
 
                   <BenefitList
                     t={t}

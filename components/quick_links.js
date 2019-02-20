@@ -56,7 +56,7 @@ class QuickLinks extends Component {
                     id="saved-list-button"
                     onClick={() => this.scrollToId("#saved-list")}
                   >
-                    {"Saved list"}
+                    {t("titles.saved_list")}
                   </HeaderButton>
                 ) : (
                   <HeaderButton
