@@ -199,14 +199,14 @@ export class FeedbackBar extends Component {
             <div className={Inner}>
               <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
                 {t("feedback.response_p1")}
-                <FooterButton
-                  id="feedbackReset"
-                  className={resetButton}
-                  onClick={() => this.resetFeedback()}
-                >
-                  {t("feedback.response_p2")}
-                </FooterButton>
               </Header>
+              <FooterButton
+                id="feedbackReset"
+                className={resetButton}
+                onClick={() => this.resetFeedback()}
+              >
+                {t("feedback.response_p2")}
+              </FooterButton>
             </div>
           ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>
