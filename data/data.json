@@ -3752,31 +3752,31 @@
     },
     {
       "section": "feedback",
-      "id": "feedback.details_expansion_pt2",
       "key": "details_expansion_pt2",
       "English": "VAC office",
-      "French": "Le personnel d'un bureau d'ACC ou d'un Centres de transition (CT) peut vous aider, ou appelez-nous au 1-866-522-2022."
+      "French": "Le personnel d'un bureau d'ACC ou d'un Centres de transition (CT) peut vous aider, ou appelez-nous au 1-866-522-2022.",
+      "id": "feedback.details_expansion_pt2"
     },
     {
       "section": "feedback",
-      "id": "feedback.details_expansion_pt3",
       "key": "details_expansion_pt3",
       "English": " or ",
-      "French": "Le personnel d'un bureau d'ACC ou d'un Centres de transition (CT) peut vous aider, ou appelez-nous au 1-866-522-2022."
+      "French": "Le personnel d'un bureau d'ACC ou d'un Centres de transition (CT) peut vous aider, ou appelez-nous au 1-866-522-2022.",
+      "id": "feedback.details_expansion_pt3"
     },
     {
       "section": "feedback",
-      "id": "feedback.details_expansion_pt4",
       "key": "details_expansion_pt4",
       "English": "Transition Centre (TC)",
-      "French": "Le personnel d'un bureau d'ACC ou d'un Centres de transition (CT) peut vous aider, ou appelez-nous au 1-866-522-2022."
+      "French": "Le personnel d'un bureau d'ACC ou d'un Centres de transition (CT) peut vous aider, ou appelez-nous au 1-866-522-2022.",
+      "id": "feedback.details_expansion_pt4"
     },
     {
       "section": "feedback",
-      "id": "feedback.details_expansion_pt5",
       "key": "details_expansion_pt5",
       "English": " can assist you, or call us at 1-866-522-2122.",
-      "French": "Le personnel d'un bureau d'ACC ou d'un Centres de transition (CT) peut vous aider, ou appelez-nous au 1-866-522-2022."
+      "French": "Le personnel d'un bureau d'ACC ou d'un Centres de transition (CT) peut vous aider, ou appelez-nous au 1-866-522-2022.",
+      "id": "feedback.details_expansion_pt5"
     },
     {
       "section": "feedback",
@@ -3793,18 +3793,18 @@
       "id": "feedback.response_p2"
     },
     {
-      "id": "feedback.vac_office_link",
       "section": "feedback",
       "key": "vac_office_link",
       "English": "https://www.veterans.gc.ca/eng/contact",
-      "French": "https://www.veterans.gc.ca/fra/contactez"
+      "French": "https://www.veterans.gc.ca/fra/contactez",
+      "id": "feedback.vac_office_link"
     },
     {
-      "id": "feedback.transition_centre_link",
       "section": "feedback",
       "key": "transition_centre_link",
       "English": "https://www.veterans.gc.ca/eng/services/information-for/caf/ipsc",
-      "French": ""
+      "id": "feedback.transition_centre_link",
+      "French": "https://www.veterans.gc.ca/fra/services/information-for/caf/ipsc"
     },
     {
       "section": "beta_banner",
@@ -3840,6 +3840,20 @@
       "French": "(fra) Share:",
       "id": "share_colon",
       "section": ""
+    },
+    {
+      "id": "titles.saved_list",
+      "key": "saved_list",
+      "section": "titles",
+      "English": "Saved list",
+      "French": "(fra) Saved list"
+    },
+    {
+      "id": "titles.x_saved_b",
+      "section": "titles",
+      "key": "x_saved_b",
+      "English": "",
+      "French": ""
     }
   ],
   "questions": [
@@ -5112,5 +5126,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1550691694565
+  "timestamp": 1550693318740
 }
