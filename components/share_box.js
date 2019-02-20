@@ -14,8 +14,11 @@ const shareBoxItem = css`
   color: ${globalTheme.colour.darkGreyBlue};
   margin-left: 5px;
 `;
-const marginRight = css`
+const shareText = css`
   margin-right: 10px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    display: none;
+  }
 `;
 
 class ShareBox extends Component {
@@ -29,7 +32,7 @@ class ShareBox extends Component {
     const { t, printUrl, url, showShareLink, className } = this.props;
     return (
       <div className={className}>
-        <span className={marginRight}>{t("share_colon")}</span>
+        <span className={shareText}>{t("share_colon")}</span>
         <HeaderLink
           className={shareBoxItem}
           size="small"

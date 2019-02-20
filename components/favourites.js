@@ -24,8 +24,10 @@ const divider = css`
   width: 100%;
 `;
 const outerDiv = css`
+  padding-bottom: 100px;
+`;
+const innerDiv = css`
   padding-top: 45px;
-  padding-bottom: 45px;
 `;
 
 export class Favourites extends Component {
@@ -91,7 +93,7 @@ export class Favourites extends Component {
             breadcrumbs={breadcrumbs}
             pageTitle={t("index.your_saved_benefits")}
           />
-          <Paper padding="md">
+          <Paper padding="md" className={innerDiv}>
             <Grid container spacing={32}>
               <Grid item xs={12}>
                 <Header

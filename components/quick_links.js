@@ -11,6 +11,7 @@ const greyBox = css`
   padding-bottom: 30px;
   padding-left: 50px;
   padding-right: 50px;
+  margin-bottom: 20px;
 `;
 const leftDiv = css`
   padding-right: 30px;
@@ -26,12 +27,11 @@ const rightDiv = css`
   flex-direction: column;
   justify-content: center;
   padding-left: 30px;
-  @media only screen and (max-width: ${globalTheme.max.xs}) { {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     padding-top: 10px;
     padding-bottom: 10px;
   }
 `;
-
 const link = css`
   padding-top: 10px;
 `;
