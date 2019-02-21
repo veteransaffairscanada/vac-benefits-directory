@@ -596,8 +596,8 @@
     {
       "vacNameEn": "Attendance Allowance",
       "vacNameFr": "Allocation pour soins",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/attendance-allowance",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/attendance-allowance",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/related-allowances",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/related-allowances",
       "needs": ["recseR05JEXto1LvQ", "rec0GJweqFHr0GiOK"],
       "oneLineDescriptionEn": "Monthly payments if you need help with daily tasks because of your health needs. ",
       "oneLineDescriptionFr": "Versements mensuels si vos besoins en matière de santé nécessitent une aide avec vos tâches quotidiennes.",
@@ -711,7 +711,7 @@
       "vacNameEn": "Caregiver Zone",
       "vacNameFr": "Espace aidants",
       "benefitPageEn": "https://caregiverzone.ca/",
-      "benefitPageFr": "https://espaceaidants.ca/#!/forefront/home",
+      "benefitPageFr": "https://caregiverzone.ca/",
       "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "An online community for caregivers who want to share their story, ask questions or learn more about caregiving.",
       "oneLineDescriptionFr": "Communauté en ligne pour les aidants naturels qui souhaitent raconter leur expérience, poser des questions ou en apprendre davantage sur la prestation de soins.",
@@ -766,8 +766,8 @@
     {
       "vacNameEn": "Clothing Allowance",
       "vacNameFr": "Allocation vestimentaire",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/related-allowances",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/related-allowances",
       "needs": ["recJWeFg5525a06Wb", "recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly payments if you need to replace worn out clothes or have clothes made because of your disability. ",
       "oneLineDescriptionFr": "Versements mensuels si vous avez besoin de vêtements neufs ou spéciaux en raison de vos problèmes de santé.  ",
@@ -972,8 +972,8 @@
     {
       "vacNameEn": "Education and Training Benefit",
       "vacNameFr": "Allocation pour études et formation",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/education-training-benefit",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/education-training-benefit",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/education-training-benefit",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/education-training-benefit",
       "needs": ["rec4Qx9WDHDiLpswo", "recIoUeSmWb2pyYaD"],
       "oneLineDescriptionEn": "A grant to help you achieve your education and career goals after your military career.",
       "oneLineDescriptionFr": "Subvention pour vous aider à atteindre vos objectifs éducatifs et professionnels après votre carrière militaire.",
@@ -1052,7 +1052,7 @@
       "vacNameEn": "Family peer support (OSISS)",
       "vacNameFr": "Soutien par les pairs pour les familles (SSBSO)",
       "benefitPageEn": "https://www.cfmws.com/en/AboutUs/DCSM/OSISS/Pages/Families.aspx",
-      "benefitPageFr": "https://www.cfmws.com/fr/aboutus/dcsm/osiss/pages/families.aspx",
+      "benefitPageFr": "https://www.cfmws.com/en/AboutUs/DCSM/OSISS/Pages/Families.aspx",
       "needs": ["recpNzpEY2iurh4L1", "recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "Peer support for the families of Veterans living with mental health issues.",
       "oneLineDescriptionFr": "Soutien des pairs pour la famille des vétérans ayant des problèmes de santé mentale.",
@@ -1273,8 +1273,6 @@
     {
       "vacNameEn": "Peer support (OSISS)",
       "vacNameFr": "Soutien par les pairs (SSBSO)",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/mental-health-and-wellness/counselling-services/someone-who-can-relate",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/mental-health-and-wellness/counselling-services/someone-who-can-relate",
       "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Talk to someone who has lived with mental health issues and can offer support.",
       "oneLineDescriptionFr": "Soutien obtenu auprès de personnes ayant été aux prises avec des problèmes de santé mentale.",
@@ -1287,6 +1285,8 @@
       "seeMoreSentenceEn": "Some examples of common mental health issues are:",
       "seeMoreSentenceFr": "Exemples de problèmes de santé mentale courants :",
       "id": "recUKuD3msQiBFZBu",
+      "benefitPageEn": "",
+      "benefitPageFr": "",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -1603,8 +1603,8 @@
     {
       "vacNameEn": "Veterans Independence Program for primary caregivers",
       "vacNameFr": "Programme pour l'autonomie des anciens combattants à l'intention des principaux dispensateurs de soins",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/housing-and-home-life/help-at-home/veterans-independence-program-caregivers",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program-caregivers",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/veterans-independence-program/caregivers",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/veterans-independence-program/caregivers",
       "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Payment for yard and housekeeping services to help you stay in your home.",
       "oneLineDescriptionFr": "Paiement des services d’entretien ménager et du terrain pour vous aider à rester à la maison.",
@@ -1624,8 +1624,8 @@
     {
       "vacNameEn": "Veterans Independence Program for survivors",
       "vacNameFr": "Programme pour l'autonomie des anciens combattants à l'intention des survivants",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/housing-and-home-life/help-at-home/veterans-independence-program-survivors",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program-survivors",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/veterans-independence-program/survivors",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/veterans-independence-program/survivors",
       "needs": ["recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "Payment for yard and housekeeping services to help you stay in your home.",
       "oneLineDescriptionFr": "Paiement des services d’entretien ménager et du terrain pour vous aider à rester à la maison.",
@@ -1645,8 +1645,8 @@
     {
       "vacNameEn": "Vocational assistance",
       "vacNameFr": "Assistance professionnelle",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/vocational-assistance",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-assistance",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/rehabilitation",
       "needs": ["rec4Qx9WDHDiLpswo", "recIoUeSmWb2pyYaD", "recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "Coaching, support and any other training you need to return to work or find a new job after an injury.",
       "oneLineDescriptionFr": "Encadrement, soutien et toute autre formation dont vous avez besoin pour retourner au travail ou trouver un nouvel emploi après une blessure.",
@@ -1672,8 +1672,8 @@
     {
       "vacNameEn": "Vocational rehabilitation",
       "vacNameFr": "Réadaptation professionnelle",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/vocational-rehabilitation",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-rehabilitation",
+      "benefitPageEn": "http://www.cvvrs.com/",
+      "benefitPageFr": "http://www.cvvrs.com/",
       "needs": ["recIoUeSmWb2pyYaD", "rec4Qx9WDHDiLpswo"],
       "oneLineDescriptionEn": "Coaching, support and any other training you need to return to work or find a new job after an injury.",
       "oneLineDescriptionFr": "Encadrement, soutien et toute autre formation dont vous avez besoin pour retourner au travail ou trouver un nouvel emploi après une blessure.",
@@ -3114,6 +3114,13 @@
       "section": ""
     },
     {
+      "key": "feedback-response",
+      "English": "Thank you for your feedback.",
+      "French": "Merci pour votre avis.",
+      "id": "feedback-response",
+      "section": ""
+    },
+    {
       "key": "filter by category",
       "English": "Filter by category",
       "French": "Filtrer par sujet",
@@ -3751,20 +3758,6 @@
       "id": "feedback.details_expansion"
     },
     {
-      "key": "response_p1",
-      "English": "Thank you for your feedback. If you have more,",
-      "French": "Merci pour votre avis.",
-      "id": "feedback.response_p1",
-      "section": "feedback"
-    },
-    {
-      "id": "feedback.response_p2",
-      "section": "feedback",
-      "key": "response_p2",
-      "English": "let us know.",
-      "French": "(fra) let us know."
-    },
-    {
       "section": "beta_banner",
       "key": "main",
       "English": "This is a new online tool.",
@@ -3779,24 +3772,24 @@
       "id": "beta_banner.link_text"
     },
     {
+      "id": "quick_links",
       "key": "quick_links",
       "English": "Quick Links",
       "French": "(fra) Quick Links",
-      "id": "quick_links",
       "section": ""
     },
     {
-      "section": "titles",
-      "key": "benefits_and_services",
+      "id": "titles.benefits_and_services",
       "English": "Benefits and services",
+      "key": "benefits_and_services",
       "French": "(fra) Benefits and services",
-      "id": "titles.benefits_and_services"
+      "section": "titles"
     },
     {
+      "id": "share_colon",
       "key": "share_colon",
       "English": "Share:",
       "French": "(fra) Share:",
-      "id": "share_colon",
       "section": ""
     }
   ],
@@ -5058,8 +5051,8 @@
     },
     {
       "bullet_name": "ContactUs",
-      "english": "If you still have questions, [contact us](https://www.veterans.gc.ca/eng/contact) and we will assist you. ",
-      "french": "Si vous avez d’autres questions, [veuillez communiquer avec nous](https://www.veterans.gc.ca/fra/contactez) et nous vous aiderons.",
+      "english": "If you still have questions, [contact us](https://veterans.gc.ca/eng/contact) and we will assist you. ",
+      "french": "Si vous avez d’autres questions, [veuillez communiquer avec nous](https://veterans.gc.ca/fra/contact) et nous vous aiderons.",
       "patronType": [
         "recxxkfVbzqVT9PHE",
         "recxn7ls1CBYmeEZL",
@@ -5067,24 +5060,8 @@
       ],
       "id": "recSPzFnZcghnpJoY",
       "serviceHealthIssue": []
-    },
-    {
-      "id": "recydXM8wKbueneWs",
-      "bullet_name": "",
-      "english": "",
-      "french": "",
-      "patronType": [],
-      "serviceHealthIssue": []
-    },
-    {
-      "id": "recYX43OhTvKbTUsC",
-      "bullet_name": "",
-      "english": "",
-      "french": "",
-      "patronType": [],
-      "serviceHealthIssue": []
     }
   ],
   "errors": [],
-  "timestamp": 1550681541949
+  "timestamp": 1550595283120
 }
