@@ -594,7 +594,7 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Attendance Allowance",
+      "vacNameEn": "Attendance allowance",
       "vacNameFr": "Allocation pour soins",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/attendance-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/attendance-allowance",
@@ -764,7 +764,7 @@
       "examples": ""
     },
     {
-      "vacNameEn": "Clothing Allowance",
+      "vacNameEn": "Clothing allowance",
       "vacNameFr": "Allocation vestimentaire",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
@@ -1318,7 +1318,7 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Rehabilitation Services",
+      "vacNameEn": "Rehabilitation services",
       "vacNameFr": "Services de réadaptation",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation/services",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/rehabilitation/services",
@@ -1396,8 +1396,8 @@
     {
       "vacNameEn": "Survivor's pension",
       "vacNameFr": "Pension de survivant",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/disability-pension/survivor-benefits",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/disability-pension/survivor-benefits",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/family-caregiver/financial-programs-services/survivors-pension",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/family-caregiver/financial-programs-services/survivors-pension",
       "needs": ["recmkrbWGIJNuAxpY", "recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Continue to receive your spouse's disability pension for one year after their death. ",
       "oneLineDescriptionFr": "Versement mensuel si votre conjoint a reçu une pension d’invalidité.",
@@ -1525,8 +1525,8 @@
     {
       "vacNameEn": "Veterans Affairs Canada (VAC) Assistance Service",
       "vacNameFr": "Service d’aide d’Anciens Combattants Canada (ACC)",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/contact/vac-assistance-service",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/contact/vac-assistance-service",
+      "benefitPageEn": "https://veterans.gc.ca/eng/contact/talk-to-a-professional",
+      "benefitPageFr": "https://veterans.gc.ca/fra/contact/talk-to-a-professional",
       "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Get support right now from a mental health professional by calling 1-800-268-7708.",
       "oneLineDescriptionFr": "Obtenez dès maintenant le soutien d’un professionnel de la santé mentale en composant le 1-800-268-7708.",
@@ -3818,15 +3818,15 @@
     {
       "section": "beta_banner",
       "key": "main",
-      "English": "This tool is undergoing continuous development. We're still working to ensure all results are correct. ",
-      "French": "Il s’agit d’un nouvel outil en ligne.",
+      "English": "This tool is under continuous development and is for testing purposes. We're working to ensure accurate results. ",
+      "French": "Cet outil fait l’objet d’un développement continu et est conçu à des fins de test. Nous nous efforçons d’obtenir des résultats exacts.  ",
       "id": "beta_banner.main"
     },
     {
       "section": "beta_banner",
       "key": "link_text",
-      "English": "Give us feedback to help us make improvements.",
-      "French": "Cliquez ici pour formuler des commentaires. ",
+      "English": "Give feedback to help us improve. ",
+      "French": "Faites-nous part de vos commentaires pour nous aider à nous améliorer.",
       "id": "beta_banner.link_text"
     },
     {
@@ -4540,25 +4540,25 @@
     {
       "english": "personal hygiene (bathing or showering)",
       "french": "hygiène personnelle (bain ou douche)",
-      "linked_benefits": ["Attendance Allowance"],
+      "linked_benefits": ["Attendance allowance"],
       "id": "recHp4lxMRSyiNxIv"
     },
     {
       "english": " meal preparation",
       "french": "préparation des repas",
-      "linked_benefits": ["Attendance Allowance"],
+      "linked_benefits": ["Attendance allowance"],
       "id": "recUaHVXmVH32lNpW"
     },
     {
       "english": "getting dressed",
       "french": "habillage",
-      "linked_benefits": ["Attendance Allowance"],
+      "linked_benefits": ["Attendance allowance"],
       "id": "recqOVLHjzmkMQ88N"
     },
     {
       "english": "managing medication",
       "french": "prise de médicaments",
-      "linked_benefits": ["Attendance Allowance"],
+      "linked_benefits": ["Attendance allowance"],
       "id": "recjnMkjq96o9MEh9"
     },
     {
@@ -4618,13 +4618,13 @@
     {
       "english": "bed linens",
       "french": "articles de literie",
-      "linked_benefits": ["Clothing Allowance"],
+      "linked_benefits": ["Clothing allowance"],
       "id": "recCnWj7ofZVuOjkL"
     },
     {
       "english": "clothing alterations",
       "french": "retouches de vêtements",
-      "linked_benefits": ["Clothing Allowance"],
+      "linked_benefits": ["Clothing allowance"],
       "id": "reclh6TVUfy2MQpR1"
     },
     {
@@ -4895,19 +4895,19 @@
     {
       "english": "physiotherapy",
       "french": "physiothérapie",
-      "linked_benefits": ["Rehabilitation Services"],
+      "linked_benefits": ["Rehabilitation services"],
       "id": "recc8TopUzbaCrtCK"
     },
     {
       "english": "chiropractor",
       "french": "(fra) chiropractor",
-      "linked_benefits": ["Rehabilitation Services"],
+      "linked_benefits": ["Rehabilitation services"],
       "id": "reccIoJgjbZlPUQur"
     },
     {
       "english": "massage therapy ",
       "french": "(fra) massage therapy ",
-      "linked_benefits": ["Rehabilitation Services"],
+      "linked_benefits": ["Rehabilitation services"],
       "id": "rec3UvOcOCmuXcmZH"
     },
     {
@@ -5150,5 +5150,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1550782436618
+  "timestamp": 1550787436568
 }
