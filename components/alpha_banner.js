@@ -24,7 +24,7 @@ const Banner = css`
 
 const Text = css`
   margin-left: 10px;
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 12px;
 `;
 /**

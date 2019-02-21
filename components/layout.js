@@ -50,7 +50,7 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true,
-    fontFamily: ["Merriweather", "serif"]
+    fontFamily: globalTheme.fontFamilySerif
   }
 });
 

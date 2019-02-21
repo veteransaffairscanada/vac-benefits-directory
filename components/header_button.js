@@ -8,7 +8,7 @@ import ArrowForward from "./icons/ArrowForward";
 const style = css`
   display: inline-block;
   text-align: left;
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 21px;
   font-weight: bold;
   color: ${globalTheme.colour.cerulean};

@@ -184,7 +184,7 @@ export class GuidedExperience extends Component {
         <Paper padding="md" className={box}>
           <Grid container spacing={24}>
             <Grid item xs={12}>
-              <Header size="lg" headingLevel="h1">
+              <Header size="xl" headingLevel="h1">
                 {t("ge.Find benefits and services")}
               </Header>
               {id === "patronType" ? (

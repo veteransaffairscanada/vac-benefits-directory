@@ -30,8 +30,9 @@ const inputStyle = css({
 });
 
 const labelStyle = css({
-  fontFamily: globalTheme.fontFamily,
-  fontWeight: 400,
+  fontFamily: globalTheme.fontFamilySerif,
+  color: globalTheme.colour.greyishBrown,
+  fontWeight: 300,
   textTransform: "none",
   fontSize: "24px",
   lineHeight: "1.25",

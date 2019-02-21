@@ -1,5 +1,6 @@
 let theme = {
-  fontFamily: "Merriweather",
+  fontFamilySerif: "Georgia",
+  fontFamilySansSerif: "Montserrat",
   marginTop: "25px", //used in place of theme.spacing.unit *3
   unit: "8px",
   cardPadding: "35px",
@@ -49,7 +50,9 @@ let theme = {
     paleBlueGrey: "#f1f7fc",
     darkBlueGrey: "#d8dee2",
     lineGrey: "#dfdfdf",
-    tea: "#57c684"
+    tea: "#57c684",
+    charcoalGrey: "#31353a",
+    navy: "#434458"
   }
 };
 

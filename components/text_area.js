@@ -12,7 +12,7 @@ const HintText = styled("span")({
 });
 
 const LabelText = styled("span")({
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySansSerif,
   display: "block",
   clear: "none",
   fontWeight: 400,
@@ -23,7 +23,7 @@ const LabelText = styled("span")({
 });
 
 const FooterText = styled("span")({
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySansSerif,
   display: "block",
   clear: "none",
   fontWeight: 400,
@@ -46,7 +46,7 @@ const Label = styled("label")({
 
 const TextAreaField = styled("textarea")({
   boxSizing: "border-box",
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySansSerif,
   fontWeight: 400,
   textTransform: "none",
   fontSize: "18px",

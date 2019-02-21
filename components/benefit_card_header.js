@@ -22,6 +22,7 @@ const headerDesc = css`
   width: 100%;
   box-sizing: border-box;
   margin-left: 20px;
+  font-size: 18px;
   color: ${globalTheme.colour.greyishBrown};
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 12px;

@@ -15,7 +15,7 @@ const skipLinkStyle = css`
   display: inline-block;
   color: white;
   text-decoration: none;
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
 
   :focus {
     width: auto !important;

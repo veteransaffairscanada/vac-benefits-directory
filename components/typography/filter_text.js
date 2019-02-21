@@ -4,7 +4,7 @@ import { globalTheme } from "../../theme";
 import { cx, css } from "emotion";
 
 const style = css`
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 14px;
   line-height: 21px;
   color: ${globalTheme.colour.greyishBrown};

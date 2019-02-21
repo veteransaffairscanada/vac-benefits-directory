@@ -83,7 +83,7 @@ export class BenefitsPane extends Component {
         <Grid item xs={12}>
           <Header
             className={"BenefitsCounter " + title}
-            size="lg"
+            size="xl"
             headingLevel="h1"
             autoFocus={true}
           >

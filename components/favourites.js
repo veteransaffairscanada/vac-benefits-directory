@@ -180,7 +180,7 @@ export class Favourites extends Component {
                   <Grid item xs={12}>
                     <Header
                       className={"BenefitsCounter"}
-                      size="lg"
+                      size="xl"
                       headingLevel="h1"
                     >
                       {t("favourites.saved_benefits", {

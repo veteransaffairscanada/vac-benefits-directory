@@ -6,8 +6,9 @@ import HomeIcon from "./icons/Home";
 import HeaderLink from "./header_link";
 
 const greyBanner = css`
+  font-family: ${globalTheme.fontFamilySansSerif};
   margin: 30px 0;
-  font-weight: bold;
+  font-weight: 700;
   color: ${globalTheme.colour.greyishBrown};
   font-size: 16px;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
@@ -25,6 +26,7 @@ const urlStyle = css`
   color: #6d6363;
   text-decoration: underline;
   font-size: 16px;
+  font-weight: 700;
 `;
 
 const iconStyle = css`
