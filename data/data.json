@@ -1722,27 +1722,6 @@
       "benefitExamples": [],
       "seeMoreSentenceEn": "",
       "seeMoreSentenceFr": ""
-    },
-    {
-      "id": "reciyKfyi9f9lfZ3s",
-      "vacNameEn": "",
-      "vacNameFr": "",
-      "benefitPageEn": "",
-      "benefitPageFr": "",
-      "needs": [],
-      "oneLineDescriptionEn": "",
-      "oneLineDescriptionFr": "",
-      "categories DO NOT USE": "",
-      "childBenefits": [],
-      "availableIndependently": "",
-      "benefitPolicyEn": "",
-      "benefitPolicyFR": "",
-      "examples": "",
-      "sortingPriority": "",
-      "benefitExamples": [],
-      "benefitEligibility": [],
-      "seeMoreSentenceEn": "",
-      "seeMoreSentenceFr": ""
     }
   ],
   "benefitEligibility": [
@@ -3840,14 +3819,14 @@
       "section": "beta_banner",
       "key": "main",
       "English": "This tool is under continuous development and is for testing purposes. We're working to ensure accurate results. ",
-      "French": "Il s’agit d’un nouvel outil en ligne.",
+      "French": "Cet outil fait l’objet d’un développement continu et est conçu à des fins de test. Nous nous efforçons d’obtenir des résultats exacts.  ",
       "id": "beta_banner.main"
     },
     {
       "section": "beta_banner",
       "key": "link_text",
       "English": "Give feedback to help us improve. ",
-      "French": "Cliquez ici pour formuler des commentaires. ",
+      "French": "Faites-nous part de vos commentaires pour nous aider à nous améliorer.",
       "id": "beta_banner.link_text"
     },
     {
@@ -5171,5 +5150,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1550787064600
+  "timestamp": 1550787436568
 }
