@@ -1594,7 +1594,7 @@
         "reckkMaRCZsC6ata7",
         "rec7d3PUWDPoxcFGL"
       ],
-      "benefitEligibility": ["recq0WQEbaxzB5dpZ"],
+      "benefitEligibility": ["recq0WQEbaxzB5dpZ", "recQTeje49tk9F6EF"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
       "id": "rectQG8BcSRCFIv2R",
@@ -1737,11 +1737,11 @@
     {
       "benefit": ["recQTITbxrAtU7Vls"],
       "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "rec9F6MdtBCdj4ybK",
-      "path": "veteran",
+      "path": "veteran + hasServiceHealthIssue",
       "serviceType": [],
-      "statusAndVitals": [],
-      "serviceHealthIssue": []
+      "statusAndVitals": []
     },
     {
       "benefit": ["recPHhdoJVVZK8hzA"],
@@ -1955,9 +1955,9 @@
       "patronType": ["recxn7ls1CBYmeEZL"],
       "serviceType": ["rec9TxYv9brvsbp2P"],
       "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recgUXjEaFqSCKmYY",
-      "path": "family + CAF + deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recHnRYudEjQgvZEJ"],
@@ -2112,9 +2112,9 @@
       "patronType": ["recxn7ls1CBYmeEZL"],
       "serviceType": ["rec9TxYv9brvsbp2P"],
       "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recGj10CqDKJMpvXi",
-      "path": "family + CAF + deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recm47G2IxezdAWQr"],
@@ -2152,9 +2152,9 @@
         "recLd3F8AA3l2DSGN"
       ],
       "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recJjXjUz5Ax5cher",
-      "path": "family + CAF, WSV (WWII or Korea), RCMP + deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF, WSV (WWII or Korea), RCMP + deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recsRSTzSMCIkxnnJ"],
@@ -2250,8 +2250,17 @@
       "benefit": ["rectQG8BcSRCFIv2R"],
       "patronType": ["recxxkfVbzqVT9PHE"],
       "serviceType": ["rec9TxYv9brvsbp2P", "rec6IsnT1j2n7jZSN"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recq0WQEbaxzB5dpZ",
-      "path": "veteran + CAF, WSV (WWII or Korea)",
+      "path": "veteran + CAF, WSV (WWII or Korea) + hasServiceHealthIssue",
+      "statusAndVitals": []
+    },
+    {
+      "benefit": ["rectQG8BcSRCFIv2R"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "Name": "recQTeje49tk9F6EF",
+      "path": "veteran + WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
@@ -2282,9 +2291,9 @@
         "rec6Wp9xvBkdccOqc",
         "recGnWChPVH0FMaI2"
       ],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recTbhVJnOXXr1h6b",
-      "path": "family + CAF + stillServing, releasedAlive, deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF + stillServing, releasedAlive, deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recUupb08Qw7wauuM"],
@@ -3809,14 +3818,14 @@
     {
       "section": "beta_banner",
       "key": "main",
-      "English": "This is a new online tool. ",
+      "English": "This tool is undergoing continuous development. We're still working to ensure all results are correct. ",
       "French": "Il s’agit d’un nouvel outil en ligne.",
       "id": "beta_banner.main"
     },
     {
       "section": "beta_banner",
       "key": "link_text",
-      "English": "Click here to provide feedback. ",
+      "English": "Give us feedback to help us make improvements.",
       "French": "Cliquez ici pour formuler des commentaires. ",
       "id": "beta_banner.link_text"
     },
@@ -4037,7 +4046,8 @@
         "recWIN9A7KLaH3ESa",
         "recWH4cNVr9CDfW7i",
         "rectdWl20FbZTxJI6",
-        "recGRpW6C5c11wS1C"
+        "recGRpW6C5c11wS1C",
+        "recQTeje49tk9F6EF"
       ],
       "nextSteps": [
         "recdzY1R8cKtLgQrV",
@@ -4254,7 +4264,8 @@
         "recWH4cNVr9CDfW7i",
         "rectdWl20FbZTxJI6",
         "recwHANeVjaGAzFQO",
-        "recJ86mAbF1mZyZGt"
+        "recJ86mAbF1mZyZGt",
+        "recQTeje49tk9F6EF"
       ],
       "key (DO NOT EDIT)": "WSV (WWII or Korea)",
       "id": "rec6IsnT1j2n7jZSN",
@@ -4383,7 +4394,13 @@
         "recJ86mAbF1mZyZGt",
         "recRmJK6yZn1w91CL",
         "recJiNaqW8Z2bFprW",
-        "recLT7RlCVZ16Nhvl"
+        "recLT7RlCVZ16Nhvl",
+        "rec9F6MdtBCdj4ybK",
+        "recq0WQEbaxzB5dpZ",
+        "recGj10CqDKJMpvXi",
+        "recgUXjEaFqSCKmYY",
+        "recJjXjUz5Ax5cher",
+        "recTbhVJnOXXr1h6b"
       ],
       "nextSteps 4": ["recZX9D8BmyE1zIeq"],
       "key (DO NOT EDIT)": "hasServiceHealthIssue",
@@ -5133,5 +5150,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1550768514961
+  "timestamp": 1550782436618
 }
