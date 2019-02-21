@@ -49,7 +49,6 @@ describe("Favourites", () => {
       },
       url: { query: {} },
       homeUrl: "/",
-      nextStepsRef: React.createRef(),
       saveFavourites: jest.fn()
     };
     _shallowFavourites = undefined;
@@ -120,14 +119,6 @@ describe("Favourites", () => {
         "benefit_3"
       ]).length
     ).toEqual(2);
-  });
-
-  it("clicking next steps button changes window location", () => {
-    mountedFavourites().instance().scrollToNextSteps = jest.fn();
-    mountedFavourites()
-      .find("#nextSteps")
-      .simulate("click");
-    expect(mountedFavourites().instance().scrollToNextSteps).toBeCalled();
   });
 
   describe("cookies tests", () => {

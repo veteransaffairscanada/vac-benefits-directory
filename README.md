@@ -5,7 +5,7 @@
 
 # Find benefits and services
 
-This is the code for _Find benefits and services_, a product being developed by VAC and CDS. The app is currently deployed at https://vac-benefits-finder.cds-snc.ca.
+This is the code for _Find benefits and services_, a product being developed by VAC and CDS. The app is in beta and currently deployed at https://vac-benefits-finder.cds-snc.ca. It is undergoing development and is not yet publicly released for use.
 
 The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [doc](/doc/).
 

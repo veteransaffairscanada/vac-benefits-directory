@@ -13,7 +13,8 @@ describe("ExampleBullets", () => {
       t: x => x,
       benefit: benefitsFixture[0],
       benefitExamples: benefitExamplesFixture,
-      searchString: ""
+      searchString: "",
+      language: "en"
     };
   });
 
