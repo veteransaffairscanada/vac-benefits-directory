@@ -82,7 +82,7 @@ export class BB extends Component {
         <Paper id={this.props.id} padding="md" className={innerDiv}>
           <Grid container spacing={32}>
             <Grid item xs={12}>
-              <Header headingLevel="h1" size="lg">
+              <Header headingLevel="h1" size="xl">
                 {t("ge.Find benefits and services")}
               </Header>
             </Grid>

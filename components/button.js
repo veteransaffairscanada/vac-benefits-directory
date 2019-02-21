@@ -26,7 +26,7 @@ const StyledButton = styled("button")(
     cursor: "pointer",
     alignItems: "center",
     justifyContent: "space-between",
-    fontFamily: globalTheme.fontFamily,
+    fontFamily: globalTheme.fontFamilySansSerif,
     fontWeight: "bold",
     fontSize: "18px",
     lineHeight: "23px",

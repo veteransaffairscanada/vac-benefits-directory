@@ -7,6 +7,7 @@ import { logEvent } from "../utils/analytics";
 
 const headerDesc = css`
   flex-grow: 1;
+  font-family: ${globalTheme.fontFamilySansSerif};
   color: ${globalTheme.colour.greyishBrown};
 `;
 const cardBottomFamilyTitle = css`

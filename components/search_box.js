@@ -21,7 +21,7 @@ const InputSearchBox = styled("input")({
   margin: 0,
   border: 0,
   boxSizing: "border-box",
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySansSerif,
   fontWeight: 400,
   textTransform: "none",
   fontSize: "18px",

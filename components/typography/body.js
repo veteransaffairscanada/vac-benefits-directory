@@ -4,14 +4,11 @@ import { globalTheme } from "../../theme";
 import { cx, css } from "emotion";
 
 const root = css`
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySerif};
   font-size: 20px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
+  font-weight: 300;
   line-height: 1.5;
-  letter-spacing: normal;
-  color: ${globalTheme.colour.greyishBrown};
+  color: ${globalTheme.colour.navy};
   margin-bottom: 25px;
 `;
 

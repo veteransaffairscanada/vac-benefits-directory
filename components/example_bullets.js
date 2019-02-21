@@ -7,6 +7,7 @@ import Highlighter from "react-highlight-words";
 
 const margin = css`
   padding-left: 5px;
+  font-family: ${globalTheme.fontFamilySansSerif};
   @media only screen and (min-width: ${globalTheme.max.sm}) {
     columns: 2;
     -webkit-columns: 2;

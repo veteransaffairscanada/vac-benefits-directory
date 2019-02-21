@@ -31,7 +31,7 @@ const selectStyle = css`
   background-color: white;
   border-radius: 0;
   box-sizing: border-box;
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
   color: ${globalTheme.colour.greyishBrown};
   font-weight: normal;
   text-transform: none;

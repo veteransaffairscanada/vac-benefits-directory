@@ -4,17 +4,41 @@ import { globalTheme } from "../../theme";
 import { cx, css } from "emotion";
 
 const sizeDict = {
-  xl: { fontSize: 52, fontWeight: 900 },
-  lg: { fontSize: 36, fontWeight: 900 },
-  md_lg: { fontSize: 32, fontWeight: 900 },
-  md: { fontSize: 24, fontWeight: "bold" },
-  sm_md: { fontSize: 20, fontWeight: "bold" },
-  sm: { fontSize: 18, fontWeight: "bold" }
+  xl: {
+    fontSize: 56,
+    fontWeight: 300,
+    fontFamily: globalTheme.fontFamilySerif
+  },
+  lg: {
+    fontSize: 45,
+    fontWeight: 600,
+    fontFamily: globalTheme.fontFamilySansSerif
+  },
+  md_lg: {
+    fontSize: 36,
+    fontWeight: 700,
+    fontFamily: globalTheme.fontFamilySansSerif
+  },
+  md: {
+    fontSize: 22,
+    fontWeight: "bold",
+    fontFamily: globalTheme.fontFamilySansSerif
+  },
+  sm_md: {
+    fontSize: 20,
+    fontWeight: "bold",
+    fontFamily: globalTheme.fontFamilySansSerif
+  },
+  sm: {
+    fontSize: 18,
+    fontWeight: "bold",
+    fontFamily: globalTheme.fontFamilySansSerif
+  }
 };
 
 class Header extends Component {
   style = css`
-    font-family: ${globalTheme.fontFamily};
+    font-family: ${sizeDict[this.props.size].fontFamily};
     font-size: ${sizeDict[this.props.size].fontSize}px;
     @media only screen and (max-width: ${globalTheme.max.mobile}) {
       font-size: ${0.8 * sizeDict[this.props.size].fontSize}px;
@@ -40,6 +64,7 @@ class Header extends Component {
 
   render() {
     const { children, className, headingLevel, id, autoFocus } = this.props;
+
     const props = {
       className: className ? cx(this.style, className) : this.style,
       id: id
