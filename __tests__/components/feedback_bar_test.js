@@ -103,7 +103,7 @@ describe("Feedback bar", () => {
         .find("#feedbackYes")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).toContain("feedback-response");
+      expect(mountedFeedbackBar().text()).toContain("feedback.response_p1");
     });
   });
 
@@ -113,7 +113,7 @@ describe("Feedback bar", () => {
         .find("#feedbackNo")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).not.toContain("feedback-response");
+      expect(mountedFeedbackBar().text()).not.toContain("feedback.response_p1");
     });
 
     it("shows the commentBox", () => {
@@ -134,7 +134,7 @@ describe("Feedback bar", () => {
         .find("#sendComment")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).toContain("feedback-response");
+      expect(mountedFeedbackBar().text()).toContain("feedback.response_p1");
     });
   });
 
