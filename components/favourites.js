@@ -101,7 +101,7 @@ export class Favourites extends Component {
               <Grid item xs={12}>
                 <Header
                   className={"BenefitsCounter"}
-                  size="lg"
+                  size="xl"
                   headingLevel="h1"
                 >
                   {t("titles.saved_list")}
@@ -138,7 +138,7 @@ export class Favourites extends Component {
                   <Grid item xs={12}>
                     <Header
                       className={headerPadding}
-                      size="xl"
+                      size="md"
                       headingLevel="h3"
                     >
                       {filteredBenefits.length === 1
