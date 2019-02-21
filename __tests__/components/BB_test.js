@@ -110,42 +110,6 @@ describe("BB", () => {
     expect(shallow_BB().find("BreadCrumbs").length).toEqual(1);
   });
 
-  it("contains saved list text that displays the number of saved list items", async () => {
-    expect(
-      mounted_BB()
-        .find("#savedBenefits")
-        .first()
-        .find("span")
-        .first()
-        .text()
-    ).toContain("0");
-  });
-
-  it("clicking next steps button changes window location", () => {
-    mounted_BB().instance().scrollToNextSteps = jest.fn();
-    mounted_BB()
-      .find("#nextSteps")
-      .simulate("click");
-    expect(mounted_BB().instance().scrollToNextSteps).toBeCalled();
-  });
-
-  it("contains edit selections link", () => {
-    expect(
-      mounted_BB()
-        .find("#editSelections")
-        .first().length
-    ).toEqual(1);
-  });
-
-  it("contains href to summary page in edit selections link", () => {
-    expect(
-      mounted_BB()
-        .find("#editSelections")
-        .first()
-        .prop("href")
-    ).toEqual(props.summaryUrl);
-  });
-
   describe("cookies tests", () => {
     let cookiesInstance;
     let cookies = new Cookies();

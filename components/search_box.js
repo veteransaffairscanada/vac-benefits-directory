@@ -28,6 +28,7 @@ const InputSearchBox = styled("input")({
   lineHeight: "1.5",
   background: globalTheme.colour.white,
   borderRadius: 0,
+  boxShadow: "inset 0 0 0 9999px white",
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",

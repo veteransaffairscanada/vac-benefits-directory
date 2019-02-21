@@ -98,7 +98,12 @@ export class BenefitExpansion extends Component {
         ref={this.focusEl}
         tabIndex="-1"
       >
-        <ExampleBullets benefit={benefit} t={t} store={store} />
+        <ExampleBullets
+          benefit={benefit}
+          t={t}
+          store={store}
+          language={language}
+        />
         <div className={topBorder}>
           <ChildBenefitList
             benefits={vetServBenefits}

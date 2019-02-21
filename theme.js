@@ -52,7 +52,8 @@ let theme = {
     lineGrey: "#dfdfdf",
     tea: "#57c684",
     charcoalGrey: "#31353a",
-    navy: "#434458"
+    navy: "#434458",
+    duckEggBlue: "#dbe3e5"
   }
 };
 

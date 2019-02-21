@@ -38,6 +38,7 @@ export class FeedbackSubmitted extends Component {
         hideNoscript={false}
         title={t("feedback.page_title")}
         backgroundColor={globalTheme.colour.white}
+        skipLink="#mainContent"
         url={url}
       >
         <Container className={padding} id="mainContent">
