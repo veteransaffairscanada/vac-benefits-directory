@@ -11,7 +11,8 @@ import ExampleBullets from "./example_bullets";
 
 const topBorder = css`
   padding-top: 1em;
-  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid black;
 `;
 
 export class BenefitExpansion extends Component {

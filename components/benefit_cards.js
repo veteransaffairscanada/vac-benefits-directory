@@ -23,10 +23,8 @@ const cardDescriptionText = css`
   padding-left: 35px;
   padding-right: 35px;
   padding-top: 26px;
-  padding-bottom: 30px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding-top: 14px;
-    padding-bottom: 20px;
   }
 `;
 const buttonRow = css`

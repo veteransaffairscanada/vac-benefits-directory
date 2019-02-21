@@ -7,29 +7,29 @@ const StyledDetails = styled("details")({
   display: "block",
   fontSize: "inherit",
   fontFamily: globalTheme.fontFamilySansSerif,
-  color: globalTheme.colour.textColour
+  color: globalTheme.colour.textColour,
+  borderTop: "1px solid black"
 });
 
 const StyledSummary = styled("summary")({
   display: "inline-block",
+  width: "100%",
   position: "relative",
   padding: 5,
-  color: globalTheme.colour.linkColour,
+  color: globalTheme.colour.textColour,
   cursor: "pointer",
-  ":hover": {
-    color: globalTheme.colour.linkHoverColour
-  },
-
+  // ":hover": {
+  //   background: globalTheme.colour.focusColour
+  // },
   ":focus": {
-    outline: `2px solid ${globalTheme.colour.focusColour}`,
-    outlineOffset: -1,
-    color: globalTheme.colour.black,
-    background: globalTheme.colour.focusColour
+    outline: `2px solid ${globalTheme.colour.focusColour}`
+    // outlineOffset: -1,
   }
 });
 
 const DetailsText = styled("div")({
-  padding: 3 * 5,
+  paddingTop: 5,
+  paddingBottom: 10,
   paddingLeft: 0,
   p: {
     marginTop: 0,
@@ -40,17 +40,10 @@ const DetailsText = styled("div")({
     marginBottom: 0
   }
 });
-const SummaryText = styled("span")({
-  ":hover": {
-    textDecoration: "underline"
-  }
-});
 
 const CardDetails = ({ summary, children, ...props }) => (
   <StyledDetails {...props}>
-    <StyledSummary>
-      <SummaryText>{summary}</SummaryText>
-    </StyledSummary>
+    <StyledSummary>{summary}</StyledSummary>
     <DetailsText>{children}</DetailsText>
   </StyledDetails>
 );

@@ -23,7 +23,6 @@ const margin = css`
     text-indent: -1.4em;
     padding-left: 1.4em;
   }
-  margin: 16px 0px 16px -6px;
 `;
 
 const root = css`
