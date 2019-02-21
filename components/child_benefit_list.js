@@ -2,33 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import { css } from "emotion";
 import HeaderLink from "./header_link";
-import { globalTheme } from "../theme";
 import { logEvent } from "../utils/analytics";
+import CardDetails from "./card_details";
 
-const headerDesc = css`
-  flex-grow: 1;
-  font-family: ${globalTheme.fontFamilySansSerif};
-  color: ${globalTheme.colour.greyishBrown};
-`;
-const cardBottomFamilyTitle = css`
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 const children = css`
   width: 100%;
 `;
 const heading = css`
   font-size: 1em;
   font-weight: normal;
-  margin-bottom: 10px;
   text-align: left;
 `;
 const listStyle = css`
   padding-left: 20px;
   list-style: disc;
-  margin: 16px 0;
   text-indent: 0.2em;
 `;
 
@@ -39,10 +26,7 @@ const ChildBenefitList = props => {
   }
   const language = t("current-language-code");
   return (
-    <div>
-      <div className={cardBottomFamilyTitle}>
-        <span className={headerDesc}>{colonText}</span>
-      </div>
+    <CardDetails summary={colonText}>
       <div className={children}>
         <div>
           <ul className={listStyle}>
@@ -70,7 +54,7 @@ const ChildBenefitList = props => {
           </ul>
         </div>
       </div>
-    </div>
+    </CardDetails>
   );
 };
 

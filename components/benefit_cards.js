@@ -11,8 +11,8 @@ import BenefitExpansion from "./benefit_expansion";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
 import Header from "./typography/header";
-import HeaderButton from "./header_button";
 import { globalTheme } from "../theme";
+import LearnMoreButton from "./learn_more_button";
 
 const cardBody = css`
   padding-top: 0px;
@@ -53,20 +53,12 @@ const alignRight = css`
 `;
 
 export class BenefitCard extends Component {
-  state = {
-    expanded: false
-  };
-
   componentDidMount() {
     this.forceUpdate();
   }
 
-  toggleExpanded = () => {
-    this.setState({ expanded: !this.state.expanded });
-  };
-
   render() {
-    const { t, benefit } = this.props;
+    const { t, benefit, store } = this.props;
 
     const needsMet = benefit.needs
       ? this.props.needs.filter(
@@ -81,11 +73,7 @@ export class BenefitCard extends Component {
       <Grid item xs={12}>
         <div className={root}>
           <Paper className={cardBody}>
-            <BenefitCardHeader
-              benefit={benefit}
-              t={t}
-              store={this.props.store}
-            />
+            <BenefitCardHeader benefit={benefit} t={t} store={store} />
             <Header className={benefitName} size="md" headingLevel="h2">
               <Highlighter
                 searchWords={searchWords}
@@ -114,31 +102,24 @@ export class BenefitCard extends Component {
                 <NeedTag key={benefit.id + need.id} t={t} need={need} />
               ))}
             </div>
-            {this.state.expanded ? (
-              <BenefitExpansion
-                className={padding}
-                benefit={benefit}
-                t={t}
-                store={this.props.store}
-              />
-            ) : null}
-
             <Grid container className={buttonRow}>
+              <Grid item xs={12}>
+                <BenefitExpansion
+                  className={padding}
+                  benefit={benefit}
+                  t={t}
+                  store={store}
+                />
+              </Grid>
               <Grid item xs={4}>
-                <HeaderButton
-                  id={"see-more-less" + benefit.id}
-                  onClick={this.toggleExpanded}
-                  size="small"
-                >
-                  {this.state.expanded ? t("B3.see_less") : t("B3.see_more")}
-                </HeaderButton>
+                <LearnMoreButton benefit={benefit} t={t} />
               </Grid>
               {this.props.showFavourite ? (
                 <Grid item xs={8} className={alignRight}>
                   <FavouriteButton
                     benefit={benefit}
                     toggleOpenState={() => {}}
-                    store={this.props.store}
+                    store={store}
                     t={t}
                   />
                 </Grid>
