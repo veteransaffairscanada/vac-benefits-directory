@@ -44,11 +44,11 @@ const InputSearchBox = styled("input")({
 });
 
 const ClearButton = styled("button")({
-  backgroundColor: globalTheme.colour.white,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   cursor: "pointer",
   border: 0,
   display: "block",
-  color: globalTheme.colour.cerulean,
+  color: globalTheme.colour.navy,
   position: "absolute",
   left: "-50px",
   padding: "10px",
@@ -66,11 +66,11 @@ const ClearButton = styled("button")({
 });
 
 const SearchButton = styled("button")({
-  backgroundColor: globalTheme.colour.cerulean,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   cursor: "pointer",
   border: 0,
   display: "block",
-  color: globalTheme.colour.white,
+  color: globalTheme.colour.navy,
   position: "relative",
   padding: "10px",
   width: "45px",
@@ -82,7 +82,7 @@ const SearchButton = styled("button")({
     outline: `3px solid ` + globalTheme.colour.focusColour
   },
   ":hover": {
-    backgroundColor: globalTheme.colour.darkGreyBlue
+    backgroundColor: globalTheme.colour.black
   }
 });
 
