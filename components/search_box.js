@@ -10,8 +10,10 @@ const SearchBoxWrapper = styled("div")({
   boxSizing: "border-box",
   display: "flex",
   width: "100%",
-  background: globalTheme.colour.white,
-  boxShadow: globalTheme.boxShadowMui
+  background: globalTheme.colour.paleGreyTwo,
+  borderStyle: "solid",
+  borderWidth: "1px",
+  borderColor: globalTheme.colour.boxBorderColour
 });
 
 const InputSearchBox = styled("input")({
@@ -22,13 +24,14 @@ const InputSearchBox = styled("input")({
   border: 0,
   boxSizing: "border-box",
   fontFamily: globalTheme.fontFamilySansSerif,
-  fontWeight: 400,
+  color: globalTheme.colour.navy,
+  fontWeight: "bold",
   textTransform: "none",
   fontSize: "18px",
   lineHeight: "1.5",
-  background: globalTheme.colour.white,
+  background: globalTheme.colour.paleGreyTwo,
   borderRadius: 0,
-  boxShadow: "inset 0 0 0 9999px white",
+  boxShadow: "inset 0 0 0 9999px f4f7f9", // keeps chrome autofill from changing background colour
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",
@@ -84,9 +87,9 @@ const SearchButton = styled("button")({
 });
 
 const DisabledSearchButton = styled("button")({
-  backgroundColor: globalTheme.colour.white,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   display: "block",
-  color: globalTheme.colour.cerulean,
+  color: globalTheme.colour.navy,
   padding: "10px",
   width: "45px",
   height: "44px",
