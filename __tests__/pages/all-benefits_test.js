@@ -79,8 +79,7 @@ describe("AllBenefits", () => {
       serviceHealthIssue: "",
       setSearchString: jest.fn(),
       selectedNeeds: {},
-      option: "",
-      pageWidth: 1000
+      option: ""
     };
     props.store = mockStore(reduxData);
   });
