@@ -53,6 +53,12 @@ const mobileReverse = css`
     flex-direction: column-reverse;
   }
 `;
+const mobileFullWidth = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    width: 100%;
+    padding: 0;
+  }
+`;
 const questions = css`
   margin: 0;
   padding: 0;
@@ -213,7 +219,12 @@ export class GuidedExperience extends Component {
             <Grid item xs={12}>
               <Grid container className={mobileReverse} spacing={12}>
                 <Grid item xs={12} sm={4} className={mobileAlignRight}>
-                  <HeaderLink id="prevButton" href={backUrl} arrow="back">
+                  <HeaderLink
+                    id="prevButton"
+                    href={backUrl}
+                    className={mobileFullWidth}
+                    hasBorder
+                  >
                     {t("back")}
                   </HeaderLink>
                 </Grid>
@@ -224,7 +235,7 @@ export class GuidedExperience extends Component {
                     </HeaderButton>
                   </Link>
                   <Link id="nextLink" href={this.getNextUrl()}>
-                    <Button id="nextButton" arrow={true}>
+                    <Button id="nextButton" mobileFullWidth={true}>
                       {t("next")}{" "}
                     </Button>
                   </Link>
