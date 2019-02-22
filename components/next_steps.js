@@ -12,8 +12,8 @@ const whatsNextList = css`
   padding-left: 20px;
   margin-top: 10px;
   width: 100%;
-  color: ${globalTheme.colour.greyishBrown};
-  font-family: Merriweather;
+  font-family: ${globalTheme.fontFamilySansSerif};
+  color: ${globalTheme.colour.slateGrey};
   font-size: 18px;
 `;
 
