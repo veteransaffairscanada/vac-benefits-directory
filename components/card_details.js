@@ -10,11 +10,13 @@ const StyledDetails = styled("details")({
   fontSize: "inherit",
   fontFamily: globalTheme.fontFamilySansSerif,
   color: globalTheme.colour.textColour,
-  borderTop: "1px solid black"
+  borderTop: "1px solid black",
+  backgroundColor: "red"
 });
 
 const StyledSummary = styled("summary")({
-  display: "inline-block",
+  display: "flex",
+  alignItems: "center",
   width: "100%",
   position: "relative",
   padding: 5,
@@ -30,9 +32,10 @@ const StyledSummary = styled("summary")({
   "::-webkit-details-marker": {
     display: "none"
   },
-  "[open]": {
-    // transform: "rotate(90deg)"
-    backgroundColor: "red"
+  "[open] > &": {
+    ".icon": {
+      transform: "rotate(180deg)"
+    }
   }
 });
 
@@ -49,16 +52,18 @@ const DetailsText = styled("div")({
     marginBottom: 0
   }
 });
-//
-// const icon = css`
-//
-// `;
-
+const flex2 = css({
+  marginLeft: "auto",
+  paddingRight: "10px",
+  order: 2
+});
 const CardDetails = ({ summary, children, ...props }) => (
   <StyledDetails {...props}>
     <StyledSummary>
-      {summary}
-      <ExpandMore className="icon" />
+      <div>{summary}</div>
+      <div className={flex2}>
+        <ExpandMore className="icon" />
+      </div>
     </StyledSummary>
     <DetailsText>{children}</DetailsText>
   </StyledDetails>
