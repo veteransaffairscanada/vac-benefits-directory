@@ -27,6 +27,9 @@ const headerDesc = css`
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 12px;
   }
+  a {
+    color: ${globalTheme.colour.greyishBrown};
+  }
 `;
 
 export class BenefitCardHeader extends Component {

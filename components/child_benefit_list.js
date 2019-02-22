@@ -13,6 +13,8 @@ const heading = css`
   font-weight: normal;
   text-align: left;
   padding: 0px;
+  line-height: 24px;
+  text-decoration: underline;
 `;
 
 const liStyle = css`

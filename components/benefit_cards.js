@@ -31,7 +31,7 @@ const cardDescriptionText = css`
 const buttonRow = css`
   padding-left: 35px;
   padding-right: 35px;
-  padding-bottom: 35px;
+  padding-bottom: 25px;
 `;
 const root = css`
   width: 100%;
@@ -47,8 +47,13 @@ const padding = css`
   padding-left: 35px;
   padding-right: 35px;
 `;
-const alignRight = css`
-  text-align: right;
+const flex = css`
+  display: flex;
+  align-items: center;
+`;
+const floatRight = css`
+  margin-left: auto;
+  order: 2;
 `;
 
 export class BenefitCard extends Component {
@@ -110,19 +115,21 @@ export class BenefitCard extends Component {
                   store={store}
                 />
               </Grid>
-              <Grid item xs={4}>
-                <LearnMoreButton benefit={benefit} t={t} />
+              <Grid item xs={12}>
+                <div className={flex}>
+                  <LearnMoreButton benefit={benefit} t={t} />
+                  <div className={floatRight}>
+                    {this.props.showFavourite ? (
+                      <FavouriteButton
+                        benefit={benefit}
+                        toggleOpenState={() => {}}
+                        store={store}
+                        t={t}
+                      />
+                    ) : null}
+                  </div>
+                </div>
               </Grid>
-              {this.props.showFavourite ? (
-                <Grid item xs={8} className={alignRight}>
-                  <FavouriteButton
-                    benefit={benefit}
-                    toggleOpenState={() => {}}
-                    store={store}
-                    t={t}
-                  />
-                </Grid>
-              ) : null}
             </Grid>
           </Paper>
         </div>
