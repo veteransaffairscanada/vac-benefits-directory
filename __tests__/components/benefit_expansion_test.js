@@ -55,14 +55,6 @@ describe("BenefitExpansion", () => {
     ).toEqual(2);
   });
 
-  it("contains the LearnMoreButton", () => {
-    expect(
-      mount(<BenefitExpansion {...props} {...reduxData} />).find(
-        "LearnMoreButton"
-      ).length
-    ).toEqual(1);
-  });
-
   describe("getAlsoEligibleBenefits", () => {
     it("returns the correct veteran benefits", () => {
       const childBenefits = props.benefit.childBenefits

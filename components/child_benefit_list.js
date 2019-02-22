@@ -66,7 +66,7 @@ const ChildBenefitList = props => {
 
 ChildBenefitList.propTypes = {
   benefits: PropTypes.array.isRequired,
-  colonText: PropTypes.string.isRequired,
+  colonText: PropTypes.string,
   t: PropTypes.func.isRequired
 };
 

@@ -5,9 +5,9 @@ const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 import benefitsFixture from "../fixtures/benefits";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
-
 import configureStore from "redux-mock-store";
 import needsFixture from "../fixtures/needs";
 
@@ -20,9 +20,7 @@ describe("BenefitList", () => {
       t: key => key,
       filteredBenefits: benefitsFixture,
       onRef: k => k,
-      searchString: "",
       showFavourites: true,
-      option: "",
       currentLanguage: "en"
     };
 
@@ -32,6 +30,7 @@ describe("BenefitList", () => {
       benefits: benefitsFixture,
       favouriteBenefits: [],
       benefitEligibility: benefitEligibilityFixture,
+      benefitExamples: benefitExamplesFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       needs: needsFixture,
       selectedNeeds: {},
