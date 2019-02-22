@@ -32,6 +32,7 @@ const style = css`
 
 const borderStyle = css`
   border: thin solid ${globalTheme.colour.warmGrey};
+  line-height: 42px;
 `;
 
 const small = css`
@@ -43,7 +44,7 @@ const grey = css`
   font-size: 18px;
   color: ${globalTheme.colour.brownishGrey};
   text-decoration: underline !important;
-  padding: 0.526315em 0.789473em !important;
+  padding: 0;
 `;
 
 class HeaderLink extends Component {

@@ -22,7 +22,6 @@ const StyledButton = styled("button")(
     textDecoration: "none",
     WebkitAppearance: "none",
     WebkitFontSmoothing: "antialiased",
-    verticalAlign: "middle",
     ":hover": {
       backgroundColor: globalTheme.colour.navy,
       color: "white"
