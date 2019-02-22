@@ -27,7 +27,6 @@ export class CardHeaderParentInfo extends Component {
         key={"a" + i}
         className={headerUrl}
         href={this.benefitUrl(b)}
-        target="_blank"
         rel="noopener noreferrer"
         onClick={() => {
           logEvent("Exit", "gateway benefit", this.benefitUrl(b));
