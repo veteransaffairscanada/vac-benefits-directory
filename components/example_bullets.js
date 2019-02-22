@@ -8,6 +8,7 @@ import CardDetails from "./card_details";
 
 const margin = css`
   padding-left: 5px;
+  padding-bottom: 10px;
   font-family: ${globalTheme.fontFamilySansSerif};
   @media only screen and (min-width: ${globalTheme.max.sm}) {
     columns: 2;

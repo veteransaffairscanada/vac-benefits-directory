@@ -24,7 +24,7 @@ const cardBody = css`
 const cardDescriptionText = css`
   padding-left: 35px;
   padding-right: 35px;
-  padding-top: 26px;
+  padding-top: 10px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding-top: 14px;
   }
@@ -42,6 +42,7 @@ const benefitName = css`
   padding-top: 35px;
   padding-left: 35px;
   padding-right: 35px;
+  padding-bottom: 10px;
 `;
 
 const padding = css`
