@@ -874,7 +874,7 @@
       "benefitExamples": []
     },
     {
-      "vacNameEn": "Detention Benefit",
+      "vacNameEn": "Detention benefit",
       "vacNameFr": "Indemnité de captivité",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/detention-benefits",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/detention-benefits",
@@ -1024,7 +1024,7 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Exceptional Incapacity Allowance",
+      "vacNameEn": "Exceptional incapacity allowance",
       "vacNameFr": "Allocation d'incapacité exceptionnelle",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
@@ -1049,7 +1049,7 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Family peer support (OSISS)",
+      "vacNameEn": "Family peer support (Operational Stress Injury Social Support)",
       "vacNameFr": "Soutien par les pairs pour les familles (SSBSO)",
       "benefitPageEn": "https://www.cfmws.com/en/AboutUs/DCSM/OSISS/Pages/Families.aspx",
       "benefitPageFr": "https://www.cfmws.com/fr/aboutus/dcsm/osiss/pages/families.aspx",
@@ -1102,7 +1102,7 @@
       "examples": ""
     },
     {
-      "vacNameEn": "Grave-marker maintenance",
+      "vacNameEn": "Grave marker maintenance",
       "vacNameFr": "Entretien des stèles funéraires",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/grave-marker",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/grave-marker",
@@ -1127,7 +1127,7 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Group health insurance",
+      "vacNameEn": "Group Health Insurance",
       "vacNameFr": "Assurance collective des soins de santé",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/group-health-insurance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/group-health-insurance",
@@ -3818,7 +3818,7 @@
     {
       "section": "beta_banner",
       "key": "main",
-      "English": "This tool is under continuous development and is for testing purposes. We're working to ensure accurate results. ",
+      "English": "This tool is under development and is for testing purposes only. We're working to ensure accurate results. ",
       "French": "Cet outil fait l’objet d’un développement continu et est conçu à des fins de test. Nous nous efforçons d’obtenir des résultats exacts.  ",
       "id": "beta_banner.main"
     },
@@ -4699,19 +4699,19 @@
     {
       "english": "dependent on others",
       "french": "dépend des autres",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
+      "linked_benefits": ["Exceptional incapacity allowance"],
       "id": "recaBlcJQTC7jMuPU"
     },
     {
       "english": "ongoing pain and discomfort",
       "french": "douleur et inconfort continus",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
+      "linked_benefits": ["Exceptional incapacity allowance"],
       "id": "recpwt7xSjCWYZuHi"
     },
     {
       "english": "shortened lifespan",
       "french": "durée de vie réduite",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
+      "linked_benefits": ["Exceptional incapacity allowance"],
       "id": "reczSawTjXKZHlsRJ"
     },
     {
@@ -4720,7 +4720,7 @@
       "linked_benefits": [
         "Peer support (OSISS)",
         "Operational stress injury (OSI) clinics",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "rectUnFq0BtXzES7r"
     },
@@ -4729,7 +4729,7 @@
       "french": "troubles anxieux",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recdfuHSlT6uEmfUy"
     },
@@ -4738,7 +4738,7 @@
       "french": "dépression",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recOMy1nlu4r9uU0H"
     },
@@ -4747,7 +4747,7 @@
       "french": "troubles liés à la toxicomanie",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recjzgPKdzufh6CrT"
     },
@@ -4784,31 +4784,31 @@
     {
       "english": "cleaning",
       "french": "entretien",
-      "linked_benefits": ["Grave-marker maintenance"],
+      "linked_benefits": ["Grave marker maintenance"],
       "id": "recBZK528vNSTr2mM"
     },
     {
       "english": "realignment",
       "french": "réalignement",
-      "linked_benefits": ["Grave-marker maintenance"],
+      "linked_benefits": ["Grave marker maintenance"],
       "id": "recb1jAvvRh7ibPXC"
     },
     {
       "english": "replacement",
       "french": "remplacement",
-      "linked_benefits": ["Grave-marker maintenance"],
+      "linked_benefits": ["Grave marker maintenance"],
       "id": "recWCgz7km37xZqXw"
     },
     {
       "english": "prescriptions",
       "french": "ordonnances",
-      "linked_benefits": ["Group health insurance"],
+      "linked_benefits": ["Group Health Insurance"],
       "id": "recB8f8KYKtcHfWmo"
     },
     {
       "english": "treatment services",
       "french": "services de traitement",
-      "linked_benefits": ["Group health insurance"],
+      "linked_benefits": ["Group Health Insurance"],
       "id": "recMdW1I9Ryz9KACw"
     },
     {
@@ -5150,5 +5150,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1550787436568
+  "timestamp": 1550849671877
 }
