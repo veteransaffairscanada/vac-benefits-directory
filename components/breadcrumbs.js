@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
 import { css } from "emotion";
-import HomeIcon from "./icons/Home";
 import HeaderLink from "./header_link";
 
 const greyBanner = css`
@@ -35,10 +34,6 @@ const currentPageStyle = css`
   color: ${globalTheme.colour.slateGrey};
   font-size: 16px;
   font-weight: 700;
-`;
-
-const iconStyle = css`
-  vertical-align: bottom;
 `;
 
 export class BreadCrumbs extends Component {
