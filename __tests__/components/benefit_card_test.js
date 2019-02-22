@@ -121,7 +121,7 @@ describe("BenefitCard", () => {
 
   it("has a needs tag", () => {
     reduxData.selectedNeeds["need_0"] = "need_0";
-    expect(mountedBenefitCard().text()).toContain("Need 0");
+    expect(mountedBenefitCard().text()).toContain("NEED 0");
   });
 
   it("contains the LearnMoreButton", () => {

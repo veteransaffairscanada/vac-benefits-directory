@@ -30,6 +30,7 @@ describe("NeedTag", () => {
         .find("div")
         .at(0)
         .text()
-    ).toEqual("Need 0");
+        .replace(",", "")
+    ).toEqual("NEED 0");
   });
 });
