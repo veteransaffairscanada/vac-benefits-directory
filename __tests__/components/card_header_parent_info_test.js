@@ -27,12 +27,12 @@ describe("CardHeaderParentInfo", () => {
     );
   });
 
-  it("has a link not open in a new tab", () => {
+  it("has a correctly configured external link <a>", () => {
     expect(
       mount(<CardHeaderParentInfo {...props} />)
         .find("a")
         .prop("target")
-    ).not.toEqual("_blank");
+    ).toEqual("_blank");
 
     expect(
       mount(<CardHeaderParentInfo {...props} />)
