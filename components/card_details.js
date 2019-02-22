@@ -78,7 +78,7 @@ CardDetails.defaultProps = {
 CardDetails.propTypes = {
   children: PropTypes.node,
   open: PropTypes.bool,
-  summary: PropTypes.node.isRequired
+  summary: PropTypes.node
 };
 
 export default CardDetails;

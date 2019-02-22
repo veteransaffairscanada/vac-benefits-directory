@@ -11,6 +11,10 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import configureStore from "redux-mock-store";
 import needsFixture from "../fixtures/needs";
 import translateFixture from "../fixtures/translate";
+import nextStepsFixture from "../fixtures/nextSteps";
+import questionsFixture from "../fixtures/questions";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import questionClearLogicFixture from "../fixtures/question_clear_logic";
 
 describe("BenefitList", () => {
   let props;
@@ -18,7 +22,6 @@ describe("BenefitList", () => {
 
   beforeEach(() => {
     props = {
-      t: translateFixture,
       filteredBenefits: benefitsFixture,
       onRef: k => k,
       showFavourites: true,
@@ -27,15 +30,38 @@ describe("BenefitList", () => {
 
     mockStore = configureStore();
     reduxData = {
+      t: translateFixture,
+      nextSteps: nextStepsFixture,
+      benefitExamples: benefitExamplesFixture,
       cookiesDisabled: false,
+      setCookiesDisabled: jest.fn(),
+      profileQuestions: questionsFixture.filter(
+        q => q.variable_name !== "needs"
+      ),
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionClearLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
       favouriteBenefits: [],
       benefitEligibility: benefitEligibilityFixture,
-      benefitExamples: benefitExamplesFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      filteredBenefits: benefitsFixture,
       needs: needsFixture,
+      serviceType: "",
+      patronType: "",
+      saveQuestionResponse: jest.fn(),
+      searchString: "",
+      statusAndVitals: "",
+      selectedEligibility: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      },
+      serviceHealthIssue: "",
+      setSearchString: jest.fn(),
       selectedNeeds: {},
-      searchString: ""
+      option: "",
+      pageWidth: 1000
     };
     props.store = mockStore(reduxData);
   });
