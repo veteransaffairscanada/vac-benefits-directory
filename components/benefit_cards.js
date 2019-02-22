@@ -84,7 +84,7 @@ export class BenefitCard extends Component {
             this.props.selectedNeeds[need.id]
         )
       : [];
-
+    const language = t("current-language-code");
     const searchWords = this.props.searchString.split(/\s+/);
     return (
       <Grid item xs={12}>
@@ -94,6 +94,7 @@ export class BenefitCard extends Component {
               benefit={benefit}
               t={t}
               store={this.props.store}
+              language={language}
             />
             <Header className={benefitName} size="md" headingLevel="h2">
               <Highlighter

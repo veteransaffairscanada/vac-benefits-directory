@@ -11,7 +11,8 @@ describe("BenefitCardHeader", () => {
     props = {
       t: () => "en",
       benefit: benefitsFixture[1],
-      benefits: benefitsFixture
+      benefits: benefitsFixture,
+      language: "en"
     };
   });
 

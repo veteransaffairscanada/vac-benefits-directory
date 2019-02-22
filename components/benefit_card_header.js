@@ -78,6 +78,7 @@ BenefitCardHeader.propTypes = {
   benefits: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  language: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 
