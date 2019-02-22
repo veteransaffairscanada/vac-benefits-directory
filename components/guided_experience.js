@@ -43,11 +43,6 @@ const box = css`
 const alignRight = css`
   text-align: right;
 `;
-const mobileAlignRight = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    text-align: right;
-  }
-`;
 const mobileReverse = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     flex-direction: column-reverse;
