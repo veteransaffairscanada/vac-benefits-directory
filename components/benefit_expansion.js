@@ -50,7 +50,7 @@ export class BenefitExpansion extends Component {
   };
 
   render() {
-    const { t, benefit, benefits, reduxState } = this.props;
+    const { t, benefit, benefits, reduxState, store } = this.props;
     const language = t("current-language-code");
     const benefitName =
       language === "en" ? benefit.vacNameEn : benefit.vacNameFr;
@@ -84,7 +84,7 @@ export class BenefitExpansion extends Component {
         <ExampleBullets
           benefit={benefit}
           t={t}
-          store={this.props.store}
+          store={store}
           language={language}
         />
         <ChildBenefitList
