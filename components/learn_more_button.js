@@ -27,7 +27,6 @@ const LearnMoreButton = props => {
     <a
       className={anchorFocus}
       href={url}
-      target="_blank"
       rel="noopener noreferrer"
       onClick={() => {
         logEvent("Exit", "learn more", url);

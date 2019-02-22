@@ -114,7 +114,7 @@ export class GuidedExperience extends Component {
     const dynamicStepNumber = displayable_sections.indexOf(id);
     const nextSection =
       dynamicStepNumber + 1 >= displayable_sections.length
-        ? "summary"
+        ? "benefitsDirectory"
         : displayable_sections[dynamicStepNumber + 1];
 
     let nextQueryParams = this.queryParamsToClearHiddenQuestions();
@@ -153,7 +153,7 @@ export class GuidedExperience extends Component {
     const dynamicStepNumber = displayable_sections.indexOf(id);
     const nextSection =
       dynamicStepNumber + 1 >= displayable_sections.length
-        ? "summary"
+        ? "benefitsDirectory"
         : displayable_sections[dynamicStepNumber + 1];
 
     if (id === "needs") {
@@ -236,7 +236,9 @@ export class GuidedExperience extends Component {
                       mobileFullWidth={true}
                       className={leftMargin}
                     >
-                      {t("next")}{" "}
+                      {this.getNextUrl().indexOf("benefits-directory") > -1
+                        ? t("ge.show_results")
+                        : t("next")}
                     </Button>
                   </Link>
                 </Grid>

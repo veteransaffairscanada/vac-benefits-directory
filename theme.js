@@ -47,6 +47,7 @@ let theme = {
     betaBlue: "#006de4",
     alphaBlue: "#345075",
     salmon: "#ff6961",
+    blueGrey: "#838d9b",
     paleBlueGrey: "#f1f7fc",
     darkBlueGrey: "#d8dee2",
     lineGrey: "#dfdfdf",
