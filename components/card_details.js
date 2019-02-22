@@ -10,24 +10,24 @@ const StyledDetails = styled("details")({
   fontSize: "inherit",
   fontFamily: globalTheme.fontFamilySansSerif,
   color: globalTheme.colour.textColour,
-  borderTop: "1px solid black",
-  backgroundColor: "red"
+  borderTop: `1px solid ${globalTheme.colour.lightBlue}`
 });
 
 const StyledSummary = styled("summary")({
   display: "flex",
   alignItems: "center",
   width: "100%",
+  boxSizing: "border-box",
   position: "relative",
   padding: 5,
   color: globalTheme.colour.textColour,
   cursor: "pointer",
-  // ":hover": {
-  //   background: globalTheme.colour.focusColour
-  // },
+  ":hover": {
+    backgroundColor: globalTheme.colour.blueish
+  },
   ":focus": {
-    outline: `2px solid ${globalTheme.colour.focusColour}`
-    // outlineOffset: -1,
+    outline: `2px solid ${globalTheme.colour.focusColour}`,
+    outlineOffset: -3
   },
   "::-webkit-details-marker": {
     display: "none"
@@ -55,7 +55,8 @@ const DetailsText = styled("div")({
 const flex2 = css({
   marginLeft: "auto",
   paddingRight: "10px",
-  order: 2
+  order: 2,
+  color: globalTheme.colour.textColour
 });
 const CardDetails = ({ summary, children, ...props }) => (
   <StyledDetails {...props}>

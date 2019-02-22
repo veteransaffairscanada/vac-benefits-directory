@@ -8,11 +8,12 @@ import {
   getProfileFilters
 } from "../selectors/benefits";
 import ExampleBullets from "./example_bullets";
+import { globalTheme } from "../theme";
 
 const topBorder = css`
   padding-top: 1em;
   margin-bottom: 18px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid ${globalTheme.colour.lightBlue};
 `;
 
 export class BenefitExpansion extends Component {

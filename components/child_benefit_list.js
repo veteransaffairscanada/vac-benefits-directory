@@ -12,6 +12,12 @@ const heading = css`
   font-size: 1em;
   font-weight: normal;
   text-align: left;
+  padding: 0px;
+`;
+
+const liStyle = css`
+  margin-bottom: 10px;
+  margin-left: 6px; // this is so bullets appear in 2nd column in IE
 `;
 const listStyle = css`
   padding-left: 20px;
@@ -31,7 +37,7 @@ const ChildBenefitList = props => {
         <div>
           <ul className={listStyle}>
             {benefits.map(cb => (
-              <li key={cb.id}>
+              <li key={cb.id} className={liStyle}>
                 <HeaderLink
                   target="_blank"
                   rel="noopener noreferrer"

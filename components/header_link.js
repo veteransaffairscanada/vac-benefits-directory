@@ -8,7 +8,7 @@ import Link from "next/link";
 
 const style = css`
   display: inline-block;
-  padding: 0.526315em 0;
+  // padding: 0.526315em 0;
   text-align: left;
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 21px;
