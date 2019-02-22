@@ -36,6 +36,7 @@ const borderStyle = css`
 
 const small = css`
   font-size: 18px;
+  padding: 0;
 `;
 
 const grey = css`
