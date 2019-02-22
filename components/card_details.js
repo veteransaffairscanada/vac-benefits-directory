@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
+import ExpandMore from "./icons/ExpandMore";
 
 const StyledDetails = styled("details")({
   display: "block",
@@ -24,6 +26,13 @@ const StyledSummary = styled("summary")({
   ":focus": {
     outline: `2px solid ${globalTheme.colour.focusColour}`
     // outlineOffset: -1,
+  },
+  "::-webkit-details-marker": {
+    display: "none"
+  },
+  "[open]": {
+    // transform: "rotate(90deg)"
+    backgroundColor: "red"
   }
 });
 
@@ -40,10 +49,17 @@ const DetailsText = styled("div")({
     marginBottom: 0
   }
 });
+//
+// const icon = css`
+//
+// `;
 
 const CardDetails = ({ summary, children, ...props }) => (
   <StyledDetails {...props}>
-    <StyledSummary>{summary}</StyledSummary>
+    <StyledSummary>
+      {summary}
+      <ExpandMore className="icon" />
+    </StyledSummary>
     <DetailsText>{children}</DetailsText>
   </StyledDetails>
 );
