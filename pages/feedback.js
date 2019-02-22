@@ -75,7 +75,7 @@ export class Feedback extends Component {
         i18n={i18n}
         hideNoscript={false}
         title={t("feedback.page_title")}
-        backgroundColor={globalTheme.colour.white}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
         skipLink="#mainContent"
         url={url}
       >

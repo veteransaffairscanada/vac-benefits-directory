@@ -43,14 +43,16 @@ const box = css`
 const alignRight = css`
   text-align: right;
 `;
-const mobileAlignRight = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    text-align: right;
-  }
-`;
 const mobileReverse = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     flex-direction: column-reverse;
+  }
+`;
+const mobileFullWidth = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    width: 100%;
+    padding: 0;
+    margin-left: 0;
   }
 `;
 const questions = css`
@@ -63,6 +65,13 @@ const body = css`
   font-size: 24px;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     font-size: 14px;
+  }
+`;
+const leftMargin = css`
+  margin-left: 1.5em;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    margin-left: 0;
+    margin-bottom: 0.5em;
   }
 `;
 export class GuidedExperience extends Component {
@@ -105,7 +114,7 @@ export class GuidedExperience extends Component {
     const dynamicStepNumber = displayable_sections.indexOf(id);
     const nextSection =
       dynamicStepNumber + 1 >= displayable_sections.length
-        ? "summary"
+        ? "benefitsDirectory"
         : displayable_sections[dynamicStepNumber + 1];
 
     let nextQueryParams = this.queryParamsToClearHiddenQuestions();
@@ -144,7 +153,7 @@ export class GuidedExperience extends Component {
     const dynamicStepNumber = displayable_sections.indexOf(id);
     const nextSection =
       dynamicStepNumber + 1 >= displayable_sections.length
-        ? "summary"
+        ? "benefitsDirectory"
         : displayable_sections[dynamicStepNumber + 1];
 
     if (id === "needs") {
@@ -211,22 +220,37 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
             <Grid item xs={12}>
-              <Grid container className={mobileReverse} spacing={12}>
-                <Grid item xs={12} sm={4} className={mobileAlignRight}>
-                  <HeaderLink id="prevButton" href={backUrl} arrow="back">
+              <Grid container spacing={12}>
+                <Grid container xs={12} sm={8} className={mobileReverse}>
+                  <HeaderLink
+                    id="prevButton"
+                    href={backUrl}
+                    className={mobileFullWidth}
+                    hasBorder
+                  >
                     {t("back")}
                   </HeaderLink>
+                  <Link id="nextLink" href={this.getNextUrl()}>
+                    <Button
+                      id="nextButton"
+                      mobileFullWidth={true}
+                      className={leftMargin}
+                    >
+                      {this.getNextUrl().indexOf("benefits-directory") > -1
+                        ? t("ge.show_results")
+                        : t("next")}
+                    </Button>
+                  </Link>
                 </Grid>
-                <Grid item xs={12} sm={8} className={alignRight}>
+                <Grid item xs={12} sm={4} className={alignRight}>
                   <Link id="skipLink" href={this.getSkipUrl()}>
-                    <HeaderButton id="skipButton" altStyle="grey">
+                    <HeaderButton
+                      id="skipButton"
+                      altStyle="grey"
+                      className={mobileFullWidth}
+                    >
                       {t("ge.skip")}
                     </HeaderButton>
-                  </Link>
-                  <Link id="nextLink" href={this.getNextUrl()}>
-                    <Button id="nextButton" arrow={true}>
-                      {t("next")}{" "}
-                    </Button>
                   </Link>
                 </Grid>
               </Grid>

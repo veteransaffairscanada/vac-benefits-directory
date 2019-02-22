@@ -10,7 +10,7 @@ const StyledDetails = styled("details")({
   fontSize: "inherit",
   fontFamily: globalTheme.fontFamilySansSerif,
   color: globalTheme.colour.textColour,
-  borderTop: `1px solid ${globalTheme.colour.lightBlue}`
+  borderTop: `1px solid ${globalTheme.colour.darkPaleGrey}`
 });
 
 const StyledSummary = styled("summary")({

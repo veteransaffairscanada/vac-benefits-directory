@@ -15,6 +15,11 @@ const shareBoxItem = css`
   margin-left: 5px;
 `;
 const shareText = css`
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-size: 14px;
+  color: ${globalTheme.colour.blueGrey};
+  font-weight: bold;
+  text-transform: uppercase;
   margin-right: 10px;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     display: none;

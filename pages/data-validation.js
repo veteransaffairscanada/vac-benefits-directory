@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { cx, css } from "emotion";
 import Container from "../components/container";
 import Button from "../components/button";
+import { globalTheme } from "../theme";
 
 const root = css`
   overflow-x: auto;
@@ -230,6 +231,7 @@ export class DataValidation extends Component {
         i18n={i18n}
         t={t}
         hideNoscript={true}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
         skipLink="#mainContent"
         url={this.props.url}
       >

@@ -30,14 +30,14 @@ export class AlertIcon extends Component {
             fill={globalTheme.colour.slateGrey}
           />
           <rect
-            fill={globalTheme.colour.lightBlue}
+            fill={globalTheme.colour.darkPaleGrey}
             x="9.9"
             y="5.5"
             width="2.2"
             height="6.6"
           />
           <rect
-            fill={globalTheme.colour.lightBlue}
+            fill={globalTheme.colour.darkPaleGrey}
             x="9.9"
             y="14.3"
             width="2.2"

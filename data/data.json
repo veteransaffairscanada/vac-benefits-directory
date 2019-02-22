@@ -594,7 +594,7 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Attendance Allowance",
+      "vacNameEn": "Attendance allowance",
       "vacNameFr": "Allocation pour soins",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/attendance-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/attendance-allowance",
@@ -764,7 +764,7 @@
       "examples": ""
     },
     {
-      "vacNameEn": "Clothing Allowance",
+      "vacNameEn": "Clothing allowance",
       "vacNameFr": "Allocation vestimentaire",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
@@ -874,7 +874,7 @@
       "benefitExamples": []
     },
     {
-      "vacNameEn": "Detention Benefit",
+      "vacNameEn": "Detention benefit",
       "vacNameFr": "Indemnité de captivité",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/detention-benefits",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/detention-benefits",
@@ -1024,7 +1024,7 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Exceptional Incapacity Allowance",
+      "vacNameEn": "Exceptional incapacity allowance",
       "vacNameFr": "Allocation d'incapacité exceptionnelle",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
@@ -1049,7 +1049,7 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Family peer support (OSISS)",
+      "vacNameEn": "Family peer support (Operational Stress Injury Social Support)",
       "vacNameFr": "Soutien par les pairs pour les familles (SSBSO)",
       "benefitPageEn": "https://www.cfmws.com/en/AboutUs/DCSM/OSISS/Pages/Families.aspx",
       "benefitPageFr": "https://www.cfmws.com/fr/aboutus/dcsm/osiss/pages/families.aspx",
@@ -1102,7 +1102,7 @@
       "examples": ""
     },
     {
-      "vacNameEn": "Grave-marker maintenance",
+      "vacNameEn": "Grave marker maintenance",
       "vacNameFr": "Entretien des stèles funéraires",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/grave-marker",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/grave-marker",
@@ -1127,7 +1127,7 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Group health insurance",
+      "vacNameEn": "Group Health Insurance",
       "vacNameFr": "Assurance collective des soins de santé",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/group-health-insurance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/group-health-insurance",
@@ -1318,7 +1318,7 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Rehabilitation Services",
+      "vacNameEn": "Rehabilitation services",
       "vacNameFr": "Services de réadaptation",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation/services",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/rehabilitation/services",
@@ -1396,8 +1396,8 @@
     {
       "vacNameEn": "Survivor's pension",
       "vacNameFr": "Pension de survivant",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/disability-pension/survivor-benefits",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/disability-pension/survivor-benefits",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/family-caregiver/financial-programs-services/survivors-pension",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/family-caregiver/financial-programs-services/survivors-pension",
       "needs": ["recmkrbWGIJNuAxpY", "recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Continue to receive your spouse's disability pension for one year after their death. ",
       "oneLineDescriptionFr": "Versement mensuel si votre conjoint a reçu une pension d’invalidité.",
@@ -1525,8 +1525,8 @@
     {
       "vacNameEn": "Veterans Affairs Canada (VAC) Assistance Service",
       "vacNameFr": "Service d’aide d’Anciens Combattants Canada (ACC)",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/contact/vac-assistance-service",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/contact/vac-assistance-service",
+      "benefitPageEn": "https://veterans.gc.ca/eng/contact/talk-to-a-professional",
+      "benefitPageFr": "https://veterans.gc.ca/fra/contact/talk-to-a-professional",
       "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Get support right now from a mental health professional by calling 1-800-268-7708.",
       "oneLineDescriptionFr": "Obtenez dès maintenant le soutien d’un professionnel de la santé mentale en composant le 1-800-268-7708.",
@@ -1594,7 +1594,7 @@
         "reckkMaRCZsC6ata7",
         "rec7d3PUWDPoxcFGL"
       ],
-      "benefitEligibility": ["recq0WQEbaxzB5dpZ"],
+      "benefitEligibility": ["recq0WQEbaxzB5dpZ", "recQTeje49tk9F6EF"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
       "id": "rectQG8BcSRCFIv2R",
@@ -1737,11 +1737,11 @@
     {
       "benefit": ["recQTITbxrAtU7Vls"],
       "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "rec9F6MdtBCdj4ybK",
-      "path": "veteran",
+      "path": "veteran + hasServiceHealthIssue",
       "serviceType": [],
-      "statusAndVitals": [],
-      "serviceHealthIssue": []
+      "statusAndVitals": []
     },
     {
       "benefit": ["recPHhdoJVVZK8hzA"],
@@ -1955,9 +1955,9 @@
       "patronType": ["recxn7ls1CBYmeEZL"],
       "serviceType": ["rec9TxYv9brvsbp2P"],
       "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recgUXjEaFqSCKmYY",
-      "path": "family + CAF + deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recHnRYudEjQgvZEJ"],
@@ -2112,9 +2112,9 @@
       "patronType": ["recxn7ls1CBYmeEZL"],
       "serviceType": ["rec9TxYv9brvsbp2P"],
       "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recGj10CqDKJMpvXi",
-      "path": "family + CAF + deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recm47G2IxezdAWQr"],
@@ -2152,9 +2152,9 @@
         "recLd3F8AA3l2DSGN"
       ],
       "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recJjXjUz5Ax5cher",
-      "path": "family + CAF, WSV (WWII or Korea), RCMP + deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF, WSV (WWII or Korea), RCMP + deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recsRSTzSMCIkxnnJ"],
@@ -2250,8 +2250,17 @@
       "benefit": ["rectQG8BcSRCFIv2R"],
       "patronType": ["recxxkfVbzqVT9PHE"],
       "serviceType": ["rec9TxYv9brvsbp2P", "rec6IsnT1j2n7jZSN"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recq0WQEbaxzB5dpZ",
-      "path": "veteran + CAF, WSV (WWII or Korea)",
+      "path": "veteran + CAF, WSV (WWII or Korea) + hasServiceHealthIssue",
+      "statusAndVitals": []
+    },
+    {
+      "benefit": ["rectQG8BcSRCFIv2R"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "Name": "recQTeje49tk9F6EF",
+      "path": "veteran + WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
@@ -2282,9 +2291,9 @@
         "rec6Wp9xvBkdccOqc",
         "recGnWChPVH0FMaI2"
       ],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recTbhVJnOXXr1h6b",
-      "path": "family + CAF + stillServing, releasedAlive, deceased",
-      "serviceHealthIssue": []
+      "path": "family + CAF + stillServing, releasedAlive, deceased + hasServiceHealthIssue"
     },
     {
       "benefit": ["recUupb08Qw7wauuM"],
@@ -3809,15 +3818,15 @@
     {
       "section": "beta_banner",
       "key": "main",
-      "English": "This is a new online tool. ",
-      "French": "Il s’agit d’un nouvel outil en ligne.",
+      "English": "This tool is under development and is for testing purposes only. We're working to ensure accurate results. ",
+      "French": "Cet outil fait l’objet d’un développement continu et est conçu à des fins de test. Nous nous efforçons d’obtenir des résultats exacts.  ",
       "id": "beta_banner.main"
     },
     {
       "section": "beta_banner",
       "key": "link_text",
-      "English": "Click here to provide feedback. ",
-      "French": "Cliquez ici pour formuler des commentaires. ",
+      "English": "Give feedback to help us improve. ",
+      "French": "Faites-nous part de vos commentaires pour nous aider à nous améliorer.",
       "id": "beta_banner.link_text"
     },
     {
@@ -4037,7 +4046,8 @@
         "recWIN9A7KLaH3ESa",
         "recWH4cNVr9CDfW7i",
         "rectdWl20FbZTxJI6",
-        "recGRpW6C5c11wS1C"
+        "recGRpW6C5c11wS1C",
+        "recQTeje49tk9F6EF"
       ],
       "nextSteps": [
         "recdzY1R8cKtLgQrV",
@@ -4254,7 +4264,8 @@
         "recWH4cNVr9CDfW7i",
         "rectdWl20FbZTxJI6",
         "recwHANeVjaGAzFQO",
-        "recJ86mAbF1mZyZGt"
+        "recJ86mAbF1mZyZGt",
+        "recQTeje49tk9F6EF"
       ],
       "key (DO NOT EDIT)": "WSV (WWII or Korea)",
       "id": "rec6IsnT1j2n7jZSN",
@@ -4383,7 +4394,13 @@
         "recJ86mAbF1mZyZGt",
         "recRmJK6yZn1w91CL",
         "recJiNaqW8Z2bFprW",
-        "recLT7RlCVZ16Nhvl"
+        "recLT7RlCVZ16Nhvl",
+        "rec9F6MdtBCdj4ybK",
+        "recq0WQEbaxzB5dpZ",
+        "recGj10CqDKJMpvXi",
+        "recgUXjEaFqSCKmYY",
+        "recJjXjUz5Ax5cher",
+        "recTbhVJnOXXr1h6b"
       ],
       "nextSteps 4": ["recZX9D8BmyE1zIeq"],
       "key (DO NOT EDIT)": "hasServiceHealthIssue",
@@ -4523,25 +4540,25 @@
     {
       "english": "personal hygiene (bathing or showering)",
       "french": "hygiène personnelle (bain ou douche)",
-      "linked_benefits": ["Attendance Allowance"],
+      "linked_benefits": ["Attendance allowance"],
       "id": "recHp4lxMRSyiNxIv"
     },
     {
       "english": " meal preparation",
       "french": "préparation des repas",
-      "linked_benefits": ["Attendance Allowance"],
+      "linked_benefits": ["Attendance allowance"],
       "id": "recUaHVXmVH32lNpW"
     },
     {
       "english": "getting dressed",
       "french": "habillage",
-      "linked_benefits": ["Attendance Allowance"],
+      "linked_benefits": ["Attendance allowance"],
       "id": "recqOVLHjzmkMQ88N"
     },
     {
       "english": "managing medication",
       "french": "prise de médicaments",
-      "linked_benefits": ["Attendance Allowance"],
+      "linked_benefits": ["Attendance allowance"],
       "id": "recjnMkjq96o9MEh9"
     },
     {
@@ -4601,13 +4618,13 @@
     {
       "english": "bed linens",
       "french": "articles de literie",
-      "linked_benefits": ["Clothing Allowance"],
+      "linked_benefits": ["Clothing allowance"],
       "id": "recCnWj7ofZVuOjkL"
     },
     {
       "english": "clothing alterations",
       "french": "retouches de vêtements",
-      "linked_benefits": ["Clothing Allowance"],
+      "linked_benefits": ["Clothing allowance"],
       "id": "reclh6TVUfy2MQpR1"
     },
     {
@@ -4682,19 +4699,19 @@
     {
       "english": "dependent on others",
       "french": "dépend des autres",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
+      "linked_benefits": ["Exceptional incapacity allowance"],
       "id": "recaBlcJQTC7jMuPU"
     },
     {
       "english": "ongoing pain and discomfort",
       "french": "douleur et inconfort continus",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
+      "linked_benefits": ["Exceptional incapacity allowance"],
       "id": "recpwt7xSjCWYZuHi"
     },
     {
       "english": "shortened lifespan",
       "french": "durée de vie réduite",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
+      "linked_benefits": ["Exceptional incapacity allowance"],
       "id": "reczSawTjXKZHlsRJ"
     },
     {
@@ -4703,7 +4720,7 @@
       "linked_benefits": [
         "Peer support (OSISS)",
         "Operational stress injury (OSI) clinics",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "rectUnFq0BtXzES7r"
     },
@@ -4712,7 +4729,7 @@
       "french": "troubles anxieux",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recdfuHSlT6uEmfUy"
     },
@@ -4721,7 +4738,7 @@
       "french": "dépression",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recOMy1nlu4r9uU0H"
     },
@@ -4730,7 +4747,7 @@
       "french": "troubles liés à la toxicomanie",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recjzgPKdzufh6CrT"
     },
@@ -4767,31 +4784,31 @@
     {
       "english": "cleaning",
       "french": "entretien",
-      "linked_benefits": ["Grave-marker maintenance"],
+      "linked_benefits": ["Grave marker maintenance"],
       "id": "recBZK528vNSTr2mM"
     },
     {
       "english": "realignment",
       "french": "réalignement",
-      "linked_benefits": ["Grave-marker maintenance"],
+      "linked_benefits": ["Grave marker maintenance"],
       "id": "recb1jAvvRh7ibPXC"
     },
     {
       "english": "replacement",
       "french": "remplacement",
-      "linked_benefits": ["Grave-marker maintenance"],
+      "linked_benefits": ["Grave marker maintenance"],
       "id": "recWCgz7km37xZqXw"
     },
     {
       "english": "prescriptions",
       "french": "ordonnances",
-      "linked_benefits": ["Group health insurance"],
+      "linked_benefits": ["Group Health Insurance"],
       "id": "recB8f8KYKtcHfWmo"
     },
     {
       "english": "treatment services",
       "french": "services de traitement",
-      "linked_benefits": ["Group health insurance"],
+      "linked_benefits": ["Group Health Insurance"],
       "id": "recMdW1I9Ryz9KACw"
     },
     {
@@ -4878,19 +4895,19 @@
     {
       "english": "physiotherapy",
       "french": "physiothérapie",
-      "linked_benefits": ["Rehabilitation Services"],
+      "linked_benefits": ["Rehabilitation services"],
       "id": "recc8TopUzbaCrtCK"
     },
     {
       "english": "chiropractor",
       "french": "(fra) chiropractor",
-      "linked_benefits": ["Rehabilitation Services"],
+      "linked_benefits": ["Rehabilitation services"],
       "id": "reccIoJgjbZlPUQur"
     },
     {
       "english": "massage therapy ",
       "french": "(fra) massage therapy ",
-      "linked_benefits": ["Rehabilitation Services"],
+      "linked_benefits": ["Rehabilitation services"],
       "id": "rec3UvOcOCmuXcmZH"
     },
     {
@@ -5133,5 +5150,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1550768514961
+  "timestamp": 1550849671877
 }

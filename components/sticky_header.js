@@ -39,6 +39,13 @@ const alignRight = css`
 `;
 const savedListStyle = css`
   margin-left: 50px;
+  padding: 0;
+  font-size: 20px;
+`;
+
+const editStyle = css`
+  padding: 0;
+  font-size: 20px;
 `;
 
 export class StickyHeader extends Component {
@@ -64,7 +71,11 @@ export class StickyHeader extends Component {
             />
           </Grid>
           <Grid item xs={8} className={alignRight}>
-            <HeaderLink id="editSelections" href={summaryUrl}>
+            <HeaderLink
+              id="editSelections"
+              href={summaryUrl}
+              className={editStyle}
+            >
               <EditIcon />
               <span className={longText}>{t("directory.edit_selections")}</span>
               <span className={shortText}>

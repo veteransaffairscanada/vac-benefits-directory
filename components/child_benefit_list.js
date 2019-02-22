@@ -39,7 +39,6 @@ const ChildBenefitList = props => {
             {benefits.map(cb => (
               <li key={cb.id} className={liStyle}>
                 <HeaderLink
-                  target="_blank"
                   rel="noopener noreferrer"
                   className={heading}
                   size="small"
