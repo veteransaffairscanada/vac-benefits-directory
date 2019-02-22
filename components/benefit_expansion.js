@@ -13,7 +13,9 @@ import { globalTheme } from "../theme";
 const topBorder = css`
   padding-top: 1em;
   margin-bottom: 18px;
-  border-bottom: 1px solid ${globalTheme.colour.lightBlue};
+  details:last-child {
+    border-bottom: 1px solid ${globalTheme.colour.lightBlue};
+  }
 `;
 
 export class BenefitExpansion extends Component {
