@@ -20,11 +20,19 @@ const greyBanner = css`
 
 const separator = css`
   padding: 0 5px;
+  color: ${globalTheme.colour.slateGrey};
+  font-weight: normal;
 `;
 
 const urlStyle = css`
-  color: #6d6363;
+  color: ${globalTheme.colour.slateGrey};
   text-decoration: underline;
+  font-size: 16px;
+  font-weight: 700;
+`;
+
+const currentPageStyle = css`
+  color: ${globalTheme.colour.slateGrey};
   font-size: 16px;
   font-weight: 700;
 `;
@@ -40,11 +48,12 @@ export class BreadCrumbs extends Component {
       <div className={greyBanner}>
         <div>
           <HeaderLink id="homeButton" href={homeUrl} className={urlStyle}>
-            <HomeIcon className={iconStyle} /> {this.props.t("titles.home")}
+            <HomeIcon className={iconStyle} />
+            {this.props.t("titles.home")}
           </HeaderLink>
           {breadcrumbs.map((breadcrumb, i) => (
             <span key={"breadcrumb" + i}>
-              <span className={separator}> / </span>
+              <span className={separator}> > </span>
               <HeaderLink
                 id={"breadcrumb" + i}
                 href={breadcrumb.url}
@@ -54,8 +63,8 @@ export class BreadCrumbs extends Component {
               </HeaderLink>
             </span>
           ))}
-          <span className={separator}> / </span>
-          <span>{this.props.pageTitle}</span>
+          <span className={separator}> > </span>
+          <span className={currentPageStyle}>{this.props.pageTitle}</span>
         </div>
       </div>
     );
