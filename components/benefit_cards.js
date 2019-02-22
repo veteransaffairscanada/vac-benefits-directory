@@ -17,7 +17,8 @@ import LearnMoreButton from "./learn_more_button";
 const cardBody = css`
   padding-top: 0px;
   border-top: none;
-  border: thin solid ${globalTheme.colour.paleGrey};
+  border: 1px solid ${globalTheme.colour.lightBlue};
+  box-shadow: none;
 `;
 const cardDescriptionText = css`
   padding-left: 35px;
