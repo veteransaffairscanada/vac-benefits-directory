@@ -11,6 +11,7 @@ import BenefitExpansion from "./benefit_expansion";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
 import Header from "./typography/header";
+import Tag from "./icons/Tag";
 import HeaderButton from "./header_button";
 import { globalTheme } from "../theme";
 
@@ -50,6 +51,14 @@ const padding = css`
 `;
 const alignRight = css`
   text-align: right;
+`;
+
+const tagStyle = css`
+  width: 12px;
+  height: 12px;
+  font-size: 12px !important;
+  color: ${globalTheme.colour.slateGrey} !important;
+  margin-right: 0.8em;
 `;
 
 export class BenefitCard extends Component {
@@ -110,8 +119,14 @@ export class BenefitCard extends Component {
               />
             </OneLiner>
             <div className={padding}>
+              {needsMet.length > 0 ? <Tag className={tagStyle} /> : null}
               {needsMet.map(need => (
-                <NeedTag key={benefit.id + need.id} t={t} need={need} />
+                <NeedTag
+                  key={benefit.id + need.id}
+                  t={t}
+                  need={need}
+                  last={needsMet.indexOf(need) === needsMet.length - 1}
+                />
               ))}
             </div>
             {this.state.expanded ? (
