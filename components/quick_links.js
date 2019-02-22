@@ -46,6 +46,15 @@ const quickLinksText = css`
   text-transform: uppercase;
 `;
 
+const linkStyle = css`
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0;
+  text-decoration: underline;
+  line-height: 16px;
+`;
+
 class QuickLinks extends Component {
   scrollToId(id) {
     window.location = id;
@@ -64,6 +73,7 @@ class QuickLinks extends Component {
                 {onFavourites ? (
                   <HeaderButton
                     id="saved-list-button"
+                    className={linkStyle}
                     onClick={() => this.scrollToId("#saved-list")}
                   >
                     {t("titles.saved_list")}
@@ -71,6 +81,7 @@ class QuickLinks extends Component {
                 ) : (
                   <HeaderButton
                     id="benefits-and-services-button"
+                    className={linkStyle}
                     onClick={() => this.scrollToId("#benefits-and-services")}
                   >
                     {t("titles.benefits_and_services")}
@@ -80,6 +91,7 @@ class QuickLinks extends Component {
               <div className={link}>
                 <HeaderButton
                   id="next-steps-button"
+                  className={linkStyle}
                   onClick={() => this.scrollToId("#next-steps")}
                 >
                   {t("nextSteps.whats_next")}

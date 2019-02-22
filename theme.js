@@ -55,7 +55,8 @@ let theme = {
     charcoalGrey: "#31353a",
     navy: "#434458",
     duckEggBlue: "#dbe3e5",
-    darkPaleGrey: "#d5e2e9"
+    darkPaleGrey: "#d5e2e9",
+    blackBlue: "#2f2f42"
   }
 };
 
