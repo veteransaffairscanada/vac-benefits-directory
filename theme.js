@@ -54,6 +54,7 @@ let theme = {
     tea: "#57c684",
     charcoalGrey: "#31353a",
     navy: "#434458",
+    blackBlue: "#2f2f42",
     duckEggBlue: "#dbe3e5"
   }
 };
