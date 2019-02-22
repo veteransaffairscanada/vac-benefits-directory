@@ -87,7 +87,7 @@ ExampleBullets.propTypes = {
   t: PropTypes.func.isRequired,
   language: PropTypes.string.isRequired, // not used, just to trigger re-render
   searchString: PropTypes.string.isRequired,
-  benefitExamples: PropTypes.array.isRequired
+  benefitExamples: PropTypes.array
 };
 
 export default connect(mapStateToProps)(ExampleBullets);

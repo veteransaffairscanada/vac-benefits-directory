@@ -10,6 +10,7 @@ import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import configureStore from "redux-mock-store";
 import needsFixture from "../fixtures/needs";
+import translateFixture from "../fixtures/translate";
 
 describe("BenefitList", () => {
   let props;
@@ -17,7 +18,7 @@ describe("BenefitList", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
+      t: translateFixture,
       filteredBenefits: benefitsFixture,
       onRef: k => k,
       showFavourites: true,

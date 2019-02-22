@@ -18,6 +18,7 @@ import translateFixture from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 import Cookies from "universal-cookie";
 expect.extend(toHaveNoViolations);
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 jest.mock("react-ga");
 
@@ -59,6 +60,7 @@ describe("BB", () => {
     _mountedBB = undefined;
     reduxData = {
       nextSteps: nextStepsFixture,
+      benefitExamples: benefitExamplesFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       saveFavourites: jest.fn(),

@@ -10,6 +10,7 @@ import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import translate from "../fixtures/translate";
 import configureStore from "redux-mock-store";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -51,6 +52,7 @@ describe("AllBenefits", () => {
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       needs: needsFixture,
       searchString: "",
+      benefitExamples: benefitExamplesFixture,
       selectedNeeds: {},
       favouriteBenefits: [benefitsFixture[0].id]
     };
