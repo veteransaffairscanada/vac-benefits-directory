@@ -20,6 +20,9 @@ const leftDiv = css`
   }
 `;
 const rightDiv = css`
+  font-family: ${globalTheme.fontFamilySerif};
+  font-size: 24px;
+  color: ${globalTheme.colour.slateGrey};
   border-left: 4px solid ${globalTheme.colour.duckEggBlue};
   height: 100%;
   box-sizing: border-box;
@@ -35,6 +38,13 @@ const rightDiv = css`
 const link = css`
   padding-top: 10px;
 `;
+const quickLinksText = css`
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-size: 12px;
+  color: ${globalTheme.colour.blueGrey};
+  font-weight: bold;
+  text-transform: uppercase;
+`;
 
 class QuickLinks extends Component {
   scrollToId(id) {
@@ -49,7 +59,7 @@ class QuickLinks extends Component {
         <Grid container>
           <Grid item xs={12} sm={4}>
             <div className={leftDiv}>
-              <span>{t("quick_links")}</span>
+              <span className={quickLinksText}>{t("quick_links")}</span>
               <div className={link}>
                 {onFavourites ? (
                   <HeaderButton
