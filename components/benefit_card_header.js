@@ -8,7 +8,7 @@ import CardHeaderImportantInfo from "./card_header_important_info";
 import AlertIcon from "./icons/alert_icon";
 
 const cardTop = css`
-  background-color: ${globalTheme.colour.lightYellow};
+  background-color: ${globalTheme.colour.darkPaleGrey};
   padding-top: 20px;
   padding-bottom: 20px;
   padding-left: 35px;
@@ -26,6 +26,9 @@ const headerDesc = css`
   color: ${globalTheme.colour.greyishBrown};
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 12px;
+  }
+  a {
+    color: ${globalTheme.colour.greyishBrown};
   }
 `;
 

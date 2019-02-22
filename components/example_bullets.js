@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
 import Highlighter from "react-highlight-words";
+import CardDetails from "./card_details";
 
 const margin = css`
   padding-left: 5px;
+  padding-bottom: 10px;
   font-family: ${globalTheme.fontFamilySansSerif};
   @media only screen and (min-width: ${globalTheme.max.sm}) {
     columns: 2;
@@ -22,11 +24,9 @@ const margin = css`
     text-indent: -1.4em;
     padding-left: 1.4em;
   }
-  margin: 16px 0px 16px -6px;
 `;
 
 const root = css`
-  border-bottom: thin dashed ${globalTheme.colour.lineGrey};
   color: ${globalTheme.colour.greyishBrown};
 `;
 export class ExampleBullets extends React.Component {
@@ -55,19 +55,22 @@ export class ExampleBullets extends React.Component {
   };
 
   render() {
-    const { t, benefit } = this.props;
+    const { benefit, t } = this.props;
     const bullets = this.getExampleBullets();
-
     if (bullets.length === 0) {
       return null;
     }
     return (
-      <div className={root}>
-        {t("current-language-code") === "en"
-          ? benefit.seeMoreSentenceEn
-          : benefit.seeMoreSentenceFr}
+      <CardDetails
+        className={root}
+        summary={
+          t("current-language-code") === "en"
+            ? benefit.seeMoreSentenceEn
+            : benefit.seeMoreSentenceFr
+        }
+      >
         <ul className={margin}>{bullets}</ul>
-      </div>
+      </CardDetails>
     );
   }
 }
@@ -84,7 +87,7 @@ ExampleBullets.propTypes = {
   t: PropTypes.func.isRequired,
   language: PropTypes.string.isRequired, // not used, just to trigger re-render
   searchString: PropTypes.string.isRequired,
-  benefitExamples: PropTypes.array.isRequired
+  benefitExamples: PropTypes.array
 };
 
 export default connect(mapStateToProps)(ExampleBullets);
