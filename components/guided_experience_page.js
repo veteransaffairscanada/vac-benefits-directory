@@ -6,6 +6,7 @@ import GuidedExperience from "../components/guided_experience";
 import GuidedExperienceProfile from "../components/guided_experience_profile";
 import GuidedExperienceNeeds from "../components/guided_experience_needs";
 import withI18N from "../lib/i18nHOC";
+import { globalTheme } from "../theme";
 
 export class GuidedExperiencePage extends Component {
   render() {
@@ -23,6 +24,7 @@ export class GuidedExperiencePage extends Component {
         t={t}
         hideNoscript={false}
         title={pageTitle}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
         skipLink="#mainContent"
         url={url}
       >

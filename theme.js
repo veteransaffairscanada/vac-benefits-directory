@@ -54,8 +54,9 @@ let theme = {
     tea: "#57c684",
     charcoalGrey: "#31353a",
     navy: "#434458",
-    blackBlue: "#2f2f42",
-    duckEggBlue: "#dbe3e5"
+    duckEggBlue: "#dbe3e5",
+    darkPaleGrey: "#d5e2e9",
+    blackBlue: "#2f2f42"
   }
 };
 
@@ -63,5 +64,6 @@ theme.colour.textColour = theme.colour.blackish;
 theme.colour.focusColour = theme.colour.govukYellow;
 theme.colour.linkColour = theme.colour.cerulean;
 theme.colour.linkHoverColour = theme.colour.cerulean;
+theme.colour.boxBorderColour = theme.colour.darkPaleGrey;
 
 export const globalTheme = { ...theme };
