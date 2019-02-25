@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Router from "next/router";
 import PropTypes from "prop-types";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
@@ -20,16 +19,6 @@ export class BenefitsDirectory extends Component {
     window.addEventListener("resize", this.updateWindowWidth);
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      JSON.stringify(this.props.profileFilters) !==
-        JSON.stringify(prevProps.profileFilters) ||
-      JSON.stringify(this.props.selectedNeeds) !==
-        JSON.stringify(prevProps.selectedNeeds)
-    ) {
-      this.setURL();
-    }
-  }
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowWidth);
   }
@@ -37,25 +26,6 @@ export class BenefitsDirectory extends Component {
   updateWindowWidth() {
     this.props.setPageWidth(window.innerWidth);
   }
-
-  setURL = () => {
-    let href = "/benefits-directory";
-    href += "?lng=" + this.props.t("current-language-code");
-    if (Object.keys(this.props.selectedNeeds).length > 0) {
-      href += "&selectedNeeds=" + Object.keys(this.props.selectedNeeds).join();
-    }
-
-    Object.entries(this.props.profileFilters).forEach(x => {
-      if (x[1]) {
-        href += `&${x[0]}=${x[1]}`;
-      }
-    });
-
-    if (this.props.searchString !== "") {
-      href += `&searchString=${encodeURIComponent(this.props.searchString)}`;
-    }
-    Router.replace(href);
-  };
 
   render() {
     const { i18n, t, filteredBenefits, benefits, url } = this.props; // eslint-disable-line no-unused-vars

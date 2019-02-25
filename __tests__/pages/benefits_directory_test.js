@@ -129,15 +129,4 @@ describe("BenefitsDirectory", () => {
     mounted.unmount();
     expect(window.removeEventListener).toBeCalled();
   });
-
-  it("has a correct setURL function", () => {
-    props.profileFilters = { patronType: "veteran", service: undefined };
-    reduxData.selectedNeeds = { health: "health", financial: "financial" };
-    reduxData.searchString = "foo";
-    let AInstance = mountedBenefitsDirectory().instance();
-    const expectedURL =
-      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=veteran&searchString=foo";
-    AInstance.setURL();
-    expect(Router.replace).toBeCalledWith(expectedURL);
-  });
 });
