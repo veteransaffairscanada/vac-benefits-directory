@@ -144,8 +144,6 @@ describe("getPrintUrl", () => {
           availableIndependently: "Requires Gateway Benefit"
         }
       ],
-      closestAreaOffice: "",
-      selectedAreaOffice: "",
       benefitEligibility: [
         {
           id: "0",
@@ -279,20 +277,6 @@ describe("getPrintUrl", () => {
     state.statusAndVitals = "foo";
     expect(getPrintUrl(state, props, params)).toEqual(
       "/print?lng=en&benefits=0,1,2,3,4&statusAndVitals=foo"
-    );
-  });
-
-  it("adds closestAOID string to the URL", () => {
-    state.closestAreaOffice = { id: "foo" };
-    expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&benefits=0,1,2,3,4&closestAOID=foo"
-    );
-  });
-
-  it("adds selectedAOID string to the URL", () => {
-    state.selectedAreaOffice = { id: "foo" };
-    expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&benefits=0,1,2,3,4&selectedAOID=foo"
     );
   });
 

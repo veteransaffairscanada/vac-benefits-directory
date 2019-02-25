@@ -62,18 +62,10 @@ class MyDocument extends Document {
 
   render() {
     var initialLang = this.props.__NEXT_DATA__.props.initialState.language;
-    const googleMapURL =
-      "https://maps.googleapis.com/maps/api/js?key=" +
-      process.env.GOOGLE_MAPS_KEY +
-      "&language=" +
-      initialLang +
-      "&v=3.exp&libraries=geometry,drawing,places";
-
     return (
       <html lang={initialLang}>
         <Head>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-          <script type="text/javascript" src={googleMapURL} />
         </Head>
         <body style={bodyStyling} tabIndex={1}>
           <Main />
