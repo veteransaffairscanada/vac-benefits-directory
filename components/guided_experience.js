@@ -220,27 +220,29 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
             <Grid item xs={12}>
-              <Grid container spacing={12}>
-                <Grid container xs={12} sm={8} className={mobileReverse}>
-                  <HeaderLink
-                    id="prevButton"
-                    href={backUrl}
-                    className={mobileFullWidth}
-                    hasBorder
-                  >
-                    {t("back")}
-                  </HeaderLink>
-                  <Link id="nextLink" href={this.getNextUrl()}>
-                    <Button
-                      id="nextButton"
-                      mobileFullWidth={true}
-                      className={leftMargin}
+              <Grid container spacing={16}>
+                <Grid item xs={12} sm={8}>
+                  <Grid container spacing={8} className={mobileReverse}>
+                    <HeaderLink
+                      id="prevButton"
+                      href={backUrl}
+                      className={mobileFullWidth}
+                      hasBorder
                     >
-                      {this.getNextUrl().indexOf("benefits-directory") > -1
-                        ? t("ge.show_results")
-                        : t("next")}
-                    </Button>
-                  </Link>
+                      {t("back")}
+                    </HeaderLink>
+                    <Link id="nextLink" href={this.getNextUrl()}>
+                      <Button
+                        id="nextButton"
+                        mobileFullWidth={true}
+                        className={leftMargin}
+                      >
+                        {this.getNextUrl().indexOf("benefits-directory") > -1
+                          ? t("ge.show_results")
+                          : t("next")}
+                      </Button>
+                    </Link>
+                  </Grid>
                 </Grid>
                 <Grid item xs={12} sm={4} className={alignRight}>
                   <Link id="skipLink" href={this.getSkipUrl()}>
