@@ -11,24 +11,6 @@ const bodyStyling = {
   margin: 0
 };
 
-// <!--[if gte IE 9 | !IE ]><!-->
-// <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
-// <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-// <link rel="stylesheet" href="https://wet-boew.github.io/themes-dist/GCWeb/GCWeb/css/theme.min.css" type="text/css" />
-// <link rel="stylesheet" href="https://wet-boew.github.io/wet-boew/theme-wet-boew/css/wet-boew.min.css" type="text/css">
-//
-// <link rel="stylesheet" href="https://www.canada.ca/etc/designs/canada/clientlib-all.min.css" type="text/css">
-//
-// <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather%7CBarlow:600%7CMontserrat:400,700" type="text/css" />
-// <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-// <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js" integrity="sha384-EIHISlAOj4zgYieurP0SdoiBYfGJKkgWedPHH4jCzpCXLmzVsw1ouK59MuUtP4a1" crossorigin="anonymous"></script>
-//
-// <link rel="stylesheet" href="https://www.veterans.gc.ca/css/2018-redesign/2018-redesign-custom.css" type="text/css" />
-// <link rel="stylesheet" href="https://www.veterans.gc.ca/css/2018-redesign/timeline.css" type="text/css" />
-//
-// <link rel="stylesheet" type="text/css" href="https://www.veterans.gc.ca/GCWeb/slick/slick.css">
-// <link rel="stylesheet" type="text/css" href="https://www.veterans.gc.ca/GCWeb/slick/slick-theme.css">
-
 class MyDocument extends Document {
   static getInitialProps(ctx) {
     const pageContext = getPageContext();
