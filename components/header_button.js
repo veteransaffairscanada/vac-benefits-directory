@@ -2,20 +2,19 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
 import { cx, css } from "emotion";
-import ArrowBack from "./icons/ArrowBack";
-import ArrowForward from "./icons/ArrowForward";
 
 const style = css`
   display: inline-block;
-  text-align: left;
-  font-family: ${globalTheme.fontFamily};
-  font-size: 21px;
+  padding: 0 1.2em;
+  text-align: center;
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-size: 24px;
+  line-height: 44px;
   font-weight: bold;
-  color: ${globalTheme.colour.cerulean};
+  color: ${globalTheme.colour.slateGrey};
   background-color: transparent;
   border: none;
-  text-decoration: none !important;
-  padding: 0px !important;
+  text-decoration: none;
   :hover {
     text-decoration: underline !important;
     cursor: pointer;
@@ -29,8 +28,15 @@ const style = css`
     outline: 3px solid ${globalTheme.colour.focusColour};
   }
 `;
+
+const borderStyle = css`
+  border: thin solid ${globalTheme.colour.warmGrey};
+  line-height: 42px;
+`;
+
 const small = css`
   font-size: 18px;
+  padding: 0;
 `;
 
 const grey = css`
@@ -38,42 +44,40 @@ const grey = css`
   color: ${globalTheme.colour.brownishGrey};
   margin-left: 20px;
   text-decoration: underline !important;
-  padding: 0.526315em 0.789473em !important;
+  padding: 0;
 `;
 
 class HeaderButton extends Component {
   render() {
     const {
       id,
-      arrow,
       className,
       children,
       size,
       altStyle,
       disabled,
+      hasBorder,
       onClick,
       ariaLabel,
       ...otherProps
     } = this.props;
 
+    let cName = [className];
+    if (size === "small") cName.unshift(small);
+    if (altStyle === "grey") cName.unshift(grey);
+    if (hasBorder === true) cName.unshift(borderStyle);
+    cName.unshift(style);
+
     return (
       <button
         aria-label={ariaLabel}
         disabled={disabled}
-        className={
-          size === "small"
-            ? cx(style, small, className)
-            : altStyle === "grey"
-            ? cx(style, grey, className)
-            : cx(style, className)
-        }
+        className={cx(cName)}
         id={"a-" + id}
         onClick={onClick}
         {...otherProps}
       >
-        {arrow === "back" ? <ArrowBack /> : null}
         {children}
-        {arrow === "forward" ? <ArrowForward /> : null}
       </button>
     );
   }
@@ -89,7 +93,6 @@ HeaderButton.propTypes = {
     PropTypes.object
   ]),
   className: PropTypes.string,
-  arrow: PropTypes.string,
   label: PropTypes.object,
   disabled: PropTypes.bool,
   onClick: PropTypes.func

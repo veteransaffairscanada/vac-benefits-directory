@@ -1,5 +1,6 @@
 let theme = {
-  fontFamily: "Merriweather",
+  fontFamilySerif: "Georgia",
+  fontFamilySansSerif: "Montserrat",
   marginTop: "25px", //used in place of theme.spacing.unit *3
   unit: "8px",
   cardPadding: "35px",
@@ -46,11 +47,17 @@ let theme = {
     betaBlue: "#006de4",
     alphaBlue: "#345075",
     salmon: "#ff6961",
+    blueGrey: "#838d9b",
     paleBlueGrey: "#f1f7fc",
     darkBlueGrey: "#d8dee2",
     lineGrey: "#dfdfdf",
     tea: "#57c684",
-    duckEggBlue: "#dbe3e5"
+    charcoalGrey: "#31353a",
+    navy: "#434458",
+    duckEggBlue: "#dbe3e5",
+    darkPaleGrey: "#d5e2e9",
+    blueish: "#f6f9fa",
+    blackBlue: "#2f2f42"
   }
 };
 
@@ -58,5 +65,6 @@ theme.colour.textColour = theme.colour.blackish;
 theme.colour.focusColour = theme.colour.govukYellow;
 theme.colour.linkColour = theme.colour.cerulean;
 theme.colour.linkHoverColour = theme.colour.cerulean;
+theme.colour.boxBorderColour = theme.colour.darkPaleGrey;
 
 export const globalTheme = { ...theme };

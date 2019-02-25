@@ -67,12 +67,18 @@ const fileBugHeader = css`
 const pStyle = css`
   font-size: 20px;
   font-weight: normal;
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
 `;
 const textArea = css`
   span {
     color: white;
   }
+`;
+const cancelButton = css`
+  margin-left: 10px;
+`;
+const resetButton = css`
+  text-decoration: underline;
 `;
 
 export class FeedbackBar extends Component {
@@ -125,6 +131,17 @@ export class FeedbackBar extends Component {
     }
   };
 
+  resetFeedback = () => {
+    this.setState({
+      bug: "",
+      commentIsBug: false,
+      commentFormToggled: false,
+      commentSubmitted: false,
+      infoBeMoreUseful: "",
+      feedbackSubmitted: false
+    });
+  };
+
   toggleCommentForm = () => {
     this.setState({ commentFormToggled: !this.state.commentFormToggled });
   };
@@ -170,6 +187,7 @@ export class FeedbackBar extends Component {
             &nbsp; &nbsp;
             <FooterButton
               id="cancelComment"
+              className={cancelButton}
               onClick={() => this.cancelComment()}
             >
               {t("cancel")}
@@ -180,8 +198,15 @@ export class FeedbackBar extends Component {
           {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
             <div className={Inner}>
               <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
-                {t("feedback-response")}
+                {t("feedback.response_p1")}
               </Header>
+              <FooterButton
+                id="feedbackReset"
+                className={resetButton}
+                onClick={() => this.resetFeedback()}
+              >
+                {t("feedback.response_p2")}
+              </FooterButton>
             </div>
           ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>

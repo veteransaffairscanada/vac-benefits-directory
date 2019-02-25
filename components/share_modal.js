@@ -63,7 +63,7 @@ const URLInputBox = styled("input")({
   boxShadow:
     "0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12)",
   boxSizing: "border-box",
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySansSerif,
   fontWeight: 400,
   textTransform: "none",
   fontSize: "1em",
@@ -85,7 +85,7 @@ const CopyButton = styled("button")({
   border: 0,
   borderRadius: "3px",
   color: globalTheme.colour.white,
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySansSerif,
   fontWeight: "bold",
   fontSize: "18px",
   lineHeight: "23px",

@@ -1,23 +1,20 @@
 import React from "react";
 import { mount } from "enzyme";
-import Button from "../../components/button";
+import CardDetails from "../../components/card_details";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
-describe("Button", () => {
+describe("CardDetails", () => {
   let props;
   beforeEach(() => {
     props = {
-      children: "button text"
+      children: "details text",
+      summary: "summary text"
     };
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<Button {...props} />).html();
+    let html = mount(<CardDetails {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
-  });
-
-  it("shows children", () => {
-    expect(mount(<Button {...props} />).text()).toEqual("button text");
   });
 });

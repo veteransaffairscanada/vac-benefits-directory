@@ -10,8 +10,10 @@ const SearchBoxWrapper = styled("div")({
   boxSizing: "border-box",
   display: "flex",
   width: "100%",
-  background: globalTheme.colour.white,
-  boxShadow: globalTheme.boxShadowMui
+  background: globalTheme.colour.paleGreyTwo,
+  borderStyle: "solid",
+  borderWidth: "1px",
+  borderColor: globalTheme.colour.boxBorderColour
 });
 
 const InputSearchBox = styled("input")({
@@ -21,14 +23,15 @@ const InputSearchBox = styled("input")({
   margin: 0,
   border: 0,
   boxSizing: "border-box",
-  fontFamily: globalTheme.fontFamily,
-  fontWeight: 400,
+  fontFamily: globalTheme.fontFamilySansSerif,
+  color: globalTheme.colour.navy,
+  fontWeight: "bold",
   textTransform: "none",
   fontSize: "18px",
   lineHeight: "1.5",
-  background: globalTheme.colour.white,
+  background: globalTheme.colour.paleGreyTwo,
   borderRadius: 0,
-  boxShadow: "inset 0 0 0 9999px white",
+  boxShadow: "inset 0 0 0 9999px f4f7f9", // keeps chrome autofill from changing background colour
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",
@@ -41,11 +44,11 @@ const InputSearchBox = styled("input")({
 });
 
 const ClearButton = styled("button")({
-  backgroundColor: globalTheme.colour.white,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   cursor: "pointer",
   border: 0,
   display: "block",
-  color: globalTheme.colour.cerulean,
+  color: globalTheme.colour.navy,
   position: "absolute",
   left: "-50px",
   padding: "10px",
@@ -63,11 +66,11 @@ const ClearButton = styled("button")({
 });
 
 const SearchButton = styled("button")({
-  backgroundColor: globalTheme.colour.cerulean,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   cursor: "pointer",
   border: 0,
   display: "block",
-  color: globalTheme.colour.white,
+  color: globalTheme.colour.navy,
   position: "relative",
   padding: "10px",
   width: "45px",
@@ -79,14 +82,14 @@ const SearchButton = styled("button")({
     outline: `3px solid ` + globalTheme.colour.focusColour
   },
   ":hover": {
-    backgroundColor: globalTheme.colour.darkGreyBlue
+    backgroundColor: globalTheme.colour.black
   }
 });
 
 const DisabledSearchButton = styled("button")({
-  backgroundColor: globalTheme.colour.white,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   display: "block",
-  color: globalTheme.colour.cerulean,
+  color: globalTheme.colour.navy,
   padding: "10px",
   width: "45px",
   height: "44px",

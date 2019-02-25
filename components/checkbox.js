@@ -38,7 +38,7 @@ const StyledInput = styled("input")(
 );
 
 const StyledLabel = styled("span")({
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySerif,
   fontWeight: 400,
   textTransform: "none",
   fontSize: "24px",

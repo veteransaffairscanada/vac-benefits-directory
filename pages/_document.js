@@ -7,8 +7,9 @@ import getPageContext from "../lib/pageContext";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
 const bodyStyling = {
-  fontFamily: "Merriweather, serif",
-  margin: 0
+  fontFamily: "Georgia, serif",
+  margin: 0,
+  WebkitFontSmoothing: "antialiased"
 };
 
 class MyDocument extends Document {

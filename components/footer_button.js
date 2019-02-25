@@ -3,11 +3,10 @@ import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
 import { cx, css } from "emotion";
 const style = css`
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 18px;
   font-weight: bold;
   color: white;
-  margin-left: 10px;
   cursor: pointer;
   text-decoration: none;
   vertical-align: middle;

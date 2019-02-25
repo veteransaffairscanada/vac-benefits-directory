@@ -14,6 +14,7 @@ import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import translate from "../fixtures/translate";
 import nextStepsFixture from "../fixtures/nextSteps";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -45,6 +46,7 @@ describe("Favourites Page", () => {
       setCookiesDisabled: jest.fn(),
       option: "",
       translations: [],
+      benefitExamples: benefitExamplesFixture,
       benefits: benefitsFixture,
       benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,

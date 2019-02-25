@@ -5,7 +5,7 @@ import { cx, css } from "emotion";
 
 class AnchorLink extends Component {
   style = css`
-    font-family: ${globalTheme.fontFamily};
+    font-family: ${globalTheme.fontFamilySansSerif};
     font-size: ${this.props.fontSize};
     line-height: 1.5;
     font-weight: ${this.props.fontWeight};

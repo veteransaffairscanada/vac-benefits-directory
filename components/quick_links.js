@@ -20,6 +20,9 @@ const leftDiv = css`
   }
 `;
 const rightDiv = css`
+  font-family: ${globalTheme.fontFamilySerif};
+  font-size: 24px;
+  color: ${globalTheme.colour.slateGrey};
   border-left: 4px solid ${globalTheme.colour.duckEggBlue};
   height: 100%;
   box-sizing: border-box;
@@ -35,6 +38,22 @@ const rightDiv = css`
 const link = css`
   padding-top: 10px;
 `;
+const quickLinksText = css`
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-size: 12px;
+  color: ${globalTheme.colour.blueGrey};
+  font-weight: bold;
+  text-transform: uppercase;
+`;
+
+const linkStyle = css`
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 0;
+  text-decoration: underline;
+  line-height: 16px;
+`;
 
 class QuickLinks extends Component {
   scrollToId(id) {
@@ -49,11 +68,12 @@ class QuickLinks extends Component {
         <Grid container>
           <Grid item xs={12} sm={4}>
             <div className={leftDiv}>
-              <span>{t("quick_links")}</span>
+              <span className={quickLinksText}>{t("quick_links")}</span>
               <div className={link}>
                 {onFavourites ? (
                   <HeaderButton
                     id="saved-list-button"
+                    className={linkStyle}
                     onClick={() => this.scrollToId("#saved-list")}
                   >
                     {t("titles.saved_list")}
@@ -61,6 +81,7 @@ class QuickLinks extends Component {
                 ) : (
                   <HeaderButton
                     id="benefits-and-services-button"
+                    className={linkStyle}
                     onClick={() => this.scrollToId("#benefits-and-services")}
                   >
                     {t("titles.benefits_and_services")}
@@ -70,6 +91,7 @@ class QuickLinks extends Component {
               <div className={link}>
                 <HeaderButton
                   id="next-steps-button"
+                  className={linkStyle}
                   onClick={() => this.scrollToId("#next-steps")}
                 >
                   {t("nextSteps.whats_next")}

@@ -55,6 +55,7 @@ export class Summary extends Component {
         t={t}
         hideNoscript={false}
         title={t("titles.ge_summary")}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
         skipLink="mainContent"
         url={url}
       >
@@ -91,8 +92,8 @@ export class Summary extends Component {
               <Grid item xs={4} sm={6}>
                 <HeaderButton
                   id="prevButton"
+                  hasBorder
                   onClick={() => Router.push(backUrl)}
-                  arrow="back"
                 >
                   {t("back")}
                 </HeaderButton>
@@ -101,8 +102,6 @@ export class Summary extends Component {
                 <div className={alignRight}>
                   <Button
                     id="nextButton"
-                    useLink
-                    arrow={true}
                     onClick={() =>
                       Router.push(mutateUrl(url, "/benefits-directory")).then(
                         () => window.scrollTo(0, 0)

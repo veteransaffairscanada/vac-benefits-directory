@@ -10,11 +10,11 @@ describe("Guided Experience", function() {
     cy.contains("Select who will be receiving the benefits.");
   });
 
-  it("can skip through to summary", () => {
+  it("can skip through to benefits-directory", () => {
     cy.get("#a-skipButton").click();
     cy.url().should("include", "needs");
     cy.get("#a-skipButton").click();
-    cy.url().should("include", "summary");
+    cy.url().should("include", "benefits-directory");
   });
 
   it("can choose some options and get to summary and benefits directory", () => {
@@ -28,10 +28,8 @@ describe("Guided Experience", function() {
     cy.get("#nextButton").click();
     cy.url().should("include", "needs");
     cy.get("#nextButton").click();
-    cy.url().should("include", "summary");
-    cy.contains(patronTypeVeteran);
-    cy.contains("Show results").click();
     cy.url().should("include", "benefits-directory");
+    cy.contains(patronTypeVeteran);
   });
 
   it("can go back from summary and edit answer", () => {
