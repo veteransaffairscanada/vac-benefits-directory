@@ -8,7 +8,6 @@ import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
 import Footer from "../components/footer";
-// import FederalBanner from "../components/federal_banner";
 import VacBanner from "../components/vac_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
@@ -66,11 +65,6 @@ class Layout extends Component {
       jssStyles.parentNode.removeChild(jssStyles);
     }
   }
-  // <FederalBanner
-  //   i18n={this.props.i18n}
-  //   t={t}
-  //   skipLink={skipLink}
-  // />
   render() {
     const { t, title, skipLink, url } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
