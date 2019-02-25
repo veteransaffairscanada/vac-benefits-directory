@@ -23,12 +23,13 @@ const padding = css`
 const prevButton = css`
   margin-top: 50px;
   margin-bottom: 15px;
+  padding: 0;
 `;
 const headerPadding = css`
   padding-bottom: 10px;
 `;
 const textAreaStyle = css`
-  padding: 30px 0px 60px;
+  padding: 10px 0px 60px;
   max-width: 700px;
 `;
 const detailsStyle = css`
@@ -37,6 +38,11 @@ const detailsStyle = css`
     color: ${globalTheme.colour.greyishBrown};
   }
 `;
+const radioStyle = css`
+  margin-left: 0px;
+  margin-top: 20px;
+`;
+
 export class Feedback extends Component {
   state = {
     how_was_your_experience: "",
@@ -94,6 +100,7 @@ export class Feedback extends Component {
             {t("feedback.page_header")}
           </Header>
           <RadioSelector
+            className={radioStyle}
             legend={
               t("current-language-code") === "en"
                 ? question.display_text_english
