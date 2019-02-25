@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+import { css, cx } from "emotion";
 import Header from "./typography/header";
 import Tooltip from "./tooltip";
 import Radio from "./radio";
@@ -106,6 +106,7 @@ export class RadioSelector extends React.Component {
       responses,
       legend,
       tooltipText,
+      className,
       name
     } = this.props;
     if (options.length !== 0) {
@@ -121,7 +122,10 @@ export class RadioSelector extends React.Component {
             </Header>
           </Tooltip>
 
-          <div aria-label={legend} className={leftIndent}>
+          <div
+            aria-label={legend}
+            className={className ? cx(leftIndent, className) : leftIndent}
+          >
             {options.map(option => {
               return (
                 <Radio
@@ -181,6 +185,7 @@ RadioSelector.propTypes = {
   options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
   store: PropTypes.object,
+  className: PropTypes.string,
   name: PropTypes.string
 };
 
