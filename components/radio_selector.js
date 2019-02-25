@@ -185,7 +185,7 @@ RadioSelector.propTypes = {
   options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
   store: PropTypes.object,
-  className: PropTypes.object,
+  className: PropTypes.string,
   name: PropTypes.string
 };
 
