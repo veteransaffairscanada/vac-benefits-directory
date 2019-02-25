@@ -9,7 +9,6 @@ import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
-import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import translate from "../fixtures/translate";
@@ -107,10 +106,7 @@ describe("Favourites Page", () => {
       needs: needsFixture,
       searchString: "",
       selectedNeeds: {},
-      favouriteBenefits: [benefitsFixture[0].id],
-      areaOffices: areaOfficesFixture,
-      selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0]
+      favouriteBenefits: [benefitsFixture[0].id]
     };
     props.store = mockStore(reduxData);
   });

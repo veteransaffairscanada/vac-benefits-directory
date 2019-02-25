@@ -4,8 +4,6 @@ import { getFilteredBenefits, getProfileFilters } from "../selectors/benefits";
 const getCurrentLanguage = (state, props) => props.t("current-language-code");
 const getNeedsFilter = state => state.selectedNeeds;
 const getSearchStringFilter = state => state.searchString;
-const getClosestOffice = state => state.closestAreaOffice;
-const getSelectedOffice = state => state.selectedAreaOffice;
 const getFromFavourites = (state, props, params) => params.fromFavourites;
 const getFavoriteBenefits = (state, props) => props.favouriteBenefits;
 const getBenefits = state => state.benefits;
@@ -86,8 +84,6 @@ export const getPrintUrl = createSelector(
     getProfileFilters,
     getNeedsFilter,
     getCurrentLanguage,
-    getClosestOffice,
-    getSelectedOffice,
     getFromFavourites,
     getFavoriteBenefits,
     getBenefits
@@ -97,8 +93,6 @@ export const getPrintUrl = createSelector(
     profileFilters,
     selectedNeeds,
     currentLanguage,
-    closestAreaOffice,
-    selectedAreaOffice,
     fromFavourites,
     favouriteBenefits,
     benefits
@@ -115,10 +109,6 @@ export const getPrintUrl = createSelector(
       lng: currentLanguage,
       benefits: filteredBenefitsIDs.join(","),
       selectedNeeds: Object.keys(selectedNeeds).join(),
-      closestAOID:
-        closestAreaOffice.id !== undefined ? closestAreaOffice.id : "",
-      selectedAOID:
-        selectedAreaOffice.id !== undefined ? selectedAreaOffice.id : "",
       fromFavourites: fromFavourites !== undefined ? fromFavourites : ""
     };
     Object.assign(values, profileFilters);

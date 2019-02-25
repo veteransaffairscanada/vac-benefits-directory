@@ -31,9 +31,6 @@ const margins = css`
   margin-top: 20px;
   margin-bottom: 15px;
 `;
-const address = css`
-  margin-top: 0.5em;
-`;
 const title = css`
   font-size: 22px;
   font-weight: bold;
@@ -167,24 +164,6 @@ export class Print extends Component {
       .filter(x => (x && x.length > 0 ? true : false))
       .join(", ");
 
-    let closestAreaOffice = {};
-    let selectedAreaOffice = {};
-
-    if (query.closestAOID !== undefined)
-      closestAreaOffice = this.props.areaOffices.filter(
-        ao => ao.id === query.closestAOID
-      )[0];
-
-    if (query.selectedAOID !== undefined)
-      selectedAreaOffice = this.props.areaOffices.filter(
-        ao => ao.id === query.selectedAOID
-      )[0];
-
-    const printAreaOffice =
-      JSON.stringify(selectedAreaOffice) === JSON.stringify({})
-        ? closestAreaOffice
-        : selectedAreaOffice;
-
     return (
       <div className={root}>
         <Grid container spacing={24}>
@@ -275,22 +254,6 @@ export class Print extends Component {
             <div className={bold}>{t("contact.my_vac_link")}</div>
             <div>{t("print.sign_up_for_my_vac")}</div>
           </Grid>
-          <Grid item xs={6} id="closest_office_info">
-            <div className={title}>{t("print.closest_office")}</div>
-
-            <div className={bold}>{t("print.map_link")}</div>
-            <div>{t("print.visit_office_prompt")}</div>
-
-            <div className={address}>
-              {t("current-language-code") == "en"
-                ? printAreaOffice.name_en
-                : printAreaOffice.name_fr}
-              <br />
-              {t("current-language-code") == "en"
-                ? printAreaOffice.address_en
-                : printAreaOffice.address_fr}
-            </div>
-          </Grid>
         </Grid>
         <div className={wordmark}>
           <WordMark width="6em" flag="#000" />
@@ -307,8 +270,7 @@ const mapStateToProps = reduxState => {
       q => q.variable_name !== "needs"
     ),
     benefits: reduxState.benefits,
-    needs: reduxState.needs,
-    areaOffices: reduxState.areaOffices
+    needs: reduxState.needs
   };
 };
 
@@ -320,7 +282,6 @@ Print.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  areaOffices: PropTypes.array.isRequired,
   store: PropTypes.object
 };
 

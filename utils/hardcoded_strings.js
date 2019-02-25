@@ -1,5 +1,4 @@
 exports.tableNames = [
-  "areaOffices",
   "benefits",
   "benefitEligibility",
   "needs",

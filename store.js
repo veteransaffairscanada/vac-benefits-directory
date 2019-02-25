@@ -13,8 +13,6 @@ const initialState = {
   frIdx: {},
   searchString: "",
   selectedNeeds: {},
-  closestAreaOffice: {},
-  selectedAreaOffice: {},
   userLocation: { lat: 49, lng: -104 },
   pageWidth: 1000,
   mapView: { lat: 49, lng: -104, zoom: 1 },
@@ -107,14 +105,6 @@ export const reducer = (state = initialState, action) => {
     case "SET_SELECTED_NEEDS":
       return Object.assign({}, state, {
         selectedNeeds: action.data
-      });
-    case "SET_CLOSEST_OFFICE":
-      return Object.assign({}, state, {
-        closestAreaOffice: action.data
-      });
-    case "SET_SELECTED_OFFICE":
-      return Object.assign({}, state, {
-        selectedAreaOffice: action.data
       });
     case "SET_USER_LOCATION":
       return Object.assign({}, state, {

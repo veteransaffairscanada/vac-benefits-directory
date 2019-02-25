@@ -66,19 +66,6 @@ export class DataValidation extends Component {
     }
   };
 
-  checkAreaOfficesFields(a, i) {
-    if (
-      !(a.address_en && a.address_en != "") ||
-      !(a.address_fr && a.address_fr != "") ||
-      !(a.lat && a.lat != "") ||
-      !(a.lng && a.lng != "") ||
-      !(a.name_en && a.name_en != "") ||
-      !(a.name_fr && a.name_fr != "")
-    ) {
-      return " " + a.id + " (" + (i + 1) + "),";
-    }
-  }
-
   checkTranslationsFields(t, i) {
     if (
       !(t.key && t.key != "") ||
@@ -150,8 +137,7 @@ export class DataValidation extends Component {
       benefitEligibility,
       needs,
       errors,
-      translations,
-      areaOffices
+      translations
     } = this.props; // eslint-disable-line no-unused-vars
 
     const data = [
@@ -176,11 +162,6 @@ export class DataValidation extends Component {
         translations.length > 0 ? true : false
       ),
       this.createData(
-        "nameAreaOfficesSize",
-        areaOffices.length,
-        areaOffices.length > 0 ? true : false
-      ),
-      this.createData(
         "Benefits with Empty Fields",
         benefits.map(this.checkBenefitsFields),
         benefits.filter(this.checkBenefitsFields).length == 0 ? true : false
@@ -194,13 +175,6 @@ export class DataValidation extends Component {
         "Benefits not in the Benefit Eligibility Table",
         benefits.map(this.checkBenefitEligibility),
         benefits.filter(this.checkBenefitEligibility).length == 0 ? true : false
-      ),
-      this.createData(
-        "emptyAreaOffices",
-        areaOffices.map(this.checkAreaOfficesFields),
-        areaOffices.filter(this.checkAreaOfficesFields).length == 0
-          ? true
-          : false
       ),
       this.createData(
         "emptyTranslations",
@@ -289,7 +263,6 @@ export class DataValidation extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    areaOffices: reduxState.areaOffices,
     benefits: reduxState.benefits,
     benefitEligibility: reduxState.benefitEligibility,
     needs: reduxState.needs,
@@ -308,7 +281,6 @@ DataValidation.propTypes = {
   t: PropTypes.func.isRequired,
   timestamp: PropTypes.number,
   translations: PropTypes.array.isRequired,
-  areaOffices: PropTypes.array.isRequired,
   url: PropTypes.object.isRequired
 };
 

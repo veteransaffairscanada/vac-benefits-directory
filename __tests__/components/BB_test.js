@@ -8,7 +8,6 @@ import { BB } from "../../components/BB";
 import benefitsFixture from "../fixtures/benefits";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
-import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
@@ -86,10 +85,7 @@ describe("BB", () => {
       setSearchString: jest.fn(),
       selectedNeeds: {},
       option: "",
-      pageWidth: 1000,
-      areaOffices: areaOfficesFixture,
-      selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0]
+      pageWidth: 1000
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

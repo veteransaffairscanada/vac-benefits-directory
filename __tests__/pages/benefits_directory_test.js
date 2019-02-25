@@ -9,7 +9,6 @@ import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
-import areaOfficesFixture from "../fixtures/area_offices";
 import translate from "../fixtures/translate";
 import lunr from "lunr";
 import questionsFixture from "../fixtures/questions";
@@ -109,10 +108,7 @@ describe("BenefitsDirectory", () => {
       serviceHealthIssue: "",
       favouriteBenefits: [benefitsFixture[0].id],
       filteredBenefits: benefitsFixture,
-      pageWidth: 1000,
-      areaOffices: areaOfficesFixture,
-      selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0]
+      pageWidth: 1000
     };
     props.store = mockStore(reduxData);
   });
