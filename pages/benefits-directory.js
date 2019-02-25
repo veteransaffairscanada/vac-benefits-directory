@@ -58,7 +58,7 @@ export class BenefitsDirectory extends Component {
   };
 
   render() {
-    const { i18n, t, filteredBenefits, benefits } = this.props; // eslint-disable-line no-unused-vars
+    const { i18n, t, filteredBenefits, benefits, url } = this.props; // eslint-disable-line no-unused-vars
     const title =
       filteredBenefits.length === benefits.length
         ? t("B3.All benefits to consider")
@@ -69,8 +69,9 @@ export class BenefitsDirectory extends Component {
         t={this.props.t}
         hideNoscript={false}
         title={title + " | " + t("titles.benefits_directory")}
-        backgroundColor={globalTheme.colour.white}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
         skipLink="#mainContent"
+        url={url}
       >
         <BB id="BB" t={t} store={this.props.store} url={this.props.url} />
       </Layout>

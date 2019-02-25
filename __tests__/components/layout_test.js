@@ -27,7 +27,8 @@ describe("Layout", () => {
       i18n: {},
       showRefreshCache: false,
       t: translate,
-      skipLink: ""
+      skipLink: "",
+      url: { query: { lng: "en" } }
     };
     _mountedLayout = undefined;
   });
@@ -46,5 +47,13 @@ describe("Layout", () => {
   it("hides Noscript if hideNoscript is true", () => {
     props.hideNoscript = true;
     expect(mountedLayout().find("Noscript").length).toEqual(0);
+  });
+
+  it("contains a link to the feedback page", () => {
+    expect(
+      mountedLayout()
+        .find("Link")
+        .text()
+    ).toContain("beta_banner.link_text");
   });
 });

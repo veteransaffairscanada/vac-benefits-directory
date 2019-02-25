@@ -13,7 +13,7 @@
       "name_en": "Halifax Office",
       "address_en": "7105 Chebucto Road, Suite 200  Halifax, NS   B3L 4W8",
       "address_fr": "7105, route Chebucto, bureau 200   Halifax (Nouvelle-Écosse)  B3L 4W8",
-      "id": "recGWH6a5JPsYMYqN"
+      "id": "recJnuwZeHuejgCbE"
     },
     {
       "name_fr": "Bureau de Sydney",
@@ -28,7 +28,7 @@
       "name_en": "Sydney Office",
       "address_en": "70 Crescent St., 1st floor  Sydney, NS  B1S 2Z7",
       "address_fr": "70, rue Crescent, 1er étage  Sydney (Nouvelle-Écosse)  B1S 2Z7",
-      "id": "recQODN0EdYoyjS2b"
+      "id": "recTfqdPNbDaTNwN2"
     },
     {
       "name_fr": "Bureau de Charlottetown",
@@ -43,7 +43,7 @@
       "name_en": "Charlottetown Office",
       "address_en": "Jean Canfield Building  1st Floor  191 Great George Street  Charlottetown, PE  C1A 4L2",
       "address_fr": "Édifice Jean-Canfield  Rez-de-chaussée  191, rue Great George,   Charlottetown (Île-du-Prince-Édouard)   C1A 4L2",
-      "id": "recH4nxQbmw6aH4SD"
+      "id": "recKvaXFkkbSvbIDu"
     },
     {
       "name_fr": "Site de service Oromocto",
@@ -58,7 +58,7 @@
       "name_en": "Oromocto Service Location",
       "address_en": "286 Restigouche Road  Oromocto, NB  E2V 2H5",
       "address_fr": "286 chemin Restigouche  Oromocto (Nouveau-Brunswick) E2V 2H5",
-      "id": "recB5SlCNoyzGu0SV"
+      "id": "recEwFLrWmdl1YEDM"
     },
     {
       "name_fr": "Bureau de Campbellton",
@@ -73,7 +73,7 @@
       "name_en": "Campbellton Office",
       "address_en": "157 Water Street   5th Floor, Room 501   Campbellton, New Brunswick",
       "address_fr": "157, rue Water   5e étage, bureau 501   Campbellton (Nouveau-Brunswick)",
-      "id": "recHPLadx2pW5zVKl"
+      "id": "recKgyA2G04Iq3zvc"
     },
     {
       "name_fr": "Bureau de Saint John",
@@ -88,7 +88,7 @@
       "name_en": "Saint John Office",
       "address_en": "189 Prince William St, 5th floor   Saint John, New Brunswick",
       "address_fr": "Customs Building   5e étage   189, rue Prince William   Saint John (Nouveau-Brunswick)",
-      "id": "recvGNX2KLVbRTriz"
+      "id": "recy7AnRTJAXcn53q"
     },
     {
       "name_fr": "Bureau de St. John's",
@@ -103,7 +103,7 @@
       "name_en": "St. John's Office",
       "address_en": "10 Barter's Hill, 2nd Floor  St. John's, Newfoundland",
       "address_fr": "Édifice John Cabot   10 Barter's Hill, 2e étage   St. John's (Terre-Neuve)",
-      "id": "recLLt1XS4ePj3Zf1"
+      "id": "recOcgrM12TBExD0S"
     },
     {
       "name_fr": "Bureau de Corner Brook",
@@ -118,7 +118,7 @@
       "name_en": "Corner Brook Office",
       "address_en": "1 Regent Square, 4th Floor  Corner Brook, Newfoundland  A2H 4C8",
       "address_fr": "Édifice Joseph R. Smallwood  1, carré Regent, 4e étage  Corner Brook (Terre-Neuve-et-Labrador)  A2H 4C8",
-      "id": "rec6lsazC5Z7Wr5T8"
+      "id": "rec9MfAoL3EThVJEZ"
     },
     {
       "name_fr": "Site de service Saguenay",
@@ -133,7 +133,7 @@
       "name_en": "Saguenay Service Location",
       "address_en": "100 Lafontaine Street,  Chicoutimi, QC  G7H 6X2",
       "address_fr": "100, rue Lafontaine  Chicoutimi, QC  G7H 6X2",
-      "id": "rectUyfusrSaZ0lSx"
+      "id": "recwllFjBpxWkuZDo"
     },
     {
       "name_fr": "Bureau de Québec",
@@ -148,7 +148,7 @@
       "name_en": "Quebec Office",
       "address_en": "Complexe Samuel Holland  830 Ernest-Gagnon Avenue  3rd Floor, Suite 305  Quebec, Quebec",
       "address_fr": "Complexe Samuel-Holland  830, avenue Ernest-Gagnon  3e étage, bureau 305  Québec (Québec)",
-      "id": "recUXQGf4ff0Y7EFU"
+      "id": "recXoD64ddUMjBiqL"
     },
     {
       "name_fr": "Bureau de Gatineau",
@@ -163,7 +163,7 @@
       "name_en": "Gatineau Office",
       "address_en": "85 Bellehumeur Street  Suite 230   Gatineau, Quebec",
       "address_fr": "85, rue Bellehumeur   bureau 230   Gatineau, Québec",
-      "id": "recOYgfyW6Afn6dhT"
+      "id": "recRp3Fn54f1IAR2K"
     },
     {
       "name_fr": "Bureau de Montréal",
@@ -178,7 +178,7 @@
       "name_en": "Montreal Office",
       "address_en": "305 René Lévesque Blvd West, Suite 101  Montreal, QC H2Z 1X1",
       "address_fr": "305, boulevard René Lévesque Ouest, bureau 101  Montréal, (Québec) H2A 1X1",
-      "id": "receLfcSqqci6m9fh"
+      "id": "rechc2CHzoR4rQN08"
     },
     {
       "name_fr": "Bureau de Mississauga",
@@ -193,7 +193,7 @@
       "name_en": "Mississauga Office",
       "address_en": "5800 Hurontario Street  Mississauga, ON  L5R 4B9",
       "address_fr": "5800, rue Hurontario  Mississauga (Ontario)  L5R 4B9",
-      "id": "recmAcnoLmPa0DU27"
+      "id": "recp1ZNdUkuWl7yNY"
     },
     {
       "name_fr": "Bureau de secteur d'Hamilton",
@@ -208,7 +208,7 @@
       "name_en": "Hamilton Office",
       "address_en": "55 Bay Street, 9th Floor   Hamilton, Ontario",
       "address_fr": "55, rue Bay nord, 9e étage   Hamilton (Ontario)",
-      "id": "reclo9Uf9IoThlR31"
+      "id": "recoPWk4iG3FCPvOS"
     },
     {
       "name_fr": "Bureau de London",
@@ -223,7 +223,7 @@
       "name_en": "London Office",
       "address_en": "417 Exeter Road   London, Ontario",
       "address_fr": "417, route Exeter  London (Ontario)",
-      "id": "recqMSrsedS9p9SFY"
+      "id": "rectdFRhnbxVKDwqP"
     },
     {
       "name_fr": "Bureau satellite d'Owen Sound",
@@ -238,7 +238,7 @@
       "name_en": "Owen Sound Satellite Office",
       "address_en": "Heritage Place Shopping Centre,1350 16th Street East, Owen Sound, Ontario",
       "address_fr": "Centre commercial Heritage Place, 1350, 16e rue Est, Owen Sound (Ontario)",
-      "id": "recp8ncxrsYg1udLz"
+      "id": "recszaCmAqD2mYRwq"
     },
     {
       "name_fr": "Bureau de Windsor",
@@ -253,7 +253,7 @@
       "name_en": "Windsor Office",
       "address_en": "6th Floor (Suite 600)   1 Riverside Drive West   Windsor, Ontario   N9A 5K3",
       "address_fr": "6e étage, bureau 600   1, rue Riverside Ouest   Windsor (Ontario)   N9A 5K3",
-      "id": "recZFjKHJ9eEBFDEA"
+      "id": "rec266awS7TqW9hpr"
     },
     {
       "name_fr": "Bureau de Trenton",
@@ -268,7 +268,7 @@
       "name_en": "Trenton Office",
       "address_en": "17 Front Street, Suite 15  Trenton, Ontario",
       "address_fr": "17, rue Front, bureau 15  Trenton (Ontario)",
-      "id": "recZNxyZS7ppDSBLU"
+      "id": "rec2ekYO154bYmfwL"
     },
     {
       "name_fr": "Bureau de Peterborough",
@@ -283,7 +283,7 @@
       "name_en": "Peterborough Office",
       "address_en": "1161 Crawford Drive,   Suite 300,   Peterborough, Ontario,   K9J 6X6  ",
       "address_fr": "1161 lecteurs Crawford  bureau 300,   Peterborough, Ontario,   K9J 6X6",
-      "id": "recpuN9jpyRN8ElxD"
+      "id": "recsVAz8ywwzt8Ziu"
     },
     {
       "name_fr": "Bureau de Toronto-Scarborough",
@@ -298,7 +298,7 @@
       "name_en": "Toronto-Scarborough Office",
       "address_en": "55 Town Centre Court, Suite 205   Scarborough, Ontario",
       "address_fr": "55, court Town Centre, bureau 205   Scarborough (Ontario)",
-      "id": "recfpdkqQmLuxc55c"
+      "id": "reciQ0KfZkqgSGJQ3"
     },
     {
       "name_fr": "Bureau de Toronto-Sunnybrook",
@@ -313,7 +313,7 @@
       "name_en": "Toronto-Sunnybrook Office",
       "address_en": "2075 Bayview Avenue, K-Wing   Toronto, Ontario",
       "address_fr": "2075, avenue Bayview, K-Wing Toronto (Ontario)",
-      "id": "recUVdxyoWCbboW6E"
+      "id": "recXm0XnxUhXwSARv"
     },
     {
       "name_fr": "Bureau de Kingston",
@@ -328,7 +328,7 @@
       "name_en": "Kingston Office",
       "address_en": "61 Hyperion Court, Suite 04  Kingston, Ontario  K7K 7K7",
       "address_fr": "61 Hyperion Court, bureau 04  Kingston (Ontario)  K7K 7K7",
-      "id": "recz0hf0w3QNPbJ7U"
+      "id": "recCr4FPF1vzaFnSL"
     },
     {
       "name_fr": "Bureau de Pembroke",
@@ -343,7 +343,7 @@
       "name_en": "Pembroke Office",
       "address_en": "1100 Pembroke Street East   Suite 201   Pembroke, Ontario",
       "address_fr": "1100, rue Pembroke est  bureau 201  Pembroke (Ontario)",
-      "id": "rec7KGnXayW8NNbBd"
+      "id": "recabtNMjwBU8hPm4"
     },
     {
       "name_fr": "Bureau de North Bay",
@@ -358,7 +358,7 @@
       "name_en": "North Bay Office",
       "address_en": "107 Shirreff Avenue  Room 201   North Bay, Ontario",
       "address_fr": "107, avenue Shirreff   bureau 201  North Bay (Ontario)",
-      "id": "rec5WdWsgbdkxlK38"
+      "id": "rec8n0mhp9S6SPoOZ"
     },
     {
       "name_fr": "Bureau d'Ottawa",
@@ -373,7 +373,7 @@
       "name_en": "Ottawa Office",
       "address_en": "2323 Riverside Drive   2nd Floor, Suite 1   Ottawa, Ontario",
       "address_fr": "2323, rue Riverside   2e étage, salle 1   Ottawa (Ontario)",
-      "id": "recbGBvEUJnnMEomG"
+      "id": "rece7oVt3H297827x"
     },
     {
       "name_fr": "Bureau de Thunder Bay",
@@ -388,7 +388,7 @@
       "name_en": "Thunder Bay Office",
       "address_en": "130 Syndicate Ave South  1st Floor  Thunder Bay, ON",
       "address_fr": "130 avenue Syndicate Sud  Premiere etage  Thunder Bay (Ontario)",
-      "id": "recysRQqX2Bd5NlQ2"
+      "id": "recBTEgf60gZqhZBT"
     },
     {
       "name_fr": "Bureau de Saskatoon",
@@ -403,7 +403,7 @@
       "name_en": "Saskatoon Office",
       "address_en": "101-22nd Street East   5th Floor  Saskatoon, Saskatchewan  S7K 0E1",
       "address_fr": "101, 22e Rue Est   5e étage  Saskatoon (Saskatchewan)  S7K 0E1",
-      "id": "recffOxmBXkMuS7tz"
+      "id": "reciGBXbKVZyPmLeq"
     },
     {
       "name_fr": "Bureau de Brandon",
@@ -418,7 +418,7 @@
       "name_en": "Brandon Office",
       "address_en": "1039 Princess Avenue, 1st Floor  Brandon, Manitoba  R7A 4J5",
       "address_fr": "1039, avenue Princess, 1er étage  Brandon (Manitoba)  R7A 4J5",
-      "id": "recuJEzHiVPIE6oyx"
+      "id": "recxarZwrTuuZA2jo"
     },
     {
       "name_fr": "Bureau de Regina",
@@ -433,7 +433,7 @@
       "name_en": "Regina Office",
       "address_en": "Alvin Hamilton Building  1783 Hamilton Street, Suite 108  Regina, Saskatchewan",
       "address_fr": "Édifice Alvin Hamilton  1783, rue Hamilton, bureau 108   Regina (Saskatchewan)",
-      "id": "recG5OAnRdtYXY3tq"
+      "id": "recJwB0c0b8KisHeh"
     },
     {
       "name_fr": "Bureau de Winnipeg",
@@ -448,7 +448,7 @@
       "name_en": "Winnipeg Office",
       "address_en": "234 Donald Street, Suite 610  Winnipeg, Manitoba",
       "address_fr": "234, rue Donald, bureau 610   Winnipeg (Manitoba)",
-      "id": "recluRBnFCIhTyd99"
+      "id": "recoVE1cOAn3e2RU0"
     },
     {
       "name_fr": "Bureau de Calgary",
@@ -463,7 +463,7 @@
       "name_en": "Calgary Office",
       "address_en": "Bantrel Tower   700 6th Avenue Southwest, 7th Floor   Calgary, Alberta",
       "address_fr": "Tour Bantrel  700, 6e Sud-ouest, 7e étage  Calgary (Alberta)",
-      "id": "recUjzXjzLlsn1j3Q"
+      "id": "recXKmn8IJ0eIvXOH"
     },
     {
       "name_fr": "Bureau d'Edmonton",
@@ -478,7 +478,7 @@
       "name_en": "Edmonton Office",
       "address_en": "940 Canada Place  9700 Jasper Avenue  Edmonton, Alberta",
       "address_fr": "940 Canada Place  9700, avenue Jasper  Edmonton (Alberta)",
-      "id": "recCcK12dreJjYtKF"
+      "id": "recFDxrRmpTvEs7vw"
     },
     {
       "name_fr": "Bureau de Penticton",
@@ -493,7 +493,7 @@
       "name_en": "Penticton Office",
       "address_en": "60 Nanaimo Avenue West   Penticton, BC",
       "address_fr": "60, avenue Nanaimo Ouest   Penticton (Colombie-Britannique)",
-      "id": "rec5GpLBmPFhEU7uP"
+      "id": "rec87cbqvNk3ZoLfG"
     },
     {
       "name_fr": "Bureau de Vancouver",
@@ -508,7 +508,7 @@
       "name_en": "Vancouver Office",
       "address_en": "605 Robson Street, Suite 900  Vancouver, BC",
       "address_fr": "605, rue Robson, bureau 900  Vancouver (Colombie-Britannique)",
-      "id": "recQ3Bm9KP4EOVfFS"
+      "id": "recTuoMYTNJq9pTqJ"
     },
     {
       "name_fr": "Bureau de Kelowna",
@@ -523,7 +523,7 @@
       "name_en": "Kelowna Office",
       "address_en": "471 Queensway Avenue,  3rd Floor, Suite 313  Kelowna, BC  V1Y 6S5",
       "address_fr": "471, avenue Queensway,  3e étage, bureau 313  Kelowna (Colombie-Britannique)  V1Y 6S5",
-      "id": "recpGZPcfeCSqFsqS"
+      "id": "recs7Mf1ochEL96bJ"
     },
     {
       "name_fr": "Bureau de Prince George",
@@ -538,7 +538,7 @@
       "name_en": "Prince George Office",
       "address_en": "299 Victoria Street  4th Floor, Suite 435  Prince George, B.C.  V2L 5B8  ",
       "address_fr": "299, rue Victoria  4e étage, bureau 435  Prince George (C.-B.)  V2L 5B8",
-      "id": "recNRr2bZey9oOGKB"
+      "id": "recQies08cdVJikvs"
     },
     {
       "name_fr": "Bureau de Surrey",
@@ -553,7 +553,7 @@
       "name_en": "Surrey Office",
       "address_en": "13479 108th Street  3rd Floor, Suite 350  Surrey, B.C.  V3T 5T4     ",
       "address_fr": "13479, rue 108  3e étage, bureau 350  Surrey (C.-B.)  V3T 5T4",
-      "id": "recYfxgQEUjYB7Sjg"
+      "id": "rec1GkGFNSYKWBw47"
     },
     {
       "name_fr": "Bureau de Victoria",
@@ -568,7 +568,7 @@
       "name_en": "Victoria Office",
       "address_en": "1321 Blanshard Street, Suite 320  Victoria, British Columbia",
       "address_fr": "132, rue Blanshard, bureau 320  Victoria (Colombie-Britannique)",
-      "id": "recdGcJlLEETOeh2c"
+      "id": "recg7Z9aUCjF9IVN3"
     }
   ],
   "benefits": [
@@ -577,15 +577,15 @@
       "vacNameFr": "Fonds de secours",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/war-veterans-allowance/assistance-fund",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/war-veterans-allowance/assistance-fund",
-      "needs": ["recpN4AgAGiH3x7KZ", "recEahND3kwnUPTHx"],
+      "needs": ["recseR05JEXto1LvQ", "recHB4dscib9fjxso"],
       "oneLineDescriptionEn": "Quick access to funds for urgent needs such as food, shelter or medical expenses.",
       "oneLineDescriptionFr": "Accès rapide à des fonds en cas de besoins urgents (nourriture, logement ou frais médicaux).",
       "availableIndependently": "Requires Gateway Benefit",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1042",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1042",
       "sortingPriority": "medium",
-      "benefitEligibility": ["recfWHf1YmVfz0ppj"],
-      "id": "rec7vYqDWYPQnDcRK",
+      "benefitEligibility": ["recinuFQ7kA1Uu3aa"],
+      "id": "recaWLQs5WuCI7QCB",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "examples": "",
@@ -594,11 +594,11 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Attendance Allowance",
+      "vacNameEn": "Attendance allowance",
       "vacNameFr": "Allocation pour soins",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/related-allowances",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/related-allowances",
-      "needs": ["recpN4AgAGiH3x7KZ", "recXfW6phH2FFcE3T"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/attendance-allowance",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/attendance-allowance",
+      "needs": ["recseR05JEXto1LvQ", "rec0GJweqFHr0GiOK"],
       "oneLineDescriptionEn": "Monthly payments if you need help with daily tasks because of your health needs. ",
       "oneLineDescriptionFr": "Versements mensuels si vos besoins en matière de santé nécessitent une aide avec vos tâches quotidiennes.",
       "categories DO NOT USE": "Financial assistance",
@@ -606,15 +606,15 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1931#anchor57065",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57065",
       "benefitExamples": [
-        "recgWZUuhbrCOi0wi",
-        "recnn8lSaBHyrmunW",
-        "recEYhVIDTdMXjTXE",
-        "recRJUv8dX2hHR9E5"
+        "recjnMkjq96o9MEh9",
+        "recqOVLHjzmkMQ88N",
+        "recHp4lxMRSyiNxIv",
+        "recUaHVXmVH32lNpW"
       ],
-      "benefitEligibility": ["rec6ejmokDXrYAUqT"],
+      "benefitEligibility": ["rec9F6MdtBCdj4ybK"],
       "seeMoreSentenceEn": "Some examples of daily tasks that you may need help with:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recNsVtmotVHzDhAB",
+      "id": "recQTITbxrAtU7Vls",
       "childBenefits": [],
       "examples": "",
       "sortingPriority": ""
@@ -624,15 +624,15 @@
       "vacNameFr": "Soutien du revenu des Forces canadiennes",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/cf-income-support",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/cf-income-support",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly payments if you have low or no income.",
       "oneLineDescriptionFr": "Versements mensuels si votre ménage a un faible revenu, voire aucun.",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1243",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1243",
       "sortingPriority": "medium",
-      "benefitEligibility": ["recOVWkhp1IfbFnRU", "recGR0KBNakgQbLG5"],
-      "id": "recMguNzAXgdpEDOJ",
+      "benefitEligibility": ["recRmJK6yZn1w91CL", "recJiNaqW8Z2bFprW"],
+      "id": "recPHhdoJVVZK8hzA",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "examples": "",
@@ -645,7 +645,7 @@
       "vacNameFr": "Allocation pour incidence sur la carrière",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation/career-impact-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/rehabilitation/career-impact-allowance",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly payments if your career options are limited due to your service-related injury.",
       "oneLineDescriptionFr": "Versements mensuels si vos possibilités de carrière sont limitées en raison d’une blessure liée au service.",
       "categories DO NOT USE": "Financial assistance",
@@ -653,10 +653,10 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/2126",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/2126",
       "sortingPriority": "medium",
-      "benefitEligibility": ["recR4crMdLtxDz0cf"],
+      "benefitEligibility": ["recUvZRBmJ8jY3EX6"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "rece4vwRrORpYznkw",
+      "id": "rechviWGAMwbj315n",
       "childBenefits": [],
       "examples": "",
       "benefitExamples": []
@@ -666,7 +666,7 @@
       "vacNameFr": "Services de réorientation professionnelle",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/career-transition-services",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/career-transition-services",
-      "needs": ["recFX7O3dYwg44kpM"],
+      "needs": ["recIoUeSmWb2pyYaD"],
       "oneLineDescriptionEn": "Access to a career counselor if you want to find a new job.",
       "oneLineDescriptionFr": "Accès à un conseiller en orientation professionnelle pour les vétérans qui souhaitent trouver un nouvel emploi.",
       "categories DO NOT USE": "Education and jobs",
@@ -675,14 +675,14 @@
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/5",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "recYXSi4ixhJ54Yat",
-        "rec8BPLJ05SiqJiha",
-        "reclQ96AyDzo02Xcf"
+        "rec1oFITrvWvqyCVk",
+        "recb2Cby93x4LdW21",
+        "recohWwpHBealwBX6"
       ],
-      "benefitEligibility": ["recl8EQBaoPvkUs1y", "recB4Pu8GvLZlEDIa"],
+      "benefitEligibility": ["recozrgqjmuhFo6Mp", "recEvCUXPtqLG8ht1"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "rec45xfsf1ijZzXqM",
+      "id": "rec7wkFhoZX5k3BbD",
       "childBenefits": [],
       "examples": ""
     },
@@ -691,7 +691,7 @@
       "vacNameFr": "Allocation de reconnaissance pour aidant",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/caregiver-recognition-benefit",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/caregiver-recognition-benefit",
-      "needs": ["recpN4AgAGiH3x7KZ", "recXfW6phH2FFcE3T"],
+      "needs": ["recseR05JEXto1LvQ", "rec0GJweqFHr0GiOK"],
       "oneLineDescriptionEn": "Monthly payments for the unpaid caregiver of an ill or injured Veteran with significant care needs.",
       "oneLineDescriptionFr": "Versements mensuels pour l’aidant naturel non rémunéré d’un vétéran malade ou blessé ayant des besoins importants en matière de soins.",
       "categories DO NOT USE": "Financial assistance, Family support",
@@ -699,11 +699,11 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/72",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/72",
       "sortingPriority": "medium",
-      "benefitExamples": ["recZPfT7Z6ZbRS11q", "reci5GzywxsSD11Wf"],
-      "benefitEligibility": ["rec3LMYRHMRfFdc2E", "recC1BOsrEwQQT7Tr"],
+      "benefitExamples": ["rec2g2jW84EXcmFMh", "reclwtZnFv7EYvFH6"],
+      "benefitEligibility": ["rec6czoGQKw10HQNv", "recFsoehACbCbnLEi"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recL63epbxypNYRjL",
+      "id": "recOxQEekvdb8sv4C",
       "childBenefits": [],
       "examples": ""
     },
@@ -711,23 +711,23 @@
       "vacNameEn": "Caregiver Zone",
       "vacNameFr": "Espace aidants",
       "benefitPageEn": "https://caregiverzone.ca/",
-      "benefitPageFr": "https://caregiverzone.ca/",
-      "needs": ["recmmMZPP4DI6Nq0a"],
+      "benefitPageFr": "https://espaceaidants.ca/#!/forefront/home",
+      "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "An online community for caregivers who want to share their story, ask questions or learn more about caregiving.",
       "oneLineDescriptionFr": "Communauté en ligne pour les aidants naturels qui souhaitent raconter leur expérience, poser des questions ou en apprendre davantage sur la prestation de soins.",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.canada.ca/en/veterans-affairs-canada/news/2018/03/veterans-affairs-canada-and-saint-elizabeth-to-launch-online-tool-caregiver-zone.html",
       "benefitPolicyFR": "https://www.canada.ca/fr/anciens-combattants-canada/nouvelles/2018/03/anciens-combattants-canada-et-saint-elizabeth-health-care-lancent-un-outil-en-ligne-lespace-aidants.html",
       "benefitExamples": [
-        "recClBs2BxPqjIJrf",
-        "rec1ovh1no4EEQs76",
-        "recjaWGaINIGZpXfX",
-        "recgytggFDctN4PpF"
+        "recFMoSRKvucEcnc6",
+        "rec4PiHQwmJqZk6SX",
+        "recmBJ6ZRLnskTB0O",
+        "recjZgG5OBRf8ytaw"
       ],
-      "benefitEligibility": ["recXSg015decd4TOq"],
-      "seeMoreSentenceEn": "A few examples of what you can do if you sign up: ",
+      "benefitEligibility": ["rec0j3qQebTYyyxzh"],
+      "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recEHxSnVLcMvYnbS",
+      "id": "recH8kic4JRyQs1WJ",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "examples": "",
@@ -739,24 +739,24 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/case-management",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/case-management",
       "needs": [
-        "recFX7O3dYwg44kpM",
-        "recpN4AgAGiH3x7KZ",
-        "recmmMZPP4DI6Nq0a",
-        "recjTEL7xK4196TE7"
+        "recIoUeSmWb2pyYaD",
+        "recseR05JEXto1LvQ",
+        "recpNzpEY2iurh4L1",
+        "recmkrbWGIJNuAxpY"
       ],
       "oneLineDescriptionEn": "A case manager can help you set goals and find the services you need to overcome a challenge in your life.",
       "oneLineDescriptionFr": "Un gestionnaire de cas peut vous aider à vous fixer des objectifs et à trouver les services dont vous avez besoin pour surmonter tout défi dans votre vie.",
       "availableIndependently": "Independent",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "recClYBnnWxRoWDyS",
-        "recPicBinTyDFxVqb",
-        "recSCbzJSCJP7dNFD"
+        "recFML1cwUcDJqhjJ",
+        "recSJZ17wRdp01zb2",
+        "recV3YZy1AoBsHrqu"
       ],
-      "benefitEligibility": ["recWmF49cJ0evYv0F", "recxyzl32f531NaOr"],
+      "benefitEligibility": ["recZNsuYlHF0Qs9Lw", "recAZmLSbdKPmhOzi"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recVKse8WgvLYcfgP",
+      "id": "recYbfEX5eaxjGT1G",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -764,22 +764,22 @@
       "examples": ""
     },
     {
-      "vacNameEn": "Clothing Allowance",
+      "vacNameEn": "Clothing allowance",
       "vacNameFr": "Allocation vestimentaire",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/related-allowances",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/related-allowances",
-      "needs": ["recGvrfrW7njPwsbk", "recpN4AgAGiH3x7KZ"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
+      "needs": ["recJWeFg5525a06Wb", "recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly payments if you need to replace worn out clothes or have clothes made because of your disability. ",
       "oneLineDescriptionFr": "Versements mensuels si vous avez besoin de vêtements neufs ou spéciaux en raison de vos problèmes de santé.  ",
       "categories DO NOT USE": "Financial assistance",
       "availableIndependently": "Requires Gateway Benefit",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1931#anchor57064",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57064",
-      "benefitExamples": ["reczW9Tifhk99kFzU", "reciQjt6LhTgrmL6a"],
-      "benefitEligibility": ["recBwJVJsjz3KF2kz"],
+      "benefitExamples": ["recCnWj7ofZVuOjkL", "reclh6TVUfy2MQpR1"],
+      "benefitEligibility": ["recEXwlyBheP59G5q"],
       "seeMoreSentenceEn": "Some examples of what this benefit is used for: ",
       "seeMoreSentenceFr": "Exemples d’utilisation de cet avantage :",
-      "id": "rec6osa4YoZNwJcNW",
+      "id": "rec9PfAT7mEzRdQyN",
       "childBenefits": [],
       "examples": "",
       "sortingPriority": ""
@@ -794,10 +794,10 @@
       "categories DO NOT USE": "Community funding",
       "availableIndependently": "Requires Gateway Benefit",
       "sortingPriority": "low",
-      "benefitEligibility": ["recgFx9UqPwqSW6hO"],
+      "benefitEligibility": ["recj6kzJzNbcdqK2F"],
       "seeMoreSentenceEn": "Some examples of what this fund has been used for:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recowlPz6lmqcbp7F",
+      "id": "recrX8fofj1cxF3Sw",
       "needs": [],
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -815,10 +815,10 @@
       "categories DO NOT USE": "Community funding",
       "availableIndependently": "Requires Gateway Benefit",
       "sortingPriority": "low",
-      "benefitEligibility": ["recbbyAFXpnjEAmZ9"],
+      "benefitEligibility": ["receCl0u6n25Z40K0"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recmFhBkztEyJtm5R",
+      "id": "recp6419Irjk4X0QI",
       "needs": [],
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -831,7 +831,7 @@
       "vacNameFr": "Indemnité pour blessure grave",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/critical-injury-benefit",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/critical-injury-benefit",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "A one-time payment if you are suddenly and traumatically injured while serving.",
       "oneLineDescriptionFr": "Versement unique si vous avez subi une blessure soudaine et traumatique pendant votre service.",
       "categories DO NOT USE": "Financial assistance",
@@ -840,15 +840,15 @@
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/2231",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "recIWn1Kh2abX5lzK",
-        "rec1gHrW0df8N1ujx",
-        "recchQ7bkM79gYy33",
-        "recop6qnD8T4XFewH"
+        "recLnarzq0PXizZkB",
+        "rec4HuRL9bUU8v84o",
+        "recfIDx0tKMVBscOU",
+        "recrQTQcM6yQi9Shy"
       ],
-      "benefitEligibility": ["recoWEBTf2fHKxO8T"],
+      "benefitEligibility": ["recrnr1Io0Ut51sTK"],
       "seeMoreSentenceEn": "Some examples of what could cause this type of injury include:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recH5vAKgnu56IwlS",
+      "id": "recKwi0zpl9Rrca6J",
       "childBenefits": [],
       "examples": ""
     },
@@ -857,28 +857,28 @@
       "vacNameFr": "Indemnité de décès",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/death-benefit",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/death-benefit",
-      "needs": ["recjTEL7xK4196TE7"],
+      "needs": ["recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "Lump-sum compensation for the family of a member whose death was a result of their service.",
       "oneLineDescriptionFr": "Indemnité forfaitaire pour la famille d’un militaire dont le décès est attribuable à son service.",
       "categories DO NOT USE": "Family support, Financial assistance",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/11",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/11",
-      "benefitEligibility": ["reclYWjGKy8oabUkO"],
+      "benefitEligibility": ["recopJJvTwNavFy5F"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recMM2R9Dh1WUKxx6",
+      "id": "recPdPhYMfGIfebiX",
       "childBenefits": [],
       "examples": "",
       "sortingPriority": "",
       "benefitExamples": []
     },
     {
-      "vacNameEn": "Detention Benefit",
+      "vacNameEn": "Detention benefit",
       "vacNameFr": "Indemnité de captivité",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/detention-benefits",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/detention-benefits",
-      "needs": ["recjTEL7xK4196TE7", "recpN4AgAGiH3x7KZ"],
+      "needs": ["recmkrbWGIJNuAxpY", "recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "A one-time payment if you were detained by an enemy, opposing force or group carrying out a terrorist activity.",
       "oneLineDescriptionFr": "Versement unique si vous avez été détenu par un ennemi, une force adverse ou un groupe se livrant à une activité terroriste.",
       "categories DO NOT USE": "Financial assistance",
@@ -886,8 +886,8 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/903",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/903",
       "sortingPriority": "low",
-      "benefitEligibility": ["recNbQZ8omQdO5FhH"],
-      "id": "recDU2iSRQ300ixBt",
+      "benefitEligibility": ["recQCDpXxkvZ9zj2y"],
+      "id": "recGlPIH0OIMlMbmk",
       "childBenefits": [],
       "examples": "",
       "benefitExamples": [],
@@ -899,22 +899,22 @@
       "vacNameFr": "Prestations d'invalidité",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/prestations-invalidite",
-      "needs": ["recpN4AgAGiH3x7KZ", "recGvrfrW7njPwsbk"],
+      "needs": ["recseR05JEXto1LvQ", "recJWeFg5525a06Wb"],
       "oneLineDescriptionEn": "Compensation for a permanent illness or injury related to your service.",
       "oneLineDescriptionFr": "Indemnisation qui reconnaît que votre blessure ou maladie découle de votre service militaire.",
       "childBenefits": [
-        "recCkQL77l0KZ2u7Y",
-        "recNsVtmotVHzDhAB",
-        "recqpTIM3UcQkeRh0",
-        "recewrfxHbTWEVPig",
-        "rec6osa4YoZNwJcNW",
-        "rece4vwRrORpYznkw",
-        "recL63epbxypNYRjL"
+        "recFLDbWgjFwkw8SP",
+        "recQTITbxrAtU7Vls",
+        "rectQG8BcSRCFIv2R",
+        "rechXeFmQ9yIZpt37",
+        "rec9PfAT7mEzRdQyN",
+        "rechviWGAMwbj315n",
+        "recOxQEekvdb8sv4C"
       ],
       "availableIndependently": "Independent",
       "sortingPriority": "high",
-      "benefitEligibility": ["recu4sFexY13tk9En", "reccSZsLXT8Xond4j"],
-      "id": "rec0jzif5VceIWKh3",
+      "benefitEligibility": ["recxvf53GWGPOONpe", "recfjMSA6RNJJRRPa"],
+      "id": "rec3KmI4eTR03qo2U",
       "categories DO NOT USE": "",
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
@@ -928,23 +928,23 @@
       "vacNameFr": "Allocation pour perte de revenus",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation/earnings-loss",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/rehabilitation/earnings-loss",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly payments to maintain your income while you are in the rehabilitation program.",
       "oneLineDescriptionFr": "Versements mensuels pour vous assurer un revenu pendant que vous suivez le programme de réadaptation.",
       "categories DO NOT USE": "Financial assistance",
       "childBenefits": [
-        "recMguNzAXgdpEDOJ",
-        "recjDkgdzzzNS6i5A",
-        "recTJGH8uGpz9FIcl"
+        "recPHhdoJVVZK8hzA",
+        "recm47G2IxezdAWQr",
+        "recWat7XDE4lu9mXc"
       ],
       "availableIndependently": "Requires Gateway Benefit",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/15",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/15",
       "sortingPriority": "medium",
-      "benefitEligibility": ["recmsrOwzHKCsUNl6"],
+      "benefitEligibility": ["recpTeelIFpoNor6X"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recOJ3P1wiacWA5jr",
+      "id": "recRaQfQFgPYh4J4i",
       "examples": "",
       "benefitExamples": []
     },
@@ -953,11 +953,11 @@
       "vacNameFr": "Allocation pour perte de revenus accordée aux survivants ou aux orphelins",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/earnings-loss",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/earnings-loss",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly payments if your spouse or parent's death was a result of their military service.",
       "oneLineDescriptionFr": "Versements mensuels si le décès de votre conjoint ou de votre parent est le résultat de son service militaire.",
-      "benefitEligibility": ["rec20oclQcDExORJ8"],
-      "id": "recXrrmxgZ66BoiK3",
+      "benefitEligibility": ["rec5rbCaZaiqSivuZ"],
+      "id": "rec0SeMmpXLSWSWvU",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -972,9 +972,9 @@
     {
       "vacNameEn": "Education and Training Benefit",
       "vacNameFr": "Allocation pour études et formation",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/education-training-benefit",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/education-training-benefit",
-      "needs": ["rec1pKJ7uJYwqVOLx", "recFX7O3dYwg44kpM"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/education-training-benefit",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/education-training-benefit",
+      "needs": ["rec4Qx9WDHDiLpswo", "recIoUeSmWb2pyYaD"],
       "oneLineDescriptionEn": "A grant to help you achieve your education and career goals after your military career.",
       "oneLineDescriptionFr": "Subvention pour vous aider à atteindre vos objectifs éducatifs et professionnels après votre carrière militaire.",
       "categories DO NOT USE": "Education and jobs, Financial assistance",
@@ -983,16 +983,16 @@
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/2685",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "recAipD7lXyrGFtsR",
-        "recRAfiZXHvN9Vj1f",
-        "rec0EC3r8QhCix0N8",
-        "recQYymXSVw8CfLtk",
-        "recXXECh0tcO4Gaxx"
+        "recDJc3WuVdd197dI",
+        "recU12IO6FazupXM6",
+        "rec35ptghOWoD1EyZ",
+        "recTplMM1TbUXJpeb",
+        "rec0or269rRApaOio"
       ],
-      "benefitEligibility": ["recQBzCRl2D8B7lxu"],
+      "benefitEligibility": ["recT2m2Gu0iUWBZil"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recukRMcsAVvBpDJi",
+      "id": "recxLEc1ByAhWThu9",
       "childBenefits": [],
       "examples": ""
     },
@@ -1001,7 +1001,7 @@
       "vacNameFr": "Aide aux études des enfants",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/education-assistance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/education-assistance",
-      "needs": ["rec1pKJ7uJYwqVOLx"],
+      "needs": ["rec4Qx9WDHDiLpswo"],
       "oneLineDescriptionEn": "Payment(s) to cover the cost of tuition and other expenses.",
       "oneLineDescriptionFr": "Versement(s) aux enfants de militaires pour couvrir les frais de scolarité et autres dépenses.",
       "categories DO NOT USE": "Education and jobs, Family support, Financial assistance",
@@ -1011,24 +1011,24 @@
       "noteEn": "You should apply if your parent’s death was a result of their service or if they were approved for Disability benefits.",
       "noteFr": "Vous devriez déposer une demande si le décès de votre parent est dû à son service ou si sa demande de prestations d’invalidité a été approuvée.",
       "benefitExamples": [
-        "rec4pPBqU7o3MeL8e",
-        "recfRoQSdMF1oJqiZ",
-        "recXXECh0tcO4Gaxx"
+        "rec7QC1f353P7IpT5",
+        "reciibgHmKkNJd43Q",
+        "rec0or269rRApaOio"
       ],
-      "benefitEligibility": ["recpCQ81MXjUrrerT"],
+      "benefitEligibility": ["recs3DyQVVYGMVScK"],
       "seeMoreSentenceEn": "Some examples of what this program may provide: ",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recg5zjkXaddMWQEf",
+      "id": "recjwmJ968SZ7qup6",
       "childBenefits": [],
       "examples": "",
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Exceptional Incapacity Allowance",
+      "vacNameEn": "Exceptional incapacity allowance",
       "vacNameFr": "Allocation d'incapacité exceptionnelle",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly payments if your illness or injury is severe and impacts your quality of life.",
       "oneLineDescriptionFr": "Versements mensuels si votre maladie ou votre blessure a une incidence sur votre qualité de vie.",
       "categories DO NOT USE": "Financial assistance",
@@ -1036,37 +1036,37 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1931#anchor57066",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57066",
       "benefitExamples": [
-        "rec7ayMUHVXlYiQ43",
-        "recm5GHIJlXaDvQWr",
-        "recwrn64aZ5dmRO6S"
+        "recaBlcJQTC7jMuPU",
+        "recpwt7xSjCWYZuHi",
+        "reczSawTjXKZHlsRJ"
       ],
-      "benefitEligibility": ["recgi1wg3Z0xhI0KC"],
+      "benefitEligibility": ["recjJOW5cXFjCcEvt"],
       "seeMoreSentenceEn": "Some examples why other Veterans receive this benefit:",
       "seeMoreSentenceFr": "Certaines des raisons pour lesquelles des vétérans reçoivent cet avantage :",
-      "id": "recCkQL77l0KZ2u7Y",
+      "id": "recFLDbWgjFwkw8SP",
       "childBenefits": [],
       "examples": "",
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Family peer support (OSISS)",
+      "vacNameEn": "Family peer support (Operational Stress Injury Social Support)",
       "vacNameFr": "Soutien par les pairs pour les familles (SSBSO)",
       "benefitPageEn": "https://www.cfmws.com/en/AboutUs/DCSM/OSISS/Pages/Families.aspx",
-      "benefitPageFr": "https://www.cfmws.com/en/AboutUs/DCSM/OSISS/Pages/Families.aspx",
-      "needs": ["recmmMZPP4DI6Nq0a", "recjTEL7xK4196TE7"],
+      "benefitPageFr": "https://www.cfmws.com/fr/aboutus/dcsm/osiss/pages/families.aspx",
+      "needs": ["recpNzpEY2iurh4L1", "recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "Peer support for the families of Veterans living with mental health issues.",
       "oneLineDescriptionFr": "Soutien des pairs pour la famille des vétérans ayant des problèmes de santé mentale.",
       "availableIndependently": "Independent",
       "benefitExamples": [
-        "recqtAfBRDObeaemA",
-        "recaOHh3cVrIjSB9H",
-        "recLlLBycwpFO0gfQ",
-        "recg8tpV4BPtWCYG2"
+        "rectUnFq0BtXzES7r",
+        "recdfuHSlT6uEmfUy",
+        "recOMy1nlu4r9uU0H",
+        "recjzgPKdzufh6CrT"
       ],
-      "benefitEligibility": ["recdtaTP1HL6hgId7"],
+      "benefitEligibility": ["recgUXjEaFqSCKmYY"],
       "seeMoreSentenceEn": "Some examples of common mental health issues are:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recYOyXOqqSSCUVcN",
+      "id": "rec1flnDzoxEXozXE",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -1079,46 +1079,46 @@
       "vacNameFr": "Programme de frais de funérailles et d'inhumations",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/funeral-burial",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/funeral-burial",
-      "needs": ["recjTEL7xK4196TE7"],
+      "needs": ["recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "A reimbursement of costs to ensure Veterans have a dignified funeral and burial. ",
       "oneLineDescriptionFr": "Remboursement des coûts pour s’assurer que les vétérans ont des funérailles et une inhumation dans la dignité.",
       "categories DO NOT USE": "Financial assistance, Family support",
       "availableIndependently": "Independent",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "recf6c8GEt20V456b",
-        "recJb7mKQwMywgty7",
-        "recp5oJKUFhNoilhw",
-        "recMIoA9GHf8FDqmI",
-        "recOln9VMQk5UKtwG"
+        "recixZyvNrHMgyJR2",
+        "recMCUMzZurkRK7jY",
+        "recswb9z3DWzJMZ2n",
+        "recP9b0YPFUU0747z",
+        "recRMazKVOZRfe7hx"
       ],
-      "benefitEligibility": ["recIKNddEHsrPobsJ", "recvSEet4Pf5xm2Ng"],
+      "benefitEligibility": ["recLbAD2NF7daSPdA", "recyjrEidNURSQGy7"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recEW4yF4GE4V1lTS",
+      "id": "recHnRYudEjQgvZEJ",
       "childBenefits": [],
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
       "examples": ""
     },
     {
-      "vacNameEn": "Grave-marker maintenance",
+      "vacNameEn": "Grave marker maintenance",
       "vacNameFr": "Entretien des stèles funéraires",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/grave-marker",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/grave-marker",
-      "needs": ["recjTEL7xK4196TE7"],
+      "needs": ["recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "Maintenance of all markers and grave sites paid for by the Government of Canada.",
       "oneLineDescriptionFr": "Entretien de l’ensemble des stèles funéraires et lieux de sépulture fournis par le gouvernement du Canada.",
       "availableIndependently": "Independent",
       "benefitExamples": [
-        "recyyXFdZx86yXoBV",
-        "rec8AwaGmTClXHbcL",
-        "recTbt9iboolcvMcF"
+        "recBZK528vNSTr2mM",
+        "recb1jAvvRh7ibPXC",
+        "recWCgz7km37xZqXw"
       ],
-      "benefitEligibility": ["rectgNnpMlvUf515X"],
+      "benefitEligibility": ["recwHANeVjaGAzFQO"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recZv71nHMgCoX93h",
+      "id": "rec2WUrcQKVoJrNO8",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -1127,22 +1127,22 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Group health insurance",
+      "vacNameEn": "Group Health Insurance",
       "vacNameFr": "Assurance collective des soins de santé",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/group-health-insurance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/group-health-insurance",
-      "needs": ["recGvrfrW7njPwsbk"],
+      "needs": ["recJWeFg5525a06Wb"],
       "oneLineDescriptionEn": "Health coverage for you and your family through the Public Service Health Care Plan. ",
       "oneLineDescriptionFr": "Protection en matière de soins de santé pour vous et votre famille par l’intermédiaire du Régime de soins de santé de la fonction publique.",
       "categories DO NOT USE": "Health",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/21",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/21",
-      "benefitExamples": ["recyHsIVPMOqmLiBx", "recJM9BT0TTNOgWRF"],
-      "benefitEligibility": ["rec9M3lN0KwS8CJmj"],
+      "benefitExamples": ["recB8f8KYKtcHfWmo", "recMdW1I9Ryz9KACw"],
+      "benefitEligibility": ["reccdQLC9IbEt6n7a"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "rec3l8XwdR85xWNJ2",
+      "id": "rec6MVnlmPNRSqruT",
       "childBenefits": [],
       "examples": "",
       "sortingPriority": ""
@@ -1152,7 +1152,7 @@
       "vacNameFr": "Priorité d’embauche",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/ps-hiring/before-you-start",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/ps-hiring/before-you-start",
-      "needs": ["recFX7O3dYwg44kpM"],
+      "needs": ["recIoUeSmWb2pyYaD"],
       "oneLineDescriptionEn": "You get priority when applying for jobs in the federal government.",
       "oneLineDescriptionFr": "Votre candidature à tout emploi offert au sein du gouvernement fédéral est traitée en priorité.",
       "categories DO NOT USE": "Education and jobs",
@@ -1160,11 +1160,11 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/75",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/75",
       "sortingPriority": "medium",
-      "benefitExamples": ["recqLHY6bKc0uwQaO", "rec4K0C1SXIEvZ2y2"],
-      "benefitEligibility": ["recAz6FLY6qy3GkHd"],
+      "benefitExamples": ["rectcuoVkIRMP0uVF", "rec7bN2Q1VnqQtGjT"],
+      "benefitEligibility": ["recD0T5A745koaYs4"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recaa4nxdJnSV3NrJ",
+      "id": "recdBRNmmH2EgxrcA",
       "childBenefits": [],
       "examples": ""
     },
@@ -1173,22 +1173,22 @@
       "vacNameFr": "LifeSpeak",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/mental-health/mh-resources/lifespeak",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/mental-health/mh-resources/lifespeak",
-      "needs": ["recmmMZPP4DI6Nq0a"],
+      "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "A self-help website with videos and information about mental health, nutrition and other issues that matter to you. ",
       "oneLineDescriptionFr": "Site Web d’entraide offrant vidéos et renseignements sur la santé mentale, la nutrition et d’autres sujets qui sont importants pour vous.",
       "availableIndependently": "Independent",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "recKyrHOFnnPD2MQL",
-        "recFF6eAMrgdgS7Cj",
-        "rec9kDxZv1OsSw6SA",
-        "rec2U9ricufBEo2DT",
-        "recHaX4XKETPQKhHp"
+        "recNZe7DOl2BYwqBC",
+        "recI6TEpVpVZBmLna",
+        "reccLqXOEZted0KDr",
+        "rec5lWR7lsUnZSGoK",
+        "recKBKuMTCyBbeVsg"
       ],
-      "benefitEligibility": ["recJOORI4GtWCenMm", "recTghMYMtuQiLimr"],
+      "benefitEligibility": ["recMfBhxdE8IXI1xd", "recWH4cNVr9CDfW7i"],
       "seeMoreSentenceEn": "Here are a few topics that are covered on LifeSpeak:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "rec7Ih8Q0YprrzK0R",
+      "id": "reca94yF9W4dM3oLI",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -1200,7 +1200,7 @@
       "vacNameFr": "Soins de longue durée",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/long-term-care",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/long-term-care",
-      "needs": ["recXfW6phH2FFcE3T", "recpN4AgAGiH3x7KZ"],
+      "needs": ["rec0GJweqFHr0GiOK", "recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Financial support for nursing homes or long term care.",
       "oneLineDescriptionFr": "Soutien financier pour couvrir le coût des établissements de soins infirmiers et de vos soins de longue durée.",
       "categories DO NOT USE": "Health, Financial assistance",
@@ -1208,8 +1208,8 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/22",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/22",
       "sortingPriority": "medium",
-      "benefitEligibility": ["recyyVwXzhgcX14IC", "recJDGon9UpIRv1C6"],
-      "id": "recKZD7EgawQUTf98",
+      "benefitEligibility": ["recBZIWMIfVYivItt", "recM4tOciS4ucZFnX"],
+      "id": "recNqqxtp8bCfnTUZ",
       "childBenefits": [],
       "examples": "",
       "benefitExamples": [],
@@ -1221,22 +1221,22 @@
       "vacNameFr": "Cliniques pour traumatismes liés au stress opérationnel ",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/mental-health/understanding-mental-health/clinics",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/mental-health/understanding-mental-health/clinics",
-      "needs": ["recmmMZPP4DI6Nq0a"],
+      "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "A clinic that assesses and treats mental health issues related to your service.",
       "oneLineDescriptionFr": "Clinique externe qui évalue et traite tout problème de santé mentale causé par votre service.",
       "sortingPriority": "medium",
       "noteEn": "You need a referral from a Case Manager to visit the clinic.",
-      "noteFr": "(fra) You need a referral from a Case Manager to visit the clinic.",
+      "noteFr": "Une référence de votre gestionnaire de cas est nécessaire pour vous rendre à la clinique. ",
       "benefitExamples": [
-        "recHaX4XKETPQKhHp",
-        "recqOsqicgzAjHlnQ",
-        "reci867uYWvWwd0s0",
-        "recqtAfBRDObeaemA"
+        "recKBKuMTCyBbeVsg",
+        "rectffQ7leemEbZ8H",
+        "reclzTxj7UaIRHEdR",
+        "rectUnFq0BtXzES7r"
       ],
-      "benefitEligibility": ["recg7V3k3ol4FLAMh", "rece3ZFiriZxO63e4"],
+      "benefitEligibility": ["recjyIt9cm0Q0fex8", "rechuM57AgEj9AHZV"],
       "seeMoreSentenceEn": "The clinics provide individual as well as group therapy sessions for: ",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "rechnadMxMHp86vv8",
+      "id": "reckOXDBGKmbtA9gZ",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -1249,21 +1249,21 @@
       "vacNameFr": "Service pastoral",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/pastoral-outreach",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/pastoral-outreach",
-      "needs": ["recjTEL7xK4196TE7", "recmmMZPP4DI6Nq0a"],
+      "needs": ["recmkrbWGIJNuAxpY", "recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Spiritual support when you need it.",
       "oneLineDescriptionFr": "Un soutien spirituel quand vous en avez besoin.",
       "categories DO NOT USE": "Family support, Health",
       "availableIndependently": "Independent",
       "benefitExamples": [
-        "recryosHXDBFDNVZ0",
-        "recYI9muMIwtSpEMV",
-        "recWN6glG0xGsoYnO",
-        "recRy9P4odw3aKqXf"
+        "recuZbSw6BgrYhzKR",
+        "rec19WMjVGbfdTixM",
+        "recZeTGaPYcsNSC8F",
+        "recUZWfTxbbPve4I6"
       ],
-      "benefitEligibility": ["recxq80Dbs1ijRlaE"],
+      "benefitEligibility": ["recARVqskqG4ElZVv"],
       "seeMoreSentenceEn": "You may be interested in pastoral support if you are:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recVgcA6MDGMBFjzH",
+      "id": "recYHZ0VVBlyW9Xky",
       "childBenefits": [],
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
@@ -1273,20 +1273,20 @@
     {
       "vacNameEn": "Peer support (OSISS)",
       "vacNameFr": "Soutien par les pairs (SSBSO)",
-      "needs": ["recmmMZPP4DI6Nq0a"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/mental-health-and-wellness/counselling-services/someone-who-can-relate",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/mental-health-and-wellness/counselling-services/someone-who-can-relate",
+      "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Talk to someone who has lived with mental health issues and can offer support.",
       "oneLineDescriptionFr": "Soutien obtenu auprès de personnes ayant été aux prises avec des problèmes de santé mentale.",
       "benefitExamples": [
-        "recqtAfBRDObeaemA",
-        "recaOHh3cVrIjSB9H",
-        "recLlLBycwpFO0gfQ",
-        "recg8tpV4BPtWCYG2"
+        "rectUnFq0BtXzES7r",
+        "recdfuHSlT6uEmfUy",
+        "recOMy1nlu4r9uU0H",
+        "recjzgPKdzufh6CrT"
       ],
       "seeMoreSentenceEn": "Some examples of common mental health issues are:",
       "seeMoreSentenceFr": "Exemples de problèmes de santé mentale courants :",
-      "id": "recRjHdedubwgblQD",
-      "benefitPageEn": "",
-      "benefitPageFr": "",
+      "id": "recUKuD3msQiBFZBu",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -1301,7 +1301,7 @@
       "vacNameFr": "Indemnité des prisonnier de guerre",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/pow",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/pow",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly compensation if you were taken prisoner or detained by enemy forces.",
       "oneLineDescriptionFr": "Indemnité mensuelle si vous avez été fait prisonnier ou détenu par les forces ennemies.  ",
       "categories DO NOT USE": "Financial assistance, Family support",
@@ -1309,8 +1309,8 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/25",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/25",
       "sortingPriority": "low",
-      "benefitEligibility": ["rec0AZCo8gx3HzLy1", "recaVVZzKjrd2Duj8"],
-      "id": "reccTUqI8ybL1aHQR",
+      "benefitEligibility": ["rec31M2dhecP23pjS", "recdmIpoTh6Zn784Z"],
+      "id": "recfkHQxhwQxmElBI",
       "childBenefits": [],
       "examples": "",
       "benefitExamples": [],
@@ -1318,41 +1318,45 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Rehabilitation Services",
+      "vacNameEn": "Rehabilitation services",
       "vacNameFr": "Services de réadaptation",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation/services",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/rehabilitation/services",
       "needs": [
-        "rec1pKJ7uJYwqVOLx",
-        "recFX7O3dYwg44kpM",
-        "recGvrfrW7njPwsbk",
-        "recmmMZPP4DI6Nq0a"
+        "rec4Qx9WDHDiLpswo",
+        "recIoUeSmWb2pyYaD",
+        "recJWeFg5525a06Wb",
+        "recpNzpEY2iurh4L1"
       ],
       "oneLineDescriptionEn": "Services to improve your health and adjust to life after service.",
       "oneLineDescriptionFr": "Services visant à améliorer votre santé et à vous adapter à la vie après le service.",
       "categories DO NOT USE": "Education and jobs, Health",
       "childBenefits": [
-        "recOJ3P1wiacWA5jr",
-        "rec3l8XwdR85xWNJ2",
-        "recO8NVH2tWIjNpDA"
+        "recRaQfQFgPYh4J4i",
+        "rec6MVnlmPNRSqruT",
+        "recRzAlwbrBuEh3or"
       ],
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/26",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/26",
       "examples": "recCkWkJIklpp5ADr, reculYbazzbP3dxpA, reccED7sXf2ViIt47",
       "sortingPriority": "high",
-      "benefitExamples": ["recEL3EeIDWcMGQY1"],
-      "benefitEligibility": ["recBr3SAQU0GijleA", "recGkh4BgTTH4ibVq"],
+      "benefitExamples": [
+        "recc8TopUzbaCrtCK",
+        "reccIoJgjbZlPUQur",
+        "rec3UvOcOCmuXcmZH"
+      ],
+      "benefitEligibility": ["recESQipZSFsDNZZr", "recJL4uqpRytpMPGh"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recPUSdA7VeaZGUGh"
+      "id": "recSlFDpgTTWkayr8"
     },
     {
       "vacNameEn": "Retirement Income Security Benefit",
       "vacNameFr": "Allocation de sécurité du revenu retraite",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/retirement-income-security-benefit",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/retirement-income-security-benefit",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Monthly payments that replace the Earnings Loss Benefit at retirement (age 65).",
       "oneLineDescriptionFr": "Versements mensuels qui remplacent l’allocation pour perte de revenus à la retraite (65 ans).",
       "categories DO NOT USE": "Financial assistance",
@@ -1360,10 +1364,10 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/73",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/73",
       "sortingPriority": "medium",
-      "benefitEligibility": ["recDSeANhF5XrVRcr", "recxc6T4F7Ft3bF0t"],
+      "benefitEligibility": ["recGj10CqDKJMpvXi", "recADTjTO5kfoFjLk"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recjDkgdzzzNS6i5A",
+      "id": "recm47G2IxezdAWQr",
       "childBenefits": [],
       "examples": "",
       "benefitExamples": []
@@ -1373,7 +1377,7 @@
       "vacNameFr": "Prestation de retraite supplémentaire",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation/retirement-benefit",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/rehabilitation/retirement-benefit",
-      "needs": ["recpN4AgAGiH3x7KZ"],
+      "needs": ["recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "One-time payment if you're receiving Earnings Loss Benefit at age 65 on a long-term basis.",
       "oneLineDescriptionFr": "Versement unique à l’âge de 65 ans si vous receviez l’allocation pour perte de revenus à long terme.",
       "categories DO NOT USE": "Financial assistance",
@@ -1381,10 +1385,10 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/27",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/27",
       "sortingPriority": "medium",
-      "benefitEligibility": ["recmRtb7mI9XaukBw", "recgsVRR5F96KoQvT"],
+      "benefitEligibility": ["recpigBWvGOJvYYmn", "recjTIhGeDOS5SugK"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recTJGH8uGpz9FIcl",
+      "id": "recWat7XDE4lu9mXc",
       "childBenefits": [],
       "examples": "",
       "benefitExamples": []
@@ -1392,17 +1396,17 @@
     {
       "vacNameEn": "Survivor's pension",
       "vacNameFr": "Pension de survivant",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/disability-pension/survivor-benefits",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/disability-pension/survivor-benefits",
-      "needs": ["recjTEL7xK4196TE7", "recpN4AgAGiH3x7KZ"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/family-caregiver/financial-programs-services/survivors-pension",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/family-caregiver/financial-programs-services/survivors-pension",
+      "needs": ["recmkrbWGIJNuAxpY", "recseR05JEXto1LvQ"],
       "oneLineDescriptionEn": "Continue to receive your spouse's disability pension for one year after their death. ",
       "oneLineDescriptionFr": "Versement mensuel si votre conjoint a reçu une pension d’invalidité.",
       "categories DO NOT USE": "Family support, Financial assistance",
       "availableIndependently": "Requires Gateway Benefit",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1131",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1131",
-      "benefitEligibility": ["recGSaT5q7VLKIDtA"],
-      "id": "recBSXP6pYDS8xJJH",
+      "benefitEligibility": ["recJjXjUz5Ax5cher"],
+      "id": "recEjKfVyWiEt1nuy",
       "childBenefits": [],
       "examples": "",
       "sortingPriority": "",
@@ -1416,24 +1420,24 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/interview",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/interview",
       "needs": [
-        "recFX7O3dYwg44kpM",
-        "rec1pKJ7uJYwqVOLx",
-        "recmmMZPP4DI6Nq0a",
-        "recGvrfrW7njPwsbk"
+        "recIoUeSmWb2pyYaD",
+        "rec4Qx9WDHDiLpswo",
+        "recpNzpEY2iurh4L1",
+        "recJWeFg5525a06Wb"
       ],
       "oneLineDescriptionEn": "Meet with a Veterans Affairs employee before you release to see what we can do for you. ",
       "oneLineDescriptionFr": "Rencontrez un employé d’ACC avant de quitter les FAC pour voir ce que nous pouvons faire pour vous.",
       "availableIndependently": "Independent",
       "sortingPriority": "high",
       "benefitExamples": [
-        "recQQDhjoUov0QD2J",
-        "recMUfbVJTtncwIVW",
-        "recEw8LHxqAxoT8w7"
+        "recThqH8xS3hlkhNA",
+        "recPl2BKSR89x0mGN",
+        "recHXVbwGofjJnMhY"
       ],
-      "benefitEligibility": ["recCwYo9TbCnPBa7y"],
+      "benefitEligibility": ["recFXLOY29h9a5OSp"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recpq5tKJOXWZ3JCS",
+      "id": "recsRSTzSMCIkxnnJ",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -1445,7 +1449,7 @@
       "vacNameFr": "Avantages pour soins de santé",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/treatment-benefits",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/treatment-benefits",
-      "needs": ["recGvrfrW7njPwsbk", "recmmMZPP4DI6Nq0a"],
+      "needs": ["recJWeFg5525a06Wb", "recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Coverage for medical and health related services.",
       "oneLineDescriptionFr": "Protection en matière de services médicaux et de services liés à la santé.",
       "categories DO NOT USE": "Health",
@@ -1454,17 +1458,17 @@
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/29",
       "sortingPriority": "high",
       "benefitExamples": [
-        "rectK00K9ynNhArvX",
-        "recN5ujktoeWAG7vI",
-        "reczfqhXhc0KsOFnE",
-        "reckmNpzzaTJbZIHj",
-        "rec5ctpMKyBWOj2In",
-        "recNqoKjX7Mz1Y2U7"
+        "recwbNqziw2zC45gO",
+        "recQwhJ9CmTIVaLgz",
+        "recCGdHMqaFwNij8v",
+        "recnNAPoI8yvwtmsa",
+        "rec8DgPBTwgI9NGte",
+        "recQRba865rlmsGFY"
       ],
-      "benefitEligibility": ["recEfRVYLpvWvqISx"],
+      "benefitEligibility": ["recHGElNUnaIQUmDo"],
       "seeMoreSentenceEn": "Some examples of what this program may cover:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme (fra) peut fournir :",
-      "id": "recewrfxHbTWEVPig",
+      "id": "rechXeFmQ9yIZpt37",
       "childBenefits": [],
       "examples": ""
     },
@@ -1478,8 +1482,8 @@
       "categories DO NOT USE": "Community funding",
       "availableIndependently": "Independent",
       "sortingPriority": "low",
-      "benefitEligibility": ["recckWh09Jtsuk3YK"],
-      "id": "rec8GCHaN2UirvW8H",
+      "benefitEligibility": ["recfLJHPiH8ePOHJB"],
+      "id": "recb7p7ZW0z4MZATy",
       "needs": [],
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -1494,25 +1498,25 @@
       "vacNameFr": "Programme pour les familles des vétérans",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/veteran-family-program",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/veteran-family-program",
-      "needs": ["recmmMZPP4DI6Nq0a"],
+      "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Continued access to services from Military Family Resource Centres to help you and your family adjust to life after the military.",
       "oneLineDescriptionFr": "Accès continu aux services des Centres de ressources pour les familles des militaires pour vous aider, vous et votre famille, à vous adapter à la vie après le service militaire.",
       "categories DO NOT USE": "Health, Family support",
       "availableIndependently": "Independent",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "rec6Zgan8qHI81OLP",
-        "reccVRoOBxAmkdwO7",
-        "recwXq2K5cxFcVlxU"
+        "rec9q3AchomutvswG",
+        "recfmEODKvf8FHazY",
+        "reczodszeacrxpZiL"
       ],
       "benefitEligibility": [
-        "recdzam05SfCt5PqJ",
-        "recefz1kpLFu7Vkxh",
-        "recgDfxgjD31in4Qu"
+        "recg0XMPeQUoOztbA",
+        "rechGmr9yJkgspYi8",
+        "recj42X5sBINDRIBl"
       ],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recnTqWEj6jCEF8h7",
+      "id": "recqkdmts4YoZ9M2Y",
       "childBenefits": [],
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
@@ -1521,14 +1525,14 @@
     {
       "vacNameEn": "Veterans Affairs Canada (VAC) Assistance Service",
       "vacNameFr": "Service d’aide d’Anciens Combattants Canada (ACC)",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/contact/vac-assistance-service",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/contact/vac-assistance-service",
-      "needs": ["recmmMZPP4DI6Nq0a"],
+      "benefitPageEn": "https://veterans.gc.ca/eng/contact/talk-to-a-professional",
+      "benefitPageFr": "https://veterans.gc.ca/fra/contact/talk-to-a-professional",
+      "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Get support right now from a mental health professional by calling 1-800-268-7708.",
       "oneLineDescriptionFr": "Obtenez dès maintenant le soutien d’un professionnel de la santé mentale en composant le 1-800-268-7708.",
       "sortingPriority": "high",
-      "benefitEligibility": ["recDqCwht7xfG2egL", "recZaVwvEl6tECI6q"],
-      "id": "recz9Md6FW0Pc28aD",
+      "benefitEligibility": ["recGRpW6C5c11wS1C", "rec2BIWkNjLfZ6mRh"],
+      "id": "recCAzDVOUFBxwMVu",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -1544,25 +1548,25 @@
       "vacNameFr": "Fonds d'urgence pour les vétérans",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/veterans-emergency-fund",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/veterans-emergency-fund",
-      "needs": ["recEahND3kwnUPTHx"],
+      "needs": ["recHB4dscib9fjxso"],
       "oneLineDescriptionEn": "Quick access to funds for urgent needs such as food, shelter or medical expenses.",
       "oneLineDescriptionFr": "Accès rapide à des fonds en cas de besoins urgents (nourriture, logement ou frais médicaux).",
       "categories DO NOT USE": "Financial assistance, Family support",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/2690",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/2690",
-      "sortingPriority": "low",
+      "sortingPriority": "high",
       "benefitExamples": [
-        "recTQzcPZtn81s8P8",
-        "recnGfMEglN2NGM0a",
-        "reclkgNmI04u8Cr4u",
-        "recFDFAwrrWlxaCSF",
-        "recTVRTQNSUT18GIC"
+        "recWhmCE8r2UmWMAZ",
+        "recq72ctpjsO8aqL1",
+        "recoL3dbRYJgt65Pl",
+        "recI4s0lApB7SEgDw",
+        "recWmEjFWQzFmCktt"
       ],
-      "benefitEligibility": ["rec6vIdu4K8xl1nxi", "recwtgBef5LIpUifM"],
+      "benefitEligibility": ["rec9WvDjdINjGv1i9", "reczU313o3quKoW0D"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recFMnhGVbQT8de27",
+      "id": "recIdaHv49vFtHSNY",
       "childBenefits": [],
       "examples": ""
     },
@@ -1571,43 +1575,43 @@
       "vacNameFr": "Programme pour l’autonomie des anciens combattants",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/veterans-independence-program",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/veterans-independence-program",
-      "needs": ["recXfW6phH2FFcE3T", "recmmMZPP4DI6Nq0a"],
+      "needs": ["rec0GJweqFHr0GiOK", "recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Payments for home and health care services that you need to remain independent at home. ",
       "oneLineDescriptionFr": "Paiements pour les services à domicile et les soins de santé dont vous avez besoin pour vivre en toute autonomie à la maison.",
       "categories DO NOT USE": "Health, Financial assistance",
-      "childBenefits": ["recKZD7EgawQUTf98"],
+      "childBenefits": ["recNqqxtp8bCfnTUZ"],
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/30",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/30",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "recXqo0FON7xdMoGp",
-        "recFBbpiH7fNdNGcm",
-        "recda00Z69P91ZS2J",
-        "recYXxdED4LRoWVpP",
-        "rec1Citq1HUCOR6Yk",
-        "recrizW089wnsS0Ut",
-        "rechTZK2t1NQLGPpg",
-        "rec4Mgp5NFaCcI1VU"
+        "rec0RbquXLMjyg2rg",
+        "recI2YP7Q5UzyhkXd",
+        "recgBNqOf7uVmtwNA",
+        "rec1okDtM2qDJqzaG",
+        "rec435TfaFzo9lKJb",
+        "recuJmmPh7b9NmEFk",
+        "reckkMaRCZsC6ata7",
+        "rec7d3PUWDPoxcFGL"
       ],
-      "benefitEligibility": ["recnz9qP2cSNgBzE8"],
+      "benefitEligibility": ["recq0WQEbaxzB5dpZ", "recQTeje49tk9F6EF"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recqpTIM3UcQkeRh0",
+      "id": "rectQG8BcSRCFIv2R",
       "examples": ""
     },
     {
       "vacNameEn": "Veterans Independence Program for primary caregivers",
       "vacNameFr": "Programme pour l'autonomie des anciens combattants à l'intention des principaux dispensateurs de soins",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/veterans-independence-program/caregivers",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/veterans-independence-program/caregivers",
-      "needs": ["recmmMZPP4DI6Nq0a"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/housing-and-home-life/help-at-home/veterans-independence-program-caregivers",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program-caregivers",
+      "needs": ["recpNzpEY2iurh4L1"],
       "oneLineDescriptionEn": "Payment for yard and housekeeping services to help you stay in your home.",
       "oneLineDescriptionFr": "Paiement des services d’entretien ménager et du terrain pour vous aider à rester à la maison.",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1221",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1221",
-      "benefitEligibility": ["recGHjWL2HmAE4lVC"],
-      "id": "recFk2YDDOAkzkCDt",
+      "benefitEligibility": ["recJ86mAbF1mZyZGt"],
+      "id": "recILPosMMf6UOgok",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -1620,13 +1624,13 @@
     {
       "vacNameEn": "Veterans Independence Program for survivors",
       "vacNameFr": "Programme pour l'autonomie des anciens combattants à l'intention des survivants",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/veterans-independence-program/survivors",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/veterans-independence-program/survivors",
-      "needs": ["recjTEL7xK4196TE7"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/housing-and-home-life/help-at-home/veterans-independence-program-survivors",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program-survivors",
+      "needs": ["recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "Payment for yard and housekeeping services to help you stay in your home.",
       "oneLineDescriptionFr": "Paiement des services d’entretien ménager et du terrain pour vous aider à rester à la maison.",
-      "benefitEligibility": ["recIskrwtXkfLjDKu"],
-      "id": "recnFM2L5VrwSyEWZ",
+      "benefitEligibility": ["recLT7RlCVZ16Nhvl"],
+      "id": "recq6zsAeT6id2iHQ",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -1641,24 +1645,24 @@
     {
       "vacNameEn": "Vocational assistance",
       "vacNameFr": "Assistance professionnelle",
-      "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/rehabilitation",
-      "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/rehabilitation",
-      "needs": ["rec1pKJ7uJYwqVOLx", "recFX7O3dYwg44kpM", "recjTEL7xK4196TE7"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/vocational-assistance",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-assistance",
+      "needs": ["rec4Qx9WDHDiLpswo", "recIoUeSmWb2pyYaD", "recmkrbWGIJNuAxpY"],
       "oneLineDescriptionEn": "Coaching, support and any other training you need to return to work or find a new job after an injury.",
       "oneLineDescriptionFr": "Encadrement, soutien et toute autre formation dont vous avez besoin pour retourner au travail ou trouver un nouvel emploi après une blessure.",
       "categories DO NOT USE": "Education and jobs, Family support",
       "availableIndependently": "Requires Gateway Benefit",
       "benefitExamples": [
-        "reclQ96AyDzo02Xcf",
-        "rec8BPLJ05SiqJiha",
-        "recuMqBFQf4jfvus7",
-        "recYXSi4ixhJ54Yat",
-        "receSNHPSpksOUznT"
+        "recohWwpHBealwBX6",
+        "recb2Cby93x4LdW21",
+        "recxdd1uZdJ5AZ8dY",
+        "rec1oFITrvWvqyCVk",
+        "rechjA7E1nZe9od8K"
       ],
-      "benefitEligibility": ["recQKuvUeQib6xDlk"],
+      "benefitEligibility": ["recTbhVJnOXXr1h6b"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recO8NVH2tWIjNpDA",
+      "id": "recRzAlwbrBuEh3or",
       "childBenefits": [],
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
@@ -1668,24 +1672,24 @@
     {
       "vacNameEn": "Vocational rehabilitation",
       "vacNameFr": "Réadaptation professionnelle",
-      "benefitPageEn": "http://www.cvvrs.com/",
-      "benefitPageFr": "http://www.cvvrs.com/",
-      "needs": ["recFX7O3dYwg44kpM", "rec1pKJ7uJYwqVOLx"],
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/vocational-rehabilitation",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-rehabilitation",
+      "needs": ["recIoUeSmWb2pyYaD", "rec4Qx9WDHDiLpswo"],
       "oneLineDescriptionEn": "Coaching, support and any other training you need to return to work or find a new job after an injury.",
       "oneLineDescriptionFr": "Encadrement, soutien et toute autre formation dont vous avez besoin pour retourner au travail ou trouver un nouvel emploi après une blessure.",
       "availableIndependently": "Independent",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "rec8BPLJ05SiqJiha",
-        "reclQ96AyDzo02Xcf",
-        "recYXSi4ixhJ54Yat",
-        "recuMqBFQf4jfvus7",
-        "receSNHPSpksOUznT"
+        "recb2Cby93x4LdW21",
+        "recohWwpHBealwBX6",
+        "rec1oFITrvWvqyCVk",
+        "recxdd1uZdJ5AZ8dY",
+        "rechjA7E1nZe9od8K"
       ],
-      "benefitEligibility": ["recTh0JLYM6omz07j"],
+      "benefitEligibility": ["recWIN9A7KLaH3ESa"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recR3CLbZSRlbGQJV",
+      "id": "recUupb08Qw7wauuM",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -1697,614 +1701,623 @@
       "vacNameFr": "Allocation d'ancien combattant",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/war-veterans-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/war-veterans-allowance",
-      "needs": ["recpN4AgAGiH3x7KZ", "recXfW6phH2FFcE3T"],
+      "needs": ["recseR05JEXto1LvQ", "rec0GJweqFHr0GiOK"],
       "oneLineDescriptionEn": "Monthly payments if you have low or no income.",
       "oneLineDescriptionFr": "Versements mensuels si votre ménage a un faible revenu, voire aucun.",
       "categories DO NOT USE": "Financial assistance",
       "childBenefits": [
-        "recqpTIM3UcQkeRh0",
-        "recKZD7EgawQUTf98",
-        "rec7vYqDWYPQnDcRK",
-        "recewrfxHbTWEVPig",
-        "recEW4yF4GE4V1lTS"
+        "rectQG8BcSRCFIv2R",
+        "recNqqxtp8bCfnTUZ",
+        "recaWLQs5WuCI7QCB",
+        "rechXeFmQ9yIZpt37",
+        "recHnRYudEjQgvZEJ"
       ],
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/31",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/31",
-      "sortingPriority": "high",
-      "benefitEligibility": ["recxiPnxu1B8Xq1HX", "recqM9VdRHwdy35Xf"],
-      "seeMoreSentenceEn": "By receiving War Veterans Allowance, you may qualify for:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
-      "id": "recDRPu2NF4UIximU",
+      "benefitEligibility": ["recAJCNmDZgUiUFsO", "rectdWl20FbZTxJI6"],
+      "id": "recGiCURWDJG31W7L",
       "examples": "",
-      "benefitExamples": []
+      "sortingPriority": "",
+      "benefitExamples": [],
+      "seeMoreSentenceEn": "",
+      "seeMoreSentenceFr": ""
     }
   ],
   "benefitEligibility": [
     {
-      "benefit": ["rec7vYqDWYPQnDcRK"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "Name": "recfWHf1YmVfz0ppj",
+      "benefit": ["recaWLQs5WuCI7QCB"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "Name": "recinuFQ7kA1Uu3aa",
       "path": "veteran + WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recNsVtmotVHzDhAB"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "Name": "rec6ejmokDXrYAUqT",
-      "path": "veteran",
+      "benefit": ["recQTITbxrAtU7Vls"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "rec9F6MdtBCdj4ybK",
+      "path": "veteran + hasServiceHealthIssue",
       "serviceType": [],
-      "statusAndVitals": [],
-      "serviceHealthIssue": []
+      "statusAndVitals": []
     },
     {
-      "benefit": ["recMguNzAXgdpEDOJ"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recOVWkhp1IfbFnRU",
+      "benefit": ["recPHhdoJVVZK8hzA"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recRmJK6yZn1w91CL",
       "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recMguNzAXgdpEDOJ"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recGR0KBNakgQbLG5",
+      "benefit": ["recPHhdoJVVZK8hzA"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recJiNaqW8Z2bFprW",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["rece4vwRrORpYznkw"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recR4crMdLtxDz0cf",
+      "benefit": ["rechviWGAMwbj315n"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recUvZRBmJ8jY3EX6",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["rec45xfsf1ijZzXqM"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl", "recDW9csGX2ekiwXb"],
-      "Name": "recB4Pu8GvLZlEDIa",
+      "benefit": ["rec7wkFhoZX5k3BbD"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["rec6Wp9xvBkdccOqc", "recGnWChPVH0FMaI2"],
+      "Name": "recEvCUXPtqLG8ht1",
       "path": "family + CAF + releasedAlive, deceased",
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["rec45xfsf1ijZzXqM"],
-      "patronType": ["recu6xP62BL9yFbWN", "recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "Name": "recl8EQBaoPvkUs1y",
+      "benefit": ["rec7wkFhoZX5k3BbD"],
+      "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "Name": "recozrgqjmuhFo6Mp",
       "path": "veteran, servingMember + CAF",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recL63epbxypNYRjL"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recC1BOsrEwQQT7Tr",
+      "benefit": ["recOxQEekvdb8sv4C"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["rec6Wp9xvBkdccOqc"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recFsoehACbCbnLEi",
       "path": "family + CAF + releasedAlive + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recL63epbxypNYRjL"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "rec3LMYRHMRfFdc2E",
+      "benefit": ["recOxQEekvdb8sv4C"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "rec6czoGQKw10HQNv",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recEHxSnVLcMvYnbS"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
-      "Name": "recXSg015decd4TOq",
+      "benefit": ["recH8kic4JRyQs1WJ"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "statusAndVitals": ["rec6Wp9xvBkdccOqc"],
+      "Name": "rec0j3qQebTYyyxzh",
       "path": "family + releasedAlive",
       "serviceType": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recVKse8WgvLYcfgP"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recWmF49cJ0evYv0F",
+      "benefit": ["recYbfEX5eaxjGT1G"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "statusAndVitals": ["rec6Wp9xvBkdccOqc"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recZNsuYlHF0Qs9Lw",
       "path": "family + releasedAlive + hasServiceHealthIssue",
       "serviceType": []
     },
     {
-      "benefit": ["recVKse8WgvLYcfgP"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recxyzl32f531NaOr",
+      "benefit": ["recYbfEX5eaxjGT1G"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recAZmLSbdKPmhOzi",
       "path": "veteran + hasServiceHealthIssue",
       "serviceType": [],
       "statusAndVitals": []
     },
     {
-      "benefit": ["rec6osa4YoZNwJcNW"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recBwJVJsjz3KF2kz",
+      "benefit": ["rec9PfAT7mEzRdQyN"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recEXwlyBheP59G5q",
       "path": "veteran + hasServiceHealthIssue",
       "serviceType": [],
       "statusAndVitals": []
     },
     {
-      "benefit": ["recowlPz6lmqcbp7F"],
-      "patronType": ["rec2pB1RcV3BvyjPX"],
-      "Name": "recgFx9UqPwqSW6hO",
+      "benefit": ["recrX8fofj1cxF3Sw"],
+      "patronType": ["rec5QorGlTInQ2XAO"],
+      "Name": "recj6kzJzNbcdqK2F",
       "path": "organization",
       "serviceType": [],
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recmFhBkztEyJtm5R"],
-      "patronType": ["rec2pB1RcV3BvyjPX"],
-      "Name": "recbbyAFXpnjEAmZ9",
+      "benefit": ["recp6419Irjk4X0QI"],
+      "patronType": ["rec5QorGlTInQ2XAO"],
+      "Name": "receCl0u6n25Z40K0",
       "path": "organization",
       "serviceType": [],
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recH5vAKgnu56IwlS"],
-      "patronType": ["recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recoWEBTf2fHKxO8T",
+      "benefit": ["recKwi0zpl9Rrca6J"],
+      "patronType": ["recFABO2SLhcwRkjT"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recrnr1Io0Ut51sTK",
       "path": "servingMember + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recMM2R9Dh1WUKxx6"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "reclYWjGKy8oabUkO",
+      "benefit": ["recPdPhYMfGIfebiX"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recopJJvTwNavFy5F",
       "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recDU2iSRQ300ixBt"],
-      "patronType": ["recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "Name": "recNbQZ8omQdO5FhH",
+      "benefit": ["recGlPIH0OIMlMbmk"],
+      "patronType": ["recFABO2SLhcwRkjT"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "Name": "recQCDpXxkvZ9zj2y",
       "path": "servingMember + CAF",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["rec0jzif5VceIWKh3"],
-      "patronType": ["recu6xP62BL9yFbWN", "recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY", "recIMgfjrCozH9eVW"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recu4sFexY13tk9En",
+      "benefit": ["rec3KmI4eTR03qo2U"],
+      "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
+      "serviceType": ["rec9TxYv9brvsbp2P", "recLd3F8AA3l2DSGN"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recxvf53GWGPOONpe",
       "path": "veteran, servingMember + CAF, RCMP + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["rec0jzif5VceIWKh3"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "reccSZsLXT8Xond4j",
+      "benefit": ["rec3KmI4eTR03qo2U"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recfjMSA6RNJJRRPa",
       "path": "veteran + WSV (WWII or Korea) + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recOJ3P1wiacWA5jr"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recmsrOwzHKCsUNl6",
+      "benefit": ["recRaQfQFgPYh4J4i"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recpTeelIFpoNor6X",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recXrrmxgZ66BoiK3"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "rec20oclQcDExORJ8",
+      "benefit": ["rec0SeMmpXLSWSWvU"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "rec5rbCaZaiqSivuZ",
       "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recukRMcsAVvBpDJi"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "Name": "recQBzCRl2D8B7lxu",
+      "benefit": ["recxLEc1ByAhWThu9"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "Name": "recT2m2Gu0iUWBZil",
       "path": "veteran + CAF",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recg5zjkXaddMWQEf"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recpCQ81MXjUrrerT",
+      "benefit": ["recjwmJ968SZ7qup6"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recs3DyQVVYGMVScK",
       "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recCkQL77l0KZ2u7Y"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recgi1wg3Z0xhI0KC",
+      "benefit": ["recFLDbWgjFwkw8SP"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recjJOW5cXFjCcEvt",
       "path": "veteran + hasServiceHealthIssue",
       "serviceType": [],
       "statusAndVitals": []
     },
     {
-      "benefit": ["recYOyXOqqSSCUVcN"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "Name": "recdtaTP1HL6hgId7",
-      "path": "family + CAF + deceased",
-      "serviceHealthIssue": []
+      "benefit": ["rec1flnDzoxEXozXE"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recgUXjEaFqSCKmYY",
+      "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recEW4yF4GE4V1lTS"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "Name": "recIKNddEHsrPobsJ",
+      "benefit": ["recHnRYudEjQgvZEJ"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "Name": "recLbAD2NF7daSPdA",
       "path": "family + WSV (WWII or Korea) + deceased",
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recEW4yF4GE4V1lTS"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "Name": "recvSEet4Pf5xm2Ng",
+      "benefit": ["recHnRYudEjQgvZEJ"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "Name": "recyjrEidNURSQGy7",
       "path": "family + CAF + deceased",
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recZv71nHMgCoX93h"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY", "rec3hFX4SlnBMPl7W"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "Name": "rectgNnpMlvUf515X",
+      "benefit": ["rec2WUrcQKVoJrNO8"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P", "rec6IsnT1j2n7jZSN"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "Name": "recwHANeVjaGAzFQO",
       "path": "family + CAF, WSV (WWII or Korea) + deceased",
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["rec3l8XwdR85xWNJ2"],
-      "patronType": ["recu6xP62BL9yFbWN", "recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "rec9M3lN0KwS8CJmj",
+      "benefit": ["rec6MVnlmPNRSqruT"],
+      "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "reccdQLC9IbEt6n7a",
       "path": "veteran, servingMember + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recaa4nxdJnSV3NrJ"],
-      "patronType": ["recu6xP62BL9yFbWN", "recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "Name": "recAz6FLY6qy3GkHd",
+      "benefit": ["recdBRNmmH2EgxrcA"],
+      "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "Name": "recD0T5A745koaYs4",
       "path": "veteran, servingMember + CAF",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["rec7Ih8Q0YprrzK0R"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
-      "Name": "recJOORI4GtWCenMm",
+      "benefit": ["reca94yF9W4dM3oLI"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "statusAndVitals": ["rec6Wp9xvBkdccOqc"],
+      "Name": "recMfBhxdE8IXI1xd",
       "path": "family + releasedAlive",
       "serviceType": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["rec7Ih8Q0YprrzK0R"],
-      "patronType": ["recu6xP62BL9yFbWN"],
+      "benefit": ["reca94yF9W4dM3oLI"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
       "serviceType": [
-        "rec6sKyG0dMJ7HLhY",
-        "rec3hFX4SlnBMPl7W",
-        "recIMgfjrCozH9eVW"
+        "rec9TxYv9brvsbp2P",
+        "rec6IsnT1j2n7jZSN",
+        "recLd3F8AA3l2DSGN"
       ],
-      "Name": "recTghMYMtuQiLimr",
+      "Name": "recWH4cNVr9CDfW7i",
       "path": "veteran + CAF, WSV (WWII or Korea), RCMP",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recKZD7EgawQUTf98"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "Name": "recyyVwXzhgcX14IC",
+      "benefit": ["recNqqxtp8bCfnTUZ"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "Name": "recBZIWMIfVYivItt",
       "path": "veteran + WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recKZD7EgawQUTf98"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recJDGon9UpIRv1C6",
+      "benefit": ["recNqqxtp8bCfnTUZ"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recM4tOciS4ucZFnX",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["rechnadMxMHp86vv8"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "rece3ZFiriZxO63e4",
+      "benefit": ["reckOXDBGKmbtA9gZ"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "statusAndVitals": ["rec6Wp9xvBkdccOqc"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "rechuM57AgEj9AHZV",
       "path": "family + releasedAlive + hasServiceHealthIssue",
       "serviceType": []
     },
     {
-      "benefit": ["rechnadMxMHp86vv8"],
-      "patronType": ["recu6xP62BL9yFbWN", "recC9OodJNCqbnGy2"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recg7V3k3ol4FLAMh",
+      "benefit": ["reckOXDBGKmbtA9gZ"],
+      "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recjyIt9cm0Q0fex8",
       "path": "veteran, servingMember + hasServiceHealthIssue",
       "serviceType": [],
       "statusAndVitals": []
     },
     {
-      "benefit": ["recVgcA6MDGMBFjzH"],
-      "patronType": ["recuWkVDSEWc1K0eU", "recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY", "rec3hFX4SlnBMPl7W"],
-      "Name": "recxq80Dbs1ijRlaE",
+      "benefit": ["recYHZ0VVBlyW9Xky"],
+      "patronType": ["recxn7ls1CBYmeEZL", "recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P", "rec6IsnT1j2n7jZSN"],
+      "Name": "recARVqskqG4ElZVv",
       "path": "family, veteran + CAF, WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["reccTUqI8ybL1aHQR"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "Name": "rec0AZCo8gx3HzLy1",
+      "benefit": ["recfkHQxhwQxmElBI"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "Name": "rec31M2dhecP23pjS",
       "path": "family + WSV (WWII or Korea) + deceased",
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["reccTUqI8ybL1aHQR"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "Name": "recaVVZzKjrd2Duj8",
+      "benefit": ["recfkHQxhwQxmElBI"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "Name": "recdmIpoTh6Zn784Z",
       "path": "veteran + WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recPUSdA7VeaZGUGh"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recBr3SAQU0GijleA",
+      "benefit": ["recSlFDpgTTWkayr8"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recESQipZSFsDNZZr",
       "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recPUSdA7VeaZGUGh"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recGkh4BgTTH4ibVq",
+      "benefit": ["recSlFDpgTTWkayr8"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recJL4uqpRytpMPGh",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recjDkgdzzzNS6i5A"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "Name": "recDSeANhF5XrVRcr",
-      "path": "family + CAF + deceased",
-      "serviceHealthIssue": []
-    },
-    {
-      "benefit": ["recjDkgdzzzNS6i5A"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recxc6T4F7Ft3bF0t",
-      "path": "veteran + CAF + hasServiceHealthIssue",
-      "statusAndVitals": []
-    },
-    {
-      "benefit": ["recTJGH8uGpz9FIcl"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recgsVRR5F96KoQvT",
+      "benefit": ["recm47G2IxezdAWQr"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recGj10CqDKJMpvXi",
       "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recTJGH8uGpz9FIcl"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recmRtb7mI9XaukBw",
+      "benefit": ["recm47G2IxezdAWQr"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recADTjTO5kfoFjLk",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recBSXP6pYDS8xJJH"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
+      "benefit": ["recWat7XDE4lu9mXc"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recjTIhGeDOS5SugK",
+      "path": "family + CAF + deceased + hasServiceHealthIssue"
+    },
+    {
+      "benefit": ["recWat7XDE4lu9mXc"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recpigBWvGOJvYYmn",
+      "path": "veteran + CAF + hasServiceHealthIssue",
+      "statusAndVitals": []
+    },
+    {
+      "benefit": ["recEjKfVyWiEt1nuy"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
       "serviceType": [
-        "rec6sKyG0dMJ7HLhY",
-        "rec3hFX4SlnBMPl7W",
-        "recIMgfjrCozH9eVW"
+        "rec9TxYv9brvsbp2P",
+        "rec6IsnT1j2n7jZSN",
+        "recLd3F8AA3l2DSGN"
       ],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "Name": "recGSaT5q7VLKIDtA",
-      "path": "family + CAF, WSV (WWII or Korea), RCMP + deceased",
-      "serviceHealthIssue": []
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recJjXjUz5Ax5cher",
+      "path": "family + CAF, WSV (WWII or Korea), RCMP + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recpq5tKJOXWZ3JCS"],
-      "patronType": ["recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY", "recIMgfjrCozH9eVW"],
-      "Name": "recCwYo9TbCnPBa7y",
+      "benefit": ["recsRSTzSMCIkxnnJ"],
+      "patronType": ["recFABO2SLhcwRkjT"],
+      "serviceType": ["rec9TxYv9brvsbp2P", "recLd3F8AA3l2DSGN"],
+      "Name": "recFXLOY29h9a5OSp",
       "path": "servingMember + CAF, RCMP",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recewrfxHbTWEVPig"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recEfRVYLpvWvqISx",
+      "benefit": ["rechXeFmQ9yIZpt37"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recHGElNUnaIQUmDo",
       "path": "veteran + hasServiceHealthIssue",
       "serviceType": [],
       "statusAndVitals": []
     },
     {
-      "benefit": ["rec8GCHaN2UirvW8H"],
-      "patronType": ["rec2pB1RcV3BvyjPX"],
-      "Name": "recckWh09Jtsuk3YK",
+      "benefit": ["recb7p7ZW0z4MZATy"],
+      "patronType": ["rec5QorGlTInQ2XAO"],
+      "Name": "recfLJHPiH8ePOHJB",
       "path": "organization",
       "serviceType": [],
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recnTqWEj6jCEF8h7"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recdzam05SfCt5PqJ",
+      "benefit": ["recqkdmts4YoZ9M2Y"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recg0XMPeQUoOztbA",
       "path": "family + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recnTqWEj6jCEF8h7"],
-      "patronType": ["recC9OodJNCqbnGy2"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "Name": "recgDfxgjD31in4Qu",
+      "benefit": ["recqkdmts4YoZ9M2Y"],
+      "patronType": ["recFABO2SLhcwRkjT"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "Name": "recj42X5sBINDRIBl",
       "path": "servingMember + CAF",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recnTqWEj6jCEF8h7"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recefz1kpLFu7Vkxh",
+      "benefit": ["recqkdmts4YoZ9M2Y"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "rechGmr9yJkgspYi8",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recz9Md6FW0Pc28aD"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb", "rec3vCJImDFrRIaFl"],
-      "Name": "recZaVwvEl6tECI6q",
+      "benefit": ["recCAzDVOUFBxwMVu"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2", "rec6Wp9xvBkdccOqc"],
+      "Name": "rec2BIWkNjLfZ6mRh",
       "path": "family + deceased, releasedAlive",
       "serviceType": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recz9Md6FW0Pc28aD"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "Name": "recDqCwht7xfG2egL",
+      "benefit": ["recCAzDVOUFBxwMVu"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "Name": "recGRpW6C5c11wS1C",
       "path": "veteran",
       "serviceType": [],
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recFMnhGVbQT8de27"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec3hFX4SlnBMPl7W", "rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl", "recDW9csGX2ekiwXb"],
-      "Name": "recwtgBef5LIpUifM",
+      "benefit": ["recIdaHv49vFtHSNY"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec6IsnT1j2n7jZSN", "rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["rec6Wp9xvBkdccOqc", "recGnWChPVH0FMaI2"],
+      "Name": "reczU313o3quKoW0D",
       "path": "family + WSV (WWII or Korea), CAF + releasedAlive, deceased",
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recFMnhGVbQT8de27"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "Name": "rec6vIdu4K8xl1nxi",
+      "benefit": ["recIdaHv49vFtHSNY"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "Name": "rec9WvDjdINjGv1i9",
       "path": "veteran + CAF",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recqpTIM3UcQkeRh0"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY", "rec3hFX4SlnBMPl7W"],
-      "Name": "recnz9qP2cSNgBzE8",
-      "path": "veteran + CAF, WSV (WWII or Korea)",
+      "benefit": ["rectQG8BcSRCFIv2R"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P", "rec6IsnT1j2n7jZSN"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recq0WQEbaxzB5dpZ",
+      "path": "veteran + CAF, WSV (WWII or Korea) + hasServiceHealthIssue",
+      "statusAndVitals": []
+    },
+    {
+      "benefit": ["rectQG8BcSRCFIv2R"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "Name": "recQTeje49tk9F6EF",
+      "path": "veteran + WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recFk2YDDOAkzkCDt"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY", "rec3hFX4SlnBMPl7W"],
-      "statusAndVitals": ["rec3vCJImDFrRIaFl"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recGHjWL2HmAE4lVC",
+      "benefit": ["recILPosMMf6UOgok"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P", "rec6IsnT1j2n7jZSN"],
+      "statusAndVitals": ["rec6Wp9xvBkdccOqc"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recJ86mAbF1mZyZGt",
       "path": "family + CAF, WSV (WWII or Korea) + releasedAlive + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recnFM2L5VrwSyEWZ"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recIskrwtXkfLjDKu",
+      "benefit": ["recq6zsAeT6id2iHQ"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recLT7RlCVZ16Nhvl",
       "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recO8NVH2tWIjNpDA"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
+      "benefit": ["recRzAlwbrBuEh3or"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
       "statusAndVitals": [
-        "recM3T55J3Xf1qP16",
-        "rec3vCJImDFrRIaFl",
-        "recDW9csGX2ekiwXb"
+        "recPuGvUS1C1mUtMX",
+        "rec6Wp9xvBkdccOqc",
+        "recGnWChPVH0FMaI2"
       ],
-      "Name": "recQKuvUeQib6xDlk",
-      "path": "family + CAF + stillServing, releasedAlive, deceased",
-      "serviceHealthIssue": []
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recTbhVJnOXXr1h6b",
+      "path": "family + CAF + stillServing, releasedAlive, deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recR3CLbZSRlbGQJV"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec6sKyG0dMJ7HLhY"],
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "Name": "recTh0JLYM6omz07j",
+      "benefit": ["recUupb08Qw7wauuM"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec9TxYv9brvsbp2P"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "Name": "recWIN9A7KLaH3ESa",
       "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
-      "benefit": ["recDRPu2NF4UIximU"],
-      "patronType": ["recuWkVDSEWc1K0eU"],
-      "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "statusAndVitals": ["recDW9csGX2ekiwXb"],
-      "Name": "recxiPnxu1B8Xq1HX",
+      "benefit": ["recGiCURWDJG31W7L"],
+      "patronType": ["recxn7ls1CBYmeEZL"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "statusAndVitals": ["recGnWChPVH0FMaI2"],
+      "Name": "recAJCNmDZgUiUFsO",
       "path": "family + WSV (WWII or Korea) + deceased",
       "serviceHealthIssue": []
     },
     {
-      "benefit": ["recDRPu2NF4UIximU"],
-      "patronType": ["recu6xP62BL9yFbWN"],
-      "serviceType": ["rec3hFX4SlnBMPl7W"],
-      "Name": "recqM9VdRHwdy35Xf",
+      "benefit": ["recGiCURWDJG31W7L"],
+      "patronType": ["recxxkfVbzqVT9PHE"],
+      "serviceType": ["rec6IsnT1j2n7jZSN"],
+      "Name": "rectdWl20FbZTxJI6",
       "path": "veteran + WSV (WWII or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
@@ -2313,134 +2326,134 @@
   "needs": [
     {
       "nameEn": "Emergency funds",
-      "benefits": ["recFMnhGVbQT8de27", "rec7vYqDWYPQnDcRK"],
+      "benefits": ["recIdaHv49vFtHSNY", "recaWLQs5WuCI7QCB"],
       "nameFr": "Fonds d'urgence",
       "colour": "#f0b5b5",
-      "id": "recEahND3kwnUPTHx"
+      "id": "recHB4dscib9fjxso"
     },
     {
       "nameEn": "Career and jobs",
       "benefits": [
-        "rec45xfsf1ijZzXqM",
-        "recO8NVH2tWIjNpDA",
-        "recaa4nxdJnSV3NrJ",
-        "recukRMcsAVvBpDJi",
-        "recPUSdA7VeaZGUGh",
-        "recVKse8WgvLYcfgP",
-        "recR3CLbZSRlbGQJV",
-        "recpq5tKJOXWZ3JCS"
+        "rec7wkFhoZX5k3BbD",
+        "recRzAlwbrBuEh3or",
+        "recdBRNmmH2EgxrcA",
+        "recxLEc1ByAhWThu9",
+        "recSlFDpgTTWkayr8",
+        "recYbfEX5eaxjGT1G",
+        "recUupb08Qw7wauuM",
+        "recsRSTzSMCIkxnnJ"
       ],
       "nameFr": "Carrière et emplois",
       "colour": "#c0ddbb",
-      "id": "recFX7O3dYwg44kpM"
+      "id": "recIoUeSmWb2pyYaD"
     },
     {
       "nameEn": "Education and training",
       "benefits": [
-        "recPUSdA7VeaZGUGh",
-        "recO8NVH2tWIjNpDA",
-        "recukRMcsAVvBpDJi",
-        "recR3CLbZSRlbGQJV",
-        "recpq5tKJOXWZ3JCS",
-        "recg5zjkXaddMWQEf"
+        "recSlFDpgTTWkayr8",
+        "recRzAlwbrBuEh3or",
+        "recxLEc1ByAhWThu9",
+        "recUupb08Qw7wauuM",
+        "recsRSTzSMCIkxnnJ",
+        "recjwmJ968SZ7qup6"
       ],
       "nameFr": "Études et formation",
       "colour": "#ddbbdd",
-      "id": "rec1pKJ7uJYwqVOLx"
+      "id": "rec4Qx9WDHDiLpswo"
     },
     {
       "nameEn": "Income assistance",
       "benefits": [
-        "recDU2iSRQ300ixBt",
-        "reccTUqI8ybL1aHQR",
-        "recL63epbxypNYRjL",
-        "recDRPu2NF4UIximU",
-        "recBSXP6pYDS8xJJH",
-        "recNsVtmotVHzDhAB",
-        "recH5vAKgnu56IwlS",
-        "rece4vwRrORpYznkw",
-        "recTJGH8uGpz9FIcl",
-        "recjDkgdzzzNS6i5A",
-        "recCkQL77l0KZ2u7Y",
-        "recOJ3P1wiacWA5jr",
-        "recMguNzAXgdpEDOJ",
-        "recKZD7EgawQUTf98",
-        "recVKse8WgvLYcfgP",
-        "rec7vYqDWYPQnDcRK",
-        "rec6osa4YoZNwJcNW",
-        "rec0jzif5VceIWKh3",
-        "recXrrmxgZ66BoiK3"
+        "recGlPIH0OIMlMbmk",
+        "recfkHQxhwQxmElBI",
+        "recOxQEekvdb8sv4C",
+        "recGiCURWDJG31W7L",
+        "recEjKfVyWiEt1nuy",
+        "recQTITbxrAtU7Vls",
+        "recKwi0zpl9Rrca6J",
+        "rechviWGAMwbj315n",
+        "recWat7XDE4lu9mXc",
+        "recm47G2IxezdAWQr",
+        "recFLDbWgjFwkw8SP",
+        "recRaQfQFgPYh4J4i",
+        "recPHhdoJVVZK8hzA",
+        "recNqqxtp8bCfnTUZ",
+        "recYbfEX5eaxjGT1G",
+        "recaWLQs5WuCI7QCB",
+        "rec9PfAT7mEzRdQyN",
+        "rec3KmI4eTR03qo2U",
+        "rec0SeMmpXLSWSWvU"
       ],
       "nameFr": "Aide au revenu",
       "colour": "#e1dbb0",
-      "id": "recpN4AgAGiH3x7KZ"
+      "id": "recseR05JEXto1LvQ"
     },
     {
       "nameEn": "Medical expenses",
       "benefits": [
-        "rec3l8XwdR85xWNJ2",
-        "recPUSdA7VeaZGUGh",
-        "recewrfxHbTWEVPig",
-        "rec6osa4YoZNwJcNW",
-        "rec0jzif5VceIWKh3",
-        "recpq5tKJOXWZ3JCS"
+        "rec6MVnlmPNRSqruT",
+        "recSlFDpgTTWkayr8",
+        "rechXeFmQ9yIZpt37",
+        "rec9PfAT7mEzRdQyN",
+        "rec3KmI4eTR03qo2U",
+        "recsRSTzSMCIkxnnJ"
       ],
       "nameFr": "Dépenses médicales",
       "colour": "#9ee9d6",
-      "id": "recGvrfrW7njPwsbk"
+      "id": "recJWeFg5525a06Wb"
     },
     {
       "nameEn": "Health and well-being services",
       "benefits": [
-        "recVgcA6MDGMBFjzH",
-        "recPUSdA7VeaZGUGh",
-        "recnTqWEj6jCEF8h7",
-        "rechnadMxMHp86vv8",
-        "recqpTIM3UcQkeRh0",
-        "recVKse8WgvLYcfgP",
-        "recYOyXOqqSSCUVcN",
-        "recEHxSnVLcMvYnbS",
-        "recewrfxHbTWEVPig",
-        "rec7Ih8Q0YprrzK0R",
-        "recpq5tKJOXWZ3JCS",
-        "recRjHdedubwgblQD",
-        "recz9Md6FW0Pc28aD",
-        "recFk2YDDOAkzkCDt"
+        "recYHZ0VVBlyW9Xky",
+        "recSlFDpgTTWkayr8",
+        "recqkdmts4YoZ9M2Y",
+        "reckOXDBGKmbtA9gZ",
+        "rectQG8BcSRCFIv2R",
+        "recYbfEX5eaxjGT1G",
+        "rec1flnDzoxEXozXE",
+        "recH8kic4JRyQs1WJ",
+        "rechXeFmQ9yIZpt37",
+        "reca94yF9W4dM3oLI",
+        "recsRSTzSMCIkxnnJ",
+        "recUKuD3msQiBFZBu",
+        "recCAzDVOUFBxwMVu",
+        "recILPosMMf6UOgok"
       ],
       "nameFr": "Santé physique et mentale",
       "colour": "#e9cf9e",
-      "id": "recmmMZPP4DI6Nq0a"
+      "id": "recpNzpEY2iurh4L1"
     },
     {
       "nameEn": "Elder care",
       "benefits": [
-        "recDRPu2NF4UIximU",
-        "recL63epbxypNYRjL",
-        "recNsVtmotVHzDhAB",
-        "recKZD7EgawQUTf98",
-        "recqpTIM3UcQkeRh0"
+        "recGiCURWDJG31W7L",
+        "recOxQEekvdb8sv4C",
+        "recQTITbxrAtU7Vls",
+        "recNqqxtp8bCfnTUZ",
+        "rectQG8BcSRCFIv2R"
       ],
       "nameFr": "Soins aux aînés",
       "colour": "#cdbbed",
-      "id": "recXfW6phH2FFcE3T"
+      "id": "rec0GJweqFHr0GiOK"
     },
     {
       "nameEn": "Death and bereavement",
       "benefits": [
-        "recDU2iSRQ300ixBt",
-        "recO8NVH2tWIjNpDA",
-        "recBSXP6pYDS8xJJH",
-        "recVgcA6MDGMBFjzH",
-        "recMM2R9Dh1WUKxx6",
-        "recEW4yF4GE4V1lTS",
-        "recVKse8WgvLYcfgP",
-        "recYOyXOqqSSCUVcN",
-        "recZv71nHMgCoX93h",
-        "recnFM2L5VrwSyEWZ"
+        "recGlPIH0OIMlMbmk",
+        "recRzAlwbrBuEh3or",
+        "recEjKfVyWiEt1nuy",
+        "recYHZ0VVBlyW9Xky",
+        "recPdPhYMfGIfebiX",
+        "recHnRYudEjQgvZEJ",
+        "recYbfEX5eaxjGT1G",
+        "rec1flnDzoxEXozXE",
+        "rec2WUrcQKVoJrNO8",
+        "recq6zsAeT6id2iHQ"
       ],
       "nameFr": "Décès et deuil",
       "colour": "#b9c3d7",
-      "id": "recjTEL7xK4196TE7"
+      "id": "recmkrbWGIJNuAxpY"
     }
   ],
   "translations": [
@@ -3110,13 +3123,6 @@
       "section": ""
     },
     {
-      "key": "feedback-response",
-      "English": "Thank you for your feedback.",
-      "French": "Merci pour votre avis.",
-      "id": "feedback-response",
-      "section": ""
-    },
-    {
       "key": "filter by category",
       "English": "Filter by category",
       "French": "Filtrer par sujet",
@@ -3729,57 +3735,155 @@
       "section": "feedback",
       "key": "bug_prompt",
       "English": "Did something go wrong?",
-      "French": "(fra) Did something go wrong?",
+      "French": "Est-ce que quelque chose a mal fonctionné? ",
       "id": "feedback.bug_prompt"
     },
     {
       "section": "feedback",
       "key": "how_can_info_be_more_useful",
       "English": "How can we provide information that is more useful?",
-      "French": "(fra) How can we provide information that is more useful?",
+      "French": "Comment pouvons-nous fournir des renseignements plus utiles? ",
       "id": "feedback.how_can_info_be_more_useful"
     },
     {
       "section": "feedback",
       "key": "details_question",
       "English": "Do you need help with your application?",
-      "French": "(fra) Do you need help with your application?",
+      "French": "Avez-vous besoin d’aide pour remplir votre demande? ",
       "id": "feedback.details_question"
     },
     {
       "section": "feedback",
-      "key": "details_expansion",
-      "English": "The staff at any VAC office or Transition Centre (TC) can assist you, or call us at 1-866-522-2122.",
-      "French": "(fra) The staff at any VAC office or Transition Centre (TC) can assist you, or call us at 1-866-522-2122.",
-      "id": "feedback.details_expansion"
+      "key": "details_expansion_pt1",
+      "English": "The staff at any ",
+      "French": "Le personnel d'un ",
+      "id": "feedback.details_expansion_pt1"
+    },
+    {
+      "section": "feedback",
+      "key": "details_expansion_pt2",
+      "English": "VAC office",
+      "French": "bureau d'ACC",
+      "id": "feedback.details_expansion_pt2"
+    },
+    {
+      "section": "feedback",
+      "key": "details_expansion_pt3",
+      "English": " or ",
+      "French": " ou d'un ",
+      "id": "feedback.details_expansion_pt3"
+    },
+    {
+      "section": "feedback",
+      "key": "details_expansion_pt4",
+      "English": "Transition Centre (TC)",
+      "French": "Centres de transition (CT)",
+      "id": "feedback.details_expansion_pt4"
+    },
+    {
+      "section": "feedback",
+      "key": "details_expansion_pt5",
+      "English": " can assist you, or call us at 1-866-522-2122.",
+      "French": " peut vous aider, ou appelez-nous au 1-866-522-2022.",
+      "id": "feedback.details_expansion_pt5"
+    },
+    {
+      "section": "feedback",
+      "key": "response_p1",
+      "English": "Thank you for your feedback. If you have more,",
+      "French": "Merci pour votre avis.",
+      "id": "feedback.response_p1"
+    },
+    {
+      "section": "feedback",
+      "key": "response_p2",
+      "English": "let us know.",
+      "French": "(fra) let us know.",
+      "id": "feedback.response_p2"
+    },
+    {
+      "section": "feedback",
+      "key": "vac_office_link",
+      "English": "https://www.veterans.gc.ca/eng/contact",
+      "French": "https://www.veterans.gc.ca/fra/contactez",
+      "id": "feedback.vac_office_link"
+    },
+    {
+      "section": "feedback",
+      "key": "transition_centre_link",
+      "English": "https://www.veterans.gc.ca/eng/services/information-for/caf/ipsc",
+      "French": "https://www.veterans.gc.ca/fra/services/information-for/caf/ipsc",
+      "id": "feedback.transition_centre_link"
     },
     {
       "section": "beta_banner",
       "key": "main",
-      "English": "This is a new online tool.",
-      "French": "(fra) This is a new online tool.",
+      "English": "This tool is under development and is for testing purposes only. We're working to ensure accurate results. ",
+      "French": "Cet outil fait l’objet d’un développement continu et est conçu à des fins de test. Nous nous efforçons d’obtenir des résultats exacts.  ",
       "id": "beta_banner.main"
     },
     {
       "section": "beta_banner",
       "key": "link_text",
-      "English": "Click here to provide feedback. ",
-      "French": "(fra) Click here to provide feedback.",
+      "English": "Give feedback to help us improve. ",
+      "French": "Faites-nous part de vos commentaires pour nous aider à nous améliorer.",
       "id": "beta_banner.link_text"
+    },
+    {
+      "key": "quick_links",
+      "English": "Quick Links",
+      "French": "(fra) Quick Links",
+      "id": "quick_links",
+      "section": ""
+    },
+    {
+      "section": "titles",
+      "key": "benefits_and_services",
+      "English": "Benefits and services",
+      "French": "(fra) Benefits and services",
+      "id": "titles.benefits_and_services"
+    },
+    {
+      "key": "share_colon",
+      "English": "Share:",
+      "French": "(fra) Share:",
+      "id": "share_colon",
+      "section": ""
+    },
+    {
+      "section": "titles",
+      "key": "saved_list",
+      "English": "Saved list",
+      "French": "(fra) Saved list",
+      "id": "titles.saved_list"
+    },
+    {
+      "section": "titles",
+      "key": "x_saved_benefits",
+      "English": "{{x}} saved benefits and services",
+      "French": "(fra) {{x}} saved benefits and services",
+      "id": "titles.x_saved_benefits"
+    },
+    {
+      "section": "titles",
+      "key": "1_saved_benefit",
+      "English": "1 saved benefit or service",
+      "French": "(fra) 1 saved benefit or service",
+      "id": "titles.1_saved_benefit"
     }
   ],
   "questions": [
     {
       "variable_name": "patronType",
       "multiple_choice_options": [
-        "recu6xP62BL9yFbWN",
-        "recuWkVDSEWc1K0eU",
-        "rec2pB1RcV3BvyjPX",
-        "recC9OodJNCqbnGy2"
+        "recxxkfVbzqVT9PHE",
+        "recxn7ls1CBYmeEZL",
+        "rec5QorGlTInQ2XAO",
+        "recFABO2SLhcwRkjT"
       ],
       "display_text_english": "My selection:",
       "display_text_french": "Ma sélection:",
-      "question display logic": ["recn0zobKUhFIowAh", "recdXDG6qy8fOltJr"],
+      "question display logic": ["recqrmO0TSWr3Sal8", "recgoq6VzwN19P7ui"],
       "guided_experience_english": "Select who will be receiving the benefits.",
       "guided_experience_french": "Sélectionnez qui recevra les services.",
       "guided_experience_page_title_english": "Select who will be receiving the benefits.",
@@ -3788,23 +3892,23 @@
       "breadcrumb_french": "Prestataire",
       "summary_english": "Who will be receiving the benefits:",
       "summary_french": "Qui recevra les avantages :",
-      "id": "recwwXPBszQacaMsb",
+      "id": "reczXKfqBxvWxEqd2",
       "questionClearLogic": [],
       "questionClearLogic 2 copy": ""
     },
     {
       "variable_name": "serviceType",
       "multiple_choice_options": [
-        "rec6sKyG0dMJ7HLhY",
-        "recIMgfjrCozH9eVW",
-        "rec3hFX4SlnBMPl7W"
+        "rec9TxYv9brvsbp2P",
+        "recLd3F8AA3l2DSGN",
+        "rec6IsnT1j2n7jZSN"
       ],
       "display_text_english": "Service type:",
       "display_text_french": "Type de service:",
-      "question display logic": ["reczEVuK0ipZkAIec"],
+      "question display logic": ["recC5IUz9g4LF4mZ3"],
       "guided_experience_english": "Select the service type.",
       "guided_experience_french": "Sélectionnez le type de service.",
-      "questionClearLogic": ["rec9DCmvkqeW06zqu"],
+      "questionClearLogic": ["recc4pMktoTIlAdbl"],
       "questionClearLogic 2 copy": "Unnamed record",
       "guided_experience_page_title_english": "Select the service type.",
       "guided_experience_page_title_french": "Sélectionnez le type de service.",
@@ -3812,20 +3916,20 @@
       "breadcrumb_french": "Type de service",
       "summary_english": "Service type:",
       "summary_french": "Type de service:",
-      "id": "recd9vxcm3gb3jkLE"
+      "id": "recgAiX1v1VXoNYwv"
     },
     {
       "variable_name": "statusAndVitals",
       "multiple_choice_options": [
-        "recM3T55J3Xf1qP16",
-        "rec3vCJImDFrRIaFl",
-        "recDW9csGX2ekiwXb"
+        "recPuGvUS1C1mUtMX",
+        "rec6Wp9xvBkdccOqc",
+        "recGnWChPVH0FMaI2"
       ],
       "display_text_english": "Veteran Service status:",
       "display_text_french": "Statut du membre:",
       "guided_experience_english": "Select the service status.",
       "guided_experience_french": "Sélectionnez  le statut du membre.",
-      "questionClearLogic 2": ["rec9DCmvkqeW06zqu"],
+      "questionClearLogic 2": ["recc4pMktoTIlAdbl"],
       "questionClearLogic 2 copy": "Unnamed record, Unnamed record, Unnamed record",
       "guided_experience_page_title_english": "Select the service status.",
       "guided_experience_page_title_french": "Sélectionnez  le statut du membre.",
@@ -3833,19 +3937,19 @@
       "breadcrumb_french": "État",
       "summary_english": "Status:",
       "summary_french": "État:",
-      "id": "recUrZvFSfHUMzii7",
+      "id": "recXSMVu1dmG73W3Y",
       "question display logic": [],
       "questionClearLogic": []
     },
     {
       "variable_name": "serviceHealthIssue",
-      "multiple_choice_options": ["recxVaqj0O8BPKyeD", "recC0Rsw47ySCM1sS"],
+      "multiple_choice_options": ["recAmXQ89MNnaecZu", "recFrESld5dEXgFdJ"],
       "display_text_english": "Is there a service-related health issue?",
       "display_text_french": "A-t-il un problème de santé lié au service?",
       "guided_experience_english": "Is there a service-related health issue?",
       "guided_experience_french": "A-t-il un problème de santé lié au service?",
       "questionClearLogic 2 copy": "Unnamed record, Unnamed record, Unnamed record",
-      "tooltip_english": "A service-related health issue is an illness or injury that was caused or worsened by military service. It must be medically diagnosed by a doctor. Examples include: hearing loss and tinnitus, depression, or a shoulder injury.",
+      "tooltip_english": "A service-related health issue is an illness or injury that was caused or worsened by military service. It must be medically diagnosed by a doctor. Examples include: hearing loss, tinnitus, depression, or a shoulder injury.",
       "tooltip_french": "Un problème de santé lié au service militaire est une maladie ou une blessure qui a été causée ou aggravée par le service militaire. Il doit être diagnostiqué médicalement par un médecin. Exemples : acouphènes, dépression.",
       "guided_experience_page_title_english": "Is there a service-related health issue?",
       "guided_experience_page_title_french": "A-t-il un problème de santé lié au service?",
@@ -3853,7 +3957,7 @@
       "breadcrumb_french": "Enjeu de santé",
       "summary_english": "Is there a service-related health issue?",
       "summary_french": "A-t-il un problème de santé lié au service?",
-      "id": "reccsWjclog8m3Od1",
+      "id": "recfTJJ1umVUHxsYS",
       "question display logic": [],
       "questionClearLogic": []
     },
@@ -3863,13 +3967,15 @@
       "display_text_french": "Filtrer par sujet",
       "guided_experience_english": "Select the categories of benefits you want to see.",
       "guided_experience_french": "Sélectionnez les types d'avantages que vous voulez consulter. ",
+      "tooltip_english": "We will use these categories to narrow your results.",
+      "tooltip_french": "Nous utiliserons ces catégories pour limiter les résultats de votre recherche. ",
       "guided_experience_page_title_english": "Select the categories of benefits you want to see.",
       "guided_experience_page_title_french": "Sélectionnez les types d'avantages que vous voulez consulter. ",
       "breadcrumb_english": "Category",
       "breadcrumb_french": "Catégorie",
       "summary_english": "Categories of benefits:",
       "summary_french": "Catégories d’avantages :",
-      "id": "recritlpywwyoGLtm",
+      "id": "recuJgLeHubkJaped",
       "multiple_choice_options": [],
       "question display logic": [],
       "questionClearLogic": [],
@@ -3878,15 +3984,15 @@
     {
       "variable_name": "feedback",
       "multiple_choice_options": [
-        "reclaTGtFPEjKNXat",
-        "reca3onCEzVopM1xc",
-        "rec9Flp9oGEodmRY8",
-        "recfvTTRFwRni8ejE",
-        "recVK9104C5UqinVI"
+        "recoBG6iONj55hBVk",
+        "recdubNrNxAaKgFi3",
+        "recc68PYxEjayQvJZ",
+        "reciWGjGOuw9DCS4v",
+        "recYbWrPdAKGLM1Gz"
       ],
       "display_text_english": "Overall, how was your experience with this online tool?",
-      "display_text_french": "(fra) Overall, how was your experience with this online tool?",
-      "id": "recEv3U5Kmsp6KSPM",
+      "display_text_french": "Dans l’ensemble, quelle a été votre expérience avec cet outil en ligne? ",
+      "id": "recHWQkUTk7brewAD",
       "question display logic": [],
       "guided_experience_english": "",
       "guided_experience_french": "",
@@ -3905,46 +4011,51 @@
       "display_text_english": "Benefits for Veterans",
       "display_text_french": "Services pour les vétérans",
       "linked_question": ["patronType"],
-      "question display logic": ["recn0zobKUhFIowAh"],
+      "question display logic": ["recqrmO0TSWr3Sal8"],
       "variable_name": "veteran",
       "benefits": "Assistance Fund , Attendance Allowance, Career Transition Services, Career Impact Allowance, Clothing Allowance, Critical Injury Benefit, Detention Benefits, Disability Award, Education and Training Benefit, Exceptional Incapacity Allowance, Group Health Insurance, Jobs in the federal government, Treatment Benefits, Pastoral Outreach , Veteran Family Program, Disability Pension",
       "benefitEligibility": "recfWHf1YmVfz0ppj, rec6ejmokDXrYAUqT, recGR0KBNakgQbLG5, recR4crMdLtxDz0cf, recl8EQBaoPvkUs1y, rec3LMYRHMRfFdc2E, recxyzl32f531NaOr, recBwJVJsjz3KF2kz, recoWEBTf2fHKxO8T, recNbQZ8omQdO5FhH, recLCU5pg8cn8v6cO, recmwLUgfMCQyfiDd, rece9Xkt73rx6IOOw, recI2JIvA0Mtvna2v, recmsrOwzHKCsUNl6, recQBzCRl2D8B7lxu, recgi1wg3Z0xhI0KC, rec9M3lN0KwS8CJmj, recAz6FLY6qy3GkHd, recyyVwXzhgcX14IC, recJDGon9UpIRv1C6, recg7V3k3ol4FLAMh, recxq80Dbs1ijRlaE, recaVVZzKjrd2Duj8, recGkh4BgTTH4ibVq, recxc6T4F7Ft3bF0t, recmRtb7mI9XaukBw, recEfRVYLpvWvqISx, recs1qwbmkLwDiA7Z, recefz1kpLFu7Vkxh, rec6vIdu4K8xl1nxi, recnz9qP2cSNgBzE8, recqM9VdRHwdy35Xf, recwtgBef5LIpUifM",
       "benefitEligibility 2": [
-        "recfWHf1YmVfz0ppj",
-        "rec6ejmokDXrYAUqT",
-        "recGR0KBNakgQbLG5",
-        "recR4crMdLtxDz0cf",
-        "recl8EQBaoPvkUs1y",
-        "rec3LMYRHMRfFdc2E",
-        "recxyzl32f531NaOr",
-        "recBwJVJsjz3KF2kz",
-        "recmsrOwzHKCsUNl6",
-        "recQBzCRl2D8B7lxu",
-        "recgi1wg3Z0xhI0KC",
-        "rec9M3lN0KwS8CJmj",
-        "recAz6FLY6qy3GkHd",
-        "recyyVwXzhgcX14IC",
-        "recJDGon9UpIRv1C6",
-        "recg7V3k3ol4FLAMh",
-        "recxq80Dbs1ijRlaE",
-        "recaVVZzKjrd2Duj8",
-        "recGkh4BgTTH4ibVq",
-        "recxc6T4F7Ft3bF0t",
-        "recmRtb7mI9XaukBw",
-        "recEfRVYLpvWvqISx",
-        "recefz1kpLFu7Vkxh",
-        "rec6vIdu4K8xl1nxi",
-        "recnz9qP2cSNgBzE8",
-        "recu4sFexY13tk9En",
-        "reccSZsLXT8Xond4j",
-        "recTh0JLYM6omz07j",
-        "recTghMYMtuQiLimr",
-        "recqM9VdRHwdy35Xf",
-        "recDqCwht7xfG2egL"
+        "recinuFQ7kA1Uu3aa",
+        "rec9F6MdtBCdj4ybK",
+        "recJiNaqW8Z2bFprW",
+        "recUvZRBmJ8jY3EX6",
+        "recozrgqjmuhFo6Mp",
+        "rec6czoGQKw10HQNv",
+        "recAZmLSbdKPmhOzi",
+        "recEXwlyBheP59G5q",
+        "recpTeelIFpoNor6X",
+        "recT2m2Gu0iUWBZil",
+        "recjJOW5cXFjCcEvt",
+        "reccdQLC9IbEt6n7a",
+        "recD0T5A745koaYs4",
+        "recBZIWMIfVYivItt",
+        "recM4tOciS4ucZFnX",
+        "recjyIt9cm0Q0fex8",
+        "recARVqskqG4ElZVv",
+        "recdmIpoTh6Zn784Z",
+        "recJL4uqpRytpMPGh",
+        "recADTjTO5kfoFjLk",
+        "recpigBWvGOJvYYmn",
+        "recHGElNUnaIQUmDo",
+        "rechGmr9yJkgspYi8",
+        "rec9WvDjdINjGv1i9",
+        "recq0WQEbaxzB5dpZ",
+        "recxvf53GWGPOONpe",
+        "recfjMSA6RNJJRRPa",
+        "recWIN9A7KLaH3ESa",
+        "recWH4cNVr9CDfW7i",
+        "rectdWl20FbZTxJI6",
+        "recGRpW6C5c11wS1C",
+        "recQTeje49tk9F6EF"
       ],
-      "nextSteps": ["reca8bB2Ze5HqMcG4", "recPoMfyQeBv2V5D7"],
+      "nextSteps": [
+        "recdzY1R8cKtLgQrV",
+        "recSPzFnZcghnpJoY",
+        "recZX9D8BmyE1zIeq"
+      ],
       "key (DO NOT EDIT)": "veteran",
-      "id": "recu6xP62BL9yFbWN",
+      "id": "recxxkfVbzqVT9PHE",
       "admin_display": "patronType = veteran",
       "question display logic 2": [],
       "questionClearLogic": [],
@@ -3955,28 +4066,29 @@
       "display_text_english": "Benefits for currently serving members",
       "display_text_french": "Services pour les membres en service actif",
       "linked_question": ["patronType"],
-      "question display logic": ["recdXDG6qy8fOltJr"],
+      "question display logic": ["recgoq6VzwN19P7ui"],
       "variable_name": "servingMember",
       "benefits": "Career Transition Services, Career Impact Allowance, Critical Injury Benefit, Detention Benefits, Disability Award, Group Health Insurance, Jobs in the federal government, Veteran Family Program, Disability Pension",
       "benefitEligibility": "recR4crMdLtxDz0cf, recl8EQBaoPvkUs1y, recoWEBTf2fHKxO8T, recNbQZ8omQdO5FhH, recLCU5pg8cn8v6cO, recI2JIvA0Mtvna2v, recPwgIAvnOrF9CZE, rec9M3lN0KwS8CJmj, recAz6FLY6qy3GkHd, recJDGon9UpIRv1C6, recg7V3k3ol4FLAMh, recGkh4BgTTH4ibVq, recefz1kpLFu7Vkxh",
       "benefitEligibility 2": [
-        "recl8EQBaoPvkUs1y",
-        "recoWEBTf2fHKxO8T",
-        "recNbQZ8omQdO5FhH",
-        "rec9M3lN0KwS8CJmj",
-        "recAz6FLY6qy3GkHd",
-        "recg7V3k3ol4FLAMh",
-        "recu4sFexY13tk9En",
-        "recCwYo9TbCnPBa7y",
-        "recgDfxgjD31in4Qu"
+        "recozrgqjmuhFo6Mp",
+        "recrnr1Io0Ut51sTK",
+        "recQCDpXxkvZ9zj2y",
+        "reccdQLC9IbEt6n7a",
+        "recD0T5A745koaYs4",
+        "recjyIt9cm0Q0fex8",
+        "recxvf53GWGPOONpe",
+        "recFXLOY29h9a5OSp",
+        "recj42X5sBINDRIBl"
       ],
       "nextSteps": [
-        "recRBOAZLef0VwQbH",
-        "reca8bB2Ze5HqMcG4",
-        "recPoMfyQeBv2V5D7"
+        "recU2B0OUcUMg0uWy",
+        "recdzY1R8cKtLgQrV",
+        "recSPzFnZcghnpJoY",
+        "recZX9D8BmyE1zIeq"
       ],
       "key (DO NOT EDIT)": "servingMember",
-      "id": "recC9OodJNCqbnGy2",
+      "id": "recFABO2SLhcwRkjT",
       "admin_display": "patronType = servingMember",
       "question display logic 2": [],
       "questionClearLogic": [],
@@ -3991,37 +4103,37 @@
       "benefits": "Caregiver Zone, Death Benefit, Educational Assistance for children, Family Peer Support (OSISS), Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Funeral and Burial Assistance",
       "benefitEligibility": "recOVWkhp1IfbFnRU, recC1BOsrEwQQT7Tr, recXSg015decd4TOq, recWmF49cJ0evYv0F, reclYWjGKy8oabUkO, rechaKl1wJhKe0lnF, recpCQ81MXjUrrerT, recdtaTP1HL6hgId7, recIKNddEHsrPobsJ, recvSEet4Pf5xm2Ng, rechEoLL5pBxeHcGN, recoztJkT5J9MYX2G, recRligLod0I0IhcP, rece3ZFiriZxO63e4, recxq80Dbs1ijRlaE, rec0AZCo8gx3HzLy1, recBr3SAQU0GijleA, recDSeANhF5XrVRcr, recgsVRR5F96KoQvT, recGSaT5q7VLKIDtA, receBHaEdQ29Qid3n, recdzam05SfCt5PqJ, rec6vIdu4K8xl1nxi, rechrkjJpnl8ZEamI, recQKuvUeQib6xDlk, recxiPnxu1B8Xq1HX, recwtgBef5LIpUifM",
       "benefitEligibility 2": [
-        "recOVWkhp1IfbFnRU",
-        "recC1BOsrEwQQT7Tr",
-        "recWmF49cJ0evYv0F",
-        "reclYWjGKy8oabUkO",
-        "recpCQ81MXjUrrerT",
-        "recdtaTP1HL6hgId7",
-        "recIKNddEHsrPobsJ",
-        "recvSEet4Pf5xm2Ng",
-        "rece3ZFiriZxO63e4",
-        "recxq80Dbs1ijRlaE",
-        "rec0AZCo8gx3HzLy1",
-        "recBr3SAQU0GijleA",
-        "recDSeANhF5XrVRcr",
-        "recgsVRR5F96KoQvT",
-        "recGSaT5q7VLKIDtA",
-        "recdzam05SfCt5PqJ",
-        "recwtgBef5LIpUifM",
-        "recQKuvUeQib6xDlk",
-        "recxiPnxu1B8Xq1HX",
-        "rec20oclQcDExORJ8",
-        "recJOORI4GtWCenMm",
-        "recXSg015decd4TOq",
-        "recB4Pu8GvLZlEDIa",
-        "recZaVwvEl6tECI6q",
-        "rectgNnpMlvUf515X",
-        "recGHjWL2HmAE4lVC",
-        "recIskrwtXkfLjDKu"
+        "recRmJK6yZn1w91CL",
+        "recFsoehACbCbnLEi",
+        "recZNsuYlHF0Qs9Lw",
+        "recopJJvTwNavFy5F",
+        "recs3DyQVVYGMVScK",
+        "recgUXjEaFqSCKmYY",
+        "recLbAD2NF7daSPdA",
+        "recyjrEidNURSQGy7",
+        "rechuM57AgEj9AHZV",
+        "recARVqskqG4ElZVv",
+        "rec31M2dhecP23pjS",
+        "recESQipZSFsDNZZr",
+        "recGj10CqDKJMpvXi",
+        "recjTIhGeDOS5SugK",
+        "recJjXjUz5Ax5cher",
+        "recg0XMPeQUoOztbA",
+        "reczU313o3quKoW0D",
+        "recTbhVJnOXXr1h6b",
+        "recAJCNmDZgUiUFsO",
+        "rec5rbCaZaiqSivuZ",
+        "recMfBhxdE8IXI1xd",
+        "rec0j3qQebTYyyxzh",
+        "recEvCUXPtqLG8ht1",
+        "rec2BIWkNjLfZ6mRh",
+        "recwHANeVjaGAzFQO",
+        "recJ86mAbF1mZyZGt",
+        "recLT7RlCVZ16Nhvl"
       ],
-      "nextSteps": ["recPoMfyQeBv2V5D7"],
+      "nextSteps": ["recSPzFnZcghnpJoY"],
       "key (DO NOT EDIT)": "family",
-      "id": "recuWkVDSEWc1K0eU",
+      "id": "recxn7ls1CBYmeEZL",
       "admin_display": "patronType = family",
       "question display logic": [],
       "question display logic 2": [],
@@ -4037,12 +4149,12 @@
       "benefits": "Community Engagement Fund, Community War Memorial Fund, Veteran and Family Well-Being Fund",
       "benefitEligibility": "recgFx9UqPwqSW6hO, recbbyAFXpnjEAmZ9",
       "benefitEligibility 2": [
-        "recgFx9UqPwqSW6hO",
-        "recbbyAFXpnjEAmZ9",
-        "recckWh09Jtsuk3YK"
+        "recj6kzJzNbcdqK2F",
+        "receCl0u6n25Z40K0",
+        "recfLJHPiH8ePOHJB"
       ],
       "key (DO NOT EDIT)": "organization",
-      "id": "rec2pB1RcV3BvyjPX",
+      "id": "rec5QorGlTInQ2XAO",
       "admin_display": "patronType = organization",
       "question display logic": [],
       "question display logic 2": [],
@@ -4058,50 +4170,50 @@
       "benefits 2": "Career Transition Services, Career Impact Allowance, Critical Injury Benefit, Death Benefit, Detention Benefits, Disability Award, Education and Training Benefit, Educational Assistance for children, Family Peer Support (OSISS), Group Health Insurance, Jobs in the federal government, Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Disability Pension, Funeral and Burial Assistance",
       "benefitEligibility": "recOVWkhp1IfbFnRU, recGR0KBNakgQbLG5, recR4crMdLtxDz0cf, recl8EQBaoPvkUs1y, rec3LMYRHMRfFdc2E, recC1BOsrEwQQT7Tr, recoWEBTf2fHKxO8T, reclYWjGKy8oabUkO, recNbQZ8omQdO5FhH, recLCU5pg8cn8v6cO, recmwLUgfMCQyfiDd, recPwgIAvnOrF9CZE, rechaKl1wJhKe0lnF, recmsrOwzHKCsUNl6, recQBzCRl2D8B7lxu, recpCQ81MXjUrrerT, recdtaTP1HL6hgId7, recvSEet4Pf5xm2Ng, rec9M3lN0KwS8CJmj, recRligLod0I0IhcP, recAz6FLY6qy3GkHd, recJDGon9UpIRv1C6, recxq80Dbs1ijRlaE, recBr3SAQU0GijleA, recGkh4BgTTH4ibVq, recDSeANhF5XrVRcr, recxc6T4F7Ft3bF0t, recmRtb7mI9XaukBw, recgsVRR5F96KoQvT, recGSaT5q7VLKIDtA, recdzam05SfCt5PqJ, recefz1kpLFu7Vkxh, rec6vIdu4K8xl1nxi, recnz9qP2cSNgBzE8, recQKuvUeQib6xDlk, recwtgBef5LIpUifM",
       "benefitEligibility 3": [
-        "recOVWkhp1IfbFnRU",
-        "recGR0KBNakgQbLG5",
-        "recR4crMdLtxDz0cf",
-        "recl8EQBaoPvkUs1y",
-        "rec3LMYRHMRfFdc2E",
-        "recC1BOsrEwQQT7Tr",
-        "recoWEBTf2fHKxO8T",
-        "reclYWjGKy8oabUkO",
-        "recNbQZ8omQdO5FhH",
-        "recmsrOwzHKCsUNl6",
-        "recQBzCRl2D8B7lxu",
-        "recpCQ81MXjUrrerT",
-        "recdtaTP1HL6hgId7",
-        "recvSEet4Pf5xm2Ng",
-        "rec9M3lN0KwS8CJmj",
-        "recAz6FLY6qy3GkHd",
-        "recJDGon9UpIRv1C6",
-        "recxq80Dbs1ijRlaE",
-        "recBr3SAQU0GijleA",
-        "recGkh4BgTTH4ibVq",
-        "recDSeANhF5XrVRcr",
-        "recxc6T4F7Ft3bF0t",
-        "recmRtb7mI9XaukBw",
-        "recgsVRR5F96KoQvT",
-        "recGSaT5q7VLKIDtA",
-        "recdzam05SfCt5PqJ",
-        "recefz1kpLFu7Vkxh",
-        "rec6vIdu4K8xl1nxi",
-        "recwtgBef5LIpUifM",
-        "recnz9qP2cSNgBzE8",
-        "recQKuvUeQib6xDlk",
-        "recu4sFexY13tk9En",
-        "rec20oclQcDExORJ8",
-        "recTh0JLYM6omz07j",
-        "recTghMYMtuQiLimr",
-        "recCwYo9TbCnPBa7y",
-        "recB4Pu8GvLZlEDIa",
-        "recgDfxgjD31in4Qu",
-        "rectgNnpMlvUf515X",
-        "recGHjWL2HmAE4lVC",
-        "recIskrwtXkfLjDKu"
+        "recRmJK6yZn1w91CL",
+        "recJiNaqW8Z2bFprW",
+        "recUvZRBmJ8jY3EX6",
+        "recozrgqjmuhFo6Mp",
+        "rec6czoGQKw10HQNv",
+        "recFsoehACbCbnLEi",
+        "recrnr1Io0Ut51sTK",
+        "recopJJvTwNavFy5F",
+        "recQCDpXxkvZ9zj2y",
+        "recpTeelIFpoNor6X",
+        "recT2m2Gu0iUWBZil",
+        "recs3DyQVVYGMVScK",
+        "recgUXjEaFqSCKmYY",
+        "recyjrEidNURSQGy7",
+        "reccdQLC9IbEt6n7a",
+        "recD0T5A745koaYs4",
+        "recM4tOciS4ucZFnX",
+        "recARVqskqG4ElZVv",
+        "recESQipZSFsDNZZr",
+        "recJL4uqpRytpMPGh",
+        "recGj10CqDKJMpvXi",
+        "recADTjTO5kfoFjLk",
+        "recpigBWvGOJvYYmn",
+        "recjTIhGeDOS5SugK",
+        "recJjXjUz5Ax5cher",
+        "recg0XMPeQUoOztbA",
+        "rechGmr9yJkgspYi8",
+        "rec9WvDjdINjGv1i9",
+        "reczU313o3quKoW0D",
+        "recq0WQEbaxzB5dpZ",
+        "recTbhVJnOXXr1h6b",
+        "recxvf53GWGPOONpe",
+        "rec5rbCaZaiqSivuZ",
+        "recWIN9A7KLaH3ESa",
+        "recWH4cNVr9CDfW7i",
+        "recFXLOY29h9a5OSp",
+        "recEvCUXPtqLG8ht1",
+        "recj42X5sBINDRIBl",
+        "recwHANeVjaGAzFQO",
+        "recJ86mAbF1mZyZGt",
+        "recLT7RlCVZ16Nhvl"
       ],
       "key (DO NOT EDIT)": "CAF",
-      "id": "rec6sKyG0dMJ7HLhY",
+      "id": "rec9TxYv9brvsbp2P",
       "admin_display": "serviceType = CAF",
       "question display logic": [],
       "question display logic 2": [],
@@ -4115,13 +4227,13 @@
       "benefits 2": "Survivor's Pension, Disability Pension",
       "benefitEligibility": "recI2JIvA0Mtvna2v, rechEoLL5pBxeHcGN, recGSaT5q7VLKIDtA",
       "benefitEligibility 3": [
-        "recGSaT5q7VLKIDtA",
-        "recu4sFexY13tk9En",
-        "recTghMYMtuQiLimr",
-        "recCwYo9TbCnPBa7y"
+        "recJjXjUz5Ax5cher",
+        "recxvf53GWGPOONpe",
+        "recWH4cNVr9CDfW7i",
+        "recFXLOY29h9a5OSp"
       ],
       "key (DO NOT EDIT)": "RCMP",
-      "id": "recIMgfjrCozH9eVW",
+      "id": "recLd3F8AA3l2DSGN",
       "admin_display": "serviceType = RCMP",
       "question display logic": [],
       "question display logic 2": [],
@@ -4131,45 +4243,46 @@
       "display_text_english": "WWII or Korean War Veterans",
       "display_text_french": "Vétérans de la Seconde Guerre mondiale ou la guerre de Corée",
       "linked_question": ["serviceType"],
-      "question display logic": ["reczEVuK0ipZkAIec"],
-      "question display logic 2": ["recdXDG6qy8fOltJr"],
-      "questionClearLogic": ["rec9DCmvkqeW06zqu"],
+      "question display logic": ["recC5IUz9g4LF4mZ3"],
+      "question display logic 2": ["recgoq6VzwN19P7ui"],
+      "questionClearLogic": ["recc4pMktoTIlAdbl"],
       "variable_name": "WSV (WWII or Korea)",
       "benefits 2": "Assistance Fund , Pastoral Outreach , Survivor's Pension, Disability Pension, Funeral and Burial Assistance",
       "benefitEligibility": "recfWHf1YmVfz0ppj, rece9Xkt73rx6IOOw, recIKNddEHsrPobsJ, recoztJkT5J9MYX2G, recyyVwXzhgcX14IC, recxq80Dbs1ijRlaE, rec0AZCo8gx3HzLy1, recaVVZzKjrd2Duj8, recGSaT5q7VLKIDtA, rec6vIdu4K8xl1nxi, recnz9qP2cSNgBzE8, rechrkjJpnl8ZEamI, recxiPnxu1B8Xq1HX, recqM9VdRHwdy35Xf, recwtgBef5LIpUifM",
       "benefitEligibility 3": [
-        "recfWHf1YmVfz0ppj",
-        "recIKNddEHsrPobsJ",
-        "recyyVwXzhgcX14IC",
-        "recxq80Dbs1ijRlaE",
-        "rec0AZCo8gx3HzLy1",
-        "recaVVZzKjrd2Duj8",
-        "recGSaT5q7VLKIDtA",
-        "recwtgBef5LIpUifM",
-        "recnz9qP2cSNgBzE8",
-        "recxiPnxu1B8Xq1HX",
-        "reccSZsLXT8Xond4j",
-        "recTghMYMtuQiLimr",
-        "recqM9VdRHwdy35Xf",
-        "rectgNnpMlvUf515X",
-        "recGHjWL2HmAE4lVC"
+        "recinuFQ7kA1Uu3aa",
+        "recLbAD2NF7daSPdA",
+        "recBZIWMIfVYivItt",
+        "recARVqskqG4ElZVv",
+        "rec31M2dhecP23pjS",
+        "recdmIpoTh6Zn784Z",
+        "recJjXjUz5Ax5cher",
+        "reczU313o3quKoW0D",
+        "recq0WQEbaxzB5dpZ",
+        "recAJCNmDZgUiUFsO",
+        "recfjMSA6RNJJRRPa",
+        "recWH4cNVr9CDfW7i",
+        "rectdWl20FbZTxJI6",
+        "recwHANeVjaGAzFQO",
+        "recJ86mAbF1mZyZGt",
+        "recQTeje49tk9F6EF"
       ],
       "key (DO NOT EDIT)": "WSV (WWII or Korea)",
-      "id": "rec3hFX4SlnBMPl7W",
+      "id": "rec6IsnT1j2n7jZSN",
       "admin_display": "serviceType = WSV (WWII or Korea)"
     },
     {
       "display_text_english": "Still-serving",
       "display_text_french": "En service actif",
       "linked_question": ["statusAndVitals"],
-      "question display logic 2": ["reczEVuK0ipZkAIec"],
-      "questionClearLogic 2": ["rec9DCmvkqeW06zqu"],
+      "question display logic 2": ["recC5IUz9g4LF4mZ3"],
+      "questionClearLogic 2": ["recc4pMktoTIlAdbl"],
       "variable_name": "stillServing",
       "benefits 3": "Vocational Assistance",
       "benefitEligibility": "recQKuvUeQib6xDlk",
-      "benefitEligibility 4": ["recQKuvUeQib6xDlk"],
+      "benefitEligibility 4": ["recTbhVJnOXXr1h6b"],
       "key (DO NOT EDIT)": "stillServing",
-      "id": "recM3T55J3Xf1qP16",
+      "id": "recPuGvUS1C1mUtMX",
       "admin_display": "statusAndVitals = stillServing",
       "question display logic": [],
       "questionClearLogic": [],
@@ -4184,19 +4297,19 @@
       "benefits 3": "Caregiver Zone, Vocational Assistance",
       "benefitEligibility": "recC1BOsrEwQQT7Tr, recXSg015decd4TOq, recWmF49cJ0evYv0F, rece3ZFiriZxO63e4, rec0AZCo8gx3HzLy1, rec6vIdu4K8xl1nxi, recQKuvUeQib6xDlk, recwtgBef5LIpUifM",
       "benefitEligibility 4": [
-        "recC1BOsrEwQQT7Tr",
-        "recWmF49cJ0evYv0F",
-        "recwtgBef5LIpUifM",
-        "recQKuvUeQib6xDlk",
-        "recJOORI4GtWCenMm",
-        "recXSg015decd4TOq",
-        "rece3ZFiriZxO63e4",
-        "recB4Pu8GvLZlEDIa",
-        "recZaVwvEl6tECI6q",
-        "recGHjWL2HmAE4lVC"
+        "recFsoehACbCbnLEi",
+        "recZNsuYlHF0Qs9Lw",
+        "reczU313o3quKoW0D",
+        "recTbhVJnOXXr1h6b",
+        "recMfBhxdE8IXI1xd",
+        "rec0j3qQebTYyyxzh",
+        "rechuM57AgEj9AHZV",
+        "recEvCUXPtqLG8ht1",
+        "rec2BIWkNjLfZ6mRh",
+        "recJ86mAbF1mZyZGt"
       ],
       "key (DO NOT EDIT)": "releasedAlive",
-      "id": "rec3vCJImDFrRIaFl",
+      "id": "rec6Wp9xvBkdccOqc",
       "admin_display": "statusAndVitals = releasedAlive",
       "question display logic": [],
       "question display logic 2": [],
@@ -4208,33 +4321,33 @@
       "display_text_english": "Deceased",
       "display_text_french": "Décédé",
       "linked_question": ["statusAndVitals"],
-      "question display logic 2": ["recn0zobKUhFIowAh"],
+      "question display logic 2": ["recqrmO0TSWr3Sal8"],
       "variable_name": "deceased",
       "benefits 3": "Death Benefit, Educational Assistance for children, Family Peer Support (OSISS), Survivor's Pension, Vocational Assistance, Funeral and Burial Assistance",
       "benefitEligibility": "recOVWkhp1IfbFnRU, reclYWjGKy8oabUkO, rechaKl1wJhKe0lnF, recpCQ81MXjUrrerT, recdtaTP1HL6hgId7, recIKNddEHsrPobsJ, recvSEet4Pf5xm2Ng, rechEoLL5pBxeHcGN, recoztJkT5J9MYX2G, recRligLod0I0IhcP, recBr3SAQU0GijleA, recDSeANhF5XrVRcr, recgsVRR5F96KoQvT, recGSaT5q7VLKIDtA, receBHaEdQ29Qid3n, rec6vIdu4K8xl1nxi, rechrkjJpnl8ZEamI, recQKuvUeQib6xDlk, recxiPnxu1B8Xq1HX, recwtgBef5LIpUifM",
       "benefitEligibility 4": [
-        "recOVWkhp1IfbFnRU",
-        "reclYWjGKy8oabUkO",
-        "recpCQ81MXjUrrerT",
-        "recdtaTP1HL6hgId7",
-        "recIKNddEHsrPobsJ",
-        "recvSEet4Pf5xm2Ng",
-        "recBr3SAQU0GijleA",
-        "recDSeANhF5XrVRcr",
-        "recgsVRR5F96KoQvT",
-        "recGSaT5q7VLKIDtA",
-        "recwtgBef5LIpUifM",
-        "recQKuvUeQib6xDlk",
-        "recxiPnxu1B8Xq1HX",
-        "rec20oclQcDExORJ8",
-        "recB4Pu8GvLZlEDIa",
-        "recZaVwvEl6tECI6q",
-        "rectgNnpMlvUf515X",
-        "recIskrwtXkfLjDKu",
-        "rec0AZCo8gx3HzLy1"
+        "recRmJK6yZn1w91CL",
+        "recopJJvTwNavFy5F",
+        "recs3DyQVVYGMVScK",
+        "recgUXjEaFqSCKmYY",
+        "recLbAD2NF7daSPdA",
+        "recyjrEidNURSQGy7",
+        "recESQipZSFsDNZZr",
+        "recGj10CqDKJMpvXi",
+        "recjTIhGeDOS5SugK",
+        "recJjXjUz5Ax5cher",
+        "reczU313o3quKoW0D",
+        "recTbhVJnOXXr1h6b",
+        "recAJCNmDZgUiUFsO",
+        "rec5rbCaZaiqSivuZ",
+        "recEvCUXPtqLG8ht1",
+        "rec2BIWkNjLfZ6mRh",
+        "recwHANeVjaGAzFQO",
+        "recLT7RlCVZ16Nhvl",
+        "rec31M2dhecP23pjS"
       ],
       "key (DO NOT EDIT)": "deceased",
-      "id": "recDW9csGX2ekiwXb",
+      "id": "recGnWChPVH0FMaI2",
       "admin_display": "statusAndVitals = deceased",
       "question display logic": [],
       "questionClearLogic": [],
@@ -4251,41 +4364,47 @@
       "benefits 4": "Attendance Allowance, Career Impact Allowance, Clothing Allowance, Critical Injury Benefit, Death Benefit, Disability Award, Exceptional Incapacity Allowance, Group Health Insurance, Treatment Benefits, Veteran Family Program, Disability Pension",
       "benefitEligibility": "rec6ejmokDXrYAUqT, recOVWkhp1IfbFnRU, recR4crMdLtxDz0cf, recBwJVJsjz3KF2kz, recoWEBTf2fHKxO8T, reclYWjGKy8oabUkO, recLCU5pg8cn8v6cO, recmwLUgfMCQyfiDd, rece9Xkt73rx6IOOw, recI2JIvA0Mtvna2v, recPwgIAvnOrF9CZE, recmsrOwzHKCsUNl6, recgi1wg3Z0xhI0KC, rec9M3lN0KwS8CJmj, recBr3SAQU0GijleA, recGkh4BgTTH4ibVq, recgsVRR5F96KoQvT, recEfRVYLpvWvqISx, recdzam05SfCt5PqJ, recefz1kpLFu7Vkxh",
       "benefitEligibility 5": [
-        "recR4crMdLtxDz0cf",
-        "recBwJVJsjz3KF2kz",
-        "recoWEBTf2fHKxO8T",
-        "reclYWjGKy8oabUkO",
-        "recmsrOwzHKCsUNl6",
-        "recgi1wg3Z0xhI0KC",
-        "rec9M3lN0KwS8CJmj",
-        "recBr3SAQU0GijleA",
-        "recGkh4BgTTH4ibVq",
-        "recgsVRR5F96KoQvT",
-        "recEfRVYLpvWvqISx",
-        "recdzam05SfCt5PqJ",
-        "recefz1kpLFu7Vkxh",
-        "recu4sFexY13tk9En",
-        "reccSZsLXT8Xond4j",
-        "rec20oclQcDExORJ8",
-        "recTh0JLYM6omz07j",
-        "recC1BOsrEwQQT7Tr",
-        "rec3LMYRHMRfFdc2E",
-        "recWmF49cJ0evYv0F",
-        "recxyzl32f531NaOr",
-        "recpCQ81MXjUrrerT",
-        "recJDGon9UpIRv1C6",
-        "rece3ZFiriZxO63e4",
-        "recg7V3k3ol4FLAMh",
-        "recxc6T4F7Ft3bF0t",
-        "recmRtb7mI9XaukBw",
-        "recGHjWL2HmAE4lVC",
-        "recOVWkhp1IfbFnRU",
-        "recGR0KBNakgQbLG5",
-        "recIskrwtXkfLjDKu"
+        "recUvZRBmJ8jY3EX6",
+        "recEXwlyBheP59G5q",
+        "recrnr1Io0Ut51sTK",
+        "recopJJvTwNavFy5F",
+        "recpTeelIFpoNor6X",
+        "recjJOW5cXFjCcEvt",
+        "reccdQLC9IbEt6n7a",
+        "recESQipZSFsDNZZr",
+        "recJL4uqpRytpMPGh",
+        "recjTIhGeDOS5SugK",
+        "recHGElNUnaIQUmDo",
+        "recg0XMPeQUoOztbA",
+        "rechGmr9yJkgspYi8",
+        "recxvf53GWGPOONpe",
+        "recfjMSA6RNJJRRPa",
+        "rec5rbCaZaiqSivuZ",
+        "recWIN9A7KLaH3ESa",
+        "recFsoehACbCbnLEi",
+        "rec6czoGQKw10HQNv",
+        "recZNsuYlHF0Qs9Lw",
+        "recAZmLSbdKPmhOzi",
+        "recs3DyQVVYGMVScK",
+        "recM4tOciS4ucZFnX",
+        "rechuM57AgEj9AHZV",
+        "recjyIt9cm0Q0fex8",
+        "recADTjTO5kfoFjLk",
+        "recpigBWvGOJvYYmn",
+        "recJ86mAbF1mZyZGt",
+        "recRmJK6yZn1w91CL",
+        "recJiNaqW8Z2bFprW",
+        "recLT7RlCVZ16Nhvl",
+        "rec9F6MdtBCdj4ybK",
+        "recq0WQEbaxzB5dpZ",
+        "recGj10CqDKJMpvXi",
+        "recgUXjEaFqSCKmYY",
+        "recJjXjUz5Ax5cher",
+        "recTbhVJnOXXr1h6b"
       ],
-      "nextSteps 4": ["recWwmdjsoTSG54tz"],
+      "nextSteps 4": ["recZX9D8BmyE1zIeq"],
       "key (DO NOT EDIT)": "hasServiceHealthIssue",
-      "id": "recxVaqj0O8BPKyeD",
+      "id": "recAmXQ89MNnaecZu",
       "admin_display": "serviceHealthIssue = hasServiceHealthIssue",
       "question display logic": [],
       "question display logic 2": [],
@@ -4301,7 +4420,7 @@
       "ge_breadcrumb_english": "No service-related health issue",
       "ge_breadcrumb_french": "Aucun problème de santé lié au service",
       "key (DO NOT EDIT)": "noServiceHealthIssue",
-      "id": "recC0Rsw47ySCM1sS",
+      "id": "recFrESld5dEXgFdJ",
       "admin_display": "serviceHealthIssue = noServiceHealthIssue",
       "question display logic": [],
       "question display logic 2": [],
@@ -4312,11 +4431,11 @@
     },
     {
       "display_text_english": "Great",
-      "display_text_french": "(fra) Great",
+      "display_text_french": "Excellente",
       "linked_question": ["feedback"],
       "variable_name": "great",
       "key (DO NOT EDIT)": "great",
-      "id": "reclaTGtFPEjKNXat",
+      "id": "recoBG6iONj55hBVk",
       "admin_display": "feedback = great",
       "question display logic": [],
       "question display logic 2": [],
@@ -4327,11 +4446,11 @@
     },
     {
       "display_text_english": "Good",
-      "display_text_french": "(fra) Good",
+      "display_text_french": "Bonne",
       "linked_question": ["feedback"],
       "variable_name": "good",
       "key (DO NOT EDIT)": "good",
-      "id": "reca3onCEzVopM1xc",
+      "id": "recdubNrNxAaKgFi3",
       "admin_display": "feedback = good",
       "question display logic": [],
       "question display logic 2": [],
@@ -4342,11 +4461,11 @@
     },
     {
       "display_text_english": "OK",
-      "display_text_french": "(fra) OK",
+      "display_text_french": "Passable",
       "linked_question": ["feedback"],
       "variable_name": "ok",
       "key (DO NOT EDIT)": "ok",
-      "id": "rec9Flp9oGEodmRY8",
+      "id": "recc68PYxEjayQvJZ",
       "admin_display": "feedback = ok",
       "question display logic": [],
       "question display logic 2": [],
@@ -4357,11 +4476,11 @@
     },
     {
       "display_text_english": "Bad",
-      "display_text_french": "(fra) Bad",
+      "display_text_french": "Mauvaise",
       "linked_question": ["feedback"],
       "variable_name": "bad",
       "key (DO NOT EDIT)": "bad",
-      "id": "recfvTTRFwRni8ejE",
+      "id": "reciWGjGOuw9DCS4v",
       "admin_display": "feedback = bad",
       "question display logic": [],
       "question display logic 2": [],
@@ -4372,11 +4491,11 @@
     },
     {
       "display_text_english": "Terrible",
-      "display_text_french": "(fra) Terrible",
+      "display_text_french": "Très mauvaise",
       "linked_question": ["feedback"],
       "variable_name": "terrible",
       "key (DO NOT EDIT)": "terrible",
-      "id": "recVK9104C5UqinVI",
+      "id": "recYbWrPdAKGLM1Gz",
       "admin_display": "feedback = terrible",
       "question display logic": [],
       "question display logic 2": [],
@@ -4392,21 +4511,21 @@
       "has value": ["veteran"],
       "exclude options": ["deceased"],
       "Name": "patronType = veteran",
-      "id": "recn0zobKUhFIowAh"
+      "id": "recqrmO0TSWr3Sal8"
     },
     {
       "question": ["serviceType"],
       "has value": ["WSV (WWII or Korea)"],
       "exclude options": ["stillServing"],
       "Name": "serviceType = WSV (WWII or Korea)",
-      "id": "reczEVuK0ipZkAIec"
+      "id": "recC5IUz9g4LF4mZ3"
     },
     {
       "question": ["patronType"],
       "has value": ["servingMember"],
       "exclude options": ["WSV (WWII or Korea)"],
       "Name": "patronType = servingMember",
-      "id": "recdXDG6qy8fOltJr"
+      "id": "recgoq6VzwN19P7ui"
     }
   ],
   "questionClearLogic": [
@@ -4421,140 +4540,140 @@
     {
       "english": "personal hygiene (bathing or showering)",
       "french": "hygiène personnelle (bain ou douche)",
-      "linked_benefits": ["Attendance Allowance"],
-      "id": "recEYhVIDTdMXjTXE"
+      "linked_benefits": ["Attendance allowance"],
+      "id": "recHp4lxMRSyiNxIv"
     },
     {
       "english": " meal preparation",
       "french": "préparation des repas",
-      "linked_benefits": ["Attendance Allowance"],
-      "id": "recRJUv8dX2hHR9E5"
+      "linked_benefits": ["Attendance allowance"],
+      "id": "recUaHVXmVH32lNpW"
     },
     {
       "english": "getting dressed",
       "french": "habillage",
-      "linked_benefits": ["Attendance Allowance"],
-      "id": "recnn8lSaBHyrmunW"
+      "linked_benefits": ["Attendance allowance"],
+      "id": "recqOVLHjzmkMQ88N"
     },
     {
       "english": "managing medication",
       "french": "prise de médicaments",
-      "linked_benefits": ["Attendance Allowance"],
-      "id": "recgWZUuhbrCOi0wi"
+      "linked_benefits": ["Attendance allowance"],
+      "id": "recjnMkjq96o9MEh9"
     },
     {
       "english": "$1000 tax free (monthly)",
       "french": "montant mensuel non imposable de 1 000 $",
       "linked_benefits": ["Caregiver Recognition Benefit"],
-      "id": "recZPfT7Z6ZbRS11q"
+      "id": "rec2g2jW84EXcmFMh"
     },
     {
       "english": "recognition for care to Veteran",
       "french": "reconnaissance pour les soins fournis au vétéran",
       "linked_benefits": ["Caregiver Recognition Benefit"],
-      "id": "reci5GzywxsSD11Wf"
+      "id": "reclwtZnFv7EYvFH6"
     },
     {
       "english": "connect with other caregivers",
       "french": "établir des liens avec d’autres aidants",
       "linked_benefits": ["Caregiver Zone"],
-      "id": "recClBs2BxPqjIJrf"
+      "id": "recFMoSRKvucEcnc6"
     },
     {
       "english": "find resources that may help you",
       "french": "trouver des ressources qui pourraient vous aider",
       "linked_benefits": ["Caregiver Zone"],
-      "id": "recjaWGaINIGZpXfX"
+      "id": "recmBJ6ZRLnskTB0O"
     },
     {
       "english": "read articles and posts about caregiving",
       "french": "lire des articles et des billets sur la prestation de soins",
       "linked_benefits": ["Caregiver Zone"],
-      "id": "rec1ovh1no4EEQs76"
+      "id": "rec4PiHQwmJqZk6SX"
     },
     {
       "english": "talk to a Caregiver Coach",
       "french": "parler à un encadreur d’aidants",
       "linked_benefits": ["Caregiver Zone"],
-      "id": "recgytggFDctN4PpF"
+      "id": "recjZgG5OBRf8ytaw"
     },
     {
       "english": "a plan to achieve your goals ",
       "french": "un plan pour atteindre vos objectifs",
       "linked_benefits": ["Case management"],
-      "id": "recPicBinTyDFxVqb"
+      "id": "recSJZ17wRdp01zb2"
     },
     {
       "english": "referrals to services you need",
       "french": "des aiguillages vers les services dont vous avez besoin",
       "linked_benefits": ["Case management"],
-      "id": "recClYBnnWxRoWDyS"
+      "id": "recFML1cwUcDJqhjJ"
     },
     {
       "english": "ongoing support in difficult situations",
       "french": "un soutien continu dans des situations difficiles",
       "linked_benefits": ["Case management"],
-      "id": "recSCbzJSCJP7dNFD"
+      "id": "recV3YZy1AoBsHrqu"
     },
     {
       "english": "bed linens",
       "french": "articles de literie",
-      "linked_benefits": ["Clothing Allowance"],
-      "id": "reczW9Tifhk99kFzU"
+      "linked_benefits": ["Clothing allowance"],
+      "id": "recCnWj7ofZVuOjkL"
     },
     {
       "english": "clothing alterations",
       "french": "retouches de vêtements",
-      "linked_benefits": ["Clothing Allowance"],
-      "id": "reciQjt6LhTgrmL6a"
+      "linked_benefits": ["Clothing allowance"],
+      "id": "reclh6TVUfy2MQpR1"
     },
     {
       "english": "motor vehicle accidents",
       "french": "accident automobile",
       "linked_benefits": ["Critical Injury Benefit"],
-      "id": "recIWn1Kh2abX5lzK"
+      "id": "recLnarzq0PXizZkB"
     },
     {
       "english": "explosions",
       "french": "explosion",
       "linked_benefits": ["Critical Injury Benefit"],
-      "id": "rec1gHrW0df8N1ujx"
+      "id": "rec4HuRL9bUU8v84o"
     },
     {
       "english": "gunshot wounds",
       "french": "blessure par balle",
       "linked_benefits": ["Critical Injury Benefit"],
-      "id": "recchQ7bkM79gYy33"
+      "id": "recfIDx0tKMVBscOU"
     },
     {
       "english": "exposure to toxic or infectious agents",
       "french": "exposition à des agents toxiques ou infectieux",
       "linked_benefits": ["Critical Injury Benefit"],
-      "id": "recop6qnD8T4XFewH"
+      "id": "recrQTQcM6yQi9Shy"
     },
     {
       "english": "a new trade",
       "french": "un nouveau métier",
       "linked_benefits": ["Education and Training Benefit"],
-      "id": "recRAfiZXHvN9Vj1f"
+      "id": "recU12IO6FazupXM6"
     },
     {
       "english": "books  ",
       "french": "livres",
       "linked_benefits": ["Education and Training Benefit"],
-      "id": "recAipD7lXyrGFtsR"
+      "id": "recDJc3WuVdd197dI"
     },
     {
       "english": "course materials",
       "french": "matériel de cours",
       "linked_benefits": ["Education and Training Benefit"],
-      "id": "recQYymXSVw8CfLtk"
+      "id": "recTplMM1TbUXJpeb"
     },
     {
       "english": "university courses",
       "french": "cours universitaires",
       "linked_benefits": ["Education and Training Benefit"],
-      "id": "rec0EC3r8QhCix0N8"
+      "id": "rec35ptghOWoD1EyZ"
     },
     {
       "english": "living expenses",
@@ -4563,37 +4682,37 @@
         "Educational assistance for children",
         "Education and Training Benefit"
       ],
-      "id": "recXXECh0tcO4Gaxx"
+      "id": "rec0or269rRApaOio"
     },
     {
       "english": "supplies and equipment",
       "french": "fournitures et équipement",
       "linked_benefits": ["Educational assistance for children"],
-      "id": "recfRoQSdMF1oJqiZ"
+      "id": "reciibgHmKkNJd43Q"
     },
     {
       "english": "tuition and books",
       "french": "livres et frais de scolarité",
       "linked_benefits": ["Educational assistance for children"],
-      "id": "rec4pPBqU7o3MeL8e"
+      "id": "rec7QC1f353P7IpT5"
     },
     {
       "english": "dependent on others",
       "french": "dépend des autres",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
-      "id": "rec7ayMUHVXlYiQ43"
+      "linked_benefits": ["Exceptional incapacity allowance"],
+      "id": "recaBlcJQTC7jMuPU"
     },
     {
       "english": "ongoing pain and discomfort",
       "french": "douleur et inconfort continus",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
-      "id": "recm5GHIJlXaDvQWr"
+      "linked_benefits": ["Exceptional incapacity allowance"],
+      "id": "recpwt7xSjCWYZuHi"
     },
     {
       "english": "shortened lifespan",
       "french": "durée de vie réduite",
-      "linked_benefits": ["Exceptional Incapacity Allowance"],
-      "id": "recwrn64aZ5dmRO6S"
+      "linked_benefits": ["Exceptional incapacity allowance"],
+      "id": "reczSawTjXKZHlsRJ"
     },
     {
       "english": "post-traumatic stress disorder (PTSD)",
@@ -4601,132 +4720,132 @@
       "linked_benefits": [
         "Peer support (OSISS)",
         "Operational stress injury (OSI) clinics",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
-      "id": "recqtAfBRDObeaemA"
+      "id": "rectUnFq0BtXzES7r"
     },
     {
       "english": "anxiety disorders",
       "french": "troubles anxieux",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
-      "id": "recaOHh3cVrIjSB9H"
+      "id": "recdfuHSlT6uEmfUy"
     },
     {
       "english": "depression",
       "french": "dépression",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
-      "id": "recLlLBycwpFO0gfQ"
+      "id": "recOMy1nlu4r9uU0H"
     },
     {
       "english": "substance use disorders",
       "french": "troubles liés à la toxicomanie",
       "linked_benefits": [
         "Peer support (OSISS)",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
-      "id": "recg8tpV4BPtWCYG2"
+      "id": "recjzgPKdzufh6CrT"
     },
     {
       "english": "burial services",
       "french": "services d’inhumation",
       "linked_benefits": ["Funeral and burial assistance"],
-      "id": "recJb7mKQwMywgty7"
+      "id": "recMCUMzZurkRK7jY"
     },
     {
       "english": "funeral home costs",
       "french": "aide pour les frais de salon funéraire",
       "linked_benefits": ["Funeral and burial assistance"],
-      "id": "recMIoA9GHf8FDqmI"
+      "id": "recP9b0YPFUU0747z"
     },
     {
       "english": "funeral services",
       "french": "services funéraires",
       "linked_benefits": ["Funeral and burial assistance"],
-      "id": "recf6c8GEt20V456b"
+      "id": "recixZyvNrHMgyJR2"
     },
     {
       "english": "grave marker",
       "french": "pierre tombale",
       "linked_benefits": ["Funeral and burial assistance"],
-      "id": "recp5oJKUFhNoilhw"
+      "id": "recswb9z3DWzJMZ2n"
     },
     {
       "english": "money for casket or urn",
       "french": "aide pour les coûts liés au cercueil ou à l’urne",
       "linked_benefits": ["Funeral and burial assistance"],
-      "id": "recOln9VMQk5UKtwG"
+      "id": "recRMazKVOZRfe7hx"
     },
     {
       "english": "cleaning",
       "french": "entretien",
-      "linked_benefits": ["Grave-marker maintenance"],
-      "id": "recyyXFdZx86yXoBV"
+      "linked_benefits": ["Grave marker maintenance"],
+      "id": "recBZK528vNSTr2mM"
     },
     {
       "english": "realignment",
       "french": "réalignement",
-      "linked_benefits": ["Grave-marker maintenance"],
-      "id": "rec8AwaGmTClXHbcL"
+      "linked_benefits": ["Grave marker maintenance"],
+      "id": "recb1jAvvRh7ibPXC"
     },
     {
       "english": "replacement",
       "french": "remplacement",
-      "linked_benefits": ["Grave-marker maintenance"],
-      "id": "recTbt9iboolcvMcF"
+      "linked_benefits": ["Grave marker maintenance"],
+      "id": "recWCgz7km37xZqXw"
     },
     {
       "english": "prescriptions",
       "french": "ordonnances",
-      "linked_benefits": ["Group health insurance"],
-      "id": "recyHsIVPMOqmLiBx"
+      "linked_benefits": ["Group Health Insurance"],
+      "id": "recB8f8KYKtcHfWmo"
     },
     {
       "english": "treatment services",
       "french": "services de traitement",
-      "linked_benefits": ["Group health insurance"],
-      "id": "recJM9BT0TTNOgWRF"
+      "linked_benefits": ["Group Health Insurance"],
+      "id": "recMdW1I9Ryz9KACw"
     },
     {
       "english": "interview prep and coaching ",
       "french": "préparation à l’entrevue et encadrement",
       "linked_benefits": ["Jobs in the federal government"],
-      "id": "recqLHY6bKc0uwQaO"
+      "id": "rectcuoVkIRMP0uVF"
     },
     {
       "english": "resume and cover letter writing",
       "french": "resume and cover letter writing",
       "linked_benefits": ["Jobs in the federal government"],
-      "id": "rec4K0C1SXIEvZ2y2"
+      "id": "rec7bN2Q1VnqQtGjT"
     },
     {
       "english": "fitness",
       "french": " conditionnement physique",
       "linked_benefits": ["LifeSpeak"],
-      "id": "recFF6eAMrgdgS7Cj"
+      "id": "recI6TEpVpVZBmLna"
     },
     {
       "english": "nutrition",
       "french": "nutrition",
       "linked_benefits": ["LifeSpeak"],
-      "id": "recKyrHOFnnPD2MQL"
+      "id": "recNZe7DOl2BYwqBC"
     },
     {
       "english": "parenting",
       "french": "rôle parental",
       "linked_benefits": ["LifeSpeak"],
-      "id": "rec2U9ricufBEo2DT"
+      "id": "rec5lWR7lsUnZSGoK"
     },
     {
       "english": "suicide",
       "french": "suicide",
       "linked_benefits": ["LifeSpeak"],
-      "id": "rec9kDxZv1OsSw6SA"
+      "id": "reccLqXOEZted0KDr"
     },
     {
       "english": "mental health",
@@ -4735,211 +4854,223 @@
         "Operational stress injury (OSI) clinics",
         "LifeSpeak"
       ],
-      "id": "recHaX4XKETPQKhHp"
+      "id": "recKBKuMTCyBbeVsg"
     },
     {
       "english": "anxiety ",
       "french": "anxiété",
       "linked_benefits": ["Operational stress injury (OSI) clinics"],
-      "id": "recqOsqicgzAjHlnQ"
+      "id": "rectffQ7leemEbZ8H"
     },
     {
       "english": "insomnia ",
       "french": "insomnie",
       "linked_benefits": ["Operational stress injury (OSI) clinics"],
-      "id": "reci867uYWvWwd0s0"
+      "id": "reclzTxj7UaIRHEdR"
     },
     {
       "english": " dealing with end of life",
       "french": "vous êtes dans une situation de fin de vie",
       "linked_benefits": ["Pastoral outreach "],
-      "id": "recYI9muMIwtSpEMV"
+      "id": "rec19WMjVGbfdTixM"
     },
     {
       "english": "coping with death",
       "french": "vous êtes en deuil",
       "linked_benefits": ["Pastoral outreach "],
-      "id": "recryosHXDBFDNVZ0"
+      "id": "recuZbSw6BgrYhzKR"
     },
     {
       "english": "going through a difficult time",
       "french": "vous vivez des moments difficiles",
       "linked_benefits": ["Pastoral outreach "],
-      "id": "recWN6glG0xGsoYnO"
+      "id": "recZeTGaPYcsNSC8F"
     },
     {
       "english": "releasing from the military",
       "french": "vous êtes en voie d’être libéré des Forces armées canadiennes",
       "linked_benefits": ["Pastoral outreach "],
-      "id": "recRy9P4odw3aKqXf"
+      "id": "recUZWfTxbbPve4I6"
     },
     {
-      "english": "Services to improve your health and adjust to life after service.",
-      "french": "Services visant à améliorer votre santé et à vous adapter à la vie après le service.",
-      "linked_benefits": ["Rehabilitation Services"],
-      "id": "recEL3EeIDWcMGQY1"
+      "english": "physiotherapy",
+      "french": "physiothérapie",
+      "linked_benefits": ["Rehabilitation services"],
+      "id": "recc8TopUzbaCrtCK"
+    },
+    {
+      "english": "chiropractor",
+      "french": "(fra) chiropractor",
+      "linked_benefits": ["Rehabilitation services"],
+      "id": "reccIoJgjbZlPUQur"
+    },
+    {
+      "english": "massage therapy ",
+      "french": "(fra) massage therapy ",
+      "linked_benefits": ["Rehabilitation services"],
+      "id": "rec3UvOcOCmuXcmZH"
     },
     {
       "english": "advice on applications",
       "french": "renseignements sur les avantages",
       "linked_benefits": ["Transition interview"],
-      "id": "recQQDhjoUov0QD2J"
+      "id": "recThqH8xS3hlkhNA"
     },
     {
       "english": "information about benefits",
       "french": "conseils concernant les demandes",
       "linked_benefits": ["Transition interview"],
-      "id": "recMUfbVJTtncwIVW"
+      "id": "recPl2BKSR89x0mGN"
     },
     {
       "english": "referrals",
       "french": "aiguillages",
       "linked_benefits": ["Transition interview"],
-      "id": "recEw8LHxqAxoT8w7"
+      "id": "recHXVbwGofjJnMhY"
     },
     {
       "english": "counselling and therapy",
       "french": "counseling et thérapie",
       "linked_benefits": ["Treatment benefits"],
-      "id": "recN5ujktoeWAG7vI"
+      "id": "recQwhJ9CmTIVaLgz"
     },
     {
       "english": "health-related travel",
       "french": "déplacements à des fins médicales",
       "linked_benefits": ["Treatment benefits"],
-      "id": "rectK00K9ynNhArvX"
+      "id": "recwbNqziw2zC45gO"
     },
     {
       "english": "hearing aids",
       "french": "appareil auditif",
       "linked_benefits": ["Treatment benefits"],
-      "id": "reczfqhXhc0KsOFnE"
+      "id": "recCGdHMqaFwNij8v"
     },
     {
       "english": "medications",
       "french": "médicaments",
       "linked_benefits": ["Treatment benefits"],
-      "id": "rec5ctpMKyBWOj2In"
+      "id": "rec8DgPBTwgI9NGte"
     },
     {
       "english": "physiotherapy",
       "french": "physiothérapie",
       "linked_benefits": ["Treatment benefits"],
-      "id": "recNqoKjX7Mz1Y2U7"
+      "id": "recQRba865rlmsGFY"
     },
     {
       "english": "wheelchairs",
       "french": "chaise roulante",
       "linked_benefits": ["Treatment benefits"],
-      "id": "reckmNpzzaTJbZIHj"
+      "id": "recnNAPoI8yvwtmsa"
     },
     {
       "english": "financial planning workshops",
       "french": "ateliers de planification financière",
       "linked_benefits": ["Veteran Family Program"],
-      "id": "rec6Zgan8qHI81OLP"
+      "id": "rec9q3AchomutvswG"
     },
     {
       "english": "Mental Health First Aid",
       "french": "premiers soins en santé mentale",
       "linked_benefits": ["Veteran Family Program"],
-      "id": "reccVRoOBxAmkdwO7"
+      "id": "recfmEODKvf8FHazY"
     },
     {
       "english": "referral to community programs and services",
       "french": "aiguillages vers les programmes et services communautaires",
       "linked_benefits": ["Veteran Family Program"],
-      "id": "recwXq2K5cxFcVlxU"
+      "id": "reczodszeacrxpZiL"
     },
     {
       "english": "clothing",
       "french": "vêtements",
       "linked_benefits": ["Veterans Emergency Fund"],
-      "id": "recnGfMEglN2NGM0a"
+      "id": "recq72ctpjsO8aqL1"
     },
     {
       "english": "expenses required to maintain safety and shelter",
       "french": "maintien de la sécurité et d’un logement",
       "linked_benefits": ["Veterans Emergency Fund"],
-      "id": "recTVRTQNSUT18GIC"
+      "id": "recWmEjFWQzFmCktt"
     },
     {
       "english": "food",
       "french": "nourriture",
       "linked_benefits": ["Veterans Emergency Fund"],
-      "id": "recTQzcPZtn81s8P8"
+      "id": "recWhmCE8r2UmWMAZ"
     },
     {
       "english": "medical care and expenses",
       "french": "soins médicaux et dépenses connexes",
       "linked_benefits": ["Veterans Emergency Fund"],
-      "id": "recFDFAwrrWlxaCSF"
+      "id": "recI4s0lApB7SEgDw"
     },
     {
       "english": "rent, mortgage",
       "french": "loyer, hypothèque",
       "linked_benefits": ["Veterans Emergency Fund"],
-      "id": "reclkgNmI04u8Cr4u"
+      "id": "recoL3dbRYJgt65Pl"
     },
     {
       "english": "grass cutting",
       "french": "tonte du gazon",
       "linked_benefits": ["Veterans Independence Program"],
-      "id": "rechTZK2t1NQLGPpg"
+      "id": "reckkMaRCZsC6ata7"
     },
     {
       "english": "grounds keeping",
       "french": "entretien des terrains",
       "linked_benefits": ["Veterans Independence Program"],
-      "id": "recda00Z69P91ZS2J"
+      "id": "recgBNqOf7uVmtwNA"
     },
     {
       "english": "help with errands (ex. grocery shopping)",
       "french": "aide pour les courses (p. ex. l’épicerie)",
       "linked_benefits": ["Veterans Independence Program"],
-      "id": "recYXxdED4LRoWVpP"
+      "id": "rec1okDtM2qDJqzaG"
     },
     {
       "english": "housekeeping ",
       "french": "entretien ménager",
       "linked_benefits": ["Veterans Independence Program"],
-      "id": "recXqo0FON7xdMoGp"
+      "id": "rec0RbquXLMjyg2rg"
     },
     {
       "english": "installation of ramps or railings",
       "french": "installation de rampes ou de rambardes",
       "linked_benefits": ["Veterans Independence Program"],
-      "id": "recFBbpiH7fNdNGcm"
+      "id": "recI2YP7Q5UzyhkXd"
     },
     {
       "english": "meal preparation or delivery ",
       "french": " préparation ou livraison de repas",
       "linked_benefits": ["Veterans Independence Program"],
-      "id": "rec1Citq1HUCOR6Yk"
+      "id": "rec435TfaFzo9lKJb"
     },
     {
       "english": "personal care",
       "french": "soins personnels",
       "linked_benefits": ["Veterans Independence Program"],
-      "id": "recrizW089wnsS0Ut"
+      "id": "recuJmmPh7b9NmEFk"
     },
     {
       "english": "snow removal",
       "french": " déneigement",
       "linked_benefits": ["Veterans Independence Program"],
-      "id": "rec4Mgp5NFaCcI1VU"
+      "id": "rec7d3PUWDPoxcFGL"
     },
     {
       "english": "financial support for education and training (such as tuition or textbooks)",
       "french": "aide financière pour les études et la formation (p. ex. frais de scolarité ou manuels scolaires)",
       "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
-      "id": "recuMqBFQf4jfvus7"
+      "id": "recxdd1uZdJ5AZ8dY"
     },
     {
       "english": "work site modifications",
       "french": "adaptations au milieu de travail",
       "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
-      "id": "receSNHPSpksOUznT"
+      "id": "rechjA7E1nZe9od8K"
     },
     {
       "english": "resume writing and interview prep",
@@ -4949,7 +5080,7 @@
         "Vocational rehabilitation",
         "Vocational assistance"
       ],
-      "id": "recYXSi4ixhJ54Yat"
+      "id": "rec1oFITrvWvqyCVk"
     },
     {
       "english": "career coaching",
@@ -4959,7 +5090,7 @@
         "Vocational rehabilitation",
         "Career Transition Services"
       ],
-      "id": "reclQ96AyDzo02Xcf"
+      "id": "recohWwpHBealwBX6"
     },
     {
       "english": "job-search assistance",
@@ -4969,51 +5100,55 @@
         "Vocational rehabilitation",
         "Career Transition Services"
       ],
-      "id": "rec8BPLJ05SiqJiha"
+      "id": "recb2Cby93x4LdW21"
     }
   ],
   "nextSteps": [
     {
       "bullet_name": "TransitionInterview",
       "english": "Contact us to schedule a [transition interview](https://www.veterans.gc.ca/eng/services/transition/interview) before you release from the military.",
-      "french": "(fra) Contact us to schedule a [transition interview](https://www.veterans.gc.ca/eng/services/transition/interview) before you release from the military.",
-      "patronType": ["recC9OodJNCqbnGy2"],
-      "id": "recRBOAZLef0VwQbH"
+      "french": "Veuillez communiquer avec nous pour prévoir une [entrevue de transition](https://www.veterans.gc.ca/fra/services/transition/interview) avant votre libération des forces militaires.",
+      "patronType": ["recFABO2SLhcwRkjT"],
+      "id": "recU2B0OUcUMg0uWy",
+      "serviceHealthIssue": []
     },
     {
       "bullet_name": "LearnMore",
       "english": "Before you apply, confirm your eligibility by reading the “Do you qualify” section of each benefit or service. ",
-      "french": "(fra) Before you apply, confirm your eligibility by reading the “Do you qualify” section of each benefit or service. ",
-      "id": "recegzx7Eq221sBP5",
-      "patronType": []
+      "french": "Avant de faire une demande, veuillez confirmer votre admissibilité en consultant la section « Êtes-vous admissible? » de chaque avantage ou service. ",
+      "id": "rechHmXWNoHOmWfAW",
+      "patronType": [],
+      "serviceHealthIssue": []
     },
     {
       "bullet_name": "MyVACAccount",
       "english": "Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms, further check eligibility and apply online. ",
-      "french": "(fra) Register or sign in to [My VAC Account](https://www.veterans.gc.ca/eng/e_services), where you can find application forms, further check eligibility and apply online. ",
-      "patronType": ["recu6xP62BL9yFbWN", "recC9OodJNCqbnGy2"],
-      "id": "reca8bB2Ze5HqMcG4"
+      "french": "Inscrivez-vous ou connectez-vous à votre [Mon dossier ACC](https://www.veterans.gc.ca/fra/e_services), où vous trouverez les formulaires de demandes, pourrez vérifier votre admissibilité et faire une demande en ligne.",
+      "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
+      "id": "recdzY1R8cKtLgQrV",
+      "serviceHealthIssue": []
     },
     {
       "bullet_name": "ServiceHealthRecord",
       "english": "We will obtain a copy of your service health records after we receive your application for disability benefits, which should contain sufficient evidence that your disability is related to your service.",
-      "french": "(fra) We will obtain a copy of your service health records after we receive your application for disability benefits, which should contain sufficient evidence that your disability is related to your service.",
-      "serviceHealthIssue": ["recxVaqj0O8BPKyeD"],
-      "id": "recWwmdjsoTSG54tz",
-      "patronType": []
+      "french": "Nous nous procurerons une copie de votre dossier de santé de service après avoir reçu votre demande de prestations d’invalidité, laquelle devrait démontrer adéquatement que votre invalidité est liée à votre service. ",
+      "patronType": ["recxxkfVbzqVT9PHE", "recFABO2SLhcwRkjT"],
+      "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
+      "id": "recZX9D8BmyE1zIeq"
     },
     {
       "bullet_name": "ContactUs",
-      "english": "If you still have questions, [contact us](https://veterans.gc.ca/eng/contact) and we will assist you. ",
-      "french": "(fra) If you still have questions, [contact us](https://veterans.gc.ca/eng/contact) and we will assist you. ",
+      "english": "If you still have questions, [contact us](https://www.veterans.gc.ca/eng/contact) and we will assist you. ",
+      "french": "Si vous avez d’autres questions, [veuillez communiquer avec nous](https://www.veterans.gc.ca/fra/contactez) et nous vous aiderons.",
       "patronType": [
-        "recu6xP62BL9yFbWN",
-        "recuWkVDSEWc1K0eU",
-        "recC9OodJNCqbnGy2"
+        "recxxkfVbzqVT9PHE",
+        "recxn7ls1CBYmeEZL",
+        "recFABO2SLhcwRkjT"
       ],
-      "id": "recPoMfyQeBv2V5D7"
+      "id": "recSPzFnZcghnpJoY",
+      "serviceHealthIssue": []
     }
   ],
   "errors": [],
-  "timestamp": 1550008345137
+  "timestamp": 1550849671877
 }

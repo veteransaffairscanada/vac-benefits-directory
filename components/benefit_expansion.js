@@ -1,35 +1,24 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { cx, css } from "emotion";
+import { css } from "emotion";
 import { connect } from "react-redux";
-import ExampleBullets from "./example_bullets";
 import ChildBenefitList from "./child_benefit_list";
-import LearnMoreButton from "./learn_more_button";
 import {
   getFilteredBenefitsFunction,
   getProfileFilters
 } from "../selectors/benefits";
+import ExampleBullets from "./example_bullets";
+import { globalTheme } from "../theme";
 
 const topBorder = css`
   padding-top: 1em;
-  padding-bottom: 18px;
-`;
-
-const noFocus = css`
-  :focus {
-    outline: none;
+  margin-bottom: 18px;
+  details:last-child {
+    border-bottom: 1px solid ${globalTheme.colour.darkPaleGrey};
   }
 `;
 
 export class BenefitExpansion extends Component {
-  constructor(props) {
-    super(props);
-    this.focusEl = React.createRef();
-  }
-  componentDidMount() {
-    const node = this.focusEl.current;
-    node.focus();
-  }
   getAlsoEligibleBenefits = (benefits, patronType = "") => {
     const reduxState = this.props.reduxState;
     const profileFilters = JSON.parse(
@@ -63,7 +52,7 @@ export class BenefitExpansion extends Component {
   };
 
   render() {
-    const { t, benefit, benefits, store, reduxState } = this.props;
+    const { t, benefit, benefits, reduxState, store } = this.props;
     const language = t("current-language-code");
     const benefitName =
       language === "en" ? benefit.vacNameEn : benefit.vacNameFr;
@@ -93,25 +82,23 @@ export class BenefitExpansion extends Component {
     });
 
     return (
-      <div
-        className={cx(this.props.className, noFocus)}
-        ref={this.focusEl}
-        tabIndex="-1"
-      >
-        <ExampleBullets benefit={benefit} t={t} store={store} />
-        <div className={topBorder}>
-          <ChildBenefitList
-            benefits={vetServBenefits}
-            colonText={otherBenefits}
-            t={t}
-          />
-          <ChildBenefitList
-            benefits={familyBenefits}
-            colonText={t("benefits_b.eligible_open_family")}
-            t={t}
-          />
-          <LearnMoreButton benefit={benefit} t={t} />
-        </div>
+      <div className={topBorder}>
+        <ExampleBullets
+          benefit={benefit}
+          t={t}
+          store={store}
+          language={language}
+        />
+        <ChildBenefitList
+          benefits={vetServBenefits}
+          colonText={otherBenefits}
+          t={t}
+        />
+        <ChildBenefitList
+          benefits={familyBenefits}
+          colonText={t("benefits_b.eligible_open_family")}
+          t={t}
+        />
       </div>
     );
   }

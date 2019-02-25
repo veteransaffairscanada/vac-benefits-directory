@@ -6,7 +6,7 @@ import { globalTheme } from "../theme";
 const StyledDetails = styled("details")({
   display: "block",
   fontSize: "inherit",
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySansSerif,
   color: globalTheme.colour.textColour
 });
 

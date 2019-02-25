@@ -12,6 +12,7 @@ import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
+import Link from "next/link";
 
 const alpha = css`
   background-color: ${globalTheme.colour.alphaBlue};
@@ -49,7 +50,7 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true,
-    fontFamily: ["Merriweather", "serif"]
+    fontFamily: globalTheme.fontFamilySerif
   }
 });
 
@@ -66,7 +67,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { t, title, skipLink } = this.props;
+    const { t, title, skipLink, url } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <MuiThemeProvider theme={theme}>
@@ -85,13 +86,10 @@ class Layout extends Component {
                 <div className={alpha}>
                   <Container>
                     <AlphaBanner t={t}>
-                      {t("alpha")} &nbsp;
-                      <a
-                        href={"mailto:" + t("contact.feedback_email")}
-                        className={white}
-                      >
-                        {t("alpha-feedback")}
-                      </a>
+                      {t("beta_banner.main")} &nbsp;
+                      <Link href={{ pathname: "/feedback", query: url.query }}>
+                        <a className={white}>{t("beta_banner.link_text")}</a>
+                      </Link>
                     </AlphaBanner>
                   </Container>
                 </div>
@@ -120,6 +118,7 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  url: PropTypes.object.isRequired,
   hideNoscript: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,

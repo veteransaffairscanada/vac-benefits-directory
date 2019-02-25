@@ -12,6 +12,8 @@ import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import nextStepsFixture from "../fixtures/nextSteps";
 import Cookies from "universal-cookie";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
+import translateFixture from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -41,7 +43,7 @@ describe("Favourites", () => {
   beforeEach(() => {
     window.scrollTo = jest.fn();
     props = {
-      t: key => key,
+      t: translateFixture,
       selectedEligibility: {
         serviceType: "",
         patronType: "",
@@ -49,7 +51,6 @@ describe("Favourites", () => {
       },
       url: { query: {} },
       homeUrl: "/",
-      nextStepsRef: React.createRef(),
       saveFavourites: jest.fn()
     };
     _shallowFavourites = undefined;
@@ -69,6 +70,7 @@ describe("Favourites", () => {
       areaOffices: areaOfficesFixture,
       selectedAreaOffice: areaOfficesFixture[0],
       closestAreaOffice: areaOfficesFixture[0],
+      benefitExamples: benefitExamplesFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       searchString: ""
     };
@@ -120,14 +122,6 @@ describe("Favourites", () => {
         "benefit_3"
       ]).length
     ).toEqual(2);
-  });
-
-  it("clicking next steps button changes window location", () => {
-    mountedFavourites().instance().scrollToNextSteps = jest.fn();
-    mountedFavourites()
-      .find("#nextSteps")
-      .simulate("click");
-    expect(mountedFavourites().instance().scrollToNextSteps).toBeCalled();
   });
 
   describe("cookies tests", () => {

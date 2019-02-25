@@ -33,32 +33,40 @@ Pour faire quoi que ce soit dans AirTable, effectuez toujours les étapes suivan
 
 ### Modifier le texte et les liens dans l’application
 
-1. Trouvez le texte ou l’hyperlien que vous voulez modifier dans l’[application](https://vac-benefits-finder.cds-snc.ca).
-2. Copiez le texte dans le presse-papiers.
-3. Examinez le tableau ci-dessous pour déterminer la feuille et la colonne d’Airtable où vous devriez apporter des modifications. Cliquez sur le lien vers la feuille.
-4. Dans Airtable, faites ctrl+f (Windows) ou commande+f (Mac) pour effectuer une recherche sur la page, et collez le texte que vous avez copié.
-5. Trouvez la rangée qui contient le texte que vous voulez modifier.
-6. Saisissez votre nouveau texte dans les colonnes en français et en anglais.
+1.	Trouvez le texte ou l’hyperlien que vous voulez modifier dans l’[application](https://vac-benefits-finder.cds-snc.ca).
+2.	Copiez le texte dans le presse-papiers.
+3.	Examinez le tableau ci-dessous pour déterminer la feuille et la colonne d’Airtable où vous devriez apporter des modifications. Cliquez sur le lien vers la feuille.
+4.	Dans Airtable, faites ctrl+f (Windows) ou commande+f (Mac) pour effectuer une recherche sur la page, et collez le texte que vous avez copié.
+5.	Trouvez la rangée qui contient le texte que vous voulez modifier.
+6.	Saisissez votre nouveau texte dans les colonnes en français et en anglais.
 
-| Texte que vous voulez modifier                                                   | Feuille d’AirTable (en anglais)                                                   | Nom de la colonne en anglais         | Nom de la colonne en français       |
-| -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------ | ----------------------------------- |
-| Nom de l’avantage                                                                | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | vacNameEn                            | vacNameFr                           |
-| Description en une ligne                                                         | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | oneLineDescriptionEn                 | oneLineDescriptionFr                |
-| Lien Apprenez-en plus à ce sujet d’ACC                                           | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | benefitPageEn                        | benefitPageFr                       |
-| Renseignements importants dans l’en-tête de la carte                             | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | noteEn                               | noteFr                              |
-| see more content description                                                     | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | seeMoreSentenceEn                    | seeMoreSentenceFr                   |
-| Texte des questions dans le répertoire des avantages                             | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | display_text_english                 | display_text_french                 |
-| Texte des questions dans l’expérience guidée                                     | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_english            | guided_experience_french            |
-| Titre de la page de l’expérience guidée                                          | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_page_title_english | guided_experience_page_title_french |
-| Texte de l’infobulle sur les questions de santé                                  | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | tooltip_english                      | tooltip_french                      |
-| Texte de l’option de choix multiples                                             | [multipleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | display_text_english                 | display_text_french                 |
-| Texte de la piste de navigation ou du lien de l’expérience guidée                | [multipleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | ge_breadcrumb_english                | ge_breadcrumb_french                |
-| Noms des bureaux locaux                                                          | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | name_en                              | name_fr                             |
-| Adresses des bureaux locaux                                                      | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | address_en                           | address_fr                          |
-| Numéros de téléphone des bureaux locaux                                          | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | telephone_en                         | telephone_fr                        |
-| Heures (toutes sur la page de la carte)                                          | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | office_hours_en                      | office_hours_fr                     |
+
+| Texte que vous voulez modifier                                     | Feuille d’AirTable (en anglais)                                                                   | Nom de la colonne en anglais                  | Nom de la colonne en français                 |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------ | ----------------------------------- |
+| Nom de l’avantage                                                | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | vacNameEn                            | vacNameFr                           |
+| Description en une ligne                                         | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | oneLineDescriptionEn                 | oneLineDescriptionFr                |
+| Lien Apprenez-en plus à ce sujet d’ACC                                         | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | benefitPageEn                        | benefitPageFr                       |
+| Renseignements importants dans l’en-tête de la carte                                | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | noteEn                               | noteFr                              |
+| Voir davantage de description de contenu                                 | [benefits](https://airtable.com/tblcf182f99RjsSDQ/viwMWVJVqS0VphdeQ)              | seeMoreSentenceEn                    | seeMoreSentenceFr                   |
+| Texte des questions dans le répertoire des avantages                         | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | display_text_english                 | display_text_french                 |
+| Texte des questions dans l’expérience guidée                          | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_english            | guided_experience_french            |
+| Titre de la page de l’expérience guidée                                | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | guided_experience_page_title_english | guided_experience_page_title_french |
+| Texte de l’infobulle sur les questions de santé                                     | [questions](https://airtable.com/tblCynpHaryoypjMY/viw1y4qaD2wp5aA2s)             | tooltip_english                      | tooltip_french                      |
+| Texte de l’option de choix multiples                                  | [multipleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | display_text_english                 | display_text_french                 |
+| Texte de la piste de navigation ou du lien de l’expérience guidée                    | [multipleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx) | ge_breadcrumb_english                | ge_breadcrumb_french                |
+| Noms des bureaux locaux                                           | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | name_en                              | name_fr                             |
+| Adresses des bureaux locaux                                        | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | address_en                           | address_fr                          |
+| Numéros de téléphone des bureaux locaux                                | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | telephone_en                         | telephone_fr                        |
+| Heures (toutes sur la page de la carte)                                      | [areaOffices](https://airtable.com/tblIlX7N7j7rLFlYw/viwSMqbzoKWN7gSFe)           | office_hours_en                      | office_hours_fr                     |
 | Options de case à cocher dans l’expérience guidée et le répertoire des avantages | [needs](https://airtable.com/tblY7TpDsGR5I3SaN/viwQOzMWARRdWFks3)                 | nameEn                               | nameFr                              |
-| Tous les autres textes                                                           | [translations](https://airtable.com/tblJAMGWk4ZypG5uX/viwsHMCBUnwx1EC3f)          | English                              | French                              |
+| Tous les autres textes                                              | [translations](https://airtable.com/tblJAMGWk4ZypG5uX/viwsHMCBUnwx1EC3f)          | English                              | French                              |
+
+### Modifier les critères d’admissibilité à un avantage
+
+1. Repérez la feuille [benefitEligibility](https://airtable.com/tblRNTYbp9OWDSj4l/viwB7uV1iu2dCaa5P) dans AirTable.
+2. Notez que chaque chemin d’accès est représenté par des valeurs inscrites dans des colonnes correspondant aux questions figurant sur la [feuille questions](https://airtable.com/login?continue=%2FtblCynpHaryoypjMY%2Fviw1y4qaD2wp5aA2s). Les valeurs se trouvant dans les colonnes correspondent à celles qui figurent sur la feuille [multipleChoiceOptions](https://airtable.com/tblrQKPk7xBGvy3eP/viwVIedUGDgf708Jx).
+3. Déterminez si le nouveau chemin d’accès d’admissibilité relatif à l’avantage en question existe déjà. (Si c’est le cas, il apparaît sur une ligne de la feuille benefitEligibility.) Sinon, insérez une ligne et indiquez-y l’avantage et les critères d’admissibilité. Note : inscrivez les valeurs `statusAndVitals` dans un chemin d’accès seulement si celui-ci inclut `family` et non `veteran`, `serving member` ou `organization`. Vous pourriez donc devoir créer deux lignes pour un même avantage, c’est-à-dire deux chemins d’accès : un pour les membres de la famille et un autre pour les anciens combattants.
+4. Si vous souhaitez éliminer un chemin d’accès d’admissibilité relatif à un avantage, supprimez la ligne en question dans le tableau.
 
 ### Ajouter une catégorie (c’est-à-dire le besoin ou la question à cases à cocher) et associer la catégorie à un avantage
 

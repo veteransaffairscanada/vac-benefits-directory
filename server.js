@@ -109,7 +109,7 @@ Promise.resolve(getAllData()).then(allData => {
         : req.headers["accept-language"];
 
       req.data = data;
-      req.language = lang.split(",")[0];
+      req.language = lang ? lang.split(",")[0] : "en";
 
       if (
         browser &&

@@ -20,9 +20,4 @@ describe("Button", () => {
   it("shows children", () => {
     expect(mount(<Button {...props} />).text()).toEqual("button text");
   });
-
-  it("has an arrow if props.arrow = true", () => {
-    props.arrow = true;
-    expect(mount(<Button {...props} />).find("svg").length).toEqual(1);
-  });
 });

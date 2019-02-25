@@ -4,7 +4,7 @@ import { globalTheme } from "../../theme";
 import { cx, css } from "emotion";
 
 const style = css`
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 24px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 16px;

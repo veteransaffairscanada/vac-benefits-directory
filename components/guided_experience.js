@@ -6,6 +6,7 @@ import Container from "./container";
 import Header from "./typography/header";
 import Body from "./typography/body";
 import HeaderLink from "./header_link";
+import BreadCrumbs from "./breadcrumbs";
 import { globalTheme } from "../theme";
 import Paper from "./paper";
 import { mutateUrl } from "../utils/common";
@@ -14,17 +15,45 @@ import { showQuestion, getPageName } from "../utils/common";
 import HeaderButton from "./header_button";
 import Button from "./button";
 import Link from "next/link";
+import { getHomeUrl } from "../selectors/urls";
+
+const greyBox = css`
+  background-color: ${globalTheme.colour.paleGreyTwo};
+  margin-top: 34px;
+  padding: 35px 43px;
+  p:first-of-type {
+    margin-top: 0;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 14px;
+    padding: 27px 18px;
+  }
+`;
 
 const box = css`
-  padding: 63px 63px 63px 63px;
+  padding: 50px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding: 17px 26px 55px 26px;
   }
   display: inline-flex;
 `;
-const prevButton = css`
-  margin-top: 50px;
-  margin-bottom: 15px;
+const alignRight = css`
+  text-align: right;
+`;
+const mobileReverse = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    flex-direction: column-reverse;
+  }
+`;
+const mobileFullWidth = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    width: 100%;
+    padding: 0;
+    margin-left: 0;
+  }
 `;
 const questions = css`
   margin: 0;
@@ -33,6 +62,17 @@ const questions = css`
 const body = css`
   margin-top: 5px;
   margin-bottom: 0px;
+  font-size: 24px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 14px;
+  }
+`;
+const leftMargin = css`
+  margin-left: 1.5em;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    margin-left: 0;
+    margin-bottom: 0.5em;
+  }
 `;
 export class GuidedExperience extends Component {
   getSubtitle = question => {
@@ -74,7 +114,7 @@ export class GuidedExperience extends Component {
     const dynamicStepNumber = displayable_sections.indexOf(id);
     const nextSection =
       dynamicStepNumber + 1 >= displayable_sections.length
-        ? "summary"
+        ? "benefitsDirectory"
         : displayable_sections[dynamicStepNumber + 1];
 
     let nextQueryParams = this.queryParamsToClearHiddenQuestions();
@@ -113,7 +153,7 @@ export class GuidedExperience extends Component {
     const dynamicStepNumber = displayable_sections.indexOf(id);
     const nextSection =
       dynamicStepNumber + 1 >= displayable_sections.length
-        ? "summary"
+        ? "benefitsDirectory"
         : displayable_sections[dynamicStepNumber + 1];
 
     if (id === "needs") {
@@ -126,7 +166,7 @@ export class GuidedExperience extends Component {
   }
 
   render() {
-    const { t, url, id, reduxState } = this.props;
+    const { t, url, id, reduxState, homeUrl } = this.props;
     const question = reduxState.questions.filter(
       x => x.variable_name === id
     )[0];
@@ -142,30 +182,30 @@ export class GuidedExperience extends Component {
 
     return (
       <Container id="mainContent" mobileFullWidth={true}>
-        <HeaderLink
-          id="prevButton"
-          href={backUrl}
-          className={prevButton}
-          arrow="back"
-        >
-          {t("back")}
-        </HeaderLink>
-
+        <div>
+          <BreadCrumbs
+            t={t}
+            breadcrumbs={[]}
+            homeUrl={homeUrl}
+            pageTitle={t("ge.Find benefits and services")}
+          />
+        </div>
         <Paper padding="md" className={box}>
           <Grid container spacing={24}>
-            {id === "patronType" ? (
-              <React.Fragment>
-                <Grid item xs={12}>
-                  <Header size="lg" headingLevel="h1">
-                    {t("ge.Find benefits and services")}
-                  </Header>
-                  <Body>
+            <Grid item xs={12}>
+              <Header size="xl" headingLevel="h1">
+                {t("ge.Find benefits and services")}
+              </Header>
+              {id === "patronType" ? (
+                <React.Fragment>
+                  <Body className={greyBox}>
                     <p>{t("ge.intro_text_p1")}</p>
                     <p>{t("ge.intro_text_p2")}</p>
                   </Body>
-                </Grid>
-              </React.Fragment>
-            ) : null}
+                </React.Fragment>
+              ) : null}
+            </Grid>
+
             <Grid item xs={12} className={questions}>
               <Header size="md_lg" headingLevel="h2">
                 {this.getSubtitle(question)}
@@ -180,16 +220,40 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
             <Grid item xs={12}>
-              <Link id="nextLink" href={this.getNextUrl()}>
-                <Button id="nextButton" arrow={true}>
-                  {t("next")}{" "}
-                </Button>
-              </Link>
-              <Link id="skipLink" href={this.getSkipUrl()}>
-                <HeaderButton id="skipButton" altStyle="grey">
-                  {t("ge.skip")}
-                </HeaderButton>
-              </Link>
+              <Grid container spacing={12}>
+                <Grid container xs={12} sm={8} className={mobileReverse}>
+                  <HeaderLink
+                    id="prevButton"
+                    href={backUrl}
+                    className={mobileFullWidth}
+                    hasBorder
+                  >
+                    {t("back")}
+                  </HeaderLink>
+                  <Link id="nextLink" href={this.getNextUrl()}>
+                    <Button
+                      id="nextButton"
+                      mobileFullWidth={true}
+                      className={leftMargin}
+                    >
+                      {this.getNextUrl().indexOf("benefits-directory") > -1
+                        ? t("ge.show_results")
+                        : t("next")}
+                    </Button>
+                  </Link>
+                </Grid>
+                <Grid item xs={12} sm={4} className={alignRight}>
+                  <Link id="skipLink" href={this.getSkipUrl()}>
+                    <HeaderButton
+                      id="skipButton"
+                      altStyle="grey"
+                      className={mobileFullWidth}
+                    >
+                      {t("ge.skip")}
+                    </HeaderButton>
+                  </Link>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Paper>
@@ -198,10 +262,11 @@ export class GuidedExperience extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState, props) => {
   return {
     reduxState: reduxState,
-    sectionOrder: reduxState.questions.map(x => x.variable_name)
+    sectionOrder: reduxState.questions.map(x => x.variable_name),
+    homeUrl: getHomeUrl(reduxState, props)
   };
 };
 
@@ -212,7 +277,8 @@ GuidedExperience.propTypes = {
   sectionOrder: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
   children: PropTypes.object.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  homeUrl: PropTypes.string
 };
 
 export default connect(mapStateToProps)(GuidedExperience);

@@ -31,8 +31,11 @@ const textAreaStyle = css`
   padding: 30px 0px 60px;
   max-width: 700px;
 `;
-const bottomMargin = css`
+const detailsStyle = css`
   margin-bottom: 30px;
+  a {
+    color: ${globalTheme.colour.greyishBrown};
+  }
 `;
 export class Feedback extends Component {
   state = {
@@ -72,8 +75,9 @@ export class Feedback extends Component {
         i18n={i18n}
         hideNoscript={false}
         title={t("feedback.page_title")}
-        backgroundColor={globalTheme.colour.white}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
         skipLink="#mainContent"
+        url={url}
       >
         <Container className={padding} id="mainContent">
           <HeaderButton
@@ -111,9 +115,17 @@ export class Feedback extends Component {
           </TextArea>
           <Details
             summary={t("feedback.details_question")}
-            className={bottomMargin}
+            className={detailsStyle}
           >
-            {t("feedback.details_expansion")}
+            {t("feedback.details_expansion_pt1")}
+            <a href={t("feedback.vac_office_link")}>
+              {t("feedback.details_expansion_pt2")}
+            </a>
+            {t("feedback.details_expansion_pt3")}
+            <a href={t("feedback.transition_centre_link")}>
+              {t("feedback.details_expansion_pt4")}
+            </a>
+            {t("feedback.details_expansion_pt5")}
           </Details>
           <div className={padding}>
             <Button

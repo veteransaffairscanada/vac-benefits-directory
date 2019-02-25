@@ -67,8 +67,9 @@ export class Map extends Component {
         t={t}
         hideNoscript={true}
         title={t("titles.map")}
-        backgroundColor={globalTheme.colour.white}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
         skipLink="#mainContent"
+        url={url}
       >
         <BreadCrumbs
           t={t}

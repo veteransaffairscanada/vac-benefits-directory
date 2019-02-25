@@ -10,12 +10,17 @@ export const initGA = () => {
       {
         trackingId: process.env.GA_UA_CDS,
         gaOptions: { name: "tracker_2", siteSpeedSampleRate: 100 }
+      },
+      {
+        trackingId: process.env.GA_UA_COMMS,
+        gaOptions: { name: "tracker_3", siteSpeedSampleRate: 100 }
       }
     ]
     //, { debug: true }
   );
   ReactGA.set({ anonymizeIp: true }, ["tracker_1"]);
   ReactGA.set({ anonymizeIp: true }, ["tracker_2"]);
+  ReactGA.set({ anonymizeIp: true }, ["tracker_3"]);
 };
 
 export const logPageView = () => {
@@ -23,12 +28,15 @@ export const logPageView = () => {
   ReactGA.pageview(window.location.pathname, ["tracker_1"]);
   ReactGA.set({ page: window.location.pathname }, ["tracker_2"]);
   ReactGA.pageview(window.location.pathname, ["tracker_2"]);
+  ReactGA.set({ page: window.location.pathname }, ["tracker_3"]);
+  ReactGA.pageview(window.location.pathname, ["tracker_3"]);
 };
 
 export const logEvent = (category = "", action = "", label = "") => {
   if (category && action) {
     ReactGA.event({ category, action, label }, ["tracker_1"]);
     ReactGA.event({ category, action, label }, ["tracker_2"]);
+    ReactGA.event({ category, action, label }, ["tracker_3"]);
   }
 };
 
@@ -36,5 +44,6 @@ export const logException = (description = "", fatal = false) => {
   if (description) {
     ReactGA.exception({ description, fatal }, ["tracker_1"]);
     ReactGA.exception({ description, fatal }, ["tracker_2"]);
+    ReactGA.exception({ description, fatal }, ["tracker_3"]);
   }
 };

@@ -4,64 +4,34 @@ import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
-import SaveChecked from "./icons/SaveUnchecked";
 import Link from "next/link";
 import { css } from "emotion";
 import Container from "./container";
 import Header from "./typography/header";
-import HeaderButton from "./header_button";
 import Body from "./typography/body";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled, mutateUrl } from "../utils/common";
-import AssignmentTurnedIn from "./icons/AssignmentTurnedIn";
 import { globalTheme } from "../theme";
 import BreadCrumbs from "./breadcrumbs";
-import ShareBox from "./share_box";
 import NextSteps from "./next_steps";
-import ContactUs from "./contact_us";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
+import StickyHeader from "./sticky_header";
+import QuickLinks from "./quick_links";
 
-const saveCSS = css`
-  font-size: 70px !important;
-`;
-const emptyList = css`
-  margin-top: 20px;
-  text-align: center;
-  word-spacing: normal;
-}
+const divider = css`
+  border-top: 2px solid ${globalTheme.colour.duckEggBlue};
+  width: 100%;
 `;
 const outerDiv = css`
-  padding-bottom: 16px !important;
+  padding-bottom: 100px;
 `;
-
-const topMargin = css`
-  margin-top: 20px;
+const innerDiv = css`
+  padding-top: 45px;
 `;
-
-const sidebarLinks = css`
-  padding: 1em 24px !important;
-  border-top: thin solid ${globalTheme.colour.paleGreyishBrown};
-  border-bottom: thin solid ${globalTheme.colour.paleGreyishBrown};
-  margin-bottom: 24px;
-`;
-const sidebar = css`
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  background-color: ${globalTheme.colour.white};
-`;
-const hideOnMobile = css`
-  // if screen size is max.xs or smaller
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    display: none !important;
-  }
-`;
-const showOnMobile = css`
-  // if screen size is min.xs or larger
-  @media only screen and (min-width: ${globalTheme.min.xs}) {
-    display: none !important;
-  }
+const headerPadding = css`
+  margin-top: 7px;
+  margin-bottom: 25px;
 `;
 export class Favourites extends Component {
   state = {
@@ -73,7 +43,6 @@ export class Favourites extends Component {
 
   constructor(props) {
     super(props);
-    this.nextStepsRef = React.createRef(); // create a ref object
     this.cookies = new Cookies();
   }
 
@@ -103,14 +72,8 @@ export class Favourites extends Component {
     return benefits.filter(b => favouriteBenefits.indexOf(b.id) > -1);
   };
 
-  scrollToNextSteps() {
-    window.location = "#next-steps";
-    const maxMobile = parseFloat(globalTheme.max.xs);
-    window.screen.width < maxMobile ? window.scrollBy(0, -90) : null;
-  }
-
   render() {
-    const { t, url, homeUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, homeUrl, store } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -133,39 +96,34 @@ export class Favourites extends Component {
             breadcrumbs={breadcrumbs}
             pageTitle={t("index.your_saved_benefits")}
           />
-          <Paper padding="md">
+          <Paper padding="md" className={innerDiv}>
             <Grid container spacing={32}>
-              <Grid item lg={3} md={3} sm={4} xs={12} className={sidebar}>
-                <div className={sidebar}>
-                  <Grid container spacing={16} className={sidebarLinks}>
-                    <Grid item xs={12}>
-                      <HeaderButton
-                        id="nextSteps"
-                        onClick={() => this.scrollToNextSteps()}
-                      >
-                        <AssignmentTurnedIn />
-                        {t("nextSteps.whats_next")}
-                      </HeaderButton>
-                    </Grid>
-                  </Grid>
-                  <ShareBox
-                    className={hideOnMobile}
-                    t={t}
-                    printUrl={this.props.printUrl}
-                    url={url}
-                    share={false}
-                  />
+              <Grid item xs={12}>
+                <Header
+                  className={"BenefitsCounter"}
+                  size="xl"
+                  headingLevel="h1"
+                >
+                  {t("titles.saved_list")}
+                </Header>
+              </Grid>
+              <StickyHeader
+                t={t}
+                url={url}
+                store={store}
+                showShareLink={false}
+              />
+              <Grid item xs={12}>
+                <QuickLinks t={t} onFavourites={true} />
+              </Grid>
+              <Grid item sm={4} xs={12}>
+                <div id="saved-list">
+                  <Header headingLevel="h2" size="md_lg">
+                    {t("titles.saved_list")}
+                  </Header>
                 </div>
               </Grid>
-              <Grid item lg={3} md={3} sm={4} xs={12} className={showOnMobile}>
-                <ShareBox
-                  t={t}
-                  printUrl={this.props.printUrl}
-                  url={url}
-                  share={true}
-                />
-              </Grid>
-              <Grid item id="mainContent" lg={9} md={9} sm={8} xs={12}>
+              <Grid id="mainContent" item sm={8} xs={12}>
                 <Grid container spacing={24}>
                   {this.state.showDisabledCookieBanner ? (
                     <Grid item xs={12}>
@@ -179,31 +137,30 @@ export class Favourites extends Component {
                   ) : null}
                   <Grid item xs={12}>
                     <Header
-                      className={"BenefitsCounter"}
-                      size="lg"
-                      headingLevel="h1"
+                      className={headerPadding}
+                      size="md"
+                      headingLevel="h3"
                     >
-                      {t("favourites.saved_benefits", {
-                        x: filteredBenefits.length
-                      })}
+                      {filteredBenefits.length === 1
+                        ? t("titles.1_saved_benefit")
+                        : t("titles.x_saved_benefits", {
+                            x: filteredBenefits.length
+                          })}
                     </Header>
-                    <Body className={topMargin}>
-                      {t("B3.check eligibility")}
-                    </Body>
                   </Grid>
+
                   <BenefitList
                     t={t}
                     currentLanguage={t("current-language-code")}
                     filteredBenefits={filteredBenefits}
                     showFavourites={true}
                     searchString=""
-                    store={this.props.store}
+                    store={store}
                     favouriteBenefits={this.props.favouriteBenefits}
                   />
                 </Grid>
                 {filteredBenefits.length == 0 ? (
-                  <Body className={emptyList}>
-                    <SaveChecked className={saveCSS} />
+                  <Body>
                     <br />
                     {t("favourites.help_msg_line1")}
                     <br />
@@ -214,21 +171,20 @@ export class Favourites extends Component {
                     <strong>{t("favourites.help_msg_emphasis") + " "}</strong>
                     {t("favourites.help_msg_last")}
                   </Body>
-                ) : (
-                  ""
-                )}
-                <Grid item xs={12}>
-                  <div ref={this.nextStepsRef}>
-                    <Grid container spacing={24}>
-                      <NextSteps t={t} store={this.props.store} />
-                      <ContactUs
-                        t={t}
-                        url={this.props.url}
-                        store={this.props.store}
-                      />
-                    </Grid>
-                  </div>
-                </Grid>
+                ) : null}
+              </Grid>
+              <Grid item xs={12}>
+                <div className={divider} />
+              </Grid>
+              <Grid item sm={4} xs={12}>
+                <div id="next-steps">
+                  <Header headingLevel="h2" size="md_lg">
+                    {t("nextSteps.whats_next")}
+                  </Header>
+                </div>
+              </Grid>
+              <Grid item sm={8} xs={12}>
+                <NextSteps t={t} store={store} />
               </Grid>
             </Grid>
           </Paper>
