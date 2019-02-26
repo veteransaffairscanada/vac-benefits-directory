@@ -49,6 +49,30 @@ void (function(root, factory) {
         details.setAttribute("open", "open");
       }
     }
+    if (e.target.parentNode.nodeName.toLowerCase() === "summary") {
+      var details2 = e.target.parentNode.parentNode;
+      if (!details2) return;
+
+      if (details2.getAttribute("open")) {
+        details2.open = false;
+        details2.removeAttribute("open");
+      } else {
+        details2.open = true;
+        details2.setAttribute("open", "open");
+      }
+    }
+    if (e.target.parentNode.parentNode.nodeName.toLowerCase() === "summary") {
+      var details3 = e.target.parentNode.parentNode.parentNode;
+      if (!details3) return;
+
+      if (details3.getAttribute("open")) {
+        details3.open = false;
+        details3.removeAttribute("open");
+      } else {
+        details3.open = true;
+        details3.setAttribute("open", "open");
+      }
+    }
   }
 
   /*
