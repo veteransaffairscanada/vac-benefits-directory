@@ -1,160 +1,86 @@
-/**
- * JavaScript 'polyfill' for HTML5's <details> and <summary> elements
- * and 'shim' to add accessiblity enhancements for all browsers
- *
- * http://caniuse.com/#feat=details
- *
- * Usage instructions:
- * the 'polyfill' will be automatically initialised
- */
-// import '../../vendor/polyfills/Function/prototype/bind'
-import "core-js/fn/function/bind";
-// import '../../vendor/polyfills/Event' // addEventListener and event.target normaliziation
-// import '../../vendor/polyfills/Event' // addEventListener and event.target normaliziation
-import { uuidv4 } from "./common.js";
+void (function(root, factory) {
+  if (typeof define === "function" && define.amd) define(factory);
+  else if (typeof exports === "object") module.exports = factory();
+  else factory();
+})(this, function() {
+  var DETAILS = "details";
+  var SUMMARY = "summary";
 
-var KEY_ENTER = 13;
-var KEY_SPACE = 32;
+  var supported = checkSupport();
+  if (supported) return;
 
-// Create a flag to know if the browser supports navtive details
-var NATIVE_DETAILS =
-  typeof document.createElement("details").open === "boolean";
+  // Add a classname
+  document.documentElement.className += " no-details";
 
-function Details($module) {
-  this.$module = $module;
-}
+  window.addEventListener("click", clickHandler);
 
-/**
- * Handle cross-modal click events
- * @param {object} node element
- * @param {function} callback function
- */
-Details.prototype.handleInputs = function(node, callback) {
-  node.addEventListener("keypress", function(event) {
-    var target = event.target;
-    // When the key gets pressed - check if it is enter or space
-    if (event.keyCode === KEY_ENTER || event.keyCode === KEY_SPACE) {
-      if (target.nodeName.toLowerCase() === "summary") {
-        // Prevent space from scrolling the page
-        // and enter from submitting a form
-        event.preventDefault();
-        // Click to let the click event do all the necessary action
-        if (target.click) {
-          target.click();
-        } else {
-          // except Safari 5.1 and under don't support .click() here
-          callback(event);
-        }
+  injectStyle(
+    "details-polyfill-style",
+    "html.no-details " +
+      DETAILS +
+      ":not([open]) > :not(" +
+      SUMMARY +
+      ") { display: none; }\n" +
+      "html.no-details " +
+      DETAILS +
+      " > " +
+      SUMMARY +
+      ":before { display: inline-block; font-size: .8em; width: 1.5em; }\n" +
+      "html.no-details " +
+      DETAILS +
+      "[open] > " +
+      SUMMARY
+  );
+
+  /*
+   * Click handler for `<summary>` tags
+   */
+
+  function clickHandler(e) {
+    if (e.target.nodeName.toLowerCase() === "summary") {
+      var details = e.target.parentNode;
+      if (!details) return;
+
+      if (details.getAttribute("open")) {
+        details.open = false;
+        details.removeAttribute("open");
+      } else {
+        details.open = true;
+        details.setAttribute("open", "open");
       }
     }
-  });
-
-  // Prevent keyup to prevent clicking twice in Firefox when using space key
-  node.addEventListener("keyup", function(event) {
-    var target = event.target;
-    if (event.keyCode === KEY_SPACE) {
-      if (target.nodeName.toLowerCase() === "summary") {
-        event.preventDefault();
-      }
-    }
-  });
-
-  node.addEventListener("click", callback);
-};
-
-Details.prototype.init = function() {
-  var $module = this.$module;
-
-  if (!$module) {
-    return;
   }
 
-  // Save shortcuts to the inner summary and content elements
-  var $summary = (this.$summary = $module
-    .getElementsByTagName("summary")
-    .item(0));
-  var $content = (this.$content = $module.getElementsByTagName("div").item(0));
+  /*
+   * Checks for support for `<details>`
+   */
 
-  // If <details> doesn't have a <summary> and a <div> representing the content
-  // it means the required HTML structure is not met so the script will stop
-  if (!$summary || !$content) {
-    return;
+  function checkSupport() {
+    var el = document.createElement(DETAILS);
+    if (!("open" in el)) return false;
+
+    el.innerHTML = "<" + SUMMARY + ">a</" + SUMMARY + ">b";
+    document.body.appendChild(el);
+
+    var diff = el.offsetHeight;
+    el.open = true;
+    var result = diff != el.offsetHeight;
+
+    document.body.removeChild(el);
+    return result;
   }
 
-  // If the content doesn't have an ID, assign it one now
-  // which we'll need for the summary's aria-controls assignment
-  if (!$content.id) {
-    $content.id = "details-content-" + uuidv4();
+  /*
+   * Injects styles (idempotent)
+   */
+
+  function injectStyle(id, style) {
+    if (document.getElementById(id)) return;
+
+    var el = document.createElement("style");
+    el.id = id;
+    el.innerHTML = style;
+
+    document.getElementsByTagName("head")[0].appendChild(el);
   }
-
-  // Add ARIA role="group" to details
-  $module.setAttribute("role", "group");
-
-  // Add role=button to summary
-  $summary.setAttribute("role", "button");
-
-  // Add aria-controls
-  $summary.setAttribute("aria-controls", $content.id);
-
-  // Set tabIndex so the summary is keyboard accessible for non-native elements
-  // http://www.saliences.com/browserBugs/tabIndex.html
-  if (!NATIVE_DETAILS) {
-    $summary.tabIndex = 0;
-  }
-
-  // Detect initial open state
-  var openAttr = $module.getAttribute("open") !== null;
-  if (openAttr === true) {
-    $summary.setAttribute("aria-expanded", "true");
-    $content.setAttribute("aria-hidden", "false");
-  } else {
-    $summary.setAttribute("aria-expanded", "false");
-    $content.setAttribute("aria-hidden", "true");
-    if (!NATIVE_DETAILS) {
-      $content.style.display = "none";
-    }
-  }
-
-  // Bind an event to handle summary elements
-  this.handleInputs($summary, this.setAttributes.bind(this));
-};
-
-/**
- * Define a statechange function that updates aria-expanded and style.display
- * @param {object} summary element
- */
-Details.prototype.setAttributes = function() {
-  var $module = this.$module;
-  var $summary = this.$summary;
-  var $content = this.$content;
-
-  var expanded = $summary.getAttribute("aria-expanded") === "true";
-  var hidden = $content.getAttribute("aria-hidden") === "true";
-
-  $summary.setAttribute("aria-expanded", expanded ? "false" : "true");
-  $content.setAttribute("aria-hidden", hidden ? "false" : "true");
-
-  if (!NATIVE_DETAILS) {
-    $content.style.display = expanded ? "none" : "";
-
-    var hasOpenAttr = $module.getAttribute("open") !== null;
-    if (!hasOpenAttr) {
-      $module.setAttribute("open", "open");
-    } else {
-      $module.removeAttribute("open");
-    }
-  }
-  return true;
-};
-
-/**
- * Remove the click event from the node element
- * @param {object} node element
- */
-Details.prototype.destroy = function(node) {
-  node.removeEventListener("keypress");
-  node.removeEventListener("keyup");
-  node.removeEventListener("click");
-};
-
-export default Details;
+}); // eslint-disable-line semi
