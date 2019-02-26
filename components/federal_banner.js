@@ -3,7 +3,6 @@ import { css } from "emotion";
 import PropTypes from "prop-types";
 import LanguageButton from "./language_button";
 import FIP from "./fip";
-import { globalTheme } from "../theme";
 import SkipToMainContent from "./skip_to_main_content";
 
 export const breakpoints = {
@@ -28,7 +27,9 @@ const mediaQuery = Object.keys(breakpoints).reduce((accumulator, label) => {
 
 const container = css`
   margin: 0px;
-  padding: 1rem 0rem 0.5rem 0rem;
+  box-sizing: border-box;
+  height: 83px;
+  // padding: 1rem 0rem 0.5rem 0rem;
   width: auto;
   justify-content: space-between;
   display: -webkit-flex;
