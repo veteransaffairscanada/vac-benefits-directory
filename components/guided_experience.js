@@ -192,20 +192,23 @@ export class GuidedExperience extends Component {
         </div>
         <Paper padding="md" className={box}>
           <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <Header size="xl" headingLevel="h1">
-                {t("ge.Find benefits and services")}
-              </Header>
-              {id === "patronType" ? (
-                <React.Fragment>
-                  <Body className={greyBox}>
-                    <p>{t("ge.intro_text_p1")}</p>
-                    <p>{t("ge.intro_text_p2")}</p>
-                  </Body>
-                </React.Fragment>
-              ) : null}
-            </Grid>
-
+            {id === "patronType" ? (
+              <React.Fragment>
+                <Grid item xs={12}>
+                  <Header size="xl" headingLevel="h1">
+                    {t("ge.Find benefits and services")}
+                  </Header>
+                  {id === "patronType" ? (
+                    <React.Fragment>
+                      <Body className={greyBox}>
+                        <p>{t("ge.intro_text_p1")}</p>
+                        <p>{t("ge.intro_text_p2")}</p>
+                      </Body>
+                    </React.Fragment>
+                  ) : null}
+                </Grid>
+              </React.Fragment>
+            ) : null}
             <Grid item xs={12} className={questions}>
               <Header size="md_lg" headingLevel="h2">
                 {this.getSubtitle(question)}
