@@ -15,7 +15,6 @@ const modalCSS = css`
   border: 0;
   background: rgb(255, 255, 255);
   overflow: auto;
-  border-radius: 4px;
   outline: none;
   padding: 0;
   @media only screen and (max-width: ${globalTheme.max.md}) {
@@ -44,50 +43,56 @@ const modalCSS = css`
 `;
 
 const header = css`
-  background-color: ${globalTheme.colour.darkGreyBlue};
+  background-color: ${globalTheme.colour.blackBlue};
   color: ${globalTheme.colour.white};
   padding: 0.75em 1.5em;
-  font-size: 18px;
+  font-size: 22px;
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-weight: 700;
 `;
 
 const bodyStyle = css`
   padding: 1.5em;
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-weight: 700;
 `;
 
 const URLInputBox = styled("input")({
   width: "80%",
   height: "44px",
   padding: "9px 19px 8px 19px",
-  margin: "0 0 10px 0",
+  margin: 0,
   border: 0,
-  boxShadow:
-    "0px 1px 5px 0px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 3px 1px -2px rgba(0,0,0,0.12)",
   boxSizing: "border-box",
   fontFamily: globalTheme.fontFamilySansSerif,
-  fontWeight: 400,
+  color: globalTheme.colour.navy,
+  fontWeight: "bold",
   textTransform: "none",
-  fontSize: "1em",
+  fontSize: "18px",
   lineHeight: "1.5",
-  background: globalTheme.colour.white,
+  background: globalTheme.colour.paleGreyTwo,
   borderRadius: 0,
+  boxShadow: "inset 0 0 0 9999px f4f7f9", // keeps chrome autofill from changing background colour
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",
     outline: `3px solid ` + globalTheme.colour.focusColour,
-    outlineOffset: 0
+    outlineOffset: 0,
+    " ~ button": {
+      width: "46px"
+    }
   }
 });
 
 const CopyButton = styled("button")({
-  backgroundColor: globalTheme.colour.cerulean,
+  backgroundColor: globalTheme.colour.blackBlue,
   cursor: "pointer",
   width: "auto",
   border: 0,
-  borderRadius: "3px",
   color: globalTheme.colour.white,
   fontFamily: globalTheme.fontFamilySansSerif,
   fontWeight: "bold",
-  fontSize: "18px",
+  fontSize: "22px",
   lineHeight: "23px",
   position: "relative",
   padding: ".526315em 1em",
@@ -98,13 +103,13 @@ const CopyButton = styled("button")({
     outline: `3px solid ` + globalTheme.colour.focusColour
   },
   ":hover": {
-    backgroundColor: globalTheme.colour.darkGreyBlue
+    backgroundColor: globalTheme.colour.navy
   }
 });
 
 const CloseButton = styled("button")({
   float: "right",
-  backgroundColor: globalTheme.colour.darkGreyBlue,
+  backgroundColor: globalTheme.colour.blackBlue,
   height: "100%",
   cursor: "pointer",
   fontSize: "18px",
