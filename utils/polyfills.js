@@ -8,4 +8,6 @@ import "core-js/fn/object/assign";
 import "core-js/fn/object/entries";
 import "core-js/fn/object/values";
 import "core-js/fn/set";
-import "details-polyfill";
+import "core-js/fn/symbol";
+import "core-js/fn/array/from";
+import "./details_polyfill";
