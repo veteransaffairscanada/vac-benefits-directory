@@ -47,7 +47,7 @@ export const getFilteredBenefitsFunction = (
   let matchingBenefitIds = eligibleBenefitIds.filter(
     id => benefitIdsForSelectedNeeds.indexOf(id) > -1
   );
-  return benefits.filter(b => matchingBenefitIds.includes(b.id));
+  return benefits.filter(b => matchingBenefitIds.indexOf(b.id) != -1);
 };
 
 export const getProfileFilters = createSelector(
@@ -203,7 +203,7 @@ export const getFilteredNextSteps = createSelector(
           eligibleNextStepIds.push(ns.id);
         }
       });
-      return nextSteps.filter(ns => eligibleNextStepIds.includes(ns.id));
+      return nextSteps.filter(ns => eligibleNextStepIds.indexOf(ns.id) != -1);
     }
 
     // if no selection, just return next steps with no requirements
@@ -277,7 +277,9 @@ export const applySearchString = (
     });
     let resultIds = results.map(r => r.ref);
 
-    matchingBenefits = matchingBenefits.filter(b => resultIds.includes(b.id));
+    matchingBenefits = matchingBenefits.filter(
+      b => resultIds.indexOf(b.id) != -1
+    );
     matchingBenefits.forEach(b => {
       b.score = resultDict[b.id].score;
     });
