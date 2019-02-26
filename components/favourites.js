@@ -73,7 +73,7 @@ export class Favourites extends Component {
   };
 
   render() {
-    const { t, url, homeUrl, store } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, printUrl, homeUrl, store } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -109,6 +109,7 @@ export class Favourites extends Component {
               </Grid>
               <StickyHeader
                 t={t}
+                printUrl={printUrl}
                 url={url}
                 store={store}
                 showShareLink={false}
