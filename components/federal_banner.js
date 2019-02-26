@@ -31,7 +31,6 @@ const container = css`
   padding: 1rem 0rem 0.5rem 0rem;
   width: auto;
   justify-content: space-between;
-  background-color: ${globalTheme.colour.greyishBrownTwo};
   display: -webkit-flex;
   display: -webkit-box;
   display: -ms-flexbox;

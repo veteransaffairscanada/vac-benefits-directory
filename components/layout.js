@@ -21,7 +21,7 @@ const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
 const header = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.bannerColour};
   padding: 0px;
 `;
 const white = css`
@@ -33,8 +33,8 @@ const white = css`
 const backgoundColour1 = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
 `;
-const backgoundColour2 = css`
-  background-color: ${globalTheme.colour.greyishBrown};
+const footerColour = css`
+  background-color: ${globalTheme.colour.bannerColour};
 `;
 const theme = createMuiTheme({
   palette: {
@@ -103,7 +103,7 @@ class Layout extends Component {
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div className={backgoundColour2}>
+            <div className={footerColour}>
               <Container>
                 <Footer t={t} />
               </Container>
