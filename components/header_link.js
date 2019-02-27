@@ -88,6 +88,8 @@ HeaderLink.propTypes = {
   label: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
+  hasBorder: PropTypes.bool,
+  altStyle: PropTypes.string,
   href: PropTypes.string
 };
 

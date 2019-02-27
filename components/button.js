@@ -113,7 +113,8 @@ Button.propTypes = {
   /**
    * Renders a disabled button and removes pointer events if set to true
    */
-  secondary: PropTypes.bool
+  secondary: PropTypes.bool,
+  mobileFullWidth: PropTypes.string
 };
 
 Button.defaultProps = {
