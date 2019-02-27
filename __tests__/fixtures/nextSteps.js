@@ -2,7 +2,7 @@ const nextStepsFixture = [
   {
     variable_name: "ns_0",
     english: "bullet 0 [test link](/some_url)",
-    french: "french bullet 0"
+    french: "french bullet 0 [french test link](/some_french_url)"
   },
   {
     variable_name: "ns_1",

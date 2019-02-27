@@ -10,6 +10,8 @@ const benefitsFixture = [
     needs: ["need_0", "need_1"],
     childBenefits: ["benefit_1"],
     availableIndependently: "Independent",
+    noteEn: "note_0_en [test link](/some_url)",
+    noteFr: "note_0_fr [french test link](/some_french_url)",
     sortingPriority: "low",
     benefitEligibility: ["0"],
     seeMoreSentenceEn: "seeMoreSentenceEn",
