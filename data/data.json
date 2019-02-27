@@ -41,7 +41,7 @@
       ],
       "benefitEligibility": ["rec9F6MdtBCdj4ybK"],
       "seeMoreSentenceEn": "Some examples of daily tasks that you may need help with:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "seeMoreSentenceFr": " Exemples de tâches quotidiennes pour lesquelles vous pourriez avoir besoin d’aide :",
       "id": "recQTITbxrAtU7Vls",
       "childBenefits": [],
       "examples": "",
@@ -224,7 +224,7 @@
       "sortingPriority": "low",
       "benefitEligibility": ["recj6kzJzNbcdqK2F"],
       "seeMoreSentenceEn": "Some examples of what this fund has been used for:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "seeMoreSentenceFr": " Exemples d’utilisations de ce fonds :",
       "id": "recrX8fofj1cxF3Sw",
       "needs": [],
       "childBenefits": [],
@@ -275,7 +275,7 @@
       ],
       "benefitEligibility": ["recrnr1Io0Ut51sTK"],
       "seeMoreSentenceEn": "Some examples of what could cause this type of injury include:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "seeMoreSentenceFr": " Exemples de ce qui pourrait causer ce type de blessure :  ",
       "id": "recKwi0zpl9Rrca6J",
       "childBenefits": [],
       "examples": ""
@@ -493,7 +493,7 @@
       ],
       "benefitEligibility": ["recgUXjEaFqSCKmYY"],
       "seeMoreSentenceEn": "Some examples of common mental health issues are:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "seeMoreSentenceFr": " Exemples de problèmes de santé mentale répandus :",
       "id": "rec1flnDzoxEXozXE",
       "categories DO NOT USE": "",
       "childBenefits": [],
@@ -615,7 +615,7 @@
       ],
       "benefitEligibility": ["recMfBhxdE8IXI1xd", "recWH4cNVr9CDfW7i"],
       "seeMoreSentenceEn": "Here are a few topics that are covered on LifeSpeak:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "seeMoreSentenceFr": " Voici quelques sujets abordés dans LifeSpeak :",
       "id": "reca94yF9W4dM3oLI",
       "categories DO NOT USE": "",
       "childBenefits": [],
@@ -663,7 +663,7 @@
       ],
       "benefitEligibility": ["recjyIt9cm0Q0fex8", "rechuM57AgEj9AHZV"],
       "seeMoreSentenceEn": "The clinics provide individual as well as group therapy sessions for: ",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "seeMoreSentenceFr": " Les cliniques offrent des séances de thérapie individuelle et de groupe pour ce qui suit :",
       "id": "reckOXDBGKmbtA9gZ",
       "categories DO NOT USE": "",
       "childBenefits": [],
@@ -690,7 +690,7 @@
       ],
       "benefitEligibility": ["recARVqskqG4ElZVv"],
       "seeMoreSentenceEn": "You may be interested in pastoral support if you are:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "seeMoreSentenceFr": " Le soutien spirituel peut vous intéresser si vous êtes :",
       "id": "recYHZ0VVBlyW9Xky",
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -895,7 +895,7 @@
       ],
       "benefitEligibility": ["recHGElNUnaIQUmDo"],
       "seeMoreSentenceEn": "Some examples of what this program may cover:",
-      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme (fra) peut fournir :",
+      "seeMoreSentenceFr": " Exemples de ce que ce programme peut couvrir :",
       "id": "rechXeFmQ9yIZpt37",
       "childBenefits": [],
       "examples": ""
@@ -2281,7 +2281,7 @@
       "section": "dv",
       "key": "Benefits not in the Benefit Eligibility Table",
       "English": "Benefits not in the Benefit Eligibility Table",
-      "French": "(fra) Benefits not in the Benefit Eligibility Table",
+      "French": "Avantages ne figurant pas dans le tableau d’admissibilité aux avantages",
       "id": "dv.Benefits not in the Benefit Eligibility Table"
     },
     {
@@ -3219,14 +3219,14 @@
       "section": "feedback",
       "key": "response_p1",
       "English": "Thank you for your feedback. If you have more,",
-      "French": "Merci pour votre avis. (fra) If you have more, ",
+      "French": "Merci pour votre avis. Si vous en avez d’autres,",
       "id": "feedback.response_p1"
     },
     {
       "section": "feedback",
       "key": "response_p2",
       "English": "let us know.",
-      "French": "(fra) let us know.",
+      "French": "dites-le-nous. ",
       "id": "feedback.response_p2"
     },
     {
@@ -3268,13 +3268,13 @@
       "section": "titles",
       "key": "benefits_and_services",
       "English": "Benefits and services",
-      "French": "(fra) Benefits and services",
+      "French": " Avantages et services",
       "id": "titles.benefits_and_services"
     },
     {
       "key": "share_colon",
       "English": "Share:",
-      "French": "(fra) Share:",
+      "French": " Partager :",
       "id": "share_colon",
       "section": ""
     },
@@ -3282,21 +3282,21 @@
       "section": "titles",
       "key": "saved_list",
       "English": "Saved list",
-      "French": "(fra) Saved list",
+      "French": " Liste sauvegardée",
       "id": "titles.saved_list"
     },
     {
       "section": "titles",
       "key": "x_saved_benefits",
       "English": "{{x}} saved benefits and services",
-      "French": "(fra) {{x}} saved benefits and services",
+      "French": "{{x}} avantages et services sauvegardés",
       "id": "titles.x_saved_benefits"
     },
     {
       "section": "titles",
       "key": "1_saved_benefit",
       "English": "1 saved benefit or service",
-      "French": "(fra) 1 saved benefit or service",
+      "French": "avantage ou service sauvegardé ",
       "id": "titles.1_saved_benefit"
     }
   ],
@@ -4328,13 +4328,13 @@
     },
     {
       "english": "chiropractor",
-      "french": "(fra) chiropractor",
+      "french": " chiropraticien",
       "linked_benefits": ["Rehabilitation services"],
       "id": "reccIoJgjbZlPUQur"
     },
     {
       "english": "massage therapy ",
-      "french": "(fra) massage therapy ",
+      "french": "massothérapie ",
       "linked_benefits": ["Rehabilitation services"],
       "id": "rec3UvOcOCmuXcmZH"
     },
@@ -4578,5 +4578,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1551277692248
+  "timestamp": 1551294612184
 }
