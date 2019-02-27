@@ -185,6 +185,7 @@ class ShareModal extends Component {
         type="text"
         id={shareTargetId}
         defaultValue={
+          this.props.url.asPath &&
           this.props.url.asPath.includes(this.state.utm)
             ? this.state.origin + this.props.url.asPath
             : this.state.origin + this.props.url.asPath + this.state.utm
@@ -197,6 +198,7 @@ class ShareModal extends Component {
         type="text"
         id={shareTargetId}
         value={
+          this.props.url.asPath &&
           this.props.url.asPath.includes(this.state.utm)
             ? this.state.origin + this.props.url.asPath
             : this.state.origin + this.props.url.asPath + this.state.utm
