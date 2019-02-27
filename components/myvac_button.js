@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import FooterLink from "./typography/footer_link";
-// import { logEvent } from "../utils/analytics";
 import FolderMouse from "./icons/FolderMouse";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
