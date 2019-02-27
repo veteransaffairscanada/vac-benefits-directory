@@ -135,7 +135,9 @@ class ShareModal extends Component {
 
   copyText(e) {
     let t = e.target.dataset.copytarget;
-    let shareInput = t ? document.querySelector(t) : null;
+    let shareInput = t
+      ? document.querySelector("[id='" + t.substr(1) + "']")
+      : null; // substr to strip out the '#'
     try {
       if (navigator.clipboard) {
         navigator.clipboard.writeText(shareInput.value).then(() => {
