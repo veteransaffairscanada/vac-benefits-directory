@@ -185,7 +185,9 @@ class ShareModal extends Component {
         type="text"
         id={shareTargetId}
         defaultValue={
-          this.state.origin + this.props.url.asPath + this.state.utm
+          this.props.url.asPath.includes(this.state.utm)
+            ? this.state.origin + this.props.url.asPath
+            : this.state.origin + this.props.url.asPath + this.state.utm
         }
         contentEditable="true"
         readOnly={false}
@@ -194,7 +196,11 @@ class ShareModal extends Component {
       <URLInputBox
         type="text"
         id={shareTargetId}
-        value={this.state.origin + this.props.url.asPath + this.state.utm}
+        value={
+          this.props.url.asPath.includes(this.state.utm)
+            ? this.state.origin + this.props.url.asPath
+            : this.state.origin + this.props.url.asPath + this.state.utm
+        }
         readOnly
       />
     );
