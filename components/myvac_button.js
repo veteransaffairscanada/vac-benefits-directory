@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import FooterButton from "./footer_button";
-import { logEvent } from "../utils/analytics";
-import Router from "next/router";
+// import { logEvent } from "../utils/analytics";
 import { css } from "emotion";
-import Language from "./icons/Language";
 import { globalTheme } from "../theme";
 
 const desktopButton = css`
@@ -20,18 +18,7 @@ const desktopButton = css`
   }
 `;
 
-class LanguageButton extends Component {
-  changeLanguage = () => {
-    const newQuery = Router.query;
-    newQuery.lng = this.props.t("other-language-code");
-    Router.push({
-      pathname: Router.pathname,
-      query: newQuery
-    });
-    this.props.i18n.changeLanguage(this.props.t("other-language-code"));
-    logEvent("Language change", this.props.t("other-language"));
-  };
-
+class MyVacButton extends Component {
   render() {
     const { t } = this.props;
 
@@ -44,8 +31,7 @@ class LanguageButton extends Component {
             className={desktopButton}
             lang={t("other-language-code")}
           >
-            {t("other-language")}
-            <Language />
+            my vac
           </FooterButton>
         </div>
       </React.Fragment>
@@ -53,9 +39,9 @@ class LanguageButton extends Component {
   }
 }
 
-LanguageButton.propTypes = {
+MyVacButton.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired
 };
 
-export default LanguageButton;
+export default MyVacButton;

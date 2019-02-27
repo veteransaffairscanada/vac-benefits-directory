@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { css } from "emotion";
 import PropTypes from "prop-types";
 import LanguageButton from "./language_button";
+import MyVacButton from "./myvac_button";
 import FIP from "./fip";
 import SkipToMainContent from "./skip_to_main_content";
+import { Grid } from "@material-ui/core";
 
 export const breakpoints = {
   xs: 481,
@@ -29,7 +31,6 @@ const container = css`
   margin: 0px;
   box-sizing: border-box;
   height: 83px;
-  // padding: 1rem 0rem 0.5rem 0rem;
   width: auto;
   justify-content: space-between;
   display: -webkit-flex;
@@ -67,17 +68,20 @@ class FederalBanner extends Component {
   render() {
     const { t, skipLink, i18n } = this.props;
     return (
-      <div>
-        <SkipToMainContent skipLink={skipLink} t={t} />
-        <div className={container}>
-          <div className="svg-container">
-            <FIP fillColor="white" t={t} />
+      <Grid container>
+        <Grid item xs={12} sm={6}>
+          <SkipToMainContent skipLink={skipLink} t={t} />
+          <div className={container}>
+            <div className="svg-container">
+              <FIP fillColor="white" t={t} />
+            </div>
           </div>
-          <div>
-            <LanguageButton i18n={i18n} t={t} />
-          </div>
-        </div>
-      </div>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <LanguageButton i18n={i18n} t={t} />
+          <MyVacButton i18n={i18n} t={t} />
+        </Grid>
+      </Grid>
     );
   }
 }
