@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import FooterButton from "./footer_button";
 // import { logEvent } from "../utils/analytics";
+import FolderMouse from "./icons/FolderMouse";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
 
@@ -11,9 +12,9 @@ const desktopButton = css`
   line-height: 23px;
   letter-spacing: 2.5px;
   svg {
-    margin-top: -4px;
+    margin-top: 5px;
     vertical-align: middle;
-    padding-left: 5px;
+    padding-left: 10px;
     color: ${globalTheme.colour.blueGrey};
   }
 `;
@@ -31,7 +32,8 @@ class MyVacButton extends Component {
             className={desktopButton}
             lang={t("other-language-code")}
           >
-            my vac
+            my vac account
+            <FolderMouse />
           </FooterButton>
         </div>
       </React.Fragment>
