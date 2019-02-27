@@ -6,31 +6,12 @@ import MyVacButton from "./myvac_button";
 import FIP from "./fip";
 import SkipToMainContent from "./skip_to_main_content";
 import { Grid } from "@material-ui/core";
-
-export const breakpoints = {
-  xs: 481,
-  sm: 578,
-  md: 764,
-  base: 764,
-  lg: 992
-};
-
-const mediaQuery = Object.keys(breakpoints).reduce((accumulator, label) => {
-  let prefix = typeof breakpoints[label] === "string" ? "" : "max-width:";
-  let suffix = typeof breakpoints[label] === "string" ? "" : "px";
-  accumulator[label] = cls =>
-    css`
-      @media screen and (${prefix + breakpoints[label] + suffix}) {
-        ${cls};
-      }
-    `;
-  return accumulator;
-}, {});
+import { globalTheme } from "../theme";
 
 const container = css`
   margin: 0px;
   box-sizing: border-box;
-  height: 83px;
+  height: 75px;
   padding-top: 26px;
   width: auto;
   justify-content: space-between;
@@ -42,35 +23,47 @@ const container = css`
 
   .svg-container {
     /* same as the width value in our svg */
-    width: 400px;
+    width: 350px;
     height: 30px;
   }
 
   .svg-logo {
-    width: 400px;
+    width: 350px;
     fill: white;
   }
 
-  ${mediaQuery.xs(css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     .svg-container {
       width: 220px;
       height: 30px;
-
       svg {
         width: 220px;
         height: 30px;
         fill: white;
       }
     }
-  `)};
+  }
 `;
 
 const flex = css`
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid ${globalTheme.colour.navy};
   display: flex;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    height: 52px;
+  }
+`;
+
+const flexItems = css`
+  flex: 1;
+  width: 100%;
   text-align: right;
-  // height: 52px;
-  padding-top: 26px;
-  border-top: 1px solid white;
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    text-align: left;
+  }
 `;
 
 class FederalBanner extends Component {
@@ -81,15 +74,17 @@ class FederalBanner extends Component {
         <Grid item xs={12} md={6}>
           <SkipToMainContent skipLink={skipLink} t={t} />
           <div className={container}>
-            <div className="svg-container">
+            <a className="svg-container" href={t("ge.home_link")}>
               <FIP fillColor="white" t={t} />
-            </div>
+            </a>
           </div>
         </Grid>
         <Grid item xs={12} md={6}>
           <div className={flex}>
-            <LanguageButton i18n={i18n} t={t} url={url} />
-            <MyVacButton i18n={i18n} t={t} />
+            <div className={flexItems}>
+              <LanguageButton i18n={i18n} t={t} url={url} />
+              <MyVacButton i18n={i18n} t={t} />
+            </div>
           </div>
         </Grid>
       </Grid>

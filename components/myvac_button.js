@@ -11,6 +11,7 @@ const desktopButton = css`
   text-transform: uppercase;
   line-height: 23px;
   letter-spacing: 2.5px;
+  margin-left: 30px;
   svg {
     margin-top: 5px;
     vertical-align: middle;
