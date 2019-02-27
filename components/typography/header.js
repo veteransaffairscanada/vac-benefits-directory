@@ -96,7 +96,8 @@ Header.propTypes = {
   headingLevel: PropTypes.string,
   size: PropTypes.string,
   id: PropTypes.string,
-  paddingTop: PropTypes.string
+  paddingTop: PropTypes.string,
+  autoFocus: PropTypes.bool
 };
 
 Header.defaultProps = {

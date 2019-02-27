@@ -2,8 +2,6 @@ import React from "react";
 import { mount } from "enzyme";
 import Router from "next/router";
 import ShareModal from "../../components/share_modal";
-const { axe, toHaveNoViolations } = require("jest-axe");
-expect.extend(toHaveNoViolations);
 
 describe("ShareModal", () => {
   let props;
@@ -29,13 +27,6 @@ describe("ShareModal", () => {
         copy_button: ""
       }
     };
-  });
-
-  // mock copyText function and test that it fired
-
-  it("passes axe tests", async () => {
-    let html = mount(<ShareModal {...props} />).html();
-    expect(await axe(html)).toHaveNoViolations();
   });
 
   it("closes the model when the close button is clicked", () => {

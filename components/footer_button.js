@@ -39,6 +39,7 @@ class FooterButton extends Component {
 }
 FooterButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string
+  className: PropTypes.string,
+  onClick: PropTypes.func
 };
 export default FooterButton;
