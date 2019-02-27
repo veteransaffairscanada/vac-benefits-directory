@@ -5,9 +5,10 @@ import JssProvider from "react-jss/lib/JssProvider";
 import flush from "styled-jsx/server";
 import getPageContext from "../lib/pageContext";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import { globalTheme } from "../theme";
 
 const bodyStyling = {
-  fontFamily: "Georgia, serif",
+  fontFamily: globalTheme.fontFamilySerif,
   margin: 0,
   WebkitFontSmoothing: "antialiased"
 };
