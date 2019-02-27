@@ -10,3 +10,4 @@ import "core-js/fn/object/values";
 import "core-js/fn/set";
 import "core-js/fn/symbol";
 import "core-js/fn/array/from";
+import "./details_polyfill";
