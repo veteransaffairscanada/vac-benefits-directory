@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { css } from "emotion";
 import styled from "@emotion/styled";
 import ReactModal from "react-modal";
+import { Grid } from "@material-ui/core/";
 
 import { globalTheme } from "../theme";
 const modalStyles = { overlay: { zIndex: 100 } };
@@ -24,9 +25,6 @@ const modalCSS = css`
   @media only screen and (max-width: ${globalTheme.max.sm}) {
     left: 10%;
     right: 10%;
-    input {
-      width: 75%;
-    }
   }
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     left: 10px;
@@ -45,7 +43,7 @@ const modalCSS = css`
 const header = css`
   background-color: ${globalTheme.colour.blackBlue};
   color: ${globalTheme.colour.white};
-  padding: 0.75em 1.5em;
+  padding: 0.75em 1.1em;
   font-size: 22px;
   font-family: ${globalTheme.fontFamilySansSerif};
   font-weight: 700;
@@ -58,7 +56,7 @@ const bodyStyle = css`
 `;
 
 const URLInputBox = styled("input")({
-  width: "80%",
+  width: "100%",
   height: "44px",
   padding: "9px 19px 8px 19px",
   margin: 0,
@@ -87,7 +85,7 @@ const URLInputBox = styled("input")({
 const CopyButton = styled("button")({
   backgroundColor: globalTheme.colour.blackBlue,
   cursor: "pointer",
-  width: "auto",
+  width: "100%",
   border: 0,
   color: globalTheme.colour.white,
   fontFamily: globalTheme.fontFamilySansSerif,
@@ -96,7 +94,6 @@ const CopyButton = styled("button")({
   lineHeight: "23px",
   position: "relative",
   padding: ".526315em 1em",
-  marginLeft: "1em",
   backgroundPosition: "2px 50%",
   ":focus": {
     outlineOffset: 0,
@@ -112,10 +109,15 @@ const CloseButton = styled("button")({
   backgroundColor: globalTheme.colour.blackBlue,
   height: "100%",
   cursor: "pointer",
-  fontSize: "18px",
+  fontSize: "24px",
+  fontWeight: "900",
+  padding: 0,
   border: 0,
   color: globalTheme.colour.white
 });
+const topMargin = css`
+  margin-top: 1em;
+`;
 
 class ShareModal extends Component {
   constructor(props) {
@@ -217,15 +219,22 @@ class ShareModal extends Component {
             <p>
               <label htmlFor={shareTargetId}>{t("share.copy_prompt")}</label>
             </p>
-            {inputBox}
-            <CopyButton
-              className="copyButton"
-              data-copytarget={"#" + shareTargetId}
-              onClick={this.copyText}
-            >
-              {t("share.copy_button")}
-            </CopyButton>
-            <div>{this.state.statusMessage}</div>
+            <Grid container spacing={8}>
+              <Grid item xs={12} sm={9}>
+                {inputBox}
+              </Grid>
+              <Grid item xs={12} sm={3}>
+                <CopyButton
+                  className="copyButton"
+                  data-copytarget={"#" + shareTargetId}
+                  onClick={this.copyText}
+                >
+                  {t("share.copy_button")}
+                </CopyButton>
+              </Grid>
+            </Grid>
+
+            <div className={topMargin}>{this.state.statusMessage}</div>
           </div>
         </ReactModal>
       );
