@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { css } from "emotion";
 import styled from "@emotion/styled";
 import ReactModal from "react-modal";
-
 import { globalTheme } from "../theme";
+import { getUtmUrl } from "../utils/common";
+
 const modalStyles = { overlay: { zIndex: 100 } };
 
 const modalCSS = css`
@@ -184,12 +185,10 @@ class ShareModal extends Component {
       <URLInputBox
         type="text"
         id={shareTargetId}
-        defaultValue={
-          this.props.url.asPath &&
-          this.props.url.asPath.includes(this.state.utm)
-            ? this.state.origin + this.props.url.asPath
-            : this.state.origin + this.props.url.asPath + this.state.utm
-        }
+        defaultValue={getUtmUrl(
+          this.state.origin + this.props.url.asPath,
+          this.state.utm
+        )}
         contentEditable="true"
         readOnly={false}
       />
@@ -197,12 +196,10 @@ class ShareModal extends Component {
       <URLInputBox
         type="text"
         id={shareTargetId}
-        value={
-          this.props.url.asPath &&
-          this.props.url.asPath.includes(this.state.utm)
-            ? this.state.origin + this.props.url.asPath
-            : this.state.origin + this.props.url.asPath + this.state.utm
-        }
+        value={getUtmUrl(
+          this.state.origin + this.props.url.asPath,
+          this.state.utm
+        )}
         readOnly
       />
     );
