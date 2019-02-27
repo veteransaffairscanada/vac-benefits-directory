@@ -57,7 +57,7 @@ describe("ShareModal", () => {
 
   it("doesn't render when isOpen is false", () => {
     let modal = mount(<ShareModal {...props} />);
-    expect(modal.find("input").length).not.toEqual(0);
+    e: xpect(modal.find("input").length).not.toEqual(0);
   });
 
   it("the link to be copied when the copy button is clicked", () => {
