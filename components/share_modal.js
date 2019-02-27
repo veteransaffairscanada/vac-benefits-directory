@@ -118,7 +118,8 @@ class ShareModal extends Component {
     this.state = {
       url: "",
       statusMessage: "",
-      origin: ""
+      origin: "",
+      utm: "/utm_source=share-link&utm_medium=fbas"
     };
     this.copyText = this.copyText.bind(this);
   }
@@ -183,7 +184,9 @@ class ShareModal extends Component {
       <URLInputBox
         type="text"
         id={shareTargetId}
-        defaultValue={this.state.origin + this.props.url.asPath}
+        defaultValue={
+          this.state.origin + this.props.url.asPath + this.state.utm
+        }
         contentEditable="true"
         readOnly={false}
       />
@@ -191,7 +194,7 @@ class ShareModal extends Component {
       <URLInputBox
         type="text"
         id={shareTargetId}
-        value={this.state.origin + this.props.url.asPath}
+        value={this.state.origin + this.props.url.asPath + this.state.utm}
         readOnly
       />
     );
