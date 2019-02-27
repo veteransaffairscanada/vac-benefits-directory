@@ -73,6 +73,21 @@ void (function(root, factory) {
         details3.setAttribute("open", "open");
       }
     }
+    if (
+      e.target.parentNode.parentNode.parentNode.nodeName.toLowerCase() ===
+      "summary"
+    ) {
+      var details4 = e.target.parentNode.parentNode.parentNode.parentNode;
+      if (!details4) return;
+
+      if (details4.getAttribute("open")) {
+        details4.open = false;
+        details4.removeAttribute("open");
+      } else {
+        details4.open = true;
+        details4.setAttribute("open", "open");
+      }
+    }
   }
 
   /*
