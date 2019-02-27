@@ -8,7 +8,6 @@ describe("SearchBox", () => {
   let props;
   beforeEach(() => {
     props = {
-      inputId: "input1",
       onButtonClick: jest.fn(),
       buttonId: "buttonId",
       onKeyDown: jest.fn(),
