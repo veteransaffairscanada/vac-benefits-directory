@@ -99,6 +99,10 @@ const DisabledSearchButton = styled("button")({
 });
 
 class SearchBox extends Component {
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
   handleChange = event => {
     this.setState({ value: event.target.value }); // state of InputSearchBox
     if (this.props.onChange) {
@@ -107,7 +111,7 @@ class SearchBox extends Component {
   };
 
   handleClear = () => {
-    document.getElementById(this.props.inputId).value = "";
+    this.textInput.current.value = "";
     this.setState({ value: "" }); // state of InputSearchBox
     if (this.props.onClear) {
       this.props.onClear();
@@ -118,7 +122,7 @@ class SearchBox extends Component {
     const { ariaLabel, value, onButtonClick } = this.props;
     let valueUsed;
     try {
-      valueUsed = document.getElementById(this.props.inputId).value;
+      valueUsed = this.textInput.current.value;
     } catch (e) {} // eslint-disable-line no-empty
 
     return (
@@ -133,6 +137,7 @@ class SearchBox extends Component {
           onInput={this.handleChange}
           onChange={this.handleChange}
           value={value}
+          ref={this.textInput}
         />
 
         {(this.props.onClear && value) || valueUsed ? (

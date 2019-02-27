@@ -31,13 +31,6 @@ describe("ShareModal", () => {
     };
   });
 
-  // mock copyText function and test that it fired
-
-  it("passes axe tests", async () => {
-    let html = mount(<ShareModal {...props} />).html();
-    expect(await axe(html)).toHaveNoViolations();
-  });
-
   it("closes the model when the close button is clicked", () => {
     let modal = mount(<ShareModal {...props} />);
     modal.setState({ isOpen: true });
