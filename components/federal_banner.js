@@ -31,6 +31,7 @@ const container = css`
   margin: 0px;
   box-sizing: border-box;
   height: 83px;
+  padding-top: 26px;
   width: auto;
   justify-content: space-between;
   display: -webkit-flex;
@@ -64,12 +65,20 @@ const container = css`
   `)};
 `;
 
+const flex = css`
+  display: flex;
+  text-align: right;
+  // height: 52px;
+  padding-top: 26px;
+  border-top: 1px solid white;
+`;
+
 class FederalBanner extends Component {
   render() {
-    const { t, skipLink, i18n } = this.props;
+    const { t, skipLink, i18n, url } = this.props;
     return (
       <Grid container>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} md={6}>
           <SkipToMainContent skipLink={skipLink} t={t} />
           <div className={container}>
             <div className="svg-container">
@@ -77,9 +86,11 @@ class FederalBanner extends Component {
             </div>
           </div>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <LanguageButton i18n={i18n} t={t} />
-          <MyVacButton i18n={i18n} t={t} />
+        <Grid item xs={12} md={6}>
+          <div className={flex}>
+            <LanguageButton i18n={i18n} t={t} url={url} />
+            <MyVacButton i18n={i18n} t={t} />
+          </div>
         </Grid>
       </Grid>
     );
@@ -89,7 +100,8 @@ class FederalBanner extends Component {
 FederalBanner.propTypes = {
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  skipLink: PropTypes.string.isRequired
+  skipLink: PropTypes.string.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default FederalBanner;

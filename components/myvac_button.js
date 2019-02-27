@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import FooterButton from "./footer_button";
+import FooterLink from "./typography/footer_link";
 // import { logEvent } from "../utils/analytics";
 import FolderMouse from "./icons/FolderMouse";
 import { css } from "emotion";
@@ -22,21 +22,11 @@ const desktopButton = css`
 class MyVacButton extends Component {
   render() {
     const { t } = this.props;
-
     return (
-      <React.Fragment>
-        <div title={t("other-language-in-current-language")}>
-          <FooterButton
-            id="changeLanguage"
-            onClick={this.changeLanguage}
-            className={desktopButton}
-            lang={t("other-language-code")}
-          >
-            my vac account
-            <FolderMouse />
-          </FooterButton>
-        </div>
-      </React.Fragment>
+      <FooterLink href={t("myvac_register_href")} className={desktopButton}>
+        {t("myvac_button_text")}
+        <FolderMouse />
+      </FooterLink>
     );
   }
 }

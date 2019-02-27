@@ -82,6 +82,7 @@ class Layout extends Component {
                   <FederalBanner
                     i18n={this.props.i18n}
                     t={t}
+                    url={url}
                     skipLink={skipLink}
                   />
                 </Container>
