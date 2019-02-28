@@ -4,9 +4,9 @@ import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
 
 const Badge = styled.span`
+  font-family: ${globalTheme.fontFamilySansSerif};
   line-height: 1.8;
   color: #fff;
-  border-radius: 0.125em;
   background-color: ${props =>
     props.phase === "alpha" ? "#e8026e" : "#ff5a02"};
   padding: 0.125rem 1rem;

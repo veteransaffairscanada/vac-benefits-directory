@@ -21,7 +21,8 @@ describe("AlphaBanner", () => {
       i18n: {
         changeLanguage: () => {}
       },
-      t: x => x
+      t: x => x,
+      url: { query: "test" }
     };
     _mountedAlphaBanner = undefined;
   });

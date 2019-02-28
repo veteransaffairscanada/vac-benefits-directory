@@ -12,11 +12,7 @@ import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
-import Link from "next/link";
 
-const alpha = css`
-  background-color: ${globalTheme.colour.alphaBlue};
-`;
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
@@ -24,12 +20,7 @@ const header = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
   padding: 0px;
 `;
-const white = css`
-  color: white;
-  :focus {
-    outline: 3px solid ${globalTheme.colour.focusColour};
-  }
-`;
+
 const backgoundColour1 = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
 `;
@@ -83,16 +74,6 @@ class Layout extends Component {
                     skipLink={skipLink}
                   />
                 </Container>
-                <div className={alpha}>
-                  <Container>
-                    <AlphaBanner t={t}>
-                      {t("beta_banner.main")} &nbsp;
-                      <Link href={{ pathname: "/feedback", query: url.query }}>
-                        <a className={white}>{t("beta_banner.link_text")}</a>
-                      </Link>
-                    </AlphaBanner>
-                  </Container>
-                </div>
               </header>
               <div role="main" id="main">
                 {this.props.children}

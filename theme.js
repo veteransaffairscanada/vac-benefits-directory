@@ -44,7 +44,7 @@ let theme = {
     alertYellow: "#fbb830",
     lightYellow: "#f9f4d3",
     alphaPink: "#d42dc9",
-    betaBlue: "#006de4",
+    betaBlue: "#634f70",
     alphaBlue: "#345075",
     salmon: "#ff6961",
     blueGrey: "#838d9b",
