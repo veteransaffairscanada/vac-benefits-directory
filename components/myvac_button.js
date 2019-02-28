@@ -23,7 +23,7 @@ class MyVacButton extends Component {
   render() {
     const { t } = this.props;
     return (
-      <FooterLink href={t("myvac_register_href")} className={desktopButton}>
+      <FooterLink href={t("links.myvac")} className={desktopButton}>
         {t("myvac_button_text")}
         <FolderMouse />
       </FooterLink>

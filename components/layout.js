@@ -23,8 +23,6 @@ const Content = styled("div")`
 const header = css`
   background-color: ${globalTheme.colour.bannerColour};
   padding: 0px;
-  // display: flex;
-  // justify-content: center;
 `;
 const white = css`
   color: white;
