@@ -3298,6 +3298,20 @@
       "English": "1 saved benefit or service",
       "French": "avantage ou service sauvegardé ",
       "id": "titles.1_saved_benefit"
+    },
+    {
+      "id": "links.myvac",
+      "section": "links",
+      "key": "myvac",
+      "English": "https://www.veterans.gc.ca/eng/e_services/?utm_source=fbas",
+      "French": "https://www.veterans.gc.ca/fra/e_services/?utm_source=fbas"
+    },
+    {
+      "section": "",
+      "key": "",
+      "English": "",
+      "French": "",
+      "id": ""
     }
   ],
   "questions": [
@@ -3314,7 +3328,7 @@
       "question display logic": ["recqrmO0TSWr3Sal8", "recgoq6VzwN19P7ui"],
       "guided_experience_english": "Select who will be receiving the benefits.",
       "guided_experience_french": "Sélectionnez qui recevra les services.",
-      "guided_experience_page_title_english": "Select who will be receiving the benefits.",
+      "guided_experience_page_title_english": "Select who would be receiving the benefits.",
       "guided_experience_page_title_french": "Sélectionnez qui recevra les services.",
       "breadcrumb_english": "Benefit recipient",
       "breadcrumb_french": "Prestataire",
@@ -3377,7 +3391,7 @@
       "guided_experience_english": "Is there a service-related health issue?",
       "guided_experience_french": "A-t-il un problème de santé lié au service?",
       "questionClearLogic 2 copy": "Unnamed record, Unnamed record, Unnamed record",
-      "tooltip_english": "A service-related health issue is an illness or injury that was caused or worsened by military service. It must be medically diagnosed by a doctor. Examples include: hearing loss, tinnitus, depression, or a shoulder injury.",
+      "tooltip_english": "A service-related health issue is an illness or injury that was caused or worsened by military service. It must be medically diagnosed by a doctor. Examples may include: hearing loss, tinnitus, depression, or a shoulder injury.",
       "tooltip_french": "Un problème de santé lié au service militaire est une maladie ou une blessure qui a été causée ou aggravée par le service militaire. Il doit être diagnostiqué médicalement par un médecin. Exemples : acouphènes, dépression.",
       "guided_experience_page_title_english": "Is there a service-related health issue?",
       "guided_experience_page_title_french": "A-t-il un problème de santé lié au service?",
@@ -4578,5 +4592,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1551294612184
+  "timestamp": 1551372142277
 }
