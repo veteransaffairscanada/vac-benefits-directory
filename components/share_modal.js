@@ -4,8 +4,9 @@ import { css } from "emotion";
 import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 import { Grid } from "@material-ui/core/";
-
 import { globalTheme } from "../theme";
+import { getUtmUrl } from "../utils/common";
+
 const modalStyles = { overlay: { zIndex: 100 } };
 
 const modalCSS = css`
@@ -125,7 +126,8 @@ class ShareModal extends Component {
     this.state = {
       url: "",
       statusMessage: "",
-      origin: ""
+      origin: "",
+      utm: "utm_source=share-link&utm_medium=fbas"
     };
     this.copyText = this.copyText.bind(this);
   }
@@ -192,7 +194,10 @@ class ShareModal extends Component {
       <URLInputBox
         type="text"
         id={shareTargetId}
-        defaultValue={this.state.origin + this.props.url.asPath}
+        defaultValue={getUtmUrl(
+          this.state.origin + this.props.url.asPath,
+          this.state.utm
+        )}
         contentEditable="true"
         readOnly={false}
       />
@@ -200,7 +205,10 @@ class ShareModal extends Component {
       <URLInputBox
         type="text"
         id={shareTargetId}
-        value={this.state.origin + this.props.url.asPath}
+        value={getUtmUrl(
+          this.state.origin + this.props.url.asPath,
+          this.state.utm
+        )}
         readOnly
       />
     );
