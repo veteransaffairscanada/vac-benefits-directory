@@ -3305,13 +3305,6 @@
       "key": "myvac",
       "English": "https://www.veterans.gc.ca/eng/e_services/?utm_source=fbas",
       "French": "https://www.veterans.gc.ca/fra/e_services/?utm_source=fbas"
-    },
-    {
-      "section": "",
-      "key": "",
-      "English": "",
-      "French": "",
-      "id": ""
     }
   ],
   "questions": [
@@ -4592,5 +4585,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1551372142277
+  "timestamp": 1551372536122
 }
