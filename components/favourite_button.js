@@ -26,14 +26,6 @@ const hideBig = css`
   @media only screen and (min-width: ${globalTheme.min.sm}) {
     display: none !important;
   }
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
-    display: none !important;
-  }
-`;
-const saveIcon = css`
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
-    font-size: 45px !important;
-  }
 `;
 
 export class FavouriteButton extends Component {
@@ -91,9 +83,9 @@ export class FavouriteButton extends Component {
           size="small"
         >
           {isSaved ? (
-            <SaveChecked className={cx("saved", saveIcon)} />
+            <SaveChecked className={cx("saved")} />
           ) : (
-            <SaveUnchecked className={cx("notSaved", saveIcon)} />
+            <SaveUnchecked className={cx("notSaved")} />
           )}
           <span className={hideSmall}>{longButtonText}</span>
           <span className={hideBig}>{shortButtonText}</span>
