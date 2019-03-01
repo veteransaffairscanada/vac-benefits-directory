@@ -19,9 +19,6 @@ export class NeedButton extends Component {
       logEvent("FilterClick", "need", id);
       newSelectedNeeds[id] = id;
     }
-    if (window && window.innerWidth > 600 && this.props.scrollOnClick) {
-      window.scrollTo(0, 0);
-    }
     this.props.setSelectedNeeds(newSelectedNeeds);
   };
 
@@ -62,13 +59,11 @@ NeedButton.propTypes = {
   t: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  scrollOnClick: PropTypes.bool,
   disabled: PropTypes.string,
   store: PropTypes.object
 };
 
 NeedButton.defaultProps = {
-  scrollOnClick: true,
   disabled: ""
 };
 

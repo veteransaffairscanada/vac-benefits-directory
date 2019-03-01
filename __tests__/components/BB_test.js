@@ -42,7 +42,6 @@ describe("BB", () => {
   };
 
   beforeEach(() => {
-    window.scrollTo = jest.fn();
     props = {
       t: translateFixture,
       clearFilters: () => true,

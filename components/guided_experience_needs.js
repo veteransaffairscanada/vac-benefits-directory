@@ -53,7 +53,6 @@ export class GuidedExperienceNeeds extends Component {
                   need={need}
                   t={t}
                   store={store}
-                  scrollOnClick={false}
                 />
               </li>
             ))}
