@@ -44,7 +44,6 @@ describe("BenefitsDirectory", () => {
       },
       t: translate,
       url: { query: {} },
-      setPageWidth: jest.fn(),
       profileFilters: {}
     };
     _mountedBenefitsDirectory = undefined;

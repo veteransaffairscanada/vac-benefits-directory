@@ -11,20 +11,6 @@ import { getBenefitCountString } from "../utils/common";
 export class BenefitsDirectory extends Component {
   constructor() {
     super();
-    this.updateWindowWidth = this.updateWindowWidth.bind(this);
-  }
-
-  componentDidMount() {
-    this.updateWindowWidth();
-    window.addEventListener("resize", this.updateWindowWidth);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updateWindowWidth);
-  }
-
-  updateWindowWidth() {
-    this.props.setPageWidth(window.innerWidth);
   }
 
   render() {
@@ -69,14 +55,8 @@ BenefitsDirectory.propTypes = {
   store: PropTypes.object,
   searchString: PropTypes.string.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  setPageWidth: PropTypes.func.isRequired,
   benefits: PropTypes.array.isRequired,
   benefitEligibility: PropTypes.array
 };
 
-export default withI18N(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(BenefitsDirectory)
-);
+export default withI18N(connect(mapStateToProps)(BenefitsDirectory));
