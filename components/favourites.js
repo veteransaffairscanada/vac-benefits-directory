@@ -89,7 +89,7 @@ export class Favourites extends Component {
 
     return (
       <div className={outerDiv}>
-        <Container id="favourites" mobileFullWidth={true}>
+        <Container id="favourites">
           <BreadCrumbs
             t={t}
             homeUrl={homeUrl}

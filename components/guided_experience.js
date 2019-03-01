@@ -181,7 +181,7 @@ export class GuidedExperience extends Component {
           );
 
     return (
-      <Container id="mainContent" mobileFullWidth={true}>
+      <Container id="mainContent">
         <div>
           <BreadCrumbs
             t={t}

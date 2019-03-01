@@ -70,7 +70,7 @@ export class BB extends Component {
     const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <Container mobileFullWidth={true} className={outerDiv}>
+      <Container className={outerDiv}>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}
