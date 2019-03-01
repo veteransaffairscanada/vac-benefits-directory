@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { css } from "emotion";
 import styled from "@emotion/styled";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { AlphaBanner } from "../components/alpha_banner";
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
@@ -58,7 +57,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { t, title, skipLink, url } = this.props;
+    const { t, title, skipLink } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <MuiThemeProvider theme={theme}>
@@ -99,7 +98,6 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  url: PropTypes.object.isRequired,
   hideNoscript: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,

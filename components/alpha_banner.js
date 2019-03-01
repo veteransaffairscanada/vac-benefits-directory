@@ -40,7 +40,7 @@ const Banner = css`
  */
 export class AlphaBanner extends Component {
   render() {
-    const { children, t, url, ...rest } = this.props;
+    const { t, url, ...rest } = this.props;
     return (
       <div>
         <Container className={noPadding}>
@@ -64,8 +64,7 @@ AlphaBanner.propTypes = {
    * Heirarchy of child components to render within thr `Text` container
    */
   t: PropTypes.func.isRequired,
-  url: PropTypes.object.isRequired,
-  children: PropTypes.any
+  url: PropTypes.object.isRequired
 };
 
 export default AlphaBanner;
