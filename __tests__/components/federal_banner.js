@@ -25,7 +25,12 @@ describe("FederalBanner", () => {
       },
       t: translate,
       showRefreshCache: false,
-      skipLink: ".svg-container"
+      skipLink: ".svg-container",
+      url: {
+        push: jest.fn(),
+        query: { patronType: "veteran" },
+        route: "benefits-directory"
+      }
     };
 
     _mountedFederalBanner = undefined;

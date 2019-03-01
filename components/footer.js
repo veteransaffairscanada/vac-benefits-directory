@@ -8,7 +8,6 @@ import { globalTheme } from "../theme";
 
 const root = css`
   width: 100%;
-  background-color: ${globalTheme.colour.greyishBrown};
   height: 65px;
   text-align: center;
 `;
