@@ -19,7 +19,7 @@ export class NeedButton extends Component {
       logEvent("FilterClick", "need", id);
       newSelectedNeeds[id] = id;
     }
-    if (window && this.props.scrollOnClick) {
+    if (window && window.innerWidth > 600 && this.props.scrollOnClick) {
       window.scrollTo(0, 0);
     }
     this.props.setSelectedNeeds(newSelectedNeeds);

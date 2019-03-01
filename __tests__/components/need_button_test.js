@@ -51,6 +51,7 @@ describe("NeedButton", () => {
 
   it("does not scroll to the top of the page when clicked on mobile", () => {
     let needsInstance = mount(<NeedButton {...props} />).instance();
+    global.innerWidth = 500;
     needsInstance.handleClick("foo");
     expect(window.scrollTo).not.toBeCalled();
   });
