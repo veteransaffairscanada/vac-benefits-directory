@@ -31,7 +31,7 @@ const InputSearchBox = styled("input")({
   lineHeight: "1.5",
   background: globalTheme.colour.paleGreyTwo,
   borderRadius: 0,
-  boxShadow: "inset 0 0 0 9999px f4f7f9", // keeps chrome autofill from changing background colour
+  boxShadow: "inset 0 0 0 9999px #f4f7f9", // keeps chrome autofill from changing background colour
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",
@@ -99,6 +99,10 @@ const DisabledSearchButton = styled("button")({
 });
 
 class SearchBox extends Component {
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
   handleChange = event => {
     this.setState({ value: event.target.value }); // state of InputSearchBox
     if (this.props.onChange) {
@@ -107,7 +111,7 @@ class SearchBox extends Component {
   };
 
   handleClear = () => {
-    document.getElementById(this.props.inputId).value = "";
+    this.textInput.current.value = "";
     this.setState({ value: "" }); // state of InputSearchBox
     if (this.props.onClear) {
       this.props.onClear();
@@ -118,7 +122,7 @@ class SearchBox extends Component {
     const { ariaLabel, value, onButtonClick } = this.props;
     let valueUsed;
     try {
-      valueUsed = document.getElementById(this.props.inputId).value;
+      valueUsed = this.textInput.current.value;
     } catch (e) {} // eslint-disable-line no-empty
 
     return (
@@ -133,6 +137,7 @@ class SearchBox extends Component {
           onInput={this.handleChange}
           onChange={this.handleChange}
           value={value}
+          ref={this.textInput}
         />
 
         {(this.props.onClear && value) || valueUsed ? (

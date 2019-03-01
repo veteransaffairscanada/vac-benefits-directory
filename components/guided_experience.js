@@ -192,20 +192,23 @@ export class GuidedExperience extends Component {
         </div>
         <Paper padding="md" className={box}>
           <Grid container spacing={24}>
-            <Grid item xs={12}>
-              <Header size="xl" headingLevel="h1">
-                {t("ge.Find benefits and services")}
-              </Header>
-              {id === "patronType" ? (
-                <React.Fragment>
-                  <Body className={greyBox}>
-                    <p>{t("ge.intro_text_p1")}</p>
-                    <p>{t("ge.intro_text_p2")}</p>
-                  </Body>
-                </React.Fragment>
-              ) : null}
-            </Grid>
-
+            {id === "patronType" ? (
+              <React.Fragment>
+                <Grid item xs={12}>
+                  <Header size="xl" headingLevel="h1">
+                    {t("ge.Find benefits and services")}
+                  </Header>
+                  {id === "patronType" ? (
+                    <React.Fragment>
+                      <Body className={greyBox}>
+                        <p>{t("ge.intro_text_p1")}</p>
+                        <p>{t("ge.intro_text_p2")}</p>
+                      </Body>
+                    </React.Fragment>
+                  ) : null}
+                </Grid>
+              </React.Fragment>
+            ) : null}
             <Grid item xs={12} className={questions}>
               <Header size="md_lg" headingLevel="h2">
                 {this.getSubtitle(question)}
@@ -220,27 +223,29 @@ export class GuidedExperience extends Component {
               {this.props.children}
             </Grid>
             <Grid item xs={12}>
-              <Grid container spacing={12}>
-                <Grid container xs={12} sm={8} className={mobileReverse}>
-                  <HeaderLink
-                    id="prevButton"
-                    href={backUrl}
-                    className={mobileFullWidth}
-                    hasBorder
-                  >
-                    {t("back")}
-                  </HeaderLink>
-                  <Link id="nextLink" href={this.getNextUrl()}>
-                    <Button
-                      id="nextButton"
-                      mobileFullWidth={true}
-                      className={leftMargin}
+              <Grid container spacing={16}>
+                <Grid item xs={12} sm={8}>
+                  <Grid container spacing={8} className={mobileReverse}>
+                    <HeaderLink
+                      id="prevButton"
+                      href={backUrl}
+                      className={mobileFullWidth}
+                      hasBorder
                     >
-                      {this.getNextUrl().indexOf("benefits-directory") > -1
-                        ? t("ge.show_results")
-                        : t("next")}
-                    </Button>
-                  </Link>
+                      {t("back")}
+                    </HeaderLink>
+                    <Link id="nextLink" href={this.getNextUrl()}>
+                      <Button
+                        id="nextButton"
+                        mobileFullWidth={true}
+                        className={leftMargin}
+                      >
+                        {this.getNextUrl().indexOf("benefits-directory") > -1
+                          ? t("ge.show_results")
+                          : t("next")}
+                      </Button>
+                    </Link>
+                  </Grid>
                 </Grid>
                 <Grid item xs={12} sm={4} className={alignRight}>
                   <Link id="skipLink" href={this.getSkipUrl()}>

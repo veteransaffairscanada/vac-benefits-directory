@@ -40,7 +40,7 @@ export class BenefitCardHeader extends Component {
   render() {
     const { t, benefit, benefits } = this.props;
     const parentBenefits = benefits.filter(
-      b => b.childBenefits && b.childBenefits.includes(benefit.id)
+      b => b.childBenefits && b.childBenefits.indexOf(benefit.id) != -1
     );
     const includeParentInfo =
       parentBenefits.length > 0 &&

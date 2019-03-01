@@ -95,6 +95,8 @@ HeaderButton.propTypes = {
   className: PropTypes.string,
   label: PropTypes.object,
   disabled: PropTypes.bool,
+  hasBorder: PropTypes.bool,
+  altStyle: PropTypes.string,
   onClick: PropTypes.func
 };
 

@@ -8,11 +8,7 @@ import SaveChecked from "./icons/SaveChecked";
 import { css } from "emotion";
 import { globalTheme } from "../theme";
 import { connect } from "react-redux";
-import {
-  getFavouritesUrl,
-  getPrintUrl,
-  getSummaryUrl
-} from "../selectors/urls";
+import { getFavouritesUrl, getSummaryUrl } from "../selectors/urls";
 
 const sticky = css`
   position: -webkit-sticky;
@@ -102,8 +98,7 @@ const mapStateToProps = (reduxState, props) => {
   return {
     favouriteBenefits: reduxState.favouriteBenefits,
     favouritesUrl: getFavouritesUrl(reduxState, props),
-    summaryUrl: getSummaryUrl(reduxState, props),
-    printUrl: getPrintUrl(reduxState, props, {})
+    summaryUrl: getSummaryUrl(reduxState, props)
   };
 };
 

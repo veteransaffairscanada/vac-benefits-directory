@@ -78,6 +78,18 @@ export const areCookiesDisabled = () => {
   }
 };
 
+// adds a utm to a url for ga tracking
+export const getUtmUrl = (url, utm) => {
+  let link =
+    url.indexOf("?") === url.length - 1
+      ? url + utm
+      : url.indexOf("?") > -1
+      ? url + "&" + utm
+      : url + "?" + utm;
+
+  return link;
+};
+
 export const getLink = (url, page, referrer) => {
   // link for page, copying the query params of url except for referrer
   let link =

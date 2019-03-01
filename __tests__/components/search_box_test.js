@@ -8,7 +8,6 @@ describe("SearchBox", () => {
   let props;
   beforeEach(() => {
     props = {
-      inputId: "input",
       onButtonClick: jest.fn(),
       buttonId: "buttonId",
       onKeyDown: jest.fn(),
@@ -96,9 +95,8 @@ describe("SearchBox", () => {
 
   describe("handleClear", () => {
     it("calls onClear appropriately", () => {
-      mount(<SearchBox {...props} />)
-        .instance()
-        .handleClear();
+      let mounted = mount(<SearchBox {...props} />);
+      mounted.instance().handleClear();
       expect(props.onClear).toBeCalled();
     });
   });

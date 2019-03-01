@@ -25,4 +25,11 @@ describe("CardHeaderImportantInfo", () => {
       benefitsFixture[1].noteEn
     );
   });
+
+  it("renders an anchor tag if a markdown link is included", () => {
+    props.benefit = benefitsFixture[0];
+    expect(
+      mount(<CardHeaderImportantInfo {...props} />).find("a").length
+    ).toEqual(1);
+  });
 });

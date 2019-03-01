@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { getHomeUrl } from "../selectors/urls";
+import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import { css } from "emotion";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
@@ -67,7 +67,7 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store, homeUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
 
     return (
       <Container mobileFullWidth={true} className={outerDiv}>
@@ -86,7 +86,13 @@ export class BB extends Component {
                 {t("ge.Find benefits and services")}
               </Header>
             </Grid>
-            <StickyHeader t={t} url={url} store={store} showShareLink={true} />
+            <StickyHeader
+              t={t}
+              url={url}
+              printUrl={printUrl}
+              store={store}
+              showShareLink={true}
+            />
             <Grid item xs={12}>
               <QuickLinks t={t} />
             </Grid>
@@ -151,7 +157,8 @@ const mapStateToProps = (reduxState, props) => {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
-    homeUrl: getHomeUrl(reduxState, props)
+    homeUrl: getHomeUrl(reduxState, props),
+    printUrl: getPrintUrl(reduxState, props, {})
   };
 };
 
@@ -162,6 +169,7 @@ BB.propTypes = {
   saveFavourites: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   homeUrl: PropTypes.string,
+  printUrl: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
   store: PropTypes.object
