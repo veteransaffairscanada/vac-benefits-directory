@@ -18,7 +18,7 @@ const noPadding = css`
 `;
 
 const bottomMargin = css`
-  margin-bottom: 1.5em;
+  margin-bottom: 24px;
 `;
 
 const Banner = css`
@@ -26,7 +26,7 @@ const Banner = css`
   display: -ms-flexbox;
   align-items: center;
   -ms-flex-align: center;
-  padding: 0 0 1rem 0;
+  padding: 0 0 24px 0;
   border-bottom: 4px solid ${globalTheme.colour.darkPaleGrey};
   margin: 0px;
   min-width: 20em;

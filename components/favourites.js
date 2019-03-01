@@ -28,7 +28,7 @@ const outerDiv = css`
   padding-bottom: 100px;
 `;
 const innerDiv = css`
-  padding-top: 35px;
+  padding-top: 24px;
 `;
 const headerPadding = css`
   margin-top: 7px;
