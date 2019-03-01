@@ -44,7 +44,6 @@ describe("BenefitsDirectory", () => {
       },
       t: translate,
       url: { query: {} },
-      setPageWidth: jest.fn(),
       profileFilters: {}
     };
     _mountedBenefitsDirectory = undefined;
@@ -107,8 +106,7 @@ describe("BenefitsDirectory", () => {
       statusAndVitals: "",
       serviceHealthIssue: "",
       favouriteBenefits: [benefitsFixture[0].id],
-      filteredBenefits: benefitsFixture,
-      pageWidth: 1000
+      filteredBenefits: benefitsFixture
     };
     props.store = mockStore(reduxData);
   });

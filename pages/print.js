@@ -189,7 +189,6 @@ export class Print extends Component {
                           need={need}
                           t={t}
                           store={store}
-                          scrollOnClick={false}
                           disabled="disabled"
                         />
                       </Grid>
