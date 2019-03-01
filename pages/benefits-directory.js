@@ -49,14 +49,6 @@ export class BenefitsDirectory extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setPageWidth: pageWidth => {
-      dispatch({ type: "SET_PAGEWIDTH", data: pageWidth });
-    }
-  };
-};
-
 const mapStateToProps = (reduxState, props) => {
   return {
     profileFilters: getProfileFilters(reduxState, props),

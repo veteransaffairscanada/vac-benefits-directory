@@ -84,8 +84,7 @@ describe("BB", () => {
       serviceHealthIssue: "",
       setSearchString: jest.fn(),
       selectedNeeds: {},
-      option: "",
-      pageWidth: 1000
+      option: ""
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);

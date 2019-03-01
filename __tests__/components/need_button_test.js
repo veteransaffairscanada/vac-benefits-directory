@@ -17,7 +17,6 @@ describe("NeedButton", () => {
       need: needsFixture[0],
       t: key => key,
       setSelectedNeeds: jest.fn(),
-      pageWidth: 1000,
       selectedNeeds: {}
     };
   });
@@ -51,7 +50,6 @@ describe("NeedButton", () => {
   });
 
   it("does not scroll to the top of the page when clicked on mobile", () => {
-    props.pageWidth = 500;
     let needsInstance = mount(<NeedButton {...props} />).instance();
     needsInstance.handleClick("foo");
     expect(window.scrollTo).not.toBeCalled();
