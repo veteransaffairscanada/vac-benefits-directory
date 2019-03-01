@@ -17,12 +17,17 @@ const noPadding = css`
   padding: 0;
 `;
 
+const bottomMargin = css`
+  margin-bottom: 1.5em;
+`;
+
 const Banner = css`
   display: flex;
   display: -ms-flexbox;
   align-items: center;
   -ms-flex-align: center;
-  padding: 0 0 1.5rem 0;
+  padding: 0 0 1rem 0;
+  border-bottom: 4px solid ${globalTheme.colour.darkPaleGrey};
   margin: 0px;
   min-width: 20em;
   color: ${globalTheme.colour.charcoalGrey};
@@ -42,7 +47,7 @@ export class AlphaBanner extends Component {
   render() {
     const { t, url, ...rest } = this.props;
     return (
-      <div>
+      <div className={bottomMargin}>
         <Container className={noPadding}>
           <aside {...rest} className={Banner}>
             <PhaseBadge phase={t("header.beta")} />

@@ -35,7 +35,7 @@ const greyBox = css`
 `;
 
 const box = css`
-  padding: 50px;
+  padding: 35px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding: 17px 26px 55px 26px;
   }

@@ -26,7 +26,7 @@ const outerDiv = css`
   padding-bottom: 100px;
 `;
 const innerDiv = css`
-  padding-top: 45px;
+  padding-top: 35px;
 `;
 const topMatter = css`
   background-color: ${globalTheme.colour.white};
