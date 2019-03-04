@@ -42,7 +42,7 @@ const xButton = css`
   font-weight: 700;
   color: ${globalTheme.colour.white};
   background-color: ${globalTheme.colour.blackish2};
-  border-radius: 1em;
+  border-radius: 60%;
   cursor: pointer;
   :hover {
     background-color: ${globalTheme.colour.navy};
