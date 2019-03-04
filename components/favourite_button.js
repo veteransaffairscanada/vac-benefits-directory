@@ -36,6 +36,23 @@ const saveIcon = css`
   }
 `;
 
+const xButton = css`
+  font-size: 18px;
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-weight: 700;
+  color: ${globalTheme.colour.white};
+  background-color: ${globalTheme.colour.blackish2};
+  border-radius: 1em;
+  cursor: pointer;
+  :hover {
+    background-color: ${globalTheme.colour.navy};
+  }
+`;
+
+const rightAlign = css`
+  float: right;
+`;
+
 export class FavouriteButton extends Component {
   constructor() {
     super();
@@ -57,7 +74,7 @@ export class FavouriteButton extends Component {
   };
 
   render() {
-    const { t, benefit } = this.props;
+    const { t, benefit, icon } = this.props;
     const isSaved =
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     const longButtonText = t(
@@ -77,27 +94,44 @@ export class FavouriteButton extends Component {
       <Tooltip
         disabled={!this.props.cookiesDisabled}
         tooltipText={t("favourites.disabled_cookies_tooltip")}
+        className={icon ? rightAlign : null}
       >
-        <HeaderButton
-          disabled={this.props.cookiesDisabled}
-          ariaLabel={longButtonText + " " + benefitName}
-          id={"favourite-" + benefit.id}
-          className={saveButton}
-          aria-label={t("B3.favouritesButtonText")}
-          onClick={() => this.toggleFavourite(benefit.id)}
-          onMouseOver={() => {
-            this.props.setCookiesDisabled(areCookiesDisabled());
-          }}
-          size="small"
-        >
-          {isSaved ? (
-            <SaveChecked className={cx("saved", saveIcon)} />
-          ) : (
-            <SaveUnchecked className={cx("notSaved", saveIcon)} />
-          )}
-          <span className={hideSmall}>{longButtonText}</span>
-          <span className={hideBig}>{shortButtonText}</span>
-        </HeaderButton>
+        {icon ? (
+          <button
+            className={xButton}
+            disabled={this.props.cookiesDisabled}
+            ariaLabel={longButtonText + " " + benefitName}
+            id={"favourite-" + benefit.id}
+            aria-label={t("B3.favouritesButtonText")}
+            onClick={() => this.toggleFavourite(benefit.id)}
+            onMouseOver={() => {
+              this.props.setCookiesDisabled(areCookiesDisabled());
+            }}
+          >
+            X
+          </button>
+        ) : (
+          <HeaderButton
+            disabled={this.props.cookiesDisabled}
+            ariaLabel={longButtonText + " " + benefitName}
+            id={"favourite-" + benefit.id}
+            className={saveButton}
+            aria-label={t("B3.favouritesButtonText")}
+            onClick={() => this.toggleFavourite(benefit.id)}
+            onMouseOver={() => {
+              this.props.setCookiesDisabled(areCookiesDisabled());
+            }}
+            size="small"
+          >
+            {isSaved ? (
+              <SaveChecked className={cx("saved", saveIcon)} />
+            ) : (
+              <SaveUnchecked className={cx("notSaved", saveIcon)} />
+            )}
+            <span className={hideSmall}>{longButtonText}</span>
+            <span className={hideBig}>{shortButtonText}</span>
+          </HeaderButton>
+        )}
       </Tooltip>
     );
   }
@@ -126,6 +160,7 @@ const mapStateToProps = reduxState => {
 
 FavouriteButton.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
+  icon: PropTypes.bool,
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
   saveFavourites: PropTypes.func.isRequired,

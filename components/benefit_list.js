@@ -79,7 +79,7 @@ export class BenefitList extends React.Component {
       t,
       currentLanguage,
       searchString,
-      showFavourites,
+      savedList,
       store
     } = this.props;
     const sortedBenefits = searchString
@@ -107,7 +107,7 @@ export class BenefitList extends React.Component {
               t={t}
               currentLanguage={currentLanguage}
               key={benefit.id}
-              showFavourite={showFavourites}
+              savedList={savedList}
               store={store}
             />
           </li>
@@ -121,7 +121,7 @@ BenefitList.propTypes = {
   t: PropTypes.func.isRequired,
   currentLanguage: PropTypes.string.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
-  showFavourites: PropTypes.bool.isRequired,
+  savedList: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object
 };
