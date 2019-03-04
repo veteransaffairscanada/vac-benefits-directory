@@ -16,6 +16,11 @@ const bodyStyling = {
 class MyDocument extends Document {
   static getInitialProps(ctx) {
     const pageContext = getPageContext();
+    //console.log(pageContext.theme.breakpoints);
+    pageContext.theme.breakpoints.values.sm = 425;
+    pageContext.theme.breakpoints.values.md = 768;
+    pageContext.theme.breakpoints.values.lg = 1000;
+    //console.log(pageContext.theme.breakpoints);
     //eslint-disable-next-line react/display-name
     const page = ctx.renderPage(Component => props => (
       <JssProvider

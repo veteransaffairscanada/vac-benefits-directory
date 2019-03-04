@@ -89,7 +89,7 @@ export class Summary extends Component {
                   ) : null}
                 </div>
               </Grid>
-              <Grid item xs={4} sm={6}>
+              <Grid item xs={4} md={6}>
                 <HeaderButton
                   id="prevButton"
                   hasBorder
@@ -98,7 +98,7 @@ export class Summary extends Component {
                   {t("back")}
                 </HeaderButton>
               </Grid>
-              <Grid item xs={8} sm={6}>
+              <Grid item xs={8} md={6}>
                 <div className={alignRight}>
                   <Button
                     id="nextButton"

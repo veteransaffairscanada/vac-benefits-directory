@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { css } from "emotion";
 import styled from "@emotion/styled";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  withTheme
+} from "@material-ui/core/styles";
 import { AlphaBanner } from "../components/alpha_banner";
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
@@ -37,6 +41,14 @@ const footerColour = css`
   background-color: ${globalTheme.colour.bannerColour};
 `;
 const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 768,
+      lg: 1000
+    }
+  },
   palette: {
     primary: {
       main: globalTheme.colour.cerulean
@@ -132,4 +144,4 @@ Layout.defaultProps = {
   backgroundColor: globalTheme.colour.paleGrey
 };
 
-export default Layout;
+export default withTheme()(Layout);

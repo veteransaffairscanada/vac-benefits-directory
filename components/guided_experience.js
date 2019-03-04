@@ -224,7 +224,7 @@ export class GuidedExperience extends Component {
             </Grid>
             <Grid item xs={12}>
               <Grid container spacing={16}>
-                <Grid item xs={12} sm={8}>
+                <Grid item xs={12} md={8}>
                   <Grid container spacing={8} className={mobileReverse}>
                     <HeaderLink
                       id="prevButton"
@@ -247,7 +247,7 @@ export class GuidedExperience extends Component {
                     </Link>
                   </Grid>
                 </Grid>
-                <Grid item xs={12} sm={4} className={alignRight}>
+                <Grid item xs={12} md={4} className={alignRight}>
                   <Link id="skipLink" href={this.getSkipUrl()}>
                     <HeaderButton
                       id="skipButton"
