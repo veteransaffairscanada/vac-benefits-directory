@@ -20,13 +20,13 @@ const sticky = css`
 
 // if screen size is max.xs or smaller, hide long text
 const longText = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
     display: none !important;
   }
 `;
 // if screen size is min.xs or larger, hide short text
 const shortText = css`
-  @media only screen and (min-width: ${globalTheme.min.xs}) {
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
     display: none !important;
   }
 `;
