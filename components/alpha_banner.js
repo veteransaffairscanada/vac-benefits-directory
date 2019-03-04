@@ -29,7 +29,6 @@ const Banner = css`
   padding: 0 0 24px 0;
   border-bottom: 4px solid ${globalTheme.colour.darkPaleGrey};
   margin: 0px;
-  min-width: 20em;
   color: ${globalTheme.colour.charcoalGrey};
   font-family: ${globalTheme.fontFamilySerif};
   span:first-of-type {
@@ -48,7 +47,7 @@ export class AlphaBanner extends Component {
     const { t, url, ...rest } = this.props;
     return (
       <div className={bottomMargin}>
-        <Container className={noPadding}>
+        <Container className={noPadding} mobileFullWidth>
           <aside {...rest} className={Banner}>
             <PhaseBadge phase={t("header.beta")} />
             <span>
