@@ -57,7 +57,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { t, title, skipLink } = this.props;
+    const { t, title, skipLink, url } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <MuiThemeProvider theme={theme}>
@@ -102,6 +102,7 @@ Layout.propTypes = {
   hideNoscript: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
   skipLink: PropTypes.string.isRequired,
   title: PropTypes.string,
   backgroundColor: PropTypes.string
