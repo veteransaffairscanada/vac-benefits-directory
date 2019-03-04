@@ -9,6 +9,7 @@ import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import { areCookiesDisabled } from "../utils/common";
 import Tooltip from "./tooltip";
+import CloseButton from "./icons/CloseButton";
 
 const saveButton = css`
   margin-left: -5px !important;
@@ -37,15 +38,13 @@ const saveIcon = css`
 `;
 
 const xButton = css`
-  font-size: 18px;
-  font-family: ${globalTheme.fontFamilySansSerif};
-  font-weight: 700;
-  color: ${globalTheme.colour.white};
-  background-color: ${globalTheme.colour.blackish2};
-  border-radius: 60%;
+  color: ${globalTheme.colour.blackish2};
   cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
   :hover {
-    background-color: ${globalTheme.colour.navy};
+    color: ${globalTheme.colour.navy};
   }
 `;
 
@@ -108,7 +107,7 @@ export class FavouriteButton extends Component {
               this.props.setCookiesDisabled(areCookiesDisabled());
             }}
           >
-            X
+            <CloseButton />
           </button>
         ) : (
           <HeaderButton
