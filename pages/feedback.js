@@ -15,6 +15,7 @@ import Details from "../components/details";
 require("isomorphic-fetch");
 import Raven from "raven-js";
 import Router from "next/router";
+import AlphaBanner from "../components/alpha_banner";
 
 const padding = css`
   padding-top: 15px;
@@ -86,6 +87,7 @@ export class Feedback extends Component {
         url={url}
       >
         <Container className={padding} id="mainContent">
+          <AlphaBanner t={t} url={url} />
           <HeaderButton
             onClick={() => {
               window.history.back();

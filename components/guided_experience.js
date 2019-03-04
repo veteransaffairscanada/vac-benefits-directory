@@ -16,6 +16,7 @@ import HeaderButton from "./header_button";
 import Button from "./button";
 import Link from "next/link";
 import { getHomeUrl } from "../selectors/urls";
+import { AlphaBanner } from "./alpha_banner";
 
 const greyBox = css`
   background-color: ${globalTheme.colour.paleGreyTwo};
@@ -34,11 +35,11 @@ const greyBox = css`
 `;
 
 const box = css`
-  padding: 50px;
+  padding: 35px;
+  padding-top: 24px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding: 17px 26px 55px 26px;
   }
-  display: inline-flex;
 `;
 const alignRight = css`
   text-align: right;
@@ -191,6 +192,7 @@ export class GuidedExperience extends Component {
           />
         </div>
         <Paper padding="md" className={box}>
+          <AlphaBanner t={t} url={url} />
           <Grid container spacing={24}>
             {id === "patronType" ? (
               <React.Fragment>
