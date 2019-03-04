@@ -7,13 +7,12 @@ import { AlphaBanner } from "../components/alpha_banner";
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
-import Footer from "../components/footer";
 import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
 import Link from "next/link";
-import VacFooter from "./vac_footer";
+import VacFooterEn from "./vac_footer_en";
 
 const alpha = css`
   background-color: ${globalTheme.colour.alphaBlue};
@@ -71,26 +70,6 @@ class Layout extends Component {
     const { t, title, skipLink, url } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
 
-    // fetch('https://veterans.gc.ca/eng')
-    //     .then((res) => {
-    //       console.log(res)
-    //         // return res.json();
-    //     })
-
-    // var proxyUrl = "https://cors-anywhere.herokuapp.com/",
-    //   targetUrl = "https://veterans.gc.ca/eng#wb-info";
-    // fetch(proxyUrl + targetUrl)
-    //   .then(blob => blob.text())
-    //   .then(data => {
-    //     // console.log(data.text());
-    //     document.querySelector("pre").innerHTML = data; //JSON.stringify(data, null, 2);
-    //     return data;
-    //   })
-    //   .catch(e => {
-    //     console.log(e);
-    //     return e;
-    //   });
-
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ backgroundColor: this.props.backgroundColor }}>
@@ -127,7 +106,7 @@ class Layout extends Component {
             </div>
             <div className={backgoundColour2}>
               <Container>
-                <VacFooter t={t} />
+                <VacFooterEn t={t} />
               </Container>
             </div>
           </ErrorBoundary>

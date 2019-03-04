@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const path = "https://veterans.gc.ca";
 
-class VacFooter extends Component {
+class VacFooterEn extends Component {
   render() {
     return (
       <footer id="wb-info">
@@ -281,4 +281,4 @@ class VacFooter extends Component {
   }
 }
 
-export default VacFooter;
+export default VacFooterEn;
