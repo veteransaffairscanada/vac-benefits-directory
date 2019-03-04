@@ -18,6 +18,7 @@ import Cookies from "universal-cookie";
 import Paper from "./paper";
 import StickyHeader from "./sticky_header";
 import QuickLinks from "./quick_links";
+import AlphaBanner from "./alpha_banner";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -27,7 +28,7 @@ const outerDiv = css`
   padding-bottom: 100px;
 `;
 const innerDiv = css`
-  padding-top: 45px;
+  padding-top: 24px;
 `;
 const headerPadding = css`
   margin-top: 7px;
@@ -97,6 +98,7 @@ export class Favourites extends Component {
             pageTitle={t("index.your_saved_benefits")}
           />
           <Paper padding="md" className={innerDiv}>
+            <AlphaBanner t={t} url={url} />
             <Grid container spacing={32}>
               <Grid item xs={12}>
                 <Header
