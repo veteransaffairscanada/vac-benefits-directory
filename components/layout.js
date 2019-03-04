@@ -102,6 +102,7 @@ Layout.propTypes = {
   hideNoscript: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
   skipLink: PropTypes.string.isRequired,
   title: PropTypes.string,
   backgroundColor: PropTypes.string
