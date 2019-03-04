@@ -17,6 +17,7 @@ import Header from "./typography/header";
 import NextSteps from "./next_steps";
 import QuickLinks from "./quick_links";
 import StickyHeader from "./sticky_header";
+import AlphaBanner from "./alpha_banner";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -26,7 +27,7 @@ const outerDiv = css`
   padding-bottom: 100px;
 `;
 const innerDiv = css`
-  padding-top: 45px;
+  padding-top: 24px;
 `;
 const topMatter = css`
   background-color: ${globalTheme.colour.white};
@@ -81,6 +82,7 @@ export class BB extends Component {
           />
         </div>
         <Paper id={this.props.id} padding="md" className={innerDiv}>
+          <AlphaBanner t={t} url={url} />
           <Grid container spacing={32}>
             <Grid item xs={12}>
               <Header headingLevel="h1" size="xl">

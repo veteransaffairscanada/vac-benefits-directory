@@ -20,7 +20,7 @@ const needsList = css`
   -moz-columns: 2;
   max-width: 100%;
   padding-left: 0;
-  padding-top: 30px;
+  padding-top: 24px;
   @media (max-width: 599px) {
     columns: 1;
     -webkit-columns: 1;
