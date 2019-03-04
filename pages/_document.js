@@ -62,7 +62,6 @@ class MyDocument extends Document {
   }
 
   render() {
-    const path = "https://veterans.gc.ca";
     var initialLang = this.props.__NEXT_DATA__.props.initialState.language;
     return (
       <html lang={initialLang}>
@@ -73,7 +72,7 @@ class MyDocument extends Document {
           <link
             rel="stylesheet"
             type="text/css"
-            href={"../static/vac_css/vac_css_used.css"}
+            href={"../static/vac_css_used.css"}
           />
         </Head>
         <body style={bodyStyling} tabIndex={1}>
