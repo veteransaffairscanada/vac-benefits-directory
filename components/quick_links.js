@@ -15,7 +15,7 @@ const greyBox = css`
 `;
 const leftDiv = css`
   padding-right: 30px;
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
     padding-bottom: 30px;
   }
 `;
