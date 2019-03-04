@@ -77,19 +77,19 @@ class Layout extends Component {
     //         // return res.json();
     //     })
 
-    var proxyUrl = "https://cors-anywhere.herokuapp.com/",
-      targetUrl = "https://veterans.gc.ca/eng#wb-info";
-    fetch(proxyUrl + targetUrl)
-      .then(blob => blob.text())
-      .then(data => {
-        // console.log(data.text());
-        document.querySelector("pre").innerHTML = data; //JSON.stringify(data, null, 2);
-        return data;
-      })
-      .catch(e => {
-        console.log(e);
-        return e;
-      });
+    // var proxyUrl = "https://cors-anywhere.herokuapp.com/",
+    //   targetUrl = "https://veterans.gc.ca/eng#wb-info";
+    // fetch(proxyUrl + targetUrl)
+    //   .then(blob => blob.text())
+    //   .then(data => {
+    //     // console.log(data.text());
+    //     document.querySelector("pre").innerHTML = data; //JSON.stringify(data, null, 2);
+    //     return data;
+    //   })
+    //   .catch(e => {
+    //     console.log(e);
+    //     return e;
+    //   });
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -127,8 +127,7 @@ class Layout extends Component {
             </div>
             <div className={backgoundColour2}>
               <Container>
-                <Footer t={t} />
-                <pre />
+                <VacFooter t={t} />
               </Container>
             </div>
           </ErrorBoundary>

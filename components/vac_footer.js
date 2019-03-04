@@ -1,11 +1,25 @@
 import React, { Component } from "react";
-
+import { cx } from "emotion";
+import s1 from "../static/vac_css/2018-redesign-custom.js";
+import s2 from "../static/vac_css/2019-custom-animations.js";
+import s3 from "../static/vac_css/animate.js";
+import s4 from "../static/vac_css/clientlib-all.js";
+import s5 from "../static/vac_css/jquery-ui.js";
+import s6 from "../static/vac_css/slick-theme.js";
+import s7 from "../static/vac_css/slick.js";
+import s8 from "../static/vac_css/theme.js";
+import s9 from "../static/vac_css/timeline.js";
+// import s1 from "../static/vac_css/2018-redesign-custom.js";
+// require("../static/test.css")
 // classes
 // container mrgn-bttm-xl
 // row
 // col-xs-12 col-sm-4
 // col-x-12 wb-navcurr
 // list-unstyled mrgn-bttm-xl
+// <div className={cx(s1, s2, s3, s4, s5, s6, s7, s8, s9)}>
+//
+const path = "https://veterans.gc.ca";
 
 class VacFooter extends Component {
   render() {
@@ -20,86 +34,108 @@ class VacFooter extends Component {
                 </h3>
                 <ul className="list-unstyled mrgn-bttm-xl">
                   <li>
-                    <a href="/eng/about-vac/news-media">News and media</a>
+                    <a href={path + "/eng/about-vac/news-media"}>
+                      News and media
+                    </a>
                   </li>
                   <li>
-                    <a href="/eng/about-vac/legislation-policies">
+                    <a href={path + "/eng/about-vac/legislation-policies"}>
                       Legislation and Policies
                     </a>
                   </li>
                   <li>
-                    <a href="/eng/about-vac/who-we-are">Who we are</a>
+                    <a href={path + "/eng/about-vac/who-we-are"}>Who we are</a>
                   </li>
                   <li>
-                    <a href="/eng/about-vac/what-we-do">What we do</a>
+                    <a href={path + "/eng/about-vac/what-we-do"}>What we do</a>
                   </li>
                   <li>
-                    <a href="/eng/about-vac/publications-reports">
+                    <a href={path + "/eng/about-vac/publications-reports"}>
                       Publications and reports
                     </a>
                   </li>
                   <li>
-                    <a href="/eng/about-vac/research">Research</a>
+                    <a href={path + "/eng/about-vac/research"}>Research</a>
                   </li>
                   <li>
-                    <a href="/eng/resources">Resources</a>
+                    <a href={path + "/eng/resources"}>Resources</a>
                   </li>
                 </ul>
                 <h3>Contact us</h3>
                 <ul className="list-unstyled mrgn-bttm-xl">
                   <li>
-                    <a href="/eng/contact#office">Locations</a>
+                    <a href={path + "/eng/contact#office"}>Locations</a>
                   </li>
                   <li>
-                    <a href="/eng/resources/stay-connected">Stay connected</a>
+                    <a href={path + "/eng/resources/stay-connected"}>
+                      Stay connected
+                    </a>
                   </li>
                 </ul>
                 <h3>Follow us</h3>
                 <div className="row">
                   <div className="col-xs-12">
                     <a
-                      href="/eng/resources/stay-connected/social-media"
+                      href={path + "/eng/resources/stay-connected/social-media"}
                       style={{ textDecoration: "none" }}
                     >
                       <ul className="list-inline">
                         <li>
                           <img
-                            src="/2018-redesign-assets/images/vector-facebook.svg"
+                            src={
+                              path +
+                              "/2018-redesign-assets/images/vector-facebook.svg"
+                            }
                             alt=""
                           />
                           <span className="wb-inv">Facebook</span>
                         </li>
                         <li>
                           <img
-                            src="/2018-redesign-assets/images/vector-twitter.svg"
+                            src={
+                              path +
+                              "/2018-redesign-assets/images/vector-twitter.svg"
+                            }
                             alt=""
                           />
                           <span className="wb-inv">Twitter</span>
                         </li>
                         <li>
                           <img
-                            src="/2018-redesign-assets/images/vector-instagram.svg"
+                            src={
+                              path +
+                              "/2018-redesign-assets/images/vector-instagram.svg"
+                            }
                             alt=""
                           />
                           <span className="wb-inv">Instagram</span>
                         </li>
                         <li>
                           <img
-                            src="/2018-redesign-assets/images/vector-flickr.svg"
+                            src={
+                              path +
+                              "/2018-redesign-assets/images/vector-flickr.svg"
+                            }
                             alt=""
                           />
                           <span className="wb-inv">Flickr</span>
                         </li>
                         <li>
                           <img
-                            src="/2018-redesign-assets/images/vector-linkedin.svg"
+                            src={
+                              path +
+                              "/2018-redesign-assets/images/vector-linkedin.svg"
+                            }
                             alt=""
                           />
                           <span className="wb-inv">LinkedIn</span>
                         </li>
                         <li>
                           <img
-                            src="/2018-redesign-assets/images/vector-youtube.svg"
+                            src={
+                              path +
+                              "/2018-redesign-assets/images/vector-youtube.svg"
+                            }
                             alt=""
                           />
                           <span className="wb-inv">Youtube</span>
@@ -137,7 +173,7 @@ class VacFooter extends Component {
                   <h3>Have feedback for VAC?</h3>
                   <p>
                     <a
-                      href="/eng/contact/have-your-say"
+                      href={path + "/eng/contact/have-your-say"}
                       className="btn btn-default btn-block"
                     >
                       Have your say!
@@ -150,7 +186,7 @@ class VacFooter extends Component {
                   <h3>VAC Assistance Service</h3>
                   <p className="mrgn-bttm-lg text-off-white">
                     Confidential and available 24/7, there is no cost for{" "}
-                    <a href="/eng/contact/talk-to-a-professional">
+                    <a href={path + "/eng/contact/talk-to-a-professional"}>
                       VAC Assistance Service
                     </a>
                     , and you don’t need to be registered with Veterans Affairs
@@ -192,7 +228,7 @@ class VacFooter extends Component {
                     <div className="col-xs-12 col-sm-6">
                       <p>
                         <a
-                          href="/eng/e_services/create-my-vac-account"
+                          href={path + "/eng/e_services/create-my-vac-account"}
                           className="btn btn-default btn-block"
                         >
                           Register
@@ -222,35 +258,37 @@ class VacFooter extends Component {
                 <h2 className="wb-inv">About this site</h2>
                 <ul>
                   <li>
-                    <a href="/eng/help">Help</a>
+                    <a href={path + "/eng/help"}>Help</a>
                   </li>
                   <li>
-                    <a href="/eng/resources/stay-connected/social-media">
+                    <a
+                      href={path + "/eng/resources/stay-connected/social-media"}
+                    >
                       Social media
                     </a>
                   </li>
                   <li>
-                    <a href="/eng/resources/stay-connected/mobile-app">
+                    <a href={path + "/eng/resources/stay-connected/mobile-app"}>
                       Mobile applications
                     </a>
                   </li>
                   <li>
-                    <a href="/eng/copyright">Terms and conditions</a>
+                    <a href={path + "/eng/copyright"}>Terms and conditions</a>
                   </li>
                   <li>
-                    <a href="/eng/copyright#privacy_notice">Privacy</a>
+                    <a href={path + "/eng/copyright#privacy_notice"}>Privacy</a>
                   </li>
                 </ul>
               </nav>
               <div className="col-xs-6 visible-xs text-left mrgn-tp-sm">
                 <img
-                  src="/GCWeb/assets/2018-redesign/Canada_wordmark.svg"
+                  src={path + "/GCWeb/assets/2018-redesign/Canada_wordmark.svg"}
                   alt="Symbol of the Government of Canada"
                 />
               </div>
               <div className="hidden-xs col-md-3 col-lg-2 text-right mrgn-tp-sm">
                 <img
-                  src="/GCWeb/assets/2018-redesign/Canada_wordmark.svg"
+                  src={path + "/GCWeb/assets/2018-redesign/Canada_wordmark.svg"}
                   alt="Symbol of the Government of Canada"
                 />
               </div>

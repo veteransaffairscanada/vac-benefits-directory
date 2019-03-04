@@ -62,11 +62,69 @@ class MyDocument extends Document {
   }
 
   render() {
+    const path = "https://veterans.gc.ca";
     var initialLang = this.props.__NEXT_DATA__.props.initialState.language;
     return (
       <html lang={initialLang}>
         <Head>
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+
+          <link
+            rel="stylesheet"
+            href={path + "/css/jquery-ui/1.12.1/jquery-ui.min.css"}
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            href={path + "/GCWeb_5.0.1/GCWeb/css/theme.min.css"}
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            href={path + "/GCWeb_5.0.1/GCWeb/css/wet-boew.min.css"}
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://www.canada.ca/etc/designs/canada/clientlib-all.min.css"
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Merriweather%7CBarlow:600%7CMontserrat:400,700"
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            href={path + "/css/2018-redesign/2018-redesign-custom.css"}
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            href={path + "/css/2018-redesign/2019-custom-animations.css"}
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            href={path + "/css/2018-redesign/timeline.css"}
+            type="text/css"
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href={path + "/GCWeb/slick/slick.css"}
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href={path + "/GCWeb/slick/slick-theme.css"}
+          />
         </Head>
         <body style={bodyStyling} tabIndex={1}>
           <Main />
