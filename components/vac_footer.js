@@ -1,24 +1,5 @@
 import React, { Component } from "react";
-import { cx } from "emotion";
-import s1 from "../static/vac_css/2018-redesign-custom.js";
-import s2 from "../static/vac_css/2019-custom-animations.js";
-import s3 from "../static/vac_css/animate.js";
-import s4 from "../static/vac_css/clientlib-all.js";
-import s5 from "../static/vac_css/jquery-ui.js";
-import s6 from "../static/vac_css/slick-theme.js";
-import s7 from "../static/vac_css/slick.js";
-import s8 from "../static/vac_css/theme.js";
-import s9 from "../static/vac_css/timeline.js";
-// import s1 from "../static/vac_css/2018-redesign-custom.js";
-// require("../static/test.css")
-// classes
-// container mrgn-bttm-xl
-// row
-// col-xs-12 col-sm-4
-// col-x-12 wb-navcurr
-// list-unstyled mrgn-bttm-xl
-// <div className={cx(s1, s2, s3, s4, s5, s6, s7, s8, s9)}>
-//
+
 const path = "https://veterans.gc.ca";
 
 class VacFooter extends Component {
