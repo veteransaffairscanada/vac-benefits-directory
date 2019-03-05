@@ -13,6 +13,7 @@ import Container from "../components/container";
 import { globalTheme } from "../theme";
 import Link from "next/link";
 import VacFooterEn from "./vac_footer_en";
+import VacFooterFr from "./vac_footer_fr";
 
 const alpha = css`
   background-color: ${globalTheme.colour.alphaBlue};
@@ -69,7 +70,6 @@ class Layout extends Component {
   render() {
     const { t, title, skipLink, url } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
-
     return (
       <MuiThemeProvider theme={theme}>
         <div style={{ backgroundColor: this.props.backgroundColor }}>
@@ -105,9 +105,11 @@ class Layout extends Component {
               </Container>
             </div>
             <div className={backgoundColour2}>
-              <Container>
+              {t("current-language-code") === "en" ? (
                 <VacFooterEn t={t} />
-              </Container>
+              ) : (
+                <VacFooterFr t={t} />
+              )}
             </div>
           </ErrorBoundary>
           {noScriptTag}

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const path = "https://veterans.gc.ca";
 
-class VacFooterEn extends Component {
+class VacFooterFr extends Component {
   render() {
     return (
       <footer id="wb-info">
@@ -10,54 +10,56 @@ class VacFooterEn extends Component {
           <div className="row">
             <div className="col-xs-12 col-sm-4">
               <nav className="col-x-12 wb-navcurr">
-                <h3>
-                  About <abbr title="Veterans Affairs Canada">VAC</abbr>
-                </h3>
+                <h3>À propos de nous</h3>
                 <ul className="list-unstyled mrgn-bttm-xl">
                   <li>
-                    <a href={path + "/eng/about-vac/news-media"}>
-                      News and media
+                    <a href={path + "/fra/about-vac/news-media"}>
+                      Nouvelles et médias
                     </a>
                   </li>
                   <li>
-                    <a href={path + "/eng/about-vac/legislation-policies"}>
-                      Legislation and Policies
+                    <a href={path + "/fra/about-vac/legislation-policies"}>
+                      Lois et politiques
                     </a>
                   </li>
                   <li>
-                    <a href={path + "/eng/about-vac/who-we-are"}>Who we are</a>
-                  </li>
-                  <li>
-                    <a href={path + "/eng/about-vac/what-we-do"}>What we do</a>
-                  </li>
-                  <li>
-                    <a href={path + "/eng/about-vac/publications-reports"}>
-                      Publications and reports
+                    <a href={path + "/fra/about-vac/who-we-are"}>
+                      Qui nous sommes
                     </a>
                   </li>
                   <li>
-                    <a href={path + "/eng/about-vac/research"}>Research</a>
+                    <a href={path + "/fra/about-vac/what-we-do"}>
+                      Ce que nous faisons
+                    </a>
                   </li>
                   <li>
-                    <a href={path + "/eng/resources"}>Resources</a>
+                    <a href={path + "/fra/about-vac/publications-reports"}>
+                      Publications et rapports
+                    </a>
+                  </li>
+                  <li>
+                    <a href={path + "/fra/about-vac/research"}>Recherche</a>
+                  </li>
+                  <li>
+                    <a href={path + "/fra/resources"}>Ressources</a>
                   </li>
                 </ul>
-                <h3>Contact us</h3>
+                <h3>Contactez-nous</h3>
                 <ul className="list-unstyled mrgn-bttm-xl">
                   <li>
-                    <a href={path + "/eng/contact#office"}>Locations</a>
+                    <a href={path + "/fra/contact#office"}>Emplacements</a>
                   </li>
                   <li>
-                    <a href={path + "/eng/resources/stay-connected"}>
-                      Stay connected
+                    <a href={path + "/fra/resources/stay-connected"}>
+                      Restez branchés
                     </a>
                   </li>
                 </ul>
-                <h3>Follow us</h3>
+                <h3>Suivez-nous</h3>
                 <div className="row">
                   <div className="col-xs-12">
                     <a
-                      href={path + "/eng/resources/stay-connected/social-media"}
+                      href={path + "/fra/resources/stay-connected/social-media"}
                       style={{ textDecoration: "none" }}
                     >
                       <ul className="list-inline">
@@ -130,58 +132,63 @@ class VacFooterEn extends Component {
             <div className="col-xs-12 col-sm-8">
               <div className="row mrgn-tp-lg">
                 <div className="col-xs-12 col-sm-6">
-                  <h3>Questions? Call us.</h3>
+                  <h3>Des questions? Appelez-nous.</h3>
                   <p>
                     <a
                       href="tel:18665222022"
                       className="btn btn-default btn-block"
                     >
-                      Toll-free: 1-866-522-2122
+                      Téléphonez sans frais&nbsp;:&nbsp;
+                      <br /> 1-866-522-2022
                     </a>
                   </p>
                 </div>
                 <div className="col-xs-12 col-sm-6">
-                  <h3>Have feedback for VAC?</h3>
+                  <h3>Des commentaires pour ACC?</h3>
                   <p>
                     <a
-                      href={path + "/eng/contact/have-your-say"}
+                      href={path + "/fra/contact/have-your-say"}
                       className="btn btn-default btn-block"
                     >
-                      Have your say!
+                      {" "}
+                      À vous la parole!
                     </a>
                   </p>
                 </div>
               </div>
               <div className="row">
                 <div className="col-xs-12">
-                  <h3>VAC Assistance Service</h3>
+                  <h3>Le Service d'aide d'ACC</h3>
                   <p className="mrgn-bttm-lg text-off-white">
-                    Confidential and available 24/7, there is no cost for{" "}
-                    <a href={path + "/eng/contact/talk-to-a-professional"}>
-                      VAC Assistance Service
-                    </a>
-                    , and you don’t need to be registered with Veterans Affairs
-                    Canada (VAC) to call. You can have up to 20 hours of
-                    psychological support.
+                    <a href={path + "/fra/contact/talk-to-a-professional"}>
+                      Le Service d'aide d'ACC
+                    </a>{" "}
+                    offre un soutien psychologique gratuit et confidentiel, 24
+                    heures par jour, 365 jours par année. Le service est offert
+                    à tous les vétérans, les anciens membres de la GRC, leur
+                    famille et les aidants. Il n'est pas nécessaire d'être
+                    inscrit auprès d'ACC pour appeler.
                   </p>
                   <div className="row">
                     <div className="col-xs-12 col-sm-6">
                       <p>
                         <a
-                          href="tel:18002687708"
+                          href="tel:1-800-268-7708"
                           className="btn btn-default btn-block"
                         >
-                          Toll-free: 1-800-268-7708
+                          Téléphonez sans frais&nbsp;:&nbsp;
+                          <br /> 1-800-268-7708
                         </a>
                       </p>
                     </div>
                     <div className="col-xs-12 col-sm-6">
                       <p>
                         <a
-                          href="tel:18005675803"
+                          href="tel:1-800-567-5803"
                           className="btn btn-default btn-block"
                         >
-                          TDD/TTY: 1-800-567-5803
+                          Appareil téléscripteur
+                          (ATS)&nbsp;:&nbsp;1-800-567-5803
                         </a>
                       </p>
                     </div>
@@ -190,29 +197,28 @@ class VacFooterEn extends Component {
               </div>
               <div className="row">
                 <div className="col-xs-12">
-                  <h3>My VAC Account</h3>
+                  <h3>Mon dossier ACC</h3>
                   <p className="mrgn-bttm-lg text-off-white">
-                    A simple and secure way to do business online with Veterans
-                    Affairs Canada.
+                    Une façon simple et sécuritaire de faire affaire en ligne.
                   </p>
                   <div className="row">
                     <div className="col-xs-12 col-sm-6">
                       <p>
                         <a
-                          href={path + "/eng/e_services/create-my-vac-account"}
+                          href={path + "/fra/e_services/create-my-vac-account"}
                           className="btn btn-default btn-block"
                         >
-                          Register
+                          Inscription
                         </a>
                       </p>
                     </div>
                     <div className="col-xs-12 col-sm-6">
                       <p>
                         <a
-                          href="https://mva-mda.vac-acc.gc.ca/pub/MVA_7_24_1?request_locale=en_CA"
+                          href="https://mva-mda.vac-acc.gc.ca/pub/MVA_7_24_1?request_locale=fr_CA"
                           className="btn btn-default-outline btn-block"
                         >
-                          Sign in
+                          Connexion
                         </a>
                       </p>
                     </div>
@@ -226,40 +232,44 @@ class VacFooterEn extends Component {
           <div className="container">
             <div className="row">
               <nav className="col-md-9 col-lg-10 ftr-urlt-lnk">
-                <h2 className="wb-inv">About this site</h2>
+                <h2 className="wb-inv">À propos de ce site</h2>
                 <ul>
                   <li>
-                    <a href={path + "/eng/help"}>Help</a>
+                    <a href={path + "/fra/help"}>Aide</a>
                   </li>
                   <li>
                     <a
-                      href={path + "/eng/resources/stay-connected/social-media"}
+                      href={path + "/fra/resources/stay-connected/social-media"}
                     >
-                      Social media
+                      Médias sociaux
                     </a>
                   </li>
                   <li>
-                    <a href={path + "/eng/resources/stay-connected/mobile-app"}>
-                      Mobile applications
+                    <a href={path + "/fra/resources/stay-connected/mobile-app"}>
+                      Applications mobiles
                     </a>
                   </li>
                   <li>
-                    <a href={path + "/eng/copyright"}>Terms and conditions</a>
+                    <a href={path + "/fra/copyright"}>Avis</a>
                   </li>
                   <li>
-                    <a href={path + "/eng/copyright#privacy_notice"}>Privacy</a>
+                    <a href={path + "/fra/copyright#privacy_notice"}>
+                      Confidentialité
+                    </a>
                   </li>
                 </ul>
               </nav>
-              <div className="col-xs-6 visible-xs text-left mrgn-tp-sm">
-                <img
-                  src={path + "/GCWeb/assets/2018-redesign/Canada_wordmark.svg"}
-                  alt="Symbol of the Government of Canada"
-                />
+              <div className="col-xs-6 visible-sm visible-xs tofpg">
+                <a href="#wb-cont">
+                  Haut de la page{" "}
+                  <span className="glyphicon glyphicon-chevron-up" />
+                </a>
               </div>
-              <div className="hidden-xs col-md-3 col-lg-2 text-right mrgn-tp-sm">
+              <div className="col-xs-6 col-md-3 col-lg-2 text-right mrgn-tp-sm">
                 <img
-                  src={path + "/GCWeb/assets/2018-redesign/Canada_wordmark.svg"}
+                  src={
+                    path + "/2018-redesign-assets/images/Canada_wordmark.svg"
+                  }
                   alt="Symbol of the Government of Canada"
                 />
               </div>
@@ -271,4 +281,4 @@ class VacFooterEn extends Component {
   }
 }
 
-export default VacFooterEn;
+export default VacFooterFr;
