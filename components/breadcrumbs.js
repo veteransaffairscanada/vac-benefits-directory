@@ -12,8 +12,6 @@ const greyBanner = css`
   font-size: 16px;
   background-color: ${globalTheme.colour.paleGreyTwo};
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    padding-left: 15px;
-    padding-right: 15px;
     margin: 11px 0;
   }
 `;
