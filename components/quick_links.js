@@ -22,7 +22,7 @@ const leftDiv = css`
 const rightDiv = css`
   font-family: ${globalTheme.fontFamilySerif};
   font-size: 24px;
-  color: ${globalTheme.colour.slateGrey};
+  color: ${globalTheme.colour.navy};
   border-left: 4px solid ${globalTheme.colour.duckEggBlue};
   height: 100%;
   box-sizing: border-box;
@@ -41,12 +41,13 @@ const link = css`
 const quickLinksText = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 12px;
-  color: ${globalTheme.colour.blueGrey};
+  color: ${globalTheme.colour.navy};
   font-weight: bold;
   text-transform: uppercase;
 `;
 
 const linkStyle = css`
+  color: ${globalTheme.colour.navy};
   text-align: left;
   font-size: 16px;
   font-weight: 400;
