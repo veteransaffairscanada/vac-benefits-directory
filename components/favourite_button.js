@@ -11,21 +11,11 @@ import { areCookiesDisabled } from "../utils/common";
 import Tooltip from "./tooltip";
 
 const saveButton = css`
-  margin-left: -5px !important;
+  margin-left: 0px !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
   padding-top: 0.526315em;
   padding-bottom: 0.526315em;
-`;
-const hideSmall = css`
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    display: none !important;
-  }
-`;
-const hideBig = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    display: none !important;
-  }
 `;
 
 export class FavouriteButton extends Component {
@@ -55,11 +45,6 @@ export class FavouriteButton extends Component {
     const longButtonText = t(
       isSaved ? "B3.favouritesButtonTextRemove" : "B3.favouritesButtonBText"
     );
-    const shortButtonText = t(
-      isSaved
-        ? "B3.favouritesButtonTextRemove"
-        : "B3.favouritesButtonBTextMobile"
-    );
     const benefitName =
       t("current-language-code") === "en"
         ? benefit.vacNameEn
@@ -87,8 +72,7 @@ export class FavouriteButton extends Component {
           ) : (
             <SaveUnchecked className={cx("notSaved")} />
           )}
-          <span className={hideSmall}>{longButtonText}</span>
-          <span className={hideBig}>{shortButtonText}</span>
+          <span>{longButtonText}</span>
         </HeaderButton>
       </Tooltip>
     );
