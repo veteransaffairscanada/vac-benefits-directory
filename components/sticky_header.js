@@ -18,15 +18,15 @@ const sticky = css`
   z-index: 10;
 `;
 
-// if screen size is max.xs or smaller, hide long text
+// if screen size is max.sm or smaller, hide long text
 const longText = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
     display: none !important;
   }
 `;
-// if screen size is min.xs or larger, hide short text
+// if screen size is min.sm or larger, hide short text
 const shortText = css`
-  @media only screen and (min-width: ${globalTheme.min.xs}) {
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
     display: none !important;
   }
 `;
@@ -37,11 +37,20 @@ const savedListStyle = css`
   margin-left: 50px;
   padding: 0;
   font-size: 20px;
+  color: ${globalTheme.colour.navy};
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    font-size: 12px !important;
+    margin-left: 25px;
+  }
 `;
 
 const editStyle = css`
   padding: 0;
   font-size: 20px;
+  color: ${globalTheme.colour.navy};
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    font-size: 12px !important;
+  }
 `;
 
 export class StickyHeader extends Component {
