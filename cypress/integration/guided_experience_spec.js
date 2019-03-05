@@ -7,7 +7,7 @@ describe("Guided Experience", function() {
   });
 
   it("successfully loads start page", () => {
-    cy.contains("Select who will be receiving the benefits.");
+    cy.contains("Select who would be receiving the benefits.");
   });
 
   it("can skip through to benefits-directory", () => {
@@ -35,6 +35,6 @@ describe("Guided Experience", function() {
   it("can go back from summary and edit answer", () => {
     cy.visit("summary");
     cy.get("#edit-patronType").click();
-    cy.contains("Select who will be receiving the benefits.");
+    cy.contains("Select who would be receiving the benefits.");
   });
 });
