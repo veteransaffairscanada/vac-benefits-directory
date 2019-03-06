@@ -106,9 +106,9 @@ class Layout extends Component {
             </div>
             <div className={backgoundColour2}>
               {t("current-language-code") === "en" ? (
-                <VacFooterEn t={t} />
+                <VacFooterEn />
               ) : (
-                <VacFooterFr t={t} />
+                <VacFooterFr />
               )}
             </div>
           </ErrorBoundary>
