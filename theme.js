@@ -9,15 +9,15 @@ let theme = {
     "0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)",
   max: {
     mobile: "399.5px",
-    xs: "599.5px",
-    sm: "959.5px",
-    md: "1279.5px",
+    xs: "424.5px",
+    sm: "767.5px",
+    md: "999.5px",
     lg: "1919.5px"
   },
   min: {
-    xs: "600px",
-    sm: "960px",
-    md: "1280px",
+    xs: "425px",
+    sm: "768px",
+    md: "1000px",
     lg: "1920px"
   },
   colour: {
@@ -44,7 +44,7 @@ let theme = {
     alertYellow: "#fbb830",
     lightYellow: "#f9f4d3",
     alphaPink: "#d42dc9",
-    betaBlue: "#006de4",
+    betaBlue: "#634f70",
     alphaBlue: "#345075",
     salmon: "#ff6961",
     blueGrey: "#838d9b",
@@ -57,7 +57,8 @@ let theme = {
     duckEggBlue: "#dbe3e5",
     darkPaleGrey: "#d5e2e9",
     blueish: "#f6f9fa",
-    blackBlue: "#2f2f42"
+    blackBlue: "#2f2f42",
+    blackish2: "#2e2e40"
   }
 };
 
@@ -66,5 +67,6 @@ theme.colour.focusColour = theme.colour.govukYellow;
 theme.colour.linkColour = theme.colour.cerulean;
 theme.colour.linkHoverColour = theme.colour.cerulean;
 theme.colour.boxBorderColour = theme.colour.darkPaleGrey;
+theme.colour.bannerColour = theme.colour.blackish2;
 
 export const globalTheme = { ...theme };

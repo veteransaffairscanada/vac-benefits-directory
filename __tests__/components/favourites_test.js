@@ -40,7 +40,6 @@ describe("Favourites", () => {
   };
 
   beforeEach(() => {
-    window.scrollTo = jest.fn();
     props = {
       t: translateFixture,
       selectedEligibility: {

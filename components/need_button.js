@@ -19,9 +19,6 @@ export class NeedButton extends Component {
       logEvent("FilterClick", "need", id);
       newSelectedNeeds[id] = id;
     }
-    if (window && this.props.pageWidth >= 600 && this.props.scrollOnClick) {
-      window.scrollTo(0, 0);
-    }
     this.props.setSelectedNeeds(newSelectedNeeds);
   };
 
@@ -53,7 +50,6 @@ const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
     selectedNeeds: reduxState.selectedNeeds,
-    pageWidth: reduxState.pageWidth,
     language: reduxState.language
   };
 };
@@ -63,16 +59,12 @@ NeedButton.propTypes = {
   t: PropTypes.func.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
-  pageWidth: PropTypes.number.isRequired,
-  scrollOnClick: PropTypes.bool,
   disabled: PropTypes.string,
   store: PropTypes.object
 };
 
 NeedButton.defaultProps = {
-  scrollOnClick: true,
-  disabled: "",
-  pageWidth: 1000
+  disabled: ""
 };
 
 export default connect(

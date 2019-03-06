@@ -15,7 +15,7 @@ const greyBox = css`
 `;
 const leftDiv = css`
   padding-right: 30px;
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
     padding-bottom: 30px;
   }
 `;
@@ -67,7 +67,7 @@ class QuickLinks extends Component {
     return (
       <div className={greyBox}>
         <Grid container>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} md={4}>
             <div className={leftDiv}>
               <span className={quickLinksText}>{t("quick_links")}</span>
               <div className={link}>
@@ -100,7 +100,7 @@ class QuickLinks extends Component {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12} md={8}>
             <div className={rightDiv}>{t("B3.check eligibility")}</div>
           </Grid>
         </Grid>

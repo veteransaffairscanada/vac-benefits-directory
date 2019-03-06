@@ -18,13 +18,13 @@ import GuidedExperienceSummary from "../components/guided_experience_summary";
 import Body from "../components/typography/body";
 import { getFilteredBenefits } from "../selectors/benefits";
 import { getHomeUrl } from "../selectors/urls";
+import AlphaBanner from "../components/alpha_banner";
 
 const box = css`
   padding: 63px 63px 63px 63px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding: 26px 26px 55px 26px;
   }
-  display: inline-flex;
 `;
 const alignRight = css`
   text-align: right;
@@ -69,6 +69,7 @@ export class Summary extends Component {
             />
           </div>
           <Paper padding="md" className={box}>
+            <AlphaBanner t={t} url={url} />
             <Grid container spacing={24}>
               <Grid item xs={12} className={questions}>
                 <Header size="md_lg" headingLevel="h2">
@@ -89,7 +90,7 @@ export class Summary extends Component {
                   ) : null}
                 </div>
               </Grid>
-              <Grid item xs={4} sm={6}>
+              <Grid item xs={4} md={6}>
                 <HeaderButton
                   id="prevButton"
                   hasBorder
@@ -98,7 +99,7 @@ export class Summary extends Component {
                   {t("back")}
                 </HeaderButton>
               </Grid>
-              <Grid item xs={8} sm={6}>
+              <Grid item xs={8} md={6}>
                 <div className={alignRight}>
                   <Button
                     id="nextButton"

@@ -1,76 +1,46 @@
 import React from "react";
 import LanguageButton from "../../components/language_button";
 import { mount } from "enzyme";
-import Router from "next/router";
 import translate from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
-
 jest.mock("react-ga");
 
 describe("LanguageButton", () => {
-  Router.router = {
-    push: jest.fn(),
-    query: jest.fn(),
-    pathname: ""
-  };
-
   let props;
-  let _mountedLanguageButton;
-  const mountedLanguageButton = () => {
-    if (!_mountedLanguageButton) {
-      _mountedLanguageButton = mount(<LanguageButton {...props} />);
-    }
-    return _mountedLanguageButton;
-  };
 
   beforeEach(() => {
     props = {
       i18n: {
         changeLanguage: () => {}
       },
-      t: translate
+      t: translate,
+      url: {
+        push: jest.fn(),
+        query: { patronType: "veteran" },
+        route: "benefits-directory"
+      }
     };
-    _mountedLanguageButton = undefined;
   });
 
-  // Tests
   it("passes axe tests", async () => {
-    let html = mountedLanguageButton().html();
+    let html = mount(<LanguageButton {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  describe("clicking the change language button", () => {
-    let _currentLanguage = "en";
-    beforeEach(() => {
-      props.i18n = {
-        changeLanguage: langCode => {
-          _currentLanguage = langCode;
-        }
-      };
-      props.t = s => {
-        return s + "_" + _currentLanguage;
-      };
-    });
-
-    it("changes the text on the change language button", () => {
-      mountedLanguageButton()
+  it("has the correct href", () => {
+    expect(
+      mount(<LanguageButton {...props} />)
         .find("#changeLanguage")
         .at(0)
-        .simulate("click");
-      expect(
-        mount(<LanguageButton {...props} />)
-          .find("#changeLanguage")
-          .at(0)
-          .text()
-      ).toEqual("other-language_other-language-code_en");
-    });
+        .prop("href")
+    ).toEqual("benefits-directory?patronType=veteran&lng=fr");
   });
 
   it("Language change logged with Google Analytics", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
-    mountedLanguageButton()
+    mount(<LanguageButton {...props} />)
       .find("#changeLanguage")
       .at(0)
       .simulate("click");

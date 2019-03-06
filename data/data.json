@@ -862,7 +862,6 @@
         "recPl2BKSR89x0mGN",
         "recHXVbwGofjJnMhY"
       ],
-      "benefitEligibility": ["recFXLOY29h9a5OSp"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
       "id": "recsRSTzSMCIkxnnJ",
@@ -870,7 +869,8 @@
       "childBenefits": [],
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
-      "examples": ""
+      "examples": "",
+      "benefitEligibility": []
     },
     {
       "vacNameEn": "Treatment benefits",
@@ -1583,15 +1583,6 @@
       "serviceHealthIssue": ["recAmXQ89MNnaecZu"],
       "Name": "recJjXjUz5Ax5cher",
       "path": "family + CAF, WSV (WWII or Korea), RCMP + deceased + hasServiceHealthIssue"
-    },
-    {
-      "benefit": ["recsRSTzSMCIkxnnJ"],
-      "patronType": ["recFABO2SLhcwRkjT"],
-      "serviceType": ["rec9TxYv9brvsbp2P", "recLd3F8AA3l2DSGN"],
-      "Name": "recFXLOY29h9a5OSp",
-      "path": "servingMember + CAF, RCMP",
-      "statusAndVitals": [],
-      "serviceHealthIssue": []
     },
     {
       "benefit": ["rechXeFmQ9yIZpt37"],
@@ -3298,6 +3289,13 @@
       "English": "1 saved benefit or service",
       "French": "avantage ou service sauvegardé ",
       "id": "titles.1_saved_benefit"
+    },
+    {
+      "section": "links",
+      "key": "myvac",
+      "English": "https://www.veterans.gc.ca/eng/e_services/?utm_source=fbas",
+      "French": "https://www.veterans.gc.ca/fra/e_services/?utm_source=fbas",
+      "id": "links.myvac"
     }
   ],
   "questions": [
@@ -3312,9 +3310,9 @@
       "display_text_english": "My selection:",
       "display_text_french": "Ma sélection:",
       "question display logic": ["recqrmO0TSWr3Sal8", "recgoq6VzwN19P7ui"],
-      "guided_experience_english": "Select who will be receiving the benefits.",
+      "guided_experience_english": "Select who would be receiving the benefits.",
       "guided_experience_french": "Sélectionnez qui recevra les services.",
-      "guided_experience_page_title_english": "Select who will be receiving the benefits.",
+      "guided_experience_page_title_english": "Select who would be receiving the benefits.",
       "guided_experience_page_title_french": "Sélectionnez qui recevra les services.",
       "breadcrumb_english": "Benefit recipient",
       "breadcrumb_french": "Prestataire",
@@ -3377,7 +3375,7 @@
       "guided_experience_english": "Is there a service-related health issue?",
       "guided_experience_french": "A-t-il un problème de santé lié au service?",
       "questionClearLogic 2 copy": "Unnamed record, Unnamed record, Unnamed record",
-      "tooltip_english": "A service-related health issue is an illness or injury that was caused or worsened by military service. It must be medically diagnosed by a doctor. Examples include: hearing loss, tinnitus, depression, or a shoulder injury.",
+      "tooltip_english": "A service-related health issue is an illness or injury that was caused or worsened by military service. It must be medically diagnosed by a doctor. Examples may include: hearing loss, tinnitus, depression, or a shoulder injury.",
       "tooltip_french": "Un problème de santé lié au service militaire est une maladie ou une blessure qui a été causée ou aggravée par le service militaire. Il doit être diagnostiqué médicalement par un médecin. Exemples : acouphènes, dépression.",
       "guided_experience_page_title_english": "Is there a service-related health issue?",
       "guided_experience_page_title_french": "A-t-il un problème de santé lié au service?",
@@ -3506,7 +3504,6 @@
         "recD0T5A745koaYs4",
         "recjyIt9cm0Q0fex8",
         "recxvf53GWGPOONpe",
-        "recFXLOY29h9a5OSp",
         "recj42X5sBINDRIBl"
       ],
       "nextSteps": [
@@ -3633,7 +3630,6 @@
         "rec5rbCaZaiqSivuZ",
         "recWIN9A7KLaH3ESa",
         "recWH4cNVr9CDfW7i",
-        "recFXLOY29h9a5OSp",
         "recEvCUXPtqLG8ht1",
         "recj42X5sBINDRIBl",
         "recwHANeVjaGAzFQO",
@@ -3657,8 +3653,7 @@
       "benefitEligibility 3": [
         "recJjXjUz5Ax5cher",
         "recxvf53GWGPOONpe",
-        "recWH4cNVr9CDfW7i",
-        "recFXLOY29h9a5OSp"
+        "recWH4cNVr9CDfW7i"
       ],
       "key (DO NOT EDIT)": "RCMP",
       "id": "recLd3F8AA3l2DSGN",
@@ -4578,5 +4573,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1551294612184
+  "timestamp": 1551790127073
 }

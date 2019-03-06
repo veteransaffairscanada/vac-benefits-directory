@@ -211,7 +211,7 @@ export class FeedbackBar extends Component {
           ) : !this.state.feedbackSubmitted ? (
             <div className={Inner}>
               <Grid container spacing={8}>
-                <Grid item sm={5} xs={12}>
+                <Grid item md={5} xs={12}>
                   <Header
                     size="sm"
                     headingLevel="h2"
@@ -220,7 +220,7 @@ export class FeedbackBar extends Component {
                     {t("feedback-prompt")}
                   </Header>
                 </Grid>
-                <Grid item sm={3} xs={12}>
+                <Grid item md={3} xs={12}>
                   <FooterButton
                     id="feedbackYes"
                     onClick={() => this.sendFeedback("Yes")}
@@ -235,7 +235,7 @@ export class FeedbackBar extends Component {
                     {t("no")}
                   </FooterButton>
                 </Grid>
-                <Grid item sm={4} xs={12}>
+                <Grid item md={4} xs={12}>
                   <Header size="sm" headingLevel="h2" className={fileBugHeader}>
                     <FooterButton
                       id="feedbackBug"

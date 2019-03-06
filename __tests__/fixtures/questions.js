@@ -4,7 +4,7 @@ const questionsFixture = [
     multiple_choice_options: ["service-person", "family", "organization"],
     display_text_english: "My selection:",
     display_text_french: "Ma sélection:",
-    guided_experience_english: "Select who will be receiving the benefits.",
+    guided_experience_english: "Select who would be receiving the benefits.",
     guided_experience_french: "Montre moi des avantages pour:",
     id: "recwwXPBszQacaMsb",
     tooltip_english: "tooltip_patronType_en",

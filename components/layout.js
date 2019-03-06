@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { css } from "emotion";
 import styled from "@emotion/styled";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { AlphaBanner } from "../components/alpha_banner";
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  withTheme
+} from "@material-ui/core/styles";
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
@@ -12,31 +15,30 @@ import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
-import Link from "next/link";
 
-const alpha = css`
-  background-color: ${globalTheme.colour.alphaBlue};
-`;
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
 `;
 const header = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.bannerColour};
   padding: 0px;
 `;
-const white = css`
-  color: white;
-  :focus {
-    outline: 3px solid ${globalTheme.colour.focusColour};
-  }
-`;
+
 const backgoundColour1 = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
 `;
-const backgoundColour2 = css`
-  background-color: ${globalTheme.colour.greyishBrown};
+const footerColour = css`
+  background-color: ${globalTheme.colour.bannerColour};
 `;
 const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 768,
+      lg: 1000
+    }
+  },
   palette: {
     primary: {
       main: globalTheme.colour.cerulean
@@ -80,19 +82,10 @@ class Layout extends Component {
                   <FederalBanner
                     i18n={this.props.i18n}
                     t={t}
+                    url={url}
                     skipLink={skipLink}
                   />
                 </Container>
-                <div className={alpha}>
-                  <Container>
-                    <AlphaBanner t={t}>
-                      {t("beta_banner.main")} &nbsp;
-                      <Link href={{ pathname: "/feedback", query: url.query }}>
-                        <a className={white}>{t("beta_banner.link_text")}</a>
-                      </Link>
-                    </AlphaBanner>
-                  </Container>
-                </div>
               </header>
               <div role="main" id="main">
                 {this.props.children}
@@ -103,7 +96,7 @@ class Layout extends Component {
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div className={backgoundColour2}>
+            <div className={footerColour}>
               <Container>
                 <Footer t={t} />
               </Container>
@@ -118,10 +111,10 @@ class Layout extends Component {
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  url: PropTypes.object.isRequired,
   hideNoscript: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
   skipLink: PropTypes.string.isRequired,
   title: PropTypes.string,
   backgroundColor: PropTypes.string
@@ -131,4 +124,4 @@ Layout.defaultProps = {
   backgroundColor: globalTheme.colour.paleGrey
 };
 
-export default Layout;
+export default withTheme()(Layout);
