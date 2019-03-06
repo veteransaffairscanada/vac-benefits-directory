@@ -52,9 +52,9 @@
     "next": "8.0.3",
     "next-redux-wrapper": "^3.0.0-alpha.2",
     "raven-js": "^3.27.0",
-    "react": "16.8.3",
+    "react": "16.8.4",
     "react-autosuggest": "^9.4.3",
-    "react-dom": "^16.8.3",
+    "react-dom": "^16.8.4",
     "react-ga": "^2.5.7",
     "react-highlight-words": "^0.16.0",
     "react-jss": "^8.6.1",
@@ -91,8 +91,8 @@
     "jest-axe": "^3.1.1",
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0",
-    "react-styleguidist": "^9.0.1",
-    "react-test-renderer": "^16.8.3",
+    "react-styleguidist": "^9.0.3",
+    "react-test-renderer": "^16.8.4",
     "start-server-and-test": "^1.7.11",
     "webpack-bundle-analyzer": "^3.0.4"
   }
