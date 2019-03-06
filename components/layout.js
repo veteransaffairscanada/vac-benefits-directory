@@ -94,7 +94,7 @@ class Layout extends Component {
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div>
+            <div id="footer_css">
               {t("current-language-code") === "en" ? (
                 <VacFooterEn />
               ) : (

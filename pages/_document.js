@@ -66,14 +66,13 @@ class MyDocument extends Document {
     return (
       <html lang={initialLang}>
         <Head>
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-
           <link
             rel="stylesheet"
             type="text/css"
             href={"../static/vac_css_used.css"}
           />
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
         <body style={bodyStyling} tabIndex={1}>
           <Main />
