@@ -56,4 +56,9 @@ describe("Layout", () => {
         .text()
     ).toContain("beta_banner.link_text");
   });
+
+  it("renders the correct footer component", () => {
+    expect(mountedLayout().find("VacFooterEn").length).toEqual(1);
+    expect(mountedLayout().find("VacFooterFr").length).toEqual(0);
+  });
 });
