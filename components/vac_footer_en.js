@@ -156,13 +156,15 @@ class VacFooterEn extends Component {
                 <div className="col-xs-12">
                   <h3>VAC Assistance Service</h3>
                   <p className="mrgn-bttm-lg text-off-white">
-                    Confidential and available 24/7, there is no cost for{" "}
+                    The{" "}
                     <a href={path + "/eng/contact/talk-to-a-professional"}>
                       VAC Assistance Service
-                    </a>
-                    , and you don’t need to be registered with Veterans Affairs
-                    Canada (VAC) to call. You can have up to 20 hours of
-                    psychological support.
+                    </a>{" "}
+                    can provide you with psychological support. It is available
+                    24 hours a day, 365 days a year. The service is for
+                    Veterans, former RCMP members, their families, and
+                    caregivers and is provided at no cost. You do not need to be
+                    a client of VAC to receive services.
                   </p>
                   <div className="row">
                     <div className="col-xs-12 col-sm-6">
