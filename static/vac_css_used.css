@@ -538,8 +538,7 @@ abbr[title] {
   color: #ffffff;
 }
 #wb-info .brand {
-  background: #2e2e40 url(https://www.veterans.gc.ca/assets/svg-leaf.svg)
-    no-repeat 50px -205px;
+  background-color: #2e2e40;
   background-size: 150%;
   border-top: 1px solid #434458;
 }
