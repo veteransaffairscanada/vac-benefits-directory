@@ -51,6 +51,8 @@ const xButton = css`
 const rightAlign = css`
   flex-grow: 3;
   text-align: right;
+  margin-top: -15px;
+  margin-right: -15px;
 `;
 
 export class FavouriteButton extends Component {
