@@ -10,10 +10,10 @@ const questions = [
     display_text_english: "My selection:",
     display_text_french: "Ma sélection:",
     "question display logic": ["recn0zobKUhFIowAh", "recdXDG6qy8fOltJr"],
-    guided_experience_english: "Select who will be receiving the benefits.",
+    guided_experience_english: "Select who would be receiving the benefits.",
     guided_experience_french: "Sélectionnez qui recevra les services.",
     guided_experience_page_title_english:
-      "Select who will be receiving the benefits.",
+      "Select who would be receiving the benefits.",
     guided_experience_page_title_french:
       "Sélectionnez qui recevra les services.",
     breadcrumb_english: "Benefit recipient",

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
+import { withTheme } from "@material-ui/core/styles";
 import { css } from "emotion";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
@@ -16,6 +17,7 @@ import Header from "./typography/header";
 import NextSteps from "./next_steps";
 import QuickLinks from "./quick_links";
 import StickyHeader from "./sticky_header";
+import AlphaBanner from "./alpha_banner";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -25,7 +27,7 @@ const outerDiv = css`
   padding-bottom: 100px;
 `;
 const innerDiv = css`
-  padding-top: 45px;
+  padding-top: 24px;
 `;
 const topMatter = css`
   background-color: ${globalTheme.colour.white};
@@ -80,6 +82,7 @@ export class BB extends Component {
           />
         </div>
         <Paper id={this.props.id} padding="md" className={innerDiv}>
+          <AlphaBanner t={t} url={url} />
           <Grid container spacing={32}>
             <Grid item xs={12}>
               <Header headingLevel="h1" size="xl">
@@ -96,14 +99,14 @@ export class BB extends Component {
             <Grid item xs={12}>
               <QuickLinks t={t} />
             </Grid>
-            <Grid item sm={4} xs={12}>
+            <Grid item md={4} xs={12}>
               <div id="benefits-and-services">
                 <Header headingLevel="h2" size="md_lg">
                   {t("titles.benefits_and_services")}
                 </Header>
               </div>
             </Grid>
-            <Grid id="mainContent" item sm={8} xs={12}>
+            <Grid id="mainContent" item md={8} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
                   {this.state.showDisabledCookieBanner ? (
@@ -121,14 +124,14 @@ export class BB extends Component {
             <Grid item xs={12}>
               <div className={divider} />
             </Grid>
-            <Grid item sm={4} xs={12}>
+            <Grid item md={4} xs={12}>
               <div id="next-steps">
                 <Header headingLevel="h2" size="md_lg">
                   {t("nextSteps.whats_next")}
                 </Header>
               </div>
             </Grid>
-            <Grid item sm={8} xs={12}>
+            <Grid item md={8} xs={12}>
               <NextSteps t={t} store={store} />
             </Grid>
           </Grid>
@@ -175,7 +178,9 @@ BB.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BB);
+export default withTheme()(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(BB)
+);

@@ -16,6 +16,7 @@ import HeaderButton from "./header_button";
 import Button from "./button";
 import Link from "next/link";
 import { getHomeUrl } from "../selectors/urls";
+import { AlphaBanner } from "./alpha_banner";
 
 const greyBox = css`
   background-color: ${globalTheme.colour.paleGreyTwo};
@@ -34,11 +35,11 @@ const greyBox = css`
 `;
 
 const box = css`
-  padding: 50px;
+  padding: 35px;
+  padding-top: 24px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding: 17px 26px 55px 26px;
   }
-  display: inline-flex;
 `;
 const alignRight = css`
   text-align: right;
@@ -191,6 +192,7 @@ export class GuidedExperience extends Component {
           />
         </div>
         <Paper padding="md" className={box}>
+          <AlphaBanner t={t} url={url} />
           <Grid container spacing={24}>
             {id === "patronType" ? (
               <React.Fragment>
@@ -224,7 +226,7 @@ export class GuidedExperience extends Component {
             </Grid>
             <Grid item xs={12}>
               <Grid container spacing={16}>
-                <Grid item xs={12} sm={8}>
+                <Grid item xs={12} md={8}>
                   <Grid container spacing={8} className={mobileReverse}>
                     <HeaderLink
                       id="prevButton"
@@ -247,7 +249,7 @@ export class GuidedExperience extends Component {
                     </Link>
                   </Grid>
                 </Grid>
-                <Grid item xs={12} sm={4} className={alignRight}>
+                <Grid item xs={12} md={4} className={alignRight}>
                   <Link id="skipLink" href={this.getSkipUrl()}>
                     <HeaderButton
                       id="skipButton"

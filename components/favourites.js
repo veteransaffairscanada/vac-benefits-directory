@@ -18,6 +18,7 @@ import Cookies from "universal-cookie";
 import Paper from "./paper";
 import StickyHeader from "./sticky_header";
 import QuickLinks from "./quick_links";
+import AlphaBanner from "./alpha_banner";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -27,7 +28,7 @@ const outerDiv = css`
   padding-bottom: 100px;
 `;
 const innerDiv = css`
-  padding-top: 45px;
+  padding-top: 24px;
 `;
 const headerPadding = css`
   margin-top: 7px;
@@ -97,6 +98,7 @@ export class Favourites extends Component {
             pageTitle={t("index.your_saved_benefits")}
           />
           <Paper padding="md" className={innerDiv}>
+            <AlphaBanner t={t} url={url} />
             <Grid container spacing={32}>
               <Grid item xs={12}>
                 <Header
@@ -117,14 +119,14 @@ export class Favourites extends Component {
               <Grid item xs={12}>
                 <QuickLinks t={t} onFavourites={true} />
               </Grid>
-              <Grid item sm={4} xs={12}>
+              <Grid item md={4} xs={12}>
                 <div id="saved-list">
                   <Header headingLevel="h2" size="md_lg">
                     {t("titles.saved_list")}
                   </Header>
                 </div>
               </Grid>
-              <Grid id="mainContent" item sm={8} xs={12}>
+              <Grid id="mainContent" item md={8} xs={12}>
                 <Grid container spacing={24}>
                   {this.state.showDisabledCookieBanner ? (
                     <Grid item xs={12}>
@@ -177,14 +179,14 @@ export class Favourites extends Component {
               <Grid item xs={12}>
                 <div className={divider} />
               </Grid>
-              <Grid item sm={4} xs={12}>
+              <Grid item md={4} xs={12}>
                 <div id="next-steps">
                   <Header headingLevel="h2" size="md_lg">
                     {t("nextSteps.whats_next")}
                   </Header>
                 </div>
               </Grid>
-              <Grid item sm={8} xs={12}>
+              <Grid item md={8} xs={12}>
                 <NextSteps t={t} store={store} />
               </Grid>
             </Grid>

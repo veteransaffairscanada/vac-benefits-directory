@@ -1,8 +1,4 @@
-void (function(root, factory) {
-  if (typeof define === "function" && define.amd) define(factory);
-  else if (typeof exports === "object") module.exports = factory();
-  else factory();
-})(this, function() {
+let detailsPolyfill = () => {
   var DETAILS = "details";
   var SUMMARY = "summary";
 
@@ -122,4 +118,6 @@ void (function(root, factory) {
 
     document.getElementsByTagName("head")[0].appendChild(el);
   }
-}); // eslint-disable-line semi
+};
+
+export default detailsPolyfill;

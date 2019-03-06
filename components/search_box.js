@@ -31,7 +31,7 @@ const InputSearchBox = styled("input")({
   lineHeight: "1.5",
   background: globalTheme.colour.paleGreyTwo,
   borderRadius: 0,
-  boxShadow: "inset 0 0 0 9999px f4f7f9", // keeps chrome autofill from changing background colour
+  boxShadow: "inset 0 0 0 9999px #f4f7f9", // keeps chrome autofill from changing background colour
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",
