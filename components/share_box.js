@@ -17,7 +17,7 @@ const shareBoxItem = css`
 const shareText = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 14px;
-  color: ${globalTheme.colour.blueGrey};
+  color: ${globalTheme.colour.greyishBrown};
   font-weight: bold;
   text-transform: uppercase;
   margin-right: 10px;

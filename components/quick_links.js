@@ -22,7 +22,7 @@ const leftDiv = css`
 const rightDiv = css`
   font-family: ${globalTheme.fontFamilySerif};
   font-size: 24px;
-  color: ${globalTheme.colour.slateGrey};
+  color: ${globalTheme.colour.navy};
   border-left: 4px solid ${globalTheme.colour.duckEggBlue};
   height: 100%;
   box-sizing: border-box;
@@ -41,7 +41,7 @@ const link = css`
 const quickLinksText = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 12px;
-  color: ${globalTheme.colour.blueGrey};
+  color: ${globalTheme.colour.greyishBrown};
   font-weight: bold;
   text-transform: uppercase;
 `;
@@ -53,6 +53,7 @@ const linkStyle = css`
   padding: 0;
   text-decoration: underline;
   line-height: 16px;
+  color: ${globalTheme.colour.greyishBrown};
 `;
 
 class QuickLinks extends Component {
