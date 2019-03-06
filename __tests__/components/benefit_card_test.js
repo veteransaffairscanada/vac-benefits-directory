@@ -43,7 +43,7 @@ describe("BenefitCard", () => {
       veteranBenefitIds: [],
       familyBenefitIds: [],
       favouriteBenefits: [],
-      showFavourite: true
+      savedList: true
     };
     mockStore = configureStore();
     reduxData = {
@@ -84,8 +84,8 @@ describe("BenefitCard", () => {
     ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
   });
 
-  it("hides the Favourite Button if showFavourite is false", () => {
-    props.showFavourite = false;
+  it("hides the Favourite Button if savedList is false", () => {
+    props.savedList = false;
     expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
   });
 

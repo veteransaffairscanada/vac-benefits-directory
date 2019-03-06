@@ -32,7 +32,7 @@ export class AllBenefits extends Component {
                 currentLanguage={t("current-language-code")}
                 filteredBenefits={this.props.benefits}
                 searchString={this.props.searchString}
-                showFavourites={true}
+                savedList={true}
                 store={this.props.store}
               />
             </Grid>

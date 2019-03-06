@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+import { cx, css } from "emotion";
 import { globalTheme } from "../theme";
 
 const padding = 16;
@@ -45,9 +45,13 @@ class Tooltip extends Component {
   `;
 
   render() {
-    const { children, disabled, tooltipText } = this.props;
+    const { children, disabled, tooltipText, className } = this.props;
     return (
-      <div className={this.tooltipStyle}>
+      <div
+        className={
+          className ? cx(className, this.tooltipStyle) : this.tooltipStyle
+        }
+      >
         {children}
         {!disabled ? (
           <span className={this.tooltipTextStyle}>{tooltipText}</span>

@@ -156,7 +156,7 @@ export class Favourites extends Component {
                     t={t}
                     currentLanguage={t("current-language-code")}
                     filteredBenefits={filteredBenefits}
-                    showFavourites={true}
+                    savedList={false}
                     searchString=""
                     store={store}
                     favouriteBenefits={this.props.favouriteBenefits}
