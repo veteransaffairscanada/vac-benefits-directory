@@ -259,12 +259,6 @@ class VacFooterFr extends Component {
                   </li>
                 </ul>
               </nav>
-              <div className="col-xs-6 visible-sm visible-xs tofpg">
-                <a href="#wb-cont">
-                  Haut de la page{" "}
-                  <span className="glyphicon glyphicon-chevron-up" />
-                </a>
-              </div>
               <div className="col-xs-6 col-md-3 col-lg-2 text-right mrgn-tp-sm">
                 <img
                   src={
