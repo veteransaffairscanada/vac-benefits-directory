@@ -1,244 +1,248 @@
-/*! CSS Used from: Embedded */
-svg:not(:root).svg-inline--fa {
+#footer_styles {
+  /*! CSS Used from: Embedded */
+  /*! CSS Used from: https://www.veterans.gc.ca/GCWeb_5.0.1/GCWeb/css/theme.min.css */
+  /*! CSS Used from: https://www.veterans.gc.ca/css/2018-redesign/2018-redesign-custom.css */
+  /*! CSS Used fontfaces */
+}
+#footer_styles svg:not(:root).svg-inline--fa {
   overflow: visible;
 }
-.svg-inline--fa {
+#footer_styles .svg-inline--fa {
   display: inline-block;
   font-size: inherit;
   height: 1em;
   overflow: visible;
   vertical-align: -0.125em;
 }
-.svg-inline--fa.fa-w-14 {
+#footer_styles .svg-inline--fa.fa-w-14 {
   width: 0.875em;
 }
-/*! CSS Used from: https://www.veterans.gc.ca/GCWeb_5.0.1/GCWeb/css/theme.min.css */
-footer,
-nav {
+#footer_styles footer,
+#footer_styles nav {
   display: block;
 }
-a {
+#footer_styles a {
   background-color: transparent;
 }
-a:active,
-a:hover {
+#footer_styles a:active,
+#footer_styles a:hover {
   outline: 0;
 }
-abbr[title] {
+#footer_styles abbr[title] {
   border-bottom: none;
   -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
 }
-img {
+#footer_styles img {
   border: 0;
 }
-svg:not(:root) {
+#footer_styles svg:not(:root) {
   overflow: hidden;
 }
 @media print {
-  *,
-  :after,
-  :before {
+  #footer_styles *,
+  #footer_styles :after,
+  #footer_styles :before {
     color: #000 !important;
     text-shadow: none !important;
     background: transparent !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
   }
-  a,
-  a:visited {
+  #footer_styles a,
+  #footer_styles a:visited {
     text-decoration: underline;
   }
-  a[href]:after {
+  #footer_styles a[href]:after {
     content: " (" attr(href) ")";
   }
-  abbr[title]:after {
+  #footer_styles abbr[title]:after {
     content: " (" attr(title) ")";
   }
-  a[href^="#"]:after {
+  #footer_styles a[href^="#"]:after {
     content: "";
   }
-  img {
+  #footer_styles img {
     page-break-inside: avoid;
   }
-  img {
+  #footer_styles img {
     max-width: 100% !important;
   }
-  h2,
-  h3,
-  p {
+  #footer_styles h2,
+  #footer_styles h3,
+  #footer_styles p {
     orphans: 3;
     widows: 3;
   }
-  h2,
-  h3 {
+  #footer_styles h2,
+  #footer_styles h3 {
     page-break-after: avoid;
   }
 }
-*,
-:after,
-:before {
+#footer_styles *,
+#footer_styles :after,
+#footer_styles :before {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-a:focus,
-a:hover {
+#footer_styles a:focus,
+#footer_styles a:hover {
   color: #0535d2;
   text-decoration: underline;
 }
-a:focus {
+#footer_styles a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-img {
+#footer_styles img {
   vertical-align: middle;
 }
-h2,
-h3 {
+#footer_styles h2,
+#footer_styles h3 {
   line-height: 1.1;
   color: inherit;
 }
-h2,
-h3 {
+#footer_styles h2,
+#footer_styles h3 {
   margin-top: 23px;
   margin-bottom: 11.5px;
 }
-p {
+#footer_styles p {
   margin: 0 0 11.5px;
 }
-.text-left {
+#footer_styles .text-left {
   text-align: left;
 }
-.text-right {
+#footer_styles .text-right {
   text-align: right;
 }
-ul {
+#footer_styles ul {
   margin-top: 0;
   margin-bottom: 11.5px;
 }
-.list-unstyled {
+#footer_styles .list-unstyled {
   padding-left: 0;
   list-style: none;
 }
-.list-inline {
+#footer_styles .list-inline {
   padding-left: 0;
   list-style: none;
   margin-left: -5px;
 }
-.list-inline > li {
+#footer_styles .list-inline > li {
   display: inline-block;
   padding-right: 5px;
   padding-left: 5px;
 }
-abbr[title] {
+#footer_styles abbr[title] {
   cursor: help;
 }
-.container {
+#footer_styles .container {
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
-.container:after,
-.container:before {
+#footer_styles .container:after,
+#footer_styles .container:before {
   display: table;
   content: " ";
 }
-.container:after {
+#footer_styles .container:after {
   clear: both;
 }
 @media (min-width: 768px) {
-  .container {
+  #footer_styles .container {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  .container {
+  #footer_styles .container {
     width: 970px;
   }
 }
 @media (min-width: 1200px) {
-  .container {
+  #footer_styles .container {
     width: 1170px;
   }
 }
-.row {
+#footer_styles .row {
   margin-right: -15px;
   margin-left: -15px;
 }
-.row:after,
-.row:before {
+#footer_styles .row:after,
+#footer_styles .row:before {
   display: table;
   content: " ";
 }
-.row:after {
+#footer_styles .row:after {
   clear: both;
 }
-.col-lg-10,
-.col-lg-2,
-.col-md-3,
-.col-md-9,
-.col-sm-4,
-.col-sm-6,
-.col-sm-8,
-.col-xs-12,
-.col-xs-6 {
+#footer_styles .col-lg-10,
+#footer_styles .col-lg-2,
+#footer_styles .col-md-3,
+#footer_styles .col-md-9,
+#footer_styles .col-sm-4,
+#footer_styles .col-sm-6,
+#footer_styles .col-sm-8,
+#footer_styles .col-xs-12,
+#footer_styles .col-xs-6 {
   position: relative;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
 }
-.col-xs-12,
-.col-xs-6 {
+#footer_styles .col-xs-12,
+#footer_styles .col-xs-6 {
   float: left;
 }
-.col-xs-6 {
+#footer_styles .col-xs-6 {
   width: 50%;
 }
-.col-xs-12 {
+#footer_styles .col-xs-12 {
   width: 100%;
 }
 @media (min-width: 768px) {
-  .col-sm-4,
-  .col-sm-6,
-  .col-sm-8 {
+  #footer_styles .col-sm-4,
+  #footer_styles .col-sm-6,
+  #footer_styles .col-sm-8 {
     float: left;
   }
-  .col-sm-4 {
-    width: 33.3333333333%;
+  #footer_styles .col-sm-4 {
+    width: 33.33333333%;
   }
-  .col-sm-6 {
+  #footer_styles .col-sm-6 {
     width: 50%;
   }
-  .col-sm-8 {
-    width: 66.6666666667%;
+  #footer_styles .col-sm-8 {
+    width: 66.66666667%;
   }
 }
 @media (min-width: 992px) {
-  .col-md-3,
-  .col-md-9 {
+  #footer_styles .col-md-3,
+  #footer_styles .col-md-9 {
     float: left;
   }
-  .col-md-3 {
+  #footer_styles .col-md-3 {
     width: 25%;
   }
-  .col-md-9 {
+  #footer_styles .col-md-9 {
     width: 75%;
   }
 }
 @media (min-width: 1200px) {
-  .col-lg-10,
-  .col-lg-2 {
+  #footer_styles .col-lg-10,
+  #footer_styles .col-lg-2 {
     float: left;
   }
-  .col-lg-2 {
-    width: 16.6666666667%;
+  #footer_styles .col-lg-2 {
+    width: 16.66666667%;
   }
-  .col-lg-10 {
-    width: 83.3333333333%;
+  #footer_styles .col-lg-10 {
+    width: 83.33333333%;
   }
 }
-.btn {
+#footer_styles .btn {
   display: inline-block;
   margin-bottom: 0;
   font-weight: 400;
@@ -258,93 +262,93 @@ abbr[title] {
   -ms-user-select: none;
   user-select: none;
 }
-.btn:active:focus,
-.btn:focus {
+#footer_styles .btn:active:focus,
+#footer_styles .btn:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.btn:focus,
-.btn:hover {
+#footer_styles .btn:focus,
+#footer_styles .btn:hover {
   color: #335075;
   text-decoration: none;
 }
-.btn:active {
+#footer_styles .btn:active {
   background-image: none;
   outline: 0;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.btn-default {
+#footer_styles .btn-default {
   color: #335075;
   background-color: #eaebed;
   border-color: #dcdee1;
 }
-.btn-default:focus {
+#footer_styles .btn-default:focus {
   color: #335075;
   background-color: #cfd1d5;
   border-color: #989da6;
 }
-.btn-default:hover {
+#footer_styles .btn-default:hover {
   color: #335075;
   background-color: #cfd1d5;
   border-color: #bbbfc5;
 }
-.btn-default:active {
+#footer_styles .btn-default:active {
   color: #335075;
   background-color: #cfd1d5;
   background-image: none;
   border-color: #bbbfc5;
 }
-.btn-default:active:focus,
-.btn-default:active:hover {
+#footer_styles .btn-default:active:focus,
+#footer_styles .btn-default:active:hover {
   color: #335075;
   background-color: #bbbfc5;
   border-color: #989da6;
 }
-.btn-block {
+#footer_styles .btn-block {
   display: block;
   width: 100%;
 }
-.visible-xs {
+#footer_styles .visible-xs {
   display: none !important;
 }
 @media (max-width: 767px) {
-  .visible-xs {
+  #footer_styles .visible-xs {
     display: block !important;
   }
 }
 @media (max-width: 767px) {
-  .hidden-xs {
+  #footer_styles .hidden-xs {
     display: none !important;
   }
 }
-a.btn {
+#footer_styles a.btn {
   text-decoration: none;
 }
-a {
+#footer_styles a {
   text-decoration: underline;
 }
-a:visited {
+#footer_styles a:visited {
   color: #7834bc;
 }
-.btn-default:visited {
+#footer_styles .btn-default:visited {
   color: #335075;
 }
-h2 {
+#footer_styles h2 {
   margin-top: 38px;
 }
-h3 {
+#footer_styles h3 {
   margin-top: 32px;
 }
-.btn {
+#footer_styles .btn {
   border-style: outset;
   height: auto;
   min-height: 36px;
   min-width: 36px;
   white-space: normal;
 }
-#wb-info h2,
-.wb-inv {
+#footer_styles #wb-info h2,
+#footer_styles .wb-inv {
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   margin: 0;
@@ -352,112 +356,112 @@ h3 {
   position: absolute;
   width: 1px;
 }
-.mrgn-bttm-lg {
+#footer_styles .mrgn-bttm-lg {
   margin-bottom: 30px;
 }
-.mrgn-bttm-xl {
+#footer_styles .mrgn-bttm-xl {
   margin-bottom: 50px;
 }
-.mrgn-tp-sm {
+#footer_styles .mrgn-tp-sm {
   margin-top: 5px;
 }
-.mrgn-tp-lg {
+#footer_styles .mrgn-tp-lg {
   margin-top: 30px;
 }
 @media print {
-  a[href]:after {
+  #footer_styles a[href]:after {
     content: none;
   }
 }
-a {
+#footer_styles a {
   color: #284162;
 }
-h2,
-h3 {
+#footer_styles h2,
+#footer_styles h3 {
   font-family: Lato, sans-serif;
 }
-h2,
-h3 {
+#footer_styles h2,
+#footer_styles h3 {
   -webkit-font-variant-ligatures: no-common-ligatures;
   font-variant-ligatures: no-common-ligatures;
   font-weight: 600;
 }
-.home h2 {
+#footer_styles .home h2 {
   font-size: 1.2em;
 }
-h2 {
+#footer_styles h2 {
   font-size: 1.8em;
 }
-h3 {
+#footer_styles h3 {
   font-size: 1.2em;
 }
-.btn {
+#footer_styles .btn {
   font-family: Lato, sans-serif;
 }
-#wb-info {
+#footer_styles #wb-info {
   background: #e1e4e7;
   position: relative;
   z-index: 5;
 }
-#wb-info a {
+#footer_styles #wb-info a {
   font-size: 0.875em;
   text-decoration: none;
 }
-#wb-info .brand {
+#footer_styles #wb-info .brand {
   background: #f8f8f8;
   line-height: 30px;
 }
-#wb-info .brand img {
+#footer_styles #wb-info .brand img {
   height: 40px;
   margin-bottom: 10px;
   margin-top: 20px;
   width: auto;
 }
-#wb-info .ftr-urlt-lnk ul {
+#footer_styles #wb-info .ftr-urlt-lnk ul {
   margin: 0;
   padding: 0;
 }
-#wb-info .ftr-urlt-lnk li:before {
+#footer_styles #wb-info .ftr-urlt-lnk li:before {
   content: "\2022";
   margin-right: 0.7em;
 }
-#wb-info nav {
+#footer_styles #wb-info nav {
   padding-bottom: 2em;
   padding-top: 2em;
   position: relative;
 }
-#wb-info nav li {
+#footer_styles #wb-info nav li {
   margin-bottom: 0.75em;
 }
 @media screen and (max-width: 991px) {
-  h2 {
+  #footer_styles h2 {
     font-size: 1.6em;
   }
-  #wb-info .ftr-urlt-lnk ul {
+  #footer_styles #wb-info .ftr-urlt-lnk ul {
     -webkit-column-count: 2;
     column-count: 2;
   }
-  #wb-info .ftr-urlt-lnk li {
+  #footer_styles #wb-info .ftr-urlt-lnk li {
     display: block;
     margin-bottom: 0.2em;
   }
 }
 @media screen and (min-width: 992px) {
-  #wb-info .ftr-urlt-lnk li {
+  #footer_styles #wb-info .ftr-urlt-lnk li {
     display: inline-block;
     float: left;
     margin-right: 0.7em;
   }
-  #wb-info .ftr-urlt-lnk li:first-child:before {
+  #footer_styles #wb-info .ftr-urlt-lnk li:first-child:before {
     content: none;
   }
 }
 @media screen and (max-width: 479px) {
-  #wb-info .ftr-urlt-lnk ul {
+  #footer_styles #wb-info .ftr-urlt-lnk ul {
     -webkit-column-count: 1;
     column-count: 1;
   }
-  #wb-info .brand img {
+  #footer_styles #wb-info .brand img {
     height: 25px;
     margin-top: 15px;
     max-width: 100%;
@@ -465,12 +469,11 @@ h3 {
   }
 }
 @media print {
-  #wb-info {
+  #footer_styles #wb-info {
     display: none !important;
   }
 }
-/*! CSS Used from: https://www.veterans.gc.ca/css/2018-redesign/2018-redesign-custom.css */
-.tp-pg-flt {
+#footer_styles .tp-pg-flt {
   position: fixed;
   bottom: 0em;
   z-index: 999;
@@ -478,120 +481,120 @@ h3 {
   background-color: #634f70;
   padding: 10px 20px 0px 20px;
 }
-.tp-pg-flt ul li {
+#footer_styles .tp-pg-flt ul li {
   color: #ffffff;
 }
-.container {
+#footer_styles .container {
   outline: none !important;
 }
-h2,
-h3 {
+#footer_styles h2,
+#footer_styles h3 {
   color: #2f3437;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   margin-bottom: 16px;
 }
-h2,
-.home h2 {
+#footer_styles h2,
+#footer_styles .home h2 {
   font-size: 28px;
   letter-spacing: -0.5px;
 }
-h3,
-.home h3 {
+#footer_styles h3,
+#footer_styles .home h3 {
   font-size: 22px;
   font-family: "Montserrat", sans-serif;
   letter-spacing: -0.5px;
   font-weight: 700;
 }
-li {
+#footer_styles li {
   font-size: 16px;
   letter-spacing: -0.03em;
 }
-p {
+#footer_styles p {
   font-size: 16px;
   line-height: 26px;
   letter-spacing: 0;
   margin-bottom: 16px;
 }
-a,
-a:hover,
-a:focus,
-a:active {
+#footer_styles a,
+#footer_styles a:hover,
+#footer_styles a:focus,
+#footer_styles a:active {
   color: #2f3437;
   text-decoration: underline;
 }
-a:visited {
+#footer_styles a:visited {
   color: #2f3437;
   text-decoration: underline;
 }
-abbr[title] {
+#footer_styles abbr[title] {
   cursor: help;
   border-bottom: 1px dotted #434458;
   text-decoration: none;
 }
-#wb-info {
+#footer_styles #wb-info {
   color: #e6f0cb;
   background: #2e2e40;
 }
-#wb-info h2,
-#wb-info h3 {
+#footer_styles #wb-info h2,
+#footer_styles #wb-info h3 {
   color: #ffffff;
 }
-#wb-info .brand {
+#footer_styles #wb-info .brand {
   background-color: #2e2e40;
   background-size: 150%;
   border-top: 1px solid #434458;
 }
-#wb-info .brand li a {
+#footer_styles #wb-info .brand li a {
   font-family: "Montserrat", sans-serif;
   color: #d5e2e9;
 }
-footer#wb-info a,
-footer#wb-info a:link {
+#footer_styles footer#wb-info a,
+#footer_styles footer#wb-info a:link {
   font-size: 18px;
   color: #ffffff;
   text-decoration: underline;
 }
-footer#wb-info a:hover,
-footer#wb-info a:focus,
-footer#wb-info a:active {
+#footer_styles footer#wb-info a:hover,
+#footer_styles footer#wb-info a:focus,
+#footer_styles footer#wb-info a:active {
   color: #ffffff;
   text-decoration: underline;
 }
-footer#wb-info a.btn,
-footer#wb-info a.btn:link {
+#footer_styles footer#wb-info a.btn,
+#footer_styles footer#wb-info a.btn:link {
   font-family: "Montserrat", sans-serif;
   color: #2f3437;
   text-decoration: none;
 }
-footer#wb-info a.btn:hover,
-footer#wb-info a.btn:focus,
-footer#wb-info a.btn:active,
-footer#wb-info a.btn-default-outline,
-footer#wb-info a.btn-default-outline:link {
+#footer_styles footer#wb-info a.btn:hover,
+#footer_styles footer#wb-info a.btn:focus,
+#footer_styles footer#wb-info a.btn:active,
+#footer_styles footer#wb-info a.btn-default-outline,
+#footer_styles footer#wb-info a.btn-default-outline:link {
   font-family: "Montserrat", sans-serif;
   color: #d5e2e9;
   text-decoration: none;
 }
-footer#wb-info li a,
-footer#wb-info li a:link,
-footer#wb-info li a:hover,
-footer#wb-info li a:focus,
-footer#wb-info li a:active {
+#footer_styles footer#wb-info li a,
+#footer_styles footer#wb-info li a:link,
+#footer_styles footer#wb-info li a:hover,
+#footer_styles footer#wb-info li a:focus,
+#footer_styles footer#wb-info li a:active {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   color: #ffffff;
   text-decoration: underline;
 }
-footer#wb-info li a:visited {
+#footer_styles footer#wb-info li a:visited {
   color: #ffffff;
   text-decoration: underline;
 }
-.text-off-white {
+#footer_styles .text-off-white {
   color: white;
 }
-.btn,
-a.btn {
+#footer_styles .btn,
+#footer_styles a.btn {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
   border-radius: 0px !important;
@@ -600,47 +603,47 @@ a.btn {
   -webkit-transition: background-color 0.1s;
   transition: background-color 0.1s;
 }
-.btn-default,
-footer .btn-default,
-.btn-default:visited {
+#footer_styles .btn-default,
+#footer_styles footer .btn-default,
+#footer_styles .btn-default:visited {
   background-color: #d5e2e9;
   color: #2f3437;
   border: 3px solid #d5e2e9;
 }
-.btn-default:hover,
-footer .btn-default:hover,
-.btn-default:focus,
-.btn-default:active {
+#footer_styles .btn-default:hover,
+#footer_styles footer .btn-default:hover,
+#footer_styles .btn-default:focus,
+#footer_styles .btn-default:active {
   background-color: #434458;
   color: #fff;
   border: 3px solid #434458;
 }
-.btn-default-outline,
-footer .btn-default-outline,
-.btn-default-outline:visited {
+#footer_styles .btn-default-outline,
+#footer_styles footer .btn-default-outline,
+#footer_styles .btn-default-outline:visited {
   background: rgba(255, 255, 255, 0);
   color: #d5e2e9;
   border: 3px solid #d5e2e9;
 }
-.btn-default-outline:hover,
-footer .btn-default-outline:hover,
-.btn-default-outline:focus,
-.btn-default-outline:active {
+#footer_styles .btn-default-outline:hover,
+#footer_styles footer .btn-default-outline:hover,
+#footer_styles .btn-default-outline:focus,
+#footer_styles .btn-default-outline:active {
   background: #434458;
   color: #d5e2e9;
   border: 3px solid #434458;
   text-decoration-color: #634f70;
 }
 @media only screen and (min-width: 768px) {
-  a[href^="tel:"] {
+  #footer_styles a[href^="tel:"] {
     color: inherit;
     cursor: default;
     text-decoration: none;
   }
-  a[href^="tel:"].btn-default:hover,
-  a[href^="tel:"].btn-default:focus,
-  a[href^="tel:"].btn-default:active,
-  a[href^="tel:"].btn-default:visited {
+  #footer_styles a[href^="tel:"].btn-default:hover,
+  #footer_styles a[href^="tel:"].btn-default:focus,
+  #footer_styles a[href^="tel:"].btn-default:active,
+  #footer_styles a[href^="tel:"].btn-default:visited {
     cursor: default;
     background-color: #d5e2e9;
     color: #2f3437 !important;
@@ -648,13 +651,12 @@ footer .btn-default-outline:hover,
   }
 }
 @media only screen and (max-width: 768px) {
-  .btn {
+  #footer_styles .btn {
     font-size: 16px;
     width: 100%;
     display: inline-block;
   }
 }
-/*! CSS Used fontfaces */
 @font-face {
   font-family: "Lato";
   font-style: italic;
