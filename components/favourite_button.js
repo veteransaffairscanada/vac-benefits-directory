@@ -49,7 +49,8 @@ const xButton = css`
 `;
 
 const rightAlign = css`
-  float: right;
+  flex-grow: 3;
+  text-align: right;
 `;
 
 export class FavouriteButton extends Component {
