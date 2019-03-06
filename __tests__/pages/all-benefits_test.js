@@ -42,7 +42,7 @@ describe("AllBenefits", () => {
       storeHydrated: true,
       loadDataStore: jest.fn(),
       favouriteBenefits: [],
-      showFavourites: true,
+      savedList: true,
       toggleFavourite: () => true,
       url: { query: {} }
     };

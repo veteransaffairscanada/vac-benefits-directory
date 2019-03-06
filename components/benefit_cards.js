@@ -43,6 +43,7 @@ const benefitName = css`
   padding-left: 35px;
   padding-right: 35px;
   padding-bottom: 10px;
+  display: flex;
 `;
 
 const padding = css`
@@ -106,6 +107,15 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
+              {this.props.savedList === false ? (
+                <FavouriteButton
+                  benefit={benefit}
+                  toggleOpenState={() => {}}
+                  store={store}
+                  t={t}
+                  icon={true}
+                />
+              ) : null}
             </Header>
             <div className={padding}>
               {needsMet.length > 0 ? <Tag className={tagStyle} /> : null}
@@ -143,7 +153,7 @@ export class BenefitCard extends Component {
                 <div className={flex}>
                   <LearnMoreButton benefit={benefit} t={t} />
                   <div className={floatRight}>
-                    {this.props.showFavourite ? (
+                    {this.props.savedList ? (
                       <FavouriteButton
                         benefit={benefit}
                         toggleOpenState={() => {}}
@@ -178,7 +188,7 @@ BenefitCard.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   currentLanguage: PropTypes.string.isRequired,
-  showFavourite: PropTypes.bool.isRequired,
+  savedList: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object
 };

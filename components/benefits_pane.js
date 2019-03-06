@@ -136,7 +136,7 @@ export class BenefitsPane extends Component {
                   currentLanguage={t("current-language-code")}
                   filteredBenefits={filteredBenefits}
                   searchString={searchString}
-                  showFavourites={true}
+                  savedList={true}
                   store={store}
                 />
 
@@ -163,7 +163,7 @@ export class BenefitsPane extends Component {
                     currentLanguage={t("current-language-code")}
                     filteredBenefits={nonFilteredBenefits}
                     searchString={searchString}
-                    showFavourites={true}
+                    savedList={true}
                     store={store}
                   />
                 )}

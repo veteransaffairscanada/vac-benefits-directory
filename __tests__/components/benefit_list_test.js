@@ -24,7 +24,7 @@ describe("BenefitList", () => {
     props = {
       filteredBenefits: benefitsFixture,
       onRef: k => k,
-      showFavourites: true,
+      savedList: true,
       currentLanguage: "en"
     };
 
