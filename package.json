@@ -16,8 +16,6 @@
     "build:start": "yarn build && yarn start",
     "heroku-postbuild": "next build",
     "test": "NODE_ENV=test jest --coverage",
-    "test:e2e": "testcafe chrome testcafe/",
-    "test:e2e_windows": "testcafe 'browserstack:ie@11:Windows 10' testcafe/*.js",
     "lint": "node_modules/eslint/bin/eslint.js pages components __tests__",
     "precommit": "pretty-quick --staged",
     "docs": "styleguidist server",
@@ -96,9 +94,6 @@
     "react-styleguidist": "^9.0.1",
     "react-test-renderer": "^16.8.3",
     "start-server-and-test": "^1.7.11",
-    "testcafe": "^1.0.1",
-    "testcafe-browser-provider-browserstack": "^1.8.0",
-    "testcafe-react-selectors": "^3.1.0",
     "webpack-bundle-analyzer": "^3.0.4"
   }
 }
