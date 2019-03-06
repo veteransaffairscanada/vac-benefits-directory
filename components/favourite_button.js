@@ -46,6 +46,9 @@ const xButton = css`
   :hover {
     color: ${globalTheme.colour.navy};
   }
+  :focus {
+    outline: 3px solid ${globalTheme.colour.focusColour};
+  }
 `;
 
 const rightAlign = css`
