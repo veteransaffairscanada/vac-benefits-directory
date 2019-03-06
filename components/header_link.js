@@ -12,7 +12,7 @@ const style = css`
   font-size: 24px;
   line-height: 44px;
   font-weight: bold;
-  color: ${globalTheme.colour.slateGrey};
+  color: ${globalTheme.colour.greyishBrown};
   background-color: transparent;
   border: none;
   text-decoration: none;
@@ -42,7 +42,6 @@ const small = css`
 
 const grey = css`
   font-size: 18px;
-  color: ${globalTheme.colour.brownishGrey};
   text-decoration: underline !important;
   padding: 0;
 `;
