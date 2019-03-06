@@ -239,10 +239,7 @@ correct styling, but rather focus on the logic in the components. We currently h
 on every commit. PRs are not approved if code is added to the app without sufficient testing. PRs should not be merged
 if the tests do not pass.
 
-We are using [Testcafé](https://devexpress.github.io/testcafe) to write end-to-end tests. The e2e test suite can be run locally
-via `yarn test:e2e` (with `yarn dev` running). We also run our tests on Windows using the cloud service [BrowserStack](https://www.browserstack.com)
-using the command `yarn test:e2e_windows` (with `yarn dev` running and the environment variables
-`BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY` set appropriately).
+We are using [Cypress](https://www.cypress.io) to write end-to-end tests. The e2e test suite can be run locally via `yarn cypress:run` (with `yarn start` running).
 
 ### Code documentation
 
@@ -527,7 +524,7 @@ Consultez [SECURITE.md](/fr/SECURITE.md) pour plus de renseignements.
 
 Nous utilisons une combinaison de tests unitaires et de tests de bout en bout pour valider la base de code. Les tests unitaires sont rédigés à l’aide de [`jest`](https://jestjs.io/) et [`enzyme`](https://airbnb.io/enzyme/). Nous avons décidé de ne pas tester le style approprié, mais plutôt de nous concentrer sur la logique dans les composantes. À l’heure actuelle, nous avons plus de 200 tests qui sont exécutés par CircleCI sur chaque validation. Les demandes de tirage ne sont pas approuvées si le code est ajouté à l’application sans assez de tests. Les demandes de tirage ne doivent pas être fusionnées si les tests ne sont pas réussis.
 
-Nous utilisons [Testcafé](https://devexpress.github.io/testcafe) (en anglais) pour écrire des tests de bout en bout. La série de tests e2e peut être exécutée localement au moyen de `yarn test:e2e` (avec l’exécution de `yarn dev`). Nous avons aussi exécuté nos tests dans Windows au moyen du service infonuagique [BrowserStack](https://www.browserstack.com) (en anglais) à l’aide de la commande `yarn test:e2e_windows` (avec `yarn dev` en exécution et les variables d’environnement `BROWSERSTACK_USERNAME` et `BROWSERSTACK_ACCESS_KEY` établies de façon appropriée).
+Nous utilisons [Cypress](https://www.cypress.io) (en anglais) pour écrire des tests de bout en bout. La série de tests e2e peut être exécutée localement au moyen de `yarn cypress:run` (avec l’exécution de `yarn start`).
 
 ### Documentation sur le code
 
