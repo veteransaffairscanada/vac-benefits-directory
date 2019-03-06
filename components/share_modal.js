@@ -230,10 +230,10 @@ class ShareModal extends Component {
               <label htmlFor={shareTargetId}>{t("share.copy_prompt")}</label>
             </p>
             <Grid container spacing={8}>
-              <Grid item xs={12} sm={9}>
+              <Grid item xs={12} md={9}>
                 {inputBox}
               </Grid>
-              <Grid item xs={12} sm={3}>
+              <Grid item xs={12} md={3}>
                 <CopyButton
                   className="copyButton"
                   data-copytarget={"#" + shareTargetId}

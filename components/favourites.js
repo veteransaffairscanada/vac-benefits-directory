@@ -119,14 +119,14 @@ export class Favourites extends Component {
               <Grid item xs={12}>
                 <QuickLinks t={t} onFavourites={true} />
               </Grid>
-              <Grid item sm={4} xs={12}>
+              <Grid item md={4} xs={12}>
                 <div id="saved-list">
                   <Header headingLevel="h2" size="md_lg">
                     {t("titles.saved_list")}
                   </Header>
                 </div>
               </Grid>
-              <Grid id="mainContent" item sm={8} xs={12}>
+              <Grid id="mainContent" item md={8} xs={12}>
                 <Grid container spacing={24}>
                   {this.state.showDisabledCookieBanner ? (
                     <Grid item xs={12}>
@@ -179,14 +179,14 @@ export class Favourites extends Component {
               <Grid item xs={12}>
                 <div className={divider} />
               </Grid>
-              <Grid item sm={4} xs={12}>
+              <Grid item md={4} xs={12}>
                 <div id="next-steps">
                   <Header headingLevel="h2" size="md_lg">
                     {t("nextSteps.whats_next")}
                   </Header>
                 </div>
               </Grid>
-              <Grid item sm={8} xs={12}>
+              <Grid item md={8} xs={12}>
                 <NextSteps t={t} store={store} />
               </Grid>
             </Grid>

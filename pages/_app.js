@@ -4,6 +4,18 @@ import { Provider } from "react-redux";
 import App, { Container } from "next/app";
 import withRedux from "next-redux-wrapper";
 import { initStore } from "../store";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 768,
+      lg: 1000
+    }
+  }
+});
 
 export default withRedux(initStore)(
   class MyApp extends App {
@@ -105,11 +117,13 @@ export default withRedux(initStore)(
     render() {
       const { Component, pageProps, store, router } = this.props;
       return (
-        <Container>
-          <Provider store={store}>
-            <Component {...pageProps} url={router} />
-          </Provider>
-        </Container>
+        <MuiThemeProvider theme={theme}>
+          <Container>
+            <Provider store={store}>
+              <Component {...pageProps} url={router} />
+            </Provider>
+          </Container>
+        </MuiThemeProvider>
       );
     }
   }
