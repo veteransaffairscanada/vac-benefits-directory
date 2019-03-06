@@ -158,16 +158,16 @@ class VacFooterFr extends Component {
               </div>
               <div className="row">
                 <div className="col-xs-12">
-                  <h3>Le Service d'aide d'ACC</h3>
+                  <h3>{"Le Service d'aide d'ACC"}</h3>
                   <p className="mrgn-bttm-lg text-off-white">
                     <a href={path + "/fra/contact/talk-to-a-professional"}>
-                      Le Service d'aide d'ACC
-                    </a>{" "}
-                    offre un soutien psychologique gratuit et confidentiel, 24
+                      {"Le Service d'aide d'ACC"}
+                    </a>
+                    {` offre un soutien psychologique gratuit et confidentiel, 24
                     heures par jour, 365 jours par année. Le service est offert
                     à tous les vétérans, les anciens membres de la GRC, leur
                     famille et les aidants. Il n'est pas nécessaire d'être
-                    inscrit auprès d'ACC pour appeler.
+                    inscrit auprès d'ACC pour appeler.`}
                   </p>
                   <div className="row">
                     <div className="col-xs-12 col-sm-6">
