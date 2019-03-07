@@ -41,12 +41,13 @@ const link = css`
 const quickLinksText = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 12px;
-  color: ${globalTheme.colour.greyishBrown};
+  color: ${globalTheme.colour.navy};
   font-weight: bold;
   text-transform: uppercase;
 `;
 
 const linkStyle = css`
+  color: ${globalTheme.colour.navy};
   text-align: left;
   font-size: 16px;
   font-weight: 400;

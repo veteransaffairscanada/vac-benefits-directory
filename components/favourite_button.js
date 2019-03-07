@@ -5,36 +5,18 @@ import SaveUnchecked from "./icons/SaveUnchecked";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
 import { cx, css } from "emotion";
-import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import { areCookiesDisabled } from "../utils/common";
 import Tooltip from "./tooltip";
 import CloseButton from "./icons/CloseButton";
+import { globalTheme } from "../theme";
 
 const saveButton = css`
-  margin-left: -5px !important;
+  margin-left: 0px !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
   padding-top: 0.526315em;
   padding-bottom: 0.526315em;
-`;
-const hideSmall = css`
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    display: none !important;
-  }
-`;
-const hideBig = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    display: none !important;
-  }
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
-    display: none !important;
-  }
-`;
-const saveIcon = css`
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
-    font-size: 45px !important;
-  }
 `;
 
 const xButton = css`
@@ -56,6 +38,12 @@ const rightAlign = css`
   text-align: right;
   margin-top: -15px;
   margin-right: -15px;
+`;
+
+const saveIcon = css`
+  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+    font-size: 45px !important;
+  }
 `;
 
 export class FavouriteButton extends Component {
@@ -84,11 +72,6 @@ export class FavouriteButton extends Component {
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     const longButtonText = t(
       isSaved ? "B3.favouritesButtonTextRemove" : "B3.favouritesButtonBText"
-    );
-    const shortButtonText = t(
-      isSaved
-        ? "B3.favouritesButtonTextRemove"
-        : "B3.favouritesButtonBTextMobile"
     );
     const benefitName =
       t("current-language-code") === "en"
@@ -133,8 +116,7 @@ export class FavouriteButton extends Component {
             ) : (
               <SaveUnchecked className={cx("notSaved", saveIcon)} />
             )}
-            <span className={hideSmall}>{longButtonText}</span>
-            <span className={hideBig}>{shortButtonText}</span>
+            <span>{longButtonText}</span>
           </HeaderButton>
         )}
       </Tooltip>

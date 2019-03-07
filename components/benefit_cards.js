@@ -51,8 +51,11 @@ const padding = css`
   padding-right: 35px;
 `;
 const flex = css`
-  display: flex;
   align-items: center;
+  // if screen size is min.sm or larger put favourites button below learn more
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
+    display: flex;
+  }
 `;
 const floatRight = css`
   margin-left: auto;
