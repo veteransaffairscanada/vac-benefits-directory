@@ -48,7 +48,10 @@ export class BB extends Component {
 
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
-    this.setState({ showDisabledCookieBanner: areCookiesDisabled() });
+    this.setState({
+      showDisabledCookieBanner: areCookiesDisabled(),
+      screenWidth: screen.width
+    });
     // Update cookies if favourite benefits have been pruned on the server
     let favouritesFromCookies = this.cookies.get("favouriteBenefits"),
       favouriteBenefits = this.props.favouriteBenefits;
@@ -66,13 +69,16 @@ export class BB extends Component {
 
   componentDidUpdate() {
     if (this.state.showDisabledCookieBanner && !this.props.cookiesDisabled) {
-      this.setState({ showDisabledCookieBanner: false });
+      this.setState({
+        showDisabledCookieBanner: false,
+        screenWidth: screen.width
+      });
     }
   }
 
   render() {
     const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
-
+    const onMobile = this.state.screenWidth < parseInt(globalTheme.min.sm, 10);
     return (
       <Container className={outerDiv}>
         <div className={topMatter}>
@@ -107,7 +113,11 @@ export class BB extends Component {
                   {t("titles.benefits_and_services")}
                 </Header>
               </div>
-              <ProfileNeedsSelectorMobile t={t} store={store} />
+              {onMobile ? (
+                <ProfileNeedsSelectorMobile t={t} store={store} />
+              ) : (
+                <SelectionsEditor t={t} store={store} />
+              )}
             </Grid>
             <Grid id="mainContent" item md={8} xs={12}>
               <Grid container spacing={16}>
