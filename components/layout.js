@@ -28,6 +28,10 @@ const header = css`
 const backgoundColour1 = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
 `;
+const fontStyle = css`
+  font-family: Montserrat;
+  line-height: 1.4375;
+`;
 const theme = createMuiTheme({
   breakpoints: {
     values: {
@@ -94,7 +98,7 @@ class Layout extends Component {
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div id="footer_styles">
+            <div id="footer_styles" className={fontStyle}>
               {t("current-language-code") === "en" ? (
                 <VacFooterEn />
               ) : (

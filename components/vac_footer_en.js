@@ -1,16 +1,11 @@
 import React, { Component } from "react";
-import { css } from "emotion";
 
 const path = "https://veterans.gc.ca";
 
-const fontStyle = css`
-  font-family: Montserrat;
-  line-height: 1.4375;
-`;
 class VacFooterEn extends Component {
   render() {
     return (
-      <footer id="wb-info" className={fontStyle}>
+      <footer id="wb-info">
         <div className="container mrgn-bttm-xl">
           <div className="row">
             <div className="col-xs-12 col-sm-4">
