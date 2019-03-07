@@ -48,4 +48,9 @@ describe("Layout", () => {
     props.hideNoscript = true;
     expect(mountedLayout().find("Noscript").length).toEqual(0);
   });
+
+  it("renders the correct footer component", () => {
+    expect(mountedLayout().find("VacFooterEn").length).toEqual(1);
+    expect(mountedLayout().find("VacFooterFr").length).toEqual(0);
+  });
 });

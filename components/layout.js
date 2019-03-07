@@ -10,11 +10,12 @@ import {
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
-import Footer from "../components/footer";
 import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
+import VacFooterEn from "./vac_footer_en";
+import VacFooterFr from "./vac_footer_fr";
 
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
@@ -27,8 +28,9 @@ const header = css`
 const backgoundColour1 = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
 `;
-const footerColour = css`
-  background-color: ${globalTheme.colour.bannerColour};
+const fontStyle = css`
+  font-family: Montserrat;
+  line-height: 1.4375;
 `;
 const theme = createMuiTheme({
   breakpoints: {
@@ -96,10 +98,12 @@ class Layout extends Component {
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div className={footerColour}>
-              <Container>
-                <Footer t={t} />
-              </Container>
+            <div id="footer_styles" className={fontStyle}>
+              {t("current-language-code") === "en" ? (
+                <VacFooterEn />
+              ) : (
+                <VacFooterFr />
+              )}
             </div>
           </ErrorBoundary>
           {noScriptTag}
