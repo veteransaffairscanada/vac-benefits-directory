@@ -19,6 +19,7 @@ import QuickLinks from "./quick_links";
 import StickyHeader from "./sticky_header";
 import AlphaBanner from "./alpha_banner";
 import { SelectionsEditor } from "./selections_editor";
+import { ProfileNeedsSelectorMobile } from "./profile_needs_selector_mobile";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -106,7 +107,7 @@ export class BB extends Component {
                   {t("titles.benefits_and_services")}
                 </Header>
               </div>
-              <SelectionsEditor t={t} />
+              <ProfileNeedsSelectorMobile t={t} store={store} />
             </Grid>
             <Grid id="mainContent" item md={8} xs={12}>
               <Grid container spacing={16}>
