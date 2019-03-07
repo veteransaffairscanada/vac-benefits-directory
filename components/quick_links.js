@@ -54,6 +54,7 @@ const linkStyle = css`
   padding: 0;
   text-decoration: underline;
   line-height: 16px;
+  color: ${globalTheme.colour.greyishBrown};
 `;
 
 class QuickLinks extends Component {
