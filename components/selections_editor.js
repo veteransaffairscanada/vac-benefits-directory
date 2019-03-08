@@ -8,8 +8,6 @@ import { globalTheme } from "../theme";
 import { css } from "emotion";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
-import CloseIcon from "./icons/Close";
-import EditIcon from "./icons/Edit";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
@@ -26,11 +24,6 @@ const filterTitle = css`
   padding-right: 0px;
   padding-left: 10px;
   color: ${globalTheme.colour.greyishBrown};
-`;
-const closeIcon = css`
-  font-size: 100% !important;
-  margin-left ${globalTheme.unit};
-  font-weight: bold;
 `;
 
 export class SelectionsEditor extends Component {
