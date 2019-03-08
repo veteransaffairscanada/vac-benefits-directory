@@ -110,7 +110,7 @@ export class RadioSelector extends React.Component {
     } = this.props;
     if (options.length !== 0) {
       return (
-        <label className={formControl}>
+        <div className={formControl}>
           <Tooltip
             disabled={!tooltipText}
             tooltipText={tooltipText}
@@ -141,7 +141,7 @@ export class RadioSelector extends React.Component {
               );
             })}
           </div>
-        </label>
+        </div>
       );
     } else {
       return null;
