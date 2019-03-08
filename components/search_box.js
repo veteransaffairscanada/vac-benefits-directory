@@ -130,7 +130,7 @@ class SearchBox extends Component {
         <InputSearchBox
           type="search"
           aria-label={ariaLabel}
-          aria-role="search"
+          role="search"
           id={this.props.inputId}
           placeholder={this.props.placeholder}
           onKeyDown={this.props.onKeyDown}
