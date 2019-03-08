@@ -33,12 +33,14 @@ export class SelectionsEditor extends Component {
 
   countSelected = () => {
     let selectedProfileFilters = 0;
-    // this.props.profileQuestions.forEach(question => {
-    //   if (this.props.responses[question.variable_name]) {
-    //     selectedProfileFilters = 1;
-    //   }
-    // });
-    return selectedProfileFilters; //+ Object.values(this.props.selectedNeeds).length
+    this.props.profileQuestions.forEach(question => {
+      if (this.props.responses[question.variable_name]) {
+        selectedProfileFilters = 1;
+      }
+    });
+    return (
+      selectedProfileFilters + Object.values(this.props.selectedNeeds).length
+    );
   };
 
   clearFilters = () => {
