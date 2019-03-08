@@ -121,7 +121,10 @@ export class RadioSelector extends React.Component {
             </Header>
           </Tooltip>
 
-          <div className={className ? cx(leftIndent, className) : leftIndent}>
+          <div
+            aria-label={legend}
+            className={className ? cx(leftIndent, className) : leftIndent}
+          >
             {options.map(option => {
               return (
                 <Radio
