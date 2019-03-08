@@ -4,7 +4,12 @@ import RadioSelector from "./radio_selector";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { showQuestion } from "../utils/common";
+import { css } from "emotion";
 
+const radioStyle = css`
+  margin-left: 0px;
+  margin-top: 20px;
+`;
 export class ProfileSelector extends Component {
   componentDidUpdate() {
     this.props.profileQuestions.forEach((question, index) => {
@@ -26,6 +31,7 @@ export class ProfileSelector extends Component {
         jsx_array.push(
           <Grid item xs={12} key={question.variable_name + "RadioSelector"}>
             <RadioSelector
+              className={radioStyle}
               id={question.variable_name + "RadioSelector"}
               t={t}
               legend={
