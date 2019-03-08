@@ -89,9 +89,7 @@ class Layout extends Component {
                   />
                 </Container>
               </header>
-              <div role="main" id="main">
-                {this.props.children}
-              </div>
+              <main id="main">{this.props.children}</main>
             </Content>
             <div className={backgoundColour1}>
               <Container>
