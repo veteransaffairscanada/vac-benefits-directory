@@ -7,6 +7,7 @@ import { css, cx } from "emotion";
 import Header from "./typography/header";
 import Tooltip from "./tooltip";
 import Radio from "./radio";
+import Router from "next/router";
 
 const formControl = css`
   margin-top: ${globalTheme.unit} !important;
@@ -86,6 +87,10 @@ export class RadioSelector extends React.Component {
     this.props.saveQuestionResponse(question, response);
     this.clearAppropriateResponses(question, response);
     logEvent("FilterClick", question, response);
+    if (this.props.updateUrl) {
+      this.props.url.query[question] = response;
+      Router.replace(this.props.url);
+    }
   };
 
   render() {
@@ -186,7 +191,9 @@ RadioSelector.propTypes = {
   tooltipText: PropTypes.string,
   store: PropTypes.object,
   className: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
+  updateUrl: PropTypes.bool,
+  url: PropTypes.object
 };
 
 export default connect(
