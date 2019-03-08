@@ -6,6 +6,7 @@ import { Grid } from "@material-ui/core";
 import { css } from "emotion";
 import Header from "./typography/header";
 import { showQuestion } from "../utils/common";
+import { globalTheme } from "../theme";
 
 const needsButtons = css`
   display: flex;
@@ -16,7 +17,7 @@ const needsButtons = css`
 `;
 
 const topBorder = css`
-  border-top: 1px solid black;
+  border-top: 1px solid ${globalTheme.colour.darkPaleGrey};
   padding-top: 30px;
   margin-top: 15px;
 `;

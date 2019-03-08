@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-import ExpandMoreIcon from "./icons/ExpandMore";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
@@ -17,33 +13,24 @@ import EditIcon from "./icons/Edit";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
-  border: thin solid ${globalTheme.colour.cerulean} !important;
+  border: thin solid ${globalTheme.colour.darkPaleGrey} !important;
   box-shadow: none !important;
-`;
-const summary = css`
-  opacity: 1 !important;
-  user-select: inherit;
-  color: ${globalTheme.colour.cerulean} !important;
-`;
-const detail = css`
-  overflow: scroll;
-  height: 300px;
+  margin-top: 30px;
+  padding: 25px;
 `;
 const clearButton = css`
   font-size: 16px !important;
 `;
 const filterTitle = css`
+  font-size: 30px !important;
   padding-right: 0px;
   padding-left: 10px;
-  color: ${globalTheme.colour.cerulean};
+  color: ${globalTheme.colour.greyishBrown};
 `;
 const closeIcon = css`
   font-size: 100% !important;
   margin-left ${globalTheme.unit};
   font-weight: bold;
-`;
-const cerulean = css`
-  color: ${globalTheme.colour.cerulean};
 `;
 
 export class SelectionsEditor extends Component {
@@ -53,14 +40,12 @@ export class SelectionsEditor extends Component {
 
   countSelected = () => {
     let selectedProfileFilters = 0;
-    this.props.profileQuestions.forEach(question => {
-      if (this.props.responses[question.variable_name]) {
-        selectedProfileFilters = 1;
-      }
-    });
-    return (
-      selectedProfileFilters + Object.values(this.props.selectedNeeds).length
-    );
+    // this.props.profileQuestions.forEach(question => {
+    //   if (this.props.responses[question.variable_name]) {
+    //     selectedProfileFilters = 1;
+    //   }
+    // });
+    return selectedProfileFilters; //+ Object.values(this.props.selectedNeeds).length
   };
 
   clearFilters = () => {
@@ -70,56 +55,34 @@ export class SelectionsEditor extends Component {
     this.props.saveQuestionResponse("selectedNeeds", {});
   };
 
-  toggleOpenState = () => {
-    let newState = !this.state.open;
-    this.setState({ open: newState });
-  };
-
   render() {
     const { t, store } = this.props;
     return (
-      <ExpansionPanel
-        className={root}
-        defaultExpanded
-        expanded={this.state.open}
-      >
-        <ExpansionPanelSummary
-          className={summary}
-          expandIcon={<ExpandMoreIcon className={cerulean} />}
-          onClick={() => this.toggleOpenState()}
-        >
-          <EditIcon />
-          <Header size="sm_md" className={filterTitle}>
-            {t("directory.edit_selections")}
-          </Header>{" "}
-        </ExpansionPanelSummary>
+      <Grid container className={root}>
+        <Header size="sm_md" className={filterTitle}>
+          {t("directory.edit_selections")}
+        </Header>
+        <Grid item xs={12}>
+          {this.countSelected() > 0 ? (
+            <HeaderButton
+              id="ClearFilters"
+              className={clearButton}
+              onClick={() => {
+                this.clearFilters();
+              }}
+            >
+              {t("reset filters")} {"(" + this.countSelected() + ")"}
+            </HeaderButton>
+          ) : null}
+        </Grid>
 
-        <ExpansionPanelDetails>
-          <Grid container className={detail}>
-            <Grid item xs={12}>
-              {this.countSelected() > 0 ? (
-                <HeaderButton
-                  id="ClearFilters"
-                  className={clearButton}
-                  onClick={() => {
-                    this.clearFilters();
-                  }}
-                >
-                  {t("reset filters")} {"(" + this.countSelected() + ")"}
-                  <CloseIcon className={closeIcon} />
-                </HeaderButton>
-              ) : null}
-            </Grid>
-
-            <Grid item xs={12}>
-              <ProfileSelector t={t} store={store} />
-            </Grid>
-            <Grid item xs={12}>
-              <NeedsSelector t={t} store={store} />
-            </Grid>
-          </Grid>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        <Grid item xs={12}>
+          <ProfileSelector t={t} store={store} />
+        </Grid>
+        <Grid item xs={12}>
+          <NeedsSelector t={t} store={store} />
+        </Grid>
+      </Grid>
     );
   }
 }
