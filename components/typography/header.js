@@ -91,7 +91,11 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.array
+  ]),
   className: PropTypes.string,
   headingLevel: PropTypes.string,
   size: PropTypes.string,
