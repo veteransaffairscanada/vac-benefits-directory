@@ -21,8 +21,6 @@ const clearButton = css`
 `;
 const filterTitle = css`
   font-size: 30px !important;
-  padding-right: 0px;
-  padding-left: 10px;
   color: ${globalTheme.colour.greyishBrown};
 `;
 

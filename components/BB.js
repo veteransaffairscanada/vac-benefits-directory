@@ -18,8 +18,8 @@ import NextSteps from "./next_steps";
 import QuickLinks from "./quick_links";
 import StickyHeader from "./sticky_header";
 import AlphaBanner from "./alpha_banner";
-import { SelectionsEditor } from "./selections_editor";
-import { ProfileNeedsSelectorMobile } from "./profile_needs_selector_mobile";
+import SelectionsEditor from "./selections_editor";
+import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
