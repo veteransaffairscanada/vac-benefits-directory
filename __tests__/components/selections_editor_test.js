@@ -96,16 +96,6 @@ describe("SelectionsEditor", () => {
     expect(mounted.instance().clearFilters).toBeCalled();
   });
 
-  it("clicking ExpansionPanelSummary runs the toggleOpenState function", () => {
-    const mounted = mount(<SelectionsEditor {...props} {...reduxData} />);
-    mounted.instance().toggleOpenState = jest.fn();
-    mounted
-      .find("ExpansionPanelSummary")
-      .first()
-      .simulate("click");
-    expect(mounted.instance().toggleOpenState).toBeCalled();
-  });
-
   it("returns 1 if a profile filter is selected", () => {
     props.responses.patronType = "organization";
     props.store = mockStore(reduxData);
@@ -114,12 +104,5 @@ describe("SelectionsEditor", () => {
         .instance()
         .countSelected()
     ).toEqual(1);
-  });
-
-  it("toggles the state with toggleOpenState", () => {
-    const mounted = mount(<SelectionsEditor {...props} {...reduxData} />);
-    mounted.setState({ open: true });
-    mounted.instance().toggleOpenState();
-    expect(mounted.state("open")).toEqual(false);
   });
 });
