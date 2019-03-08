@@ -114,7 +114,7 @@ export class BB extends Component {
                 </Header>
               </div>
               {onMobile ? (
-                <ProfileNeedsSelectorMobile t={t} store={store} />
+                <ProfileNeedsSelectorMobile t={t} store={store} url={url} />
               ) : (
                 <SelectionsEditor t={t} store={store} />
               )}
