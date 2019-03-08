@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import { ProfileNeedsSelectorMobile } from "../../components/profile_needs_selector_mobile";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
 import questionsFixture from "../fixtures/questions";
@@ -32,7 +32,7 @@ describe("ProfileNeedsSelectorMobile", () => {
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       selectedNeeds: {},
       needs: needsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       pageWidth: 1000
     };
     mockStore = configureStore();
