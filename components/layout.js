@@ -16,6 +16,7 @@ import Container from "../components/container";
 import { globalTheme } from "../theme";
 import VacFooterEn from "./vac_footer_en";
 import VacFooterFr from "./vac_footer_fr";
+import VacHeaderEn from "./vac_header_en";
 
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
@@ -69,6 +70,16 @@ class Layout extends Component {
       jssStyles.parentNode.removeChild(jssStyles);
     }
   }
+  // <header className={header}>
+  //   <Container>
+  //     <FederalBanner
+  //       i18n={this.props.i18n}
+  //       t={t}
+  //       url={url}
+  //       skipLink={skipLink}
+  //     />
+  //   </Container>
+  // </header>
 
   render() {
     const { t, title, skipLink, url } = this.props;
@@ -79,16 +90,7 @@ class Layout extends Component {
           <Head title={title} t={t} />
           <ErrorBoundary>
             <Content>
-              <header className={header}>
-                <Container>
-                  <FederalBanner
-                    i18n={this.props.i18n}
-                    t={t}
-                    url={url}
-                    skipLink={skipLink}
-                  />
-                </Container>
-              </header>
+              <VacHeaderEn />
               <div role="main" id="main">
                 {this.props.children}
               </div>
