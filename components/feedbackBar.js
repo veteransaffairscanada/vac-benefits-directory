@@ -150,7 +150,11 @@ export class FeedbackBar extends Component {
     const { t } = this.props;
 
     return (
-      <nav className={FeedbackWrapper} aria-label={t("feedback.page_title")}>
+      <div
+        className={FeedbackWrapper}
+        aria-label={t("feedback.page_title")}
+        role="complementary"
+      >
         {this.state.commentFormToggled ? (
           <div className={CommentBox} role="form">
             <Header size="lg" headingLevel="h2" className={topHeading}>
@@ -249,7 +253,7 @@ export class FeedbackBar extends Component {
             </div>
           ) : null}
         </div>
-      </nav>
+      </div>
     );
   }
 }
