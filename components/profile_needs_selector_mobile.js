@@ -13,33 +13,31 @@ import { css } from "emotion";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
 import CloseIcon from "./icons/Close";
-import EditIcon from "./icons/Edit";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
-  border: thin solid ${globalTheme.colour.cerulean} !important;
+  border: thin solid ${globalTheme.colour.darkPaleGrey} !important;
   box-shadow: none !important;
+  margin-top: 30px;
 `;
 const summary = css`
   opacity: 1 !important;
   user-select: inherit;
-  color: ${globalTheme.colour.cerulean} !important;
+  color: ${globalTheme.colour.greyishBrown} !important;
 `;
 const clearButton = css`
   font-size: 16px !important;
 `;
 const filterTitle = css`
-  padding-right: 0px;
-  padding-left: 10px;
-  color: ${globalTheme.colour.cerulean};
+  color: ${globalTheme.colour.greyishBrown};
 `;
 const closeIcon = css`
   font-size: 100% !important;
   margin-left ${globalTheme.unit};
   font-weight: bold;
 `;
-const cerulean = css`
-  color: ${globalTheme.colour.cerulean};
+const greyishBrown = css`
+  color: ${globalTheme.colour.greyishBrown};
 `;
 export class ProfileNeedsSelectorMobile extends Component {
   state = {
@@ -80,10 +78,9 @@ export class ProfileNeedsSelectorMobile extends Component {
       >
         <ExpansionPanelSummary
           className={summary}
-          expandIcon={<ExpandMoreIcon className={cerulean} />}
+          expandIcon={<ExpandMoreIcon className={greyishBrown} />}
           onClick={() => this.toggleOpenState()}
         >
-          <EditIcon t={t} />
           <Header headingLevel="h2" size="sm_md" className={filterTitle}>
             {t("directory.edit_selections")}
           </Header>{" "}
