@@ -106,12 +106,11 @@ export class RadioSelector extends React.Component {
       responses,
       legend,
       tooltipText,
-      className,
-      name
+      className
     } = this.props;
     if (options.length !== 0) {
       return (
-        <div className={formControl}>
+        <label className={formControl}>
           <Tooltip
             disabled={!tooltipText}
             tooltipText={tooltipText}
@@ -122,10 +121,7 @@ export class RadioSelector extends React.Component {
             </Header>
           </Tooltip>
 
-          <div
-            aria-label={legend}
-            className={className ? cx(leftIndent, className) : leftIndent}
-          >
+          <div className={className ? cx(leftIndent, className) : leftIndent}>
             {options.map(option => {
               return (
                 <Radio
@@ -134,7 +130,6 @@ export class RadioSelector extends React.Component {
                   onChange={this.handleSelect}
                   value={option.variable_name}
                   className={radioOption}
-                  name={name}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
@@ -143,7 +138,7 @@ export class RadioSelector extends React.Component {
               );
             })}
           </div>
-        </div>
+        </label>
       );
     } else {
       return null;

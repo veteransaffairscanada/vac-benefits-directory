@@ -97,60 +97,61 @@ export class Feedback extends Component {
           >
             {t("back")}
           </HeaderButton>
-
-          <Header className={headerPadding} headingLevel="h1" size="lg">
-            {t("feedback.page_header")}
-          </Header>
-          <RadioSelector
-            className={radioStyle}
-            legend={
-              t("current-language-code") === "en"
-                ? question.display_text_english
-                : question.display_text_french
-            }
-            t={t}
-            selectorType="betaFeedback"
-            options={question.multiple_choice_options}
-            store={store}
-          />
-          <TextArea
-            className={textAreaStyle}
-            name="group1"
-            maxLength={"500"}
-            t={t}
-            onChange={this.handleChange("what_did_you_think")}
-          >
-            {t("feedback.tell_us_more")}
-          </TextArea>
-          <Details
-            summary={t("feedback.details_question")}
-            className={detailsStyle}
-          >
-            {t("feedback.details_expansion_pt1")}
-            <a href={t("feedback.vac_office_link")}>
-              {t("feedback.details_expansion_pt2")}
-            </a>
-            {t("feedback.details_expansion_pt3")}
-            <a href={t("feedback.transition_centre_link")}>
-              {t("feedback.details_expansion_pt4")}
-            </a>
-            {t("feedback.details_expansion_pt5")}
-          </Details>
-          <div className={padding}>
-            <Button
-              id="send"
-              arrow={true}
-              size="big"
-              onClick={() => {
-                this.sendFeedback();
-                Router.push({
-                  pathname: "/feedback_submitted",
-                  query: url.query
-                });
-              }}
+          <div role="form">
+            <Header className={headerPadding} headingLevel="h1" size="lg">
+              {t("feedback.page_header")}
+            </Header>
+            <RadioSelector
+              className={radioStyle}
+              legend={
+                t("current-language-code") === "en"
+                  ? question.display_text_english
+                  : question.display_text_french
+              }
+              t={t}
+              selectorType="betaFeedback"
+              options={question.multiple_choice_options}
+              store={store}
+            />
+            <TextArea
+              className={textAreaStyle}
+              name="group1"
+              maxLength={"500"}
+              t={t}
+              onChange={this.handleChange("what_did_you_think")}
             >
-              {t("send")}{" "}
-            </Button>
+              {t("feedback.tell_us_more")}
+            </TextArea>
+            <Details
+              summary={t("feedback.details_question")}
+              className={detailsStyle}
+            >
+              {t("feedback.details_expansion_pt1")}
+              <a href={t("feedback.vac_office_link")}>
+                {t("feedback.details_expansion_pt2")}
+              </a>
+              {t("feedback.details_expansion_pt3")}
+              <a href={t("feedback.transition_centre_link")}>
+                {t("feedback.details_expansion_pt4")}
+              </a>
+              {t("feedback.details_expansion_pt5")}
+            </Details>
+            <div className={padding}>
+              <Button
+                id="send"
+                arrow={true}
+                size="big"
+                onClick={() => {
+                  this.sendFeedback();
+                  Router.push({
+                    pathname: "/feedback_submitted",
+                    query: url.query
+                  });
+                }}
+              >
+                {t("send")}{" "}
+              </Button>
+            </div>
           </div>
         </Container>
       </Layout>
