@@ -48,6 +48,7 @@ describe("Favourites", () => {
         statusAndVitals: ""
       },
       url: { query: {} },
+      printUrl: "/print",
       homeUrl: "/",
       saveFavourites: jest.fn()
     };

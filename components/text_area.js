@@ -107,7 +107,7 @@ TextArea.defaultProps = {
 };
 
 TextArea.propTypes = {
-  maxLength: PropTypes.string,
+  maxLength: PropTypes.number,
   t: PropTypes.func.isRequired,
   hint: PropTypes.string,
   input: PropTypes.shape({

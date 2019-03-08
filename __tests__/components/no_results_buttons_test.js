@@ -10,7 +10,7 @@ describe("NoResultsButtons", () => {
   beforeEach(() => {
     props = {
       clearFilters: x => x,
-      url: "asdf",
+      url: { url: "asdf" },
       goToMap: x => x,
       t: x => x
     };
