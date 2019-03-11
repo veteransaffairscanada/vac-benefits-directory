@@ -69,7 +69,7 @@ export class ProfileNeedsSelectorMobile extends Component {
   };
 
   render() {
-    const { t, store } = this.props;
+    const { t, store, url } = this.props;
     return (
       <ExpansionPanel
         className={root}
@@ -89,10 +89,10 @@ export class ProfileNeedsSelectorMobile extends Component {
         <ExpansionPanelDetails>
           <Grid container>
             <Grid item sm={12}>
-              <ProfileSelector t={t} store={store} />
+              <ProfileSelector t={t} store={store} url={url} />
             </Grid>
             <Grid item sm={12}>
-              <NeedsSelector t={t} store={store} />
+              <NeedsSelector t={t} store={store} url={url} />
 
               {this.countSelected() > 0 ? (
                 <h3 variant="title" className={filterTitle}>
@@ -140,6 +140,7 @@ const mapStateToProps = reduxState => {
 };
 
 ProfileNeedsSelectorMobile.propTypes = {
+  url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   responses: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
