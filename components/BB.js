@@ -36,6 +36,9 @@ const topMatter = css`
   width: 100%;
 `;
 
+const stylingWithSidebar = css`
+  font-size: 28px !important;
+`;
 export class BB extends Component {
   state = {
     showDisabledCookieBanner: false
@@ -109,7 +112,11 @@ export class BB extends Component {
             </Grid>
             <Grid item md={4} xs={12}>
               <div id="benefits-and-services">
-                <Header headingLevel="h2" size="md_lg">
+                <Header
+                  headingLevel="h2"
+                  size="md_lg"
+                  className={stylingWithSidebar}
+                >
                   {t("titles.benefits_and_services")}
                 </Header>
               </div>

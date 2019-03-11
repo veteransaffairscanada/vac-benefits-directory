@@ -10,6 +10,7 @@ import HeaderButton from "./header_button";
 import Header from "./typography/header";
 
 const root = css`
+  font-family: ${globalTheme.fontFamilySansSerif};
   background-color: ${globalTheme.colour.white} !important;
   border: thin solid ${globalTheme.colour.darkPaleGrey} !important;
   box-shadow: none !important;
@@ -20,7 +21,7 @@ const clearButton = css`
   font-size: 16px !important;
 `;
 const filterTitle = css`
-  font-size: 30px !important;
+  font-size: 22px !important;
   color: ${globalTheme.colour.greyishBrown};
 `;
 

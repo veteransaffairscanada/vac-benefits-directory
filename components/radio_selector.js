@@ -15,8 +15,8 @@ const formControl = css`
 const formLabel = css`
   margin-bottom: 10px;
   color: ${globalTheme.colour.greyishBrown};
-  font-size: 20px;
-  font-weight: normal;
+  font-size: 16px;
+  font-bold: normal;
   font-style: normal;
   font-stretch: normal;
   letter-spacing: normal;
