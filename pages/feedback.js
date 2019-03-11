@@ -116,7 +116,7 @@ export class Feedback extends Component {
           <TextArea
             className={textAreaStyle}
             name="group1"
-            maxLength={"500"}
+            maxLength={500}
             t={t}
             onChange={this.handleChange("what_did_you_think")}
           >

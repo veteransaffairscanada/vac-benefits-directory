@@ -15,7 +15,9 @@ describe("StickyHeader", () => {
       favouriteBenefits: [],
       favouritesUrl: "/favourites",
       printUrl: "/print",
-      summaryUrl: "/summary"
+      summaryUrl: "/summary",
+      showShareLink: true,
+      url: { url: "test_url" }
     };
   });
 
