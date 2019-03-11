@@ -14,21 +14,46 @@ const style = css`
   }
 `;
 
-const mobileFullWidth = css`
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    padding-left: 0px;
-    padding-right: 0px;
+const vacStyle = css`
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  :after,
+  :before {
+    display: table;
+    content: " ";
   }
+  :after {
+    clear: both;
+  }
+  @media (min-width: 768px) {
+    width: 750px;
+  }
+  @media (min-width: 992px) {
+    width: 970px;
+  }
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+`;
+
+const mobileFullWidth = css`
+  // @media only screen and (max-width: ${globalTheme.max.xs}) {
+  //   padding-left: 0px;
+  //   padding-right: 0px;
+  // }
 `;
 
 class Container extends Component {
   render() {
-    let className = style;
+    let className = vacStyle;
     if (this.props.className)
       className = this.props.mobileFullWidth
-        ? cx(style, mobileFullWidth, this.props.className)
-        : cx(style, this.props.className);
-    else if (this.props.mobileFullWidth) className = cx(style, mobileFullWidth);
+        ? cx(vacStyle, mobileFullWidth, this.props.className)
+        : cx(vacStyle, this.props.className);
+    else if (this.props.mobileFullWidth)
+      className = cx(vacStyle, mobileFullWidth);
     return (
       <div className={className} id={this.props.id ? this.props.id : ""}>
         {this.props.children}
