@@ -22,9 +22,10 @@ export class NeedButton extends Component {
     }
     this.props.setSelectedNeeds(newSelectedNeeds);
 
-    if (this.props.updateUrl) {
-      this.props.url.query["needs"] = newSelectedNeeds;
-      console.log(this.props.url);
+    let needsParams = Object.keys(newSelectedNeeds);
+
+    if (this.props.updateUrl && needsParams.length > 0) {
+      this.props.url.query["selectedNeeds"] = needsParams.join(",");
       Router.replace(this.props.url);
     }
   };
