@@ -49,31 +49,31 @@ export class SelectionsEditor extends Component {
     this.props.saveQuestionResponse("selectedNeeds", {});
   };
 
-  updateQuery = (url, profileFiltersUnparsed) => {
-    const profileFilters = JSON.parse(JSON.stringify(profileFiltersUnparsed));
-    // profileFilters.forEach( (question, response) => {
-    //   //url.query[question] = question[response]
-    //   console.log(question);
-    //   console.log(response);
-    // });
-    // profileFilters.forEach(q => {
-    //   console.log(q);
-    // });
+  // updateQuery = (url, profileFiltersUnparsed) => {
+  //   const profileFilters = JSON.parse(JSON.stringify(profileFiltersUnparsed));
+  //   // profileFilters.forEach( (question, response) => {
+  //   //   //url.query[question] = question[response]
+  //   //   console.log(question);
+  //   //   console.log(response);
+  //   // });
+  //   // profileFilters.forEach(q => {
+  //   //   console.log(q);
+  //   // });
 
-    this.props.profileQuestions.forEach((q, i) => {
-      if (q.variable_name !== "feedback") {
-        console.log(q.variable_name);
-        console.log(profileFilters[q.variable_name]);
-        console.log(url.query);
-        //url.query = profileFilters[q.variable_name];
-        //this.props.saveQuestionResponse(q.variable_name, "");
-      }
-    });
-  };
+  //   this.props.profileQuestions.forEach((q, i) => {
+  //     if (q.variable_name !== "feedback") {
+  //       console.log(q.variable_name);
+  //       console.log(profileFilters[q.variable_name]);
+  //       console.log(url.query);
+  //       //url.query = profileFilters[q.variable_name];
+  //       //this.props.saveQuestionResponse(q.variable_name, "");
+  //     }
+  //   });
+  // };
 
   render() {
     const { t, store, url, profileFilters } = this.props;
-    this.updateQuery(url, profileFilters);
+    //this.updateQuery(url, profileFilters);
     //console.log(getProfileFilters(this.props.reduxState));
     // url.query.patronType =
     //console.log(JSON.stringify(this.props.reduxState.profile));
