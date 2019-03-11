@@ -33,6 +33,10 @@ class ShareBox extends Component {
 
   uid = uuidv4();
 
+  logPrintEvent() {
+    logEvent("Exit", "print");
+  }
+
   render() {
     const { t, printUrl, url, showShareLink, className } = this.props;
     return (
@@ -45,7 +49,7 @@ class ShareBox extends Component {
           target="_blank"
           aria-label={t("Print")}
           onClick={() => {
-            logEvent("Exit", "print");
+            this.logPrintEvent();
           }}
         >
           <Print />

@@ -22,9 +22,18 @@ describe("ShareBox", () => {
 
   it("contains a print button", async () => {
     let shareBox = mount(<ShareBox {...props} />);
-
     expect(shareBox.find("HeaderLink").length).toEqual(1);
+    shareBox.find("HeaderLink").simulate("click");
+    expect(shareBox.logPrintEvent).toBeCalled();
   });
+  /*
+  it("clicking the print button logs an exit event", async () => {
+    let shareBox = mount(<ShareBox {...props} />);
+    console.log(shareBox.find("headerLink").length);
+    shareBox.find("HeaderLink")
+      .simulate("click");
+    expect(logEvent).toBeCalled();
+  });*/
 
   it("doesn't render a share button when props.share is false", async () => {
     let shareBox = mount(<ShareBox {...props} />);
