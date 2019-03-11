@@ -97,7 +97,6 @@ class VacHeaderFr extends Component {
 }
 
 VacHeaderFr.propTypes = {
-  i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired
 };
