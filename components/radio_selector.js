@@ -106,8 +106,7 @@ export class RadioSelector extends React.Component {
       responses,
       legend,
       tooltipText,
-      className,
-      name
+      className
     } = this.props;
     if (options.length !== 0) {
       return (
@@ -134,7 +133,6 @@ export class RadioSelector extends React.Component {
                   onChange={this.handleSelect}
                   value={option.variable_name}
                   className={radioOption}
-                  name={name}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
