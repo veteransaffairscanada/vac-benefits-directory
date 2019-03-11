@@ -10,20 +10,17 @@ import {
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
-import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
 import VacFooterEn from "./vac_footer_en";
 import VacFooterFr from "./vac_footer_fr";
 import VacHeaderEn from "./vac_header_en";
+import VacHeaderFr from "./vac_header_fr";
+import SkipToMainContent from "./skip_to_main_content";
 
 const Content = styled("div")`
   min-height: calc(100vh - 65px);
-`;
-const header = css`
-  background-color: ${globalTheme.colour.bannerColour};
-  padding: 0px;
 `;
 const black_bg = css`
   background-color: ${globalTheme.colour.blackish2};
@@ -72,16 +69,6 @@ class Layout extends Component {
       jssStyles.parentNode.removeChild(jssStyles);
     }
   }
-  // <header className={header}>
-  //   <Container>
-  //     <FederalBanner
-  //       i18n={this.props.i18n}
-  //       t={t}
-  //       url={url}
-  //       skipLink={skipLink}
-  //     />
-  //   </Container>
-  // </header>
 
   render() {
     const { t, title, skipLink, url } = this.props;
@@ -92,8 +79,13 @@ class Layout extends Component {
           <Head title={title} t={t} />
           <ErrorBoundary>
             <Content>
+              <SkipToMainContent skipLink={skipLink} t={t} />
               <div id="header_css" className={black_bg}>
-                <VacHeaderEn />
+                {t("current-language-code") === "en" ? (
+                  <VacHeaderEn t={t} url={url} />
+                ) : (
+                  <VacHeaderFr t={t} url={url} />
+                )}
               </div>
               <div role="main" id="main">
                 {this.props.children}

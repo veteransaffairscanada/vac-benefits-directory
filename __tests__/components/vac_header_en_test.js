@@ -1,12 +1,12 @@
 import React from "react";
-import LanguageButton from "../../components/language_button";
+import VacHeaderEn from "../../components/vac_header_en";
 import { mount } from "enzyme";
 import translate from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
-describe("LanguageButton", () => {
+describe("VacHeaderEn", () => {
   let props;
 
   beforeEach(() => {
@@ -24,13 +24,13 @@ describe("LanguageButton", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<LanguageButton {...props} />).html();
+    let html = mount(<VacHeaderEn {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has the correct href", () => {
     expect(
-      mount(<LanguageButton {...props} />)
+      mount(<VacHeaderEn {...props} />)
         .find("#changeLanguage")
         .at(0)
         .prop("href")
@@ -40,7 +40,7 @@ describe("LanguageButton", () => {
   it("Language change logged with Google Analytics", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
-    mount(<LanguageButton {...props} />)
+    mount(<VacHeaderEn {...props} />)
       .find("#changeLanguage")
       .at(0)
       .simulate("click");
