@@ -11,9 +11,6 @@ describe("VacHeaderFr", () => {
 
   beforeEach(() => {
     props = {
-      i18n: {
-        changeLanguage: () => {}
-      },
       t: translate,
       url: {
         push: jest.fn(),
