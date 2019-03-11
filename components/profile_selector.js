@@ -23,7 +23,7 @@ export class ProfileSelector extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, url } = this.props;
     let jsx_array = [];
 
     this.props.profileQuestions.forEach((question, index) => {
@@ -48,6 +48,8 @@ export class ProfileSelector extends Component {
               }
               store={this.props.store}
               name={"group" + index}
+              url={url}
+              updateUrl={true}
             />
           </Grid>
         );
@@ -89,7 +91,8 @@ ProfileSelector.propTypes = {
   reduxState: PropTypes.object.isRequired,
   store: PropTypes.object,
   saveQuestionResponse: PropTypes.func.isRequired,
-  profileQuestions: PropTypes.array.isRequired
+  profileQuestions: PropTypes.array.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(

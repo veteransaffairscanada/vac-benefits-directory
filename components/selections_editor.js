@@ -62,9 +62,9 @@ export class SelectionsEditor extends Component {
 
   //   this.props.profileQuestions.forEach((q, i) => {
   //     if (q.variable_name !== "feedback") {
-  //       console.log(q.variable_name);
-  //       console.log(profileFilters[q.variable_name]);
-  //       console.log(url.query);
+  //       // console.log(q.variable_name);
+  //       // console.log(profileFilters[q.variable_name]);
+  //       // console.log(url.query);
   //       //url.query = profileFilters[q.variable_name];
   //       //this.props.saveQuestionResponse(q.variable_name, "");
   //     }
@@ -97,7 +97,7 @@ export class SelectionsEditor extends Component {
         </Grid>
 
         <Grid item xs={12}>
-          <ProfileSelector t={t} store={store} />
+          <ProfileSelector t={t} store={store} url={url} />
         </Grid>
         <Grid item xs={12}>
           <NeedsSelector t={t} store={store} />

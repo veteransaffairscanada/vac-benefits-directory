@@ -116,7 +116,7 @@ export class BB extends Component {
               {onMobile ? (
                 <ProfileNeedsSelectorMobile t={t} store={store} url={url} />
               ) : (
-                <SelectionsEditor t={t} store={store} />
+                <SelectionsEditor t={t} store={store} url={url} />
               )}
             </Grid>
             <Grid id="mainContent" item md={8} xs={12}>
