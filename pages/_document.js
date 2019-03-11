@@ -71,6 +71,11 @@ class MyDocument extends Document {
             type="text/css"
             href={"../static/vac_css_used.css"}
           />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href={"../static/vac_header.css"}
+          />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>

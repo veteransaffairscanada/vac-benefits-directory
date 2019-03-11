@@ -25,7 +25,9 @@ const header = css`
   background-color: ${globalTheme.colour.bannerColour};
   padding: 0px;
 `;
-
+const black_bg = css`
+  background-color: ${globalTheme.colour.blackish2};
+`;
 const backgoundColour1 = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};
 `;
@@ -90,7 +92,9 @@ class Layout extends Component {
           <Head title={title} t={t} />
           <ErrorBoundary>
             <Content>
-              <VacHeaderEn />
+              <div id="header_css" className={black_bg}>
+                <VacHeaderEn />
+              </div>
               <div role="main" id="main">
                 {this.props.children}
               </div>
