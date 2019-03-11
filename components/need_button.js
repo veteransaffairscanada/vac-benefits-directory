@@ -4,6 +4,7 @@ import Checkbox from "./checkbox";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { css } from "emotion";
+import Router from "next/router";
 
 const style = css`
   margin-bottom: 10px;
@@ -20,6 +21,12 @@ export class NeedButton extends Component {
       newSelectedNeeds[id] = id;
     }
     this.props.setSelectedNeeds(newSelectedNeeds);
+
+    if (this.props.updateUrl) {
+      this.props.url.query["needs"] = newSelectedNeeds;
+      console.log(this.props.url);
+      Router.replace(this.props.url);
+    }
   };
 
   render() {
@@ -60,11 +67,14 @@ NeedButton.propTypes = {
   setSelectedNeeds: PropTypes.func.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   disabled: PropTypes.string,
-  store: PropTypes.object
+  store: PropTypes.object,
+  updateUrl: PropTypes.bool,
+  url: PropTypes.object
 };
 
 NeedButton.defaultProps = {
-  disabled: ""
+  disabled: "",
+  updateUrl: false
 };
 
 export default connect(

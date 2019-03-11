@@ -8,7 +8,6 @@ import { globalTheme } from "../theme";
 import { css } from "emotion";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
-import { getProfileFilters } from "../selectors/benefits";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
@@ -49,34 +48,9 @@ export class SelectionsEditor extends Component {
     this.props.saveQuestionResponse("selectedNeeds", {});
   };
 
-  // updateQuery = (url, profileFiltersUnparsed) => {
-  //   const profileFilters = JSON.parse(JSON.stringify(profileFiltersUnparsed));
-  //   // profileFilters.forEach( (question, response) => {
-  //   //   //url.query[question] = question[response]
-  //   //   console.log(question);
-  //   //   console.log(response);
-  //   // });
-  //   // profileFilters.forEach(q => {
-  //   //   console.log(q);
-  //   // });
-
-  //   this.props.profileQuestions.forEach((q, i) => {
-  //     if (q.variable_name !== "feedback") {
-  //       // console.log(q.variable_name);
-  //       // console.log(profileFilters[q.variable_name]);
-  //       // console.log(url.query);
-  //       //url.query = profileFilters[q.variable_name];
-  //       //this.props.saveQuestionResponse(q.variable_name, "");
-  //     }
-  //   });
-  // };
-
   render() {
-    const { t, store, url, profileFilters } = this.props;
-    //this.updateQuery(url, profileFilters);
-    //console.log(getProfileFilters(this.props.reduxState));
-    // url.query.patronType =
-    //console.log(JSON.stringify(this.props.reduxState.profile));
+    const { t, store, url } = this.props;
+
     return (
       <Grid container className={root}>
         <Header size="sm_md" className={filterTitle}>
@@ -100,7 +74,7 @@ export class SelectionsEditor extends Component {
           <ProfileSelector t={t} store={store} url={url} />
         </Grid>
         <Grid item xs={12}>
-          <NeedsSelector t={t} store={store} />
+          <NeedsSelector t={t} store={store} url={url} />
         </Grid>
       </Grid>
     );
@@ -119,8 +93,6 @@ const mapDispatchToProps = dispatch => {
 };
 const mapStateToProps = reduxState => {
   return {
-    reduxState: reduxState,
-    profileFilters: getProfileFilters(reduxState),
     profileQuestions: reduxState.questions.filter(
       q => q.variable_name !== "needs"
     ),
@@ -131,8 +103,6 @@ const mapStateToProps = reduxState => {
 
 SelectionsEditor.propTypes = {
   url: PropTypes.object.isRequired,
-  reduxState: PropTypes.object.isRequired,
-  profileFilters: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   responses: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,

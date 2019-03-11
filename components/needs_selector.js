@@ -33,7 +33,7 @@ export class NeedsSelector extends Component {
   }
 
   render() {
-    const { needs, t, store } = this.props;
+    const { needs, t, store, url } = this.props;
 
     if (showQuestion("needs", undefined, this.props.reduxState)) {
       return (
@@ -45,7 +45,14 @@ export class NeedsSelector extends Component {
             </Grid>
             <Grid item xs={12} className={needsButtons}>
               {needs.map(need => (
-                <NeedButton key={need.id} need={need} t={t} store={store} />
+                <NeedButton
+                  key={need.id}
+                  need={need}
+                  t={t}
+                  store={store}
+                  url={url}
+                  updateUrl={true}
+                />
               ))}
             </Grid>
           </Grid>
@@ -82,7 +89,8 @@ NeedsSelector.propTypes = {
   reduxState: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(
