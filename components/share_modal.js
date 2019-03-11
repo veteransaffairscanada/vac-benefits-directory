@@ -184,8 +184,6 @@ class ShareModal extends Component {
     const shareTargetId = uid + "shareTarget";
     let iOS = false;
     if (global.navigator) {
-      let userAgent = navigator.userAgent;
-
       if (navigator.userAgent.match(/ipad|ipod|iphone/i) && !window.MSStream) {
         iOS = true;
       }
