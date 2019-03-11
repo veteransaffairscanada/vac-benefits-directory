@@ -165,7 +165,7 @@ export class FeedbackBar extends Component {
               <TextArea
                 id="commentTextArea"
                 name="bugFiling"
-                maxLength={"500"}
+                maxLength={500}
                 t={t}
                 className={textArea}
                 onChange={

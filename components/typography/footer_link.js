@@ -30,7 +30,11 @@ class FooterLink extends Component {
 }
 
 FooterLink.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.string,
+    PropTypes.array
+  ]),
   className: PropTypes.string
 };
 
