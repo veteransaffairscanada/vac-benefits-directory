@@ -97,7 +97,7 @@ export class Feedback extends Component {
           >
             {t("back")}
           </HeaderButton>
-          <div role="form">
+          <form>
             <Header className={headerPadding} headingLevel="h1" size="lg">
               {t("feedback.page_header")}
             </Header>
@@ -152,7 +152,7 @@ export class Feedback extends Component {
                 {t("send")}{" "}
               </Button>
             </div>
-          </div>
+          </form>
         </Container>
       </Layout>
     );
