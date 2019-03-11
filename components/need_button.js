@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { css } from "emotion";
 import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
 const style = css`
   margin-bottom: 10px;
@@ -25,8 +26,8 @@ export class NeedButton extends Component {
     let needsParams = Object.keys(newSelectedNeeds);
 
     if (this.props.updateUrl && needsParams.length > 0) {
-      this.props.url.query["selectedNeeds"] = needsParams.join(",");
-      Router.replace(this.props.url);
+      this.props.url.query["selectedNeeds"] = needsParams.join();
+      Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
     }
   };
 
