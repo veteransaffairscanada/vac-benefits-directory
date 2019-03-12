@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
 import { uuidv4 } from "../utils/common";
-import { css } from "emotion";
+import { cx, css } from "emotion";
 
 const StyledCheckbox = styled("label")({
   display: "block",
@@ -80,13 +80,21 @@ const mobileLabelStyle = css`
     font-size: 16px;
   }
 `;
+const sidebarLabelStyle = css({
+  fontSize: "14px !important",
+  padding: "6px 10px 15px 12px !important"
+});
 
-const Checkbox = ({ children, className, ...props }) => {
+const Checkbox = ({ children, className, sidebar, ...props }) => {
   const guid = uuidv4();
   return (
     <StyledCheckbox className={className} htmlFor={guid}>
       <StyledInput type="checkbox" {...props} id={guid} />
-      <StyledLabel className={mobileLabelStyle}>{children}</StyledLabel>
+      <StyledLabel
+        className={cx(mobileLabelStyle, sidebar ? sidebarLabelStyle : null)}
+      >
+        {children}
+      </StyledLabel>
     </StyledCheckbox>
   );
 };
@@ -103,7 +111,8 @@ Checkbox.propTypes = {
   /**
    * CSS Classname for outermost container
    */
-  className: PropTypes.string
+  className: PropTypes.string,
+  sidebar: PropTypes.bool
 };
 
 export default Checkbox;

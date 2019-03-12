@@ -6,7 +6,6 @@ import { Grid } from "@material-ui/core";
 import { css } from "emotion";
 import Header from "./typography/header";
 import { showQuestion } from "../utils/common";
-import { globalTheme } from "../theme";
 
 const needsButtons = css`
   display: flex;

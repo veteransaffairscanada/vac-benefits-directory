@@ -40,6 +40,7 @@ export class NeedButton extends Component {
         value={need.id}
         disabled={disabled ? "disabled" : null}
         className={style}
+        sidebar={this.props.updateUrl}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </Checkbox>
