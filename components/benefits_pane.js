@@ -60,11 +60,6 @@ export class BenefitsPane extends Component {
     this.props.setSearchString(event.target.value);
   };
 
-  goToMap = url => {
-    const mapLink = getLink(url, "/map", "benefits-directory");
-    window.location.assign(mapLink);
-  };
-
   render() {
     const {
       t,
@@ -97,7 +92,6 @@ export class BenefitsPane extends Component {
             <NoResultsButtons
               clearFilters={this.clearFilters}
               url={this.props.url}
-              goToMap={this.goToMap}
               t={t}
             />
           ) : null}

@@ -11,7 +11,6 @@ describe("NoResultsButtons", () => {
     props = {
       clearFilters: x => x,
       url: { url: "asdf" },
-      goToMap: x => x,
       t: x => x
     };
   });
