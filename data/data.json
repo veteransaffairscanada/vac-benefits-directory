@@ -2543,8 +2543,8 @@
     },
     {
       "key": "filter by category",
-      "English": "Filter by category",
-      "French": "Filtrer par sujet",
+      "English": "What kind of benefits are you looking for?",
+      "French": "Quel type de prestations recherchez-vous? (fra)",
       "id": "filter by category",
       "section": ""
     },
