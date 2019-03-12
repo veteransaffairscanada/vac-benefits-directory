@@ -111,8 +111,7 @@ export class RadioSelector extends React.Component {
       responses,
       legend,
       tooltipText,
-      className,
-      name
+      className
     } = this.props;
     if (options.length !== 0) {
       return (
