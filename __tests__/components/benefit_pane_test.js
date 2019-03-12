@@ -99,6 +99,25 @@ describe("BenefitsPane", () => {
     it("contains the no results buttons", () => {
       expect(mounted().find("NoResultsButtons").length).toEqual(1);
     });
+
+    it("the clearFilters function clears filters", () => {
+      mounted().setProps({
+        profileFilters: {
+          patronType: "test",
+          serviceType: "test",
+          statusAndVitals: "test"
+        },
+        selectedNeeds: { test: "test" }
+      });
+      mounted()
+        .instance()
+        .clearFilters();
+      expect(props.profileFilters).toEqual({
+        patronType: "",
+        serviceType: "",
+        statusAndVitals: ""
+      });
+    });
   });
 
   describe("when filteredBenefitsWithoutSearch is not empty", () => {

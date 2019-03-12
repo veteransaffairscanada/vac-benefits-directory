@@ -28,4 +28,11 @@ describe("TextArea", () => {
     let mounted = mount(<TextArea {...props} />);
     expect(mounted.find("textarea").html()).toContain('maxlength="500"');
   });
+
+  it("updates the characters left indicator when the text area contents change", () => {
+    let mounted = mount(<TextArea {...props} />);
+    const event = { target: { value: "sometext" } };
+    mounted.find("textarea").simulate("change", event);
+    expect(mounted.state().charsLeft).toEqual(492);
+  });
 });

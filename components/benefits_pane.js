@@ -13,7 +13,7 @@ import {
 import { css } from "emotion";
 import Header from "./typography/header";
 import SearchBox from "./search_box";
-import { getLink, getBenefitCountString } from "../utils/common";
+import { getBenefitCountString } from "../utils/common";
 import NoResultsButtons from "./no_results_buttons";
 import ResultsHeader from "./results_header";
 
@@ -60,11 +60,6 @@ export class BenefitsPane extends Component {
     this.props.setSearchString(event.target.value);
   };
 
-  goToMap = url => {
-    const mapLink = getLink(url, "/map", "benefits-directory");
-    window.location.assign(mapLink);
-  };
-
   render() {
     const {
       t,
@@ -97,7 +92,6 @@ export class BenefitsPane extends Component {
             <NoResultsButtons
               clearFilters={this.clearFilters}
               url={this.props.url}
-              goToMap={this.goToMap}
               t={t}
             />
           ) : null}

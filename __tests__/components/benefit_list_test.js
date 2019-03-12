@@ -89,7 +89,8 @@ describe("BenefitList", () => {
       "benefit_2",
       "benefit_1",
       "benefit_0",
-      "benefit_3"
+      "benefit_3",
+      "benefit_4"
     ]);
   });
 
@@ -97,6 +98,11 @@ describe("BenefitList", () => {
     expect(
       mount(<BenefitList {...props} {...reduxData} />).find("BenefitCard")
         .length
-    ).toEqual(4);
+    ).toEqual(5);
+  });
+  it("shows a loading circle when the page is loading", () => {
+    let mounted = mount(<BenefitList {...props} {...reduxData} />);
+    mounted.setState({ loading: true });
+    expect(mounted.find("CircularProgress").length).toEqual(1);
   });
 });

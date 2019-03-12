@@ -106,7 +106,7 @@ describe("Favourites Page", () => {
       needs: needsFixture,
       searchString: "",
       selectedNeeds: {},
-      favouriteBenefits: [benefitsFixture[0].id]
+      favouriteBenefits: [benefitsFixture[1].id]
     };
     props.store = mockStore(reduxData);
   });

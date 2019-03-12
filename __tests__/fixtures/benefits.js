@@ -1,5 +1,18 @@
 const benefitsFixture = [
   {
+    id: "benefit_4",
+    vacNameEn: "b4_en",
+    vacNameFr: "b4_fr",
+    benefitPageEn: "b4_link_en",
+    benefitPageFr: "b4_link_fr",
+    oneLineDescriptionEn: "b4_desc_en",
+    oneLineDescriptionFr: "b4_desc_fr",
+    needs: ["need_3"],
+    sortingPriority: "low",
+    availableIndependently: "Independent",
+    benefitEligibility: ["4", "6"]
+  },
+  {
     id: "benefit_0",
     vacNameEn: "b0_en",
     vacNameFr: "b0_fr",

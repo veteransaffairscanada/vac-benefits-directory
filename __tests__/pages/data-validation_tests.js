@@ -157,7 +157,7 @@ describe("DataValidation", () => {
           .instance()
           .checkBenefitUrls()
       ).then(() => {
-        expect(fetch.mock.calls.length).toEqual(4);
+        expect(fetch.mock.calls.length).toEqual(5);
         done();
       });
     });

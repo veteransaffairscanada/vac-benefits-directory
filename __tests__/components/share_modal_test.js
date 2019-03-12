@@ -15,6 +15,17 @@ describe("ShareModal", () => {
     window.open = jest.fn();
     Router.push = jest.fn();
     window.location.assign = jest.fn();
+    document.createRange = function() {
+      return {
+        selectNodeContents: function() {}
+      };
+    };
+    window.getSelection = function() {
+      return {
+        addRange: function() {},
+        removeAllRanges: function() {}
+      };
+    };
     props = {
       uid: "abc",
       isOpen: true,
@@ -51,7 +62,40 @@ describe("ShareModal", () => {
     expect(modal.find("input").length).not.toEqual(0);
   });
 
-  it("the link to be copied when the copy button is clicked", () => {
+  it("the link is copied when the copy button is clicked - no window.navigator", () => {
+    document.execCommand = jest.fn();
+    let modal = mount(<ShareModal {...props} />);
+    modal.setState({ isOpen: true });
+    modal
+      .find("button")
+      .at(1)
+      .simulate("click");
+    expect(modal.instance().state.statusMessage).not.toEqual("");
+  });
+
+  it("the link is copied when the copy button is clicked on an ios device", () => {
+    Object.defineProperty(window.navigator, "userAgent", { value: "iphone" });
+    let modal = mount(<ShareModal {...props} />);
+    modal.setState({ isOpen: true });
+    modal
+      .find("button")
+      .at(1)
+      .simulate("click");
+    expect(modal.instance().state.statusMessage).not.toEqual("");
+  });
+
+  it("renders when isOpen is true on an iOS device", () => {
+    Object.defineProperty(window.navigator, "userAgent", { value: "iphone" });
+    window.MSStream = false;
+    let modal = mount(<ShareModal {...props} />);
+    modal.setState({ isOpen: true });
+    expect(modal.find("input").length).not.toEqual(0);
+  });
+
+  it("the link is copied when the copy button is clicked", () => {
+    Object.defineProperty(window.navigator, "clipboard", {
+      value: { writeText: jest.fn() }
+    });
     let modal = mount(<ShareModal {...props} />);
     modal.setState({ isOpen: true });
     modal
@@ -73,5 +117,11 @@ describe("ShareModal", () => {
       .first()
       .simulate("click");
     expect(modal.instance().state.statusMessage).toEqual("");
+  });
+
+  it("doesn't render when we are on the server", () => {
+    process.browser = false;
+    let modal = mount(<ShareModal {...props} />);
+    expect(modal.html()).toEqual("<div></div>");
   });
 });

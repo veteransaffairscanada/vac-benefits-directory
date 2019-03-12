@@ -36,12 +36,7 @@ const NoResultsButtons = props => {
 
       <Body className={orText}>{props.t("BenefitsPane.or")}</Body>
 
-      <Button
-        className={button}
-        id="contact_us_button"
-        secondary
-        onClick={() => props.goToMap(props.url)}
-      >
+      <Button className={button} id="contact_us_button" secondary>
         {props.t("BenefitsPane.contact_us")}
       </Button>
     </div>
@@ -51,7 +46,6 @@ const NoResultsButtons = props => {
 NoResultsButtons.propTypes = {
   clearFilters: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  goToMap: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired
 };
 
