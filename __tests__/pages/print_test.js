@@ -91,7 +91,13 @@ describe("Print", () => {
       BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
         b => b.id
       )
-    ).toEqual(["benefit_2", "benefit_1", "benefit_0", "benefit_3"]);
+    ).toEqual([
+      "benefit_2",
+      "benefit_1",
+      "benefit_0",
+      "benefit_3",
+      "benefit_4"
+    ]);
   });
 
   it("renders benefits correctly", () => {

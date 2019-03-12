@@ -11,7 +11,7 @@ describe("CardHeaderImportantInfo", () => {
   beforeEach(() => {
     props = {
       t: translate,
-      benefit: benefitsFixture[1]
+      benefit: benefitsFixture[2]
     };
   });
 
@@ -22,12 +22,12 @@ describe("CardHeaderImportantInfo", () => {
 
   it("contains the note", () => {
     expect(mount(<CardHeaderImportantInfo {...props} />).text()).toContain(
-      benefitsFixture[1].noteEn
+      benefitsFixture[2].noteEn
     );
   });
 
   it("renders an anchor tag if a markdown link is included", () => {
-    props.benefit = benefitsFixture[0];
+    props.benefit = benefitsFixture[1];
     expect(
       mount(<CardHeaderImportantInfo {...props} />).find("a").length
     ).toEqual(1);

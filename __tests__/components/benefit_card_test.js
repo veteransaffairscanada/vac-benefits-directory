@@ -38,7 +38,7 @@ describe("BenefitCard", () => {
   beforeEach(() => {
     props = {
       t: () => "en",
-      benefit: benefitsFixture[0],
+      benefit: benefitsFixture[1],
       currentLanguage: "en",
       veteranBenefitIds: [],
       familyBenefitIds: [],
@@ -72,7 +72,7 @@ describe("BenefitCard", () => {
   });
 
   it("contains the name", () => {
-    expect(mountedBenefitCard().text()).toContain(benefitsFixture[0].vacNameEn);
+    expect(mountedBenefitCard().text()).toContain(benefitsFixture[1].vacNameEn);
   });
 
   it("contains the description", () => {
@@ -81,7 +81,7 @@ describe("BenefitCard", () => {
         .find(".cardDescription")
         .first()
         .text()
-    ).toEqual(benefitsFixture[0].oneLineDescriptionEn);
+    ).toEqual(benefitsFixture[1].oneLineDescriptionEn);
   });
 
   it("hides the Favourite Button if savedList is false", () => {
@@ -105,7 +105,7 @@ describe("BenefitCard", () => {
 
     it("contains the French name", () => {
       expect(mountedBenefitCard().text()).toContain(
-        benefitsFixture[0].vacNameFr
+        benefitsFixture[1].vacNameFr
       );
     });
 

@@ -11,7 +11,7 @@ describe("ExampleBullets", () => {
   beforeEach(() => {
     props = {
       t: x => x,
-      benefit: benefitsFixture[0],
+      benefit: benefitsFixture[1],
       benefitExamples: benefitExamplesFixture,
       searchString: "",
       language: "en"

@@ -10,7 +10,7 @@ describe("LearnMoreButton", () => {
 
   beforeEach(() => {
     props = {
-      benefit: benefitsFixture[0],
+      benefit: benefitsFixture[1],
       t: () => "en"
     };
   });

@@ -16,6 +16,12 @@ const needsFixture = [
     nameEn: "Need 2",
     nameFr: "Fr Need 2",
     benefits: ["benefit_1", "benefit_3"]
+  },
+  {
+    id: "need_3",
+    nameEn: "Need 3",
+    nameFr: "Fr Need 3",
+    benefits: ["benefit_4"]
   }
 ];
 
