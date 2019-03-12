@@ -33,6 +33,11 @@ const tableCellGreen = css`
 const tableCellRed = css`
   color: red !important;
 `;
+const envDetailsStyling = css`
+  flex: 1;
+  color: ${globalTheme.colour.charcoalGrey};
+  font-weight: bold !important;
+`;
 
 export class DataValidation extends Component {
   constructor(props) {
@@ -130,6 +135,10 @@ export class DataValidation extends Component {
   };
 
   render() {
+    const envDetails = process.env.CIRCLE_SHA1
+      ? process.env.CIRCLE_SHA1.substring(0, 7)
+      : process.env.NODE_ENV;
+
     const {
       i18n,
       t,
@@ -210,6 +219,7 @@ export class DataValidation extends Component {
         url={this.props.url}
       >
         <Container id="mainContent">
+          <p className={envDetailsStyling}>Build: {envDetails}</p>
           <Paper className={cx(root, top)}>
             <p>
               {t("dv.last_cache_update")}
