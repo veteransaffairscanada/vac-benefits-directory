@@ -13,32 +13,31 @@ The setup documentation can be found below. If you'd like to contribute to the p
 
 These need to be set on the production service for the app to function correctly.
 Some are also required for testing. You will also need some of these set for local development
-(at the very least, you should have `AIRTABLE_READ_KEY` and `GOOGLE_MAPS_KEY`).
+(at the very least, you should have `AIRTABLE_READ_KEY`).
 Contact other developers on the project for what values we're currently using.
 
-| Variable                     | Use                                                                                                          | Where                           |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| `AIRTABLE_READ_KEY`          | load data (benefits / translations / etc) from Airtable                                                      | production / locally            |
-| `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                                                                         | production                      |
-| `AIRTABLE_BASE_KEY`          | This tells the app which Airtable base to pull data from. If it is not set, the CDS master base will be used | production / locally            |
-| `GOOGLE_MAPS_KEY`            | do Google Maps queries on the map page                                                                       | production / locally / CircleCI |
-| `SENTRY_DSN`                 | save browser errors to Sentry                                                                                | production                      |
-| `GA_UA`                      | track app usage with Google Analytics for VAC                                                                | production                      |
-| `GA_UA_CDS`                  | track app usage with Google Analytics for CDS                                                                | production                      |
-| `GITHUB_PUBLIC_ACCESS_TOKEN` | gather data from GitHub for the stats page                                                                   | production                      |
-| `WEBHOOK_URL`                | Sends slack deployment notifications                                                                         | production                      |
-| `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                                                                        | locally                         |
-| `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                                                                        | locally                         |
+| Variable                     | Use                                                                                                          | Where                |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------- |
+| `AIRTABLE_READ_KEY`          | load data (benefits / translations / etc) from Airtable                                                      | production / locally |
+| `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                                                                         | production           |
+| `AIRTABLE_BASE_KEY`          | This tells the app which Airtable base to pull data from. If it is not set, the CDS master base will be used | production / locally |
+| `SENTRY_DSN`                 | save browser errors to Sentry                                                                                | production           |
+| `GA_UA`                      | track app usage with Google Analytics for VAC                                                                | production           |
+| `GA_UA_CDS`                  | track app usage with Google Analytics for CDS                                                                | production           |
+| `GITHUB_PUBLIC_ACCESS_TOKEN` | gather data from GitHub for the stats page                                                                   | production           |
+| `WEBHOOK_URL`                | Sends slack deployment notifications                                                                         | production           |
+| `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                                                                        | locally              |
+| `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                                                                        | locally              |
 
 Note that CDS docker images are public, so you should not put any sensitive (ie write) keys in the docker image.
 
 ### Adding a new environment locally (OS X)
 
 1.  In the terminal, run: `nano ~/.bash_profile` (or `nano ~/.zshrc` if you're using the zsh shell)
-2.  Add the following line: `export GOOGLE_MAPS_KEY="foo"`
+2.  Add the following line: `export AIRTABLE_READ_KEY="foo"`
 3.  [ctrl] + x, and type `y` to save
 4.  `source ~/.bash_profile` (or `source ~/.zshrc`)
-5.  `echo $GOOGLE_MAPS_KEY` to make sure it is set
+5.  `echo $AIRTABLE_READ_KEY` to make sure it is set
 
 ### Adding a new environment locally (Windows 7)
 
@@ -116,32 +115,31 @@ La documentation sur la configuration se trouve ci-dessous. Si vous voulez contr
 
 ## Variables d’environnement
 
-Il faut établir les variables d’environnement dans le service de production pour que l’application fonctionne correctement. Certaines sont également nécessaires pour les tests. Il faut également établir certaines variables pour le développement local (à tout le moins, vous devriez avoir `AIRTABLE_READ_KEY` et `GOOGLE_MAPS_KEY`).
+Il faut établir les variables d’environnement dans le service de production pour que l’application fonctionne correctement. Certaines sont également nécessaires pour les tests. Il faut également établir certaines variables pour le développement local (à tout le moins, vous devriez avoir `AIRTABLE_READ_KEY`).
 Communiquez avec d’autres développeurs sur le projet pour connaître les valeurs que nous utilisons actuellement.
 
-| Variable                     | Utilisation                                                                                                                                             | Emplacement                    |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| `AIRTABLE_READ_KEY`          | télécharger des données (avantages/traductions/autres) à partir d’Airtable                                                                              | production/localement          |
-| `AIRTABLE_WRITE_KEY`         | écrire des données de formulaire de rétroaction dans Airtable                                                                                           | production                     |
-| `AIRTABLE_BASE_KEY`          | indiquer à l’application la base d’Airtable d’où il faut extraire les données; si cette variable n’est pas établie, la base maître du SNC sera utilisée | production/localement          |
-| `GOOGLE_MAPS_KEY`            | effectuer des requêtes Google Maps sur la page de la carte                                                                                              | production/localement/CircleCI |
-| `SENTRY_DSN`                 | enregistrer les erreurs du navigateur dans Sentry                                                                                                       | production                     |
-| `GA_UA`                      | faire le suivi de l’utilisation de l’app à l’aide de Google Analytics pour ACC                                                                          | production                     |
-| `GA_UA_CDS`                  | faire le suivi de l’utilisation de l’app à l’aide de Google Analytics pour le SNC                                                                       | production                     |
-| `GITHUB_PUBLIC_ACCESS_TOKEN` | recueillir des données de GitHub pour la page des statistiques                                                                                          | production                     |
-| `WEBHOOK_URL`                | envoyer les notifications de déploiement de Slack                                                                                                       | production                     |
-| `BROWSERSTACK_USERNAME`      | exécuter des tests dans Windows à l’aide de BrowserStack                                                                                                | localement                     |
-| `BROWSERSTACK_ACCESS_KEY`    | exécuter des tests dans Windows à l’aide de BrowserStack                                                                                                | localement                     |
+| Variable                     | Utilisation                                                                                                                                             | Emplacement           |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `AIRTABLE_READ_KEY`          | télécharger des données (avantages/traductions/autres) à partir d’Airtable                                                                              | production/localement |
+| `AIRTABLE_WRITE_KEY`         | écrire des données de formulaire de rétroaction dans Airtable                                                                                           | production            |
+| `AIRTABLE_BASE_KEY`          | indiquer à l’application la base d’Airtable d’où il faut extraire les données; si cette variable n’est pas établie, la base maître du SNC sera utilisée | production/localement |
+| `SENTRY_DSN`                 | enregistrer les erreurs du navigateur dans Sentry                                                                                                       | production            |
+| `GA_UA`                      | faire le suivi de l’utilisation de l’app à l’aide de Google Analytics pour ACC                                                                          | production            |
+| `GA_UA_CDS`                  | faire le suivi de l’utilisation de l’app à l’aide de Google Analytics pour le SNC                                                                       | production            |
+| `GITHUB_PUBLIC_ACCESS_TOKEN` | recueillir des données de GitHub pour la page des statistiques                                                                                          | production            |
+| `WEBHOOK_URL`                | envoyer les notifications de déploiement de Slack                                                                                                       | production            |
+| `BROWSERSTACK_USERNAME`      | exécuter des tests dans Windows à l’aide de BrowserStack                                                                                                | localement            |
+| `BROWSERSTACK_ACCESS_KEY`    | exécuter des tests dans Windows à l’aide de BrowserStack                                                                                                | localement            |
 
 Veuillez noter que les images Docker du SNC sont publiques. Par conséquent, vous ne devez pas mettre des clés de nature délicate (c’est-à-dire, rédiger) dans l’image Docker.
 
 ### Ajouter un nouvel environnement localement (OS X)
 
 1.  1. Dans le terminal, exécutez : `nano ~/.bash_profile` (ou `nano ~/.zshrc` si vous utilisez l’interpréteur de commandes zsh).
-2.  2. Ajoutez la ligne suivante : `export GOOGLE_MAPS_KEY="foo"`.
+2.  2. Ajoutez la ligne suivante : `export AIRTABLE_READ_KEY="foo"`.
 3.  3. Appuyez sur [Ctrl] + X, et tapez `y` pour enregistrer.
 4.  `source ~/.bash_profile` (ou `source ~/.zshrc`).
-5.  `echo $GOOGLE_MAPS_KEY` pour vous assurer que la variable est établie.
+5.  `echo $AIRTABLE_READ_KEY` pour vous assurer que la variable est établie.
 
 ### Ajouter un nouvel environnement localement (Windows 7)
 

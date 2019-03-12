@@ -88,9 +88,7 @@ class Layout extends Component {
                   <VacHeaderFr t={t} url={url} />
                 )}
               </div>
-              <div role="main" id="main">
-                {this.props.children}
-              </div>
+              <main id="main">{this.props.children}</main>
             </Content>
             <div className={backgoundColour1}>
               <Container>

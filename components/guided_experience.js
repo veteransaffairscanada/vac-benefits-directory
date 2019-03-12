@@ -193,7 +193,7 @@ export class GuidedExperience extends Component {
         </div>
         <Paper padding="md" className={box}>
           <AlphaBanner t={t} url={url} />
-          <Grid container spacing={24}>
+          <Grid container spacing={24} role="form">
             {id === "patronType" ? (
               <React.Fragment>
                 <Grid item xs={12}>

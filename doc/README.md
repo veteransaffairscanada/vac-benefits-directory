@@ -63,8 +63,6 @@ We are using Heroku for two purposes:
   (for user and accessibility testing, and the VAC Working Group), and
 - to create apps from branches to help with pull request review
 
-We have a Heroku "CDS team" which the developers have admin access to, at https://dashboard.heroku.com/teams/cds/overview
-
 To create a one-off app:
 
 - Use the "New" button in the upper right corner, and click "Create new app".
@@ -362,8 +360,6 @@ Nous utilisons Heroku à deux fins :
 
 - pour nous permettre de déployer rapidement une branche fixe dans le Web (pour les tests d’utilisation et d’accessibilité, et le Groupe de travail d’ACC);
 - pour créer des applications à partir des branches en vue de faciliter l’examen des demandes de tirage.
-
-Nous avons un Heroku « équipe du SNC » auquel les développeurs ont un accès administrateur, à https://dashboard.heroku.com/teams/cds/overview (en anglais).
 
 Pour créer une application ponctuelle :
 
