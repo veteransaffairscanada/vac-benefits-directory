@@ -18,11 +18,26 @@ const root = css`
   padding: 25px;
 `;
 const clearButton = css`
-  font-size: 16px !important;
+  font-size: 16px;
+  font-weight: normal;
+  padding-top: 15px;
+  padding-right: 0px;
+  line-height: 1.69;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-decoration: underline;
 `;
 const filterTitle = css`
-  font-size: 22px !important;
+  font-size: 22px;
   color: ${globalTheme.colour.greyishBrown};
+`;
+const profileStyle = css`
+  padding-top: 15px;
+`;
+const divider = css`
+  border-top: 1px solid ${globalTheme.colour.darkPaleGrey};
+  width: 100%;
 `;
 
 export class SelectionsEditor extends Component {
@@ -54,9 +69,11 @@ export class SelectionsEditor extends Component {
 
     return (
       <Grid container className={root}>
-        <Header size="sm_md" className={filterTitle}>
-          {t("directory.edit_selections")}
-        </Header>
+        <Grid item xs={12}>
+          <Header size="sm_md" className={filterTitle}>
+            {t("directory.edit_selections")}
+          </Header>
+        </Grid>
         <Grid item xs={12}>
           {this.countSelected() > 0 ? (
             <HeaderButton
@@ -66,15 +83,16 @@ export class SelectionsEditor extends Component {
                 this.clearFilters();
               }}
             >
-              {t("reset filters")} {"(" + this.countSelected() + ")"}
+              {t("reset filters")}
             </HeaderButton>
           ) : null}
         </Grid>
 
-        <Grid item xs={12}>
+        <Grid item xs={12} className={profileStyle}>
           <ProfileSelector t={t} store={store} url={url} />
         </Grid>
-        <Grid item xs={12}>
+        <div className={divider} />
+        <Grid item xs={12} className={profileStyle}>
           <NeedsSelector t={t} store={store} url={url} />
         </Grid>
       </Grid>

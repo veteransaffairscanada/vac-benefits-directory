@@ -2949,8 +2949,8 @@
     },
     {
       "key": "reset filters",
-      "English": "Reset",
-      "French": "Réinitialiser",
+      "English": "Reset all",
+      "French": "Reset all (fra)",
       "id": "reset filters",
       "section": ""
     },

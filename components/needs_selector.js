@@ -17,8 +17,6 @@ const needsButtons = css`
 `;
 
 const topBorder = css`
-  border-top: 1px solid ${globalTheme.colour.darkPaleGrey};
-  padding-top: 30px;
   margin-top: 15px;
 `;
 

@@ -12,7 +12,6 @@ import { globalTheme } from "../theme";
 import { css } from "emotion";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
-import CloseIcon from "./icons/Close";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
@@ -26,18 +25,34 @@ const summary = css`
   color: ${globalTheme.colour.greyishBrown} !important;
 `;
 const clearButton = css`
-  font-size: 16px !important;
+  font-size: 16px;
+  font-weight: normal;
+  padding-right: 0px;
+  line-height: 1.69;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-decoration: underline;
 `;
 const filterTitle = css`
   color: ${globalTheme.colour.greyishBrown};
 `;
-const closeIcon = css`
-  font-size: 100% !important;
-  margin-left ${globalTheme.unit};
-  font-weight: bold;
-`;
 const greyishBrown = css`
   color: ${globalTheme.colour.greyishBrown};
+`;
+const profileStyle = css`
+  padding-top: 15px;
+  padding-left: 15px;
+  padding-bottom: 15px;
+`;
+const needsStyle = css`
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+`;
+const divider = css`
+  border-top: 1px solid ${globalTheme.colour.darkPaleGrey};
+  width: 100%;
 `;
 export class ProfileNeedsSelectorMobile extends Component {
   state = {
@@ -88,28 +103,25 @@ export class ProfileNeedsSelectorMobile extends Component {
 
         <ExpansionPanelDetails>
           <Grid container>
-            <Grid item sm={12}>
+            <Grid item xs={12}>
+              {this.countSelected() > 0 ? (
+                <HeaderButton
+                  id="ClearFilters"
+                  className={clearButton}
+                  onClick={() => {
+                    this.clearFilters();
+                  }}
+                >
+                  {t("reset filters")}
+                </HeaderButton>
+              ) : null}
+            </Grid>
+            <Grid item sm={12} className={profileStyle}>
               <ProfileSelector t={t} store={store} url={url} />
             </Grid>
-            <Grid item sm={12}>
+            <div className={divider} />
+            <Grid item sm={12} className={needsStyle}>
               <NeedsSelector t={t} store={store} url={url} />
-
-              {this.countSelected() > 0 ? (
-                <h3 variant="title" className={filterTitle}>
-                  <HeaderButton
-                    id="ClearFiltersMobile"
-                    className={clearButton}
-                    onClick={() => {
-                      this.clearFilters();
-                    }}
-                  >
-                    {t("reset filters")} {"(" + this.countSelected() + ")"}
-                    <CloseIcon className={closeIcon} />
-                  </HeaderButton>
-                </h3>
-              ) : (
-                ""
-              )}
             </Grid>
           </Grid>
         </ExpansionPanelDetails>
