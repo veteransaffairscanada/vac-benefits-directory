@@ -13,7 +13,7 @@ import {
 import { css } from "emotion";
 import Header from "./typography/header";
 import SearchBox from "./search_box";
-import { getLink, getBenefitCountString } from "../utils/common";
+import { getBenefitCountString } from "../utils/common";
 import NoResultsButtons from "./no_results_buttons";
 import ResultsHeader from "./results_header";
 
