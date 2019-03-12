@@ -24,6 +24,7 @@ const Content = styled("div")`
 `;
 const black_bg = css`
   background-color: ${globalTheme.colour.blackish2};
+  padding-bottom: 6px;
 `;
 const backgoundColour1 = css`
   background-color: ${globalTheme.colour.greyishBrownTwo};

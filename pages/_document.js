@@ -10,7 +10,13 @@ import { globalTheme } from "../theme";
 const bodyStyling = {
   fontFamily: globalTheme.fontFamilySerif,
   margin: 0,
-  WebkitFontSmoothing: "antialiased"
+  WebkitFontSmoothing: "antialiased",
+  textRendering: "optimizeLegibility",
+  textSizeAdjust: "100%"
+  // lineHeight: 1.4375,
+  // fontSize: "16px",
+  // boxSizing: "border-box",
+  // WebkitBoxSizing: "border-box"
 };
 
 class MyDocument extends Document {
