@@ -1,19 +1,16 @@
 import React from "react";
-import LanguageButton from "../../components/language_button";
+import VacHeaderFr from "../../components/vac_header_fr";
 import { mount } from "enzyme";
 import translate from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 jest.mock("react-ga");
 
-describe("LanguageButton", () => {
+describe("VacHeaderFr", () => {
   let props;
 
   beforeEach(() => {
     props = {
-      i18n: {
-        changeLanguage: () => {}
-      },
       t: translate,
       url: {
         push: jest.fn(),
@@ -24,13 +21,13 @@ describe("LanguageButton", () => {
   });
 
   it("passes axe tests", async () => {
-    let html = mount(<LanguageButton {...props} />).html();
+    let html = mount(<VacHeaderFr {...props} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
   it("has the correct href", () => {
     expect(
-      mount(<LanguageButton {...props} />)
+      mount(<VacHeaderFr {...props} />)
         .find("#changeLanguage")
         .at(0)
         .prop("href")
@@ -40,7 +37,7 @@ describe("LanguageButton", () => {
   it("Language change logged with Google Analytics", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
-    mount(<LanguageButton {...props} />)
+    mount(<VacHeaderFr {...props} />)
       .find("#changeLanguage")
       .at(0)
       .simulate("click");
