@@ -12,11 +12,9 @@ const bodyStyling = {
   margin: 0,
   WebkitFontSmoothing: "antialiased",
   textRendering: "optimizeLegibility",
-  textSizeAdjust: "100%"
-  // lineHeight: 1.4375,
-  // fontSize: "16px",
-  // boxSizing: "border-box",
-  // WebkitBoxSizing: "border-box"
+  textSizeAdjust: "100%",
+  fontWeight: 400,
+  lineHeight: 1.4375
 };
 
 class MyDocument extends Document {

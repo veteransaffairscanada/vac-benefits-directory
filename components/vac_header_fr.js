@@ -76,7 +76,7 @@ class VacHeaderFr extends Component {
                   <h2 className="wb-inv">Mon dossier ACC / My VAC Account</h2>
                   <a href={path + "fra/e_services/"} className="h6 light-grey">
                     Mon dossier{" "}
-                    <abbr title="Anciens Combattants Canada">ACC</abbr>
+                    <abbr title="Anciens Combattants Canada">ACC</abbr>&nbsp;
                     <img
                       id="mva-logo"
                       className="mrgn-lft-sm"
