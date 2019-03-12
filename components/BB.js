@@ -19,7 +19,7 @@ import QuickLinks from "./quick_links";
 import StickyHeader from "./sticky_header";
 import AlphaBanner from "./alpha_banner";
 import SelectionsEditor from "./selections_editor";
-import ProfileNeedsSelectorMobile from "./profile_needs_selector_mobile";
+import SelectionsEditorMobile from "./selections_editor_mobile";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -121,7 +121,7 @@ export class BB extends Component {
                 </Header>
               </div>
               {onMobile ? (
-                <ProfileNeedsSelectorMobile t={t} store={store} url={url} />
+                <SelectionsEditorMobile t={t} store={store} url={url} />
               ) : (
                 <SelectionsEditor t={t} store={store} url={url} />
               )}

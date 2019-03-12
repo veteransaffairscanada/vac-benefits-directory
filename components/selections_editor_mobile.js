@@ -54,7 +54,7 @@ const divider = css`
   border-top: 1px solid ${globalTheme.colour.darkPaleGrey};
   width: 100%;
 `;
-export class ProfileNeedsSelectorMobile extends Component {
+export class SelectionsEditorMobile extends Component {
   state = {
     open: false
   };
@@ -151,7 +151,7 @@ const mapStateToProps = reduxState => {
   };
 };
 
-ProfileNeedsSelectorMobile.propTypes = {
+SelectionsEditorMobile.propTypes = {
   url: PropTypes.object.isRequired,
   profileQuestions: PropTypes.array.isRequired,
   responses: PropTypes.object.isRequired,
@@ -164,4 +164,4 @@ ProfileNeedsSelectorMobile.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileNeedsSelectorMobile);
+)(SelectionsEditorMobile);
