@@ -88,9 +88,8 @@ export class FavouriteButton extends Component {
           <button
             className={xButton}
             disabled={this.props.cookiesDisabled}
-            ariaLabel={longButtonText + " " + benefitName}
+            aria-label={longButtonText + " " + benefitName}
             id={"favourite-" + benefit.id}
-            aria-label={t("B3.favouritesButtonText")}
             onClick={() => this.toggleFavourite(benefit.id)}
             onMouseOver={() => {
               this.props.setCookiesDisabled(areCookiesDisabled());
