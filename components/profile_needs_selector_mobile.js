@@ -106,7 +106,7 @@ export class ProfileNeedsSelectorMobile extends Component {
             <Grid item xs={12}>
               {this.countSelected() > 0 ? (
                 <HeaderButton
-                  id="ClearFilters"
+                  id="ClearFiltersMobile"
                   className={clearButton}
                   onClick={() => {
                     this.clearFilters();
