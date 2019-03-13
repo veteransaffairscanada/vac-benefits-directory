@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import ShareBox from "../components/share_box";
-import EditIcon from "./icons/Edit";
+//import EditIcon from "./icons/Edit";
 import HeaderLink from "./header_link";
 import SaveChecked from "./icons/SaveChecked";
 import { css } from "emotion";
@@ -43,7 +43,7 @@ const savedListStyle = css`
     margin-left: 25px;
   }
 `;
-
+/*
 const editStyle = css`
   padding: 0;
   font-size: 20px;
@@ -52,10 +52,10 @@ const editStyle = css`
     font-size: 12px !important;
   }
 `;
-
+*/
 export class StickyHeader extends Component {
   render() {
-    const { t, url, summaryUrl, favouriteBenefits, showShareLink } = this.props;
+    const { t, url, favouriteBenefits, showShareLink } = this.props;
 
     const longFavouritesText = t("favourites.saved_benefits", {
       x: favouriteBenefits.length
@@ -67,7 +67,7 @@ export class StickyHeader extends Component {
     return (
       <Grid item xs={12} className={sticky}>
         <Grid container spacing={8}>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <ShareBox
               t={t}
               printUrl={this.props.printUrl}
@@ -75,10 +75,10 @@ export class StickyHeader extends Component {
               showShareLink={showShareLink}
             />
           </Grid>
-          <Grid item xs={8} className={alignRight}>
-            <HeaderLink
+          <Grid item xs={6} className={alignRight}>
+            {/* <HeaderLink
               id="editSelections"
-              href={summaryUrl}
+              href={this.props.summaryUrl}
               className={editStyle}
             >
               <EditIcon />
@@ -86,7 +86,7 @@ export class StickyHeader extends Component {
               <span className={shortText}>
                 {t("directory.edit_selections_mobile")}
               </span>
-            </HeaderLink>
+            </HeaderLink> */}
             <HeaderLink
               className={savedListStyle}
               id="savedBenefits"

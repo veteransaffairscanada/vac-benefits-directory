@@ -4,6 +4,8 @@ import Checkbox from "./checkbox";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { css } from "emotion";
+import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
 const style = css`
   margin-bottom: 10px;
@@ -20,6 +22,13 @@ export class NeedButton extends Component {
       newSelectedNeeds[id] = id;
     }
     this.props.setSelectedNeeds(newSelectedNeeds);
+
+    let needsParams = Object.keys(newSelectedNeeds);
+
+    if (this.props.updateUrl) {
+      this.props.url.query["selectedNeeds"] = needsParams.join();
+      Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
+    }
   };
 
   render() {
@@ -31,6 +40,7 @@ export class NeedButton extends Component {
         value={need.id}
         disabled={disabled ? "disabled" : null}
         className={style}
+        sidebar={this.props.updateUrl}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </Checkbox>
@@ -60,11 +70,14 @@ NeedButton.propTypes = {
   setSelectedNeeds: PropTypes.func.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   disabled: PropTypes.string,
-  store: PropTypes.object
+  store: PropTypes.object,
+  updateUrl: PropTypes.bool,
+  url: PropTypes.object
 };
 
 NeedButton.defaultProps = {
-  disabled: ""
+  disabled: "",
+  updateUrl: false
 };
 
 export default connect(
