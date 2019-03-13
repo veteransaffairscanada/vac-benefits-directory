@@ -129,7 +129,7 @@ export class BenefitCard extends Component {
                 />
               ))}
             </div>
-            <OneLiner style={cardDescriptionText}>
+            <OneLiner className={"cardDescription"} style={cardDescriptionText}>
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}

@@ -180,7 +180,7 @@ export class Print extends Component {
             <Grid item xs={12}>
               <div css={box}>
                 <div css={bold}>{t("print.who_is_receiving")}</div>
-                <div css={"profile_section " + rules}>{profile_text}</div>
+                <div className={"profile_section " + rules}>{profile_text}</div>
 
                 <div css="needs_section">
                   <Grid container spacing={0}>
@@ -215,7 +215,7 @@ export class Print extends Component {
               return (
                 <tr key={i} css={benefitRow}>
                   <td css={benefitCell}>
-                    <div css="benefitsListItem">
+                    <div className="benefitsListItem">
                       <div>
                         <b>
                           {t("current-language-code") == "en"

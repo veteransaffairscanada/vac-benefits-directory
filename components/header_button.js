@@ -51,7 +51,6 @@ class HeaderButton extends Component {
   render() {
     const {
       id,
-      css,
       children,
       size,
       altStyle,
@@ -62,7 +61,7 @@ class HeaderButton extends Component {
       ...otherProps
     } = this.props;
 
-    let cName = [css];
+    let cName = [this.props.style];
     if (size === "small") cName.unshift(small);
     if (altStyle === "grey") cName.unshift(grey);
     if (hasBorder === true) cName.unshift(borderStyle);
@@ -92,7 +91,7 @@ HeaderButton.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-  css: PropTypes.string,
+  style: PropTypes.object,
   label: PropTypes.object,
   disabled: PropTypes.bool,
   hasBorder: PropTypes.bool,

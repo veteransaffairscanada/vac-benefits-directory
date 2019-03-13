@@ -22,7 +22,7 @@ describe("NoResultsButtons", () => {
 
   it("contains 2 buttons", () => {
     expect(
-      shallow(<NoResultsButtons {...props} />).find("Button").length
+      mount(<NoResultsButtons {...props} />).find("Button").length
     ).toEqual(2);
   });
 });

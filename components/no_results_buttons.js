@@ -34,7 +34,7 @@ const NoResultsButtons = props => {
         {props.t("BenefitsPane.reset_filters")}
       </Button>
 
-      <Body css={orText}>{props.t("BenefitsPane.or")}</Body>
+      <Body style={orText}>{props.t("BenefitsPane.or")}</Body>
 
       <Button css={button} id="contact_us_button" secondary>
         {props.t("BenefitsPane.contact_us")}

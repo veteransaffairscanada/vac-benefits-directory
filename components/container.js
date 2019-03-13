@@ -44,7 +44,7 @@ Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   id: PropTypes.string,
   mobileFullWidth: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.object
 };
 
 export default Container;

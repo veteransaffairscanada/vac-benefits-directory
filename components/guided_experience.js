@@ -255,7 +255,7 @@ export class GuidedExperience extends Component {
                     <HeaderButton
                       id="skipButton"
                       altStyle="grey"
-                      css={mobileFullWidth}
+                      style={mobileFullWidth}
                     >
                       {t("ge.skip")}
                     </HeaderButton>

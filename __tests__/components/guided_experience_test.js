@@ -36,7 +36,7 @@ describe("GuidedExperience", () => {
       id: "serviceType",
       prevSection: "patronType",
       stepNumber: 1,
-      children: <div css="thing" />,
+      children: <div className="thing" />,
       subtitle: "subtitle",
       url: {
         query: { lng: "en", patronType: "veteran", serviceType: "RCMP" },

@@ -93,7 +93,7 @@ export class Feedback extends Component {
             onClick={() => {
               window.history.back();
             }}
-            css={prevButton}
+            style={prevButton}
             arrow="back"
           >
             {t("back")}
