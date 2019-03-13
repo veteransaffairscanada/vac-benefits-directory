@@ -49,7 +49,7 @@ class VacHeaderEn extends Component {
                     />
                   </a>
                 </li>
-
+                &nbsp;
                 <li>
                   <a
                     lang="fr"
@@ -71,6 +71,7 @@ class VacHeaderEn extends Component {
                     />
                   </a>
                 </li>
+                &nbsp; &nbsp;
                 <li id="vac-mva">
                   <h2 className="wb-inv">My VAC Account / Mon dossier ACC</h2>
                   <a href={path + "/eng/e_services/"} className="h6 light-grey">

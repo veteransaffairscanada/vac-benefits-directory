@@ -73,7 +73,7 @@ class MyDocument extends Document {
           <link
             rel="stylesheet"
             type="text/css"
-            href={"../static/vac_css_used.css"}
+            href={"../static/vac_footer.css"}
           />
           <link
             rel="stylesheet"

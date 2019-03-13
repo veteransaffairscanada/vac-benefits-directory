@@ -49,7 +49,7 @@ class VacHeaderFr extends Component {
                     />
                   </a>
                 </li>
-
+                &nbsp;
                 <li>
                   <a
                     id="changeLanguage"
@@ -71,7 +71,7 @@ class VacHeaderFr extends Component {
                     />
                   </a>
                 </li>
-
+                &nbsp;
                 <li id="vac-mva">
                   <h2 className="wb-inv">Mon dossier ACC / My VAC Account</h2>
                   <a href={path + "fra/e_services/"} className="h6 light-grey">

@@ -1,7 +1,7 @@
 #footer_styles {
   /*! CSS Used from: Embedded */
   /*! CSS Used from: https://www.veterans.gc.ca/GCWeb_5.0.1/GCWeb/css/theme.min.css */
-  /*! CSS Used from: https://www.veterans.gc.ca/css/2018-redesign/2018-redesign-custom.css */
+  /*! CSS Used from: https://www.veterans.gc.ca/css/2018-redesign/2018-redesign-custom-min.css */
   /*! CSS Used fontfaces */
 }
 #footer_styles svg:not(:root).svg-inline--fa {
@@ -123,16 +123,6 @@
 #footer_styles .list-unstyled {
   padding-left: 0;
   list-style: none;
-}
-#footer_styles .list-inline {
-  padding-left: 0;
-  list-style: none;
-  margin-left: -5px;
-}
-#footer_styles .list-inline > li {
-  display: inline-block;
-  padding-right: 5px;
-  padding-left: 5px;
 }
 #footer_styles abbr[title] {
   cursor: help;
@@ -356,6 +346,9 @@
   position: absolute;
   width: 1px;
 }
+#footer_styles .mrgn-lft-sm {
+  margin-left: 5px;
+}
 #footer_styles .mrgn-bttm-lg {
   margin-bottom: 30px;
 }
@@ -475,40 +468,42 @@
 }
 #footer_styles .tp-pg-flt {
   position: fixed;
-  bottom: 0em;
+  bottom: 0;
   z-index: 999;
-  right: 0em;
+  right: 1em;
   background-color: #634f70;
-  padding: 10px 20px 0px 20px;
+  padding: 10px 20px 0;
 }
 #footer_styles .tp-pg-flt ul li {
-  color: #ffffff;
+  color: #fff;
 }
 #footer_styles .container {
-  outline: none !important;
+  outline: 0 !important;
 }
 #footer_styles h2,
 #footer_styles h3 {
   color: #2f3437;
-  font-family: "Montserrat", sans-serif;
+  font-family: Montserrat, sans-serif;
   font-weight: 700;
   margin-bottom: 16px;
 }
-#footer_styles h2,
-#footer_styles .home h2 {
+#footer_styles .home h2,
+#footer_styles h2 {
   font-size: 28px;
   letter-spacing: -0.5px;
 }
-#footer_styles h3,
-#footer_styles .home h3 {
+#footer_styles .home h3,
+#footer_styles h3 {
   font-size: 22px;
-  font-family: "Montserrat", sans-serif;
+  font-family: Montserrat, sans-serif;
   letter-spacing: -0.5px;
   font-weight: 700;
 }
 #footer_styles li {
-  font-size: 16px;
   letter-spacing: -0.03em;
+}
+#footer_styles li {
+  font-size: 16px;
 }
 #footer_styles p {
   font-size: 16px;
@@ -517,12 +512,9 @@
   margin-bottom: 16px;
 }
 #footer_styles a,
-#footer_styles a:hover,
+#footer_styles a:active,
 #footer_styles a:focus,
-#footer_styles a:active {
-  color: #2f3437;
-  text-decoration: underline;
-}
+#footer_styles a:hover,
 #footer_styles a:visited {
   color: #2f3437;
   text-decoration: underline;
@@ -532,13 +524,27 @@
   border-bottom: 1px dotted #434458;
   text-decoration: none;
 }
+#footer_styles footer#wb-info a.btn,
+#footer_styles footer#wb-info a.btn-default-outline,
+#footer_styles footer#wb-info a.btn-default-outline:link,
+#footer_styles footer#wb-info a.btn:active,
+#footer_styles footer#wb-info a.btn:focus,
+#footer_styles footer#wb-info a.btn:hover,
+#footer_styles footer#wb-info a.btn:link,
+#footer_styles footer#wb-info li a,
+#footer_styles footer#wb-info li a:active,
+#footer_styles footer#wb-info li a:focus,
+#footer_styles footer#wb-info li a:hover,
+#footer_styles footer#wb-info li a:link {
+  font-family: Montserrat, sans-serif;
+}
 #footer_styles #wb-info {
   color: #e6f0cb;
   background: #2e2e40;
 }
 #footer_styles #wb-info h2,
 #footer_styles #wb-info h3 {
-  color: #ffffff;
+  color: #fff;
 }
 #footer_styles #wb-info .brand {
   background-color: #2e2e40;
@@ -546,89 +552,84 @@
   border-top: 1px solid #434458;
 }
 #footer_styles #wb-info .brand li a {
-  font-family: "Montserrat", sans-serif;
+  font-family: Montserrat, sans-serif;
   color: #d5e2e9;
 }
 #footer_styles footer#wb-info a,
 #footer_styles footer#wb-info a:link {
   font-size: 18px;
-  color: #ffffff;
+  color: #fff;
   text-decoration: underline;
 }
-#footer_styles footer#wb-info a:hover,
+#footer_styles footer#wb-info a:active,
 #footer_styles footer#wb-info a:focus,
-#footer_styles footer#wb-info a:active {
-  color: #ffffff;
+#footer_styles footer#wb-info a:hover {
+  color: #fff;
   text-decoration: underline;
 }
 #footer_styles footer#wb-info a.btn,
 #footer_styles footer#wb-info a.btn:link {
-  font-family: "Montserrat", sans-serif;
   color: #2f3437;
   text-decoration: none;
 }
-#footer_styles footer#wb-info a.btn:hover,
-#footer_styles footer#wb-info a.btn:focus,
-#footer_styles footer#wb-info a.btn:active,
 #footer_styles footer#wb-info a.btn-default-outline,
-#footer_styles footer#wb-info a.btn-default-outline:link {
-  font-family: "Montserrat", sans-serif;
+#footer_styles footer#wb-info a.btn-default-outline:link,
+#footer_styles footer#wb-info a.btn:active,
+#footer_styles footer#wb-info a.btn:focus,
+#footer_styles footer#wb-info a.btn:hover {
   color: #d5e2e9;
   text-decoration: none;
 }
 #footer_styles footer#wb-info li a,
-#footer_styles footer#wb-info li a:link,
-#footer_styles footer#wb-info li a:hover,
+#footer_styles footer#wb-info li a:active,
 #footer_styles footer#wb-info li a:focus,
-#footer_styles footer#wb-info li a:active {
-  font-family: "Montserrat", sans-serif;
+#footer_styles footer#wb-info li a:hover,
+#footer_styles footer#wb-info li a:link {
   font-weight: 700;
-  color: #ffffff;
+  color: #fff;
   text-decoration: underline;
 }
 #footer_styles footer#wb-info li a:visited {
-  color: #ffffff;
+  color: #fff;
   text-decoration: underline;
 }
 #footer_styles .text-off-white {
-  color: white;
+  color: #fff;
 }
 #footer_styles .btn,
 #footer_styles a.btn {
-  font-family: "Montserrat", sans-serif;
+  font-family: Montserrat, sans-serif;
   font-weight: 700;
-  border-radius: 0px !important;
-  -webkit-transition: color 0.1s;
-  transition: color 0.1s;
+  border-radius: 0 !important;
   -webkit-transition: background-color 0.1s;
   transition: background-color 0.1s;
 }
 #footer_styles .btn-default,
-#footer_styles footer .btn-default,
-#footer_styles .btn-default:visited {
+#footer_styles .btn-default:visited,
+#footer_styles footer .btn-default {
   background-color: #d5e2e9;
   color: #2f3437;
   border: 3px solid #d5e2e9;
 }
-#footer_styles .btn-default:hover,
-#footer_styles footer .btn-default:hover,
+#footer_styles .btn-default:active,
 #footer_styles .btn-default:focus,
-#footer_styles .btn-default:active {
+#footer_styles .btn-default:hover,
+#footer_styles footer .btn-default:hover {
   background-color: #434458;
   color: #fff;
   border: 3px solid #434458;
 }
 #footer_styles .btn-default-outline,
-#footer_styles footer .btn-default-outline,
-#footer_styles .btn-default-outline:visited {
+#footer_styles .btn-default-outline:visited,
+#footer_styles footer .btn-default-outline {
   background: rgba(255, 255, 255, 0);
   color: #d5e2e9;
   border: 3px solid #d5e2e9;
 }
-#footer_styles .btn-default-outline:hover,
-#footer_styles footer .btn-default-outline:hover,
+#footer_styles .btn-default-outline:active,
 #footer_styles .btn-default-outline:focus,
-#footer_styles .btn-default-outline:active {
+#footer_styles .btn-default-outline:hover,
+#footer_styles footer .btn-default-outline:hover {
   background: #434458;
   color: #d5e2e9;
   border: 3px solid #434458;
@@ -640,9 +641,9 @@
     cursor: default;
     text-decoration: none;
   }
-  #footer_styles a[href^="tel:"].btn-default:hover,
-  #footer_styles a[href^="tel:"].btn-default:focus,
   #footer_styles a[href^="tel:"].btn-default:active,
+  #footer_styles a[href^="tel:"].btn-default:focus,
+  #footer_styles a[href^="tel:"].btn-default:hover,
   #footer_styles a[href^="tel:"].btn-default:visited {
     cursor: default;
     background-color: #d5e2e9;
@@ -650,7 +651,7 @@
     border: 3px solid #d5e2e9;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   #footer_styles .btn {
     font-size: 16px;
     width: 100%;
