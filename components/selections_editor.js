@@ -22,6 +22,7 @@ const clearButton = css`
   font-weight: normal;
   padding-top: 15px;
   padding-right: 0px;
+  padding-left: 0px;
   line-height: 1.69;
   font-style: normal;
   font-stretch: normal;
