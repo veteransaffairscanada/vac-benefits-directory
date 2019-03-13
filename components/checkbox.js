@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
@@ -82,18 +81,18 @@ const mobileLabelStyle = css`
   }
 `;
 
-const Checkbox = ({ children, className, ...props }) => {
+const Checkbox = ({ children, css, ...props }) => {
   const guid = uuidv4();
   return (
-    <StyledCheckbox className={className} htmlFor={guid}>
+    <StyledCheckbox css={css} htmlFor={guid}>
       <StyledInput type="checkbox" {...props} id={guid} />
-      <StyledLabel className={mobileLabelStyle}>{children}</StyledLabel>
+      <StyledLabel css={mobileLabelStyle}>{children}</StyledLabel>
     </StyledCheckbox>
   );
 };
 
 Checkbox.defaultProps = {
-  className: undefined
+  css: undefined
 };
 
 Checkbox.propTypes = {
@@ -104,7 +103,7 @@ Checkbox.propTypes = {
   /**
    * CSS Classname for outermost container
    */
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default Checkbox;

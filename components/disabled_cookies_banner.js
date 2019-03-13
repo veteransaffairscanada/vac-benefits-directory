@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -35,12 +34,8 @@ const CloseIcon = css`
 `;
 
 export const DisabledCookiesBanner = ({ t, onClose }) => (
-  <Body className={Banner}>
-    <button
-      className={CloseIcon}
-      aria-label="Hide cookie warning"
-      onClick={onClose}
-    >
+  <Body css={Banner}>
+    <button css={CloseIcon} aria-label="Hide cookie warning" onClick={onClose}>
       <Close />
     </button>
     <span>

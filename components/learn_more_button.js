@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -21,7 +20,7 @@ const LearnMoreButton = props => {
 
   return (
     <a
-      className={anchorFocus}
+      css={anchorFocus}
       href={url}
       rel="noopener noreferrer"
       onClick={() => {

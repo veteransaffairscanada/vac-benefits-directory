@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import ShareBox from "../components/share_box";
@@ -66,7 +66,7 @@ export class StickyHeader extends Component {
     });
 
     return (
-      <Grid item xs={12} className={sticky}>
+      <Grid item xs={12} css={sticky}>
         <Grid container spacing={8}>
           <Grid item xs={4}>
             <ShareBox
@@ -76,26 +76,22 @@ export class StickyHeader extends Component {
               showShareLink={showShareLink}
             />
           </Grid>
-          <Grid item xs={8} className={alignRight}>
-            <HeaderLink
-              id="editSelections"
-              href={summaryUrl}
-              className={editStyle}
-            >
+          <Grid item xs={8} css={alignRight}>
+            <HeaderLink id="editSelections" href={summaryUrl} css={editStyle}>
               <EditIcon />
-              <span className={longText}>{t("directory.edit_selections")}</span>
-              <span className={shortText}>
+              <span css={longText}>{t("directory.edit_selections")}</span>
+              <span css={shortText}>
                 {t("directory.edit_selections_mobile")}
               </span>
             </HeaderLink>
             <HeaderLink
-              className={savedListStyle}
+              css={savedListStyle}
               id="savedBenefits"
               href={this.props.favouritesUrl}
             >
               <SaveChecked />
-              <span className={longText}>{longFavouritesText}</span>
-              <span className={shortText}>{shortFavouritesText}</span>
+              <span css={longText}>{longFavouritesText}</span>
+              <span css={shortText}>{shortFavouritesText}</span>
             </HeaderLink>
           </Grid>
         </Grid>

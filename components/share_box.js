@@ -35,12 +35,12 @@ class ShareBox extends Component {
   uid = uuidv4();
 
   render() {
-    const { t, printUrl, url, showShareLink, className } = this.props;
+    const { t, printUrl, url, showShareLink, css } = this.props;
     return (
-      <div className={className}>
-        <span className={shareText}>{t("share_colon")}</span>
+      <div css={css}>
+        <span css={shareText}>{t("share_colon")}</span>
         <HeaderLink
-          className={shareBoxItem}
+          css={shareBoxItem}
           size="small"
           href={printUrl}
           target="_blank"
@@ -55,7 +55,7 @@ class ShareBox extends Component {
           <React.Fragment>
             <HeaderButton
               id={this.uid}
-              className={shareBoxItem}
+              css={shareBoxItem}
               size="small"
               aria-label={t("titles.share")}
               onClick={() => this.setState({ showModal: true })}
@@ -82,7 +82,7 @@ ShareBox.propTypes = {
   printUrl: PropTypes.string,
   url: PropTypes.object.isRequired,
   showShareLink: PropTypes.bool.isRequired,
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default ShareBox;

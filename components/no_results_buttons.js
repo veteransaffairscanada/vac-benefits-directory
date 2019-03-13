@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -26,18 +25,18 @@ const orText = css`
 
 const NoResultsButtons = props => {
   return (
-    <div className={buttonBar}>
+    <div css={buttonBar}>
       <Button
-        className={button}
+        css={button}
         id="reset_filters_button"
         onClick={() => props.clearFilters()}
       >
         {props.t("BenefitsPane.reset_filters")}
       </Button>
 
-      <Body className={orText}>{props.t("BenefitsPane.or")}</Body>
+      <Body css={orText}>{props.t("BenefitsPane.or")}</Body>
 
-      <Button className={button} id="contact_us_button" secondary>
+      <Button css={button} id="contact_us_button" secondary>
         {props.t("BenefitsPane.contact_us")}
       </Button>
     </div>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import Checkbox from "./checkbox";
 import { connect } from "react-redux";
@@ -31,7 +31,7 @@ export class NeedButton extends Component {
         onChange={() => this.handleClick(need.id)}
         value={need.id}
         disabled={disabled ? "disabled" : null}
-        className={style}
+        css={style}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </Checkbox>

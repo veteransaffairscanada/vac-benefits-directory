@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
@@ -90,7 +90,7 @@ export class Favourites extends Component {
     ];
 
     return (
-      <div className={outerDiv}>
+      <div css={outerDiv}>
         <Container id="favourites">
           <BreadCrumbs
             t={t}
@@ -98,15 +98,11 @@ export class Favourites extends Component {
             breadcrumbs={breadcrumbs}
             pageTitle={t("index.your_saved_benefits")}
           />
-          <Paper padding="md" className={innerDiv}>
+          <Paper padding="md" style={innerDiv}>
             <AlphaBanner t={t} url={url} />
             <Grid container spacing={32}>
               <Grid item xs={12}>
-                <Header
-                  className={"BenefitsCounter"}
-                  size="xl"
-                  headingLevel="h1"
-                >
+                <Header css={"BenefitsCounter"} size="xl" headingLevel="h1">
                   {t("titles.saved_list")}
                 </Header>
               </Grid>
@@ -140,11 +136,7 @@ export class Favourites extends Component {
                     </Grid>
                   ) : null}
                   <Grid item xs={12}>
-                    <Header
-                      className={headerPadding}
-                      size="md"
-                      headingLevel="h3"
-                    >
+                    <Header css={headerPadding} size="md" headingLevel="h3">
                       {filteredBenefits.length === 1
                         ? t("titles.1_saved_benefit")
                         : t("titles.x_saved_benefits", {
@@ -178,7 +170,7 @@ export class Favourites extends Component {
                 ) : null}
               </Grid>
               <Grid item xs={12}>
-                <div className={divider} />
+                <div css={divider} />
               </Grid>
               <Grid item md={4} xs={12}>
                 <div id="next-steps">

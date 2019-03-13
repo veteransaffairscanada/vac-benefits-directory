@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 /** @jsx jsx */
@@ -63,8 +62,8 @@ const CardDetails = ({ summary, children, ...props }) => (
   <StyledDetails {...props}>
     <StyledSummary>
       <div>{summary}</div>
-      <div className={flex2}>
-        <ExpandMore className="icon" />
+      <div css={flex2}>
+        <ExpandMore css="icon" />
       </div>
     </StyledSummary>
     <DetailsText>{children}</DetailsText>

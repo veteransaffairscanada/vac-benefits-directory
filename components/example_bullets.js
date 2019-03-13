@@ -63,14 +63,14 @@ export class ExampleBullets extends React.Component {
     }
     return (
       <CardDetails
-        className={root}
+        css={root}
         summary={
           t("current-language-code") === "en"
             ? benefit.seeMoreSentenceEn
             : benefit.seeMoreSentenceFr
         }
       >
-        <ul className={margin}>{bullets}</ul>
+        <ul css={margin}>{bullets}</ul>
       </CardDetails>
     );
   }

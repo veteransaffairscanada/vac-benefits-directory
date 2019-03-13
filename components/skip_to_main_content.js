@@ -1,4 +1,3 @@
-import React from "react";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import PropTypes from "prop-types";
@@ -28,7 +27,7 @@ const skipLinkStyle = css`
 
 const SkipToMainContent = props => {
   return (
-    <a className={skipLinkStyle} href={props.skipLink} id="skipLink">
+    <a css={skipLinkStyle} href={props.skipLink} id="skipLink">
       {props.t("skipLink")}
     </a>
   );

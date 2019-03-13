@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import SaveChecked from "./icons/SaveChecked";
 import SaveUnchecked from "./icons/SaveUnchecked";
@@ -83,11 +83,11 @@ export class FavouriteButton extends Component {
       <Tooltip
         disabled={!this.props.cookiesDisabled}
         tooltipText={t("favourites.disabled_cookies_tooltip")}
-        className={icon ? rightAlign : null}
+        css={icon ? rightAlign : null}
       >
         {icon ? (
           <button
-            className={xButton}
+            css={xButton}
             disabled={this.props.cookiesDisabled}
             aria-label={longButtonText + " " + benefitName}
             id={"favourite-" + benefit.id}
@@ -103,7 +103,7 @@ export class FavouriteButton extends Component {
             disabled={this.props.cookiesDisabled}
             ariaLabel={longButtonText + " " + benefitName}
             id={"favourite-" + benefit.id}
-            className={saveButton}
+            css={saveButton}
             aria-label={t("B3.favouritesButtonText")}
             onClick={() => this.toggleFavourite(benefit.id)}
             onMouseOver={() => {
@@ -112,9 +112,9 @@ export class FavouriteButton extends Component {
             size="small"
           >
             {isSaved ? (
-              <SaveChecked className={cx("saved", saveIcon)} />
+              <SaveChecked css={["saved", saveIcon]} />
             ) : (
-              <SaveUnchecked className={cx("notSaved", saveIcon)} />
+              <SaveUnchecked css={["notSaved", saveIcon]} />
             )}
             <span>{longButtonText}</span>
           </HeaderButton>

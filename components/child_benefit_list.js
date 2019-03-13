@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -36,14 +35,14 @@ const ChildBenefitList = props => {
   const language = t("current-language-code");
   return (
     <CardDetails summary={colonText}>
-      <div className={children}>
+      <div css={children}>
         <div>
-          <ul className={listStyle}>
+          <ul css={listStyle}>
             {benefits.map(cb => (
-              <li key={cb.id} className={liStyle}>
+              <li key={cb.id} css={liStyle}>
                 <HeaderLink
                   rel="noopener noreferrer"
-                  className={heading}
+                  css={heading}
                   size="small"
                   href={language === "en" ? cb.benefitPageEn : cb.benefitPageFr}
                   onClick={() => {

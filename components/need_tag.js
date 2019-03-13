@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
 /** @jsx jsx */
@@ -20,7 +20,7 @@ export class NeedTag extends Component {
   render() {
     const { t, need, last } = this.props;
     return (
-      <div className={needsTag}>
+      <div css={needsTag}>
         {(t("current-language-code") === "en"
           ? need.nameEn.toUpperCase()
           : need.nameFr.toUpperCase()) + (last ? "" : ",")}

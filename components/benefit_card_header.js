@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 /** @jsx jsx */
@@ -50,9 +50,9 @@ export class BenefitCardHeader extends Component {
 
     if (includeParentInfo || includeImportantInfo) {
       return (
-        <div className={cardTop}>
+        <div css={cardTop}>
           <AlertIcon t={t} />
-          <div className={headerDesc}>
+          <div css={headerDesc}>
             {includeParentInfo ? (
               <CardHeaderParentInfo
                 t={t}

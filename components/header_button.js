@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
 /** @jsx jsx */
@@ -51,7 +51,7 @@ class HeaderButton extends Component {
   render() {
     const {
       id,
-      className,
+      css,
       children,
       size,
       altStyle,
@@ -62,7 +62,7 @@ class HeaderButton extends Component {
       ...otherProps
     } = this.props;
 
-    let cName = [className];
+    let cName = [css];
     if (size === "small") cName.unshift(small);
     if (altStyle === "grey") cName.unshift(grey);
     if (hasBorder === true) cName.unshift(borderStyle);
@@ -72,7 +72,7 @@ class HeaderButton extends Component {
       <button
         aria-label={ariaLabel}
         disabled={disabled}
-        className={cx(cName)}
+        css={cName}
         id={"a-" + id}
         onClick={onClick}
         {...otherProps}
@@ -92,7 +92,7 @@ HeaderButton.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-  className: PropTypes.string,
+  css: PropTypes.string,
   label: PropTypes.object,
   disabled: PropTypes.bool,
   hasBorder: PropTypes.bool,

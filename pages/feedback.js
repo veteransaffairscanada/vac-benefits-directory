@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Header from "../components/typography/header";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
@@ -87,23 +87,23 @@ export class Feedback extends Component {
         skipLink="#mainContent"
         url={url}
       >
-        <Container className={padding} id="mainContent">
+        <Container css={padding} id="mainContent">
           <AlphaBanner t={t} url={url} />
           <HeaderButton
             onClick={() => {
               window.history.back();
             }}
-            className={prevButton}
+            css={prevButton}
             arrow="back"
           >
             {t("back")}
           </HeaderButton>
           <form>
-            <Header className={headerPadding} headingLevel="h1" size="lg">
+            <Header css={headerPadding} headingLevel="h1" size="lg">
               {t("feedback.page_header")}
             </Header>
             <RadioSelector
-              className={radioStyle}
+              css={radioStyle}
               legend={
                 t("current-language-code") === "en"
                   ? question.display_text_english
@@ -115,7 +115,7 @@ export class Feedback extends Component {
               store={store}
             />
             <TextArea
-              className={textAreaStyle}
+              css={textAreaStyle}
               name="group1"
               maxLength={500}
               t={t}
@@ -125,7 +125,7 @@ export class Feedback extends Component {
             </TextArea>
             <Details
               summary={t("feedback.details_question")}
-              className={detailsStyle}
+              css={detailsStyle}
             >
               {t("feedback.details_expansion_pt1")}
               <a href={t("feedback.vac_office_link")}>
@@ -137,7 +137,7 @@ export class Feedback extends Component {
               </a>
               {t("feedback.details_expansion_pt5")}
             </Details>
-            <div className={padding}>
+            <div css={padding}>
               <Button
                 id="send"
                 arrow={true}

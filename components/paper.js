@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -21,11 +21,7 @@ class Paper extends Component {
   render() {
     return (
       <div
-        className={
-          this.props.className
-            ? cx(this.style, this.props.className)
-            : this.style
-        }
+        css={this.props.style ? [this.style, this.props.style] : [this.style]}
       >
         {this.props.children}
       </div>
@@ -36,7 +32,7 @@ class Paper extends Component {
 Paper.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   padding: PropTypes.string,
-  className: PropTypes.string
+  style: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default Paper;

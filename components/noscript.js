@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -34,9 +34,9 @@ class Noscript extends Component {
 
     return (
       <noscript>
-        <div className={Modal}>
-          <div className={ModalContent}>
-            <div className="copy">
+        <div css={Modal}>
+          <div css={ModalContent}>
+            <div css="copy">
               <p dangerouslySetInnerHTML={{ __html: t("noscript") }} />
             </div>
           </div>

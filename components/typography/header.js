@@ -64,10 +64,9 @@ class Header extends Component {
   }
 
   render() {
-    const { children, className, headingLevel, id, autoFocus } = this.props;
-
+    const { children, style, headingLevel, id, autoFocus } = this.props;
     const props = {
-      className: className ? cx(this.style, className) : this.style,
+      css: style ? [this.style, style] : this.style,
       id: id
     };
 
@@ -97,7 +96,7 @@ Header.propTypes = {
     PropTypes.string,
     PropTypes.array
   ]),
-  className: PropTypes.string,
+  style: PropTypes.string,
   headingLevel: PropTypes.string,
   size: PropTypes.string,
   id: PropTypes.string,

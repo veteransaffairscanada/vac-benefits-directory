@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -26,7 +26,7 @@ export class CardHeaderParentInfo extends Component {
     let a_elements = parentBenefits.map((b, i) => (
       <a
         key={"a" + i}
-        className={headerUrl}
+        css={headerUrl}
         href={this.benefitUrl(b)}
         rel="noopener noreferrer"
         onClick={() => {

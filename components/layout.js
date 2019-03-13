@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -82,7 +82,7 @@ class Layout extends Component {
           <ErrorBoundary>
             <Content>
               <SkipToMainContent skipLink={skipLink} t={t} />
-              <div id="header_css" className={black_bg}>
+              <div id="header_css" css={black_bg}>
                 {t("current-language-code") === "en" ? (
                   <VacHeaderEn t={t} url={url} />
                 ) : (
@@ -91,12 +91,12 @@ class Layout extends Component {
               </div>
               <main id="main">{this.props.children}</main>
             </Content>
-            <div className={backgoundColour1}>
+            <div css={backgoundColour1}>
               <Container>
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div id="footer_styles" className={fontStyle}>
+            <div id="footer_styles" css={fontStyle}>
               {t("current-language-code") === "en" ? (
                 <VacFooterEn />
               ) : (

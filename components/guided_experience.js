@@ -1,7 +1,7 @@
+/** @jsx jsx */
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
-/** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import Container from "./container";
 import Header from "./typography/header";
@@ -192,7 +192,7 @@ export class GuidedExperience extends Component {
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
-        <Paper padding="md" className={box}>
+        <Paper padding="md" style={box}>
           <AlphaBanner t={t} url={url} />
           <Grid container spacing={24} role="form">
             {id === "patronType" ? (
@@ -203,7 +203,7 @@ export class GuidedExperience extends Component {
                   </Header>
                   {id === "patronType" ? (
                     <React.Fragment>
-                      <Body className={greyBox}>
+                      <Body style={greyBox}>
                         <p>{t("ge.intro_text_p1")}</p>
                         <p>{t("ge.intro_text_p2")}</p>
                       </Body>
@@ -212,12 +212,12 @@ export class GuidedExperience extends Component {
                 </Grid>
               </React.Fragment>
             ) : null}
-            <Grid item xs={12} className={questions}>
+            <Grid item xs={12} css={questions}>
               <Header size="md_lg" headingLevel="h2">
                 {this.getSubtitle(question)}
               </Header>
               {question.tooltip_english && question.tooltip_english !== "" ? (
-                <Body className={body}>
+                <Body css={body}>
                   {t("current-language-code") === "en"
                     ? question.tooltip_english
                     : question.tooltip_french}
@@ -228,11 +228,11 @@ export class GuidedExperience extends Component {
             <Grid item xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12} md={8}>
-                  <Grid container spacing={8} className={mobileReverse}>
+                  <Grid container spacing={8} css={mobileReverse}>
                     <HeaderLink
                       id="prevButton"
                       href={backUrl}
-                      className={mobileFullWidth}
+                      css={mobileFullWidth}
                       hasBorder
                     >
                       {t("back")}
@@ -241,7 +241,7 @@ export class GuidedExperience extends Component {
                       <Button
                         id="nextButton"
                         mobileFullWidth={true}
-                        className={leftMargin}
+                        css={leftMargin}
                       >
                         {this.getNextUrl().indexOf("benefits-directory") > -1
                           ? t("ge.show_results")
@@ -250,12 +250,12 @@ export class GuidedExperience extends Component {
                     </Link>
                   </Grid>
                 </Grid>
-                <Grid item xs={12} md={4} className={alignRight}>
+                <Grid item xs={12} md={4} css={alignRight}>
                   <Link id="skipLink" href={this.getSkipUrl()}>
                     <HeaderButton
                       id="skipButton"
                       altStyle="grey"
-                      className={mobileFullWidth}
+                      css={mobileFullWidth}
                     >
                       {t("ge.skip")}
                     </HeaderButton>

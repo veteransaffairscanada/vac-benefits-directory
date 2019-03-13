@@ -76,7 +76,7 @@ export class BenefitsPane extends Component {
       <Grid container spacing={16}>
         <Grid item xs={12}>
           <Header
-            className={"BenefitsCounter " + title}
+            css={"BenefitsCounter " + title}
             size="md"
             headingLevel="h3"
             autoFocus={true}
@@ -101,7 +101,7 @@ export class BenefitsPane extends Component {
         {filteredBenefitsWithoutSearch.length === 0 ? null : (
           <React.Fragment>
             <Grid item xs={12}>
-              <div className={bottomPadding}>
+              <div css={bottomPadding}>
                 <SearchBox
                   inputId="bbSearchField"
                   buttonId="searchButtonLink"
@@ -135,9 +135,7 @@ export class BenefitsPane extends Component {
                   store={store}
                 />
 
-                {nonFilteredBenefits.length > 0 ? (
-                  <div className={spacer} />
-                ) : null}
+                {nonFilteredBenefits.length > 0 ? <div css={spacer} /> : null}
                 <ResultsHeader
                   benefitCount={nonFilteredBenefits.length}
                   headerText={t("B3.results_all_benefits")}

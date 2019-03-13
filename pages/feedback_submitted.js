@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Header from "../components/typography/header";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
@@ -42,16 +42,16 @@ export class FeedbackSubmitted extends Component {
         skipLink="#mainContent"
         url={url}
       >
-        <Container className={padding} id="mainContent">
+        <Container css={padding} id="mainContent">
           <Header headingLevel="h1" size="lg">
             {t("feedback.page_header")}
           </Header>
 
-          <p className={textStyle}>{t("feedback.submitted")}</p>
+          <p css={textStyle}>{t("feedback.submitted")}</p>
 
           <HeaderLink
             href={mutateUrl(url, "/benefits-directory")}
-            className={headerLinkStyle}
+            css={headerLinkStyle}
           >
             {t("feedback.ben_dir_link")}
           </HeaderLink>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
 /** @jsx jsx */
@@ -26,13 +26,9 @@ const style = css`
 
 class FooterButton extends Component {
   render() {
-    const { className, onClick, children, ...other } = this.props;
+    const { css, onClick, children, ...other } = this.props;
     return (
-      <button
-        className={className ? cx(style, className) : style}
-        onClick={onClick}
-        {...other}
-      >
+      <button css={css ? [style, css] : style} onClick={onClick} {...other}>
         {children}
       </button>
     );
@@ -40,7 +36,7 @@ class FooterButton extends Component {
 }
 FooterButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string,
+  css: PropTypes.string,
   onClick: PropTypes.func
 };
 export default FooterButton;

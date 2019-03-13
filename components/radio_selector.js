@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { globalTheme } from "../theme";
-import { css, cx } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import Tooltip from "./tooltip";
 import Radio from "./radio";
@@ -100,31 +101,21 @@ export class RadioSelector extends React.Component {
           )
       );
 
-    const {
-      t,
-      selectorType,
-      responses,
-      legend,
-      tooltipText,
-      className
-    } = this.props;
+    const { t, selectorType, responses, legend, tooltipText, css } = this.props;
     if (options.length !== 0) {
       return (
-        <div className={formControl}>
+        <div css={formControl}>
           <Tooltip
             disabled={!tooltipText}
             tooltipText={tooltipText}
             width={250}
           >
-            <Header className={formLabel} size="sm">
-              <span className={tooltipText ? underline : ""}>{legend}</span>
+            <Header style={formLabel} size="sm">
+              <span css={tooltipText ? underline : ""}>{legend}</span>
             </Header>
           </Tooltip>
 
-          <div
-            aria-label={legend}
-            className={className ? cx(leftIndent, className) : leftIndent}
-          >
+          <div aria-label={legend} css={css ? [leftIndent, css] : leftIndent}>
             {options.map(option => {
               return (
                 <Radio
@@ -132,7 +123,7 @@ export class RadioSelector extends React.Component {
                   checked={responses[selectorType] === option.variable_name}
                   onChange={this.handleSelect}
                   value={option.variable_name}
-                  className={radioOption}
+                  css={radioOption}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
@@ -183,7 +174,7 @@ RadioSelector.propTypes = {
   options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
   store: PropTypes.object,
-  className: PropTypes.string,
+  css: PropTypes.string,
   name: PropTypes.string
 };
 

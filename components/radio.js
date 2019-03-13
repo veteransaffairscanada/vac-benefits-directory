@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -71,27 +70,27 @@ const mobileLabelStyle = css`
   }
 `;
 
-const Radio = ({ children, className, value, ...input }) => (
-  <div className={cx(rootStyle, className)}>
+const Radio = ({ children, css, value, ...input }) => (
+  <div css={[rootStyle, css]}>
     <input
       type="radio"
-      className={inputStyle}
+      css={inputStyle}
       value={value}
       id={value + "-0"}
       {...input}
     />
-    <label className={cx(mobileLabelStyle, labelStyle)} htmlFor={value + "-0"}>
+    <label css={[mobileLabelStyle, labelStyle]} htmlFor={value + "-0"}>
       {children}
     </label>
   </div>
 );
 
 Radio.defaultProps = {
-  className: undefined
+  css: undefined
 };
 
 Radio.propTypes = {
-  className: PropTypes.string,
+  css: PropTypes.string,
   value: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 };

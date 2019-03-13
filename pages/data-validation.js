@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -220,8 +220,8 @@ export class DataValidation extends Component {
         url={this.props.url}
       >
         <Container id="mainContent">
-          <p className={envDetailsStyling}>Build: {envDetails}</p>
-          <Paper className={cx(root, top)}>
+          <p css={envDetailsStyling}>Build: {envDetails}</p>
+          <Paper style={[root, top]}>
             <p>
               {t("dv.last_cache_update")}
               :&nbsp;
@@ -231,8 +231,8 @@ export class DataValidation extends Component {
               <Button id="refreshCache">{t("refresh-cache")}</Button>
             </a>
           </Paper>
-          <Paper className={root}>
-            <Table className={table}>
+          <Paper style={root}>
+            <Table css={table}>
               <TableHead>
                 <TableRow>
                   <TableCell>{t("dv.status")}</TableCell>
@@ -245,10 +245,10 @@ export class DataValidation extends Component {
                   return (
                     <TableRow key={i} id={n.name}>
                       <TableCell
-                        className={cx(
+                        css={[
                           tableCellCSS,
                           n.status ? tableCellGreen : tableCellRed
-                        )}
+                        ]}
                       >
                         {n.status !== undefined ? (
                           t("dv." + (n.status ? "Pass" : "Fail"))

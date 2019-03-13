@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
@@ -152,23 +152,23 @@ export class FeedbackBar extends Component {
 
     return (
       <div
-        className={FeedbackWrapper}
+        css={FeedbackWrapper}
         aria-label={t("feedback.page_title")}
         role="complementary"
       >
         {this.state.commentFormToggled ? (
-          <div className={CommentBox} role="form">
-            <Header size="lg" headingLevel="h2" className={topHeading}>
+          <div css={CommentBox} role="form">
+            <Header size="lg" headingLevel="h2" style={topHeading}>
               {t("comment-help-us-improve")}
             </Header>
-            <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
-            <div className={TextHold}>
+            <p css={pStyle}>{t("comment-privacy-disclaimer")}</p>
+            <div css={TextHold}>
               <TextArea
                 id="commentTextArea"
                 name="bugFiling"
                 maxLength={500}
                 t={t}
-                className={textArea}
+                css={textArea}
                 onChange={
                   this.state.commentIsBug
                     ? this.handleChange("bug")
@@ -192,36 +192,32 @@ export class FeedbackBar extends Component {
             &nbsp; &nbsp;
             <FooterButton
               id="cancelComment"
-              className={cancelButton}
+              css={cancelButton}
               onClick={() => this.cancelComment()}
             >
               {t("cancel")}
             </FooterButton>
           </div>
         ) : null}
-        <div className={Div}>
+        <div css={Div}>
           {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
-            <div className={Inner}>
-              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
+            <div css={Inner}>
+              <Header size="sm" headingLevel="h2" style={whiteNormalFont}>
                 {t("feedback.response_p1")}
               </Header>
               <FooterButton
                 id="feedbackReset"
-                className={resetButton}
+                css={resetButton}
                 onClick={() => this.resetFeedback()}
               >
                 {t("feedback.response_p2")}
               </FooterButton>
             </div>
           ) : !this.state.feedbackSubmitted ? (
-            <div className={Inner}>
+            <div css={Inner}>
               <Grid container spacing={8}>
                 <Grid item md={5} xs={12}>
-                  <Header
-                    size="sm"
-                    headingLevel="h2"
-                    className={whiteNormalFont}
-                  >
+                  <Header size="sm" headingLevel="h2" style={whiteNormalFont}>
                     {t("feedback-prompt")}
                   </Header>
                 </Grid>
@@ -241,7 +237,7 @@ export class FeedbackBar extends Component {
                   </FooterButton>
                 </Grid>
                 <Grid item md={4} xs={12}>
-                  <Header size="sm" headingLevel="h2" className={fileBugHeader}>
+                  <Header size="sm" headingLevel="h2" style={fileBugHeader}>
                     <FooterButton
                       id="feedbackBug"
                       onClick={() => this.sendFeedback("Bug")}

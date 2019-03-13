@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import FooterLink from "./typography/footer_link";
 import FolderMouse from "./icons/FolderMouse";
@@ -24,7 +24,7 @@ class MyVacButton extends Component {
   render() {
     const { t } = this.props;
     return (
-      <FooterLink href={t("links.myvac")} className={desktopButton}>
+      <FooterLink href={t("links.myvac")} css={desktopButton}>
         {t("myvac_button_text")}
         <FolderMouse />
       </FooterLink>

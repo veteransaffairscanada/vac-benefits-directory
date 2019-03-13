@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -46,16 +46,12 @@ class Tooltip extends Component {
   `;
 
   render() {
-    const { children, disabled, tooltipText, className } = this.props;
+    const { children, disabled, tooltipText, css } = this.props;
     return (
-      <div
-        className={
-          className ? cx(className, this.tooltipStyle) : this.tooltipStyle
-        }
-      >
+      <div css={css ? [css, this.tooltipStyle] : this.tooltipStyle}>
         {children}
         {!disabled ? (
-          <span className={this.tooltipTextStyle}>{tooltipText}</span>
+          <span css={this.tooltipTextStyle}>{tooltipText}</span>
         ) : null}
       </div>
     );
@@ -67,7 +63,7 @@ Tooltip.propTypes = {
   tooltipText: PropTypes.string,
   disabled: PropTypes.bool,
   width: PropTypes.number,
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 Tooltip.defaultProps = {

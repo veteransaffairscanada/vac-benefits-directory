@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -71,20 +71,20 @@ export class SummaryRow extends Component {
     )[0];
 
     return (
-      <li className={breadcrumbCss}>
+      <li css={breadcrumbCss}>
         <Grid container>
           <Grid item xs={9}>
-            <div className={bold}>
+            <div css={bold}>
               {t("current-language-code") === "en"
                 ? question.summary_english
                 : question.summary_french}
             </div>
             <div>{this.getAnswer()}</div>
           </Grid>
-          <Grid item xs={3} className={rightAlign}>
+          <Grid item xs={3} css={rightAlign}>
             <HeaderLink
               href={mutateUrl(url, "/" + getPageName(questionName))}
-              className={font}
+              css={font}
             >
               <EditIcon
                 focusable="true"
@@ -93,7 +93,7 @@ export class SummaryRow extends Component {
                 aria-label={t("alt_text.edit")}
                 height="5px"
               />
-              <span id={"edit-" + questionName} className={hideOnMobile}>
+              <span id={"edit-" + questionName} css={hideOnMobile}>
                 {t("ge.edit")}
               </span>
             </HeaderLink>

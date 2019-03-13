@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { PhaseBadge } from "./phase_badge";
 /** @jsx jsx */
@@ -41,13 +41,13 @@ export class AlphaBanner extends Component {
   render() {
     const { t, url, ...rest } = this.props;
     return (
-      <div className={bottomMargin}>
-        <aside {...rest} className={Banner}>
+      <div css={bottomMargin}>
+        <aside {...rest} css={Banner}>
           <PhaseBadge phase={t("header.beta")} />
           <span>
             {t("beta_banner.main")} &nbsp;
             <Link href={{ pathname: "/feedback", query: url.query }}>
-              <a className={white}>{t("beta_banner.link_text")}</a>
+              <a css={white}>{t("beta_banner.link_text")}</a>
             </Link>
           </span>
         </aside>

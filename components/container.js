@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -30,11 +30,11 @@ const morePaddingIfBig = css`
 
 class Container extends Component {
   render() {
-    let className = vacStyle;
-    if (this.props.className) className = cx(vacStyle, this.props.className);
+    let css = vacStyle;
+    if (this.props.css) css = [vacStyle, this.props.css];
     return (
-      <div className={className} id={this.props.id ? this.props.id : ""}>
-        <div className={morePaddingIfBig}>{this.props.children}</div>
+      <div css={css} id={this.props.id ? this.props.id : ""}>
+        <div css={morePaddingIfBig}>{this.props.children}</div>
       </div>
     );
   }
@@ -44,7 +44,7 @@ Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   id: PropTypes.string,
   mobileFullWidth: PropTypes.bool,
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default Container;

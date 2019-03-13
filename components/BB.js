@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -73,8 +73,8 @@ export class BB extends Component {
     const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
 
     return (
-      <Container className={outerDiv}>
-        <div className={topMatter}>
+      <Container css={outerDiv}>
+        <div css={topMatter}>
           <BreadCrumbs
             t={t}
             breadcrumbs={[]}
@@ -82,7 +82,7 @@ export class BB extends Component {
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
-        <Paper id={this.props.id} padding="md" className={innerDiv}>
+        <Paper id={this.props.id} padding="md" style={innerDiv}>
           <AlphaBanner t={t} url={url} />
           <Grid container spacing={32}>
             <Grid item xs={12}>
@@ -123,7 +123,7 @@ export class BB extends Component {
               <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
             </Grid>
             <Grid item xs={12}>
-              <div className={divider} />
+              <div css={divider} />
             </Grid>
             <Grid item md={4} xs={12}>
               <div id="next-steps">

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -18,7 +18,7 @@ export class GuidedExperienceSummary extends Component {
     const { url, t, reduxState, store } = this.props;
     return (
       <div>
-        <ul className={breadcrumbList}>
+        <ul css={breadcrumbList}>
           {reduxState.questions
             .map(x => x.variable_name)
             .filter((x, i) => showQuestion(x, i, reduxState))

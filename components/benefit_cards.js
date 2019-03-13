@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
@@ -90,15 +90,15 @@ export class BenefitCard extends Component {
     const searchWords = this.props.searchString.split(/\s+/);
     return (
       <Grid item xs={12}>
-        <div className={root}>
-          <Paper className={cardBody}>
+        <div css={root}>
+          <Paper style={cardBody}>
             <BenefitCardHeader
               benefit={benefit}
               t={t}
               store={this.props.store}
               language={language}
             />
-            <Header className={benefitName} size="md" headingLevel="h2">
+            <Header style={benefitName} size="md" headingLevel="h2">
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
@@ -118,8 +118,8 @@ export class BenefitCard extends Component {
                 />
               ) : null}
             </Header>
-            <div className={padding}>
-              {needsMet.length > 0 ? <Tag className={tagStyle} /> : null}
+            <div css={padding}>
+              {needsMet.length > 0 ? <Tag style={tagStyle} /> : null}
               {needsMet.map(need => (
                 <NeedTag
                   key={benefit.id + need.id}
@@ -129,7 +129,7 @@ export class BenefitCard extends Component {
                 />
               ))}
             </div>
-            <OneLiner className={"cardDescription " + cardDescriptionText}>
+            <OneLiner style={cardDescriptionText}>
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
@@ -141,19 +141,19 @@ export class BenefitCard extends Component {
               />
             </OneLiner>
 
-            <Grid container className={buttonRow}>
+            <Grid container css={buttonRow}>
               <Grid item xs={12}>
                 <BenefitExpansion
-                  className={padding}
+                  css={padding}
                   benefit={benefit}
                   t={t}
                   store={store}
                 />
               </Grid>
               <Grid item xs={12}>
-                <div className={flex}>
+                <div css={flex}>
                   <LearnMoreButton benefit={benefit} t={t} />
-                  <div className={floatRight}>
+                  <div css={floatRight}>
                     {this.props.savedList ? (
                       <FavouriteButton
                         benefit={benefit}
