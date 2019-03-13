@@ -99,7 +99,7 @@ describe("SelectionsEditorMobile", () => {
 
   it("clears data in url if clear button is clicked", () => {
     let instance = mount(
-      <SelectionsEditor {...props} {...reduxData} />
+      <SelectionsEditorMobile {...props} {...reduxData} />
     ).instance();
     instance.clearFilters();
     expect(props.url.query.patronType).toEqual("");
