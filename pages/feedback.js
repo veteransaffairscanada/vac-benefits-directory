@@ -87,7 +87,7 @@ export class Feedback extends Component {
         skipLink="#mainContent"
         url={url}
       >
-        <Container css={padding} id="mainContent">
+        <Container className={padding} id="mainContent">
           <AlphaBanner t={t} url={url} />
           <HeaderButton
             onClick={() => {
@@ -103,7 +103,7 @@ export class Feedback extends Component {
               {t("feedback.page_header")}
             </Header>
             <RadioSelector
-              css={radioStyle}
+              style={radioStyle}
               legend={
                 t("current-language-code") === "en"
                   ? question.display_text_english

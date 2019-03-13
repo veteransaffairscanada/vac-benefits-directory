@@ -83,7 +83,7 @@ export class FavouriteButton extends Component {
       <Tooltip
         disabled={!this.props.cookiesDisabled}
         tooltipText={t("favourites.disabled_cookies_tooltip")}
-        css={icon ? rightAlign : null}
+        style={icon ? rightAlign : null}
       >
         {icon ? (
           <button

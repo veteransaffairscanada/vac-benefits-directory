@@ -96,7 +96,7 @@ Header.propTypes = {
     PropTypes.string,
     PropTypes.array
   ]),
-  style: PropTypes.string,
+  style: PropTypes.object,
   headingLevel: PropTypes.string,
   size: PropTypes.string,
   id: PropTypes.string,

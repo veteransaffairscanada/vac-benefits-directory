@@ -42,7 +42,7 @@ export class FeedbackSubmitted extends Component {
         skipLink="#mainContent"
         url={url}
       >
-        <Container css={padding} id="mainContent">
+        <Container className={padding} id="mainContent">
           <Header headingLevel="h1" size="lg">
             {t("feedback.page_header")}
           </Header>

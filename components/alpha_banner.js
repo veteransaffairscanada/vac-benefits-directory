@@ -1,8 +1,7 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { PhaseBadge } from "./phase_badge";
-/** @jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
 import Link from "next/link";
 
@@ -41,13 +40,13 @@ export class AlphaBanner extends Component {
   render() {
     const { t, url, ...rest } = this.props;
     return (
-      <div css={bottomMargin}>
-        <aside {...rest} css={Banner}>
+      <div className={bottomMargin}>
+        <aside {...rest} className={Banner}>
           <PhaseBadge phase={t("header.beta")} />
           <span>
             {t("beta_banner.main")} &nbsp;
             <Link href={{ pathname: "/feedback", query: url.query }}>
-              <a css={white}>{t("beta_banner.link_text")}</a>
+              <a className={white}>{t("beta_banner.link_text")}</a>
             </Link>
           </span>
         </aside>

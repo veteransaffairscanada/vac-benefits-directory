@@ -31,7 +31,7 @@ const morePaddingIfBig = css`
 class Container extends Component {
   render() {
     let css = vacStyle;
-    if (this.props.css) css = [vacStyle, this.props.css];
+    if (this.props.className) css = [vacStyle, this.props.className];
     return (
       <div css={css} id={this.props.id ? this.props.id : ""}>
         <div css={morePaddingIfBig}>{this.props.children}</div>
@@ -44,7 +44,7 @@ Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   id: PropTypes.string,
   mobileFullWidth: PropTypes.bool,
-  css: PropTypes.string
+  className: PropTypes.string
 };
 
 export default Container;
