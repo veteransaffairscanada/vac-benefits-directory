@@ -25,7 +25,7 @@ export class NeedButton extends Component {
 
     let needsParams = Object.keys(newSelectedNeeds);
 
-    if (this.props.updateUrl && needsParams.length > 0) {
+    if (this.props.updateUrl) {
       this.props.url.query["selectedNeeds"] = needsParams.join();
       Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
     }
