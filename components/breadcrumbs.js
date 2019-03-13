@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import HeaderLink from "./header_link";
 
 const greyBanner = css`

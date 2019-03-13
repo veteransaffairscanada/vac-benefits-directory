@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import HeaderButton from "./header_button";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
 

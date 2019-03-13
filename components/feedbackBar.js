@@ -4,7 +4,8 @@ import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
 import TextArea from "./text_area";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import FooterButton from "./footer_button";
 import { globalTheme } from "../theme";
 import Header from "./typography/header";

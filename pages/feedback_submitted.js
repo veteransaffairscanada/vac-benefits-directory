@@ -4,7 +4,8 @@ import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { globalTheme } from "../theme";
 import Container from "../components/container";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { connect } from "react-redux";
 import HeaderLink from "../components/header_link";
 import PropTypes from "prop-types";

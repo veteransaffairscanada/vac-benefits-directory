@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
 import { uuidv4 } from "../utils/common";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const StyledCheckbox = styled("label")({
   display: "block",

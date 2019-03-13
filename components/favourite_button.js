@@ -4,7 +4,8 @@ import SaveChecked from "./icons/SaveChecked";
 import SaveUnchecked from "./icons/SaveUnchecked";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import HeaderButton from "./header_button";
 import { areCookiesDisabled } from "../utils/common";
 import Tooltip from "./tooltip";

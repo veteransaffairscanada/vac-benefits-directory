@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import CardHeaderParentInfo from "./card_header_parent_info";
 import CardHeaderImportantInfo from "./card_header_important_info";

@@ -5,7 +5,8 @@ import ShareBox from "../components/share_box";
 import EditIcon from "./icons/Edit";
 import HeaderLink from "./header_link";
 import SaveChecked from "./icons/SaveChecked";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import { connect } from "react-redux";
 import { getFavouritesUrl, getSummaryUrl } from "../selectors/urls";

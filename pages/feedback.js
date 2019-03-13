@@ -4,7 +4,8 @@ import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { globalTheme } from "../theme";
 import Container from "../components/container";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import RadioSelector from "../components/radio_selector";
 import { connect } from "react-redux";
 import HeaderButton from "../components/header_button";

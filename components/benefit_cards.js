@@ -6,7 +6,8 @@ import FavouriteButton from "./favourite_button";
 import Paper from "./paper";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import BenefitExpansion from "./benefit_expansion";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";

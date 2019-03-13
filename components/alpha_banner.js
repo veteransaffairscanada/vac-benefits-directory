@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { PhaseBadge } from "./phase_badge";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import Link from "next/link";
 

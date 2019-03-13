@@ -4,7 +4,8 @@ import BenefitCard from "./benefit_cards";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const Div = css`
   width: 100%;

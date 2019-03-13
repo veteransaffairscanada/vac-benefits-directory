@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import ExpandMore from "./icons/ExpandMore";
 

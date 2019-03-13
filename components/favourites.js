@@ -5,7 +5,8 @@ import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import Link from "next/link";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Container from "./container";
 import Header from "./typography/header";
 import Body from "./typography/body";

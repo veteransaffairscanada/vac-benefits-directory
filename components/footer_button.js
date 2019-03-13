@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 const style = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 18px;

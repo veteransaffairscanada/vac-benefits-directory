@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import Checkbox from "./checkbox";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const style = css`
   margin-bottom: 10px;

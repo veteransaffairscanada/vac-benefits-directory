@@ -10,7 +10,8 @@ import Button from "../components/button";
 import Header from "../components/typography/header";
 import Router from "next/router";
 import BreadCrumbs from "../components/breadcrumbs";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import { mutateUrl, getBenefitCountString, getPageName } from "../utils/common";
 import { connect } from "react-redux";

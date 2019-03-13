@@ -10,7 +10,8 @@ import {
   getFilteredBenefits,
   getNonFilteredBenefits
 } from "../selectors/benefits";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import SearchBox from "./search_box";
 import { getBenefitCountString } from "../utils/common";

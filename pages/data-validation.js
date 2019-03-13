@@ -9,7 +9,8 @@ import Paper from "../components/paper";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 import Button from "../components/button";
 import { globalTheme } from "../theme";

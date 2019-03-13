@@ -4,7 +4,8 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import { withTheme } from "@material-ui/core/styles";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";

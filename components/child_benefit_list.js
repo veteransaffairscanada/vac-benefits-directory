@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import HeaderLink from "./header_link";
 import { logEvent } from "../utils/analytics";
 import CardDetails from "./card_details";
