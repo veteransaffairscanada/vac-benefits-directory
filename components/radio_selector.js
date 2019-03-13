@@ -8,6 +8,7 @@ import Header from "./typography/header";
 import Tooltip from "./tooltip";
 import Radio from "./radio";
 import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
 const formControl = css`
   margin-top: ${globalTheme.unit} !important;
@@ -89,7 +90,7 @@ export class RadioSelector extends React.Component {
     logEvent("FilterClick", question, response);
     if (this.props.updateUrl) {
       this.props.url.query[question] = response;
-      Router.replace(this.props.url);
+      Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
     }
   };
 
