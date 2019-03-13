@@ -12,7 +12,7 @@ class Paper extends Component {
     background-color: white;
     box-sizing: border-box;
     width: 100%;
-    border-top: 15px solid ${globalTheme.colour.tea};
+    border-top: 8px solid ${globalTheme.colour.borderGreen};
     @media only screen and (max-width: ${globalTheme.max.xs}) {
       padding: ${this.paddingMobile[this.props.padding]};
     }
