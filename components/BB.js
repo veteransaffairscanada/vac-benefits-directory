@@ -36,9 +36,24 @@ const topMatter = css`
   width: 100%;
 `;
 
+// this can be deleted when the sidebar is removed
 const stylingWithSidebar = css`
   font-size: 28px !important;
+  margin-bottom: 30px;
 `;
+
+const selectionsEditorMobileStyle = css`
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
+    display: none !important;
+  }
+`;
+
+const selectionsEditorStyle = css`
+  @media only screen and (max-width: ${globalTheme.max.sm}) {
+    display: none !important;
+  }
+`;
+
 export class BB extends Component {
   state = {
     showDisabledCookieBanner: false
@@ -52,8 +67,7 @@ export class BB extends Component {
   componentDidMount() {
     this.props.setCookiesDisabled(areCookiesDisabled());
     this.setState({
-      showDisabledCookieBanner: areCookiesDisabled(),
-      screenWidth: screen.width
+      showDisabledCookieBanner: areCookiesDisabled()
     });
     // Update cookies if favourite benefits have been pruned on the server
     let favouritesFromCookies = this.cookies.get("favouriteBenefits"),
@@ -73,15 +87,13 @@ export class BB extends Component {
   componentDidUpdate() {
     if (this.state.showDisabledCookieBanner && !this.props.cookiesDisabled) {
       this.setState({
-        showDisabledCookieBanner: false,
-        screenWidth: screen.width
+        showDisabledCookieBanner: false
       });
     }
   }
 
   render() {
     const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
-    const onMobile = this.state.screenWidth < parseInt(globalTheme.min.sm, 10);
     return (
       <Container className={outerDiv}>
         <div className={topMatter}>
@@ -120,11 +132,12 @@ export class BB extends Component {
                   {t("titles.benefits_and_services")}
                 </Header>
               </div>
-              {onMobile ? (
+              <div className={selectionsEditorMobileStyle}>
                 <SelectionsEditorMobile t={t} store={store} url={url} />
-              ) : (
+              </div>
+              <div className={selectionsEditorStyle}>
                 <SelectionsEditor t={t} store={store} url={url} />
-              )}
+              </div>
             </Grid>
             <Grid id="mainContent" item md={8} xs={12}>
               <Grid container spacing={16}>
