@@ -11,11 +11,13 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
 import responsesFixture from "../fixtures/responses";
+import Router from "next/router";
 
 describe("SelectionsEditorMobile", () => {
   let props;
   let mockStore, reduxData;
 
+  Router.replace = jest.fn().mockImplementation(() => new Promise(() => true));
   beforeEach(() => {
     props = {
       t: key => key,
@@ -23,7 +25,15 @@ describe("SelectionsEditorMobile", () => {
         q => q.variable_name !== "needs"
       ),
       responses: responsesFixture,
-      saveQuestionResponse: jest.fn()
+      saveQuestionResponse: jest.fn(),
+      url: {
+        query: {
+          lng: "en",
+          patronType: "veteran",
+          serviceType: "RCMP",
+          selectedNeeds: "recHB4dscib9fjxso,recIoUeSmWb2pyYaD"
+        }
+      }
     };
     reduxData = {
       questions: questionsFixture,
@@ -75,7 +85,7 @@ describe("SelectionsEditorMobile", () => {
     ).toEqual(1);
   });
 
-  it("has a correct clearFilters function", () => {
+  it("clears data in redux if clear button is clicked", () => {
     let instance = mount(
       <SelectionsEditorMobile {...props} {...reduxData} />
     ).instance();
@@ -85,6 +95,18 @@ describe("SelectionsEditorMobile", () => {
     expect(props.saveQuestionResponse).toBeCalledWith("statusAndVitals", "");
     expect(props.saveQuestionResponse).toBeCalledWith("serviceHealthIssue", "");
     expect(props.saveQuestionResponse).toBeCalledWith("selectedNeeds", {});
+  });
+
+  it("clears data in url if clear button is clicked", () => {
+    let instance = mount(
+      <SelectionsEditor {...props} {...reduxData} />
+    ).instance();
+    instance.clearFilters();
+    expect(props.url.query.patronType).toEqual("");
+    expect(props.url.query.serviceType).toEqual("");
+    expect(props.url.query.statusAndVitals).toEqual("");
+    expect(props.url.query.serviceHealthIssue).toEqual("");
+    expect(props.url.query.selectedNeeds).toEqual({});
   });
 
   it("clicking #ClearFiltersMobile runs the clearFilters function", () => {
