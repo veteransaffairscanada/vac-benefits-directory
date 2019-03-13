@@ -12,6 +12,8 @@ import { globalTheme } from "../theme";
 import { css } from "emotion";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
+import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
@@ -77,6 +79,16 @@ export class SelectionsEditorMobile extends Component {
       this.props.saveQuestionResponse(q.variable_name, "");
     });
     this.props.saveQuestionResponse("selectedNeeds", {});
+    this.clearQueryParams();
+  };
+
+  clearQueryParams = () => {
+    const newUrl = this.props.url;
+    this.props.profileQuestions.forEach(q => {
+      newUrl.query[q.variable_name] = "";
+    });
+    newUrl.query["selectedNeeds"] = {};
+    Router.replace(mutateUrl(newUrl, "", ""));
   };
 
   toggleOpenState = () => {
