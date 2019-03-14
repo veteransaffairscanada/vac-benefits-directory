@@ -98,7 +98,7 @@ export class Favourites extends Component {
             breadcrumbs={breadcrumbs}
             pageTitle={t("index.your_saved_benefits")}
           />
-          <Paper padding="md" style={innerDiv}>
+          <Paper padding="md" styles={innerDiv}>
             <AlphaBanner t={t} url={url} />
             <Grid container spacing={32}>
               <Grid item xs={12}>

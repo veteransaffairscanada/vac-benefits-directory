@@ -21,7 +21,7 @@ class Paper extends Component {
   render() {
     return (
       <div
-        css={this.props.style ? [this.style, this.props.style] : [this.style]}
+        css={this.props.styles ? [this.style, this.props.styles] : [this.style]}
       >
         {this.props.children}
       </div>
@@ -32,7 +32,11 @@ class Paper extends Component {
 Paper.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   padding: PropTypes.string,
-  style: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+  styles: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.array
+  ])
 };
 
 export default Paper;

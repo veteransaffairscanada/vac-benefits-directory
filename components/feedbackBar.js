@@ -158,7 +158,7 @@ export class FeedbackBar extends Component {
       >
         {this.state.commentFormToggled ? (
           <div css={CommentBox} role="form">
-            <Header size="lg" headingLevel="h2" style={topHeading}>
+            <Header size="lg" headingLevel="h2" styles={topHeading}>
               {t("comment-help-us-improve")}
             </Header>
             <p css={pStyle}>{t("comment-privacy-disclaimer")}</p>
@@ -202,7 +202,7 @@ export class FeedbackBar extends Component {
         <div css={Div}>
           {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
             <div css={Inner}>
-              <Header size="sm" headingLevel="h2" style={whiteNormalFont}>
+              <Header size="sm" headingLevel="h2" styles={whiteNormalFont}>
                 {t("feedback.response_p1")}
               </Header>
               <FooterButton
@@ -217,7 +217,7 @@ export class FeedbackBar extends Component {
             <div css={Inner}>
               <Grid container spacing={8}>
                 <Grid item md={5} xs={12}>
-                  <Header size="sm" headingLevel="h2" style={whiteNormalFont}>
+                  <Header size="sm" headingLevel="h2" styles={whiteNormalFont}>
                     {t("feedback-prompt")}
                   </Header>
                 </Grid>
@@ -237,7 +237,7 @@ export class FeedbackBar extends Component {
                   </FooterButton>
                 </Grid>
                 <Grid item md={4} xs={12}>
-                  <Header size="sm" headingLevel="h2" style={fileBugHeader}>
+                  <Header size="sm" headingLevel="h2" styles={fileBugHeader}>
                     <FooterButton
                       id="feedbackBug"
                       onClick={() => this.sendFeedback("Bug")}

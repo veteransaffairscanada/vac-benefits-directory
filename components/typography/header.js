@@ -64,9 +64,9 @@ class Header extends Component {
   }
 
   render() {
-    const { children, style, headingLevel, id, autoFocus } = this.props;
+    const { children, styles, headingLevel, id, autoFocus } = this.props;
     const props = {
-      css: style ? [this.style, style] : this.style,
+      css: styles ? [this.style, styles] : this.style,
       id: id
     };
 
@@ -96,7 +96,7 @@ Header.propTypes = {
     PropTypes.string,
     PropTypes.array
   ]),
-  style: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  styles: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   headingLevel: PropTypes.string,
   size: PropTypes.string,
   id: PropTypes.string,

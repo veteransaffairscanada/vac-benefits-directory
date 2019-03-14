@@ -33,9 +33,9 @@ class Tooltip extends Component {
   `;
 
   render() {
-    const { children, disabled, tooltipText, style } = this.props;
+    const { children, disabled, tooltipText, styles } = this.props;
     return (
-      <div css={style ? [style, this.tooltipStyle] : this.tooltipStyle}>
+      <div css={styles ? [styles, this.tooltipStyle] : this.tooltipStyle}>
         {children}
         {!disabled ? (
           <span css={this.tooltipTextStyle}>{tooltipText}</span>
@@ -50,7 +50,7 @@ Tooltip.propTypes = {
   tooltipText: PropTypes.string,
   disabled: PropTypes.bool,
   width: PropTypes.number,
-  style: PropTypes.object
+  styles: PropTypes.object
 };
 
 Tooltip.defaultProps = {

@@ -221,7 +221,7 @@ export class DataValidation extends Component {
       >
         <Container id="mainContent">
           <p css={envDetailsStyling}>Build: {envDetails}</p>
-          <Paper style={[root, top]}>
+          <Paper styles={[root, top]}>
             <p>
               {t("dv.last_cache_update")}
               :&nbsp;
@@ -231,7 +231,7 @@ export class DataValidation extends Component {
               <Button id="refreshCache">{t("refresh-cache")}</Button>
             </a>
           </Paper>
-          <Paper style={root}>
+          <Paper styles={root}>
             <Table css={table}>
               <TableHead>
                 <TableRow>

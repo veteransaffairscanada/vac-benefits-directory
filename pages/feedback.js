@@ -93,7 +93,7 @@ export class Feedback extends Component {
             onClick={() => {
               window.history.back();
             }}
-            style={prevButton}
+            styles={prevButton}
             arrow="back"
           >
             {t("back")}
@@ -103,7 +103,7 @@ export class Feedback extends Component {
               {t("feedback.page_header")}
             </Header>
             <RadioSelector
-              style={radioStyle}
+              styles={radioStyle}
               legend={
                 t("current-language-code") === "en"
                   ? question.display_text_english

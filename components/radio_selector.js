@@ -113,7 +113,7 @@ export class RadioSelector extends React.Component {
       responses,
       legend,
       tooltipText,
-      style
+      styles
     } = this.props;
     if (options.length !== 0) {
       return (
@@ -123,14 +123,14 @@ export class RadioSelector extends React.Component {
             tooltipText={tooltipText}
             width={250}
           >
-            <Header style={formLabel} size="sm">
+            <Header styles={formLabel} size="sm">
               <span css={tooltipText ? underline : ""}>{legend}</span>
             </Header>
           </Tooltip>
 
           <div
             aria-label={legend}
-            css={style ? [leftIndent, style] : leftIndent}
+            css={styles ? [leftIndent, styles] : leftIndent}
           >
             {options.map(option => {
               return (
@@ -191,7 +191,7 @@ RadioSelector.propTypes = {
   options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
   store: PropTypes.object,
-  css: PropTypes.string,
+  styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   name: PropTypes.string,
   updateUrl: PropTypes.bool,
   url: PropTypes.object

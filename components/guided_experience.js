@@ -193,7 +193,7 @@ export class GuidedExperience extends Component {
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
-        <Paper padding="md" style={box}>
+        <Paper padding="md" styles={box}>
           <AlphaBanner t={t} url={url} />
           <Grid container spacing={24} role="form">
             {id === "patronType" ? (
@@ -204,7 +204,7 @@ export class GuidedExperience extends Component {
                   </Header>
                   {id === "patronType" ? (
                     <React.Fragment>
-                      <Body style={greyBox}>
+                      <Body styles={greyBox}>
                         <p>{t("ge.intro_text_p1")}</p>
                         <p>{t("ge.intro_text_p2")}</p>
                       </Body>
@@ -256,7 +256,7 @@ export class GuidedExperience extends Component {
                     <HeaderButton
                       id="skipButton"
                       altStyle="grey"
-                      style={mobileFullWidth}
+                      styles={mobileFullWidth}
                     >
                       {t("ge.skip")}
                     </HeaderButton>

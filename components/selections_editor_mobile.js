@@ -106,7 +106,7 @@ export class SelectionsEditorMobile extends Component {
           expandIcon={<ExpandMoreIcon css={greyishBrown} />}
           onClick={() => this.toggleOpenState()}
         >
-          <Header headingLevel="h2" size="sm_md" style={filterTitle}>
+          <Header headingLevel="h2" size="sm_md" styles={filterTitle}>
             {t("directory.edit_selections")}
           </Header>{" "}
         </ExpansionPanelSummary>
@@ -117,7 +117,7 @@ export class SelectionsEditorMobile extends Component {
               {this.countSelected() > 0 ? (
                 <HeaderButton
                   id="ClearFiltersMobile"
-                  style={clearButton}
+                  styles={clearButton}
                   onClick={() => {
                     this.clearFilters();
                   }}

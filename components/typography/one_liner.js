@@ -19,7 +19,7 @@ class OneLiner extends Component {
   render() {
     const { children } = this.props;
     return (
-      <div css={this.props.style ? [style, this.props.style] : style}>
+      <div css={this.props.styles ? [style, this.props.styles] : style}>
         {children}
       </div>
     );
@@ -27,6 +27,6 @@ class OneLiner extends Component {
 }
 OneLiner.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  style: PropTypes.object
+  styles: PropTypes.object
 };
 export default OneLiner;

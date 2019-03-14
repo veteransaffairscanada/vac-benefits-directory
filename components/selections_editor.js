@@ -84,7 +84,7 @@ export class SelectionsEditor extends Component {
     return (
       <Grid container css={root}>
         <Grid item xs={12}>
-          <Header size="sm_md" style={filterTitle}>
+          <Header size="sm_md" styles={filterTitle}>
             {t("directory.edit_selections")}
           </Header>
         </Grid>
@@ -92,7 +92,7 @@ export class SelectionsEditor extends Component {
           {this.countSelected() > 0 ? (
             <HeaderButton
               id="ClearFilters"
-              style={clearButton}
+              styles={clearButton}
               onClick={() => {
                 this.clearFilters();
               }}

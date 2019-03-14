@@ -76,7 +76,7 @@ class QuickLinks extends Component {
                 {onFavourites ? (
                   <HeaderButton
                     id="saved-list-button"
-                    style={linkStyle}
+                    styles={linkStyle}
                     onClick={() => this.scrollToId("#saved-list")}
                   >
                     {t("titles.saved_list")}
@@ -84,7 +84,7 @@ class QuickLinks extends Component {
                 ) : (
                   <HeaderButton
                     id="benefits-and-services-button"
-                    style={linkStyle}
+                    styles={linkStyle}
                     onClick={() => this.scrollToId("#benefits-and-services")}
                   >
                     {t("titles.benefits_and_services")}
@@ -94,7 +94,7 @@ class QuickLinks extends Component {
               <div css={link}>
                 <HeaderButton
                   id="next-steps-button"
-                  style={linkStyle}
+                  styles={linkStyle}
                   onClick={() => this.scrollToId("#next-steps")}
                 >
                   {t("nextSteps.whats_next")}
@@ -117,8 +117,7 @@ QuickLinks.defaultProps = {
 
 QuickLinks.propTypes = {
   t: PropTypes.func.isRequired,
-  onFavourites: PropTypes.bool,
-  css: PropTypes.string
+  onFavourites: PropTypes.bool
 };
 
 export default QuickLinks;

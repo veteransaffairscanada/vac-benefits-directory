@@ -91,14 +91,14 @@ export class BenefitCard extends Component {
     return (
       <Grid item xs={12}>
         <div css={root}>
-          <Paper style={cardBody}>
+          <Paper styles={cardBody}>
             <BenefitCardHeader
               benefit={benefit}
               t={t}
               store={this.props.store}
               language={language}
             />
-            <Header style={benefitName} size="md" headingLevel="h2">
+            <Header styles={benefitName} size="md" headingLevel="h2">
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
@@ -119,7 +119,7 @@ export class BenefitCard extends Component {
               ) : null}
             </Header>
             <div css={padding}>
-              {needsMet.length > 0 ? <Tag style={tagStyle} /> : null}
+              {needsMet.length > 0 ? <Tag styles={tagStyle} /> : null}
               {needsMet.map(need => (
                 <NeedTag
                   key={benefit.id + need.id}
@@ -129,7 +129,10 @@ export class BenefitCard extends Component {
                 />
               ))}
             </div>
-            <OneLiner className={"cardDescription"} style={cardDescriptionText}>
+            <OneLiner
+              className={"cardDescription"}
+              styles={cardDescriptionText}
+            >
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}

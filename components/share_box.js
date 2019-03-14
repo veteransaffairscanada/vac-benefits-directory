@@ -55,7 +55,7 @@ class ShareBox extends Component {
           <React.Fragment>
             <HeaderButton
               id={this.uid}
-              style={shareBoxItem}
+              styles={shareBoxItem}
               size="small"
               aria-label={t("titles.share")}
               onClick={() => this.setState({ showModal: true })}

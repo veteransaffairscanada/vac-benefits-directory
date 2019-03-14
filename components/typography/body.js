@@ -15,7 +15,7 @@ const root = css`
 
 export class Body extends Component {
   render() {
-    return <div css={[root, this.props.style]}>{this.props.children}</div>;
+    return <div css={[root, this.props.styles]}>{this.props.children}</div>;
   }
 }
 
@@ -25,7 +25,7 @@ Body.propTypes = {
     PropTypes.object,
     PropTypes.array
   ]),
-  style: PropTypes.object
+  styles: PropTypes.object
 };
 
 export default Body;

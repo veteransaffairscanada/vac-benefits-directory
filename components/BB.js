@@ -105,7 +105,7 @@ export class BB extends Component {
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
-        <Paper id={this.props.id} padding="md" style={innerDiv}>
+        <Paper id={this.props.id} padding="md" styles={innerDiv}>
           <AlphaBanner t={t} url={url} />
           <Grid container spacing={32}>
             <Grid item xs={12}>
@@ -128,7 +128,7 @@ export class BB extends Component {
                 <Header
                   headingLevel="h2"
                   size="md_lg"
-                  style={stylingWithSidebar}
+                  styles={stylingWithSidebar}
                 >
                   {t("titles.benefits_and_services")}
                 </Header>

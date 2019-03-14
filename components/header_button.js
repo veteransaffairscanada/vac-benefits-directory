@@ -61,7 +61,7 @@ class HeaderButton extends Component {
       ...otherProps
     } = this.props;
 
-    let cName = [this.props.style];
+    let cName = [this.props.styles];
     if (size === "small") cName.unshift(small);
     if (altStyle === "grey") cName.unshift(grey);
     if (hasBorder === true) cName.unshift(borderStyle);
@@ -91,7 +91,7 @@ HeaderButton.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-  style: PropTypes.object,
+  styles: PropTypes.object,
   label: PropTypes.object,
   disabled: PropTypes.bool,
   hasBorder: PropTypes.bool,

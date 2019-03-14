@@ -32,7 +32,7 @@ export class ProfileSelector extends Component {
         jsx_array.push(
           <Grid item xs={12} key={question.variable_name + "RadioSelector"}>
             <RadioSelector
-              style={radioStyle}
+              styles={radioStyle}
               id={question.variable_name + "RadioSelector"}
               t={t}
               legend={
