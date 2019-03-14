@@ -56,7 +56,7 @@ class VacFooterEn extends Component {
                 <div className="row">
                   <div className="col-xs-12">
                     <a
-                      href="/eng/resources/stay-connected/social-media"
+                      href={path + "/eng/resources/stay-connected/social-media"}
                       className="btn btn-default"
                     >
                       {"Follow Us "}
