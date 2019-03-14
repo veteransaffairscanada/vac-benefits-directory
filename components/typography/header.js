@@ -96,7 +96,7 @@ Header.propTypes = {
     PropTypes.string,
     PropTypes.array
   ]),
-  style: PropTypes.object,
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   headingLevel: PropTypes.string,
   size: PropTypes.string,
   id: PropTypes.string,

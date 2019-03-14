@@ -2543,8 +2543,8 @@
     },
     {
       "key": "filter by category",
-      "English": "Filter by category",
-      "French": "Filtrer par sujet",
+      "English": "What kind of benefits are you looking for?",
+      "French": "Quel type de prestations recherchez-vous? (fra)",
       "id": "filter by category",
       "section": ""
     },
@@ -2949,8 +2949,8 @@
     },
     {
       "key": "reset filters",
-      "English": "Reset",
-      "French": "Réinitialiser",
+      "English": "Reset all",
+      "French": "Effacer tout (fra)",
       "id": "reset filters",
       "section": ""
     },
@@ -3307,8 +3307,8 @@
         "rec5QorGlTInQ2XAO",
         "recFABO2SLhcwRkjT"
       ],
-      "display_text_english": "My selection:",
-      "display_text_french": "Ma sélection:",
+      "display_text_english": "Show me:",
+      "display_text_french": "Montre moi (fra):",
       "question display logic": ["recqrmO0TSWr3Sal8", "recgoq6VzwN19P7ui"],
       "guided_experience_english": "Select who would be receiving the benefits.",
       "guided_experience_french": "Sélectionnez qui recevra les services.",

@@ -8,6 +8,8 @@ import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import Tooltip from "./tooltip";
 import Radio from "./radio";
+import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
 const formControl = css`
   margin-top: ${globalTheme.unit} !important;
@@ -15,8 +17,8 @@ const formControl = css`
 const formLabel = css`
   margin-bottom: 10px;
   color: ${globalTheme.colour.greyishBrown};
-  font-size: 20px;
-  font-weight: normal;
+  font-size: 16px;
+  font-bold: normal;
   font-style: normal;
   font-stretch: normal;
   letter-spacing: normal;
@@ -87,6 +89,10 @@ export class RadioSelector extends React.Component {
     this.props.saveQuestionResponse(question, response);
     this.clearAppropriateResponses(question, response);
     logEvent("FilterClick", question, response);
+    if (this.props.updateUrl) {
+      this.props.url.query[question] = response;
+      Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
+    }
   };
 
   render() {
@@ -134,6 +140,7 @@ export class RadioSelector extends React.Component {
                   onChange={this.handleSelect}
                   value={option.variable_name}
                   css={radioOption}
+                  sidebar={this.props.updateUrl}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
@@ -185,7 +192,9 @@ RadioSelector.propTypes = {
   tooltipText: PropTypes.string,
   store: PropTypes.object,
   css: PropTypes.string,
-  name: PropTypes.string
+  name: PropTypes.string,
+  updateUrl: PropTypes.bool,
+  url: PropTypes.object
 };
 
 export default connect(

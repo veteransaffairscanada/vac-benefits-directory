@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import ShareBox from "../components/share_box";
-import EditIcon from "./icons/Edit";
+//import EditIcon from "./icons/Edit";
 import HeaderLink from "./header_link";
 import SaveChecked from "./icons/SaveChecked";
 /** @jsx jsx */
@@ -44,7 +44,7 @@ const savedListStyle = css`
     margin-left: 25px;
   }
 `;
-
+/*
 const editStyle = css`
   padding: 0;
   font-size: 20px;
@@ -53,10 +53,10 @@ const editStyle = css`
     font-size: 12px !important;
   }
 `;
-
+*/
 export class StickyHeader extends Component {
   render() {
-    const { t, url, summaryUrl, favouriteBenefits, showShareLink } = this.props;
+    const { t, url, favouriteBenefits, showShareLink } = this.props;
 
     const longFavouritesText = t("favourites.saved_benefits", {
       x: favouriteBenefits.length
@@ -68,7 +68,7 @@ export class StickyHeader extends Component {
     return (
       <Grid item xs={12} css={sticky}>
         <Grid container spacing={8}>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <ShareBox
               t={t}
               printUrl={this.props.printUrl}
@@ -76,14 +76,18 @@ export class StickyHeader extends Component {
               showShareLink={showShareLink}
             />
           </Grid>
-          <Grid item xs={8} css={alignRight}>
-            <HeaderLink id="editSelections" href={summaryUrl} css={editStyle}>
+          <Grid item xs={6} css={alignRight}>
+            {/* <HeaderLink
+              id="editSelections"
+              href={this.props.summaryUrl}
+              className={editStyle}
+            >
               <EditIcon />
               <span css={longText}>{t("directory.edit_selections")}</span>
               <span css={shortText}>
                 {t("directory.edit_selections_mobile")}
               </span>
-            </HeaderLink>
+            </HeaderLink> */}
             <HeaderLink
               css={savedListStyle}
               id="savedBenefits"

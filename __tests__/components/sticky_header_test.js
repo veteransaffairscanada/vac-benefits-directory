@@ -37,20 +37,20 @@ describe("StickyHeader", () => {
     ).toContain("0");
   });
 
-  it("contains edit selections link", () => {
-    expect(
-      mount(<StickyHeader {...props} />)
-        .find("#editSelections")
-        .first().length
-    ).toEqual(1);
-  });
+  // it("contains edit selections link", () => {
+  //   expect(
+  //     mount(<StickyHeader {...props} />)
+  //       .find("#editSelections")
+  //       .first().length
+  //   ).toEqual(1);
+  // });
 
-  it("contains href to summary page in edit selections link", () => {
-    expect(
-      mount(<StickyHeader {...props} />)
-        .find("#editSelections")
-        .first()
-        .prop("href")
-    ).toEqual(props.summaryUrl);
-  });
+  // it("contains href to summary page in edit selections link", () => {
+  //   expect(
+  //     mount(<StickyHeader {...props} />)
+  //       .find("#editSelections")
+  //       .first()
+  //       .prop("href")
+  //   ).toEqual(props.summaryUrl);
+  // });
 });

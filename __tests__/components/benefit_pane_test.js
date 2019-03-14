@@ -13,6 +13,7 @@ import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
 import nextStepsFixture from "../fixtures/nextSteps";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
+import Router from "next/router";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -87,6 +88,9 @@ describe("BenefitsPane", () => {
   });
 
   describe("when filteredBenefitsWithoutSearch is empty", () => {
+    Router.replace = jest
+      .fn()
+      .mockImplementation(() => new Promise(() => true));
     beforeEach(() => {
       reduxData.filteredBenefitsWithoutSearch = [];
     });

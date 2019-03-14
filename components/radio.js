@@ -30,7 +30,7 @@ const inputStyle = css({
 });
 
 const labelStyle = css({
-  fontFamily: globalTheme.fontFamilySerif,
+  fontFamily: globalTheme.fontFamilySansSerif,
   color: globalTheme.colour.greyishBrown,
   fontWeight: 300,
   textTransform: "none",
@@ -70,7 +70,12 @@ const mobileLabelStyle = css`
   }
 `;
 
-const Radio = ({ children, css, value, ...input }) => (
+const sidebarLabelStyle = css({
+  fontSize: "14px !important",
+  padding: "6px 10px 15px 12px !important"
+});
+
+const Radio = ({ children, css, value, sidebar, ...input }) => (
   <div css={[rootStyle, css]}>
     <input
       type="radio"
@@ -79,7 +84,10 @@ const Radio = ({ children, css, value, ...input }) => (
       id={value + "-0"}
       {...input}
     />
-    <label css={[mobileLabelStyle, labelStyle]} htmlFor={value + "-0"}>
+    <label
+      css={[mobileLabelStyle, labelStyle, sidebar ? sidebarLabelStyle : null]}
+      htmlFor={value + "-0"}
+    >
       {children}
     </label>
   </div>
@@ -92,7 +100,8 @@ Radio.defaultProps = {
 Radio.propTypes = {
   css: PropTypes.string,
   value: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  sidebar: PropTypes.bool
 };
 
 export default Radio;
