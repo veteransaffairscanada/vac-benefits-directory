@@ -101,7 +101,14 @@ export class RadioSelector extends React.Component {
           )
       );
 
-    const { t, selectorType, responses, legend, tooltipText, css } = this.props;
+    const {
+      t,
+      selectorType,
+      responses,
+      legend,
+      tooltipText,
+      style
+    } = this.props;
     if (options.length !== 0) {
       return (
         <div css={formControl}>
@@ -115,7 +122,10 @@ export class RadioSelector extends React.Component {
             </Header>
           </Tooltip>
 
-          <div aria-label={legend} css={css ? [leftIndent, css] : leftIndent}>
+          <div
+            aria-label={legend}
+            css={style ? [leftIndent, style] : leftIndent}
+          >
             {options.map(option => {
               return (
                 <Radio
