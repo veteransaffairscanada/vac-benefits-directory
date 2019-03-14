@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -102,7 +102,7 @@ export class SelectionsEditorMobile extends Component {
     return (
       <ExpansionPanel css={root} defaultExpanded expanded={this.state.open}>
         <ExpansionPanelSummary
-          className={summary}
+          css={summary}
           expandIcon={<ExpandMoreIcon css={greyishBrown} />}
           onClick={() => this.toggleOpenState()}
         >
@@ -126,11 +126,11 @@ export class SelectionsEditorMobile extends Component {
                 </HeaderButton>
               ) : null}
             </Grid>
-            <Grid item sm={12} className={profileStyle}>
+            <Grid item sm={12} css={profileStyle}>
               <ProfileSelector t={t} store={store} url={url} />
             </Grid>
             <div css={divider} />
-            <Grid item sm={12} className={needsStyle}>
+            <Grid item sm={12} css={needsStyle}>
               <NeedsSelector t={t} store={store} url={url} />
             </Grid>
           </Grid>
