@@ -27,7 +27,7 @@ const spacer = css`
   width: 100%;
 `;
 const bottomPadding = css`
-  padding-bottom: 50px;
+  padding-bottom: 27px;
 `;
 
 export class BenefitsPane extends Component {
