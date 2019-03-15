@@ -12,14 +12,14 @@ import { Grid } from "@material-ui/core";
 require("isomorphic-fetch");
 
 const CommentBox = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.navy};
   color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
   padding: 5px 0 50px 0;
 `;
 const Div = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.navy};
   width: 100%;
   color: ${globalTheme.colour.white};
   text-align: left;
@@ -48,7 +48,7 @@ const Inner = css`
   }
 `;
 const TextHold = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.navy};
   padding: 10px 0;
 `;
 const topHeading = css`
