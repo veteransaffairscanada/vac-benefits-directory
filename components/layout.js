@@ -21,7 +21,7 @@ import VacHeaderFr from "./vac_header_fr";
 import SkipToMainContent from "./skip_to_main_content";
 
 const Content = styled("div")`
-  min-height: calc(100vh - 65px);
+  min-height: calc(100vh - 165px);
 `;
 const black_bg = css`
   background-color: ${globalTheme.colour.blackish2};

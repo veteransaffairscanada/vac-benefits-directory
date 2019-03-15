@@ -139,7 +139,7 @@ export class RadioSelector extends React.Component {
                   checked={responses[selectorType] === option.variable_name}
                   onChange={this.handleSelect}
                   value={option.variable_name}
-                  css={radioOption}
+                  styles={radioOption}
                   sidebar={this.props.updateUrl}
                 >
                   {t("current-language-code") === "en"

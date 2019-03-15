@@ -75,8 +75,8 @@ const sidebarLabelStyle = css({
   padding: "6px 10px 15px 12px !important"
 });
 
-const Radio = ({ children, css, value, sidebar, ...input }) => (
-  <div css={[rootStyle, css]}>
+const Radio = ({ children, styles, value, sidebar, ...input }) => (
+  <div css={[rootStyle, styles]}>
     <input
       type="radio"
       css={inputStyle}
@@ -94,11 +94,11 @@ const Radio = ({ children, css, value, sidebar, ...input }) => (
 );
 
 Radio.defaultProps = {
-  css: undefined
+  styles: undefined
 };
 
 Radio.propTypes = {
-  css: PropTypes.string,
+  styles: PropTypes.object,
   value: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   sidebar: PropTypes.bool

@@ -8,7 +8,9 @@ import { css, jsx } from "@emotion/core";
 const StyledCheckbox = styled("label")({
   display: "block",
   position: "relative",
-  padding: "0 0 0 38px"
+  padding: "0 0 0 38px",
+  marginBottom: "10px",
+  marginRight: "10px"
 });
 
 const StyledInput = styled("input")(
@@ -85,10 +87,10 @@ const sidebarLabelStyle = css({
   padding: "6px 10px 15px 12px !important"
 });
 
-const Checkbox = ({ children, css, sidebar, ...props }) => {
+const Checkbox = ({ children, sidebar, ...props }) => {
   const guid = uuidv4();
   return (
-    <StyledCheckbox css={css} htmlFor={guid}>
+    <StyledCheckbox htmlFor={guid}>
       <StyledInput type="checkbox" {...props} id={guid} />
       <StyledLabel css={[mobileLabelStyle, sidebar ? sidebarLabelStyle : null]}>
         {children}
@@ -98,18 +100,11 @@ const Checkbox = ({ children, css, sidebar, ...props }) => {
 };
 
 Checkbox.defaultProps = {
-  css: undefined
+  styles: undefined
 };
 
 Checkbox.propTypes = {
-  /**
-   * Text content for checkbox
-   */
   children: PropTypes.node.isRequired,
-  /**
-   * CSS Classname for outermost container
-   */
-  css: PropTypes.string,
   sidebar: PropTypes.bool
 };
 
