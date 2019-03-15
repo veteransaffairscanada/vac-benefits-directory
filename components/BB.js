@@ -25,9 +25,6 @@ const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
   width: 100%;
 `;
-const outerDiv = css`
-  padding-bottom: 100px;
-`;
 const innerDiv = css`
   padding-top: 24px;
 `;
@@ -95,7 +92,7 @@ export class BB extends Component {
   render() {
     const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <Container className={outerDiv}>
+      <Container>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}

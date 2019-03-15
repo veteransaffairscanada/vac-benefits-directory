@@ -30,7 +30,7 @@ const Div = css`
   }
 `;
 const FeedbackWrapper = css`
-  margin-top: 25px;
+  margin-top: 125px;
 `;
 const Inner = css`
   line-height: 1.6;
