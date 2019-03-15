@@ -25,9 +25,6 @@ const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
   width: 100%;
 `;
-const outerDiv = css`
-  padding-bottom: 100px;
-`;
 const innerDiv = css`
   padding-top: 24px;
 `;
@@ -90,7 +87,7 @@ export class Favourites extends Component {
     ];
 
     return (
-      <div css={outerDiv}>
+      <div>
         <Container id="favourites">
           <BreadCrumbs
             t={t}

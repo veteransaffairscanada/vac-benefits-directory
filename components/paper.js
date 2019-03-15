@@ -8,12 +8,12 @@ class Paper extends Component {
   padding = { sm: "24px", md: "35px", lg: "63px", xl: "96px" };
   paddingMobile = { sm: "15px", md: "19px", lg: "35px", xl: "45px" };
   style = css`
-    box-shadow: ${globalTheme.boxShadowMui};
+    box-shadow: ${globalTheme.boxShadow};
     padding: ${this.padding[this.props.padding]};
     background-color: white;
     box-sizing: border-box;
     width: 100%;
-    border-top: 15px solid ${globalTheme.colour.tea};
+    border-top: 8px solid ${globalTheme.colour.borderGreen};
     @media only screen and (max-width: ${globalTheme.max.xs}) {
       padding: ${this.paddingMobile[this.props.padding]};
     }
