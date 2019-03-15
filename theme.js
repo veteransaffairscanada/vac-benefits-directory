@@ -5,7 +5,7 @@ let theme = {
   unit: "8px",
   cardPadding: "35px",
   cardPaddingMobile: "19px",
-  boxShadowMui: "0 4px 14px rgba(0,0,0,.05);",
+  boxShadow: "0 4px 14px rgba(0,0,0,.05);",
   max: {
     mobile: "399.5px",
     xs: "424.5px",
