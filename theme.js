@@ -5,8 +5,7 @@ let theme = {
   unit: "8px",
   cardPadding: "35px",
   cardPaddingMobile: "19px",
-  boxShadowMui:
-    "0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)",
+  boxShadow: "0 4px 14px rgba(0,0,0,.05);",
   max: {
     mobile: "399.5px",
     xs: "424.5px",
@@ -51,7 +50,7 @@ let theme = {
     paleBlueGrey: "#f1f7fc",
     darkBlueGrey: "#d8dee2",
     lineGrey: "#dfdfdf",
-    tea: "#57c684",
+    borderGreen: "#1da570",
     charcoalGrey: "#31353a",
     navy: "#434458",
     duckEggBlue: "#dbe3e5",

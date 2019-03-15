@@ -39,7 +39,7 @@ const selectStyle = css`
   line-height: normal;
   width: 100%;
   height: 44px;
-  box-shadow: ${globalTheme.boxShadowMui};
+  box-shadow: ${globalTheme.boxShadow};
   border: 0px;
   :focus {
     outline: 3px solid ${globalTheme.colour.focusColour};
