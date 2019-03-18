@@ -114,7 +114,11 @@ export class Favourites extends Component {
                 showShareLink={false}
               />
               <Grid item xs={12}>
-                <QuickLinks t={t} onFavourites={true} />
+                <QuickLinks
+                  t={t}
+                  onFavourites={true}
+                  rightHandText={t("favourites.quick_links_text")}
+                />
               </Grid>
               <Grid item md={4} xs={12}>
                 <div id="saved-list">

@@ -8,7 +8,8 @@ describe("QuickLinks", () => {
   let props;
   beforeEach(() => {
     props = {
-      t: () => "en"
+      t: () => "en",
+      rightHandText: "right hand text"
     };
   });
 

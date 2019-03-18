@@ -64,7 +64,7 @@ class QuickLinks extends Component {
   }
 
   render() {
-    const { t, onFavourites } = this.props;
+    const { t, onFavourites, rightHandText } = this.props;
     return (
       <div className={greyBox}>
         <Grid container>
@@ -102,7 +102,7 @@ class QuickLinks extends Component {
             </div>
           </Grid>
           <Grid item xs={12} md={8}>
-            <div className={rightDiv}>{t("B3.check eligibility")}</div>
+            <div className={rightDiv}>{rightHandText}</div>
           </Grid>
         </Grid>
       </div>
@@ -117,6 +117,7 @@ QuickLinks.defaultProps = {
 QuickLinks.propTypes = {
   t: PropTypes.func.isRequired,
   onFavourites: PropTypes.bool,
+  rightHandText: PropTypes.string.isRequired,
   className: PropTypes.string
 };
 
