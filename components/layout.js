@@ -28,7 +28,7 @@ const black_bg = css`
   padding-bottom: 6px;
 `;
 const backgoundColour1 = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.navy};
 `;
 const fontStyle = css`
   font-family: Montserrat;
