@@ -133,7 +133,7 @@ export class Favourites extends Component {
                     </Grid>
                   ) : null}
                   <Grid item xs={12}>
-                    <Header css={headerPadding} size="md" headingLevel="h3">
+                    <Header styles={headerPadding} size="md" headingLevel="h3">
                       {filteredBenefits.length === 1
                         ? t("titles.1_saved_benefit")
                         : t("titles.x_saved_benefits", {

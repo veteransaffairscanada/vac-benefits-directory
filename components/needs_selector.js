@@ -45,7 +45,7 @@ export class NeedsSelector extends Component {
     if (showQuestion("needs", undefined, this.props.reduxState)) {
       return (
         <div css={topBorder}>
-          <Header size="sm" css={formLabel}>
+          <Header size="sm" styles={formLabel}>
             {t("filter by category")}
           </Header>
           <Grid container spacing={16}>

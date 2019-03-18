@@ -218,7 +218,7 @@ export class GuidedExperience extends Component {
                 {this.getSubtitle(question)}
               </Header>
               {question.tooltip_english && question.tooltip_english !== "" ? (
-                <Body css={body}>
+                <Body styles={body}>
                   {t("current-language-code") === "en"
                     ? question.tooltip_english
                     : question.tooltip_french}

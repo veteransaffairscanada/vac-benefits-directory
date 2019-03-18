@@ -99,7 +99,7 @@ export class Feedback extends Component {
             {t("back")}
           </HeaderButton>
           <form>
-            <Header css={headerPadding} headingLevel="h1" size="lg">
+            <Header styles={headerPadding} headingLevel="h1" size="lg">
               {t("feedback.page_header")}
             </Header>
             <RadioSelector
