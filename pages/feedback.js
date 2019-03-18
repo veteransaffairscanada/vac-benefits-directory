@@ -14,7 +14,6 @@ import TextArea from "../components/text_area";
 import Details from "../components/details";
 require("isomorphic-fetch");
 import Raven from "raven-js";
-import Router from "next/router";
 import AlphaBanner from "../components/alpha_banner";
 import Link from "next/link";
 

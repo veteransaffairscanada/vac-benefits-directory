@@ -60,15 +60,15 @@ describe("Feedback", () => {
       "send"
     );
   });
-  it("clicking send navigates to the feedback_submitted page", () => {
-    mount(<Feedback {...props} {...reduxData} />)
+  it("clicking send sends feedback", () => {
+    let mounted = mount(<Feedback {...props} {...reduxData} />);
+    mounted.instance().sendFeedback = jest.fn();
+
+    mounted
       .find("#send")
       .first()
       .simulate("click");
-    expect(Router.push).toBeCalledWith({
-      pathname: "/feedback_submitted",
-      query: {}
-    });
+    expect(mounted.instance().sendFeedback).toBeCalled();
   });
   it("contains the details component", async () => {
     expect(
