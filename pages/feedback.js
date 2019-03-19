@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Header from "../components/typography/header";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { globalTheme } from "../theme";
 import Container from "../components/container";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import RadioSelector from "../components/radio_selector";
 import { connect } from "react-redux";
 import HeaderButton from "../components/header_button";
@@ -92,17 +93,17 @@ export class Feedback extends Component {
             onClick={() => {
               window.history.back();
             }}
-            className={prevButton}
+            styles={prevButton}
             arrow="back"
           >
             {t("back")}
           </HeaderButton>
           <form>
-            <Header className={headerPadding} headingLevel="h1" size="lg">
+            <Header styles={headerPadding} headingLevel="h1" size="lg">
               {t("feedback.page_header")}
             </Header>
             <RadioSelector
-              className={radioStyle}
+              styles={radioStyle}
               legend={
                 t("current-language-code") === "en"
                   ? question.display_text_english
@@ -114,7 +115,7 @@ export class Feedback extends Component {
               store={store}
             />
             <TextArea
-              className={textAreaStyle}
+              css={textAreaStyle}
               name="group1"
               maxLength={500}
               t={t}
@@ -124,7 +125,7 @@ export class Feedback extends Component {
             </TextArea>
             <Details
               summary={t("feedback.details_question")}
-              className={detailsStyle}
+              css={detailsStyle}
             >
               {t("feedback.details_expansion_pt1")}
               <a href={t("feedback.vac_office_link")}>
@@ -136,7 +137,7 @@ export class Feedback extends Component {
               </a>
               {t("feedback.details_expansion_pt5")}
             </Details>
-            <div className={padding}>
+            <div css={padding}>
               <Button
                 id="send"
                 arrow={true}

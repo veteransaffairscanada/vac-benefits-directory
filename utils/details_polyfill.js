@@ -6,7 +6,7 @@ let detailsPolyfill = () => {
   if (supported) return;
 
   // Add a classname
-  document.documentElement.className += " no-details";
+  document.documentElement.css += " no-details";
 
   window.addEventListener("click", clickHandler);
 

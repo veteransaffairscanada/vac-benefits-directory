@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -35,7 +36,7 @@ export class NextSteps extends Component {
         .replace("<p>", "<span>")
         .replace("</p>", "</span>");
       return (
-        <li key={n} className={liItem}>
+        <li key={n} css={liItem}>
           <JsxParser jsx={jsxString} />
         </li>
       );
@@ -48,7 +49,7 @@ export class NextSteps extends Component {
       <div>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <ul id="nextStepsList" className={whatsNextList}>
+            <ul id="nextStepsList" css={whatsNextList}>
               {bullets}
             </ul>
           </Grid>

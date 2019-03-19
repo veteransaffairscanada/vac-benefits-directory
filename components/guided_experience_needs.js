@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core/";
 import NeedButton from "./need_button";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const root = css`
   padding: 0 15px !important;
@@ -43,11 +44,11 @@ export class GuidedExperienceNeeds extends Component {
   render() {
     const { t, store } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <div className={root}>
+      <div css={root}>
         <Grid container spacing={24}>
-          <ul className={needsList}>
+          <ul css={needsList}>
             {this.props.needs.map(need => (
-              <li key={need.id} className={needCss}>
+              <li key={need.id} css={needCss}>
                 <NeedButton
                   key={need.nameEn.replace(/ /g, "-") + "-checkbox"}
                   need={need}

@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../../theme";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const root = css`
   font-family: ${globalTheme.fontFamilySerif};
@@ -14,11 +15,7 @@ const root = css`
 
 export class Body extends Component {
   render() {
-    return (
-      <div className={cx(root, this.props.className)}>
-        {this.props.children}
-      </div>
-    );
+    return <div css={[root, this.props.styles]}>{this.props.children}</div>;
   }
 }
 
@@ -28,7 +25,7 @@ Body.propTypes = {
     PropTypes.object,
     PropTypes.array
   ]),
-  className: PropTypes.string
+  styles: PropTypes.object
 };
 
 export default Body;

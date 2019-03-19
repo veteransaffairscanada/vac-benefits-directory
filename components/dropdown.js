@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 
 const cerulean = globalTheme.colour.cerulean.replace("#", "%23"); //The character # is reserved in URLs as the start of a fragment identifier. You must encode this as %23 for the URL to be valid.
@@ -51,18 +52,13 @@ export class Dropdown extends Component {
   render() {
     const { value, onChange, children, label, id } = this.props;
     return (
-      <div className={wrapper}>
-        <label htmlFor={id} className={left}>
+      <div css={wrapper}>
+        <label htmlFor={id} css={left}>
           {label}
           &nbsp;&nbsp;
         </label>
-        <div className={right}>
-          <select
-            className={selectStyle}
-            value={value}
-            id={id}
-            onChange={onChange}
-          >
+        <div css={right}>
+          <select css={selectStyle} value={value} id={id} onChange={onChange}>
             {children}
           </select>
         </div>

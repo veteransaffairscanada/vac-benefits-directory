@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const needsTag = css`
   font-size: 14px;
@@ -19,7 +20,7 @@ export class NeedTag extends Component {
   render() {
     const { t, need, last } = this.props;
     return (
-      <div className={needsTag}>
+      <div css={needsTag}>
         {(t("current-language-code") === "en"
           ? need.nameEn.toUpperCase()
           : need.nameFr.toUpperCase()) + (last ? "" : ",")}

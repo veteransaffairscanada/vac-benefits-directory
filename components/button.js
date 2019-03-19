@@ -1,7 +1,7 @@
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
-import React from "react";
 import { globalTheme } from "../theme";
 
 const StyledButton = styled("button")(
@@ -90,7 +90,7 @@ const Button = ({ size, secondary, children, icon, ...props }) => (
     isBig={size === "big"}
     isSmall={size === "small"}
     isSecondary={secondary}
-    className={props.mobileFullWidth ? mobileFullWidth : ""}
+    css={props.mobileFullWidth ? mobileFullWidth : ""}
     {...props}
   >
     {children}
