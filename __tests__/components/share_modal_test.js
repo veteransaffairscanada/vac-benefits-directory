@@ -2,6 +2,18 @@ import React from "react";
 import { mount } from "enzyme";
 import Router from "next/router";
 import ShareModal from "../../components/share_modal";
+import ReactModal from "react-modal";
+
+// mock app element to fix warning "App element is not defined"
+let app = document.createElement("div");
+app.id = "app";
+
+document
+  .getElementsByTagName("body")
+  .item(0)
+  .appendChild(app);
+
+ReactModal.setAppElement("#app");
 
 describe("ShareModal", () => {
   let props;
