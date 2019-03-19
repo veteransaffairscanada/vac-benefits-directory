@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import {
   MuiThemeProvider,
@@ -20,7 +21,7 @@ import VacHeaderFr from "./vac_header_fr";
 import SkipToMainContent from "./skip_to_main_content";
 
 const Content = styled("div")`
-  min-height: calc(100vh - 65px);
+  min-height: calc(100vh - 165px);
 `;
 const black_bg = css`
   background-color: ${globalTheme.colour.blackish2};
@@ -81,7 +82,7 @@ class Layout extends Component {
           <ErrorBoundary>
             <Content>
               <SkipToMainContent skipLink={skipLink} t={t} />
-              <div id="header_css" className={black_bg}>
+              <div id="header_css" css={black_bg}>
                 {t("current-language-code") === "en" ? (
                   <VacHeaderEn t={t} url={url} />
                 ) : (
@@ -90,12 +91,12 @@ class Layout extends Component {
               </div>
               <main id="main">{this.props.children}</main>
             </Content>
-            <div className={backgoundColour1}>
+            <div css={backgoundColour1}>
               <Container>
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div id="footer_styles" className={fontStyle}>
+            <div id="footer_styles" css={fontStyle}>
               {t("current-language-code") === "en" ? (
                 <VacFooterEn />
               ) : (
