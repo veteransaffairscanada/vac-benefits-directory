@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { getPrintUrl, getHomeUrl } from "../selectors/urls";
 import { withTheme } from "@material-ui/core/styles";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
 import { DisabledCookiesBanner } from "./disabled_cookies_banner";
@@ -101,7 +102,7 @@ export class BB extends Component {
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
-        <Paper id={this.props.id} padding="md" className={innerDiv}>
+        <Paper id={this.props.id} padding="md" styles={innerDiv}>
           <AlphaBanner t={t} url={url} />
           <Grid container spacing={32}>
             <Grid item xs={12}>
@@ -124,15 +125,15 @@ export class BB extends Component {
                 <Header
                   headingLevel="h2"
                   size="md_lg"
-                  className={stylingWithSidebar}
+                  styles={stylingWithSidebar}
                 >
                   {t("titles.benefits_and_services")}
                 </Header>
               </div>
-              <div className={selectionsEditorMobileStyle}>
+              <div css={selectionsEditorMobileStyle}>
                 <SelectionsEditorMobile t={t} store={store} url={url} />
               </div>
-              <div className={selectionsEditorStyle}>
+              <div css={selectionsEditorStyle}>
                 <SelectionsEditor t={t} store={store} url={url} />
               </div>
             </Grid>
@@ -152,7 +153,7 @@ export class BB extends Component {
               <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
             </Grid>
             <Grid item xs={12}>
-              <div className={divider} />
+              <div css={divider} />
             </Grid>
             <Grid item md={4} xs={12}>
               <div id="next-steps">

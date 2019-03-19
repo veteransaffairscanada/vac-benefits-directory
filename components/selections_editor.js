@@ -1,11 +1,12 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
 import Router from "next/router";
@@ -81,9 +82,9 @@ export class SelectionsEditor extends Component {
     const { t, store, url } = this.props;
 
     return (
-      <Grid container className={root}>
+      <Grid container css={root}>
         <Grid item xs={12}>
-          <Header size="sm_md" className={filterTitle}>
+          <Header size="sm_md" styles={filterTitle}>
             {t("directory.edit_selections")}
           </Header>
         </Grid>
@@ -91,7 +92,7 @@ export class SelectionsEditor extends Component {
           {this.countSelected() > 0 ? (
             <HeaderButton
               id="ClearFilters"
-              className={clearButton}
+              styles={clearButton}
               onClick={() => {
                 this.clearFilters();
               }}
@@ -101,11 +102,11 @@ export class SelectionsEditor extends Component {
           ) : null}
         </Grid>
 
-        <Grid item xs={12} className={profileStyle}>
+        <Grid item xs={12} css={profileStyle}>
           <ProfileSelector t={t} store={store} url={url} />
         </Grid>
-        <div className={divider} />
-        <Grid item xs={12} className={profileStyle}>
+        <div css={divider} />
+        <Grid item xs={12} css={profileStyle}>
           <NeedsSelector t={t} store={store} url={url} />
         </Grid>
       </Grid>

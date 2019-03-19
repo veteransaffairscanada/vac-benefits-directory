@@ -1,6 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 
 const rootStyle = css({
@@ -75,21 +75,17 @@ const sidebarLabelStyle = css({
   padding: "6px 10px 15px 12px !important"
 });
 
-const Radio = ({ children, className, value, sidebar, ...input }) => (
-  <div className={cx(rootStyle, className)}>
+const Radio = ({ children, styles, value, sidebar, ...input }) => (
+  <div css={[rootStyle, styles]}>
     <input
       type="radio"
-      className={inputStyle}
+      css={inputStyle}
       value={value}
       id={value + "-0"}
       {...input}
     />
     <label
-      className={cx(
-        mobileLabelStyle,
-        labelStyle,
-        sidebar ? sidebarLabelStyle : null
-      )}
+      css={[mobileLabelStyle, labelStyle, sidebar ? sidebarLabelStyle : null]}
       htmlFor={value + "-0"}
     >
       {children}
@@ -98,11 +94,11 @@ const Radio = ({ children, className, value, sidebar, ...input }) => (
 );
 
 Radio.defaultProps = {
-  className: undefined
+  styles: undefined
 };
 
 Radio.propTypes = {
-  className: PropTypes.string,
+  styles: PropTypes.object,
   value: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   sidebar: PropTypes.bool

@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import Highlighter from "react-highlight-words";
 import CardDetails from "./card_details";
@@ -62,14 +63,14 @@ export class ExampleBullets extends React.Component {
     }
     return (
       <CardDetails
-        className={root}
+        css={root}
         summary={
           t("current-language-code") === "en"
             ? benefit.seeMoreSentenceEn
             : benefit.seeMoreSentenceFr
         }
       >
-        <ul className={margin}>{bullets}</ul>
+        <ul css={margin}>{bullets}</ul>
       </CardDetails>
     );
   }
