@@ -15,8 +15,8 @@ import TextArea from "../components/text_area";
 import Details from "../components/details";
 require("isomorphic-fetch");
 import Raven from "raven-js";
-import Router from "next/router";
 import AlphaBanner from "../components/alpha_banner";
+import Link from "next/link";
 
 const padding = css`
   padding-top: 15px;
@@ -137,21 +137,24 @@ export class Feedback extends Component {
               </a>
               {t("feedback.details_expansion_pt5")}
             </Details>
-            <div css={padding}>
-              <Button
-                id="send"
-                arrow={true}
-                size="big"
-                onClick={() => {
-                  this.sendFeedback();
-                  Router.push({
-                    pathname: "/feedback_submitted",
-                    query: url.query
-                  });
+            <div className={padding}>
+              <Link
+                href={{
+                  pathname: "/feedback_submitted",
+                  query: url.query
                 }}
               >
-                {t("send")}{" "}
-              </Button>
+                <Button
+                  id="send"
+                  arrow={true}
+                  size="big"
+                  onClick={() => {
+                    this.sendFeedback();
+                  }}
+                >
+                  {t("send")}{" "}
+                </Button>
+              </Link>
             </div>
           </form>
         </Container>
