@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { connect } from "react-redux";
 import ChildBenefitList from "./child_benefit_list";
 import {
@@ -82,7 +83,7 @@ export class BenefitExpansion extends Component {
     });
 
     return (
-      <div className={topBorder}>
+      <div css={topBorder}>
         <ExampleBullets
           benefit={benefit}
           t={t}
@@ -116,7 +117,7 @@ BenefitExpansion.propTypes = {
   benefit: PropTypes.object.isRequired,
   reduxState: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  className: PropTypes.string,
+  css: PropTypes.string,
   store: PropTypes.object
 };
 

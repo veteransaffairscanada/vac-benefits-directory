@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../../theme";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const style = css`
   font-family: ${globalTheme.fontFamilySansSerif};
@@ -20,9 +21,9 @@ const style = css`
 
 class FooterLink extends Component {
   render() {
-    const { className, children, ...other } = this.props;
+    const { css, children, ...other } = this.props;
     return (
-      <a className={className ? cx(style, className) : style} {...other}>
+      <a css={css ? [style, css] : style} {...other}>
         {children}
       </a>
     );
@@ -35,7 +36,7 @@ FooterLink.propTypes = {
     PropTypes.string,
     PropTypes.array
   ]),
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default FooterLink;

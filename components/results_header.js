@@ -1,6 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 
 const headerPadding = css`
@@ -12,7 +12,7 @@ const headerPadding = css`
 const ResultsHeader = props => {
   if (props.searchString.trim() !== "" && props.benefitCount > 0) {
     return (
-      <Header className={headerPadding} size="sm_md" headingLevel="h3">
+      <Header css={headerPadding} size="sm_md" headingLevel="h3">
         {props.headerText}
       </Header>
     );

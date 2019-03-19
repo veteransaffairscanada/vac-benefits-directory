@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
@@ -6,7 +6,8 @@ import withI18N from "../lib/i18nHOC";
 import NeedButton from "../components/need_button";
 import WordMark from "../components/word_mark";
 import FIP from "../components/fip";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const root = css`
   font-family: Merriweather, serif;
@@ -165,10 +166,10 @@ export class Print extends Component {
       .join(", ");
 
     return (
-      <div className={root}>
+      <div css={root}>
         <Grid container spacing={24}>
           <Grid item xs={12}>
-            <div className={svgContainer}>
+            <div css={svgContainer}>
               <FIP fillColor="black" t={this.props.t} />
             </div>
           </Grid>
@@ -177,11 +178,11 @@ export class Print extends Component {
             ""
           ) : (
             <Grid item xs={12}>
-              <div className={box}>
-                <div className={bold}>{t("print.who_is_receiving")}</div>
+              <div css={box}>
+                <div css={bold}>{t("print.who_is_receiving")}</div>
                 <div className={"profile_section " + rules}>{profile_text}</div>
 
-                <div className="needs_section">
+                <div css="needs_section">
                   <Grid container spacing={0}>
                     {needs.map((need, i) => (
                       <Grid item xs={4} key={i}>
@@ -200,7 +201,7 @@ export class Print extends Component {
           )}
         </Grid>
 
-        <div className={cx(bigTitle, margins)}>
+        <div css={[bigTitle, margins]}>
           {this.countString(
             sortedFilteredBenefits,
             benefits,
@@ -208,12 +209,12 @@ export class Print extends Component {
             printingFromFavourites
           )}
         </div>
-        <table className={table}>
+        <table css={table}>
           <tbody>
             {sortedFilteredBenefits.map((b, i) => {
               return (
-                <tr key={i} className={benefitRow}>
-                  <td className={benefitCell}>
+                <tr key={i} css={benefitRow}>
+                  <td css={benefitCell}>
                     <div className="benefitsListItem">
                       <div>
                         <b>
@@ -234,27 +235,27 @@ export class Print extends Component {
             })}
           </tbody>
         </table>
-        <Grid container spacing={24} className={gridstyle}>
+        <Grid container spacing={24} css={gridstyle}>
           <Grid item xs={12}>
-            <hr className={hr} />
+            <hr css={hr} />
           </Grid>
           <Grid item xs={12}>
-            <div className={bigTitle}>{t("print.have_any_questions")}</div>
+            <div css={bigTitle}>{t("print.have_any_questions")}</div>
           </Grid>
           <Grid item xs={6}>
-            <div className={title}>{t("favourites.contact_us")}</div>
-            <div className={bold}>{t("contact.phone")}</div>
+            <div css={title}>{t("favourites.contact_us")}</div>
+            <div css={bold}>{t("contact.phone")}</div>
             <div>{t("favourites.call_time")}</div>
             <br />
-            <div className={bold}>{t("contact.email")}</div>
+            <div css={bold}>{t("contact.email")}</div>
             <div>{t("favourites.email_disclaimer")}</div>
             <br />
-            <div className={title}>{t("print.apply_online")}</div>
-            <div className={bold}>{t("contact.my_vac_link")}</div>
+            <div css={title}>{t("print.apply_online")}</div>
+            <div css={bold}>{t("contact.my_vac_link")}</div>
             <div>{t("print.sign_up_for_my_vac")}</div>
           </Grid>
         </Grid>
-        <div className={wordmark}>
+        <div css={wordmark}>
           <WordMark width="6em" flag="#000" />
         </div>
       </div>

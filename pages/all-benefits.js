@@ -30,7 +30,7 @@ export class AllBenefits extends Component {
         url={url}
       >
         <Container id="mainContent">
-          <Header size="xl" headingLevel="h1" paddingTop="30" css={header}>
+          <Header size="xl" headingLevel="h1" paddingTop="30" styles={header}>
             {t("all-benefits.List of all benefits")}
           </Header>
           <Grid item xs={12}>

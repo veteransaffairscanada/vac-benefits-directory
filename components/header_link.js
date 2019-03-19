@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Link from "next/link";
 
 const style = css`
@@ -49,7 +50,7 @@ const grey = css`
 class HeaderLink extends Component {
   render() {
     const {
-      className,
+      css,
       children,
       href,
       size,
@@ -59,7 +60,7 @@ class HeaderLink extends Component {
       ...otherProps
     } = this.props;
 
-    let cName = [className];
+    let cName = [css];
     if (size === "small") cName.unshift(small);
     if (altStyle === "grey") cName.unshift(grey);
     if (hasBorder === true) cName.unshift(borderStyle);
@@ -67,7 +68,7 @@ class HeaderLink extends Component {
 
     return (
       <Link href={href}>
-        <a className={cx(cName)} href={href} onClick={onClick} {...otherProps}>
+        <a css={cName} href={href} onClick={onClick} {...otherProps}>
           {children}
         </a>
       </Link>
@@ -83,7 +84,7 @@ HeaderLink.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-  className: PropTypes.string,
+  css: PropTypes.string,
   label: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
