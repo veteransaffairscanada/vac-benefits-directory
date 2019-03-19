@@ -45,6 +45,8 @@ export const reducer = (state = initialState, action) => {
         this.field("vacNameEn");
         this.field("oneLineDescriptionEn");
         this.field("benefitExamplesEn");
+        this.pipeline.remove(lunr.stemmer);
+        this.searchPipeline.remove(lunr.stemmer);
         benefits.forEach(function(doc) {
           this.add(doc);
         }, this);
@@ -56,6 +58,8 @@ export const reducer = (state = initialState, action) => {
         this.field("vacNameFr");
         this.field("oneLineDescriptionFr");
         this.field("benefitExamplesFr");
+        this.pipeline.remove(lunr.stemmer);
+        this.searchPipeline.remove(lunr.stemmer);
         benefits.forEach(function(doc) {
           this.add(doc);
         }, this);
