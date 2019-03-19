@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const style = css`
   display: inline-block;
@@ -50,7 +51,6 @@ class HeaderButton extends Component {
   render() {
     const {
       id,
-      className,
       children,
       size,
       altStyle,
@@ -61,7 +61,7 @@ class HeaderButton extends Component {
       ...otherProps
     } = this.props;
 
-    let cName = [className];
+    let cName = [this.props.styles];
     if (size === "small") cName.unshift(small);
     if (altStyle === "grey") cName.unshift(grey);
     if (hasBorder === true) cName.unshift(borderStyle);
@@ -71,7 +71,7 @@ class HeaderButton extends Component {
       <button
         aria-label={ariaLabel}
         disabled={disabled}
-        className={cx(cName)}
+        css={cName}
         id={"a-" + id}
         onClick={onClick}
         {...otherProps}
@@ -91,7 +91,7 @@ HeaderButton.propTypes = {
     PropTypes.array,
     PropTypes.object
   ]),
-  className: PropTypes.string,
+  styles: PropTypes.object,
   label: PropTypes.object,
   disabled: PropTypes.bool,
   hasBorder: PropTypes.bool,

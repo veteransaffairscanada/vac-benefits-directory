@@ -30,7 +30,8 @@ describe("NeedsSelector", () => {
     props = {
       theme: {},
       t: key => key,
-      saveQuestionResponse: jest.fn()
+      saveQuestionResponse: jest.fn(),
+      url: {}
     };
     reduxData = {
       needs: needsFixture,

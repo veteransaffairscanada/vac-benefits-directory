@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -9,7 +9,8 @@ import ProfileSelector from "./profile_selector";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import HeaderButton from "./header_button";
 import Header from "./typography/header";
 import Router from "next/router";
@@ -99,17 +100,13 @@ export class SelectionsEditorMobile extends Component {
   render() {
     const { t, store, url } = this.props;
     return (
-      <ExpansionPanel
-        className={root}
-        defaultExpanded
-        expanded={this.state.open}
-      >
+      <ExpansionPanel css={root} defaultExpanded expanded={this.state.open}>
         <ExpansionPanelSummary
-          className={summary}
-          expandIcon={<ExpandMoreIcon className={greyishBrown} />}
+          css={summary}
+          expandIcon={<ExpandMoreIcon css={greyishBrown} />}
           onClick={() => this.toggleOpenState()}
         >
-          <Header headingLevel="h2" size="sm_md" className={filterTitle}>
+          <Header headingLevel="h2" size="sm_md" styles={filterTitle}>
             {t("directory.edit_selections")}
           </Header>{" "}
         </ExpansionPanelSummary>
@@ -120,7 +117,7 @@ export class SelectionsEditorMobile extends Component {
               {this.countSelected() > 0 ? (
                 <HeaderButton
                   id="ClearFiltersMobile"
-                  className={clearButton}
+                  styles={clearButton}
                   onClick={() => {
                     this.clearFilters();
                   }}
@@ -129,11 +126,11 @@ export class SelectionsEditorMobile extends Component {
                 </HeaderButton>
               ) : null}
             </Grid>
-            <Grid item sm={12} className={profileStyle}>
+            <Grid item sm={12} css={profileStyle}>
               <ProfileSelector t={t} store={store} url={url} />
             </Grid>
-            <div className={divider} />
-            <Grid item sm={12} className={needsStyle}>
+            <div css={divider} />
+            <Grid item sm={12} css={needsStyle}>
               <NeedsSelector t={t} store={store} url={url} />
             </Grid>
           </Grid>

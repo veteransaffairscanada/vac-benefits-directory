@@ -1,6 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Button from "./button";
 import { logEvent } from "../utils/analytics";
 import { globalTheme } from "../theme";
@@ -20,7 +20,7 @@ const LearnMoreButton = props => {
 
   return (
     <a
-      className={anchorFocus}
+      css={anchorFocus}
       href={url}
       rel="noopener noreferrer"
       onClick={() => {

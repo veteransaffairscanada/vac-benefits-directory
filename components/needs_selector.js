@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NeedButton from "./need_button";
 import { Grid } from "@material-ui/core";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import { showQuestion } from "../utils/common";
 
@@ -43,15 +44,15 @@ export class NeedsSelector extends Component {
 
     if (showQuestion("needs", undefined, this.props.reduxState)) {
       return (
-        <div className={topBorder}>
-          <Header size="sm" className={formLabel}>
+        <div css={topBorder}>
+          <Header size="sm" styles={formLabel}>
             {t("filter by category")}
           </Header>
           <Grid container spacing={16}>
             <Grid item xs={9}>
-              <div className={subFormLabel}>{t("Select all that apply")}</div>
+              <div css={subFormLabel}>{t("Select all that apply")}</div>
             </Grid>
-            <Grid item xs={12} className={needsButtons}>
+            <Grid item xs={12} css={needsButtons}>
               {needs.map(need => (
                 <NeedButton
                   key={need.id}

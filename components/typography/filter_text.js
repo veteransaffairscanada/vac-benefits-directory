@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../../theme";
-import { cx, css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const style = css`
   font-family: ${globalTheme.fontFamilySansSerif};
@@ -13,9 +14,9 @@ const style = css`
 
 class FilterText extends Component {
   render() {
-    const { className, children, ...other } = this.props;
+    const { css, children, ...other } = this.props;
     return (
-      <div className={className ? cx(style, className) : style} {...other}>
+      <div css={css ? [style, css] : style} {...other}>
         {children}
       </div>
     );
@@ -24,7 +25,7 @@ class FilterText extends Component {
 
 FilterText.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string
+  css: PropTypes.string
 };
 
 export default FilterText;
