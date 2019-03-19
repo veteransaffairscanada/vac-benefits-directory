@@ -4,7 +4,8 @@ import BenefitCard from "./benefit_cards";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const Div = css`
   width: 100%;
@@ -87,11 +88,11 @@ export class BenefitList extends React.Component {
       : this.sortBenefits(filteredBenefits);
 
     return loading ? (
-      <div className={Div}>
+      <div css={Div}>
         <CircularProgress size={100} />
       </div>
     ) : (
-      <ul className={list}>
+      <ul css={list}>
         {sortedBenefits.map((benefit, i) => (
           <li
             key={benefit.id}

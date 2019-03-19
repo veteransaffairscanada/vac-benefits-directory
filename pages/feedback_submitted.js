@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import Header from "../components/typography/header";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { globalTheme } from "../theme";
 import Container from "../components/container";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { connect } from "react-redux";
 import HeaderLink from "../components/header_link";
 import PropTypes from "prop-types";
@@ -46,11 +47,11 @@ export class FeedbackSubmitted extends Component {
             {t("feedback.page_header")}
           </Header>
 
-          <p className={textStyle}>{t("feedback.submitted")}</p>
+          <p css={textStyle}>{t("feedback.submitted")}</p>
 
           <HeaderLink
             href={mutateUrl(url, "/benefits-directory")}
-            className={headerLinkStyle}
+            css={headerLinkStyle}
           >
             {t("feedback.ben_dir_link")}
           </HeaderLink>

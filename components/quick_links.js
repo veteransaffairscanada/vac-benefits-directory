@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import HeaderButton from "./header_button";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { Grid } from "@material-ui/core";
 import { globalTheme } from "../theme";
 
@@ -66,16 +67,16 @@ class QuickLinks extends Component {
   render() {
     const { t, onFavourites } = this.props;
     return (
-      <div className={greyBox}>
+      <div css={greyBox}>
         <Grid container>
           <Grid item xs={12} md={4}>
-            <div className={leftDiv}>
-              <span className={quickLinksText}>{t("quick_links")}</span>
-              <div className={link}>
+            <div css={leftDiv}>
+              <span css={quickLinksText}>{t("quick_links")}</span>
+              <div css={link}>
                 {onFavourites ? (
                   <HeaderButton
                     id="saved-list-button"
-                    className={linkStyle}
+                    styles={linkStyle}
                     onClick={() => this.scrollToId("#saved-list")}
                   >
                     {t("titles.saved_list")}
@@ -83,17 +84,17 @@ class QuickLinks extends Component {
                 ) : (
                   <HeaderButton
                     id="benefits-and-services-button"
-                    className={linkStyle}
+                    styles={linkStyle}
                     onClick={() => this.scrollToId("#benefits-and-services")}
                   >
                     {t("titles.benefits_and_services")}
                   </HeaderButton>
                 )}
               </div>
-              <div className={link}>
+              <div css={link}>
                 <HeaderButton
                   id="next-steps-button"
-                  className={linkStyle}
+                  styles={linkStyle}
                   onClick={() => this.scrollToId("#next-steps")}
                 >
                   {t("nextSteps.whats_next")}
@@ -102,7 +103,7 @@ class QuickLinks extends Component {
             </div>
           </Grid>
           <Grid item xs={12} md={8}>
-            <div className={rightDiv}>{t("B3.check eligibility")}</div>
+            <div css={rightDiv}>{t("B3.check eligibility")}</div>
           </Grid>
         </Grid>
       </div>
@@ -116,8 +117,7 @@ QuickLinks.defaultProps = {
 
 QuickLinks.propTypes = {
   t: PropTypes.func.isRequired,
-  onFavourites: PropTypes.bool,
-  className: PropTypes.string
+  onFavourites: PropTypes.bool
 };
 
 export default QuickLinks;

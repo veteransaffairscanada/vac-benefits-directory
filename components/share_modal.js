@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 import { Grid } from "@material-ui/core/";
@@ -215,15 +216,15 @@ class ShareModal extends Component {
       return (
         <ReactModal
           style={modalStyles}
-          className={modalCSS}
+          css={modalCSS}
           isOpen={isOpen}
           onRequestClose={() => this.close(onRequestClose)}
         >
-          <div className={header}>
+          <div css={header}>
             <span>{t("titles.share")}</span>
             <CloseButton onClick={() => this.close(closeModal)}>X</CloseButton>
           </div>
-          <div className={bodyStyle}>
+          <div css={bodyStyle}>
             <p>
               <label htmlFor={shareTargetId}>{t("share.copy_prompt")}</label>
             </p>
@@ -233,7 +234,7 @@ class ShareModal extends Component {
               </Grid>
               <Grid item xs={12} md={3}>
                 <CopyButton
-                  className="copyButton"
+                  css="copyButton"
                   data-copytarget={"#" + shareTargetId}
                   onClick={this.copyText}
                 >
@@ -242,7 +243,7 @@ class ShareModal extends Component {
               </Grid>
             </Grid>
 
-            <div className={topMargin}>{this.state.statusMessage}</div>
+            <div css={topMargin}>{this.state.statusMessage}</div>
           </div>
         </ReactModal>
       );
@@ -254,7 +255,7 @@ class ShareModal extends Component {
 
 ShareModal.propTypes = {
   uid: PropTypes.string.isRequired,
-  className: PropTypes.string,
+  css: PropTypes.string,
   isOpen: PropTypes.bool,
   onRequestClose: PropTypes.func,
   closeModal: PropTypes.func,

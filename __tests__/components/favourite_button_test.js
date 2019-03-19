@@ -36,13 +36,15 @@ describe("FavouriteButton", () => {
 
   it("is favourited if in list", () => {
     let mounted = mount(<FavouriteButton {...props} />);
-    expect(mounted.find("svg").hasClass("saved")).toEqual(true);
+    expect(mounted.find("span").html()).toContain(
+      "B3.favouritesButtonTextRemove"
+    );
   });
 
   it("is not favourited if not in list", () => {
     props.favouriteBenefits = [];
     let mounted = mount(<FavouriteButton {...props} />);
-    expect(mounted.find("svg").hasClass("notSaved")).toEqual(true);
+    expect(mounted.find("span").html()).toContain("B3.favouritesButtonBText");
   });
 
   it("has a working toggleFavourite function", async () => {

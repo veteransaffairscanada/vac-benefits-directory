@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import HeaderLink from "./header_link";
 
 const greyBanner = css`
@@ -41,25 +42,25 @@ export class BreadCrumbs extends Component {
   render() {
     const { breadcrumbs, homeUrl } = this.props;
     return (
-      <div className={greyBanner}>
+      <div css={greyBanner}>
         <div>
-          <HeaderLink id="homeButton" href={homeUrl} className={urlStyle}>
+          <HeaderLink id="homeButton" href={homeUrl} css={urlStyle}>
             {this.props.t("titles.home")}
           </HeaderLink>
           {breadcrumbs.map((breadcrumb, i) => (
             <span key={"breadcrumb" + i}>
-              <span className={separator}>{" > "}</span>
+              <span css={separator}>{" > "}</span>
               <HeaderLink
                 id={"breadcrumb" + i}
                 href={breadcrumb.url}
-                className={urlStyle}
+                css={urlStyle}
               >
                 {breadcrumb.name}
               </HeaderLink>
             </span>
           ))}
-          <span className={separator}>{" > "}</span>
-          <span className={currentPageStyle}>{this.props.pageTitle}</span>
+          <span css={separator}>{" > "}</span>
+          <span css={currentPageStyle}>{this.props.pageTitle}</span>
         </div>
       </div>
     );

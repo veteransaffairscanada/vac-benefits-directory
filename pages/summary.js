@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import PropTypes from "prop-types";
@@ -10,7 +10,8 @@ import Button from "../components/button";
 import Header from "../components/typography/header";
 import Router from "next/router";
 import BreadCrumbs from "../components/breadcrumbs";
-import { css } from "emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import { mutateUrl, getBenefitCountString, getPageName } from "../utils/common";
 import { connect } from "react-redux";
@@ -68,10 +69,10 @@ export class Summary extends Component {
               pageTitle={t("ge.Find benefits and services")}
             />
           </div>
-          <Paper padding="md" className={box}>
+          <Paper padding="md" styles={box}>
             <AlphaBanner t={t} url={url} />
             <Grid container spacing={24}>
-              <Grid item xs={12} className={questions}>
+              <Grid item xs={12} css={questions}>
                 <Header size="md_lg" headingLevel="h2">
                   {t("ge.summary_subtitle")}
                 </Header>
@@ -100,7 +101,7 @@ export class Summary extends Component {
                 </HeaderButton>
               </Grid>
               <Grid item xs={8} md={6}>
-                <div className={alignRight}>
+                <div css={alignRight}>
                   <Button
                     id="nextButton"
                     onClick={() =>
