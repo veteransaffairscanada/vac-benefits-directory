@@ -118,7 +118,7 @@ export class BB extends Component {
               showShareLink={true}
             />
             <Grid item xs={12}>
-              <QuickLinks t={t} />
+              <QuickLinks t={t} rightHandText={t("B3.check eligibility")} />
             </Grid>
             <Grid item md={4} xs={12}>
               <div id="benefits-and-services">
