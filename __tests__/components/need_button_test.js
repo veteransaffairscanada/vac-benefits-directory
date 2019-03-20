@@ -16,7 +16,8 @@ describe("NeedButton", () => {
       need: needsFixture[0],
       t: key => key,
       setSelectedNeeds: jest.fn(),
-      selectedNeeds: {}
+      selectedNeeds: {},
+      url: { route: "/" }
     };
   });
 
@@ -39,6 +40,6 @@ describe("NeedButton", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
     needsInstance.handleClick("foo");
-    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
+    expect(analytics.logEvent).toBeCalledWith("GEFilterClick", "need", "foo");
   });
 });

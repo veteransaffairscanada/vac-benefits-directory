@@ -30,7 +30,7 @@ const needsList = css`
 
 export class GuidedExperienceNeeds extends Component {
   render() {
-    const { t, store } = this.props; // eslint-disable-line no-unused-vars
+    const { t, store, url } = this.props; // eslint-disable-line no-unused-vars
     return (
       <div css={root}>
         <Grid container spacing={24}>
@@ -42,6 +42,7 @@ export class GuidedExperienceNeeds extends Component {
                   need={need}
                   t={t}
                   store={store}
+                  url={url}
                 />
               </li>
             ))}
@@ -72,7 +73,8 @@ GuidedExperienceNeeds.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(

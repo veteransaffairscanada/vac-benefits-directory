@@ -67,7 +67,7 @@ NeedButton.propTypes = {
   disabled: PropTypes.string,
   store: PropTypes.object,
   updateUrl: PropTypes.bool,
-  url: PropTypes.object
+  url: PropTypes.object.isRequired
 };
 
 NeedButton.defaultProps = {

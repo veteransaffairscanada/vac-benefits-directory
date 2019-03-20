@@ -196,7 +196,7 @@ RadioSelector.propTypes = {
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   name: PropTypes.string,
   updateUrl: PropTypes.bool,
-  url: PropTypes.object
+  url: PropTypes.object.isRequired
 };
 
 export default connect(
