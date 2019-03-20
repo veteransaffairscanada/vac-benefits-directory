@@ -28,6 +28,7 @@ Contact other developers on the project for what values we're currently using.
 | `WEBHOOK_URL`                | Sends slack deployment notifications                                                                         | production           |
 | `BROWSERSTACK_USERNAME`      | run tests on Windows via BrowserStack                                                                        | locally              |
 | `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                                                                        | locally              |
+| `STAGING`    | `true` = pull data directly from airtable, `false` = pull data from data/data.json                                                                       | production / locally              |
 
 Note that CDS docker images are public, so you should not put any sensitive (ie write) keys in the docker image.
 
