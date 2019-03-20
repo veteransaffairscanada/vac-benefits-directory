@@ -12,7 +12,9 @@ export class NeedButton extends Component {
     if (newSelectedNeeds.hasOwnProperty(id)) {
       delete newSelectedNeeds[id];
     } else {
-      logEvent("FilterClick", "need", id);
+      this.props.url.route === "/benefits-directory"
+        ? logEvent("SidebarFilterClick", "need", id)
+        : logEvent("GEFilterClick", "need", id);
       newSelectedNeeds[id] = id;
     }
     this.props.setSelectedNeeds(newSelectedNeeds);

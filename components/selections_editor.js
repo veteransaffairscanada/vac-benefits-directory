@@ -11,6 +11,7 @@ import HeaderButton from "./header_button";
 import Header from "./typography/header";
 import Router from "next/router";
 import { mutateUrl } from "../utils/common";
+import { logEvent } from "../utils/analytics";
 
 const root = css`
   font-family: ${globalTheme.fontFamilySansSerif};
@@ -62,6 +63,7 @@ export class SelectionsEditor extends Component {
   };
 
   clearFilters = () => {
+    logEvent("SidebarReset");
     this.props.profileQuestions.forEach(q => {
       this.props.saveQuestionResponse(q.variable_name, "");
     });

@@ -76,6 +76,7 @@ export class SelectionsEditorMobile extends Component {
   };
 
   clearFilters = () => {
+    logEvent("SidebarReset");
     this.props.profileQuestions.forEach(q => {
       this.props.saveQuestionResponse(q.variable_name, "");
     });
