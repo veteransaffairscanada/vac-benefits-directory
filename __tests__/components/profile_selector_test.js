@@ -20,7 +20,8 @@ describe("ProfileSelector", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key
+      t: key => key,
+      url: { route: "/benefits-directory" }
     };
     reduxState = {
       patronType: "family",

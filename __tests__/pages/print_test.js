@@ -30,7 +30,8 @@ describe("Print", () => {
   beforeEach(() => {
     props = {
       url: {
-        query: {}
+        query: {},
+        route: "/print"
       },
       translations: [],
       i18n: {

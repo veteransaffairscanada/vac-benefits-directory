@@ -109,6 +109,8 @@ describe("SelectionsEditor", () => {
 
   it("clicking #ClearFilters runs the clearFilters function", () => {
     reduxData.selectedNeeds = { foo: "bar" };
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
     const mounted = mount(<SelectionsEditor {...props} {...reduxData} />);
     mounted.instance().clearFilters = jest.fn();
     mounted

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core/";
 import NeedButton from "./need_button";
 import { connect } from "react-redux";
-import { logEvent } from "../utils/analytics";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 
@@ -30,19 +29,8 @@ const needsList = css`
 `;
 
 export class GuidedExperienceNeeds extends Component {
-  handleClick = id => {
-    logEvent("FilterClick", "need", id);
-    let newSelectedNeeds = JSON.parse(JSON.stringify(this.props.selectedNeeds));
-    if (newSelectedNeeds.hasOwnProperty(id)) {
-      delete newSelectedNeeds[id];
-    } else {
-      newSelectedNeeds[id] = id;
-    }
-    this.props.setSelectedNeeds(newSelectedNeeds);
-  };
-
   render() {
-    const { t, store } = this.props; // eslint-disable-line no-unused-vars
+    const { t, store, url } = this.props; // eslint-disable-line no-unused-vars
     return (
       <div css={root}>
         <Grid container spacing={24}>
@@ -54,6 +42,7 @@ export class GuidedExperienceNeeds extends Component {
                   need={need}
                   t={t}
                   store={store}
+                  url={url}
                 />
               </li>
             ))}
@@ -84,7 +73,8 @@ GuidedExperienceNeeds.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(
