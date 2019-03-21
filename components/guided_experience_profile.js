@@ -11,7 +11,7 @@ const outerDiv = css`
 
 export class GuidedExperienceProfile extends Component {
   render() {
-    const { t } = this.props;
+    const { t, url } = this.props;
     return (
       <div css={outerDiv}>
         <Grid container spacing={24}>
@@ -22,6 +22,7 @@ export class GuidedExperienceProfile extends Component {
             selectorType={this.props.selectorType}
             store={this.props.store}
             options={this.props.options}
+            url={url}
           />
         </Grid>
       </div>
@@ -33,7 +34,8 @@ GuidedExperienceProfile.propTypes = {
   t: PropTypes.func.isRequired,
   selectorType: PropTypes.string.isRequired,
   options: PropTypes.array,
-  store: PropTypes.object
+  store: PropTypes.object,
+  url: PropTypes.object.isRequired
 };
 
 export default GuidedExperienceProfile;

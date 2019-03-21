@@ -127,8 +127,15 @@ export class Print extends Component {
   };
 
   render() {
-    const { t, benefits, needs, multipleChoiceOptions, store } = this.props; // eslint-disable-line no-unused-vars
-    const query = this.props.url.query;
+    const {
+      t,
+      benefits,
+      needs,
+      multipleChoiceOptions,
+      store,
+      url
+    } = this.props; // eslint-disable-line no-unused-vars
+    const query = url.query;
     const printingFromFavourites = query.fromFavourites !== undefined;
     const filteredBenefitsIDs =
       Object.keys(query).indexOf("benefits") > -1
@@ -191,6 +198,7 @@ export class Print extends Component {
                           t={t}
                           store={store}
                           disabled="disabled"
+                          url={url}
                         />
                       </Grid>
                     ))}

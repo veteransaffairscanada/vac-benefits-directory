@@ -111,6 +111,8 @@ describe("SelectionsEditorMobile", () => {
 
   it("clicking #ClearFiltersMobile runs the clearFilters function", () => {
     reduxData.selectedNeeds = { foo: "bar" };
+    let analytics = require("../../utils/analytics");
+    analytics.logEvent = jest.fn();
     const mounted = mount(<SelectionsEditorMobile {...props} {...reduxData} />);
     mounted.instance().clearFilters = jest.fn();
     mounted

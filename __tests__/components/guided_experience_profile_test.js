@@ -21,7 +21,11 @@ describe("GuidedExperienceProfile", () => {
     props = {
       t: translateFixture,
       options: ["mco_p1", "mco_p2"],
-      selectorType: "patronType"
+      selectorType: "patronType",
+      url: {
+        query: { lng: "en", patronType: "veteran", serviceType: "RCMP" },
+        route: "/"
+      }
     };
     reduxData = {
       serviceType: "",
