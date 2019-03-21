@@ -53,6 +53,7 @@ const StyledLabel = styled("span")({
     display: "block",
     border: `2px solid ${globalTheme.colour.greyishBrown}`,
     background: "transparent",
+    overflow: "hidden",
     width: "24px",
     height: "24px",
     position: "absolute",
