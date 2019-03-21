@@ -131,6 +131,7 @@ Communiquez avec d’autres développeurs sur le projet pour connaître les vale
 | `WEBHOOK_URL`                | envoyer les notifications de déploiement de Slack                                                                                                       | production            |
 | `BROWSERSTACK_USERNAME`      | exécuter des tests dans Windows à l’aide de BrowserStack                                                                                                | localement            |
 | `BROWSERSTACK_ACCESS_KEY`    | exécuter des tests dans Windows à l’aide de BrowserStack                                                                                                | localement            |
+| `STAGING`    | `true` = extraire des données directement d’Airtable, `false` = extraire des données à partir de data/data.json  | production/localement |
 
 Veuillez noter que les images Docker du SNC sont publiques. Par conséquent, vous ne devez pas mettre des clés de nature délicate (c’est-à-dire, rédiger) dans l’image Docker.
 
