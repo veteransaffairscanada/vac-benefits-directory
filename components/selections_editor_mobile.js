@@ -15,6 +15,7 @@ import HeaderButton from "./header_button";
 import Header from "./typography/header";
 import Router from "next/router";
 import { mutateUrl } from "../utils/common";
+import { logEvent } from "../utils/analytics";
 
 const root = css`
   background-color: ${globalTheme.colour.white} !important;
@@ -76,6 +77,7 @@ export class SelectionsEditorMobile extends Component {
   };
 
   clearFilters = () => {
+    logEvent("SidebarReset");
     this.props.profileQuestions.forEach(q => {
       this.props.saveQuestionResponse(q.variable_name, "");
     });

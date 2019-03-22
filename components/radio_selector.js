@@ -88,7 +88,9 @@ export class RadioSelector extends React.Component {
     const response = event.target.value;
     this.props.saveQuestionResponse(question, response);
     this.clearAppropriateResponses(question, response);
-    logEvent("FilterClick", question, response);
+    this.props.url.route === "/benefits-directory"
+      ? logEvent("SidebarFilterClick", question, response)
+      : logEvent("GEFilterClick", question, response);
     if (this.props.updateUrl) {
       this.props.url.query[question] = response;
       Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
@@ -194,7 +196,7 @@ RadioSelector.propTypes = {
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   name: PropTypes.string,
   updateUrl: PropTypes.bool,
-  url: PropTypes.object
+  url: PropTypes.object.isRequired
 };
 
 export default connect(

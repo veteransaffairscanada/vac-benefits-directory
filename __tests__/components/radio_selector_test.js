@@ -26,7 +26,8 @@ describe("RadioSelector", () => {
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       t: translateFixture,
-      benefitEligibility: benefitEligibilityFixture
+      benefitEligibility: benefitEligibilityFixture,
+      url: { route: "/" }
     };
   });
 
@@ -74,7 +75,7 @@ describe("RadioSelector", () => {
       analytics.logEvent = jest.fn();
       instance.handleSelect({ target: { value: "x" } });
       expect(analytics.logEvent).toBeCalledWith(
-        "FilterClick",
+        "GEFilterClick",
         "patronType",
         "x"
       );

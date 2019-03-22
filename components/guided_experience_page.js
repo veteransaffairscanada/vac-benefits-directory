@@ -30,13 +30,19 @@ export class GuidedExperiencePage extends Component {
       >
         <GuidedExperience id={section} t={t} url={url} store={store}>
           {section === "needs" ? (
-            <GuidedExperienceNeeds t={t} selectorType={section} store={store} />
+            <GuidedExperienceNeeds
+              t={t}
+              selectorType={section}
+              store={store}
+              url={url}
+            />
           ) : (
             <GuidedExperienceProfile
               t={t}
               selectorType={section}
               store={store}
               options={question["multiple_choice_options"]}
+              url={url}
             />
           )}
         </GuidedExperience>
