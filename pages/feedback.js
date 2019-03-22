@@ -113,6 +113,7 @@ export class Feedback extends Component {
               selectorType="betaFeedback"
               options={question.multiple_choice_options}
               store={store}
+              url={url}
             />
             <TextArea
               css={textAreaStyle}
