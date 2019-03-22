@@ -267,7 +267,7 @@ export const applySearchString = (
           boost: 10,
           wildcard: lunr.Query.wildcard.LEADING | lunr.Query.wildcard.TRAILING
         });
-        q.term(term, { usePipeline: false, editDistance: 2 });
+        q.term(term, { usePipeline: false, editDistance: 1 });
       });
     });
 
