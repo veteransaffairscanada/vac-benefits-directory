@@ -63,9 +63,17 @@ jobs:
       # Deploy the image if passes the scan
       - run:
           command: |
-            docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
+            fi
+
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
+            fi
           name: "Push Docker Image"
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
@@ -85,4 +93,5 @@ workflows:
           filters:
             branches:
               only:
+                - develop
                 - master
