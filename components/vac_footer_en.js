@@ -66,7 +66,7 @@ class VacFooterEn extends Component {
                         focusable="false"
                         data-prefix="fas"
                         data-icon="share-alt"
-                        role="img"
+                        role="presentation"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
                         data-fa-i2svg=""
