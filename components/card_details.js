@@ -63,7 +63,7 @@ const CardDetails = ({ summary, children, ...props }) => (
     <StyledSummary>
       <div>{summary}</div>
       <div css={flex2}>
-        <ExpandMore css="icon" />
+        <ExpandMore className="icon" />
       </div>
     </StyledSummary>
     <DetailsText>{children}</DetailsText>
