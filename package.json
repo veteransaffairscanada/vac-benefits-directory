@@ -79,6 +79,7 @@
     "babel-core": "^7.0.0-0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.5.0",
+    "condition-circle": "^2.0.2",
     "cypress": "^3.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "1.11.2",
@@ -97,9 +98,9 @@
     "pretty-quick": "^1.10.0",
     "react-styleguidist": "^9.0.4",
     "react-test-renderer": "^16.8.5",
+    "semantic-release": "^15.13.3",
     "start-server-and-test": "^1.7.12",
-    "webpack-bundle-analyzer": "^3.1.0",
-    "semantic-release": "^15.13.3"
+    "webpack-bundle-analyzer": "^3.1.0"
   },
   "version": "0.0.0-development"
 }
