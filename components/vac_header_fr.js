@@ -8,6 +8,7 @@ const path = "https://veterans.gc.ca";
 class VacHeaderFr extends Component {
   render() {
     const { t, url } = this.props;
+    const utm = "?utm_source=fbas&utm_medium=referral&utm_content=header";
 
     return (
       <header className="bg-black">
@@ -74,7 +75,10 @@ class VacHeaderFr extends Component {
                 &nbsp;
                 <li id="vac-mva">
                   <h2 className="wb-inv">Mon dossier ACC / My VAC Account</h2>
-                  <a href={path + "fra/e_services/"} className="h6 light-grey">
+                  <a
+                    href={path + "/fra/e_services/" + utm}
+                    className="h6 light-grey"
+                  >
                     Mon dossier{" "}
                     <abbr title="Anciens Combattants Canada">ACC</abbr>&nbsp;
                     <img
