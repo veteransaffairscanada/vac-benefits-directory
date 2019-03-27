@@ -29,12 +29,14 @@ export class NextSteps extends Component {
   getBullets = () => {
     const { filteredNextSteps, t } = this.props;
     const lang = t("current-language-code") === "en" ? "english" : "french";
+    const utm = "?utm_source=learn-more&utm_medium=fbas";
 
     return filteredNextSteps.map((x, n) => {
       let jsxString = this.md
-        .render(x[lang])
+        .render(x[lang].replace(")", utm + ")"))
         .replace("<p>", "<span>")
         .replace("</p>", "</span>");
+      console.log(x[lang].replace(")", utm + ")"));
       return (
         <li key={n} css={liItem}>
           <JsxParser jsx={jsxString} />
