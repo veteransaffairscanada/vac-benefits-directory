@@ -128,7 +128,7 @@ class ShareModal extends Component {
       url: "",
       statusMessage: "",
       origin: "",
-      utm: "utm_source=share-link&utm_medium=fbas"
+      utm: "utm_source=fbas&utm_medium=share-link"
     };
     this.copyText = this.copyText.bind(this);
   }
