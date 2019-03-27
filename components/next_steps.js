@@ -29,7 +29,7 @@ export class NextSteps extends Component {
   getBullets = () => {
     const { filteredNextSteps, t } = this.props;
     const lang = t("current-language-code") === "en" ? "english" : "french";
-    const utm = "?utm_source=learn-more&utm_medium=fbas";
+    const utm = "?utm_source=fbas&utm_medium=referral&utm_content=next-steps";
 
     return filteredNextSteps.map((x, n) => {
       let jsxString = this.md
