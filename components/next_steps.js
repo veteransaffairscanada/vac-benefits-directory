@@ -36,7 +36,6 @@ export class NextSteps extends Component {
         .render(x[lang].replace(")", utm + ")"))
         .replace("<p>", "<span>")
         .replace("</p>", "</span>");
-      console.log(x[lang].replace(")", utm + ")"));
       return (
         <li key={n} css={liItem}>
           <JsxParser jsx={jsxString} />

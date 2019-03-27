@@ -4,6 +4,7 @@ const path = "https://veterans.gc.ca";
 
 class VacFooterFr extends Component {
   render() {
+    const utm = "?utm_source=footer&utm_medium=fbas";
     return (
       <footer id="wb-info">
         <div className="container mrgn-bttm-xl">
@@ -158,7 +159,9 @@ class VacFooterFr extends Component {
                     <div className="col-xs-12 col-sm-6">
                       <p>
                         <a
-                          href={path + "/fra/e_services/create-my-vac-account"}
+                          href={
+                            path + "/fra/e_services/create-my-vac-account" + utm
+                          }
                           className="btn btn-default btn-block"
                         >
                           Inscription
@@ -168,7 +171,10 @@ class VacFooterFr extends Component {
                     <div className="col-xs-12 col-sm-6">
                       <p>
                         <a
-                          href="https://mva-mda.vac-acc.gc.ca/pub/MVA_7_24_1?request_locale=fr_CA"
+                          href={
+                            "https://mva-mda.vac-acc.gc.ca/pub/MVA_7_24_1?request_locale=fr_CA" +
+                            utm
+                          }
                           className="btn btn-default-outline btn-block"
                         >
                           Connexion
