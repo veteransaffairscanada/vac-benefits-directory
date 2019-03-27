@@ -7,7 +7,7 @@ import HeaderLink from "./header_link";
 
 const greyBanner = css`
   font-family: ${globalTheme.fontFamilySansSerif};
-  margin: 30px 0;
+  margin: 15px 0;
   font-weight: 700;
   color: ${globalTheme.colour.greyishBrown};
   font-size: 16px;

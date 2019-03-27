@@ -1,6 +1,6 @@
 FROM node:10-alpine
-MAINTAINER Max Neuvians <max.neuvians@tbs-sct.gc.ca>
-LABEL Description="Government of Canada VAC Proof of Concept" Vendor="Canadian Digital Service"
+MAINTAINER Thomas Craig <thomas.craig@canada.ca>
+LABEL Description="Government of Canada VAC Proof of Concept" Vendor="Veterans Affairs Canada"
 
 WORKDIR /app
 ADD . .
@@ -31,6 +31,12 @@ ENV CIRCLE_PROJECT_REPONAME ${CIRCLE_PROJECT_REPONAME}
 
 ARG AIRTABLE_READ_KEY
 ENV AIRTABLE_READ_KEY ${AIRTABLE_READ_KEY}
+
+ARG GH_TOKEN
+ENV GH_TOKEN ${GH_TOKEN}
+
+ARG NPM_TOKEN
+ENV NPM_TOKEN ${NPM_TOKEN}
 
 RUN yarn install && yarn build
 USER node

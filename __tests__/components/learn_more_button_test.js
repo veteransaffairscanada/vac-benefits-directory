@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import LearnMoreButton from "../../components/learn_more_button";
 import benefitsFixture from "../fixtures/benefits";
+import translationFixture from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
@@ -11,7 +12,7 @@ describe("LearnMoreButton", () => {
   beforeEach(() => {
     props = {
       benefit: benefitsFixture[1],
-      t: () => "en"
+      t: translationFixture
     };
   });
 
@@ -26,7 +27,7 @@ describe("LearnMoreButton", () => {
         .find("Button")
         .at(0)
         .text()
-    ).toEqual("en");
+    ).toEqual("Find out more");
   });
 
   it("has correct French text", () => {
@@ -51,5 +52,14 @@ describe("LearnMoreButton", () => {
       "learn more",
       props.benefit.benefitPageEn
     );
+  });
+
+  it("has a correct aria-label", () => {
+    expect(
+      mount(<LearnMoreButton {...props} />)
+        .find("a")
+        .at(0)
+        .prop("aria-label")
+    ).toEqual("benefits_b.learn_more" + props.benefit.vacNameEn);
   });
 });

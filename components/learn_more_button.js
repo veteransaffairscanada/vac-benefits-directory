@@ -18,11 +18,15 @@ const LearnMoreButton = props => {
       ? benefit.benefitPageEn
       : benefit.benefitPageFr;
 
+  const benefitName =
+    t("current-language-code") === "en" ? benefit.vacNameEn : benefit.vacNameFr;
+
   return (
     <a
       css={anchorFocus}
       href={url}
       rel="noopener noreferrer"
+      aria-label={t("benefits_b.learn_more", { x: benefitName })}
       onClick={() => {
         logEvent("Exit", "learn more", url);
       }}
