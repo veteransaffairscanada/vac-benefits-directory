@@ -123,6 +123,7 @@ export class BenefitsPane extends Component {
                   onChange={this.handleSearchChange}
                   disableButton={true}
                   onClear={() => setSearchString("")}
+                  url={this.props.url}
                 />
               </div>
             </Grid>
