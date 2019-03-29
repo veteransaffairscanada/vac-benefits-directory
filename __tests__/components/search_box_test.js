@@ -1,11 +1,13 @@
 import React from "react";
 import { mount } from "enzyme";
 import SearchBox from "../../components/search_box";
+import Router from "next/router";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 describe("SearchBox", () => {
   let props;
+  Router.replace = jest.fn().mockImplementation(() => new Promise(() => true));
   beforeEach(() => {
     props = {
       onButtonClick: jest.fn(),
@@ -14,7 +16,13 @@ describe("SearchBox", () => {
       onKeyUp: jest.fn(),
       value: "the value",
       onChange: jest.fn(),
-      onClear: jest.fn()
+      onClear: jest.fn(),
+      url: {
+        query: {
+          lng: "en",
+          searchString: "disability"
+        }
+      }
     };
   });
 

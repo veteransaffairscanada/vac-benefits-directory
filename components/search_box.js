@@ -5,6 +5,8 @@ import styled from "@emotion/styled";
 import SearchIcon from "./icons/Search";
 import CancelIcon from "./icons/Cancel";
 import { globalTheme } from "../theme";
+import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
 const SearchBoxWrapper = styled("div")({
   boxSizing: "border-box",
@@ -105,6 +107,8 @@ class SearchBox extends Component {
   }
   handleChange = event => {
     this.setState({ value: event.target.value }); // state of InputSearchBox
+    this.props.url.query.searchString = event.target.value;
+    Router.replace(mutateUrl(this.props.url));
     if (this.props.onChange) {
       this.props.onChange(event);
     }
@@ -113,6 +117,8 @@ class SearchBox extends Component {
   handleClear = () => {
     this.textInput.current.value = "";
     this.setState({ value: "" }); // state of InputSearchBox
+    this.props.url.query.searchString = "";
+    Router.replace(mutateUrl(this.props.url));
     if (this.props.onClear) {
       this.props.onClear();
     }
@@ -189,7 +195,8 @@ SearchBox.propTypes = {
   inputId: PropTypes.string,
   buttonId: PropTypes.string,
   disableButton: PropTypes.bool,
-  onButtonClick: PropTypes.func
+  onButtonClick: PropTypes.func,
+  url: PropTypes.object
 };
 
 export default SearchBox;
