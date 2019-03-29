@@ -8,7 +8,6 @@ import Container from "../components/container";
 import { css, jsx } from "@emotion/core";
 import RadioSelector from "../components/radio_selector";
 import { connect } from "react-redux";
-import HeaderButton from "../components/header_button";
 import Button from "../components/button";
 import PropTypes from "prop-types";
 import TextArea from "../components/text_area";
@@ -109,7 +108,7 @@ export class Feedback extends Component {
               pageTitle={t("ge.Find benefits and services")}
             />
           </div>
-          <Paper id={this.props.id} padding="md" styles={innerDiv}>
+          <Paper id="feedbackPagePaper" padding="md" styles={innerDiv}>
             <AlphaBanner t={t} url={url} />
             <form>
               <Header styles={headerPadding} headingLevel="h1" size="lg">
@@ -154,7 +153,7 @@ export class Feedback extends Component {
               </Details>
 
               <div className={padding}>
-                <HeaderLink css={prevButton} hasBorder>
+                <HeaderLink id="prevButton" css={prevButton} hasBorder>
                   {t("back")}
                 </HeaderLink>
                 <Link
