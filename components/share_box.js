@@ -12,7 +12,7 @@ import { uuidv4 } from "../utils/common";
 import { logEvent } from "../utils/analytics";
 
 const shareBoxItem = css`
-  color: ${globalTheme.colour.darkGreyBlue};
+  color: ${globalTheme.colour.govukYellow};
   margin-left: 5px;
 `;
 const shareText = css`
