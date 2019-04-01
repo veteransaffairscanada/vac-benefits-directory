@@ -42,6 +42,7 @@ describe("LearnMoreButton", () => {
 
   it("Clicking the link logs an exit event", () => {
     let analytics = require("../../utils/analytics");
+    const utm = "?utm_source=fbas&utm_medium=referral&utm_content=learn-more";
     analytics.logEvent = jest.fn();
     mount(<LearnMoreButton {...props} />)
       .find("Button")
@@ -50,7 +51,7 @@ describe("LearnMoreButton", () => {
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
       "learn more",
-      props.benefit.benefitPageEn
+      props.benefit.benefitPageEn + utm
     );
   });
 
