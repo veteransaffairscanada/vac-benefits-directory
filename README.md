@@ -20,7 +20,7 @@ Contact other developers on the project for what values we're currently using.
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------- |
 | `AIRTABLE_READ_KEY`          | load data (benefits / translations / etc) from Airtable                                                      | production / locally |
 | `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                                                                         | production           |
-| `AIRTABLE_BASE_KEY`          | This tells the app which Airtable base to pull data from. If it is not set, the CDS master base will be used | production / locally |
+| `AIRTABLE_BASE_KEY`          | This tells the app which Airtable base to pull data from. If it is not set, the VAC master base will be used | production / locally |
 | `SENTRY_DSN`                 | save browser errors to Sentry                                                                                | production           |
 | `GA_UA`                      | track app usage with Google Analytics for VAC                                                                | production           |
 | `GA_UA_CDS`                  | track app usage with Google Analytics for CDS                                                                | production           |
@@ -30,7 +30,7 @@ Contact other developers on the project for what values we're currently using.
 | `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                                                                        | locally              |
 | `STAGING`                    | `true` = pull data directly from airtable, `false` = pull data from data/data.json                           | production / locally |
 
-Note that CDS docker images are public, so you should not put any sensitive (ie write) keys in the docker image.
+Note that VAC docker images are public, so you should not put any sensitive (ie write) keys in the docker image.
 
 ### Adding a new environment locally (OS X)
 

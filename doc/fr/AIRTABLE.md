@@ -17,7 +17,7 @@ Les données d’AirTable sont lues par le serveur et injectées dans Redux, qui
 
 ## Comment peut-on y avoir accès?
 
-Pour demander l’accès en vue de modifier du contenu dans AirTable, créez un compte dans le site Web puis envoyez un courriel à vac@cds-snc.ca comprenant les détails sur votre compte afin que nous puissions vous ajouter au projet.
+Pour demander l’accès en vue de modifier du contenu dans AirTable, créez un compte dans le site Web puis envoyez un courriel à vac.devops-devops.acc@canada.ca comprenant les détails sur votre compte afin que nous puissions vous ajouter au projet.
 
 ## Apporter des modifications dans AirTable
 

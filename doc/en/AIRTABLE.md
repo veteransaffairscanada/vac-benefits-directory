@@ -17,7 +17,7 @@ Airtable data is read by the server and injected into Redux, which is then sent 
 
 ## How does one get access?
 
-To request access to edit content in Airtable, set up an account on their website and then email vac@cds-snc.ca with your account details so we can add you to the project.
+To request access to edit content in Airtable, set up an account on their website and then email vac.devops-devops.acc@canada.ca with your account details so we can add you to the project.
 
 ## Making changes to Airtable
 
