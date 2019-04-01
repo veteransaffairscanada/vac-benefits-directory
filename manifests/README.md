@@ -34,8 +34,8 @@ and then add it to your DNS.
 To get the automatic SSL working in EKS you will need to edit:
 
 ```
-- --acme.domains=vac-eks.cdssandbox.xyz
-- --acme.email=max.neuvians@cds-snc.ca
+- --acme.domains=vac-eks.vacsandbox.xyz
+- --acme.email=vac.devops-devops.acc@canada.ca
 ```
 
 in `manifests\overlays\eks\traefik-ingress-controller-deployment.yaml`

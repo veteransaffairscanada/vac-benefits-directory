@@ -85,7 +85,7 @@ To set up PR review apps we use a Heroku Pipeline. From the dashboard:
 
 #### How does one get access?
 
-To join the CDS Heroku team, create a (free) Heroku account and email vac@cds-snc.ca
+To join the VAC Heroku team, create a (free) Heroku account and email vac.devops-devops.acc@canada.ca
 with your account details so we can add you to the team.
 Note that our PR apps are automatically created by Heroku, so developers do not require Heroku access
 to have review apps created for their PRs.
@@ -99,7 +99,7 @@ to have review apps created for their PRs.
 #### Why and how are we using it?
 
 CircleCI is connected to our GitHub repository (see the project's [CircleCI page](https://circleci.com/gh/veteransaffairscanada/vac-benefits-directory)). For every new commit, CircleCI runs our test suite and reports any
-failures. If a commit to master fails testing we are notified on the CDS `vac-devs` Slack channel.
+failures. If a commit to master fails testing we are notified on the VAC `circleci_notifications` Slack channel.
 If a commit to master passes, CircleCI builds a dockerfile from master and pushes it to DockerHub.
 CircleCI is configured via [`config.yml`](/.circleci/config.yml).
 
@@ -165,7 +165,7 @@ an easy method to test on Windows / Internet Explorer. We use BrowserStack in tw
 
 #### How does one get access?
 
-Create a personal account on BrowserStack and then contact a developer to get your account associated with the CDS account.
+Create a personal account on BrowserStack and then contact a developer to get your account associated with the VAC account.
 
 ### Deployment
 
@@ -381,7 +381,7 @@ Pour configurer des applications d’examen des demandes de tirage, nous utiliso
 
 #### Comment peut-on y avoir accès?
 
-Pour vous joindre à l’équipe Heroku du SNC, créez un compte Heroku (gratuit) et envoyez un courriel à vac@cds-snc.ca comprenant les détails sur votre compte afin que nous puissions vous ajouter à l’équipe. Veuillez noter que nos applications de demande de tirage sont automatiquement créées par Heroku, par conséquent les développeurs n’ont pas besoin d’un accès Heroku pour que des applications d’examen soient créées pour leurs demandes de tirage.
+Pour vous joindre à l’équipe Heroku du SNC, créez un compte Heroku (gratuit) et envoyez un courriel à vac.devops-devops.acc@canada.ca comprenant les détails sur votre compte afin que nous puissions vous ajouter à l’équipe. Veuillez noter que nos applications de demande de tirage sont automatiquement créées par Heroku, par conséquent les développeurs n’ont pas besoin d’un accès Heroku pour que des applications d’examen soient créées pour leurs demandes de tirage.
 
 ### CircleCI
 
