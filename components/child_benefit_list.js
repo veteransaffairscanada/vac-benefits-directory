@@ -29,6 +29,7 @@ const listStyle = css`
 
 const ChildBenefitList = props => {
   const { benefits, colonText, t } = props;
+  const utm = "?utm_source=fbas&utm_medium=referral&utm_content=child-benefit";
   if (benefits.length === 0) {
     return null;
   }
@@ -44,7 +45,10 @@ const ChildBenefitList = props => {
                   rel="noopener noreferrer"
                   css={heading}
                   size="small"
-                  href={language === "en" ? cb.benefitPageEn : cb.benefitPageFr}
+                  href={
+                    (language === "en" ? cb.benefitPageEn : cb.benefitPageFr) +
+                    utm
+                  }
                   onClick={() => {
                     logEvent(
                       "Exit",
