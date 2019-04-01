@@ -29,11 +29,12 @@ const listStyle = css`
 
 const ChildBenefitList = props => {
   const { benefits, colonText, t } = props;
-  const utm = "?utm_source=fbas&utm_medium=referral&utm_content=child-benefit";
   if (benefits.length === 0) {
     return null;
   }
   const language = t("current-language-code");
+  const utm = "?utm_source=fbas&utm_medium=referral&utm_content=child-benefit";
+
   return (
     <CardDetails summary={colonText}>
       <div css={children}>
@@ -53,7 +54,9 @@ const ChildBenefitList = props => {
                     logEvent(
                       "Exit",
                       "child benefit",
-                      language === "en" ? cb.benefitPageEn : cb.benefitPageFr
+                      (language === "en"
+                        ? cb.benefitPageEn
+                        : cb.benefitPageFr) + utm
                     );
                     return true;
                   }}
