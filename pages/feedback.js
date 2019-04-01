@@ -153,7 +153,14 @@ export class Feedback extends Component {
               </Details>
 
               <div className={padding}>
-                <HeaderLink id="prevButton" css={prevButton} hasBorder>
+                <HeaderLink
+                  id="prevButton"
+                  css={prevButton}
+                  hasBorder
+                  onClick={() => {
+                    window.history.back();
+                  }}
+                >
                   {t("back")}
                 </HeaderLink>
                 <Link
