@@ -1,14 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: traefik
-  name: traefik-ingress
+  name: traefik-web-ui
+  namespace: kube-system
 spec:
   rules:
-    - http:
+    - host: traefik.vacdevopslab.com
+      http:
         paths:
           - path: /
             backend:
-              serviceName: vac-benefits-directory
-              servicePort: 3000
+              serviceName: traefik-web-ui
+              servicePort: web
