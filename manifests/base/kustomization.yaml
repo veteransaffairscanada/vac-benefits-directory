@@ -1,4 +1,5 @@
 resources:
+  - keel-deployment.yaml
   - datadog-agent.yaml
   - datadog-serviceaccount.yaml
   - vac-benefits-directory-deployment.yaml
@@ -7,4 +8,5 @@ resources:
   - traefik-ingress-controller-cluster-role.yaml
   - traefik-ingress-controller-deployment.yaml
   - traefik-ingress-controller-service-account.yaml
+  - traefik-ingress-controller-webui-service.yaml
   - traefik-ingress.yaml

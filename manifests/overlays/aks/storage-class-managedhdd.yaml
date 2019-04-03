@@ -1,0 +1,9 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1beta1
+provisioner: kubernetes.io/azure-disk
+metadata:
+  name: managedhdd
+parameters:
+  storageaccounttype: Standard_LRS
+  kind: Managed
+reclaimPolicy: Delete

@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: vac-benefits-directory
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: fbas.vacdevopslab.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: fbas
+              servicePort: http
