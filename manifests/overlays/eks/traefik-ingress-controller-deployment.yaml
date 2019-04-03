@@ -23,8 +23,8 @@ spec:
             - --acme
             - --acme.onhostrule
             - --acme.entrypoint=https
-            - --acme.domains=vac-eks.cdssandbox.xyz
-            - --acme.email=max.neuvians@cds-snc.ca
+            - --acme.domains=vac-eks.vacsandbox.xyz
+            - --acme.email=vac.devops-devops.acc@canada.ca
             - --acme.storage=/certs/acme.json
             - --acme.httpchallenge
             - --acme.httpchallenge.entrypoint=http

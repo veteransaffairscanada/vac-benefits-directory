@@ -8,7 +8,6 @@ import Container from "../components/container";
 import { css, jsx } from "@emotion/core";
 import RadioSelector from "../components/radio_selector";
 import { connect } from "react-redux";
-import HeaderButton from "../components/header_button";
 import Button from "../components/button";
 import PropTypes from "prop-types";
 import TextArea from "../components/text_area";
@@ -17,6 +16,10 @@ require("isomorphic-fetch");
 import Raven from "raven-js";
 import AlphaBanner from "../components/alpha_banner";
 import Link from "next/link";
+import BreadCrumbs from "../components/breadcrumbs";
+import { getHomeUrl } from "../selectors/urls";
+import Paper from "../components/paper";
+import HeaderLink from "../components/header_link";
 
 const padding = css`
   padding-top: 15px;
@@ -25,7 +28,6 @@ const padding = css`
 const prevButton = css`
   margin-top: 50px;
   margin-bottom: 15px;
-  padding: 0;
 `;
 const headerPadding = css`
   padding-bottom: 10px;
@@ -41,8 +43,18 @@ const detailsStyle = css`
   }
 `;
 const radioStyle = css`
-  margin-left: 0px;
   margin-top: 20px;
+`;
+
+const innerDiv = css`
+  padding-top: 24px;
+`;
+const topMatter = css`
+  background-color: ${globalTheme.colour.white};
+  width: 100%;
+`;
+const leftMargin = css`
+  margin-left: 1.5em;
 `;
 
 export class Feedback extends Component {
@@ -75,7 +87,7 @@ export class Feedback extends Component {
   };
 
   render() {
-    const { t, i18n, questions, store, url } = this.props;
+    const { t, i18n, questions, store, url, homeUrl } = this.props;
     const question = questions.filter(x => x.variable_name === "feedback")[0];
     return (
       <Layout
@@ -88,91 +100,106 @@ export class Feedback extends Component {
         url={url}
       >
         <Container className={padding} id="mainContent">
-          <AlphaBanner t={t} url={url} />
-          <HeaderButton
-            onClick={() => {
-              window.history.back();
-            }}
-            styles={prevButton}
-            arrow="back"
-          >
-            {t("back")}
-          </HeaderButton>
-          <form>
-            <Header styles={headerPadding} headingLevel="h1" size="lg">
-              {t("feedback.page_header")}
-            </Header>
-            <RadioSelector
-              styles={radioStyle}
-              legend={
-                t("current-language-code") === "en"
-                  ? question.display_text_english
-                  : question.display_text_french
-              }
+          <div className={topMatter}>
+            <BreadCrumbs
               t={t}
-              selectorType="betaFeedback"
-              options={question.multiple_choice_options}
-              store={store}
-              url={url}
+              breadcrumbs={[]}
+              homeUrl={homeUrl}
+              pageTitle={t("ge.Find benefits and services")}
             />
-            <TextArea
-              css={textAreaStyle}
-              name="group1"
-              maxLength={500}
-              t={t}
-              onChange={this.handleChange("what_did_you_think")}
-            >
-              {t("feedback.tell_us_more")}
-            </TextArea>
-            <Details
-              summary={t("feedback.details_question")}
-              css={detailsStyle}
-            >
-              {t("feedback.details_expansion_pt1")}
-              <a href={t("feedback.vac_office_link")}>
-                {t("feedback.details_expansion_pt2")}
-              </a>
-              {t("feedback.details_expansion_pt3")}
-              <a href={t("feedback.transition_centre_link")}>
-                {t("feedback.details_expansion_pt4")}
-              </a>
-              {t("feedback.details_expansion_pt5")}
-            </Details>
-            <div className={padding}>
-              <Link
-                href={{
-                  pathname: "/feedback_submitted",
-                  query: url.query
-                }}
+          </div>
+          <Paper id="feedbackPagePaper" padding="md" styles={innerDiv}>
+            <AlphaBanner t={t} url={url} />
+            <form>
+              <Header styles={headerPadding} headingLevel="h1" size="lg">
+                {t("feedback.page_header")}
+              </Header>
+              <RadioSelector
+                styles={radioStyle}
+                legend={
+                  t("current-language-code") === "en"
+                    ? question.display_text_english
+                    : question.display_text_french
+                }
+                t={t}
+                selectorType="betaFeedback"
+                options={question.multiple_choice_options}
+                store={store}
+                url={url}
+                feedbackPage
+              />
+              <TextArea
+                css={textAreaStyle}
+                name="group1"
+                maxLength={500}
+                t={t}
+                onChange={this.handleChange("what_did_you_think")}
               >
-                <Button
-                  id="send"
-                  arrow={true}
-                  size="big"
+                {t("feedback.tell_us_more")}
+              </TextArea>
+              <Details
+                summary={t("feedback.details_question")}
+                css={detailsStyle}
+              >
+                {t("feedback.details_expansion_pt1")}
+                <a href={t("feedback.vac_office_link")}>
+                  {t("feedback.details_expansion_pt2")}
+                </a>
+                {t("feedback.details_expansion_pt3")}
+                <a href={t("feedback.transition_centre_link")}>
+                  {t("feedback.details_expansion_pt4")}
+                </a>
+                {t("feedback.details_expansion_pt5")}
+              </Details>
+
+              <div className={padding}>
+                <HeaderLink
+                  id="prevButton"
+                  css={prevButton}
+                  hasBorder
                   onClick={() => {
-                    this.sendFeedback();
+                    window.history.back();
                   }}
                 >
-                  {t("send")}{" "}
-                </Button>
-              </Link>
-            </div>
-          </form>
+                  {t("back")}
+                </HeaderLink>
+                <Link
+                  href={{
+                    pathname: "/feedback_submitted",
+                    query: url.query
+                  }}
+                >
+                  <Button
+                    id="send"
+                    arrow={true}
+                    css={leftMargin}
+                    onClick={() => {
+                      this.sendFeedback();
+                    }}
+                  >
+                    {t("send")}{" "}
+                  </Button>
+                </Link>
+              </div>
+            </form>
+          </Paper>
         </Container>
       </Layout>
     );
   }
 }
 
-const mapStateToProps = reduxState => {
+const mapStateToProps = (reduxState, props) => {
   return {
     questions: reduxState.questions,
+    homeUrl: getHomeUrl(reduxState, props),
     betaFeedback: reduxState.betaFeedback
   };
 };
 
 Feedback.propTypes = {
   t: PropTypes.func.isRequired,
+  homeUrl: PropTypes.string,
   betaFeedback: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,

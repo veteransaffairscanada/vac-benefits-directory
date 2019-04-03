@@ -1,0 +1,9 @@
+bases:
+  - ../../base
+resources:
+  - traefik-ingress-service.yaml
+  - certs-claim.yaml
+  - storage-class-managedhdd.yaml
+  - vac-benefits-directory-ingress.yaml
+patches:
+  - traefik-ingress-controller-deployment.yaml

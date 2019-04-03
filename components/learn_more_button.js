@@ -15,9 +15,9 @@ const LearnMoreButton = props => {
   const { t, benefit } = props;
   const utm = "?utm_source=fbas&utm_medium=referral&utm_content=learn-more";
   const url =
-    t("current-language-code") === "en"
+    (t("current-language-code") === "en"
       ? benefit.benefitPageEn
-      : benefit.benefitPageFr;
+      : benefit.benefitPageFr) + utm;
 
   const benefitName =
     t("current-language-code") === "en" ? benefit.vacNameEn : benefit.vacNameFr;
@@ -25,7 +25,7 @@ const LearnMoreButton = props => {
   return (
     <a
       css={anchorFocus}
-      href={url + utm}
+      href={url}
       rel="noopener noreferrer"
       aria-label={t("benefits_b.learn_more", { x: benefitName })}
       onClick={() => {
