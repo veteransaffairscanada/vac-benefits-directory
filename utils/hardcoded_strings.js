@@ -1,15 +1,4 @@
-exports.tableNames = [
-  "benefits",
-  "benefitEligibility",
-  "needs",
-  "translations",
-  "questions",
-  "multipleChoiceOptions",
-  "questionDisplayLogic",
-  "questionClearLogic",
-  "benefitExamples",
-  "nextSteps"
-];
+exports.tableNames = ["translations"];
 
 exports.servicePersonOptions = ["veteran", "servingMember"];
 exports.familyOptions = ["family"];
