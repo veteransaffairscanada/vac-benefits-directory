@@ -81,8 +81,12 @@ export class Favourites extends Component {
 
     const breadcrumbs = [
       {
-        url: mutateUrl(url, "/benefits-directory"),
+        url: homeUrl,
         name: t("ge.Find benefits and services")
+      },
+      {
+        url: mutateUrl(url, "/benefits-directory"),
+        name: t("breadcrumbs.ben_dir_page_title")
       }
     ];
 
@@ -91,7 +95,6 @@ export class Favourites extends Component {
         <Container id="favourites">
           <BreadCrumbs
             t={t}
-            homeUrl={homeUrl}
             breadcrumbs={breadcrumbs}
             pageTitle={t("index.your_saved_benefits")}
           />

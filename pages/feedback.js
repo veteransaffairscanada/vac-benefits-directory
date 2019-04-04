@@ -104,7 +104,6 @@ export class Feedback extends Component {
             <BreadCrumbs
               t={t}
               breadcrumbs={[]}
-              homeUrl={homeUrl}
               pageTitle={t("ge.Find benefits and services")}
             />
           </div>

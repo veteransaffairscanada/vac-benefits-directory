@@ -92,14 +92,21 @@ export class BB extends Component {
 
   render() {
     const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
+
+    const breadcrumbs = [
+      {
+        url: homeUrl,
+        name: t("ge.Find benefits and services")
+      }
+    ];
+
     return (
       <Container>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}
-            breadcrumbs={[]}
-            homeUrl={homeUrl}
-            pageTitle={t("ge.Find benefits and services")}
+            breadcrumbs={breadcrumbs}
+            pageTitle={t("breadcrumbs.ben_dir_page_title")}
           />
         </div>
         <Paper id={this.props.id} padding="md" styles={innerDiv}>

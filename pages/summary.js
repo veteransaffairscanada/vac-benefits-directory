@@ -50,6 +50,14 @@ export class Summary extends Component {
       reduxState.patronType === "organization" ? "patronType" : "needs";
     const backUrl = mutateUrl(url, "/" + getPageName(prevSection));
     const benefitsToConsider = getBenefitCountString(filteredBenefits, t);
+
+    const breadcrumbs = [
+      {
+        url: homeUrl,
+        name: t("ge.Find benefits and services")
+      }
+    ];
+
     return (
       <Layout
         i18n={i18n}
@@ -64,8 +72,7 @@ export class Summary extends Component {
           <div>
             <BreadCrumbs
               t={t}
-              breadcrumbs={[]}
-              homeUrl={homeUrl}
+              breadcrumbs={breadcrumbs}
               pageTitle={t("ge.Find benefits and services")}
             />
           </div>
