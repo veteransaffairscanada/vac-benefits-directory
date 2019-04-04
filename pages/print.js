@@ -8,6 +8,7 @@ import WordMark from "../components/word_mark";
 import FIP from "../components/fip";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import { globalTheme } from "../theme";
 
 const root = css`
   font-family: Merriweather, serif;
@@ -76,7 +77,9 @@ const wordmark = css`
   width: 100%;
   margin-top: 20px;
 `;
-
+const needs_section = css`
+  margin-top: 20px;
+`;
 export class Print extends Component {
   componentDidMount() {
     document.title = this.props.t("titles.print");
@@ -189,7 +192,7 @@ export class Print extends Component {
                 <div css={bold}>{t("print.who_is_receiving")}</div>
                 <div className={"profile_section " + rules}>{profile_text}</div>
 
-                <div css="needs_section">
+                <div css={needs_section}>
                   <Grid container spacing={0}>
                     {needs.map((need, i) => (
                       <Grid item xs={4} key={i}>
