@@ -8,7 +8,6 @@ import WordMark from "../components/word_mark";
 import FIP from "../components/fip";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { globalTheme } from "../theme";
 
 const root = css`
   font-family: Merriweather, serif;
