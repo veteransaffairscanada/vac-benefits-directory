@@ -43,7 +43,6 @@ class ShareBox extends Component {
           css={shareBoxItem}
           size="small"
           href={printUrl}
-          target="_blank"
           aria-label={t("Print")}
           onClick={() => {
             logEvent("Exit", "print");

@@ -34,7 +34,8 @@ const StyledInput = styled("input")(
   ({ disabled }) => ({
     cursor: disabled ? "auto" : "pointer",
     " + span": {
-      pointerEvents: disabled ? "none" : "auto"
+      pointerEvents: disabled ? "none" : "auto",
+      fontSize: disabled ? "16px" : "24px"
     }
   })
 );
