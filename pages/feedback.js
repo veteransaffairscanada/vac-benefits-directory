@@ -17,7 +17,7 @@ import Raven from "raven-js";
 import AlphaBanner from "../components/alpha_banner";
 import Link from "next/link";
 import BreadCrumbs from "../components/breadcrumbs";
-import { getGeUrl } from "../selectors/urls";
+import { getGuidedExperienceUrl } from "../selectors/urls";
 import Paper from "../components/paper";
 import HeaderLink from "../components/header_link";
 
@@ -87,12 +87,12 @@ export class Feedback extends Component {
   };
 
   render() {
-    const { t, i18n, questions, store, url, geUrl } = this.props;
+    const { t, i18n, questions, store, url, guidedExperienceUrl } = this.props;
     const question = questions.filter(x => x.variable_name === "feedback")[0];
 
     const breadcrumbs = [
       {
-        url: geUrl,
+        url: guidedExperienceUrl,
         name: t("ge.Find benefits and services")
       }
     ];
@@ -199,14 +199,14 @@ export class Feedback extends Component {
 const mapStateToProps = (reduxState, props) => {
   return {
     questions: reduxState.questions,
-    geUrl: getGeUrl(reduxState, props),
+    guidedExperienceUrl: getGuidedExperienceUrl(reduxState, props),
     betaFeedback: reduxState.betaFeedback
   };
 };
 
 Feedback.propTypes = {
   t: PropTypes.func.isRequired,
-  geUrl: PropTypes.string,
+  guidedExperienceUrl: PropTypes.string,
   betaFeedback: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,

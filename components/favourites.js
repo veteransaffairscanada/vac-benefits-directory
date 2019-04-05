@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import BenefitList from "./benefit_list";
 import { connect } from "react-redux";
-import { getPrintUrl, getGeUrl } from "../selectors/urls";
+import { getPrintUrl, getGuidedExperienceUrl } from "../selectors/urls";
 import Link from "next/link";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -72,7 +72,7 @@ export class Favourites extends Component {
   };
 
   render() {
-    const { t, url, printUrl, geUrl, store } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, printUrl, guidedExperienceUrl, store } = this.props; // eslint-disable-line no-unused-vars
 
     const filteredBenefits = this.filterBenefits(
       this.props.benefits,
@@ -81,7 +81,7 @@ export class Favourites extends Component {
 
     const breadcrumbs = [
       {
-        url: geUrl,
+        url: guidedExperienceUrl,
         name: t("ge.Find benefits and services")
       },
       {
@@ -213,7 +213,7 @@ const mapStateToProps = (reduxState, props) => {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     printUrl: getPrintUrl(reduxState, props, { fromFavourites: true }),
-    geUrl: getGeUrl(reduxState, props)
+    guidedExperienceUrl: getGuidedExperienceUrl(reduxState, props)
   };
 };
 
@@ -226,7 +226,7 @@ Favourites.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
   saveFavourites: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired,
-  geUrl: PropTypes.string.isRequired,
+  guidedExperienceUrl: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 

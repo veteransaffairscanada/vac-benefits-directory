@@ -49,7 +49,7 @@ describe("Favourites", () => {
       },
       url: { query: {} },
       printUrl: "/print",
-      geUrl: "/",
+      guidedExperienceUrl: "/",
       saveFavourites: jest.fn()
     };
     _shallowFavourites = undefined;
