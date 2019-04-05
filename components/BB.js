@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { getPrintUrl, getHomeUrl } from "../selectors/urls";
+import { getPrintUrl, getGuidedExperienceUrl } from "../selectors/urls";
 import { withTheme } from "@material-ui/core/styles";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -91,15 +91,22 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, store, guidedExperienceUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
+
+    const breadcrumbs = [
+      {
+        url: guidedExperienceUrl,
+        name: t("ge.Find benefits and services")
+      }
+    ];
+
     return (
       <Container>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}
-            breadcrumbs={[]}
-            homeUrl={homeUrl}
-            pageTitle={t("ge.Find benefits and services")}
+            breadcrumbs={breadcrumbs}
+            pageTitle={t("breadcrumbs.ben_dir_page_title")}
           />
         </div>
         <Paper id={this.props.id} padding="md" styles={innerDiv}>
@@ -191,7 +198,7 @@ const mapStateToProps = (reduxState, props) => {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
-    homeUrl: getHomeUrl(reduxState, props),
+    guidedExperienceUrl: getGuidedExperienceUrl(reduxState, props),
     printUrl: getPrintUrl(reduxState, props, {})
   };
 };
@@ -202,7 +209,7 @@ BB.propTypes = {
   setCookiesDisabled: PropTypes.func.isRequired,
   saveFavourites: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  homeUrl: PropTypes.string,
+  guidedExperienceUrl: PropTypes.string,
   printUrl: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,

@@ -16,7 +16,6 @@ import { showQuestion, getPageName } from "../utils/common";
 import HeaderButton from "./header_button";
 import Button from "./button";
 import Link from "next/link";
-import { getHomeUrl } from "../selectors/urls";
 import { AlphaBanner } from "./alpha_banner";
 
 const greyBox = css`
@@ -169,7 +168,7 @@ export class GuidedExperience extends Component {
   }
 
   render() {
-    const { t, url, id, reduxState, homeUrl } = this.props;
+    const { t, url, id, reduxState } = this.props;
     const question = reduxState.questions.filter(
       x => x.variable_name === id
     )[0];
@@ -189,7 +188,6 @@ export class GuidedExperience extends Component {
           <BreadCrumbs
             t={t}
             breadcrumbs={[]}
-            homeUrl={homeUrl}
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
@@ -271,11 +269,10 @@ export class GuidedExperience extends Component {
   }
 }
 
-const mapStateToProps = (reduxState, props) => {
+const mapStateToProps = reduxState => {
   return {
     reduxState: reduxState,
-    sectionOrder: reduxState.questions.map(x => x.variable_name),
-    homeUrl: getHomeUrl(reduxState, props)
+    sectionOrder: reduxState.questions.map(x => x.variable_name)
   };
 };
 
@@ -286,8 +283,7 @@ GuidedExperience.propTypes = {
   sectionOrder: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
   children: PropTypes.object.isRequired,
-  store: PropTypes.object,
-  homeUrl: PropTypes.string
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(GuidedExperience);
