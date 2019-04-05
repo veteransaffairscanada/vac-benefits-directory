@@ -20,7 +20,10 @@ expect.extend(toHaveNoViolations);
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 jest.mock("react-ga");
-
+window.matchMedia = () => ({
+  addListener: () => {},
+  removeListener: () => {}
+});
 describe("BB", () => {
   let props;
   let _mountedBB;
