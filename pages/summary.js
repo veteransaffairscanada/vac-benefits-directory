@@ -18,7 +18,7 @@ import { connect } from "react-redux";
 import GuidedExperienceSummary from "../components/guided_experience_summary";
 import Body from "../components/typography/body";
 import { getFilteredBenefits } from "../selectors/benefits";
-import { getHomeUrl } from "../selectors/urls";
+import { getGeUrl } from "../selectors/urls";
 import AlphaBanner from "../components/alpha_banner";
 
 const box = css`
@@ -44,7 +44,7 @@ export class Summary extends Component {
       reduxState,
       store,
       filteredBenefits,
-      homeUrl
+      geUrl
     } = this.props;
     const prevSection =
       reduxState.patronType === "organization" ? "patronType" : "needs";
@@ -53,7 +53,7 @@ export class Summary extends Component {
 
     const breadcrumbs = [
       {
-        url: homeUrl,
+        url: geUrl,
         name: t("ge.Find benefits and services")
       }
     ];
@@ -133,7 +133,7 @@ const mapStateToProps = (reduxState, props) => {
   return {
     reduxState: reduxState,
     filteredBenefits: getFilteredBenefits(reduxState, props),
-    homeUrl: getHomeUrl(reduxState, props)
+    geUrl: getGeUrl(reduxState, props)
   };
 };
 
@@ -144,7 +144,7 @@ Summary.propTypes = {
   url: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   store: PropTypes.object,
-  homeUrl: PropTypes.string
+  geUrl: PropTypes.string
 };
 
 export default withI18N(connect(mapStateToProps)(Summary));

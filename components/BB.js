@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { getPrintUrl, getHomeUrl } from "../selectors/urls";
+import { getPrintUrl, getGeUrl } from "../selectors/urls";
 import { withTheme } from "@material-ui/core/styles";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -91,11 +91,11 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, store, geUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
 
     const breadcrumbs = [
       {
-        url: homeUrl,
+        url: geUrl,
         name: t("ge.Find benefits and services")
       }
     ];
@@ -198,7 +198,7 @@ const mapStateToProps = (reduxState, props) => {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
-    homeUrl: getHomeUrl(reduxState, props),
+    geUrl: getGeUrl(reduxState, props),
     printUrl: getPrintUrl(reduxState, props, {})
   };
 };
@@ -209,7 +209,7 @@ BB.propTypes = {
   setCookiesDisabled: PropTypes.func.isRequired,
   saveFavourites: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  homeUrl: PropTypes.string,
+  geUrl: PropTypes.string,
   printUrl: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,
