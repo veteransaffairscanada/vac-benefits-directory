@@ -40,11 +40,11 @@ const currentPageStyle = css`
 
 export class BreadCrumbs extends Component {
   render() {
-    const { breadcrumbs, homeUrl } = this.props;
+    const { breadcrumbs, t } = this.props;
     return (
       <div css={greyBanner}>
         <div>
-          <HeaderLink id="homeButton" href={homeUrl} css={urlStyle}>
+          <HeaderLink id="homeButton" href={t("ge.home_link")} css={urlStyle}>
             {this.props.t("titles.home")}
           </HeaderLink>
           {breadcrumbs.map((breadcrumb, i) => (
@@ -70,8 +70,7 @@ export class BreadCrumbs extends Component {
 BreadCrumbs.propTypes = {
   t: PropTypes.func.isRequired,
   breadcrumbs: PropTypes.array.isRequired,
-  pageTitle: PropTypes.string.isRequired,
-  homeUrl: PropTypes.string
+  pageTitle: PropTypes.string.isRequired
 };
 
 export default BreadCrumbs;

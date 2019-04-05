@@ -47,7 +47,7 @@ export const getFavouritesUrl = createSelector(
   }
 );
 
-export const getHomeUrl = createSelector(
+export const getGuidedExperienceUrl = createSelector(
   [
     getProfileFilters,
     getNeedsFilter,
