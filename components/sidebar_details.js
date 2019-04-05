@@ -24,7 +24,7 @@ const StyledSummary = styled("summary")({
   color: globalTheme.colour.textColour,
   cursor: "pointer",
   ":hover": {
-    backgroundColor: globalTheme.colour.hoverBackground
+    backgroundColor: globalTheme.colour.blueish
   },
   ":focus": {
     outline: `2px solid ${globalTheme.colour.focusColour}`
