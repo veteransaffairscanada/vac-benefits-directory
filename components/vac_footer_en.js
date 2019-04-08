@@ -10,8 +10,11 @@ class VacFooterEn extends Component {
         <div className="container mrgn-bttm-xl">
           <div className="row">
             <div className="col-xs-12 col-sm-4">
-              <nav className="col-x-12 wb-navcurr">
-                <h3>
+              <nav
+                className="col-x-12 wb-navcurr"
+                aria-labelledby="aboutvacnav"
+              >
+                <h3 id="aboutvacnav">
                   About <abbr title="Veterans Affairs Canada">VAC</abbr>
                 </h3>
                 <ul className="list-unstyled mrgn-bttm-xl">
@@ -187,8 +190,13 @@ class VacFooterEn extends Component {
         <div className="brand">
           <div className="container">
             <div className="row">
-              <nav className="col-md-9 col-lg-10 ftr-urlt-lnk">
-                <h2 className="wb-inv">About this site</h2>
+              <nav
+                className="col-md-9 col-lg-10 ftr-urlt-lnk"
+                aria-labelledby="aboutnav"
+              >
+                <h2 id="aboutnav" className="wb-inv">
+                  About this site
+                </h2>
                 <ul>
                   <li>
                     <a href={path + "/eng/help"}>Help</a>
