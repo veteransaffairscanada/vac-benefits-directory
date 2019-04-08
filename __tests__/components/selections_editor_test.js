@@ -12,7 +12,10 @@ import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
 import responsesFixture from "../fixtures/responses";
 import Router from "next/router";
-
+window.matchMedia = () => ({
+  addListener: () => {},
+  removeListener: () => {}
+});
 describe("SelectionsEditor", () => {
   let props;
   let mockStore, reduxData;
