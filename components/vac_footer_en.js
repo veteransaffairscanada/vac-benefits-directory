@@ -4,7 +4,7 @@ const path = "https://veterans.gc.ca";
 
 class VacFooterEn extends Component {
   render() {
-    const utm = "?utm_source=fbas&utm_medium=referral&utm_content=footer";
+    const utm = "?utm_source=fbas&utm_medium=referral&utm_campaign=footer";
     return (
       <footer id="wb-info">
         <div className="container mrgn-bttm-xl">

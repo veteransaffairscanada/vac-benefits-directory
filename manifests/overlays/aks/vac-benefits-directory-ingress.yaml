@@ -6,10 +6,10 @@ metadata:
     kubernetes.io/ingress.class: traefik
 spec:
   rules:
-    - host: fbas.vacdevopslab.com
+    - host: benefits-avantages.veterans.gc.ca
       http:
         paths:
           - path: /
             backend:
-              serviceName: fbas
+              serviceName: find-benefits-and-services
               servicePort: http
