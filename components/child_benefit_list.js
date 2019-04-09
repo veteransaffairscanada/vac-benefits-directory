@@ -4,6 +4,7 @@ import { css, jsx } from "@emotion/core";
 import HeaderLink from "./header_link";
 import { logEvent } from "../utils/analytics";
 import CardDetails from "./card_details";
+import { join } from "path";
 
 const children = css`
   width: 100%;
@@ -50,7 +51,10 @@ const ChildBenefitList = props => {
                   href={
                     (language === "en" ? cb.benefitPageEn : cb.benefitPageFr) +
                     utm +
-                    cb.vacNameEn.replace(" ", "-").toLowerCase()
+                    cb.vacNameEn
+                      .split(" ")
+                      .join("-")
+                      .toLowerCase()
                   }
                   onClick={() => {
                     logEvent(
