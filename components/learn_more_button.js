@@ -13,7 +13,12 @@ const anchorFocus = css`
 
 const LearnMoreButton = props => {
   const { t, benefit } = props;
-  const utm = "?utm_source=fbas&utm_medium=referral&utm_content=learn-more";
+  const utm =
+    "?utm_source=fbas&utm_medium=referral&utm_campaign=learn-more&utm_content=" +
+    benefit.vacNameEn
+      .split(" ")
+      .join("-")
+      .toLowerCase();
   const url =
     (t("current-language-code") === "en"
       ? benefit.benefitPageEn

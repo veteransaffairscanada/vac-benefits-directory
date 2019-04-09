@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
@@ -12,6 +12,8 @@ import Header from "./typography/header";
 import Router from "next/router";
 import { mutateUrl } from "../utils/common";
 import { logEvent } from "../utils/analytics";
+import SidebarDetails from "./sidebar_details";
+import Media from "react-media";
 
 const root = css`
   font-family: ${globalTheme.fontFamilySansSerif};
@@ -19,7 +21,6 @@ const root = css`
   border: thin solid ${globalTheme.colour.darkPaleGrey} !important;
   box-shadow: none !important;
   margin-top: 30px;
-  padding: 25px;
 `;
 const clearButton = css`
   font-size: 16px;
@@ -37,19 +38,18 @@ const filterTitle = css`
   font-size: 22px;
   color: ${globalTheme.colour.greyishBrown};
 `;
-const profileStyle = css`
-  padding-top: 15px;
-`;
 const divider = css`
   border-top: 1px solid ${globalTheme.colour.darkPaleGrey};
   width: 100%;
 `;
-
 export class SelectionsEditor extends Component {
-  state = {
-    open: false
-  };
-
+  constructor(props) {
+    super(props);
+    this.state = { key: 0 };
+  }
+  componentDidMount() {
+    this.setState({ key: 1 });
+  }
   countSelected = () => {
     let selectedProfileFilters = 0;
     this.props.profileQuestions.forEach(question => {
@@ -82,34 +82,45 @@ export class SelectionsEditor extends Component {
 
   render() {
     const { t, store, url } = this.props;
-
     return (
       <Grid container css={root}>
         <Grid item xs={12}>
-          <Header size="sm_md" styles={filterTitle}>
-            {t("directory.edit_selections")}
-          </Header>
-        </Grid>
-        <Grid item xs={12}>
-          {this.countSelected() > 0 ? (
-            <HeaderButton
-              id="ClearFilters"
-              styles={clearButton}
-              onClick={() => {
-                this.clearFilters();
-              }}
-            >
-              {t("reset filters")}
-            </HeaderButton>
-          ) : null}
-        </Grid>
+          <Media query={{ minWidth: globalTheme.min.sm }} key={this.state.key}>
+            {matches => (
+              <SidebarDetails
+                open={matches}
+                summary={
+                  <Header size="sm_md" styles={filterTitle}>
+                    {t("directory.edit_selections")}
+                  </Header>
+                }
+              >
+                <React.Fragment>
+                  <Grid item xs={12}>
+                    {this.countSelected() > 0 ? (
+                      <HeaderButton
+                        id="ClearFilters"
+                        styles={clearButton}
+                        onClick={() => {
+                          this.clearFilters();
+                        }}
+                      >
+                        {t("reset filters")}
+                      </HeaderButton>
+                    ) : null}
+                  </Grid>
 
-        <Grid item xs={12} css={profileStyle}>
-          <ProfileSelector t={t} store={store} url={url} />
-        </Grid>
-        <div css={divider} />
-        <Grid item xs={12} css={profileStyle}>
-          <NeedsSelector t={t} store={store} url={url} />
+                  <Grid item xs={12}>
+                    <ProfileSelector t={t} store={store} url={url} />
+                  </Grid>
+                  <div css={divider} />
+                  <Grid item xs={12}>
+                    <NeedsSelector t={t} store={store} url={url} />
+                  </Grid>
+                </React.Fragment>
+              </SidebarDetails>
+            )}
+          </Media>
         </Grid>
       </Grid>
     );
