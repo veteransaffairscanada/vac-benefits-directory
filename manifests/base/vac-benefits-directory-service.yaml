@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fbas
+  name: find-benefits-and-services
 spec:
   ports:
     - name: http
@@ -9,7 +9,7 @@ spec:
       port: 3000
   selector:
     app: vac-benefits-directory
-    task: fbas
+    task: find-benefits-and-services
   type: ClusterIP
 status:
   loadBalancer: {}
