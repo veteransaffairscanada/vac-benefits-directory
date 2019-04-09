@@ -23,7 +23,7 @@ spec:
             - --acme
             - --acme.onhostrule
             - --acme.entrypoint=https
-            - --acme.domains=fbas.vacdevopslab.com
+            - --acme.domains=benefits-avantages.veterans.gc.ca
             - --acme.email=vac.devops-devops.acc@canada.ca
             - --acme.storage=/certs/acme.json
             - --acme.httpchallenge
