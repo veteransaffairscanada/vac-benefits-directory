@@ -8,7 +8,7 @@ const path = "https://veterans.gc.ca";
 class VacHeaderEn extends Component {
   render() {
     const { t, url } = this.props;
-    const utm = "?utm_source=fbas&utm_medium=referral&utm_content=header";
+    const utm = "?utm_source=fbas&utm_medium=referral&utm_campaign=header";
     return (
       <header className="bg-black">
         <div id="wb-bnr" className="container">
