@@ -4,7 +4,6 @@ import { css, jsx } from "@emotion/core";
 import HeaderLink from "./header_link";
 import { logEvent } from "../utils/analytics";
 import CardDetails from "./card_details";
-import { join } from "path";
 
 const children = css`
   width: 100%;
