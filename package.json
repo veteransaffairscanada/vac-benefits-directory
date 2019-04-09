@@ -48,7 +48,6 @@
     "emotion": "^10.0.9",
     "emotion-server": "^10.0.9",
     "express": "^4.16.4",
-    "git-flow": "^0.2.0",
     "helmet": "^3.16.0",
     "isomorphic-unfetch": "^3.0.0",
     "jest-haste-map": "^24.0.0",
