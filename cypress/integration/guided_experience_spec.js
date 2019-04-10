@@ -23,9 +23,6 @@ describe("Guided Experience", function() {
     cy.url().should("include", "serviceType?");
     cy.contains(serviceTypeCAF).click();
     cy.get("#nextButton").click();
-    cy.url().should("include", "serviceHealthIssue?");
-    cy.contains("Yes").click();
-    cy.get("#nextButton").click();
     cy.url().should("include", "needs");
     cy.get("#nextButton").click();
     cy.url().should("include", "benefits-directory");
