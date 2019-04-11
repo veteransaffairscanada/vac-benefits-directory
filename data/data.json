@@ -645,8 +645,8 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "OSI Clinics",
-      "vacNameFr": "Les cliniques TSO",
+      "vacNameEn": "Operational stress injury (OSI) Clinics",
+      "vacNameFr": "Cliniques pour traumatismes liés au stress opérationnel",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/mental-health-and-wellness/assessment-treatment/osi-clinics",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/mental-health-and-wellness/assessment-treatment/osi-clinics",
       "needs": ["reciCZbLGkKLIqapM"],
@@ -4052,7 +4052,7 @@
       "french": " état de stress post‑traumatique (ESPT)",
       "linked_benefits": [
         "Talk to someone who can relate",
-        "OSI Clinics",
+        "Operational stress injury (OSI) Clinics",
         "Family peer support (OSISS)"
       ],
       "id": "recmJNrxITVeQNYLc"
@@ -4189,13 +4189,13 @@
     {
       "english": "anxiety ",
       "french": "anxiété",
-      "linked_benefits": ["OSI Clinics"],
+      "linked_benefits": ["Operational stress injury (OSI) Clinics"],
       "id": "recm4FCe3wGDVk5Ms"
     },
     {
       "english": "insomnia ",
       "french": "insomnie",
-      "linked_benefits": ["OSI Clinics"],
+      "linked_benefits": ["Operational stress injury (OSI) Clinics"],
       "id": "receojjqPcCZ8QKRC"
     },
     {
