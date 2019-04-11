@@ -466,8 +466,8 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Family peer support (OSISS)",
-      "vacNameFr": "Soutien par les pairs pour les familles (SSBSO)",
+      "vacNameEn": "Family peer support (Operational Stress Injury Social Support)",
+      "vacNameFr": "Soutien par les pairs pour les familles (Le programme Soutien social; blessures de stress opérationnel)",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/family-caregiver/health-programs-services/osiss-families",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/family-caregiver/health-programs-services/osiss-families",
       "needs": ["reciCZbLGkKLIqapM"],
@@ -3462,7 +3462,7 @@
       "display_text_french": "Services pour membres de la famille",
       "linked_question": ["patronType"],
       "variable_name": "family",
-      "benefits": "Caregiver Zone, Death Benefit, Educational Assistance for children, Family Peer Support (OSISS), Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Funeral and Burial Assistance",
+      "benefits": "Caregiver Zone, Death Benefit, Educational Assistance for children, Family peer support (Operational Stress Injury Social Support), Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Funeral and Burial Assistance",
       "benefitEligibility": "recOVWkhp1IfbFnRU, recC1BOsrEwQQT7Tr, recXSg015decd4TOq, recWmF49cJ0evYv0F, reclYWjGKy8oabUkO, rechaKl1wJhKe0lnF, recpCQ81MXjUrrerT, recdtaTP1HL6hgId7, recIKNddEHsrPobsJ, recvSEet4Pf5xm2Ng, rechEoLL5pBxeHcGN, recoztJkT5J9MYX2G, recRligLod0I0IhcP, rece3ZFiriZxO63e4, recxq80Dbs1ijRlaE, rec0AZCo8gx3HzLy1, recBr3SAQU0GijleA, recDSeANhF5XrVRcr, recgsVRR5F96KoQvT, recGSaT5q7VLKIDtA, receBHaEdQ29Qid3n, recdzam05SfCt5PqJ, rec6vIdu4K8xl1nxi, rechrkjJpnl8ZEamI, recQKuvUeQib6xDlk, recxiPnxu1B8Xq1HX, recwtgBef5LIpUifM",
       "benefitEligibility 2": [
         "recKb9wdghPiNi7gw",
@@ -3520,7 +3520,7 @@
       "display_text_french": "Forces Armées Canadiennes",
       "linked_question": ["serviceType"],
       "variable_name": "CAF",
-      "benefits 2": "Career Transition Services, Career Impact Allowance, Critical Injury Benefit, Death Benefit, Detention Benefits, Disability Award, Education and Training Benefit, Educational Assistance for children, Family Peer Support (OSISS), Group Health Insurance, Jobs in the federal government, Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Disability Pension, Funeral and Burial Assistance",
+      "benefits 2": "Career Transition Services, Career Impact Allowance, Critical Injury Benefit, Death Benefit, Detention Benefits, Disability Award, Education and Training Benefit, Educational Assistance for children, Family peer support (Operational Stress Injury Social Support), Group Health Insurance, Jobs in the federal government, Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Disability Pension, Funeral and Burial Assistance",
       "benefitEligibility": "recOVWkhp1IfbFnRU, recGR0KBNakgQbLG5, recR4crMdLtxDz0cf, recl8EQBaoPvkUs1y, rec3LMYRHMRfFdc2E, recC1BOsrEwQQT7Tr, recoWEBTf2fHKxO8T, reclYWjGKy8oabUkO, recNbQZ8omQdO5FhH, recLCU5pg8cn8v6cO, recmwLUgfMCQyfiDd, recPwgIAvnOrF9CZE, rechaKl1wJhKe0lnF, recmsrOwzHKCsUNl6, recQBzCRl2D8B7lxu, recpCQ81MXjUrrerT, recdtaTP1HL6hgId7, recvSEet4Pf5xm2Ng, rec9M3lN0KwS8CJmj, recRligLod0I0IhcP, recAz6FLY6qy3GkHd, recJDGon9UpIRv1C6, recxq80Dbs1ijRlaE, recBr3SAQU0GijleA, recGkh4BgTTH4ibVq, recDSeANhF5XrVRcr, recxc6T4F7Ft3bF0t, recmRtb7mI9XaukBw, recgsVRR5F96KoQvT, recGSaT5q7VLKIDtA, recdzam05SfCt5PqJ, recefz1kpLFu7Vkxh, rec6vIdu4K8xl1nxi, recnz9qP2cSNgBzE8, recQKuvUeQib6xDlk, recwtgBef5LIpUifM",
       "benefitEligibility 3": [
         "recKb9wdghPiNi7gw",
@@ -3679,7 +3679,7 @@
       "linked_question": ["statusAndVitals"],
       "question display logic 2": ["recjgMA7BaoIk1gZT"],
       "variable_name": "deceased",
-      "benefits 3": "Death Benefit, Educational Assistance for children, Family Peer Support (OSISS), Survivor's Pension, Vocational Assistance, Funeral and Burial Assistance",
+      "benefits 3": "Death Benefit, Educational Assistance for children, Family peer support (Operational Stress Injury Social Support), Survivor's Pension, Vocational Assistance, Funeral and Burial Assistance",
       "benefitEligibility": "recOVWkhp1IfbFnRU, reclYWjGKy8oabUkO, rechaKl1wJhKe0lnF, recpCQ81MXjUrrerT, recdtaTP1HL6hgId7, recIKNddEHsrPobsJ, recvSEet4Pf5xm2Ng, rechEoLL5pBxeHcGN, recoztJkT5J9MYX2G, recRligLod0I0IhcP, recBr3SAQU0GijleA, recDSeANhF5XrVRcr, recgsVRR5F96KoQvT, recGSaT5q7VLKIDtA, receBHaEdQ29Qid3n, rec6vIdu4K8xl1nxi, rechrkjJpnl8ZEamI, recQKuvUeQib6xDlk, recxiPnxu1B8Xq1HX, recwtgBef5LIpUifM",
       "benefitEligibility 4": [
         "recKb9wdghPiNi7gw",
@@ -4053,7 +4053,7 @@
       "linked_benefits": [
         "Talk to someone who can relate",
         "Operational stress injury (OSI) Clinics",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recmJNrxITVeQNYLc"
     },
@@ -4062,7 +4062,7 @@
       "french": "troubles anxieux",
       "linked_benefits": [
         "Talk to someone who can relate",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "rec64UtZ3byLVvlyj"
     },
@@ -4071,7 +4071,7 @@
       "french": "dépression",
       "linked_benefits": [
         "Talk to someone who can relate",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recHBYNu3MwIqD0Es"
     },
@@ -4080,7 +4080,7 @@
       "french": "troubles liés à la toxicomanie",
       "linked_benefits": [
         "Talk to someone who can relate",
-        "Family peer support (OSISS)"
+        "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "reccoGBRVRWwyfI5E"
     },
