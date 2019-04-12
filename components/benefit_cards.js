@@ -64,11 +64,10 @@ const floatRight = css`
 `;
 
 const tagStyle = css`
-  width: 20px;
-  height: 20px;
   font-size: 12px !important;
   color: ${globalTheme.colour.slateGrey} !important;
-  margin-right: 0.5em;
+  margin-right: 8px;
+  margin-bottom: 2px;
   vertical-align: middle;
 `;
 
