@@ -64,11 +64,12 @@ const floatRight = css`
 `;
 
 const tagStyle = css`
-  width: 12px;
-  height: 12px;
+  width: 20px;
+  height: 20px;
   font-size: 12px !important;
   color: ${globalTheme.colour.slateGrey} !important;
-  margin-right: 0.8em;
+  margin-right: 0.5em;
+  vertical-align: middle;
 `;
 
 export class BenefitCard extends Component {
@@ -119,7 +120,7 @@ export class BenefitCard extends Component {
               ) : null}
             </Header>
             <div css={padding}>
-              {needsMet.length > 0 ? <Tag styles={tagStyle} /> : null}
+              {needsMet.length > 0 ? <Tag css={tagStyle} /> : null}
               {needsMet.map(need => (
                 <NeedTag
                   key={benefit.id + need.id}
