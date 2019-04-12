@@ -10,7 +10,6 @@ const style = css`
   text-align: center;
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 24px;
-  margin: 10px 0;
   font-weight: bold;
   color: ${globalTheme.colour.charcoalGrey};
   background-color: transparent;

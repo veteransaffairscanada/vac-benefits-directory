@@ -25,7 +25,7 @@ const root = css`
 const clearButton = css`
   font-size: 16px;
   font-weight: normal;
-  padding-top: 15px;
+  margin-top: 5px;
   padding-right: 0px;
   padding-left: 0px;
   line-height: 1.69;
@@ -100,7 +100,7 @@ export class SelectionsEditor extends Component {
                     {this.countSelected() > 0 ? (
                       <HeaderButton
                         id="ClearFilters"
-                        styles={clearButton}
+                        css={clearButton}
                         onClick={() => {
                           this.clearFilters();
                         }}
