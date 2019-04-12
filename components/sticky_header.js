@@ -36,7 +36,7 @@ const alignRight = css`
 `;
 const savedListStyle = css`
   margin-left: 50px;
-  padding: 0;
+  padding: 0px;
   font-size: 20px;
   color: ${globalTheme.colour.navy};
   @media only screen and (max-width: ${globalTheme.max.sm}) {

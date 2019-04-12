@@ -56,6 +56,9 @@ const mobileFullWidth = css`
     margin-left: 0;
   }
 `;
+const topMargin = css`
+  margin-top: 10px;
+`;
 const questions = css`
   margin: 0;
   padding: 0;
@@ -261,7 +264,7 @@ export class GuidedExperience extends Component {
                     <HeaderButton
                       id="skipButton"
                       altStyle="grey"
-                      styles={mobileFullWidth}
+                      css={[mobileFullWidth, topMargin]}
                     >
                       {t("ge.skip")}
                     </HeaderButton>
