@@ -91,7 +91,7 @@ describe("BenefitCard", () => {
 
   it("Clicking the See More button expands the BenefitExpansion component", () => {
     mountedBenefitCard()
-      .find("HeaderButton")
+      .find("BenefitExpansion")
       .at(0)
       .simulate("click");
     expect(mountedBenefitCard().find("BenefitExpansion").length).toEqual(1);
