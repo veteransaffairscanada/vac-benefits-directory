@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
-import FavouriteButton from "./favourite_button";
+//import FavouriteButton from "./favourite_button";
 import Paper from "./paper";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
@@ -59,10 +59,10 @@ const flex = css`
     display: flex;
   }
 `;
-const floatRight = css`
-  margin-left: auto;
-  order: 2;
-`;
+// const floatRight = css`
+//   margin-left: auto;
+//   order: 2;
+// `;
 
 const tagStyle = css`
   font-size: 12px !important;
