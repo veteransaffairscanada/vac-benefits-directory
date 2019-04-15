@@ -15,6 +15,8 @@ const greyBanner = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     margin: 11px 0;
   }
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 const separator = css`

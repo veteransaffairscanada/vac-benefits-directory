@@ -53,6 +53,7 @@ const padding = css`
 `;
 const flex = css`
   align-items: center;
+  padding-top: 5px;
   // if screen size is min.sm or larger put favourites button below learn more
   @media only screen and (min-width: ${globalTheme.min.sm}) {
     display: flex;
@@ -64,11 +65,11 @@ const floatRight = css`
 `;
 
 const tagStyle = css`
-  width: 12px;
-  height: 12px;
   font-size: 12px !important;
   color: ${globalTheme.colour.slateGrey} !important;
-  margin-right: 0.8em;
+  margin-right: 8px;
+  margin-bottom: 2px;
+  vertical-align: middle;
 `;
 
 export class BenefitCard extends Component {
@@ -119,7 +120,7 @@ export class BenefitCard extends Component {
               ) : null}
             </Header>
             <div css={padding}>
-              {needsMet.length > 0 ? <Tag styles={tagStyle} /> : null}
+              {needsMet.length > 0 ? <Tag css={tagStyle} /> : null}
               {needsMet.map(need => (
                 <NeedTag
                   key={benefit.id + need.id}

@@ -77,6 +77,7 @@ const textArea = css`
 `;
 const cancelButton = css`
   margin-left: 10px;
+  margin-bottom: 5px;
 `;
 const resetButton = css`
   text-decoration: underline;
