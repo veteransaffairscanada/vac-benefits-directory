@@ -72,8 +72,8 @@ const body = css`
     font-size: 14px;
   }
 `;
-const leftMargin = css`
-  margin-left: 1.5em;
+const rightMargin = css`
+  margin-right: 1.5em;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     margin-left: 0;
     margin-bottom: 0.5em;
@@ -229,22 +229,23 @@ export class GuidedExperience extends Component {
             </Grid>
             <Grid item xs={12}>
               <Grid container spacing={16}>
-                <Grid item xs={12} md={8}>
+                <Grid
+                  item
+                  xs={12}
+                  md={t("current-language-code") === "en" ? 8 : 12}
+                  lg={8}
+                >
                   <Grid container spacing={8} css={mobileReverse}>
                     <HeaderLink
                       id="prevButton"
                       href={backUrl}
-                      css={mobileFullWidth}
+                      css={[mobileFullWidth, rightMargin]}
                       hasBorder
                     >
                       {t("back")}
                     </HeaderLink>
                     <Link id="nextLink" href={this.getNextUrl()}>
-                      <Button
-                        id="nextButton"
-                        mobileFullWidth={true}
-                        css={leftMargin}
-                      >
+                      <Button id="nextButton" mobileFullWidth={true}>
                         {this.getNextUrl().indexOf("benefits-directory") > -1
                           ? t("ge.show_results")
                           : t("next")}
@@ -252,7 +253,13 @@ export class GuidedExperience extends Component {
                     </Link>
                   </Grid>
                 </Grid>
-                <Grid item xs={12} md={4} css={alignRight}>
+                <Grid
+                  item
+                  xs={12}
+                  md={t("current-language-code") === "en" ? 4 : 12}
+                  lg={4}
+                  css={alignRight}
+                >
                   <Link id="skipLink" href={this.getSkipUrl()}>
                     <HeaderButton
                       id="skipButton"
