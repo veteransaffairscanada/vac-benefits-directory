@@ -109,7 +109,7 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-              {this.props.savedList === false ? (
+              {/* {this.props.savedList === false ? (
                 <FavouriteButton
                   benefit={benefit}
                   toggleOpenState={() => {}}
@@ -117,7 +117,7 @@ export class BenefitCard extends Component {
                   t={t}
                   icon={true}
                 />
-              ) : null}
+              ) : null} */}
             </Header>
             <div css={padding}>
               {needsMet.length > 0 ? <Tag css={tagStyle} /> : null}
@@ -157,7 +157,7 @@ export class BenefitCard extends Component {
               <Grid item xs={12}>
                 <div css={flex}>
                   <LearnMoreButton benefit={benefit} t={t} />
-                  <div css={floatRight}>
+                  {/* <div css={floatRight}>
                     {this.props.savedList ? (
                       <FavouriteButton
                         benefit={benefit}
@@ -166,7 +166,7 @@ export class BenefitCard extends Component {
                         t={t}
                       />
                     ) : null}
-                  </div>
+                  </div> */}
                 </div>
               </Grid>
             </Grid>

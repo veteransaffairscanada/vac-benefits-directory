@@ -26,16 +26,16 @@ describe("StickyHeader", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("contains saved list text that displays the number of saved list items", async () => {
-    expect(
-      mount(<StickyHeader {...props} />)
-        .find("#savedBenefits")
-        .first()
-        .find("span")
-        .first()
-        .text()
-    ).toContain("0");
-  });
+  // it("contains saved list text that displays the number of saved list items", async () => {
+  //   expect(
+  //     mount(<StickyHeader {...props} />)
+  //       .find("#savedBenefits")
+  //       .first()
+  //       .find("span")
+  //       .first()
+  //       .text()
+  //   ).toContain("0");
+  // });
 
   // it("contains edit selections link", () => {
   //   expect(

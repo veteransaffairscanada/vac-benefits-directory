@@ -88,7 +88,7 @@ export class StickyHeader extends Component {
                 {t("directory.edit_selections_mobile")}
               </span>
             </HeaderLink> */}
-            <HeaderLink
+            {/* <HeaderLink
               css={savedListStyle}
               id="savedBenefits"
               href={this.props.favouritesUrl}
@@ -96,7 +96,7 @@ export class StickyHeader extends Component {
               <SaveChecked />
               <span css={longText}>{longFavouritesText}</span>
               <span css={shortText}>{shortFavouritesText}</span>
-            </HeaderLink>
+            </HeaderLink> */}
           </Grid>
         </Grid>
       </Grid>
