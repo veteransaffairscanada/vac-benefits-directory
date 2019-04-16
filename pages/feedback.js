@@ -61,8 +61,8 @@ const textAreaHeader = css`
   margin-top: 50px;
 `;
 const textAreaPStyle = css`
-  margin-top: 0px;
-  margin-left: 5px;
+  margin-top: 5px;
+  margin-left: 2px;
   font-size: 18px;
   font-weight: normal;
   font-family: ${globalTheme.fontFamilySansSerif};
