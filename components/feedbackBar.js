@@ -100,8 +100,14 @@ export class FeedbackBar extends Component {
   };
 
   cancelComment = () => {
-    this.setState({ feedbackSubmitted: false });
-    this.setState({ commentFormToggled: false });
+    // this.setState({ feedbackSubmitted: false });
+    // this.setState({ commentFormToggled: false });
+    // this.setState({ commentIsBug: true });
+    this.setState({
+      feedbackSubmitted: false,
+      commentFormToggled: false,
+      commentIsBug: false
+    });
   };
 
   sendComment = () => {
@@ -160,9 +166,10 @@ export class FeedbackBar extends Component {
         {this.state.commentFormToggled ? (
           <div css={CommentBox} role="form">
             <Header size="lg" headingLevel="h2" styles={topHeading}>
-              {t("comment-help-us-improve")}
+              {this.state.commentIsBug
+                ? t("comment-what-went-wrong")
+                : t("feedback.how_can_info_be_more_useful")}
             </Header>
-            <p css={pStyle}>{t("comment-privacy-disclaimer")}</p>
             <div css={TextHold}>
               <TextArea
                 id="commentTextArea"
@@ -176,9 +183,7 @@ export class FeedbackBar extends Component {
                     : this.handleChange("infoBeMoreUseful")
                 }
               >
-                {this.state.commentIsBug
-                  ? t("comment-what-went-wrong")
-                  : t("feedback.how_can_info_be_more_useful")}
+                {t("feedback.privacy_statement")}
               </TextArea>
             </div>
             <br />
