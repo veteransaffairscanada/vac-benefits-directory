@@ -65,11 +65,6 @@ const fileBugHeader = css`
   font-weight: normal;
   float: right;
 `;
-const pStyle = css`
-  font-size: 20px;
-  font-weight: normal;
-  font-family: ${globalTheme.fontFamilySansSerif};
-`;
 const textArea = css`
   span {
     color: white;
