@@ -60,6 +60,13 @@ const leftMargin = css`
 const textAreaHeader = css`
   margin-top: 50px;
 `;
+const textAreaPStyle = css`
+  margin-top: 0px;
+  margin-left: 5px;
+  font-size: 18px;
+  font-weight: normal;
+  font-family: ${globalTheme.fontFamilySansSerif};
+`;
 
 export class Feedback extends Component {
   state = {
@@ -142,15 +149,14 @@ export class Feedback extends Component {
               <Header headingLevel="h2" size="md" styles={textAreaHeader}>
                 {t("feedback.tell_us_more")}
               </Header>
+              <p css={textAreaPStyle}>{t("feedback.privacy_statement")}</p>
               <TextArea
                 css={textAreaStyle}
                 name="group1"
                 maxLength={500}
                 t={t}
                 onChange={this.handleChange("what_did_you_think")}
-              >
-                {t("feedback.privacy_statement")}
-              </TextArea>
+              />
               <Details
                 summary={t("feedback.details_question")}
                 css={detailsStyle}
