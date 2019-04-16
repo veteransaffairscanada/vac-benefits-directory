@@ -8,7 +8,7 @@ import { withTheme } from "@material-ui/core/styles";
 import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
-import { DisabledCookiesBanner } from "./disabled_cookies_banner";
+// import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 import BenefitsPane from "./benefits_pane";
 import BreadCrumbs from "../components/breadcrumbs";
