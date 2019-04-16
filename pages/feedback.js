@@ -139,7 +139,7 @@ export class Feedback extends Component {
                 url={url}
                 feedbackPage
               />
-              <Header headingLevel="h3" size="md" styles={textAreaHeader}>
+              <Header headingLevel="h2" size="md" styles={textAreaHeader}>
                 {t("feedback.tell_us_more")}
               </Header>
               <TextArea
