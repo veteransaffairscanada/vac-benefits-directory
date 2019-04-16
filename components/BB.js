@@ -127,18 +127,18 @@ export class BB extends Component {
               <SelectionsEditor t={t} store={store} url={url} />
             </Grid>
             <Grid id="mainContent" item md={8} xs={12}>
-              {/* <Grid container spacing={16}>
+              <Grid container spacing={16}>
                 <Grid item xs={12}>
-                  {this.state.showDisabledCookieBanner ? (
+                  {/* {this.state.showDisabledCookieBanner ? (
                     <DisabledCookiesBanner
                       t={t}
                       onClose={() =>
                         this.setState({ showDisabledCookieBanner: false })
                       }
                     />
-                  ) : null}
+                  ) : null} */}
                 </Grid>
-              </Grid> */}
+              </Grid>
               <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
             </Grid>
             <Grid item xs={12}>
