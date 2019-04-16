@@ -121,7 +121,9 @@ describe("Feedback bar", () => {
         .find("#feedbackNo")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).toContain("comment-help-us-improve");
+      expect(mountedFeedbackBar().text()).toContain(
+        "feedback.privacy_statement"
+      );
     });
 
     it("shows the thank you for your feedback text after clicking submit button", () => {
