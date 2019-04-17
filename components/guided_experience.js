@@ -16,7 +16,6 @@ import { showQuestion, getPageName } from "../utils/common";
 import HeaderButton from "./header_button";
 import Button from "./button";
 import Link from "next/link";
-import { getHomeUrl } from "../selectors/urls";
 import { AlphaBanner } from "./alpha_banner";
 
 const greyBox = css`
@@ -57,6 +56,9 @@ const mobileFullWidth = css`
     margin-left: 0;
   }
 `;
+const topMargin = css`
+  margin-top: 10px;
+`;
 const questions = css`
   margin: 0;
   padding: 0;
@@ -70,8 +72,8 @@ const body = css`
     font-size: 14px;
   }
 `;
-const leftMargin = css`
-  margin-left: 1.5em;
+const rightMargin = css`
+  margin-right: 1.5em;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     margin-left: 0;
     margin-bottom: 0.5em;
@@ -169,7 +171,7 @@ export class GuidedExperience extends Component {
   }
 
   render() {
-    const { t, url, id, reduxState, homeUrl } = this.props;
+    const { t, url, id, reduxState } = this.props;
     const question = reduxState.questions.filter(
       x => x.variable_name === id
     )[0];
@@ -189,7 +191,6 @@ export class GuidedExperience extends Component {
           <BreadCrumbs
             t={t}
             breadcrumbs={[]}
-            homeUrl={homeUrl}
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
@@ -228,22 +229,23 @@ export class GuidedExperience extends Component {
             </Grid>
             <Grid item xs={12}>
               <Grid container spacing={16}>
-                <Grid item xs={12} md={8}>
+                <Grid
+                  item
+                  xs={12}
+                  md={t("current-language-code") === "en" ? 8 : 12}
+                  lg={8}
+                >
                   <Grid container spacing={8} css={mobileReverse}>
                     <HeaderLink
                       id="prevButton"
                       href={backUrl}
-                      css={mobileFullWidth}
+                      css={[mobileFullWidth, rightMargin]}
                       hasBorder
                     >
                       {t("back")}
                     </HeaderLink>
                     <Link id="nextLink" href={this.getNextUrl()}>
-                      <Button
-                        id="nextButton"
-                        mobileFullWidth={true}
-                        css={leftMargin}
-                      >
+                      <Button id="nextButton" mobileFullWidth={true}>
                         {this.getNextUrl().indexOf("benefits-directory") > -1
                           ? t("ge.show_results")
                           : t("next")}
@@ -251,12 +253,18 @@ export class GuidedExperience extends Component {
                     </Link>
                   </Grid>
                 </Grid>
-                <Grid item xs={12} md={4} css={alignRight}>
+                <Grid
+                  item
+                  xs={12}
+                  md={t("current-language-code") === "en" ? 4 : 12}
+                  lg={4}
+                  css={alignRight}
+                >
                   <Link id="skipLink" href={this.getSkipUrl()}>
                     <HeaderButton
                       id="skipButton"
                       altStyle="grey"
-                      styles={mobileFullWidth}
+                      css={[mobileFullWidth, topMargin]}
                     >
                       {t("ge.skip")}
                     </HeaderButton>
@@ -271,11 +279,10 @@ export class GuidedExperience extends Component {
   }
 }
 
-const mapStateToProps = (reduxState, props) => {
+const mapStateToProps = reduxState => {
   return {
     reduxState: reduxState,
-    sectionOrder: reduxState.questions.map(x => x.variable_name),
-    homeUrl: getHomeUrl(reduxState, props)
+    sectionOrder: reduxState.questions.map(x => x.variable_name)
   };
 };
 
@@ -286,8 +293,7 @@ GuidedExperience.propTypes = {
   sectionOrder: PropTypes.array.isRequired,
   t: PropTypes.func.isRequired,
   children: PropTypes.object.isRequired,
-  store: PropTypes.object,
-  homeUrl: PropTypes.string
+  store: PropTypes.object
 };
 
 export default connect(mapStateToProps)(GuidedExperience);

@@ -4,17 +4,22 @@ metadata:
   generation: 1
   labels:
     app: vac-benefits-directory
-  name: vac-benefits-directory
+    name: "find-benefits-and-services"
+    keel.sh/policy: all
+    keel.sh/trigger: poll
+  name: find-benefits-and-services
   namespace: default
   annotations:
     flux.weave.works/automated: "true"
+    keel.sh/pollSchedule: "@every 2m"
 spec:
   progressDeadlineSeconds: 600
-  replicas: 2
+  replicas: 3
   revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: vac-benefits-directory
+      task: find-benefits-and-services
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -24,11 +29,13 @@ spec:
     metadata:
       labels:
         app: vac-benefits-directory
+        task: find-benefits-and-services
+        role: front-end
     spec:
       containers:
-        - image: cdssnc/vac-benefits-directory
-          imagePullPolicy: Always
+        - image: veteransaffairscanada/vac-benefits-directory:latest
           name: vac-benefits-directory
+          imagePullPolicy: Always
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File

@@ -17,7 +17,7 @@ Les données d’AirTable sont lues par le serveur et injectées dans Redux, qui
 
 ## Comment peut-on y avoir accès?
 
-Pour demander l’accès en vue de modifier du contenu dans AirTable, créez un compte dans le site Web puis envoyez un courriel à vac@cds-snc.ca comprenant les détails sur votre compte afin que nous puissions vous ajouter au projet.
+Pour demander l’accès en vue de modifier du contenu dans AirTable, créez un compte dans le site Web puis envoyez un courriel à vac.devops-devops.acc@canada.ca comprenant les détails sur votre compte afin que nous puissions vous ajouter au projet.
 
 ## Apporter des modifications dans AirTable
 
@@ -33,7 +33,7 @@ Pour faire quoi que ce soit dans AirTable, effectuez toujours les étapes suivan
 
 ### Modifier le texte et les liens dans l’application
 
-1. Trouvez le texte ou l’hyperlien que vous voulez modifier dans l’[application](https://benefits-prestations.veterans.gc.ca/?lng=fr).
+1. Trouvez le texte ou l’hyperlien que vous voulez modifier dans l’[application](https://benefits-avantages.veterans.gc.ca/?lng=fr).
 2. Copiez le texte dans le presse-papiers.
 3. Examinez le tableau ci-dessous pour déterminer la feuille et la colonne d’Airtable où vous devriez apporter des modifications. Cliquez sur le lien vers la feuille.
 4. Dans Airtable, faites ctrl+f (Windows) ou commande+f (Mac) pour effectuer une recherche sur la page, et collez le texte que vous avez copié.

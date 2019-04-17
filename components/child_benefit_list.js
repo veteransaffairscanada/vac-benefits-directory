@@ -33,6 +33,9 @@ const ChildBenefitList = props => {
     return null;
   }
   const language = t("current-language-code");
+  const utm =
+    "?utm_source=fbas&utm_medium=referral&utm_campaign=child-benefit&utm_content=";
+
   return (
     <CardDetails summary={colonText}>
       <div css={children}>
@@ -44,12 +47,21 @@ const ChildBenefitList = props => {
                   rel="noopener noreferrer"
                   css={heading}
                   size="small"
-                  href={language === "en" ? cb.benefitPageEn : cb.benefitPageFr}
+                  href={
+                    (language === "en" ? cb.benefitPageEn : cb.benefitPageFr) +
+                    utm +
+                    cb.vacNameEn
+                      .split(" ")
+                      .join("-")
+                      .toLowerCase()
+                  }
                   onClick={() => {
                     logEvent(
                       "Exit",
                       "child benefit",
-                      language === "en" ? cb.benefitPageEn : cb.benefitPageFr
+                      (language === "en"
+                        ? cb.benefitPageEn
+                        : cb.benefitPageFr) + utm
                     );
                     return true;
                   }}

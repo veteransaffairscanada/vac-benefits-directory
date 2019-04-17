@@ -2,13 +2,13 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import { getPrintUrl, getHomeUrl } from "../selectors/urls";
+import { getPrintUrl, getGuidedExperienceUrl } from "../selectors/urls";
 import { withTheme } from "@material-ui/core/styles";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
-import { DisabledCookiesBanner } from "./disabled_cookies_banner";
+// import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 import BenefitsPane from "./benefits_pane";
 import BreadCrumbs from "../components/breadcrumbs";
@@ -20,7 +20,6 @@ import QuickLinks from "./quick_links";
 import StickyHeader from "./sticky_header";
 import AlphaBanner from "./alpha_banner";
 import SelectionsEditor from "./selections_editor";
-import SelectionsEditorMobile from "./selections_editor_mobile";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -38,18 +37,6 @@ const topMatter = css`
 const stylingWithSidebar = css`
   font-size: 28px !important;
   margin-bottom: 30px;
-`;
-
-const selectionsEditorMobileStyle = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    display: none !important;
-  }
-`;
-
-const selectionsEditorStyle = css`
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    display: none !important;
-  }
 `;
 
 export class BB extends Component {
@@ -91,15 +78,22 @@ export class BB extends Component {
   }
 
   render() {
-    const { t, url, store, homeUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
+    const { t, url, store, guidedExperienceUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
+
+    const breadcrumbs = [
+      {
+        url: guidedExperienceUrl,
+        name: t("ge.Find benefits and services")
+      }
+    ];
+
     return (
       <Container>
         <div className={topMatter}>
           <BreadCrumbs
             t={t}
-            breadcrumbs={[]}
-            homeUrl={homeUrl}
-            pageTitle={t("ge.Find benefits and services")}
+            breadcrumbs={breadcrumbs}
+            pageTitle={t("breadcrumbs.ben_dir_page_title")}
           />
         </div>
         <Paper id={this.props.id} padding="md" styles={innerDiv}>
@@ -130,24 +124,19 @@ export class BB extends Component {
                   {t("titles.benefits_and_services")}
                 </Header>
               </div>
-              <div css={selectionsEditorMobileStyle}>
-                <SelectionsEditorMobile t={t} store={store} url={url} />
-              </div>
-              <div css={selectionsEditorStyle}>
-                <SelectionsEditor t={t} store={store} url={url} />
-              </div>
+              <SelectionsEditor t={t} store={store} url={url} />
             </Grid>
             <Grid id="mainContent" item md={8} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
-                  {this.state.showDisabledCookieBanner ? (
+                  {/* {this.state.showDisabledCookieBanner ? (
                     <DisabledCookiesBanner
                       t={t}
                       onClose={() =>
                         this.setState({ showDisabledCookieBanner: false })
                       }
                     />
-                  ) : null}
+                  ) : null} */}
                 </Grid>
               </Grid>
               <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
@@ -191,7 +180,7 @@ const mapStateToProps = (reduxState, props) => {
     cookiesDisabled: reduxState.cookiesDisabled,
     benefits: reduxState.benefits,
     favouriteBenefits: reduxState.favouriteBenefits,
-    homeUrl: getHomeUrl(reduxState, props),
+    guidedExperienceUrl: getGuidedExperienceUrl(reduxState, props),
     printUrl: getPrintUrl(reduxState, props, {})
   };
 };
@@ -202,7 +191,7 @@ BB.propTypes = {
   setCookiesDisabled: PropTypes.func.isRequired,
   saveFavourites: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  homeUrl: PropTypes.string,
+  guidedExperienceUrl: PropTypes.string,
   printUrl: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
   favouriteBenefits: PropTypes.array.isRequired,

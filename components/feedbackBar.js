@@ -65,11 +65,6 @@ const fileBugHeader = css`
   font-weight: normal;
   float: right;
 `;
-const pStyle = css`
-  font-size: 20px;
-  font-weight: normal;
-  font-family: ${globalTheme.fontFamilySansSerif};
-`;
 const textArea = css`
   span {
     color: white;
@@ -77,6 +72,7 @@ const textArea = css`
 `;
 const cancelButton = css`
   margin-left: 10px;
+  margin-bottom: 5px;
 `;
 const resetButton = css`
   text-decoration: underline;
@@ -99,8 +95,11 @@ export class FeedbackBar extends Component {
   };
 
   cancelComment = () => {
-    this.setState({ feedbackSubmitted: false });
-    this.setState({ commentFormToggled: false });
+    this.setState({
+      feedbackSubmitted: false,
+      commentFormToggled: false,
+      commentIsBug: false
+    });
   };
 
   sendComment = () => {
@@ -159,9 +158,10 @@ export class FeedbackBar extends Component {
         {this.state.commentFormToggled ? (
           <div css={CommentBox} role="form">
             <Header size="lg" headingLevel="h2" styles={topHeading}>
-              {t("comment-help-us-improve")}
+              {this.state.commentIsBug
+                ? t("comment-what-went-wrong")
+                : t("feedback.how_can_info_be_more_useful")}
             </Header>
-            <p css={pStyle}>{t("comment-privacy-disclaimer")}</p>
             <div css={TextHold}>
               <TextArea
                 id="commentTextArea"
@@ -175,9 +175,7 @@ export class FeedbackBar extends Component {
                     : this.handleChange("infoBeMoreUseful")
                 }
               >
-                {this.state.commentIsBug
-                  ? t("comment-what-went-wrong")
-                  : t("feedback.how_can_info_be_more_useful")}
+                {t("feedback.privacy_statement")}
               </TextArea>
             </div>
             <br />

@@ -23,6 +23,17 @@ const formLabel = css`
   font-stretch: normal;
   letter-spacing: normal;
 `;
+const feedbackPageformLabel = css`
+  margin-bottom: 10px;
+  color: ${globalTheme.colour.greyishBrown};
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+`;
 const radioOption = css`
   margin-bottom: 10px;
 `;
@@ -125,7 +136,12 @@ export class RadioSelector extends React.Component {
             tooltipText={tooltipText}
             width={250}
           >
-            <Header styles={formLabel} size="sm">
+            <Header
+              styles={
+                this.props.feedbackPage ? feedbackPageformLabel : formLabel
+              }
+              size="sm"
+            >
               <span css={tooltipText ? underline : ""}>{legend}</span>
             </Header>
           </Tooltip>
@@ -196,7 +212,8 @@ RadioSelector.propTypes = {
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   name: PropTypes.string,
   updateUrl: PropTypes.bool,
-  url: PropTypes.object.isRequired
+  url: PropTypes.object.isRequired,
+  feedbackPage: PropTypes.bool
 };
 
 export default connect(

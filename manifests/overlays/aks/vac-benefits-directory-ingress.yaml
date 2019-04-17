@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: vac-benefits-directory
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: benefits-avantages.veterans.gc.ca
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: find-benefits-and-services
+              servicePort: http

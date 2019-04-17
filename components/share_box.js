@@ -13,7 +13,11 @@ import { logEvent } from "../utils/analytics";
 
 const shareBoxItem = css`
   color: ${globalTheme.colour.greyishBrown};
-  margin-left: 5px;
+  margin-left: 10px;
+  svg {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 `;
 const shareText = css`
   font-family: ${globalTheme.fontFamilySansSerif};
@@ -21,7 +25,7 @@ const shareText = css`
   color: ${globalTheme.colour.greyishBrown};
   font-weight: bold;
   text-transform: uppercase;
-  margin-right: 10px;
+  margin-right: 5px;
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     display: none;
   }
@@ -43,7 +47,6 @@ class ShareBox extends Component {
           css={shareBoxItem}
           size="small"
           href={printUrl}
-          target="_blank"
           aria-label={t("Print")}
           onClick={() => {
             logEvent("Exit", "print");

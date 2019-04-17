@@ -14,7 +14,7 @@ const StyledSummary = styled("summary")({
   display: "inline-block",
   position: "relative",
   padding: 5,
-  color: globalTheme.colour.linkColour,
+  color: globalTheme.colour.greyishBrown,
   cursor: "pointer",
   ":hover": {
     color: globalTheme.colour.linkHoverColour

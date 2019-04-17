@@ -5,7 +5,7 @@
 
 # Find benefits and services
 
-This is the code for _Find benefits and services_, a product being developed by VAC and CDS. The app is in beta and currently deployed at https://benefits-prestations.veterans.gc.ca. It is undergoing development and is not yet publicly released for use.
+This is the code for _Find benefits and services_, a product being developed by VAC and CDS. The app is in beta and currently deployed at https://benefits-avantages.veterans.gc.ca. It is undergoing development and is not yet publicly released for use.
 
 The setup documentation can be found below. If you'd like to contribute to the project, we have more detailed documentation regarding our tech choices here: [doc](/doc/).
 
@@ -20,7 +20,7 @@ Contact other developers on the project for what values we're currently using.
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------ | -------------------- |
 | `AIRTABLE_READ_KEY`          | load data (benefits / translations / etc) from Airtable                                                      | production / locally |
 | `AIRTABLE_WRITE_KEY`         | write feedback form data to Airtable                                                                         | production           |
-| `AIRTABLE_BASE_KEY`          | This tells the app which Airtable base to pull data from. If it is not set, the CDS master base will be used | production / locally |
+| `AIRTABLE_BASE_KEY`          | This tells the app which Airtable base to pull data from. If it is not set, the VAC master base will be used | production / locally |
 | `SENTRY_DSN`                 | save browser errors to Sentry                                                                                | production           |
 | `GA_UA`                      | track app usage with Google Analytics for VAC                                                                | production           |
 | `GA_UA_CDS`                  | track app usage with Google Analytics for CDS                                                                | production           |
@@ -30,7 +30,7 @@ Contact other developers on the project for what values we're currently using.
 | `BROWSERSTACK_ACCESS_KEY`    | run tests on Windows via BrowserStack                                                                        | locally              |
 | `STAGING`                    | `true` = pull data directly from airtable, `false` = pull data from data/data.json                           | production / locally |
 
-Note that CDS docker images are public, so you should not put any sensitive (ie write) keys in the docker image.
+Note that VAC docker images are public, so you should not put any sensitive (ie write) keys in the docker image.
 
 ### Adding a new environment locally (OS X)
 
@@ -110,7 +110,7 @@ This application uses the following resources:
 
 # Rechercher des avantages et des services
 
-Il s’agit du code pour _Rechercher des avantages et des services_, un produit mis au point par Anciens Combattants Canada (ACC) et le Service numérique canadien (SNC). L’application est actuellement déployée à https://benefits-prestations.veterans.gc.ca/?lng=fr.
+Il s’agit du code pour _Rechercher des avantages et des services_, un produit mis au point par Anciens Combattants Canada (ACC) et le Service numérique canadien (SNC). L’application est actuellement déployée à https://benefits-avantages.veterans.gc.ca/?lng=fr.
 
 La documentation sur la configuration se trouve ci-dessous. Si vous voulez contribuer à la réalisation du projet, nous avons [une documentation](/doc#---------------------------------------------------------------------) plus détaillée concernant nos choix technologiques.
 

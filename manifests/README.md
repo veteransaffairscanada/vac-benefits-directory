@@ -34,8 +34,8 @@ and then add it to your DNS.
 To get the automatic SSL working in EKS you will need to edit:
 
 ```
-- --acme.domains=vac-eks.cdssandbox.xyz
-- --acme.email=max.neuvians@cds-snc.ca
+- --acme.domains=vac-eks.vacsandbox.xyz
+- --acme.email=vac.devops-devops.acc@canada.ca
 ```
 
 in `manifests\overlays\eks\traefik-ingress-controller-deployment.yaml`
@@ -48,3 +48,9 @@ To enable logging to Cloudwatch in EKS you need to do the following:
 - Create a IAM user that has the correct permissions
 - `kubectl create secret generic fluentd-cloudwatch-access-id --from-literal=AWS_ACCESS_KEY_ID=YOUR_KEY --namespace=kube-system`
 - `kubectl create secret generic fluentd-cloudwatch-access-secret --from-literal=AWS_SECRET_ACCESS_KEY=YOUR_KEY --namespace=kube-system`
+
+## Azure AKS
+
+The easiest way to start with AKS is to use `az`. Once you have created your cluster and switch into the context, you can run:
+
+`kustomize build manifests/overlays/aks

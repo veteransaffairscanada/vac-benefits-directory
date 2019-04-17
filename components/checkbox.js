@@ -6,7 +6,7 @@ import { uuidv4 } from "../utils/common";
 import { css, jsx } from "@emotion/core";
 
 const StyledCheckbox = styled("label")({
-  display: "block",
+  display: "inline-block",
   position: "relative",
   padding: "0 0 0 38px",
   marginBottom: "10px",
@@ -34,7 +34,8 @@ const StyledInput = styled("input")(
   ({ disabled }) => ({
     cursor: disabled ? "auto" : "pointer",
     " + span": {
-      pointerEvents: disabled ? "none" : "auto"
+      pointerEvents: disabled ? "none" : "auto",
+      fontSize: disabled ? "16px" : "24px"
     }
   })
 );

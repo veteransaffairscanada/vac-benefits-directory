@@ -16,7 +16,7 @@ const LabelText = styled("span")({
   display: "block",
   clear: "none",
   fontWeight: 400,
-  fontSize: "20px",
+  fontSize: "18px",
   lineHeight: "1.5",
   color: globalTheme.colour.greyishBrown,
   paddingBottom: "5px"
@@ -27,7 +27,7 @@ const FooterText = styled("span")({
   display: "block",
   clear: "none",
   fontWeight: 400,
-  fontSize: "10px",
+  fontSize: "16px",
   lineHeight: "1.5",
   color: globalTheme.colour.greyishBrown,
   paddingTop: "3px"

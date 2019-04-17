@@ -12,14 +12,6 @@ import Tooltip from "./tooltip";
 import CloseButton from "./icons/CloseButton";
 import { globalTheme } from "../theme";
 
-const saveButton = css`
-  margin-left: 0px !important;
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-  padding-top: 0.526315em;
-  padding-bottom: 0.526315em;
-`;
-
 const xButton = css`
   color: ${globalTheme.colour.blackish2};
   cursor: pointer;
@@ -103,7 +95,6 @@ export class FavouriteButton extends Component {
             disabled={this.props.cookiesDisabled}
             ariaLabel={longButtonText + " " + benefitName}
             id={"favourite-" + benefit.id}
-            css={saveButton}
             aria-label={t("B3.favouritesButtonText")}
             onClick={() => this.toggleFavourite(benefit.id)}
             onMouseOver={() => {

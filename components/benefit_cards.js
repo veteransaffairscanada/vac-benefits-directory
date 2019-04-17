@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
-import FavouriteButton from "./favourite_button";
+//import FavouriteButton from "./favourite_button";
 import Paper from "./paper";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
@@ -53,22 +53,23 @@ const padding = css`
 `;
 const flex = css`
   align-items: center;
+  padding-top: 5px;
   // if screen size is min.sm or larger put favourites button below learn more
   @media only screen and (min-width: ${globalTheme.min.sm}) {
     display: flex;
   }
 `;
-const floatRight = css`
-  margin-left: auto;
-  order: 2;
-`;
+// const floatRight = css`
+//   margin-left: auto;
+//   order: 2;
+// `;
 
 const tagStyle = css`
-  width: 12px;
-  height: 12px;
   font-size: 12px !important;
   color: ${globalTheme.colour.slateGrey} !important;
-  margin-right: 0.8em;
+  margin-right: 8px;
+  margin-bottom: 2px;
+  vertical-align: middle;
 `;
 
 export class BenefitCard extends Component {
@@ -108,7 +109,7 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-              {this.props.savedList === false ? (
+              {/* {this.props.savedList === false ? (
                 <FavouriteButton
                   benefit={benefit}
                   toggleOpenState={() => {}}
@@ -116,10 +117,10 @@ export class BenefitCard extends Component {
                   t={t}
                   icon={true}
                 />
-              ) : null}
+              ) : null} */}
             </Header>
             <div css={padding}>
-              {needsMet.length > 0 ? <Tag styles={tagStyle} /> : null}
+              {needsMet.length > 0 ? <Tag css={tagStyle} /> : null}
               {needsMet.map(need => (
                 <NeedTag
                   key={benefit.id + need.id}
@@ -156,7 +157,7 @@ export class BenefitCard extends Component {
               <Grid item xs={12}>
                 <div css={flex}>
                   <LearnMoreButton benefit={benefit} t={t} />
-                  <div css={floatRight}>
+                  {/* <div css={floatRight}>
                     {this.props.savedList ? (
                       <FavouriteButton
                         benefit={benefit}
@@ -165,7 +166,7 @@ export class BenefitCard extends Component {
                         t={t}
                       />
                     ) : null}
-                  </div>
+                  </div> */}
                 </div>
               </Grid>
             </Grid>
