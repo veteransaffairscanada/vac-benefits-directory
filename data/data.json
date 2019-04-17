@@ -2964,8 +2964,8 @@
     },
     {
       "key": "search",
-      "English": "Search",
-      "French": "Recherche",
+      "English": "Look up benefits",
+      "French": "Rechercher un service",
       "id": "search",
       "section": ""
     },
