@@ -37,6 +37,7 @@ const textAreaStyle = css`
   max-width: 700px;
 `;
 const detailsStyle = css`
+  font-size: 20px;
   margin-bottom: 30px;
   a {
     color: ${globalTheme.colour.greyishBrown};
@@ -55,6 +56,16 @@ const topMatter = css`
 `;
 const leftMargin = css`
   margin-left: 1.5em;
+`;
+const textAreaHeader = css`
+  margin-top: 50px;
+`;
+const textAreaPStyle = css`
+  margin-top: 5px;
+  margin-left: 2px;
+  font-size: 18px;
+  font-weight: normal;
+  font-family: ${globalTheme.fontFamilySansSerif};
 `;
 
 export class Feedback extends Component {
@@ -135,15 +146,17 @@ export class Feedback extends Component {
                 url={url}
                 feedbackPage
               />
+              <Header headingLevel="h2" size="md" styles={textAreaHeader}>
+                {t("feedback.tell_us_more")}
+              </Header>
+              <p css={textAreaPStyle}>{t("feedback.privacy_statement")}</p>
               <TextArea
                 css={textAreaStyle}
                 name="group1"
                 maxLength={500}
                 t={t}
                 onChange={this.handleChange("what_did_you_think")}
-              >
-                {t("feedback.tell_us_more")}
-              </TextArea>
+              />
               <Details
                 summary={t("feedback.details_question")}
                 css={detailsStyle}

@@ -110,7 +110,7 @@ This application uses the following resources:
 
 # Rechercher des avantages et des services
 
-Il s’agit du code pour _Rechercher des avantages et des services_, un produit mis au point par Anciens Combattants Canada (ACC) et le Service numérique canadien (SNC). L’application est actuellement déployée à https://benefits-prestations.veterans.gc.ca/?lng=fr.
+Il s’agit du code pour _Rechercher des avantages et des services_, un produit mis au point par Anciens Combattants Canada (ACC) et le Service numérique canadien (SNC). L’application est actuellement déployée à https://benefits-avantages.veterans.gc.ca/?lng=fr.
 
 La documentation sur la configuration se trouve ci-dessous. Si vous voulez contribuer à la réalisation du projet, nous avons [une documentation](/doc#---------------------------------------------------------------------) plus détaillée concernant nos choix technologiques.
 

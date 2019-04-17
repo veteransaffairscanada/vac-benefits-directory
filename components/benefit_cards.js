@@ -2,7 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
-import FavouriteButton from "./favourite_button";
+//import FavouriteButton from "./favourite_button";
 import Paper from "./paper";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
@@ -59,10 +59,10 @@ const flex = css`
     display: flex;
   }
 `;
-const floatRight = css`
-  margin-left: auto;
-  order: 2;
-`;
+// const floatRight = css`
+//   margin-left: auto;
+//   order: 2;
+// `;
 
 const tagStyle = css`
   font-size: 12px !important;
@@ -109,7 +109,7 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-              {this.props.savedList === false ? (
+              {/* {this.props.savedList === false ? (
                 <FavouriteButton
                   benefit={benefit}
                   toggleOpenState={() => {}}
@@ -117,7 +117,7 @@ export class BenefitCard extends Component {
                   t={t}
                   icon={true}
                 />
-              ) : null}
+              ) : null} */}
             </Header>
             <div css={padding}>
               {needsMet.length > 0 ? <Tag css={tagStyle} /> : null}
@@ -157,7 +157,7 @@ export class BenefitCard extends Component {
               <Grid item xs={12}>
                 <div css={flex}>
                   <LearnMoreButton benefit={benefit} t={t} />
-                  <div css={floatRight}>
+                  {/* <div css={floatRight}>
                     {this.props.savedList ? (
                       <FavouriteButton
                         benefit={benefit}
@@ -166,7 +166,7 @@ export class BenefitCard extends Component {
                         t={t}
                       />
                     ) : null}
-                  </div>
+                  </div> */}
                 </div>
               </Grid>
             </Grid>
