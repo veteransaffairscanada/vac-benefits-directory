@@ -8,7 +8,7 @@ import { withTheme } from "@material-ui/core/styles";
 import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
-import { DisabledCookiesBanner } from "./disabled_cookies_banner";
+// import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled } from "../utils/common";
 import BenefitsPane from "./benefits_pane";
 import BreadCrumbs from "../components/breadcrumbs";
@@ -129,14 +129,14 @@ export class BB extends Component {
             <Grid id="mainContent" item md={8} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
-                  {this.state.showDisabledCookieBanner ? (
+                  {/* {this.state.showDisabledCookieBanner ? (
                     <DisabledCookiesBanner
                       t={t}
                       onClose={() =>
                         this.setState({ showDisabledCookieBanner: false })
                       }
                     />
-                  ) : null}
+                  ) : null} */}
                 </Grid>
               </Grid>
               <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
