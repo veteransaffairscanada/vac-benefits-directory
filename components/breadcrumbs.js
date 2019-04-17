@@ -20,13 +20,13 @@ const greyBanner = css`
 `;
 
 const separator = css`
-  color: ${globalTheme.colour.slateGrey};
+  color: ${globalTheme.colour.navy};
   font-weight: normal;
-  padding: 2px;
+  padding: 7px;
 `;
 
 const urlStyle = css`
-  color: ${globalTheme.colour.slateGrey};
+  color: ${globalTheme.colour.navy};
   text-decoration: underline;
   font-size: 16px;
   font-weight: 700;
@@ -34,7 +34,7 @@ const urlStyle = css`
 `;
 
 const currentPageStyle = css`
-  color: ${globalTheme.colour.slateGrey};
+  color: ${globalTheme.colour.navy};
   font-size: 16px;
   font-weight: 700;
   padding: 0;
