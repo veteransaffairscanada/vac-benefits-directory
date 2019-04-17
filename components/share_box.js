@@ -12,13 +12,13 @@ import { uuidv4 } from "../utils/common";
 import { logEvent } from "../utils/analytics";
 
 const shareBoxItem = css`
-  color: ${globalTheme.colour.govukYellow};
+  color: ${globalTheme.colour.greyishBrown};
   margin-left: 5px;
 `;
 const shareText = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 14px;
-  color: ${globalTheme.colour.navy};
+  color: ${globalTheme.colour.greyishBrown};
   font-weight: bold;
   text-transform: uppercase;
   margin-right: 10px;
