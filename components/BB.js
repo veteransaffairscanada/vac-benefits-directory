@@ -18,7 +18,6 @@ import Header from "./typography/header";
 import NextSteps from "./next_steps";
 import QuickLinks from "./quick_links";
 import StickyHeader from "./sticky_header";
-import AlphaBanner from "./alpha_banner";
 import SelectionsEditor from "./selections_editor";
 
 const divider = css`
@@ -96,8 +95,13 @@ export class BB extends Component {
             pageTitle={t("breadcrumbs.ben_dir_page_title")}
           />
         </div>
-        <Paper id={this.props.id} padding="md" styles={innerDiv}>
-          <AlphaBanner t={t} url={url} />
+        <Paper
+          id={this.props.id}
+          padding="md"
+          styles={innerDiv}
+          url={url}
+          t={t}
+        >
           <Grid container spacing={32}>
             <Grid item xs={12}>
               <Header headingLevel="h1" size="xl">

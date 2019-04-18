@@ -19,7 +19,6 @@ import GuidedExperienceSummary from "../components/guided_experience_summary";
 import Body from "../components/typography/body";
 import { getFilteredBenefits } from "../selectors/benefits";
 import { getGuidedExperienceUrl } from "../selectors/urls";
-import AlphaBanner from "../components/alpha_banner";
 
 const box = css`
   padding: 63px 63px 63px 63px;
@@ -76,8 +75,7 @@ export class Summary extends Component {
               pageTitle={t("ge.Find benefits and services")}
             />
           </div>
-          <Paper padding="md" styles={box}>
-            <AlphaBanner t={t} url={url} />
+          <Paper padding="md" styles={box} url={url} t={t}>
             <Grid container spacing={24}>
               <Grid item xs={12} css={questions}>
                 <Header size="md_lg" headingLevel="h2">

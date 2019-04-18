@@ -16,7 +16,6 @@ import { showQuestion, getPageName } from "../utils/common";
 import HeaderButton from "./header_button";
 import Button from "./button";
 import Link from "next/link";
-import { AlphaBanner } from "./alpha_banner";
 
 const greyBox = css`
   background-color: ${globalTheme.colour.paleGreyTwo};
@@ -195,8 +194,7 @@ export class GuidedExperience extends Component {
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
-        <Paper padding="md" styles={box}>
-          <AlphaBanner t={t} url={url} />
+        <Paper padding="md" styles={box} url={url} t={t}>
           <Grid container spacing={24} role="form">
             {id === "patronType" ? (
               <React.Fragment>
