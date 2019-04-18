@@ -75,7 +75,7 @@ export class Summary extends Component {
               pageTitle={t("ge.Find benefits and services")}
             />
           </div>
-          <Paper padding="md" styles={box} url={url} t={t}>
+          <Paper padding="md" styles={box} url={url} t={t} includeBanner={true}>
             <Grid container spacing={24}>
               <Grid item xs={12} css={questions}>
                 <Header size="md_lg" headingLevel="h2">

@@ -20,7 +20,7 @@ const cardBody = css`
   padding-top: 0px;
   border-top: none;
   border: 1px solid ${globalTheme.colour.darkPaleGrey};
-  box-shadow: none;
+  box-shadow: none !important;
 `;
 const cardDescriptionText = css`
   padding-left: 35px;

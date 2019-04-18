@@ -20,17 +20,17 @@ class Paper extends Component {
   `;
   bannerStyle = css`
     box-shadow: ${globalTheme.boxShadow};
-    background-color: white;
     box-sizing: border-box;
-    width: 100%;
   `;
 
   render() {
     return (
-      <div css={this.bannerStyle}>
-        {this.props.url && this.props.t ? (
-          <AlphaBanner t={this.props.t} url={this.props.url} />
-        ) : null}
+      <div>
+        <div css={this.bannerStyle}>
+          {this.props.includeBanner && this.props.url && this.props.t ? (
+            <AlphaBanner t={this.props.t} url={this.props.url} />
+          ) : null}
+        </div>
         <div
           css={
             this.props.styles ? [this.style, this.props.styles] : [this.style]
@@ -52,7 +52,8 @@ Paper.propTypes = {
     PropTypes.array
   ]),
   url: PropTypes.object,
-  t: PropTypes.func
+  t: PropTypes.func,
+  includeBanner: PropTypes.bool
 };
 
 export default Paper;

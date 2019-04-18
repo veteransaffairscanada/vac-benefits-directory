@@ -97,7 +97,13 @@ export class Favourites extends Component {
             breadcrumbs={breadcrumbs}
             pageTitle={t("index.your_saved_benefits")}
           />
-          <Paper padding="md" styles={innerDiv} url={url} t={t}>
+          <Paper
+            padding="md"
+            styles={innerDiv}
+            url={url}
+            t={t}
+            includeBanner={true}
+          >
             <Grid container spacing={32}>
               <Grid item xs={12}>
                 <Header css={"BenefitsCounter"} size="xl" headingLevel="h1">

@@ -194,7 +194,7 @@ export class GuidedExperience extends Component {
             pageTitle={t("ge.Find benefits and services")}
           />
         </div>
-        <Paper padding="md" styles={box} url={url} t={t}>
+        <Paper padding="md" styles={box} url={url} t={t} includeBanner={true}>
           <Grid container spacing={24} role="form">
             {id === "patronType" ? (
               <React.Fragment>

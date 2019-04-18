@@ -101,6 +101,7 @@ export class BB extends Component {
           styles={innerDiv}
           url={url}
           t={t}
+          includeBanner={true}
         >
           <Grid container spacing={32}>
             <Grid item xs={12}>

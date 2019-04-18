@@ -131,6 +131,7 @@ export class Feedback extends Component {
             styles={innerDiv}
             url={url}
             t={t}
+            includeBanner={true}
           >
             <form>
               <Header styles={headerPadding} headingLevel="h1" size="lg">
