@@ -44,6 +44,7 @@ const quickLinksText = css`
   font-size: 12px;
   color: ${globalTheme.colour.navy};
   font-weight: bold;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 `;
 
