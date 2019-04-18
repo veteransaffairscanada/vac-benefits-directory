@@ -36,7 +36,7 @@ let theme = {
     darkGreen: "#295f38",
     tornadoRed: "#ea4335",
     red2: "#d0021b",
-    govukYellow: "#FFBF47",
+    focusBlue: "#719EF1",
     white: "#ffffff",
     cardGrey: "#f3f3f3",
     black: "#000000",
@@ -62,7 +62,7 @@ let theme = {
 };
 
 theme.colour.textColour = theme.colour.blackish;
-theme.colour.focusColour = theme.colour.govukYellow;
+theme.colour.focusColour = theme.colour.focusBlue;
 theme.colour.linkColour = theme.colour.cerulean;
 theme.colour.linkHoverColour = theme.colour.cerulean;
 theme.colour.boxBorderColour = theme.colour.darkPaleGrey;
