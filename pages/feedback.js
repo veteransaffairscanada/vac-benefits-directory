@@ -14,7 +14,6 @@ import TextArea from "../components/text_area";
 import Details from "../components/details";
 require("isomorphic-fetch");
 import Raven from "raven-js";
-import AlphaBanner from "../components/alpha_banner";
 import Link from "next/link";
 import BreadCrumbs from "../components/breadcrumbs";
 import { getGuidedExperienceUrl } from "../selectors/urls";
@@ -126,8 +125,14 @@ export class Feedback extends Component {
               pageTitle={t("feedback.page_header")}
             />
           </div>
-          <Paper id="feedbackPagePaper" padding="md" styles={innerDiv}>
-            <AlphaBanner t={t} url={url} />
+          <Paper
+            id="feedbackPagePaper"
+            padding="md"
+            styles={innerDiv}
+            url={url}
+            t={t}
+            includeBanner={true}
+          >
             <form>
               <Header styles={headerPadding} headingLevel="h1" size="lg">
                 {t("feedback.page_header")}
