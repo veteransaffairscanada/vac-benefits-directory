@@ -12,7 +12,7 @@ import { uuidv4 } from "../utils/common";
 import { logEvent } from "../utils/analytics";
 
 const shareBoxItem = css`
-  color: ${globalTheme.colour.darkGreyBlue};
+  color: ${globalTheme.colour.greyishBrown};
   margin-left: 10px;
   svg {
     padding-left: 5px;
@@ -22,7 +22,7 @@ const shareBoxItem = css`
 const shareText = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 14px;
-  color: ${globalTheme.colour.navy};
+  color: ${globalTheme.colour.greyishBrown};
   font-weight: bold;
   text-transform: uppercase;
   margin-right: 5px;
