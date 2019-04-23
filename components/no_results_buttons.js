@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { css, jsx } from "@emotion/core";
 import Button from "./button";
 import { globalTheme } from "../theme";
-import Body from "./typography/body";
 
 const buttonBar = css`
   margin-top: 40px;
