@@ -17,6 +17,9 @@ const button = css`
 const orText = css`
   display: inline-block;
   padding: 0 20px;
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-weight: bold;
+  color: ${globalTheme.colour.greyishBrown};
   margin-bottom: 0;
   @media only screen and (max-width: ${globalTheme.max.sm}) {
     display: none;
