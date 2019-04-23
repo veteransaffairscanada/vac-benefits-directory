@@ -20,9 +20,9 @@ describe("NoResultsButtons", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("contains 2 buttons", () => {
+  it("contains 1 button", () => {
     expect(
       mount(<NoResultsButtons {...props} />).find("Button").length
-    ).toEqual(2);
+    ).toEqual(1);
   });
 });
