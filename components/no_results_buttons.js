@@ -14,17 +14,6 @@ const button = css`
     margin: 20px;
   }
 `;
-const orText = css`
-  display: inline-block;
-  padding: 0 20px;
-  font-family: ${globalTheme.fontFamilySansSerif};
-  font-weight: bold;
-  color: ${globalTheme.colour.greyishBrown};
-  margin-bottom: 0;
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    display: none;
-  }
-`;
 
 const NoResultsButtons = props => {
   return (
@@ -35,12 +24,6 @@ const NoResultsButtons = props => {
         onClick={() => props.clearFilters()}
       >
         {props.t("BenefitsPane.reset_filters")}
-      </Button>
-
-      <Body styles={orText}>{props.t("BenefitsPane.or")}</Body>
-
-      <Button css={button} id="contact_us_button" secondary>
-        {props.t("BenefitsPane.contact_us")}
       </Button>
     </div>
   );
