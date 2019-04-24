@@ -145,7 +145,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/caregiver-recognition-benefit",
       "needs": ["recl3hMcrWpKFaR9B", "reciCZbLGkKLIqapM", "recTv9il8X9IhPosv"],
       "oneLineDescriptionEn": "A monthly payment to an informal caregiver who provides you with daily personal care support.",
-      "oneLineDescriptionFr": "(fra) Un paiement mensuel versés à un aidant naturel qui vous fournit un soutien aux soins personnels quotidiens.",
+      "oneLineDescriptionFr": "Un paiement mensuel versé à un aidant naturel qui vous fournit un soutien aux soins personnels quotidien.",
       "categories DO NOT USE": "Financial assistance, Family support",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/72",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/72",
@@ -224,13 +224,13 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/clothing-allowance",
       "needs": ["recl3hMcrWpKFaR9B", "reciCZbLGkKLIqapM"],
-      "oneLineDescriptionEn": "Monthly payments if you need new or special clothing due to your health issues.",
-      "oneLineDescriptionFr": "Versements mensuels si vous avez besoin de vêtements neufs ou spéciaux en raison de vos problèmes de santé.  ",
+      "oneLineDescriptionEn": "Monthly payments if you need new or custom-made clothing due to your disability.",
+      "oneLineDescriptionFr": "Paiements mensuels pour l’achat de nouveaux vêtements ou de vêtements taillés sur mesure dont vous avez besoin en raison de votre invalidité.",
       "categories DO NOT USE": "Financial assistance",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1931#anchor57064",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57064",
-      "noteEn": "You need to be approved for [Disability benefits](https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/disability-benefits) before applying for Clothing allowance.",
-      "noteFr": "FRA",
+      "noteEn": "You need to be approved for [Disability benefits](https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/disability-benefits) to qualify for Clothing allowance.",
+      "noteFr": "Votre demande de [prestations d’invalidité](https://www.veterans.gc.ca/fra/financial-support/compensation-illness-injury/disability-benefits) doit avoir été approuvée pour que vous soyez admissible à l’allocation vestimentaire. ",
       "benefitEligibility": ["recxMW7FjzG6miMJb"],
       "Readability": "Grade 7",
       "id": "rec2EFm0PE6Q8mWcy",
@@ -322,12 +322,6 @@
       "oneLineDescriptionEn": "A lump-sum payment to recognize the impact that a CAF member's service-related death has on the immediate family.",
       "oneLineDescriptionFr": "Un paiement forfaitaire reconnaître les répercussions du décès lié au service d’un membre des FAC sur sa famille immédiate.",
       "categories DO NOT USE": "Family support, Financial assistance",
-      "childBenefits": [
-        "recAchKBVWL7xE5iu",
-        "recTHEyt7fd9d129F",
-        "recKo07DTJ3LVq92c",
-        "recZBl9s47f89zx8E"
-      ],
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/11",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/11",
@@ -336,6 +330,7 @@
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
       "Readability": "Grade 12",
       "id": "recI2f35ux8ZwnhWI",
+      "childBenefits": [],
       "examples": "",
       "sortingPriority": "",
       "benefitExamples": []
@@ -352,8 +347,8 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/903",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/903",
       "sortingPriority": "low",
-      "noteEn": "This benefit is intended for Veterans who have released after April 1, 2006.  For other Veterans, please see [Prisoner of War Compensation](https://www.veterans.gc.ca/eng/services/financial/pow).",
-      "noteFr": "FRA",
+      "noteEn": "If the period of your captivity was prior to April 1, 2016, please see [Prisoner of War Compensation](https://www.veterans.gc.ca/eng/financial-support/prisoner-of-war-benefits/prisoner-of-war-compensation).",
+      "noteFr": "(fra)",
       "benefitEligibility": ["recJr3b4fCXgqIpGj"],
       "Readability": "Grade 10",
       "id": "reczafuOI6a3CVh05",
@@ -462,13 +457,13 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Exceptional incapacity allowance",
+      "vacNameEn": "Exceptional Incapacity Allowance",
       "vacNameFr": "Allocation d'incapacité exceptionnelle",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
       "needs": ["recl3hMcrWpKFaR9B", "reciCZbLGkKLIqapM"],
-      "oneLineDescriptionEn": "Additional monthly payment for a disability pensioner if your illness or injury impacts your quality of life.",
-      "oneLineDescriptionFr": "Versements mensuels supplémentaire pour un bénéficiaire d'une pension d'invalidité si votre maladie ou votre blessure affecte votre qualité de vie.",
+      "oneLineDescriptionEn": "Additional monthly payment for a disability pensioner when your illness or injury impacts your quality of life.",
+      "oneLineDescriptionFr": "Versements mensuels supplémentaire pour un bénéficiaire d'une pension d'invalidité quand votre maladie ou votre blessure affecte votre qualité de vie.",
       "categories DO NOT USE": "Financial assistance",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1931#anchor57066",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57066",
@@ -500,8 +495,8 @@
         "reccoGBRVRWwyfI5E"
       ],
       "benefitEligibility": ["rec9Jn5LSXS9TTsCJ"],
-      "seeMoreSentenceEn": "Some examples of common mental health issues are:",
-      "seeMoreSentenceFr": " Exemples de problèmes de santé mentale répandus :",
+      "seeMoreSentenceEn": "Some examples of an operational stress injury include:",
+      "seeMoreSentenceFr": "Voici quelques exemples d’un traumatisme lié au stress opérationnel:",
       "Readability": "Grade 8",
       "id": "recU4L9KhGZVexFBp",
       "categories DO NOT USE": "",
@@ -560,7 +555,7 @@
       "sortingPriority": ""
     },
     {
-      "vacNameEn": "Group Health Insurance",
+      "vacNameEn": "Group health insurance",
       "vacNameFr": "Assurance collective des soins de santé",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/group-health-insurance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/group-health-insurance",
@@ -591,7 +586,7 @@
       "oneLineDescriptionFr": "Un paiement mensuel pour maintenir votre revenu pendant que vous participez au programme de réadaptation d'ACC.",
       "sortingPriority": "medium",
       "noteEn": "You need to be approved for [Rehabilitation services](https://www.veterans.gc.ca/eng/services/transition/rehabilitation/services) to be eligible for the Income Replacement Benefit.",
-      "noteFr": "FRA",
+      "noteFr": "Votre demande de [services de réadaptation](https://www.veterans.gc.ca/fra/services/transition/rehabilitation/services) doit avoir été approuvée pour que vous puissiez être admissible à la prestation de remplacement du revenu.",
       "benefitEligibility": ["recUdQxYjoEjhEkHI", "reciIE0sqXRF4xxKI"],
       "Readability": "Grade 11",
       "id": "recS4Kl8K1Ipsrb4C",
@@ -672,27 +667,28 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Operational stress injury (OSI) Clinics",
+      "vacNameEn": "Operational stress injury (OSI) clinics",
       "vacNameFr": "Cliniques pour traumatismes liés au stress opérationnel ",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/mental-health-and-wellness/assessment-treatment/osi-clinics",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/mental-health-and-wellness/assessment-treatment/osi-clinics",
       "needs": ["reciCZbLGkKLIqapM"],
-      "oneLineDescriptionEn": "Outpatient and residential clinics that assess and treat mental health issues related to service",
+      "oneLineDescriptionEn": "Outpatient and residential clinics that assess and treat mental health issues related to service.",
+      "oneLineDescriptionFr": "Cliniques de consultation externe et de traitement en résidence qui évaluent et traitent les troubles de santé mentale liés au service.",
       "sortingPriority": "medium",
-      "noteEn": "You need a referral from a [case manager](https://www.veterans.gc.ca/eng/health-support/case-management) to visit the clinic.",
-      "noteFr": "Une référence de votre [gestionnaire de cas](https://www.veterans.gc.ca/fra/health-support/case-management) est nécessaire pour vous rendre à la clinique. ",
+      "noteEn": "You need a referral from a [case manager](https://www.veterans.gc.ca/eng/health-support/case-management) to access an OSI clinic.",
+      "noteFr": "(fra) Une référence de votre [gestionnaire de cas](https://www.veterans.gc.ca/fra/health-support/case-management) est nécessaire pour vous rendre à la clinique. ",
       "benefitExamples": [
         "recm4FCe3wGDVk5Ms",
         "receojjqPcCZ8QKRC",
         "recmJNrxITVeQNYLc",
-        "recDqagTBU0Ssn161"
+        "recDqagTBU0Ssn161",
+        "rec5AQJVmhVvu9Qhc"
       ],
       "benefitEligibility": ["reccn8fgUEs7hokbT"],
-      "seeMoreSentenceEn": "The clinics provide individual as well as group therapy sessions for: ",
-      "seeMoreSentenceFr": " Les cliniques offrent des séances de thérapie individuelle et de groupe pour ce qui suit :",
+      "seeMoreSentenceEn": "The clinics provide individual and group therapy sessions to address such things as:",
+      "seeMoreSentenceFr": "(fra) Les  cliniques offrent des séances de thérapie individuelle et de groupe pour ce qui sui :",
       "Readability": "Grade 13",
       "id": "recdDnpIo2OsKJfUK",
-      "oneLineDescriptionFr": "Cliniques de consultation externe et de traitement en résidence qui évaluent et traitent les troubles de santé mentale liés au service",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -733,8 +729,8 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/mental-health-and-wellness/counselling-services/someone-who-can-relate",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/mental-health-and-wellness/counselling-services/someone-who-can-relate",
       "needs": ["reciCZbLGkKLIqapM"],
-      "oneLineDescriptionEn": "A peer support network for CAF members and Veterans experiencing an operational stress injury (OSI).",
-      "oneLineDescriptionFr": "Un réseau de soutien par les pairs pour les membres et les vétérans des FAC qui souffrent d'une blessure de stress opérationnel.",
+      "oneLineDescriptionEn": "A peer support network for CAF members or Veterans living with an operational stress injury (OSI).",
+      "oneLineDescriptionFr": "Un réseau de soutien par les pairs pour les membres des FAC ou les vétérans ayant un traumatisme lié au stress opérationnel (TSO). ",
       "benefitExamples": [
         "recmJNrxITVeQNYLc",
         "rec64UtZ3byLVvlyj",
@@ -742,8 +738,8 @@
         "reccoGBRVRWwyfI5E"
       ],
       "benefitEligibility": ["recRTIobHblMQIjwn"],
-      "seeMoreSentenceEn": "Some examples of common mental health issues are:",
-      "seeMoreSentenceFr": "Exemples de problèmes de santé mentale courants :",
+      "seeMoreSentenceEn": "Some examples of an operational stress injury include:",
+      "seeMoreSentenceFr": "Some examples of an operational stress injury include:",
       "Readability": "Grade 12",
       "id": "recNzUpa4KizSO5ff",
       "categories DO NOT USE": "",
@@ -767,8 +763,8 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/25",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/25",
       "sortingPriority": "low",
-      "noteEn": "This benefit is intended for Veterans who served in the Second World War or the Korean War. For other Veterans, please see [Detention Benefit]( https://www.veterans.gc.ca/eng/services/financial/detention-benefits).",
-      "noteFr": "FRA",
+      "noteEn": "If the period of your captivity began on or after April 1, 2016, please see [Detention Benefit](https://www.veterans.gc.ca/eng/financial-support/prisoner-of-war-benefits/detention-benefit). ",
+      "noteFr": "(fra) consulter la section sur l’[indemnité de captivité]( https://www.veterans.gc.ca/fra/services/financial/detention-benefits).",
       "benefitEligibility": ["rec6b8bvBzygEgeIK"],
       "Readability": "Grade 8",
       "id": "rec897CEZOiODNrft",
@@ -802,8 +798,7 @@
         "rec5XjawCRDrTAzgv",
         "rec5xOvn1trC63W8c",
         "recWJVAjwUOLelsDs",
-        "recJlHvgkElZcjRUk",
-        "rech6miwpTGrCFHBR"
+        "recJlHvgkElZcjRUk"
       ],
       "benefitEligibility": ["recCAugx790KGVVk2"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
@@ -834,11 +829,11 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Transition Interview",
+      "vacNameEn": "Transition interview",
       "vacNameFr": "Entrevue de transition",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/interview",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/interview",
-      "needs": ["recXFXV3lZ5z2yya9"],
+      "needs": ["recXFXV3lZ5z2yya9", "reciCZbLGkKLIqapM"],
       "oneLineDescriptionEn": "Before you release, a meeting to provide information on VAC programs and services available to you and your family.",
       "oneLineDescriptionFr": "Avant de quitter service, rencontre visant à vous donner de l'information sur les programmes et services d'ACC qui vous sont offerts, à vous et à votre famille.",
       "availableIndependently": "Independent",
@@ -865,20 +860,21 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/health/treatment-benefits",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/treatment-benefits",
       "needs": ["recCLErnNnumr9cAW", "reciCZbLGkKLIqapM"],
-      "oneLineDescriptionEn": "We all need healthcare services. The Treatment benefits program provides coverage for a variety of benefits and services to help you get—and stay—healthy.",
-      "oneLineDescriptionFr": "Nous avons tous besoin de services de santé. Le Programme d’avantages médicaux offre une gamme d’avantages et de services pour vous aider à rester en santé.",
+      "oneLineDescriptionEn": "The Treatment benefits program provides coverage for a variety of benefits and services to help you get—and stay—healthy.",
+      "oneLineDescriptionFr": "Le Programme d’avantages médicaux offre une gamme d’avantages et de services pour vous aider à rester en santé.",
       "categories DO NOT USE": "Health",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/29",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/29",
-      "noteEn": "You need to be approved for [Disability Benefit](https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/disability-benefits),  [Veterans Independence Program](https://www.veterans.gc.ca/eng/services/health/veterans-independence-program), [Long Term Care](https://www.veterans.gc.ca/eng/services/health/long-term-care), or [War Veterans Allowance](https://www.veterans.gc.ca/eng/services/financial/war-veterans-allowance) to qualify for Coverage for services, prescriptions and devices.",
-      "noteFr": "FRA",
+      "noteEn": "You need to be approved for a [Disability Benefit](https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/disability-benefits),  the [Veterans Independence Program](https://www.veterans.gc.ca/eng/services/health/veterans-independence-program), [Long Term Care](https://www.veterans.gc.ca/eng/services/health/long-term-care), or the [War Veterans Allowance](https://www.veterans.gc.ca/eng/services/financial/war-veterans-allowance) to qualify for one or more treatment benefits.",
+      "noteFr": "Votre demande de [prestations d’invalidité]( https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/disability-benefits), d’[avantages du Programme pour l’autonomie des anciens combattants]( https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program), de  [Soins de longue durée]( https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/medical-costs/long-term-care) ou d’[allocation aux anciens combattants](https://www.veterans.gc.ca/fra/financial-support/income-support/war-veterans-allowance) doit avoir été approuvée pour que vous soyez admissible à un ou plusieurs des avantages médicaux. ",
       "benefitExamples": [
         "recp0dcG0OuQTdbUz",
         "recJlHvgkElZcjRUk",
         "recvvDtT8s7N4rpMg",
         "recgC0Bvqq0MNCs6V",
         "rec1sGBIBOIZqWM7Z",
-        "recJGBWfOnTCDBMjJ"
+        "recJGBWfOnTCDBMjJ",
+        "recH99CUcp6grNzPq"
       ],
       "benefitEligibility": ["recAv47UCFCZ73sh9"],
       "seeMoreSentenceEn": "Some examples of what this program may cover:",
@@ -896,7 +892,7 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/well-being-fund",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/well-being-fund",
       "oneLineDescriptionEn": "A fund for research, projects or initiatives that improve the well-being of Veterans and their families. ",
-      "oneLineDescriptionFr": "Fonds pour soutenir la recherche, les projets ou les initiatives qui améliorent le bien-être des vétérans et de leur famille",
+      "oneLineDescriptionFr": "Fonds pour soutenir la recherche, les projets ou les initiatives qui améliorent le bien-être des vétérans et de leur famille.",
       "categories DO NOT USE": "Community funding",
       "availableIndependently": "Independent",
       "sortingPriority": "low",
@@ -913,7 +909,7 @@
       "seeMoreSentenceFr": ""
     },
     {
-      "vacNameEn": "Veteran family program",
+      "vacNameEn": "Veteran Family Program",
       "vacNameFr": "Programme pour les familles des vétérans",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/veteran-family-program",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/veteran-family-program",
@@ -1078,8 +1074,8 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/vocational-assistance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-assistance",
       "needs": ["recXFXV3lZ5z2yya9", "recf9RX3o0b4LJD3J"],
-      "oneLineDescriptionEn": "Coaching, support and any other training to help a qualifying spouse or survivor return to work.",
-      "oneLineDescriptionFr": "Accompagnement, soutien et formation pour que les époux ou conjoints de fait et survivants admissibles peuvent retourner au travail.",
+      "oneLineDescriptionEn": "Coaching, support or other training to help a qualifying spouse or survivor return to work.",
+      "oneLineDescriptionFr": "Accompagnement, soutien ou autre formation pour que les époux ou conjoints de fait et survivants admissibles peuvent retourner au travail.",
       "categories DO NOT USE": "Education and jobs, Family support",
       "benefitExamples": [
         "rech6miwpTGrCFHBR",
@@ -1105,8 +1101,8 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/vocational-rehabilitation",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-rehabilitation",
       "needs": ["recXFXV3lZ5z2yya9"],
-      "oneLineDescriptionEn": "Coaching, support and any other training you need to return to work or find a new job after an injury.",
-      "oneLineDescriptionFr": "Accompagnement, soutien et toute autre formation dont vous avez besoin pour retourner au travail ou trouver un nouvel emploi après une blessure.",
+      "oneLineDescriptionEn": "Coaching, support or other training you need to return to work or find a new job after an injury.",
+      "oneLineDescriptionFr": "Accompagnement, soutien ou autre formation dont vous avez besoin pour retourner au travail ou trouver un nouvel emploi après une blessure.",
       "availableIndependently": "Independent",
       "sortingPriority": "medium",
       "benefitExamples": [
@@ -1139,7 +1135,7 @@
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/31",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/31",
-      "benefitEligibility": ["recty2ztlhIbz3L6z", "recm2m79IXDgaGPmR"],
+      "benefitEligibility": ["recm2m79IXDgaGPmR"],
       "Readability": "Grade 8",
       "id": "recz72GYEVbXka2Lw",
       "childBenefits": [],
@@ -1736,15 +1732,6 @@
     },
     {
       "benefit": ["recz72GYEVbXka2Lw"],
-      "patronType": ["recqcx7zJU3fDnKDw"],
-      "serviceType": ["recZxS90JBuEos5wy"],
-      "statusAndVitals": ["reczcmooxd9hWVgmN"],
-      "Name": "recty2ztlhIbz3L6z",
-      "path": "family + WSV (Second World War or Korea) + deceased",
-      "serviceHealthIssue": []
-    },
-    {
-      "benefit": ["recz72GYEVbXka2Lw"],
       "patronType": ["recqmK12TRScaiVlp"],
       "serviceType": ["recZxS90JBuEos5wy"],
       "Name": "recm2m79IXDgaGPmR",
@@ -1837,7 +1824,8 @@
         "recWzMubWbjhkzuGF",
         "recyA3X3YB7NBFewA",
         "recZBl9s47f89zx8E",
-        "recjVZeHWbyzubolB"
+        "recjVZeHWbyzubolB",
+        "reclGiFGA44ZBGt1u"
       ],
       "nameFr": "Santé physique et mentale",
       "colour": "#e9cf9e",
@@ -1937,8 +1925,8 @@
       "section": "B3",
       "key": "check eligibility",
       "English": "Click on the 'Learn more' button to find more information about each program, including eligibility criteria.",
-      "id": "B3.check eligibility",
-      "French": "Cliquez sur le bouton « En savoir plus » pour vous informer sur chaque programme, y compris les critères d’admissibilité."
+      "French": "Cliquez sur le bouton « En savoir plus » pour vous informer sur chaque programme, y compris les critères d’admissibilité.",
+      "id": "B3.check eligibility"
     },
     {
       "section": "B3",
@@ -2132,8 +2120,8 @@
     {
       "section": "benefits_b",
       "key": "eligible_open_veteran",
-      "English": "By receiving {{x}} the service member may qualify for:",
-      "French": "En recevant {{x}}, le membre en service peut se qualifier pour :",
+      "English": "If you qualify for {{x}}, you may also qualify for:",
+      "French": "Si vous êtes admissible à {{x}}, vous pourriez aussi être admissible à:",
       "id": "benefits_b.eligible_open_veteran"
     },
     {
@@ -2153,8 +2141,8 @@
     {
       "section": "BenefitsPane",
       "key": "no_filtered_benefits",
-      "English": "There are no benefits that match your selections",
-      "French": "Il n'y a pas d'avantages qui correspondent aux sélections",
+      "English": "There are no benefits or services that match your selections",
+      "French": "Aucun avantage ou service ne correspond à vos sélections",
       "id": "BenefitsPane.no_filtered_benefits"
     },
     {
@@ -2587,16 +2575,16 @@
     {
       "section": "ge",
       "key": "intro_text_p1",
-      "English": "Not sure what benefits you are looking for? This tool can provide a list of benefits from Veterans Affairs Canada that are the most relevant to you, by answering just a few questions.",
-      "id": "ge.intro_text_p1",
-      "French": "Vous ne savez pas trop vers quels avantages vous tourner? Cet outil peut vous fournir la liste des avantages offerts par Anciens Combattants Canada les plus pertinents pour vous en fonction de vos réponses à quelques questions. "
+      "English": "Not sure what benefits you are looking for? By answering just a few questions, this tool can provide a list of benefits from Veterans Affairs Canada that are the most relevant to you.",
+      "French": "Vous ne savez pas trop vers quels avantages vous tourner? Cet outil peut vous fournir la liste des avantages offerts par Anciens Combattants Canada les plus pertinents pour vous en fonction de vos réponses à quelques questions. ",
+      "id": "ge.intro_text_p1"
     },
     {
       "section": "ge",
       "key": "intro_text_p2",
-      "English": "It usually takes less then a minute to go through the questions.",
-      "id": "ge.intro_text_p2",
-      "French": "Répondre aux questions ne devrait vous prendre que moins d’une minute."
+      "English": "It usually takes less than a minute to go through the questions.",
+      "French": "Répondre aux questions ne devrait vous prendre que moins d’une minute.",
+      "id": "ge.intro_text_p2"
     },
     {
       "section": "ge",
@@ -3316,15 +3304,15 @@
       "section": "breadcrumbs",
       "key": "ben_dir_page_title",
       "English": "Results",
-      "French": "(fra) Résultats",
+      "French": "Résultats",
       "id": "breadcrumbs.ben_dir_page_title"
     },
     {
       "section": "feedback",
       "key": "privacy_statement",
       "English": "The information you provide in the open text field should not contain any identifiable personal information.",
-      "id": "feedback.privacy_statement",
-      "French": "N’inscrivez pas de renseignements personnels identifiables dans la zone de texte libre"
+      "French": "N’inscrivez pas de renseignements personnels identifiables dans la zone de texte libre",
+      "id": "feedback.privacy_statement"
     }
   ],
   "questions": [
@@ -3396,7 +3384,7 @@
       "guided_experience_english": "Select the categories of benefits you want to see.",
       "guided_experience_french": "Sélectionnez les types d'avantages que vous voulez consulter. ",
       "tooltip_english": "Choose one or more categories that interest you the most or choose \"Skip question\" to see all benefits.",
-      "tooltip_french": "FRA ",
+      "tooltip_french": "Choisissez une ou plusieurs catégories qui vous intéressent particulièrement ou cliquez sur « Sauter la question » pour voir tous les avantages.",
       "guided_experience_page_title_english": "Select the categories of benefits you want to see.",
       "guided_experience_page_title_french": "Sélectionnez les types d'avantages que vous voulez consulter. ",
       "breadcrumb_english": "Category",
@@ -3420,6 +3408,23 @@
       "display_text_english": "Overall, how was your experience with this online tool?",
       "display_text_french": "Dans l’ensemble, quelle a été votre expérience avec cet outil en ligne? ",
       "id": "recALg61BCzsInCeo",
+      "guided_experience_english": "",
+      "guided_experience_french": "",
+      "questionClearLogic": [],
+      "questionClearLogic 2 copy": "",
+      "guided_experience_page_title_english": "",
+      "guided_experience_page_title_french": "",
+      "breadcrumb_english": "",
+      "breadcrumb_french": "",
+      "summary_english": "",
+      "summary_french": ""
+    },
+    {
+      "id": "recfJAiaz9G6M83WS",
+      "variable_name": "",
+      "multiple_choice_options": [],
+      "display_text_english": "",
+      "display_text_french": "",
       "guided_experience_english": "",
       "guided_experience_french": "",
       "questionClearLogic": [],
@@ -3525,7 +3530,6 @@
         "rec9PnyWW8mF5IzPl",
         "recsJtNa6lSL1x2Eo",
         "recM0HHQ56peIanKW",
-        "recty2ztlhIbz3L6z",
         "recYgBohHsKH9rB8K",
         "recF413EVWAZeR7bY",
         "recT8tcXWtlfPHDd2",
@@ -3654,7 +3658,6 @@
         "rec6b8bvBzygEgeIK",
         "recC8n51hn2OmlnSc",
         "recsJtNa6lSL1x2Eo",
-        "recty2ztlhIbz3L6z",
         "rec88cEHO9f000XtV",
         "recPwuYUDJBTUo2L3",
         "recm2m79IXDgaGPmR",
@@ -3729,7 +3732,6 @@
         "recC8n51hn2OmlnSc",
         "recsJtNa6lSL1x2Eo",
         "recM0HHQ56peIanKW",
-        "recty2ztlhIbz3L6z",
         "recYgBohHsKH9rB8K",
         "recxk2G4xLS2Xhn7M",
         "recVq8IrvBdwgfsv2",
@@ -3903,8 +3905,8 @@
   ],
   "benefitExamples": [
     {
-      "english": "personal hygiene (bathing or showering)",
-      "french": "hygiène personnelle (bain ou douche)",
+      "english": "bathing or showering",
+      "french": "bain ou douche",
       "linked_benefits": ["Attendance allowance"],
       "id": "recAeu7Eu9kPzWDmg"
     },
@@ -3975,8 +3977,8 @@
       "id": "recyBbNjecEU0znXu"
     },
     {
-      "english": "ongoing support in difficult situations",
-      "french": "un soutien continu dans des situations difficiles",
+      "english": "ongoing support",
+      "french": "un soutien continu",
       "linked_benefits": ["Case management"],
       "id": "recOSoLFJSQSJQx4f"
     },
@@ -4081,7 +4083,7 @@
       "french": " état de stress post‑traumatique (ESPT)",
       "linked_benefits": [
         "Talk to someone who can relate",
-        "Operational stress injury (OSI) Clinics",
+        "Operational stress injury (OSI) clinics",
         "Family peer support (Operational Stress Injury Social Support)"
       ],
       "id": "recmJNrxITVeQNYLc"
@@ -4164,13 +4166,13 @@
     {
       "english": "prescriptions",
       "french": "ordonnances",
-      "linked_benefits": ["Group Health Insurance"],
+      "linked_benefits": ["Group health insurance"],
       "id": "recuXFURG2VtYo209"
     },
     {
       "english": "treatment services",
       "french": "services de traitement",
-      "linked_benefits": ["Group Health Insurance"],
+      "linked_benefits": ["Group health insurance"],
       "id": "recF2mNPR90QqTGgh"
     },
     {
@@ -4204,28 +4206,40 @@
       "linked_benefits": []
     },
     {
-      "english": "suicide",
-      "french": "suicide",
-      "id": "rec5AQJVmhVvu9Qhc",
-      "linked_benefits": []
+      "english": "anger management",
+      "french": "gestion de la colère",
+      "linked_benefits": ["Operational stress injury (OSI) clinics"],
+      "id": "rec5AQJVmhVvu9Qhc"
     },
     {
       "english": "other mental health issues",
-      "linked_benefits": ["Operational stress injury (OSI) Clinics"],
-      "id": "recDqagTBU0Ssn161",
-      "french": "autres troubles de santé mentale"
+      "french": "autres troubles de santé mentale",
+      "linked_benefits": ["Operational stress injury (OSI) clinics"],
+      "id": "recDqagTBU0Ssn161"
     },
     {
       "english": "anxiety ",
       "french": "anxiété",
-      "linked_benefits": ["Operational stress injury (OSI) Clinics"],
+      "linked_benefits": ["Operational stress injury (OSI) clinics"],
       "id": "recm4FCe3wGDVk5Ms"
     },
     {
       "english": "insomnia ",
       "french": "insomnie",
-      "linked_benefits": ["Operational stress injury (OSI) Clinics"],
+      "linked_benefits": ["Operational stress injury (OSI) clinics"],
       "id": "receojjqPcCZ8QKRC"
+    },
+    {
+      "english": "releasing from the military",
+      "french": "vous êtes en voie d’être libéré des Forces armées canadiennes",
+      "linked_benefits": ["Speak to a chaplain"],
+      "id": "recNOm10ftD6MnamR"
+    },
+    {
+      "english": "going through a difficult time",
+      "french": "vous vivez des moments difficiles",
+      "linked_benefits": ["Speak to a chaplain"],
+      "id": "recS3jshxgEJ41IMq"
     },
     {
       "english": " dealing with end of life",
@@ -4238,18 +4252,6 @@
       "french": "vous êtes en deuil",
       "linked_benefits": ["Speak to a chaplain"],
       "id": "recnOBEDOTIIfqFoC"
-    },
-    {
-      "english": "going through a difficult time",
-      "french": "vous vivez des moments difficiles",
-      "linked_benefits": ["Speak to a chaplain"],
-      "id": "recS3jshxgEJ41IMq"
-    },
-    {
-      "english": "releasing from the military",
-      "french": "vous êtes en voie d’être libéré des Forces armées canadiennes",
-      "linked_benefits": ["Speak to a chaplain"],
-      "id": "recNOm10ftD6MnamR"
     },
     {
       "english": "physiotherapy",
@@ -4272,24 +4274,24 @@
     {
       "english": "advice on applications",
       "french": "renseignements sur les avantages",
-      "linked_benefits": ["Transition Interview"],
+      "linked_benefits": ["Transition interview"],
       "id": "recM6QtffavyCtnrl"
     },
     {
       "english": "information about benefits",
       "french": "conseils concernant les demandes",
-      "linked_benefits": ["Transition Interview"],
+      "linked_benefits": ["Transition interview"],
       "id": "recIasnRA9AqO9sky"
     },
     {
       "english": "referrals",
       "french": "aiguillages",
-      "linked_benefits": ["Transition Interview"],
+      "linked_benefits": ["Transition interview"],
       "id": "recAMlXDoGHA0wSVJ"
     },
     {
-      "english": "counselling and therapy",
-      "french": "counseling et thérapie",
+      "english": "counselling",
+      "french": "counseling",
       "linked_benefits": ["Treatment Benefits", "Rehabilitation services"],
       "id": "recJlHvgkElZcjRUk"
     },
@@ -4326,19 +4328,19 @@
     {
       "english": "financial planning workshops",
       "french": "ateliers de planification financière",
-      "linked_benefits": ["Veteran family program"],
+      "linked_benefits": ["Veteran Family Program"],
       "id": "rec2ftmjZGOLKEyar"
     },
     {
       "english": "mental health first aid",
       "french": "premiers soins en santé mentale",
-      "linked_benefits": ["Veteran family program"],
+      "linked_benefits": ["Veteran Family Program"],
       "id": "rec8b4AKsNHpWQgdJ"
     },
     {
       "english": "referral to community programs and services",
       "french": "aiguillages vers les programmes et services communautaires",
-      "linked_benefits": ["Veteran family program"],
+      "linked_benefits": ["Veteran Family Program"],
       "id": "recsdDeGWsEIOy5Ww"
     },
     {
@@ -4348,8 +4350,8 @@
       "linked_benefits": []
     },
     {
-      "english": "expenses required to maintain safety and shelter",
-      "french": "maintien de la sécurité et d’un logement",
+      "english": "rent, mortgage",
+      "french": "Loyer, hypothèque",
       "linked_benefits": ["Veterans Emergency Fund"],
       "id": "recPb45ME81WDLq7e"
     },
@@ -4382,7 +4384,7 @@
       "id": "rec9qdcVXpWcDCCrl"
     },
     {
-      "english": "help with errands (ex. grocery shopping)",
+      "english": "help with errands (e.g. grocery shopping)",
       "french": "aide pour les courses (p. ex. l’épicerie)",
       "linked_benefits": ["Veterans Independence Program"],
       "id": "recUdKpAukSU0zFOr"
@@ -4446,11 +4448,7 @@
     {
       "english": "career coaching",
       "french": "accompagnement professionnel",
-      "linked_benefits": [
-        "Vocational assistance",
-        "Vocational rehabilitation",
-        "Rehabilitation services"
-      ],
+      "linked_benefits": ["Vocational assistance", "Vocational rehabilitation"],
       "id": "rech6miwpTGrCFHBR"
     },
     {
@@ -4466,10 +4464,10 @@
       "id": "recCKoXg0iNeeYLNZ"
     },
     {
-      "id": "recH99CUcp6grNzPq",
-      "english": "",
-      "french": "",
-      "linked_benefits": []
+      "english": "dental care",
+      "french": "soins dentaires",
+      "linked_benefits": ["Treatment Benefits"],
+      "id": "recH99CUcp6grNzPq"
     },
     {
       "id": "recHDzhOSlZMwEg3z",
@@ -4482,10 +4480,10 @@
     {
       "bullet_name": "LearnMore",
       "english": "Click on the 'Learn more' button to find more information about each program, including eligibility criteria.",
-      "id": "recawMJ3vG95D5leH",
-      "french": "Cliquez sur le bouton « En savoir plus » pour vous informer sur chaque programme, y compris les critères d’admissibilité."
+      "french": "Cliquez sur le bouton « En savoir plus » pour vous informer sur chaque programme, y compris les critères d’admissibilité.",
+      "id": "recawMJ3vG95D5leH"
     }
   ],
   "errors": [],
-  "timestamp": 1555505152139
+  "timestamp": 1556106407328
 }
