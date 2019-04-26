@@ -7,7 +7,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/financial-support/compensation-illness-injury/additional-pain-suffering",
       "needs": ["recl3hMcrWpKFaR9B"],
       "oneLineDescriptionEn": "Monthly payments in recognition of any severe and permanent disability, related to your military service, which creates a barrier to life after service.",
-      "oneLineDescriptionFr": "Paiements mensuels en reconnaissance en raison d'une déficience permanente et grave liée au service militaire, ce qui constitue une entrave à la réinsertion dans la vie après le service.",
+      "oneLineDescriptionFr": "Paiements mensuels en reconnaissance d'une invalidité permanente et grave liée au service militaire, qui constitue une entrave à la transition vers la vie après le service.",
       "availableIndependently": "Requires Gateway Benefit",
       "sortingPriority": "medium",
       "benefitEligibility": ["recbdrbsXxrKjHlQZ"],
@@ -29,7 +29,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/war-veterans-allowance/assistance-fund",
       "needs": ["recAquZzUADqwsD69"],
       "oneLineDescriptionEn": "If you receive the War Veterans Allowance, you can get quick access to funds to help in an emergency.",
-      "oneLineDescriptionFr": "Si vous touchez l'allocation aux anciens combattants, vous pouvez accèder rapide à des fonds pour vous aider en situation d'urgence.",
+      "oneLineDescriptionFr": "Si vous touchez l'allocation aux anciens combattants, vous pouvez accéder rapidement à des fonds pour vous aider en situation d'urgence.",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1042",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1042",
       "sortingPriority": "medium",
@@ -79,7 +79,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/cf-income-support",
       "needs": ["recl3hMcrWpKFaR9B", "recTv9il8X9IhPosv"],
       "oneLineDescriptionEn": "A monthly payment to help low-income CAF Veterans, survivors, and dependent children.",
-      "oneLineDescriptionFr": "Un paiement mensuel aux vétérans des FAC à faible revenu et aux survivants ainsi qu'à leurs enfants à charge.",
+      "oneLineDescriptionFr": "Paiement mensuel aux vétérans des FAC à faible revenu et aux survivants ainsi qu'à leurs enfants à charge.",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1243",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1243",
@@ -101,7 +101,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/family-caregiver/financial-programs-services/canadian-forces-income-support-survivors",
       "needs": ["recf9RX3o0b4LJD3J", "recl3hMcrWpKFaR9B"],
       "oneLineDescriptionEn": "A monthly payment to help low-income survivors and dependent children of a deceased CAF Veteran.",
-      "oneLineDescriptionFr": "Un paiement mensuel aux vétérans des FAC à faible revenu et aux survivants ainsi qu'à leurs enfants à charge.",
+      "oneLineDescriptionFr": "Paiement mensuel aux vétérans des FAC à faible revenu et aux survivants ainsi qu'à leurs enfants à charge.",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-vac/legislation-policies/policies/category/4",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-vac/legislation-policies/policies/category/4",
@@ -145,7 +145,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/caregiver-recognition-benefit",
       "needs": ["recl3hMcrWpKFaR9B", "reciCZbLGkKLIqapM", "recTv9il8X9IhPosv"],
       "oneLineDescriptionEn": "A monthly payment to an informal caregiver who provides you with daily personal care support.",
-      "oneLineDescriptionFr": "Un paiement mensuel versé à un aidant naturel qui vous fournit un soutien aux soins personnels quotidien.",
+      "oneLineDescriptionFr": "Paiement mensuel versé à un aidant naturel qui vous fournit un soutien aux soins personnels quotidien.",
       "categories DO NOT USE": "Financial assistance, Family support",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/72",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/72",
@@ -192,14 +192,9 @@
       "vacNameFr": "Gestion de cas",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/case-management",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/case-management",
-      "needs": [
-        "recf9RX3o0b4LJD3J",
-        "recXFXV3lZ5z2yya9",
-        "reciCZbLGkKLIqapM",
-        "recTv9il8X9IhPosv"
-      ],
+      "needs": ["reciCZbLGkKLIqapM", "recTv9il8X9IhPosv"],
       "oneLineDescriptionEn": "One-on-one support to help with a significant challenge in your life.",
-      "oneLineDescriptionFr": "Soutien personnalisé pour vous aider à relever ce défi important.",
+      "oneLineDescriptionFr": "Soutien personnalisé pour vous aider à relever un défi important.",
       "availableIndependently": "Independent",
       "sortingPriority": "medium",
       "benefitExamples": [
@@ -248,7 +243,7 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/remembrance/funding-programs/commemorative-partnership/engagement",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/remembrance/funding-programs/commemorative-partnership/engagement",
       "oneLineDescriptionEn": "A fund for community projects and events that honour Canadian Veterans.",
-      "oneLineDescriptionFr": "Une subvention pour les projets qui rendent hommage aux vétérans canadiens.",
+      "oneLineDescriptionFr": "Subvention pour les projets qui rendent hommage aux vétérans canadiens.",
       "categories DO NOT USE": "Community funding",
       "availableIndependently": "Requires Gateway Benefit",
       "sortingPriority": "low",
@@ -270,7 +265,7 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/remembrance/funding-programs/commemorative-partnership/community-war-memorial",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/remembrance/funding-programs/commemorative-partnership/community-war-memorial",
       "oneLineDescriptionEn": "A fund for the construction, restoration or expansion of war memorials.",
-      "oneLineDescriptionFr": "Une subvention pour la construction, la restauration ou l'expansion de monuments commémoratifs.",
+      "oneLineDescriptionFr": "Subvention pour la construction, la restauration ou l'expansion de monuments commémoratifs.",
       "categories DO NOT USE": "Community funding",
       "availableIndependently": "Requires Gateway Benefit",
       "sortingPriority": "low",
@@ -293,7 +288,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/critical-injury-benefit",
       "needs": ["recl3hMcrWpKFaR9B"],
       "oneLineDescriptionEn": "A lump-sum payment that recognizes the immediate impact of the most severe and traumatic service-related injuries or diseases.",
-      "oneLineDescriptionFr": "Une somme forfaitaire pour reconnaître l’effet immédiat des blessures ou maladies les plus graves et traumatiques liées au service.",
+      "oneLineDescriptionFr": "Somme forfaitaire pour reconnaître l’effet immédiat des blessures ou maladies les plus graves et traumatiques liées au service.",
       "categories DO NOT USE": "Financial assistance",
       "childBenefits": ["recWzMubWbjhkzuGF"],
       "availableIndependently": "Independent",
@@ -320,7 +315,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/death-benefit",
       "needs": ["recf9RX3o0b4LJD3J", "recl3hMcrWpKFaR9B"],
       "oneLineDescriptionEn": "A lump-sum payment to recognize the impact that a CAF member's service-related death has on the immediate family.",
-      "oneLineDescriptionFr": "Un paiement forfaitaire reconnaître les répercussions du décès lié au service d’un membre des FAC sur sa famille immédiate.",
+      "oneLineDescriptionFr": "Paiement forfaitaire pour reconnaître les répercussions du décès lié au service d’un membre des FAC sur sa famille immédiate.",
       "categories DO NOT USE": "Family support, Financial assistance",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/11",
@@ -342,13 +337,13 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/detention-benefits",
       "needs": ["recl3hMcrWpKFaR9B"],
       "oneLineDescriptionEn": "A lump-sum payment if you were detained by an enemy, opposing force or group carrying out a terrorist activity.",
-      "oneLineDescriptionFr": "Une somme forfaitaire si vous avez été détenu par un ennemi, une force adverse ou un groupe se livrant à une activité terroriste.",
+      "oneLineDescriptionFr": "Somme forfaitaire si vous avez été détenu par un ennemi, une force adverse ou un groupe se livrant à une activité terroriste.",
       "categories DO NOT USE": "Financial assistance",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/903",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/903",
       "sortingPriority": "low",
-      "noteEn": "If the period of your captivity was prior to April 1, 2016, please see [Prisoner of War Compensation](https://www.veterans.gc.ca/eng/financial-support/prisoner-of-war-benefits/prisoner-of-war-compensation).",
-      "noteFr": "(fra)",
+      "noteEn": "If the period of your captivity was prior to April 1, 2006, please see [Prisoner of War Compensation](https://www.veterans.gc.ca/eng/financial-support/prisoner-of-war-benefits/prisoner-of-war-compensation).",
+      "noteFr": "Si votre période de captivité a débuté avant le 1er avril 2006, veuillez consulter la section portant sur l’[indemnité de prisonnier de guerre](https://www.veterans.gc.ca/fra/financial-support/prisoner-of-war-benefits/prisoner-of-war-compensation).",
       "benefitEligibility": ["recJr3b4fCXgqIpGj"],
       "Readability": "Grade 10",
       "id": "reczafuOI6a3CVh05",
@@ -383,7 +378,7 @@
     },
     {
       "vacNameEn": "Income Replacement Benefit for survivor and children",
-      "vacNameFr": "Prestation de remplacement du revenu pour survivant et orphelin(s) ",
+      "vacNameFr": "Prestation de remplacement du revenu accordée aux survivants et aux orphelins",
       "benefitPageEn": "https://veterans.gc.ca/eng/family-caregiver/financial-programs-services/income-replacement-benefit-survivors ",
       "benefitPageFr": "https://veterans.gc.ca/fra/family-caregiver/financial-programs-services/income-replacement-benefit-survivors ",
       "needs": ["recl3hMcrWpKFaR9B", "recf9RX3o0b4LJD3J"],
@@ -463,7 +458,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/after-injury/disability-benefits/exceptional-incapacity-allowance",
       "needs": ["recl3hMcrWpKFaR9B", "reciCZbLGkKLIqapM"],
       "oneLineDescriptionEn": "Additional monthly payment for a disability pensioner when your illness or injury impacts your quality of life.",
-      "oneLineDescriptionFr": "Versements mensuels supplémentaire pour un bénéficiaire d'une pension d'invalidité quand votre maladie ou votre blessure affecte votre qualité de vie.",
+      "oneLineDescriptionFr": "Versements mensuels supplémentaires pour le bénéficiaire d'une pension d'invalidité quand votre maladie ou votre blessure affecte votre qualité de vie.",
       "categories DO NOT USE": "Financial assistance",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1931#anchor57066",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57066",
@@ -508,7 +503,7 @@
     },
     {
       "vacNameEn": "Funeral and burial assistance",
-      "vacNameFr": "Programme de frais de funérailles et d'inhumations",
+      "vacNameFr": "Programme d'aide pour les funérailles et l'inhumation",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/funeral-burial",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/funeral-burial",
       "needs": ["recf9RX3o0b4LJD3J", "recl3hMcrWpKFaR9B"],
@@ -583,7 +578,7 @@
       "benefitPageFr": "https://veterans.gc.ca/fra/financial-support/income-support/income-replacement-benefit",
       "needs": ["recl3hMcrWpKFaR9B"],
       "oneLineDescriptionEn": "A monthly payment to maintain your income while you are taking part in the VAC rehabilitation program.",
-      "oneLineDescriptionFr": "Un paiement mensuel pour maintenir votre revenu pendant que vous participez au programme de réadaptation d'ACC.",
+      "oneLineDescriptionFr": "Paiement mensuel pour maintenir votre revenu pendant que vous participez au programme de réadaptation d'ACC.",
       "sortingPriority": "medium",
       "noteEn": "You need to be approved for [Rehabilitation services](https://www.veterans.gc.ca/eng/services/transition/rehabilitation/services) to be eligible for the Income Replacement Benefit.",
       "noteFr": "Votre demande de [services de réadaptation](https://www.veterans.gc.ca/fra/services/transition/rehabilitation/services) doit avoir été approuvée pour que vous puissiez être admissible à la prestation de remplacement du revenu.",
@@ -676,7 +671,7 @@
       "oneLineDescriptionFr": "Cliniques de consultation externe et de traitement en résidence qui évaluent et traitent les troubles de santé mentale liés au service.",
       "sortingPriority": "medium",
       "noteEn": "You need a referral from a [case manager](https://www.veterans.gc.ca/eng/health-support/case-management) to access an OSI clinic.",
-      "noteFr": "(fra) Une référence de votre [gestionnaire de cas](https://www.veterans.gc.ca/fra/health-support/case-management) est nécessaire pour vous rendre à la clinique. ",
+      "noteFr": "Vous avez besoin de la recommandation d’un [gestionnaire de cas](https://www.veterans.gc.ca/fra/health-support/case-management) pour consulter une clinique TSO.",
       "benefitExamples": [
         "recm4FCe3wGDVk5Ms",
         "receojjqPcCZ8QKRC",
@@ -686,7 +681,7 @@
       ],
       "benefitEligibility": ["reccn8fgUEs7hokbT"],
       "seeMoreSentenceEn": "The clinics provide individual and group therapy sessions to address such things as:",
-      "seeMoreSentenceFr": "(fra) Les  cliniques offrent des séances de thérapie individuelle et de groupe pour ce qui sui :",
+      "seeMoreSentenceFr": "Les cliniques offrent des séances de thérapie individuelles et de groupe pour traiter des problèmes tels que:",
       "Readability": "Grade 13",
       "id": "recdDnpIo2OsKJfUK",
       "categories DO NOT USE": "",
@@ -714,7 +709,7 @@
       ],
       "benefitEligibility": ["rectGlcz2I8lVu5zg"],
       "seeMoreSentenceEn": "You may be interested in pastoral support if you are:",
-      "seeMoreSentenceFr": " Le soutien spirituel peut vous intéresser si vous êtes :",
+      "seeMoreSentenceFr": " Le soutien spirituel peut vous intéresser si :",
       "Readability": "Grade 12",
       "id": "recRwpM2DTNPdi3Yj",
       "childBenefits": [],
@@ -739,7 +734,7 @@
       ],
       "benefitEligibility": ["recRTIobHblMQIjwn"],
       "seeMoreSentenceEn": "Some examples of an operational stress injury include:",
-      "seeMoreSentenceFr": "Some examples of an operational stress injury include:",
+      "seeMoreSentenceFr": "Voici quelques exemples d’un traumatisme lié au stress opérationnel :",
       "Readability": "Grade 12",
       "id": "recNzUpa4KizSO5ff",
       "categories DO NOT USE": "",
@@ -752,19 +747,19 @@
     },
     {
       "vacNameEn": "Prisoner of War Compensation",
-      "vacNameFr": "Indemnité des prisonnier de guerre",
+      "vacNameFr": "Indemnité de prisonnier de guerre",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/pow",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/pow",
       "needs": ["recl3hMcrWpKFaR9B"],
-      "oneLineDescriptionEn": "A monthly payment to Second World War or Korean War Veterans who have a low household income.",
-      "oneLineDescriptionFr": "Un paiement mensuel aux anciens combattants de la Seconde Guerre mondiale ou de la guerre de Corée qui ont un faible revenu.",
+      "oneLineDescriptionEn": "A monthly payment to Second World War, Korean War or Veterans who served during military operations subsequent to the Second World War.",
+      "oneLineDescriptionFr": "Un paiement mensuel versé aux vétérans ayant servi pendant la Seconde Guerre mondiale, pendant la guerre de Corée ou dans le cadre d’opérations militaires après la Seconde Guerre mondiale. ",
       "categories DO NOT USE": "Financial assistance, Family support",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/25",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/25",
       "sortingPriority": "low",
-      "noteEn": "If the period of your captivity began on or after April 1, 2016, please see [Detention Benefit](https://www.veterans.gc.ca/eng/financial-support/prisoner-of-war-benefits/detention-benefit). ",
-      "noteFr": "(fra) consulter la section sur l’[indemnité de captivité]( https://www.veterans.gc.ca/fra/services/financial/detention-benefits).",
+      "noteEn": "If the period of your captivity began on or after April 1, 2006, please see [Detention Benefit](https://www.veterans.gc.ca/eng/financial-support/prisoner-of-war-benefits/detention-benefit). ",
+      "noteFr": "Si votre période de captivité a débuté après le 1er avril 2006, veuillez consulter la section sur l’[indemnité de captivité](https://www.veterans.gc.ca/fra/financial-support/prisoner-of-war-benefits/detention-benefit). ",
       "benefitEligibility": ["rec6b8bvBzygEgeIK"],
       "Readability": "Grade 8",
       "id": "rec897CEZOiODNrft",
@@ -796,7 +791,6 @@
       "sortingPriority": "high",
       "benefitExamples": [
         "rec5XjawCRDrTAzgv",
-        "rec5xOvn1trC63W8c",
         "recWJVAjwUOLelsDs",
         "recJlHvgkElZcjRUk"
       ],
@@ -813,7 +807,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/family-caregiver/financial-programs-services/survivors-pension",
       "needs": ["recf9RX3o0b4LJD3J", "recl3hMcrWpKFaR9B"],
       "oneLineDescriptionEn": "A monthly payment to the surviving spouse or common-law partner of a disability pensioner.",
-      "oneLineDescriptionFr": "Un paiement mensuel versés à l'époux ou au conjoint de fait survivant d'un bénéficiaire d'une pension d'invalidité.",
+      "oneLineDescriptionFr": "Paiement mensuel versé à l'époux ou au conjoint de fait survivant d'un bénéficiaire d'une pension d'invalidité.",
       "categories DO NOT USE": "Family support, Financial assistance",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1131",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1131",
@@ -835,7 +829,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/interview",
       "needs": ["recXFXV3lZ5z2yya9", "reciCZbLGkKLIqapM"],
       "oneLineDescriptionEn": "Before you release, a meeting to provide information on VAC programs and services available to you and your family.",
-      "oneLineDescriptionFr": "Avant de quitter service, rencontre visant à vous donner de l'information sur les programmes et services d'ACC qui vous sont offerts, à vous et à votre famille.",
+      "oneLineDescriptionFr": "Avant de quitter le service, rencontre visant à vous donner de l'information sur les programmes et services d'ACC qui vous sont offerts, à vous et à votre famille.",
       "availableIndependently": "Independent",
       "sortingPriority": "high",
       "benefitExamples": [
@@ -866,7 +860,7 @@
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/29",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/29",
       "noteEn": "You need to be approved for a [Disability Benefit](https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/compensation-illness-injury/disability-benefits),  the [Veterans Independence Program](https://www.veterans.gc.ca/eng/services/health/veterans-independence-program), [Long Term Care](https://www.veterans.gc.ca/eng/services/health/long-term-care), or the [War Veterans Allowance](https://www.veterans.gc.ca/eng/services/financial/war-veterans-allowance) to qualify for one or more treatment benefits.",
-      "noteFr": "Votre demande de [prestations d’invalidité]( https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/disability-benefits), d’[avantages du Programme pour l’autonomie des anciens combattants]( https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program), de  [Soins de longue durée]( https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/medical-costs/long-term-care) ou d’[allocation aux anciens combattants](https://www.veterans.gc.ca/fra/financial-support/income-support/war-veterans-allowance) doit avoir été approuvée pour que vous soyez admissible à un ou plusieurs des avantages médicaux. ",
+      "noteFr": "Votre demande de [prestations d’invalidité]( https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/compensation-illness-injury/disability-benefits), d’[avantages du Programme pour l’autonomie des anciens combattants]( https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program), de  [soins de longue durée]( https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/medical-costs/long-term-care) ou d’[allocation aux anciens combattants](https://www.veterans.gc.ca/fra/financial-support/income-support/war-veterans-allowance) doit avoir été approuvée pour que vous soyez admissible à un ou plusieurs des avantages médicaux. ",
       "benefitExamples": [
         "recp0dcG0OuQTdbUz",
         "recJlHvgkElZcjRUk",
@@ -915,7 +909,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/veteran-family-program",
       "needs": ["reciCZbLGkKLIqapM", "recXFXV3lZ5z2yya9", "recTv9il8X9IhPosv"],
       "oneLineDescriptionEn": "Continued access to services from Military Family Resource Centres to assist medically-released Veterans and their family.",
-      "oneLineDescriptionFr": "Accès continu aux services des Centres de ressources pour les familles des militaires pour vous aider les vétérans libérés pour des raisons médicales et leur famille.",
+      "oneLineDescriptionFr": "Accès continu aux services des Centres de ressources pour les familles des militaires pour aider les vétérans libérés pour des raisons médicales et leur famille.",
       "categories DO NOT USE": "Health, Family support",
       "sortingPriority": "medium",
       "benefitExamples": [
@@ -967,7 +961,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/veterans-emergency-fund",
       "needs": ["recAquZzUADqwsD69"],
       "oneLineDescriptionEn": "Quick access to funds for urgent needs such as food, shelter or medical expenses.",
-      "oneLineDescriptionFr": "Accès rapide à des fonds en cas de besoins urgents (nourriture, logement ou frais médicaux).",
+      "oneLineDescriptionFr": "Accès rapide à des fonds en cas de besoins urgents, comme la nourriture, le logement ou les frais médicaux.",
       "categories DO NOT USE": "Financial assistance, Family support",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/2690",
@@ -993,7 +987,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/health/veterans-independence-program",
       "needs": ["reciCZbLGkKLIqapM", "recTv9il8X9IhPosv"],
       "oneLineDescriptionEn": "Payments for home and healthcare services to help you remain independent and self-sufficient in your home and your community.",
-      "oneLineDescriptionFr": "Paiements pour les services à domicile et les soins de santé dont vous avez besoin pour vivre en toute autonomie à la maison.",
+      "oneLineDescriptionFr": "Paiements pour les services à domicile et les soins de santé dont vous avez besoin pour vivre en toute autonomie à la maison et dans votre collectivité.",
       "categories DO NOT USE": "Health, Financial assistance",
       "childBenefits": ["recaMErtyr0ZgyzHS"],
       "availableIndependently": "Independent",
@@ -1023,7 +1017,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program-caregivers",
       "needs": ["reciCZbLGkKLIqapM", "recTv9il8X9IhPosv", "recf9RX3o0b4LJD3J"],
       "oneLineDescriptionEn": "Payments for home services to help qualifying caregivers to remain independent and self-sufficient in their home.",
-      "oneLineDescriptionFr": "Paiements pour les services à domicile aux aidants admissibles pour vivre en toute autonomie à leur maison.",
+      "oneLineDescriptionFr": "Paiements pour les services à domicile aux aidants admissibles pour vivre en toute autonomie dans leur maison.",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1221",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1221",
       "benefitExamples": [
@@ -1049,7 +1043,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/housing-and-home-life/help-at-home/veterans-independence-program-survivors",
       "needs": ["recf9RX3o0b4LJD3J", "reciCZbLGkKLIqapM", "recTv9il8X9IhPosv"],
       "oneLineDescriptionEn": "Payments for home services to help qualifying survivors to remain independent and self-sufficient in their home.",
-      "oneLineDescriptionFr": "Paiements pour les services à domicile aux conjoints survivants admissibles pour vivre en toute autonomie à leur maison.",
+      "oneLineDescriptionFr": "Paiements pour les services à domicile aux conjoints survivants admissibles pour vivre en toute autonomie dans leur maison.",
       "benefitExamples": [
         "recTGBcBF3eAPp851",
         "rec02tB1EVhFOlLkw",
@@ -1075,7 +1069,7 @@
       "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-assistance",
       "needs": ["recXFXV3lZ5z2yya9", "recf9RX3o0b4LJD3J"],
       "oneLineDescriptionEn": "Coaching, support or other training to help a qualifying spouse or survivor return to work.",
-      "oneLineDescriptionFr": "Accompagnement, soutien ou autre formation pour que les époux ou conjoints de fait et survivants admissibles peuvent retourner au travail.",
+      "oneLineDescriptionFr": "Accompagnement, soutien ou autre formation pour que les époux ou conjoints de fait et survivants admissibles puissent retourner au travail.",
       "categories DO NOT USE": "Education and jobs, Family support",
       "benefitExamples": [
         "rech6miwpTGrCFHBR",
@@ -1125,7 +1119,7 @@
     },
     {
       "vacNameEn": "War Veterans Allowance (WVA)",
-      "vacNameFr": "Allocation d'ancien combattant",
+      "vacNameFr": "Allocation aux anciens combattants",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/financial/war-veterans-allowance",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/financial/war-veterans-allowance",
       "needs": ["recl3hMcrWpKFaR9B", "recTv9il8X9IhPosv"],
@@ -1756,7 +1750,6 @@
         "recNjPX7Q8YoNjA8x",
         "reclGiFGA44ZBGt1u",
         "recclMvgOqkgozA3R",
-        "recR0Fq4NwCOAPZFr",
         "rec6qhzt4ZuVxGxQl",
         "recj9D8AamqFgiSGJ",
         "rec0lKro6hpmBcHPo"
@@ -1857,7 +1850,6 @@
         "recRwpM2DTNPdi3Yj",
         "recI2f35ux8ZwnhWI",
         "recAchKBVWL7xE5iu",
-        "recR0Fq4NwCOAPZFr",
         "recVLkdjy2nF0ATsT",
         "recjVZeHWbyzubolB",
         "recJkNaNwCWmm6Wnf",
@@ -2079,7 +2071,7 @@
       "section": "benefit_card",
       "key": "examples",
       "English": "Some examples of what this program may provide:",
-      "French": "Quelques exemples de ce que ce programme peut fournir :",
+      "French": "Quelques exemples de ce que ce programme peut fournir:",
       "id": "benefit_card.examples"
     },
     {
@@ -2114,14 +2106,14 @@
       "section": "benefits_b",
       "key": "eligible_open_family",
       "English": "Additionally, family members may qualify for:",
-      "French": "De plus, les membres de la famille peuvent être admissibles à :",
+      "French": "De plus, les membres de la famille peuvent être admissibles à ce qui suit:",
       "id": "benefits_b.eligible_open_family"
     },
     {
       "section": "benefits_b",
       "key": "eligible_open_veteran",
       "English": "If you qualify for {{x}}, you may also qualify for:",
-      "French": "Si vous êtes admissible à {{x}}, vous pourriez aussi être admissible à:",
+      "French": "Si vous êtes admissible à {{x}}, vous pourriez aussi être admissible à ce qui suit:",
       "id": "benefits_b.eligible_open_veteran"
     },
     {
@@ -2162,7 +2154,7 @@
     {
       "key": "CAF",
       "English": "Canadian Armed Forces",
-      "French": "Forces Armées Canadiennes",
+      "French": "Forces armées canadiennes",
       "id": "CAF",
       "section": ""
     },
@@ -2540,7 +2532,7 @@
     {
       "key": "filter by category",
       "English": "What kind of benefits are you looking for?",
-      "French": "Quel type de avantages recherchez-vous? ",
+      "French": "Quels types d'avantages recherchez-vous? ",
       "id": "filter by category",
       "section": ""
     },
@@ -2960,7 +2952,7 @@
     {
       "key": "Select all that apply",
       "English": "Select all that apply",
-      "French": "Sélectionez tous ceux qui s’appliquent",
+      "French": "Sélectionnez tous ceux qui s’appliquent",
       "id": "Select all that apply",
       "section": ""
     },
@@ -3564,7 +3556,7 @@
     },
     {
       "display_text_english": "Canadian Armed Forces",
-      "display_text_french": "Forces Armées Canadiennes",
+      "display_text_french": "Forces armées canadiennes",
       "linked_question": ["serviceType"],
       "variable_name": "CAF",
       "benefits 2": "Career Transition Services, Career Impact Allowance, Critical Injury Benefit, Death Benefit, Detention Benefits, Disability Award, Education and Training Benefit, Educational Assistance for children, Family peer support (Operational Stress Injury Social Support), Group Health Insurance, Jobs in the federal government, Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Disability Pension, Funeral and Burial Assistance",
@@ -3645,7 +3637,7 @@
     },
     {
       "display_text_english": "Second World War or Korean War Veterans",
-      "display_text_french": "Vétérans de la Seconde Guerre mondiale ou la guerre de Corée",
+      "display_text_french": "Vétérans de la Seconde Guerre mondiale ou de la guerre de Corée",
       "linked_question": ["serviceType"],
       "questionClearLogic": ["rec5TPyrbGlZCJjP6"],
       "variable_name": "WSV (Second World War or Korea)",
@@ -4261,9 +4253,9 @@
     },
     {
       "english": "chiropractor",
-      "french": " chiropraticien",
-      "linked_benefits": ["Rehabilitation services"],
-      "id": "rec5xOvn1trC63W8c"
+      "french": "chiropractie",
+      "id": "rec5xOvn1trC63W8c",
+      "linked_benefits": []
     },
     {
       "english": "massage therapy ",
@@ -4321,7 +4313,7 @@
     },
     {
       "english": "wheelchairs",
-      "french": "chaise roulante",
+      "french": "fauteuil roulant",
       "linked_benefits": ["Treatment Benefits"],
       "id": "recgC0Bvqq0MNCs6V"
     },
@@ -4351,7 +4343,7 @@
     },
     {
       "english": "rent, mortgage",
-      "french": "Loyer, hypothèque",
+      "french": "loyer, hypothèque",
       "linked_benefits": ["Veterans Emergency Fund"],
       "id": "recPb45ME81WDLq7e"
     },
@@ -4485,5 +4477,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1556106407328
+  "timestamp": 1556287216308
 }
