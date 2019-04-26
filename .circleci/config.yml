@@ -81,7 +81,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "release" ]; then
               docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:release"
             fi
           name: "Push Docker Image"
       - run:
@@ -104,3 +104,11 @@ workflows:
               only:
                 - develop
                 - master
+      - release:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
