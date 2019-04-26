@@ -6,40 +6,29 @@ import { connect } from "react-redux";
 import {
   getProfileFilters,
   getFilteredBenefitsWithoutSearch,
-  getFilteredBenefits
+  getNonFilteredBenefitsWithoutSearch,
+  getFilteredBenefits,
+  getNonFilteredBenefits
 } from "../selectors/benefits";
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
-import Body from "./typography/body";
 import SearchBox from "./search_box";
-import Button from "./button";
-import { getLink } from "../utils/common";
-import { globalTheme } from "../theme";
+import { getBenefitCountString } from "../utils/common";
+import NoResultsButtons from "./no_results_buttons";
+import ResultsHeader from "./results_header";
+import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
-const noBenefitsPane = css`
-  text-align: center;
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
-`;
-const buttonBar = css`
-  margin-top: 40px;
-`;
-const button = css`
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    margin: 20px;
-  }
-`;
 const title = css`
   padding-bottom: 15px;
 `;
-const orText = css`
-  display: inline-block;
-  padding: 0 20px;
-  margin-bottom: 0;
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    display: none;
-  }
+const spacer = css`
+  margin-top: 40px;
+  width: 100%;
+`;
+const bottomPadding = css`
+  padding-bottom: 27px;
 `;
 
 export class BenefitsPane extends Component {
@@ -48,6 +37,16 @@ export class BenefitsPane extends Component {
       this.props.saveQuestionResponse(q.variable_name, "");
     });
     this.props.saveQuestionResponse("selectedNeeds", {});
+    this.clearQueryParams();
+  };
+
+  clearQueryParams = () => {
+    const newUrl = this.props.url;
+    this.props.profileQuestions.forEach(q => {
+      newUrl.query[q.variable_name] = "";
+    });
+    newUrl.query["selectedNeeds"] = {};
+    Router.replace(mutateUrl(newUrl, "", ""));
   };
 
   countSelection = () => {
@@ -56,16 +55,17 @@ export class BenefitsPane extends Component {
     return count + Object.values(this.props.selectedNeeds).length;
   };
 
-  countString = (x, t) => {
+  countString = x => {
+    const t = this.props.t;
     switch (true) {
       case this.countSelection() === 0 && this.props.searchString.trim() === "":
         return t("B3.All benefits to consider");
-      case x === 0:
-        return t("B3.No benefits");
-      case x === 1:
-        return t("B3.One benefit");
+      case this.props.searchString.trim() === "":
+        return getBenefitCountString(x, t);
+      case x.length === 1:
+        return t("B3.search_results_single");
       default:
-        return t("B3.x benefits to consider", { x: x });
+        return t("B3.search_results", { x: x.length });
     }
   };
 
@@ -73,86 +73,113 @@ export class BenefitsPane extends Component {
     this.props.setSearchString(event.target.value);
   };
 
-  goToMap = url => {
-    const mapLink = getLink(url, "/map", "benefits-directory");
-    window.location.assign(mapLink);
-  };
-
   render() {
-    const { t, filteredBenefits } = this.props; // eslint-disable-line no-unused-vars
-    if (this.props.filteredBenefitsWithoutSearch.length === 0) {
-      return (
-        <div className={noBenefitsPane}>
-          <Header size="lg" headingLevel="h1">
-            {t("BenefitsPane.no_filtered_benefits")}
+    const {
+      t,
+      filteredBenefits,
+      filteredBenefitsWithoutSearch,
+      nonFilteredBenefits,
+      searchString,
+      reduxState,
+      store,
+      setSearchString
+    } = this.props; // eslint-disable-line no-unused-vars
+    return (
+      <Grid container spacing={16}>
+        <Grid item xs={12}>
+          <Header
+            className={"BenefitsCounter"}
+            styles={title}
+            size="md"
+            headingLevel="h3"
+            autoFocus={true}
+          >
+            {filteredBenefitsWithoutSearch.length === 0
+              ? t("BenefitsPane.no_filtered_benefits")
+              : this.countString(
+                  filteredBenefits.concat(
+                    searchString.trim() === "" ? [] : nonFilteredBenefits
+                  )
+                )}
           </Header>
-
-          <div className={buttonBar}>
-            <Button
-              className={button}
-              id="reset_filters_button"
-              onClick={() => this.clearFilters()}
-            >
-              {t("BenefitsPane.reset_filters")}
-            </Button>
-
-            <Body className={orText}>{t("BenefitsPane.or")}</Body>
-
-            <Button
-              className={button}
-              id="contact_us_button"
-              secondary
-              onClick={() => this.goToMap(this.props.url)}
-            >
-              {t("BenefitsPane.contact_us")}
-            </Button>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <Grid container spacing={16}>
-          <Grid item xs={12}>
-            <Header
-              className={"BenefitsCounter " + title}
-              size="lg"
-              headingLevel="h1"
-            >
-              {this.countString(filteredBenefits.length, t)}
-            </Header>
-            {filteredBenefits.length > 0 ? (
-              <Body>{t("B3.check eligibility")}</Body>
-            ) : (
-              ""
-            )}
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <SearchBox
-              inputId="bbSearchField"
-              buttonId="searchButtonLink"
-              placeholder={this.props.t("search")}
-              value={this.props.searchString}
-              onChange={this.handleSearchChange}
-              disableButton={true}
-              onClear={() => this.props.setSearchString("")}
+          {filteredBenefitsWithoutSearch.length === 0 ? (
+            <NoResultsButtons
+              clearFilters={this.clearFilters}
+              url={this.props.url}
+              t={t}
             />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Grid container spacing={24}>
-              <BenefitList
-                t={t}
-                filteredBenefits={filteredBenefits}
-                searchString={this.props.searchString}
-                showFavourites={true}
-                store={this.props.store}
-              />
-            </Grid>
-          </Grid>
+          ) : null}
         </Grid>
-      );
-    }
+
+        {filteredBenefitsWithoutSearch.length === 0 ? null : (
+          <React.Fragment>
+            <Grid item xs={12}>
+              <div css={bottomPadding}>
+                <SearchBox
+                  inputId="bbSearchField"
+                  buttonId="searchButtonLink"
+                  placeholder={t("search")}
+                  value={searchString}
+                  onChange={this.handleSearchChange}
+                  disableButton={true}
+                  onClear={() => setSearchString("")}
+                  url={this.props.url}
+                />
+              </div>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Grid container spacing={24}>
+                <ResultsHeader
+                  benefitCount={filteredBenefits.length}
+                  headerText={
+                    filteredBenefitsWithoutSearch.length ==
+                    reduxState.benefits.length
+                      ? t("B3.results_all_benefits")
+                      : t("B3.results_filtered")
+                  }
+                  searchString={searchString}
+                />
+                <BenefitList
+                  t={t}
+                  currentLanguage={t("current-language-code")}
+                  filteredBenefits={filteredBenefits}
+                  searchString={searchString}
+                  savedList={true}
+                  store={store}
+                />
+
+                {nonFilteredBenefits.length > 0 ? <div css={spacer} /> : null}
+                <ResultsHeader
+                  benefitCount={nonFilteredBenefits.length}
+                  headerText={t("B3.results_all_benefits")}
+                  searchString={searchString}
+                />
+                {filteredBenefits.length === 0 &&
+                nonFilteredBenefits.length === 0 ? (
+                  <ResultsHeader
+                    benefitCount={1}
+                    headerText={t("B3.search_tip")}
+                    searchString={searchString}
+                  />
+                ) : null}
+
+                {searchString.trim() === "" ? null : (
+                  <BenefitList
+                    t={t}
+                    currentLanguage={t("current-language-code")}
+                    filteredBenefits={nonFilteredBenefits}
+                    searchString={searchString}
+                    savedList={true}
+                    store={store}
+                  />
+                )}
+              </Grid>
+            </Grid>
+          </React.Fragment>
+        )}
+      </Grid>
+    );
   }
 }
 
@@ -180,7 +207,12 @@ const mapStateToProps = (reduxState, props) => {
       reduxState,
       props
     ),
+    nonFilteredBenefitsWithoutSearch: getNonFilteredBenefitsWithoutSearch(
+      reduxState,
+      props
+    ),
     filteredBenefits: getFilteredBenefits(reduxState, props),
+    nonFilteredBenefits: getNonFilteredBenefits(reduxState, props),
     searchString: reduxState.searchString,
     selectedNeeds: reduxState.selectedNeeds,
     reduxState: reduxState
@@ -194,6 +226,7 @@ BenefitsPane.propTypes = {
   profileFilters: PropTypes.object.isRequired,
   filteredBenefitsWithoutSearch: PropTypes.array.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
+  nonFilteredBenefits: PropTypes.array.isRequired,
   id: PropTypes.string.isRequired,
   printUrl: PropTypes.string,
   searchString: PropTypes.string.isRequired,

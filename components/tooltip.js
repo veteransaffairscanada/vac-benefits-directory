@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 
 const padding = 16;
@@ -27,30 +28,17 @@ class Tooltip extends Component {
     position: relative;
     display: inline-block;
     :hover {
-      .${this.tooltipTextStyle} {
-        visibility: visible;
-      }
-     .${this.tooltipTextStyle}::after {
-        content: " ";
-        position: absolute;
-        top: 100%; /* At the bottom of the tooltip */
-        left: 50%;
-        margin-left: -7px;
-        border-width: 7px;
-        border-style: solid;
-        border-color: ${
-          globalTheme.colour.paleGrey
-        } transparent transparent transparent;
+      visibility: visible;
     }
   `;
 
   render() {
-    const { children, disabled, tooltipText } = this.props;
+    const { children, disabled, tooltipText, styles } = this.props;
     return (
-      <div className={this.tooltipStyle}>
+      <div css={styles ? [styles, this.tooltipStyle] : this.tooltipStyle}>
         {children}
         {!disabled ? (
-          <span className={this.tooltipTextStyle}>{tooltipText}</span>
+          <span css={this.tooltipTextStyle}>{tooltipText}</span>
         ) : null}
       </div>
     );
@@ -62,7 +50,7 @@ Tooltip.propTypes = {
   tooltipText: PropTypes.string,
   disabled: PropTypes.bool,
   width: PropTypes.number,
-  className: PropTypes.string
+  styles: PropTypes.object
 };
 
 Tooltip.defaultProps = {

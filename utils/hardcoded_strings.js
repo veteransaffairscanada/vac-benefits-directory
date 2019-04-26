@@ -1,13 +1,14 @@
 exports.tableNames = [
-  "areaOffices",
   "benefits",
-  "eligibilityPaths",
+  "benefitEligibility",
   "needs",
   "translations",
   "questions",
   "multipleChoiceOptions",
   "questionDisplayLogic",
-  "questionClearLogic"
+  "questionClearLogic",
+  "benefitExamples",
+  "nextSteps"
 ];
 
 exports.servicePersonOptions = ["veteran", "servingMember"];

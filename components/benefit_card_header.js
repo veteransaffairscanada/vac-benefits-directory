@@ -1,16 +1,19 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import CardHeaderParentInfo from "./card_header_parent_info";
 import CardHeaderImportantInfo from "./card_header_important_info";
 import AlertIcon from "./icons/alert_icon";
 
 const cardTop = css`
-  border-bottom: 1px solid ${globalTheme.colour.warmGrey};
-  padding-bottom: 15px;
-  margin-bottom: 15px;
+  background-color: ${globalTheme.colour.darkPaleGrey};
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -20,9 +23,16 @@ const headerDesc = css`
   width: 100%;
   box-sizing: border-box;
   margin-left: 20px;
+  font-size: 18px;
   color: ${globalTheme.colour.greyishBrown};
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 12px;
+  }
+  a {
+    color: ${globalTheme.colour.greyishBrown};
+    :focus {
+      outline: 3px solid ${globalTheme.colour.focusColour};
+    }
   }
 `;
 
@@ -34,7 +44,7 @@ export class BenefitCardHeader extends Component {
   render() {
     const { t, benefit, benefits } = this.props;
     const parentBenefits = benefits.filter(
-      b => b.childBenefits && b.childBenefits.includes(benefit.id)
+      b => b.childBenefits && b.childBenefits.indexOf(benefit.id) != -1
     );
     const includeParentInfo =
       parentBenefits.length > 0 &&
@@ -43,9 +53,9 @@ export class BenefitCardHeader extends Component {
 
     if (includeParentInfo || includeImportantInfo) {
       return (
-        <div className={cardTop}>
+        <div css={cardTop}>
           <AlertIcon t={t} />
-          <div className={headerDesc}>
+          <div css={headerDesc}>
             {includeParentInfo ? (
               <CardHeaderParentInfo
                 t={t}
@@ -75,6 +85,7 @@ BenefitCardHeader.propTypes = {
   benefits: PropTypes.array.isRequired,
   benefit: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  language: PropTypes.string.isRequired,
   store: PropTypes.object
 };
 

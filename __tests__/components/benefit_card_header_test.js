@@ -10,8 +10,9 @@ describe("BenefitCardHeader", () => {
   beforeEach(() => {
     props = {
       t: () => "en",
-      benefit: benefitsFixture[1],
-      benefits: benefitsFixture
+      benefit: benefitsFixture[2],
+      benefits: benefitsFixture,
+      language: "en"
     };
   });
 
@@ -21,7 +22,7 @@ describe("BenefitCardHeader", () => {
   });
 
   it("renders CardHeaderParentInfo if there are parent benefits", () => {
-    props.benefit = benefitsFixture[1];
+    props.benefit = benefitsFixture[2];
     expect(
       mount(<BenefitCardHeader {...props} />).find("CardHeaderParentInfo")
         .length
@@ -29,7 +30,7 @@ describe("BenefitCardHeader", () => {
   });
 
   it("does not render CardHeaderParentInfo if there are parent benefits", () => {
-    props.benefit = benefitsFixture[0];
+    props.benefit = benefitsFixture[1];
     expect(
       mount(<BenefitCardHeader {...props} />).find("CardHeaderParentInfo")
         .length

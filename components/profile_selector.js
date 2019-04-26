@@ -1,10 +1,16 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import RadioSelector from "./radio_selector";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 import { showQuestion } from "../utils/common";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
+const radioStyle = css`
+  margin-left: 0px;
+  margin-top: 20px;
+`;
 export class ProfileSelector extends Component {
   componentDidUpdate() {
     this.props.profileQuestions.forEach((question, index) => {
@@ -18,7 +24,7 @@ export class ProfileSelector extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, url } = this.props;
     let jsx_array = [];
 
     this.props.profileQuestions.forEach((question, index) => {
@@ -26,6 +32,7 @@ export class ProfileSelector extends Component {
         jsx_array.push(
           <Grid item xs={12} key={question.variable_name + "RadioSelector"}>
             <RadioSelector
+              styles={radioStyle}
               id={question.variable_name + "RadioSelector"}
               t={t}
               legend={
@@ -41,6 +48,9 @@ export class ProfileSelector extends Component {
                   : question.tooltip_french
               }
               store={this.props.store}
+              name={"group" + index}
+              url={url}
+              updateUrl={true}
             />
           </Grid>
         );
@@ -70,7 +80,6 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = reduxState => {
   return {
-    multipleChoiceOptions: reduxState.multipleChoiceOptions,
     reduxState: reduxState,
     profileQuestions: reduxState.questions.filter(
       q => q.variable_name !== "needs"
@@ -80,11 +89,11 @@ const mapStateToProps = reduxState => {
 
 ProfileSelector.propTypes = {
   t: PropTypes.func.isRequired,
-  multipleChoiceOptions: PropTypes.array.isRequired,
   reduxState: PropTypes.object.isRequired,
   store: PropTypes.object,
   saveQuestionResponse: PropTypes.func.isRequired,
-  profileQuestions: PropTypes.array.isRequired
+  profileQuestions: PropTypes.array.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(

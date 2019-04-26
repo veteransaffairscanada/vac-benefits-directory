@@ -20,10 +20,10 @@ class Head extends Component {
         <title>{title}</title>
         <meta name="description" content={description || t("description")} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/static/favicon.ico" />
+        <link rel="icon" href="/static/leaf-favicon.png" />
         <link
+          href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800"
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Merriweather:300,400,500"
         />
       </NextHead>
     );

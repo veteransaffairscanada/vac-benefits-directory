@@ -1,5 +1,18 @@
 const benefitsFixture = [
   {
+    id: "benefit_4",
+    vacNameEn: "b4_en",
+    vacNameFr: "b4_fr",
+    benefitPageEn: "b4_link_en",
+    benefitPageFr: "b4_link_fr",
+    oneLineDescriptionEn: "b4_desc_en",
+    oneLineDescriptionFr: "b4_desc_fr",
+    needs: ["need_3"],
+    sortingPriority: "low",
+    availableIndependently: "Independent",
+    benefitEligibility: ["4", "6"]
+  },
+  {
     id: "benefit_0",
     vacNameEn: "b0_en",
     vacNameFr: "b0_fr",
@@ -10,8 +23,12 @@ const benefitsFixture = [
     needs: ["need_0", "need_1"],
     childBenefits: ["benefit_1"],
     availableIndependently: "Independent",
+    noteEn: "note_0_en [test link](/some_url)",
+    noteFr: "note_0_fr [french test link](/some_french_url)",
     sortingPriority: "low",
-    eligibilityPaths: ["ep_0"]
+    benefitEligibility: ["0"],
+    seeMoreSentenceEn: "seeMoreSentenceEn",
+    seeMoreSentenceFr: "seeMoreSentenceFr"
   },
   {
     id: "benefit_1",
@@ -26,7 +43,7 @@ const benefitsFixture = [
     noteEn: "note_1_en",
     noteFr: "note_1_fr",
     sortingPriority: "medium",
-    eligibilityPaths: ["ep_2"]
+    benefitEligibility: ["3", "5"]
   },
   {
     id: "benefit_3",
@@ -38,7 +55,7 @@ const benefitsFixture = [
     oneLineDescriptionFr: "b3_desc_fr",
     needs: ["need_2"],
     availableIndependently: "Independent",
-    eligibilityPaths: ["ep_2"]
+    benefitEligibility: ["4", "6"]
   },
   {
     id: "benefit_2",
@@ -53,7 +70,7 @@ const benefitsFixture = [
     noteEn: "note_2_en",
     noteFr: "note_2_fr",
     sortingPriority: "high",
-    eligibilityPaths: ["ep_0", "ep_1"]
+    benefitEligibility: ["1"]
   }
 ];
 

@@ -26,7 +26,9 @@ describe("Layout", () => {
       hideNoscript: true,
       i18n: {},
       showRefreshCache: false,
-      t: translate
+      t: translate,
+      skipLink: "",
+      url: { query: { lng: "en" } }
     };
     _mountedLayout = undefined;
   });
@@ -45,5 +47,10 @@ describe("Layout", () => {
   it("hides Noscript if hideNoscript is true", () => {
     props.hideNoscript = true;
     expect(mountedLayout().find("Noscript").length).toEqual(0);
+  });
+
+  it("renders the correct footer component", () => {
+    expect(mountedLayout().find("VacFooterEn").length).toEqual(1);
+    expect(mountedLayout().find("VacFooterFr").length).toEqual(0);
   });
 });

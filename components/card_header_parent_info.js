@@ -1,6 +1,7 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { logEvent } from "../utils/analytics";
 import { globalTheme } from "../theme";
 
@@ -9,10 +10,6 @@ const headerUrl = css`
 `;
 
 export class CardHeaderParentInfo extends Component {
-  logExit = url => {
-    logEvent("Exit", url);
-  };
-
   benefitUrl = benefit => {
     return this.props.t("current-language-code") === "en"
       ? benefit.benefitPageEn
@@ -29,11 +26,12 @@ export class CardHeaderParentInfo extends Component {
     let a_elements = parentBenefits.map((b, i) => (
       <a
         key={"a" + i}
-        className={headerUrl}
+        css={headerUrl}
         href={this.benefitUrl(b)}
-        target="_blank"
         rel="noopener noreferrer"
-        onClick={() => this.logExit(this.benefitUrl(b))}
+        onClick={() => {
+          logEvent("Exit", "gateway benefit", this.benefitUrl(b));
+        }}
       >
         {this.benefitTitle(b)}
       </a>

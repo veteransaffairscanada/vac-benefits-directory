@@ -1,55 +1,84 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
-import FavouriteButton from "./favourite_button";
+//import FavouriteButton from "./favourite_button";
 import Paper from "./paper";
-import { logEvent } from "../utils/analytics";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
-import { css } from "react-emotion";
-import CardFooter from "./card_footer";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+import BenefitExpansion from "./benefit_expansion";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
 import Header from "./typography/header";
-import Button from "./button";
+import Tag from "./icons/Tag";
 import { globalTheme } from "../theme";
+import LearnMoreButton from "./learn_more_button";
 
 const cardBody = css`
-  padding-top: 20px;
+  padding-top: 0px;
+  border-top: none;
+  border: 1px solid ${globalTheme.colour.darkPaleGrey};
+  box-shadow: none;
 `;
 const cardDescriptionText = css`
-  padding-top: 26px;
-  padding-bottom: 30px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-top: 10px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     padding-top: 14px;
-    padding-bottom: 20px;
   }
 `;
 const buttonRow = css`
-  margin-top: 18px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 25px;
 `;
 const root = css`
   width: 100%;
+  display: block;
 `;
 const benefitName = css`
-  padding-top: 10px;
+  padding-top: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 10px;
+  display: flex;
 `;
 
-const alignRight = css`
-  text-align: right !important;
+const padding = css`
+  padding-left: 35px;
+  padding-right: 35px;
 `;
+const flex = css`
+  align-items: center;
+  padding-top: 5px;
+  // if screen size is min.sm or larger put favourites button below learn more
+  @media only screen and (min-width: ${globalTheme.min.sm}) {
+    display: flex;
+  }
+`;
+// const floatRight = css`
+//   margin-left: auto;
+//   order: 2;
+// `;
+
+const tagStyle = css`
+  font-size: 12px !important;
+  color: ${globalTheme.colour.slateGrey} !important;
+  margin-right: 8px;
+  margin-bottom: 2px;
+  vertical-align: middle;
+`;
+
 export class BenefitCard extends Component {
-  logExit = url => {
-    logEvent("Exit", url);
-  };
-
   componentDidMount() {
     this.forceUpdate();
   }
 
   render() {
-    const { t, benefit } = this.props;
+    const { t, benefit, store } = this.props;
 
     const needsMet = benefit.needs
       ? this.props.needs.filter(
@@ -58,80 +87,90 @@ export class BenefitCard extends Component {
             this.props.selectedNeeds[need.id]
         )
       : [];
-
+    const language = t("current-language-code");
     const searchWords = this.props.searchString.split(/\s+/);
     return (
       <Grid item xs={12}>
-        <div className={root}>
-          <Paper padding="md" className={cardBody}>
+        <div css={root}>
+          <Paper styles={cardBody}>
             <BenefitCardHeader
               benefit={benefit}
               t={t}
               store={this.props.store}
+              language={language}
             />
-            <Header className={benefitName} size="sm" headingLevel="h2">
+            <Header styles={benefitName} size="md" headingLevel="h2">
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
                 textToHighlight={
-                  t("current-language-code") === "en"
+                  this.props.currentLanguage === "en"
                     ? benefit.vacNameEn
                     : benefit.vacNameFr
                 }
               />
+              {/* {this.props.savedList === false ? (
+                <FavouriteButton
+                  benefit={benefit}
+                  toggleOpenState={() => {}}
+                  store={store}
+                  t={t}
+                  icon={true}
+                />
+              ) : null} */}
             </Header>
-
-            <OneLiner className={"cardDescription " + cardDescriptionText}>
+            <div css={padding}>
+              {needsMet.length > 0 ? <Tag css={tagStyle} /> : null}
+              {needsMet.map(need => (
+                <NeedTag
+                  key={benefit.id + need.id}
+                  t={t}
+                  need={need}
+                  last={needsMet.indexOf(need) === needsMet.length - 1}
+                />
+              ))}
+            </div>
+            <OneLiner
+              className={"cardDescription"}
+              styles={cardDescriptionText}
+            >
               <Highlighter
                 searchWords={searchWords}
                 autoEscape={true}
                 textToHighlight={
-                  t("current-language-code") === "en"
+                  this.props.currentLanguage === "en"
                     ? benefit.oneLineDescriptionEn
                     : benefit.oneLineDescriptionFr
                 }
               />
             </OneLiner>
-            <div>
-              {needsMet.map(need => (
-                <NeedTag key={benefit.id + need.id} t={t} need={need} />
-              ))}
-            </div>
 
-            <Grid container className={buttonRow}>
-              {this.props.showFavourite ? (
-                <Grid item xs={4}>
-                  <FavouriteButton
-                    benefit={benefit}
-                    toggleOpenState={() => {}}
-                    store={this.props.store}
-                    t={t}
-                  />
-                </Grid>
-              ) : null}
-              <Grid item xs={8} className={alignRight}>
-                <Button
-                  arrow={true}
-                  onClick={() => {
-                    this.logExit(
-                      t("current-language-code") === "en"
-                        ? benefit.benefitPageEn
-                        : benefit.benefitPageFr
-                    );
-                    const url =
-                      t("current-language-code") === "en"
-                        ? benefit.benefitPageEn
-                        : benefit.benefitPageFr;
-                    const win = window.open(url, "_blank");
-                    win.focus();
-                  }}
-                >
-                  {t("Find out more")}
-                </Button>
+            <Grid container css={buttonRow}>
+              <Grid item xs={12}>
+                <BenefitExpansion
+                  css={padding}
+                  benefit={benefit}
+                  t={t}
+                  store={store}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <div css={flex}>
+                  <LearnMoreButton benefit={benefit} t={t} />
+                  {/* <div css={floatRight}>
+                    {this.props.savedList ? (
+                      <FavouriteButton
+                        benefit={benefit}
+                        toggleOpenState={() => {}}
+                        store={store}
+                        t={t}
+                      />
+                    ) : null}
+                  </div> */}
+                </div>
               </Grid>
             </Grid>
           </Paper>
-          <CardFooter benefit={benefit} t={t} store={this.props.store} />
         </div>
       </Grid>
     );
@@ -142,6 +181,7 @@ const mapStateToProps = reduxState => {
   return {
     needs: reduxState.needs,
     selectedNeeds: reduxState.selectedNeeds,
+    searchString: reduxState.searchString,
     benefits: reduxState.benefits
   };
 };
@@ -152,7 +192,8 @@ BenefitCard.propTypes = {
   needs: PropTypes.array.isRequired,
   selectedNeeds: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  showFavourite: PropTypes.bool.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
+  savedList: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object
 };

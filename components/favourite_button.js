@@ -1,36 +1,39 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import Bookmark from "./icons/Bookmark";
-import BookmarkBorder from "./icons/BookmarkBorder";
+import SaveChecked from "./icons/SaveChecked";
+import SaveUnchecked from "./icons/SaveUnchecked";
 import { connect } from "react-redux";
 import Cookies from "universal-cookie";
-import { cx, css } from "react-emotion";
-import { globalTheme } from "../theme";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import HeaderButton from "./header_button";
 import { areCookiesDisabled } from "../utils/common";
 import Tooltip from "./tooltip";
+import CloseButton from "./icons/CloseButton";
+import { globalTheme } from "../theme";
 
-const bookmarkButton = css`
-  margin-left: -5px !important;
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-  padding-top: 0.526315em;
-  padding-bottom: 0.526315em;
-`;
-const hideSmall = css`
-  @media only screen and (max-width: ${globalTheme.max.sm}) {
-    display: none !important;
+const xButton = css`
+  color: ${globalTheme.colour.blackish2};
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  :hover {
+    color: ${globalTheme.colour.navy};
+  }
+  :focus {
+    outline: 3px solid ${globalTheme.colour.focusColour};
   }
 `;
-const hideBig = css`
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    display: none !important;
-  }
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
-    display: none !important;
-  }
+
+const rightAlign = css`
+  flex-grow: 3;
+  text-align: right;
+  margin-top: -15px;
+  margin-right: -15px;
 `;
-const bookmarkIcon = css`
+
+const saveIcon = css`
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 45px !important;
   }
@@ -57,18 +60,11 @@ export class FavouriteButton extends Component {
   };
 
   render() {
-    const { t, benefit } = this.props;
-    const isBookmarked =
+    const { t, benefit, icon } = this.props;
+    const isSaved =
       this.props.favouriteBenefits.indexOf(this.props.benefit.id) > -1;
     const longButtonText = t(
-      isBookmarked
-        ? "B3.favouritesButtonTextRemove"
-        : "B3.favouritesButtonBText"
-    );
-    const shortButtonText = t(
-      isBookmarked
-        ? "B3.favouritesButtonTextRemove"
-        : "B3.favouritesButtonBTextMobile"
+      isSaved ? "B3.favouritesButtonTextRemove" : "B3.favouritesButtonBText"
     );
     const benefitName =
       t("current-language-code") === "en"
@@ -79,27 +75,41 @@ export class FavouriteButton extends Component {
       <Tooltip
         disabled={!this.props.cookiesDisabled}
         tooltipText={t("favourites.disabled_cookies_tooltip")}
+        styles={icon ? rightAlign : null}
       >
-        <HeaderButton
-          disabled={this.props.cookiesDisabled}
-          ariaLabel={longButtonText + " " + benefitName}
-          id={"favourite-" + benefit.id}
-          className={bookmarkButton}
-          aria-label={t("B3.favouritesButtonText")}
-          onClick={() => this.toggleFavourite(benefit.id)}
-          onMouseOver={() => {
-            this.props.setCookiesDisabled(areCookiesDisabled());
-          }}
-          size="small"
-        >
-          {isBookmarked ? (
-            <Bookmark className={cx("bookmarked", bookmarkIcon)} />
-          ) : (
-            <BookmarkBorder className={cx("notBookmarked", bookmarkIcon)} />
-          )}
-          <span className={hideSmall}>{longButtonText}</span>
-          <span className={hideBig}>{shortButtonText}</span>
-        </HeaderButton>
+        {icon ? (
+          <button
+            css={xButton}
+            disabled={this.props.cookiesDisabled}
+            aria-label={longButtonText + " " + benefitName}
+            id={"favourite-" + benefit.id}
+            onClick={() => this.toggleFavourite(benefit.id)}
+            onMouseOver={() => {
+              this.props.setCookiesDisabled(areCookiesDisabled());
+            }}
+          >
+            <CloseButton />
+          </button>
+        ) : (
+          <HeaderButton
+            disabled={this.props.cookiesDisabled}
+            ariaLabel={longButtonText + " " + benefitName}
+            id={"favourite-" + benefit.id}
+            aria-label={t("B3.favouritesButtonText")}
+            onClick={() => this.toggleFavourite(benefit.id)}
+            onMouseOver={() => {
+              this.props.setCookiesDisabled(areCookiesDisabled());
+            }}
+            size="small"
+          >
+            {isSaved ? (
+              <SaveChecked css={["saved", saveIcon]} />
+            ) : (
+              <SaveUnchecked css={["notSaved", saveIcon]} />
+            )}
+            <span>{longButtonText}</span>
+          </HeaderButton>
+        )}
       </Tooltip>
     );
   }
@@ -128,6 +138,7 @@ const mapStateToProps = reduxState => {
 
 FavouriteButton.propTypes = {
   favouriteBenefits: PropTypes.array.isRequired,
+  icon: PropTypes.bool,
   cookiesDisabled: PropTypes.bool.isRequired,
   setCookiesDisabled: PropTypes.func.isRequired,
   saveFavourites: PropTypes.func.isRequired,

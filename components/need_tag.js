@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const needsTag = css`
+  font-size: 14px;
   margin-right: ${globalTheme.unit};
   margin-bottom: ${globalTheme.unit};
-  color: ${globalTheme.colour.black};
+  color: ${globalTheme.colour.slateGrey};
   border-radius: 1;
   display: inline-flex;
-  padding: 4px 8px;
   @media only screen and (max-width: ${globalTheme.max.mobile}) {
     font-size: 12px;
   }
@@ -17,13 +18,12 @@ const needsTag = css`
 
 export class NeedTag extends Component {
   render() {
-    const { t, need } = this.props;
+    const { t, need, last } = this.props;
     return (
-      <div
-        className={needsTag}
-        style={{ backgroundColor: globalTheme.colour.paleGrey }}
-      >
-        {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
+      <div css={needsTag}>
+        {(t("current-language-code") === "en"
+          ? need.nameEn.toUpperCase()
+          : need.nameFr.toUpperCase()) + (last ? "" : ",")}
       </div>
     );
   }
@@ -31,7 +31,8 @@ export class NeedTag extends Component {
 
 NeedTag.propTypes = {
   need: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  last: PropTypes.bool
 };
 
 export default NeedTag;

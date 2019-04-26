@@ -5,10 +5,14 @@ import React from "react";
 import configureStore from "redux-mock-store";
 import { Favourites } from "../../components/favourites";
 import benefitsFixture from "../fixtures/benefits";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-import areaOfficesFixture from "../fixtures/area_offices";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
+import questionsFixture from "../fixtures/questions";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
+import nextStepsFixture from "../fixtures/nextSteps";
+import Cookies from "universal-cookie";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
+import translateFixture from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -37,30 +41,34 @@ describe("Favourites", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
+      t: translateFixture,
       selectedEligibility: {
         serviceType: "",
         patronType: "",
         statusAndVitals: ""
       },
-      url: { query: {} }
+      url: { query: {} },
+      printUrl: "/print",
+      guidedExperienceUrl: "/",
+      saveFavourites: jest.fn()
     };
     _shallowFavourites = undefined;
     _mountedFavourites = undefined;
 
     mockStore = configureStore();
     reduxData = {
+      nextSteps: nextStepsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       benefits: benefitsFixture,
       needs: needsFixture,
+      questions: questionsFixture,
       favouriteBenefits: ["benefit_2"],
       selectedNeeds: {},
-      eligibilityPaths: eligibilityPathsFixture,
-      areaOffices: areaOfficesFixture,
-      selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0],
-      multipleChoiceOptions: multipleChoiceOptionsFixture
+      benefitEligibility: benefitEligibilityFixture,
+      benefitExamples: benefitExamplesFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      searchString: ""
     };
     props.store = mockStore(reduxData);
   });
@@ -92,6 +100,10 @@ describe("Favourites", () => {
     expect(mountedFavourites().find("BenefitCard").length).toEqual(2);
   });
 
+  it("renders BreadCrumbs", async () => {
+    expect(mountedFavourites().find("BreadCrumbs").length).toEqual(1);
+  });
+
   it("has a working filterBenefits function", async () => {
     const favouritesInstance = shallowFavourites().instance();
     expect(
@@ -108,16 +120,19 @@ describe("Favourites", () => {
     ).toEqual(2);
   });
 
-  it("contains the share button", () => {
-    expect(mountedFavourites().find("#shareButton").length).toEqual(1);
-  });
-
-  it("clicking share button changes showModal state to true", () => {
-    let mounted = mountedFavourites();
-    mounted
-      .find("#shareButton")
-      .first()
-      .simulate("click");
-    expect(mounted.state().showModal).toEqual(true);
+  describe("cookies tests", () => {
+    let cookiesInstance;
+    let cookies = new Cookies();
+    beforeEach(() => {
+      cookies.set("favouriteBenefits", ["benefit_2", "benefit_5"]);
+      cookiesInstance = mount(
+        <Favourites {...props} {...reduxData} />
+      ).instance();
+    });
+    it("updates cookie data when a benefit has been deleted", () => {
+      expect(cookiesInstance.cookies.get("favouriteBenefits")).toEqual([
+        "benefit_2"
+      ]);
+    });
   });
 });

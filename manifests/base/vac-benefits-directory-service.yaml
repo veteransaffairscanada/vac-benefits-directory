@@ -1,18 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  creationTimestamp: null
-  labels:
-    app: vac-benefits-directory
-  name: vac-benefits-directory
+  name: find-benefits-and-services
 spec:
   ports:
-    - name: 3000-3000
-      port: 3000
-      protocol: TCP
+    - name: http
       targetPort: 3000
+      port: 3000
   selector:
     app: vac-benefits-directory
+    task: find-benefits-and-services
   type: ClusterIP
 status:
   loadBalancer: {}

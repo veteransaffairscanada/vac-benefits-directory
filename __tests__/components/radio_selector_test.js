@@ -1,7 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import { RadioSelector } from "../../components/radio_selector";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
@@ -26,7 +26,8 @@ describe("RadioSelector", () => {
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       t: translateFixture,
-      eligibilityPaths: eligibilityPathsFixture
+      benefitEligibility: benefitEligibilityFixture,
+      url: { route: "/" }
     };
   });
 
@@ -74,7 +75,7 @@ describe("RadioSelector", () => {
       analytics.logEvent = jest.fn();
       instance.handleSelect({ target: { value: "x" } });
       expect(analytics.logEvent).toBeCalledWith(
-        "FilterClick",
+        "GEFilterClick",
         "patronType",
         "x"
       );

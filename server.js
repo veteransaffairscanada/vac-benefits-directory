@@ -4,10 +4,12 @@ const next = require("next");
 const Cookies = require("universal-cookie");
 const helmet = require("helmet");
 const compression = require("compression");
+const fs = require("fs");
 
 const { parseUserAgent } = require("detect-browser");
 
 const dev = process.env.NODE_ENV !== "production";
+const staging = process.env.STAGING !== undefined;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
@@ -15,15 +17,29 @@ const deploy = require("./utils/deploy_notification");
 
 const airTable = require("./utils/airtable_es2015");
 
-const { getGithubData } = require("./utils/statistics");
 const { checkURL } = require("./utils/url_check");
 
 const Logger = require("./utils/logger").default;
 
+const readJsonAsync = function(filename) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filename, (err, buffer) => {
+      if (err) reject(err);
+      else resolve(JSON.parse(buffer));
+    });
+  });
+};
+
 const getAllData = async function() {
-  const githubData = await getGithubData();
-  const airtableData = await airTable.hydrateFromAirtable();
-  return { githubData: githubData, airtableData: airtableData };
+  let airtableData;
+  if (staging) {
+    console.log("Staging environment, downloading from Airtable");
+    airtableData = await airTable.hydrateFromAirtable();
+  } else {
+    console.log("Production environment, using static file");
+    airtableData = await readJsonAsync("data/data.json");
+  }
+  return { airtableData: airtableData };
 };
 
 const copyValidTables = (oldData, newData) => {
@@ -37,16 +53,17 @@ const copyValidTables = (oldData, newData) => {
 
 Promise.resolve(getAllData()).then(allData => {
   let data = allData.airtableData;
-  const githubData = allData.githubData;
 
-  setInterval(function() {
-    Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
-      copyValidTables(data, newData);
-      Logger.info("Cache refreshed automatically @ " + data.timestamp, {
-        source: "/server.js"
+  if (staging) {
+    setInterval(function() {
+      Promise.resolve(airTable.hydrateFromAirtable()).then(newData => {
+        copyValidTables(data, newData);
+        Logger.info("Cache refreshed automatically @ " + data.timestamp, {
+          source: "/server.js"
+        });
       });
-    });
-  }, 1000 * 60 * 60);
+    }, 1000 * 60 * 60);
+  }
 
   app.prepare().then(() => {
     const server = express();
@@ -58,6 +75,13 @@ Promise.resolve(getAllData()).then(allData => {
     server.post("/submitComment", (req, res) => {
       Logger.info("Submitting comments", { source: "/server.js" });
       airTable.writeFeedback(req.body);
+      res.sendStatus(200);
+    });
+
+    // submitting beta Feedback
+    server.post("/submitBetaFeedback", (req, res) => {
+      Logger.info("Submitting beta feedback", { source: "/server.js" });
+      airTable.writeBetaFeedback(req.body);
       res.sendStatus(200);
     });
 
@@ -85,12 +109,7 @@ Promise.resolve(getAllData()).then(allData => {
         : req.headers["accept-language"];
 
       req.data = data;
-      req.language = lang.split(",")[0];
-      if (req.url.includes("stats")) {
-        req.githubData = githubData;
-      } else {
-        req.githubData = {};
-      }
+      req.language = lang ? lang.split(",")[0] : "en";
 
       if (
         browser &&
@@ -112,10 +131,27 @@ Promise.resolve(getAllData()).then(allData => {
             source: "/server.js"
           });
         });
+      } else if (req.url.includes("data-validation") && !staging) {
+        res
+          .status(404)
+          .send("The Data Validation page only exists on the staging app.");
+      } else if (req.url.includes("favourites") && !staging) {
+        res
+          .status(404)
+          .send("The Favourites page only exists on the staging app.");
       } else {
-        req.data.favouriteBenefits = new Cookies(req.headers.cookie).get(
+        const favouriteBenefits = new Cookies(req.headers.cookie).get(
           "favouriteBenefits"
         );
+        if (favouriteBenefits) {
+          const existingBenefitIds = data.benefits.map(x => x.id);
+          // update cookies to prune any benefits that have been removed from Airtable
+          const validFavouriteBenefits = favouriteBenefits.filter(
+            x => existingBenefitIds.indexOf(x) > -1
+          );
+          req.data.favouriteBenefits = validFavouriteBenefits;
+        }
+
         let startTime = new Date();
         handle(req, res).then(() => {
           let duration = new Date() - startTime;

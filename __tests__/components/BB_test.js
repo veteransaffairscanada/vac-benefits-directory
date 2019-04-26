@@ -6,18 +6,24 @@ import configureStore from "redux-mock-store";
 
 import { BB } from "../../components/BB";
 import benefitsFixture from "../fixtures/benefits";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
-import areaOfficesFixture from "../fixtures/area_offices";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import nextStepsFixture from "../fixtures/nextSteps";
+import translateFixture from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
+import Cookies from "universal-cookie";
 expect.extend(toHaveNoViolations);
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 jest.mock("react-ga");
-
+window.matchMedia = () => ({
+  addListener: () => {},
+  removeListener: () => {}
+});
 describe("BB", () => {
   let props;
   let _mountedBB;
@@ -40,27 +46,33 @@ describe("BB", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
+      t: translateFixture,
       clearFilters: () => true,
       clearNeeds: () => true,
       id: "BB",
       filteredBenefits: [],
       setSelectedNeeds: () => true,
       favouriteBenefits: [],
-      url: { query: {} }
+      saveFavourites: jest.fn(),
+      url: { query: {} },
+      printUrl: "/print",
+      summaryUrl: "/summary"
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
     reduxData = {
+      nextSteps: nextStepsFixture,
+      benefitExamples: benefitExamplesFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
+      saveFavourites: jest.fn(),
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
       favouriteBenefits: [],
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
       serviceType: "",
@@ -75,11 +87,7 @@ describe("BB", () => {
       serviceHealthIssue: "",
       setSearchString: jest.fn(),
       selectedNeeds: {},
-      option: "",
-      pageWidth: 1000,
-      areaOffices: areaOfficesFixture,
-      selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0]
+      option: ""
     };
     mockStore = configureStore();
     props.store = mockStore(reduxData);
@@ -91,35 +99,29 @@ describe("BB", () => {
   });
 
   it("contains a BenefitsPane", async () => {
-    expect(mounted_BB().find("#BenefitsPane").length).not.toEqual(0);
-  });
-
-  it("has the ProfileSelector component", () => {
-    expect(mounted_BB().find("ProfileSelector").length).not.toEqual(0);
-  });
-
-  it("has the NeedsSelector component", () => {
-    expect(mounted_BB().find("NeedsSelector").length).not.toEqual(0);
+    expect(shallow_BB().find("#BenefitsPane").length).not.toEqual(0);
   });
 
   it("has a Clear Filters button", () => {
     expect(shallow_BB().find("#ClearEligibilityFilters"));
   });
 
-  it("contains the print button", () => {
-    expect(mounted_BB().find("#printButton").length).toEqual(1);
+  it("contains BreadCrumbs", async () => {
+    expect(shallow_BB().find("BreadCrumbs").length).toEqual(1);
   });
 
-  it("contains the share button", () => {
-    expect(mounted_BB().find("#shareButton").length).toEqual(1);
-  });
-
-  it("clicking share button changes showModal state to true", () => {
-    let mounted = mounted_BB();
-    mounted
-      .find("#shareButton")
-      .first()
-      .simulate("click");
-    expect(mounted.state().showModal).toEqual(true);
+  describe("cookies tests", () => {
+    let cookiesInstance;
+    let cookies = new Cookies();
+    beforeEach(() => {
+      reduxData.favouriteBenefits = ["benefit_2"];
+      cookies.set("favouriteBenefits", ["benefit_2", "benefit_5"]);
+      cookiesInstance = mount(<BB {...props} {...reduxData} />).instance();
+    });
+    it("updates cookie data when a benefit has been deleted", () => {
+      expect(cookiesInstance.cookies.get("favouriteBenefits")).toEqual([
+        "benefit_2"
+      ]);
+    });
   });
 });

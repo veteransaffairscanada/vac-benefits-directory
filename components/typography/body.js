@@ -1,27 +1,21 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../../theme";
-import { cx, css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const root = css`
-  font-family: ${globalTheme.fontFamily};
-  font-size: 18px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
+  font-family: ${globalTheme.fontFamilySerif};
+  font-size: 20px;
+  font-weight: 300;
   line-height: 1.5;
-  letter-spacing: normal;
-  color: ${globalTheme.colour.greyishBrown};
+  color: ${globalTheme.colour.navy};
   margin-bottom: 25px;
 `;
 
 export class Body extends Component {
   render() {
-    return (
-      <div className={cx(root, this.props.className)}>
-        {this.props.children}
-      </div>
-    );
+    return <div css={[root, this.props.styles]}>{this.props.children}</div>;
   }
 }
 
@@ -31,7 +25,7 @@ Body.propTypes = {
     PropTypes.object,
     PropTypes.array
   ]),
-  className: PropTypes.string
+  styles: PropTypes.object
 };
 
 export default Body;

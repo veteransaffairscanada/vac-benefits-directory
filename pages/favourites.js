@@ -5,17 +5,20 @@ import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
 import Favourites from "../components/favourites";
+import { globalTheme } from "../theme";
 
 export class FavouritesPage extends Component {
   render() {
-    const { t, favouriteBenefits } = this.props; // eslint-disable-line no-unused-vars
+    const { t, favouriteBenefits, url } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Layout
         t={this.props.t}
         i18n={this.props.i18n}
         hideNoscript={false}
-        showRefreshCache={false}
         title={t("favourites.saved_benefits", { x: favouriteBenefits.length })}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
+        skipLink="#mainContent"
+        url={url}
       >
         <Favourites
           id="favourites"

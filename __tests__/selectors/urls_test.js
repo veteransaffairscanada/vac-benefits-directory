@@ -1,6 +1,10 @@
 import lunr from "lunr";
 import questionsFixture from "../fixtures/questions";
-import { getFavouritesUrl, getPrintUrl } from "../../selectors/urls";
+import {
+  getFavouritesUrl,
+  getPrintUrl,
+  getSummaryUrl
+} from "../../selectors/urls";
 
 describe("getFavouritesUrl", () => {
   let props;
@@ -140,29 +144,41 @@ describe("getPrintUrl", () => {
           availableIndependently: "Requires Gateway Benefit"
         }
       ],
-      closestAreaOffice: "",
-      selectedAreaOffice: "",
-      eligibilityPaths: [
+      benefitEligibility: [
         {
-          requirements: ["patronType: p1"],
-          patronType: "p1",
-          serviceType: "na",
-          statusAndVitals: "na",
-          benefits: ["0", "2", "4"]
+          id: "0",
+          benefit: ["0"],
+          patronType: ["p1"]
         },
         {
-          requirements: ["patronType: p2"],
-          patronType: "p2",
-          serviceType: "na",
-          statusAndVitals: "na",
-          benefits: ["2"]
+          id: "1",
+          benefit: ["2"],
+          patronType: ["p1"]
         },
         {
-          requirements: ["patronType: p3"],
-          patronType: "p3",
-          serviceType: "na",
-          statusAndVitals: "na",
-          benefits: ["1", "3", "4"]
+          id: "2",
+          benefit: ["4"],
+          patronType: ["p1"]
+        },
+        {
+          id: "3",
+          benefit: ["2"],
+          patronType: ["p2"]
+        },
+        {
+          id: "4",
+          benefit: ["1"],
+          patronType: ["p3"]
+        },
+        {
+          id: "5",
+          benefit: ["3"],
+          patronType: ["p3"]
+        },
+        {
+          id: "6",
+          benefit: ["4"],
+          patronType: ["p3"]
         }
       ],
       multipleChoiceOptions: [
@@ -264,24 +280,53 @@ describe("getPrintUrl", () => {
     );
   });
 
-  it("adds closestAOID string to the URL", () => {
-    state.closestAreaOffice = { id: "foo" };
-    expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&benefits=0,1,2,3,4&closestAOID=foo"
-    );
-  });
-
-  it("adds selectedAOID string to the URL", () => {
-    state.selectedAreaOffice = { id: "foo" };
-    expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&benefits=0,1,2,3,4&selectedAOID=foo"
-    );
-  });
-
   it("adds fromFavourites string to the URL", () => {
     params["fromFavourites"] = true;
     expect(getPrintUrl(state, props, params)).toEqual(
       "/print?lng=en&fromFavourites=true"
     );
+  });
+});
+
+describe("getSummaryUrl", () => {
+  let props;
+  let state;
+
+  beforeEach(() => {
+    props = {
+      t: () => "en"
+    };
+    state = {
+      questions: questionsFixture,
+      selectedNeeds: {},
+      patronType: "",
+      searchString: "",
+      serviceType: "",
+      serviceHealthIssue: "",
+      statusAndVitals: ""
+    };
+  });
+
+  it("adds the language variable by default", () => {
+    expect(getSummaryUrl(state, props)).toEqual("/summary?lng=en");
+  });
+
+  it("adds selectedNeeds keys to the URL", () => {
+    state.selectedNeeds = { a: 1, b: 2 };
+    expect(getSummaryUrl(state, props)).toEqual(
+      "/summary?lng=en&selectedNeeds=a,b"
+    );
+  });
+
+  it("adds patronType string to the URL", () => {
+    state.patronType = "foo";
+    expect(getSummaryUrl(state, props)).toEqual(
+      "/summary?lng=en&patronType=foo"
+    );
+  });
+
+  it("doesn't add searchString string to the URL", () => {
+    state.searchString = "foo";
+    expect(getSummaryUrl(state, props)).toEqual("/summary?lng=en");
   });
 });

@@ -1,27 +1,27 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import SubmitButton from "./button";
 import { logEvent } from "../utils/analytics";
 import Raven from "raven-js";
-import TextField from "@material-ui/core/TextField";
-import { css } from "react-emotion";
+import TextArea from "./text_area";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import FooterButton from "./footer_button";
 import { globalTheme } from "../theme";
 import Header from "./typography/header";
+import { Grid } from "@material-ui/core";
 require("isomorphic-fetch");
 
 const CommentBox = css`
-  height: 350px;
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.navy};
   color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
-  padding: 5px 0 0 0;
+  padding: 5px 0 50px 0;
 `;
 const Div = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.navy};
   width: 100%;
-  height: 53px;
   color: ${globalTheme.colour.white};
   text-align: left;
   font-size: 14px;
@@ -31,7 +31,7 @@ const Div = css`
   }
 `;
 const FeedbackWrapper = css`
-  margin-top: 25px;
+  margin-top: 125px;
 `;
 const Inner = css`
   line-height: 1.6;
@@ -40,6 +40,7 @@ const Inner = css`
   color: ${globalTheme.colour.white};
   font-size: 18px;
   padding-top: 10px;
+  padding-bottom: 10px;
   @media (max-width: 400px) {
     font-size: 16px;
     button {
@@ -48,32 +49,42 @@ const Inner = css`
   }
 `;
 const TextHold = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.navy};
   padding: 10px 0;
 `;
-const white = css`
+const topHeading = css`
   color: white;
+  padding-top: 30px;
 `;
 const whiteNormalFont = css`
   color: white;
   font-weight: normal;
 `;
-const pStyle = css`
-  font-size: 18px;
+const fileBugHeader = css`
+  color: white;
+  font-weight: normal;
+  float: right;
 `;
-const labelStyle = css`
-  label {
-    transform: translate(0, 0) scale(1);
-    font-weight: bold;
+const textArea = css`
+  span {
+    color: white;
   }
+`;
+const cancelButton = css`
+  margin-left: 10px;
+  margin-bottom: 5px;
+`;
+const resetButton = css`
+  text-decoration: underline;
 `;
 
 export class FeedbackBar extends Component {
   state = {
-    action: "",
+    bug: "",
+    commentIsBug: false,
     commentFormToggled: false,
     commentSubmitted: false,
-    failure: "",
+    infoBeMoreUseful: "",
     feedbackSubmitted: false
   };
 
@@ -84,15 +95,19 @@ export class FeedbackBar extends Component {
   };
 
   cancelComment = () => {
-    this.setState({ commentFormToggled: false });
+    this.setState({
+      feedbackSubmitted: false,
+      commentFormToggled: false,
+      commentIsBug: false
+    });
   };
 
   sendComment = () => {
     this.setState({ commentFormToggled: false });
     this.setState({ commentSubmitted: true });
     let payload = {
-      whatWereYouDoing: this.state.action,
-      whatWentWrong: this.state.failure,
+      whatWentWrong: this.state.bug,
+      howCanInfoBeMoreUseful: this.state.infoBeMoreUseful,
       url: window.location.href,
       time: new Date().toUTCString()
     };
@@ -110,9 +125,21 @@ export class FeedbackBar extends Component {
   sendFeedback = answer => {
     this.setState({ feedbackSubmitted: true });
     logEvent("Page Feedback (" + this.props.t("feedback-prompt") + ")", answer);
-    if (answer == "No") {
+    if (answer == "No" || answer == "Bug") {
       this.setState({ commentFormToggled: true });
+      if (answer == "Bug") this.setState({ commentIsBug: true });
     }
+  };
+
+  resetFeedback = () => {
+    this.setState({
+      bug: "",
+      commentIsBug: false,
+      commentFormToggled: false,
+      commentSubmitted: false,
+      infoBeMoreUseful: "",
+      feedbackSubmitted: false
+    });
   };
 
   toggleCommentForm = () => {
@@ -123,55 +150,33 @@ export class FeedbackBar extends Component {
     const { t } = this.props;
 
     return (
-      <div className={FeedbackWrapper} role="navigation">
+      <div
+        css={FeedbackWrapper}
+        aria-label={t("feedback.page_title")}
+        role="complementary"
+      >
         {this.state.commentFormToggled ? (
-          <div className={CommentBox}>
-            <Header size="lg" headingLevel="h2" className={white}>
-              {t("comment-help-us-improve")}
+          <div css={CommentBox} role="form">
+            <Header size="lg" headingLevel="h2" styles={topHeading}>
+              {this.state.commentIsBug
+                ? t("comment-what-went-wrong")
+                : t("feedback.how_can_info_be_more_useful")}
             </Header>
-            <p className={pStyle}>{t("comment-privacy-disclaimer")}</p>
-            <div className={TextHold}>
-              <TextField
-                inputProps={{
-                  style: {
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    padding: "10px"
-                  }
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "white", fontSize: "18px" }
-                }}
-                id="commentWhatWereYouDoing"
-                label={t("comment-what-were-you-doing")}
-                margin="normal"
-                fullWidth={true}
-                onChange={this.handleChange("action")}
-                className={labelStyle}
-                value={this.state.action}
-                autoFocus
-              />
-              <TextField
-                inputProps={{
-                  style: {
-                    backgroundColor: "white",
-                    marginTop: "10px",
-                    padding: "10px"
-                  }
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                  style: { color: "white", fontSize: "18px" }
-                }}
-                id="commentWhatWentWrong"
-                label={t("comment-what-went-wrong")}
-                margin="normal"
-                fullWidth={true}
-                onChange={this.handleChange("failure")}
-                className={labelStyle}
-                value={this.state.failure}
-              />
+            <div css={TextHold}>
+              <TextArea
+                id="commentTextArea"
+                name="bugFiling"
+                maxLength={500}
+                t={t}
+                css={textArea}
+                onChange={
+                  this.state.commentIsBug
+                    ? this.handleChange("bug")
+                    : this.handleChange("infoBeMoreUseful")
+                }
+              >
+                {t("feedback.privacy_statement")}
+              </TextArea>
             </div>
             <br />
             <SubmitButton
@@ -185,35 +190,61 @@ export class FeedbackBar extends Component {
             &nbsp; &nbsp;
             <FooterButton
               id="cancelComment"
+              css={cancelButton}
               onClick={() => this.cancelComment()}
             >
               {t("cancel")}
             </FooterButton>
           </div>
         ) : null}
-        <div className={Div}>
+        <div css={Div}>
           {this.state.feedbackSubmitted && !this.state.commentFormToggled ? (
-            <div className={Inner}>
-              <p className={pStyle}>{t("feedback-response")}</p>
-            </div>
-          ) : !this.state.feedbackSubmitted ? (
-            <div className={Inner}>
-              <Header size="sm" headingLevel="h2" className={whiteNormalFont}>
-                {t("feedback-prompt")}
+            <div css={Inner}>
+              <Header size="sm" headingLevel="h2" styles={whiteNormalFont}>
+                {t("feedback.response_p1")}
               </Header>
               <FooterButton
-                id="feedbackYes"
-                onClick={() => this.sendFeedback("Yes")}
+                id="feedbackReset"
+                css={resetButton}
+                onClick={() => this.resetFeedback()}
               >
-                {t("yes")}
+                {t("feedback.response_p2")}
               </FooterButton>
-              &nbsp; &nbsp;
-              <FooterButton
-                id="feedbackNo"
-                onClick={() => this.sendFeedback("No")}
-              >
-                {t("no")}
-              </FooterButton>
+            </div>
+          ) : !this.state.feedbackSubmitted ? (
+            <div css={Inner}>
+              <Grid container spacing={8}>
+                <Grid item md={5} xs={12}>
+                  <Header size="sm" headingLevel="h2" styles={whiteNormalFont}>
+                    {t("feedback-prompt")}
+                  </Header>
+                </Grid>
+                <Grid item md={3} xs={12}>
+                  <FooterButton
+                    id="feedbackYes"
+                    onClick={() => this.sendFeedback("Yes")}
+                  >
+                    {t("yes")}
+                  </FooterButton>
+                  &nbsp; &nbsp;
+                  <FooterButton
+                    id="feedbackNo"
+                    onClick={() => this.sendFeedback("No")}
+                  >
+                    {t("no")}
+                  </FooterButton>
+                </Grid>
+                <Grid item md={4} xs={12}>
+                  <Header size="sm" headingLevel="h2" styles={fileBugHeader}>
+                    <FooterButton
+                      id="feedbackBug"
+                      onClick={() => this.sendFeedback("Bug")}
+                    >
+                      {t("feedback.bug_prompt")}
+                    </FooterButton>
+                  </Header>
+                </Grid>
+              </Grid>
             </div>
           ) : null}
         </div>

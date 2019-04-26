@@ -1,20 +1,31 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NeedButton from "./need_button";
 import { Grid } from "@material-ui/core";
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import { showQuestion } from "../utils/common";
 
 const needsButtons = css`
   display: flex;
   flex-wrap: wrap;
+  label {
+    width: 100%;
+  }
 `;
 
 const topBorder = css`
-  border-top: 1px solid black;
-  padding-top: 30px;
+  margin-top: 15px;
+`;
+
+const formLabel = css`
+  font-size: 16px;
+`;
+
+const subFormLabel = css`
+  font-size: 14px;
   margin-top: 15px;
 `;
 
@@ -29,21 +40,28 @@ export class NeedsSelector extends Component {
   }
 
   render() {
-    const { needs, t, store } = this.props;
+    const { needs, t, store, url } = this.props;
 
     if (showQuestion("needs", undefined, this.props.reduxState)) {
       return (
-        <div className={topBorder}>
-          <Header size="sm" headingLevel="h3">
+        <div css={topBorder}>
+          <Header size="sm" styles={formLabel}>
             {t("filter by category")}
           </Header>
           <Grid container spacing={16}>
             <Grid item xs={9}>
-              <div>{t("Select all that apply")}</div>
+              <div css={subFormLabel}>{t("Select all that apply")}</div>
             </Grid>
-            <Grid item xs={12} className={needsButtons}>
+            <Grid item xs={12} css={needsButtons}>
               {needs.map(need => (
-                <NeedButton key={need.id} need={need} t={t} store={store} />
+                <NeedButton
+                  key={need.id}
+                  need={need}
+                  t={t}
+                  store={store}
+                  url={url}
+                  updateUrl={true}
+                />
               ))}
             </Grid>
           </Grid>
@@ -80,7 +98,8 @@ NeedsSelector.propTypes = {
   reduxState: PropTypes.object.isRequired,
   saveQuestionResponse: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(

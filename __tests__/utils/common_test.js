@@ -1,21 +1,26 @@
-import { showQuestion, getLink, questionIsRelevant } from "../../utils/common";
+import {
+  showQuestion,
+  getLink,
+  questionIsRelevant,
+  getBenefitCountString
+} from "../../utils/common";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 
 describe("questionIsRelevant function", () => {
   let reduxState;
   beforeEach(() => {
     reduxState = {
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture
     };
   });
 
   it("returns false if question is not relevant", () => {
     const profileFilters = {
-      patronType: "p2"
+      patronType: "servingMember"
     };
     expect(
       questionIsRelevant("serviceType", profileFilters, reduxState)
@@ -24,7 +29,7 @@ describe("questionIsRelevant function", () => {
 
   it("returns true if question is relevant", () => {
     const profileFilters = {
-      patronType: "p1"
+      patronType: "veteran"
     };
     expect(
       questionIsRelevant("serviceType", profileFilters, reduxState)
@@ -33,7 +38,7 @@ describe("questionIsRelevant function", () => {
 
   it("returns true if question is relevant if it is cleared", () => {
     const profileFilters = {
-      patronType: "p1",
+      patronType: "veteran",
       serviceType: "s3"
     };
     expect(
@@ -47,10 +52,10 @@ describe("showQuestion function", () => {
   beforeEach(() => {
     reduxState = {
       questions: questionsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      patronType: "p1",
+      patronType: "veteran",
       serviceType: "",
       serviceHealthIssue: "",
       statusAndVitals: ""
@@ -68,17 +73,17 @@ describe("showQuestion function", () => {
   });
 
   it("shows question if previous question has an answer", () => {
-    reduxState.patronType = "p1";
+    reduxState.patronType = "veteran";
     expect(showQuestion("serviceType", 1, reduxState)).toEqual(true);
   });
 
   it("hides questions if not relevant", () => {
-    reduxState.patronType = "p2";
+    reduxState.patronType = "servingMember";
     expect(showQuestion("serviceType", 1, reduxState)).toEqual(false);
   });
 
   it("shows needs if patronType not organization", () => {
-    reduxState.patronType = "p2";
+    reduxState.patronType = "servingMember";
     expect(showQuestion("needs", 1, reduxState)).toEqual(true);
   });
 
@@ -121,5 +126,18 @@ describe("getLink function", () => {
     url.query = { a: "aa", b: "" };
     const link = getLink(url, page);
     expect(link).toEqual("page1?a=aa");
+  });
+});
+
+describe("getBenefitCountString function", () => {
+  let t = x => x;
+  it("returns the right string", () => {
+    expect(getBenefitCountString([], t)).toEqual(
+      "BenefitsPane.no_filtered_benefits"
+    );
+    expect(getBenefitCountString(["x"], t)).toEqual("B3.One benefit");
+    expect(getBenefitCountString(["x", "y"], t)).toEqual(
+      "B3.x benefits to consider"
+    );
   });
 });

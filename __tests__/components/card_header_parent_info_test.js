@@ -11,8 +11,8 @@ describe("CardHeaderParentInfo", () => {
   beforeEach(() => {
     props = {
       t: translate,
-      benefit: benefitsFixture[1],
-      parentBenefits: [benefitsFixture[0]]
+      benefit: benefitsFixture[2],
+      parentBenefits: [benefitsFixture[1]]
     };
   });
 
@@ -23,28 +23,28 @@ describe("CardHeaderParentInfo", () => {
 
   it("contains the name", () => {
     expect(mount(<CardHeaderParentInfo {...props} />).text()).toContain(
-      benefitsFixture[0].vacNameEn
+      benefitsFixture[1].vacNameEn
     );
   });
 
-  it("has a correctly configured external link <a>", () => {
+  it("has a link not open in a new tab", () => {
     expect(
       mount(<CardHeaderParentInfo {...props} />)
         .find("a")
         .prop("target")
-    ).toEqual("_blank");
+    ).not.toEqual("_blank");
 
     expect(
       mount(<CardHeaderParentInfo {...props} />)
         .find("a")
         .prop("href")
-    ).toEqual(benefitsFixture[0].benefitPageEn);
+    ).toEqual(benefitsFixture[1].benefitPageEn);
 
     expect(
       mount(<CardHeaderParentInfo {...props} />)
         .find("a")
         .text()
-    ).toEqual(benefitsFixture[0].vacNameEn);
+    ).toEqual(benefitsFixture[1].vacNameEn);
   });
 
   describe("when language is French", () => {
@@ -54,7 +54,7 @@ describe("CardHeaderParentInfo", () => {
 
     it("contains the French name", () => {
       expect(mount(<CardHeaderParentInfo {...props} />).text()).toContain(
-        benefitsFixture[0].vacNameFr
+        benefitsFixture[1].vacNameFr
       );
     });
 
@@ -63,12 +63,12 @@ describe("CardHeaderParentInfo", () => {
         mount(<CardHeaderParentInfo {...props} />)
           .find("a")
           .prop("href")
-      ).toEqual(benefitsFixture[0].benefitPageFr);
+      ).toEqual(benefitsFixture[1].benefitPageFr);
       expect(
         mount(<CardHeaderParentInfo {...props} />)
           .find("a")
           .text()
-      ).toEqual(benefitsFixture[0].vacNameFr);
+      ).toEqual(benefitsFixture[1].vacNameFr);
     });
   });
 
@@ -80,7 +80,8 @@ describe("CardHeaderParentInfo", () => {
       .simulate("click");
     expect(analytics.logEvent).toBeCalledWith(
       "Exit",
-      benefitsFixture[0].benefitPageEn
+      "gateway benefit",
+      benefitsFixture[1].benefitPageEn
     );
   });
 });

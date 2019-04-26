@@ -12,13 +12,12 @@ describe("NeedButton", () => {
   let props;
 
   beforeEach(() => {
-    window.scrollTo = jest.fn();
     props = {
       need: needsFixture[0],
       t: key => key,
       setSelectedNeeds: jest.fn(),
-      pageWidth: 1000,
-      selectedNeeds: {}
+      selectedNeeds: {},
+      url: { route: "/" }
     };
   });
 
@@ -41,19 +40,6 @@ describe("NeedButton", () => {
     let analytics = require("../../utils/analytics");
     analytics.logEvent = jest.fn();
     needsInstance.handleClick("foo");
-    expect(analytics.logEvent).toBeCalledWith("FilterClick", "need", "foo");
-  });
-
-  it("scrolls to the top of the page when clicked on desktop", () => {
-    let needsInstance = mount(<NeedButton {...props} />).instance();
-    needsInstance.handleClick("foo");
-    expect(window.scrollTo).toBeCalled();
-  });
-
-  it("does not scroll to the top of the page when clicked on mobile", () => {
-    props.pageWidth = 500;
-    let needsInstance = mount(<NeedButton {...props} />).instance();
-    needsInstance.handleClick("foo");
-    expect(window.scrollTo).not.toBeCalled();
+    expect(analytics.logEvent).toBeCalledWith("GEFilterClick", "need", "foo");
   });
 });

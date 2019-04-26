@@ -1,6 +1,6 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { css, cx } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 
 const rootStyle = css({
@@ -30,13 +30,14 @@ const inputStyle = css({
 });
 
 const labelStyle = css({
-  fontFamily: globalTheme.fontFamily,
-  fontWeight: 400,
+  fontFamily: globalTheme.fontFamilySansSerif,
+  color: globalTheme.colour.greyishBrown,
+  fontWeight: 300,
   textTransform: "none",
-  fontSize: "16px",
+  fontSize: "24px",
   lineHeight: "1.25",
   cursor: "pointer",
-  padding: "5px 10px 9px 12px",
+  padding: "0px 10px 15px 12px",
   display: "block",
   ":before": {
     content: "''",
@@ -63,29 +64,44 @@ const labelStyle = css({
   }
 });
 
-const Radio = ({ children, className, value, ...input }) => (
-  <div className={cx(rootStyle, className)}>
+const mobileLabelStyle = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 16px;
+  }
+`;
+
+const sidebarLabelStyle = css({
+  fontSize: "14px !important",
+  padding: "6px 10px 15px 12px !important"
+});
+
+const Radio = ({ children, styles, value, sidebar, ...input }) => (
+  <div css={[rootStyle, styles]}>
     <input
       type="radio"
-      className={inputStyle}
+      css={inputStyle}
       value={value}
       id={value + "-0"}
       {...input}
     />
-    <label className={labelStyle} htmlFor={value + "-0"}>
+    <label
+      css={[mobileLabelStyle, labelStyle, sidebar ? sidebarLabelStyle : null]}
+      htmlFor={value + "-0"}
+    >
       {children}
     </label>
   </div>
 );
 
 Radio.defaultProps = {
-  className: undefined
+  styles: undefined
 };
 
 Radio.propTypes = {
-  className: PropTypes.string,
+  styles: PropTypes.object,
   value: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  sidebar: PropTypes.bool
 };
 
 export default Radio;

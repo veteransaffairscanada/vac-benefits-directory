@@ -3,16 +3,36 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logEvent } from "../utils/analytics";
 import { globalTheme } from "../theme";
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
 import Tooltip from "./tooltip";
 import Radio from "./radio";
+import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
 const formControl = css`
   margin-top: ${globalTheme.unit} !important;
 `;
 const formLabel = css`
   margin-bottom: 10px;
+  color: ${globalTheme.colour.greyishBrown};
+  font-size: 16px;
+  font-bold: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+`;
+const feedbackPageformLabel = css`
+  margin-bottom: 10px;
+  color: ${globalTheme.colour.greyishBrown};
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
 `;
 const radioOption = css`
   margin-bottom: 10px;
@@ -20,6 +40,12 @@ const radioOption = css`
 const underline = css`
   line-height: 160%;
   border-bottom: 2px dotted ${globalTheme.colour.greyishBrown};
+`;
+const leftIndent = css`
+  margin-left: 40px;
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    margin-left: 0px;
+  }
 `;
 
 export class RadioSelector extends React.Component {
@@ -73,7 +99,13 @@ export class RadioSelector extends React.Component {
     const response = event.target.value;
     this.props.saveQuestionResponse(question, response);
     this.clearAppropriateResponses(question, response);
-    logEvent("FilterClick", question, response);
+    this.props.url.route === "/benefits-directory"
+      ? logEvent("SidebarFilterClick", question, response)
+      : logEvent("GEFilterClick", question, response);
+    if (this.props.updateUrl) {
+      this.props.url.query[question] = response;
+      Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
+    }
   };
 
   render() {
@@ -88,21 +120,36 @@ export class RadioSelector extends React.Component {
           )
       );
 
-    const { t, selectorType, responses, legend, tooltipText } = this.props;
+    const {
+      t,
+      selectorType,
+      responses,
+      legend,
+      tooltipText,
+      styles
+    } = this.props;
     if (options.length !== 0) {
       return (
-        <div className={formControl}>
+        <div css={formControl}>
           <Tooltip
             disabled={!tooltipText}
             tooltipText={tooltipText}
             width={250}
           >
-            <Header className={formLabel} size="sm">
-              <span className={tooltipText ? underline : ""}>{legend}</span>
+            <Header
+              styles={
+                this.props.feedbackPage ? feedbackPageformLabel : formLabel
+              }
+              size="sm"
+            >
+              <span css={tooltipText ? underline : ""}>{legend}</span>
             </Header>
           </Tooltip>
 
-          <div aria-label={legend}>
+          <div
+            aria-label={legend}
+            css={styles ? [leftIndent, styles] : leftIndent}
+          >
             {options.map(option => {
               return (
                 <Radio
@@ -110,7 +157,8 @@ export class RadioSelector extends React.Component {
                   checked={responses[selectorType] === option.variable_name}
                   onChange={this.handleSelect}
                   value={option.variable_name}
-                  className={radioOption}
+                  styles={radioOption}
+                  sidebar={this.props.updateUrl}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
@@ -160,7 +208,12 @@ RadioSelector.propTypes = {
   questionClearLogic: PropTypes.array.isRequired,
   options: PropTypes.array.isRequired,
   tooltipText: PropTypes.string,
-  store: PropTypes.object
+  store: PropTypes.object,
+  styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  name: PropTypes.string,
+  updateUrl: PropTypes.bool,
+  url: PropTypes.object.isRequired,
+  feedbackPage: PropTypes.bool
 };
 
 export default connect(

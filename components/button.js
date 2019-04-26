@@ -1,53 +1,39 @@
-import styled, { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+import styled from "@emotion/styled";
 import PropTypes from "prop-types";
-import React from "react";
 import { globalTheme } from "../theme";
-import KeyboardBackspace from "./icons/KeyboardBackspace";
-
-const rightArrowIcon = css`
-  -moz-transform: scaleX(-1);
-  -o-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  filter: FlipH;
-  -ms-filter: fliph;
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
-    display: none !important;
-  }
-`;
 
 const StyledButton = styled("button")(
   {
-    backgroundColor: globalTheme.colour.fernGreen,
+    backgroundColor: globalTheme.colour.blackBlue,
     border: "none",
-    borderRadius: "3px",
     color: "white",
     cursor: "pointer",
     alignItems: "center",
     justifyContent: "space-between",
-    fontFamily: globalTheme.fontFamily,
+    fontFamily: globalTheme.fontFamilySansSerif,
     fontWeight: "bold",
-    fontSize: "18px",
-    lineHeight: "23px",
+    fontSize: "24px",
+    lineHeight: "44px",
     outlineOffset: "-1px",
     outline: "1px solid transparent",
-    padding: ".526315em .789473em",
+    padding: "0 1.2em",
     textDecoration: "none",
     WebkitAppearance: "none",
     WebkitFontSmoothing: "antialiased",
-    verticalAlign: "middle",
     ":hover": {
-      backgroundColor: globalTheme.colour.darkGreen,
+      backgroundColor: globalTheme.colour.navy,
       color: "white"
     },
     ":focus": {
       color: "white",
-      backgroundColor: globalTheme.colour.darkGreen
+      backgroundColor: globalTheme.colour.navy
     },
     ":active": {
       position: "relative",
       top: "2px",
-      boxShadow: `0 0 0 ${globalTheme.colour.darkGreen}`
+      boxShadow: `0 0 0 ${globalTheme.colour.navy}`
     },
     ":visited": {
       color: "white"
@@ -56,13 +42,6 @@ const StyledButton = styled("button")(
       verticalAlign: "middle"
     }
   },
-  ({ hasArrow }) => ({
-    " svg": {
-      height: hasArrow ? "23px" : undefined,
-      width: hasArrow ? "25px" : undefined,
-      marginLeft: hasArrow ? "10px" : undefined
-    }
-  }),
   ({ isBig, hasArrow }) => ({
     fontSize: isBig ? "24px" : undefined,
     lineHeight: isBig ? "31px" : undefined,
@@ -79,37 +58,39 @@ const StyledButton = styled("button")(
     padding: isSmall ? "6px 10px 4px 12px" : undefined
   }),
   ({ isSecondary }) => ({
-    backgroundColor: isSecondary ? globalTheme.colour.cerulean : undefined,
+    color: isSecondary ? globalTheme.colour.greyishBrown : undefined,
+    backgroundColor: isSecondary ? globalTheme.colour.darkPaleGrey : undefined,
     ":hover": {
-      backgroundColor: isSecondary ? globalTheme.colour.darkGreyBlue : undefined
+      backgroundColor: isSecondary ? globalTheme.colour.navy : undefined
     },
     ":focus": {
-      backgroundColor: isSecondary
-        ? globalTheme.colour.darkGreyBlue
-        : undefined,
+      backgroundColor: isSecondary ? globalTheme.colour.navy : undefined,
       outline: `3px solid ` + globalTheme.colour.focusColour
     },
     ":active": {
-      boxShadow: isSecondary
-        ? `0 0 0 ${globalTheme.colour.darkGreyBlue}`
-        : undefined
+      boxShadow: isSecondary ? `0 0 0 ${globalTheme.colour.navy}` : undefined
     }
   })
 );
+const mobileFullWidth = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    width: 100%;
+    margin-bottom: 6px;
+  }
+`;
 
 // from: https://github.com/UKHomeOffice/govuk-react/blob/master/components/button/src/index.js
 
-const Button = ({ size, secondary, arrow, children, icon, ...props }) => (
+const Button = ({ size, secondary, children, icon, ...props }) => (
   <StyledButton
     icon={icon}
     isBig={size === "big"}
     isSmall={size === "small"}
     isSecondary={secondary}
-    hasArrow={arrow}
+    css={props.mobileFullWidth ? mobileFullWidth : ""}
     {...props}
   >
     {children}
-    {arrow ? <KeyboardBackspace className={rightArrowIcon} /> : null}
   </StyledButton>
 );
 
@@ -130,15 +111,14 @@ Button.propTypes = {
    * Renders a disabled button and removes pointer events if set to true
    */
   secondary: PropTypes.bool,
-  arrow: PropTypes.bool
+  mobileFullWidth: PropTypes.bool
 };
 
 Button.defaultProps = {
   children: "Button",
   icon: undefined,
   size: "medium",
-  secondary: false,
-  arrow: false
+  secondary: false
 };
 
 export default Button;

@@ -8,11 +8,12 @@ import { FavouritesPage } from "../../pages/favourites";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-import areaOfficesFixture from "../fixtures/area_offices";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import translate from "../fixtures/translate";
+import nextStepsFixture from "../fixtures/nextSteps";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
@@ -38,13 +39,15 @@ describe("Favourites Page", () => {
     };
     mockStore = configureStore();
     reduxData = {
+      nextSteps: nextStepsFixture,
       questions: questionsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       option: "",
       translations: [],
+      benefitExamples: benefitExamplesFixture,
       benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       enIdx: JSON.stringify({
         version: lunr.version,
@@ -103,10 +106,7 @@ describe("Favourites Page", () => {
       needs: needsFixture,
       searchString: "",
       selectedNeeds: {},
-      favouriteBenefits: [benefitsFixture[0].id],
-      areaOffices: areaOfficesFixture,
-      selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0]
+      favouriteBenefits: [benefitsFixture[1].id]
     };
     props.store = mockStore(reduxData);
   });

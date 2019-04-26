@@ -7,7 +7,7 @@ exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 var airtableConstants = require("./hardcoded_strings");
 var readKey = process.env.AIRTABLE_READ_KEY;
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
-var baseKey = process.env.AIRTABLE_BASE_KEY || "appoFDwVvNMRSaO6o";
+var baseKey = process.env.AIRTABLE_BASE_KEY || "appkVQIRm3TUuNyv0";
 
 var replaceId = function replaceId(
   sheet,
@@ -60,6 +60,29 @@ var fetchTableFromAirtable = async function fetchTableFromAirtable(table) {
   });
 };
 
+var fillEmptyValues = table => {
+  var array = table.map(x => Object.keys(x).length);
+  var number_of_fields = Math.max(...array);
+  var completed_row = table.filter(
+    x => Object.keys(x).length === number_of_fields
+  )[0];
+  var all_columns = Object.keys(completed_row);
+
+  table.forEach(x => {
+    var x_columns = Object.keys(x);
+    all_columns.forEach(c => {
+      if (x_columns.indexOf(c) === -1 && typeof completed_row[c] === "string") {
+        x[c] = "";
+      } else if (
+        x_columns.indexOf(c) === -1 &&
+        typeof completed_row[c] === "object"
+      ) {
+        x[c] = [];
+      }
+    });
+  });
+};
+
 var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateFromAirtable() {
   let dataStore = {};
   airtableConstants.tableNames.forEach(function(tableName) {
@@ -72,20 +95,9 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
   await Promise.all(promises);
   dataStore["errors"] = [];
   airtableConstants.tableNames.forEach(function(tableName) {
-    var array = dataStore[tableName].map(x => Object.keys(x).length);
-    var number_of_fields = Math.max(...array);
-    dataStore[tableName] = dataStore[tableName].filter((x, i) => {
-      var fraction_of_cols_filled =
-        (Object.keys(x).length * 1) / number_of_fields;
-      if (fraction_of_cols_filled < 0.5) {
-        dataStore["errors"].push(
-          "missingValues." + tableName + ".row=" + (i + 1).toString()
-        );
-        return false;
-      } else {
-        return true;
-      }
-    });
+    if (dataStore[tableName].length > 0) {
+      fillEmptyValues(dataStore[tableName]);
+    }
   });
 
   // replace ids in linked records
@@ -105,12 +117,6 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     dataStore.questionDisplayLogic,
     "exclude options",
     dataStore.multipleChoiceOptions,
-    "variable_name"
-  );
-  replaceId(
-    dataStore.questionDisplayLogic,
-    "exclude questions",
-    dataStore.questions,
     "variable_name"
   );
   replaceId(
@@ -143,6 +149,12 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
     dataStore.questions,
     "variable_name"
   );
+  replaceId(
+    dataStore.benefitExamples,
+    "linked_benefits",
+    dataStore.benefits,
+    "vacNameEn"
+  );
 
   dataStore.timestamp = await Date.now();
   return dataStore;
@@ -151,7 +163,23 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
 var writeFeedback = (exports.writeFeedback = async function writeFeedback(
   payload
 ) {
-  var url = "https://api.airtable.com/v0/appoFDwVvNMRSaO6o/feedback";
+  var url = "https://api.airtable.com/v0/" + baseKey + "/feedback";
+  var resp = await fetch(url, {
+    body: JSON.stringify({ fields: payload }),
+    cache: "no-cache",
+    headers: {
+      Authorization: "Bearer " + writeKey,
+      "content-type": "application/json"
+    },
+    method: "POST"
+  });
+  return await resp.json();
+});
+
+var writeBetaFeedback = (exports.writeBetaFeedback = async function writeBetaFeedback(
+  payload
+) {
+  var url = "https://api.airtable.com/v0/" + baseKey + "/beta_feedback";
   var resp = await fetch(url, {
     body: JSON.stringify({ fields: payload }),
     cache: "no-cache",

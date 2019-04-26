@@ -1,0 +1,429 @@
+#header_css {
+  /*! CSS Used from: https://www.veterans.gc.ca/GCWeb_5.0.1/GCWeb/css/theme.min.css */
+  /*! CSS Used from: https://www.veterans.gc.ca/css/2018-redesign/2018-redesign-custom-min.css */
+  /*! CSS Used fontfaces */
+}
+#header_css section {
+  display: block;
+}
+#header_css a {
+  background-color: transparent;
+}
+#header_css a:active,
+#header_css a:hover {
+  outline: 0;
+}
+#header_css abbr[title] {
+  border-bottom: none;
+  -webkit-text-decoration: underline dotted;
+  text-decoration: underline dotted;
+}
+#header_css img {
+  border: 0;
+}
+#header_css hr {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+@media print {
+  #header_css *,
+  #header_css :after,
+  #header_css :before {
+    color: #000 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+  #header_css a,
+  #header_css a:visited {
+    text-decoration: underline;
+  }
+  #header_css a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  #header_css abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  #header_css img {
+    page-break-inside: avoid;
+  }
+  #header_css img {
+    max-width: 100% !important;
+  }
+  #header_css h2 {
+    orphans: 3;
+    widows: 3;
+  }
+  #header_css h2 {
+    page-break-after: avoid;
+  }
+}
+#header_css *,
+#header_css :after,
+#header_css :before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#header_css a:focus,
+#header_css a:hover {
+  color: #0535d2;
+  text-decoration: underline;
+}
+#header_css a:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+#header_css img {
+  vertical-align: middle;
+}
+#header_css hr {
+  margin-top: 23px;
+  margin-bottom: 23px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+#header_css .h6,
+#header_css h2 {
+  line-height: 1.1;
+  color: inherit;
+}
+#header_css h2 {
+  margin-top: 23px;
+  margin-bottom: 11.5px;
+}
+#header_css .h6 {
+  margin-bottom: 11.5px;
+}
+#header_css .text-right {
+  text-align: right;
+}
+#header_css ul {
+  margin-top: 0;
+  margin-bottom: 11.5px;
+}
+#header_css .list-inline {
+  padding-left: 0;
+  list-style: none;
+  margin-left: -5px;
+}
+#header_css .list-inline > li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+#header_css abbr[title] {
+  cursor: help;
+}
+#header_css .container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#header_css .container:after,
+#header_css .container:before {
+  display: table;
+  content: " ";
+}
+#header_css .container:after {
+  clear: both;
+}
+@media (min-width: 768px) {
+  #header_css .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #header_css .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  #header_css .container {
+    width: 1170px;
+  }
+}
+#header_css .row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+#header_css .row:after,
+#header_css .row:before {
+  display: table;
+  content: " ";
+}
+#header_css .row:after {
+  clear: both;
+}
+#header_css .col-md-4,
+#header_css .col-md-8,
+#header_css .col-sm-6,
+#header_css .col-xs-12 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+#header_css .col-xs-12 {
+  float: left;
+}
+#header_css .col-xs-12 {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  #header_css .col-sm-6 {
+    float: left;
+  }
+  #header_css .col-sm-6 {
+    width: 50%;
+  }
+}
+@media (min-width: 992px) {
+  #header_css .col-md-4,
+  #header_css .col-md-8 {
+    float: left;
+  }
+  #header_css .col-md-4 {
+    width: 33.33333333%;
+  }
+  #header_css .col-md-8 {
+    width: 66.66666667%;
+  }
+}
+#header_css .visible-xs {
+  display: none !important;
+}
+@media (max-width: 767px) {
+  #header_css .visible-xs {
+    display: block !important;
+  }
+}
+#header_css a {
+  text-decoration: underline;
+}
+#header_css a:visited {
+  color: #7834bc;
+}
+#header_css h2 {
+  margin-top: 38px;
+}
+#header_css .h6 {
+  margin-top: 21px;
+}
+#header_css .wb-inv {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+#header_css .mrgn-lft-sm {
+  margin-left: 5px;
+}
+#header_css .mrgn-bttm-0 {
+  margin-bottom: 0;
+}
+#header_css .mrgn-tp-0 {
+  margin-top: 0;
+}
+#header_css .mrgn-tp-sm {
+  margin-top: 5px;
+}
+#header_css .mrgn-tp-md {
+  margin-top: 15px;
+}
+@media print {
+  #header_css a[href]:after {
+    content: none;
+  }
+}
+#header_css a {
+  color: #284162;
+}
+#header_css .h6,
+#header_css h2 {
+  font-family: Lato, sans-serif;
+}
+#header_css .h6,
+#header_css h2 {
+  -webkit-font-variant-ligatures: no-common-ligatures;
+  font-variant-ligatures: no-common-ligatures;
+  font-weight: 600;
+}
+#header_css .h6 {
+  border: 0;
+}
+#header_css .home h2 {
+  font-size: 1.2em;
+}
+#header_css h2 {
+  font-size: 1.8em;
+}
+#header_css .h6 {
+  font-size: 0.95em;
+  font-weight: 400;
+}
+#header_css header .brand {
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+#header_css header .brand a {
+  display: block;
+  height: auto;
+  padding-bottom: 0;
+  width: auto;
+}
+#header_css header .brand a:after {
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#header_css header .brand img {
+  height: auto;
+  max-height: 40px;
+}
+#header_css header .brand img {
+  margin-bottom: 0.375em;
+}
+#header_css header .brand {
+  padding-bottom: 0;
+}
+#header_css header .brand a {
+  position: relative;
+  text-decoration: none;
+}
+@media screen and (max-width: 767px) {
+  #header_css header .brand a {
+    margin-top: 15px;
+  }
+}
+@media screen and (max-width: 991px) {
+  #header_css h2 {
+    font-size: 1.6em;
+  }
+  #header_css header .brand a {
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 479px) {
+  #header_css header .brand {
+    float: none !important;
+    width: auto !important;
+  }
+  #header_css header .brand img {
+    max-height: 25px;
+  }
+}
+@media print {
+  #header_css header .brand {
+    margin-bottom: 0;
+  }
+}
+#header_css .container {
+  outline: 0 !important;
+}
+#header_css .h6,
+#header_css h2 {
+  color: #2f3437;
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+#header_css .home h2,
+#header_css h2 {
+  font-size: 28px;
+  letter-spacing: -0.5px;
+}
+#header_css .h6,
+#header_css .home .h6 {
+  line-height: normal;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+#header_css li {
+  letter-spacing: -0.03em;
+}
+#header_css li {
+  font-size: 16px;
+}
+#header_css a,
+#header_css a:active,
+#header_css a:focus,
+#header_css a:hover,
+#header_css a:visited {
+  color: #2f3437;
+  text-decoration: underline;
+}
+#header_css hr {
+  border-top-color: #d5e2e9;
+}
+#header_css abbr[title] {
+  cursor: help;
+  border-bottom: 1px dotted #434458;
+  text-decoration: none;
+}
+#header_css #wb-bnr,
+#header_css #wb-bnr a {
+  font-family: Montserrat, sans-serif;
+}
+#header_css #wb-bnr .brand {
+  margin: 16px 0;
+}
+#header_css #wb-bnr .brand a img {
+  height: 26px;
+}
+#header_css #wb-bnr img#mva-logo {
+  height: 20px;
+  position: relative;
+  top: 1px;
+}
+#header_css #wb-bnr .utility-links {
+  margin: 10px 0 0;
+}
+#header_css #wb-bnr img#language-globe,
+#header_css img#maple-leaf {
+  height: 20px;
+  margin-left: 5px;
+  position: relative;
+  top: -2px;
+}
+#header_css #wb-bnr,
+#header_css #wb-bnr a {
+  color: #fff;
+  font-size: 10px;
+  text-decoration: none;
+}
+#header_css #wb-bnr a {
+  padding: 0 8px;
+  text-transform: uppercase;
+}
+#header_css #wb-bnr a:hover {
+  color: #838d9b;
+  text-decoration: underline;
+}
+#header_css .letter-spacing-md {
+  letter-spacing: 0.25em;
+}
+#header_css .brdr-med-dark-grey {
+  border-color: #434458;
+}
+@media only screen and (max-width: 768px) {
+  #header_css #wb-bnr .utility-links > ul {
+    text-align: left;
+  }
+  #header_css #wb-bnr .utility-links {
+    margin: 0;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #header_css #wb-bnr .utility-links {
+    margin: 18px 0 0;
+  }
+}

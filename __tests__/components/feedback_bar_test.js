@@ -53,32 +53,32 @@ describe("Feedback bar", () => {
     });
   });
 
-  it("editing the what were you doing text field updates the action state", () => {
+  it("editing the what were you doing text area updates the bug state", () => {
     mountedFeedbackBar()
-      .find("#feedbackNo")
+      .find("#feedbackBug")
       .at(0)
       .simulate("click");
 
     mountedFeedbackBar()
-      .find("#commentWhatWereYouDoing")
+      .find("#commentTextArea")
       .at(0)
       .props()
       .onChange({ target: { value: "bar" } });
-    expect(mountedFeedbackBar().state().action).toEqual("bar");
+    expect(mountedFeedbackBar().state().bug).toEqual("bar");
   });
 
-  it("editing the what went wrong text field updates the action state", () => {
+  it("editing the how can info be more useful text area updates the infoBeMoreUseful state", () => {
     mountedFeedbackBar()
       .find("#feedbackNo")
       .at(0)
       .simulate("click");
 
     mountedFeedbackBar()
-      .find("#commentWhatWentWrong")
+      .find("#commentTextArea")
       .at(0)
       .props()
       .onChange({ target: { value: "bar" } });
-    expect(mountedFeedbackBar().state().failure).toEqual("bar");
+    expect(mountedFeedbackBar().state().infoBeMoreUseful).toEqual("bar");
   });
 
   describe("clicking the comment cancel button", () => {
@@ -103,7 +103,7 @@ describe("Feedback bar", () => {
         .find("#feedbackYes")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).toContain("feedback-response");
+      expect(mountedFeedbackBar().text()).toContain("feedback.response_p1");
     });
   });
 
@@ -113,7 +113,7 @@ describe("Feedback bar", () => {
         .find("#feedbackNo")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).not.toContain("feedback-response");
+      expect(mountedFeedbackBar().text()).not.toContain("feedback.response_p1");
     });
 
     it("shows the commentBox", () => {
@@ -121,7 +121,9 @@ describe("Feedback bar", () => {
         .find("#feedbackNo")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).toContain("comment-help-us-improve");
+      expect(mountedFeedbackBar().text()).toContain(
+        "feedback.privacy_statement"
+      );
     });
 
     it("shows the thank you for your feedback text after clicking submit button", () => {
@@ -134,7 +136,7 @@ describe("Feedback bar", () => {
         .find("#sendComment")
         .at(0)
         .simulate("click");
-      expect(mountedFeedbackBar().text()).toContain("feedback-response");
+      expect(mountedFeedbackBar().text()).toContain("feedback.response_p1");
     });
   });
 

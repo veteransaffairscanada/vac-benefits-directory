@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core/";
 import NeedButton from "./need_button";
 import { connect } from "react-redux";
-import { logEvent } from "../utils/analytics";
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const root = css`
   padding: 0 15px !important;
@@ -19,8 +19,9 @@ const needsList = css`
   -webkit-columns: 2;
   -moz-columns: 2;
   max-width: 100%;
+  width: 100%;
   padding-left: 0;
-  padding-top: 30px;
+  padding-top: 24px;
   @media (max-width: 599px) {
     columns: 1;
     -webkit-columns: 1;
@@ -29,31 +30,20 @@ const needsList = css`
 `;
 
 export class GuidedExperienceNeeds extends Component {
-  handleClick = id => {
-    logEvent("FilterClick", "need", id);
-    let newSelectedNeeds = JSON.parse(JSON.stringify(this.props.selectedNeeds));
-    if (newSelectedNeeds.hasOwnProperty(id)) {
-      delete newSelectedNeeds[id];
-    } else {
-      newSelectedNeeds[id] = id;
-    }
-    this.props.setSelectedNeeds(newSelectedNeeds);
-  };
-
   render() {
-    const { t, store } = this.props; // eslint-disable-line no-unused-vars
+    const { t, store, url } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <div className={root}>
+      <div css={root}>
         <Grid container spacing={24}>
-          <ul className={needsList}>
+          <ul css={needsList}>
             {this.props.needs.map(need => (
-              <li key={need.id} className={needCss}>
+              <li key={need.id} css={needCss}>
                 <NeedButton
                   key={need.nameEn.replace(/ /g, "-") + "-checkbox"}
                   need={need}
                   t={t}
                   store={store}
-                  scrollOnClick={false}
+                  url={url}
                 />
               </li>
             ))}
@@ -84,7 +74,8 @@ GuidedExperienceNeeds.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   setSelectedNeeds: PropTypes.func.isRequired,
   store: PropTypes.object,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired
 };
 
 export default connect(

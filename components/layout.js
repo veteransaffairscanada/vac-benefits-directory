@@ -1,40 +1,48 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "react-emotion";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { AlphaBanner } from "../components/alpha_banner";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
+import styled from "@emotion/styled";
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  withTheme
+} from "@material-ui/core/styles";
 import ErrorBoundary from "../components/error_boundary";
 import Head from "../components/head";
 import FeedbackBar from "../components/feedbackBar";
-import Footer from "../components/footer";
-import FederalBanner from "../components/federal_banner";
 import Noscript from "../components/noscript";
 import Container from "../components/container";
 import { globalTheme } from "../theme";
+import VacFooterEn from "./vac_footer_en";
+import VacFooterFr from "./vac_footer_fr";
+import VacHeaderEn from "./vac_header_en";
+import VacHeaderFr from "./vac_header_fr";
+import SkipToMainContent from "./skip_to_main_content";
 
-const alpha = css`
-  background-color: ${globalTheme.colour.alphaBlue};
-`;
 const Content = styled("div")`
-  min-height: calc(100vh - 65px);
+  min-height: calc(100vh - 165px);
 `;
-const header = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
-  padding: 0px;
-`;
-const white = css`
-  color: white;
-  :focus {
-    outline: 3px solid ${globalTheme.colour.focusColour};
-  }
+const black_bg = css`
+  background-color: ${globalTheme.colour.blackish2};
+  padding-bottom: 6px;
 `;
 const backgoundColour1 = css`
-  background-color: ${globalTheme.colour.greyishBrownTwo};
+  background-color: ${globalTheme.colour.navy};
 `;
-const backgoundColour2 = css`
-  background-color: ${globalTheme.colour.greyishBrown};
+const fontStyle = css`
+  font-family: Montserrat;
+  line-height: 1.4375;
 `;
 const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 425,
+      md: 768,
+      lg: 1000
+    }
+  },
   palette: {
     primary: {
       main: globalTheme.colour.cerulean
@@ -48,7 +56,7 @@ const theme = createMuiTheme({
   },
   typography: {
     useNextVariants: true,
-    fontFamily: ["Merriweather", "serif"]
+    fontFamily: globalTheme.fontFamilySerif
   }
 });
 
@@ -65,7 +73,7 @@ class Layout extends Component {
   }
 
   render() {
-    const { t, title } = this.props;
+    const { t, title, skipLink, url } = this.props;
     const noScriptTag = this.props.hideNoscript ? null : <Noscript t={t} />;
     return (
       <MuiThemeProvider theme={theme}>
@@ -73,41 +81,27 @@ class Layout extends Component {
           <Head title={title} t={t} />
           <ErrorBoundary>
             <Content>
-              <div className={header}>
-                <Container>
-                  <FederalBanner
-                    i18n={this.props.i18n}
-                    t={t}
-                    showRefreshCache={this.props.showRefreshCache}
-                  />
-                </Container>
-                <div className={alpha}>
-                  <Container>
-                    <AlphaBanner t={t}>
-                      {t("alpha")} &nbsp;
-                      <a
-                        href={"mailto:" + t("contact.feedback_email")}
-                        className={white}
-                      >
-                        {t("alpha-feedback")}
-                      </a>
-                    </AlphaBanner>
-                  </Container>
-                </div>
+              <SkipToMainContent skipLink={skipLink} t={t} />
+              <div id="header_css" css={black_bg}>
+                {t("current-language-code") === "en" ? (
+                  <VacHeaderEn t={t} url={url} />
+                ) : (
+                  <VacHeaderFr t={t} url={url} />
+                )}
               </div>
-              <div role="main" id="main">
-                {this.props.children}
-              </div>
+              <main id="main">{this.props.children}</main>
             </Content>
-            <div className={backgoundColour1}>
+            <div css={backgoundColour1}>
               <Container>
                 <FeedbackBar t={t} />
               </Container>
             </div>
-            <div className={backgoundColour2}>
-              <Container>
-                <Footer t={t} />
-              </Container>
+            <div id="footer_styles" css={fontStyle}>
+              {t("current-language-code") === "en" ? (
+                <VacFooterEn />
+              ) : (
+                <VacFooterFr />
+              )}
             </div>
           </ErrorBoundary>
           {noScriptTag}
@@ -120,9 +114,10 @@ class Layout extends Component {
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   hideNoscript: PropTypes.bool.isRequired,
-  showRefreshCache: PropTypes.bool.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
+  url: PropTypes.object.isRequired,
+  skipLink: PropTypes.string.isRequired,
   title: PropTypes.string,
   backgroundColor: PropTypes.string
 };
@@ -131,4 +126,4 @@ Layout.defaultProps = {
   backgroundColor: globalTheme.colour.paleGrey
 };
 
-export default Layout;
+export default withTheme()(Layout);

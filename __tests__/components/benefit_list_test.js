@@ -5,11 +5,16 @@ const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 import benefitsFixture from "../fixtures/benefits";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
-
 import configureStore from "redux-mock-store";
 import needsFixture from "../fixtures/needs";
+import translateFixture from "../fixtures/translate";
+import nextStepsFixture from "../fixtures/nextSteps";
+import questionsFixture from "../fixtures/questions";
+import questionDisplayLogicFixture from "../fixtures/question_display_logic";
+import questionClearLogicFixture from "../fixtures/question_clear_logic";
 
 describe("BenefitList", () => {
   let props;
@@ -17,23 +22,45 @@ describe("BenefitList", () => {
 
   beforeEach(() => {
     props = {
-      t: key => key,
       filteredBenefits: benefitsFixture,
       onRef: k => k,
-      searchString: "",
-      showFavourites: true,
-      option: ""
+      savedList: true,
+      currentLanguage: "en"
     };
 
     mockStore = configureStore();
     reduxData = {
+      t: translateFixture,
+      nextSteps: nextStepsFixture,
+      benefitExamples: benefitExamplesFixture,
       cookiesDisabled: false,
+      setCookiesDisabled: jest.fn(),
+      profileQuestions: questionsFixture.filter(
+        q => q.variable_name !== "needs"
+      ),
+      questions: questionsFixture,
+      questionDisplayLogic: questionDisplayLogicFixture,
+      questionClearLogic: questionClearLogicFixture,
+      multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
       favouriteBenefits: [],
-      eligibilityPaths: eligibilityPathsFixture,
-      multipleChoiceOptions: multipleChoiceOptionsFixture,
+      benefitEligibility: benefitEligibilityFixture,
+      filteredBenefits: benefitsFixture,
       needs: needsFixture,
-      selectedNeeds: {}
+      serviceType: "",
+      patronType: "",
+      saveQuestionResponse: jest.fn(),
+      searchString: "",
+      statusAndVitals: "",
+      selectedEligibility: {
+        serviceType: "",
+        patronType: "",
+        statusAndVitals: ""
+      },
+      serviceHealthIssue: "",
+      setSearchString: jest.fn(),
+      selectedNeeds: {},
+      option: ""
     };
     props.store = mockStore(reduxData);
   });
@@ -58,17 +85,24 @@ describe("BenefitList", () => {
     let BLInstance = shallow(
       <BenefitList {...props} {...reduxData} />
     ).instance();
-    expect(
-      BLInstance.sortBenefits(benefitsFixture, "en", "popularity").map(
-        b => b.id
-      )
-    ).toEqual(["benefit_2", "benefit_1", "benefit_0", "benefit_3"]);
+    expect(BLInstance.sortBenefits(benefitsFixture).map(b => b.id)).toEqual([
+      "benefit_2",
+      "benefit_1",
+      "benefit_0",
+      "benefit_3",
+      "benefit_4"
+    ]);
   });
 
   it("displays the correct number of benefits cards", () => {
     expect(
       mount(<BenefitList {...props} {...reduxData} />).find("BenefitCard")
         .length
-    ).toEqual(4);
+    ).toEqual(5);
+  });
+  it("shows a loading circle when the page is loading", () => {
+    let mounted = mount(<BenefitList {...props} {...reduxData} />);
+    mounted.setState({ loading: true });
+    expect(mounted.find("CircularProgress").length).toEqual(1);
   });
 });

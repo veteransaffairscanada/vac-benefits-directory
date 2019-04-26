@@ -1,44 +1,58 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { PhaseBadge } from "@cdssnc/gcui";
-import { css } from "react-emotion";
+import { PhaseBadge } from "./phase_badge";
+import { css } from "emotion";
 import { globalTheme } from "../theme";
+import Link from "next/link";
+
+const white = css`
+  color: ${globalTheme.colour.charcoalGrey};
+  :focus {
+    outline: 3px solid ${globalTheme.colour.focusColour};
+  }
+`;
 
 const Banner = css`
   display: flex;
   display: -ms-flexbox;
   align-items: center;
   -ms-flex-align: center;
-  padding: 0.4rem 0 0.4rem 0;
-  margin: 0px;
-  min-width: 20em;
-  color: ${globalTheme.colour.white};
-  font: 0.694rem sans-serif;
-  span:first-child {
+  background-color: ${globalTheme.colour.paleGreyTwo};
+  border-top: 8px solid ${globalTheme.colour.borderGreen};
+  color: ${globalTheme.colour.charcoalGrey};
+  font-family: ${globalTheme.fontFamilySansSerif};
+  padding: 10px 30px 10px;
+  span:first-of-type {
     font-weight: 700 !important;
     padding: 0.2rem 0.7rem;
-    border-radius: 5px;
+    border-radius: 3px;
     background-color: ${globalTheme.colour.betaBlue};
+    margin-right: 1em;
   }
-`;
-
-const Text = css`
-  margin-left: 10px;
 `;
 /**
  * Renders an alpha banner and renders passed children in the `Text` container
  */
-export const AlphaBanner = ({ children, t, ...rest }) => (
-  <aside {...rest} className={Banner}>
-    <PhaseBadge phase={t("header.beta")} />
-    <div className={Text}>{children}</div>
-  </aside>
-);
+export class AlphaBanner extends Component {
+  render() {
+    const { t, url, ...rest } = this.props;
+    return (
+      <aside {...rest} className={Banner}>
+        <PhaseBadge phase={t("header.beta")} />
+        <span>
+          {t("beta_banner.main")} &nbsp;
+          <Link href={{ pathname: "/feedback", query: url.query }}>
+            <a className={white}>{t("beta_banner.link_text")}</a>
+          </Link>
+        </span>
+      </aside>
+    );
+  }
+}
 
 AlphaBanner.propTypes = {
-  /**
-   * Heirarchy of child components to render within thr `Text` container
-   */
   t: PropTypes.func.isRequired,
-  children: PropTypes.any
+  url: PropTypes.object.isRequired
 };
+
+export default AlphaBanner;

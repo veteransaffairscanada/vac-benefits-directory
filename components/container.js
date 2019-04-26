@@ -1,28 +1,40 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
-import { cx, css } from "react-emotion";
-import { globalTheme } from "../theme";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
-const style = css`
-  max-width: 1170px;
-  margin: 0 auto;
-  padding-left: 30px;
-  padding-right: 30px;
-  @media only screen and (max-width: ${globalTheme.max.xs}) {
-    padding-left: 15px;
+const vacStyle = css`
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  @media (min-width: 768px) {
+    width: 750px;
+  }
+  @media (min-width: 992px) {
+    width: 970px;
+  }
+  @media (min-width: 1200px) {
+    width: 1170px;
+  }
+`;
+
+const morePaddingIfBig = css`
+  position: relative;
+  min-height: 1px;
+  @media (min-width: 768px) {
     padding-right: 15px;
+    padding-left: 15px;
   }
 `;
 
 class Container extends Component {
   render() {
+    let css = vacStyle;
+    if (this.props.className) css = [vacStyle, this.props.className];
     return (
-      <div
-        className={
-          this.props.className ? cx(style, this.props.className) : style
-        }
-      >
-        {this.props.children}
+      <div css={css} id={this.props.id ? this.props.id : ""}>
+        <div css={morePaddingIfBig}>{this.props.children}</div>
       </div>
     );
   }
@@ -30,7 +42,9 @@ class Container extends Component {
 
 Container.propTypes = {
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  className: PropTypes.string
+  id: PropTypes.string,
+  mobileFullWidth: PropTypes.bool,
+  className: PropTypes.object
 };
 
 export default Container;

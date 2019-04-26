@@ -6,9 +6,8 @@ import React from "react";
 import { DataValidation } from "../../pages/data-validation";
 import benefitsFixture from "../fixtures/benefits";
 import translationsFixture from "../fixtures/translations";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import needsFixture from "../fixtures/needs";
-import areaOfficesFixture from "../fixtures/area_offices";
 import translate from "../fixtures/translate";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -33,10 +32,10 @@ describe("DataValidation", () => {
         addResourceBundle: jest.fn()
       },
       benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       needs: needsFixture,
       errors: [],
-      areaOffices: areaOfficesFixture
+      url: { query: {} }
     };
     _mountedDataValidation = undefined;
   });
@@ -56,6 +55,14 @@ describe("DataValidation", () => {
     expect(await axe(html)).toHaveNoViolations();
   });
 
+  it("shows the refresh cache button", () => {
+    expect(
+      mountedDataValidation()
+        .find("#refreshCache")
+        .first().length
+    ).toEqual(1);
+  });
+
   it("passes all tests using the default fixtures", () => {
     expect(mountedDataValidation().html()).toContain("Pass");
     expect(mountedDataValidation().html()).not.toContain("Fail");
@@ -65,19 +72,13 @@ describe("DataValidation", () => {
     props.benefits = [];
     expect(mountedDataValidation().html()).toContain("Fail");
   });
-
-  it("fails if there are no eligibility paths", () => {
-    props.eligibilityPaths = [];
+  it("fails if there is no benefitEligibility", () => {
+    props.benefitEligibility = [];
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
   it("fails if there are no needs", () => {
     props.needs = [];
-    expect(mountedDataValidation().html()).toContain("Fail");
-  });
-
-  it("fails if areaOffices is empty", () => {
-    props.areaOffices = [];
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
@@ -96,8 +97,8 @@ describe("DataValidation", () => {
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
-  it("fails if a benefit is not connected to any Eligibility Paths", () => {
-    props.benefits[0].eligibilityPaths = "";
+  it("fails if a benefit is not listed in Benefit Eligibility", () => {
+    props.benefitEligibility[0].benefit = "";
     expect(mountedDataValidation().html()).toContain("Fail");
   });
 
@@ -122,22 +123,6 @@ describe("DataValidation", () => {
     const instance = shallow(<DataValidation {...props} />).instance();
     expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
       props.benefits[0].vacNameEn
-    );
-  });
-
-  it("fails if checkEligibiltyPaths doesn't find missing needs", () => {
-    props.benefits[0].eligibilityPaths = "";
-    const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkMissingNeeds(props.benefits[0], 0)).toContain(
-      props.benefits[0].vacNameEn
-    );
-  });
-
-  it("fail if checkAreaOfficesFields doesn't find empty fields", () => {
-    props.areaOffices[0].name_en = "";
-    const instance = shallow(<DataValidation {...props} />).instance();
-    expect(instance.checkAreaOfficesFields(props.areaOffices[0], 0)).toContain(
-      props.areaOffices[0].id
     );
   });
 
@@ -172,7 +157,7 @@ describe("DataValidation", () => {
           .instance()
           .checkBenefitUrls()
       ).then(() => {
-        expect(fetch.mock.calls.length).toEqual(4);
+        expect(fetch.mock.calls.length).toEqual(5);
         done();
       });
     });

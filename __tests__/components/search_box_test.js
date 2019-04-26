@@ -1,21 +1,28 @@
 import React from "react";
 import { mount } from "enzyme";
 import SearchBox from "../../components/search_box";
+import Router from "next/router";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 describe("SearchBox", () => {
   let props;
+  Router.replace = jest.fn().mockImplementation(() => new Promise(() => true));
   beforeEach(() => {
     props = {
-      inputId: "input",
       onButtonClick: jest.fn(),
       buttonId: "buttonId",
       onKeyDown: jest.fn(),
       onKeyUp: jest.fn(),
       value: "the value",
       onChange: jest.fn(),
-      onClear: jest.fn()
+      onClear: jest.fn(),
+      url: {
+        query: {
+          lng: "en",
+          searchString: "disability"
+        }
+      }
     };
   });
 
@@ -96,20 +103,9 @@ describe("SearchBox", () => {
 
   describe("handleClear", () => {
     it("calls onClear appropriately", () => {
-      mount(<SearchBox {...props} />)
-        .instance()
-        .handleClear();
+      let mounted = mount(<SearchBox {...props} />);
+      mounted.instance().handleClear();
       expect(props.onClear).toBeCalled();
-    });
-
-    it("calls otherProps.onChange appropriately", () => {
-      props.otherProps = { value: "v", onChange: jest.fn() };
-      mount(<SearchBox {...props} />)
-        .instance()
-        .handleClear();
-      expect(props.otherProps.onChange).toBeCalledWith({
-        target: { value: "" }
-      });
     });
   });
 });

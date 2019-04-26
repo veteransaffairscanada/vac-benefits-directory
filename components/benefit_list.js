@@ -4,13 +4,24 @@ import BenefitCard from "./benefit_cards";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const Div = css`
   width: 100%;
   position: fixed;
   left: 50%;
   top: 40%;
+`;
+
+const list = css`
+  width: 100%;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  > li {
+    padding: 12px;
+  }
 `;
 
 export class BenefitList extends React.Component {
@@ -36,7 +47,7 @@ export class BenefitList extends React.Component {
       : sp;
   };
 
-  sortBenefits = (filteredBenefits, language) => {
+  sortBenefits = filteredBenefits => {
     filteredBenefits.forEach(b => {
       b.sortingNumber = { high: 1, medium: 2, low: 3 }[
         this.cleanSortingPriority(b.sortingPriority)
@@ -46,9 +57,8 @@ export class BenefitList extends React.Component {
     let sorting_fn = (a, b) => {
       if (a.sortingNumber === b.sortingNumber) {
         // sort alphabetically
-        let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
-        let nameA = a[vacName].toUpperCase();
-        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
+        let nameA = a.vacNameEn.toUpperCase();
+        let nameB = b.vacNameEn.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
           return -1;
         }
@@ -68,38 +78,51 @@ export class BenefitList extends React.Component {
     let {
       filteredBenefits,
       t,
+      currentLanguage,
       searchString,
-      showFavourites,
+      savedList,
       store
     } = this.props;
     const sortedBenefits = searchString
       ? filteredBenefits
-      : this.sortBenefits(filteredBenefits, t("current-language-code"));
+      : this.sortBenefits(filteredBenefits);
 
     return loading ? (
-      <div className={Div}>
+      <div css={Div}>
         <CircularProgress size={100} />
       </div>
     ) : (
-      sortedBenefits.map((benefit, i) => (
-        <BenefitCard
-          id={"bc" + i}
-          benefit={benefit}
-          t={t}
-          key={benefit.id}
-          showFavourite={showFavourites}
-          searchString={searchString}
-          store={store}
-        />
-      ))
+      <ul css={list}>
+        {sortedBenefits.map((benefit, i) => (
+          <li
+            key={benefit.id}
+            aria-label={
+              this.props.t("current-language-code") === "en"
+                ? benefit.vacNameEn
+                : benefit.vacNameFr
+            }
+          >
+            <BenefitCard
+              id={"bc" + i}
+              benefit={benefit}
+              t={t}
+              currentLanguage={currentLanguage}
+              key={benefit.id}
+              savedList={savedList}
+              store={store}
+            />
+          </li>
+        ))}
+      </ul>
     );
   }
 }
 
 BenefitList.propTypes = {
   t: PropTypes.func.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
   filteredBenefits: PropTypes.array.isRequired,
-  showFavourites: PropTypes.bool.isRequired,
+  savedList: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object
 };

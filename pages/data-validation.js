@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -6,19 +6,21 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "../components/paper";
-import Button from "@material-ui/core/Button";
-import ReactMoment from "react-moment";
 import withI18N from "../lib/i18nHOC";
 import Layout from "../components/layout";
 import { connect } from "react-redux";
-import { css, cx } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
+import Button from "../components/button";
+import { globalTheme } from "../theme";
 
-const pCSS = css`
-  padding: 10px;
-`;
 const root = css`
   overflow-x: auto;
+  margin-top: 20px;
+`;
+const top = css`
+  padding: 20px;
 `;
 const table = css`
   width: 100%;
@@ -31,6 +33,11 @@ const tableCellGreen = css`
 `;
 const tableCellRed = css`
   color: red !important;
+`;
+const envDetailsStyling = css`
+  flex: 1;
+  color: ${globalTheme.colour.charcoalGrey};
+  font-weight: bold !important;
 `;
 
 export class DataValidation extends Component {
@@ -65,19 +72,6 @@ export class DataValidation extends Component {
     }
   };
 
-  checkAreaOfficesFields(a, i) {
-    if (
-      !(a.address_en && a.address_en != "") ||
-      !(a.address_fr && a.address_fr != "") ||
-      !(a.lat && a.lat != "") ||
-      !(a.lng && a.lng != "") ||
-      !(a.name_en && a.name_en != "") ||
-      !(a.name_fr && a.name_fr != "")
-    ) {
-      return " " + a.id + " (" + (i + 1) + "),";
-    }
-  }
-
   checkTranslationsFields(t, i) {
     if (
       !(t.key && t.key != "") ||
@@ -94,8 +88,8 @@ export class DataValidation extends Component {
     }
   };
 
-  checkEligibiltyPaths = (b, i) => {
-    if (!(b.eligibilityPaths && b.eligibilityPaths != "")) {
+  checkBenefitEligibility = (b, i) => {
+    if (!b.benefitEligibility) {
       return " " + b[this.state.benefitNameKey] + " (" + (i + 1) + "),";
     }
   };
@@ -142,15 +136,18 @@ export class DataValidation extends Component {
   };
 
   render() {
+    const envDetails = process.env.CIRCLE_SHA1
+      ? process.env.CIRCLE_SHA1.substring(0, 7)
+      : process.env.NODE_ENV;
+
     const {
       i18n,
       t,
       benefits,
-      eligibilityPaths,
+      benefitEligibility,
       needs,
       errors,
-      translations,
-      areaOffices
+      translations
     } = this.props; // eslint-disable-line no-unused-vars
 
     const data = [
@@ -160,24 +157,19 @@ export class DataValidation extends Component {
         benefits.length > 0 ? true : false
       ),
       this.createData(
-        "Size of Eligibility Paths Table",
-        eligibilityPaths.length,
-        eligibilityPaths.length > 0 ? true : false
-      ),
-      this.createData(
         "Size of Needs Table",
         needs.length,
         needs.length > 0 ? true : false
       ),
       this.createData(
+        "Size of Benefit Eligibility Table",
+        benefitEligibility.length,
+        benefitEligibility.length > 0 ? true : false
+      ),
+      this.createData(
         "nameTranslationTableSize",
         translations.length,
         translations.length > 0 ? true : false
-      ),
-      this.createData(
-        "nameAreaOfficesSize",
-        areaOffices.length,
-        areaOffices.length > 0 ? true : false
       ),
       this.createData(
         "Benefits with Empty Fields",
@@ -190,16 +182,9 @@ export class DataValidation extends Component {
         benefits.filter(this.checkMissingNeeds).length == 0 ? true : false
       ),
       this.createData(
-        "Benefits not in an Eligibility Path",
-        benefits.map(this.checkEligibiltyPaths),
-        benefits.filter(this.checkEligibiltyPaths).length == 0 ? true : false
-      ),
-      this.createData(
-        "emptyAreaOffices",
-        areaOffices.map(this.checkAreaOfficesFields),
-        areaOffices.filter(this.checkAreaOfficesFields).length == 0
-          ? true
-          : false
+        "Benefits not in the Benefit Eligibility Table",
+        benefits.map(this.checkBenefitEligibility),
+        benefits.filter(this.checkBenefitEligibility).length == 0 ? true : false
       ),
       this.createData(
         "emptyTranslations",
@@ -230,18 +215,24 @@ export class DataValidation extends Component {
         i18n={i18n}
         t={t}
         hideNoscript={true}
-        showRefreshCache={true}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
+        skipLink="#mainContent"
+        url={this.props.url}
       >
-        <Container>
-          <Paper className={root}>
-            <p className={pCSS}>
+        <Container id="mainContent">
+          <p css={envDetailsStyling}>Build: {envDetails}</p>
+          <Paper styles={[root, top]}>
+            <p>
               {t("dv.last_cache_update")}
               :&nbsp;
-              <ReactMoment format="llll">{this.props.timestamp}</ReactMoment>
+              {Date(this.props.timestamp)}
             </p>
+            <a href="/refresh">
+              <Button id="refreshCache">{t("refresh-cache")}</Button>
+            </a>
           </Paper>
-          <Paper className={root}>
-            <Table className={table}>
+          <Paper styles={root}>
+            <Table css={table}>
               <TableHead>
                 <TableRow>
                   <TableCell>{t("dv.status")}</TableCell>
@@ -254,19 +245,15 @@ export class DataValidation extends Component {
                   return (
                     <TableRow key={i} id={n.name}>
                       <TableCell
-                        className={cx(
+                        css={[
                           tableCellCSS,
                           n.status ? tableCellGreen : tableCellRed
-                        )}
+                        ]}
                       >
                         {n.status !== undefined ? (
                           t("dv." + (n.status ? "Pass" : "Fail"))
                         ) : (
-                          <Button
-                            color="primary"
-                            variant="contained"
-                            onClick={() => this.checkBenefitUrls()}
-                          >
+                          <Button onClick={() => this.checkBenefitUrls()}>
                             {t("dv.validate")}
                           </Button>
                         )}
@@ -287,9 +274,8 @@ export class DataValidation extends Component {
 
 const mapStateToProps = reduxState => {
   return {
-    areaOffices: reduxState.areaOffices,
     benefits: reduxState.benefits,
-    eligibilityPaths: reduxState.eligibilityPaths,
+    benefitEligibility: reduxState.benefitEligibility,
     needs: reduxState.needs,
     timestamp: reduxState.timestamp,
     errors: reduxState.errors,
@@ -299,14 +285,14 @@ const mapStateToProps = reduxState => {
 
 DataValidation.propTypes = {
   benefits: PropTypes.array.isRequired,
-  eligibilityPaths: PropTypes.array.isRequired,
+  benefitEligibility: PropTypes.array.isRequired,
   needs: PropTypes.array.isRequired,
   errors: PropTypes.array.isRequired,
   i18n: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
   timestamp: PropTypes.number,
   translations: PropTypes.array.isRequired,
-  areaOffices: PropTypes.array.isRequired
+  url: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps)(withI18N(DataValidation));

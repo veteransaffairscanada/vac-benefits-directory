@@ -1,17 +1,21 @@
 // from: https://raw.githubusercontent.com/UKHomeOffice/govuk-react/master/components/search-box/src/index.js
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import SearchIcon from "./icons/Search";
 import CancelIcon from "./icons/Cancel";
 import { globalTheme } from "../theme";
+// import Router from "next/router";
+// import { mutateUrl } from "../utils/common";
 
 const SearchBoxWrapper = styled("div")({
   boxSizing: "border-box",
   display: "flex",
   width: "100%",
-  background: globalTheme.colour.white,
-  boxShadow: globalTheme.boxShadowMui
+  background: globalTheme.colour.paleGreyTwo,
+  borderStyle: "solid",
+  borderWidth: "1px",
+  borderColor: globalTheme.colour.boxBorderColour
 });
 
 const InputSearchBox = styled("input")({
@@ -21,13 +25,15 @@ const InputSearchBox = styled("input")({
   margin: 0,
   border: 0,
   boxSizing: "border-box",
-  fontFamily: globalTheme.fontFamily,
-  fontWeight: 400,
+  fontFamily: globalTheme.fontFamilySansSerif,
+  color: globalTheme.colour.navy,
+  fontWeight: "bold",
   textTransform: "none",
   fontSize: "18px",
   lineHeight: "1.5",
-  background: globalTheme.colour.white,
+  background: globalTheme.colour.paleGreyTwo,
   borderRadius: 0,
+  boxShadow: "inset 0 0 0 9999px #f4f7f9", // keeps chrome autofill from changing background colour
   WebkitAppearance: "none",
   ":focus": {
     marginRight: "3px",
@@ -40,11 +46,11 @@ const InputSearchBox = styled("input")({
 });
 
 const ClearButton = styled("button")({
-  backgroundColor: globalTheme.colour.white,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   cursor: "pointer",
   border: 0,
   display: "block",
-  color: globalTheme.colour.cerulean,
+  color: globalTheme.colour.navy,
   position: "absolute",
   left: "-50px",
   padding: "10px",
@@ -62,11 +68,11 @@ const ClearButton = styled("button")({
 });
 
 const SearchButton = styled("button")({
-  backgroundColor: globalTheme.colour.cerulean,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   cursor: "pointer",
   border: 0,
   display: "block",
-  color: globalTheme.colour.white,
+  color: globalTheme.colour.navy,
   position: "relative",
   padding: "10px",
   width: "45px",
@@ -78,15 +84,14 @@ const SearchButton = styled("button")({
     outline: `3px solid ` + globalTheme.colour.focusColour
   },
   ":hover": {
-    backgroundColor: globalTheme.colour.darkGreyBlue
+    backgroundColor: globalTheme.colour.black
   }
 });
 
 const DisabledSearchButton = styled("button")({
-  backgroundColor: globalTheme.colour.white,
+  backgroundColor: globalTheme.colour.paleGreyTwo,
   display: "block",
-  color: globalTheme.colour.cerulean,
-  position: "relative",
+  color: globalTheme.colour.navy,
   padding: "10px",
   width: "45px",
   height: "44px",
@@ -96,29 +101,34 @@ const DisabledSearchButton = styled("button")({
 });
 
 class SearchBox extends Component {
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
   handleChange = event => {
     this.setState({ value: event.target.value }); // state of InputSearchBox
+    // this.props.url.query.searchString = event.target.value.split(" ").join("-");
+    // Router.replace(mutateUrl(this.props.url));
     if (this.props.onChange) {
       this.props.onChange(event);
     }
   };
 
   handleClear = () => {
-    document.getElementById(this.props.inputId).value = "";
+    this.textInput.current.value = "";
     this.setState({ value: "" }); // state of InputSearchBox
+    // this.props.url.query.searchString = "";
+    // Router.replace(mutateUrl(this.props.url));
     if (this.props.onClear) {
       this.props.onClear();
-    }
-    if (this.props.otherProps) {
-      this.props.otherProps.onChange({ target: { value: "" } });
     }
   };
 
   render() {
-    const { ariaLabel, otherProps } = this.props;
+    const { ariaLabel, value, onButtonClick } = this.props;
     let valueUsed;
     try {
-      valueUsed = document.getElementById(this.props.inputId).value;
+      valueUsed = this.textInput.current.value;
     } catch (e) {} // eslint-disable-line no-empty
 
     return (
@@ -130,16 +140,13 @@ class SearchBox extends Component {
           placeholder={this.props.placeholder}
           onKeyDown={this.props.onKeyDown}
           onKeyUp={this.props.onKeyUp}
-          // defaultValue={value !== undefined ? value : this.state.value}
           onInput={this.handleChange}
           onChange={this.handleChange}
-          {...otherProps}
-          value={otherProps ? otherProps.value : this.props.value}
+          value={value}
+          ref={this.textInput}
         />
 
-        {(this.props.onClear && this.props.value) ||
-        (otherProps && otherProps.value) ||
-        valueUsed ? (
+        {(this.props.onClear && value) || valueUsed ? (
           <div style={{ position: "relative" }}>
             <ClearButton
               title={ariaLabel}
@@ -159,7 +166,7 @@ class SearchBox extends Component {
           <SearchButton
             title={ariaLabel}
             id={this.props.buttonId}
-            onClick={this.props.onButtonClick}
+            onClick={onButtonClick}
           >
             <SearchIcon />
           </SearchButton>
@@ -171,7 +178,8 @@ class SearchBox extends Component {
 
 SearchBox.defaultProps = {
   ariaLabel: "search",
-  placeholder: undefined
+  placeholder: undefined,
+  onButtonClick: x => x
 };
 
 SearchBox.propTypes = {
@@ -187,7 +195,8 @@ SearchBox.propTypes = {
   inputId: PropTypes.string,
   buttonId: PropTypes.string,
   disableButton: PropTypes.bool,
-  otherProps: PropTypes.object
+  onButtonClick: PropTypes.func,
+  url: PropTypes.object
 };
 
 export default SearchBox;

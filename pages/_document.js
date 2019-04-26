@@ -5,10 +5,16 @@ import JssProvider from "react-jss/lib/JssProvider";
 import flush from "styled-jsx/server";
 import getPageContext from "../lib/pageContext";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import { globalTheme } from "../theme";
 
 const bodyStyling = {
-  fontFamily: "Merriweather, serif",
-  margin: 0
+  fontFamily: globalTheme.fontFamilySerif,
+  margin: 0,
+  WebkitFontSmoothing: "antialiased",
+  textRendering: "optimizeLegibility",
+  textSizeAdjust: "100%",
+  fontWeight: 400,
+  lineHeight: 1.4375
 };
 
 class MyDocument extends Document {
@@ -61,18 +67,21 @@ class MyDocument extends Document {
 
   render() {
     var initialLang = this.props.__NEXT_DATA__.props.initialState.language;
-    const googleMapURL =
-      "https://maps.googleapis.com/maps/api/js?key=" +
-      process.env.GOOGLE_MAPS_KEY +
-      "&language=" +
-      initialLang +
-      "&v=3.exp&libraries=geometry,drawing,places";
-
     return (
       <html lang={initialLang}>
         <Head>
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href={"../static/vac_footer.css"}
+          />
+          <link
+            rel="stylesheet"
+            type="text/css"
+            href={"../static/vac_header.css"}
+          />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
-          <script type="text/javascript" src={googleMapURL} />
+          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
         <body style={bodyStyling} tabIndex={1}>
           <Main />

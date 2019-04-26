@@ -1,17 +1,19 @@
 import {
   getProfileFilters,
-  pathToDict,
   eligibilityMatch,
   getFilteredBenefitsWithoutSearch,
+  getFilteredNextSteps,
   getFilteredBenefits
 } from "../../selectors/benefits";
 import questionsFixture from "../fixtures/questions_complex";
 import benefitsFixture from "../fixtures/benefits_complex";
-import eligibilityPathsFixture from "../fixtures/eligibility_paths_complex";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility_complex";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_complex";
 import needsFixture from "../fixtures/needs_complex";
 import enIdx from "../fixtures/lunr_index_english";
 import frIdx from "../fixtures/lunr_index_french";
+import nextStepsFixture from "../fixtures/nextSteps_complex";
+import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 describe("Benefits Selectors", () => {
   let props;
@@ -24,15 +26,19 @@ describe("Benefits Selectors", () => {
     state = {
       questions: questionsFixture,
       benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       enIdx: enIdx,
       frIdx: frIdx,
       needs: needsFixture,
       selectedNeeds: {},
       patronType: "",
+      statusAndVitals: "",
+      serviceHealthIssue: "",
       searchString: "",
-      serviceType: ""
+      serviceType: "",
+      benefitExamples: benefitExamplesFixture,
+      nextSteps: nextStepsFixture
     };
   });
 
@@ -51,22 +57,8 @@ describe("Benefits Selectors", () => {
       );
       expect(returnValue.patronType).toEqual("p2");
       expect(returnValue.serviceType).toEqual("s1");
-      expect(returnValue.statusAndVitals).toEqual(undefined);
-      expect(returnValue.serviceHealthIssue).toEqual(undefined);
-    });
-  });
-
-  describe("pathToDict function", () => {
-    it("works as expected", () => {
-      const actual = pathToDict(
-        state.eligibilityPaths[5],
-        state.multipleChoiceOptions
-      );
-      expect(actual).toEqual({
-        patronType: ["veteran", "servingMember"],
-        serviceType: ["RCMP"],
-        serviceHealthIssue: ["hasServiceHealthIssue"]
-      });
+      expect(returnValue.statusAndVitals).toEqual("");
+      expect(returnValue.serviceHealthIssue).toEqual("");
     });
   });
 
@@ -77,49 +69,7 @@ describe("Benefits Selectors", () => {
         serviceType: ""
       };
       const actual = eligibilityMatch(
-        state.eligibilityPaths[0],
-        profileFilters,
-        state.multipleChoiceOptions
-      );
-      expect(actual).toEqual(true);
-    });
-
-    it("matches if requirements undefined", () => {
-      const ep = {
-        requirements: undefined,
-        patronType: "p3",
-        serviceType: "na",
-        statusAndVitals: "na",
-        benefits: ["1", "3", "4"]
-      };
-      const profileFilters = {
-        patronType: "p3",
-        serviceType: "",
-        statusAndVitals: ""
-      };
-      const actual = eligibilityMatch(
-        ep,
-        profileFilters,
-        state.multipleChoiceOptions
-      );
-      expect(actual).toEqual(true);
-    });
-
-    it("matches if requirements empty", () => {
-      const ep = {
-        requirements: [],
-        patronType: "p3",
-        serviceType: "na",
-        statusAndVitals: "na",
-        benefits: ["1", "3", "4"]
-      };
-      const profileFilters = {
-        patronType: "p3",
-        serviceType: "",
-        statusAndVitals: ""
-      };
-      const actual = eligibilityMatch(
-        ep,
+        state.benefits[0],
         profileFilters,
         state.multipleChoiceOptions
       );
@@ -128,12 +78,11 @@ describe("Benefits Selectors", () => {
 
     it("matches if selections match", () => {
       const profileFilters = {
-        patronType: "veteran",
-        serviceType: "CAF",
-        statusAndVitals: ""
+        patronType: ["veteran"],
+        serviceType: ["CAF"]
       };
       const actual = eligibilityMatch(
-        state.eligibilityPaths[0],
+        state.benefitEligibility[3],
         profileFilters,
         state.multipleChoiceOptions
       );
@@ -142,12 +91,11 @@ describe("Benefits Selectors", () => {
 
     it("doesn't match if selections don't match", () => {
       const profileFilters = {
-        patronType: "family",
-        serviceType: "CAF",
-        statusAndVitals: ""
+        patronType: ["family"],
+        serviceType: ["CAF"]
       };
       const actual = eligibilityMatch(
-        state.eligibilityPaths[0],
+        state.benefitEligibility[3],
         profileFilters,
         state.multipleChoiceOptions
       );
@@ -174,11 +122,10 @@ describe("Benefits Selectors", () => {
     it("displays appropriate benefits if patronType is organization", () => {
       state.patronType = "organization";
       const nameEnList = [
-        "Community War Memorial",
-        "Community Engagement",
-        "Veteran and Family Well-Being Fund",
-        "Operational Stress Injury clinics",
-        "VAC Assistance Service"
+        "Community Engagement Fund",
+        "Community War Memorial Fund",
+        "Grave Marker Maintenance",
+        "Veteran and Family Well-Being Fund"
       ];
       const relevant_benefits = state.benefits.filter(x => {
         return nameEnList.indexOf(x.vacNameEn) > -1;
@@ -219,11 +166,10 @@ describe("Benefits Selectors", () => {
     it("displays appropriate benefits if patronType is organization", () => {
       state.patronType = "organization";
       const nameEnList = [
-        "Community War Memorial",
-        "Community Engagement",
-        "Veteran and Family Well-Being Fund",
-        "Operational Stress Injury clinics",
-        "VAC Assistance Service"
+        "Community Engagement Fund",
+        "Community War Memorial Fund",
+        "Grave Marker Maintenance",
+        "Veteran and Family Well-Being Fund"
       ];
       const relevant_benefits = state.benefits.filter(x => {
         return nameEnList.indexOf(x.vacNameEn) > -1;
@@ -262,6 +208,36 @@ describe("Benefits Selectors", () => {
           .sort()
           .reverse()
       ).toEqual(rankedScores);
+    });
+
+    it("returns a results if user searches see more content", () => {
+      state.searchString = "inpatient";
+      expect(getFilteredBenefits(state, props).map(x => x.vacNameEn)).toEqual([
+        "Disability Benefits"
+      ]);
+    });
+  });
+
+  describe("getFilteredNextSteps", () => {
+    it("displays next steps with no eligibility requirements if no eligibility paths are selected", () => {
+      expect(getFilteredNextSteps(state, props).length).toEqual(2);
+    });
+
+    it("displays expected next steps if the patronType is organization", () => {
+      state.patronType = "organization";
+      expect(getFilteredNextSteps(state, props).length).toEqual(2);
+    });
+
+    it("displays expected next steps if the patronType is servingMember", () => {
+      state.patronType = "servingMember";
+      expect(getFilteredNextSteps(state, props).length).toEqual(5);
+    });
+
+    it("displays expected next steps if the patronType is servingMember", () => {
+      state.serviceHealthIssue = "hasServiceHealthIssue";
+      expect(
+        getFilteredNextSteps(state, props).map(x => x.bullet_name)
+      ).toContain("ServiceHealthRecord");
     });
   });
 });

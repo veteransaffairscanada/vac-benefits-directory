@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "react-emotion";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 const style = css`
-  font-family: ${globalTheme.fontFamily};
+  font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 18px;
   font-weight: bold;
   color: white;
-  margin-left: 10px;
   cursor: pointer;
   text-decoration: none;
   vertical-align: middle;
@@ -26,13 +26,9 @@ const style = css`
 
 class FooterButton extends Component {
   render() {
-    const { className, onClick, children, other } = this.props;
+    const { css, onClick, children, ...other } = this.props;
     return (
-      <button
-        className={className ? cx(style, className) : style}
-        onClick={onClick}
-        {...other}
-      >
+      <button css={css ? [style, css] : style} onClick={onClick} {...other}>
         {children}
       </button>
     );
@@ -40,6 +36,7 @@ class FooterButton extends Component {
 }
 FooterButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  className: PropTypes.string
+  css: PropTypes.string,
+  onClick: PropTypes.func
 };
 export default FooterButton;

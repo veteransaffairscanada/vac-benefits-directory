@@ -1,22 +1,20 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { globalTheme } from "../theme";
-import { cx, css } from "react-emotion";
-import ArrowBack from "./icons/ArrowBack";
-import ArrowForward from "./icons/ArrowForward";
-import Link from "next/link";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const style = css`
   display: inline-block;
-  text-align: left;
-  font-family: ${globalTheme.fontFamily};
-  font-size: 21px;
+  padding: 0 1.2em;
+  text-align: center;
+  font-family: ${globalTheme.fontFamilySansSerif};
+  font-size: 24px;
   font-weight: bold;
-  color: ${globalTheme.colour.cerulean};
+  color: ${globalTheme.colour.charcoalGrey};
   background-color: transparent;
   border: none;
-  text-decoration: none !important;
-  padding: 0px !important;
+  text-decoration: none;
   :hover {
     text-decoration: underline !important;
     cursor: pointer;
@@ -24,98 +22,80 @@ const style = css`
   svg {
     margin-top: -4px;
     vertical-align: middle;
+    padding-right: 10px;
   }
   :focus {
     outline: 3px solid ${globalTheme.colour.focusColour};
   }
 `;
+
+const borderStyle = css`
+  border: thin solid ${globalTheme.colour.warmGrey};
+  line-height: 42px;
+`;
+
 const small = css`
   font-size: 18px;
+  padding: 0;
+`;
+
+const grey = css`
+  font-size: 18px;
+  margin-left: 20px;
+  text-decoration: underline !important;
+  padding: 0;
 `;
 
 class HeaderButton extends Component {
   render() {
     const {
       id,
-      arrow,
-      className,
       children,
-      href,
-      target,
       size,
+      altStyle,
       disabled,
-      useLink,
-      otherProps
+      hasBorder,
+      onClick,
+      ariaLabel,
+      ...otherProps
     } = this.props;
 
-    // If the useLink prop is specified, wrap an anchor in a next Link to preserve data in Redux
-    // If no useLink, it should render as a button
-    if (useLink) {
-      return (
-        <Link href={this.props.href}>
-          <a
-            className={
-              size === "small"
-                ? cx(style, small, className)
-                : cx(style, className)
-            }
-            href={href}
-            onClick={this.props.onClick}
-            target={target}
-            id={"a-" + id}
-            onMouseOver={this.props.onMouseOver}
-            {...otherProps}
-          >
-            {arrow === "back" ? <ArrowBack /> : null}
-            {children}
-            {arrow === "forward" ? <ArrowForward /> : null}
-          </a>
-        </Link>
-      );
-    } else {
-      return (
-        <button
-          aria-label={this.props.ariaLabel}
-          disabled={disabled}
-          className={
-            size === "small"
-              ? cx(style, small, className)
-              : cx(style, className)
-          }
-          href={href}
-          onClick={this.props.onClick}
-          target={target}
-          id={"a-" + id}
-          onMouseOver={this.props.onMouseOver}
-          {...otherProps}
-        >
-          {arrow === "back" ? <ArrowBack /> : null}
-          {children}
-          {arrow === "forward" ? <ArrowForward /> : null}
-        </button>
-      );
-    }
+    let cName = [this.props.styles];
+    if (size === "small") cName.unshift(small);
+    if (altStyle === "grey") cName.unshift(grey);
+    if (hasBorder === true) cName.unshift(borderStyle);
+    cName.unshift(style);
+
+    return (
+      <button
+        aria-label={ariaLabel}
+        disabled={disabled}
+        css={cName}
+        id={"a-" + id}
+        onClick={onClick}
+        {...otherProps}
+      >
+        {children}
+      </button>
+    );
   }
 }
 
 HeaderButton.propTypes = {
   id: PropTypes.string,
   size: PropTypes.string,
-  href: PropTypes.string,
-  target: PropTypes.string,
   ariaLabel: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
     PropTypes.object
   ]),
-  className: PropTypes.string,
-  arrow: PropTypes.string,
+  styles: PropTypes.object,
   label: PropTypes.object,
-  onClick: PropTypes.func,
-  onMouseOver: PropTypes.func,
   disabled: PropTypes.bool,
-  useLink: PropTypes.bool
+  hasBorder: PropTypes.bool,
+  altStyle: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default HeaderButton;

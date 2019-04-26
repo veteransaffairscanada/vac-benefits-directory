@@ -1,13 +1,16 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import { globalTheme } from "../theme";
 import { uuidv4 } from "../utils/common";
+/** @jsx jsx */
+import { css, jsx } from "@emotion/core";
 
 const StyledCheckbox = styled("label")({
-  display: "block",
+  display: "inline-block",
   position: "relative",
-  padding: "0 0 0 38px"
+  padding: "0 0 0 38px",
+  marginBottom: "10px",
+  marginRight: "10px"
 });
 
 const StyledInput = styled("input")(
@@ -31,27 +34,27 @@ const StyledInput = styled("input")(
   ({ disabled }) => ({
     cursor: disabled ? "auto" : "pointer",
     " + span": {
-      pointerEvents: disabled ? "none" : "auto"
+      pointerEvents: disabled ? "none" : "auto",
+      fontSize: disabled ? "16px" : "24px"
     }
   })
 );
 
 const StyledLabel = styled("span")({
-  fontFamily: globalTheme.fontFamily,
+  fontFamily: globalTheme.fontFamilySansSerif,
   fontWeight: 400,
   textTransform: "none",
-  fontSize: "14px",
-  lineHeight: "16px",
+  fontSize: "24px",
   cursor: "pointer",
-  padding: "8px 0px 9px 8px",
+  padding: "0px 0px 14px 8px",
   display: "block",
-  height: "28px",
   color: `${globalTheme.colour.greyishBrown}`,
   "::before": {
     content: "''",
     display: "block",
     border: `2px solid ${globalTheme.colour.greyishBrown}`,
     background: "transparent",
+    overflow: "hidden",
     width: "24px",
     height: "24px",
     position: "absolute",
@@ -76,29 +79,35 @@ const StyledLabel = styled("span")({
   }
 });
 
-const Checkbox = ({ children, className, ...props }) => {
+const mobileLabelStyle = css`
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 16px;
+  }
+`;
+const sidebarLabelStyle = css({
+  fontSize: "14px !important",
+  padding: "6px 10px 15px 12px !important"
+});
+
+const Checkbox = ({ children, sidebar, ...props }) => {
   const guid = uuidv4();
   return (
-    <StyledCheckbox className={className} htmlFor={guid}>
+    <StyledCheckbox htmlFor={guid}>
       <StyledInput type="checkbox" {...props} id={guid} />
-      <StyledLabel>{children}</StyledLabel>
+      <StyledLabel css={[mobileLabelStyle, sidebar ? sidebarLabelStyle : null]}>
+        {children}
+      </StyledLabel>
     </StyledCheckbox>
   );
 };
 
 Checkbox.defaultProps = {
-  className: undefined
+  styles: undefined
 };
 
 Checkbox.propTypes = {
-  /**
-   * Text content for checkbox
-   */
   children: PropTypes.node.isRequired,
-  /**
-   * CSS Classname for outermost container
-   */
-  className: PropTypes.string
+  sidebar: PropTypes.bool
 };
 
 export default Checkbox;

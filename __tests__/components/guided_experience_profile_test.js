@@ -3,7 +3,7 @@
 import { mount } from "enzyme";
 import React from "react";
 import configureStore from "redux-mock-store";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import translateFixture from "../fixtures/translate";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
@@ -21,7 +21,11 @@ describe("GuidedExperienceProfile", () => {
     props = {
       t: translateFixture,
       options: ["mco_p1", "mco_p2"],
-      selectorType: "patronType"
+      selectorType: "patronType",
+      url: {
+        query: { lng: "en", patronType: "veteran", serviceType: "RCMP" },
+        route: "/"
+      }
     };
     reduxData = {
       serviceType: "",
@@ -29,7 +33,7 @@ describe("GuidedExperienceProfile", () => {
       statusAndVitals: "",
       serviceHealthIssue: "",
       multipleChoiceOptions: multipleChoiceOptionsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       questions: questionsFixture,
       questionDisplayLogic: [],
       questionClearLogic: []

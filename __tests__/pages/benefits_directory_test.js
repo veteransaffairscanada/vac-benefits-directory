@@ -8,19 +8,22 @@ import { BenefitsDirectory } from "../../pages/benefits-directory";
 import benefitsFixture from "../fixtures/benefits";
 import needsFixture from "../fixtures/needs";
 import configureStore from "redux-mock-store";
-import eligibilityPathsFixture from "../fixtures/eligibilityPaths";
-import areaOfficesFixture from "../fixtures/area_offices";
+import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import translate from "../fixtures/translate";
 import lunr from "lunr";
 import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
+import nextStepsFixture from "../fixtures/nextSteps";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
-
+window.matchMedia = () => ({
+  addListener: () => {},
+  removeListener: () => {}
+});
 describe("BenefitsDirectory", () => {
   Router.replace = jest.fn();
 
@@ -44,12 +47,12 @@ describe("BenefitsDirectory", () => {
       },
       t: translate,
       url: { query: {} },
-      setPageWidth: jest.fn(),
       profileFilters: {}
     };
     _mountedBenefitsDirectory = undefined;
     mockStore = configureStore();
     reduxData = {
+      nextSteps: nextStepsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       questions: questionsFixture,
@@ -59,7 +62,7 @@ describe("BenefitsDirectory", () => {
       option: "",
       translations: [],
       benefits: benefitsFixture,
-      eligibilityPaths: eligibilityPathsFixture,
+      benefitEligibility: benefitEligibilityFixture,
       enIdx: JSON.stringify({
         version: lunr.version,
         fields: ["vacNameEn", "oneLineDescriptionEn"],
@@ -105,12 +108,8 @@ describe("BenefitsDirectory", () => {
       patronType: "p2",
       statusAndVitals: "",
       serviceHealthIssue: "",
-      favouriteBenefits: [benefitsFixture[0].id],
-      filteredBenefits: benefitsFixture,
-      pageWidth: 1000,
-      areaOffices: areaOfficesFixture,
-      selectedAreaOffice: areaOfficesFixture[0],
-      closestAreaOffice: areaOfficesFixture[0]
+      favouriteBenefits: [benefitsFixture[1].id],
+      filteredBenefits: benefitsFixture
     };
     props.store = mockStore(reduxData);
   });
@@ -126,16 +125,5 @@ describe("BenefitsDirectory", () => {
     mounted.setProps({ foo: "bar" });
     mounted.unmount();
     expect(window.removeEventListener).toBeCalled();
-  });
-
-  it("has a correct setURL function", () => {
-    props.profileFilters = { patronType: "veteran", service: undefined };
-    reduxData.selectedNeeds = { health: "health", financial: "financial" };
-    reduxData.searchString = "foo";
-    let AInstance = mountedBenefitsDirectory().instance();
-    const expectedURL =
-      "/benefits-directory?lng=en&selectedNeeds=health,financial&patronType=veteran&searchString=foo";
-    AInstance.setURL();
-    expect(Router.replace).toBeCalledWith(expectedURL);
   });
 });
