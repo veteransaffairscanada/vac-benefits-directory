@@ -14,7 +14,7 @@ export class Index extends Component {
       : process.env.NODE_ENV;
 
     // eslint-disable-next-line no-console
-    console.log(envDetails);  // temporary to be removed before release
+    console.log(envDetails); // temporary to be removed before release
 
     return <GuidedExperiencePage section="patronType" {...this.props} />;
   }
