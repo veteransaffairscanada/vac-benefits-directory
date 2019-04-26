@@ -78,7 +78,7 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
             fi
 
-            if [ "${CIRCLE_BRANCH}" == "RELEASE" ]; then
+            if [ "${CIRCLE_BRANCH}" == "release/RELEASE" ]; then
               docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:release"
