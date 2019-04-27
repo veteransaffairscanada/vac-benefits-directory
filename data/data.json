@@ -828,14 +828,15 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/transition/interview",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/transition/interview",
       "needs": ["recXFXV3lZ5z2yya9", "reciCZbLGkKLIqapM"],
-      "oneLineDescriptionEn": "Before you release, a meeting to provide information on VAC programs and services available to you and your family.",
-      "oneLineDescriptionFr": "Avant de quitter le service, rencontre visant à vous donner de l'information sur les programmes et services d'ACC qui vous sont offerts, à vous et à votre famille.",
+      "oneLineDescriptionEn": "Before you release, a meeting with a Veterans Affairs employee to see how we can help you and your family.",
+      "oneLineDescriptionFr": "Avant votre libération, rencontrez un employé d’Anciens Combattant Canada afin de vous informer sur les façons dont nous pouvons vous aider, vous et votre famille. ",
       "availableIndependently": "Independent",
       "sortingPriority": "high",
       "benefitExamples": [
         "recM6QtffavyCtnrl",
         "recIasnRA9AqO9sky",
-        "recAMlXDoGHA0wSVJ"
+        "recAMlXDoGHA0wSVJ",
+        "recHDzhOSlZMwEg3z"
       ],
       "benefitEligibility": ["recS1O8RX2ChziuCT"],
       "seeMoreSentenceEn": "Some examples of what this program may provide:",
@@ -908,8 +909,8 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/services/information-for/families-and-survivors/veteran-family-program",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/services/information-for/families-and-survivors/veteran-family-program",
       "needs": ["reciCZbLGkKLIqapM", "recXFXV3lZ5z2yya9", "recTv9il8X9IhPosv"],
-      "oneLineDescriptionEn": "Continued access to services from Military Family Resource Centres to assist medically-released Veterans and their family.",
-      "oneLineDescriptionFr": "Accès continu aux services des Centres de ressources pour les familles des militaires pour aider les vétérans libérés pour des raisons médicales et leur famille.",
+      "oneLineDescriptionEn": "Continued access to certain services from Military Family Resource Centres to assist medically releasing Canadian Armed Forces members, medically-released Veterans and their families.",
+      "oneLineDescriptionFr": "Accès continu à certains services offerts par les centres de ressources pour les familles des militaires afin d’aider les membres des Forces armées canadiennes en voie d’être libérés pour des raisons médicales, les vétérans libérés pour des raisons médicales et leur famille.",
       "categories DO NOT USE": "Health, Family support",
       "sortingPriority": "medium",
       "benefitExamples": [
@@ -3225,8 +3226,8 @@
     {
       "section": "beta_banner",
       "key": "main",
-      "English": "The 'Find benefits and services' tool is currently under development.  Send us any issues or concerns you have with this tool to help us improve it.",
-      "French": "L’outil « Rechercher les avantages et les services » est en voie de développement. Si vous détectez des problèmes ou avez des préoccupations concernant cet outil, communiquez avec nous pour nous aider à l’améliorer.",
+      "English": "Tell us what you think about this new tool and how we can improve it.",
+      "French": "Dites-nous ce que vous pensez de ce nouvel outil et comment nous pouvons l’améliorer.",
       "id": "beta_banner.main"
     },
     {
@@ -4462,10 +4463,10 @@
       "id": "recH99CUcp6grNzPq"
     },
     {
-      "id": "recHDzhOSlZMwEg3z",
-      "english": "",
-      "french": "",
-      "linked_benefits": []
+      "english": "understand potential transition needs",
+      "french": "comprendre les besoins potentiels occasionnés par la transition",
+      "linked_benefits": ["Transition interview"],
+      "id": "recHDzhOSlZMwEg3z"
     }
   ],
   "nextSteps": [
@@ -4477,5 +4478,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1556287216308
+  "timestamp": 1556356092331
 }
