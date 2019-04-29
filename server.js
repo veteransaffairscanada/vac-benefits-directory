@@ -111,10 +111,6 @@ Promise.resolve(getAllData()).then(allData => {
       req.data = data;
       req.language = lang ? lang.split(",")[0] : "en";
 
-      if (req.data.length === 0) {
-        res.status(404).send("custom 404 redirect needed");
-      }
-
       if (
         browser &&
         browser.name === "ie" &&
