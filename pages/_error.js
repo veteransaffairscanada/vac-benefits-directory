@@ -54,8 +54,7 @@ export class Error extends Component {
                 </p>
                 <ul>
                   <li>
-                    Return to the Find Benefits and Services{" "}
-                    <a href="/">home page</a>;
+                    Return to <a href="/">Find Benefits and Services</a>;
                   </li>
                   <li>
                     Consult the{" "}
@@ -91,8 +90,11 @@ export class Error extends Component {
                 </p>
                 <ul>
                   <li>
-                    Retourner à rechercher les avantages et les services{" "}
-                    <a href="/?lng=fr">page d{"'"}accueil</a>;
+                    Retourner à{" "}
+                    <a href="/?lng=fr">
+                      Rechercher les avantages et les services
+                    </a>
+                    ;
                   </li>
                   <li>
                     Consultez le{" "}
