@@ -91,7 +91,8 @@ export class Error extends Component {
                 </p>
                 <ul>
                   <li>
-                    Retournez à la <a href="/?lng=fr">page d{"'"}accueil</a>;
+                    Retourner à rechercher les avantages et les services{" "}
+                    <a href="/?lng=fr">page d{"'"}accueil</a>;
                   </li>
                   <li>
                     Consultez le{" "}
