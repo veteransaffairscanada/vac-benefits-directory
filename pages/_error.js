@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
+import { globalTheme } from "../theme";
 
 const outerDiv = css`
   padding: 25px;
@@ -14,7 +15,12 @@ const outerDiv = css`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 75%;
+  width: 80%;
+  font-family: ${globalTheme.fontFamilySansSerif};
+`;
+
+const innerDiv = css`
+  padding: 25px;
 `;
 export class Error extends Component {
   static getInitialProps({ res, err }) {
@@ -34,7 +40,7 @@ export class Error extends Component {
         url={url}
       >
         <div css={outerDiv}>
-          <Grid id="mainContent" item md={6} xs={12}>
+          <Grid css={innerDiv} id="mainContent" item md={6} xs={12}>
             <div className="alert-icon alert-warning" role="alert">
               <div className="icon" aria-hidden="true">
                 <i className="far fa-times-circle" />
@@ -50,7 +56,7 @@ export class Error extends Component {
                 <ul>
                   <li>
                     Return to the Find Benefits and Services{" "}
-                    <a href="/?">home page</a>;
+                    <a href="/">home page</a>;
                   </li>
                   <li>
                     Consult the{" "}
@@ -70,7 +76,7 @@ export class Error extends Component {
             </div>
           </Grid>
 
-          <Grid item md={6} xs={12}>
+          <Grid css={innerDiv} item md={6} xs={12}>
             <div className="alert-icon alert-warning" role="alert">
               <div className="icon" aria-hidden="true">
                 <i className="far fa-times-circle" />
