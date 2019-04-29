@@ -29,6 +29,9 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "cypress:ci": "start-server-and-test build:start http://localhost:3000 cypress:run",
+    "preversion": "yarn test",
+    "version": "yarn run build && git add -A pages",
+    "postversion": "git push && git push --tags && rm -rf build/temp",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
@@ -109,5 +112,5 @@
     "start-server-and-test": "^1.7.13",
     "webpack-bundle-analyzer": "^3.2.0"
   },
-  "version": "0.0.0-development"
+  "version": "0.0.1"
 }
