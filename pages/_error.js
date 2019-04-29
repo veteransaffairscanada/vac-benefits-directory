@@ -1,4 +1,3 @@
-import React from "react";
 import { Component } from "react";
 import Layout from "../components/layout";
 import PropTypes from "prop-types";
@@ -46,11 +45,11 @@ export class Error extends Component {
                 <i className="far fa-times-circle" />
               </div>
               <div className="message">
-                <h3>We couldn't find that Web page</h3>
+                <h3>We couldn{"'"}t find that Web page</h3>
                 <h4>Error 404</h4>
                 <p>
-                  We're sorry you ended up here. Sometimes a page gets moved or
-                  deleted, but hopefully we can help you find what you're
+                  We{"'"}re sorry you ended up here. Sometimes a page gets moved
+                  or deleted, but hopefully we can help you find what you{"'"}re
                   looking for. What next?
                 </p>
                 <ul>
@@ -69,7 +68,7 @@ export class Error extends Component {
                     <a href="https://www.veterans.gc.ca/eng/contact">
                       Contact us
                     </a>{" "}
-                    and we'll help you out.
+                    and we{"'"}ll help you out.
                   </li>
                 </ul>
               </div>
@@ -86,13 +85,13 @@ export class Error extends Component {
                 <h4>Erreur 404</h4>
                 <p>
                   Nous sommes désolés que vous ayez abouti ici. Il arrive
-                  parfois qu'une page ait été déplacée ou supprimée.
+                  parfois qu{"'"}une page ait été déplacée ou supprimée.
                   Heureusement, nous pouvons vous aider à trouver ce que vous
                   cherchez. Que faire?
                 </p>
                 <ul>
                   <li>
-                    Retournez à la <a href="/?lng=fr">page d'accueil</a>;
+                    Retournez à la <a href="/?lng=fr">page d{"'"}accueil</a>;
                   </li>
                   <li>
                     Consultez le{" "}
@@ -105,7 +104,7 @@ export class Error extends Component {
                     <a href="https://www.veterans.gc.ca/fra/contactez">
                       Communiquez avec nous
                     </a>{" "}
-                    pour obtenir de l'aide.
+                    pour obtenir de l{"'"}aide.
                   </li>
                 </ul>
               </div>
