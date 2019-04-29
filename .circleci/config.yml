@@ -136,9 +136,10 @@ workflows:
             branches:
               only:
                 - develop
+                - master
       - release:
           requires:
-            - build
+            - deploy
           filters:
             branches:
               ignore: /.*/
