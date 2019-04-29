@@ -5,10 +5,16 @@ import PropTypes from "prop-types";
 import withI18N from "../lib/i18nHOC";
 import { connect } from "react-redux";
 import { Grid } from "@material-ui/core";
+/** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 
 const outerDiv = css`
-  padding-top: 24px;
+  padding: 25px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 75%;
 `;
 export class Error extends Component {
   static getInitialProps({ res, err }) {
