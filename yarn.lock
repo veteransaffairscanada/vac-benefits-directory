@@ -970,11 +970,6 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.2.tgz#63985d3d8b02530e0869962f4da09142ee8e200e"
   integrity sha512-n/VQ4mbfr81aqkx/XmVicOLjviMuy02eenSdJY33SVA7S2J42EU0P1H0mOogfYedb3wXA0d/LVtBrgTSm04WEA==
 
-"@gctools-components/aurora-css@^0.3.3":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@gctools-components/aurora-css/-/aurora-css-0.3.3.tgz#23b7d0bdfddd4123122b30b1f10f7d9999bdfc00"
-  integrity sha512-Ds891+9RlxSnC7T1QL2u5599l9+LTBsNBqjHU4xx15Iymd4a8KlvVZtHPR5wtBgcec0vOf78oH0UcJY9CD0QRg==
-
 "@jest/console@^24.7.1":
   version "24.7.1"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.7.1.tgz#32a9e42535a97aedfe037e725bd67e954b459545"
