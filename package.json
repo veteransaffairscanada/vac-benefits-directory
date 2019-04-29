@@ -34,7 +34,6 @@
   "dependencies": {
     "@emotion/core": "^10.0.10",
     "@emotion/styled": "^10.0.10",
-    "@gctools-components/aurora-css": "^0.3.3",
     "@material-ui/core": "^3.9.3",
     "autosuggest-highlight": "^3.1.1",
     "babel-loader": "^8.0.5",
