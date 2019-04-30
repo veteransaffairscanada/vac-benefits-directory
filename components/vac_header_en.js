@@ -38,7 +38,7 @@ class VacHeaderEn extends Component {
                     href="https://www.canada.ca/en.html"
                     className="h6 light-grey"
                   >
-                    Canada.ca
+                    <span>Canada.ca</span>
                     <img
                       id="maple-leaf"
                       src={
@@ -61,7 +61,7 @@ class VacHeaderEn extends Component {
                     }}
                     className="h6 light-grey"
                   >
-                    Français
+                    <span>Français</span>
                     <img
                       id="language-globe"
                       src={
@@ -78,8 +78,10 @@ class VacHeaderEn extends Component {
                     href={path + "/eng/e_services/" + utm}
                     className="h6 light-grey"
                   >
-                    My <abbr title="Veterans Affairs Canada">VAC</abbr>{" "}
-                    Account&nbsp;
+                    <span>
+                      My <abbr title="Veterans Affairs Canada">VAC</abbr>{" "}
+                      Account&nbsp;
+                    </span>
                     <img
                       id="mva-logo"
                       className="mrgn-lft-sm"
