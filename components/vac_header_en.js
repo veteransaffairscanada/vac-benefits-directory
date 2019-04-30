@@ -37,15 +37,16 @@ class VacHeaderEn extends Component {
                   <a
                     href="https://www.canada.ca/en.html"
                     className="h6 light-grey"
+                    rel="noopener"
                   >
-                    Canada.ca
+                    <span className="hidden-xs">Canada.ca</span>
                     <img
                       id="maple-leaf"
                       src={
                         path +
                         "/GCWeb/assets/2018-redesign/vector-maple-leaf.svg"
                       }
-                      alt=""
+                      alt="maple leaf"
                     />
                   </a>
                 </li>
@@ -61,13 +62,13 @@ class VacHeaderEn extends Component {
                     }}
                     className="h6 light-grey"
                   >
-                    Français
+                    <span className="hidden-xs">Français</span>
                     <img
                       id="language-globe"
                       src={
                         path + "/GCWeb/assets/2018-redesign/vector-globe.svg"
                       }
-                      alt=""
+                      alt="globe"
                     />
                   </a>
                 </li>
@@ -78,15 +79,17 @@ class VacHeaderEn extends Component {
                     href={path + "/eng/e_services/" + utm}
                     className="h6 light-grey"
                   >
-                    My <abbr title="Veterans Affairs Canada">VAC</abbr>{" "}
-                    Account&nbsp;
+                    <span className="hidden-xs">
+                      My <abbr title="Veterans Affairs Canada">VAC</abbr>{" "}
+                      Account&nbsp;
+                    </span>
                     <img
                       id="mva-logo"
                       className="mrgn-lft-sm"
                       src={
                         path + "/GCWeb/assets/2018-redesign/vector-mva-logo.svg"
                       }
-                      alt=""
+                      alt="open folder"
                     />
                   </a>
                 </li>
