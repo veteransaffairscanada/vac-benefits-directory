@@ -51,46 +51,51 @@ class VacHeaderEn extends Component {
                 </li>
                 &nbsp;
                 <li>
-                  <a
-                    lang="fr"
-                    id="changeLanguage"
-                    title={t("other-language-in-current-language")}
-                    href={mutateUrl(url, "", { lng: t("other-language-code") })}
-                    onClick={() => {
-                      logEvent("Language change", t("other-language"));
-                    }}
-                    className="h6 light-grey"
-                  >
-                    <span>Français</span>
-                    <img
-                      id="language-globe"
-                      src={
-                        path + "/GCWeb/assets/2018-redesign/vector-globe.svg"
-                      }
-                      alt=""
-                    />
-                  </a>
+                  <span>
+                    <a
+                      lang="fr"
+                      id="changeLanguage"
+                      title={t("other-language-in-current-language")}
+                      href={mutateUrl(url, "", {
+                        lng: t("other-language-code")
+                      })}
+                      onClick={() => {
+                        logEvent("Language change", t("other-language"));
+                      }}
+                      className="h6 light-grey"
+                    >
+                      <span>Français</span>
+                      <img
+                        id="language-globe"
+                        src={
+                          path + "/GCWeb/assets/2018-redesign/vector-globe.svg"
+                        }
+                        alt=""
+                      />
+                    </a>
+                  </span>
                 </li>
                 &nbsp; &nbsp;
                 <li id="vac-mva">
-                  <h2 className="wb-inv">My VAC Account / Mon dossier ACC</h2>
-                  <a
-                    href={path + "/eng/e_services/" + utm}
-                    className="h6 light-grey"
-                  >
-                    <span>
+                  <span>
+                    <h2 className="wb-inv">My VAC Account / Mon dossier ACC</h2>
+                    <a
+                      href={path + "/eng/e_services/" + utm}
+                      className="h6 light-grey"
+                    >
                       My <abbr title="Veterans Affairs Canada">VAC</abbr>{" "}
                       Account&nbsp;
-                    </span>
-                    <img
-                      id="mva-logo"
-                      className="mrgn-lft-sm"
-                      src={
-                        path + "/GCWeb/assets/2018-redesign/vector-mva-logo.svg"
-                      }
-                      alt=""
-                    />
-                  </a>
+                      <img
+                        id="mva-logo"
+                        className="mrgn-lft-sm"
+                        src={
+                          path +
+                          "/GCWeb/assets/2018-redesign/vector-mva-logo.svg"
+                        }
+                        alt=""
+                      />
+                    </a>
+                  </span>
                 </li>
               </ul>
             </section>
