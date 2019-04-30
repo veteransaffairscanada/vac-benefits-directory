@@ -20,6 +20,7 @@
 }
 #header_css img {
   border: 0;
+  vertical-align: middle;
 }
 #header_css hr {
   -webkit-box-sizing: content-box;
@@ -372,6 +373,8 @@
 #header_css #wb-bnr,
 #header_css #wb-bnr a {
   font-family: Montserrat, sans-serif;
+  padding: 0 8px;
+  text-transform: uppercase;
 }
 #header_css #wb-bnr .brand {
   margin: 16px 0;

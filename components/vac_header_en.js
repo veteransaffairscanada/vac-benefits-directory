@@ -37,15 +37,16 @@ class VacHeaderEn extends Component {
                   <a
                     href="https://www.canada.ca/en.html"
                     className="h6 light-grey"
+                    rel="noopener"
                   >
-                    Canada.ca
+                    <span className="hidden-xs">Canada.ca</span>
                     <img
                       id="maple-leaf"
                       src={
                         path +
                         "/GCWeb/assets/2018-redesign/vector-maple-leaf.svg"
                       }
-                      alt=""
+                      alt="maple leaf"
                     />
                   </a>
                 </li>
