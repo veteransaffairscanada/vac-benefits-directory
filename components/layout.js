@@ -82,27 +82,33 @@ class Layout extends Component {
           <ErrorBoundary>
             <Content>
               <SkipToMainContent skipLink={skipLink} t={t} />
-              <div id="header_css" css={black_bg}>
-                {t("current-language-code") === "en" ? (
-                  <VacHeaderEn t={t} url={url} />
-                ) : (
-                  <VacHeaderFr t={t} url={url} />
-                )}
-              </div>
+              {!this.props.parentIsFallbackPage ? (
+                <div id="header_css" css={black_bg}>
+                  {t("current-language-code") === "en" ? (
+                    <VacHeaderEn t={t} url={url} />
+                  ) : (
+                    <VacHeaderFr t={t} url={url} />
+                  )}
+                </div>
+              ) : null}
               <main id="main">{this.props.children}</main>
             </Content>
-            <div css={backgoundColour1}>
-              <Container>
-                <FeedbackBar t={t} />
-              </Container>
-            </div>
-            <div id="footer_styles" css={fontStyle}>
-              {t("current-language-code") === "en" ? (
-                <VacFooterEn />
-              ) : (
-                <VacFooterFr />
-              )}
-            </div>
+            {!this.props.parentIsFallbackPage ? (
+              <div css={backgoundColour1}>
+                <Container>
+                  <FeedbackBar t={t} />
+                </Container>
+              </div>
+            ) : null}
+            {!this.props.parentIsFallbackPage ? (
+              <div id="footer_styles" css={fontStyle}>
+                {t("current-language-code") === "en" ? (
+                  <VacFooterEn />
+                ) : (
+                  <VacFooterFr />
+                )}
+              </div>
+            ) : null}
           </ErrorBoundary>
           {noScriptTag}
         </div>
@@ -119,7 +125,8 @@ Layout.propTypes = {
   url: PropTypes.object.isRequired,
   skipLink: PropTypes.string.isRequired,
   title: PropTypes.string,
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
+  parentIsFallbackPage: PropTypes.bool
 };
 
 Layout.defaultProps = {

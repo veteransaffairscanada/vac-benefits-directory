@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import BenefitList from "../components/benefit_list";
 import Container from "../components/container";
 import Header from "../components/typography/header";
+import { globalTheme } from "../theme";
 
 const header = css`
   padding-bottom: 10px;
@@ -28,6 +29,8 @@ export class AllBenefits extends Component {
         title={t("titles.all_benefits")}
         skipLink="#mainContent"
         url={url}
+        backgroundColor={globalTheme.colour.paleGreyTwo}
+        parentIsFallbackPage={true}
       >
         <Container id="mainContent">
           <Header size="xl" headingLevel="h1" paddingTop="30" styles={header}>
