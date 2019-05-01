@@ -139,6 +139,10 @@ Promise.resolve(getAllData()).then(allData => {
         res
           .status(404)
           .send("The Favourites page only exists on the staging app.");
+      } else if (req.url.includes("summary") && !staging) {
+        res
+          .status(404)
+          .send("The summary page only exists on the staging app.");
       } else {
         const favouriteBenefits = new Cookies(req.headers.cookie).get(
           "favouriteBenefits"
