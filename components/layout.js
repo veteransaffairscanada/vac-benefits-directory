@@ -82,13 +82,15 @@ class Layout extends Component {
           <ErrorBoundary>
             <Content>
               <SkipToMainContent skipLink={skipLink} t={t} />
-              <div id="header_css" css={black_bg}>
-                {t("current-language-code") === "en" ? (
-                  <VacHeaderEn t={t} url={url} />
-                ) : (
-                  <VacHeaderFr t={t} url={url} />
-                )}
-              </div>
+              {!this.props.parentIsFallbackPage ? (
+                <div id="header_css" css={black_bg}>
+                  {t("current-language-code") === "en" ? (
+                    <VacHeaderEn t={t} url={url} />
+                  ) : (
+                    <VacHeaderFr t={t} url={url} />
+                  )}
+                </div>
+              ) : null}
               <main id="main">{this.props.children}</main>
             </Content>
             {!this.props.parentIsFallbackPage ? (
@@ -98,13 +100,15 @@ class Layout extends Component {
                 </Container>
               </div>
             ) : null}
-            <div id="footer_styles" css={fontStyle}>
-              {t("current-language-code") === "en" ? (
-                <VacFooterEn />
-              ) : (
-                <VacFooterFr />
-              )}
-            </div>
+            {!this.props.parentIsFallbackPage ? (
+              <div id="footer_styles" css={fontStyle}>
+                {t("current-language-code") === "en" ? (
+                  <VacFooterEn />
+                ) : (
+                  <VacFooterFr />
+                )}
+              </div>
+            ) : null}
           </ErrorBoundary>
           {noScriptTag}
         </div>
