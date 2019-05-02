@@ -8,24 +8,31 @@ jobs:
     steps:
       # checkout branch
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
             - v3-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v3-dependencies-
+      # install app
       - run: yarn install
-      - run:
-          name: "Release"
-          command: DEBUG=condition yarn run semantic-release || true
       - save_cache:
           paths:
             - node_modules
             - ~/.cache
             - /home/circleci/.cache
           key: v3-dependencies-{{ checksum "package.json" }}
-
+      # persist the steps completed
+      - persist_to_workspace:
+        root: ~/repo
+        paths: .
+  test:
+    docker:
+      - image: cypress/base:10
+    steps:
+      #checkout branch
+      - attach_workspace:
+        at: ~/repo
       # run tests!
       - run:
           name: "Jest tests"
@@ -40,13 +47,21 @@ jobs:
           name: "Report failing master"
           command: ~/repo/.circleci/notify_failure.sh
           when: on_fail
+      # persist the steps completed
+      - persist_to_workspace:
+        root: ~/repo
+        paths: .
 
   deploy:
     docker:
       - image: docker:17.12.1-ce-git
     steps:
-      - checkout:
-          path: ~/repo
+      - attach_workspace:
+        at: ~/repo
+      # Version key/value should be on his own line
+      - run:
+          command: echo "${NPM_PACKAGE_VERSION}"
+          name: "What is current version"
       - setup_remote_docker
       # Build the image
       - run:
@@ -64,6 +79,9 @@ jobs:
             docker exec -it clair-scanner clair-scanner --ip ${scanner_ip} --clair=http://${clair_ip}:6060 -t High "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           name: "Scan image"
       # Deploy the image if passes the scan
+      - run:
+        name: "What branch am I on?"
+        command: echo ${CIRCLE_BRANCH}
       - run:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
@@ -117,6 +135,7 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
             fi
           name: "Push Docker Image"
+      - run: npx semantic-release
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
           name: "Report failing Master"
@@ -126,17 +145,20 @@ jobs:
 
 workflows:
   version: 2
-  build_and_deploy:
+  build_test_deploy_release:
     jobs:
       - build
-      - deploy:
+      - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
           filters:
             branches:
               only:
                 - develop
-                - master
+                - feature
       - release:
           requires:
             - deploy

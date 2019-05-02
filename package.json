@@ -2,6 +2,7 @@
   "name": "vac-poc",
   "license": "MIT",
   "description": "Proof of concept for VAC find benefits and services",
+  "version": "1.0.0",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -29,7 +30,8 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "cypress:ci": "start-server-and-test build:start http://localhost:3000 cypress:run",
-    "preversion": "yarn test",
+    "vars": "env | grep npm_package_",
+    "preversion": "yarn test && yarn lint",
     "version": "yarn run build && git add -A pages",
     "postversion": "git push && git push --tags && rm -rf build/temp",
     "semantic-release": "semantic-release"
@@ -111,6 +113,5 @@
     "semantic-release": "^15.13.3",
     "start-server-and-test": "^1.7.13",
     "webpack-bundle-analyzer": "^3.2.0"
-  },
-  "version": "0.0.1"
+  }
 }
