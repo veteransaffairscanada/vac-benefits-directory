@@ -24,9 +24,6 @@ jobs:
           key: v3-dependencies-{{ checksum "package.json" }}
       # get version
       - run:
-          name: "What is current version"
-          command: yarn get-version
-      - run:
           name: "What is semvar version"
           command: ~/repo/.circleci/get-semvar.sh
       - run:
