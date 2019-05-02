@@ -21,5 +21,5 @@ case $branch in
       ;;
 esac
  
-echo ${version} >> $BASH_ENV
+return ${version}
 exit 0
