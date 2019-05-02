@@ -28,7 +28,7 @@ jobs:
           command: ~/repo/.circleci/get-semvar.sh
       - run:
           name: "Result"
-          command: echo ${BASH_ENV}
+          command: echo ${version}
       # run tests!
       - run:
           name: "Jest tests"
