@@ -21,5 +21,5 @@ case $branch in
       ;;
 esac
  
-return ${version}
+echo ${version}
 exit 0
