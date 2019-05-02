@@ -24,11 +24,19 @@ jobs:
           key: v3-dependencies-{{ checksum "package.json" }}
       # get version
       - run:
+          name: Get project version
+          command: |
+            if [ $CIRCLE_BRANCH = 'master' ]; then
+              echo export TAG=$(eval node -p "require\(\'./package.json\'\).version") >> $BASH_ENV
+            else
+              echo export TAG=$(eval node -p "require\(\'./package.json\'\).version")_$CIRCLE_BUILD_NUM >> $BASH_ENV
+            fi
+      - run:
           name: "What is semvar version"
-          command: ~/repo/.circleci/get-semvar.sh
+          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
       - run:
           name: "Result"
-          command: echo ${version}
+          command: echo ${TAG}
       # run tests!
       - run:
           name: "Jest tests"
