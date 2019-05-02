@@ -22,21 +22,7 @@ jobs:
             - ~/.cache
             - /home/circleci/.cache
           key: v3-dependencies-{{ checksum "package.json" }}
-      # get version
-      - run:
-          name: Get project version
-          command: |
-            if [ $CIRCLE_BRANCH = 'master' ]; then
-              echo export TAG=$(eval node -p "require\(\'./package.json\'\).version") >> $BASH_ENV
-            else
-              echo export TAG=$(eval node -p "require\(\'./package.json\'\).version")_$CIRCLE_BUILD_NUM >> $BASH_ENV
-            fi
-      - run:
-          name: "What is semvar version"
-          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
-      - run:
-          name: "Result"
-          command: echo ${TAG}
+
       # run tests!
       - run:
           name: "Jest tests"
@@ -58,6 +44,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+
       # Build the image
       - run:
           command: |
@@ -75,26 +62,15 @@ jobs:
           name: "Scan image"
       # Deploy the image if passes the scan
       - run:
-          name: "What branch am I on?"
-          command: echo ${CIRCLE_BRANCH}
-      - run:
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
-            fi
-
-            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
-            fi
+            docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
 
           name: "Push Docker Image"
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
-          name: "Report failing Master"
+          name: "Report failing Development"
           when: on_fail
 
     working_directory: ~/repo
@@ -104,10 +80,6 @@ jobs:
       - image: docker:17.12.1-ce-git
     steps:
       - checkout
-      # Version key/value should be on his own line
-      - run:
-          command: echo ${NPM_PACKAGE_VERSION}
-          name: "What is current version"
       - setup_remote_docker
       # Build the image
       - run:
@@ -140,7 +112,7 @@ jobs:
           name: "Push Docker Image"
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
-          name: "Report failing Master"
+          name: "Report failing UA branch"
           when: on_fail
 
     working_directory: ~/repo
@@ -152,10 +124,17 @@ jobs:
       - checkout:
           path: ~/repo
       - setup_remote_docker
+      # get version
+      - run:
+          name: "What is next release semvar version"
+          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
+      - run:
+          name: "Next version increment"
+          command: echo ${TAG}
       # Build the image
       - run:
           command: |
-            docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:release" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg GA_UA_CDS="${GA_UA_CDS}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg AIRTABLE_READ_KEY="${AIRTABLE_READ_KEY}" .
+            docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${TAG}" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg GA_UA_CDS="${GA_UA_CDS}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg AIRTABLE_READ_KEY="${AIRTABLE_READ_KEY}" .
           name: "Build Image"
       # Scan the image
       - run:
@@ -173,7 +152,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${TAG}"
             fi
           name: "Push Docker Image"
       - run: npx semantic-release
@@ -197,9 +176,7 @@ workflows:
             - build_and_test
           filters:
             branches:
-              only:
-                - develop
-                - feature/update_ci
+              only: develop
       - release:
           requires:
             - build_and_test
