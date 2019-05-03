@@ -51,10 +51,13 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-
+      #get bash
+      - run: |
+          apk update && apk add bash
       # get version
       - run:
           name: "What is next release semvar version"
+          shell: "/bin/bash -eo pipefail"
           command: echo export TAG=$(sh ~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
       - run:
           name: "Next version increment"
