@@ -110,12 +110,12 @@ Promise.resolve(getAllData()).then(allData => {
 
       req.data = data;
       req.language = lang ? lang.split(",")[0] : "en";
-
       if (
         browser &&
         browser.name === "ie" &&
         parseInt(browser.version) < 11 &&
-        !req.url.includes("all-benefits")
+        !req.url.includes("all-benefits") &&
+        !req.url.includes(".css")
       ) {
         res.sendFile("fallback-pages/browser-incompatible.html", {
           root: __dirname
