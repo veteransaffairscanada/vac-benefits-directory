@@ -47,7 +47,7 @@ jobs:
 
   deploy_dev:
     docker:
-      - image: docker:18.03.0-ce
+      - image: docker:18.03.0-ce-git
     steps:
       - checkout
       - setup_remote_docker
