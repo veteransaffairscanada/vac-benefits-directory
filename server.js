@@ -115,7 +115,8 @@ Promise.resolve(getAllData()).then(allData => {
         browser &&
         browser.name === "ie" &&
         parseInt(browser.version) < 11 &&
-        !req.url.includes("all-benefits")
+        !req.url.includes("all-benefits") &&
+        !req.url.includes(".css")
       ) {
         res.sendFile("fallback-pages/browser-incompatible.html", {
           root: __dirname
