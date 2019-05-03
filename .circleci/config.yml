@@ -49,8 +49,28 @@ jobs:
     docker:
       - image: docker:18.03.0-ce-git
     steps:
-      - checkout:
-          path: ~/repo
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v3-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v3-dependencies-
+      # install app
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+            - ~/.cache
+            - /home/circleci/.cache
+          key: v3-dependencies-{{ checksum "package.json" }}
+      # get version
+      - run:
+          name: "What is next release semvar version"
+          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
+      - run:
+          name: "Next version increment"
+          command: echo ${TAG}
 
       # get version
       - run:
