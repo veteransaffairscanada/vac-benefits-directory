@@ -91,11 +91,13 @@ class Layout extends Component {
               </div>
               <main id="main">{this.props.children}</main>
             </Content>
-            <div css={backgoundColour1}>
-              <Container>
-                <FeedbackBar t={t} />
-              </Container>
-            </div>
+            {!this.props.parentIsFallbackPage ? (
+              <div css={backgoundColour1}>
+                <Container>
+                  <FeedbackBar t={t} />
+                </Container>
+              </div>
+            ) : null}
             <div id="footer_styles" css={fontStyle}>
               {t("current-language-code") === "en" ? (
                 <VacFooterEn />
@@ -119,7 +121,8 @@ Layout.propTypes = {
   url: PropTypes.object.isRequired,
   skipLink: PropTypes.string.isRequired,
   title: PropTypes.string,
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
+  parentIsFallbackPage: PropTypes.bool
 };
 
 Layout.defaultProps = {
