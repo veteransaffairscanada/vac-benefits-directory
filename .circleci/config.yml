@@ -22,6 +22,13 @@ jobs:
             - ~/.cache
             - /home/circleci/.cache
           key: v3-dependencies-{{ checksum "package.json" }}
+      # get version
+      - run:
+          name: "What is next release semvar version"
+          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
+      - run:
+          name: "Next version increment"
+          command: ~/repo/.circleci/get-semvar.sh
 
       # run tests!
       - run:
@@ -44,13 +51,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      # get version
-      - run:
-          name: "What is next release semvar version"
-          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
-      - run:
-          name: "Next version increment"
-          command: ~/repo/.circleci/get-semvar.sh
+
       # Build the image
       - run:
           command: |
