@@ -53,11 +53,8 @@ jobs:
 
       # get version
       - run:
-          name: "What is next release semvar version"
-          command: echo export TAG=$(sh ~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
-      - run:
           name: "Next version increment"
-          command: echo ${TAG}
+          command: echo ${BASH_ENV}
 
       - setup_remote_docker
 
