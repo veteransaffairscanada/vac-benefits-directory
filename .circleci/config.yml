@@ -50,7 +50,7 @@ jobs:
       - image: docker:18.03.0-ce-git
     steps:
       - checkout:
-        path: ~/repo
+          path: ~/repo
 
       # get version
       - run:
