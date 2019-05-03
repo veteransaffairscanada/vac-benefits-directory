@@ -52,17 +52,14 @@ jobs:
   deploy_dev:
     docker:
       - image: docker:17.12.1-ce-git
-      - image: cypress/base:10
     steps:
       - checkout
       - setup_remote_docker
 
       # get version
       - run:
-          name: "Next version increment"
-          command: echo ${BASH_ENV}
-      - run:
           name: "What is next release semvar version"
+          shell: sudo bash -eo pipefail
           command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
       - run:
           name: "Next version increment"
