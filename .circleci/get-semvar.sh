@@ -16,6 +16,9 @@ case $branch in
    "feature/*")
       version=${major}.${minor}.${patch}-${branch}-${count}
       ;;
+   "hotfix/*")
+      version=${major}.${minor}.$((patch+1))-${branch}-${count}
+      ;;
    *)
       version=${major}.${minor}.$((patch+1))
       ;;
