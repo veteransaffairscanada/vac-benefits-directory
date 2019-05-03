@@ -171,6 +171,9 @@ workflows:
       - deploy_dev:
           requires:
             - build_and_test
+          filters:
+            branches:
+              ignore: master
       - deploy_ua:
           requires:
             - build_and_test
