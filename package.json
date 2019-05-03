@@ -30,7 +30,6 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "cypress:ci": "start-server-and-test build:start http://localhost:3000 cypress:run",
-    "vars": "env | grep npm_package_",
     "preversion": "yarn test && yarn lint",
     "version": "yarn run build && git add -A pages",
     "postversion": "git push && git push --tags && rm -rf build/temp",
