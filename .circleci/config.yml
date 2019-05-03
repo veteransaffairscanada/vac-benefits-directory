@@ -49,12 +49,19 @@ jobs:
     docker:
       - image: docker:18.03.0-ce-git
     steps:
-      - checkout
+      - checkout:
+        path: ~/repo
 
       # get version
       - run:
           name: "Next version increment"
           command: echo ${BASH_ENV}
+      - run:
+          name: "What is next release semvar version"
+          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
+      - run:
+          name: "Next version increment"
+          command: echo ${TAG}
 
       - setup_remote_docker
 
