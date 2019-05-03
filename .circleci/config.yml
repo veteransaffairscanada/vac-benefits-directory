@@ -50,7 +50,7 @@ jobs:
       - image: docker:18.03.0-ce-git
     steps:
       - checkout
-      - setup_remote_docker
+
       # get version
       - run:
           name: "What is next release semvar version"
@@ -58,6 +58,8 @@ jobs:
       - run:
           name: "Next version increment"
           command: echo ${TAG}
+
+      - setup_remote_docker
 
       # Build the image
       - run:
