@@ -157,7 +157,7 @@ jobs:
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:v1.0.0"
             fi
           name: "Push Docker Image"
-      - run: npx semantic-release
+      #- run: npx semantic-release
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
           name: "Report failing Master"
