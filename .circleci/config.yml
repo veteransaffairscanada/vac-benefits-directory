@@ -126,12 +126,12 @@ jobs:
       - setup_remote_docker
 
       # get version
-      - run:
-          name: "What is next release semvar version"
-          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
-      - run:
-          name: "Next version increment"
-          command: echo ${TAG}
+      #- run:
+      #    name: "What is next release semvar version"
+      #    command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
+      #- run:
+      #    name: "Next version increment"
+      #    command: echo ${TAG}
 
       # Build the image
       - run:
@@ -154,7 +154,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
               docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${TAG}"
+              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:v1.0.0"
             fi
           name: "Push Docker Image"
       - run: npx semantic-release
