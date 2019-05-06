@@ -214,25 +214,34 @@ export class FeedbackBar extends Component {
           ) : !this.state.feedbackSubmitted ? (
             <div css={Inner}>
               <Grid container spacing={8}>
-                <Grid item md={5} xs={12}>
-                  <Header size="sm" headingLevel="h2" styles={whiteNormalFont}>
-                    {t("feedback-prompt")}
-                  </Header>
-                </Grid>
-                <Grid item md={3} xs={12}>
-                  <FooterButton
-                    id="feedbackYes"
-                    onClick={() => this.sendFeedback("Yes")}
-                  >
-                    {t("yes")}
-                  </FooterButton>
-                  &nbsp; &nbsp;
-                  <FooterButton
-                    id="feedbackNo"
-                    onClick={() => this.sendFeedback("No")}
-                  >
-                    {t("no")}
-                  </FooterButton>
+                <Grid item md={8} xs={12}>
+                  <Grid container spacing={0}>
+                    <Grid item md={7} xs={12}>
+                      <Header
+                        size="sm"
+                        headingLevel="h2"
+                        styles={whiteNormalFont}
+                      >
+                        {t("feedback-prompt")}
+                      </Header>
+                    </Grid>
+
+                    <Grid item md={5} xs={12}>
+                      <FooterButton
+                        id="feedbackYes"
+                        onClick={() => this.sendFeedback("Yes")}
+                      >
+                        {t("yes")}
+                      </FooterButton>
+                      &nbsp; &nbsp;
+                      <FooterButton
+                        id="feedbackNo"
+                        onClick={() => this.sendFeedback("No")}
+                      >
+                        {t("no")}
+                      </FooterButton>
+                    </Grid>
+                  </Grid>
                 </Grid>
                 <Grid item md={4} xs={12}>
                   <Header size="sm" headingLevel="h2" styles={fileBugHeader}>
