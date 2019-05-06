@@ -60,6 +60,11 @@ const whiteNormalFont = css`
   color: white;
   font-weight: normal;
 `;
+const whiteNormalFont2 = css`
+  color: white;
+  font-weight: normal;
+  margin-top: 2px;
+`;
 const fileBugHeader = css`
   color: white;
   font-weight: normal;
@@ -220,7 +225,7 @@ export class FeedbackBar extends Component {
                       <Header
                         size="sm"
                         headingLevel="h2"
-                        styles={whiteNormalFont}
+                        styles={whiteNormalFont2}
                       >
                         {t("feedback-prompt")}
                       </Header>
