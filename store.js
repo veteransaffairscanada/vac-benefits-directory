@@ -13,8 +13,6 @@ const initialState = {
   frIdx: {},
   searchString: "",
   selectedNeeds: {},
-  userLocation: { lat: 49, lng: -104 },
-  mapView: { lat: 49, lng: -104, zoom: 1 },
   cookiesDisabled: false,
   language: "",
   betaFeedback: ""
@@ -104,14 +102,6 @@ export const reducer = (state = initialState, action) => {
     case "SET_SELECTED_NEEDS":
       return Object.assign({}, state, {
         selectedNeeds: action.data
-      });
-    case "SET_USER_LOCATION":
-      return Object.assign({}, state, {
-        userLocation: action.data
-      });
-    case "SET_MAP_VIEW":
-      return Object.assign({}, state, {
-        mapView: action.data
       });
     case "SET_REFERRER":
       return Object.assign({}, state, {
