@@ -31,9 +31,9 @@ const Banner = css`
   }
 `;
 /**
- * Renders an alpha banner and renders passed children in the `Text` container
+ * Renders an version banner and renders passed children in the `Text` container
  */
-export class AlphaBanner extends Component {
+export class VersionBanner extends Component {
   render() {
     const { t, url, ...rest } = this.props;
     return (
@@ -50,9 +50,9 @@ export class AlphaBanner extends Component {
   }
 }
 
-AlphaBanner.propTypes = {
+VersionBanner.propTypes = {
   t: PropTypes.func.isRequired,
   url: PropTypes.object.isRequired
 };
 
-export default AlphaBanner;
+export default VersionBanner;
