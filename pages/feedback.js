@@ -19,6 +19,7 @@ import BreadCrumbs from "../components/breadcrumbs";
 import { getGuidedExperienceUrl } from "../selectors/urls";
 import Paper from "../components/paper";
 import HeaderLink from "../components/header_link";
+import { mutateUrl } from "../utils/common";
 
 const padding = css`
   padding-top: 15px;
@@ -80,25 +81,20 @@ export class Feedback extends Component {
   };
 
   sendFeedback = () => {
-    if (
-      !this.props.betaFeedback.isEmpty() ||
-      !this.state.what_did_you_think.isEmpty()
-    ) {
-      let payload = {
-        how_was_your_experience: this.props.betaFeedback,
-        what_did_you_think: this.state.what_did_you_think,
-        time: new Date().toUTCString()
-      };
+    let payload = {
+      how_was_your_experience: this.props.betaFeedback,
+      what_did_you_think: this.state.what_did_you_think,
+      time: new Date().toUTCString()
+    };
 
-      fetch("/submitBetaFeedback", {
-        body: JSON.stringify(payload),
-        cache: "no-cache",
-        headers: {
-          "content-type": "application/json"
-        },
-        method: "POST"
-      }).catch(err => Raven.captureException(err));
-    }
+    fetch("/submitBetaFeedback", {
+      body: JSON.stringify(payload),
+      cache: "no-cache",
+      headers: {
+        "content-type": "application/json"
+      },
+      method: "POST"
+    }).catch(err => Raven.captureException(err));
   };
 
   render() {
@@ -204,7 +200,10 @@ export class Feedback extends Component {
                     arrow={true}
                     css={leftMargin}
                     onClick={() => {
-                      this.sendFeedback();
+                      !this.props.betaFeedback.isEmpty() ||
+                      !this.state.what_did_you_think.isEmpty()
+                        ? this.sendFeedback()
+                        : "";
                     }}
                   >
                     {t("send")}{" "}
