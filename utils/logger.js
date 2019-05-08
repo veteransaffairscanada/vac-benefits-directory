@@ -42,6 +42,7 @@ var Logger = (function() {
             : {};
 
         var payload = this.generatePayload("debug", msg, options);
+        // eslint-disable-next-line no-console
         console.log(JSON.stringify(payload));
         return payload;
       }
@@ -55,6 +56,7 @@ var Logger = (function() {
             : {};
 
         var payload = this.generatePayload("error", msg, options);
+        // eslint-disable-next-line no-console
         console.error(JSON.stringify(payload));
         return payload;
       }
@@ -68,6 +70,7 @@ var Logger = (function() {
             : {};
 
         var payload = this.generatePayload("info", msg, options);
+        // eslint-disable-next-line no-console
         console.log(JSON.stringify(payload));
         return payload;
       }
