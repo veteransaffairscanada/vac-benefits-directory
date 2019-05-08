@@ -7,7 +7,6 @@ let theme = {
   cardPaddingMobile: "19px",
   boxShadow: "0 4px 14px rgba(0,0,0,.05);",
   max: {
-    mobile: "399.5px",
     xs: "424.5px",
     sm: "767.5px",
     md: "999.5px",
@@ -42,9 +41,7 @@ let theme = {
     black: "#000000",
     alertYellow: "#fbb830",
     lightYellow: "#f9f4d3",
-    alphaPink: "#d42dc9",
     betaBlue: "#634f70",
-    alphaBlue: "#345075",
     salmon: "#ff6961",
     blueGrey: "#838d9b",
     paleBlueGrey: "#f1f7fc",

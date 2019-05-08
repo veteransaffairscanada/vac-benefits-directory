@@ -33,9 +33,11 @@ const readJsonAsync = function(filename) {
 const getAllData = async function() {
   let airtableData;
   if (staging) {
+    // eslint-disable-next-line no-console
     console.log("Staging environment, downloading from Airtable");
     airtableData = await airTable.hydrateFromAirtable();
   } else {
+    // eslint-disable-next-line no-console
     console.log("Production environment, using static file");
     airtableData = await readJsonAsync("data/data.json");
   }

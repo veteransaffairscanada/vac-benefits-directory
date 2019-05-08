@@ -25,7 +25,7 @@ const headerDesc = css`
   margin-left: 20px;
   font-size: 18px;
   color: ${globalTheme.colour.greyishBrown};
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     font-size: 12px;
   }
   a {

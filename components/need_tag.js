@@ -11,7 +11,7 @@ const needsTag = css`
   color: ${globalTheme.colour.slateGrey};
   border-radius: 1;
   display: inline-flex;
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     font-size: 12px;
   }
 `;

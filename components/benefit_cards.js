@@ -26,7 +26,7 @@ const cardDescriptionText = css`
   padding-left: 35px;
   padding-right: 35px;
   padding-top: 10px;
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     padding-top: 14px;
   }
 `;
