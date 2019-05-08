@@ -19,7 +19,6 @@ import BreadCrumbs from "../components/breadcrumbs";
 import { getGuidedExperienceUrl } from "../selectors/urls";
 import Paper from "../components/paper";
 import HeaderLink from "../components/header_link";
-import { mutateUrl } from "../utils/common";
 
 const padding = css`
   padding-top: 15px;
