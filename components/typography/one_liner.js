@@ -7,7 +7,7 @@ import { css, jsx } from "@emotion/core";
 const style = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   font-size: 24px;
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     font-size: 16px;
   }
   font-weight: normal;

@@ -22,7 +22,7 @@ import { getGuidedExperienceUrl } from "../selectors/urls";
 
 const box = css`
   padding: 63px 63px 63px 63px;
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     padding: 26px 26px 55px 26px;
   }
 `;
