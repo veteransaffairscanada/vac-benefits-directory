@@ -34,7 +34,7 @@ const rightAlign = css`
 `;
 
 const saveIcon = css`
-  @media only screen and (max-width: ${globalTheme.max.mobile}) {
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
     font-size: 45px !important;
   }
 `;
