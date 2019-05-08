@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { AlphaBanner } from "../../components/alpha_banner";
+import { AlphaBanner } from "../../components/version_banner";
 import translate from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
