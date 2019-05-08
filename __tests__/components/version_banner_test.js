@@ -1,20 +1,20 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { AlphaBanner } from "../../components/version_banner";
+import { VersionBanner } from "../../components/version_banner";
 import translate from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 
 jest.mock("react-ga");
 
-describe("AlphaBanner", () => {
+describe("VersionBanner", () => {
   let props;
-  let _mountedAlphaBanner;
-  const mountedAlphaBanner = () => {
-    if (!_mountedAlphaBanner) {
-      _mountedAlphaBanner = shallow(<AlphaBanner {...props} />);
+  let _mountedVersionBanner;
+  const mountedVersionBanner = () => {
+    if (!_mountedVersionBanner) {
+      _mountedVersionBanner = shallow(<VersionBanner {...props} />);
     }
-    return _mountedAlphaBanner;
+    return _mountedVersionBanner;
   };
 
   beforeEach(() => {
@@ -25,20 +25,20 @@ describe("AlphaBanner", () => {
       t: translate,
       url: { query: { lng: "en" } }
     };
-    _mountedAlphaBanner = undefined;
+    _mountedVersionBanner = undefined;
   });
 
   // Tests
   it("passes axe tests", async () => {
-    let html = mountedAlphaBanner().html();
+    let html = mountedVersionBanner().html();
     expect(await axe(html)).toHaveNoViolations();
   });
 
-  it("shows the alpha badge", () => {
-    expect(mountedAlphaBanner().find("PhaseBadge").length).toEqual(1);
+  it("shows the phase badge", () => {
+    expect(mountedVersionBanner().find("PhaseBadge").length).toEqual(1);
   });
 
   it("contains a link to the feedback page", () => {
-    expect(mountedAlphaBanner().find("Link").length).toEqual(1);
+    expect(mountedVersionBanner().find("Link").length).toEqual(1);
   });
 });
