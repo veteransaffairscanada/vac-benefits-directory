@@ -1880,13 +1880,6 @@
       "section": ""
     },
     {
-      "key": "alpha-feedback",
-      "English": "Email us with feedback.",
-      "French": "Envoyez-nous vos commentaires par courriel.",
-      "id": "alpha-feedback",
-      "section": ""
-    },
-    {
       "section": "alt_text",
       "key": "edit",
       "English": "edit",
@@ -2706,48 +2699,6 @@
       "id": "index.your_saved_benefits"
     },
     {
-      "section": "map",
-      "key": "contact_1",
-      "English": "Walk-ins are welcome or give us a call at",
-      "French": "Les personnes sans rendez-vous sont les bienvenues ou vous pouvez nous appelez au",
-      "id": "map.contact_1"
-    },
-    {
-      "section": "map",
-      "key": "contact_2",
-      "English": "Monday to Friday, 0830 - 1630 local time",
-      "French": "du lundi au vendredi, de 8 h 30 à 16 h 30, heure locale.",
-      "id": "map.contact_2"
-    },
-    {
-      "section": "map",
-      "key": "get_directions",
-      "English": "Get Directions",
-      "French": "Obtenir l'itinéraire",
-      "id": "map.get_directions"
-    },
-    {
-      "section": "map",
-      "key": "search-location-prompt",
-      "English": "Search by city or postal code",
-      "French": "Entrez la ville ou code postal ",
-      "id": "map.search-location-prompt"
-    },
-    {
-      "section": "map",
-      "key": "search-locations",
-      "English": "Search",
-      "French": "Rechercher",
-      "id": "map.search-locations"
-    },
-    {
-      "section": "map",
-      "key": "vacOffices",
-      "English": "Find a VAC office near you",
-      "French": "Trouver un bureau ACC près de vous",
-      "id": "map.vacOffices"
-    },
-    {
       "key": "next",
       "English": "Next",
       "French": "Suivant",
@@ -2889,13 +2840,6 @@
     },
     {
       "section": "print",
-      "key": "map_link",
-      "English": "https://benefits-prestations.veterans.gc.ca/map?lng=en",
-      "French": "https://benefits-prestations.veterans.gc.ca/map?lng=fr",
-      "id": "print.map_link"
-    },
-    {
-      "section": "print",
       "key": "sign_up_for_my_vac",
       "English": "Sign up for a My VAC account once you’re ready to start applying.",
       "French": "Inscrivez-vous à Mon ACC dès que vous êtes prêt à faire une demande.",
@@ -2995,7 +2939,7 @@
     {
       "key": "skipLink",
       "English": "Skip to Main Content",
-      "French": "Aller au contenu principal",
+      "French": "Passer au contenu principal",
       "id": "skipLink",
       "section": ""
     },
@@ -3047,13 +2991,6 @@
       "English": "VAC Benefits Directory",
       "French": "Répertoire des avantages d'ACC",
       "id": "titles.index"
-    },
-    {
-      "section": "titles",
-      "key": "map",
-      "English": "Map",
-      "French": "Carte",
-      "id": "titles.map"
     },
     {
       "section": "titles",
@@ -4478,5 +4415,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1556356092331
+  "timestamp": 1557421662054
 }
