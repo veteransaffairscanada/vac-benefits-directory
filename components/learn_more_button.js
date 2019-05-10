@@ -37,7 +37,7 @@ const LearnMoreButton = props => {
         logEvent("Exit", "learn more", url);
       }}
     >
-      <Button arrow={false} tabIndex="-1">
+      <Button arrow={false} tabIndex="-1" mobileFullWidth={true}>
         {t("Find out more")}
       </Button>
     </a>
