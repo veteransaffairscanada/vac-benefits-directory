@@ -86,14 +86,16 @@ export class Feedback extends Component {
       time: new Date().toUTCString()
     };
 
-    fetch("/submitBetaFeedback", {
-      body: JSON.stringify(payload),
-      cache: "no-cache",
-      headers: {
-        "content-type": "application/json"
-      },
-      method: "POST"
-    }).catch(err => Raven.captureException(err));
+    if (payload.how_was_your_experience || payload.what_did_you_think) {
+      fetch("/submitBetaFeedback", {
+        body: JSON.stringify(payload),
+        cache: "no-cache",
+        headers: {
+          "content-type": "application/json"
+        },
+        method: "POST"
+      }).catch(err => Raven.captureException(err));
+    }
   };
 
   render() {
