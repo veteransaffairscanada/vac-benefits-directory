@@ -117,14 +117,16 @@ export class FeedbackBar extends Component {
       time: new Date().toUTCString()
     };
 
-    fetch("/submitComment", {
-      body: JSON.stringify(payload),
-      cache: "no-cache",
-      headers: {
-        "content-type": "application/json"
-      },
-      method: "POST"
-    }).catch(err => Raven.captureException(err));
+    if (payload.whatWentWrong || payload.howCanInfoBeMoreUseful) {
+      fetch("/submitComment", {
+        body: JSON.stringify(payload),
+        cache: "no-cache",
+        headers: {
+          "content-type": "application/json"
+        },
+        method: "POST"
+      }).catch(err => Raven.captureException(err));
+    }
   };
 
   sendFeedback = answer => {
