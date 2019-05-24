@@ -163,7 +163,7 @@ var hydrateFromAirtable = (exports.hydrateFromAirtable = async function hydrateF
 var writeFeedback = (exports.writeFeedback = async function writeFeedback(
   payload
 ) {
-  var url = "https://api.airtable.com/v0/" + baseKey + "/feedback";
+  var url = "https://api.airtable.com/v0/" + baseKey + "/feedbackBar";
   var resp = await fetch(url, {
     body: JSON.stringify({ fields: payload }),
     cache: "no-cache",
@@ -179,7 +179,7 @@ var writeFeedback = (exports.writeFeedback = async function writeFeedback(
 var writeBetaFeedback = (exports.writeBetaFeedback = async function writeBetaFeedback(
   payload
 ) {
-  var url = "https://api.airtable.com/v0/" + baseKey + "/beta_feedback";
+  var url = "https://api.airtable.com/v0/" + baseKey + "/feedbackPage";
   var resp = await fetch(url, {
     body: JSON.stringify({ fields: payload }),
     cache: "no-cache",
