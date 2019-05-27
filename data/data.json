@@ -780,9 +780,9 @@
       "categories DO NOT USE": "Education and jobs, Health",
       "childBenefits": [
         "recZBl9s47f89zx8E",
-        "recNjPX7Q8YoNjA8x",
         "recS4Kl8K1Ipsrb4C",
-        "recR0Fq4NwCOAPZFr"
+        "recR0Fq4NwCOAPZFr",
+        "recNjPX7Q8YoNjA8x"
       ],
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/26",
@@ -1704,7 +1704,6 @@
       "path": "family + CAF, WSV (Second World War or Korea) + deceased + hasServiceHealthIssue"
     },
     {
-      "benefit": ["recKo07DTJ3LVq92c"],
       "patronType": ["recqcx7zJU3fDnKDw"],
       "serviceType": ["rec2IXKCRtTMJkvGA"],
       "statusAndVitals": [
@@ -1714,15 +1713,16 @@
       ],
       "serviceHealthIssue": ["rectbnCfR4fErniDf"],
       "Name": "recM0HHQ56peIanKW",
-      "path": "family + CAF + stillServing, releasedAlive, deceased + hasServiceHealthIssue"
+      "path": "family + CAF + stillServing, releasedAlive, deceased + hasServiceHealthIssue",
+      "benefit": ["recKo07DTJ3LVq92c"]
     },
     {
-      "benefit": ["recNjPX7Q8YoNjA8x"],
       "patronType": ["recqmK12TRScaiVlp"],
       "serviceType": ["rec2IXKCRtTMJkvGA"],
       "serviceHealthIssue": ["rectbnCfR4fErniDf"],
       "Name": "recPxdVHP2drYcKwV",
       "path": "veteran + CAF + hasServiceHealthIssue",
+      "benefit": ["recNjPX7Q8YoNjA8x"],
       "statusAndVitals": []
     },
     {
@@ -1746,14 +1746,14 @@
     {
       "nameEn": "Education and jobs",
       "benefits": [
-        "recKo07DTJ3LVq92c",
         "recqA4Y8jQ2yd2n8U",
-        "recNjPX7Q8YoNjA8x",
         "reclGiFGA44ZBGt1u",
         "recclMvgOqkgozA3R",
         "rec6qhzt4ZuVxGxQl",
         "recj9D8AamqFgiSGJ",
-        "rec0lKro6hpmBcHPo"
+        "rec0lKro6hpmBcHPo",
+        "recNjPX7Q8YoNjA8x",
+        "recKo07DTJ3LVq92c"
       ],
       "nameFr": "Études et emploi",
       "colour": "#ddbbdd",
@@ -1846,7 +1846,6 @@
     {
       "nameEn": "Death and bereavement",
       "benefits": [
-        "recKo07DTJ3LVq92c",
         "recx8a12geKVKat8j",
         "recRwpM2DTNPdi3Yj",
         "recI2f35ux8ZwnhWI",
@@ -1857,7 +1856,8 @@
         "recTHEyt7fd9d129F",
         "recclMvgOqkgozA3R",
         "recvpZp2wc7SOFSzf",
-        "recBAfazu4HnbXm25"
+        "recBAfazu4HnbXm25",
+        "recKo07DTJ3LVq92c"
       ],
       "nameFr": "Décès et deuil",
       "colour": "#b9c3d7",
@@ -4360,32 +4360,32 @@
     {
       "english": "financial support for education and training (such as tuition or textbooks)",
       "french": "aide financière pour les études et la formation (p. ex. frais de scolarité ou manuels scolaires)",
-      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
-      "id": "recq2DNBHvbmR8eRJ"
+      "id": "recq2DNBHvbmR8eRJ",
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"]
     },
     {
       "english": "work site modifications",
       "french": "adaptations au milieu de travail",
-      "linked_benefits": ["Vocational rehabilitation"],
-      "id": "reca80TLJFrvqxjMv"
+      "id": "reca80TLJFrvqxjMv",
+      "linked_benefits": ["Vocational rehabilitation"]
     },
     {
       "english": "resume writing and interview preparation",
       "french": "rédaction de curriculum vitæ et préparation à l’entrevue",
-      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
-      "id": "recUd5u09NoMHHIz5"
+      "id": "recUd5u09NoMHHIz5",
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"]
     },
     {
       "english": "career coaching",
       "french": "accompagnement professionnel",
-      "linked_benefits": ["Vocational assistance", "Vocational rehabilitation"],
-      "id": "rech6miwpTGrCFHBR"
+      "id": "rech6miwpTGrCFHBR",
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"]
     },
     {
       "english": "job-search assistance",
       "french": "aide à la recherche d’emploi",
-      "linked_benefits": ["Vocational assistance", "Vocational rehabilitation"],
-      "id": "rec4R2XFRlZl2m2GM"
+      "id": "rec4R2XFRlZl2m2GM",
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"]
     },
     {
       "english": "trade schools",
@@ -4415,5 +4415,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1557510056889
+  "timestamp": 1558963268755
 }
