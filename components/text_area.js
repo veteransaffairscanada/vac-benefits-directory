@@ -117,7 +117,7 @@ TextArea.propTypes = {
     onFocus: PropTypes.func,
     value: PropTypes.any
   }),
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 };
 
 export default TextArea;
