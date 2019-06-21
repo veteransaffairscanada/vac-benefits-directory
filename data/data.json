@@ -52,10 +52,8 @@
       "needs": ["recl3hMcrWpKFaR9B", "recTv9il8X9IhPosv", "reciCZbLGkKLIqapM"],
       "oneLineDescriptionEn": "Monthly payments for a disability pensioner whose health needs require daily personal care support.",
       "oneLineDescriptionFr": "Paiements mensuels versés à un aidant naturel qui vous fournit un soutien aux soins personnels quotidiens.",
-      "categories DO NOT USE": "Financial assistance",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1931#anchor57065",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57065",
-      "noteFr": "FRA",
       "benefitExamples": [
         "recccc6q8ryFqVKVU",
         "recjDlxO1ROB3ZeMy",
@@ -67,6 +65,7 @@
       "seeMoreSentenceFr": " Exemples de tâches quotidiennes pour lesquelles vous pourriez avoir besoin d’aide :",
       "Readability": "post-graduate",
       "id": "recJI8FifJ2Kbg1Zd",
+      "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
       "examples": "",
@@ -781,7 +780,8 @@
       "childBenefits": [
         "recZBl9s47f89zx8E",
         "recS4Kl8K1Ipsrb4C",
-        "recR0Fq4NwCOAPZFr"
+        "recR0Fq4NwCOAPZFr",
+        "recNjPX7Q8YoNjA8x"
       ],
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/26",
@@ -1061,6 +1061,61 @@
       "benefitPolicyFR": "",
       "examples": "",
       "sortingPriority": ""
+    },
+    {
+      "vacNameEn": "Vocational assistance",
+      "vacNameFr": "Assistance professionnelle",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/vocational-assistance",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-assistance",
+      "needs": ["recXFXV3lZ5z2yya9", "recf9RX3o0b4LJD3J"],
+      "oneLineDescriptionEn": "Coaching, support or other training to help a qualifying spouse or survivor return to work.",
+      "oneLineDescriptionFr": "Accompagnement, soutien ou autre formation pour que les époux ou conjoints de fait et survivants admissibles puissent retourner au travail.",
+      "categories DO NOT USE": "Education and jobs, Family support",
+      "benefitExamples": [
+        "rech6miwpTGrCFHBR",
+        "rec4R2XFRlZl2m2GM",
+        "recq2DNBHvbmR8eRJ",
+        "recUd5u09NoMHHIz5"
+      ],
+      "benefitEligibility": ["recM0HHQ56peIanKW"],
+      "seeMoreSentenceEn": "Some examples of what this program may provide:",
+      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "Readability": "Grade 10",
+      "id": "recKo07DTJ3LVq92c",
+      "childBenefits": [],
+      "availableIndependently": "",
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": "",
+      "sortingPriority": ""
+    },
+    {
+      "vacNameEn": "Vocational rehabilitation",
+      "vacNameFr": "Réadaptation professionnelle",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/vocational-rehabilitation",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/vocational-rehabilitation",
+      "needs": ["recXFXV3lZ5z2yya9"],
+      "oneLineDescriptionEn": "Coaching, support or other training you need to return to work or find a new job after an injury.",
+      "oneLineDescriptionFr": "Accompagnement, soutien ou autre formation dont vous avez besoin pour retourner au travail ou trouver un nouvel emploi après une blessure.",
+      "availableIndependently": "Independent",
+      "sortingPriority": "medium",
+      "benefitExamples": [
+        "rec4R2XFRlZl2m2GM",
+        "rech6miwpTGrCFHBR",
+        "recUd5u09NoMHHIz5",
+        "recq2DNBHvbmR8eRJ",
+        "reca80TLJFrvqxjMv"
+      ],
+      "benefitEligibility": ["recPxdVHP2drYcKwV"],
+      "seeMoreSentenceEn": "Some examples of what this program may provide:",
+      "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
+      "Readability": "Grade 8",
+      "id": "recNjPX7Q8YoNjA8x",
+      "categories DO NOT USE": "",
+      "childBenefits": [],
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": ""
     },
     {
       "vacNameEn": "War Veterans Allowance (WVA)",
@@ -1648,6 +1703,7 @@
       "path": "family + CAF, WSV (Second World War or Korea) + deceased + hasServiceHealthIssue"
     },
     {
+      "benefit": ["recKo07DTJ3LVq92c"],
       "patronType": ["recqcx7zJU3fDnKDw"],
       "serviceType": ["rec2IXKCRtTMJkvGA"],
       "statusAndVitals": [
@@ -1657,16 +1713,15 @@
       ],
       "serviceHealthIssue": ["rectbnCfR4fErniDf"],
       "Name": "recM0HHQ56peIanKW",
-      "path": "family + CAF + stillServing, releasedAlive, deceased + hasServiceHealthIssue",
-      "benefit": []
+      "path": "family + CAF + stillServing, releasedAlive, deceased + hasServiceHealthIssue"
     },
     {
+      "benefit": ["recNjPX7Q8YoNjA8x"],
       "patronType": ["recqmK12TRScaiVlp"],
       "serviceType": ["rec2IXKCRtTMJkvGA"],
       "serviceHealthIssue": ["rectbnCfR4fErniDf"],
       "Name": "recPxdVHP2drYcKwV",
       "path": "veteran + CAF + hasServiceHealthIssue",
-      "benefit": [],
       "statusAndVitals": []
     },
     {
@@ -1695,7 +1750,9 @@
         "recclMvgOqkgozA3R",
         "rec6qhzt4ZuVxGxQl",
         "recj9D8AamqFgiSGJ",
-        "rec0lKro6hpmBcHPo"
+        "rec0lKro6hpmBcHPo",
+        "recNjPX7Q8YoNjA8x",
+        "recKo07DTJ3LVq92c"
       ],
       "nameFr": "Études et emploi",
       "colour": "#ddbbdd",
@@ -1798,7 +1855,8 @@
         "recTHEyt7fd9d129F",
         "recclMvgOqkgozA3R",
         "recvpZp2wc7SOFSzf",
-        "recBAfazu4HnbXm25"
+        "recBAfazu4HnbXm25",
+        "recKo07DTJ3LVq92c"
       ],
       "nameFr": "Décès et deuil",
       "colour": "#b9c3d7",
@@ -4301,32 +4359,32 @@
     {
       "english": "financial support for education and training (such as tuition or textbooks)",
       "french": "aide financière pour les études et la formation (p. ex. frais de scolarité ou manuels scolaires)",
-      "id": "recq2DNBHvbmR8eRJ",
-      "linked_benefits": []
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
+      "id": "recq2DNBHvbmR8eRJ"
     },
     {
       "english": "work site modifications",
       "french": "adaptations au milieu de travail",
-      "id": "reca80TLJFrvqxjMv",
-      "linked_benefits": []
+      "linked_benefits": ["Vocational rehabilitation"],
+      "id": "reca80TLJFrvqxjMv"
     },
     {
       "english": "resume writing and interview preparation",
       "french": "rédaction de curriculum vitæ et préparation à l’entrevue",
-      "id": "recUd5u09NoMHHIz5",
-      "linked_benefits": []
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
+      "id": "recUd5u09NoMHHIz5"
     },
     {
       "english": "career coaching",
       "french": "accompagnement professionnel",
-      "id": "rech6miwpTGrCFHBR",
-      "linked_benefits": []
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
+      "id": "rech6miwpTGrCFHBR"
     },
     {
       "english": "job-search assistance",
       "french": "aide à la recherche d’emploi",
-      "id": "rec4R2XFRlZl2m2GM",
-      "linked_benefits": []
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
+      "id": "rec4R2XFRlZl2m2GM"
     },
     {
       "english": "trade schools",
@@ -4356,5 +4414,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1558723665901
+  "timestamp": 1561142534144
 }
