@@ -33,7 +33,9 @@
     "preversion": "yarn test && yarn lint",
     "version": "yarn run build && git add -A pages",
     "postversion": "git push && git push --tags && rm -rf build/temp",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@emotion/core": "^10.0.10",
@@ -80,7 +82,8 @@
     "regenerator-runtime": "^0.13.2",
     "reselect": "^4.0.0",
     "universal-cookie": "^4.0.0",
-    "webpack": "^4.32.2"
+    "webpack": "^4.32.2",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -112,5 +115,6 @@
     "semantic-release": "^15.13.12",
     "start-server-and-test": "^1.9.1",
     "webpack-bundle-analyzer": "^3.3.2"
-  }
+  },
+  "snyk": true
 }
