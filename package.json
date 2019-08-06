@@ -111,6 +111,6 @@
     "react-test-renderer": "^16.8.6",
     "semantic-release": "^15.13.12",
     "start-server-and-test": "^1.9.1",
-    "webpack-bundle-analyzer": "^3.3.2"
+    "webpack-bundle-analyzer": "^3.4.1"
   }
 }
