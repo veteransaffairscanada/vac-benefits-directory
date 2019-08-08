@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { Grid } from "@material-ui/core";
-import EditIcon from "./icons/Edit";
+// import EditIcon from "./icons/Edit";
+import Icon from "./icon";
 import { globalTheme } from "../theme";
 import { mutateUrl, getPageName } from "../utils/common";
 import HeaderLink from "./header_link";
@@ -86,13 +87,14 @@ export class SummaryRow extends Component {
               href={mutateUrl(url, "/" + getPageName(questionName))}
               css={font}
             >
-              <EditIcon
+              {/* <EditIcon
                 focusable="true"
                 aria-hidden="false"
                 role="img"
                 aria-label={t("alt_text.edit")}
                 height="5px"
-              />
+              /> */}
+              <Icon icon="edit" />
               <span id={"edit-" + questionName} css={hideOnMobile}>
                 {t("ge.edit")}
               </span>

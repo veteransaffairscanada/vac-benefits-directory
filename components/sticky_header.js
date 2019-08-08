@@ -2,6 +2,7 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import ShareBox from "../components/share_box";
+//import Icon from "./icon";
 //import EditIcon from "./icons/Edit";
 // import HeaderLink from "./header_link";
 // import SaveChecked from "./icons/SaveChecked";
@@ -83,6 +84,7 @@ export class StickyHeader extends Component {
               className={editStyle}
             >
               <EditIcon />
+              <Icon icon="edit"/>
               <span css={longText}>{t("directory.edit_selections")}</span>
               <span css={shortText}>
                 {t("directory.edit_selections_mobile")}

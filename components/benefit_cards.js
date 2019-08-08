@@ -12,7 +12,7 @@ import BenefitExpansion from "./benefit_expansion";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
 import Header from "./typography/header";
-import Tag from "./icons/Tag";
+// import Tag from "./icons/Tag";
 import { globalTheme } from "../theme";
 import LearnMoreButton from "./learn_more_button";
 
@@ -120,7 +120,11 @@ export class BenefitCard extends Component {
               ) : null} */}
             </Header>
             <div css={padding}>
-              {needsMet.length > 0 ? <Tag css={tagStyle} /> : null}
+              {needsMet.length > 0
+                ? {
+                    /* <Tag css={tagStyle} />  */
+                  }
+                : null}
               {needsMet.map(need => (
                 <NeedTag
                   key={benefit.id + need.id}

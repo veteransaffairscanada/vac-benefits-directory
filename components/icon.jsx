@@ -1,21 +1,57 @@
 import React from "react";
-const { PropTypes } = "prop-types";
+import PropTypes from "prop-types";
+import { globalTheme } from "../theme";
 
 const icons = {
   cancel:
-    "M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z",
+    "M512 0c-282.752 0-512 229.248-512 512s229.248 512 512 512 512-229.248 512-512-229.248-512-512-512zM765.248 674.752l-90.496 90.496-162.752-162.752-162.752 162.752-90.496-90.496 162.752-162.752-162.752-162.752 90.496-90.496 162.752 162.752 162.752-162.752 90.496 90.496-162.752 162.752 162.752 162.752z",
+  search:
+    "M992.262 871.396l-242.552-206.294c-25.074-22.566-51.89-32.926-73.552-31.926 57.256-67.068 91.842-154.078 91.842-249.176 0-212.078-171.922-384-384-384-212.076 0-384 171.922-384 384s171.922 384 384 384c95.098 0 182.108-34.586 249.176-91.844-1 21.662 9.36 48.478 31.926 73.552l206.294 242.552c35.322 39.246 93.022 42.554 128.22 7.356s31.892-92.898-7.354-128.22zM384 640c-141.384 0-256-114.616-256-256s114.616-256 256-256 256 114.616 256 256-114.614 256-256 256z",
+  edit:
+    "M864 0c88.364 0 160 71.634 160 160 0 36.020-11.91 69.258-32 96l-64 64-224-224 64-64c26.742-20.090 59.978-32 96-32zM64 736l-64 288 288-64 592-592-224-224-592 592zM715.578 363.578l-448 448-55.156-55.156 448-448 55.156 55.156z",
+  expand:
+    "M317.256 354.744l-90.512 90.512 285.256 285.254 285.254-285.256-90.508-90.508-194.746 194.744z",
   facebook:
     "M608 192h160v-192h-160c-123.514 0-224 100.486-224 224v96h-128v192h128v512h192v-512h160l32-192h-192v-96c0-17.346 14.654-32 32-32z"
 };
 
-const Icon = props => (
-  <svg width="22" height="22" viewBox="0 0 1024 1024">
-    <path d={icons[props.icon]} />
-  </svg>
-);
+// const Icon = props => (
+//   <svg width="22" height="22" viewBox="0 0 1024 1024">
+//     <path
+//       d={icons[props.icon]}
+//     />
+//   </svg>
+// );
+
+const Icon = props => {
+  const styles = {
+    path: {
+      fill: globalTheme.colour.navy
+      // transform: "rotate(180deg)"
+    }
+  };
+
+  return (
+    <svg
+      width={`${props.size}px`}
+      height={`${props.size}px`}
+      viewBox="0 0 1024 1024"
+      transform={props.flip ? `rotate(180)` : `rotate(0)`}
+    >
+      <path style={styles.path} d={icons[props.icon]} />
+    </svg>
+  );
+};
 
 Icon.propTypes = {
-  icon: PropTypes.string.isRequired
+  icon: PropTypes.string.isRequired,
+  size: PropTypes.number,
+  color: PropTypes.string,
+  flip: PropTypes.bool
+};
+
+Icon.defaultProps = {
+  size: 20
 };
 
 export default Icon;
