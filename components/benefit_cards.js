@@ -13,6 +13,7 @@ import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
 import Header from "./typography/header";
 // import Tag from "./icons/Tag";
+import Icon from "./icon";
 import { globalTheme } from "../theme";
 import LearnMoreButton from "./learn_more_button";
 
@@ -120,11 +121,15 @@ export class BenefitCard extends Component {
               ) : null} */}
             </Header>
             <div css={padding}>
-              {needsMet.length > 0
-                ? {
-                    /* <Tag css={tagStyle} />  */
-                  }
-                : null}
+              {needsMet.length > 0 ? (
+                <span css={tagStyle}>
+                  <Icon
+                    icon="needsTag"
+                    size={10}
+                    color={`${globalTheme.colour.slateGrey}`}
+                  />
+                </span>
+              ) : null}
               {needsMet.map(need => (
                 <NeedTag
                   key={benefit.id + need.id}
