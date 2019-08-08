@@ -46,14 +46,4 @@ describe("FavouriteButton", () => {
     let mounted = mount(<FavouriteButton {...props} />);
     expect(mounted.find("span").html()).toContain("B3.favouritesButtonBText");
   });
-
-  // it("has a working toggleFavourite function", async () => {
-  //   let instance = mount(<FavouriteButton {...props} />).instance();
-  //   instance.toggleFavourite("benefit_0");
-  //   instance.toggleFavourite("c0");
-  //   instance.toggleFavourite("c1");
-  //   expect(instance.cookies.get("favouriteBenefits")).toEqual(["c0", "c1"]);
-  //   instance.toggleFavourite("c0");
-  //   expect(instance.cookies.get("favouriteBenefits")).toEqual(["c1"]);
-  // });
 });
