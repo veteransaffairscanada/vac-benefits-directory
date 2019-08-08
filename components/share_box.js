@@ -6,8 +6,7 @@ import { globalTheme } from "../theme";
 import HeaderButton from "./header_button";
 import HeaderLink from "./header_link";
 import ShareModal from "./share_modal";
-// import Print from "./icons/Print";
-// import ShareIcon from "./icons/share_icon";
+import Icon from "./icon";
 import { uuidv4 } from "../utils/common";
 import { logEvent } from "../utils/analytics";
 
@@ -52,7 +51,7 @@ class ShareBox extends Component {
             logEvent("Exit", "print");
           }}
         >
-          {/* <Print /> */}
+          <Icon icon="print" color={`${globalTheme.colour.greyishBrown}`} />
         </HeaderLink>
         {showShareLink ? (
           <React.Fragment>
@@ -63,7 +62,7 @@ class ShareBox extends Component {
               aria-label={t("titles.share")}
               onClick={() => this.setState({ showModal: true })}
             >
-              {/* <ShareIcon /> */}
+              <Icon icon="share" color={`${globalTheme.colour.greyishBrown}`} />
             </HeaderButton>
             <ShareModal
               uid={this.uid}
