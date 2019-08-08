@@ -87,14 +87,13 @@ export class SummaryRow extends Component {
               href={mutateUrl(url, "/" + getPageName(questionName))}
               css={font}
             >
-              {/* <EditIcon
+              <Icon
+                icon="edit"
                 focusable="true"
                 aria-hidden="false"
                 role="img"
                 aria-label={t("alt_text.edit")}
-                height="5px"
-              /> */}
-              <Icon icon="edit" />
+              />
               <span id={"edit-" + questionName} css={hideOnMobile}>
                 {t("ge.edit")}
               </span>

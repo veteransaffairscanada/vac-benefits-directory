@@ -12,7 +12,6 @@ import BenefitExpansion from "./benefit_expansion";
 import BenefitCardHeader from "./benefit_card_header";
 import OneLiner from "./typography/one_liner";
 import Header from "./typography/header";
-// import Tag from "./icons/Tag";
 import Icon from "./icon";
 import { globalTheme } from "../theme";
 import LearnMoreButton from "./learn_more_button";

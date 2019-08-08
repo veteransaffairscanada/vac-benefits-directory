@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import Icon from "./icon";
-// import Close from "./icons/Close";
 
 import { globalTheme } from "../theme";
 import Body from "./typography/body";
