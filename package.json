@@ -60,7 +60,7 @@
     "lunr": "^2.3.6",
     "lunr-languages": "^1.1.0",
     "markdown-it": "^8.4.2",
-    "next": "8.1.0",
+    "next": "^9.0.3",
     "next-redux-wrapper": "^3.0.0-alpha.2",
     "preact": "8.4.2",
     "prop-types": "^15.6.0",
