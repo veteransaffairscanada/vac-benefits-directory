@@ -2,8 +2,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
-import SearchIcon from "./icons/Search";
-import CancelIcon from "./icons/Cancel";
+import Icon from "./icon";
 import { globalTheme } from "../theme";
 // import Router from "next/router";
 // import { mutateUrl } from "../utils/common";
@@ -153,14 +152,14 @@ class SearchBox extends Component {
               id="clearButton"
               onClick={this.handleClear}
             >
-              <CancelIcon />
+              <Icon icon="cancel" />
             </ClearButton>
           </div>
         ) : null}
 
         {this.props.disableButton ? (
           <DisabledSearchButton title={ariaLabel} disabled>
-            <SearchIcon />
+            <Icon icon="search" />
           </DisabledSearchButton>
         ) : (
           <SearchButton
@@ -168,7 +167,7 @@ class SearchBox extends Component {
             id={this.props.buttonId}
             onClick={onButtonClick}
           >
-            <SearchIcon />
+            <Icon icon="search" />
           </SearchButton>
         )}
       </SearchBoxWrapper>

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import Close from "./icons/Close";
+import Icon from "./icon";
 
 import { globalTheme } from "../theme";
 import Body from "./typography/body";
@@ -36,7 +36,7 @@ const CloseIcon = css`
 export const DisabledCookiesBanner = ({ t, onClose }) => (
   <Body css={Banner}>
     <button css={CloseIcon} aria-label="Hide cookie warning" onClick={onClose}>
-      <Close />
+      <Icon icon="cancel" />
     </button>
     <span>
       {t("B3.disabled_cookies_text")}
