@@ -120,19 +120,19 @@ describe("Favourites", () => {
     ).toEqual(2);
   });
 
-  describe("cookies tests", () => {
-    let cookiesInstance;
-    let cookies = new Cookies();
-    beforeEach(() => {
-      cookies.set("favouriteBenefits", ["benefit_2", "benefit_5"]);
-      cookiesInstance = mount(
-        <Favourites {...props} {...reduxData} />
-      ).instance();
-    });
-    it("updates cookie data when a benefit has been deleted", () => {
-      expect(cookiesInstance.cookies.get("favouriteBenefits")).toEqual([
-        "benefit_2"
-      ]);
-    });
-  });
+  // describe("cookies tests", () => {
+  //   let cookiesInstance;
+  //   let cookies = new Cookies();
+  //   beforeEach(() => {
+  //     cookies.set("favouriteBenefits", ["benefit_2", "benefit_5"]);
+  //     cookiesInstance = mount(
+  //       <Favourites {...props} {...reduxData} />
+  //     ).instance();
+  //   });
+  //   it("updates cookie data when a benefit has been deleted", () => {
+  //     expect(cookiesInstance.cookies.get("favouriteBenefits")).toEqual([
+  //       "benefit_2"
+  //     ]);
+  //   });
+  // });
 });
