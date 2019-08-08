@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
-import ExpandMore from "./icons/ExpandMore";
+import Icon from "./icon";
 
 const StyledDetails = styled("details")({
   display: "block",
@@ -62,7 +62,7 @@ const SidebarDetails = ({ children, summary, ...props }) => (
     <StyledSummary>
       {summary}
       <div css={flex2}>
-        <ExpandMore className="icon" />
+        <Icon className="icon" icon="expand" flip={true} />
       </div>
     </StyledSummary>
     <DetailsText>{children}</DetailsText>

@@ -15,7 +15,6 @@ import questionClearLogicFixture from "../fixtures/question_clear_logic";
 import nextStepsFixture from "../fixtures/nextSteps";
 import translateFixture from "../fixtures/translate";
 const { axe, toHaveNoViolations } = require("jest-axe");
-import Cookies from "universal-cookie";
 expect.extend(toHaveNoViolations);
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 
@@ -108,20 +107,5 @@ describe("BB", () => {
 
   it("contains BreadCrumbs", async () => {
     expect(shallow_BB().find("BreadCrumbs").length).toEqual(1);
-  });
-
-  describe("cookies tests", () => {
-    let cookiesInstance;
-    let cookies = new Cookies();
-    beforeEach(() => {
-      reduxData.favouriteBenefits = ["benefit_2"];
-      cookies.set("favouriteBenefits", ["benefit_2", "benefit_5"]);
-      cookiesInstance = mount(<BB {...props} {...reduxData} />).instance();
-    });
-    it("updates cookie data when a benefit has been deleted", () => {
-      expect(cookiesInstance.cookies.get("favouriteBenefits")).toEqual([
-        "benefit_2"
-      ]);
-    });
   });
 });
