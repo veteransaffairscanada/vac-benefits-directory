@@ -10,7 +10,7 @@ import questionsFixture from "../fixtures/questions";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import nextStepsFixture from "../fixtures/nextSteps";
-import Cookies from "universal-cookie";
+// import Cookies from "universal-cookie";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 import translateFixture from "../fixtures/translate";
 
