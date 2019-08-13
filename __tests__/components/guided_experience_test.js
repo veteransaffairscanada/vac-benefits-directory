@@ -89,7 +89,6 @@ describe("GuidedExperience", () => {
   it("Intro text appears if id is patronType", () => {
     props.id = "patronType";
     expect(mounted_GuidedExperience().text()).toContain("ge.intro_text_p1");
-    expect(mounted_GuidedExperience().text()).toContain("ge.intro_text_p2");
   });
 
   it("Intro text appears does not appear if id is not patronType", () => {
