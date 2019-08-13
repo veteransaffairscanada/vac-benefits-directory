@@ -106,7 +106,7 @@ export class BB extends Component {
           <Grid container spacing={32}>
             <Grid item xs={12}>
               <Header headingLevel="h1" size="xl">
-                {t("ge.Find benefits and services")}
+                {t("breadcrumbs.ben_dir_page_title")}
               </Header>
             </Grid>
             <StickyHeader
