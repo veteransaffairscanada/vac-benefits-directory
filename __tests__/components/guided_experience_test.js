@@ -95,7 +95,6 @@ describe("GuidedExperience", () => {
   it("Intro text appears does not appear if id is not patronType", () => {
     props.id = "serviceType";
     expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p1");
-    expect(mounted_GuidedExperience().text()).not.toContain("ge.intro_text_p2");
   });
 
   it("back button has correct href, clears hidden questions", () => {
