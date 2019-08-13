@@ -2561,8 +2561,8 @@
     {
       "section": "ge",
       "key": "intro_text_p1",
-      "English": "Not sure what benefits you are looking for? By answering just a few questions, this tool can provide a list of benefits from Veterans Affairs Canada that are the most relevant to you.",
-      "French": "Vous ne savez pas trop vers quels avantages vous tourner? Cet outil peut vous fournir la liste des avantages offerts par Anciens Combattants Canada les plus pertinents pour vous en fonction de vos réponses à quelques questions. ",
+      "English": "Find the benefits most relevant to you simply by answering a few questions - see below.",
+      "French": "(fra)",
       "id": "ge.intro_text_p1"
     },
     {
