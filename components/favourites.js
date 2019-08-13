@@ -14,7 +14,6 @@ import { DisabledCookiesBanner } from "./disabled_cookies_banner";
 import { areCookiesDisabled, mutateUrl } from "../utils/common";
 import { globalTheme } from "../theme";
 import BreadCrumbs from "./breadcrumbs";
-import NextSteps from "./next_steps";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
 import StickyHeader from "./sticky_header";
@@ -171,16 +170,6 @@ export class Favourites extends Component {
               </Grid>
               <Grid item xs={12}>
                 <div css={divider} />
-              </Grid>
-              <Grid item md={4} xs={12}>
-                <div id="next-steps">
-                  <Header headingLevel="h2" size="md_lg">
-                    {t("nextSteps.whats_next")}
-                  </Header>
-                </div>
-              </Grid>
-              <Grid item md={8} xs={12}>
-                <NextSteps t={t} store={store} />
               </Grid>
             </Grid>
           </Paper>

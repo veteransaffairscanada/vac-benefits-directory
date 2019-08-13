@@ -9,7 +9,6 @@ import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import questionsFixture from "../fixtures/questions";
 import needsFixture from "../fixtures/needs";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
-import nextStepsFixture from "../fixtures/nextSteps";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 import translateFixture from "../fixtures/translate";
 
@@ -56,7 +55,6 @@ describe("Favourites", () => {
 
     mockStore = configureStore();
     reduxData = {
-      nextSteps: nextStepsFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
       benefits: benefitsFixture,

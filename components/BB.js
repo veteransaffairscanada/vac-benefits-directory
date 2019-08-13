@@ -15,14 +15,9 @@ import BreadCrumbs from "../components/breadcrumbs";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
 import Header from "./typography/header";
-import NextSteps from "./next_steps";
 import StickyHeader from "./sticky_header";
 import SelectionsEditor from "./selections_editor";
 
-const divider = css`
-  border-top: 2px solid ${globalTheme.colour.duckEggBlue};
-  width: 100%;
-`;
 const innerDiv = css`
   padding-top: 24px;
 `;
@@ -141,19 +136,6 @@ export class BB extends Component {
                 </Grid>
               </Grid>
               <BenefitsPane id="BenefitsPane" t={t} store={store} url={url} />
-            </Grid>
-            <Grid item xs={12}>
-              <div css={divider} />
-            </Grid>
-            <Grid item md={4} xs={12}>
-              <div id="next-steps">
-                <Header headingLevel="h2" size="md_lg">
-                  {t("nextSteps.whats_next")}
-                </Header>
-              </div>
-            </Grid>
-            <Grid item md={8} xs={12}>
-              <NextSteps t={t} store={store} />
             </Grid>
           </Grid>
         </Paper>
