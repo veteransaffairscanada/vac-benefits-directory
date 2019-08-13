@@ -16,7 +16,13 @@ import Cookies from "universal-cookie";
 import Paper from "./paper";
 import Header from "./typography/header";
 import StickyHeader from "./sticky_header";
+import ShareBox from "../components/share_box";
 import SelectionsEditor from "./selections_editor";
+
+const shareBox = css`
+  margin-top: 25px;
+  text-align: right;
+`;
 
 const innerDiv = css`
   padding-top: 24px;
@@ -98,18 +104,27 @@ export class BB extends Component {
           includeBanner={true}
         >
           <Grid container spacing={32}>
-            <Grid item xs={12}>
+            <Grid item xs={10}>
               <Header headingLevel="h1" size="xl">
                 {t("breadcrumbs.ben_dir_page_title")}
               </Header>
             </Grid>
-            <StickyHeader
+            <Grid item xs={2}>
+              <div css={shareBox}></div>
+              <ShareBox
+                t={t}
+                printUrl={printUrl}
+                url={url}
+                showShareLink={true}
+              />
+            </Grid>
+            {/* <StickyHeader
               t={t}
               url={url}
               printUrl={printUrl}
               store={store}
               showShareLink={true}
-            />
+            /> */}
             <Grid item md={4} xs={12}>
               <div id="benefits-and-services">
                 <Header
