@@ -18,7 +18,6 @@ import NextSteps from "./next_steps";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
 import StickyHeader from "./sticky_header";
-import QuickLinks from "./quick_links";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -117,13 +116,6 @@ export class Favourites extends Component {
                 store={store}
                 showShareLink={false}
               />
-              <Grid item xs={12}>
-                <QuickLinks
-                  t={t}
-                  onFavourites={true}
-                  rightHandText={t("favourites.quick_links_text")}
-                />
-              </Grid>
               <Grid item md={4} xs={12}>
                 <div id="saved-list">
                   <Header headingLevel="h2" size="md_lg">

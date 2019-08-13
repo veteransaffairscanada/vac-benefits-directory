@@ -16,7 +16,6 @@ import Cookies from "universal-cookie";
 import Paper from "./paper";
 import Header from "./typography/header";
 import NextSteps from "./next_steps";
-import QuickLinks from "./quick_links";
 import StickyHeader from "./sticky_header";
 import SelectionsEditor from "./selections_editor";
 
@@ -116,9 +115,6 @@ export class BB extends Component {
               store={store}
               showShareLink={true}
             />
-            <Grid item xs={12}>
-              <QuickLinks t={t} rightHandText={t("B3.check eligibility")} />
-            </Grid>
             <Grid item md={4} xs={12}>
               <div id="benefits-and-services">
                 <Header
