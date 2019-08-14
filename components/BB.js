@@ -125,19 +125,7 @@ export class BB extends Component {
               store={store}
               showShareLink={true}
             /> */}
-            <Grid item md={4} xs={12}>
-              <div id="benefits-and-services">
-                <Header
-                  headingLevel="h2"
-                  size="md_lg"
-                  styles={stylingWithSidebar}
-                >
-                  {t("titles.benefits_and_services")}
-                </Header>
-              </div>
-              <SelectionsEditor t={t} store={store} url={url} />
-            </Grid>
-            <Grid id="mainContent" item md={8} xs={12}>
+            <Grid id="mainContent" item md={12} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
                   {/* {this.state.showDisabledCookieBanner ? (

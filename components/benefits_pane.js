@@ -19,6 +19,19 @@ import NoResultsButtons from "./no_results_buttons";
 import ResultsHeader from "./results_header";
 import Router from "next/router";
 import { mutateUrl } from "../utils/common";
+import EditSelectionsModal from "./edit_selections_modal";
+import HeaderButton from "./header_button";
+import Icon from "./icon";
+import { globalTheme } from "../theme";
+
+const editSelectionsItem = css`
+  color: ${globalTheme.colour.greyishBrown};
+  margin-left: 10px;
+  svg {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+`;
 
 const title = css`
   padding-bottom: 15px;
@@ -32,6 +45,10 @@ const bottomPadding = css`
 `;
 
 export class BenefitsPane extends Component {
+  state = {
+    showModal: false
+  };
+
   clearFilters = () => {
     this.props.profileQuestions.forEach(q => {
       this.props.saveQuestionResponse(q.variable_name, "");
@@ -85,30 +102,57 @@ export class BenefitsPane extends Component {
       setSearchString
     } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <Header
-            className={"BenefitsCounter"}
-            styles={title}
-            size="md"
-            headingLevel="h3"
-            autoFocus={true}
-          >
-            {filteredBenefitsWithoutSearch.length === 0
-              ? t("BenefitsPane.no_filtered_benefits")
-              : this.countString(
-                  filteredBenefits.concat(
-                    searchString.trim() === "" ? [] : nonFilteredBenefits
-                  )
-                )}
-          </Header>
-          {filteredBenefitsWithoutSearch.length === 0 ? (
-            <NoResultsButtons
-              clearFilters={this.clearFilters}
-              url={this.props.url}
-              t={t}
-            />
-          ) : null}
+      <Grid item xs={12}>
+        <Grid container spacing={16}>
+          <Grid item xs={8}>
+            <Header
+              className={"BenefitsCounter"}
+              styles={title}
+              size="md"
+              headingLevel="h3"
+              autoFocus={true}
+            >
+              {filteredBenefitsWithoutSearch.length === 0
+                ? t("BenefitsPane.no_filtered_benefits")
+                : this.countString(
+                    filteredBenefits.concat(
+                      searchString.trim() === "" ? [] : nonFilteredBenefits
+                    )
+                  )}
+            </Header>
+            {filteredBenefitsWithoutSearch.length === 0 ? (
+              <NoResultsButtons
+                clearFilters={this.clearFilters}
+                url={this.props.url}
+                t={t}
+              />
+            ) : null}
+          </Grid>
+          <Grid item xs={4}>
+            <React.Fragment>
+              <HeaderButton
+                id={this.uid}
+                styles={editSelectionsItem}
+                size="small"
+                aria-label={t("BenefitsPane.edit_selections")}
+                onClick={() => this.setState({ showModal: true })}
+              >
+                <Icon
+                  icon="edit"
+                  color={`${globalTheme.colour.greyishBrown}`}
+                />
+                {t("BenefitsPane.edit_selections")}
+              </HeaderButton>
+              <EditSelectionsModal
+                uid={this.uid}
+                isOpen={this.state.showModal}
+                onRequestClose={() => this.setState({ showModal: false })}
+                closeModal={() => this.setState({ showModal: false })}
+                url={this.props.url}
+                t={t}
+              />
+            </React.Fragment>
+          </Grid>
         </Grid>
 
         {filteredBenefitsWithoutSearch.length === 0 ? null : (
