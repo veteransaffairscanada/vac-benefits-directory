@@ -9,6 +9,7 @@ import { globalTheme } from "../theme";
 import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import Button from "./button";
+import HeaderButton from "./header_button";
 
 const modalStyles = { overlay: { zIndex: 100 } };
 
@@ -56,6 +57,19 @@ const resultsButton = css`
   margin-top: 15px;
   float: right;
   width: 100%;
+`;
+
+const clearButton = css`
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 5px;
+  padding-right: 0px;
+  padding-left: 0px;
+  line-height: 1.69;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-decoration: underline;
 `;
 
 const CloseButton = styled("button")({
@@ -107,6 +121,17 @@ class EditSelectionsModal extends Component {
             <CloseButton onClick={() => this.close(closeModal)}>X</CloseButton>
           </div>
           <div css={bodyStyle}>
+            <Grid item xs={12}>
+              <HeaderButton
+                id="ClearFilters"
+                css={clearButton}
+                onClick={() => {
+                  this.clearFilters();
+                }}
+              >
+                {t("reset filters")}
+              </HeaderButton>
+            </Grid>
             <Grid container spacing={8}>
               <Grid item xs={12} md={6}>
                 <ProfileSelector t={t} store={store} url={url} />
