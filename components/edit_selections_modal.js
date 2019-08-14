@@ -10,6 +10,10 @@ import NeedsSelector from "./needs_selector";
 import ProfileSelector from "./profile_selector";
 import Button from "./button";
 import HeaderButton from "./header_button";
+import { logEvent } from "../utils/analytics";
+import { connect } from "react-redux";
+import Router from "next/router";
+import { mutateUrl } from "../utils/common";
 
 const modalStyles = { overlay: { zIndex: 100 } };
 
@@ -105,6 +109,24 @@ class EditSelectionsModal extends Component {
     closeModalFn();
   }
 
+  clearFilters = () => {
+    logEvent("EditSelectionsModal");
+    this.props.profileQuestions.forEach(q => {
+      this.props.saveQuestionResponse(q.variable_name, "");
+    });
+    this.props.saveQuestionResponse("selectedNeeds", {});
+    this.clearQueryParams();
+  };
+
+  clearQueryParams = () => {
+    const newUrl = this.props.url;
+    this.props.profileQuestions.forEach(q => {
+      newUrl.query[q.variable_name] = "";
+    });
+    newUrl.query["selectedNeeds"] = {};
+    Router.replace(mutateUrl(newUrl, "", ""));
+  };
+
   render() {
     const { isOpen, onRequestClose, closeModal, t, store, url } = this.props;
     // Only render modal on the client - portals are not supported on the server and fail tests
@@ -162,7 +184,31 @@ class EditSelectionsModal extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    saveQuestionResponse: (question, response) => {
+      dispatch({
+        type: "SAVE_QUESTION_RESPONSE",
+        data: { [question]: response }
+      });
+    }
+  };
+};
+const mapStateToProps = reduxState => {
+  return {
+    profileQuestions: reduxState.questions.filter(
+      q => q.variable_name !== "needs"
+    ),
+    responses: reduxState,
+    selectedNeeds: reduxState.selectedNeeds
+  };
+};
+
 EditSelectionsModal.propTypes = {
+  profileQuestions: PropTypes.array.isRequired,
+  responses: PropTypes.object.isRequired,
+  saveQuestionResponse: PropTypes.func.isRequired,
+  selectedNeeds: PropTypes.object.isRequired,
   css: PropTypes.string,
   isOpen: PropTypes.bool,
   onRequestClose: PropTypes.func,
@@ -174,4 +220,7 @@ EditSelectionsModal.propTypes = {
 if (process.browser) ReactModal.setAppElement("#main");
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(30,30,30,0.75)";
 
-export default EditSelectionsModal;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditSelectionsModal);
