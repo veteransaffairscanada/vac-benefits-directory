@@ -150,6 +150,7 @@ export class BenefitsPane extends Component {
                 closeModal={() => this.setState({ showModal: false })}
                 url={this.props.url}
                 t={t}
+                store={store}
               />
             </React.Fragment>
           </Grid>

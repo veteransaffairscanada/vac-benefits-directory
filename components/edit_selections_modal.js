@@ -6,14 +6,18 @@ import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 import { Grid } from "@material-ui/core/";
 import { globalTheme } from "../theme";
+import NeedsSelector from "./needs_selector";
+import ProfileSelector from "./profile_selector";
+import Button from "./button";
 
 const modalStyles = { overlay: { zIndex: 100 } };
 
 const modalCSS = css`
   position: absolute;
   top: 5%;
-  left: 25%;
-  right: 25%;
+  left: 20%;
+  right: 20%;
+  bottom: 5%;
   border: 0;
   background: rgb(255, 255, 255);
   overflow: auto;
@@ -30,14 +34,6 @@ const modalCSS = css`
   @media only screen and (max-width: ${globalTheme.max.xs}) {
     left: 10px;
     right: 10px;
-
-    input {
-      width: 100%;
-    }
-    .copyButton {
-      width: 100%;
-      margin: auto;
-    }
   }
 `;
 
@@ -51,32 +47,16 @@ const header = css`
 `;
 
 const bodyStyle = css`
-  padding: 1.5em;
+  padding: 8px 25px;
   font-family: ${globalTheme.fontFamilySansSerif};
   font-weight: 700;
 `;
 
-const CopyButton = styled("button")({
-  backgroundColor: globalTheme.colour.blackBlue,
-  cursor: "pointer",
-  width: "100%",
-  border: 0,
-  color: globalTheme.colour.white,
-  fontFamily: globalTheme.fontFamilySansSerif,
-  fontWeight: "bold",
-  fontSize: "22px",
-  lineHeight: "23px",
-  position: "relative",
-  padding: ".526315em 1em",
-  backgroundPosition: "2px 50%",
-  ":focus": {
-    outlineOffset: 0,
-    outline: `3px solid ` + globalTheme.colour.focusColour
-  },
-  ":hover": {
-    backgroundColor: globalTheme.colour.navy
-  }
-});
+const resultsButton = css`
+  margin-top: 15px;
+  float: right;
+  width: 100%;
+`;
 
 const CloseButton = styled("button")({
   float: "right",
@@ -112,7 +92,7 @@ class EditSelectionsModal extends Component {
   }
 
   render() {
-    const { isOpen, onRequestClose, closeModal, t } = this.props;
+    const { isOpen, onRequestClose, closeModal, t, store, url } = this.props;
     // Only render modal on the client - portals are not supported on the server and fail tests
     if (process.browser) {
       return (
@@ -127,15 +107,19 @@ class EditSelectionsModal extends Component {
             <CloseButton onClick={() => this.close(closeModal)}>X</CloseButton>
           </div>
           <div css={bodyStyle}>
-            <p>
-              <label>{t("share.copy_prompt")}</label>
-            </p>
             <Grid container spacing={8}>
               <Grid item xs={12} md={6}>
-                {/* TODO: left side of edit selection questions */}
+                <ProfileSelector t={t} store={store} url={url} />
               </Grid>
               <Grid item xs={12} md={6}>
-                {/* TODO: right side of edit selection questions */}
+                <NeedsSelector t={t} store={store} url={url} />
+                <Button
+                  mobileFullWidth={true}
+                  css={resultsButton}
+                  onClick={() => this.close(closeModal)}
+                >
+                  {t("ge.show_results")}
+                </Button>
               </Grid>
             </Grid>
 
@@ -159,7 +143,8 @@ EditSelectionsModal.propTypes = {
   onRequestClose: PropTypes.func,
   closeModal: PropTypes.func,
   url: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
+  store: PropTypes.object
 };
 if (process.browser) ReactModal.setAppElement("#main");
 ReactModal.defaultStyles.overlay.backgroundColor = "rgba(30,30,30,0.75)";
