@@ -112,8 +112,7 @@ class EditSelectionsModal extends Component {
   }
 
   render() {
-    const { uid, isOpen, onRequestClose, closeModal, t } = this.props;
-    const shareTargetId = uid + "shareTarget";
+    const { isOpen, onRequestClose, closeModal, t } = this.props;
     // Only render modal on the client - portals are not supported on the server and fail tests
     if (process.browser) {
       return (
@@ -129,7 +128,7 @@ class EditSelectionsModal extends Component {
           </div>
           <div css={bodyStyle}>
             <p>
-              <label htmlFor={shareTargetId}>{t("share.copy_prompt")}</label>
+              <label>{t("share.copy_prompt")}</label>
             </p>
             <Grid container spacing={8}>
               <Grid item xs={12} md={6}>
@@ -155,7 +154,6 @@ class EditSelectionsModal extends Component {
 }
 
 EditSelectionsModal.propTypes = {
-  uid: PropTypes.string.isRequired,
   css: PropTypes.string,
   isOpen: PropTypes.bool,
   onRequestClose: PropTypes.func,

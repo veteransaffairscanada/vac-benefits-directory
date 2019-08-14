@@ -109,7 +109,7 @@ export class BenefitsPane extends Component {
               className={"BenefitsCounter"}
               styles={title}
               size="md"
-              headingLevel="h3"
+              headingLevel="h2"
               autoFocus={true}
             >
               {filteredBenefitsWithoutSearch.length === 0
