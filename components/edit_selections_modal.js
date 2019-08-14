@@ -19,10 +19,9 @@ const modalStyles = { overlay: { zIndex: 100 } };
 
 const modalCSS = css`
   position: absolute;
-  top: 5%;
+  top: 3%;
   left: 20%;
   right: 20%;
-  bottom: 5%;
   border: 0;
   background: rgb(255, 255, 255);
   overflow: auto;
@@ -58,7 +57,7 @@ const bodyStyle = css`
 `;
 
 const resultsButton = css`
-  margin-top: 15px;
+  margin-top: 60px;
   float: right;
   width: 100%;
 `;
@@ -169,11 +168,6 @@ class EditSelectionsModal extends Component {
                 </Button>
               </Grid>
             </Grid>
-
-            <Grid item xs={12} md={6}>
-              {/* TODO: add "results" button */}
-            </Grid>
-
             <div css={topMargin}>{this.state.statusMessage}</div>
           </div>
         </ReactModal>
