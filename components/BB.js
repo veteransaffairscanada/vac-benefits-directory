@@ -15,9 +15,8 @@ import BreadCrumbs from "../components/breadcrumbs";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
 import Header from "./typography/header";
-import StickyHeader from "./sticky_header";
+// import StickyHeader from "./sticky_header";
 import ShareBox from "../components/share_box";
-import SelectionsEditor from "./selections_editor";
 
 const shareBox = css`
   margin-top: 25px;
@@ -30,12 +29,6 @@ const innerDiv = css`
 const topMatter = css`
   background-color: ${globalTheme.colour.white};
   width: 100%;
-`;
-
-// this can be deleted when the sidebar is removed
-const stylingWithSidebar = css`
-  font-size: 28px !important;
-  margin-bottom: 30px;
 `;
 
 export class BB extends Component {
