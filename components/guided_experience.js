@@ -17,11 +17,10 @@ import HeaderButton from "./header_button";
 import Button from "./button";
 import Link from "next/link";
 
-const greyBox = css`
-  background-color: ${globalTheme.colour.paleGreyTwo};
+const introText = css`
   font-size: 24px;
-  margin-top: 34px;
-  padding: 35px 43px;
+  margin-top: 17px;
+  margin-bottom: 0px;
   p:first-of-type {
     margin-top: 0;
   }
@@ -204,9 +203,8 @@ export class GuidedExperience extends Component {
                   </Header>
                   {id === "patronType" ? (
                     <React.Fragment>
-                      <Body styles={greyBox}>
+                      <Body styles={introText}>
                         <p>{t("ge.intro_text_p1")}</p>
-                        <p>{t("ge.intro_text_p2")}</p>
                       </Body>
                     </React.Fragment>
                   ) : null}
