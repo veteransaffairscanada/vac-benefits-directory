@@ -11,7 +11,7 @@ const modalStyles = { overlay: { zIndex: 100 } };
 
 const modalCSS = css`
   position: absolute;
-  top: 20%;
+  top: 5%;
   left: 25%;
   right: 25%;
   border: 0;
