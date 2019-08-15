@@ -24,12 +24,15 @@ import HeaderButton from "./header_button";
 import Icon from "./icon";
 import { globalTheme } from "../theme";
 
-const editSelectionsItem = css`
+const editSelectionsButton = css`
   color: ${globalTheme.colour.greyishBrown};
   margin-left: 10px;
   svg {
     padding-left: 5px;
     padding-right: 5px;
+  }
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 14px;
   }
 `;
 
@@ -37,8 +40,13 @@ const spacer = css`
   margin-top: 40px;
   width: 100%;
 `;
-const bottomPadding = css`
+const searchBar = css`
   margin: 25px 0px 27px;
+`;
+
+const editSelectionsModal = css`
+  padding-top: 5px;
+  text-align: right;
 `;
 
 const sticky = css`
@@ -133,37 +141,39 @@ export class BenefitsPane extends Component {
             ) : null}
           </Grid>
           <Grid item xs={4}>
-            <React.Fragment>
-              <HeaderButton
-                id={this.uid}
-                styles={editSelectionsItem}
-                size="small"
-                aria-label={t("BenefitsPane.edit_selections")}
-                onClick={() => this.setState({ showModal: true })}
-              >
-                <Icon
-                  icon="edit"
-                  color={`${globalTheme.colour.greyishBrown}`}
+            <div css={editSelectionsModal}>
+              <React.Fragment>
+                <HeaderButton
+                  id={this.uid}
+                  styles={editSelectionsButton}
+                  size="small"
+                  aria-label={t("BenefitsPane.edit_selections")}
+                  onClick={() => this.setState({ showModal: true })}
+                >
+                  <Icon
+                    icon="edit"
+                    color={`${globalTheme.colour.greyishBrown}`}
+                  />
+                  {t("BenefitsPane.edit_selections")}
+                </HeaderButton>
+                <EditSelectionsModal
+                  uid={this.uid}
+                  isOpen={this.state.showModal}
+                  onRequestClose={() => this.setState({ showModal: false })}
+                  closeModal={() => this.setState({ showModal: false })}
+                  url={this.props.url}
+                  t={t}
+                  store={store}
                 />
-                {t("BenefitsPane.edit_selections")}
-              </HeaderButton>
-              <EditSelectionsModal
-                uid={this.uid}
-                isOpen={this.state.showModal}
-                onRequestClose={() => this.setState({ showModal: false })}
-                closeModal={() => this.setState({ showModal: false })}
-                url={this.props.url}
-                t={t}
-                store={store}
-              />
-            </React.Fragment>
+              </React.Fragment>
+            </div>
           </Grid>
         </Grid>
 
         {filteredBenefitsWithoutSearch.length === 0 ? null : (
           <React.Fragment>
             <Grid item xs={12}>
-              <div css={bottomPadding}>
+              <div css={searchBar}>
                 <SearchBox
                   inputId="bbSearchField"
                   buttonId="searchButtonLink"
