@@ -96,19 +96,20 @@ export class BB extends Component {
           includeBanner={true}
         >
           <Grid container spacing={32}>
-            <Grid item xs={10}>
+            <Grid item xs={8}>
               <Header headingLevel="h1" size="xl">
                 {t("breadcrumbs.ben_dir_page_title")}
               </Header>
             </Grid>
-            <Grid item xs={2}>
-              <div css={shareBox}></div>
-              <ShareBox
-                t={t}
-                printUrl={printUrl}
-                url={url}
-                showShareLink={true}
-              />
+            <Grid item xs={4}>
+              <div css={shareBox}>
+                <ShareBox
+                  t={t}
+                  printUrl={printUrl}
+                  url={url}
+                  showShareLink={true}
+                />
+              </div>
             </Grid>
             <Grid id="mainContent" item md={12} xs={12}>
               <Grid container spacing={16}>
