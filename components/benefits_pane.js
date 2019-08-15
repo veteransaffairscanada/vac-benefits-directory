@@ -19,19 +19,49 @@ import NoResultsButtons from "./no_results_buttons";
 import ResultsHeader from "./results_header";
 import Router from "next/router";
 import { mutateUrl } from "../utils/common";
+import EditSelectionsModal from "./edit_selections_modal";
+import HeaderButton from "./header_button";
+import Icon from "./icon";
+import { globalTheme } from "../theme";
 
-const title = css`
-  padding-bottom: 15px;
+const editSelectionsButton = css`
+  color: ${globalTheme.colour.greyishBrown};
+  margin-left: 10px;
+  svg {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  @media only screen and (max-width: ${globalTheme.max.xs}) {
+    font-size: 14px;
+  }
 `;
+
 const spacer = css`
   margin-top: 40px;
   width: 100%;
 `;
-const bottomPadding = css`
-  padding-bottom: 27px;
+const searchBar = css`
+  margin: 25px 0px 27px;
+`;
+
+const editSelectionsModal = css`
+  padding-top: 5px;
+  text-align: right;
+`;
+
+const sticky = css`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: ${globalTheme.colour.white};
+  z-index: 10;
 `;
 
 export class BenefitsPane extends Component {
+  state = {
+    showModal: false
+  };
+
   clearFilters = () => {
     this.props.profileQuestions.forEach(q => {
       this.props.saveQuestionResponse(q.variable_name, "");
@@ -85,36 +115,65 @@ export class BenefitsPane extends Component {
       setSearchString
     } = this.props; // eslint-disable-line no-unused-vars
     return (
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <Header
-            className={"BenefitsCounter"}
-            styles={title}
-            size="md"
-            headingLevel="h3"
-            autoFocus={true}
-          >
-            {filteredBenefitsWithoutSearch.length === 0
-              ? t("BenefitsPane.no_filtered_benefits")
-              : this.countString(
-                  filteredBenefits.concat(
-                    searchString.trim() === "" ? [] : nonFilteredBenefits
-                  )
-                )}
-          </Header>
-          {filteredBenefitsWithoutSearch.length === 0 ? (
-            <NoResultsButtons
-              clearFilters={this.clearFilters}
-              url={this.props.url}
-              t={t}
-            />
-          ) : null}
+      <Grid item xs={12}>
+        <Grid container spacing={16} css={sticky}>
+          <Grid item xs={8}>
+            <Header
+              className={"BenefitsCounter"}
+              size="md"
+              headingLevel="h2"
+              autoFocus={true}
+            >
+              {filteredBenefitsWithoutSearch.length === 0
+                ? t("BenefitsPane.no_filtered_benefits")
+                : this.countString(
+                    filteredBenefits.concat(
+                      searchString.trim() === "" ? [] : nonFilteredBenefits
+                    )
+                  )}
+            </Header>
+            {filteredBenefitsWithoutSearch.length === 0 ? (
+              <NoResultsButtons
+                clearFilters={this.clearFilters}
+                url={this.props.url}
+                t={t}
+              />
+            ) : null}
+          </Grid>
+          <Grid item xs={4}>
+            <div css={editSelectionsModal}>
+              <React.Fragment>
+                <HeaderButton
+                  id={this.uid}
+                  styles={editSelectionsButton}
+                  size="small"
+                  aria-label={t("BenefitsPane.edit_selections")}
+                  onClick={() => this.setState({ showModal: true })}
+                >
+                  <Icon
+                    icon="edit"
+                    color={`${globalTheme.colour.greyishBrown}`}
+                  />
+                  {t("BenefitsPane.edit_selections")}
+                </HeaderButton>
+                <EditSelectionsModal
+                  uid={this.uid}
+                  isOpen={this.state.showModal}
+                  onRequestClose={() => this.setState({ showModal: false })}
+                  closeModal={() => this.setState({ showModal: false })}
+                  url={this.props.url}
+                  t={t}
+                  store={store}
+                />
+              </React.Fragment>
+            </div>
+          </Grid>
         </Grid>
 
         {filteredBenefitsWithoutSearch.length === 0 ? null : (
           <React.Fragment>
             <Grid item xs={12}>
-              <div css={bottomPadding}>
+              <div css={searchBar}>
                 <SearchBox
                   inputId="bbSearchField"
                   buttonId="searchButtonLink"

@@ -11,7 +11,6 @@ import questionsFixture from "../fixtures/questions";
 import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
-import nextStepsFixture from "../fixtures/nextSteps";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 import Router from "next/router";
 
@@ -45,13 +44,11 @@ describe("BenefitsPane", () => {
       },
       filteredBenefits: [],
       nonFilteredBenefits: [],
-      nextStepsRef: React.createRef(),
       favouriteBenefits: [],
       reduxState: { benefits: [] }
     };
     _mounted = undefined;
     reduxData = {
-      nextSteps: nextStepsFixture,
       benefitExamples: benefitExamplesFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
