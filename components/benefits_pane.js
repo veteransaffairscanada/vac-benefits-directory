@@ -33,15 +33,12 @@ const editSelectionsItem = css`
   }
 `;
 
-const title = css`
-  padding-bottom: 15px;
-`;
 const spacer = css`
   margin-top: 40px;
   width: 100%;
 `;
 const bottomPadding = css`
-  padding-bottom: 27px;
+  margin: 25px 0px 27px;
 `;
 
 const sticky = css`
@@ -115,7 +112,6 @@ export class BenefitsPane extends Component {
           <Grid item xs={8}>
             <Header
               className={"BenefitsCounter"}
-              styles={title}
               size="md"
               headingLevel="h2"
               autoFocus={true}
