@@ -15,7 +15,6 @@ import BreadCrumbs from "../components/breadcrumbs";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
 import Header from "./typography/header";
-// import StickyHeader from "./sticky_header";
 import ShareBox from "../components/share_box";
 
 const shareBox = css`
@@ -111,13 +110,6 @@ export class BB extends Component {
                 showShareLink={true}
               />
             </Grid>
-            {/* <StickyHeader
-              t={t}
-              url={url}
-              printUrl={printUrl}
-              store={store}
-              showShareLink={true}
-            /> */}
             <Grid id="mainContent" item md={12} xs={12}>
               <Grid container spacing={16}>
                 <Grid item xs={12}>
