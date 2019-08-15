@@ -55,21 +55,21 @@ describe("Feedback", () => {
       mount(<Feedback {...props} {...reduxData} />).find("RadioSelector").length
     ).toEqual(1);
   });
-  it("contains a send button", async () => {
-    expect(mount(<Feedback {...props} {...reduxData} />).text()).toContain(
-      "send"
-    );
-  });
-  it("clicking send sends feedback", () => {
-    let mounted = mount(<Feedback {...props} {...reduxData} />);
-    mounted.instance().sendFeedback = jest.fn();
+  // it("contains a send button", async () => {
+  //   expect(mount(<Feedback {...props} {...reduxData} />).text()).toContain(
+  //     "send"
+  //   );
+  // });
+  // it("clicking send sends feedback", () => {
+  //   let mounted = mount(<Feedback {...props} {...reduxData} />);
+  //   mounted.instance().sendFeedback = jest.fn();
 
-    mounted
-      .find("#send")
-      .first()
-      .simulate("click");
-    expect(mounted.instance().sendFeedback).toBeCalled();
-  });
+  //   mounted
+  //     .find("#send")
+  //     .first()
+  //     .simulate("click");
+  //   expect(mounted.instance().sendFeedback).toBeCalled();
+  // });
   it("contains the details component", async () => {
     expect(
       mount(<Feedback {...props} {...reduxData} />).find("Details").length
