@@ -2889,8 +2889,8 @@
     },
     {
       "key": "search",
-      "English": "Search",
-      "French": "Recherche",
+      "English": "Filter results",
+      "French": "Filtrer les résultats",
       "id": "search",
       "section": ""
     },
