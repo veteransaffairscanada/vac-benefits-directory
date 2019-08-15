@@ -52,10 +52,8 @@
       "needs": ["recl3hMcrWpKFaR9B", "recTv9il8X9IhPosv", "reciCZbLGkKLIqapM"],
       "oneLineDescriptionEn": "Monthly payments for a disability pensioner whose health needs require daily personal care support.",
       "oneLineDescriptionFr": "Paiements mensuels versés à un aidant naturel qui vous fournit un soutien aux soins personnels quotidiens.",
-      "categories DO NOT USE": "Financial assistance",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/document/1931#anchor57065",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/1931#anchor57065",
-      "noteFr": "FRA",
       "benefitExamples": [
         "recccc6q8ryFqVKVU",
         "recjDlxO1ROB3ZeMy",
@@ -67,6 +65,7 @@
       "seeMoreSentenceFr": " Exemples de tâches quotidiennes pour lesquelles vous pourriez avoir besoin d’aide :",
       "Readability": "post-graduate",
       "id": "recJI8FifJ2Kbg1Zd",
+      "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
       "examples": "",
@@ -780,9 +779,9 @@
       "categories DO NOT USE": "Education and jobs, Health",
       "childBenefits": [
         "recZBl9s47f89zx8E",
-        "recNjPX7Q8YoNjA8x",
         "recS4Kl8K1Ipsrb4C",
-        "recR0Fq4NwCOAPZFr"
+        "recR0Fq4NwCOAPZFr",
+        "recNjPX7Q8YoNjA8x"
       ],
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/26",
@@ -1139,6 +1138,129 @@
       "benefitExamples": [],
       "seeMoreSentenceEn": "",
       "seeMoreSentenceFr": ""
+    },
+    {
+      "vacNameEn": "Health-related travel expenses",
+      "vacNameFr": "Frais de déplacements à des fins médicales",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/medical-costs/health-related-travel-expenses",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/medical-costs/health-related-travel-expenses",
+      "needs": ["recCLErnNnumr9cAW"],
+      "oneLineDescriptionEn": "VAC may reimburse travel expenses incurred by the Veteran when travelling to receive healthcare services or benefits.",
+      "oneLineDescriptionFr": "Anciens Combattants Canada peut rembourser les frais de déplacement engagés par un vétéran pour recevoir des services ou des avantages médicaux.",
+      "sortingPriority": "medium",
+      "noteEn": "You need to be in receipt of treatment benefits or participate in VAC Rehabilitation Services.",
+      "noteFr": "Vous devez recevoir des avantages médicaux ou le soutien des Services de réadaptation d’ACC.",
+      "benefitEligibility": ["recbpqtlVAeX8dxur"],
+      "id": "recHbFmHB4vDAhB7L",
+      "categories DO NOT USE": "",
+      "childBenefits": [],
+      "availableIndependently": "",
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": "",
+      "benefitExamples": [],
+      "seeMoreSentenceEn": "",
+      "seeMoreSentenceFr": "",
+      "Readability": ""
+    },
+    {
+      "vacNameEn": "Disability Pension (RCMP)",
+      "vacNameFr": "Pension d’invalidité (GRC)",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/rcmp/disability-pension-programs-services/disability-pension-rcmp",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/rcmp/disability-pension-programs-services/disability-pension-rcmp ",
+      "needs": ["recl3hMcrWpKFaR9B", "reciCZbLGkKLIqapM"],
+      "oneLineDescriptionEn": "Compensation to recognize that your injury or illness is a result of your service.",
+      "oneLineDescriptionFr": "Indemnisation qui reconnaît que votre blessure ou maladie découle de votre service.",
+      "sortingPriority": "high",
+      "benefitEligibility": ["reci7Gn3dYg0M7408"],
+      "RCMP Only?": "true",
+      "id": "recwuwvJkzd2QClD8",
+      "categories DO NOT USE": "",
+      "childBenefits": [],
+      "availableIndependently": "",
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": "",
+      "benefitExamples": [],
+      "seeMoreSentenceEn": "",
+      "seeMoreSentenceFr": "",
+      "Readability": ""
+    },
+    {
+      "vacNameEn": "Exceptional Incapacity Allowance (RCMP)",
+      "vacNameFr": "Allocation d'incapacité exceptionnelle (GRC)",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/rcmp/disability-pension-programs-services/exceptional-incapacity-allowance",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/rcmp/disability-pension-programs-services/exceptional-incapacity-allowance",
+      "needs": ["reciCZbLGkKLIqapM", "recl3hMcrWpKFaR9B"],
+      "oneLineDescriptionEn": "Additional monthly payment for a disability pensioner when your illness or injury impacts your quality of life.",
+      "oneLineDescriptionFr": "Versements mensuels supplémentaires pour le bénéficiaire d'une pension d'invalidité quand votre maladie ou votre blessure affecte votre qualité de vie.",
+      "noteFr": " ",
+      "benefitEligibility": ["recz8rMJ8Vc03yBB3"],
+      "RCMP Only?": "true",
+      "id": "rec5PAiy5ndY8YXUm",
+      "categories DO NOT USE": "",
+      "childBenefits": [],
+      "availableIndependently": "",
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": "",
+      "sortingPriority": "",
+      "benefitExamples": [],
+      "seeMoreSentenceEn": "",
+      "seeMoreSentenceFr": "",
+      "Readability": ""
+    },
+    {
+      "vacNameEn": "Attendance allowance (RCMP)",
+      "vacNameFr": "Allocation pour soins (GRC)",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/rcmp/disability-pension-programs-services/attendance-allowance",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/rcmp/disability-pension-programs-services/attendance-allowance",
+      "needs": ["reciCZbLGkKLIqapM", "recl3hMcrWpKFaR9B", "recTv9il8X9IhPosv"],
+      "oneLineDescriptionEn": "Monthly payments for a disability pensioner whose health needs require daily personal care support.",
+      "oneLineDescriptionFr": "Paiements mensuels versés à un aidant naturel qui vous fournit un soutien aux soins personnels quotidiens.",
+      "noteFr": " ",
+      "benefitExamples": [
+        "recAeu7Eu9kPzWDmg",
+        "recNZ7H44d9kjuT3H",
+        "recjDlxO1ROB3ZeMy",
+        "recccc6q8ryFqVKVU"
+      ],
+      "benefitEligibility": ["rectsj50wnMwFOpp5"],
+      "seeMoreSentenceEn": "Some examples of daily tasks that you may need help with:",
+      "seeMoreSentenceFr": "Exemples de tâches quotidiennes pour lesquelles vous pourriez avoir besoin d’aide :",
+      "RCMP Only?": "true",
+      "id": "recbQ4nGrHOBnVfvm",
+      "categories DO NOT USE": "",
+      "childBenefits": [],
+      "availableIndependently": "",
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": "",
+      "sortingPriority": "",
+      "Readability": ""
+    },
+    {
+      "vacNameEn": "Clothing allowance (RCMP)",
+      "vacNameFr": "Allocation vestimentaire (GRC)",
+      "benefitPageEn": "https://www.veterans.gc.ca/eng/rcmp/disability-pension-programs-services/clothing-allowance ",
+      "benefitPageFr": "https://www.veterans.gc.ca/fra/rcmp/disability-pension-programs-services/clothing-allowance ",
+      "needs": ["reciCZbLGkKLIqapM", "recl3hMcrWpKFaR9B"],
+      "oneLineDescriptionEn": "Monthly payments if you need new or custom-made clothing due to your disability.",
+      "oneLineDescriptionFr": "Paiements mensuels pour l’achat de nouveaux vêtements ou de vêtements taillés sur mesure dont vous avez besoin en raison de votre invalidité.",
+      "benefitEligibility": ["reccI83NWVg9m1AUv"],
+      "RCMP Only?": "true",
+      "id": "recouOjLFYfbCFDpU",
+      "categories DO NOT USE": "",
+      "childBenefits": [],
+      "availableIndependently": "",
+      "benefitPolicyEn": "",
+      "benefitPolicyFR": "",
+      "examples": "",
+      "sortingPriority": "",
+      "benefitExamples": [],
+      "seeMoreSentenceEn": "",
+      "seeMoreSentenceFr": "",
+      "Readability": ""
     }
   ],
   "benefitEligibility": [
@@ -1163,11 +1285,11 @@
     {
       "benefit": ["recJI8FifJ2Kbg1Zd"],
       "patronType": ["recqmK12TRScaiVlp"],
-      "serviceHealthIssue": ["rectbnCfR4fErniDf"],
+      "serviceType": ["rec2IXKCRtTMJkvGA"],
       "Name": "rec2uwykbT4uAdEPv",
-      "path": "veteran + hasServiceHealthIssue",
-      "serviceType": [],
-      "statusAndVitals": []
+      "path": "veteran + CAF",
+      "statusAndVitals": [],
+      "serviceHealthIssue": []
     },
     {
       "benefit": ["recJkNaNwCWmm6Wnf"],
@@ -1253,10 +1375,10 @@
     {
       "benefit": ["rec2EFm0PE6Q8mWcy"],
       "patronType": ["recqmK12TRScaiVlp"],
+      "serviceType": ["rec2IXKCRtTMJkvGA"],
       "serviceHealthIssue": ["rectbnCfR4fErniDf"],
       "Name": "recxMW7FjzG6miMJb",
-      "path": "veteran + hasServiceHealthIssue",
-      "serviceType": [],
+      "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
@@ -1296,13 +1418,13 @@
       "path": "family + CAF + deceased + hasServiceHealthIssue"
     },
     {
+      "benefit": ["recHbFmHB4vDAhB7L"],
       "patronType": ["recqmK12TRScaiVlp"],
-      "serviceType": ["rec2IXKCRtTMJkvGA"],
-      "serviceHealthIssue": ["rectbnCfR4fErniDf"],
+      "serviceType": ["rec2IXKCRtTMJkvGA", "recE2trfiSvCjMYky"],
       "Name": "recbpqtlVAeX8dxur",
-      "path": "veteran + CAF + hasServiceHealthIssue",
-      "benefit": [],
-      "statusAndVitals": []
+      "path": "veteran + CAF, RCMP",
+      "statusAndVitals": [],
+      "serviceHealthIssue": []
     },
     {
       "benefit": ["reczafuOI6a3CVh05"],
@@ -1316,10 +1438,10 @@
     {
       "benefit": ["recWzMubWbjhkzuGF"],
       "patronType": ["recqmK12TRScaiVlp"],
-      "serviceType": ["rec2IXKCRtTMJkvGA", "recE2trfiSvCjMYky"],
+      "serviceType": ["rec2IXKCRtTMJkvGA"],
       "serviceHealthIssue": ["rectbnCfR4fErniDf"],
       "Name": "recqkFRaoe865XT3Z",
-      "path": "veteran + CAF, RCMP + hasServiceHealthIssue",
+      "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
@@ -1361,10 +1483,10 @@
     {
       "benefit": ["recyA3X3YB7NBFewA"],
       "patronType": ["recqmK12TRScaiVlp"],
+      "serviceType": ["rec2IXKCRtTMJkvGA"],
       "serviceHealthIssue": ["rectbnCfR4fErniDf"],
       "Name": "reccyeIcUf7ATlK9e",
-      "path": "veteran + hasServiceHealthIssue",
-      "serviceType": [],
+      "path": "veteran + CAF + hasServiceHealthIssue",
       "statusAndVitals": []
     },
     {
@@ -1538,40 +1660,40 @@
       "serviceHealthIssue": []
     },
     {
-      "patronType": ["recqcx7zJU3fDnKDw"],
-      "serviceType": ["rec2IXKCRtTMJkvGA"],
-      "statusAndVitals": ["reczcmooxd9hWVgmN"],
-      "serviceHealthIssue": ["rectbnCfR4fErniDf"],
+      "benefit": ["rec5PAiy5ndY8YXUm"],
+      "patronType": ["recqmK12TRScaiVlp"],
+      "serviceType": ["recE2trfiSvCjMYky"],
       "Name": "recz8rMJ8Vc03yBB3",
-      "path": "family + CAF + deceased + hasServiceHealthIssue",
-      "benefit": []
+      "path": "veteran + RCMP",
+      "statusAndVitals": [],
+      "serviceHealthIssue": []
     },
     {
+      "benefit": ["recbQ4nGrHOBnVfvm"],
       "patronType": ["recqmK12TRScaiVlp"],
-      "serviceType": ["rec2IXKCRtTMJkvGA"],
-      "serviceHealthIssue": ["rectbnCfR4fErniDf"],
+      "serviceType": ["recE2trfiSvCjMYky"],
       "Name": "rectsj50wnMwFOpp5",
-      "path": "veteran + CAF + hasServiceHealthIssue",
-      "benefit": [],
-      "statusAndVitals": []
+      "path": "veteran + RCMP",
+      "statusAndVitals": [],
+      "serviceHealthIssue": []
     },
     {
-      "patronType": ["recqcx7zJU3fDnKDw"],
-      "serviceType": ["rec2IXKCRtTMJkvGA"],
-      "statusAndVitals": ["reczcmooxd9hWVgmN"],
-      "serviceHealthIssue": ["rectbnCfR4fErniDf"],
-      "Name": "reccI83NWVg9m1AUv",
-      "path": "family + CAF + deceased + hasServiceHealthIssue",
-      "benefit": []
-    },
-    {
+      "benefit": ["recouOjLFYfbCFDpU"],
       "patronType": ["recqmK12TRScaiVlp"],
-      "serviceType": ["rec2IXKCRtTMJkvGA"],
-      "serviceHealthIssue": ["rectbnCfR4fErniDf"],
+      "serviceType": ["recE2trfiSvCjMYky"],
+      "Name": "reccI83NWVg9m1AUv",
+      "path": "veteran + RCMP",
+      "statusAndVitals": [],
+      "serviceHealthIssue": []
+    },
+    {
+      "benefit": ["recwuwvJkzd2QClD8"],
+      "patronType": ["recqmK12TRScaiVlp"],
+      "serviceType": ["recE2trfiSvCjMYky"],
       "Name": "reci7Gn3dYg0M7408",
-      "path": "veteran + CAF + hasServiceHealthIssue",
-      "benefit": [],
-      "statusAndVitals": []
+      "path": "veteran + RCMP",
+      "statusAndVitals": [],
+      "serviceHealthIssue": []
     },
     {
       "benefit": ["recx8a12geKVKat8j"],
@@ -1746,14 +1868,14 @@
     {
       "nameEn": "Education and jobs",
       "benefits": [
-        "recKo07DTJ3LVq92c",
         "recqA4Y8jQ2yd2n8U",
-        "recNjPX7Q8YoNjA8x",
         "reclGiFGA44ZBGt1u",
         "recclMvgOqkgozA3R",
         "rec6qhzt4ZuVxGxQl",
         "recj9D8AamqFgiSGJ",
-        "rec0lKro6hpmBcHPo"
+        "rec0lKro6hpmBcHPo",
+        "recNjPX7Q8YoNjA8x",
+        "recKo07DTJ3LVq92c"
       ],
       "nameFr": "Études et emploi",
       "colour": "#ddbbdd",
@@ -1778,20 +1900,25 @@
         "recS4Kl8K1Ipsrb4C",
         "recI2f35ux8ZwnhWI",
         "recAchKBVWL7xE5iu",
-        "recJkNaNwCWmm6Wnf"
+        "recJkNaNwCWmm6Wnf",
+        "recouOjLFYfbCFDpU",
+        "recbQ4nGrHOBnVfvm",
+        "rec5PAiy5ndY8YXUm",
+        "recwuwvJkzd2QClD8"
       ],
       "nameFr": "Aide au revenu",
       "colour": "#e1dbb0",
       "id": "recl3hMcrWpKFaR9B"
     },
     {
-      "nameEn": "Medical costs",
+      "nameEn": "Medical and related travel costs",
       "benefits": [
         "recZBl9s47f89zx8E",
         "recLa5pwYbldBjE5T",
-        "recaMErtyr0ZgyzHS"
+        "recaMErtyr0ZgyzHS",
+        "recHbFmHB4vDAhB7L"
       ],
-      "nameFr": "Coûts médicaux",
+      "nameFr": "Coûts médicaux et coûts pour déplacements connexes",
       "colour": "#9ee9d6",
       "id": "recCLErnNnumr9cAW"
     },
@@ -1819,7 +1946,11 @@
         "recyA3X3YB7NBFewA",
         "recZBl9s47f89zx8E",
         "recjVZeHWbyzubolB",
-        "reclGiFGA44ZBGt1u"
+        "reclGiFGA44ZBGt1u",
+        "recouOjLFYfbCFDpU",
+        "recbQ4nGrHOBnVfvm",
+        "rec5PAiy5ndY8YXUm",
+        "recwuwvJkzd2QClD8"
       ],
       "nameFr": "Santé physique et mentale",
       "colour": "#e9cf9e",
@@ -1837,7 +1968,8 @@
         "recIwHZvrdng1hndl",
         "recj9D8AamqFgiSGJ",
         "recBAfazu4HnbXm25",
-        "recjVZeHWbyzubolB"
+        "recjVZeHWbyzubolB",
+        "recbQ4nGrHOBnVfvm"
       ],
       "nameFr": "Logement et vie de famille",
       "colour": "#cdbbed",
@@ -1846,7 +1978,6 @@
     {
       "nameEn": "Death and bereavement",
       "benefits": [
-        "recKo07DTJ3LVq92c",
         "recx8a12geKVKat8j",
         "recRwpM2DTNPdi3Yj",
         "recI2f35ux8ZwnhWI",
@@ -1857,7 +1988,8 @@
         "recTHEyt7fd9d129F",
         "recclMvgOqkgozA3R",
         "recvpZp2wc7SOFSzf",
-        "recBAfazu4HnbXm25"
+        "recBAfazu4HnbXm25",
+        "recKo07DTJ3LVq92c"
       ],
       "nameFr": "Décès et deuil",
       "colour": "#b9c3d7",
@@ -2567,13 +2699,6 @@
     },
     {
       "section": "ge",
-      "key": "intro_text_p2",
-      "English": "It usually takes less than a minute to go through the questions.",
-      "French": "Répondre aux questions ne devrait vous prendre que moins d’une minute.",
-      "id": "ge.intro_text_p2"
-    },
-    {
-      "section": "ge",
       "key": "not_selected",
       "English": "not selected",
       "French": "aucune sélection",
@@ -2706,76 +2831,6 @@
       "section": ""
     },
     {
-      "section": "nextSteps",
-      "key": "box_1",
-      "English": "If you are registered for My VAC Account, you can submit your application online. If you aren't registered you can ",
-      "French": "Si vous êtes inscrit à Mon dossier ACC, vous pouvez présenter votre demande en ligne. Si vous n’êtes pas encore inscrit, vous pouvez ",
-      "id": "nextSteps.box_1"
-    },
-    {
-      "section": "nextSteps",
-      "key": "box_2a",
-      "English": "In-person guidance is available in one of our area offices without an appointment. ",
-      "French": "Vous pouvez vous présenter sans rendez-vous à l’un de nos bureaux de secteur pour obtenir de l’aide personnalisée.",
-      "id": "nextSteps.box_2a"
-    },
-    {
-      "section": "nextSteps",
-      "key": "box_2b",
-      "English": "You can also give us a call at 1-866-522-2122 between Monday to Friday, 0830 - 1630 local time or email us at",
-      "French": "Vous pouvez aussi nous téléphoner au 1-866-522-2022, du lundi au vendredi, de 8 h 30 à 16 h 30, heure locale, ou nous envoyer un courriel à",
-      "id": "nextSteps.box_2b"
-    },
-    {
-      "section": "nextSteps",
-      "key": "box_2c",
-      "English": ". Please do not email personal or confidential information and we will get back to you.",
-      "French": ". N’envoyez pas d’information personnelle ou confidentielle par courriel. Nous communiquerons avec vous.",
-      "id": "nextSteps.box_2c"
-    },
-    {
-      "section": "nextSteps",
-      "key": "contact_us",
-      "English": "Contact us to find out more",
-      "French": "Communiquez avec nous pour en savoir plus.",
-      "id": "nextSteps.contact_us"
-    },
-    {
-      "section": "nextSteps",
-      "key": "myvac_button_text",
-      "English": "My VAC Account",
-      "French": "Mon dossier ACC",
-      "id": "nextSteps.myvac_button_text"
-    },
-    {
-      "section": "nextSteps",
-      "key": "myvac_register_href",
-      "English": "https://www.veterans.gc.ca/eng/e_services/create-my-vac-account?utm_source=fbas",
-      "French": "https://www.veterans.gc.ca/fra/e_services/create-my-vac-account?utm_source=fbas",
-      "id": "nextSteps.myvac_register_href"
-    },
-    {
-      "section": "nextSteps",
-      "key": "myvac_register_text",
-      "English": "register now",
-      "French": "le faire maintenant",
-      "id": "nextSteps.myvac_register_text"
-    },
-    {
-      "section": "nextSteps",
-      "key": "register_myvac",
-      "English": "Register for My VAC Account",
-      "French": "S’inscrire à Mon dossier ACC",
-      "id": "nextSteps.register_myvac"
-    },
-    {
-      "section": "nextSteps",
-      "key": "whats_next",
-      "English": "Next steps",
-      "French": "Prochaines étapes",
-      "id": "nextSteps.whats_next"
-    },
-    {
       "key": "no",
       "English": "No",
       "French": "Non",
@@ -2889,8 +2944,8 @@
     },
     {
       "key": "search",
-      "English": "Search",
-      "French": "Recherche",
+      "English": "Filter results",
+      "French": "Filtrer les résultats",
       "id": "search",
       "section": ""
     },
@@ -3175,13 +3230,6 @@
       "id": "beta_banner.link_text"
     },
     {
-      "key": "quick_links",
-      "English": "Quick Links",
-      "French": "Liens Rapides",
-      "id": "quick_links",
-      "section": ""
-    },
-    {
       "section": "titles",
       "key": "benefits_and_services",
       "English": "Benefits and services",
@@ -3243,6 +3291,13 @@
       "English": "The information you provide in the open text field should not contain any identifiable personal information.",
       "French": "N’inscrivez pas de renseignements personnels identifiables dans la zone de texte libre",
       "id": "feedback.privacy_statement"
+    },
+    {
+      "section": "BenefitsPane",
+      "key": "edit_selections",
+      "English": "Change your selections",
+      "French": "Changer vos sélections",
+      "id": "BenefitsPane.edit_selections"
     }
   ],
   "questions": [
@@ -3256,8 +3311,8 @@
       "display_text_english": "Show me:",
       "display_text_french": "Montrez-moi:",
       "question display logic": ["recjgMA7BaoIk1gZT"],
-      "guided_experience_english": "Select who would be receiving the benefits.",
-      "guided_experience_french": "Sélectionnez qui recevra les services.",
+      "guided_experience_english": "Are you looking for:",
+      "guided_experience_french": "Êtes-vous à la recherche :",
       "guided_experience_page_title_english": "Select who would be receiving the benefits.",
       "guided_experience_page_title_french": "Sélectionnez qui recevra les services.",
       "breadcrumb_english": "Benefit recipient",
@@ -3369,8 +3424,8 @@
   ],
   "multipleChoiceOptions": [
     {
-      "display_text_english": "Benefits for Veterans",
-      "display_text_french": "Services pour les vétérans",
+      "display_text_english": "benefits for Veterans,",
+      "display_text_french": "d’avantages pour vétérans,",
       "linked_question": ["patronType"],
       "question display logic": ["recjgMA7BaoIk1gZT"],
       "variable_name": "veteran",
@@ -3413,14 +3468,16 @@
         "recRTIobHblMQIjwn",
         "reckcRNP6imKmayxv",
         "recbpqtlVAeX8dxur",
-        "recJr3b4fCXgqIpGj"
+        "recJr3b4fCXgqIpGj",
+        "recz8rMJ8Vc03yBB3",
+        "reccI83NWVg9m1AUv"
       ],
       "key (DO NOT EDIT)": "veteran",
       "id": "recqmK12TRScaiVlp",
       "admin_display": "patronType = veteran"
     },
     {
-      "display_text_english": "Benefits for currently serving members",
+      "display_text_english": "benefits for currently serving members,",
       "display_text_french": "Services pour les membres en service actif",
       "variable_name": "servingMember",
       "benefits": "Career Transition Services, Career Impact Allowance, Critical Injury Benefit, Detention Benefits, Disability Award, Group Health Insurance, Jobs in the federal government, Veteran Family Program, Disability Pension",
@@ -3438,8 +3495,8 @@
       "question display logic": []
     },
     {
-      "display_text_english": "Benefits for family members",
-      "display_text_french": "Services pour membres de la famille",
+      "display_text_english": "benefits for family members, or",
+      "display_text_french": "d’avantages pour des membres de la famille, ou",
       "linked_question": ["patronType"],
       "variable_name": "family",
       "benefits": "Caregiver Zone, Death Benefit, Educational Assistance for children, Family peer support (Operational Stress Injury Social Support), Pastoral Outreach , Survivor's Pension, Veteran Family Program, Vocational Assistance, Funeral and Burial Assistance",
@@ -3454,8 +3511,6 @@
         "recE00p9vXzur1VRl",
         "recr8RqpV5m89ZMcS",
         "rectGlcz2I8lVu5zg",
-        "recz8rMJ8Vc03yBB3",
-        "reccI83NWVg9m1AUv",
         "recC8n51hn2OmlnSc",
         "rec9PnyWW8mF5IzPl",
         "recsJtNa6lSL1x2Eo",
@@ -3476,8 +3531,8 @@
       "question display logic": []
     },
     {
-      "display_text_english": "Grants for organizations",
-      "display_text_french": "Subventions pour organisations",
+      "display_text_english": "funding for organizations",
+      "display_text_french": "du financement pour des organisations",
       "linked_question": ["patronType"],
       "variable_name": "organization",
       "benefits": "Community Engagement Fund, Community War Memorial Fund, Veteran and Family Well-Being Fund",
@@ -3517,10 +3572,6 @@
         "recwPjRHPmxBFj46P",
         "recFTTAj0awLt8L1I",
         "recCAugx790KGVVk2",
-        "recz8rMJ8Vc03yBB3",
-        "rectsj50wnMwFOpp5",
-        "reci7Gn3dYg0M7408",
-        "reccI83NWVg9m1AUv",
         "recC8n51hn2OmlnSc",
         "rec9PnyWW8mF5IzPl",
         "recavMdgg1MxJy4WT",
@@ -3543,7 +3594,10 @@
         "recbpqtlVAeX8dxur",
         "recRTIobHblMQIjwn",
         "reccn8fgUEs7hokbT",
-        "recuvyr9OvITizKym"
+        "recuvyr9OvITizKym",
+        "reccyeIcUf7ATlK9e",
+        "rec2uwykbT4uAdEPv",
+        "recxMW7FjzG6miMJb"
       ],
       "key (DO NOT EDIT)": "CAF",
       "id": "rec2IXKCRtTMJkvGA",
@@ -3561,10 +3615,14 @@
       "benefitEligibility": "recI2JIvA0Mtvna2v, rechEoLL5pBxeHcGN, recGSaT5q7VLKIDtA",
       "benefitEligibility 3": [
         "recC8n51hn2OmlnSc",
-        "recqkFRaoe865XT3Z",
         "recPwuYUDJBTUo2L3",
         "recpw0zlDBCXRILuz",
-        "reccn8fgUEs7hokbT"
+        "reccn8fgUEs7hokbT",
+        "reci7Gn3dYg0M7408",
+        "recz8rMJ8Vc03yBB3",
+        "rectsj50wnMwFOpp5",
+        "reccI83NWVg9m1AUv",
+        "recbpqtlVAeX8dxur"
       ],
       "key (DO NOT EDIT)": "RCMP",
       "id": "recE2trfiSvCjMYky",
@@ -3657,8 +3715,6 @@
         "reclS3kXDdqX34YQv",
         "recE00p9vXzur1VRl",
         "recr8RqpV5m89ZMcS",
-        "recz8rMJ8Vc03yBB3",
-        "reccI83NWVg9m1AUv",
         "recC8n51hn2OmlnSc",
         "recsJtNa6lSL1x2Eo",
         "recM0HHQ56peIanKW",
@@ -3692,7 +3748,6 @@
         "reciIE0sqXRF4xxKI",
         "reccyeIcUf7ATlK9e",
         "rec52gxJR0DVKftLV",
-        "reccI83NWVg9m1AUv",
         "recAv47UCFCZ73sh9",
         "rec9PnyWW8mF5IzPl",
         "recavMdgg1MxJy4WT",
@@ -3707,20 +3762,15 @@
         "reclS3kXDdqX34YQv",
         "recFTTAj0awLt8L1I",
         "reccn8fgUEs7hokbT",
-        "rectsj50wnMwFOpp5",
-        "reci7Gn3dYg0M7408",
         "recCXw8HTXtDgH5ke",
         "recKb9wdghPiNi7gw",
         "recC7dWxEqrjsOv5H",
         "recEIxDskdrinWn96",
-        "rec2uwykbT4uAdEPv",
-        "recz8rMJ8Vc03yBB3",
         "rec9Jn5LSXS9TTsCJ",
         "recC8n51hn2OmlnSc",
         "recM0HHQ56peIanKW",
         "recbdrbsXxrKjHlQZ",
         "recUdQxYjoEjhEkHI",
-        "recbpqtlVAeX8dxur",
         "recuvyr9OvITizKym"
       ],
       "key (DO NOT EDIT)": "hasServiceHealthIssue",
@@ -3837,25 +3887,37 @@
     {
       "english": "bathing or showering",
       "french": "bain ou douche",
-      "linked_benefits": ["Attendance allowance"],
+      "linked_benefits": [
+        "Attendance allowance",
+        "Attendance allowance (RCMP)"
+      ],
       "id": "recAeu7Eu9kPzWDmg"
     },
     {
       "english": " meal preparation",
       "french": "préparation des repas",
-      "linked_benefits": ["Attendance allowance"],
+      "linked_benefits": [
+        "Attendance allowance",
+        "Attendance allowance (RCMP)"
+      ],
       "id": "recNZ7H44d9kjuT3H"
     },
     {
       "english": "getting dressed",
       "french": "habillage",
-      "linked_benefits": ["Attendance allowance"],
+      "linked_benefits": [
+        "Attendance allowance",
+        "Attendance allowance (RCMP)"
+      ],
       "id": "recjDlxO1ROB3ZeMy"
     },
     {
       "english": "managing medication",
       "french": "prise de médicaments",
-      "linked_benefits": ["Attendance allowance"],
+      "linked_benefits": [
+        "Attendance allowance",
+        "Attendance allowance (RCMP)"
+      ],
       "id": "recccc6q8ryFqVKVU"
     },
     {
@@ -4378,13 +4440,13 @@
     {
       "english": "career coaching",
       "french": "accompagnement professionnel",
-      "linked_benefits": ["Vocational assistance", "Vocational rehabilitation"],
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
       "id": "rech6miwpTGrCFHBR"
     },
     {
       "english": "job-search assistance",
       "french": "aide à la recherche d’emploi",
-      "linked_benefits": ["Vocational assistance", "Vocational rehabilitation"],
+      "linked_benefits": ["Vocational rehabilitation", "Vocational assistance"],
       "id": "rec4R2XFRlZl2m2GM"
     },
     {
@@ -4411,9 +4473,9 @@
       "bullet_name": "LearnMore",
       "english": "Click on the 'Learn more' button to find more information about each program, including eligibility criteria.",
       "french": "Cliquez sur le bouton « En savoir plus » pour vous informer sur chaque programme, y compris les critères d’admissibilité.",
-      "id": "recawMJ3vG95D5leH"
+      "id": "recLLymnzupRcaAhf"
     }
   ],
   "errors": [],
-  "timestamp": 1557510056889
+  "timestamp": 1565899356649
 }
