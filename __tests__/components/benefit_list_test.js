@@ -11,7 +11,6 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import configureStore from "redux-mock-store";
 import needsFixture from "../fixtures/needs";
 import translateFixture from "../fixtures/translate";
-import nextStepsFixture from "../fixtures/nextSteps";
 import questionsFixture from "../fixtures/questions";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
@@ -31,7 +30,6 @@ describe("BenefitList", () => {
     mockStore = configureStore();
     reduxData = {
       t: translateFixture,
-      nextSteps: nextStepsFixture,
       benefitExamples: benefitExamplesFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),

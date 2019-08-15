@@ -9,7 +9,6 @@ import { css, jsx } from "@emotion/core";
 
 const radioStyle = css`
   margin-left: 0px;
-  margin-top: 20px;
 `;
 export class ProfileSelector extends Component {
   componentDidUpdate() {
