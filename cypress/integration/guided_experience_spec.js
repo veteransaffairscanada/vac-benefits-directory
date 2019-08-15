@@ -1,4 +1,4 @@
-const patronTypeVeteran = "Benefits for Veterans";
+const patronTypeVeteran = "benefits for Veterans,";
 const serviceTypeCAF = "Canadian Armed Forces";
 
 describe("Guided Experience", function() {
@@ -7,7 +7,7 @@ describe("Guided Experience", function() {
   });
 
   it("successfully loads start page", () => {
-    cy.contains("Select who would be receiving the benefits.");
+    cy.contains("Are you looking for:");
   });
 
   it("can skip through to benefits-directory", () => {
@@ -28,10 +28,4 @@ describe("Guided Experience", function() {
     cy.url().should("include", "benefits-directory");
     cy.contains(patronTypeVeteran);
   });
-
-  // it("can go back from summary and edit answer", () => {
-  //   cy.visit("summary");
-  //   cy.get("#edit-patronType").click();
-  //   cy.contains("Select who would be receiving the benefits.");
-  // });
 });
