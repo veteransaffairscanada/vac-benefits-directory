@@ -44,6 +44,14 @@ const bottomPadding = css`
   padding-bottom: 27px;
 `;
 
+const sticky = css`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: ${globalTheme.colour.white};
+  z-index: 10;
+`;
+
 export class BenefitsPane extends Component {
   state = {
     showModal: false
@@ -103,7 +111,7 @@ export class BenefitsPane extends Component {
     } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Grid item xs={12}>
-        <Grid container spacing={16}>
+        <Grid container spacing={16} css={sticky}>
           <Grid item xs={8}>
             <Header
               className={"BenefitsCounter"}
