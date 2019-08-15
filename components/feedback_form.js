@@ -13,7 +13,6 @@ import Details from "../components/details";
 require("isomorphic-fetch");
 import Raven from "raven-js";
 import Link from "next/link";
-import { getGuidedExperienceUrl } from "../selectors/urls";
 import HeaderLink from "../components/header_link";
 
 const padding = css`
