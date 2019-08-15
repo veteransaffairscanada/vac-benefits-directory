@@ -16,7 +16,6 @@ import { globalTheme } from "../theme";
 import BreadCrumbs from "./breadcrumbs";
 import Cookies from "universal-cookie";
 import Paper from "./paper";
-import StickyHeader from "./sticky_header";
 
 const divider = css`
   border-top: 2px solid ${globalTheme.colour.duckEggBlue};
@@ -108,13 +107,6 @@ export class Favourites extends Component {
                   {t("titles.saved_list")}
                 </Header>
               </Grid>
-              <StickyHeader
-                t={t}
-                printUrl={printUrl}
-                url={url}
-                store={store}
-                showShareLink={false}
-              />
               <Grid item md={4} xs={12}>
                 <div id="saved-list">
                   <Header headingLevel="h2" size="md_lg">
