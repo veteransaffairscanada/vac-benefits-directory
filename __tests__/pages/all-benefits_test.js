@@ -13,7 +13,6 @@ import configureStore from "redux-mock-store";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
-import nextStepsFixture from "../fixtures/nextSteps";
 import questionsFixture from "../fixtures/questions";
 
 const { axe, toHaveNoViolations } = require("jest-axe");
@@ -50,7 +49,6 @@ describe("AllBenefits", () => {
     mockStore = configureStore();
     reduxData = {
       t: translate,
-      nextSteps: nextStepsFixture,
       benefitExamples: benefitExamplesFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),

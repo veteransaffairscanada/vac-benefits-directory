@@ -11,7 +11,6 @@ const getFrIdx = state => state.frIdx;
 const getNeeds = state => state.needs;
 const getNeedsFilter = state => state.selectedNeeds;
 const getSearchStringFilter = state => state.searchString;
-const getNextSteps = state => state.nextSteps;
 
 export const getFilteredBenefitsFunction = (
   profileFilters,
@@ -86,42 +85,6 @@ export const eligibilityMatch = (be, profileFilters, multipleChoiceOptions) => {
   return matches;
 };
 
-export const nextStepsEligibilityMatch = (
-  ne,
-  profileFilters,
-  multipleChoiceOptions
-) => {
-  let matches = true;
-  Object.keys(profileFilters).forEach(criteria => {
-    if (
-      (!profileFilters[criteria] || profileFilters[criteria].length === 0) &&
-      ne[criteria] &&
-      ne[criteria].length > 0
-    ) {
-      matches = false;
-    }
-    if (
-      profileFilters[criteria] &&
-      profileFilters[criteria].length > 0 &&
-      ne[criteria] &&
-      ne[criteria].length > 0
-    ) {
-      // convert benefitEligibility ids to match profileFilter names
-      const mco = multipleChoiceOptions.filter(
-        mco => ne[criteria].indexOf(mco.id) !== -1
-      );
-      let names = [];
-      mco.forEach(m => {
-        names.push(m.variable_name);
-      });
-      if (names.indexOf(profileFilters[criteria].toString()) === -1) {
-        matches = false;
-      }
-    }
-  });
-  return matches;
-};
-
 export const getFilteredBenefitsWithoutSearch = createSelector(
   [
     getProfileFilters,
@@ -180,39 +143,6 @@ export const getFilteredBenefits = createSelector(
       currentLanguage,
       enIdx,
       frIdx
-    );
-  }
-);
-
-export const getFilteredNextSteps = createSelector(
-  [getNextSteps, getProfileFilters, getMultipleChoiceOptions, getQuestions],
-  (nextSteps, profileFilters, multipleChoiceOptions) => {
-    let hasSelections = false;
-
-    Object.keys(profileFilters).forEach(criteria => {
-      if (profileFilters[criteria] !== "") hasSelections = true;
-    });
-
-    if (hasSelections) {
-      // only check eligible nextSteps if we know we have selections
-      let eligibleNextStepIds = [];
-      nextSteps.forEach(ns => {
-        if (
-          nextStepsEligibilityMatch(ns, profileFilters, multipleChoiceOptions)
-        ) {
-          eligibleNextStepIds.push(ns.id);
-        }
-      });
-      return nextSteps.filter(ns => eligibleNextStepIds.indexOf(ns.id) != -1);
-    }
-
-    // if no selection, just return next steps with no requirements
-    return nextSteps.filter(
-      ns =>
-        (!ns.patronType || ns.patronType.length === 0) &&
-        (!ns.serviceType || ns.serviceType.length === 0) &&
-        (!ns.statusAndVitals || ns.statusAndVitals.length === 0) &&
-        (!ns.serviceHealthIssue || ns.serviceHealthIssue.length === 0)
     );
   }
 );

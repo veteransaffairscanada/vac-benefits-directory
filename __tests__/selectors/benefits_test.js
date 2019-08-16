@@ -2,7 +2,6 @@ import {
   getProfileFilters,
   eligibilityMatch,
   getFilteredBenefitsWithoutSearch,
-  getFilteredNextSteps,
   getFilteredBenefits
 } from "../../selectors/benefits";
 import questionsFixture from "../fixtures/questions_complex";
@@ -12,7 +11,6 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options_co
 import needsFixture from "../fixtures/needs_complex";
 import enIdx from "../fixtures/lunr_index_english";
 import frIdx from "../fixtures/lunr_index_french";
-import nextStepsFixture from "../fixtures/nextSteps_complex";
 import benefitExamplesFixture from "../fixtures/benefitExamples";
 
 describe("Benefits Selectors", () => {
@@ -37,8 +35,7 @@ describe("Benefits Selectors", () => {
       serviceHealthIssue: "",
       searchString: "",
       serviceType: "",
-      benefitExamples: benefitExamplesFixture,
-      nextSteps: nextStepsFixture
+      benefitExamples: benefitExamplesFixture
     };
   });
 
@@ -215,29 +212,6 @@ describe("Benefits Selectors", () => {
       expect(getFilteredBenefits(state, props).map(x => x.vacNameEn)).toEqual([
         "Disability Benefits"
       ]);
-    });
-  });
-
-  describe("getFilteredNextSteps", () => {
-    it("displays next steps with no eligibility requirements if no eligibility paths are selected", () => {
-      expect(getFilteredNextSteps(state, props).length).toEqual(2);
-    });
-
-    it("displays expected next steps if the patronType is organization", () => {
-      state.patronType = "organization";
-      expect(getFilteredNextSteps(state, props).length).toEqual(2);
-    });
-
-    it("displays expected next steps if the patronType is servingMember", () => {
-      state.patronType = "servingMember";
-      expect(getFilteredNextSteps(state, props).length).toEqual(5);
-    });
-
-    it("displays expected next steps if the patronType is servingMember", () => {
-      state.serviceHealthIssue = "hasServiceHealthIssue";
-      expect(
-        getFilteredNextSteps(state, props).map(x => x.bullet_name)
-      ).toContain("ServiceHealthRecord");
     });
   });
 });
