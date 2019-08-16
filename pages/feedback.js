@@ -9,7 +9,6 @@ import { css, jsx } from "@emotion/core";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 require("isomorphic-fetch");
-import Raven from "raven-js";
 import BreadCrumbs from "../components/breadcrumbs";
 import { getGuidedExperienceUrl } from "../selectors/urls";
 import Paper from "../components/paper";
@@ -33,34 +32,7 @@ const topMatter = css`
 
 export class Feedback extends Component {
   state = {
-    how_was_your_experience: "",
-    what_did_you_think: "",
-    renderForm: false
-  };
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
-  };
-
-  sendFeedback = () => {
-    let payload = {
-      how_was_your_experience: this.props.betaFeedback,
-      what_did_you_think: this.state.what_did_you_think,
-      time: new Date().toUTCString()
-    };
-
-    if (payload.how_was_your_experience || payload.what_did_you_think) {
-      fetch("/submitBetaFeedback", {
-        body: JSON.stringify(payload),
-        cache: "no-cache",
-        headers: {
-          "content-type": "application/json"
-        },
-        method: "POST"
-      }).catch(err => Raven.captureException(err));
-    }
+    renderForm: true
   };
 
   render() {
@@ -103,7 +75,16 @@ export class Feedback extends Component {
               {t("feedback.page_header")}
             </Header>
             {this.state.renderForm ? (
-              <FeedbackForm t={t} url={url} store={store}></FeedbackForm>
+              <FeedbackForm
+                t={t}
+                url={url}
+                store={store}
+                onSend={() => {
+                  this.setState({ renderForm: false });
+                  document.body.scrollTop = 0;
+                  document.documentElement.scrollTop = 0;
+                }}
+              />
             ) : (
               <FeedbackSubmitted t={t} url={url}></FeedbackSubmitted>
             )}

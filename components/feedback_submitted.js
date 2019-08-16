@@ -32,6 +32,7 @@ export class FeedbackSubmitted extends Component {
         <HeaderLink
           href={mutateUrl(url, "/benefits-directory")}
           css={headerLinkStyle}
+          onClick={() => window.history.back()}
         >
           {t("feedback.ben_dir_link")}
         </HeaderLink>

@@ -12,7 +12,6 @@ import TextArea from "../components/text_area";
 import Details from "../components/details";
 require("isomorphic-fetch");
 import Raven from "raven-js";
-import Link from "next/link";
 import HeaderLink from "../components/header_link";
 
 const padding = css`
@@ -137,23 +136,17 @@ export class FeedbackForm extends Component {
           >
             {t("back")}
           </HeaderLink>
-          <Link
-            href={{
-              pathname: "/feedback_submitted",
-              query: url.query
+          <Button
+            id="send"
+            arrow={true}
+            css={leftMargin}
+            onClick={() => {
+              this.sendFeedback();
+              this.props.onSend();
             }}
           >
-            <Button
-              id="send"
-              arrow={true}
-              css={leftMargin}
-              onClick={() => {
-                this.sendFeedback();
-              }}
-            >
-              {t("send")}{" "}
-            </Button>
-          </Link>
+            {t("send")}{" "}
+          </Button>
         </div>
       </form>
     );
@@ -169,6 +162,7 @@ const mapStateToProps = reduxState => {
 
 FeedbackForm.propTypes = {
   t: PropTypes.func.isRequired,
+  onSend: PropTypes.func.isRequired,
   betaFeedback: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   questions: PropTypes.array.isRequired,
