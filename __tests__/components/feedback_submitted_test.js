@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { FeedbackSubmitted } from "../../pages/feedback_submitted";
+import { FeedbackSubmitted } from "../../components/feedback_submitted";
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 import translate from "../fixtures/translate";
@@ -12,9 +12,6 @@ describe("FeedbackSubmitted", () => {
 
   beforeEach(() => {
     props = {
-      i18n: {
-        addResourceBundle: jest.fn()
-      },
       t: translate,
       url: { query: {} }
     };
