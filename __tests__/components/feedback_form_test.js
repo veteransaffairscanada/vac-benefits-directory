@@ -39,10 +39,25 @@ describe("Feedback Form", () => {
     let html = mount(<FeedbackForm {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
-
+  it("contains a back button", async () => {
+    expect(mount(<FeedbackForm {...props} {...reduxData} />).text()).toContain(
+      "back"
+    );
+  });
+  it("contains the RadioSelector component", async () => {
+    expect(
+      mount(<FeedbackForm {...props} {...reduxData} />).find("RadioSelector")
+        .length
+    ).toEqual(1);
+  });
   it("contains a send button", async () => {
     expect(mount(<FeedbackForm {...props} {...reduxData} />).text()).toContain(
       "send"
     );
+  });
+  it("contains the details component", async () => {
+    expect(
+      mount(<FeedbackForm {...props} {...reduxData} />).find("Details").length
+    ).toEqual(1);
   });
 });

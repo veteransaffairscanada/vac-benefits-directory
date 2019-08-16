@@ -47,4 +47,4 @@ FeedbackSubmitted.propTypes = {
   url: PropTypes.object.isRequired
 };
 
-export default withI18N(connect()(FeedbackSubmitted));
+export default FeedbackSubmitted;
