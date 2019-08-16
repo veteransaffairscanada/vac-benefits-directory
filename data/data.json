@@ -1145,11 +1145,12 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/medical-costs/health-related-travel-expenses",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/medical-costs/health-related-travel-expenses",
       "needs": ["recCLErnNnumr9cAW"],
-      "oneLineDescriptionEn": "VAC may reimburse travel expenses incurred by the Veteran when travelling to receive healthcare services or benefits ",
-      "oneLineDescriptionFr": "Anciens Combattants Canada peut rembourser les frais de déplacement engagés par un vétéran pour recevoir des services ou des avantages médicaux",
+      "oneLineDescriptionEn": "VAC may reimburse travel expenses incurred by the Veteran when travelling to receive healthcare services or benefits.",
+      "oneLineDescriptionFr": "Anciens Combattants Canada peut rembourser les frais de déplacement engagés par un vétéran pour recevoir des services ou des avantages médicaux.",
       "sortingPriority": "medium",
-      "noteEn": "You need to be in receipt of treatment benefits or participate in VAC Rehabilitation Services",
-      "noteFr": "Vous devez recevoir des avantages médicaux ou le soutien des Services de réadaptation d’ACC",
+      "noteEn": "You need to be in receipt of treatment benefits or participate in VAC Rehabilitation Services.",
+      "noteFr": "Vous devez recevoir des avantages médicaux ou le soutien des Services de réadaptation d’ACC.",
+
       "benefitEligibility": ["recbpqtlVAeX8dxur"],
       "id": "recHbFmHB4vDAhB7L",
       "categories DO NOT USE": "",
@@ -1169,8 +1170,8 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/rcmp/disability-pension-programs-services/disability-pension-rcmp",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/rcmp/disability-pension-programs-services/disability-pension-rcmp ",
       "needs": ["recl3hMcrWpKFaR9B", "reciCZbLGkKLIqapM"],
-      "oneLineDescriptionEn": "Compensation to recognize that your injury or illness is a result of your service",
-      "oneLineDescriptionFr": "Indemnisation qui reconnaît que votre blessure ou maladie découle de votre service",
+      "oneLineDescriptionEn": "Compensation to recognize that your injury or illness is a result of your service.",
+      "oneLineDescriptionFr": "Indemnisation qui reconnaît que votre blessure ou maladie découle de votre service.",
       "sortingPriority": "high",
       "benefitEligibility": ["reci7Gn3dYg0M7408"],
       "RCMP Only?": "true",
@@ -4477,5 +4478,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1565882454861
+  "timestamp": 1565899356649
 }
