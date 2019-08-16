@@ -21,7 +21,8 @@ describe("Feedback Form", () => {
         addResourceBundle: jest.fn()
       },
       t: translate,
-      url: { query: {}, route: "/feedback" }
+      url: { query: {}, route: "/feedback" },
+      onSend: jest.fn()
     };
     reduxData = {
       questions: questionsFixture,
