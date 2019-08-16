@@ -44,35 +44,4 @@ describe("Feedback", () => {
     let html = mount(<Feedback {...props} {...reduxData} />).html();
     expect(await axe(html)).toHaveNoViolations();
   });
-
-  // it("contains a back button", async () => {
-  //   expect(mount(<Feedback {...props} {...reduxData} />).text()).toContain(
-  //     "back"
-  //   );
-  // });
-  // it("contains the RadioSelector component", async () => {
-  //   expect(
-  //     mount(<Feedback {...props} {...reduxData} />).find("RadioSelector").length
-  //   ).toEqual(1);
-  // });
-  // it("contains a send button", async () => {
-  //   expect(mount(<Feedback {...props} {...reduxData} />).text()).toContain(
-  //     "send"
-  //   );
-  // });
-  // it("clicking send sends feedback", () => {
-  //   let mounted = mount(<Feedback {...props} {...reduxData} />);
-  //   mounted.instance().sendFeedback = jest.fn();
-
-  //   mounted
-  //     .find("#send")
-  //     .first()
-  //     .simulate("click");
-  //   expect(mounted.instance().sendFeedback).toBeCalled();
-  // });
-  // it("contains the details component", async () => {
-  //   expect(
-  //     mount(<Feedback {...props} {...reduxData} />).find("Details").length
-  //   ).toEqual(1);
-  // });
 });
