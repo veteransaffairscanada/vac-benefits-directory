@@ -56,6 +56,16 @@ describe("Feedback Form", () => {
       "send"
     );
   });
+  it("clicking send sends feedback", () => {
+    let mounted = mount(<FeedbackForm {...props} {...reduxData} />);
+    mounted.instance().sendFeedback = jest.fn();
+
+    mounted
+      .find("#send")
+      .first()
+      .simulate("click");
+    expect(mounted.instance().sendFeedback).toBeCalled();
+  });
   it("contains the details component", async () => {
     expect(
       mount(<FeedbackForm {...props} {...reduxData} />).find("Details").length
