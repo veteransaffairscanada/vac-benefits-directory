@@ -42,16 +42,13 @@ export class BenefitList extends React.Component {
   }
 
   cleanSortingPriority = sp => {
-    return sp === undefined || ["high", "medium", "low"].indexOf(sp) === -1
-      ? "low"
-      : sp;
+    let ARBITRARY_HIGH_NUM = 5000;
+    return sp === undefined ? ARBITRARY_HIGH_NUM : parseInt(sp, 10);
   };
 
   sortBenefits = filteredBenefits => {
     filteredBenefits.forEach(b => {
-      b.sortingNumber = { high: 1, medium: 2, low: 3 }[
-        this.cleanSortingPriority(b.sortingPriority)
-      ];
+      b.sortingNumber = [this.cleanSortingPriority(b.sortOrder)];
     });
 
     let sorting_fn = (a, b) => {
