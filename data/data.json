@@ -36,6 +36,7 @@
       "benefitEligibility": ["recbcUrXPC2ibD9OV"],
       "Readability": "Grade 8",
       "id": "rec3LbCzNeWTZgWgm",
+      "sortNumber": "48",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "availableIndependently": "",
@@ -206,6 +207,7 @@
       "seeMoreSentenceFr": "Quelques exemples de ce que ce programme peut fournir :",
       "Readability": "Grade 8",
       "id": "recR0Fq4NwCOAPZFr",
+      "sortNumber": "49",
       "categories DO NOT USE": "",
       "childBenefits": [],
       "benefitPolicyEn": "",
@@ -365,6 +367,7 @@
       "sortingPriority": "high",
       "benefitEligibility": ["recqkFRaoe865XT3Z", "rec88cEHO9f000XtV"],
       "Readability": "Grade 8",
+      "sortNumber": "2",
       "id": "recWzMubWbjhkzuGF",
       "categories DO NOT USE": "",
       "childBenefits": [],
@@ -420,6 +423,7 @@
       "seeMoreSentenceEn": "Some examples of what this program may cover:",
       "seeMoreSentenceFr": "Exemples de ce que ce programme peut couvrir :",
       "Readability": "Grade 9",
+      "sortNumber": "4",
       "id": "recqA4Y8jQ2yd2n8U",
       "childBenefits": [],
       "examples": ""
@@ -711,6 +715,7 @@
       "seeMoreSentenceFr": " Le soutien spirituel peut vous intéresser si :",
       "Readability": "Grade 12",
       "id": "recRwpM2DTNPdi3Yj",
+      "sortNumber": "50",
       "childBenefits": [],
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
@@ -874,6 +879,7 @@
       "seeMoreSentenceEn": "Some examples of what this program may cover:",
       "seeMoreSentenceFr": " Exemples de ce que ce programme peut couvrir :",
       "Readability": "Grade 9",
+      "sortNumber": "3",
       "id": "recaMErtyr0ZgyzHS",
       "childBenefits": [],
       "availableIndependently": "",
@@ -1007,6 +1013,7 @@
       "seeMoreSentenceEn": "Some examples of what this program may cover:",
       "seeMoreSentenceFr": "Exemples de ce que ce programme peut couvrir :",
       "Readability": "Grade 14",
+      "sortNumber": "5",
       "id": "recmF6UIUajTWRBGC",
       "examples": ""
     },
@@ -1150,8 +1157,8 @@
       "sortingPriority": "medium",
       "noteEn": "You need to be in receipt of treatment benefits or participate in VAC Rehabilitation Services.",
       "noteFr": "Vous devez recevoir des avantages médicaux ou le soutien des Services de réadaptation d’ACC.",
-
       "benefitEligibility": ["recbpqtlVAeX8dxur"],
+      "sortNumber": "3",
       "id": "recHbFmHB4vDAhB7L",
       "categories DO NOT USE": "",
       "childBenefits": [],
@@ -1175,6 +1182,7 @@
       "sortingPriority": "high",
       "benefitEligibility": ["reci7Gn3dYg0M7408"],
       "RCMP Only?": "true",
+      "sortNumber": "1",
       "id": "recwuwvJkzd2QClD8",
       "categories DO NOT USE": "",
       "childBenefits": [],
@@ -4469,14 +4477,6 @@
       "id": "recHDzhOSlZMwEg3z"
     }
   ],
-  "nextSteps": [
-    {
-      "bullet_name": "LearnMore",
-      "english": "Click on the 'Learn more' button to find more information about each program, including eligibility criteria.",
-      "french": "Cliquez sur le bouton « En savoir plus » pour vous informer sur chaque programme, y compris les critères d’admissibilité.",
-      "id": "recLLymnzupRcaAhf"
-    }
-  ],
   "errors": [],
-  "timestamp": 1565899356649
+  "timestamp": 1565978544628
 }
