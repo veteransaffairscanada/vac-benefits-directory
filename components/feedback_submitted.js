@@ -1,9 +1,7 @@
 import { Component } from "react";
-import withI18N from "../lib/i18nHOC";
 import { globalTheme } from "../theme";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { connect } from "react-redux";
 import HeaderLink from "../components/header_link";
 import PropTypes from "prop-types";
 import { mutateUrl } from "../utils/common";
