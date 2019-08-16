@@ -42,38 +42,43 @@ class ShareBox extends Component {
     return (
       <div css={css}>
         <span css={shareText}>{t("share_colon")}</span>
-        <HeaderLink
-          css={shareBoxItem}
-          size="small"
-          href={printUrl}
-          aria-label={t("Print")}
-          onClick={() => {
-            logEvent("Exit", "print");
-          }}
-        >
-          <Icon icon="print" color={`${globalTheme.colour.greyishBrown}`} />
-        </HeaderLink>
-        {showShareLink ? (
-          <React.Fragment>
-            <HeaderButton
-              id={this.uid}
-              styles={shareBoxItem}
-              size="small"
-              aria-label={t("titles.share")}
-              onClick={() => this.setState({ showModal: true })}
-            >
-              <Icon icon="share" color={`${globalTheme.colour.greyishBrown}`} />
-            </HeaderButton>
-            <ShareModal
-              uid={this.uid}
-              isOpen={this.state.showModal}
-              onRequestClose={() => this.setState({ showModal: false })}
-              closeModal={() => this.setState({ showModal: false })}
-              url={url}
-              t={t}
-            />
-          </React.Fragment>
-        ) : null}
+        <nobr>
+          <HeaderLink
+            css={shareBoxItem}
+            size="small"
+            href={printUrl}
+            aria-label={t("Print")}
+            onClick={() => {
+              logEvent("Exit", "print");
+            }}
+          >
+            <Icon icon="print" color={`${globalTheme.colour.greyishBrown}`} />
+          </HeaderLink>
+          {showShareLink ? (
+            <React.Fragment>
+              <HeaderButton
+                id={this.uid}
+                styles={shareBoxItem}
+                size="small"
+                aria-label={t("titles.share")}
+                onClick={() => this.setState({ showModal: true })}
+              >
+                <Icon
+                  icon="share"
+                  color={`${globalTheme.colour.greyishBrown}`}
+                />
+              </HeaderButton>
+              <ShareModal
+                uid={this.uid}
+                isOpen={this.state.showModal}
+                onRequestClose={() => this.setState({ showModal: false })}
+                closeModal={() => this.setState({ showModal: false })}
+                url={url}
+                t={t}
+              />
+            </React.Fragment>
+          ) : null}
+        </nobr>
       </div>
     );
   }
