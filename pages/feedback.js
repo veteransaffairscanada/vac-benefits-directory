@@ -6,46 +6,22 @@ import { globalTheme } from "../theme";
 import Container from "../components/container";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import RadioSelector from "../components/radio_selector";
 import { connect } from "react-redux";
-import Button from "../components/button";
 import PropTypes from "prop-types";
-import TextArea from "../components/text_area";
-import Details from "../components/details";
 require("isomorphic-fetch");
-import Raven from "raven-js";
-import Link from "next/link";
 import BreadCrumbs from "../components/breadcrumbs";
 import { getGuidedExperienceUrl } from "../selectors/urls";
 import Paper from "../components/paper";
-import HeaderLink from "../components/header_link";
+import FeedbackForm from "../components/feedback_form";
+import FeedbackSubmitted from "../components/feedback_submitted";
 
 const padding = css`
   padding-top: 15px;
   padding-bottom: 15px;
 `;
-const prevButton = css`
-  margin-top: 50px;
-  margin-bottom: 15px;
-`;
 const headerPadding = css`
   padding-bottom: 10px;
 `;
-const textAreaStyle = css`
-  padding: 10px 0px 60px;
-  max-width: 700px;
-`;
-const detailsStyle = css`
-  font-size: 20px;
-  margin-bottom: 30px;
-  a {
-    color: ${globalTheme.colour.greyishBrown};
-  }
-`;
-const radioStyle = css`
-  margin-top: 20px;
-`;
-
 const innerDiv = css`
   padding-top: 24px;
 `;
@@ -53,54 +29,14 @@ const topMatter = css`
   background-color: ${globalTheme.colour.white};
   width: 100%;
 `;
-const leftMargin = css`
-  margin-left: 1.5em;
-`;
-const textAreaHeader = css`
-  margin-top: 50px;
-`;
-const textAreaPStyle = css`
-  margin-top: 5px;
-  margin-left: 2px;
-  font-size: 18px;
-  font-weight: normal;
-  font-family: ${globalTheme.fontFamilySansSerif};
-`;
 
 export class Feedback extends Component {
   state = {
-    how_was_your_experience: "",
-    what_did_you_think: ""
-  };
-
-  handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
-  };
-
-  sendFeedback = () => {
-    let payload = {
-      how_was_your_experience: this.props.betaFeedback,
-      what_did_you_think: this.state.what_did_you_think,
-      time: new Date().toUTCString()
-    };
-
-    if (payload.how_was_your_experience || payload.what_did_you_think) {
-      fetch("/submitBetaFeedback", {
-        body: JSON.stringify(payload),
-        cache: "no-cache",
-        headers: {
-          "content-type": "application/json"
-        },
-        method: "POST"
-      }).catch(err => Raven.captureException(err));
-    }
+    renderForm: true
   };
 
   render() {
-    const { t, i18n, questions, store, url, guidedExperienceUrl } = this.props;
-    const question = questions.filter(x => x.variable_name === "feedback")[0];
+    const { t, i18n, store, url, guidedExperienceUrl } = this.props;
 
     const breadcrumbs = [
       {
@@ -135,80 +71,23 @@ export class Feedback extends Component {
             t={t}
             includeBanner={true}
           >
-            <form>
-              <Header styles={headerPadding} headingLevel="h1" size="lg">
-                {t("feedback.page_header")}
-              </Header>
-              <RadioSelector
-                styles={radioStyle}
-                legend={
-                  t("current-language-code") === "en"
-                    ? question.display_text_english
-                    : question.display_text_french
-                }
+            <Header styles={headerPadding} headingLevel="h1" size="lg">
+              {t("feedback.page_header")}
+            </Header>
+            {this.state.renderForm ? (
+              <FeedbackForm
                 t={t}
-                selectorType="betaFeedback"
-                options={question.multiple_choice_options}
-                store={store}
                 url={url}
-                feedbackPage
+                store={store}
+                onSend={() => {
+                  this.setState({ renderForm: false });
+                  document.body.scrollTop = 0;
+                  document.documentElement.scrollTop = 0;
+                }}
               />
-              <Header headingLevel="h2" size="md" styles={textAreaHeader}>
-                {t("feedback.tell_us_more")}
-              </Header>
-              <p css={textAreaPStyle}>{t("feedback.privacy_statement")}</p>
-              <TextArea
-                css={textAreaStyle}
-                name="group1"
-                maxLength={500}
-                t={t}
-                onChange={this.handleChange("what_did_you_think")}
-              />
-              <Details
-                summary={t("feedback.details_question")}
-                css={detailsStyle}
-              >
-                {t("feedback.details_expansion_pt1")}
-                <a href={t("feedback.vac_office_link")}>
-                  {t("feedback.details_expansion_pt2")}
-                </a>
-                {t("feedback.details_expansion_pt3")}
-                <a href={t("feedback.transition_centre_link")}>
-                  {t("feedback.details_expansion_pt4")}
-                </a>
-                {t("feedback.details_expansion_pt5")}
-              </Details>
-
-              <div className={padding}>
-                <HeaderLink
-                  id="prevButton"
-                  css={prevButton}
-                  hasBorder
-                  onClick={() => {
-                    window.history.back();
-                  }}
-                >
-                  {t("back")}
-                </HeaderLink>
-                <Link
-                  href={{
-                    pathname: "/feedback_submitted",
-                    query: url.query
-                  }}
-                >
-                  <Button
-                    id="send"
-                    arrow={true}
-                    css={leftMargin}
-                    onClick={() => {
-                      this.sendFeedback();
-                    }}
-                  >
-                    {t("send")}{" "}
-                  </Button>
-                </Link>
-              </div>
-            </form>
+            ) : (
+              <FeedbackSubmitted t={t} url={url}></FeedbackSubmitted>
+            )}
           </Paper>
         </Container>
       </Layout>
@@ -218,9 +97,7 @@ export class Feedback extends Component {
 
 const mapStateToProps = (reduxState, props) => {
   return {
-    questions: reduxState.questions,
-    guidedExperienceUrl: getGuidedExperienceUrl(reduxState, props),
-    betaFeedback: reduxState.betaFeedback
+    guidedExperienceUrl: getGuidedExperienceUrl(reduxState, props)
   };
 };
 
@@ -230,7 +107,6 @@ Feedback.propTypes = {
   betaFeedback: PropTypes.string.isRequired,
   url: PropTypes.object.isRequired,
   i18n: PropTypes.object.isRequired,
-  questions: PropTypes.array.isRequired,
   store: PropTypes.object
 };
 

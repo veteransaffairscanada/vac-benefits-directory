@@ -32,7 +32,10 @@ const editSelectionsButton = css`
     padding-right: 5px;
   }
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    font-size: 14px;
+    font-size: 16px;
+  }
+  @media only screen and (max-width: ${globalTheme.max.md}) {
+    margin-left: 0px;
   }
 `;
 
@@ -47,6 +50,9 @@ const searchBar = css`
 const editSelectionsModal = css`
   padding-top: 5px;
   text-align: right;
+  @media only screen and (max-width: ${globalTheme.max.md}) {
+    text-align: left;
+  }
 `;
 
 const sticky = css`
@@ -117,7 +123,7 @@ export class BenefitsPane extends Component {
     return (
       <Grid item xs={12}>
         <Grid container spacing={16} css={sticky}>
-          <Grid item xs={8}>
+          <Grid item md={8} xs={12}>
             <Header
               className={"BenefitsCounter"}
               size="md"
@@ -140,7 +146,7 @@ export class BenefitsPane extends Component {
               />
             ) : null}
           </Grid>
-          <Grid item xs={4}>
+          <Grid item md={4} xs={12}>
             <div css={editSelectionsModal}>
               <React.Fragment>
                 <HeaderButton
