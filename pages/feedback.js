@@ -14,6 +14,7 @@ import BreadCrumbs from "../components/breadcrumbs";
 import { getGuidedExperienceUrl } from "../selectors/urls";
 import Paper from "../components/paper";
 import FeedbackForm from "../components/feedback_form";
+import FeedbackSubmitted from "../components/feedback_submitted";
 
 const padding = css`
   padding-top: 15px;
@@ -33,7 +34,8 @@ const topMatter = css`
 export class Feedback extends Component {
   state = {
     how_was_your_experience: "",
-    what_did_you_think: ""
+    what_did_you_think: "",
+    renderForm: false
   };
 
   handleChange = name => event => {
@@ -100,7 +102,11 @@ export class Feedback extends Component {
             <Header styles={headerPadding} headingLevel="h1" size="lg">
               {t("feedback.page_header")}
             </Header>
-            <FeedbackForm t={t} url={url} store={store}></FeedbackForm>
+            {this.state.renderForm ? (
+              <FeedbackForm t={t} url={url} store={store}></FeedbackForm>
+            ) : (
+              <FeedbackSubmitted t={t} url={url}></FeedbackSubmitted>
+            )}
           </Paper>
         </Container>
       </Layout>
