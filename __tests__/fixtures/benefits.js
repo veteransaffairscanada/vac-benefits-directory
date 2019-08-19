@@ -8,6 +8,7 @@ const benefitsFixture = [
     oneLineDescriptionEn: "b4_desc_en",
     oneLineDescriptionFr: "b4_desc_fr",
     needs: ["need_3"],
+    sortingPriority: "low",
     sortOrder: "1",
     availableIndependently: "Independent",
     benefitEligibility: ["4", "6"]
@@ -25,10 +26,27 @@ const benefitsFixture = [
     availableIndependently: "Independent",
     noteEn: "note_0_en [test link](/some_url)",
     noteFr: "note_0_fr [french test link](/some_french_url)",
+    sortingPriority: "low",
     sortOrder: "30",
     benefitEligibility: ["0"],
     seeMoreSentenceEn: "seeMoreSentenceEn",
     seeMoreSentenceFr: "seeMoreSentenceFr"
+  },
+  {
+    id: "benefit_1",
+    vacNameEn: "b1_en",
+    vacNameFr: "b1_fr",
+    benefitPageEn: "b1_link_en",
+    benefitPageFr: "b1_link_fr",
+    oneLineDescriptionEn: "b1_desc_en",
+    oneLineDescriptionFr: "b1_desc_fr",
+    needs: ["need_0", "need_2"],
+    availableIndependently: "Requires Gateway Benefit",
+    noteEn: "note_1_en",
+    noteFr: "note_1_fr",
+    sortingPriority: "medium",
+    sortOrder: "41",
+    benefitEligibility: ["3", "5"]
   },
   {
     id: "benefit_3",
@@ -43,21 +61,6 @@ const benefitsFixture = [
     benefitEligibility: ["4", "6"]
   },
   {
-    id: "benefit_1",
-    vacNameEn: "b1_en",
-    vacNameFr: "b1_fr",
-    benefitPageEn: "b1_link_en",
-    benefitPageFr: "b1_link_fr",
-    oneLineDescriptionEn: "b1_desc_en",
-    oneLineDescriptionFr: "b1_desc_fr",
-    needs: ["need_0", "need_2"],
-    availableIndependently: "Requires Gateway Benefit",
-    noteEn: "note_1_en",
-    noteFr: "note_1_fr",
-    sortOrder: "41",
-    benefitEligibility: ["3", "5"]
-  },
-  {
     id: "benefit_2",
     vacNameEn: "b2_en",
     vacNameFr: "b2_fr",
@@ -69,7 +72,8 @@ const benefitsFixture = [
     needs: ["need_1"],
     noteEn: "note_2_en",
     noteFr: "note_2_fr",
-    sortOrder: "3",
+    sortingPriority: "high",
+    sortOrder: "7",
     benefitEligibility: ["1"]
   }
 ];
