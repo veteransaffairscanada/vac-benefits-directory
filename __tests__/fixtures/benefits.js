@@ -9,6 +9,7 @@ const benefitsFixture = [
     oneLineDescriptionFr: "b4_desc_fr",
     needs: ["need_3"],
     sortingPriority: "low",
+    sortOrder: "1",
     availableIndependently: "Independent",
     benefitEligibility: ["4", "6"]
   },
@@ -26,6 +27,7 @@ const benefitsFixture = [
     noteEn: "note_0_en [test link](/some_url)",
     noteFr: "note_0_fr [french test link](/some_french_url)",
     sortingPriority: "low",
+    sortOrder: "30",
     benefitEligibility: ["0"],
     seeMoreSentenceEn: "seeMoreSentenceEn",
     seeMoreSentenceFr: "seeMoreSentenceFr"
@@ -43,6 +45,7 @@ const benefitsFixture = [
     noteEn: "note_1_en",
     noteFr: "note_1_fr",
     sortingPriority: "medium",
+    sortOrder: "41",
     benefitEligibility: ["3", "5"]
   },
   {
@@ -70,6 +73,7 @@ const benefitsFixture = [
     noteEn: "note_2_en",
     noteFr: "note_2_fr",
     sortingPriority: "high",
+    sortOrder: "7",
     benefitEligibility: ["1"]
   }
 ];

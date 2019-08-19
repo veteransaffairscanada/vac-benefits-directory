@@ -93,11 +93,11 @@ describe("Print", () => {
         b => b.id
       )
     ).toEqual([
+      "benefit_4",
       "benefit_2",
-      "benefit_1",
       "benefit_0",
-      "benefit_3",
-      "benefit_4"
+      "benefit_1",
+      "benefit_3"
     ]);
   });
 
