@@ -43,7 +43,10 @@ export class BenefitList extends React.Component {
 
   cleanSortingPriority = sp => {
     let ARBITRARY_HIGH_NUM = 5000;
-    return sp === undefined ? ARBITRARY_HIGH_NUM : parseInt(sp, 10);
+    let sortNum = parseInt(sp, 10);
+    return sp === undefined || !Number.isInteger(sortNum)
+      ? ARBITRARY_HIGH_NUM
+      : sortNum;
   };
 
   sortBenefits = filteredBenefits => {

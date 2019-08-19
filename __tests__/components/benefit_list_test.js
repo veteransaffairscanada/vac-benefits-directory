@@ -72,11 +72,11 @@ describe("BenefitList", () => {
     let BLInstance = shallow(
       <BenefitList {...props} {...reduxData} />
     ).instance();
-    expect(BLInstance.cleanSortingPriority("high")).toEqual("high");
-    expect(BLInstance.cleanSortingPriority("medium")).toEqual("medium");
-    expect(BLInstance.cleanSortingPriority("low")).toEqual("low");
-    expect(BLInstance.cleanSortingPriority("bad value")).toEqual("low");
-    expect(BLInstance.cleanSortingPriority(undefined)).toEqual("low");
+    expect(BLInstance.cleanSortingPriority(1)).toEqual(1);
+    expect(BLInstance.cleanSortingPriority(4)).toEqual(4);
+    expect(BLInstance.cleanSortingPriority(30)).toEqual(30);
+    expect(BLInstance.cleanSortingPriority("bad value")).toEqual(5000);
+    expect(BLInstance.cleanSortingPriority(undefined)).toEqual(5000);
   });
 
   it("has a correct sortBenefits function", () => {
@@ -84,11 +84,11 @@ describe("BenefitList", () => {
       <BenefitList {...props} {...reduxData} />
     ).instance();
     expect(BLInstance.sortBenefits(benefitsFixture).map(b => b.id)).toEqual([
+      "benefit_4",
       "benefit_2",
-      "benefit_1",
       "benefit_0",
-      "benefit_3",
-      "benefit_4"
+      "benefit_1",
+      "benefit_3"
     ]);
   });
 
