@@ -99,21 +99,24 @@ export class Print extends Component {
         return t("B3.x benefits to consider", { x: filteredBenefits.length });
     }
   };
+  cleanSortingPriority = sp => {
+    let ARBITRARY_HIGH_NUM = 5000;
+    let sortNum = parseInt(sp, 10);
+    return sp === undefined || !Number.isInteger(sortNum)
+      ? ARBITRARY_HIGH_NUM
+      : sortNum;
+  };
 
-  sortBenefits = (benefits, language) => {
-    benefits.forEach(b => {
-      if (b.sortingPriority === undefined) {
-        b.sortingPriority = "low";
-      }
-      b.sortingNumber = { high: 1, medium: 2, low: 3 }[b.sortingPriority];
+  sortBenefits = filteredBenefits => {
+    filteredBenefits.forEach(b => {
+      b.sortingNumber = [this.cleanSortingPriority(b.sortOrder)];
     });
 
     let sorting_fn = (a, b) => {
       if (a.sortingNumber === b.sortingNumber) {
         // sort alphabetically
-        let vacName = language === "en" ? "vacNameEn" : "vacNameFr";
-        let nameA = a[vacName].toUpperCase();
-        let nameB = b[vacName].toUpperCase(); // ignore upper and lowercase
+        let nameA = a.vacNameEn.toUpperCase();
+        let nameB = b.vacNameEn.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
           return -1;
         }
@@ -125,7 +128,7 @@ export class Print extends Component {
       // ascending numeric sort
       return a.sortingNumber - b.sortingNumber;
     };
-    return benefits.sort(sorting_fn);
+    return filteredBenefits.sort(sorting_fn);
   };
 
   render() {
