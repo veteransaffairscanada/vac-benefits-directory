@@ -2,7 +2,6 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 import { Grid } from "@material-ui/core";
 import Highlighter from "react-highlight-words";
-//import FavouriteButton from "./favourite_button";
 import Paper from "./paper";
 import { connect } from "react-redux";
 import NeedTag from "./need_tag";
@@ -109,15 +108,6 @@ export class BenefitCard extends Component {
                     : benefit.vacNameFr
                 }
               />
-              {/* {this.props.savedList === false ? (
-                <FavouriteButton
-                  benefit={benefit}
-                  toggleOpenState={() => {}}
-                  store={store}
-                  t={t}
-                  icon={true}
-                />
-              ) : null} */}
             </Header>
             <div css={padding}>
               {needsMet.length > 0 ? (
@@ -165,16 +155,6 @@ export class BenefitCard extends Component {
               <Grid item xs={12}>
                 <div css={flex}>
                   <LearnMoreButton benefit={benefit} t={t} />
-                  {/* <div css={floatRight}>
-                    {this.props.savedList ? (
-                      <FavouriteButton
-                        benefit={benefit}
-                        toggleOpenState={() => {}}
-                        store={store}
-                        t={t}
-                      />
-                    ) : null}
-                  </div> */}
                 </div>
               </Grid>
             </Grid>
