@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import Icon from "./icon";
 import { globalTheme } from "../theme";
+import { logEvent } from "../utils/analytics";
 // import Router from "next/router";
 // import { mutateUrl } from "../utils/common";
 
@@ -103,6 +104,9 @@ class SearchBox extends Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
+    this.state = {
+      analyticsSent: false
+    };
   }
   handleChange = event => {
     this.setState({ value: event.target.value }); // state of InputSearchBox
@@ -110,6 +114,10 @@ class SearchBox extends Component {
     // Router.replace(mutateUrl(this.props.url));
     if (this.props.onChange) {
       this.props.onChange(event);
+    }
+    if (!this.state.analyticsSent) {
+      this.setState({ analyticsSent: true });
+      logEvent("BenefitsDirectory", "Search");
     }
   };
 
