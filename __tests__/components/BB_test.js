@@ -53,8 +53,7 @@ describe("BB", () => {
       favouriteBenefits: [],
       saveFavourites: jest.fn(),
       url: { query: {} },
-      printUrl: "/print",
-      summaryUrl: "/summary"
+      printUrl: "/print"
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
