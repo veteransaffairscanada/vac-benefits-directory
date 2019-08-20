@@ -109,7 +109,7 @@ class EditSelectionsModal extends Component {
   }
 
   clearFilters = () => {
-    logEvent("EditSelectionsModal");
+    logEvent("BenefitsDirectory", "EditSelectionsModal");
     this.props.profileQuestions.forEach(q => {
       this.props.saveQuestionResponse(q.variable_name, "");
     });
