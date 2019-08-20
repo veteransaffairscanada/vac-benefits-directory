@@ -106,7 +106,6 @@ describe("BenefitsDirectory", () => {
       patronType: "p2",
       statusAndVitals: "",
       serviceHealthIssue: "",
-      favouriteBenefits: [benefitsFixture[1].id],
       filteredBenefits: benefitsFixture
     };
     props.store = mockStore(reduxData);

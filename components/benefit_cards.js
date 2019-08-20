@@ -53,15 +53,7 @@ const padding = css`
 const flex = css`
   align-items: center;
   padding-top: 5px;
-  // if screen size is min.sm or larger put favourites button below learn more
-  @media only screen and (min-width: ${globalTheme.min.sm}) {
-    display: flex;
-  }
 `;
-// const floatRight = css`
-//   margin-left: auto;
-//   order: 2;
-// `;
 
 const tagStyle = css`
   font-size: 12px !important;

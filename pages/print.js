@@ -85,10 +85,8 @@ export class Print extends Component {
     window.print();
   }
 
-  countString = (filteredBenefits, benefits, t, printingFromFavourites) => {
+  countString = (filteredBenefits, benefits, t) => {
     switch (true) {
-      case printingFromFavourites:
-        return t("favourites.saved_benefits", { x: filteredBenefits.length });
       case filteredBenefits.length === benefits.length:
         return t("B3.All benefits to consider");
       case filteredBenefits.length === 0:
@@ -142,7 +140,6 @@ export class Print extends Component {
       url
     } = this.props; // eslint-disable-line no-unused-vars
     const query = url.query;
-    const printingFromFavourites = query.fromFavourites !== undefined;
     const filteredBenefitsIDs =
       Object.keys(query).indexOf("benefits") > -1
         ? query.benefits.split(",")
@@ -186,42 +183,32 @@ export class Print extends Component {
               <FIP fillColor="black" t={this.props.t} />
             </div>
           </Grid>
+          <Grid item xs={12}>
+            <div css={box}>
+              <div css={bold}>{t("print.who_is_receiving")}</div>
+              <div className={"profile_section " + rules}>{profile_text}</div>
 
-          {printingFromFavourites ? (
-            ""
-          ) : (
-            <Grid item xs={12}>
-              <div css={box}>
-                <div css={bold}>{t("print.who_is_receiving")}</div>
-                <div className={"profile_section " + rules}>{profile_text}</div>
-
-                <div css={needs_section}>
-                  <Grid container spacing={0}>
-                    {needs.map((need, i) => (
-                      <Grid item xs={4} key={i}>
-                        <NeedButton
-                          need={need}
-                          t={t}
-                          store={store}
-                          disabled="disabled"
-                          url={url}
-                        />
-                      </Grid>
-                    ))}
-                  </Grid>
-                </div>
+              <div css={needs_section}>
+                <Grid container spacing={0}>
+                  {needs.map((need, i) => (
+                    <Grid item xs={4} key={i}>
+                      <NeedButton
+                        need={need}
+                        t={t}
+                        store={store}
+                        disabled="disabled"
+                        url={url}
+                      />
+                    </Grid>
+                  ))}
+                </Grid>
               </div>
-            </Grid>
-          )}
+            </div>
+          </Grid>
         </Grid>
 
         <div css={[bigTitle, margins]}>
-          {this.countString(
-            sortedFilteredBenefits,
-            benefits,
-            t,
-            printingFromFavourites
-          )}
+          {this.countString(sortedFilteredBenefits, benefits, t)}
         </div>
         <table css={table}>
           <tbody>

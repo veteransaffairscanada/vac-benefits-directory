@@ -23,7 +23,6 @@ describe("BenefitList", () => {
     props = {
       filteredBenefits: benefitsFixture,
       onRef: k => k,
-      savedList: true,
       currentLanguage: "en"
     };
 
@@ -41,7 +40,6 @@ describe("BenefitList", () => {
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
-      favouriteBenefits: [],
       benefitEligibility: benefitEligibilityFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,
