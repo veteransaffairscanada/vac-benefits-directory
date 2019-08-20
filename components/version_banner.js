@@ -37,7 +37,7 @@ export class VersionBanner extends Component {
   render() {
     const { t, url, ...rest } = this.props;
     return (
-      <aside {...rest} className={Banner}>
+      <div {...rest} className={Banner}>
         <PhaseBadge phase={t("header.beta")} />
         <span>
           {t("beta_banner.main")} &nbsp;
@@ -45,7 +45,7 @@ export class VersionBanner extends Component {
             <a className={white}>{t("beta_banner.link_text")}</a>
           </Link>
         </span>
-      </aside>
+      </div>
     );
   }
 }
