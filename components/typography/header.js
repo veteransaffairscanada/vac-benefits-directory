@@ -20,6 +20,11 @@ const sizeDict = {
     fontWeight: 700,
     fontFamily: globalTheme.fontFamilySansSerif
   },
+  md_md: {
+    fontSize: 28,
+    fontWeight: "bold",
+    fontFamily: globalTheme.fontFamilySansSerif
+  },
   md: {
     fontSize: 22,
     fontWeight: "bold",
