@@ -2,7 +2,6 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 import { Grid } from "@material-ui/core/";
 import { globalTheme } from "../theme";
@@ -27,6 +26,7 @@ const modalCSS = css`
   overflow: auto;
   outline: none;
   padding: 0;
+  max-height: 100%; // this enables the modal to scroll on overflow
   @media only screen and (max-width: ${globalTheme.max.md}) {
     left: 20%;
     right: 20%;
@@ -36,8 +36,8 @@ const modalCSS = css`
     right: 10%;
   }
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    left: 10px;
-    right: 10px;
+    left: 5%;
+    right: 5%;
   }
 `;
 
@@ -48,6 +48,11 @@ const header = css`
   font-size: 22px;
   font-family: ${globalTheme.fontFamilySansSerif};
   font-weight: 700;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: ${globalTheme.colour.blackBlue};
+  z-index: 10;
 `;
 
 const bodyStyle = css`
@@ -75,17 +80,6 @@ const clearButton = css`
   text-decoration: underline;
 `;
 
-const CloseButton = styled("button")({
-  float: "right",
-  backgroundColor: globalTheme.colour.blackBlue,
-  height: "100%",
-  cursor: "pointer",
-  fontSize: "24px",
-  fontWeight: "900",
-  padding: 0,
-  border: 0,
-  color: globalTheme.colour.white
-});
 const topMargin = css`
   margin-top: 1em;
 `;
@@ -126,6 +120,10 @@ class EditSelectionsModal extends Component {
     Router.replace(mutateUrl(newUrl, "", ""));
   };
 
+  updateResults = closeModal => {
+    this.close(closeModal);
+  };
+
   render() {
     const { isOpen, onRequestClose, closeModal, t, store, url } = this.props;
     // Only render modal on the client - portals are not supported on the server and fail tests
@@ -139,7 +137,6 @@ class EditSelectionsModal extends Component {
         >
           <div css={header}>
             <span>{t("BenefitsPane.edit_selections")}</span>
-            <CloseButton onClick={() => this.close(closeModal)}>X</CloseButton>
           </div>
           <div css={bodyStyle}>
             <Grid item xs={12}>
@@ -162,7 +159,7 @@ class EditSelectionsModal extends Component {
                 <Button
                   mobileFullWidth={true}
                   css={resultsButton}
-                  onClick={() => this.close(closeModal)}
+                  onClick={() => this.updateResults(closeModal)}
                 >
                   {t("ge.show_results")}
                 </Button>

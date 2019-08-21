@@ -9,7 +9,6 @@ fr(lunr);
 
 const initialState = {
   enIdx: {},
-  favouriteBenefits: [],
   frIdx: {},
   searchString: "",
   selectedNeeds: {},
@@ -66,10 +65,6 @@ export const reducer = (state = initialState, action) => {
 
     case "LOAD_DATA":
       newState = {
-        favouriteBenefits:
-          action.data.favouriteBenefits !== undefined
-            ? action.data.favouriteBenefits
-            : state.favouriteBenefits,
         timestamp:
           action.data.timestamp !== undefined
             ? action.data.timestamp

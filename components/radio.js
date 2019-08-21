@@ -70,12 +70,12 @@ const mobileLabelStyle = css`
   }
 `;
 
-const sidebarLabelStyle = css({
+const modalLabelStyle = css({
   fontSize: "14px !important",
   padding: "6px 10px 15px 12px !important"
 });
 
-const Radio = ({ children, styles, value, sidebar, ...input }) => (
+const Radio = ({ children, styles, value, modal, ...input }) => (
   <div css={[rootStyle, styles]}>
     <input
       type="radio"
@@ -85,7 +85,7 @@ const Radio = ({ children, styles, value, sidebar, ...input }) => (
       {...input}
     />
     <label
-      css={[mobileLabelStyle, labelStyle, sidebar ? sidebarLabelStyle : null]}
+      css={[mobileLabelStyle, labelStyle, modal ? modalLabelStyle : null]}
       htmlFor={value + "-0"}
     >
       {children}
@@ -101,7 +101,7 @@ Radio.propTypes = {
   styles: PropTypes.object,
   value: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-  sidebar: PropTypes.bool
+  modal: PropTypes.bool
 };
 
 export default Radio;
