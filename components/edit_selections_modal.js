@@ -2,7 +2,6 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 import { Grid } from "@material-ui/core/";
 import { globalTheme } from "../theme";
@@ -81,17 +80,6 @@ const clearButton = css`
   text-decoration: underline;
 `;
 
-const CloseButton = styled("button")({
-  float: "right",
-  backgroundColor: globalTheme.colour.blackBlue,
-  height: "100%",
-  cursor: "pointer",
-  fontSize: "24px",
-  fontWeight: "900",
-  padding: 0,
-  border: 0,
-  color: globalTheme.colour.white
-});
 const topMargin = css`
   margin-top: 1em;
 `;
@@ -132,6 +120,10 @@ class EditSelectionsModal extends Component {
     Router.replace(mutateUrl(newUrl, "", ""));
   };
 
+  updateResults = closeModal => {
+    this.close(closeModal);
+  };
+
   render() {
     const { isOpen, onRequestClose, closeModal, t, store, url } = this.props;
     // Only render modal on the client - portals are not supported on the server and fail tests
@@ -144,16 +136,7 @@ class EditSelectionsModal extends Component {
           onRequestClose={() => this.close(onRequestClose)}
         >
           <div css={header}>
-            <Grid container spacing={8}>
-              <Grid item xs={11}>
-                <span>{t("BenefitsPane.edit_selections")}</span>
-              </Grid>
-              <Grid item xs={1}>
-                <CloseButton onClick={() => this.close(closeModal)}>
-                  X
-                </CloseButton>
-              </Grid>
-            </Grid>
+            <span>{t("BenefitsPane.edit_selections")}</span>
           </div>
           <div css={bodyStyle}>
             <Grid item xs={12}>
@@ -176,7 +159,7 @@ class EditSelectionsModal extends Component {
                 <Button
                   mobileFullWidth={true}
                   css={resultsButton}
-                  onClick={() => this.close(closeModal)}
+                  onClick={() => this.updateResults(closeModal)}
                 >
                   {t("ge.show_results")}
                 </Button>
