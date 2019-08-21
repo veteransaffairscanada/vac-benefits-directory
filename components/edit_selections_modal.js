@@ -136,12 +136,7 @@ class EditSelectionsModal extends Component {
           onRequestClose={() => this.close(onRequestClose)}
         >
           <div css={header}>
-            <Grid container spacing={8}>
-              <Grid item xs={11}>
-                <span>{t("BenefitsPane.edit_selections")}</span>
-              </Grid>
-              <Grid item xs={1}></Grid>
-            </Grid>
+            <span>{t("BenefitsPane.edit_selections")}</span>
           </div>
           <div css={bodyStyle}>
             <Grid item xs={12}>
