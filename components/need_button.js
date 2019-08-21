@@ -13,7 +13,7 @@ export class NeedButton extends Component {
       delete newSelectedNeeds[id];
     } else {
       this.props.url.route === "/benefits-directory"
-        ? logEvent("SidebarFilterClick", "need", id)
+        ? logEvent("ModalFilterClick", "need", id)
         : logEvent("GEFilterClick", "need", id);
       newSelectedNeeds[id] = id;
     }
@@ -35,7 +35,7 @@ export class NeedButton extends Component {
         onChange={() => this.handleClick(need.id)}
         value={need.id}
         disabled={disabled ? "disabled" : null}
-        sidebar={this.props.updateUrl}
+        modal={this.props.updateUrl}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </Checkbox>

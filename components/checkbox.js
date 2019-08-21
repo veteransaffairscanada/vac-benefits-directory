@@ -84,17 +84,17 @@ const mobileLabelStyle = css`
     font-size: 16px;
   }
 `;
-const sidebarLabelStyle = css({
+const modalLabelStyle = css({
   fontSize: "14px !important",
   padding: "6px 10px 15px 12px !important"
 });
 
-const Checkbox = ({ children, sidebar, ...props }) => {
+const Checkbox = ({ children, modal, ...props }) => {
   const guid = uuidv4();
   return (
     <StyledCheckbox htmlFor={guid}>
       <StyledInput type="checkbox" {...props} id={guid} />
-      <StyledLabel css={[mobileLabelStyle, sidebar ? sidebarLabelStyle : null]}>
+      <StyledLabel css={[mobileLabelStyle, modal ? modalLabelStyle : null]}>
         {children}
       </StyledLabel>
     </StyledCheckbox>
@@ -107,7 +107,7 @@ Checkbox.defaultProps = {
 
 Checkbox.propTypes = {
   children: PropTypes.node.isRequired,
-  sidebar: PropTypes.bool
+  modal: PropTypes.bool
 };
 
 export default Checkbox;
