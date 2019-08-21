@@ -49,7 +49,7 @@ export class ProfileSelector extends Component {
               store={this.props.store}
               name={"group" + index}
               url={url}
-              updateUrl={true}
+              modal={true}
             />
           </Grid>
         );

@@ -102,7 +102,7 @@ export class RadioSelector extends React.Component {
     this.props.url.route === "/benefits-directory"
       ? logEvent("ModalFilterClick", question, response)
       : logEvent("GEFilterClick", question, response);
-    if (this.props.updateUrl) {
+    if (this.props.modal) {
       this.props.url.query[question] = response;
       Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
     }
@@ -158,7 +158,7 @@ export class RadioSelector extends React.Component {
                   onChange={this.handleSelect}
                   value={option.variable_name}
                   styles={radioOption}
-                  modal={this.props.updateUrl}
+                  modal={this.props.modal}
                 >
                   {t("current-language-code") === "en"
                     ? option.display_text_english
@@ -211,7 +211,7 @@ RadioSelector.propTypes = {
   store: PropTypes.object,
   styles: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   name: PropTypes.string,
-  updateUrl: PropTypes.bool,
+  modal: PropTypes.bool,
   url: PropTypes.object.isRequired,
   feedbackPage: PropTypes.bool
 };

@@ -21,7 +21,7 @@ export class NeedButton extends Component {
 
     let needsParams = Object.keys(newSelectedNeeds);
 
-    if (this.props.updateUrl) {
+    if (this.props.modal) {
       this.props.url.query["selectedNeeds"] = needsParams.join();
       Router.replace(mutateUrl(this.props.url, "", this.props.url.query));
     }
@@ -35,7 +35,7 @@ export class NeedButton extends Component {
         onChange={() => this.handleClick(need.id)}
         value={need.id}
         disabled={disabled ? "disabled" : null}
-        modal={this.props.updateUrl}
+        modal={this.props.modal}
       >
         {t("current-language-code") === "en" ? need.nameEn : need.nameFr}
       </Checkbox>
@@ -66,13 +66,13 @@ NeedButton.propTypes = {
   selectedNeeds: PropTypes.object.isRequired,
   disabled: PropTypes.string,
   store: PropTypes.object,
-  updateUrl: PropTypes.bool,
+  modal: PropTypes.bool,
   url: PropTypes.object.isRequired
 };
 
 NeedButton.defaultProps = {
   disabled: "",
-  updateUrl: false
+  modal: false
 };
 
 export default connect(

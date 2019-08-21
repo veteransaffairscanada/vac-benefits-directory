@@ -60,7 +60,7 @@ export class NeedsSelector extends Component {
                   t={t}
                   store={store}
                   url={url}
-                  updateUrl={true}
+                  modal={true}
                 />
               ))}
             </Grid>
