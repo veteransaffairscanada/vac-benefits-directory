@@ -40,7 +40,7 @@ describe("GuidedExperience", () => {
       subtitle: "subtitle",
       url: {
         query: { lng: "en", patronType: "veteran", serviceType: "RCMP" },
-        route: "/summary"
+        route: "/benefits-directory"
       },
       saveQuestionResponse: jest.fn(),
       sectionOrder: questionsFixture.map(x => x.variable_name),

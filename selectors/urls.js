@@ -44,19 +44,6 @@ export const getGuidedExperienceUrl = createSelector(
   }
 );
 
-export const getSummaryUrl = createSelector(
-  [getProfileFilters, getNeedsFilter, getCurrentLanguage],
-  (profileFilters, selectedNeeds, currentLanguage) => {
-    const params = getSelectionParams(
-      profileFilters,
-      selectedNeeds,
-      "",
-      currentLanguage
-    );
-    return "/summary?" + params;
-  }
-);
-
 export const getPrintUrl = createSelector(
   [getFilteredBenefits, getProfileFilters, getNeedsFilter, getCurrentLanguage],
   (filteredBenefits, profileFilters, selectedNeeds, currentLanguage) => {
