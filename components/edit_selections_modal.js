@@ -126,6 +126,10 @@ class EditSelectionsModal extends Component {
     Router.replace(mutateUrl(newUrl, "", ""));
   };
 
+  updateResults = closeModal => {
+    this.close(closeModal);
+  };
+
   render() {
     const { isOpen, onRequestClose, closeModal, t, store, url } = this.props;
     // Only render modal on the client - portals are not supported on the server and fail tests
@@ -162,7 +166,7 @@ class EditSelectionsModal extends Component {
                 <Button
                   mobileFullWidth={true}
                   css={resultsButton}
-                  onClick={() => this.close(closeModal)}
+                  onClick={() => this.updateResults(closeModal)}
                 >
                   {t("ge.show_results")}
                 </Button>
