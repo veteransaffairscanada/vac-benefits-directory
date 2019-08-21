@@ -149,7 +149,6 @@ export const getPageName = questionName => {
     statusAndVitals: "statusAndVitals",
     serviceHealthIssue: "serviceHealthIssue",
     needs: "needs",
-    summary: "summary",
     benefitsDirectory: "benefits-directory"
   };
   return pageNameDict[questionName];

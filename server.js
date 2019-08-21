@@ -137,10 +137,6 @@ Promise.resolve(getAllData()).then(allData => {
         res
           .status(404)
           .send("The Data Validation page only exists on the staging app.");
-      } else if (req.url.includes("summary") && !staging) {
-        res
-          .status(404)
-          .send("The summary page only exists on the staging app.");
       } else {
         let startTime = new Date();
         handle(req, res).then(() => {
