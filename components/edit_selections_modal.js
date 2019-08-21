@@ -27,6 +27,7 @@ const modalCSS = css`
   overflow: auto;
   outline: none;
   padding: 0;
+  max-height: 100%; // this enables the modal to scroll on overflow
   @media only screen and (max-width: ${globalTheme.max.md}) {
     left: 20%;
     right: 20%;
@@ -36,8 +37,8 @@ const modalCSS = css`
     right: 10%;
   }
   @media only screen and (max-width: ${globalTheme.max.xs}) {
-    left: 10px;
-    right: 10px;
+    left: 5%;
+    right: 5%;
   }
 `;
 
@@ -48,6 +49,11 @@ const header = css`
   font-size: 22px;
   font-family: ${globalTheme.fontFamilySansSerif};
   font-weight: 700;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: ${globalTheme.colour.blackBlue};
+  z-index: 10;
 `;
 
 const bodyStyle = css`
@@ -138,8 +144,16 @@ class EditSelectionsModal extends Component {
           onRequestClose={() => this.close(onRequestClose)}
         >
           <div css={header}>
-            <span>{t("BenefitsPane.edit_selections")}</span>
-            <CloseButton onClick={() => this.close(closeModal)}>X</CloseButton>
+            <Grid container spacing={8}>
+              <Grid item xs={11}>
+                <span>{t("BenefitsPane.edit_selections")}</span>
+              </Grid>
+              <Grid item xs={1}>
+                <CloseButton onClick={() => this.close(closeModal)}>
+                  X
+                </CloseButton>
+              </Grid>
+            </Grid>
           </div>
           <div css={bodyStyle}>
             <Grid item xs={12}>
