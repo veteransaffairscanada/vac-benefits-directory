@@ -1,72 +1,6 @@
 import lunr from "lunr";
 import questionsFixture from "../fixtures/questions";
-import { getFavouritesUrl, getPrintUrl } from "../../selectors/urls";
-
-describe("getFavouritesUrl", () => {
-  let props;
-  let state;
-
-  beforeEach(() => {
-    props = {
-      t: () => "en"
-    };
-    state = {
-      questions: questionsFixture,
-      selectedNeeds: {},
-      patronType: "",
-      searchString: "",
-      serviceType: "",
-      serviceHealthIssue: "",
-      statusAndVitals: ""
-    };
-  });
-
-  it("adds the language variable by default", () => {
-    expect(getFavouritesUrl(state, props)).toEqual("/favourites?lng=en");
-  });
-
-  it("adds selectedNeeds keys to the URL", () => {
-    state.selectedNeeds = { a: 1, b: 2 };
-    expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&selectedNeeds=a,b"
-    );
-  });
-
-  it("adds patronType string to the URL", () => {
-    state.patronType = "foo";
-    expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&patronType=foo"
-    );
-  });
-
-  it("adds searchString string to the URL", () => {
-    state.searchString = "foo";
-    expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&searchString=foo"
-    );
-  });
-
-  it("adds serviceType string to the URL", () => {
-    state.serviceType = "foo";
-    expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&serviceType=foo"
-    );
-  });
-
-  it("adds serviceHealthIssue string to the URL", () => {
-    state.serviceHealthIssue = "foo";
-    expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&serviceHealthIssue=foo"
-    );
-  });
-
-  it("adds statusAndVitals string to the URL", () => {
-    state.statusAndVitals = "foo";
-    expect(getFavouritesUrl(state, props)).toEqual(
-      "/favourites?lng=en&statusAndVitals=foo"
-    );
-  });
-});
+import { getPrintUrl } from "../../selectors/urls";
 
 describe("getPrintUrl", () => {
   let params;
@@ -76,13 +10,6 @@ describe("getPrintUrl", () => {
   beforeEach(() => {
     params = {};
     props = {
-      favouriteBenefits: [
-        {
-          id: "0",
-          childBenefits: [],
-          availableIndependently: "Requires Gateway Benefit"
-        }
-      ],
       t: () => "en"
     };
     state = {
@@ -273,13 +200,6 @@ describe("getPrintUrl", () => {
     state.statusAndVitals = "foo";
     expect(getPrintUrl(state, props, params)).toEqual(
       "/print?lng=en&benefits=0,1,2,3,4&statusAndVitals=foo"
-    );
-  });
-
-  it("adds fromFavourites string to the URL", () => {
-    params["fromFavourites"] = true;
-    expect(getPrintUrl(state, props, params)).toEqual(
-      "/print?lng=en&fromFavourites=true"
     );
   });
 });

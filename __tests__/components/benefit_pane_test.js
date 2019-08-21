@@ -44,7 +44,6 @@ describe("BenefitsPane", () => {
       },
       filteredBenefits: [],
       nonFilteredBenefits: [],
-      favouriteBenefits: [],
       reduxState: { benefits: [] }
     };
     _mounted = undefined;
@@ -60,7 +59,6 @@ describe("BenefitsPane", () => {
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
-      favouriteBenefits: [],
       benefitEligibility: benefitEligibilityFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,

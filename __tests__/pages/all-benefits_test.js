@@ -40,9 +40,6 @@ describe("AllBenefits", () => {
       },
       storeHydrated: true,
       loadDataStore: jest.fn(),
-      favouriteBenefits: [],
-      savedList: true,
-      toggleFavourite: () => true,
       url: { query: {} }
     };
     _mountedAllBenefits = undefined;
@@ -60,7 +57,6 @@ describe("AllBenefits", () => {
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
-      favouriteBenefits: [],
       benefitEligibility: benefitEligibilityFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,

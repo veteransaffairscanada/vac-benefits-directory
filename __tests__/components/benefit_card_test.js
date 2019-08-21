@@ -1,5 +1,5 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 import benefitEligibilityFixture from "../fixtures/benefitEligibility";
 import { BenefitCard } from "../../components/benefit_cards";
@@ -21,18 +21,12 @@ describe("BenefitCard", () => {
 
   let props;
   let mockStore, reduxData;
-  let _mountedBenefitCard, _shallowBenefitCard;
+  let _mountedBenefitCard;
   const mountedBenefitCard = () => {
     if (!_mountedBenefitCard) {
       _mountedBenefitCard = mount(<BenefitCard {...props} {...reduxData} />);
     }
     return _mountedBenefitCard;
-  };
-  const shallowBenefitCard = () => {
-    if (!_shallowBenefitCard) {
-      _shallowBenefitCard = shallow(<BenefitCard {...props} {...reduxData} />);
-    }
-    return _shallowBenefitCard;
   };
 
   beforeEach(() => {
@@ -41,9 +35,7 @@ describe("BenefitCard", () => {
       benefit: benefitsFixture[1],
       currentLanguage: "en",
       veteranBenefitIds: [],
-      familyBenefitIds: [],
-      favouriteBenefits: [],
-      savedList: true
+      familyBenefitIds: []
     };
     mockStore = configureStore();
     reduxData = {
@@ -51,7 +43,6 @@ describe("BenefitCard", () => {
       needs: needsFixture,
       selectedNeeds: {},
       benefits: benefitsFixture,
-      favouriteBenefits: [],
       benefitEligibility: benefitEligibilityFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefitExamples: benefitExamplesFixture,
@@ -61,7 +52,6 @@ describe("BenefitCard", () => {
     props.store = mockStore(reduxData);
 
     _mountedBenefitCard = undefined;
-    _shallowBenefitCard = undefined;
     mockStore = configureStore();
     props.store = mockStore(reduxData);
   });
@@ -82,11 +72,6 @@ describe("BenefitCard", () => {
         .first()
         .text()
     ).toEqual(benefitsFixture[1].oneLineDescriptionEn);
-  });
-
-  it("hides the Favourite Button if savedList is false", () => {
-    props.savedList = false;
-    expect(shallowBenefitCard().find("FavoriteButton").length).toEqual(0);
   });
 
   it("Clicking the See More button expands the BenefitExpansion component", () => {
