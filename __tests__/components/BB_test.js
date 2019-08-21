@@ -50,11 +50,8 @@ describe("BB", () => {
       id: "BB",
       filteredBenefits: [],
       setSelectedNeeds: () => true,
-      favouriteBenefits: [],
-      saveFavourites: jest.fn(),
       url: { query: {} },
-      printUrl: "/print",
-      summaryUrl: "/summary"
+      printUrl: "/print"
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
@@ -62,13 +59,11 @@ describe("BB", () => {
       benefitExamples: benefitExamplesFixture,
       cookiesDisabled: false,
       setCookiesDisabled: jest.fn(),
-      saveFavourites: jest.fn(),
       questions: questionsFixture,
       questionDisplayLogic: questionDisplayLogicFixture,
       questionClearLogic: questionClearLogicFixture,
       multipleChoiceOptions: multipleChoiceOptionsFixture,
       benefits: benefitsFixture,
-      favouriteBenefits: [],
       benefitEligibility: benefitEligibilityFixture,
       filteredBenefits: benefitsFixture,
       needs: needsFixture,

@@ -137,27 +137,7 @@ Promise.resolve(getAllData()).then(allData => {
         res
           .status(404)
           .send("The Data Validation page only exists on the staging app.");
-      } else if (req.url.includes("favourites") && !staging) {
-        res
-          .status(404)
-          .send("The Favourites page only exists on the staging app.");
-      } else if (req.url.includes("summary") && !staging) {
-        res
-          .status(404)
-          .send("The summary page only exists on the staging app.");
       } else {
-        const favouriteBenefits = new Cookies(req.headers.cookie).get(
-          "favouriteBenefits"
-        );
-        if (favouriteBenefits) {
-          const existingBenefitIds = data.benefits.map(x => x.id);
-          // update cookies to prune any benefits that have been removed from Airtable
-          const validFavouriteBenefits = favouriteBenefits.filter(
-            x => existingBenefitIds.indexOf(x) > -1
-          );
-          req.data.favouriteBenefits = validFavouriteBenefits;
-        }
-
         let startTime = new Date();
         handle(req, res).then(() => {
           let duration = new Date() - startTime;
