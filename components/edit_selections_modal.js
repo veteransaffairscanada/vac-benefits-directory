@@ -2,7 +2,6 @@ import { Component } from "react";
 import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import styled from "@emotion/styled";
 import ReactModal from "react-modal";
 import { Grid } from "@material-ui/core/";
 import { globalTheme } from "../theme";
@@ -81,17 +80,6 @@ const clearButton = css`
   text-decoration: underline;
 `;
 
-const CloseButton = styled("button")({
-  float: "right",
-  backgroundColor: globalTheme.colour.blackBlue,
-  height: "100%",
-  cursor: "pointer",
-  fontSize: "24px",
-  fontWeight: "900",
-  padding: 0,
-  border: 0,
-  color: globalTheme.colour.white
-});
 const topMargin = css`
   margin-top: 1em;
 `;
@@ -152,11 +140,7 @@ class EditSelectionsModal extends Component {
               <Grid item xs={11}>
                 <span>{t("BenefitsPane.edit_selections")}</span>
               </Grid>
-              <Grid item xs={1}>
-                <CloseButton onClick={() => this.close(closeModal)}>
-                  X
-                </CloseButton>
-              </Grid>
+              <Grid item xs={1}></Grid>
             </Grid>
           </div>
           <div css={bodyStyle}>
