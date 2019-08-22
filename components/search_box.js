@@ -197,7 +197,7 @@ SearchBox.defaultProps = {
 
 SearchBox.propTypes = {
   placeholder: PropTypes.string,
-  ariaLabel: PropTypes.string,
+  ariaLabelSearch: PropTypes.string,
   ariaLabelClearButton: PropTypes.string,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
