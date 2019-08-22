@@ -132,7 +132,12 @@ class SearchBox extends Component {
   };
 
   render() {
-    const { ariaLabel, value, onButtonClick } = this.props;
+    const {
+      ariaLabelSearch,
+      ariaLabelClearButton,
+      value,
+      onButtonClick
+    } = this.props;
     let valueUsed;
     try {
       valueUsed = this.textInput.current.value;
@@ -142,7 +147,7 @@ class SearchBox extends Component {
       <SearchBoxWrapper id={this.props.wrapperId}>
         <InputSearchBox
           type="search"
-          aria-label={ariaLabel}
+          aria-label={ariaLabelSearch}
           id={this.props.inputId}
           placeholder={this.props.placeholder}
           onKeyDown={this.props.onKeyDown}
@@ -156,7 +161,7 @@ class SearchBox extends Component {
         {(this.props.onClear && value) || valueUsed ? (
           <div style={{ position: "relative" }}>
             <ClearButton
-              title={ariaLabel}
+              title={ariaLabelClearButton}
               id="clearButton"
               onClick={this.handleClear}
             >
@@ -166,12 +171,12 @@ class SearchBox extends Component {
         ) : null}
 
         {this.props.disableButton ? (
-          <DisabledSearchButton title={ariaLabel} disabled>
+          <DisabledSearchButton title={ariaLabelSearch} disabled>
             <Icon icon="search" />
           </DisabledSearchButton>
         ) : (
           <SearchButton
-            title={ariaLabel}
+            title={ariaLabelSearch}
             id={this.props.buttonId}
             onClick={onButtonClick}
           >
@@ -184,7 +189,8 @@ class SearchBox extends Component {
 }
 
 SearchBox.defaultProps = {
-  ariaLabel: "search",
+  ariaLabelSearch: "search",
+  ariaLabelClearButton: "clear",
   placeholder: undefined,
   onButtonClick: x => x
 };
@@ -192,6 +198,7 @@ SearchBox.defaultProps = {
 SearchBox.propTypes = {
   placeholder: PropTypes.string,
   ariaLabel: PropTypes.string,
+  ariaLabelClearButton: PropTypes.string,
   onKeyDown: PropTypes.func,
   onKeyUp: PropTypes.func,
   value: PropTypes.string,
