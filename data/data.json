@@ -52,7 +52,7 @@
       "vacNameFr": "Frais de déplacements à des fins médicales",
       "benefitPageEn": "https://www.veterans.gc.ca/eng/health-support/physical-health-and-wellness/medical-costs/health-related-travel-expenses",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/health-support/physical-health-and-wellness/medical-costs/health-related-travel-expenses",
-      "needs": ["recCLErnNnumr9cAW"],
+      "needs": ["recCLErnNnumr9cAW", "reciCZbLGkKLIqapM"],
       "oneLineDescriptionEn": "VAC may reimburse travel expenses incurred by the Veteran when travelling to receive healthcare services or benefits.",
       "oneLineDescriptionFr": "Anciens Combattants Canada peut rembourser les frais de déplacement engagés par un vétéran pour recevoir des services ou des avantages médicaux.",
       "sortingPriority": "medium",
@@ -1634,9 +1634,13 @@
     {
       "benefit": ["recHbFmHB4vDAhB7L"],
       "patronType": ["recqmK12TRScaiVlp"],
-      "serviceType": ["rec2IXKCRtTMJkvGA", "recE2trfiSvCjMYky"],
+      "serviceType": [
+        "rec2IXKCRtTMJkvGA",
+        "recE2trfiSvCjMYky",
+        "recZxS90JBuEos5wy"
+      ],
       "Name": "recbpqtlVAeX8dxur",
-      "path": "veteran + CAF, RCMP",
+      "path": "veteran + CAF, RCMP, WSV (Second World War or Korea)",
       "statusAndVitals": [],
       "serviceHealthIssue": []
     },
@@ -2007,7 +2011,8 @@
         "recouOjLFYfbCFDpU",
         "recbQ4nGrHOBnVfvm",
         "rec5PAiy5ndY8YXUm",
-        "recwuwvJkzd2QClD8"
+        "recwuwvJkzd2QClD8",
+        "recHbFmHB4vDAhB7L"
       ],
       "nameFr": "Santé physique et mentale",
       "colour": "#e9cf9e",
@@ -2197,22 +2202,22 @@
     {
       "section": "B3",
       "key": "search_results",
-      "English": "{{x}} filtered results",
-      "French": "{{x}} Résultats filtrés",
+      "English": "{{x}} results",
+      "French": "{{x}} Résultats",
       "id": "B3.search_results"
     },
     {
       "section": "B3",
       "key": "search_results_single",
-      "English": "1 filtered result",
-      "French": "1 Résultat filtré",
+      "English": "1 result",
+      "French": "1 Résultat",
       "id": "B3.search_results_single"
     },
     {
       "section": "B3",
       "key": "search_tip",
-      "English": "Filtering tips: check for spelling or try using a different word.",
-      "French": "Conseils relatifs au filtrage : vérifiez l’orthographe et essayez d’utiliser un mot différent.",
+      "English": "Search tips: check for spelling or try using a different word.",
+      "French": "Conseils de recherche : vérifiez l’orthographe ou essayez d’utiliser un mot différent.",
       "id": "B3.search_tip"
     },
     {
@@ -2714,8 +2719,8 @@
     },
     {
       "key": "filter by category",
-      "English": "What kind of benefits are you looking for?",
-      "French": "Quels types d'avantages recherchez-vous? ",
+      "English": "Select the categories of benefits you want to see:",
+      "French": "Sélectionnez les types d'avantages que vous voulez consulter :",
       "id": "filter by category",
       "section": ""
     },
@@ -3001,8 +3006,8 @@
     },
     {
       "key": "search",
-      "English": "Filter results",
-      "French": "Filtrer les résultats",
+      "English": "Search",
+      "French": "Recherche",
       "id": "search",
       "section": ""
     },
@@ -3170,15 +3175,15 @@
     {
       "section": "feedback",
       "key": "page_header",
-      "English": "Help us improve",
-      "French": "Aidez-nous à nous améliorer",
+      "English": "Thank you for your feedback.",
+      "French": "Merci pour votre commentaire.",
       "id": "feedback.page_header"
     },
     {
       "section": "feedback",
       "key": "submitted",
-      "English": "Thank you for taking the time to give us feedback. We are listening and constantly improving.",
-      "French": "Merci d’avoir pris le temps de nous faire part de vos commentaires. Nous sommes à l’écoute et nous nous améliorons constamment.",
+      "English": "Your suggestion(s) will help us improve this tool. Please note:  we do not directly respond to the feedback we receive.",
+      "French": "Vos suggestions nous aideront à améliorer cet outil. À noter : nous ne répondons pas directement aux commentaires que nous recevons.",
       "id": "feedback.submitted"
     },
     {
@@ -3365,8 +3370,8 @@
         "recqcx7zJU3fDnKDw",
         "recYFOdN3baE7b3ez"
       ],
-      "display_text_english": "Show me:",
-      "display_text_french": "Montrez-moi:",
+      "display_text_english": "Are you looking for:",
+      "display_text_french": "Êtes-vous à la recherche :",
       "question display logic": ["recjgMA7BaoIk1gZT"],
       "guided_experience_english": "Are you looking for:",
       "guided_experience_french": "Êtes-vous à la recherche :",
@@ -3387,8 +3392,8 @@
         "recE2trfiSvCjMYky",
         "recZxS90JBuEos5wy"
       ],
-      "display_text_english": "Service type:",
-      "display_text_french": "Type de service:",
+      "display_text_english": "Select the service type:",
+      "display_text_french": "Sélectionnez le type de service :",
       "guided_experience_english": "Select the service type.",
       "guided_experience_french": "Sélectionnez le type de service.",
       "questionClearLogic": ["rec5TPyrbGlZCJjP6"],
@@ -3404,8 +3409,8 @@
     {
       "variable_name": "statusAndVitals",
       "multiple_choice_options": ["recZLPVEdTMutlU4X", "reczcmooxd9hWVgmN"],
-      "display_text_english": "Veteran Service status:",
-      "display_text_french": "Statut du membre:",
+      "display_text_english": "Select the service status:",
+      "display_text_french": "Sélectionnez  le statut du membre :",
       "guided_experience_english": "Select the service status.",
       "guided_experience_french": "Sélectionnez  le statut du membre.",
       "questionClearLogic 2": ["rec5TPyrbGlZCJjP6"],
@@ -3714,7 +3719,8 @@
         "reclS3kXDdqX34YQv",
         "rec2LVpqV0fAXE7WU",
         "recEIxDskdrinWn96",
-        "recT8tcXWtlfPHDd2"
+        "recT8tcXWtlfPHDd2",
+        "recbpqtlVAeX8dxur"
       ],
       "key (DO NOT EDIT)": "WSV (Second World War or Korea)",
       "id": "recZxS90JBuEos5wy",
@@ -4529,5 +4535,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1566320373915
+  "timestamp": 1566588270009
 }
