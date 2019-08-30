@@ -3351,7 +3351,7 @@
       "section": "feedback",
       "key": "privacy_statement",
       "English": "The information you provide in the open text field should not contain any identifiable personal information.",
-      "French": "N’inscrivez pas de renseignements personnels identifiables dans la zone de texte libre",
+      "French": "N’inscrivez pas de renseignements personnels identifiables dans la zone de texte libre.",
       "id": "feedback.privacy_statement"
     },
     {
@@ -4535,5 +4535,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1566588270009
+  "timestamp": 1567172396895
 }
