@@ -6,12 +6,12 @@ This documentation serves as a simple guide on how a developer may update the ap
 
 To repopulate the data.json file (AKA run a content update)
 
-- [] Run `yarn download` in a new branch
-- [] Run tests
-- [] Commit
-- [] Create a pull request to go into the **develop** branch and then into **master**
+- Run `yarn download` in a new branch
+- Run tests
+- Commit
+- Create a pull request to go into the **develop** branch and then into **master**
 
 That will update the repository's code, and then if the new content is not yet showing up in the UA and production environments:
 
-- [] Ensure pods on the UA environment have been rebuild, and business users can test the app
-- [] Update the production environment (rebuild pods, tag a new release in GitHub, etc.)
+- Ensure pods on the UA environment have been rebuild, and business users can test the app
+- Update the production environment (rebuild pods, tag a new release in GitHub, etc.)
