@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   azure-aks: circleci/azure-aks@0.2.1
   kubernetes: circleci/kubernetes@0.4.0
+  semantic-versioning: payfit/semantic-versioning@0.42.0
 
 jobs:
   create-aks-deployment:
@@ -73,7 +74,7 @@ jobs:
       # Build the image
       - run:
           command: |
-            docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg GA_UA_CDS="${GA_UA_CDS}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg AIRTABLE_READ_KEY="${AIRTABLE_READ_KEY}" .
+            docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"  --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg GA_UA_CDS="${GA_UA_CDS}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg AIRTABLE_READ_KEY="${AIRTABLE_READ_KEY}" .
           name: "Build Image"
       # Scan the image
       - run:
@@ -89,9 +90,21 @@ jobs:
       - run:
           command: |
             docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
-          name: "Push Docker Image"
+
+            BRANCH=${CIRCLE_BRANCH//[^a-zA-Z0-9]/-}
+            IMAGE_NAME=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}
+            docker pull veteransaffairscanada/vac-benefits-directory:latest
+
+            VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
+            docker tag veteransaffairscanada/vac-benefits-directory:latest $IMAGE_NAME:$VERSION
+            docker push $IMAGE_NAME:${CIRCLE_SHA1}
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+            docker push $IMAGE_NAME:$VERSION
+            fi
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            docker push $IMAGE_NAME:$VERSION
+            fi
+          name: "Tag and Push Docker Image"
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
           name: "Report failing Development"
@@ -99,117 +112,7 @@ jobs:
 
     working_directory: ~/repo
 
-  deployment_user_acceptance_docker:
-    docker:
-      - image: docker:17.12.1-ce-git
-    steps:
-      - checkout
-      - setup_remote_docker
-      # Build the image
-      - run:
-          command: |
-            docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg GA_UA_CDS="${GA_UA_CDS}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg AIRTABLE_READ_KEY="${AIRTABLE_READ_KEY}" .
-          name: "Build Image"
-      # Scan the image
-      - run:
-          command: |
-            docker run -p 5432:5432 -d --name db arminc/clair-db:latest
-            docker run -p 6060:6060 --link db:postgres -d --name clair arminc/clair-local-scan:v2.0.1
-            docker run -v /var/run/docker.sock:/var/run/docker.sock -d --name clair-scanner veteransaffairscanada/clair-scanner:latest tail -f /dev/null
-            clair_ip=`docker exec -it clair hostname -i | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'`
-            scanner_ip=`docker exec -it clair-scanner hostname -i | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'`
-            docker exec -it clair-scanner clair-scanner --ip ${scanner_ip} --clair=http://${clair_ip}:6060 -t High "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-          name: "Scan image"
-      # Deploy the image if passes the scan
-      - run:
-          name: "What branch am I on?"
-          command: echo ${CIRCLE_BRANCH}
-      - run:
-          command: |
-
-            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
-            fi
-
-          name: "Push Docker Image"
-      - run:
-          command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
-          name: "Report failing UA branch"
-          when: on_fail
-
-    working_directory: ~/repo
-
-  release:
-    docker:
-      - image: docker:17.12.1-ce-git
-    steps:
-      - checkout:
-          path: ~/repo
-      - setup_remote_docker
-
-      # get version
-      #- run:
-      #    name: "What is next release semvar version"
-      #    command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
-      #- run:
-      #    name: "Next version increment"
-      #    command: echo ${TAG}
-
-      # Build the image
-      - run:
-          command: |
-            docker build  -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}" -t "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:v1.0.0" --build-arg CIRCLE_SHA1="${CIRCLE_SHA1}" --build-arg SENTRY_DSN="${SENTRY_DSN}" --build-arg GA_UA="${GA_UA}" --build-arg GA_UA_CDS="${GA_UA_CDS}" --build-arg CIRCLE_PROJECT_REPONAME="${CIRCLE_PROJECT_REPONAME}" --build-arg CIRCLE_BRANCH="${CIRCLE_BRANCH}" --build-arg CIRCLE_REPOSITORY_URL="${CIRCLE_REPOSITORY_URL}" --build-arg WEBHOOK_URL="${WEBHOOK_URL}" --build-arg AIRTABLE_READ_KEY="${AIRTABLE_READ_KEY}" .
-          name: "Build Image"
-      # Scan the image
-      - run:
-          command: |
-            docker run -p 5432:5432 -d --name db arminc/clair-db:latest
-            docker run -p 6060:6060 --link db:postgres -d --name clair arminc/clair-local-scan:v2.0.1
-            docker run -v /var/run/docker.sock:/var/run/docker.sock -d --name clair-scanner veteransaffairscanada/clair-scanner:latest tail -f /dev/null
-            clair_ip=`docker exec -it clair hostname -i | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'`
-            scanner_ip=`docker exec -it clair-scanner hostname -i | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+'`
-            docker exec -it clair-scanner clair-scanner --ip ${scanner_ip} --clair=http://${clair_ip}:6060 -t High "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-          name: "Scan image"
-      # Deploy the image if passes the scan
-      - run:
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-              docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:v1.0.0"
-            fi
-          name: "Push Docker Image"
-      #- run: npx semantic-release
-      - run:
-          command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
-          name: "Report failing Master"
-          when: on_fail
-
-    working_directory: ~/repo
-
 workflows:
-  build_test_deploy_release:
-    jobs:
-      - build_and_test
-      - deployment_development_docker:
-          requires:
-            - build_and_test
-      - deployment_user_acceptance_docker:
-          requires:
-            - build_and_test
-          filters:
-            branches:
-              only: develop
-      - release:
-          requires:
-            - build_and_test
-          filters:
-            branches:
-              only: master
-            tags:
-              only: /(?<=^[Vv]|^)(?:(?<major>(?:0|[1-9](?:(?:0|[1-9])+)*))[.](?<minor>(?:0|[1-9](?:(?:0|[1-9])+)*))[.](?<patch>(?:0|[1-9](?:(?:0|[1-9])+)*))(?:-(?<prerelease>(?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:0|[1-9](?:(?:0|[1-9])+)*))(?:[.](?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:0|[1-9](?:(?:0|[1-9])+)*)))*))?(?:[+](?<build>(?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:(?:0|[1-9])+))(?:[.](?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:(?:0|[1-9])+)))*))?)$/
   deployment_aks_lab:
     jobs:
       - deployment_development_docker
@@ -222,7 +125,7 @@ workflows:
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "lab"
           resource-name: ${AKS_DEPLOYMENT_LAB}
-          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
             - deployment_development_docker
@@ -238,23 +141,57 @@ workflows:
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
-          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
             - deployment_development_docker
   deployment_aks_ua:
     jobs:
-      - deployment_user_acceptance_docker
+      - deployment_development_docker:
+          filters:
+            branches:
+              only: develop
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "uat"
+          filters:
+            branches:
+              only: develop
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "uat"
           resource-name: ${AKS_DEPLOYMENT_UA}
-          container-image-updates: "vac-benefits-directory=veteransaffairscanada/vac-benefits-directory:develop"
+          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
-            - deployment_user_acceptance_docker
+            - deployment_development_docker
+          filters:
+            branches:
+              only: develop
+  deployment_aks:
+    jobs:
+      - deployment_development_docker:
+          filters:
+            branches:
+              only: master
+      - create-aks-deployment:
+          cluster-name: ${AKS_CLUSTERNAME}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "default"
+          filters:
+            branches:
+              only: master
+      - azure-aks/update-container-image:
+          cluster-name: ${AKS_CLUSTERNAME}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "default"
+          resource-name: ${AKS_DEPLOYMENT}
+          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          record: true
+          requires:
+            - deployment_development_docker
+          filters:
+            branches:
+              only: master
