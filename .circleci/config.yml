@@ -39,13 +39,7 @@ jobs:
       - run:
           name: Tag and Push the image
           command: |
-            BRANCH=${CIRCLE_BRANCH//[^a-zA-Z0-9]/-}
-            IMAGE_NAME=${DOCKER_REGISTRY}/${NAMESPACE}
-            docker pull $IMAGE_NAME:$BRANCH
 
-            VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
-            docker tag $IMAGE_NAME:$BRANCH $IMAGE_NAME:$VERSION
-            docker push $IMAGE_NAME:$VERSION
 
             # Download and cache dependencies
       - restore_cache:
@@ -103,14 +97,23 @@ jobs:
       - run:
           command: |
             docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
-            fi
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${TAG}"
-            fi
-          name: "Push Docker Image"
+
+            BRANCH=${CIRCLE_BRANCH//[^a-zA-Z0-9]/-}
+            IMAGE_NAME=${DOCKER_REGISTRY}/${NAMESPACE}
+            docker pull $IMAGE_NAME:$BRANCH
+
+            VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
+            docker tag $IMAGE_NAME:$BRANCH $IMAGE_NAME:$VERSION
+            docker push $IMAGE_NAME:$VERSION
+
+            #docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+            #if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+            #docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
+            #fi
+            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            #docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${TAG}"
+            #fi
+          name: "Tag and Push Docker Image"
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
           name: "Report failing Development"
