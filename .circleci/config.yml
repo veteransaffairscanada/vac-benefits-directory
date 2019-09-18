@@ -99,7 +99,7 @@ jobs:
             docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 
             BRANCH=${CIRCLE_BRANCH//[^a-zA-Z0-9]/-}
-            IMAGE_NAME=${DOCKER_REGISTRY}/${NAMESPACE}
+            IMAGE_NAME=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}
             echo $IMAGE_NAME:$BRANCH
             docker pull veteransaffairscanada/vac-benefits-directory:latest
 
