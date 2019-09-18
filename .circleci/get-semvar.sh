@@ -1,7 +1,7 @@
 branch=$(git rev-parse --abbrev-ref HEAD)
 latest=$(git describe --tags $(git rev-list --tags --max-count=1))
  
-semver_parts=${latest//./}
+semver_parts=(${latest//./})
 major=${semver_parts[0]}
 minor=${semver_parts[1]}
 patch=${semver_parts[2]}
