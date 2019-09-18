@@ -101,10 +101,10 @@ jobs:
             BRANCH=${CIRCLE_BRANCH//[^a-zA-Z0-9]/-}
             IMAGE_NAME=${DOCKER_REGISTRY}/${NAMESPACE}
             echo $IMAGE_NAME:$BRANCH
-            docker pull $IMAGE_NAME:$BRANCH
+            docker pull veteransaffairscanada/vac-benefits-directory:latest
 
             VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
-            docker tag $IMAGE_NAME:$BRANCH $IMAGE_NAME:$VERSION
+            docker tag veteransaffairscanada/vac-benefits-directory:latest $IMAGE_NAME:$VERSION
             docker push $IMAGE_NAME:$VERSION
 
             #docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
