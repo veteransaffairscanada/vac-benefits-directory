@@ -217,11 +217,11 @@ workflows:
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          aks-namespace: lab
+          aks-namespace: "lab"
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          aks-namespace: lab
+          aks-namespace: "lab"
           resource-name: ${AKS_DEPLOYMENT_LAB}
           container-image-updates: ${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}
           record: true
