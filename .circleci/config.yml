@@ -129,11 +129,11 @@ jobs:
 workflows:
   deployment_aks_lab:
     jobs:
-      - semantic-version
+      - build_and_test
       - push-semantic-versioned-image:
           docker_username: ${DOCKER_USERNAME}
           docker_password: ${DOCKER_PASSWORD}
-          image_name: ${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}
+          image_name: ${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
@@ -146,5 +146,5 @@ workflows:
           container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
-            - semantic-version
+            - build_and_test
             - push-semantic-versioned-image
