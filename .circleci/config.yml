@@ -100,6 +100,7 @@ jobs:
 
             BRANCH=${CIRCLE_BRANCH//[^a-zA-Z0-9]/-}
             IMAGE_NAME=${DOCKER_REGISTRY}/${NAMESPACE}
+            echo $IMAGE_NAME:$BRANCH
             docker pull $IMAGE_NAME:$BRANCH
 
             VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
