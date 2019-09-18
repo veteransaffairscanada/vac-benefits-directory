@@ -129,6 +129,11 @@ workflows:
           record: true
           requires:
             - deployment_development_docker
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
   deployment_aks_dev:
     jobs:
       - deployment_development_docker
@@ -145,6 +150,11 @@ workflows:
           record: true
           requires:
             - deployment_development_docker
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
   deployment_aks_ua:
     jobs:
       - deployment_development_docker:
