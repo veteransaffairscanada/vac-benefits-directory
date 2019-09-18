@@ -147,11 +147,17 @@ workflows:
             - deployment_development_docker
   deployment_aks_ua:
     jobs:
-      - deployment_development_docker
+      - deployment_development_docker:
+          filters:
+            branches:
+              only: develop
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "uat"
+          filters:
+            branches:
+              only: develop
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
