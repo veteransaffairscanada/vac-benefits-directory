@@ -134,6 +134,8 @@ workflows:
           docker_username: ${DOCKER_USERNAME}
           docker_password: ${DOCKER_PASSWORD}
           image_name: ${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}
+          requires:
+            - build_and_test
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
