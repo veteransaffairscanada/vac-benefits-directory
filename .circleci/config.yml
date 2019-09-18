@@ -22,7 +22,6 @@ jobs:
       - azure-aks/update-kubeconfig-with-credentials:
           cluster-name: << parameters.cluster-name >>
           resource-group: << parameters.resource-group >>
-          namespace: << parameters.namespace >>
           install-kubectl: true
           perform-login: true
 
