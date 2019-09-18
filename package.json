@@ -51,7 +51,6 @@
     "detect-browser": "^4.5.0",
     "emotion": "^10.0.9",
     "emotion-server": "^10.0.9",
-    "eslint-utils": "1.4.1",
     "express": "^4.17.1",
     "helmet": "^3.18.0",
     "isomorphic-unfetch": "^3.0.0",
