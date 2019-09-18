@@ -212,7 +212,6 @@ workflows:
               only: /(?<=^[Vv]|^)(?:(?<major>(?:0|[1-9](?:(?:0|[1-9])+)*))[.](?<minor>(?:0|[1-9](?:(?:0|[1-9])+)*))[.](?<patch>(?:0|[1-9](?:(?:0|[1-9])+)*))(?:-(?<prerelease>(?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:0|[1-9](?:(?:0|[1-9])+)*))(?:[.](?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:0|[1-9](?:(?:0|[1-9])+)*)))*))?(?:[+](?<build>(?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:(?:0|[1-9])+))(?:[.](?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:(?:0|[1-9])+)))*))?)$/
   deployment_aks_lab:
     jobs:
-      - build_and_test
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
@@ -225,10 +224,9 @@ workflows:
           container-image-updates: "vac-benefits-directory=veteransaffairscanada/vac-benefits-directory:latest"
           record: true
           requires:
-            - build_and_test
+            - deployment_development_docker
   deployment_aks_dev:
     jobs:
-      - build_and_test
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
@@ -241,4 +239,19 @@ workflows:
           container-image-updates: "vac-benefits-directory=veteransaffairscanada/vac-benefits-directory:latest"
           record: true
           requires:
-            - build_and_test
+            - deployment_development_docker
+  deployment_aks_ua:
+    jobs:
+      - create-aks-deployment:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "uat"
+      - azure-aks/update-container-image:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "uat"
+          resource-name: ${AKS_DEPLOYMENT_UA}
+          container-image-updates: "vac-benefits-directory=veteransaffairscanada/vac-benefits-directory:develop"
+          record: true
+          requires:
+            - deployment_user_acceptance_docker
