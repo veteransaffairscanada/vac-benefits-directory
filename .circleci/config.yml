@@ -237,7 +237,7 @@ workflows:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "dev"
-          resource-name: ${AKS_DEPLOYMENT_LAB}
+          resource-name: ${AKS_DEPLOYMENT_DEV}
           container-image-updates: "vac-benefits-directory=veteransaffairscanada/vac-benefits-directory:latest"
           record: true
           requires:
