@@ -125,7 +125,7 @@ workflows:
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "lab"
           resource-name: ${AKS_DEPLOYMENT_LAB}
-          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:$VERSION"
+          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
             - deployment_development_docker
@@ -141,7 +141,7 @@ workflows:
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
-          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
             - deployment_development_docker
@@ -157,7 +157,10 @@ workflows:
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "uat"
           resource-name: ${AKS_DEPLOYMENT_UA}
-          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
             - deployment_development_docker
+          filters:
+            branches:
+              only: develop
