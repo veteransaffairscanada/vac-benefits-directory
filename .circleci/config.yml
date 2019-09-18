@@ -1,5 +1,30 @@
-version: 2
+version: 2.1
+
+orbs:
+  azure-aks: circleci/azure-aks@0.2.1
+  kubernetes: circleci/kubernetes@0.4.0
+
 jobs:
+  create-aks-deployment:
+    executor: azure-aks/default
+    parameters:
+      cluster-name:
+        description: Name of the AKS cluster
+        type: string
+      resource-group:
+        description: Resource group that the cluster is in
+        type: string
+      namespace:
+        description: Namespace to use
+        type: string
+    steps:
+      - checkout
+      - azure-aks/update-kubeconfig-with-credentials:
+          cluster-name: << parameters.cluster-name >>
+          resource-group: << parameters.resource-group >>
+          install-kubectl: true
+          perform-login: true
+
   build_and_test:
     docker:
       - image: cypress/base:10
@@ -38,7 +63,7 @@ jobs:
           command: ~/repo/.circleci/notify_failure.sh
           when: on_fail
 
-  deploy_dev:
+  deployment_development_docker:
     docker:
       - image: docker:17.12.1-ce-git
     steps:
@@ -66,7 +91,6 @@ jobs:
             docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
             docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
             docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:latest"
-
           name: "Push Docker Image"
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
@@ -75,7 +99,7 @@ jobs:
 
     working_directory: ~/repo
 
-  deploy_ua:
+  deployment_user_acceptance_docker:
     docker:
       - image: docker:17.12.1-ce-git
     steps:
@@ -166,14 +190,13 @@ jobs:
     working_directory: ~/repo
 
 workflows:
-  version: 2
   build_test_deploy_release:
     jobs:
       - build_and_test
-      - deploy_dev:
+      - deployment_development_docker:
           requires:
             - build_and_test
-      - deploy_ua:
+      - deployment_user_acceptance_docker:
           requires:
             - build_and_test
           filters:
@@ -187,3 +210,51 @@ workflows:
               only: master
             tags:
               only: /(?<=^[Vv]|^)(?:(?<major>(?:0|[1-9](?:(?:0|[1-9])+)*))[.](?<minor>(?:0|[1-9](?:(?:0|[1-9])+)*))[.](?<patch>(?:0|[1-9](?:(?:0|[1-9])+)*))(?:-(?<prerelease>(?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:0|[1-9](?:(?:0|[1-9])+)*))(?:[.](?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:0|[1-9](?:(?:0|[1-9])+)*)))*))?(?:[+](?<build>(?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:(?:0|[1-9])+))(?:[.](?:(?:(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?|(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)(?:[A-Za-z]|-)(?:(?:(?:0|[1-9])|(?:[A-Za-z]|-))+)?)|(?:(?:0|[1-9])+)))*))?)$/
+  deployment_aks_lab:
+    jobs:
+      - deployment_development_docker
+      - create-aks-deployment:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "lab"
+      - azure-aks/update-container-image:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "lab"
+          resource-name: ${AKS_DEPLOYMENT_LAB}
+          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          record: true
+          requires:
+            - deployment_development_docker
+  deployment_aks_dev:
+    jobs:
+      - deployment_development_docker
+      - create-aks-deployment:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "dev"
+      - azure-aks/update-container-image:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "dev"
+          resource-name: ${AKS_DEPLOYMENT_DEV}
+          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          record: true
+          requires:
+            - deployment_development_docker
+  deployment_aks_ua:
+    jobs:
+      - deployment_user_acceptance_docker
+      - create-aks-deployment:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "uat"
+      - azure-aks/update-container-image:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "uat"
+          resource-name: ${AKS_DEPLOYMENT_UA}
+          container-image-updates: "vac-benefits-directory=veteransaffairscanada/vac-benefits-directory:develop"
+          record: true
+          requires:
+            - deployment_user_acceptance_docker
