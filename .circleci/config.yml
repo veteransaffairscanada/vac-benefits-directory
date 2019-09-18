@@ -115,11 +115,21 @@ jobs:
 workflows:
   deployment_aks_lab:
     jobs:
-      - deployment_development_docker
+      - deployment_development_docker:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "lab"
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
@@ -136,11 +146,21 @@ workflows:
                 - master
   deployment_aks_dev:
     jobs:
-      - deployment_development_docker
+      - deployment_development_docker:
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "dev"
+          filters:
+            branches:
+              ignore:
+                - develop
+                - master
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
