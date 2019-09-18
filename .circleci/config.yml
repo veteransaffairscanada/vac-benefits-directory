@@ -96,17 +96,14 @@ jobs:
             docker pull veteransaffairscanada/vac-benefits-directory:latest
 
             VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
-            echo $VERSION
             docker tag veteransaffairscanada/vac-benefits-directory:latest $IMAGE_NAME:$VERSION
+            docker push $IMAGE_NAME:${CIRCLE_SHA1}
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
             docker push $IMAGE_NAME:$VERSION
-
-            #docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-            #if [ "${CIRCLE_BRANCH}" == "develop" ]; then
-            #docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
-            #fi
-            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            #docker push "${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${TAG}"
-            #fi
+            fi
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            docker push $IMAGE_NAME:$VERSION
+            fi
           name: "Tag and Push Docker Image"
       - run:
           command: apt-get install curl && ~/repo/.circleci/notify_failure.sh
@@ -128,6 +125,38 @@ workflows:
           resource-group: ${AKS_RESOURCE_GROUP}
           namespace: "lab"
           resource-name: ${AKS_DEPLOYMENT_LAB}
+          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:$VERSION"
+          record: true
+          requires:
+            - deployment_development_docker
+  deployment_aks_dev:
+    jobs:
+      - deployment_development_docker
+      - create-aks-deployment:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "dev"
+      - azure-aks/update-container-image:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "dev"
+          resource-name: ${AKS_DEPLOYMENT_DEV}
+          container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          record: true
+          requires:
+            - deployment_development_docker
+  deployment_aks_ua:
+    jobs:
+      - deployment_development_docker
+      - create-aks-deployment:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "uat"
+      - azure-aks/update-container-image:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP}
+          namespace: "uat"
+          resource-name: ${AKS_DEPLOYMENT_UA}
           container-image-updates: "vac-benefits-directory=${DOCKER_REGISTRY}/${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
