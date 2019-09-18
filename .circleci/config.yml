@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   azure-aks: circleci/azure-aks@0.2.1
   kubernetes: circleci/kubernetes@0.4.0
+  semantic-versioning: payfit/semantic-version@0.42.0
 
 jobs:
   create-aks-deployment:
@@ -33,7 +34,20 @@ jobs:
     steps:
       # checkout branch
       - checkout
-      # Download and cache dependencies
+      - run:
+          command: docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+      - run:
+          name: Tag and Push the image
+          command: |
+            BRANCH=${CIRCLE_BRANCH//[^a-zA-Z0-9]/-}
+            IMAGE_NAME=${DOCKER_REGISTRY}/${NAMESPACE}
+            docker pull $IMAGE_NAME:$BRANCH
+
+            VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
+            docker tag $IMAGE_NAME:$BRANCH $IMAGE_NAME:$VERSION
+            docker push $IMAGE_NAME:$VERSION
+
+            # Download and cache dependencies
       - restore_cache:
           keys:
             - v3-dependencies-{{ checksum "package.json" }}
@@ -69,14 +83,6 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-
-      # get version
-      - run:
-          name: "What is next release semvar version"
-          command: echo export TAG=$(~/repo/.circleci/get-semvar.sh) >> $BASH_ENV
-      - run:
-          name: "Next version increment"
-          command: echo ${TAG}
 
       # Build the image
       - run:
