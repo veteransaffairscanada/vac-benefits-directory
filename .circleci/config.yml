@@ -102,7 +102,7 @@ jobs:
           command: |
             BRANCH=${CIRCLE_BRANCH//[^a-zA-Z0-9]/-}
             IMAGE_NAME= << parameters.image_name >> 
-            docker pull $IMAGE_NAME
+            docker pull $IMAGE_NAME:latest
 
             VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
             docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
