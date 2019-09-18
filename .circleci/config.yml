@@ -14,7 +14,7 @@ jobs:
       resource-group:
         description: Resource group that the cluster is in
         type: string
-      aks-namespace:
+      namespace:
         description: Namespace to use
         type: string
     steps:
@@ -22,7 +22,7 @@ jobs:
       - azure-aks/update-kubeconfig-with-credentials:
           cluster-name: << parameters.cluster-name >>
           resource-group: << parameters.resource-group >>
-          aks-namespace: << parameters.namespace >>
+          namespace: << parameters.namespace >>
           install-kubectl: true
           perform-login: true
 
@@ -217,11 +217,11 @@ workflows:
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          aks-namespace: "lab"
+          namespace: "lab"
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          aks-namespace: "lab"
+          namespace: "lab"
           resource-name: ${AKS_DEPLOYMENT_LAB}
           container-image-updates: "vac-benefits-directory=veteransaffairscanada/vac-benefits-directory:latest"
           record: true
