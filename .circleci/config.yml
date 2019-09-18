@@ -105,7 +105,7 @@ jobs:
             docker pull $IMAGE_NAME:latest
 
             VERSION=$(git describe --abbrev=0 --tags || $BRANCH)
-            docker tag $IMAGE_NAME $IMAGE_NAME:$VERSION
+            docker tag $IMAGE_NAME:${CIRCLE_SHA1} $IMAGE_NAME:$VERSION
             docker push $IMAGE_NAME:$VERSION
           name: "Tag and Push docker image"
     working_directory: ~/repo
