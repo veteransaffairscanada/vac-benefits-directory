@@ -23,10 +23,9 @@ const Banner = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   padding: 10px 30px 10px;
   span:first-of-type {
-    font-weight: 700 !important;
+    font-weight: 400 !important;
     padding: 0.2rem 0.7rem;
     border-radius: 3px;
-    background-color: ${globalTheme.colour.betaBlue};
     margin-right: 1em;
   }
 `;
@@ -38,7 +37,6 @@ export class VersionBanner extends Component {
     const { t, url, ...rest } = this.props;
     return (
       <div {...rest} className={Banner}>
-        <PhaseBadge phase={t("header.beta")} />
         <span>
           {t("beta_banner.main")} &nbsp;
           <Link href={{ pathname: "/feedback", query: url.query }}>
