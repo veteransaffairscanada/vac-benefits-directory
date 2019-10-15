@@ -23,11 +23,9 @@ const Banner = css`
   font-family: ${globalTheme.fontFamilySansSerif};
   padding: 10px 30px 10px;
   span:first-of-type {
-    font-weight: 400 !important;
     padding: 0.2rem 0.7rem;
     border-radius: 3px;
     margin-right: 1em;
-  }
 `;
 /**
  * Renders an version banner and renders passed children in the `Text` container
