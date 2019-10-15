@@ -35,7 +35,7 @@ describe("VersionBanner", () => {
   });
 
   it("shows the phase badge", () => {
-    expect(mountedVersionBanner().find("PhaseBadge").length).toEqual(1);
+    expect(mountedVersionBanner().find("div").length).toEqual(1);
   });
 
   it("contains a link to the feedback page", () => {
