@@ -26,6 +26,7 @@ const Banner = css`
     padding: 0.2rem 0.7rem;
     border-radius: 3px;
     margin-right: 1em;
+  }
 `;
 /**
  * Renders an version banner and renders passed children in the `Text` container
