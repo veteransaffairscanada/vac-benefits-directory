@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
-import VersionBanner from "./version_banner";
 
 class Paper extends Component {
   padding = { sm: "24px", md: "30px", lg: "63px", xl: "96px" };
@@ -26,11 +25,6 @@ class Paper extends Component {
   render() {
     return (
       <div>
-        <div css={this.bannerStyle}>
-          {this.props.includeBanner && this.props.url && this.props.t ? (
-            <VersionBanner t={this.props.t} url={this.props.url} />
-          ) : null}
-        </div>
         <div
           css={
             this.props.styles ? [this.style, this.props.styles] : [this.style]
@@ -52,8 +46,7 @@ Paper.propTypes = {
     PropTypes.array
   ]),
   url: PropTypes.object,
-  t: PropTypes.func,
-  includeBanner: PropTypes.bool
+  t: PropTypes.func
 };
 
 export default Paper;
