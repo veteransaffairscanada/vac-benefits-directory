@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { css, jsx } from "@emotion/core";
 import { globalTheme } from "../theme";
 import VersionBanner from "./version_banner";
+import GreenBanner from "./green_banner";
 
 class Paper extends Component {
   padding = { sm: "24px", md: "30px", lg: "63px", xl: "96px" };
@@ -28,7 +29,7 @@ class Paper extends Component {
       <div>
         <div css={this.bannerStyle}>
           {this.props.includeBanner && this.props.url && this.props.t ? (
-            <VersionBanner t={this.props.t} url={this.props.url} />
+            <GreenBanner />
           ) : null}
         </div>
         <div
