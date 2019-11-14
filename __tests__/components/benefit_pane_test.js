@@ -224,21 +224,11 @@ describe("BenefitsPane", () => {
       });
     });
 
-    describe("search feature", () => {
-      it("shows a text search box", () => {
-        expect(
-          mounted()
-            .find("#bbSearchField")
-            .first().length
-        ).toEqual(1);
-      });
-
-      it("handleSearchChange sets the searchString state in redux", () => {
-        mounted()
-          .instance()
-          .handleSearchChange({ target: { value: "foo" } });
-        expect(reduxData.setSearchString).toBeCalledWith("foo");
-      });
+    it("handleSearchChange sets the searchString state in redux", () => {
+      mounted()
+        .instance()
+        .handleSearchChange({ target: { value: "foo" } });
+      expect(reduxData.setSearchString).toBeCalledWith("foo");
     });
   });
 });
