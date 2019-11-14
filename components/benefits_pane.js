@@ -179,21 +179,6 @@ export class BenefitsPane extends Component {
         {filteredBenefitsWithoutSearch.length === 0 ? null : (
           <React.Fragment>
             <Grid item xs={12}>
-              <div css={searchBar}>
-                <SearchBox
-                  inputId="bbSearchField"
-                  buttonId="searchButtonLink"
-                  placeholder={t("search")}
-                  value={searchString}
-                  onChange={this.handleSearchChange}
-                  disableButton={true}
-                  onClear={() => setSearchString("")}
-                  url={this.props.url}
-                />
-              </div>
-            </Grid>
-
-            <Grid item xs={12}>
               <Grid container spacing={24}>
                 <ResultsHeader
                   benefitCount={filteredBenefits.length}
