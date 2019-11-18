@@ -7,7 +7,7 @@ exports.hydrateFromAirtable = exports.writeFeedback = undefined;
 var airtableConstants = require("./hardcoded_strings");
 var readKey = process.env.AIRTABLE_READ_KEY;
 var writeKey = process.env.AIRTABLE_WRITE_KEY;
-var baseKey = process.env.AIRTABLE_BASE_KEY || "appkVQIRm3TUuNyv0";
+var baseKey = process.env.AIRTABLE_BASE_KEY || "appswKyHoR2uQreuz";
 
 var replaceId = function replaceId(
   sheet,
@@ -165,7 +165,9 @@ var writeFeedback = (exports.writeFeedback = async function writeFeedback(
 ) {
   var url = "https://api.airtable.com/v0/" + baseKey + "/feedbackBar";
   var resp = await fetch(url, {
-    body: JSON.stringify({ fields: payload }),
+    body: JSON.stringify({
+      fields: payload
+    }),
     cache: "no-cache",
     headers: {
       Authorization: "Bearer " + writeKey,
@@ -181,7 +183,9 @@ var writeBetaFeedback = (exports.writeBetaFeedback = async function writeBetaFee
 ) {
   var url = "https://api.airtable.com/v0/" + baseKey + "/feedbackPage";
   var resp = await fetch(url, {
-    body: JSON.stringify({ fields: payload }),
+    body: JSON.stringify({
+      fields: payload
+    }),
     cache: "no-cache",
     headers: {
       Authorization: "Bearer " + writeKey,
