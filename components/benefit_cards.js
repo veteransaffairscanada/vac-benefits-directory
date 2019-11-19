@@ -46,6 +46,11 @@ const benefitName = css`
   display: flex;
 `;
 
+const benefitLink = css`
+  text-decoration: none;
+  color: black;
+`;
+
 const padding = css`
   padding-left: 35px;
   padding-right: 35px;
@@ -71,6 +76,17 @@ export class BenefitCard extends Component {
   render() {
     const { t, benefit, store } = this.props;
 
+    const utm =
+      "?utm_source=fbas&utm_medium=referral&utm_campaign=learn-more&utm_content=" +
+      benefit.vacNameEn
+        .split(" ")
+        .join("-")
+        .toLowerCase();
+    const url =
+      (t("current-language-code") === "en"
+        ? benefit.benefitPageEn
+        : benefit.benefitPageFr) + utm;
+
     const needsMet = benefit.needs
       ? this.props.needs.filter(
           need =>
@@ -91,15 +107,17 @@ export class BenefitCard extends Component {
               language={language}
             />
             <Header styles={benefitName} size="md" headingLevel="h2">
-              <Highlighter
-                searchWords={searchWords}
-                autoEscape={true}
-                textToHighlight={
-                  this.props.currentLanguage === "en"
-                    ? benefit.vacNameEn
-                    : benefit.vacNameFr
-                }
-              />
+              <a href={url} css={benefitLink}>
+                <Highlighter
+                  searchWords={searchWords}
+                  autoEscape={true}
+                  textToHighlight={
+                    this.props.currentLanguage === "en"
+                      ? benefit.vacNameEn
+                      : benefit.vacNameFr
+                  }
+                />
+              </a>
             </Header>
             <div css={padding}>
               {needsMet.length > 0 ? (
