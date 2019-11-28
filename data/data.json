@@ -10,7 +10,16 @@
       "oneLineDescriptionFr": "Indemnisation qui reconnaît que votre blessure ou maladie découle de votre service.",
       "availableIndependently": "Independent",
       "sortingPriority": "high",
+      "benefitExamples": [
+        "rece6wF2Cx0j3ZvvM",
+        "recV5s53Qm6etvLq2",
+        "recelTLunNzVfELlR",
+        "recvcm5e6xrcLXpYw",
+        "recNQsuVOXCQLy3qR"
+      ],
       "benefitEligibility": ["recqkFRaoe865XT3Z", "rec88cEHO9f000XtV"],
+      "seeMoreSentenceEn": "Some examples of what this program may cover:",
+      "seeMoreSentenceFr": "Exemples de ce que ce programme peut couvrir :",
       "Readability": "Grade 8",
       "sortOrder": "1",
       "id": "recWzMubWbjhkzuGF",
@@ -18,10 +27,7 @@
       "childBenefits": [],
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
-      "examples": "",
-      "benefitExamples": [],
-      "seeMoreSentenceEn": "",
-      "seeMoreSentenceFr": ""
+      "examples": ""
     },
     {
       "vacNameEn": "Disability Pension (RCMP)",
@@ -32,7 +38,16 @@
       "oneLineDescriptionEn": "Compensation to recognize that your injury or illness is a result of your service.",
       "oneLineDescriptionFr": "Indemnisation qui reconnaît que votre blessure ou maladie découle de votre service.",
       "sortingPriority": "high",
+      "benefitExamples": [
+        "rece6wF2Cx0j3ZvvM",
+        "recV5s53Qm6etvLq2",
+        "recelTLunNzVfELlR",
+        "recvcm5e6xrcLXpYw",
+        "recNQsuVOXCQLy3qR"
+      ],
       "benefitEligibility": ["reci7Gn3dYg0M7408"],
+      "seeMoreSentenceEn": "Some examples of what this program may cover:",
+      "seeMoreSentenceFr": "Exemples de ce que ce programme peut couvrir :",
       "RCMP Only?": "true",
       "sortOrder": "2",
       "id": "recwuwvJkzd2QClD8",
@@ -42,9 +57,6 @@
       "benefitPolicyEn": "",
       "benefitPolicyFR": "",
       "examples": "",
-      "benefitExamples": [],
-      "seeMoreSentenceEn": "",
-      "seeMoreSentenceFr": "",
       "Readability": ""
     },
     {
@@ -119,7 +131,6 @@
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/document/2685",
       "sortingPriority": "medium",
       "benefitExamples": [
-        "recwyCP3cdFuiidRt",
         "recWUPfnZ6oFUaKcK",
         "recMeLyTJbDbeSvSW",
         "recCKoXg0iNeeYLNZ"
@@ -1037,8 +1048,8 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/family-caregiver/financial-programs-services/income-replacement-benefit-survivors",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/family-caregiver/financial-programs-services/income-replacement-benefit-survivors",
       "needs": ["recl3hMcrWpKFaR9B", "recf9RX3o0b4LJD3J"],
-      "oneLineDescriptionEn": "A monthly payment for eligible survivors and orphans of a deceased CAF member or Veteran.",
-      "oneLineDescriptionFr": "Pour les personnes à charge d’un membre des FAC ou d’un vétéran décédé des suites d’une maladie ou d’une blessure liée à son service.",
+      "oneLineDescriptionEn": "A monthly payment for eligible survivors and orphans of a CAF member or Veteran who has passed on.",
+      "oneLineDescriptionFr": "Paiement mensuel destiné aux survivants et aux orphelins admissibles d’un membre ou d’un vétéran des FAC qui est décédé.",
       "benefitEligibility": ["recYgBohHsKH9rB8K"],
       "Readability": "Grade 9",
       "sortOrder": "41",
@@ -1142,8 +1153,8 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/family-caregiver/financial-programs-services/canadian-forces-income-support-survivors",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/family-caregiver/financial-programs-services/canadian-forces-income-support-survivors",
       "needs": ["recf9RX3o0b4LJD3J", "recl3hMcrWpKFaR9B"],
-      "oneLineDescriptionEn": "A monthly payment to help low-income survivors and dependent children of a deceased CAF Veteran.",
-      "oneLineDescriptionFr": "Paiement mensuel aux vétérans des FAC à faible revenu et aux survivants ainsi qu'à leurs enfants à charge.",
+      "oneLineDescriptionEn": "A monthly payment to help low-income survivors and dependent children of a CAF Veteran who has passed on.",
+      "oneLineDescriptionFr": "Paiement mensuel visant à aider les survivants et les enfants à charge à faible revenu d’un vétéran des FAC qui est décédé.",
       "availableIndependently": "Independent",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-vac/legislation-policies/policies/category/4",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-vac/legislation-policies/policies/category/4",
@@ -1216,8 +1227,8 @@
       "benefitPageEn": "https://www.veterans.gc.ca/eng/education-and-jobs/back-to-school/educational-assistance-children",
       "benefitPageFr": "https://www.veterans.gc.ca/fra/education-and-jobs/back-to-school/educational-assistance-children",
       "needs": ["recXFXV3lZ5z2yya9", "recf9RX3o0b4LJD3J"],
-      "oneLineDescriptionEn": "Post-secondary financial assistance for children of a deceased Veteran or CAF member.",
-      "oneLineDescriptionFr": "Aide financière aux études postsecondaires pour les enfants d’un vétéran ou d’un membre des FAC décédé.",
+      "oneLineDescriptionEn": "Post-secondary financial assistance for children of a Veteran or CAF member who has passed on.",
+      "oneLineDescriptionFr": "Aide financière destinée aux enfants d’un vétéran ou d’un membre des FAC décédé qui font des études postsecondaires.",
       "categories DO NOT USE": "Education and jobs, Family support, Financial assistance",
       "benefitPolicyEn": "https://www.veterans.gc.ca/eng/about-us/policy/category/16",
       "benefitPolicyFR": "https://www.veterans.gc.ca/fra/about-us/policy/category/16",
@@ -2038,7 +2049,7 @@
       "id": "recTv9il8X9IhPosv"
     },
     {
-      "nameEn": "Death and bereavement",
+      "nameEn": "Bereavement",
       "benefits": [
         "recx8a12geKVKat8j",
         "recRwpM2DTNPdi3Yj",
@@ -2053,7 +2064,7 @@
         "recBAfazu4HnbXm25",
         "recKo07DTJ3LVq92c"
       ],
-      "nameFr": "Décès et deuil",
+      "nameFr": "Deuil",
       "colour": "#b9c3d7",
       "id": "recf9RX3o0b4LJD3J"
     }
@@ -3350,8 +3361,8 @@
     {
       "section": "feedback",
       "key": "privacy_statement",
-      "English": "The information you provide in the open text field should not contain any identifiable personal information.",
-      "French": "N’inscrivez pas de renseignements personnels identifiables dans la zone de texte libre.",
+      "English": "The information you provide in the open text field should not contain any identifiable personal information. Please note that we cannot reply to questions sent via the open text field. If you have any questions, please contact us at 1-866-522-2122.",
+      "French": "N’inscrivez pas de renseignements personnels identifiables dans la zone de texte libre. Si vous avez des questions, veuillez nous contacter au 1-866-522-2122.",
       "id": "feedback.privacy_statement"
     },
     {
@@ -3360,6 +3371,13 @@
       "English": "Change your selections",
       "French": "Changer vos sélections",
       "id": "BenefitsPane.edit_selections"
+    },
+    {
+      "section": "",
+      "key": "",
+      "English": "",
+      "French": "",
+      "id": ""
     }
   ],
   "questions": [
@@ -3987,18 +4005,6 @@
       "id": "recccc6q8ryFqVKVU"
     },
     {
-      "english": "$1000 tax free (monthly)",
-      "french": "montant mensuel non imposable de 1 000 $",
-      "id": "recV5s53Qm6etvLq2",
-      "linked_benefits": []
-    },
-    {
-      "english": "recognition for care to Veteran",
-      "french": "reconnaissance pour les soins fournis au vétéran",
-      "id": "recelTLunNzVfELlR",
-      "linked_benefits": []
-    },
-    {
       "english": "connect with other caregivers",
       "french": "établir des liens avec d’autres aidants",
       "linked_benefits": ["Caregiver Zone"],
@@ -4041,18 +4047,6 @@
       "id": "recOSoLFJSQSJQx4f"
     },
     {
-      "english": "bed linens",
-      "french": "articles de literie",
-      "id": "recvcm5e6xrcLXpYw",
-      "linked_benefits": []
-    },
-    {
-      "english": "clothing alterations",
-      "french": "retouches de vêtements",
-      "id": "rece6wF2Cx0j3ZvvM",
-      "linked_benefits": []
-    },
-    {
       "english": "motor vehicle accidents",
       "french": "accident automobile",
       "linked_benefits": ["Critical Injury Benefit"],
@@ -4077,16 +4071,40 @@
       "id": "reckFjCjuo07ziYVj"
     },
     {
-      "english": "a new trade",
-      "french": "un nouveau métier",
-      "id": "recNQsuVOXCQLy3qR",
-      "linked_benefits": []
+      "english": "hearing loss",
+      "french": "hypoacousie",
+      "linked_benefits": ["Disability benefits ", "Disability Pension (RCMP)"],
+      "id": "rece6wF2Cx0j3ZvvM"
+    },
+    {
+      "english": "tinnitus",
+      "french": "acouphène",
+      "linked_benefits": ["Disability benefits ", "Disability Pension (RCMP)"],
+      "id": "recV5s53Qm6etvLq2"
+    },
+    {
+      "english": "knee injury",
+      "french": "blessure au genou",
+      "linked_benefits": ["Disability benefits ", "Disability Pension (RCMP)"],
+      "id": "recelTLunNzVfELlR"
+    },
+    {
+      "english": "operational stress injuries",
+      "french": "traumatismes liés au stress opérationnel",
+      "linked_benefits": ["Disability benefits ", "Disability Pension (RCMP)"],
+      "id": "recvcm5e6xrcLXpYw"
+    },
+    {
+      "english": "Irritable Bowel Syndrome",
+      "french": "Syndrome du côlon irritable",
+      "linked_benefits": ["Disability benefits ", "Disability Pension (RCMP)"],
+      "id": "recNQsuVOXCQLy3qR"
     },
     {
       "english": "books  ",
       "french": "livres",
-      "linked_benefits": ["Education and Training Benefit"],
-      "id": "recwyCP3cdFuiidRt"
+      "id": "recwyCP3cdFuiidRt",
+      "linked_benefits": []
     },
     {
       "english": "course materials",
@@ -4535,5 +4553,5 @@
     }
   ],
   "errors": [],
-  "timestamp": 1568307934583
+  "timestamp": 1574362904952
 }
