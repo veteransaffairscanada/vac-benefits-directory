@@ -96,9 +96,22 @@ describe("BenefitList", () => {
         .length
     ).toEqual(5);
   });
+
   it("shows a loading circle when the page is loading", () => {
     let mounted = mount(<BenefitList {...props} {...reduxData} />);
     mounted.setState({ loading: true });
     expect(mounted.find("CircularProgress").length).toEqual(1);
+  });
+
+  it("Shows the load more button when there are more benefits to be loaded", () => {
+    let mounted = mount(<BenefitList {...props} {...reduxData} />);
+    mounted.setState({ limit: 2 });
+    expect(mounted.find("Button").length).toEqual(3);
+  });
+
+  it("Displays the correct number of benefit cards according to limit", () => {
+    let mounted = mount(<BenefitList {...props} {...reduxData} />);
+    mounted.setState({ limit: 2 });
+    expect(mounted.find("BenefitCard").length).toEqual(2);
   });
 });

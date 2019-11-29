@@ -3371,6 +3371,13 @@
       "English": "Change your selections",
       "French": "Changer vos sélections",
       "id": "BenefitsPane.edit_selections"
+    },
+    {
+      "key": "Load more",
+      "English": "Show results",
+      "French": "Montrer les résultats",
+      "id": "Load more",
+      "section": ""
     }
   ],
   "questions": [
