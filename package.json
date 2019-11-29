@@ -54,6 +54,7 @@
     "eslint-utils": "1.4.1",
     "express": "^4.17.1",
     "helmet": "^3.18.0",
+    "helmet-csp": "^2.9.4",
     "isomorphic-unfetch": "^3.0.0",
     "jest-haste-map": "^24.9.0",
     "jest-resolve": "^24.9.0",
