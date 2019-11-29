@@ -37,6 +37,7 @@ export class BenefitList extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
+    this.state.limit = 5;
     if (
       JSON.stringify(this.props.filteredBenefits) !==
       JSON.stringify(prevProps.filteredBenefits)
