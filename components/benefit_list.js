@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import BenefitCard from "./benefit_cards";
+import Button from "./button";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
 
@@ -24,9 +25,15 @@ const list = css`
   }
 `;
 
+const center = css`
+  text-align: center;
+  padding-top: 25px;
+`;
+
 export class BenefitList extends React.Component {
   state = {
-    loading: false
+    loading: false,
+    limit: 5 //should initialze to airtable value
   };
 
   componentDidUpdate(prevProps) {
@@ -40,6 +47,12 @@ export class BenefitList extends React.Component {
       }, 500);
     }
   }
+
+  onLoadMore = () => {
+    this.setState({
+      limit: this.state.limit + 5 //the 5 should be an airtable variable
+    });
+  };
 
   cleanSortingPriority = sp => {
     let ARBITRARY_HIGH_NUM = 5000;
@@ -93,7 +106,7 @@ export class BenefitList extends React.Component {
       </div>
     ) : (
       <ul css={list}>
-        {sortedBenefits.map((benefit, i) => (
+        {sortedBenefits.slice(0, this.state.limit).map((benefit, i) => (
           <li
             key={benefit.id}
             aria-label={
@@ -113,6 +126,22 @@ export class BenefitList extends React.Component {
             />
           </li>
         ))}
+
+        {this.state.limit >= sortedBenefits.length ? null : (
+          <div css={center}>
+            <Button
+              arrow={false}
+              tabIndex="-1"
+              mobileFullWidth={true}
+              onClick={() => this.onLoadMore()}
+            >
+              {t("Load more")} {this.state.limit + 1}-
+              {sortedBenefits.length < this.state.limit + 5
+                ? sortedBenefits.length
+                : this.state.limit + 5}
+            </Button>
+          </div>
+        )}
       </ul>
     );
   }
