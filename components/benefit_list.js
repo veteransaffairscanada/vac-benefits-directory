@@ -136,7 +136,7 @@ export class BenefitList extends React.Component {
               mobileFullWidth={true}
               onClick={() => this.onLoadMore()}
             >
-              {t("Load more")} {this.state.limit + 1}-
+              {t("Load more")} {this.state.limit + 1} -{" "}
               {sortedBenefits.length < this.state.limit + 5
                 ? sortedBenefits.length
                 : this.state.limit + 5}
