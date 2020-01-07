@@ -33,7 +33,8 @@ const center = css`
 export class BenefitList extends React.Component {
   state = {
     loading: false,
-    limit: 5 //should initialze to airtable value
+    limit: 3,
+    loadNumber: 3
   };
 
   componentDidUpdate(prevProps) {
@@ -41,7 +42,7 @@ export class BenefitList extends React.Component {
       JSON.stringify(this.props.filteredBenefits) !==
       JSON.stringify(prevProps.filteredBenefits)
     ) {
-      this.state.limit = 5;
+      this.state.limit = 3;
       this.setState({ loading: true });
       setTimeout(() => {
         this.setState({ loading: false });
@@ -51,7 +52,7 @@ export class BenefitList extends React.Component {
 
   onLoadMore = () => {
     this.setState({
-      limit: this.state.limit + 5 //the 5 should be an airtable variable
+      limit: this.state.limit + this.state.loadNumber //the 5 should be an airtable variable
     });
   };
 
@@ -137,9 +138,9 @@ export class BenefitList extends React.Component {
               onClick={() => this.onLoadMore()}
             >
               {t("Load more")} {this.state.limit + 1}-
-              {sortedBenefits.length < this.state.limit + 5
+              {sortedBenefits.length < this.state.limit + this.state.loadNumber
                 ? sortedBenefits.length
-                : this.state.limit + 5}
+                : this.state.limit + this.state.loadNumber}
             </Button>
           </div>
         )}
