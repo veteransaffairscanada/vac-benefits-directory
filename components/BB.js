@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 import { getPrintUrl, getGuidedExperienceUrl } from "../selectors/urls";
 import { withTheme } from "@material-ui/core/styles";
+import { getBenefitCountString } from "../utils/common";
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import Container from "../components/container";
@@ -14,6 +15,7 @@ import BreadCrumbs from "../components/breadcrumbs";
 import Paper from "./paper";
 import Header from "./typography/header";
 import ShareBox from "../components/share_box";
+import { getProfileFilters, getFilteredBenefits } from "../selectors/benefits";
 
 const shareBox = css`
   margin-top: 25px;
@@ -29,9 +31,19 @@ const topMatter = css`
 `;
 
 export class BB extends Component {
-  render() {
-    const { t, url, store, guidedExperienceUrl, printUrl } = this.props; // eslint-disable-line no-unused-vars
+  ResultsString = (b, t) => {
+    return b.length + " " + t("breadcrumbs.ben_dir_page_title");
+  };
 
+  render() {
+    const {
+      t,
+      url,
+      store,
+      guidedExperienceUrl,
+      printUrl,
+      filteredBenefits
+    } = this.props; // eslint-disable-line no-unused-vars
     const breadcrumbs = [
       {
         url: guidedExperienceUrl,
@@ -59,7 +71,7 @@ export class BB extends Component {
           <Grid container spacing={32}>
             <Grid item xs={8}>
               <Header headingLevel="h1" size="xl">
-                {t("breadcrumbs.ben_dir_page_title")}
+                {this.ResultsString(filteredBenefits, t)}
               </Header>
             </Grid>
             <Grid item xs={4}>
@@ -84,7 +96,7 @@ export class BB extends Component {
 
 const mapStateToProps = (reduxState, props) => {
   return {
-    benefits: reduxState.benefits,
+    filteredBenefits: getFilteredBenefits(reduxState, props),
     guidedExperienceUrl: getGuidedExperienceUrl(reduxState, props),
     printUrl: getPrintUrl(reduxState, props, {})
   };
@@ -96,7 +108,8 @@ BB.propTypes = {
   guidedExperienceUrl: PropTypes.string,
   printUrl: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  filteredBenefits: PropTypes.array.isRequired
 };
 
 export default withTheme()(connect(mapStateToProps)(BB));
