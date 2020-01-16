@@ -197,6 +197,7 @@ export class BenefitsPane extends Component {
                   searchString={searchString}
                   savedList={true}
                   store={store}
+                  showAllBenefits={false}
                 />
 
                 {nonFilteredBenefits.length > 0 ? <div css={spacer} /> : null}
@@ -222,6 +223,7 @@ export class BenefitsPane extends Component {
                     searchString={searchString}
                     savedList={true}
                     store={store}
+                    showAllBenefits={false}
                   />
                 )}
               </Grid>

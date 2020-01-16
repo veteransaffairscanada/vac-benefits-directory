@@ -33,8 +33,8 @@ const center = css`
 export class BenefitList extends React.Component {
   state = {
     loading: false,
-    limit: 3,
-    loadNumber: 3
+    resultsShown: parseInt(this.props.t("loadmore.num")),
+    loadNumber: parseInt(this.props.t("loadmore.num"))
   };
 
   componentDidUpdate(prevProps) {
@@ -42,7 +42,7 @@ export class BenefitList extends React.Component {
       JSON.stringify(this.props.filteredBenefits) !==
       JSON.stringify(prevProps.filteredBenefits)
     ) {
-      this.state.limit = 3;
+      this.state.resultsShown = this.state.loadNumber;
       this.setState({ loading: true });
       setTimeout(() => {
         this.setState({ loading: false });
@@ -52,7 +52,7 @@ export class BenefitList extends React.Component {
 
   onLoadMore = () => {
     this.setState({
-      limit: this.state.limit + this.state.loadNumber //the 5 should be an airtable variable
+      resultsShown: this.state.resultsShown + this.state.loadNumber
     });
   };
 
@@ -96,7 +96,8 @@ export class BenefitList extends React.Component {
       currentLanguage,
       searchString,
       savedList,
-      store
+      store,
+      showAllBenefits
     } = this.props;
     const sortedBenefits = searchString
       ? filteredBenefits
@@ -108,28 +109,34 @@ export class BenefitList extends React.Component {
       </div>
     ) : (
       <ul css={list}>
-        {sortedBenefits.slice(0, this.state.limit).map((benefit, i) => (
-          <li
-            key={benefit.id}
-            aria-label={
-              this.props.t("current-language-code") === "en"
-                ? benefit.vacNameEn
-                : benefit.vacNameFr
-            }
-          >
-            <BenefitCard
-              id={"bc" + i}
-              benefit={benefit}
-              t={t}
-              currentLanguage={currentLanguage}
+        {sortedBenefits
+          .slice(
+            0,
+            showAllBenefits ? sortedBenefits.length : this.state.resultsShown
+          )
+          .map((benefit, i) => (
+            <li
               key={benefit.id}
-              savedList={savedList}
-              store={store}
-            />
-          </li>
-        ))}
+              aria-label={
+                this.props.t("current-language-code") === "en"
+                  ? benefit.vacNameEn
+                  : benefit.vacNameFr
+              }
+            >
+              <BenefitCard
+                id={"bc" + i}
+                benefit={benefit}
+                t={t}
+                currentLanguage={currentLanguage}
+                key={benefit.id}
+                savedList={savedList}
+                store={store}
+              />
+            </li>
+          ))}
 
-        {this.state.limit >= sortedBenefits.length ? null : (
+        {showAllBenefits ||
+        this.state.resultsShown >= sortedBenefits.length ? null : (
           <div css={center}>
             <Button
               arrow={false}
@@ -137,10 +144,11 @@ export class BenefitList extends React.Component {
               mobileFullWidth={true}
               onClick={() => this.onLoadMore()}
             >
-              {t("Load more")} {this.state.limit + 1}-
-              {sortedBenefits.length < this.state.limit + this.state.loadNumber
+              {t("Load more")} {this.state.resultsShown + 1} -{" "}
+              {sortedBenefits.length <
+              this.state.resultsShown + this.state.loadNumber
                 ? sortedBenefits.length
-                : this.state.limit + this.state.loadNumber}
+                : this.state.resultsShown + this.state.loadNumber}
             </Button>
           </div>
         )}
@@ -155,7 +163,8 @@ BenefitList.propTypes = {
   filteredBenefits: PropTypes.array.isRequired,
   savedList: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
-  store: PropTypes.object
+  store: PropTypes.object,
+  showAllBenefits: PropTypes.bool.isRequired
 };
 
 export default BenefitList;

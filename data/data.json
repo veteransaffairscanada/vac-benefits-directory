@@ -3378,6 +3378,13 @@
       "French": "Montrer les résultats",
       "id": "Load more",
       "section": ""
+    },
+    {
+      "key": "loadmore.num",
+      "English": "5",
+      "French": "5",
+      "id": "loadmore.num",
+      "section": ""
     }
   ],
   "questions": [

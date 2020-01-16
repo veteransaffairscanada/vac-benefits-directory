@@ -46,6 +46,7 @@ export class AllBenefits extends Component {
                   searchString={this.props.searchString}
                   savedList={true}
                   store={this.props.store}
+                  showAllBenefits={true}
                 />
               </div>
             </Grid>
