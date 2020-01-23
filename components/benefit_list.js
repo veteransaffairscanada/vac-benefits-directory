@@ -122,36 +122,37 @@ export class BenefitList extends React.Component {
         <CircularProgress size={100} />
       </div>
     ) : (
-      <ul css={list}>
-        {sortedBenefits
-          .slice(
-            0,
-            showAllBenefits ? sortedBenefits.length : this.state.resultsShown
-          )
-          .map((benefit, i) => (
-            <li
-              key={benefit.id}
-              aria-label={
-                this.props.t("current-language-code") === "en"
-                  ? benefit.vacNameEn
-                  : benefit.vacNameFr
-              }
-            >
-              <BenefitCard
-                id={"bc" + i}
-                benefit={benefit}
-                t={t}
-                currentLanguage={currentLanguage}
+      <div>
+        <ul css={list}>
+          {sortedBenefits
+            .slice(
+              0,
+              showAllBenefits ? sortedBenefits.length : this.state.resultsShown
+            )
+            .map((benefit, i) => (
+              <li
                 key={benefit.id}
-                savedList={savedList}
-                store={store}
-              />
-            </li>
-          ))}
-
-        {showAllBenefits ||
-        this.state.resultsShown >= sortedBenefits.length ? null : (
-          <div css={center}>
+                aria-label={
+                  this.props.t("current-language-code") === "en"
+                    ? benefit.vacNameEn
+                    : benefit.vacNameFr
+                }
+              >
+                <BenefitCard
+                  id={"bc" + i}
+                  benefit={benefit}
+                  t={t}
+                  currentLanguage={currentLanguage}
+                  key={benefit.id}
+                  savedList={savedList}
+                  store={store}
+                />
+              </li>
+            ))}
+        </ul>
+        <div css={center}>
+          {showAllBenefits ||
+          this.state.resultsShown >= sortedBenefits.length ? null : (
             <Button
               arrow={false}
               tabIndex="-1"
@@ -167,9 +168,9 @@ export class BenefitList extends React.Component {
                   : this.state.resultsShown + this.state.loadNumber}
               </div>
             </Button>
-          </div>
-        )}
-      </ul>
+          )}
+        </div>
+      </div>
     );
   }
 }
@@ -182,7 +183,7 @@ BenefitList.propTypes = {
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object,
   showAllBenefits: PropTypes.bool.isRequired,
-  parentCallback: PropTypes.func.isRequired
+  parentCallback: PropTypes.func
 };
 
 export default BenefitList;

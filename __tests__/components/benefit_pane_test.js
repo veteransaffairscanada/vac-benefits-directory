@@ -36,6 +36,7 @@ describe("BenefitsPane", () => {
       clearNeeds: () => true,
       id: "BenefitsPane",
       setSelectedNeeds: () => true,
+      parentCallback: () => true,
       url: { query: {} },
       profileFilters: {
         serviceType: "",
@@ -134,20 +135,13 @@ describe("BenefitsPane", () => {
     });
 
     it("shows B3.All benefits to consider when no filters are selected", () => {
-      mounted().setProps({
-        profileFilters: {
-          patronType: "",
-          serviceType: "",
-          statusAndVitals: ""
-        }
-      });
       mounted().setProps({ selectedNeeds: {} });
       expect(
         mounted()
           .find(".BenefitsCounter")
           .last()
           .text()
-      ).toEqual("B3.All benefits to consider");
+      ).toContain("BenefitsPane.showing_results");
     });
 
     describe("countSelection", () => {
@@ -207,20 +201,6 @@ describe("BenefitsPane", () => {
             .instance()
             .countString(["a", "b"], props.t)
         ).toEqual("B3.All benefits to consider");
-      });
-
-      it("returns search results if there is a search string", () => {
-        mounted().setProps({ searchString: "t" });
-        expect(
-          mounted()
-            .instance()
-            .countString(["a", "b"], props.t)
-        ).toEqual("B3.search_results");
-        expect(
-          mounted()
-            .instance()
-            .countString(["a"], props.t)
-        ).toEqual("B3.search_results_single");
       });
     });
 

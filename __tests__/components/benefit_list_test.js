@@ -23,7 +23,10 @@ describe("BenefitList", () => {
     props = {
       filteredBenefits: benefitsFixture,
       onRef: k => k,
-      currentLanguage: "en"
+      currentLanguage: "en",
+      parentCallback: x => x,
+      resultsShown: 3,
+      loadNumber: 3
     };
 
     mockStore = configureStore();
@@ -90,11 +93,10 @@ describe("BenefitList", () => {
     ]);
   });
 
-  it("displays the correct number of benefits cards", () => {
-    expect(
-      mount(<BenefitList {...props} {...reduxData} />).find("BenefitCard")
-        .length
-    ).toEqual(5);
+  it("displays the correct number of benefits cards according to resultsShown", () => {
+    let mounted = mount(<BenefitList {...props} {...reduxData} />);
+    mounted.setState({ resultsShown: 3 });
+    expect(mounted.find("BenefitCard").length).toEqual(3);
   });
 
   it("shows a loading circle when the page is loading", () => {
@@ -105,13 +107,6 @@ describe("BenefitList", () => {
 
   it("Shows the load more button when there are more benefits to be loaded", () => {
     let mounted = mount(<BenefitList {...props} {...reduxData} />);
-    mounted.setState({ limit: 2 });
-    expect(mounted.find("Button").length).toEqual(3);
-  });
-
-  it("Displays the correct number of benefit cards according to limit", () => {
-    let mounted = mount(<BenefitList {...props} {...reduxData} />);
-    mounted.setState({ limit: 2 });
-    expect(mounted.find("BenefitCard").length).toEqual(2);
+    expect(mounted.find("Button").exists).toBeTruthy();
   });
 });

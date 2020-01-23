@@ -293,5 +293,7 @@ BenefitsPane.propTypes = {
   store: PropTypes.object
 };
 
+export default connect(
   mapStateToProps,
-export default connect(mapStateToProps, mapDispatchToProps)(BenefitsPane);
+  mapDispatchToProps
+)(BenefitsPane);
