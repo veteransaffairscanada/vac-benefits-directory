@@ -4,6 +4,7 @@ import BenefitCard from "./benefit_cards";
 import Button from "./button";
 
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { getFilteredBenefits } from "../selectors/benefits";
 
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
@@ -55,16 +56,14 @@ export class BenefitList extends React.Component {
     this.props.parentCallback(this.state.resultsShown);
   }
 
-  onLoadMore = () => {
-    this.setState(
-      {
-        resultsShown: this.state.resultsShown + this.state.loadNumber
-      },
-      this.sendToParent
-    );
+  onLoadMore = benefitsMatching => {
+    this.state.resultsShown + this.state.loadNumber > benefitsMatching
+      ? this.setState({ resultsShown: benefitsMatching }, this.sendToParent)
+      : this.setState(
+          { resultsShown: this.state.resultsShown + this.state.loadNumber },
+          this.sendToParent
+        );
   };
-
-  getLoadMore = () => {};
 
   sendToParent = () => {
     this.props.parentCallback(this.state.resultsShown);
@@ -157,10 +156,9 @@ export class BenefitList extends React.Component {
               arrow={false}
               tabIndex="-1"
               mobileFullWidth={true}
-              onClick={() => this.onLoadMore()}
+              onClick={() => this.onLoadMore(sortedBenefits.length)}
             >
               <div>
-                {this.getLoadMore()}
                 {t("Load more")} {this.state.resultsShown + 1} -{" "}
                 {sortedBenefits.length <
                 this.state.resultsShown + this.state.loadNumber
@@ -183,7 +181,8 @@ BenefitList.propTypes = {
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object,
   showAllBenefits: PropTypes.bool.isRequired,
-  parentCallback: PropTypes.func
+  parentCallback: PropTypes.func,
+  filteredBenefits: PropTypes.array.isRequired
 };
 
 export default BenefitList;
