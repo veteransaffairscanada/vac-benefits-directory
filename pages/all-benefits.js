@@ -19,6 +19,8 @@ const list = css`
 `;
 
 export class AllBenefits extends Component {
+  callbackFunction = childData => {};
+
   render() {
     const { i18n, t, url } = this.props; // eslint-disable-line no-unused-vars
     return (
@@ -47,6 +49,7 @@ export class AllBenefits extends Component {
                   savedList={true}
                   store={this.props.store}
                   showAllBenefits={true}
+                  parentCallback={this.callbackFunction}
                 />
               </div>
             </Grid>

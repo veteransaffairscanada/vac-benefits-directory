@@ -43,6 +43,7 @@ export class BenefitList extends React.Component {
       JSON.stringify(prevProps.filteredBenefits)
     ) {
       this.state.resultsShown = this.state.loadNumber;
+      this.props.parentCallback(this.state.resultsShown);
       this.setState({ loading: true });
       setTimeout(() => {
         this.setState({ loading: false });
@@ -50,10 +51,23 @@ export class BenefitList extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.props.parentCallback(this.state.resultsShown);
+  }
+
   onLoadMore = () => {
-    this.setState({
-      resultsShown: this.state.resultsShown + this.state.loadNumber
-    });
+    this.setState(
+      {
+        resultsShown: this.state.resultsShown + this.state.loadNumber
+      },
+      this.sendToParent
+    );
+  };
+
+  getLoadMore = () => {};
+
+  sendToParent = () => {
+    this.props.parentCallback(this.state.resultsShown);
   };
 
   cleanSortingPriority = sp => {
@@ -97,12 +111,12 @@ export class BenefitList extends React.Component {
       searchString,
       savedList,
       store,
-      showAllBenefits
+      showAllBenefits,
+      parentCallback
     } = this.props;
     const sortedBenefits = searchString
       ? filteredBenefits
       : this.sortBenefits(filteredBenefits);
-
     return loading ? (
       <div css={Div}>
         <CircularProgress size={100} />
@@ -144,11 +158,14 @@ export class BenefitList extends React.Component {
               mobileFullWidth={true}
               onClick={() => this.onLoadMore()}
             >
-              {t("Load more")} {this.state.resultsShown + 1} -{" "}
-              {sortedBenefits.length <
-              this.state.resultsShown + this.state.loadNumber
-                ? sortedBenefits.length
-                : this.state.resultsShown + this.state.loadNumber}
+              <div>
+                {this.getLoadMore()}
+                {t("Load more")} {this.state.resultsShown + 1} -{" "}
+                {sortedBenefits.length <
+                this.state.resultsShown + this.state.loadNumber
+                  ? sortedBenefits.length
+                  : this.state.resultsShown + this.state.loadNumber}
+              </div>
             </Button>
           </div>
         )}
@@ -164,7 +181,8 @@ BenefitList.propTypes = {
   savedList: PropTypes.bool.isRequired,
   searchString: PropTypes.string.isRequired,
   store: PropTypes.object,
-  showAllBenefits: PropTypes.bool.isRequired
+  showAllBenefits: PropTypes.bool.isRequired,
+  parentCallback: PropTypes.func.isRequired
 };
 
 export default BenefitList;

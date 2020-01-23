@@ -3381,10 +3381,17 @@
     },
     {
       "key": "loadmore.num",
-      "English": "5",
-      "French": "5",
+      "English": "3",
+      "French": "3",
       "id": "loadmore.num",
       "section": ""
+    },
+    {
+      "section": "BenefitsPane",
+      "key": "showing_results",
+      "English": "Showing results 1 - ",
+      "French": "montrant les résultats 1 -",
+      "id": "BenefitsPane.showing_results"
     }
   ],
   "questions": [

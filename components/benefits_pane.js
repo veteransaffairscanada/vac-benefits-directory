@@ -65,7 +65,16 @@ const sticky = css`
 
 export class BenefitsPane extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    message: ""
+  };
+
+  callbackFunction = childData => {
+    this.setState({ message: childData });
+  };
+
+  getResultsNum = t => {
+    return t("BenefitsPane.showing_results") + this.state.message;
   };
 
   clearFilters = () => {
@@ -130,13 +139,8 @@ export class BenefitsPane extends Component {
               headingLevel="h2"
               autoFocus={true}
             >
-              {filteredBenefitsWithoutSearch.length === 0
-                ? t("BenefitsPane.no_filtered_benefits")
-                : this.countString(
-                    filteredBenefits.concat(
-                      searchString.trim() === "" ? [] : nonFilteredBenefits
-                    )
-                  )}
+              <div></div>
+              {this.getResultsNum(this.props.t)}
             </Header>
             {filteredBenefitsWithoutSearch.length === 0 ? (
               <NoResultsButtons
@@ -198,8 +202,8 @@ export class BenefitsPane extends Component {
                   savedList={true}
                   store={store}
                   showAllBenefits={false}
+                  parentCallback={this.callbackFunction}
                 />
-
                 {nonFilteredBenefits.length > 0 ? <div css={spacer} /> : null}
                 <ResultsHeader
                   benefitCount={nonFilteredBenefits.length}
@@ -289,7 +293,5 @@ BenefitsPane.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(BenefitsPane);
+export default connect(mapStateToProps, mapDispatchToProps)(BenefitsPane);
