@@ -50,4 +50,9 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "fbas"
+          effect: "NoSchedule"
 status: {}
