@@ -74,7 +74,10 @@ export class BenefitsPane extends Component {
   };
 
   getResultsNum = t => {
-    return t("BenefitsPane.showing_results") + this.state.message;
+    return (
+      t("BenefitsPane.showing_results", { x: this.state.message }) +
+      this.props.filteredBenefits.length
+    );
   };
 
   clearFilters = () => {

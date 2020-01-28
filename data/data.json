@@ -3389,8 +3389,8 @@
     {
       "section": "BenefitsPane",
       "key": "showing_results",
-      "English": "Showing results 1 - ",
-      "French": "montrant les résultats 1 -",
+      "English": "Showing results 1 - {{x}} of ",
+      "French": "montrant les résultats 1 - {{x}} de ",
       "id": "BenefitsPane.showing_results"
     }
   ],
