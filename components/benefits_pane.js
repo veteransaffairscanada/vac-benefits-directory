@@ -73,11 +73,18 @@ export class BenefitsPane extends Component {
     this.setState({ message: childData });
   };
 
-  getResultsNum = t => {
-    return (
-      t("BenefitsPane.showing_results", { x: this.state.message }) +
-      this.props.filteredBenefits.length
-    );
+  getResultsNum = (t, fb) => {
+    if (fb === 0) {
+      return t("B3.No benefits");
+    }
+    if (fb === 1) {
+      return t("B3.One benefit");
+    } else {
+      return (
+        t("BenefitsPane.showing_results", { x: this.state.message }) +
+        this.props.filteredBenefits.length
+      );
+    }
   };
 
   clearFilters = () => {
@@ -143,7 +150,7 @@ export class BenefitsPane extends Component {
               autoFocus={true}
             >
               <div></div>
-              {this.getResultsNum(this.props.t)}
+              {this.getResultsNum(this.props.t, filteredBenefits.length)}
             </Header>
             {filteredBenefitsWithoutSearch.length === 0 ? (
               <NoResultsButtons
