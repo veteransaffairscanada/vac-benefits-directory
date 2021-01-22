@@ -50,8 +50,9 @@ describe("BB", () => {
       id: "BB",
       filteredBenefits: [],
       setSelectedNeeds: () => true,
-      url: { query: {} },
-      printUrl: "/print"
+      url: { query: "?lng=en&patronType=organization" },
+      printUrl: "/print",
+      guidedExperienceUrl: "?lng=en&patronType=organization"
     };
     _shallowBB = undefined;
     _mountedBB = undefined;
