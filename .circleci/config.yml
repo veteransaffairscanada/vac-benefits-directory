@@ -25,6 +25,7 @@ jobs:
           resource-group: << parameters.resource-group >>
           install-kubectl: true
           perform-login: true
+          get-admin-credentials: true
 
   deployment_development_docker:
     docker:
@@ -77,7 +78,6 @@ jobs:
 workflows:
   deployment_aks_lab:
     jobs:
-    
       - deployment_development_docker:
           filters:
             branches:
@@ -86,7 +86,7 @@ workflows:
                 - master
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
           namespace: "lab"
           filters:
             branches:
@@ -95,7 +95,7 @@ workflows:
                 - master
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
           namespace: "lab"
           resource-name: ${AKS_DEPLOYMENT_LAB}
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
@@ -117,8 +117,8 @@ workflows:
                 - master
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "dev"
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
+          namespace: "fbas-dev"
           filters:
             branches:
               ignore:
@@ -126,8 +126,8 @@ workflows:
                 - master
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "dev"
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
+          namespace: "fbas-dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
