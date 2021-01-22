@@ -65,6 +65,9 @@ class HeaderLink extends Component {
     if (hasBorder === true) cName.unshift(borderStyle);
     cName.unshift(style);
 
+    console.log("href", href);
+    console.log("children", children);
+
     return (
       <Link href={href}>
         <a css={cName} href={href} onClick={onClick} {...otherProps}>

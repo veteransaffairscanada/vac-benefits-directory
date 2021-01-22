@@ -8,7 +8,8 @@ describe("HeaderLink", () => {
   let props;
   beforeEach(() => {
     props = {
-      children: "header"
+      children: "canada.ca",
+      href: "https://www.canada.ca/en.html"
     };
   });
 
@@ -18,6 +19,6 @@ describe("HeaderLink", () => {
   });
 
   it("shows children", () => {
-    expect(mount(<HeaderLink {...props} />).text()).toEqual("header");
+    expect(mount(<HeaderLink {...props} />).text()).toEqual("canada.ca");
   });
 });
