@@ -113,6 +113,34 @@ workflows:
                 - develop
                 - master
 
+  deployment_aks_staging:
+    jobs:
+      - deployment_development_docker:
+          filters:
+            branches:
+              only: develop
+      - create-aks-deployment:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
+          namespace: "fbas-staging"
+          filters:
+            branches:
+              only: develop
+      - azure-aks/update-container-image:
+          cluster-name: ${AKS_CLUSTERNAME_DEV}
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
+          namespace: "fbas-staging"
+          resource-name: ${AKS_DEPLOYMENT}
+          get-admin-credentials: true
+          get-rollout-status: true
+          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          record: true
+          requires:
+            - deployment_development_docker
+          filters:
+            branches:
+              only: develop
+
   deployment_aks:
     jobs:
       - deployment_development_docker:
