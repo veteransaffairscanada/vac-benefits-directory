@@ -4,14 +4,7 @@ metadata:
   generation: 1
   labels:
     app: vac-benefits-directory
-    name: "find-benefits-and-services"
-    keel.sh/policy: all
-    keel.sh/trigger: poll
   name: find-benefits-and-services
-  namespace: default
-  annotations:
-    flux.weave.works/automated: "true"
-    keel.sh/pollSchedule: "@every 2m"
 spec:
   progressDeadlineSeconds: 600
   replicas: 3
@@ -33,10 +26,21 @@ spec:
         role: front-end
     spec:
       containers:
-        - image: veteransaffairscanada/vac-benefits-directory:latest
+        - image: veteransaffairscanada/vac-benefits-directory:v1.1.0
           name: vac-benefits-directory
           imagePullPolicy: Always
-          resources: {}
+          ports:
+            - containerPort: 3000
+              name: http
+              hostPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 200Mi
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           env:
@@ -50,4 +54,9 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+      tolerations:
+        - key: "app"
+          operator: "Equal"
+          value: "fbas"
+          effect: "NoSchedule"
 status: {}

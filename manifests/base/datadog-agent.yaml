@@ -1,13 +1,16 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: datadog-agent
 spec:
+  selector:
+    matchLabels:
+      name: datadog-agent
   template:
     metadata:
       labels:
         app: datadog-agent
-      name: datadog-agent
+        name: datadog-agent
     spec:
       serviceAccountName: datadog-agent
       containers:

@@ -18,6 +18,7 @@ jobs:
       namespace:
         description: Namespace to use
         type: string
+        default: "fbas-dev"
     steps:
       - checkout
       - azure-aks/update-kubeconfig-with-credentials:
@@ -25,44 +26,8 @@ jobs:
           resource-group: << parameters.resource-group >>
           install-kubectl: true
           perform-login: true
-
-  build_and_test:
-    docker:
-      - image: cypress/base:10
-    working_directory: ~/repo
-
-    steps:
-      # checkout branch
-      - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v3-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v3-dependencies-
-      # install app
-      - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-            - ~/.cache
-            - /home/circleci/.cache
-          key: v3-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      - run:
-          name: "Jest tests"
-          command: yarn test -w2
-      - run:
-          name: "Linting"
-          command: yarn lint
-      - run:
-          name: "Cypress"
-          command: yarn cypress:ci
-      - run:
-          name: "Report failing master"
-          command: ~/repo/.circleci/notify_failure.sh
-          when: on_fail
+          get-admin-credentials: true
+          overwrite-existing: true
 
   deployment_development_docker:
     docker:
@@ -113,37 +78,6 @@ jobs:
     working_directory: ~/repo
 
 workflows:
-  deployment_aks_lab:
-    jobs:
-      - deployment_development_docker:
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
-      - create-aks-deployment:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "lab"
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
-      - azure-aks/update-container-image:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "lab"
-          resource-name: ${AKS_DEPLOYMENT_LAB}
-          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-          record: true
-          requires:
-            - deployment_development_docker
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
   deployment_aks_dev:
     jobs:
       - deployment_development_docker:
@@ -154,8 +88,8 @@ workflows:
                 - master
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "dev"
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
+          namespace: "fbas-dev"
           filters:
             branches:
               ignore:
@@ -163,9 +97,12 @@ workflows:
                 - master
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "dev"
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
+          namespace: "fbas-dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
+          get-admin-credentials: true
+          get-rollout-status: true
+          show-kubectl-command: true
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
@@ -175,7 +112,8 @@ workflows:
               ignore:
                 - develop
                 - master
-  deployment_aks_ua:
+
+  deployment_aks_staging:
     jobs:
       - deployment_development_docker:
           filters:
@@ -183,16 +121,18 @@ workflows:
               only: develop
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "uat"
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
+          namespace: "fbas-staging"
           filters:
             branches:
               only: develop
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "uat"
-          resource-name: ${AKS_DEPLOYMENT_UA}
+          resource-group: ${AKS_RESOURCE_GROUP_DEV}
+          namespace: "fbas-staging"
+          resource-name: ${AKS_DEPLOYMENT}
+          get-admin-credentials: true
+          get-rollout-status: true
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
@@ -200,6 +140,7 @@ workflows:
           filters:
             branches:
               only: develop
+
   deployment_aks:
     jobs:
       - deployment_development_docker:

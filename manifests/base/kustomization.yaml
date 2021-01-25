@@ -1,5 +1,4 @@
 resources:
-  - keel-deployment.yaml
   - datadog-agent.yaml
   - datadog-serviceaccount.yaml
   - vac-benefits-directory-deployment.yaml

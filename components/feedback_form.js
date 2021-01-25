@@ -86,6 +86,11 @@ export class FeedbackForm extends Component {
     const { t, questions, store, url } = this.props;
     const question = questions.filter(x => x.variable_name === "feedback")[0];
 
+    console.log("question", question);
+    console.log("t", t("current-language-code"));
+    console.log("store", store);
+    console.log("url", url);
+
     return (
       <form>
         <RadioSelector
