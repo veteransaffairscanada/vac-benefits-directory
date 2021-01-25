@@ -100,6 +100,9 @@ workflows:
           resource-group: ${AKS_RESOURCE_GROUP_DEV}
           namespace: "fbas-dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
+          get-admin-credentials: true
+          get-rollout-status: true
+          show-kubectl-command: true
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:develop"
           record: true
           requires:
