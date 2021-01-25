@@ -27,7 +27,7 @@ jobs:
           install-kubectl: true
           perform-login: true
           get-admin-credentials: true
-          overwrite-existing: false
+          overwrite-existing: true
 
   deployment_development_docker:
     docker:
