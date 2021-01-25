@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   name: vac-benefits-directory
   annotations:
-    kubernetes.io/ingress.class: traefik
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
-    - host: benefits-avantages.veterans.gc.ca
+    - host: benefits-avantages.aks.cloud.veterans.gc.ca
       http:
         paths:
           - path: /

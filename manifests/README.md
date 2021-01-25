@@ -53,4 +53,4 @@ To enable logging to Cloudwatch in EKS you need to do the following:
 
 The easiest way to start with AKS is to use `az`. Once you have created your cluster and switch into the context, you can run:
 
-`kustomize build manifests/overlays/aks
+`kustomize build manifests/overlays/aks | kubectl apply -f -`

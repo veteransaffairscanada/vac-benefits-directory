@@ -103,7 +103,7 @@ workflows:
           get-admin-credentials: true
           get-rollout-status: true
           show-kubectl-command: true
-          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+          container-image-updates: "find-benefits-and-services=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
             - deployment_development_docker
