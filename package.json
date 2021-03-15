@@ -63,7 +63,7 @@
     "lunr": "^2.3.8",
     "lunr-languages": "^1.4.0",
     "markdown-it": "^10.0.0",
-    "next": "^9.3.4",
+    "next": "^10.0.6",
     "next-redux-wrapper": "^3.0.0-alpha.2",
     "preact": "8.5.2",
     "prop-types": "^15.6.0",
@@ -83,7 +83,7 @@
     "regenerator-runtime": "^0.13.2",
     "reselect": "^4.0.0",
     "universal-cookie": "^4.0.3",
-    "webpack": "^4.42.0",
+    "webpack": "^5.0.0",
     "snyk": "^1.369.3"
   },
   "devDependencies": {
