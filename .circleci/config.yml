@@ -123,6 +123,7 @@ workflows:
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
+          subscription: ${SUBSCRIPTION}
           namespace: "fbas-dev"
           filters:
             branches:
