@@ -80,39 +80,6 @@ jobs:
     working_directory: ~/repo
 
 workflows:
-  deployment_aks_lab:
-    jobs:
-    
-      - deployment_development_docker:
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
-      - create-aks-deployment:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          subscription: ${SUBSCRIPTION}
-          namespace: "fbas-lab"
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
-      - azure-aks/update-container-image:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "fbas-lab"
-          resource-name: ${AKS_DEPLOYMENT_LAB}
-          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-          record: true
-          requires:
-            - deployment_development_docker
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
   deployment_aks_dev:
     jobs:
       - deployment_development_docker:
@@ -134,6 +101,7 @@ workflows:
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
+          subscription: ${SUBSCRIPTION}
           namespace: "fbas-dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
