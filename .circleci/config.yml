@@ -104,6 +104,7 @@ workflows:
           subscription: ${SUBSCRIPTION}
           namespace: "fbas-dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
+          get-admin-credentials: true
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
