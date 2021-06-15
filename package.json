@@ -113,7 +113,7 @@
     "pretty-quick": "^1.11.0",
     "react-styleguidist": "^9.1.16",
     "react-test-renderer": "^16.13.0",
-    "semantic-release": "^15.13.21",
+    "semantic-release": "^17.2.3",
     "start-server-and-test": "^1.10.8",
     "webpack-bundle-analyzer": "^3.6.0"
   },
