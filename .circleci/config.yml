@@ -87,7 +87,7 @@ workflows:
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "lab"
+          namespace: "fbas-lab"
           filters:
             branches:
               ignore:
@@ -96,7 +96,7 @@ workflows:
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "lab"
+          namespace: "fbas-lab"
           resource-name: ${AKS_DEPLOYMENT_LAB}
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
@@ -118,7 +118,7 @@ workflows:
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "dev"
+          namespace: "fbas-dev"
           filters:
             branches:
               ignore:
@@ -127,7 +127,7 @@ workflows:
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "dev"
+          namespace: "fbas-dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
@@ -138,31 +138,6 @@ workflows:
               ignore:
                 - develop
                 - master
-  deployment_aks_ua:
-    jobs:
-      - deployment_development_docker:
-          filters:
-            branches:
-              only: develop
-      - create-aks-deployment:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "uat"
-          filters:
-            branches:
-              only: develop
-      - azure-aks/update-container-image:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "uat"
-          resource-name: ${AKS_DEPLOYMENT_UA}
-          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-          record: true
-          requires:
-            - deployment_development_docker
-          filters:
-            branches:
-              only: develop
   deployment_aks:
     jobs:
       - deployment_development_docker:
