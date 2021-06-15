@@ -18,6 +18,9 @@ jobs:
       namespace:
         description: Namespace to use
         type: string
+      subscription:
+        description: Subscription id
+        type: string
     steps:
       - checkout
       - azure-aks/update-kubeconfig-with-credentials:
@@ -25,6 +28,7 @@ jobs:
           resource-group: << parameters.resource-group >>
           install-kubectl: true
           perform-login: true
+          subscription: << parameters.subscription >>
 
   deployment_development_docker:
     docker:
