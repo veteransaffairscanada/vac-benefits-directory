@@ -18,6 +18,9 @@ jobs:
       namespace:
         description: Namespace to use
         type: string
+      subscription:
+        description: Subscription id
+        type: string
     steps:
       - checkout
       - azure-aks/update-kubeconfig-with-credentials:
@@ -25,6 +28,8 @@ jobs:
           resource-group: << parameters.resource-group >>
           install-kubectl: true
           perform-login: true
+          subscription: << parameters.subscription >>
+          get-admin-credentials: true
 
   deployment_development_docker:
     docker:
@@ -75,38 +80,6 @@ jobs:
     working_directory: ~/repo
 
 workflows:
-  deployment_aks_lab:
-    jobs:
-    
-      - deployment_development_docker:
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
-      - create-aks-deployment:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "lab"
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
-      - azure-aks/update-container-image:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "lab"
-          resource-name: ${AKS_DEPLOYMENT_LAB}
-          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-          record: true
-          requires:
-            - deployment_development_docker
-          filters:
-            branches:
-              ignore:
-                - develop
-                - master
   deployment_aks_dev:
     jobs:
       - deployment_development_docker:
@@ -118,7 +91,8 @@ workflows:
       - create-aks-deployment:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "dev"
+          subscription: ${SUBSCRIPTION}
+          namespace: "fbas-dev"
           filters:
             branches:
               ignore:
@@ -127,8 +101,10 @@ workflows:
       - azure-aks/update-container-image:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "dev"
+          subscription: ${SUBSCRIPTION}
+          namespace: "fbas-dev"
           resource-name: ${AKS_DEPLOYMENT_DEV}
+          get-admin-credentials: true
           container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           record: true
           requires:
@@ -138,53 +114,3 @@ workflows:
               ignore:
                 - develop
                 - master
-  deployment_aks_ua:
-    jobs:
-      - deployment_development_docker:
-          filters:
-            branches:
-              only: develop
-      - create-aks-deployment:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "uat"
-          filters:
-            branches:
-              only: develop
-      - azure-aks/update-container-image:
-          cluster-name: ${AKS_CLUSTERNAME_DEV}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "uat"
-          resource-name: ${AKS_DEPLOYMENT_UA}
-          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-          record: true
-          requires:
-            - deployment_development_docker
-          filters:
-            branches:
-              only: develop
-  deployment_aks:
-    jobs:
-      - deployment_development_docker:
-          filters:
-            branches:
-              only: master
-      - create-aks-deployment:
-          cluster-name: ${AKS_CLUSTERNAME}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "default"
-          filters:
-            branches:
-              only: master
-      - azure-aks/update-container-image:
-          cluster-name: ${AKS_CLUSTERNAME}
-          resource-group: ${AKS_RESOURCE_GROUP}
-          namespace: "default"
-          resource-name: ${AKS_DEPLOYMENT}
-          container-image-updates: "vac-benefits-directory=${NAMESPACE}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
-          record: true
-          requires:
-            - deployment_development_docker
-          filters:
-            branches:
-              only: master
