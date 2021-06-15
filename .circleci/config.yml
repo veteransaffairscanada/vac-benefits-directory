@@ -29,6 +29,7 @@ jobs:
           install-kubectl: true
           perform-login: true
           subscription: << parameters.subscription >>
+          get-admin-credentials: true
 
   deployment_development_docker:
     docker:
@@ -92,7 +93,6 @@ workflows:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
           subscription: ${SUBSCRIPTION}
-          get-admin-credentials: true
           namespace: "fbas-lab"
           filters:
             branches:
@@ -125,7 +125,6 @@ workflows:
           cluster-name: ${AKS_CLUSTERNAME_DEV}
           resource-group: ${AKS_RESOURCE_GROUP}
           subscription: ${SUBSCRIPTION}
-          get-admin-credentials: true
           namespace: "fbas-dev"
           filters:
             branches:
