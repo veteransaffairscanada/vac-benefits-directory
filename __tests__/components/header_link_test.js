@@ -8,7 +8,8 @@ describe("HeaderLink", () => {
   let props;
   beforeEach(() => {
     props = {
-      children: "header"
+      children: "header",
+      href: "/"
     };
   });
 
