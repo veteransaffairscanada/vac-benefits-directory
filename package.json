@@ -33,11 +33,11 @@
     "preversion": "yarn test && yarn lint",
     "version": "yarn run build && git add -A pages",
     "postversion": "git push && git push --tags && rm -rf build/temp",
-    "semantic-release": "semantic-release",
     "snyk-protect": "snyk protect",
     "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
+    "@axe-core/react": "^4.2.1",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "@material-ui/core": "^3.9.3",
@@ -115,7 +115,6 @@
     "pretty-quick": "^1.11.0",
     "react-styleguidist": "^9.1.16",
     "react-test-renderer": "^16.13.0",
-    "semantic-release": "^15.13.21",
     "start-server-and-test": "^1.12.5",
     "webpack-bundle-analyzer": "^3.6.0"
   },
