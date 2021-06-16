@@ -13,6 +13,7 @@ import multipleChoiceOptionsFixture from "../fixtures/multiple_choice_options";
 import questionDisplayLogicFixture from "../fixtures/question_display_logic";
 import questionClearLogicFixture from "../fixtures/question_clear_logic";
 import translateFixture from "../fixtures/translate";
+
 const { axe, toHaveNoViolations } = require("jest-axe");
 expect.extend(toHaveNoViolations);
 import benefitExamplesFixture from "../fixtures/benefitExamples";
@@ -22,6 +23,7 @@ window.matchMedia = () => ({
   addListener: () => {},
   removeListener: () => {}
 });
+
 describe("BB", () => {
   let props;
   let _mountedBB;
@@ -51,7 +53,8 @@ describe("BB", () => {
       filteredBenefits: [],
       setSelectedNeeds: () => true,
       url: { query: {} },
-      printUrl: "/print"
+      printUrl: "/print",
+      guidedExperienceUrl: "/?"
     };
     _shallowBB = undefined;
     _mountedBB = undefined;

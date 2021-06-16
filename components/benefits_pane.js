@@ -13,7 +13,6 @@ import {
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
 import Header from "./typography/header";
-import SearchBox from "./search_box";
 import { getBenefitCountString } from "../utils/common";
 import NoResultsButtons from "./no_results_buttons";
 import ResultsHeader from "./results_header";
@@ -42,9 +41,6 @@ const editSelectionsButton = css`
 const spacer = css`
   margin-top: 40px;
   width: 100%;
-`;
-const searchBar = css`
-  margin: 25px 0px 27px;
 `;
 
 const editSelectionsModal = css`
@@ -117,8 +113,7 @@ export class BenefitsPane extends Component {
       nonFilteredBenefits,
       searchString,
       reduxState,
-      store,
-      setSearchString
+      store
     } = this.props; // eslint-disable-line no-unused-vars
     return (
       <Grid item xs={12}>
@@ -287,7 +282,4 @@ BenefitsPane.propTypes = {
   store: PropTypes.object
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(BenefitsPane);
+export default connect(mapStateToProps, mapDispatchToProps)(BenefitsPane);

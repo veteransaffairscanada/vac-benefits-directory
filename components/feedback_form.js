@@ -145,7 +145,7 @@ export class FeedbackForm extends Component {
               this.props.onSend();
             }}
           >
-            {t("send")}{" "}
+            {t("send It")}{" "}
           </Button>
         </div>
       </form>
