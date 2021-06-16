@@ -83,7 +83,7 @@ class MyDocument extends Document {
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
-        <body style={bodyStyling} tabIndex={1}>
+        <body style={bodyStyling} tabIndex={0}>
           <Main />
           <NextScript />
         </body>

@@ -6,6 +6,12 @@ import withRedux from "next-redux-wrapper";
 import { initStore } from "../store";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
+if (typeof window !== "undefined" && process.env.NODE_ENV !== "production") {
+  const ReactDOM = require("react-dom");
+  const axe = require("@axe-core/react");
+  axe(React, ReactDOM, 1000);
+}
+
 const theme = createMuiTheme({
   breakpoints: {
     values: {
