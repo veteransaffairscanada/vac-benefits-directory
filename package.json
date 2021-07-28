@@ -85,7 +85,7 @@
     "redux-mock-store": "^1.5.4",
     "regenerator-runtime": "^0.13.7",
     "reselect": "^4.0.0",
-    "snyk": "^1.634.0",
+    "snyk": "^1.667.0",
     "universal-cookie": "^4.0.4",
     "webpack": "^5.1.1"
   },
