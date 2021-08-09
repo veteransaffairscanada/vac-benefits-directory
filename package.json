@@ -57,7 +57,7 @@
     "enzyme-adapter-react-16.3": "^1.7.4",
     "eslint-utils": "1.4.1",
     "express": "^4.17.1",
-    "helmet": "^3.21.3",
+    "helmet": "^4.6.0",
     "isomorphic-unfetch": "^3.1.0",
     "jest-haste-map": "^24.9.0",
     "jest-resolve": "^24.9.0",
