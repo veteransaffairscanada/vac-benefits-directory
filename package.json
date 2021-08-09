@@ -61,7 +61,7 @@
     "isomorphic-unfetch": "^3.1.0",
     "jest-haste-map": "^27.0.6",
     "jest-resolve": "^24.9.0",
-    "js-yaml": "3.13.1",
+    "js-yaml": "4.1.0",
     "jsdom": "^16.7.0",
     "lunr": "^2.3.9",
     "lunr-languages": "^1.8.0",
