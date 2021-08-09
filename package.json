@@ -68,7 +68,7 @@
     "markdown-it": "^12.2.0",
     "next": "^9.5.4",
     "next-redux-wrapper": "^3.0.0-alpha.2",
-    "preact": "8.5.2",
+    "preact": "10.5.14",
     "prop-types": "^15.6.0",
     "raven-js": "^3.27.1",
     "react": "16.13.0",
