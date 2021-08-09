@@ -59,7 +59,7 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "isomorphic-unfetch": "^3.1.0",
-    "jest-haste-map": "^24.9.0",
+    "jest-haste-map": "^27.0.6",
     "jest-resolve": "^24.9.0",
     "js-yaml": "3.13.1",
     "jsdom": "^16.7.0",
