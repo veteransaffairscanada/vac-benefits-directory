@@ -72,7 +72,7 @@
     "prop-types": "^15.6.0",
     "raven-js": "^3.27.1",
     "react": "16.13.0",
-    "react-autosuggest": "^9.4.3",
+    "react-autosuggest": "^10.1.0",
     "react-dom": "^16.13.0",
     "react-ga": "^2.7.0",
     "react-highlight-words": "^0.16.0",
