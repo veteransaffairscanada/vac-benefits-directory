@@ -74,7 +74,7 @@
     "react": "16.13.0",
     "react-autosuggest": "^10.1.0",
     "react-dom": "^16.13.0",
-    "react-ga": "^2.7.0",
+    "react-ga": "^3.3.0",
     "react-highlight-words": "^0.16.0",
     "react-jss": "^8.6.1",
     "react-jsx-parser": "^1.28.4",
