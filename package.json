@@ -33,7 +33,7 @@
     "preversion": "yarn test && yarn lint",
     "version": "yarn run build && git add -A pages",
     "postversion": "git push && git push --tags && rm -rf build/temp",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
@@ -85,9 +85,9 @@
     "redux-mock-store": "^1.5.4",
     "regenerator-runtime": "^0.13.9",
     "reselect": "^4.0.0",
-    "snyk": "^1.685.0",
     "universal-cookie": "^4.0.4",
-    "webpack": "^5.49.0"
+    "webpack": "^5.49.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
