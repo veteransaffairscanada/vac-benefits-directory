@@ -87,7 +87,7 @@
     "reselect": "^4.0.0",
     "snyk": "^1.685.0",
     "universal-cookie": "^4.0.4",
-    "webpack": "^5.49.0"
+    "webpack": "^5.76.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.8",
