@@ -61,7 +61,7 @@
     "isomorphic-unfetch": "^3.1.0",
     "jest-haste-map": "^27.0.6",
     "jest-resolve": "^24.9.0",
-    "js-yaml": "4.1.0",
+    "js-yaml": "4.1.1",
     "jsdom": "^16.7.0",
     "lunr": "^2.3.9",
     "lunr-languages": "^1.8.0",
@@ -85,7 +85,7 @@
     "redux-mock-store": "^1.5.4",
     "regenerator-runtime": "^0.13.9",
     "reselect": "^4.0.0",
-    "snyk": "^1.685.0",
+    "snyk": "^1.996.0",
     "universal-cookie": "^4.0.4",
     "webpack": "^5.49.0"
   },
